@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
+<title>New features in this release - Audacity Development Manual</title>
+
+
+
+
+<!--[if IE 6]><![endif]--><!--[if IE 7]><![endif]-->
+<meta name="ResourceLoaderDynamicStyles" content=""/>
+
+<meta name="generator" content="MediaWiki 1.28.2"/>
+<link rel="shortcut icon" href="http://alphamanual.audacityteam.org/favicon.ico"/>
+<link rel="search" type="application/opensearchdescription+xml" href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" title="Audacity Development Manual (en)"/>
+<link rel="EditURI" type="application/rsd+xml" href="http://alphamanual.audacityteam.org/m/api.php?action=rsd"/>
+<link rel="copyright" href="https://creativecommons.org/licenses/by/3.0/"/>
+
+<link rel="stylesheet" href="../m/skins/monobook/main.css/303.css" media="screen" />
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-New_features_in_this_release rootpage-New_features_in_this_release skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en">New features in this release</h1>
+				
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Audacity Development Manual</div>
+					<div id="contentSub"></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="http://alphamanual.audacityteam.org/man/New_features_in_this_release#column-one">navigation</a>, <a href="http://alphamanual.audacityteam.org/man/New_features_in_this_release#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><p><br />
+</p>
+<center><a href="http://audacityteam.org/" title="size=50%" rel="nofollow"><img alt="size=50%" src="http://alphamanual.audacityteam.org/m/images/8/88/Audacity_Logo_signika_512_transparent.png" width="512" height="138" /></a></center>
+<div class="intro"><span style="font-size:120%"><b>This page is an overview of the key new functionality that has been introduced in Audacity 2.2.0</b></span>
+<ul><li> <span style="font-size:110%">Details of all the major changes since 2.1.3 can be found in <a rel="nofollow" class="external text" href="https://wiki.audacityteam.org/wiki/Release_Notes_2.2.0">Release Notes 2.2.0</a>.</span></div></li></ul>
+<h2><span class="mw-headline" id="Contents">Contents</span></h2>
+<ol><li><a href="http://alphamanual.audacityteam.org/man/New_features_in_this_release#logo">New Logo</a></li>
+<li><a href="http://alphamanual.audacityteam.org/man/New_features_in_this_release#themes">Themes</a></li>
+<li><a href="http://alphamanual.audacityteam.org/man/New_features_in_this_release#midi">MIDI (and Allegro) Playback</a></li>
+<li><a href="http://alphamanual.audacityteam.org/man/New_features_in_this_release#stemplots">Stem Plots</a></li>
+<li><a href="http://alphamanual.audacityteam.org/man/New_features_in_this_release#menus">Menu reorganization</a></li>
+<li><a href="http://alphamanual.audacityteam.org/man/New_features_in_this_release#extendedmenubar">The Extended Menu Bar</a></li>
+<li><a href="http://alphamanual.audacityteam.org/man/New_features_in_this_release#append">Default Append Record</a></li>
+<li><a href="http://alphamanual.audacityteam.org/man/New_features_in_this_release#help-buttons">Help buttons</a></li>
+<li><a href="http://alphamanual.audacityteam.org/man/New_features_in_this_release#shortcuts">Standard and Full shortcut sets</a></li>
+<li><a href="http://alphamanual.audacityteam.org/man/New_features_in_this_release#selection">Selection Toolbar improvements</a></li>
+<li><a href="http://alphamanual.audacityteam.org/man/New_features_in_this_release#clips">New commands for using clips via the keyboard</a></li>
+<li><a href="http://alphamanual.audacityteam.org/man/New_features_in_this_release#safety">Running out of disk space</a></li>
+<li><a href="http://alphamanual.audacityteam.org/man/New_features_in_this_release#appendix">Additional new features</a></li></ol>
+<p><br />
+</p><p><br />
+</p>
+<div id="logo"></div>
+<h2><span class="mw-headline" id="New_Logo">New Logo</span></h2>
+<p>The logo has been given a refresh, and now uses a sans-serif font and a flatter style.
+</p><p><a href="http://audacityteam.org/" title="Click to visit the Audacity main website for  the latest news and Audacity downloads" rel="nofollow"><img alt="Click to visit the Audacity main website for  the latest news and Audacity downloads" src="http://alphamanual.audacityteam.org/m/images/8/8c/Audacity-logo-whitebg.png" width="607" height="178" /></a>
+</p>
+<div id="themes"></div>
+<h2><span class="mw-headline" id="Themes"><a href="http://alphamanual.audacityteam.org/man/Themes" title="Themes">Themes</a></span></h2>
+
+<p>Audacity now comes supplied with four pre-configured, user-selectable, themes.  This enables you to choose the look and feel you prefer for Audacity's interface. see the <a href="http://alphamanual.audacityteam.org/man/Themes" title="Themes">Themes</a> page for details.
+</p>
+<ul><li><b>Light</b> theme: this is a light theme loosely based on the look and feel of earlier Audacity versions, but given a contemporary twist with more modern-looking buttons and icons. </li>
+<li><b>Dark</b> theme: created by the <a rel="nofollow" class="external text" href="http://www.darkaudacity.com/">Dark Audacity project.</a> This is similar to the Light theme, with the same buttons and icons, but given a dark twist.</li>
+<li><b>Classic</b> theme: The one you know and loved. This theme is a re-creation of the look and feel of earlier Audacity versions. </li>
+<li><b>High Contrast</b> theme: some users with poor eyesight benefit from a high contrast that is 'eye-popping' for most people.</li></ul>
+<p><br />
+</p>
+<dl><dd><table>
+<tr>
+<td>&#160;&#160;&#160;&#160;
+</td>
+<td title="An example of Light theme"><a href="http://alphamanual.audacityteam.org/man/Themes#light" title="Themes#light"><img alt="Theme Light.png" src="http://alphamanual.audacityteam.org/m/images/5/51/Theme_Light.png" width="400" height="256" /></a>
+</td>
+<td>&#160;&#160;&#160;&#160;
+</td>
+<td title="An example of Dark theme"><a href="http://alphamanual.audacityteam.org/man/Themes#dark" title="Themes#dark"><img alt="Theme Dark.png" src="http://alphamanual.audacityteam.org/m/images/e/e3/Theme_Dark.png" width="400" height="256" /></a>
+</td></tr>
+<tr>
+<td>&#160;&#160;&#160;&#160;
+</td>
+<td align="center" valign="top"><b>Light</b> theme
+</td>
+<td>&#160;&#160;&#160;&#160;
+</td>
+<td align="center" valign="top"><b>Dark</b> theme
+</td></tr></table></dd></dl>
+<dl><dd><table>
+<tr>
+<td>&#160;&#160;&#160;&#160;
+</td>
+<td title="An example of Classic theme"><a href="http://alphamanual.audacityteam.org/man/Themes#classic" title="Themes#classic"><img alt="Theme Classic.png" src="http://alphamanual.audacityteam.org/m/images/b/bc/Theme_Classic.png" width="400" height="256" /></a>
+</td>
+<td>&#160;&#160;&#160;&#160;
+</td>
+<td title="An example of High Contrast theme"><a href="http://alphamanual.audacityteam.org/man/Themes#hicontrast" title="Themes#hicontrast"><img alt="Theme Hi Contrast.png" src="http://alphamanual.audacityteam.org/m/images/c/c3/Theme_Hi_Contrast.png" width="400" height="256" /></a>
+</td></tr>
+<tr>
+<td>&#160;&#160;&#160;&#160;
+</td>
+<td align="center" valign="top"><b>Classic</b> theme
+</td>
+<td>&#160;&#160;&#160;&#160;
+</td>
+<td align="center" valign="top"><b>High Contrast</b> theme
+</td></tr></table></dd></dl>
+<p><br />
+</p>
+<div class="note">The theme to use can be chosen at <span class="menu">Edit &gt; Preferences &gt; <a href="http://alphamanual.audacityteam.org/man/Interface_Preferences" title="Interface Preferences">Interface</a></span>.  
+<ul><li> In addition to the four pre-configured themes there is also a Custom theme.  </li></ul>
+<dl><dd> By default the custom theme looks the same as Classic theme - but, if you have the right programming skills and tools, you can use this template to create your own theme.  Instructions for how to do this may be found in the <a rel="nofollow" class="external text" href="https://wiki.audacityteam.org/wiki/Theming_HowTo">Audacity Wiki</a>.</div></dd></dl>
+</li></ul>
+<p><br />
+</p>
+<div id="midi"></div>
+<h2><span class="mw-headline" id="MIDI_.28and_Allegro.29_Playback">MIDI (and Allegro) Playback</span></h2>
+<p>Playback of MIDI (and Allegro) files imported into <a href="http://alphamanual.audacityteam.org/man/Note_Tracks" title="Note Tracks">Note Tracks</a> is now available.  Please see the <a href="http://alphamanual.audacityteam.org/man/Note_Tracks" title="Note Tracks">Note Tracks</a> page for more details.
+</p><p>This should just work on Windows but for playback on Mac and Linux additional software may be required, see <a href="http://alphamanual.audacityteam.org/man/Playing_and_Recording#midi" title="Playing and Recording">this section</a> on the <a href="http://alphamanual.audacityteam.org/man/Playing_and_Recording" title="Playing and Recording">Playing and Recording</a> page.
+</p><p>But note that there will no use of the <a href="http://alphamanual.audacityteam.org/man/Meter_Toolbar#playback" title="Meter Toolbar">Playback meter</a> while Note tracks are played. 
+</p>
+<div id="stemplots"></div>
+<h2><span class="mw-headline" id="Stem_Plots">Stem Plots</span></h2>
+<p>There is a new entry in the <a href="http://alphamanual.audacityteam.org/man/Tracks_Preferences" title="Tracks Preferences">Tracks Preferences</a> for <b>Display samples</b>.  This setting changes how <a href="http://alphamanual.audacityteam.org/man/Audacity_Waveform" title="Audacity Waveform">Waveform</a> and <a href="http://alphamanual.audacityteam.org/man/Audacity_Waveform#db" title="Audacity Waveform">Waveform dB</a> views are displayed.  It only affects the appearance of the waveform when you are so far zoomed in that you can see the individual sample dots.  At lower zoom levels it makes no difference.  
+</p>
+<ul><li><b>Stem plot:</b> This is the default setting which draws a vertical line from the track center line to the sample dot, giving a clearer impression of the relative amplitude of the samples. As seen in the images below, when zoomed out close to the minimum for a stem plot, the horizontal distance between sample dots may be more uneven than seen with the connect dots default.   </li>
+<li><b>Connect dots:</b> This is alternative setting yields a waveform where each sample dot is connected to the next sample by a line drawn between them.  </li></ul>
+<dl><dd><dl><dd><span title="Examples of zoomed in Waveform view showing &#39;Connect dots&#39; and &#39;Stem Plot"><img alt="Connect dots &amp; Stem plot examples.png" src="http://alphamanual.audacityteam.org/m/images/e/ef/Connect_dots_%26_Stem_plot_examples.png" width="530" height="228" /></span></dd></dl></dd></dl>
+<div class="note">Uneven spacing is due to "aliasing", but zooming in further will equalize the spacing whether choosing Connect dots or Stem plot.</div>
+<p><br />
+</p>
+<div id="menus"></div>
+<h2><span class="mw-headline" id="Menu_reorganization">Menu reorganization</span></h2>
+<p>We have made the Menus shorter and clearer than in previous Audacity versions. The menus have been simplified without losing functionality. The most commonly used functions are found in the top levels of the menus. The functions moved down into lower submenus are better organized.
+</p><p>This is not just a rearrangement.  We also added new menu items to make the layout more logical.  There are new menu items for exporting as MP3 or WAV. Previously you had to export audio, and then choose the format. You still can do that, but these new items are there for convenience.
+</p>
+<div class="note">One of the long standing bug-bears with Audacity is the distinction between ‘Save’ and ‘Export’. People expect to be able to open a WAV audio file, edit it in Audacity and then click save. That is not how Audacity works. Audacity needs audio in its own unique format to work on it. So Audacity converts when you 'Open' a WAV file and converts back when you 'Save'. In an attempt to make this clearer Audacity uses the word 'Import' for opening a file like WAV and 'Export' for converting and saving in a format like WAV. Open and Save are reserved for Audacity's own project format.<p>Now the ‘Export’ options are under the ‘Save Other’ menu item, where people trying to save audio as an MP3 or WAV file are more likely to find them.</p> </div>
+<p><br />
+</p>
+<div id="extendedmenubar"></div>
+<h2><span class="mw-headline" id="The_Extended_Menu_bar">The Extended Menu bar</span></h2>
+<p>There are two new additional menus that are hidden by default.  They can be turned on at <span class="menu">View &gt; <a href="http://alphamanual.audacityteam.org/man/View_Menu#extra_menus_onoff" title="View Menu">Extra Menus (on/off)</a></span> or the Interface pane of <span class="menu">Edit &gt; <a href="http://alphamanual.audacityteam.org/man/Interface_Preferences" title="Interface Preferences">Preferences</a></span>.
+</p><p>These extra menus have many extra less frequently used commands.  They are particularly useful to VI users, but normally-sighted users may find them useful too.
+</p>
+<dl><dd><i><b>Image of the Extended Menu bar as it appears on Windows</b></i></dd>
+<dd><div class="noresize"><map name="ImageMap_1_1694869993"><area href="http://alphamanual.audacityteam.org/man/Ext-Bar_Menu" shape="rect" coords="461,32,508,50" alt="The Ext-Bar Menu provides access to Toolbar operations that are not available in the default Audacity menus" title="The Ext-Bar Menu provides access to Toolbar operations that are not available in the default Audacity menus"/><area href="http://alphamanual.audacityteam.org/man/Ext-Command_Menu" shape="rect" coords="515,32,600,50" alt="The Ext-Command Menu provides access to commands for track focus and cursor movement that are not available in the default Audacity menus" title="The Ext-Command Menu provides access to commands for track focus and cursor movement that are not available in the default Audacity menus"/></map><img alt="Menu Toolbar Extra.png" src="http://alphamanual.audacityteam.org/m/images/0/0d/Menu_Toolbar_Extra.png" width="605" height="55" usemap="http://alphamanual.audacityteam.org/man/New_features_in_this_release#ImageMap_1_1694869993"/></div></dd>
+<dd><i>Click, or hover, on either of the <b>Ext-</b> items at the end of the image to read about those menu entries.</i></dd></dl>
+<table class="prettytablerows">
+<tr>
+<th width="20%">Menu
+</th>
+<th>What you'll find there
+</th></tr>
+<tr>
+<td style="padding-left:10px"><a href="http://alphamanual.audacityteam.org/man/Ext-Bar_Menu" title="Ext-Bar Menu">Ext-Bar</a></td>
+<td>The Ext-Bar menu provides access to <a href="http://alphamanual.audacityteam.org/man/Toolbars_Overview" title="Toolbars Overview">Toolbar</a> operations that are not available in the default Audacity menus. These will be of most interest to visually impaired users or those who have difficulty using the mouse.<p><a href="http://alphamanual.audacityteam.org/man/Keyboard_Preferences" title="Keyboard Preferences">Shortcuts</a> can be assigned to these commands if required.</p>
+</td></tr>
+<tr>
+<td style="padding-left:10px"><a href="http://alphamanual.audacityteam.org/man/Ext-Command_Menu" title="Ext-Command Menu">Ext-Command</a></td>
+<td>The Ext-Command menu provides access to extra commands for <a href="http://alphamanual.audacityteam.org/man/Audio_Tracks#focus" title="Audio Tracks">track focus</a> and movement of the editing or playback cursor that are not available in the default Audacity menus. These will be of most interest to visually impaired users or those who have difficulty using the mouse.<p><a href="http://alphamanual.audacityteam.org/man/Keyboard_Preferences" title="Keyboard Preferences">Shortcuts</a> can be assigned to these commands if required.</p>
+</td></tr></table>
+<div class="note">If you only require regular access to a small set of these commands you can set shortcuts for them and leave the extra menus hidden.</div>
+<p><br />
+</p>
+<div id="append"></div>
+<h2><span class="mw-headline" id="Appended_recording_on_the_same_track_in_now_the_default">Appended recording on the same track in now the default</span></h2>
+<p>From Audacity 2.2.0 onward the default recording mode has changed so that when you click the Record button <img alt="The Record button" src="http://alphamanual.audacityteam.org/m/images/e/e8/Record.png" title="The Record button" width="16" height="16" /> on <a href="http://alphamanual.audacityteam.org/man/Transport_Toolbar" title="Transport Toolbar">Transport Toolbar</a>, or use the <span class="kbrd" style="background-color: #e0e0f0">R</span>, Audacity will record at the end of the currently selected (or only) track.
+</p>
+<h3><span class="mw-headline" id="To_record_on_a_new_track">To record on a new track</span></h3>
+<p>If you hold the <span class="button">Shift</span> button down the Record button in <a href="http://alphamanual.audacityteam.org/man/Transport_Toolbar" title="Transport Toolbar">Transport Toolbar</a> will temporarily change to <img alt="The Record New Track button" src="http://alphamanual.audacityteam.org/m/images/7/72/Record_New_Track.png" title="The Record New Track button" width="16" height="16" />. Then clicking on this modified Record button, or using the shortcut <span class="kbrd" style="background-color: #e0e0f0">Shift + R</span> will cause Audacity to create a new track and begin recording on that track from the current cursor position (or from the left edge of a region on the <a href="http://alphamanual.audacityteam.org/man/Timeline" title="Timeline">Timeline</a>). 
+</p><p><br />
+</p>
+<div id="help-buttons"></div>
+<h2><span class="mw-headline" id="Help_buttons">Help buttons</span></h2>
+<p>Many places in the user interface have had a help button <a href="http://alphamanual.audacityteam.org/man/Help_Button" title="Help Button"><img alt="Help Button" src="http://alphamanual.audacityteam.org/m/images/d/d6/Help_Button.png" width="27" height="27" /></a> added. Examples are all the Preferences dialog panes, all the Effects, Generators and Analyzers and some error messages.
+</p><p>Clicking on that button in the dialog will link you to the appropriate page in the Manual.
+</p><p><span style="font-weight: bold; font-size:118%">Example:</span> the Amplify effect.  Try clicking on the "<b>?</b>" at the bottom right of this image.
+</p>
+<dl><dd><div class="noresize"><map name="ImageMap_2_545976105"><area href="http://alphamanual.audacityteam.org/man/Amplify" shape="rect" coords="433,177,461,204" alt="Help for Amplify effect" title="Help for Amplify effect"/></map><img alt="Amplify.png" src="http://alphamanual.audacityteam.org/m/images/6/6d/Amplify.png" width="474" height="217" usemap="http://alphamanual.audacityteam.org/man/New_features_in_this_release#ImageMap_2_545976105"/></div></dd></dl>
+<p><br />
+</p>
+<div id="shortcuts"></div>
+<h2><span class="mw-headline" id="Standard_and_Full_shortcut_sets">Standard and Full shortcut sets</span></h2>
+<p>For Audacity 2.2.0 we have reduced the number of preset shortcuts in the application to a "<b><a href="http://alphamanual.audacityteam.org/man/Keyboard_Shortcut_Reference" title="Keyboard Shortcut Reference">Standard</a></b>" set.  We did this to simplify the set of shortcuts somewhat and to provide greater flexibility for users who want to set their own custom shortcuts.
+</p><p>You can choose to revert to the full set of shortcuts that were in 2.1.3 and earlier by selecting "<b>Full</b>" from the dropdown menu accessed from the <span class="button">Defaults</span> button in the <a href="http://alphamanual.audacityteam.org/man/Keyboard_Preferences" title="Keyboard Preferences">Keyboard Preferences</a> dialog.
+</p><p>You can use the <span class="button">Defaults</span> button to switch between the two provided default sets of shortcuts at any time.
+</p>
+<dl><dd><div class="noresize"><map name="ImageMap_3_1572635641"><area href="http://alphamanual.audacityteam.org/man/Keyboard_Shortcut_Reference" shape="rect" coords="435,136,491,150" alt="Standard shortcuts" title="Standard shortcuts"/><area href="http://alphamanual.audacityteam.org/man/Keyboard_Shortcut_Reference" shape="rect" coords="435,156,491,176" alt="Full set of shortcuts" title="Full set of shortcuts"/></map><img alt="Preferences Keyboard with Default dropdown menu - trimmed.png" src="http://alphamanual.audacityteam.org/m/images/f/f8/Preferences_Keyboard_with_Default_dropdown_menu_-_trimmed.png" width="619" height="196" usemap="http://alphamanual.audacityteam.org/man/New_features_in_this_release#ImageMap_3_1572635641"/></div></dd></dl>
+<p>See <a href="http://alphamanual.audacityteam.org/man/Keyboard_Shortcut_Reference" title="Keyboard Shortcut Reference">Commands and Keyboard Shortcut Reference</a> for more details.
+</p><p><br />
+</p>
+<div id="selection"></div>
+<h2><span class="mw-headline" id="Selection_Toolbar_improvements">Selection Toolbar improvements</span></h2>
+<p>There are now four available settings in the Selection and Audio Position Boxes in <a href="http://alphamanual.audacityteam.org/man/Selection_Toolbar" title="Selection Toolbar">Selection Toolbar</a> for the  manner in which the details of your selection are displayed:
+</p>
+<ul><li><b>Start and End of selection</b>: the start time and the end time of your selection <i>(default setting)</i></li>
+<li><b>Start and Length of selection</b>: the start time and the length of your selection</li>
+<li><b>Length and End of selection</b>: the length and the end time of your selection</li>
+<li><b>Length and Center of selection</b>: the length and the time at the center of your selection</li></ul>
+<dl><dd><span title="Selection Toolbar with dropdown menu for display type selection"><img alt="Selection Toolbar display modes.png" src="http://alphamanual.audacityteam.org/m/images/c/c6/Selection_Toolbar_display_modes.png" width="713" height="130" /></span></dd></dl>
+<p><br />
+</p>
+<div id="clips"></div>
+<h2><span class="mw-headline" id="New_commands_for_using_clips_via_the_keyboard">New commands for using clips via the keyboard</span></h2>
+<p>New commands, all of which interact with the clips on the focused track. As yet, there are no default shortcuts:
+</p>
+<ol><li><span class="menu">Transport &gt; Cursor to &gt; <a href="http://alphamanual.audacityteam.org/man/Transport_Menu:_Cursor_to#previous_clip_boundary" title="Transport Menu: Cursor to">Previous clip boundary</a></span></li>
+<li><span class="menu">Transport Cursor to &gt; <a href="http://alphamanual.audacityteam.org/man/Transport_Menu:_Cursor_to#next_clip_boundary" title="Transport Menu: Cursor to">Next clip boundary</a></span></li>
+<li><span class="menu">Select &gt; Clip Boundaries &gt; <a href="http://alphamanual.audacityteam.org/man/Select_Menu:_Clip_Boundaries#previous_clip_boundary_to_cursor" title="Select Menu: Clip Boundaries">Previous clip boundary to cursor</a> </span></li>
+<li><span class="menu">Select &gt; Clip Boundaries &gt; <a href="http://alphamanual.audacityteam.org/man/Select_Menu:_Clip_Boundaries#cursor_to_next_clip_boundary" title="Select Menu: Clip Boundaries">Cursor to next clip boundary</a> </span></li>
+<li><span class="menu">Select &gt; Clip Boundaries &gt; <a href="http://alphamanual.audacityteam.org/man/Select_Menu:_Clip_Boundaries#previous_clip" title="Select Menu: Clip Boundaries">Previous clip</a> </span></li>
+<li><span class="menu">Select &gt; Clip Boundaries &gt; <a href="http://alphamanual.audacityteam.org/man/Select_Menu:_Clip_Boundaries#next_clip" title="Select Menu: Clip Boundaries">Next clip</a> </span></li></ol>
+<div class="note">There are also two new commands (<a href="http://alphamanual.audacityteam.org/man/Ext-Command_Menu:_Cursor#clip_left" title="Ext-Command Menu: Cursor">Clip Left</a> and <a href="http://alphamanual.audacityteam.org/man/Ext-Command_Menu:_Cursor#clip_right" title="Ext-Command Menu: Cursor">Clip Right</a>) for moving clips, which are available in the <a href="http://alphamanual.audacityteam.org/man/New_features_in_this_release#extendedmenubar">extended menus</a> added in this release.<p>Note that these extended menus are <i><b>not</b></i> turned on by default, to turn them on please see <a href="http://alphamanual.audacityteam.org/man/Menu_Reference#the_extended_menu_bar" title="Menu Reference">Menu Reference</a> for how to reveal the extended menus.</p>
+</div>
+<p><br />
+</p>
+<div id="safety"></div>
+<h2><span class="mw-headline" id="Running_out_of_disk_space">Running out of disk space</span></h2>
+<p>We have now provided an error trap for situations where you are running out of available disk space.
+</p><p>You will now see the error message:
+"<b>Audacity failed to write to a file in &lt;device&gt;</b>"
+</p><p>This is particularly useful when recording as Audacity will stop recording when the error is trapped, preserving your recording up to that point.
+</p><p><br />
+</p>
+<div id="appendix"></div>
+<h2><span class="mw-headline" id="Additional_new_features"><a href="http://alphamanual.audacityteam.org/man/New_features_in_this_release_-_appendix" title="New features in this release - appendix">Additional new features</a></span></h2>
+<p>This page <b><a href="http://alphamanual.audacityteam.org/man/New_features_in_this_release_-_appendix" title="New features in this release - appendix">New features in this release - appendix</a></b> gives an overview of further new functionality that has been introduced in this release of Audacity.
+</p><p><br />
+</p>
+<h2><span class="mw-headline" id="Links">Links</span></h2>
+<p><a rel="nofollow" class="external text" href="https://wiki.audacityteam.org/wiki/Release_Notes_2.2.0"><b>&gt;</b> Audacity Release Notes 2.2.0</a> <i>- detailed release notes for this release of Audacity</i>
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20170824010442
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.132 seconds
+Real time usage: 0.137 seconds
+Preprocessor visited node count: 309/1000000
+Preprocessor generated node count: 824/1000000
+Post‐expand include size: 4813/2097152 bytes
+Template argument size: 3760/2097152 bytes
+Highest expansion depth: 4/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   54.562      1 - -total
+  6.13%    3.343      2 - Template:Shortcut
+  5.78%    3.155      5 - Template:Note
+  4.62%    2.519      4 - Template:Button
+  4.40%    2.399      9 - Template:Menu
+  2.84%    1.548      1 - Template:Hint
+  2.44%    1.329      1 - Template:Intro
+  2.26%    1.231      2 - Template:Ednote
+  1.87%    1.019      1 - Template:Bh
+-->
+
+<!-- Saved in parser cache with key helpmediawiki:pcache:idhash:5555-0!*!0!!*!5!* and timestamp 20170824010441 and revision id 55728
+ -->
+</div>
+										<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			
+					
+				
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="http://alphamanual.audacityteam.org/man/Main_Page" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+					
+		<div class="generated-sidebar portlet" id="p-Navigation" role="navigation">
+		<h3>Navigation</h3>
+		<div class='pBody'>
+			<ul><li> <a href="http://alphamanual.audacityteam.org/man/Main_Page" title="Main Page">Manual Home Page</a></li>
+<li> <a href="http://alphamanual.audacityteam.org/man/Main_Page#using" title="Main Page">Using Audacity</a>
+<ul><li> <a href="http://alphamanual.audacityteam.org/man/Audacity_Tour_Guide" title="Audacity Tour Guide">Tour Guide</a></li>
+<li> <a href="http://alphamanual.audacityteam.org/man/New_features_in_this_release" title="New features in this release">New Features</a></li>
+<li> <a href="http://alphamanual.audacityteam.org/man/Quick_Help" title="Quick Help">Getting Started</a></li>
+<li> <a href="http://alphamanual.audacityteam.org/man/Preferences" title="Preferences">Preferences</a></li>
+<li> <a href="http://alphamanual.audacityteam.org/man/Menu_Reference" title="Menu Reference">Menu Bar</a></li>
+<li> <a href="http://alphamanual.audacityteam.org/man/Toolbars_Overview" title="Toolbars Overview">Toolbars</a></li>
+<li> <a href="http://alphamanual.audacityteam.org/man/Keyboard_Shortcut_Reference" title="Keyboard Shortcut Reference">Commands / Shortcuts</a></li>
+<li> <a href="http://alphamanual.audacityteam.org/man/Index_of_Effects,_Generators_and_Analyzers" title="Index of Effects, Generators and Analyzers">Effects</a></li>
+<li> <a href="http://alphamanual.audacityteam.org/man/Tutorials" title="Tutorials">Tutorials</a></li>
+<li> <a href="http://alphamanual.audacityteam.org/man/Tips" title="Tips">Tips</a></li></ul></li></ul>
+		</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-Reference" role="navigation">
+		<h3>Reference</h3>
+		<div class='pBody'>
+			<ul><li> <a href="http://alphamanual.audacityteam.org/man/Main_Page#reference" title="Main Page">Reference</a>
+<ul><li> <a href="http://alphamanual.audacityteam.org/man/Digital_Audio" title="Digital Audio">Digital Audio</a></li>
+<li> <a href="http://alphamanual.audacityteam.org/man/Glossary" title="Glossary">Glossary</a></li>
+<li> <a href="http://alphamanual.audacityteam.org/man/Subject_Index" title="Subject Index">Subject Index</a></li></ul></li>
+<li> <span title="Frequently Asked Questions"><a rel="nofollow" class="external text" href="http://alphamanual.audacityteam.org/man/FAQ">FAQ</a></span></li></ul>
+		</div>
+		</div>
+		
+		<div class="generated-sidebar portlet" id="p-Useful_Links" role="navigation">
+		<h3>Useful Links</h3>
+		<div class='pBody'>
+			<ul><li> <a rel="nofollow" class="external text" href="https://forum.audacityteam.org/index.php">Forum</a></li>
+<li> <a rel="nofollow" class="external text" href="https://wiki.audacityteam.org/wiki/Audacity_Wiki_Home_Page">Wiki</a></li>
+<li> <a rel="nofollow" class="external text" href="https://www.audacityteam.org/download/">Latest Release</a></li></ul>
+		</div>
+		</div>
+		
+			
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-copyrightico">
+									
+							</div>
+					<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="http://alphamanual.audacityteam.org/m/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/m/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /m/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31"/></a>
+							</div>
+					
+		<div align="center"><ul id="f_list"><li>Offline version created on 2017-08-24 - <a href="http://alphamanual.audacityteam.org/man/New_features_in_this_release">Check current version of this page (development Manual)</a></li></ul></div>
+</div>
+		</div>
+		</body></html>

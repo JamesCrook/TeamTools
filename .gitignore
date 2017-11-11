@@ -1,0 +1,113 @@
+# Autotools generated files
+locale/Makefile.in
+Makefile
+aclocal.m4
+autom4te.cache
+config.status
+bin-stamp
+.deps
+.dirstamp
+lib-stamp
+libtool
+stamp-h*
+stamp-po
+*.stamp
+
+# Handcrafted makefiles
+
+# Generated files by build system
+locale/POTFILES
+src/RevisionIdent.h
+src/configunix.h
+src/configwin.h
+*.pc
+
+# CMake build output
+CMakeFiles/
+CTestTestfile.cmake
+cmake_install.cmake
+
+# Mac build outputs
+mac/Makefile
+mac/confdefs.h
+mac/config.status
+mac/conftest.c
+mac/help/
+mac/images/
+mac/lib-src/
+mac/libtool
+mac/po/
+mac/src/
+mac/tests/
+
+# Doxygen output
+dox/
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+*.pyc
+
+# Other unwanted files.
+*.suo
+*.sdf
+*.exp
+*.ilk
+*.pdb
+*.idb
+*.lastbuild
+*.log
+*.tlog
+*.ipch
+*.opensdf
+*.vcxproj.user
+
+# Precompiled Headers
+*.gch
+*.pch
+*.ncb
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Compiled translation files (GNU Machine Object)
+*.gmo
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.app
+
+# Executable without extension
+
+# Mac Specific
+.DS_Store
+xcuserdata
+*.xcconfig
+mac/build
+
+# Windows specific
+win/Debug
+win/Release
+win/Projects/*/Debug
+win/Projects/*/Release
+win/.vs/
+
+# All those help files
+help/manual*
+
+# Misc
+src/RevisionIdent.h
+
+# Emacs backup files
+*~
+win/xaudacity.ico
