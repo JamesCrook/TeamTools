@@ -68,6 +68,13 @@ dox/
 *synctex.gz
 *.aux
 test/*.pdf
+test/*.out
+test/*.png
+test/*.html
+test/*.ico
+test/*.css
+test/man/
+test/m/
 
 # Precompiled Headers
 *.gch

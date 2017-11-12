@@ -2564,7 +2564,8 @@ struct Codes
    { "lh",      C_OPT, T_ITEM, 0, "\n\\item ", "" },
 #define H_DL      18
    { "dl",      C_YES, T_DESC, LATEX_KIND_IGH,
-                       "\n\\begin{description}", "\n\\end{description}\n" },
+//                       "\n\\begin{description}", "\n\\end{description}\n" },
+"",""},
 #define H_DT      19
    { "dt",      C_OPT, T_DT, 0, "\n\\item[", "]" },
 #define H_DD      20
@@ -2641,7 +2642,7 @@ struct Codes
 #define H_HR      53
    { "hr",      C_NO,  T_DIR, 0, "\\vspace{1mm}\\hrule ", "" },
 #define H_IMG     54
-   { "img",     C_NO,  T_IMG, 0, "", "" },
+   { "img",     C_YES,  T_IMG, 0, "\\includegraphics{", "}" },
 #define H_ISINDEX 55
    { "isindex", C_NO,  T_DIR, 0, "", "" },
 #define H_SELECT  56
@@ -4088,7 +4089,8 @@ void scan_a_file(char *html_fn,    /* file name of HTML file */
                     }
                     else if (   OPEN_TAG(T_IMG) && streq(attr_name, "src")
                              && attr_val[0] != '\0')
-                    {   if (strlen(attr_val) > MAX_DF)
+                    {   
+                        if (strlen(attr_val) > MAX_DF)
                         {   if (freport != NULL)
                                  fprintf(freport,
                                          "%s (%d) : src too long `%s'\n",
@@ -4508,7 +4510,8 @@ void scan_a_file(char *html_fn,    /* file name of HTML file */
             else if (CLOSE_TAG(T_VERB))
                 LATEX_CLOSES_K()
             else if (OPEN_TAG(T_IMG))
-            {   if (a_src)
+            {   
+               if (a_src)
                     if (!norm_URL(html_fn, src)) 
                     {   if (freport != NULL)
                             fprintf(freport, 
@@ -5065,7 +5068,8 @@ int _tmain(int argc, wchar_t *wargv[])
                 else if (argv[i][1] == 'c' && argv[i][2] == '\0')
                     option_chk = TRUE;
                 else if (argv[i][1] == 'r')
-                {   if (argv[i][2] != '\0')
+                {   
+                   if (argv[i][2] != '\0')
                         accept_root_URL(argv[i] + 2, stdout, NULL);
                     else if (i + 1 < argc)
                         accept_root_URL(argv[++i], stdout, NULL);
