@@ -2490,7 +2490,7 @@ void print_bibliography( FILE *fout )
 #define T_META  23
 #define T_SCRIPT 24
 #define T_STYLE 25
-#define NR_TAGS   74
+#define NR_TAGS   76
 #define NR_M_TAGS 10
 
 #define TN_H1   5
@@ -2642,7 +2642,7 @@ struct Codes
 #define H_HR      53
    { "hr",      C_NO,  T_DIR, 0, "\\vspace{1mm}\\hrule ", "" },
 #define H_IMG     54
-   { "img",     C_YES,  T_IMG, 0, "\\includegraphics{", "}" },
+   { "img",     C_YES,  T_IMG, 0, "\\includegraphics[width=8.6cm]{", "}" },
 #define H_ISINDEX 55
    { "isindex", C_NO,  T_DIR, 0, "", "" },
 #define H_SELECT  56
@@ -2681,25 +2681,30 @@ struct Codes
    { "input",   C_NO,  T_CHAR, 0, "", "" },
 #define H_TEXTAREA 73
    { "textarea",C_OPT, T_CHAR, 0, "", "" },
-#define H_M_OFF   74
+#define H_DIV      74
+   { "div",     C_YES, T_STYLE, 0, "", "" },
+#define H_SPAN      75
+   { "span",     C_YES, T_STYLE, 0, "", "" },
+
+#define H_M_OFF   76
    { "!--latex-off--", C_YES, T_DIR, LATEX_KIND_OFF, "", "" },
-#define H_L1      75
+#define H_L1      77
    { "l1",      C_YES, T_ILL, 0, "\n\n\\chapter{", "}\n\n" },
-#define H_L2      76
+#define H_L2      78
    { "l2",      C_YES, T_ILL, 0, "\n\n\\section{", "}\n\n" },
-#define H_L3      77
+#define H_L3      79
    { "l3",      C_YES, T_ILL, 0, "\n\n\\subsection{", "}\n\n" },
-#define H_L4      78
+#define H_L4      80
    { "l4",      C_YES, T_ILL, 0, "\n\n\\subsubsection{", "}\n\n" },
-#define H_L5      79
+#define H_L5      81
    { "l5",      C_YES, T_ILL, 0, "\n\n\\paragraph{", "}\n" },
-#define H_L6      80
+#define H_L6      82
    { "l6",      C_YES, T_ILL, 0, "\n\n\\subparagraph{", "}\n" },
-#define H_L7      81
+#define H_L7      83
    { "l7",      C_YES, T_ILL, 0, "", "" },
-#define H_L8      82
+#define H_L8      84
    { "l8",      C_YES, T_ILL, 0, "", "" },
-#define H_L9      83
+#define H_L9      85
    { "l9",      C_YES, T_ILL, 0, "", "" },
 };
 

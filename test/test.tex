@@ -5,58 +5,21 @@
 % DOCTYPE html
 % [if IE 6]><![endif]
 % [if IE 7]><![endif]
-
-% <div id="globalWrapper">
-		
-% <div id="column-content">
-			
-% <div role="main">
-												
-% <div class="mw-indicators">
-
-% </div class="mw-indicators">
-				
+																					
 \chapter{New features in this release}
-
-\label{f0}								
-
-
-{\centering \includegraphics[width=8.6cm]{m/images/8/88/Audacity_Logo_signika_512_transparent.png}\footnote{See URL http://audacityteam.org/}}
-% <div class="intro">
-
-% <span style="font-size:120%">
-\textbf{This page is an overview of the key new functionality that has been introduced in Audacity 2.2.0}
-% </span style="font-size:120%">
-
+					
+{\centering \includegraphics[width=8.6cm]{m/images/8/88/Audacity_Logo_signika_512_transparent.png}\footnote{See URL http://audacityteam.org/}}\textbf{This page is an overview of the key new functionality that has been introduced in Audacity 2.2.0}
 \begin{itemize}
-\item  
-% <span style="font-size:110%">
-Details of all the major changes since 2.1.3 can be found in Release Notes 2.2.0.
-% </span href="https://wiki.audacityteam.org/wiki/Release_Notes_2.2.0">
-
-% </div href="https://wiki.audacityteam.org/wiki/Release_Notes_2.2.0">
-
+\item  Details of all the major changes since 2.1.3 can be found in Release Notes 2.2.0.
 \end{itemize}
 
-\section{
-% <span id="New_Logo">
-New Logo
-% </span id="New_Logo">
-}
+\section{New Logo}
 
 
 The logo has been given a refresh, and now uses a sans-serif font and a flatter style.
 
 \footnote{See URL http://audacityteam.org/}
-% <div id="themes">
-
-% </div id="themes">
-
-\section{
-% <span id="Themes">
-Themes
-% </span title="Themes">
-}
+\section{Themes}
 
 
 Audacity now comes supplied with four pre-configured, user-selectable, themes.  This enables you to choose the look and feel you prefer for Audacity's interface. see the Themes page for details.
@@ -80,30 +43,14 @@ Audacity now comes supplied with four pre-configured, user-selectable, themes.  
 \* \* \* \* 
 \textbf{High Contrast} theme
 
-
-% <div class="note">
-The theme to use can be chosen at 
-% <span class="menu">
-Edit \mbox{$>$} Preferences \mbox{$>$} Interface
-% </span title="Interface Preferences">
-.  
+The theme to use can be chosen at Edit \mbox{$>$} Preferences \mbox{$>$} Interface.  
 \begin{itemize}
 \item  In addition to the four pre-configured themes there is also a Custom theme.  
 \end{itemize}
  By default the custom theme looks the same as Classic theme - but, if you have the right programming skills and tools, you can use this template to create your own theme.  Instructions for how to do this may be found in the Audacity Wiki.
-% </div href="https://wiki.audacityteam.org/wiki/Theming_HowTo">
 
 
-
-% <div id="midi">
-
-% </div id="midi">
-
-\section{
-% <span id="MIDI_.28and_Allegro.29_Playback">
-MIDI (and Allegro) Playback
-% </span id="MIDI_.28and_Allegro.29_Playback">
-}
+\section{MIDI (and Allegro) Playback}
 
 
 Playback of MIDI (and Allegro) files imported into Note Tracks is now available.  Please see the Note Tracks page for more details.
@@ -111,16 +58,8 @@ Playback of MIDI (and Allegro) files imported into Note Tracks is now available.
 This should just work on Windows but for playback on Mac and Linux additional software may be required, see this section on the Playing and Recording page.
 
 But note that there will no use of the Playback meter while Note tracks are played. 
-% <div id="stemplots">
 
-% </div id="stemplots">
-
-
-\section{
-% <span id="Stem_Plots">
-Stem Plots
-% </span id="Stem_Plots">
-}
+\section{Stem Plots}
 
 
 There is a new entry in the Tracks Preferences for \textbf{Display samples}.  This setting changes how Waveform and Waveform dB views are displayed.  It only affects the appearance of the waveform when you are so far zoomed in that you can see the individual sample dots.  At lower zoom levels it makes no difference.  
@@ -128,65 +67,27 @@ There is a new entry in the Tracks Preferences for \textbf{Display samples}.  Th
 \item \textbf{Stem plot:} This is the default setting which draws a vertical line from the track center line to the sample dot, giving a clearer impression of the relative amplitude of the samples. As seen in the images below, when zoomed out close to the minimum for a stem plot, the horizontal distance between sample dots may be more uneven than seen with the connect dots default.   
 \item \textbf{Connect dots:} This is alternative setting yields a waveform where each sample dot is connected to the next sample by a line drawn between them.  
 \end{itemize}
-
-% <span title="Examples of zoomed in Waveform view showing &#39;Connect dots&#39; and &#39;Stem Plot">
-
-% </span /="">
-??
-% <div class="note">
-Uneven spacing is due to \texttt{{}"{}}aliasing\texttt{{}"{}}, but zooming in further will equalize the spacing whether choosing Connect dots or Stem plot.
-% </div class="note">
+??Uneven spacing is due to \texttt{{}"{}}aliasing\texttt{{}"{}}, but zooming in further will equalize the spacing whether choosing Connect dots or Stem plot.
 
 
-
-% <div id="menus">
-
-% </div id="menus">
-
-\section{
-% <span id="Menu_reorganization">
-Menu reorganization
-% </span id="Menu_reorganization">
-}
+\section{Menu reorganization}
 
 
 We have made the Menus shorter and clearer than in previous Audacity versions. The menus have been simplified without losing functionality. The most commonly used functions are found in the top levels of the menus. The functions moved down into lower submenus are better organized.
 
 This is not just a rearrangement.  We also added new menu items to make the layout more logical.  There are new menu items for exporting as MP3 or WAV. Previously you had to export audio, and then choose the format. You still can do that, but these new items are there for convenience.
-% <div class="note">
-
 One of the long standing bug-bears with Audacity is the distinction between \^aSave\^a and \^aExport\^a. People expect to be able to open a WAV audio file, edit it in Audacity and then click save. That is not how Audacity works. Audacity needs audio in its own unique format to work on it. So Audacity converts when you 'Open' a WAV file and converts back when you 'Save'. In an attempt to make this clearer Audacity uses the word 'Import' for opening a file like WAV and 'Export' for converting and saving in a format like WAV. Open and Save are reserved for Audacity's own project format.
 
 Now the \^aExport\^a options are under the \^aSave Other\^a menu item, where people trying to save audio as an MP3 or WAV file are more likely to find them. 
-% </div class="note">
 
 
-
-% <div id="extendedmenubar">
-
-% </div id="extendedmenubar">
-
-\section{
-% <span id="The_Extended_Menu_bar">
-The Extended Menu bar
-% </span id="The_Extended_Menu_bar">
-}
+\section{The Extended Menu bar}
 
 
-There are two new additional menus that are hidden by default.  They can be turned on at 
-% <span class="menu">
-View \mbox{$>$} Extra Menus (on/off)
-% </span title="View Menu">
- or the Interface pane of 
-% <span class="menu">
-Edit \mbox{$>$} Preferences
-% </span title="Interface Preferences">
-.
+There are two new additional menus that are hidden by default.  They can be turned on at View \mbox{$>$} Extra Menus (on/off) or the Interface pane of Edit \mbox{$>$} Preferences.
 
 These extra menus have many extra less frequently used commands.  They are particularly useful to VI users, but normally-sighted users may find them useful too.
 \textit{\textbf{Image of the Extended Menu bar as it appears on Windows}}
-% <div class="noresize">
-
 % <map name="ImageMap_1_1694869993">
 
 % <area /="">
@@ -194,9 +95,7 @@ These extra menus have many extra less frequently used commands.  They are parti
 % <area /="">
 
 % </map /="">
-\includegraphics[width=8.6cm]{m/images/0/0d/Menu_Toolbar_Extra.png}
-% </div /="">
-??
+\includegraphics[width=8.6cm]{m/images/0/0d/Menu_Toolbar_Extra.png}??
 \textit{Click, or hover, on either of the \textbf{Ext-} items at the end of the image to read about those menu entries.}
 Menu
 What you'll find there
@@ -208,106 +107,44 @@ Ext-Command
 The Ext-Command menu provides access to extra commands for track focus and movement of the editing or playback cursor that are not available in the default Audacity menus. These will be of most interest to visually impaired users or those who have difficulty using the mouse.
 
 Shortcuts can be assigned to these commands if required.
-% <div class="note">
-
 If you only require regular access to a small set of these commands you can set shortcuts for them and leave the extra menus hidden.
-% </div class="note">
 
 
-
-% <div id="append">
-
-% </div id="append">
-
-\section{
-% <span id="Appended_recording_on_the_same_track_in_now_the_default">
-Appended recording on the same track in now the default
-% </span id="Appended_recording_on_the_same_track_in_now_the_default">
-}
+\section{Appended recording on the same track in now the default}
 
 
-From Audacity 2.2.0 onward the default recording mode has changed so that when you click the Record button \includegraphics[width=8.6cm]{m/images/e/e8/Record.png} on Transport Toolbar, or use the 
-% <span style="background-color: #e0e0f0">
-R
-% </span style="background-color: #e0e0f0">
-, Audacity will record at the end of the currently selected (or only) track.
+From Audacity 2.2.0 onward the default recording mode has changed so that when you click the Record button \includegraphics[width=8.6cm]{m/images/e/e8/Record.png} on Transport Toolbar, or use the R, Audacity will record at the end of the currently selected (or only) track.
 
-\subsection{
-% <span id="To_record_on_a_new_track">
-To record on a new track
-% </span id="To_record_on_a_new_track">
-}
+\subsection{To record on a new track}
 
 
-If you hold the 
-% <span class="button">
-Shift
-% </span class="button">
- button down the Record button in Transport Toolbar will temporarily change to \includegraphics[width=8.6cm]{m/images/7/72/Record_New_Track.png}. Then clicking on this modified Record button, or using the shortcut 
-% <span style="background-color: #e0e0f0">
-Shift + R
-% </span style="background-color: #e0e0f0">
- will cause Audacity to create a new track and begin recording on that track from the current cursor position (or from the left edge of a region on the Timeline). 
+If you hold the Shift button down the Record button in Transport Toolbar will temporarily change to \includegraphics[width=8.6cm]{m/images/7/72/Record_New_Track.png}. Then clicking on this modified Record button, or using the shortcut Shift + R will cause Audacity to create a new track and begin recording on that track from the current cursor position (or from the left edge of a region on the Timeline). 
 
 
-% <div id="help-buttons">
-
-% </div id="help-buttons">
-
-\section{
-% <span id="Help_buttons">
-Help buttons
-% </span id="Help_buttons">
-}
+\section{Help buttons}
 
 
 Many places in the user interface have had a help button \includegraphics[width=8.6cm]{m/images/d/d6/Help_Button.png} added. Examples are all the Preferences dialog panes, all the Effects, Generators and Analyzers and some error messages.
 
 Clicking on that button in the dialog will link you to the appropriate page in the Manual.
 
-
-% <span style="font-weight: bold; font-size:118%">
-Example:
-% </span style="font-weight: bold; font-size:118%">
- the Amplify effect.  Try clicking on the \texttt{{}"{}}\textbf{?}\texttt{{}"{}} at the bottom right of this image.
-% <div class="noresize">
-
+Example: the Amplify effect.  Try clicking on the \texttt{{}"{}}\textbf{?}\texttt{{}"{}} at the bottom right of this image.
 % <map name="ImageMap_2_545976105">
 
 % <area /="">
 
 % </map /="">
-\includegraphics[width=8.6cm]{m/images/6/6d/Amplify.png}
-% </div /="">
-??
+\includegraphics[width=8.6cm]{m/images/6/6d/Amplify.png}??
 
 
-% <div id="shortcuts">
-
-% </div id="shortcuts">
-
-\section{
-% <span id="Standard_and_Full_shortcut_sets">
-Standard and Full shortcut sets
-% </span id="Standard_and_Full_shortcut_sets">
-}
+\section{Standard and Full shortcut sets}
 
 
 For Audacity 2.2.0 we have reduced the number of preset shortcuts in the application to a \texttt{{}"{}}\textbf{Standard}\texttt{{}"{}} set.  We did this to simplify the set of shortcuts somewhat and to provide greater flexibility for users who want to set their own custom shortcuts.
 
-You can choose to revert to the full set of shortcuts that were in 2.1.3 and earlier by selecting \texttt{{}"{}}\textbf{Full}\texttt{{}"{}} from the dropdown menu accessed from the 
-% <span class="button">
-Defaults
-% </span class="button">
- button in the Keyboard Preferences dialog.
+You can choose to revert to the full set of shortcuts that were in 2.1.3 and earlier by selecting \texttt{{}"{}}\textbf{Full}\texttt{{}"{}} from the dropdown menu accessed from the Defaults button in the Keyboard Preferences dialog.
 
-You can use the 
-% <span class="button">
-Defaults
-% </span class="button">
- button to switch between the two provided default sets of shortcuts at any time.
-% <div class="noresize">
-
+You can use the Defaults button to switch between the two provided default sets of shortcuts at any time.
 % <map name="ImageMap_3_1572635641">
 
 % <area /="">
@@ -315,22 +152,12 @@ Defaults
 % <area /="">
 
 % </map /="">
-
-% </div /="">
 ??
 
 See Commands and Keyboard Shortcut Reference for more details.
 
 
-% <div id="selection">
-
-% </div id="selection">
-
-\section{
-% <span id="Selection_Toolbar_improvements">
-Selection Toolbar improvements
-% </span id="Selection_Toolbar_improvements">
-}
+\section{Selection Toolbar improvements}
 
 
 There are now four available settings in the Selection and Audio Position Boxes in Selection Toolbar for the  manner in which the details of your selection are displayed:
@@ -340,74 +167,26 @@ There are now four available settings in the Selection and Audio Position Boxes 
 \item \textbf{Length and End of selection}: the length and the end time of your selection
 \item \textbf{Length and Center of selection}: the length and the time at the center of your selection
 \end{itemize}
+\includegraphics[width=8.6cm]{m/images/c/c6/Selection_Toolbar_display_modes.png}??
 
-% <span title="Selection Toolbar with dropdown menu for display type selection">
-\includegraphics[width=8.6cm]{m/images/c/c6/Selection_Toolbar_display_modes.png}
-% </span /="">
-??
-
-% <div id="clips">
-
-% </div id="clips">
-
-\section{
-% <span id="New_commands_for_using_clips_via_the_keyboard">
-New commands for using clips via the keyboard
-% </span id="New_commands_for_using_clips_via_the_keyboard">
-}
+\section{New commands for using clips via the keyboard}
 
 
 New commands, all of which interact with the clips on the focused track. As yet, there are no default shortcuts:
 \begin{enumerate}
-\item 
-% <span class="menu">
-Transport \mbox{$>$} Cursor to \mbox{$>$} Previous clip boundary
-% </span title="Transport Menu: Cursor to">
-
-\item 
-% <span class="menu">
-Transport Cursor to \mbox{$>$} Next clip boundary
-% </span title="Transport Menu: Cursor to">
-
-\item 
-% <span class="menu">
-Select \mbox{$>$} Clip Boundaries \mbox{$>$} Previous clip boundary to cursor 
-% </span title="Select Menu: Clip Boundaries">
-
-\item 
-% <span class="menu">
-Select \mbox{$>$} Clip Boundaries \mbox{$>$} Cursor to next clip boundary 
-% </span title="Select Menu: Clip Boundaries">
-
-\item 
-% <span class="menu">
-Select \mbox{$>$} Clip Boundaries \mbox{$>$} Previous clip 
-% </span title="Select Menu: Clip Boundaries">
-
-\item 
-% <span class="menu">
-Select \mbox{$>$} Clip Boundaries \mbox{$>$} Next clip 
-% </span title="Select Menu: Clip Boundaries">
-
+\item Transport \mbox{$>$} Cursor to \mbox{$>$} Previous clip boundary
+\item Transport Cursor to \mbox{$>$} Next clip boundary
+\item Select \mbox{$>$} Clip Boundaries \mbox{$>$} Previous clip boundary to cursor 
+\item Select \mbox{$>$} Clip Boundaries \mbox{$>$} Cursor to next clip boundary 
+\item Select \mbox{$>$} Clip Boundaries \mbox{$>$} Previous clip 
+\item Select \mbox{$>$} Clip Boundaries \mbox{$>$} Next clip 
 \end{enumerate}
-
-% <div class="note">
 There are also two new commands (Clip Left and Clip Right) for moving clips, which are available in the extended menus added in this release.
 
 Note that these extended menus are \textit{\textbf{not}} turned on by default, to turn them on please see Menu Reference for how to reveal the extended menus.
-% </div title="Menu Reference">
 
 
-
-% <div id="safety">
-
-% </div id="safety">
-
-\section{
-% <span id="Running_out_of_disk_space">
-Running out of disk space
-% </span id="Running_out_of_disk_space">
-}
+\section{Running out of disk space}
 
 
 We have now provided an error trap for situations where you are running out of available disk space.
@@ -418,165 +197,15 @@ You will now see the error message:
 This is particularly useful when recording as Audacity will stop recording when the error is trapped, preserving your recording up to that point.
 
 
-% <div id="appendix">
-
-% </div id="appendix">
-
-\section{
-% <span id="Additional_new_features">
-Additional new features
-% </span title="New features in this release - appendix">
-}
+\section{Additional new features}
 
 
 This page \textbf{New features in this release - appendix} gives an overview of further new functionality that has been introduced in this release of Audacity.
 
 
-\section{
-% <span id="Links">
-Links
-% </span id="Links">
-}
+\section{Links}
 
 
 \textbf{\mbox{$>$}} Audacity Release Notes 2.2.0 \textit{- detailed release notes for this release of Audacity}%  
-% NewPP limit report
-% Cached time: 20170824010442
-% Cache expiry: 86400
-% Dynamic content: false
-% CPU time usage: 0.132 seconds
-% Real time usage: 0.137 seconds
-% Preprocessor visited node count: 309/1000000
-% Preprocessor generated node count: 824/1000000
-% Post‐expand include size: 4813/2097152 bytes
-% Template argument size: 3760/2097152 bytes
-% Highest expansion depth: 4/40
-% Expensive parser function count: 0/100
-% 
-%  
-% Transclusion expansion time report (%,ms,calls,template)
-% 100.00%   54.562      1 - -total
-%   6.13%    3.343      2 - Template:Shortcut
-%   5.78%    3.155      5 - Template:Note
-%   4.62%    2.519      4 - Template:Button
-%   4.40%    2.399      9 - Template:Menu
-%   2.84%    1.548      1 - Template:Hint
-%   2.44%    1.329      1 - Template:Intro
-%   2.26%    1.231      2 - Template:Ednote
-%   1.87%    1.019      1 - Template:Bh
-% 
-%  Saved in parser cache with key helpmediawiki:pcache:idhash:5555-0!*!0!!*!5!* and timestamp 20170824010441 and revision id 55728
-%  
-
-% </div href="https://wiki.audacityteam.org/wiki/Release_Notes_2.2.0">
-
-										%  end content 
-										
-% <div class="visualClear">
-
-% </div class="visualClear">
-				
-% </div class="visualClear">
-			
-% </div class="visualClear">
-		
-% </div class="visualClear">
-		
-% <div id="column-one">
-															
-% <div role="banner">
-							
-% </div title="Visit the main page">
-							
-% <div role="navigation">
-		
-\subsection{Navigation}
-
-		
-% <div class="'pBody'">
-			\begin{itemize}\item  Manual Home Page
-\item  Using Audacity
-\begin{itemize}
-\item  Tour Guide
-\item  New Features
-\item  Getting Started
-\item  Preferences
-\item  Menu Bar
-\item  Toolbars
-\item  Commands / Shortcuts
-\item  Effects
-\item  Tutorials
-\item  Tips
-\end{itemize}
-\end{itemize}
-		
-% </div title="Tips">
-		
-% </div title="Tips">
-		
-% <div role="navigation">
-		
-\subsection{Reference}
-
-		
-% <div class="'pBody'">
-			\begin{itemize}\item  Reference
-\begin{itemize}
-\item  Digital Audio
-\item  Glossary
-\item  Subject Index
-\end{itemize}
-\item  
-% <span title="Frequently Asked Questions">
-FAQ
-% </span href="http://alphamanual.audacityteam.org/man/FAQ">
-
-\end{itemize}
-		
-% </div href="http://alphamanual.audacityteam.org/man/FAQ">
-		
-% </div href="http://alphamanual.audacityteam.org/man/FAQ">
-				
-% <div role="navigation">
-		
-\subsection{Useful Links}
-
-		
-% <div class="'pBody'">
-			\begin{itemize}\item  Forum
-\item  Wiki
-\item  Latest Release
-\end{itemize}
-		
-% </div href="https://www.audacityteam.org/download/">
-		
-% </div href="https://www.audacityteam.org/download/">
-								
-% </div href="https://www.audacityteam.org/download/">
-%  end of the left (by default at least) column 
-		
-% <div class="visualClear">
-
-% </div class="visualClear">
-					
-% <div role="contentinfo">
-						
-% <div id="f-copyrightico">
-																
-% </div id="f-copyrightico">
-					
-% <div id="f-poweredbyico">
-									\includegraphics[width=8.6cm]{m/resources/assets/poweredby_mediawiki_88x31.png}\footnote{See URL http://www.mediawiki.org/}							
-% </div /="">
-							
-% <div align="center">
-\begin{itemize}\item Offline version created on 2017-08-24 - Check current version of this page (development Manual)
-\end{itemize}
-
-% </div href="http://alphamanual.audacityteam.org/man/New_features_in_this_release">
-
-% </div href="http://alphamanual.audacityteam.org/man/New_features_in_this_release">
-		
-% </div href="http://alphamanual.audacityteam.org/man/New_features_in_this_release">
-		
+																					
 % html: End of file: `test.html'
