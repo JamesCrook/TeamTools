@@ -64,6 +64,11 @@ dox/
 *.opensdf
 *.vcxproj.user
 
+# Latex cruft
+*synctex.gz
+*.aux
+test/*.pdf
+
 # Precompiled Headers
 *.gch
 *.pch
