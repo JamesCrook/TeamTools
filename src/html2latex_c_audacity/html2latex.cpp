@@ -2490,7 +2490,7 @@ void print_bibliography( FILE *fout )
 #define T_META  23
 #define T_SCRIPT 24
 #define T_STYLE 25
-#define NR_TAGS   76
+#define NR_TAGS   78
 #define NR_M_TAGS 10
 
 #define TN_H1   5
@@ -2642,7 +2642,7 @@ struct Codes
 #define H_HR      53
    { "hr",      C_NO,  T_DIR, 0, "\\vspace{1mm}\\hrule ", "" },
 #define H_IMG     54
-   { "img",     C_YES,  T_IMG, 0, "\\includegraphics[width=8.6cm]{", "}" },
+   { "img",     C_YES,  T_IMG, 0, "\\includegraphics[max width=\\linewidth]{", "}" },
 #define H_ISINDEX 55
    { "isindex", C_NO,  T_DIR, 0, "", "" },
 #define H_SELECT  56
@@ -2650,9 +2650,12 @@ struct Codes
 #define H_LINK    57
    { "link",    C_NO,  T_LINK, 0, "", "" },
 #define H_CENTER  58
-   { "center",  C_YES, T_CHAR, 0, "{\\centering ", "}" },
+//   { "center",  C_YES, T_CHAR, 0, "{\\centering ", "}" },
+   { "center",  C_YES, T_CHAR, 0, "", "\\newline" },
 #define H_META    59
    { "meta",    C_NO,  T_META, 0, "", "" },
+
+#if 0
 #define H_TABLE   60
    { "table",   C_YES, T_DIR, 0, "", "" },
 #define H_TH      61
@@ -2661,6 +2664,18 @@ struct Codes
    { "tr",      C_OPT, T_DIR, 0, "", "" },
 #define H_TD      63
    { "td",      C_OPT, T_DIR, 0, "", "" },
+#endif
+
+#define H_TABLE   60
+   { "table",   C_YES, T_STYLE, 0, "", "" },
+#define H_TH      61
+   { "th",      C_OPT, T_STYLE, 0, "", "" },
+#define H_TR      62
+   { "tr",      C_OPT, T_STYLE, 0, "", "" },
+#define H_TD      63
+   { "td",      C_OPT, T_STYLE, 0, "", "" },
+
+
 #define H_SUP     64
    { "sup",     C_YES, T_DIR, LATEX_KIND_IN_MATH, "^{", "}" },
 #define H_SUB     65
@@ -2685,26 +2700,31 @@ struct Codes
    { "div",     C_YES, T_STYLE, 0, "", "" },
 #define H_SPAN      75
    { "span",     C_YES, T_STYLE, 0, "", "" },
+#define H_MAP      76
+   { "map",     C_YES, T_STYLE, 0, "", "" },
+#define H_AREA      77
+   { "area",     C_YES, T_STYLE, 0, "", "" },
 
-#define H_M_OFF   76
+
+#define H_M_OFF   78
    { "!--latex-off--", C_YES, T_DIR, LATEX_KIND_OFF, "", "" },
-#define H_L1      77
+#define H_L1      79
    { "l1",      C_YES, T_ILL, 0, "\n\n\\chapter{", "}\n\n" },
-#define H_L2      78
+#define H_L2      80
    { "l2",      C_YES, T_ILL, 0, "\n\n\\section{", "}\n\n" },
-#define H_L3      79
+#define H_L3      81
    { "l3",      C_YES, T_ILL, 0, "\n\n\\subsection{", "}\n\n" },
-#define H_L4      80
+#define H_L4      82
    { "l4",      C_YES, T_ILL, 0, "\n\n\\subsubsection{", "}\n\n" },
-#define H_L5      81
+#define H_L5      83
    { "l5",      C_YES, T_ILL, 0, "\n\n\\paragraph{", "}\n" },
-#define H_L6      82
+#define H_L6      84
    { "l6",      C_YES, T_ILL, 0, "\n\n\\subparagraph{", "}\n" },
-#define H_L7      83
+#define H_L7      85
    { "l7",      C_YES, T_ILL, 0, "", "" },
-#define H_L8      84
+#define H_L8      86
    { "l8",      C_YES, T_ILL, 0, "", "" },
-#define H_L9      85
+#define H_L9      87
    { "l9",      C_YES, T_ILL, 0, "", "" },
 };
 
