@@ -180,8 +180,19 @@ def cleanup_soup( soup ):
         tag.extract()
 
     for tag in soup.find_all(name='img' ):
-        comment = Comment('latex \\par')
-        tag.insert_before( comment )
+        if tag.has_attr( 'src' ) :
+            path = tag['src'] 
+            # src could be '../m/images/9/90/play.png'
+            pieces = path.split( '/images/' )
+            if len( pieces ) > 1 :
+                path = "C:\\OpenSourceGit\\AudacityTeamTools\\test\\m\\images\\" + pieces[-1]
+                if os.path.isfile( path ) :
+                    with Image.open(path) as image:
+                        siz = image.size
+                        if( siz[0] > 30 ):
+                            print( path )
+                            tag.insert_before( Comment('latex \\par') )
+                            tag.insert_after( Comment('latex \\par') )
         
     for tag in soup.find_all():
         if tag.has_attr( 'id' ):
@@ -257,11 +268,16 @@ print("---")
         
 
 
+"""
+
 filename = "new_features_in_this_release.html"
 file = os.path.join(base_dir + "\\man", filename)
+ofile = os.path.join(base_dir + "\\man", 'testr.html')
+
 #print( file )
-#cleanup_file( file, file)
-"""
+#cleanup_file( file, ofile)
+
+
 
 #size_all()
 clean_all()
