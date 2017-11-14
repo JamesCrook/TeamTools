@@ -27,7 +27,7 @@ GNU General Public License:
 #include "stdio.h"
 
 
-#define VERSION "2.7 of February 6, 2012."
+#define VERSION "Aud2.8 of November 14th, 2017."
 #define WRITTEN_BY "F.J. Faase.  http://www.iwriteiam.nl/"
 #define ADAPTED_BY "J.K. Crook.  http://audacityteam.org/"
 /*
@@ -1606,7 +1606,6 @@ struct {
   {  192, "Agrave", "\\`A",     'A' },
   {  193, "Aacute", "\\'A",     'A' },
   {  194, "Acirc",  "\\^A" ,    'A' },
-//  {  194, "Acirc",  "" ,    'A' },
   {  195, "Atilde", "\\~A",     'A' },
   {  196, "Auml",   "\\\"A",    'A' },
   {  197, "Aring",  "{\\AA}",   'A' },
@@ -2767,7 +2766,7 @@ char dest_file[MAX_DF + 1],
 int href_status;
 int add_level_depth;
 
-#define MAX_STACK 30
+#define MAX_STACK 60 // was 30 which was too low.
 struct 
    { int  ln;
      byte tagnr;
