@@ -1,4 +1,5 @@
 from bs4 import BeautifulSoup
+from PIL import Image
 import os
 import os.path
 
@@ -213,6 +214,11 @@ def clean_all():
             print( outfile )
             cleanup_file( infile, outfile )
 
+base_dir = "C:\\OpenSourceGit\\AudacityTeamTools\\help\\manual"
+dest_dir = "C:\\OpenSourceGit\\AudacityTeamTools\\test"
+
+disabled = """
+
 soup = BeautifulSoup(html_doc, 'html.parser')
 
 cleanup_soup( soup )
@@ -220,14 +226,16 @@ print("---")
 #print(soup.prettify())
 #print( soup.encode(formatter="html").decode( encoding='UTF-8'))
 
-base_dir = "C:\\OpenSourceGit\\AudacityTeamTools\\help\\manual"
-dest_dir = "C:\\OpenSourceGit\\AudacityTeamTools\\test"
 
         
-clean_all()
+#clean_all()
 
 filename = "new_features_in_this_release.html"
 file = os.path.join(base_dir + "\\man", filename)
 #print( file )
 #cleanup_file( file, file)
+"""
+
+im = Image.open(dest_dir + "\\TourGuide-img009.png")
+im.rotate(45).save(dest_dir + "\\Rot.png", "png")
 
