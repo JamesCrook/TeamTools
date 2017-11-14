@@ -38,12 +38,11 @@
 %html -rhttp://alphamanual.audacityteam.org/ 
 %html -s book
 
-% html ./man/new_features_in_this_release.tex
-% html ./man/audacity_tour_guide.tex
+%html new_features_in_this_release.html 1
+%html audacity_tour_guide.html 1
 
 \iffalse
 \input{./man/new_features_in_this_release.tex}
-
 \input{./man/audacity_tour_guide.tex}
 \fi
 
