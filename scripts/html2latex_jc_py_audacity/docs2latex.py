@@ -169,8 +169,6 @@ html_doc = """
 </html>
 """
 
-soup = BeautifulSoup(html_doc, 'html.parser')
-
 def cleanup_soup( soup ):
     for tag in soup.find_all(name='span', id='Contents' ):
         tag = tag.parent;
@@ -193,30 +191,43 @@ def cleanup_soup( soup ):
             if tag['id'] == "footer" :
                tag.extract()
                
-cleanup_soup( soup )
-print("---")
-print(soup.prettify())
 
 
 def cleanup_file( src,dest ):
+    print()
     with open(src, encoding='utf8') as file:
         soup = BeautifulSoup(file, "html5lib")
         cleanup_soup( soup )
-    print( soup.prettify() )
+        with open(dest, "w", encoding='utf8') as dest_file:
+            dest_file.write(soup.encode(formatter="html").decode( encoding='UTF-8'))
 
 
-base_dir = "C:\OpenSourceGit\AudacityTeamTools\help\manual"
 
 def clean_all():
     for dirpath, dirnames, filenames in os.walk( base_dir):
         for filename in [f for f in filenames if f.endswith(".html")]:
             print( filename )
-            file = os.path.join(dirpath, filename)
-            cleanup_file( file, file )
+            infile = os.path.join(dirpath, filename)
+            outfile = os.path.join(dest_dir, os.path.relpath( infile, base_dir ))
+            print( infile )
+            print( outfile )
+            cleanup_file( infile, outfile )
+
+soup = BeautifulSoup(html_doc, 'html.parser')
+
+cleanup_soup( soup )
+print("---")
+#print(soup.prettify())
+#print( soup.encode(formatter="html").decode( encoding='UTF-8'))
+
+base_dir = "C:\\OpenSourceGit\\AudacityTeamTools\\help\\manual"
+dest_dir = "C:\\OpenSourceGit\\AudacityTeamTools\\test"
+
         
-#clean_all()
+clean_all()
 
 filename = "new_features_in_this_release.html"
-file = os.path.join(base_dir + "\man", filename)
-print( file )
-cleanup_file( file, file)
+file = os.path.join(base_dir + "\\man", filename)
+#print( file )
+#cleanup_file( file, file)
+

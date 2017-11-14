@@ -1606,6 +1606,7 @@ struct {
   {  192, "Agrave", "\\`A",     'A' },
   {  193, "Aacute", "\\'A",     'A' },
   {  194, "Acirc",  "\\^A" ,    'A' },
+//  {  194, "Acirc",  "" ,    'A' },
   {  195, "Atilde", "\\~A",     'A' },
   {  196, "Auml",   "\\\"A",    'A' },
   {  197, "Aring",  "{\\AA}",   'A' },
@@ -5291,6 +5292,12 @@ int _tmain(int argc, wchar_t *wargv[])
         fprintf(fref, "\n----------------\n\n");
         print_files(fref);
     }
+
+    if( fout )
+       if( fout != stdout )
+          fclose( fout );
+    if( fin )
+       fclose( fin );
 
     return 0;
 } 

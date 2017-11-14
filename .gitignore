@@ -73,7 +73,9 @@ test/*.png
 test/*.html
 test/*.ico
 test/*.css
-test/man/
+test/man/*
+!test/man/new_features*
+test/man/*.log
 test/m/
 
 # Precompiled Headers
