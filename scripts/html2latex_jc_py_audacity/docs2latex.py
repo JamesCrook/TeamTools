@@ -214,6 +214,29 @@ def clean_all():
             print( outfile )
             cleanup_file( infile, outfile )
 
+
+
+def size_file( src,dest ):
+    with Image.open(src) as image:
+        siz = image.size
+        if( siz[0] < 30 ):
+           print()
+           print( src )
+           print( siz )
+           scal = siz[1] * 7.8
+           print( "New dpi is ", (scal, scal ) )
+           image.save( dest, dpi=(scal,scal) )
+        else :
+            image.save( dest )
+
+
+def size_all():
+    for dirpath, dirnames, filenames in os.walk( base_dir):
+        for filename in [f for f in filenames if f.endswith(".png")]:
+            infile = os.path.join(dirpath, filename)
+            outfile = os.path.join(dest_dir, os.path.relpath( infile, base_dir ))
+            size_file( infile, outfile )
+
 base_dir = "C:\\OpenSourceGit\\AudacityTeamTools\\help\\manual"
 dest_dir = "C:\\OpenSourceGit\\AudacityTeamTools\\test"
 
@@ -236,6 +259,12 @@ file = os.path.join(base_dir + "\\man", filename)
 #cleanup_file( file, file)
 """
 
-im = Image.open(dest_dir + "\\TourGuide-img009.png")
-im.rotate(45).save(dest_dir + "\\Rot.png", "png")
+src = dest_dir + "\\TourGuide-img009.png"
+dest = dest_dir + "\\Rot.png", "png"
+
+#im = Image.open(src)
+#im.rotate(45).save(dest)
+
+#size_file( src, dest)
+size_all()
 
