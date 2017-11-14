@@ -1,4 +1,4 @@
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Comment
 from PIL import Image
 import os
 import os.path
@@ -178,6 +178,10 @@ def cleanup_soup( soup ):
         tag.previous_sibling.extract()
         tag.previous_sibling.extract()
         tag.extract()
+
+    for tag in soup.find_all(name='img' ):
+        comment = Comment('latex \\par')
+        tag.insert_before( comment )
         
     for tag in soup.find_all():
         if tag.has_attr( 'id' ):
@@ -226,8 +230,8 @@ def size_file( src,dest ):
            scal = siz[1] * 7.8
            print( "New dpi is ", (scal, scal ) )
            image.save( dest, dpi=(scal,scal) )
-        else :
-            image.save( dest )
+        #else :
+        #    image.save( dest )
 
 
 def size_all():
@@ -251,7 +255,7 @@ print("---")
 
 
         
-#clean_all()
+
 
 filename = "new_features_in_this_release.html"
 file = os.path.join(base_dir + "\\man", filename)
@@ -259,12 +263,5 @@ file = os.path.join(base_dir + "\\man", filename)
 #cleanup_file( file, file)
 """
 
-src = dest_dir + "\\TourGuide-img009.png"
-dest = dest_dir + "\\Rot.png", "png"
-
-#im = Image.open(src)
-#im.rotate(45).save(dest)
-
-#size_file( src, dest)
-size_all()
-
+#size_all()
+clean_all()
