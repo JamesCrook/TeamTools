@@ -2,7 +2,8 @@
 % Written by F.J. Faase.  http://www.iwriteiam.nl/
 % Adapted by J.K. Crook.  http://audacityteam.org/
 
-\documentclass[]{book}
+%Chapters can start on right or left.
+\documentclass[openany]{book}
 
 \usepackage[utf8]{inputenc}
 %\usepackage[latin1]{inputenc} 
@@ -30,10 +31,10 @@
 \usepackage[margin=0.6in]{geometry}
 \setlength{\columnsep}{0.4 in}
 %\setlength{\parindent}{0pt}
-\newcommand{\foo}[1]{}
+\newcommand{\foo}[1]{XXX}
 %\excludecomment{foo}
 
-
+\DeclareUnicodeCharacter{2318}{CloverLeaf}
 
 \begin{document}
 %%\newgeometry{oneside}
@@ -54,7 +55,9 @@
 
 % html: Beginning of file: `new_features_in_this_release.html'
 % DOCTYPE html
+\label{XXX}
 \input{./man/new_features_in_this_release.tex}
 \input{./man/audacity_tour_guide.tex}
+\input{./man/faq.tex}
 
 \end{document}

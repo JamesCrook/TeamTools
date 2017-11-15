@@ -170,6 +170,17 @@ html_doc = """
 </html>
 """
 
+def label_of_ref( ref ):
+    global this_file
+    if not '.html' in ref :
+        ref = this_file + "#" + ref
+    ref = ref.replace('#', '_' )
+    ref = ref.replace('../', '' )
+    ref = ref.replace('.html', '_' )
+    ref = ref.replace('/', '_' )
+    ref = ref.replace('__', '_' )
+    return ref
+                
 def cleanup_soup( soup ):
 
     # Remove comments
@@ -210,20 +221,27 @@ def cleanup_soup( soup ):
             tag2.insert_after(Comment('latex \\begin{multicols}{2}') )
         else:
             tag.insert(0,Comment('latex \\begin{multicols}{2}') )
+        tag.insert(0,Comment('latex \\label{' +label_of_ref('') +'}')) 
         tag.insert(-1,Comment('latex \\end{multicols}') )
       
     # anchors become \hyperrefs and \labels
+    # provided they are relative.
     for tag in soup.find_all(name='a' ):
         if tag.has_attr( 'href' ) :
             if not tag.find(name='img'):
-                ref = tag['href']
-                ref = ref.replace('#', '_' )
-                ref = ref.replace('../', '' )
-                ref = ref.replace('.html', '_' )
-                ref = ref.replace('/', '_' )
-                print( "Reference found: ", ref )
-                tag.insert_before( Comment('latex \n\\hyperref[XXX\\foo{'+ref+'}]{') )
-                tag.insert_after( Comment('latex }\n') )
+                if not tag['href'].startswith('http'):
+                    label = label_of_ref( tag['href'] )
+                    print( "hyperref: ", label )
+                    tag.insert_before( Comment('latex \n\\hyperref[\\foo{'+label+'}]{') )
+                    tag.insert_after( Comment('latex }\n') )
+
+    # divs may provide \labels
+    for tag in soup.find_all(name='div' ):
+        if tag.has_attr( 'id' ) and not tag.contents :
+           label = label_of_ref( tag['id'])                   
+           print( "label: ", label )
+           tag.insert_before( Comment('latex \n\\label{'+label+'}') )
+
 
     # (valid) images get treated depending on their size
     # all our images are screenshots, so we just check sizes in pixels.
@@ -281,7 +299,9 @@ def latexify( soup ):
 
 
 def cleanup_file( src,dest ):
+    global this_file
     print()
+    this_file = os.path.basename( dest )
     with open(src, encoding='utf8') as file:
         soup = BeautifulSoup(file, "html5lib")
         cleanup_soup( soup )
@@ -344,6 +364,8 @@ def size_all():
 
 base_dir = "C:\\OpenSourceGit\\AudacityTeamTools\\help\\manual"
 dest_dir = "C:\\OpenSourceGit\\AudacityTeamTools\\test"
+#currently being processed file/
+this_file = ""
 
 
 disabled = """
@@ -365,6 +387,7 @@ def clean_one_file( filename ) :
 
 clean_one_file( "new_features_in_this_release.html" )
 clean_one_file( "audacity_tour_guide.html" )
+clean_one_file( "faq.html" )
 
 #print( file )
 #size_all()
