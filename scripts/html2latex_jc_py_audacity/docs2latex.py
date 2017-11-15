@@ -321,6 +321,9 @@ def latex_of_soup( soup ):
         if isinstance( tag, Comment ):
             if s.startswith('latex '):
                 s = s[6:]
+        else:
+            #html text is not supposed to have LaTeX in it.
+            s=s.replace( '_', '\_' )
         if isinstance( tag, Doctype ):
             s=""
         if tag.parent.name == u'title':
@@ -385,10 +388,10 @@ def clean_one_file( filename ) :
     ofile = os.path.join(dest_dir + "\\man", filename)
     cleanup_file( file, ofile)
 
-clean_one_file( "new_features_in_this_release.html" )
-clean_one_file( "audacity_tour_guide.html" )
-clean_one_file( "faq.html" )
+#clean_one_file( "new_features_in_this_release.html" )
+#clean_one_file( "audacity_tour_guide.html" )
+#clean_one_file( "faq.html" )
 
 #print( file )
 #size_all()
-#clean_all()
+clean_all()
