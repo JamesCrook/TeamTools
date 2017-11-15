@@ -23,13 +23,17 @@
 \usepackage{parskip}
 \usepackage{flushend}
 \usepackage{multicol}
+\usepackage{comment}
 \graphicspath{{man/}}
 \hypersetup{colorlinks, linkcolor=blue, citecolor=blue, filecolor=blue, urlcolor=blue, pdftitle=}
-
 %\hypersetup{ colorlinks, citecolor=green, filecolor=blue, linkcolor=blue, urlcolor=blue } 
 \usepackage[margin=0.6in]{geometry}
 \setlength{\columnsep}{0.4 in}
 %\setlength{\parindent}{0pt}
+\newcommand{\foo}[1]{}
+%\excludecomment{foo}
+
+
 
 \begin{document}
 %%\newgeometry{oneside}
@@ -50,7 +54,6 @@
 
 % html: Beginning of file: `new_features_in_this_release.html'
 % DOCTYPE html
-
 \input{./man/new_features_in_this_release.tex}
 \input{./man/audacity_tour_guide.tex}
 

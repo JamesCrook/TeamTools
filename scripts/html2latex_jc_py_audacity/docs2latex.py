@@ -172,7 +172,7 @@ html_doc = """
 
 def cleanup_soup( soup ):
 
-    #remove comments
+    # Remove comments
     for comment in soup.findAll(text=lambda text:isinstance(text, Comment)):
         comment.extract()
 
@@ -200,6 +200,8 @@ def cleanup_soup( soup ):
                tag.extract()
 
     # Our two column mode
+    # Each file is a chapter, starting at h1.
+    # And with the 2-col environment inside it.
     tag = soup.body
     if tag:
         # The title is one column
@@ -220,14 +222,17 @@ def cleanup_soup( soup ):
                 ref = ref.replace('.html', '_' )
                 ref = ref.replace('/', '_' )
                 print( "Reference found: ", ref )
-                tag.insert_before( Comment('latex \n\\hyperref['+ref+']{') )
+                tag.insert_before( Comment('latex \n\\hyperref[XXX\\foo{'+ref+'}]{') )
                 tag.insert_after( Comment('latex }\n') )
 
-    # (valid) images get space before/after if wide
+    # (valid) images get treated depending on their size
+    # all our images are screenshots, so we just check sizes in pixels.
+    #  - small images are inline, and are already sized (using dpi) for inline use
+    #  - large images are 72 dpi, and will be at most one column width.
     for tag in soup.find_all(name='img' ):
         if tag.has_attr( 'src' ) :
             path = tag['src'] 
-            # src could be '../m/images/9/90/play.png'
+            # src could for example be '../m/images/9/90/play.png'
             pieces = path.split( '/images/' )
             if len( pieces ) > 1 :
                 path = "C:\\OpenSourceGit\\AudacityTeamTools\\test\\m\\images\\" + pieces[-1]
@@ -250,15 +255,15 @@ tagspec = {
     ( 'h4', '\n\\subsubsection{', '}' ),
     ( 'h5', '\n\\paragraph{', '}' ),
     ( 'h6', '\n\\subparagraph{', '}' ),
-    ( 'ul', "\n\\begin{itemize}", "\n\\end{itemize}\n" ),
-    ( "ol",  "\n\\begin{enumerate}", "\n\\end{enumerate}\n" ),
-    ( "li","\n\\item ", "" ),
-    ( "lh", "\n\\item ", "" ),
-    ( "i",  "\\textit{", "}" ),
-    ( "em", "\\emph{", "}" ),
-    ( "b",  "\\textbf{", "}" ),
-    ( "hr", "\\vspace{1mm}\\hrule ", "" ),
-    ( "img","\\includegraphics[max width=\\linewidth]{", "}" ),    
+    ( 'ul', '\n\\begin{itemize}', '\n\\end{itemize}\n' ),
+    ( 'ol', '\n\\begin{enumerate}', '\n\\end{enumerate}\n' ),
+    ( 'li', '\n\\item ', '' ),
+    ( 'lh', '\n\\item ', '' ),
+    ( 'i',  '\\textit{', '}' ),
+    ( 'em', '\\emph{', '}' ),
+    ( 'b',  '\\textbf{', '}' ),
+    ( 'hr', '\\vspace{1mm}\\hrule ', '' ),
+    ( 'img','\\includegraphics[max width=\\linewidth]{', '}' ),    
 }   
 
 def latexify( soup ):
