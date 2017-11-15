@@ -179,6 +179,7 @@ def label_of_ref( ref ):
     ref = ref.replace('.html', '_' )
     ref = ref.replace('/', '_' )
     ref = ref.replace('__', '_' )
+    ref = ref.replace('_', 'X' )
     return ref
                 
 def cleanup_soup( soup ):
@@ -323,7 +324,14 @@ def latex_of_soup( soup ):
                 s = s[6:]
         else:
             #html text is not supposed to have LaTeX in it.
-            s=s.replace( '_', '\_' )
+            #and we have to escape \ because of python.
+            s=s.replace( '\\', '\\\\' )
+            s=s.replace( '#', '\\#' )
+            s=s.replace( '_', '\\_' )
+            s=s.replace( '%', '\\%' )
+            s=s.replace( '&', '\\&' )
+            s=s.replace( '{', '\\{' )
+            s=s.replace( '}', '\\}' )
         if isinstance( tag, Doctype ):
             s=""
         if tag.parent.name == u'title':
