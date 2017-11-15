@@ -1,4 +1,4 @@
-from bs4 import BeautifulSoup, Comment
+from bs4 import BeautifulSoup, Comment, Doctype
 from PIL import Image
 import os
 import os.path
@@ -171,19 +171,12 @@ html_doc = """
 """
 
 def cleanup_soup( soup ):
+
+    #remove comments
     for comment in soup.findAll(text=lambda text:isinstance(text, Comment)):
         comment.extract()
 
-    tag = soup.body
-    if tag:
-        tag2 = soup.find( 'h1' )
-        if tag2:
-            tag2.insert_after(Comment('latex \\begin{multicols}{2}') )
-        else:
-            tag.insert(0,Comment('latex \\begin{multicols}{2}') )
-        tag.insert(-1,Comment('latex \\end{multicols}') )
-      
-        
+    # Remove the wikimedia TOC (3 tags to remove)    
     for tag in soup.find_all(name='span', id='Contents' ):
         tag = tag.parent;
         tag = tag.next_sibling;
@@ -191,36 +184,8 @@ def cleanup_soup( soup ):
         tag.previous_sibling.extract()
         tag.previous_sibling.extract()
         tag.extract()
-
-
-
-    for tag in soup.find_all(name='a' ):
-        if tag.has_attr( 'href' ) :
-            if not tag.find(name='img'):
-                ref = tag['href']
-                ref = ref.replace('#', '_' )
-                ref = ref.replace('../', '' )
-                ref = ref.replace('.html', '_' )
-                ref = ref.replace('/', '_' )
-                print( "Reference found: ", ref )
-                tag.insert_before( Comment('latex \n\\hyperref['+ref+']{') )
-                tag.insert_after( Comment('latex }\n') )
-
-    for tag in soup.find_all(name='img' ):
-        if tag.has_attr( 'src' ) :
-            path = tag['src'] 
-            # src could be '../m/images/9/90/play.png'
-            pieces = path.split( '/images/' )
-            if len( pieces ) > 1 :
-                path = "C:\\OpenSourceGit\\AudacityTeamTools\\test\\m\\images\\" + pieces[-1]
-                if os.path.isfile( path ) :
-                    with Image.open(path) as image:
-                        siz = image.size
-                        if( siz[0] > 30 ):
-                            print( path )
-                            tag.insert_before( Comment('latex \\par') )
-                            tag.insert_after( Comment('latex \\par') )
         
+    # Remove more wikimedia cruft (sidebar, footer)
     for tag in soup.find_all():
         if tag.has_attr( 'id' ):
             if tag['id'] == 'jump-to-nav' :
@@ -233,7 +198,81 @@ def cleanup_soup( soup ):
                tag.extract()
             if tag['id'] == "footer" :
                tag.extract()
+
+    # Our two column mode
+    tag = soup.body
+    if tag:
+        # The title is one column
+        tag2 = soup.find( 'h1' )
+        if tag2:
+            tag2.insert_after(Comment('latex \\begin{multicols}{2}') )
+        else:
+            tag.insert(0,Comment('latex \\begin{multicols}{2}') )
+        tag.insert(-1,Comment('latex \\end{multicols}') )
+      
+    # anchors become \hyperrefs and \labels
+    for tag in soup.find_all(name='a' ):
+        if tag.has_attr( 'href' ) :
+            if not tag.find(name='img'):
+                ref = tag['href']
+                ref = ref.replace('#', '_' )
+                ref = ref.replace('../', '' )
+                ref = ref.replace('.html', '_' )
+                ref = ref.replace('/', '_' )
+                print( "Reference found: ", ref )
+                tag.insert_before( Comment('latex \n\\hyperref['+ref+']{') )
+                tag.insert_after( Comment('latex }\n') )
+
+    # (valid) images get space before/after if wide
+    for tag in soup.find_all(name='img' ):
+        if tag.has_attr( 'src' ) :
+            path = tag['src'] 
+            # src could be '../m/images/9/90/play.png'
+            pieces = path.split( '/images/' )
+            if len( pieces ) > 1 :
+                path = "C:\\OpenSourceGit\\AudacityTeamTools\\test\\m\\images\\" + pieces[-1]
+                if os.path.isfile( path ) :
+                    with Image.open(path) as image:
+                        siz = image.size
+                        if( siz[0] > 30 ):
+                            print( path )
+                            tag.insert_before( Comment('latex \\par ') )
+                            tag.insert_after( Comment('latex \\par ') )
+                        # file name is used by includegraphics
+                        tag.insert( 0, Comment( path.replace('\\','/') ) )
+        
                
+
+tagspec = {
+    ( 'h1', '\n\\chapter{', '}' ),
+    ( 'h2', '\n\\section{', '}' ),
+    ( 'h3', '\n\\subsection{', '}' ),
+    ( 'h4', '\n\\subsubsection{', '}' ),
+    ( 'h5', '\n\\paragraph{', '}' ),
+    ( 'h6', '\n\\subparagraph{', '}' ),
+    ( 'ul', "\n\\begin{itemize}", "\n\\end{itemize}\n" ),
+    ( "ol",  "\n\\begin{enumerate}", "\n\\end{enumerate}\n" ),
+    ( "li","\n\\item ", "" ),
+    ( "lh", "\n\\item ", "" ),
+    ( "i",  "\\textit{", "}" ),
+    ( "em", "\\emph{", "}" ),
+    ( "b",  "\\textbf{", "}" ),
+    ( "hr", "\\vspace{1mm}\\hrule ", "" ),
+    ( "img","\\includegraphics[max width=\\linewidth]{", "}" ),    
+}   
+
+def latexify( soup ):
+    for item in tagspec :
+        for tag in soup.find_all(name= item[0] ):
+            if item[1] :
+                tag.insert_before(Comment( item[1] ))
+            if item[2] :              
+                tag.insert_after( Comment( item[2] ))
+
+#    for tag in soup.find_all(name='h2' ):
+#        tag.insert_before(Comment('platex \n\\section{') )
+#        tag.insert_after(Comment('platex }\n') )
+
 
 
 def cleanup_file( src,dest ):
@@ -241,10 +280,29 @@ def cleanup_file( src,dest ):
     with open(src, encoding='utf8') as file:
         soup = BeautifulSoup(file, "html5lib")
         cleanup_soup( soup )
+        latexify( soup )
         with open(dest, "w", encoding='utf8') as dest_file:
             dest_file.write(soup.encode(formatter="html").decode( encoding='UTF-8'))
+        latex = latex_of_soup( soup )
+        d2 = dest.replace( '.html', '.tex' )
+        with open(d2, "w", encoding='utf8') as dest_file:
+            dest_file.write( latex )
+        
 
-
+def latex_of_soup( soup ):
+    latex = ""
+    for tag in soup.find_all( text=True ):
+        s = str( tag )
+        if isinstance( tag, Comment ):
+            if s.startswith('latex '):
+                s = s[6:]
+        if isinstance( tag, Doctype ):
+            s=""
+        if tag.parent.name == u'title':
+            s=""
+        if not s.isspace():
+            latex = latex + s
+    return latex
 
 def clean_all():
     for dirpath, dirnames, filenames in os.walk( base_dir):
@@ -283,9 +341,10 @@ base_dir = "C:\\OpenSourceGit\\AudacityTeamTools\\help\\manual"
 dest_dir = "C:\\OpenSourceGit\\AudacityTeamTools\\test"
 
 
+disabled = """
+
 soup = BeautifulSoup(html_doc, 'html.parser')
 print( soup.find_all( text=True ))
-disabled = """
 
 cleanup_soup( soup )
 print("---")
@@ -299,8 +358,8 @@ def clean_one_file( filename ) :
     ofile = os.path.join(dest_dir + "\\man", filename)
     cleanup_file( file, ofile)
 
-#clean_one_file( "new_features_in_this_release.html" )
-#clean_one_file( "audacity_tour_guide.html" )
+clean_one_file( "new_features_in_this_release.html" )
+clean_one_file( "audacity_tour_guide.html" )
 
 #print( file )
 #size_all()
