@@ -171,6 +171,19 @@ html_doc = """
 """
 
 def cleanup_soup( soup ):
+    for comment in soup.findAll(text=lambda text:isinstance(text, Comment)):
+        comment.extract()
+
+    tag = soup.body
+    if tag:
+        tag2 = soup.find( 'h1' )
+        if tag2:
+            tag2.insert_after(Comment('latex \\begin{multicols}{2}') )
+        else:
+            tag.insert(0,Comment('latex \\begin{multicols}{2}') )
+        tag.insert(-1,Comment('latex \\end{multicols}') )
+      
+        
     for tag in soup.find_all(name='span', id='Contents' ):
         tag = tag.parent;
         tag = tag.next_sibling;
@@ -178,6 +191,20 @@ def cleanup_soup( soup ):
         tag.previous_sibling.extract()
         tag.previous_sibling.extract()
         tag.extract()
+
+
+
+    for tag in soup.find_all(name='a' ):
+        if tag.has_attr( 'href' ) :
+            if not tag.find(name='img'):
+                ref = tag['href']
+                ref = ref.replace('#', '_' )
+                ref = ref.replace('../', '' )
+                ref = ref.replace('.html', '_' )
+                ref = ref.replace('/', '_' )
+                print( "Reference found: ", ref )
+                tag.insert_before( Comment('latex \n\\hyperref['+ref+']{') )
+                tag.insert_after( Comment('latex }\n') )
 
     for tag in soup.find_all(name='img' ):
         if tag.has_attr( 'src' ) :
@@ -255,29 +282,26 @@ def size_all():
 base_dir = "C:\\OpenSourceGit\\AudacityTeamTools\\help\\manual"
 dest_dir = "C:\\OpenSourceGit\\AudacityTeamTools\\test"
 
-disabled = """
 
 soup = BeautifulSoup(html_doc, 'html.parser')
+print( soup.find_all( text=True ))
+disabled = """
 
 cleanup_soup( soup )
 print("---")
 #print(soup.prettify())
 #print( soup.encode(formatter="html").decode( encoding='UTF-8'))
-
-
-        
-
-
+ 
 """
 
-filename = "new_features_in_this_release.html"
-file = os.path.join(base_dir + "\\man", filename)
-ofile = os.path.join(base_dir + "\\man", 'testr.html')
+def clean_one_file( filename ) :
+    file = os.path.join(base_dir + "\\man", filename)
+    ofile = os.path.join(dest_dir + "\\man", filename)
+    cleanup_file( file, ofile)
+
+#clean_one_file( "new_features_in_this_release.html" )
+#clean_one_file( "audacity_tour_guide.html" )
 
 #print( file )
-#cleanup_file( file, ofile)
-
-
-
 #size_all()
-clean_all()
+#clean_all()

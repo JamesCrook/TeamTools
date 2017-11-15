@@ -2,7 +2,7 @@
 % Written by F.J. Faase.  http://www.iwriteiam.nl/
 % Adapted by J.K. Crook.  http://audacityteam.org/
 
-\documentclass[twocolumn]{book}
+\documentclass[]{book}
 
 \usepackage[latin1]{inputenc}
 %\usepackage[utf8]{inputenc} 
@@ -22,8 +22,9 @@
 \usepackage{enumitem}
 \usepackage{parskip}
 \usepackage{flushend}
+\usepackage{multicol}
 \graphicspath{{man/}}
-\hypersetup{colorlinks=true, linkcolor=blue, citecolor=blue, filecolor=blue, urlcolor=blue, pdftitle=}
+\hypersetup{colorlinks, linkcolor=blue, citecolor=blue, filecolor=blue, urlcolor=blue, pdftitle=}
 
 %\hypersetup{ colorlinks, citecolor=green, filecolor=blue, linkcolor=blue, urlcolor=blue } 
 \usepackage[margin=0.6in]{geometry}
@@ -42,18 +43,17 @@
 
 % html: Beginning of file: `new_features_in_this_release.html'
 % DOCTYPE html
-% [if IE 6]><link rel="stylesheet" href="../m/skins/monobook/ie60fixes.css/303.css" media="screen"/><![endif]
-% [if IE 7]><link rel="stylesheet" href="../m/skins/monobook/ie70fixes.css/303.css" media="screen"/><![endif]
 																					
 \chapter{New features in this release}
 
-\label{f0}																																	%  start content 
-					
+\label{f0}\begin{multicols}{2}																																						
 
 % <br/ lang="en">
 \par\includegraphics[max width=\linewidth]{../m/images/8/88/audacity_logo_signika_512_transparent.png}\par\footnote{See URL http://audacityteam.org/}\newline\textbf{This page is an overview of the key new functionality that has been introduced in Audacity 2.2.0}
 \begin{itemize}
-\item  Details of all the major changes since 2.1.3 can be found in Release Notes 2.2.0.
+\item  Details of all the major changes since 2.1.3 can be found in 
+\hyperref[https:__wiki.audacityteam.org_wiki_Release_Notes_2.2.0]{Release Notes 2.2.0}
+.
 \end{itemize}
 
 
@@ -71,13 +71,19 @@ The logo has been given a refresh, and now uses a sans-serif font and a flatter 
 
 % <br/ /="">
 
-\section{Themes}
+\section{
+\hyperref[themes_]{Themes}
+}
 
 
-Audacity now comes supplied with four pre-configured, user-selectable, themes.  This enables you to choose the look and feel you prefer for Audacity's interface. see the Themes page for details.
+Audacity now comes supplied with four pre-configured, user-selectable, themes.  This enables you to choose the look and feel you prefer for Audacity's interface. see the 
+\hyperref[themes_]{Themes}
+ page for details.
 \begin{itemize}
 \item \textbf{Light} theme: this is a light theme loosely based on the look and feel of earlier Audacity versions, but given a contemporary twist with more modern-looking buttons and icons. 
-\item \textbf{Dark} theme: created by the Dark Audacity project.\footnote{See URL http://www.darkaudacity.com/} This is similar to the Light theme, with the same buttons and icons, but given a dark twist.
+\item \textbf{Dark} theme: created by the 
+\hyperref[http:__www.darkaudacity.com_]{Dark Audacity project.\footnote{See URL http://www.darkaudacity.com/}}
+ This is similar to the Light theme, with the same buttons and icons, but given a dark twist.
 \item \textbf{Classic} theme: The one you know and loved. This theme is a re-creation of the look and feel of earlier Audacity versions. 
 \item \textbf{High Contrast} theme: some users with poor eyesight benefit from a high contrast that is 'eye-popping' for most people.
 \end{itemize}
@@ -107,11 +113,15 @@ Audacity now comes supplied with four pre-configured, user-selectable, themes.  
 
 
 % <br/ valign="top">
-The theme to use can be chosen at Edit \mbox{$>$} Preferences \mbox{$>$} Interface.  
+The theme to use can be chosen at Edit \mbox{$>$} Preferences \mbox{$>$} 
+\hyperref[interface_preferences_]{Interface}
+.  
 \begin{itemize}
 \item  In addition to the four pre-configured themes there is also a Custom theme.  
 \end{itemize}
- By default the custom theme looks the same as Classic theme - but, if you have the right programming skills and tools, you can use this template to create your own theme.  Instructions for how to do this may be found in the Audacity Wiki.
+ By default the custom theme looks the same as Classic theme - but, if you have the right programming skills and tools, you can use this template to create your own theme.  Instructions for how to do this may be found in the 
+\hyperref[https:__wiki.audacityteam.org_wiki_Theming_HowTo]{Audacity Wiki}
+.
 
 
 % <br/ rel="nofollow">
@@ -119,11 +129,21 @@ The theme to use can be chosen at Edit \mbox{$>$} Preferences \mbox{$>$} Interfa
 \section{MIDI (and Allegro) Playback}
 
 
-Playback of MIDI (and Allegro) files imported into Note Tracks is now available.  Please see the Note Tracks page for more details.
+Playback of MIDI (and Allegro) files imported into 
+\hyperref[note_tracks_]{Note Tracks}
+ is now available.  Please see the 
+\hyperref[note_tracks_]{Note Tracks}
+ page for more details.
 
-This should just work on Windows but for playback on Mac and Linux additional software may be required, see this section on the Playing and Recording page.
+This should just work on Windows but for playback on Mac and Linux additional software may be required, see 
+\hyperref[playing_and_recording__midi]{this section}
+ on the 
+\hyperref[playing_and_recording_]{Playing and Recording}
+ page.
 
-But note that there will no use of the Playback meter while Note tracks are played. 
+But note that there will no use of the 
+\hyperref[meter_toolbar__playback]{Playback meter}
+ while Note tracks are played. 
 
 
 % <br/ title="Meter Toolbar">
@@ -131,7 +151,13 @@ But note that there will no use of the Playback meter while Note tracks are play
 \section{Stem Plots}
 
 
-There is a new entry in the Tracks Preferences for \textbf{Display samples}.  This setting changes how Waveform and Waveform dB views are displayed.  It only affects the appearance of the waveform when you are so far zoomed in that you can see the individual sample dots.  At lower zoom levels it makes no difference.  
+There is a new entry in the 
+\hyperref[tracks_preferences_]{Tracks Preferences}
+ for \textbf{Display samples}.  This setting changes how 
+\hyperref[audacity_waveform_]{Waveform}
+ and 
+\hyperref[audacity_waveform__db]{Waveform dB}
+ views are displayed.  It only affects the appearance of the waveform when you are so far zoomed in that you can see the individual sample dots.  At lower zoom levels it makes no difference.  
 \begin{itemize}
 \item \textbf{Stem plot:} This is the default setting which draws a vertical line from the track center line to the sample dot, giving a clearer impression of the relative amplitude of the samples. As seen in the images below, when zoomed out close to the minimum for a stem plot, the horizontal distance between sample dots may be more uneven than seen with the connect dots default.   
 \item \textbf{Connect dots:} This is alternative setting yields a waveform where each sample dot is connected to the next sample by a line drawn between them.  
@@ -157,7 +183,11 @@ Now the \&lsquo;Export\&rsquo; options are under the \&lsquo;Save Other\&rsquo; 
 \section{The Extended Menu bar}
 
 
-There are two new additional menus that are hidden by default.  They can be turned on at View \mbox{$>$} Extra Menus (on/off) or the Interface pane of Edit \mbox{$>$} Preferences.
+There are two new additional menus that are hidden by default.  They can be turned on at View \mbox{$>$} 
+\hyperref[view_menu__extra_menus_onoff]{Extra Menus (on/off)}
+ or the Interface pane of Edit \mbox{$>$} 
+\hyperref[interface_preferences_]{Preferences}
+.
 
 These extra menus have many extra less frequently used commands.  They are particularly useful to VI users, but normally-sighted users may find them useful too.
 \textit{\textbf{Image of the Extended Menu bar as it appears on Windows}}\par\includegraphics[max width=\linewidth]{../m/images/0/0d/menu_toolbar_extra.png}\par??
@@ -166,14 +196,26 @@ These extra menus have many extra less frequently used commands.  They are parti
 
 Menu
 What you'll find there
-Ext-Bar
-The Ext-Bar menu provides access to Toolbar operations that are not available in the default Audacity menus. These will be of most interest to visually impaired users or those who have difficulty using the mouse.
+\hyperref[ext_bar_menu_]{
+Ext-Bar}
 
-Shortcuts can be assigned to these commands if required.
-Ext-Command
-The Ext-Command menu provides access to extra commands for track focus and movement of the editing or playback cursor that are not available in the default Audacity menus. These will be of most interest to visually impaired users or those who have difficulty using the mouse.
+The Ext-Bar menu provides access to 
+\hyperref[toolbars_overview_]{Toolbar}
+ operations that are not available in the default Audacity menus. These will be of most interest to visually impaired users or those who have difficulty using the mouse.
 
-Shortcuts can be assigned to these commands if required.
+
+\hyperref[keyboard_preferences_]{Shortcuts}
+ can be assigned to these commands if required.
+\hyperref[ext_command_menu_]{
+Ext-Command}
+
+The Ext-Command menu provides access to extra commands for 
+\hyperref[audio_tracks__focus]{track focus}
+ and movement of the editing or playback cursor that are not available in the default Audacity menus. These will be of most interest to visually impaired users or those who have difficulty using the mouse.
+
+
+\hyperref[keyboard_preferences_]{Shortcuts}
+ can be assigned to these commands if required.
 % </tbody title="Keyboard Preferences">
 
 If you only require regular access to a small set of these commands you can set shortcuts for them and leave the extra menus hidden.
@@ -184,12 +226,18 @@ If you only require regular access to a small set of these commands you can set 
 \section{Appended recording on the same track in now the default}
 
 
-From Audacity 2.2.0 onward the default recording mode has changed so that when you click the Record button \includegraphics[max width=\linewidth]{../m/images/e/e8/record.png} on Transport Toolbar, or use the R, Audacity will record at the end of the currently selected (or only) track.
+From Audacity 2.2.0 onward the default recording mode has changed so that when you click the Record button \includegraphics[max width=\linewidth]{../m/images/e/e8/record.png} on 
+\hyperref[transport_toolbar_]{Transport Toolbar}
+, or use the R, Audacity will record at the end of the currently selected (or only) track.
 
 \subsection{To record on a new track}
 
 
-If you hold the Shift button down the Record button in Transport Toolbar will temporarily change to \includegraphics[max width=\linewidth]{../m/images/7/72/record_new_track.png}. Then clicking on this modified Record button, or using the shortcut Shift + R will cause Audacity to create a new track and begin recording on that track from the current cursor position (or from the left edge of a region on the Timeline). 
+If you hold the Shift button down the Record button in 
+\hyperref[transport_toolbar_]{Transport Toolbar}
+ will temporarily change to \includegraphics[max width=\linewidth]{../m/images/7/72/record_new_track.png}. Then clicking on this modified Record button, or using the shortcut Shift + R will cause Audacity to create a new track and begin recording on that track from the current cursor position (or from the left edge of a region on the 
+\hyperref[timeline_]{Timeline}
+). 
 
 
 % <br/ title="Timeline">
@@ -209,13 +257,19 @@ Example: the Amplify effect.  Try clicking on the \texttt{{}"{}}\textbf{?}\textt
 \section{Standard and Full shortcut sets}
 
 
-For Audacity 2.2.0 we have reduced the number of preset shortcuts in the application to a \texttt{{}"{}}\textbf{Standard}\texttt{{}"{}} set.  We did this to simplify the set of shortcuts somewhat and to provide greater flexibility for users who want to set their own custom shortcuts.
+For Audacity 2.2.0 we have reduced the number of preset shortcuts in the application to a \texttt{{}"{}}\textbf{
+\hyperref[keyboard_shortcut_reference_]{Standard}
+}\texttt{{}"{}} set.  We did this to simplify the set of shortcuts somewhat and to provide greater flexibility for users who want to set their own custom shortcuts.
 
-You can choose to revert to the full set of shortcuts that were in 2.1.3 and earlier by selecting \texttt{{}"{}}\textbf{Full}\texttt{{}"{}} from the dropdown menu accessed from the Defaults button in the Keyboard Preferences dialog.
+You can choose to revert to the full set of shortcuts that were in 2.1.3 and earlier by selecting \texttt{{}"{}}\textbf{Full}\texttt{{}"{}} from the dropdown menu accessed from the Defaults button in the 
+\hyperref[keyboard_preferences_]{Keyboard Preferences}
+ dialog.
 
 You can use the Defaults button to switch between the two provided default sets of shortcuts at any time.\par\includegraphics[max width=\linewidth]{../m/images/f/f8/preferences_keyboard_with_default_dropdown_menu_trimmed.png}\par??
 
-See Commands and Keyboard Shortcut Reference for more details.
+See 
+\hyperref[keyboard_shortcut_reference_]{Commands and Keyboard Shortcut Reference}
+ for more details.
 
 
 % <br/ title="Keyboard Shortcut Reference">
@@ -223,7 +277,9 @@ See Commands and Keyboard Shortcut Reference for more details.
 \section{Selection Toolbar improvements}
 
 
-There are now four available settings in the Selection and Audio Position Boxes in Selection Toolbar for the  manner in which the details of your selection are displayed:
+There are now four available settings in the Selection and Audio Position Boxes in 
+\hyperref[selection_toolbar_]{Selection Toolbar}
+ for the  manner in which the details of your selection are displayed:
 \begin{itemize}
 \item \textbf{Start and End of selection}: the start time and the end time of your selection \textit{(default setting)}
 \item \textbf{Start and Length of selection}: the start time and the length of your selection
@@ -239,16 +295,36 @@ There are now four available settings in the Selection and Audio Position Boxes 
 
 New commands, all of which interact with the clips on the focused track. As yet, there are no default shortcuts:
 \begin{enumerate}
-\item Transport \mbox{$>$} Cursor to \mbox{$>$} Previous clip boundary
-\item Transport Cursor to \mbox{$>$} Next clip boundary
-\item Select \mbox{$>$} Clip Boundaries \mbox{$>$} Previous clip boundary to cursor 
-\item Select \mbox{$>$} Clip Boundaries \mbox{$>$} Cursor to next clip boundary 
-\item Select \mbox{$>$} Clip Boundaries \mbox{$>$} Previous clip 
-\item Select \mbox{$>$} Clip Boundaries \mbox{$>$} Next clip 
-\end{enumerate}
-There are also two new commands (Clip Left and Clip Right) for moving clips, which are available in the extended menus added in this release.
+\item Transport \mbox{$>$} Cursor to \mbox{$>$} 
+\hyperref[transport_menu_cursor_to__previous_clip_boundary]{Previous clip boundary}
 
-Note that these extended menus are \textit{\textbf{not}} turned on by default, to turn them on please see Menu Reference for how to reveal the extended menus.
+\item Transport Cursor to \mbox{$>$} 
+\hyperref[transport_menu_cursor_to__next_clip_boundary]{Next clip boundary}
+
+\item Select \mbox{$>$} Clip Boundaries \mbox{$>$} 
+\hyperref[select_menu_clip_boundaries__previous_clip_boundary_to_cursor]{Previous clip boundary to cursor}
+ 
+\item Select \mbox{$>$} Clip Boundaries \mbox{$>$} 
+\hyperref[select_menu_clip_boundaries__cursor_to_next_clip_boundary]{Cursor to next clip boundary}
+ 
+\item Select \mbox{$>$} Clip Boundaries \mbox{$>$} 
+\hyperref[select_menu_clip_boundaries__previous_clip]{Previous clip}
+ 
+\item Select \mbox{$>$} Clip Boundaries \mbox{$>$} 
+\hyperref[select_menu_clip_boundaries__next_clip]{Next clip}
+ 
+\end{enumerate}
+There are also two new commands (
+\hyperref[ext_command_menu_cursor__clip_left]{Clip Left}
+ and 
+\hyperref[ext_command_menu_cursor__clip_right]{Clip Right}
+) for moving clips, which are available in the 
+\hyperref[_extendedmenubar]{extended menus}
+ added in this release.
+
+Note that these extended menus are \textit{\textbf{not}} turned on by default, to turn them on please see 
+\hyperref[menu_reference__the_extended_menu_bar]{Menu Reference}
+ for how to reveal the extended menus.
 
 
 % <br/ title="Menu Reference">
@@ -266,10 +342,14 @@ This is particularly useful when recording as Audacity will stop recording when 
 
 % <br/ id="Running_out_of_disk_space">
 
-\section{Additional new features}
+\section{
+\hyperref[new_features_in_this_release_appendix_]{Additional new features}
+}
 
 
-This page \textbf{New features in this release - appendix} gives an overview of further new functionality that has been introduced in this release of Audacity.
+This page \textbf{
+\hyperref[new_features_in_this_release_appendix_]{New features in this release - appendix}
+} gives an overview of further new functionality that has been introduced in this release of Audacity.
 
 
 % <br/ title="New features in this release - appendix">
@@ -277,54 +357,25 @@ This page \textbf{New features in this release - appendix} gives an overview of 
 \section{Links}
 
 
-\textbf{\mbox{$>$}} Audacity Release Notes 2.2.0 \textit{- detailed release notes for this release of Audacity}%  
-% NewPP limit report
-% Cached time: 20171019181658
-% Cache expiry: 86400
-% Dynamic content: false
-% CPU time usage: 0.129 seconds
-% Real time usage: 0.139 seconds
-% Preprocessor visited node count: 309/1000000
-% Preprocessor generated node count: 824/1000000
-% Post‐expand include size: 4813/2097152 bytes
-% Template argument size: 3760/2097152 bytes
-% Highest expansion depth: 4/40
-% Expensive parser function count: 0/100
-% 
-%  
-% Transclusion expansion time report (%,ms,calls,template)
-% 100.00%   58.657      1 - -total
-%   5.68%    3.330      2 - Template:Shortcut
-%   5.31%    3.115      5 - Template:Note
-%   4.53%    2.660      4 - Template:Button
-%   4.10%    2.408      9 - Template:Menu
-%   3.17%    1.862      1 - Template:Bh
-%   2.63%    1.545      1 - Template:Hint
-%   2.32%    1.358      1 - Template:Intro
-%   2.16%    1.266      2 - Template:Ednote
-% 
-%  Saved in parser cache with key helpmediawiki:pcache:idhash:5555-0!*!0!!*!5!* and timestamp 20171019181658 and revision id 55934
-%  
 
-										%  end content 
-																					%  end of the left (by default at least) column 
-											
+\hyperref[https:__wiki.audacityteam.org_wiki_Release_Notes_2.2.0]{\textbf{\mbox{$>$}} Audacity Release Notes 2.2.0}
+ \textit{- detailed release notes for this release of Audacity}
+																																								\end{multicols}		
 % html: End of file: `new_features_in_this_release.html'
 % html: Beginning of file: `audacity_tour_guide.html'
 % DOCTYPE html
-% [if IE 6]><link rel="stylesheet" href="../m/skins/monobook/ie60fixes.css/303.css" media="screen"/><![endif]
-% [if IE 7]><link rel="stylesheet" href="../m/skins/monobook/ie70fixes.css/303.css" media="screen"/><![endif]
 																					
 \chapter{Audacity Tour Guide}
 
-\label{f42}																																	%  start content 
-					
+\label{f42}\begin{multicols}{2}																																						
 
 % <br/ lang="en">
 This guide provides a quick tour of selected features of Audacity.  This page doesn\&rsquo;t tell you how to use features, it would be much too long if it did.  Rather it tells you about some of the features that exist in Audacity and will help you learn a little about those.
 
 There are many links on this page (highlighted in blue). Click the links to go to the more detailed pages in the Manual. 
-Also remember that the \textbf{Screenshot of Audacity} on the front page is clickable.  Clicking on a feature will take you to the place in the Manual that describes that feature. 
+Also remember that the \textbf{
+\hyperref[index__reference]{Screenshot of Audacity}
+} on the front page is clickable.  Clicking on a feature will take you to the place in the Manual that describes that feature. 
 
 
 % <br/ title="Main Page">
@@ -332,7 +383,13 @@ Also remember that the \textbf{Screenshot of Audacity} on the front page is clic
 \section{Record, Play and Edit - the basics of Audacity}
 
 
-Audacity can \textbf{Play} \includegraphics[max width=\linewidth]{../m/images/9/90/play.png} \textbf{Record} \includegraphics[max width=\linewidth]{../m/images/e/e8/record.png} and  \textbf{edit} audio.  To play or record, click on the button on the toolbar:\par\includegraphics[max width=\linewidth]{../m/images/5/5e/transporttoolbar.png}\par??
+Audacity can \textbf{
+\hyperref[playback_]{Play}
+} \includegraphics[max width=\linewidth]{../m/images/9/90/play.png} \textbf{
+\hyperref[recording_]{Record}
+} \includegraphics[max width=\linewidth]{../m/images/e/e8/record.png} and  \textbf{
+\hyperref[edit_]{edit}
+} audio.  To play or record, click on the button on the toolbar:\par\includegraphics[max width=\linewidth]{../m/images/5/5e/transporttoolbar.png}\par??
 \textbf{Transport Toolbar Play \includegraphics[max width=\linewidth]{../m/images/9/90/play.png} and Record \includegraphics[max width=\linewidth]{../m/images/e/e8/record.png} buttons}
 
 
@@ -340,25 +397,39 @@ Audacity can \textbf{Play} \includegraphics[max width=\linewidth]{../m/images/9/
 Hold Shift down, and those two buttons change to \textbf{Loop Play} \includegraphics[max width=\linewidth]{../m/images/7/7e/loop_play.png} and \textbf{Record New Track} \includegraphics[max width=\linewidth]{../m/images/7/72/record_new_track.png}.\par\includegraphics[max width=\linewidth]{../m/images/f/f8/transport_toolbar_shift_modified.png}\par??
 \textit{\textbf{Transport Toolbar with Shift held down}}
 
-\subsection{Loop Play}
+\subsection{
+\hyperref[playing_and_recording__transport]{Loop Play}
+}
 
 
 Hold Shift and the play button will change from \includegraphics[max width=\linewidth]{../m/images/9/90/play.png} to \includegraphics[max width=\linewidth]{../m/images/7/7e/loop_play.png} the Loop Play button. Click on this and you will get Loop Play where the audio plays over and over until you stop.  
 
-\subsection{New Track Record}
+\subsection{
+\hyperref[recording__newtrack]{New Track Record}
+}
 
 
 Hold Shift and the record button changes from \includegraphics[max width=\linewidth]{../m/images/e/e8/record.png} to \includegraphics[max width=\linewidth]{../m/images/7/72/record_new_track.png} \textit{\textbf{Record New Track}}.  Click, \textit{(or use shortcut Shift + R )} to start recording in a new track at either the current cursor position or at the beginning of the current selection.
 
 By default Audacity will record at the end of the currently selected (or only) track
 
-\subsection{Select and Edit}
+\subsection{
+\hyperref[selecting_audio_the_basics_]{Select and Edit}
+}
 
 
-Select audio by dragging, before using buttons like cut, copy and paste to rearrange the audio.  You can also apply an audio effect to the selected audio.\par\includegraphics[max width=\linewidth]{../m/images/4/46/selected_audio_for_tour_guide.png}\par??
+
+\hyperref[selecting_audio_the_basics_]{Select}
+ audio by dragging, before using buttons like 
+\hyperref[edit_toolbar_]{cut, copy and paste}
+ to rearrange the audio.  You can also apply an 
+\hyperref[effect_menu_audacity_]{audio effect}
+ to the selected audio.\par\includegraphics[max width=\linewidth]{../m/images/4/46/selected_audio_for_tour_guide.png}\par??
 \textbf{Example of a stereo audio track with some audio selected - the selection is the dark gray section}
 
-For more details on Play, Record and Edit see the Getting Started section of the Manual.
+For more details on Play, Record and Edit see the 
+\hyperref[quick_help_]{Getting Started}
+ section of the Manual.
 % <br/ title="Quick Help">
 
 
@@ -368,30 +439,56 @@ For more details on Play, Record and Edit see the Getting Started section of the
 \section{Saving your work - audio formats}
 
 
-\subsection{Save}
+\subsection{
+\hyperref[file_menu__save]{Save}
+}
 
 
-Audacity makes a distinction between saving audio in \textbf{Audacity project format} which only Audacity can open, and exporting audio in formats like WAV and MP3 for use in other applications. Audacity project format is made up of multiple small files which are stored in the \_data folder for the project and alongside that, an  AUP file which says what order the files are in. To reopen a saved project, open the AUP file, \textit{\textbf{not}} the multiple small files. 
+Audacity makes a distinction between saving audio in \textbf{
+\hyperref[audacity_projects_]{Audacity project format}
+} which only Audacity can open, and exporting audio in formats like WAV and MP3 for use in other applications. Audacity project format is made up of multiple small files which are stored in the \_data folder for the project and alongside that, an  AUP file which says what order the files are in. To reopen a saved project, open the AUP file, \textit{\textbf{not}} the multiple small files. 
 
-\subsection{Export}
+\subsection{
+\hyperref[file_export_dialog_]{Export}
+}
 
 
 Use Export if you want to create a file in an audio format for playing outside of Audacity.
 \begin{itemize}
-\item  \textbf{LAME:} Do you want to convert a recording to compressed MP3 format? Audacity can, but it needs an add-on to do so.  The add-on is a library called \&lsquo;LAME\&rsquo;.  A free copy of LAME that is compatible with Audacity is available from the   lame.buanzo.org site, as per these instructions (Buanzo is a technology and security consultant from Argentina). 
-\item  \textbf{FFmpeg:} The optional FFmpeg library allows Audacity to import and export a much larger range of audio formats including \textit{\textbf{M4A (AAC)}}, AC3, AMR (narrow band) and \textit{\textbf{WMA}}. Audacity can import audio from most video files by using FFmpeg.
+\item  \textbf{
+\hyperref[faq_installation_and_plug_ins__lame]{LAME}
+:} Do you want to convert a recording to compressed MP3 format? Audacity can, but it needs an add-on to do so.  The add-on is a library called \&lsquo;LAME\&rsquo;.  A free copy of LAME that is compatible with Audacity is available from the   lame.buanzo.org site, as per 
+\hyperref[faq_installation_and_plug_ins__lame]{these instructions}
+ (Buanzo is a technology and security consultant from Argentina). 
+\item  \textbf{
+\hyperref[faq_installation_and_plug_ins__ffdown]{FFmpeg}
+:} The optional 
+\hyperref[faq_opening_and_saving_files__foreign]{FFmpeg library}
+ allows Audacity to import and export a much larger 
+\hyperref[https:__wiki.audacityteam.org_wiki_FFmpeg_integration_Functionality]{range of audio formats}
+ including \textit{\textbf{
+\hyperref[glossary__aac]{M4A (AAC)}
+}}, AC3, AMR (narrow band) and \textit{\textbf{
+\hyperref[glossary__wma]{WMA}
+}}. Audacity can import audio from most video files by using FFmpeg.
 \end{itemize}
 
 
 % <br/ title="Glossary">
 
-\section{Themes}
+\section{
+\hyperref[themes_]{Themes}
+}
 
 
-Audacity has four pre-configured, user-selectable, themes.  This enables you to choose the look and feel you prefer for Audacity's interface. see the Themes page for details.
+Audacity has four pre-configured, user-selectable, themes.  This enables you to choose the look and feel you prefer for Audacity's interface. see the 
+\hyperref[themes_]{Themes}
+ page for details.
 \begin{itemize}
 \item \textbf{Light} theme: this is a light theme loosely based on the look and feel of earlier Audacity versions, but given a contemporary twist with more modern-looking buttons and icons. 
-\item \textbf{Dark} theme: created by the Dark Audacity project.\footnote{See URL http://www.darkaudacity.com/} This is similar to the Light theme, with the same buttons and icons, but given a dark twist.
+\item \textbf{Dark} theme: created by the 
+\hyperref[http:__www.darkaudacity.com_]{Dark Audacity project.\footnote{See URL http://www.darkaudacity.com/}}
+ This is similar to the Light theme, with the same buttons and icons, but given a dark twist.
 \item \textbf{Classic} theme: The one you know and loved. This theme is a re-creation of the look and feel of earlier Audacity versions. 
 \item \textbf{High Contrast} theme: some users with poor eyesight benefit from a high contrast that is 'eye-popping' for most people.
 \end{itemize}
@@ -423,17 +520,29 @@ Audacity has four pre-configured, user-selectable, themes.  This enables you to 
 
 \par\includegraphics[max width=\linewidth]{../m/images/0/04/fragment_of_the_keyboard_preferences_dialog.png}\par\textbf{A fragment of the keyboard preferences dialog showing some shortcuts}
 
-\subsection{Shortcuts}
+\subsection{
+\hyperref[keyboard_shortcut_reference_]{Shortcuts}
+}
 
 
-Many buttons and menu commands have pre-defined keyboard shortcuts assigned.  You can modify these or add your own with Keyboard Preferences (in the Edit menu on Windows and Linux or the \texttt{{}"{}}Audacity\texttt{{}"{}} menu on Mac). 
+Many buttons and menu commands have pre-defined 
+\hyperref[keyboard_shortcut_reference_]{keyboard shortcuts}
+ assigned.  You can modify these or add your own with 
+\hyperref[keyboard_preferences_]{Keyboard Preferences}
+ (in the Edit menu on Windows and Linux or the \texttt{{}"{}}Audacity\texttt{{}"{}} menu on Mac). 
 
-\subsection{Chains}
+\subsection{
+\hyperref[chains_for_batch_processing_and_effects_automation_]{Chains}
+}
 
 
-Ever want to do the same thing to a large number of audio files, for example remove noise from them and convert to MP3?  Chains is the feature for this. Give it a list of files to work through and tell it what sequence of things to do. Programmers may want instead to use Scripting, an experimental but more flexible version of Chains. This needs a free experimental module called mod-script-pipe and experience in programming.
+Ever want to do the same thing to a large number of audio files, for example remove noise from them and convert to MP3?  Chains is the feature for this. Give it a list of files to work through and tell it what sequence of things to do. Programmers may want instead to use 
+\hyperref[scripting_]{Scripting}
+, an experimental but more flexible version of Chains. This needs a free experimental module called mod-script-pipe and experience in programming.
 
-\subsection{Export Multiple}
+\subsection{
+\hyperref[export_multiple_]{Export Multiple}
+}
 
 
 You can save several audio files at once, rather than saving them one by one.
@@ -445,30 +554,60 @@ You can save several audio files at once, rather than saving them one by one.
 
 \par\includegraphics[max width=\linewidth]{../m/images/b/b0/a_small_image_of_an_envelope.png}\par\textbf{Mono track showing an amplitude Envelope}
 
-\subsection{Amplify}
+\subsection{
+\hyperref[amplify_]{Amplify}
+}
 
 
-The \textbf{Amplify} audio effect makes audio louder or quieter.  Two other effects that modify loudness are \textbf{Fade In} and \textbf{Fade Out}.  These are often used at the beginning and end of audio. 
+The \textbf{
+\hyperref[amplify_]{Amplify}
+} audio effect makes audio louder or quieter.  Two other effects that modify loudness are \textbf{
+\hyperref[fades__linearfade]{Fade In}
+} and \textbf{
+\hyperref[fades__linearfade]{Fade Out}
+}.  These are often used at the beginning and end of audio. 
 \begin{itemize}
-\item  \textbf{Envelopes} provide a more flexible way to control loudness.  You will need to select the \textbf{Envelope Tool} or \textbf{Multi-Tool} to use envelopes.  With envelopes you can graphically control when audio gets louder and quieter.
+\item  \textbf{
+\hyperref[envelope_tool_]{Envelopes}
+} provide a more flexible way to control loudness.  You will need to select the \textbf{
+\hyperref[envelope_tool_]{Envelope Tool}
+} or \textbf{
+\hyperref[multi_tool_]{Multi-Tool}
+} to use envelopes.  With envelopes you can graphically control when audio gets louder and quieter.
 \end{itemize}
 
-\subsection{Pan and Gain}
+\subsection{
+\hyperref[audio_tracks__pan]{Pan}
+ and 
+\hyperref[audio_tracks__gain]{Gain}
+}
 
 
-These are the two sliders in the track's Track Control Panel. The \textbf{Gain} slider enables you to set the loudness for the track.  The \textbf{Pan} slider lets you make the audio louder on the left or the right. You can move these sliders to affect the audio as it plays.
+These are the two sliders in the track's 
+\hyperref[audio_tracks__panel]{Track Control Panel}
+. The \textbf{Gain} slider enables you to set the loudness for the track.  The \textbf{Pan} slider lets you make the audio louder on the left or the right. You can move these sliders to affect the audio as it plays.
 
-\subsection{Mute and Solo}
+\subsection{
+\hyperref[audio_tracks__mute]{Mute}
+ and 
+\hyperref[audio_tracks__solo]{Solo}
+}
 
 
 These two buttons are in the track's Track Control Panel. Click the Mute button to silence this track when playing, click again to hear it again. Click the Solo button to play just this track. Click again to release the button. 
 
-\subsection{Auto Duck}
+\subsection{
+\hyperref[auto_duck_]{Auto Duck}
+}
 
 
-This reduces (ducks) the volume of one or more selected tracks whenever the volume of a single unselected \texttt{{}"{}}control track\texttt{{}"{}} placed underneath reaches a particular threshold level. It can be used to create voice-overs for podcasts or DJ sets, for automatic \texttt{{}"{}}ramping\texttt{{}"{}} of background music in radio productions and for turning down a voice in original language as soon as its translation kicks in.
+This reduces (
+\hyperref[https:__en.wikipedia.org_wiki_Ducking]{ducks}
+) the volume of one or more selected tracks whenever the volume of a single unselected \texttt{{}"{}}control track\texttt{{}"{}} placed underneath reaches a particular threshold level. It can be used to create voice-overs for podcasts or DJ sets, for automatic \texttt{{}"{}}ramping\texttt{{}"{}} of background music in radio productions and for turning down a voice in original language as soon as its translation kicks in.
 
-\subsection{Mixer Board}
+\subsection{
+\hyperref[mixer_board_]{Mixer Board}
+}
 
 
 An alternative view to the audio tracks in the main tracks window, and is analogous to a hardware mixer board. Each audio track is displayed in a Track Strip with its own pair of meters, gain slider, pan slider, and mute/solo buttons, mirroring that track's controls in its Track Control Panel. 
@@ -480,30 +619,48 @@ An alternative view to the audio tracks in the main tracks window, and is analog
 
 \par\includegraphics[max width=\linewidth]{../m/images/6/65/a_small_spectral_selection.png}\par\textbf{Mono track in Spectrogram view showing a Spectral Selection}
 
-\subsection{Spectral Selection}
+\subsection{
+\hyperref[spectral_selection_]{Spectral Selection}
+}
 
 
-This is a special feature within \textbf{Sectrograms}, which lets you view the frequency content of audio then edit just selected frequencies.  This is particularly useful for voice recordings.  Among other purposes, Spectral Selection and editing can be used for cleaning up unwanted sound by removing particular frequencies, enhancing certain resonances, changing the quality of a voice or removing mouth sounds from voice work.
+This is a special feature within \textbf{
+\hyperref[spectrogram_view_]{Sectrograms}
+}, which lets you view the frequency content of audio then edit just selected frequencies.  This is particularly useful for voice recordings.  Among other purposes, Spectral Selection and editing can be used for cleaning up unwanted sound by removing particular frequencies, enhancing certain resonances, changing the quality of a voice or removing mouth sounds from voice work.
 
-\subsection{Noise Reduction}
+\subsection{
+\hyperref[noise_reduction_]{Noise Reduction}
+}
 
 
 Audacity can remove some kinds of noise from a recording.  Noise Reduction is an \&lsquo;audio effect\&rsquo;, one of the fiddlier audio effects to use.  This effect works best with fairly constant noise like background hiss.  You first select audio that is just the noise and create a \&lsquo;noise profile\&rsquo;.  Once Audacity knows the noise profile, it can reduce the loudness of noise of that kind in audio you select. 
 
-\subsection{Notch Filter}
+\subsection{
+\hyperref[notch_filter_]{Notch Filter}
+}
 
 
 This can be used to help you remove mains hum or electrical whistle with minimal damage to the remaining audio, by cutting a \texttt{{}"{}}notch\texttt{{}"{}} out of the frequency spectrum at that point.
 
-\subsection{Generate Noise}
+\subsection{
+\hyperref[generate_menu__noise]{Generate Noise}
+}
 
 
 Audacity can add noise to a recording too. Three different types of noise can be generated. White noise has the greatest ability to mask other sounds, as it has similar energy at all frequency levels. If you want to add some room noise to make silences more realistic, try adding it at 0.001 amplitude.
 
-\subsection{Draw Tool}
+\subsection{
+\hyperref[draw_tool_]{Draw Tool}
+}
 
 
-If you \textbf{Zoom} in enough on the audio you can edit individual samples of audio. Usually there are 44100 sample dots for every second of audio.  This  gives you an idea of how the audio is stored in the computer.  Very occasionally there may be a click in the audio which is better removed with Draw Tool than with \textbf{Click Removal} or the \textbf{Repair} effect.  Repair is best used when zoomed in a lot as it only works with short pieces of audio.
+If you \textbf{
+\hyperref[zooming_]{Zoom}
+} in enough on the audio you can edit individual samples of audio. Usually there are 44100 sample dots for every second of audio.  This  gives you an idea of how the audio is stored in the computer.  Very occasionally there may be a click in the audio which is better removed with Draw Tool than with \textbf{
+\hyperref[click_removal_]{Click Removal}
+} or the \textbf{
+\hyperref[repair_]{Repair}
+} effect.  Repair is best used when zoomed in a lot as it only works with short pieces of audio.
 
 
 % <br/ title="Repair">
@@ -512,27 +669,47 @@ If you \textbf{Zoom} in enough on the audio you can edit individual samples of a
 
 \par\includegraphics[max width=\linewidth]{../m/images/1/1f/transcription_toolbar_basic7.png}\par??\textbf{Transcription Toolbar}
 
-\subsection{Play-at-speed}
+\subsection{
+\hyperref[transcription_toolbar_]{Play-at-speed}
+}
 
 
-Audacity has a \textbf{Transcription Toolbar} with a small button with green arrow pointing right, looking like the larger button with green arrow for \&lsquo;Play\&rsquo;.  Set the speed to go faster or slower using the slider to the right of the button.  You need to stop and restart playback for the new speed to happen. The speed change also changes the pitch.  This is a temporary change during playback.  To make a permanent change to speed and pitch use the Change Speed effect (below).
+Audacity has a \textbf{
+\hyperref[transcription_toolbar_]{Transcription Toolbar}
+} with a small button with green arrow pointing right, looking like the larger button with green arrow for \&lsquo;Play\&rsquo;.  Set the speed to go faster or slower using the slider to the right of the button.  You need to stop and restart playback for the new speed to happen. The speed change also changes the pitch.  This is a temporary change during playback.  To make a permanent change to speed and pitch use the Change Speed effect (below).
 
-\subsection{Scrubbing and Seeking}
+\subsection{
+\hyperref[scrubbing_and_seeking_]{Scrubbing and Seeking}
+}
 
 
 This is the action of moving the mouse pointer right or left so as to adjust the position, speed or direction of playback, forwards or backwards, listening to the audio at the same time - a convenient way to quickly navigate the waveform to find a particular event of interest. When Scrubbing or Seeking you can also use the mouse wheel to change the speed of the scrub or seek so this is another way to change playback speed.
 
-\subsection{Change Speed, Change Pitch, Change Tempo}
+\subsection{
+\hyperref[change_speed_]{Change Speed}
+, 
+\hyperref[change_pitch_]{Change Pitch}
+, 
+\hyperref[change_tempo_]{Change Tempo}
+}
 
 
 You can speed audio up or slow it down by applying an effect that changes the audio:  
 \begin{itemize}
-\item  Use \textbf{Change Speed} to make audio faster or slower and higher or lower pitched. 
-\item  Use \textbf{Change Pitch} to change the pitch of a selection without changing its tempo (speed). 
-\item  Use \textbf{Change Tempo} if you want the pitch to stay the same when speeding up or slowing down. Change Tempo does not always work so well with large changes in speed and the end result may sound a little strange.
+\item  Use \textbf{
+\hyperref[change_speed_]{Change Speed}
+} to make audio faster or slower and higher or lower pitched. 
+\item  Use \textbf{
+\hyperref[change_pitch_]{Change Pitch}
+} to change the pitch of a selection without changing its tempo (speed). 
+\item  Use \textbf{
+\hyperref[change_tempo_]{Change Tempo}
+} if you want the pitch to stay the same when speeding up or slowing down. Change Tempo does not always work so well with large changes in speed and the end result may sound a little strange.
 \end{itemize}
 
-\subsection{Time Tracks}
+\subsection{
+\hyperref[time_tracks_]{Time Tracks}
+}
 
 
 A Time Track is a graph line you drag on to change the amount of speed-up or slow-down over time, instead of it having to be a constant speed change. As with Play-at-Speed the speed changes immediately without waiting to run an effect, but the changes do apply when exporting unless you delete the Time Track. So export a copy of your work to WAV format before using Time Track to be safe. 
@@ -544,69 +721,67 @@ A Time Track is a graph line you drag on to change the amount of speed-up or slo
 
 \par\includegraphics[max width=\linewidth]{../m/images/b/b7/a_small_image_of_sync_lock.png}\par??\textbf{A pair of Sync-Locked mono tracks: selection extends automatically to the second track}
 
-\subsection{Sync-Lock}
+\subsection{
+\hyperref[sync_locked_track_groups_]{Sync-Lock}
+}
 
 
 When you have a mix (several tracks above each other which play together) and everything is nicely lined up, an edit in one track such as cutting a piece of audio can cause the mix to no longer to play in sync. To keep tracks aligned despite cutting, pasting or shifting audio, use Sync-Lock Tracks.
 
-\subsection{Labels}
+\subsection{
+\hyperref[label_tracks_]{Labels}
+}
 
 
 Use a Label Track to mark or annotate audio.  In conjunction with Sync-Lock you can keep the labels and audio in step.
 
-\subsection{Undo and Redo}
+\subsection{
+\hyperref[undo_redo_and_history_]{Undo and Redo}
+}
 
 
-These are most useful when working with effects.  After you have applied an effect you might change your mind.  The Undo button or menu item Edit \mbox{$>$} Undo will let you undo the change. The \textbf{History} menu item lets you look further back in time and undo more changes in one step.
+These are most useful when working with effects.  After you have applied an effect you might change your mind.  The Undo button or menu item Edit \mbox{$>$} Undo will let you undo the change. The \textbf{
+\hyperref[undo_redo_and_history__history]{History}
+} menu item lets you look further back in time and undo more changes in one step.
 
-\subsection{Truncate Silence}
+\subsection{
+\hyperref[truncate_silence_]{Truncate Silence}
+}
 
 
 A convenient effect to apply to recordings of interviews and speeches that removes long silences.  You can tell it what to count as a long silence, the loudness level and duration, and how much of each long silence to remove.
 
-\subsection{Snap To}
+\subsection{
+\hyperref[selection_toolbar__snap]{Snap To}
+}
 
 
 When making selections it sometimes is helpful for the selection boundaries to be automatically moved to the nearest second (or some other unit of time measurement).  If you \&lsquo;snap-to\&rsquo; seconds your selections will always be whole numbers of seconds - you can\&rsquo;t select half a second of sound for example.  Set the time format to seconds or frames or whatever unit of time you want to snap to as well as enabling snap-to.
 
-\subsection{Effects Plug-ins}
+\subsection{
+\hyperref[customization__plug-ins]{Effects Plug-ins}
+}
 
 
-You can add to the effects available in Audacity using plug-ins.  Some of these have very nice looking interfaces with graphs and buttons and provide similar effects with different features, or effects that Audacity does not ship with. There are several types of plug-in. The \textbf{Nyquist} type of plug-in, for example, is Audacity's own plug-in format. Nyquist plug-ins can be made just by writing text in a file, so contributors to Audacity often use this format to create new effects. Thoroughly tested plug-ins are available from Download Nyquist Plug-ins. Experimental plug-ins, such as those for the hard task of removing pops, clicks and \texttt{{}"{}}ess\texttt{{}"{}} sounds from a voice recording, can be found on the Nyquist board on Audacity Forum.
+You can add to the effects available in Audacity using plug-ins.  Some of these have very nice looking interfaces with graphs and buttons and provide similar effects with different features, or effects that Audacity does not ship with. There are several types of plug-in. The \textbf{
+\hyperref[customization__plug-ins]{Nyquist}
+} type of plug-in, for example, is Audacity's own plug-in format. Nyquist plug-ins can be made just by writing text in a file, so contributors to Audacity often use this format to create new effects. Thoroughly tested plug-ins are available from 
+\hyperref[https:__wiki.audacityteam.org_wiki_Download_Nyquist_Plug-ins]{Download Nyquist Plug-ins}
+. Experimental plug-ins, such as those for the hard task of removing pops, clicks and \texttt{{}"{}}ess\texttt{{}"{}} sounds from a voice recording, can be found on the 
+\hyperref[https:__forum.audacityteam.org_viewforum.php?f=39]{Nyquist board on Audacity Forum}
+.
 
-\subsection{Multi-Clip}
+\subsection{
+\hyperref[audacity_tracks_and_clips_]{Multi-Clip}
+}
 
 
-Many people have a single piece of audio on each audio track.  However, you can have multiple pieces of non-overlapping audio on the same track.  These are called clips.  Clips can be created with \textbf{Split} and joined back together by clicking on the dark line boundary between clips. If you click the \textbf{Time Shift Tool} you can drag clips around to different positions on the track, or drag them to different tracks.%  
-% NewPP limit report
-% Cached time: 20171019095426
-% Cache expiry: 86400
-% Dynamic content: false
-% CPU time usage: 0.159 seconds
-% Real time usage: 0.168 seconds
-% Preprocessor visited node count: 289/1000000
-% Preprocessor generated node count: 561/1000000
-% Post‐expand include size: 1512/2097152 bytes
-% Template argument size: 876/2097152 bytes
-% Highest expansion depth: 3/40
-% Expensive parser function count: 0/100
-% 
-%  
-% Transclusion expansion time report (%,ms,calls,template)
-% 100.00%   19.060      1 - -total
-%  28.26%    5.387      5 - Template:Key
-%  14.49%    2.762      3 - Template:Button
-%  10.72%    2.043      1 - Template:Intro
-%   9.60%    1.830      1 - Template:Note
-%   8.75%    1.667      2 - Template:Ednote
-%   6.65%    1.268      1 - Template:Menu
-% 
-%  Saved in parser cache with key helpmediawiki:pcache:idhash:5534-0!*!0!!*!5!* and timestamp 20171019095426 and revision id 55397
-%  
-
-										%  end content 
-																					%  end of the left (by default at least) column 
-											
+Many people have a single piece of audio on each audio track.  However, you can have multiple pieces of non-overlapping audio on the same track.  These are called clips.  Clips can be created with \textbf{
+\hyperref[audacity_tracks_and_clips__split]{Split}
+} and joined back together by clicking on the dark line boundary between clips. If you click the \textbf{
+\hyperref[tools_toolbar__timeshift]{Time Shift Tool}
+} you can drag clips around to different positions on the track, or drag them to different tracks.
+																																								\end{multicols}		
 % html: End of file: `audacity_tour_guide.html'
 
 \iffalse

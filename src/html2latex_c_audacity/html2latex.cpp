@@ -4506,6 +4506,7 @@ void scan_a_file(char *html_fn,    /* file name of HTML file */
             else if (OPEN_TAG(T_A))
             {   int j;
 
+                // Close any open <A>'s, since we don't nest <A>'s.
                 for (j = stack_depth - 1;
                      (j >= 0) && (stack[j].closing == C_OPT); j--)
                     if (stack[j].tagkind == T_A) 
@@ -4513,6 +4514,7 @@ void scan_a_file(char *html_fn,    /* file name of HTML file */
                         break; 
                     }
 
+                // An <a name=> becomes a \label{}
                 if (   a_name && (!no_copy || in_head)
                     && name_referenced(html_fn, name))
                 {   if (active_label && fout != NULL)
@@ -4528,6 +4530,8 @@ void scan_a_file(char *html_fn,    /* file name of HTML file */
                     active_label = TRUE;
                     strcpy_safer(label_name, name);
                 }
+
+                // An <a href=> becomes a \hyperref{}
                 if (a_href && !no_copy && href_status == REF_OKAY)
                 {   if (active_href && freport != NULL)
                         fprintf(freport,

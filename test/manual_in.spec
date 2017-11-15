@@ -1,4 +1,4 @@
-\documentclass[twocolumn]{book}
+\documentclass[]{book}
 
 \usepackage[latin1]{inputenc}
 %\usepackage[utf8]{inputenc} 
@@ -17,9 +17,10 @@
 \usepackage{blindtext}
 \usepackage{enumitem}
 \usepackage{parskip}
-\usepackage{flushend}
+%\usepackage{flushend}
+\usepackage{multicol}
 \graphicspath{{man/}}
-\hypersetup{colorlinks=true, linkcolor=blue, citecolor=blue, filecolor=blue, urlcolor=blue, pdftitle=}
+\hypersetup{colorlinks, linkcolor=blue, citecolor=blue, filecolor=blue, urlcolor=blue, pdftitle=}
 
 %\hypersetup{ colorlinks, citecolor=green, filecolor=blue, linkcolor=blue, urlcolor=blue } 
 \usepackage[margin=0.6in]{geometry}
