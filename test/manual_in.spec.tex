@@ -8,6 +8,7 @@
 \usepackage[pdftex]{graphicx}
 \usepackage[export]{adjustbox} % fix for xkeyval Error ... families 'Gin'
 
+\usepackage{needspace}
 \usepackage[utf8]{inputenc}
 %\usepackage[latin1]{inputenc} 
 \usepackage[T1]{fontenc}
@@ -33,6 +34,7 @@
 \setlength{\columnsep}{0.4 in}
 %\setlength{\parindent}{0pt}
 \newcommand{\foo}[1]{#1}
+\newcommand{\ensurespace}{\Needspace{12\baselineskip}}
 %\excludecomment{foo}
 
 \DeclareUnicodeCharacter{2318}{CloverLeaf} % mac cmd symbol
@@ -51,24 +53,26 @@
 
 
 
-
-
-
+\chapter{Getting Started}
 
 % html: Beginning of file: `new_features_in_this_release.html'
 % DOCTYPE html
 \label{XXX}
-\input{./man/new_features_in_this_release.tex}
 \input{./man/audacity_tour_guide.tex}
+\input{./man/new_features_in_this_release.tex}
 
 %\input{./man/edit_toolbar.tex}
 \input{./man/effects_preferences.tex}
 
+\chapter{The FAQs}
 \input{./man/faq.tex}
 \input{./man/faq_about_audacity.tex}
 \input{./man/faq_editing.tex}
 \input{./man/faq_errors.tex}
 \input{./man/faq_errors_on_opening_or_recovering_an_audacity_project.tex}
+\input{./man/error_not_well_formed_invalid_token_at_line_x.tex}
+\input{./man/error_opening_project_reference_to_invalid_character_number_at_line_x.tex}
+\input{./man/error_opening_sound_device.tex}
 \input{./man/faq_installation_and_plug_ins.tex}
 \input{./man/faq_installing_the_ffmpeg_import_export_library.tex}
 \input{./man/faq_installing_the_lame_mp3_encoder.tex}
@@ -77,66 +81,8 @@
 \input{./man/faq_recording_how_to_s.tex}
 \input{./man/faq_recording_troubleshooting.tex}
 
-
-\input{./man/echo.tex}
+\chapter{Editing}
 \input{./man/edit.tex}
-
-
-\input{./man/editing_resizing_and_moving_labels.tex}
-\input{./man/edit_chains.tex}
-\input{./man/edit_menu.tex}
-\input{./man/edit_menu_clip_boundaries.tex}
-\input{./man/edit_menu_copy_paste_and_duplicate.tex}
-\input{./man/edit_menu_find_zero_crossings.tex}
-\input{./man/edit_menu_labeled_audio.tex}
-\input{./man/edit_menu_labels.tex}
-\input{./man/edit_menu_remove_special.tex}
-\input{./man/edit_menu_select.tex}
-
-
-
-%\input{./man/edit_toolbar.tex}
-\input{./man/effects_preferences.tex}
-\input{./man/effect_menu.tex}
-\input{./man/effect_menu_audacity.tex}
-\input{./man/effect_menu_audio_unit.tex}
-\input{./man/effect_menu_ladspa.tex}
-\input{./man/effect_menu_lv2.tex}
-
-
-\input{./man/effect_menu_nyquist.tex}
-\input{./man/effect_menu_vst.tex}
-\input{./man/envelope_tool.tex}
-\input{./man/equalization.tex}
-\input{./man/error_not_well_formed_invalid_token_at_line_x.tex}
-\input{./man/error_opening_project_reference_to_invalid_character_number_at_line_x.tex}
-\input{./man/error_opening_sound_device.tex}
-\input{./man/examples_exporting_audio_for_ringtones_and_ivr_messages.tex}
-\input{./man/examples_of_generator_usage.tex}
-\input{./man/export.tex}
-
-
-\input{./man/exporting_audio.tex}
-\input{./man/exporting_to_an_external_program.tex}
-\input{./man/export_formats_supported_by_audacity.tex}
-\input{./man/export_multiple.tex}
-\input{./man/export_options.tex}
-\input{./man/extended_import_preferences.tex}
-\input{./man/ext_bar_menu.tex}
-\input{./man/ext_bar_menu_device.tex}
-\input{./man/ext_bar_menu_edit.tex}
-\input{./man/ext_bar_menu_mixer.tex}
-\input{./man/ext_bar_menu_scrub.tex}
-\input{./man/ext_bar_menu_selection.tex}
-\input{./man/ext_bar_menu_tools.tex}
-\input{./man/ext_bar_menu_transcription.tex}
-\input{./man/ext_bar_menu_transport.tex}
-\input{./man/ext_command_menu.tex}
-\input{./man/ext_command_menu_cursor.tex}
-\input{./man/ext_command_menu_focus.tex}
-\input{./man/ext_command_menu_track.tex}
-\input{./man/editing_resizing_and_moving_labels.tex}
-\input{./man/edit_chains.tex}
 \input{./man/edit_menu.tex}
 \input{./man/edit_menu_clip_boundaries.tex}
 \input{./man/edit_menu_copy_paste_and_duplicate.tex}
@@ -146,6 +92,10 @@
 \input{./man/edit_menu_remove_special.tex}
 \input{./man/edit_menu_select.tex}
 \input{./man/edit_toolbar.tex}
+\input{./man/editing_resizing_and_moving_labels.tex}
+\input{./man/edit_chains.tex}
+
+\chapter{Effects}
 \input{./man/effects_preferences.tex}
 \input{./man/effect_menu.tex}
 \input{./man/effect_menu_audacity.tex}
@@ -154,13 +104,26 @@
 \input{./man/effect_menu_lv2.tex}
 \input{./man/effect_menu_nyquist.tex}
 \input{./man/effect_menu_vst.tex}
-\input{./man/envelope_tool.tex}
+\input{./man/echo.tex}
 \input{./man/equalization.tex}
 
+\chapter{Extended Menus}
+\input{./man/ext_bar_menu.tex}
+\input{./man/ext_bar_menu_device.tex}
+\input{./man/ext_bar_menu_edit.tex}
+\input{./man/ext_bar_menu_mixer.tex}
+\input{./man/ext_bar_menu_scrub.tex}
+\input{./man/ext_bar_menu_selection.tex}
+%\input{./man/ext_bar_menu_tools.tex}
+\input{./man/ext_bar_menu_transcription.tex}
+\input{./man/ext_bar_menu_transport.tex}
+\input{./man/ext_command_menu.tex}
+\input{./man/ext_command_menu_cursor.tex}
+\input{./man/ext_command_menu_focus.tex}
+\input{./man/ext_command_menu_track.tex}
 
-\input{./man/error_not_well_formed_invalid_token_at_line_x.tex}
-\input{./man/error_opening_project_reference_to_invalid_character_number_at_line_x.tex}
-\input{./man/error_opening_sound_device.tex}
+\chapter{E}
+\input{./man/envelope_tool.tex}
 \input{./man/examples_exporting_audio_for_ringtones_and_ivr_messages.tex}
 \input{./man/examples_of_generator_usage.tex}
 \input{./man/export.tex}
@@ -170,20 +133,7 @@
 \input{./man/export_multiple.tex}
 \input{./man/export_options.tex}
 \input{./man/extended_import_preferences.tex}
-\input{./man/ext_bar_menu.tex}
-\input{./man/ext_bar_menu_device.tex}
-\input{./man/ext_bar_menu_edit.tex}
-\input{./man/ext_bar_menu_mixer.tex}
-\input{./man/ext_bar_menu_scrub.tex}
-\input{./man/ext_bar_menu_selection.tex}
 
-%\input{./man/ext_bar_menu_tools.tex}
-\input{./man/ext_bar_menu_transcription.tex}
-\input{./man/ext_bar_menu_transport.tex}
-\input{./man/ext_command_menu.tex}
-\input{./man/ext_command_menu_cursor.tex}
-\input{./man/ext_command_menu_focus.tex}
-\input{./man/ext_command_menu_track.tex}
 
 
 \end{document}

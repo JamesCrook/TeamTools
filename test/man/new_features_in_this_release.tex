@@ -1,14 +1,16 @@
 \label{newXfeaturesXinXthisXreleaseX}
-\chapter{New features in this release}\begin{multicols}{2}\par \protect\includegraphics[max width=\linewidth]{C:/OpenSourceGit/AudacityTeamTools/test/m/images/8/88/audacity_logo_signika_512_transparent.png}\par \textbf{This page is an overview of the key new functionality that has been introduced in Audacity 2.2.0}
+\ensurespace\section{New features in this release}
+\par\vspace{1mm}\hrule
+\begin{multicols}{2}\par \protect\includegraphics[max width=\linewidth]{C:/OpenSourceGit/AudacityTeamTools/test/m/images/8/88/audacity_logo_signika_512_transparent.png}\par \textbf{This page is an overview of the key new functionality that has been introduced in Audacity 2.2.0}
 \begin{itemize}
 \item Details of all the major changes since 2.1.3 can be found in Release Notes 2.2.0.
 \end{itemize}
 
 \label{newXfeaturesXinXthisXreleaseXlogo}
-\section{New Logo}The logo has been given a refresh, and now uses a sans-serif font and a flatter style.
+\subsection{New Logo}The logo has been given a refresh, and now uses a sans-serif font and a flatter style.
 \par \protect\includegraphics[max width=\linewidth]{C:/OpenSourceGit/AudacityTeamTools/test/m/images/8/8c/audacity_logo_whitebg.png}\par 
 \label{newXfeaturesXinXthisXreleaseXthemes}
-\section{
+\subsection{
 \hyperref[\foo{themesX}]{Themes}
 }Audacity now comes supplied with four pre-configured, user-selectable, themes.  This enables you to choose the look and feel you prefer for Audacity's interface. see the 
 \hyperref[\foo{themesX}]{Themes}
@@ -33,7 +35,7 @@ The theme to use can be chosen at Edit > Preferences >
 \end{itemize}
  By default the custom theme looks the same as Classic theme - but, if you have the right programming skills and tools, you can use this template to create your own theme.  Instructions for how to do this may be found in the Audacity Wiki.
 \label{newXfeaturesXinXthisXreleaseXmidi}
-\section{MIDI (and Allegro) Playback}Playback of MIDI (and Allegro) files imported into 
+\subsection{MIDI (and Allegro) Playback}Playback of MIDI (and Allegro) files imported into 
 \hyperref[\foo{noteXtracksX}]{Note Tracks}
  is now available.  Please see the 
 \hyperref[\foo{noteXtracksX}]{Note Tracks}
@@ -48,7 +50,7 @@ But note that there will no use of the
  while Note tracks are played. 
 
 \label{newXfeaturesXinXthisXreleaseXstemplots}
-\section{Stem Plots}There is a new entry in the 
+\subsection{Stem Plots}There is a new entry in the 
 \hyperref[\foo{tracksXpreferencesX}]{Tracks Preferences}
  for \textbf{Display samples}.  This setting changes how 
 \hyperref[\foo{audacityXwaveformX}]{Waveform}
@@ -62,11 +64,11 @@ But note that there will no use of the
 \end{itemize}
 \par \protect\includegraphics[max width=\linewidth]{C:/OpenSourceGit/AudacityTeamTools/test/m/images/e/ef/connect_dots_stem_plot_examples.png}\par Uneven spacing is due to "aliasing", but zooming in further will equalize the spacing whether choosing Connect dots or Stem plot.
 \label{newXfeaturesXinXthisXreleaseXmenus}
-\section{Menu reorganization}We have made the Menus shorter and clearer than in previous Audacity versions. The menus have been simplified without losing functionality. The most commonly used functions are found in the top levels of the menus. The functions moved down into lower submenus are better organized.
+\subsection{Menu reorganization}We have made the Menus shorter and clearer than in previous Audacity versions. The menus have been simplified without losing functionality. The most commonly used functions are found in the top levels of the menus. The functions moved down into lower submenus are better organized.
 This is not just a rearrangement.  We also added new menu items to make the layout more logical.  There are new menu items for exporting as MP3 or WAV. Previously you had to export audio, and then choose the format. You still can do that, but these new items are there for convenience.
 One of the long standing bug-bears with Audacity is the distinction between ‘Save’ and ‘Export’. People expect to be able to open a WAV audio file, edit it in Audacity and then click save. That is not how Audacity works. Audacity needs audio in its own unique format to work on it. So Audacity converts when you 'Open' a WAV file and converts back when you 'Save'. In an attempt to make this clearer Audacity uses the word 'Import' for opening a file like WAV and 'Export' for converting and saving in a format like WAV. Open and Save are reserved for Audacity's own project format.Now the ‘Export’ options are under the ‘Save Other’ menu item, where people trying to save audio as an MP3 or WAV file are more likely to find them.
 \label{newXfeaturesXinXthisXreleaseXextendedmenubar}
-\section{The Extended Menu bar}There are two new additional menus that are hidden by default.  They can be turned on at View > 
+\subsection{The Extended Menu bar}There are two new additional menus that are hidden by default.  They can be turned on at View > 
 \hyperref[\foo{viewXmenuXextraXmenusXonoff}]{Extra Menus (on/off)}
  or the Interface pane of Edit > 
 \hyperref[\foo{interfaceXpreferencesX}]{Preferences}
@@ -88,23 +90,23 @@ The Ext-Command menu provides access to extra commands for
 \hyperref[\foo{keyboardXpreferencesX}]{Shortcuts}
  can be assigned to these commands if required.If you only require regular access to a small set of these commands you can set shortcuts for them and leave the extra menus hidden.
 \label{newXfeaturesXinXthisXreleaseXappend}
-\section{Appended recording on the same track in now the default}From Audacity 2.2.0 onward the default recording mode has changed so that when you click the Record button \protect\includegraphics[max width=\linewidth]{C:/OpenSourceGit/AudacityTeamTools/test/m/images/e/e8/record.png} on 
+\subsection{Appended recording on the same track in now the default}From Audacity 2.2.0 onward the default recording mode has changed so that when you click the Record button \protect\includegraphics[max width=\linewidth]{C:/OpenSourceGit/AudacityTeamTools/test/m/images/e/e8/record.png} on 
 \hyperref[\foo{transportXtoolbarX}]{Transport Toolbar}
 , or use the R, Audacity will record at the end of the currently selected (or only) track.
 
-\subsection{To record on a new track}If you hold the Shift button down the Record button in 
+\subsubsection{To record on a new track}If you hold the Shift button down the Record button in 
 \hyperref[\foo{transportXtoolbarX}]{Transport Toolbar}
  will temporarily change to \protect\includegraphics[max width=\linewidth]{C:/OpenSourceGit/AudacityTeamTools/test/m/images/7/72/record_new_track.png}. Then clicking on this modified Record button, or using the shortcut Shift + R will cause Audacity to create a new track and begin recording on that track from the current cursor position (or from the left edge of a region on the 
 \hyperref[\foo{timelineX}]{Timeline}
 ). 
 
 \label{newXfeaturesXinXthisXreleaseXhelp-buttons}
-\section{Help buttons}Many places in the user interface have had a help button \protect\includegraphics[max width=\linewidth]{C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d6/help_button.png} added. Examples are all the Preferences dialog panes, all the Effects, Generators and Analyzers and some error messages.
+\subsection{Help buttons}Many places in the user interface have had a help button \protect\includegraphics[max width=\linewidth]{C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d6/help_button.png} added. Examples are all the Preferences dialog panes, all the Effects, Generators and Analyzers and some error messages.
 Clicking on that button in the dialog will link you to the appropriate page in the Manual.
 Example: the Amplify effect.  Try clicking on the "\textbf{?}" at the bottom right of this image.
 \par \protect\includegraphics[max width=\linewidth]{C:/OpenSourceGit/AudacityTeamTools/test/m/images/6/6d/amplify.png}\par 
 \label{newXfeaturesXinXthisXreleaseXshortcuts}
-\section{Standard and Full shortcut sets}For Audacity 2.2.0 we have reduced the number of preset shortcuts in the application to a "\textbf{
+\subsection{Standard and Full shortcut sets}For Audacity 2.2.0 we have reduced the number of preset shortcuts in the application to a "\textbf{
 \hyperref[\foo{keyboardXshortcutXreferenceX}]{Standard}
 }" set.  We did this to simplify the set of shortcuts somewhat and to provide greater flexibility for users who want to set their own custom shortcuts.
 You can choose to revert to the full set of shortcuts that were in 2.1.3 and earlier by selecting "\textbf{Full}" from the dropdown menu accessed from the Defaults button in the 
@@ -116,7 +118,7 @@ You can use the Defaults button to switch between the two provided default sets 
  for more details.
 
 \label{newXfeaturesXinXthisXreleaseXselection}
-\section{Selection Toolbar improvements}There are now four available settings in the Selection and Audio Position Boxes in 
+\subsection{Selection Toolbar improvements}There are now four available settings in the Selection and Audio Position Boxes in 
 \hyperref[\foo{selectionXtoolbarX}]{Selection Toolbar}
  for the  manner in which the details of your selection are displayed:
 
@@ -128,7 +130,7 @@ You can use the Defaults button to switch between the two provided default sets 
 \end{itemize}
 \par \protect\includegraphics[max width=\linewidth]{C:/OpenSourceGit/AudacityTeamTools/test/m/images/c/c6/selection_toolbar_display_modes.png}\par 
 \label{newXfeaturesXinXthisXreleaseXclips}
-\section{New commands for using clips via the keyboard}New commands, all of which interact with the clips on the focused track. As yet, there are no default shortcuts:
+\subsection{New commands for using clips via the keyboard}New commands, all of which interact with the clips on the focused track. As yet, there are no default shortcuts:
 
 \begin{enumerate}
 \item Transport > Cursor to > 
@@ -160,16 +162,16 @@ There are also two new commands (
 \hyperref[\foo{menuXreferenceXtheXextendedXmenuXbar}]{Menu Reference}
  for how to reveal the extended menus.
 \label{newXfeaturesXinXthisXreleaseXsafety}
-\section{Running out of disk space}We have now provided an error trap for situations where you are running out of available disk space.
+\subsection{Running out of disk space}We have now provided an error trap for situations where you are running out of available disk space.
 You will now see the error message:
 "\textbf{Audacity failed to write to a file in <device>}"
 This is particularly useful when recording as Audacity will stop recording when the error is trapped, preserving your recording up to that point.
 
 \label{newXfeaturesXinXthisXreleaseXappendix}
-\section{
+\subsection{
 \hyperref[\foo{newXfeaturesXinXthisXreleaseXappendixX}]{Additional new features}
 }This page \textbf{
 \hyperref[\foo{newXfeaturesXinXthisXreleaseXappendixX}]{New features in this release - appendix}
 } gives an overview of further new functionality that has been introduced in this release of Audacity.
 
-\section{Links}\textbf{>} Audacity Release Notes 2.2.0\textit{- detailed release notes for this release of Audacity}\end{multicols}
+\subsection{Links}\textbf{>} Audacity Release Notes 2.2.0\textit{- detailed release notes for this release of Audacity}\end{multicols}

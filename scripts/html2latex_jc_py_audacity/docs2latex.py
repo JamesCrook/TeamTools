@@ -210,6 +210,8 @@ def cleanup_soup( soup ):
                tag.extract()
             if tag['id'] == "footer" :
                tag.extract()
+            if tag['id'] == "toc" :
+               tag.extract()
 
     # Our two column mode
     # Each file is a chapter, starting at h1.
@@ -268,12 +270,12 @@ def cleanup_soup( soup ):
                
 
 tagspec = {
-    ( 'h1', '\n\\chapter{', '}' ),
-    ( 'h2', '\n\\section{', '}' ),
-    ( 'h3', '\n\\subsection{', '}' ),
-    ( 'h4', '\n\\subsubsection{', '}' ),
-    ( 'h5', '\n\\paragraph{', '}' ),
-    ( 'h6', '\n\\subparagraph{', '}' ),
+#    ( 'h0', '\n\\chapter{', '}' ),
+    ( 'h1', '\n\\ensurespace\\section{', '}\n\\par\\vspace{1mm}\\hrule\n' ),
+    ( 'h2', '\n\\subsection{', '}' ),
+    ( 'h3', '\n\\subsubsection{', '}' ),
+    ( 'h4', '\n\\paragraph{', '}' ),
+    ( 'h5', '\n\\subparagraph{', '}' ),
     ( 'ul', '\n\\begin{itemize}', '\n\\end{itemize}\n' ),
     ( 'ol', '\n\\begin{enumerate}', '\n\\end{enumerate}\n' ),
     ( 'li', '\n\\item ', '' ),
