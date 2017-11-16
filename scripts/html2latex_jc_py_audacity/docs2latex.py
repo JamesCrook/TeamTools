@@ -282,7 +282,7 @@ tagspec = {
     ( 'em', '\\emph{', '}' ),
     ( 'b',  '\\textbf{', '}' ),
     ( 'hr', '\\vspace{1mm}\\hrule ', '' ),
-    ( 'img','\\includegraphics[max width=\\linewidth]{', '}' ),    
+    ( 'img','\\protect\\includegraphics[max width=\\linewidth]{', '}' ),    
 }   
 
 def latexify( soup ):
