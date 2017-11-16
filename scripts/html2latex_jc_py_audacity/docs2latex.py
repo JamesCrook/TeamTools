@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup, Comment, Doctype
 from PIL import Image
 import os
 import os.path
+import re
 
 html_doc = """
 <!DOCTYPE html>
@@ -179,7 +180,7 @@ def label_of_ref( ref ):
     ref = ref.replace('.html', '_' )
     ref = ref.replace('/', '_' )
     ref = ref.replace('__', '_' )
-    #ref = ref.replace('_', 'X' )
+    ref = ref.replace('_', ':' )
     return ref
 
 def png_filename_of_link( link ):
@@ -237,10 +238,11 @@ def cleanup_soup( soup ):
         # The title is one column
         tag2 = soup.find( 'h1' )
         if tag2:
+            tag2.insert_after(Comment('latex \\label{' +label_of_ref('') +'}')) 
             tag2.insert_after(Comment('latex \\begin{multicols}{2}') )
         else:
             tag.insert(0,Comment('latex \\begin{multicols}{2}') )
-        tag.insert(0,Comment('latex \\label{' +label_of_ref('') +'}')) 
+            tag.insert(0,Comment('latex \\label{' +label_of_ref('') +'}')) 
         tag.insert(-1,Comment('latex \\end{multicols}') )
       
     # anchors become \hyperrefs and \labels
@@ -257,9 +259,14 @@ def cleanup_soup( soup ):
     # divs may provide \labels
     for tag in soup.find_all(name='div' ):
         if tag.has_attr( 'id' ) and not tag.contents :
-           label = label_of_ref( tag['id'])                   
-           #print( "label: ", label )
-           tag.insert_before( Comment('latex \n\\label{'+label+'}') )
+            label = label_of_ref( tag['id'])                   
+            #print( "label: ", label )
+            tag2 = tag.find_next_sibling( re.compile( '^h\d') )
+            if tag2:
+                tag2.insert_after( Comment('latex \n\\label{'+label+'}') )
+            else:
+                print( 'No title for ' + label )
+                tag.insert_before( Comment('latex \n\\label{'+label+'}') )
 
 
     # (valid) images get treated depending on their size
@@ -272,7 +279,7 @@ def cleanup_soup( soup ):
             if os.path.isfile( png_filename ) :
                 with Image.open(png_filename) as image:
                     siz = image.size
-                    if( siz[0] > 30 ):
+                    if siz[0] > 60 or siz[1] > 30:
                         #Bigger images...
                         #print( png_filename )
                         tag.insert_before( Comment('latex \\par ') )
@@ -288,8 +295,10 @@ tagspec = {
     ( 'h1', '\n\\ensurespace\\section{', '}\n\\par\\vspace{1mm}\\hrule\n' ),
     ( 'h2', '\n\\subsection{', '}' ),
     ( 'h3', '\n\\subsubsection{', '}' ),
-    ( 'h4', '\n\\paragraph{', '}' ),
-    ( 'h5', '\n\\subparagraph{', '}' ),
+    ( 'h4', '\n\\subsubsection{', '}' ),
+    ( 'h5', '\n\\subsubsection{', '}' ),
+#   ( 'h4', '\n\\paragraph{', '}' ),
+#   ( 'h5', '\n\\subparagraph{', '}' ),
     ( 'ul', '\n\\begin{itemize}', '\n\\end{itemize}\n' ),
     ( 'ol', '\n\\begin{enumerate}', '\n\\end{enumerate}\n' ),
     ( 'li', '\n\\item ', '' ),
@@ -349,6 +358,8 @@ def latex_of_soup( soup ):
             s=s.replace( '&', '\\&' )
             s=s.replace( '{', '\\{' )
             s=s.replace( '}', '\\}' )
+            s=s.replace( '~', '\\textasciitilde{}' )
+            s=s.replace( '^', '\\^' )
             s=s.replace( '$', '\\$' )
         if isinstance( tag, Doctype ):
             s=""
