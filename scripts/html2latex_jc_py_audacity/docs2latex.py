@@ -179,9 +179,19 @@ def label_of_ref( ref ):
     ref = ref.replace('.html', '_' )
     ref = ref.replace('/', '_' )
     ref = ref.replace('__', '_' )
-    ref = ref.replace('_', 'X' )
+    #ref = ref.replace('_', 'X' )
     return ref
-                
+
+def png_filename_of_link( link ):
+    # src could for example be '../m/images/9/90/play.png'
+    pieces = link.split( '/images/' )
+    if len( pieces ) > 1 :
+        link = "C:\\OpenSourceGit\\AudacityTeamTools\\test\\m\\images\\" + pieces[-1]
+        return link
+    print( "Bad name" + link )
+    return link
+
+                    
 def cleanup_soup( soup ):
 
     # Remove comments
@@ -252,20 +262,17 @@ def cleanup_soup( soup ):
     #  - large images are 72 dpi, and will be at most one column width.
     for tag in soup.find_all(name='img' ):
         if tag.has_attr( 'src' ) :
-            path = tag['src'] 
-            # src could for example be '../m/images/9/90/play.png'
-            pieces = path.split( '/images/' )
-            if len( pieces ) > 1 :
-                path = "C:\\OpenSourceGit\\AudacityTeamTools\\test\\m\\images\\" + pieces[-1]
-                if os.path.isfile( path ) :
-                    with Image.open(path) as image:
-                        siz = image.size
-                        if( siz[0] > 30 ):
-                            print( path )
-                            tag.insert_before( Comment('latex \\par ') )
-                            tag.insert_after( Comment('latex \\par ') )
-                        # file name is used by includegraphics
-                        tag.insert( 0, Comment( path.replace('\\','/') ) )
+            png_filename = png_filename_of_link( tag['src'] )
+            if os.path.isfile( png_filename ) :
+                with Image.open(png_filename) as image:
+                    siz = image.size
+                    if( siz[0] > 30 ):
+                        print( png_filename )
+                        tag.insert_before( Comment('latex \\par ') )
+                        tag.insert_after(  Comment('latex \\par ') )
+            # file name is used by includegraphics
+            tag.insert( 0, Comment( png_filename.replace('\\','/') ) )
+
         
                
 
@@ -284,6 +291,7 @@ tagspec = {
     ( 'em', '\\emph{', '}' ),
     ( 'b',  '\\textbf{', '}' ),
     ( 'hr', '\\vspace{1mm}\\hrule ', '' ),
+    ( 'tr', '\\par ', '' ),
     ( 'img','\\protect\\includegraphics[max width=\\linewidth]{', '}' ),    
 }   
 
@@ -334,6 +342,7 @@ def latex_of_soup( soup ):
             s=s.replace( '&', '\\&' )
             s=s.replace( '{', '\\{' )
             s=s.replace( '}', '\\}' )
+            s=s.replace( '$', '\\$' )
         if isinstance( tag, Doctype ):
             s=""
         if tag.parent.name == u'title':
@@ -400,7 +409,7 @@ def clean_one_file( filename ) :
 
 #clean_one_file( "new_features_in_this_release.html" )
 #clean_one_file( "audacity_tour_guide.html" )
-#clean_one_file( "faq.html" )
+clean_one_file( "glossary.html" )
 
 #print( file )
 #size_all()
