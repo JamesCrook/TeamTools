@@ -223,6 +223,12 @@ def cleanup_soup( soup ):
             if tag['id'] == "toc" :
                tag.extract()
 
+
+    for tag in soup.find_all(name='ul' ):
+        if not tag.contents[0].name == 'li' :
+            print( "Bad ul tag fixed" )
+            tag.insert( 0, Comment( "\\item " ) )
+
     # Our two column mode
     # Each file is a chapter, starting at h1.
     # And with the 2-col environment inside it.
@@ -244,7 +250,7 @@ def cleanup_soup( soup ):
             if not tag.find(name='img'):
                 if not tag['href'].startswith('http'):
                     label = label_of_ref( tag['href'] )
-                    print( "hyperref: ", label )
+                    #print( "hyperref: ", label )
                     tag.insert_before( Comment('latex \n\\hyperref[\\foo{'+label+'}]{') )
                     tag.insert_after( Comment('latex }\n') )
 
@@ -252,7 +258,7 @@ def cleanup_soup( soup ):
     for tag in soup.find_all(name='div' ):
         if tag.has_attr( 'id' ) and not tag.contents :
            label = label_of_ref( tag['id'])                   
-           print( "label: ", label )
+           #print( "label: ", label )
            tag.insert_before( Comment('latex \n\\label{'+label+'}') )
 
 
@@ -267,7 +273,8 @@ def cleanup_soup( soup ):
                 with Image.open(png_filename) as image:
                     siz = image.size
                     if( siz[0] > 30 ):
-                        print( png_filename )
+                        #Bigger images...
+                        #print( png_filename )
                         tag.insert_before( Comment('latex \\par ') )
                         tag.insert_after(  Comment('latex \\par ') )
             # file name is used by includegraphics
@@ -311,7 +318,7 @@ def latexify( soup ):
 
 def cleanup_file( src,dest ):
     global this_file
-    print()
+    #print()
     this_file = os.path.basename( dest )
     with open(src, encoding='utf8') as file:
         soup = BeautifulSoup(file, "html5lib")
@@ -354,11 +361,11 @@ def latex_of_soup( soup ):
 def clean_all():
     for dirpath, dirnames, filenames in os.walk( base_dir):
         for filename in [f for f in filenames if f.endswith(".html")]:
-            print( filename )
+            print( "Processing: "+filename )
             infile = os.path.join(dirpath, filename)
             outfile = os.path.join(dest_dir, os.path.relpath( infile, base_dir ))
-            print( infile )
-            print( outfile )
+            #print( infile )
+            #print( outfile )
             cleanup_file( infile, outfile )
 
 
@@ -366,15 +373,15 @@ def clean_all():
 def size_file( src,dest ):
     with Image.open(src) as image:
         siz = image.size
-        if( siz[0] < 30 ):
+        if( siz[0] < 24 ):
            print()
            print( src )
            print( siz )
            scal = siz[1] * 7.8
            print( "New dpi is ", (scal, scal ) )
            image.save( dest, dpi=(scal,scal) )
-        #else :
-        #    image.save( dest )
+        else :
+           image.save( dest )
 
 
 def size_all():
@@ -409,7 +416,7 @@ def clean_one_file( filename ) :
 
 #clean_one_file( "new_features_in_this_release.html" )
 #clean_one_file( "audacity_tour_guide.html" )
-clean_one_file( "glossary.html" )
+#clean_one_file( "glossary.html" )
 
 #print( file )
 #size_all()
