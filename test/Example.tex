@@ -1,0 +1,115 @@
+\documentclass[twocolumn]{article}
+\usepackage{blindtext}
+\usepackage{enumitem}
+\usepackage{graphicx}
+
+    \usepackage{amsmath} 
+    \usepackage[utf8]{inputenc} 
+    \usepackage[T1]{fontenc} 
+
+\usepackage{hyperref,stackengine}
+\hypersetup{ colorlinks, citecolor=green, filecolor=blue, linkcolor=blue, urlcolor=blue } 
+\usepackage[margin=0.6in]{geometry}
+\setlength{\columnsep}{0.4 in}
+\begin{document}
+
+\title{Audacity User Manual}
+\author{James Crook}
+
+\maketitle
+
+\begin{abstract}
+The abstract text goes here.
+\end{abstract}
+
+\label{topleft}
+\blindtext
+\newpage
+hello
+\newpage
+\blindtext
+\begin{itemize}
+\item more work
+\item more responsibility
+\item more satisfaction
+\end{itemize}
+\blindtext
+\newpage
+\blindtext
+\begin{itemize}[noitemsep]
+\item more work
+\item more responsibility
+\item more satisfaction
+\end{itemize}
+
+\begin{equation}\label{eq:1}
+1+1=2
+\end{equation}
+    
+\blindtext
+
+
+\section{Introduction}
+Here is the text of your introduction.
+
+\begin{equation}
+    \label{simple_equation}
+    \alpha = \sqrt{ \beta }
+\end{equation}
+
+\subsection{Subsection Heading Here}
+Write your subsection text here.
+\ldots
+
+%\begin{figure}
+%\centering
+%\includegraphics[scale=1.65]{Diamond.png}
+%\end{figure}
+
+
+
+
+\section{Conclusion}
+Write your conclusion here.
+\label{toplef}
+
+\subsection{Code editor }
+With
+\begin{itemize}[noitemsep]
+\item KWIC - The entire codebase is listed as a permuted index.  This makes it relatively quick and easy to find similar code.
+\item Edit-Derived - You can edit any derived view of the files, and have it modify the original documents.  One example of derived is 'document merging' where a template and data are combined.
+\label{bottomright}
+\item Tagging - Functions / Variables etc can be tagged with heirarchical tags, so that you can easily organize related things.  One item can have multiple tags.
+\item Tick-Box Code - A UI that lets you set parameters, e.g. has-MIDI and generate the source code with those choices 'baked in'.
+\label{bottomleft}
+\end{itemize}
+
+\subsection{Innovations}
+Multiscroller (allows very large trees)
+Snap-together diagrams (allows easy production of diagrammatic documentation)
+Scatter = Wordle = MindMap = Map
+Compiler = Self interpreter plus cache
+\label{topright}
+
+Does hyperref work? 
+
+Of course, see \eqref{eq:1}.
+
+\subsection{Abstract Data Types}
+Eager and Lazy evaluation co-exist, with switch-over points.
+Bi-Directional pointers.
+Z-Order = Oct-Tree
+\hyperref[bottomright]{xER means 'something-or-other Encoding Rules'.}  These are bi-directional.  They may be to binary, to text, to GUI.  They may involve lookahead or be linear, they may be versioned, they may be 'forgiving', e.g. with allowance for inexact matching against the abstract type.
+The abstract type is hierarchically defined.  Typedefs and language grammars are examples.  They specify a (legal) structure, without saying how that structure is represented.  The Encoding Rules cover binary and text and other representations of the abstract type.
+Data <-> xER <-> Abstract Type <-> xER <-> Data
+
+\begin{figure}
+    \centering
+    \stackinset{l}{10pt}{t}{20pt}{\hyperref[topleft]{\makebox(100,100){}}}{%
+    \stackinset{r}{30pt}{t}{40pt}{\hyperref[topright]{\makebox(50,40){}}}{%
+    \stackinset{l}{40pt}{b}{50pt}{\hyperref[bottomleft]{\makebox(70,20){}}}{%
+    \stackinset{r}{110pt}{b}{70pt}{\hyperref[bottomright]{\makebox(40,80){}}}{%
+    \includegraphics[width=\linewidth]{Diamond.png}}}}}
+\end{figure}
+
+\end{document}

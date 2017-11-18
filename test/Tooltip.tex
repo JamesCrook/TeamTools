@@ -1,0 +1,77 @@
+
+\documentclass[twoside,a5paper]{book}
+
+\usepackage{hyperref}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% usage:
+%
+% \hyperlinkWithTip{<destination>}[<linkcolour>]{<linktext>}[<tipboxcolour>]{<tiptext>}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{pdfbase,ocgbase,xparse}
+\usepackage{xcolor}
+\usepackage{calc}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+\ExplSyntaxOn
+\let\tpPdfLink\pbs_pdflink:nn
+\let\tpPdfAnnot\pbs_pdfannot:nnnn\let\tpPdfLastAnn\pbs_pdflastann:
+\def\tpPdfXform{\pbs_pdfxform:nnnnn{1}{1}{}{}}\let\tpPdfLastXform\pbs_pdflastxform:
+\let\tpPdfObj\pbs_pdfobj:nnn\let\tpPdfLastObj\pbs_pdflastobj:
+\let\tpPdfAppendToFields\pbs_appendtofields:n
+\ExplSyntaxOff
+
+\makeatletter
+\NewDocumentCommand{\hyperlinkWithTip}{mO{blue}mO{yellow!20}m}{{%
+  \leavevmode%
+  \ocgbase@new@ocg{tipOCG.\thetcnt}{/Print<</PrintState/OFF>>/Export<</ExportState/OFF>>}{off}%
+  \tpPdfLink{%
+    /Subtype/Screen%
+    /AA<<%
+      /E<</S/SetOCGState/State [/ON \ocgbase@last@ocg]>>%
+      /X<</S/SetOCGState/State [/OFF \ocgbase@last@ocg]>>%
+      /U<</S/SetOCGState/State [/OFF \ocgbase@last@ocg]/Next<</S/GoTo/D (#1)>>>>%
+    >>%
+  }{{\color{#2}#3}}%
+  \sbox\tiptext{\fcolorbox{black}{#4}{#5}}%
+  \edef\twd{\the\wd\tiptext}%
+  \edef\tht{\the\ht\tiptext}%
+  \edef\tdp{\the\dp\tiptext}%
+  \measureremainder{\whatsleft}\tipshift=0pt%
+  \ifdim\whatsleft<\twd\setlength\tipshift{\whatsleft-\twd}\fi%
+  \tpPdfXform{\tiptext}%
+  \raisebox{\heightof{#3}+\tdp}[0pt][0pt]{\makebox[0pt][l]{\hspace{\tipshift}%
+    \tpPdfAnnot{\twd}{\tht}{\tdp}{%
+      /Subtype/Widget/FT/Btn/Ff 65537/T (tip:\thetcnt)%
+      /AP<</N \tpPdfLastXform>>%
+      /MK<</TP 1/I \tpPdfLastXform/IF<</S/A/FB true/A [0.0 0.0]>>>>%
+      /OC \ocgbase@last@ocg
+    }%
+    \tpPdfAppendToFields{\tpPdfLastAnn}%
+  }}%
+  \stepcounter{tcnt}%
+}}
+\makeatother
+\newsavebox\tiptext\newcounter{tcnt}
+\newlength{\whatsleft}\newlength{\tipshift}
+\newcommand{\measureremainder}[1]{%
+  \begin{tikzpicture}[overlay,remember picture]
+    \path let \p0 = (0,0), \p1 = (current page.east) in
+      [/utils/exec={\pgfmathsetlength#1{\x1-\x0}\global#1=#1}];
+  \end{tikzpicture}%
+} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+Lots of text. \hyperlinkWithTip{test}{Test}{To be explained on the next page} this if you can.
+
+Lots of text. Another \hyperlinkWithTip{testB}{test}{\parbox[b]{0.5\linewidth}{This is a longer text. Don't miss the explanation given on the next page.}} if you wish.
+\newpage
+
+\hypertarget{test}{Here's my link destination.}
+
+\hypertarget{testB}{Yet another link destination.}
+
+\end{document}

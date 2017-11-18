@@ -58,16 +58,41 @@
 %%\maketitle
 }
 
-\chapter{Getting Started}
+%\chapter{Getting Started}
 
 \label{XXX}
+\label{bottomright}
+\label{topleft}
 
-\input{./man/audacity_tour_guide.tex}
-\input{./man/tutorial_your_first_recording.tex}
-\input{./man/new_features_in_this_release.tex}
-\input{./man/new_features_in_this_release_appendix.tex}
-\input{./man/undo_redo_and_history.tex}
+%\input{./man/audacity_tour_guide.tex}
+%\input{./man/tutorial_your_first_recording.tex}
+%\input{./man/new_features_in_this_release.tex}
+%\input{./man/new_features_in_this_release_appendix.tex}
+%\input{./man/undo_redo_and_history.tex}
 \input{./man/digital_audio.tex}
+
+\chapter{A new chapter}
+
+\begin{multicols}{2}
+
+This is my file menu...
+
+\makebox[0pt][l]{%
+\begin{minipage}{\linewidth}
+    \centering
+    \stackinset{l}{10pt}{t}{20pt}{\hyperref[topleft]{\makebox(100,100){}}}{%
+    \stackinset{r}{30pt}{t}{40pt}{\hyperref[topright]{\makebox(50,40){}}}{%
+    \stackinset{l}{40pt}{b}{50pt}{\hyperref[bottomleft]{\makebox(70,20){}}}{%
+    \stackinset{r}{110pt}{b}{70pt}{\hyperref[bottomright]{\makebox(40,80){}}}{%
+    \includegraphics[width=\linewidth]{C:/OpenSourceGit/AudacityTeamTools/test/m/images/5/50/filemenu.png}}}}}
+\end{minipage}
+}
+\end{multicols}
+
+\chapter{File Menu}
+%\input{./man/file_menu.tex}
+\input{./man/file_menu_chains.tex}
+%\input{./man/file_menu_import.tex}
 
 
 \chapter{Tricksy Files}
