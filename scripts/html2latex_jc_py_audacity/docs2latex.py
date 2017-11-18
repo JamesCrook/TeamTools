@@ -192,6 +192,30 @@ def png_filename_of_link( link ):
     print( "Bad name" + link )
     return link
 
+def add_image_map( tag, siz ):
+    map_tag = tag.find_previous_sibling( 'map' )
+    if not map_tag:
+        return tag
+    preamble = '\n\n\\par\\begin{picture}('+str(siz[0]*0.5)+','+str(siz[1]*0.5)+')\n'
+    postamble = ''
+    for area in map_tag.find_all( name='area' ):
+        if area.has_attr( 'coords' ) and area.has_attr( 'href' ) and area.has_attr('shape'):
+            if( area['shape']=='rect' ) :
+                label = label_of_ref( area['href'] )
+                coords = area['coords'].split(',')
+                coords = [int(x)*0.5 for x in coords]# convert to numbers.
+                print( 'coord ',coords )
+                x,y,x1,y1 = coords
+                w = x1-x
+                y = siz[1]*0.5-y
+                y1 = siz[1]*0.5-y1
+                h = y-y1
+                x,y1,w,h = [str(k) for k in [x,y1,w,h]]
+                postamble += '   \\put('+x+','+y1+'){\\hyperref[\\foo{'+label+'}]{\\makebox('+w+','+h+'){}}}\n'
+    postamble += '\\end{picture}\n\n'
+    tag.insert_before( Comment( preamble ) )
+    tag.insert_after( Comment( postamble ) )
+    return tag
                     
 def cleanup_soup( soup ):
 
@@ -267,32 +291,7 @@ def cleanup_soup( soup ):
             else:
                 print( 'No title for ' + label )
                 tag.insert_before( Comment('latex \n\\label{'+label+'}') )
-
-                
-    # extract image map areas.
-    for tag in soup.find_all(name='map' ):
-        preamble = '\n\n\\par\\begin{picture}(200,200)\n'
-        postamble = '\n'
-        for tag1 in tag.find_all( name='area' ):
-            if tag1.has_attr( 'coords' ) and tag1.has_attr( 'href' ):
-                label = label_of_ref( tag1['href'] )
-                coords = tag1['coords'].split(',')
-                coords = [int(x)*0.5 for x in coords]# convert to numbers.
-                print( 'coord ',coords )
-                x,y,x1,y1 = coords
-                w = x1-x
-                y = 200-y
-                y1 = 200-y1
-                h = y-y1
-                x,y1,w,h = [str(k) for k in [x,y1,w,h]]
-                postamble += '   \\put('+x+','+y1+'){\\hyperref[\\foo{'+label+'}]{\\makebox('+w+','+h+'){}}}\n'
-        tag1 = tag.find_next_sibling( 'img' )
-        postamble += '\\end{picture}\n\n'
-        if tag1:
-            tag1.insert_before( Comment( preamble ) )
-            tag1.insert_after( Comment( postamble ) )
-  
-
+     
     # (valid) images get treated depending on their size
     # all our images are screenshots, so we just check sizes in pixels.
     #  - small images are inline, and are already sized (using dpi) for inline use
@@ -305,8 +304,10 @@ def cleanup_soup( soup ):
                     siz = image.size
                     if tag.has_attr('usemap') :
                         # no par for image map.
-                        tag.insert_before( Comment('\\includegraphics[scale=0.5]{') )
-                        tag.insert_after(  Comment('}') )
+                        tag = add_image_map( tag, siz )
+                        tag.insert_before( Comment('   \\put(0,0){\\includegraphics[scale=0.5]{') )
+                        tag.insert_after(  Comment('}}\n') )
+
                     elif siz[0] > 60 or siz[1] > 30:
                         #Bigger images...
                         #print( png_filename )
@@ -459,8 +460,8 @@ def clean_one_file( filename ) :
 #clean_one_file( "new_features_in_this_release.html" )
 #clean_one_file( "audacity_tour_guide.html" )
 #clean_one_file( "glossary.html" )
-clean_one_file( "file_menu_chains.html" )
+#clean_one_file( "file_menu_chains.html" )
 
 #print( file )
 #size_all()
-#clean_all()
+clean_all()
