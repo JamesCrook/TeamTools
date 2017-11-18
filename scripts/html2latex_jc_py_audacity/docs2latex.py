@@ -196,25 +196,30 @@ def add_image_map( tag, siz ):
     map_tag = tag.find_previous_sibling( 'map' )
     if not map_tag:
         return tag
-    preamble = '\n\n\\par\\begin{picture}('+str(siz[0]*0.5)+','+str(siz[1]*0.5)+')\n'
+    scale = 0.5
+    if( siz[0] > 600 ):
+       scale = 0.4
+    preamble = '\n\n\\par\\begin{picture}('+str(siz[0]*scale)+','+str(siz[1]*scale)+')\n'
     postamble = ''
     for area in map_tag.find_all( name='area' ):
         if area.has_attr( 'coords' ) and area.has_attr( 'href' ) and area.has_attr('shape'):
             if( area['shape']=='rect' ) :
                 label = label_of_ref( area['href'] )
                 coords = area['coords'].split(',')
-                coords = [int(x)*0.5 for x in coords]# convert to numbers.
+                coords = [int(x)*scale for x in coords]# convert to numbers.
                 print( 'coord ',coords )
                 x,y,x1,y1 = coords
                 w = x1-x
-                y = siz[1]*0.5-y
-                y1 = siz[1]*0.5-y1
+                y = siz[1]*scale-y
+                y1 = siz[1]*scale-y1
                 h = y-y1
                 x,y1,w,h = [str(k) for k in [x,y1,w,h]]
                 postamble += '   \\put('+x+','+y1+'){\\hyperref[\\foo{'+label+'}]{\\makebox('+w+','+h+'){}}}\n'
     postamble += '\\end{picture}\n\n'
     tag.insert_before( Comment( preamble ) )
     tag.insert_after( Comment( postamble ) )
+    tag.insert_before( Comment('   \\put(0,0){\\includegraphics[scale='+str(scale)+']{') )
+    tag.insert_after(  Comment('}}\n') )
     return tag
                     
 def cleanup_soup( soup ):
@@ -305,17 +310,14 @@ def cleanup_soup( soup ):
                     if tag.has_attr('usemap') :
                         # no par for image map.
                         tag = add_image_map( tag, siz )
-                        tag.insert_before( Comment('   \\put(0,0){\\includegraphics[scale=0.5]{') )
-                        tag.insert_after(  Comment('}}\n') )
-
                     elif siz[0] > 60 or siz[1] > 30:
                         #Bigger images...
                         #print( png_filename )
                         tag.insert_before( Comment('\n\\par\\includegraphics[max width=\\linewidth]{') )
                         tag.insert_after(  Comment('}\\par\n') )
                     else:
-                        tag.insert_before(Comment( '\n\\texorpdfstring{\\protect\\includegraphics[max width=\\linewidth]{' ))
-                        tag.insert_after( Comment( '}}{}\n' ))                        
+                        tag.insert_before(Comment( '\\texorpdfstring{\\protect\\includegraphics[max width=\\linewidth]{' ))
+                        tag.insert_after( Comment( '}}{}' ))                        
             # file name is used by includegraphics
             tag.insert( 0, Comment( png_filename.replace('\\','/') ) )
 
