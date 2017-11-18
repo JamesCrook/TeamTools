@@ -199,7 +199,7 @@ def add_image_map( tag, siz ):
     scale = 0.5
     if( siz[0] > 600 ):
        scale = 0.4
-    preamble = '\n\n\\par\\begin{picture}('+str(siz[0]*scale)+','+str(siz[1]*scale)+')\n'
+    preamble = '\n\n\\par\\Needspace{'+str(100+siz[1]*scale)+'pt}\\begin{picture}('+str(siz[0]*scale)+','+str(siz[1]*scale)+')\n'
     postamble = ''
     for area in map_tag.find_all( name='area' ):
         if area.has_attr( 'coords' ) and area.has_attr( 'href' ) and area.has_attr('shape'):
@@ -207,14 +207,16 @@ def add_image_map( tag, siz ):
                 label = label_of_ref( area['href'] )
                 coords = area['coords'].split(',')
                 coords = [int(x)*scale for x in coords]# convert to numbers.
-                print( 'coord ',coords )
+                # print( 'coord ',coords )
                 x,y,x1,y1 = coords
                 w = x1-x
                 y = siz[1]*scale-y
                 y1 = siz[1]*scale-y1
                 h = y-y1
-                x,y1,w,h = [str(k) for k in [x,y1,w,h]]
-                postamble += '   \\put('+x+','+y1+'){\\hyperref[\\foo{'+label+'}]{\\makebox('+w+','+h+'){}}}\n'
+                # Do not include the rather wide hotspots.
+                if( w < 290 ):
+                    x,y1,w,h = [str(k) for k in [x,y1,w,h]]
+                    postamble += '   \\put('+x+','+y1+'){\\hyperref[\\foo{'+label+'}]{\\makebox('+w+','+h+'){}}}\n'
     postamble += '\\end{picture}\n\n'
     tag.insert_before( Comment( preamble ) )
     tag.insert_after( Comment( postamble ) )
