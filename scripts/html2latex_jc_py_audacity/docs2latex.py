@@ -271,7 +271,7 @@ def cleanup_soup( soup ):
                 
     # extract image map areas.
     for tag in soup.find_all(name='map' ):
-        preamble = '\n\n\\par\\makebox[0pt][l]{\\begin{minipage}{\\linewidth}\n   \\centering\n'
+        preamble = '\n\n\\par\\begin{picture}(200,200)\n'
         postamble = '\n'
         for tag1 in tag.find_all( name='area' ):
             if tag1.has_attr( 'coords' ) and tag1.has_attr( 'href' ):
@@ -281,12 +281,13 @@ def cleanup_soup( soup ):
                 print( 'coord ',coords )
                 x,y,x1,y1 = coords
                 w = x1-x
-                h = y1-y
-                x,y,w,h = [str(k) for k in [x,y,w,h]]
-                preamble += '   \\stackinset{l}{'+x+'bp}{t}{'+y+'bp}{\\hyperref[\\foo{'+label+'}]{\\makebox('+w+','+h+'){}}}{\n'
-                postamble += '}'
+                y = 200-y
+                y1 = 200-y1
+                h = y-y1
+                x,y1,w,h = [str(k) for k in [x,y1,w,h]]
+                postamble += '   \\put('+x+','+y1+'){\\hyperref[\\foo{'+label+'}]{\\makebox('+w+','+h+'){}}}\n'
         tag1 = tag.find_next_sibling( 'img' )
-        postamble += '\n\\end{minipage}}\n\n'
+        postamble += '\\end{picture}\n\n'
         if tag1:
             tag1.insert_before( Comment( preamble ) )
             tag1.insert_after( Comment( postamble ) )
@@ -304,7 +305,7 @@ def cleanup_soup( soup ):
                     siz = image.size
                     if tag.has_attr('usemap') :
                         # no par for image map.
-                        tag.insert_before( Comment('\\includegraphics[size=0.5]{') )
+                        tag.insert_before( Comment('\\includegraphics[scale=0.5]{') )
                         tag.insert_after(  Comment('}') )
                     elif siz[0] > 60 or siz[1] > 30:
                         #Bigger images...
