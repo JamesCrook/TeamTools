@@ -197,8 +197,8 @@ def add_image_map( tag, siz ):
     if not map_tag:
         return tag
     scale = 0.5
-    if( siz[0] > 600 ):
-       scale = 0.4
+    while ( siz[0] * scale ) > 300 :
+       scale *= 0.8
     preamble = '\n\n\\par\\Needspace{'+str(100+siz[1]*scale)+'pt}\\begin{picture}('+str(siz[0]*scale)+','+str(siz[1]*scale)+')\n'
     postamble = ''
     for area in map_tag.find_all( name='area' ):
