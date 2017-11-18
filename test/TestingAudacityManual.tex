@@ -34,7 +34,8 @@
 \usepackage[margin=0.6in]{geometry}
 \setlength{\columnsep}{0.4 in}
 %\setlength{\parindent}{0pt}
-\newcommand{\foo}[1]{#1}
+%\newcommand{\foo}[1]{#1}
+\newcommand{\foo}[1]{XXX}
 \newcommand{\ensurespace}{\Needspace{12\baselineskip}}
 \renewcommand{\familydefault}{\sfdefault}
 \renewcommand{\textuparrow}{$\uparrow$}
@@ -80,11 +81,12 @@ This is my file menu...
 \makebox[0pt][l]{%
 \begin{minipage}{\linewidth}
     \centering
-    \stackinset{l}{10pt}{t}{20pt}{\hyperref[topleft]{\makebox(100,100){}}}{%
-    \stackinset{r}{30pt}{t}{40pt}{\hyperref[topright]{\makebox(50,40){}}}{%
-    \stackinset{l}{40pt}{b}{50pt}{\hyperref[bottomleft]{\makebox(70,20){}}}{%
-    \stackinset{r}{110pt}{b}{70pt}{\hyperref[bottomright]{\makebox(40,80){}}}{%
-    \includegraphics[width=\linewidth]{C:/OpenSourceGit/AudacityTeamTools/test/m/images/5/50/filemenu.png}}}}}
+    \stackinset{l}{10pt}{t}{20pt}{\hyperref[topleft]{\makebox(100,100){}}}{
+    \stackinset{r}{30pt}{t}{40pt}{\hyperref[topright]{\makebox(50,40){}}}{
+    \stackinset{l}{40pt}{b}{50pt}{\hyperref[bottomleft]{\makebox(70,20){}}}{
+    \stackinset{r}{110pt}{b}{70pt}{\hyperref[bottomright]{\makebox(40,80){}}}{
+    \includegraphics[width=\linewidth]{C:/OpenSourceGit/AudacityTeamTools/test/m/images/5/50/filemenu.png}
+    }}}}
 \end{minipage}
 }
 \end{multicols}

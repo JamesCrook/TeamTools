@@ -268,6 +268,29 @@ def cleanup_soup( soup ):
                 print( 'No title for ' + label )
                 tag.insert_before( Comment('latex \n\\label{'+label+'}') )
 
+                
+    # extract image map areas.
+    for tag in soup.find_all(name='map' ):
+        preamble = '\n\n\\par\\makebox[0pt][l]{\\begin{minipage}{\\linewidth}\n   \\centering\n'
+        postamble = '\n'
+        for tag1 in tag.find_all( name='area' ):
+            if tag1.has_attr( 'coords' ) and tag1.has_attr( 'href' ):
+                label = label_of_ref( tag1['href'] )
+                coords = tag1['coords'].split(',')
+                coords = [int(x)*0.5 for x in coords]# convert to numbers.
+                print( 'coord ',coords )
+                x,y,x1,y1 = coords
+                w = x1-x
+                h = y1-y
+                x,y,w,h = [str(k) for k in [x,y,w,h]]
+                preamble += '   \\stackinset{l}{'+x+'bp}{t}{'+y+'bp}{\\hyperref[\\foo{'+label+'}]{\\makebox('+w+','+h+'){}}}{\n'
+                postamble += '}'
+        tag1 = tag.find_next_sibling( 'img' )
+        postamble += '\n\\end{minipage}}\n\n'
+        if tag1:
+            tag1.insert_before( Comment( preamble ) )
+            tag1.insert_after( Comment( postamble ) )
+  
 
     # (valid) images get treated depending on their size
     # all our images are screenshots, so we just check sizes in pixels.
@@ -279,11 +302,18 @@ def cleanup_soup( soup ):
             if os.path.isfile( png_filename ) :
                 with Image.open(png_filename) as image:
                     siz = image.size
-                    if siz[0] > 60 or siz[1] > 30:
+                    if tag.has_attr('usemap') :
+                        # no par for image map.
+                        tag.insert_before( Comment('\\includegraphics[size=0.5]{') )
+                        tag.insert_after(  Comment('}') )
+                    elif siz[0] > 60 or siz[1] > 30:
                         #Bigger images...
                         #print( png_filename )
-                        tag.insert_before( Comment('latex \\par ') )
-                        tag.insert_after(  Comment('latex \\par ') )
+                        tag.insert_before( Comment('\n\\par\\includegraphics[max width=\\linewidth]{') )
+                        tag.insert_after(  Comment('}\\par\n') )
+                    else:
+                        tag.insert_before(Comment( '\n\\texorpdfstring{\\protect\\includegraphics[max width=\\linewidth]{' ))
+                        tag.insert_after( Comment( '}}{}\n' ))                        
             # file name is used by includegraphics
             tag.insert( 0, Comment( png_filename.replace('\\','/') ) )
 
@@ -308,7 +338,7 @@ tagspec = {
     ( 'b',  '\\textbf{', '}' ),
     ( 'hr', '\\vspace{1mm}\\hrule ', '' ),
     ( 'tr', '\\par ', '' ),
-    ( 'img','\\texorpdfstring{\\protect\\includegraphics[max width=\\linewidth]{', '}}{}' ),    
+#   ( 'img','\\texorpdfstring{\\protect\\includegraphics[max width=\\linewidth]{', '}}{}' ),    
 }   
 
 def latexify( soup ):
@@ -329,6 +359,7 @@ def cleanup_file( src,dest ):
     global this_file
     #print()
     this_file = os.path.basename( dest )
+    print( "Processing: "+this_file )
     with open(src, encoding='utf8') as file:
         soup = BeautifulSoup(file, "html5lib")
         cleanup_soup( soup )
@@ -372,7 +403,6 @@ def latex_of_soup( soup ):
 def clean_all():
     for dirpath, dirnames, filenames in os.walk( base_dir):
         for filename in [f for f in filenames if f.endswith(".html")]:
-            print( "Processing: "+filename )
             infile = os.path.join(dirpath, filename)
             outfile = os.path.join(dest_dir, os.path.relpath( infile, base_dir ))
             #print( infile )
@@ -428,7 +458,8 @@ def clean_one_file( filename ) :
 #clean_one_file( "new_features_in_this_release.html" )
 #clean_one_file( "audacity_tour_guide.html" )
 #clean_one_file( "glossary.html" )
+clean_one_file( "file_menu_chains.html" )
 
 #print( file )
 #size_all()
-clean_all()
+#clean_all()
