@@ -308,7 +308,7 @@ tagspec = {
     ( 'b',  '\\textbf{', '}' ),
     ( 'hr', '\\vspace{1mm}\\hrule ', '' ),
     ( 'tr', '\\par ', '' ),
-    ( 'img','\\protect\\includegraphics[max width=\\linewidth]{', '}' ),    
+    ( 'img','\\texorpdfstring{\\protect\\includegraphics[max width=\\linewidth]{', '}}{}' ),    
 }   
 
 def latexify( soup ):
