@@ -197,9 +197,12 @@ def add_image_map( tag, siz ):
     if not map_tag:
         return tag
     scale = 0.5
-    while ( siz[0] * scale ) > 300 :
-       scale *= 0.8
-    preamble = '\n\n\\par\\Needspace{'+str(100+siz[1]*scale)+'pt}\\begin{picture}('+str(siz[0]*scale)+','+str(siz[1]*scale)+')\n'
+    while ( siz[0] * scale ) > 280 :
+        scale *= 0.8
+    if tag.find_parent( "div", class_="full-width") :
+        print( "Found a BIG image" )
+        scale *=2
+    preamble = '\n\n\\par\\Needspace{'+str(30+siz[1]*scale)+'pt}\\begin{picture}('+str(siz[0]*scale)+','+str(siz[1]*scale)+')\n'
     postamble = ''
     for area in map_tag.find_all( name='area' ):
         if area.has_attr( 'coords' ) and area.has_attr( 'href' ) and area.has_attr('shape'):
@@ -214,7 +217,7 @@ def add_image_map( tag, siz ):
                 y1 = siz[1]*scale-y1
                 h = y-y1
                 # Do not include the rather wide hotspots.
-                if( w < 290 ):
+                if( w < 260 ):
                     x,y1,w,h = [str(k) for k in [x,y1,w,h]]
                     postamble += '   \\put('+x+','+y1+'){\\hyperref[\\foo{'+label+'}]{\\makebox('+w+','+h+'){}}}\n'
     postamble += '\\end{picture}\n\n'
@@ -275,6 +278,10 @@ def cleanup_soup( soup ):
             tag.insert(0,Comment('latex \\begin{multicols}{2}') )
             tag.insert(0,Comment('latex \\label{' +label_of_ref('') +'}')) 
         tag.insert(-1,Comment('latex \\end{multicols}') )
+
+    for tag in soup.find_all(name='div', class_="full-width"):
+        tag.insert(0,Comment('\\end{multicols}\n') )
+        tag.insert(-1,Comment('\\begin{multicols}{2}\n') )
       
     # anchors become \hyperrefs and \labels
     # provided they are relative.
@@ -465,7 +472,8 @@ def clean_one_file( filename ) :
 #clean_one_file( "audacity_tour_guide.html" )
 #clean_one_file( "glossary.html" )
 #clean_one_file( "file_menu_chains.html" )
+clean_one_file( "track_control_panel_and_vertical_scale.html" )
 
 #print( file )
 #size_all()
-clean_all()
+#clean_all()
