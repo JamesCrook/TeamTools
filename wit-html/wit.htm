@@ -3,8 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>What is That?</title>
+    <style type="text/css">
+
+        #gui {
+            display: inline-block;
+            margin-left: auto;
+            margin-right: auto;
+            #float:left;
+        }
+
+        #scroller {
+            display: inline-block;
+            height: 587px;
+            width: 350px;
+            overflow: auto;
+            #background-color: #c2ceff;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+    </style>
+    <script src="./js/boxes.js"></script>
+    <script>
+        var FirstClick = function(){
+            alert("Hi there");
+        }
+    </script>
 </head>
 <body>
 
+<div style="width:100%; text-align:center">
+    <h1>What is That?</h1>
+    <div style="width:100%; text-align:center">
+    <img id="gui" src="./images/blank-links.png" OnClick="FirstClick();" alt="Audacity"><iframe id="scroller" src="./scroller-contents/select_menu_clip_boundaries.html" seamless></iframe>
+
+    </div>
+</div>
 </body>
 </html>
