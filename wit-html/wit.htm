@@ -9,7 +9,7 @@
             display: inline-block;
             margin-left: auto;
             margin-right: auto;
-            #float:left;
+            /*float:left;*/
         }
 
         #scroller {
@@ -17,17 +17,95 @@
             height: 587px;
             width: 350px;
             overflow: auto;
-            #background-color: #c2ceff;
+            /*background-color: #c2ceff;*/
             margin-left: auto;
             margin-right: auto;
         }
 
+        #click-list {
+            display: inline-block;
+            margin-left: auto;
+            margin-right: auto;
+            /*float:left;*/
+        }
+
+
     </style>
     <script src="./js/boxes.js"></script>
     <script>
+
+        var Message = null;
+        var ClickList = null;
+        // @return var
+        function FindBox(x, y){
+
+            var i;
+            var v;
+            //console.log( "Finding x:"+x+" y:"+y);
+            for( i = 0; i < image_boxes.length; i++ ){
+                v = image_boxes[i];
+                if( (v[0] <= x) && (v[1] <= y) && ( v[2] >= x ) &&
+                        (v[3] >= y ) ){
+                    v.ix = i;
+                    return v;
+                }
+            }
+            v.ix = -1;
+            return v;
+        }
+
         var FirstClick = function(){
             alert("Hi there");
         }
+
+        function MakeClickList(){
+            if( ClickList )
+                return;
+            ClickList = document.getElementById("click-list");
+
+            var text = '';
+            var i;
+            for( i=0;i<image_boxes.length;i++){
+                text = text +
+                        ' <span style="white-space:nowrap">'+
+                        '<span style="color: #1148f7; font-size:1.5em;' +
+                        'font-weight:bold">'+
+                        (i+1) +
+                        '</span> <b>' +
+                        '<a href = "/man/Transport_Toolbar "' +
+                        'title = "Transport Toolbar">' +
+                        '<span title = "Transport Toolbar has buttons for ' +
+                        'controlling playback and recording and for moving to ' +
+                        'the project start or end" >' +
+                        image_boxes[i][4] +
+                        '</span></a></b> &#160;'+
+                        '</span>';
+            }
+            ClickList.innerHTML = text;
+        }
+
+        function ImageClick(event, isclick){
+            if( !Message )
+                Message = document.getElementById("message");
+            //img.src = "./images/da-coloured.png";
+            //var x1 = event.pageX - img.offsetLeft;
+            //var y1 = event.pageY - img.offsetTop;
+            var XX = event.offsetX;
+            var YY = event.offsetY;
+
+            var box = FindBox(XX, YY);
+            if( box.ix < 0 )
+                return;
+            if( isclick ){
+                console.log(box);
+                console.log("x:" + XX + " y:" + YY + " Box:" + box.ix);
+                MakeClickList();
+            }
+            Message.innerHTML = box[4];
+            //alert( "X:"+ XX + " Y:"+ YY + " ix:"+ixx);
+        }
+
+
     </script>
 </head>
 <body>
@@ -38,62 +116,103 @@
 
         <div style="width: 80%; margin:auto; text-align:center;">
             <p><span style="white-space:nowrap">
-<span style="color: #1148f7; font-size:1.5em; font-weight:bold">1</span> <b><a href="/man/Menu_Reference" title="Menu Reference"><span title="Many commands in Audacity appear in one of the menus. This page directs you to full documentation for those menus.">Menu Bar</span></a></b>
+<span style="color: #1148f7; font-size:1.5em; font-weight:bold">1</span> <b><a
+                    href="/man/Menu_Reference" title="Menu Reference"><span
+                    title="Many commands in Audacity appear in one of the menus. This page directs you to full documentation for those menus.">Menu Bar</span></a></b>
 &#160;</span>
 <span style="white-space:nowrap">
-<span style="color: #1148f7; font-size:1.5em; font-weight:bold">2</span> <b><a href="/man/Transport_Toolbar" title="Transport Toolbar"><span title="Transport Toolbar has buttons for controlling playback and recording and for moving to the project start or end">Transport Toolbar</span></a></b>
+<span style="color: #1148f7; font-size:1.5em; font-weight:bold">2</span> <b><a
+        href="/man/Transport_Toolbar" title="Transport Toolbar"><span
+        title="Transport Toolbar has buttons for controlling playback and recording and for moving to the project start or end">Transport Toolbar</span></a></b>
 &#160;</span>
 <span style="white-space:nowrap">
-<span style="color: #1148f7; font-size:1.5em; font-weight:bold">3</span> <b><a href="/man/Tools_Toolbar" title="Tools Toolbar"><span title="Tools Toolbar allows you to choose various tools for selection, volume adjustment, zooming and time-shifting of audio">Tools Toolbar</span></a></b>
+<span style="color: #1148f7; font-size:1.5em; font-weight:bold">3</span> <b><a
+        href="/man/Tools_Toolbar" title="Tools Toolbar"><span
+        title="Tools Toolbar allows you to choose various tools for selection, volume adjustment, zooming and time-shifting of audio">Tools Toolbar</span></a></b>
 &#160;</span>
 <span style="white-space:nowrap">
-<span style="color: #1148f7; font-size:1.5em; font-weight:bold">4</span> <b><a href="/man/Meter_Toolbar#recording" title="Meter Toolbar"><span title="Recording Meter Toolbar displays the amplitude of audio being recorded. It is an easy way to see if audio which is being recorded is clipped, which results in distortion.">Recording Meter Toolbar</span></a></b>
+<span style="color: #1148f7; font-size:1.5em; font-weight:bold">4</span> <b><a
+        href="/man/Meter_Toolbar#recording" title="Meter Toolbar"><span
+        title="Recording Meter Toolbar displays the amplitude of audio being recorded. It is an easy way to see if audio which is being recorded is clipped, which results in distortion.">Recording Meter Toolbar</span></a></b>
 &#160;</span>
 <span style="white-space:nowrap">
-<span style="color: #1148f7; font-size:1.5em; font-weight:bold">5</span> <b><a href="/man/Meter_Toolbar#playback" title="Meter Toolbar"><span title="Playback Meter Toolbar displays the combined amplitude of all audio tracks being played in the project. It is an easy way to see if audio which is being edited is clipped, which results in distortion.">Playback Meter Toolbar</span></a></b>
+<span style="color: #1148f7; font-size:1.5em; font-weight:bold">5</span> <b><a
+        href="/man/Meter_Toolbar#playback" title="Meter Toolbar"><span
+        title="Playback Meter Toolbar displays the combined amplitude of all audio tracks being played in the project. It is an easy way to see if audio which is being edited is clipped, which results in distortion.">Playback Meter Toolbar</span></a></b>
 &#160;</span>
 <span style="white-space:nowrap">
-<span style="color: #1148f7; font-size:1.5em; font-weight:bold">6</span> <b><a href="/man/Mixer_Toolbar" title="Mixer Toolbar"><span title="Mixer Toolbar is where you adjust Playback Volume (how loud the project&#39;s audio sounds, not affecting the volume of exported audio) and Recording Volume (the amplitude at which recordings will be made)">Mixer Toolbar</span></a></b>
-&#160;</span><br />
+<span style="color: #1148f7; font-size:1.5em; font-weight:bold">6</span> <b><a
+        href="/man/Mixer_Toolbar" title="Mixer Toolbar"><span
+        title="Mixer Toolbar is where you adjust Playback Volume (how loud the project&#39;s audio sounds, not affecting the volume of exported audio) and Recording Volume (the amplitude at which recordings will be made)">Mixer Toolbar</span></a></b>
+&#160;</span><br/>
 <span style="white-space:nowrap">
-<span style="color: #1148f7; font-size:1.5em; font-weight:bold">7</span> <b><a href="/man/Edit_Toolbar" title="Edit Toolbar"><span title="Edit Toolbar has buttons to perform Cut, Copy, Paste, Trim and Silence, Undo/Redo, Sync-Lock Tracks and Zoom functions. This is an alternative to using menu items or keyboard shortcuts for the same tasks.">Edit Toolbar</span></a></b>
+<span style="color: #1148f7; font-size:1.5em; font-weight:bold">7</span> <b><a
+        href="/man/Edit_Toolbar" title="Edit Toolbar"><span
+        title="Edit Toolbar has buttons to perform Cut, Copy, Paste, Trim and Silence, Undo/Redo, Sync-Lock Tracks and Zoom functions. This is an alternative to using menu items or keyboard shortcuts for the same tasks.">Edit Toolbar</span></a></b>
 &#160;</span>
 <span style="white-space:nowrap">
-<span style="color: #1148f7; font-size:1.5em; font-weight:bold">8</span> <b><a href="/man/Transcription_Toolbar" title="Transcription Toolbar"><span title="Transcription Toolbar lets you play audio at a slower or faster speed than normal, also affecting pitch">Transcription Toolbar</span></a></b>
+<span style="color: #1148f7; font-size:1.5em; font-weight:bold">8</span> <b><a
+        href="/man/Transcription_Toolbar" title="Transcription Toolbar"><span
+        title="Transcription Toolbar lets you play audio at a slower or faster speed than normal, also affecting pitch">Transcription Toolbar</span></a></b>
 &#160;</span>
 <span style="white-space:nowrap">
-<span style="color: #1148f7; font-size:1.5em; font-weight:bold">9</span> <b><a href="/man/Device_Toolbar" title="Device Toolbar"><span title="Device Toolbar provides an easy way to select your required combination of audio host, playback device, recording device and recording channels, without having to open Devices Preferences">Device Toolbar</span></a></b>
+<span style="color: #1148f7; font-size:1.5em; font-weight:bold">9</span> <b><a
+        href="/man/Device_Toolbar" title="Device Toolbar"><span
+        title="Device Toolbar provides an easy way to select your required combination of audio host, playback device, recording device and recording channels, without having to open Devices Preferences">Device Toolbar</span></a></b>
 &#160;</span>
 <span style="white-space:nowrap">
-<span style="color: #1148f7; font-size:1.5em; font-weight:bold">10</span> <b><a href="/man/Timeline#pinned" title="Timeline"><span title="Unpinned Play/Recording Head">Unpinned Play/Recording Head</span></a></b>
+<span style="color: #1148f7; font-size:1.5em; font-weight:bold">10</span> <b><a
+        href="/man/Timeline#pinned" title="Timeline"><span
+        title="Unpinned Play/Recording Head">Unpinned Play/Recording Head</span></a></b>
 &#160;</span>
 <span style="white-space:nowrap">
-<span style="color: #1148f7; font-size:1.5em; font-weight:bold">11</span> <b><a href="/man/Timeline" title="Timeline"><span title="&quot;The">Timeline</span></a></b>
+<span style="color: #1148f7; font-size:1.5em; font-weight:bold">11</span> <b><a
+        href="/man/Timeline" title="Timeline"><span
+        title="&quot;The">Timeline</span></a></b>
 &#160;</span>
 <span style="white-space:nowrap">
-<span style="color: #1148f7; font-size:1.5em; font-weight:bold">12</span> <b><a href="/man/Scrubbing_and_Seeking#scrubbing" title="Scrubbing and Seeking"><span title="Scrub Ruler is the primary method to Scrub or Seek. Click in Scrub Ruler then move the mouse to Scrub, or click then drag to Seek, which skips along the audio.">Scrub Ruler</span></a></b>
-&#160;</span><br />
+<span style="color: #1148f7; font-size:1.5em; font-weight:bold">12</span> <b><a
+        href="/man/Scrubbing_and_Seeking#scrubbing"
+        title="Scrubbing and Seeking"><span
+        title="Scrub Ruler is the primary method to Scrub or Seek. Click in Scrub Ruler then move the mouse to Scrub, or click then drag to Seek, which skips along the audio.">Scrub Ruler</span></a></b>
+&#160;</span><br/>
 <span style="white-space:nowrap">
-<span style="color: #1148f7; font-size:1.5em; font-weight:bold">13</span> <b><a href="/man/Track_Control_Panel_and_Vertical_Scale" title="Track Control Panel and Vertical Scale"><span title="The Track Control Panel at the left of the audio track has controls and status indicators for the track, including a Track Dropdown Menu for changing View Mode and audio properties of that individual track. A vertical scale ruler is to right of the Track Control Panel.">Track Control Panel</span></a></b>
+<span style="color: #1148f7; font-size:1.5em; font-weight:bold">13</span> <b><a
+        href="/man/Track_Control_Panel_and_Vertical_Scale"
+        title="Track Control Panel and Vertical Scale"><span
+        title="The Track Control Panel at the left of the audio track has controls and status indicators for the track, including a Track Dropdown Menu for changing View Mode and audio properties of that individual track. A vertical scale ruler is to right of the Track Control Panel.">Track Control Panel</span></a></b>
 &#160;</span>
 <span style="white-space:nowrap">
-<span style="color: #1148f7; font-size:1.5em; font-weight:bold">14</span> <b><a href="/man/Audio_Tracks" title="Audio Tracks"><span title="The waveform (visual representation) of the audio contained in the audio track. Tracks may be made stereo (combined left and right channel), mono or split into separately editable left or right channels using the Track Dropdown Menu (in the Track Control Panel at left of the audio track).">Audio Track</span></a></b>
+<span style="color: #1148f7; font-size:1.5em; font-weight:bold">14</span> <b><a
+        href="/man/Audio_Tracks" title="Audio Tracks"><span
+        title="The waveform (visual representation) of the audio contained in the audio track. Tracks may be made stereo (combined left and right channel), mono or split into separately editable left or right channels using the Track Dropdown Menu (in the Track Control Panel at left of the audio track).">Audio Track</span></a></b>
 &#160;</span>
 <span style="white-space:nowrap">
-<span style="color: #1148f7; font-size:1.5em; font-weight:bold">15</span> <b><a href="/man/Label_Tracks" title="Label Tracks"><span title="A Label Track is an additional track that can be created in your project. The labels in the label track can be used to reference points or regions in the project&#39;s audio tracks but the label track itself does not contain audio.">Label Track</span></a></b>
+<span style="color: #1148f7; font-size:1.5em; font-weight:bold">15</span> <b><a
+        href="/man/Label_Tracks" title="Label Tracks"><span
+        title="A Label Track is an additional track that can be created in your project. The labels in the label track can be used to reference points or regions in the project&#39;s audio tracks but the label track itself does not contain audio.">Label Track</span></a></b>
 &#160;</span>
 <span style="white-space:nowrap">
-<span style="color: #1148f7; font-size:1.5em; font-weight:bold">16</span> <b><a href="/man/Selection_Toolbar" title="Selection Toolbar"><span title="Selection Toolbar includes controls for Project Rate, Snap To and for manipulating units of time or other selection formats">Selection Toolbar</span></a></b>
+<span style="color: #1148f7; font-size:1.5em; font-weight:bold">16</span> <b><a
+        href="/man/Selection_Toolbar" title="Selection Toolbar"><span
+        title="Selection Toolbar includes controls for Project Rate, Snap To and for manipulating units of time or other selection formats">Selection Toolbar</span></a></b>
 &#160;</span>
 <span style="white-space:nowrap">
-<span style="color: #1148f7; font-size:1.5em; font-weight:bold">17</span> <b><a href="/man/Status_Bar" title="Status Bar"><span title="Status Bar displays messages about recording or playback, indicates parts of Audacity that are being hovered over by the mouse, and provides hints about how to use Audacity">Status Bar</span></a></b>
+<span style="color: #1148f7; font-size:1.5em; font-weight:bold">17</span> <b><a
+        href="/man/Status_Bar" title="Status Bar"><span
+        title="Status Bar displays messages about recording or playback, indicates parts of Audacity that are being hovered over by the mouse, and provides hints about how to use Audacity">Status Bar</span></a></b>
 &#160;</span>
             </p>
         </div>
 
 
-    <img id="gui" src="./images/blank-links.png" OnClick="FirstClick();" alt="Audacity"><iframe id="scroller" src="./scroller-contents/edit_menu.html" seamless></iframe>
-
+        <img id="gui" src="./images/blank-links.png"
+             OnClick="ImageClick(event,true);"
+             OnMouseMove="ImageClick(event,false);" alt="Audacity">
+        <iframe id="scroller" src="./scroller-contents/edit_menu.html"
+                seamless></iframe>
+        <div id="message">some message</div>
+        <div id="click-list" style="width:1000px;" >The ClickList</div>
     </div>
 </div>
 </body>
