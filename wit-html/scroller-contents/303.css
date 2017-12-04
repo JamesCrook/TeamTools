@@ -1769,8 +1769,8 @@ div#mw-search-interwiki-caption {
           padding-right: 12px;
           margin-top: 12px;
           margin-bottom: 24px;
-          margin-left: 24px;
-          margin-right: 24px;
+          margin-left: 0px;
+          margin-right: 0px;
           background: #DFEAF9;
         }
 
@@ -1780,8 +1780,8 @@ div#mw-search-interwiki-caption {
           padding-right: 12px;
           margin-top: 12px;
           margin-bottom: 12px;
-          margin-left: 24px;
-          margin-right: 24px;
+          margin-left: 4px;
+          margin-right: 4px;
           background:#FEFFD0;
         }
 
@@ -1791,8 +1791,8 @@ div#mw-search-interwiki-caption {
           padding-right: 12px;
           margin-top: 12px;
           margin-bottom: 12px;
-          margin-left: 24px;
-          margin-right: 24px;
+          margin-left: 4px;
+          margin-right: 4px;
           background: #ffcccc;
         }
 
@@ -1802,8 +1802,8 @@ div#mw-search-interwiki-caption {
           padding-right: 12px;
           margin-top: 12px;
           margin-bottom: 12px;
-          margin-left: 24px;
-          margin-right: 24px;
+          margin-left: 4px;
+          margin-right: 4px;
           background: #F9FFFF;
         }
 
