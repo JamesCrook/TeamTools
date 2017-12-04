@@ -19,17 +19,17 @@ body {
 #column-content {
 	width: 100%;
 	float: right;
-	margin: 0 0 .6em -12.2em;
+	margin: 0 0 0 0;
 	padding: 0;
 }
 #content {
-	margin: 2.8em 0 0 12.2em;
+	margin: 0 0 0 0;
 	padding: 0 1em 1em 1em;
 	position: relative;
 	z-index: 2;
 }
 #column-one {
-	padding-top: 160px;
+	padding-top: 0px;
 }
 #content {
 	background: white;

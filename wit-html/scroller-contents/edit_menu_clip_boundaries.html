@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Edit Menu: Clip Boundaries - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Edit_Menu_Clip_Boundaries rootpage-Edit_Menu_Clip_Boundaries skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Edit Menu: Clip Boundaries</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{edit:menu:clip:boundaries:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+</p>
+<div class="intro">Items in the <!--\textit{--><i><!--\textbf{--><b>Clip Boundaries</b><!--}--></i><!--}--> &nbsp;cascading <!--latex 
+\hyperref[\foo{edit:menu:}]{--><a href="edit_menu.html" title="Edit Menu">Edit</a><!--latex }
+--> menu let you create or remove separate <!--latex 
+\hyperref[\foo{audacity:tracks:and:clips:}]{--><a href="audacity_tracks_and_clips.html" title="Audacity Tracks and Clips">clips</a><!--latex }
+--> in the <!--latex 
+\hyperref[\foo{audio:tracks:}]{--><a href="audio_tracks.html" title="Audio Tracks">audio track</a><!--latex }
+-->.
+</div>
+<dl><dd><!--\textit{--><i>Click, or hover, on any menu item in the image to read about that command.  &nbsp;<span style="font-size:0.8em"><!--latex 
+\hyperref[\foo{edit:menu:clip:boundaries::skiptheimage}]{--><a href="#skiptheimage">Skip the image</a><!--latex }
+--></span></i><!--}--></dd>
+<dd><div class="noresize"><map name="ImageMap_1_1599587637"><area alt="File Menu" coords="3,3,26,19" href="file_menu.html" shape="rect" title="File Menu"/><area alt="Edit Menu" coords="33,3,57,19" href="edit_menu.html" shape="rect" title="Edit Menu"/><area alt="Select Menu" coords="64,3,101,19" href="select_menu.html" shape="rect" title="Select Menu"/><area alt="View Menu" coords="108,3,137,19" href="view_menu.html" shape="rect" title="View Menu"/><area alt="Transport Menu" coords="144,3,200,19" href="transport_menu.html" shape="rect" title="Transport Menu"/><area alt="Tracks Menu" coords="207,3,247,19" href="tracks_menu.html" shape="rect" title="Tracks Menu"/><area alt="Generate Menu" coords="254,3,308,19" href="generate_menu.html" shape="rect" title="Generate Menu"/><area alt="Effect Menu" coords="315,3,348,19" href="effect_menu.html" shape="rect" title="Effect Menu"/><area alt="Analyze Menu" coords="355,3,399,19" href="analyze_menu.html" shape="rect" title="Analyze Menu"/><area alt="Help Menu" coords="406,3,435,19" href="help_menu.html" shape="rect" title="Help Menu"/><area alt="Ext-Bar Menu" coords="442,3,484,19" href="ext_bar_menu.html" shape="rect" title="Ext-Bar Menu"/><area alt="Ext-Command Menu" coords="491,3,573,19" href="ext_command_menu.html" shape="rect" title="Ext-Command Menu"/><area alt="Menu Bar" coords="0,0,600,22" href="menu_reference.html" shape="rect" title="Menu Bar"/><area alt="Undoes the most recent editing action" coords="39,23,211,45" href="undo_redo_and_history.html" shape="rect" title="Undoes the most recent editing action"/><area alt="Redoes the most recently undone editing action" coords="39,45,211,67" href="undo_redo_and_history.html" shape="rect" title="Redoes the most recently undone editing action"/><area alt="Removes the selected audio data and/or labels and places these on the Audacity clipboard" coords="39,74,211,96" href="edit_menu.html#cut" shape="rect" title="Removes the selected audio data and/or labels and places these on the Audacity clipboard"/><area alt="Removes the selected audio data and/or labels without copying these to the Audacity clipboard" coords="39,96,211,118" href="edit_menu.html#delete" shape="rect" title="Removes the selected audio data and/or labels without copying these to the Audacity clipboard"/><area alt="Copies the selected audio data to the Audacity clipboard without removing it from the project" coords="39,118,211,140" href="edit_menu_copy_paste_and_duplicate.html#copy" shape="rect" title="Copies the selected audio data to the Audacity clipboard without removing it from the project"/><area alt="Inserts whatever is on the Audacity clipboard at the position of the selection cursor in the project, replacing whatever audio data is currently selected, if any" coords="39,140,211,162" href="edit_menu_copy_paste_and_duplicate.html#paste" shape="rect" title="Inserts whatever is on the Audacity clipboard at the position of the selection cursor in the project, replacing whatever audio data is currently selected, if any"/><area alt="Creates a new track containing only the current selection as a new clip" coords="39,162,211,184" href="edit_menu_copy_paste_and_duplicate.html#duplicate" shape="rect" title="Creates a new track containing only the current selection as a new clip"/><area alt='For more "advanced" removal of audio' coords="39,191,211,213" href="edit_menu_remove_special.html" shape="rect" title='For more "advanced" removal of audio'/><area alt="Create or remove separate clips in the audio track" coords="39,220,211,242" href="#" shape="rect" title="Create or remove separate clips in the audio track"/><area alt="These commands are to add and edit labels" coords="39,242,211,264" href="edit_menu_labels.html" shape="rect" title="These commands are to add and edit labels"/><area alt="Labeled Audio commands apply standard Edit Menu commands to the audio of one or more regions that are labeled" coords="39,264,211,286" href="edit_menu_labeled_audio.html" shape="rect" title="Labeled Audio commands apply standard Edit Menu commands to the audio of one or more regions that are labeled"/><area alt="The Metadata Editor modifies information about a track, such as the artist and genre" coords="39,286,211,308" href="edit_menu.html#metadata" shape="rect" title="The Metadata Editor modifies information about a track, such as the artist and genre"/><area alt="Preferences let you change most of the default behaviors and settings of Audacity" coords="39,315,211,337" href="edit_menu.html#preferences" shape="rect" title="Preferences let you change most of the default behaviors and settings of Audacity"/><area alt="Splits the current clip into two clips at the cursor point, or into three clips at the selection boundaries" coords="223,223,402,245" href="#split" shape="rect" title="Splits the current clip into two clips at the cursor point, or into three clips at the selection boundaries"/><area alt="Does a Split Cut on the current selection in the current track, then creates a new track and pastes the selection into the new track" coords="223,245,402,267" href="#split_new" shape="rect" title="Does a Split Cut on the current selection in the current track, then creates a new track and pastes the selection into the new track"/><area alt="If you select an area that overlaps one or more clips, they are all joined into one large clip" coords="223,274,402,296" href="#join" shape="rect" title="If you select an area that overlaps one or more clips, they are all joined into one large clip"/><area alt="In a selection region that includes absolute silences, creates individual non-silent clips between the regions of silence" coords="223,296,402,318" href="#detach_at_silences" shape="rect" title="In a selection region that includes absolute silences, creates individual non-silent clips between the regions of silence"/></map><!--
+
+\par\Needspace{202.5pt}\begin{picture}(207.5,172.5)
+--><!--   \put(0,0){\includegraphics[scale=0.5]{--><img alt="Edit-Clip BoundariesMenu.png" height="345" src="../m/images/5/5e/edit_clip_boundariesmenu.png" usemap="#ImageMap_1_1599587637" width="415"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/5/5e/edit_clip_boundariesmenu.png--></img><!--}}
+--><!--   \put(1.5,163.0){\hyperref[\foo{file:menu:}]{\makebox(11.5,8.0){}}}
+   \put(16.5,163.0){\hyperref[\foo{edit:menu:}]{\makebox(12.0,8.0){}}}
+   \put(32.0,163.0){\hyperref[\foo{select:menu:}]{\makebox(18.5,8.0){}}}
+   \put(54.0,163.0){\hyperref[\foo{view:menu:}]{\makebox(14.5,8.0){}}}
+   \put(72.0,163.0){\hyperref[\foo{transport:menu:}]{\makebox(28.0,8.0){}}}
+   \put(103.5,163.0){\hyperref[\foo{tracks:menu:}]{\makebox(20.0,8.0){}}}
+   \put(127.0,163.0){\hyperref[\foo{generate:menu:}]{\makebox(27.0,8.0){}}}
+   \put(157.5,163.0){\hyperref[\foo{effect:menu:}]{\makebox(16.5,8.0){}}}
+   \put(177.5,163.0){\hyperref[\foo{analyze:menu:}]{\makebox(22.0,8.0){}}}
+   \put(203.0,163.0){\hyperref[\foo{help:menu:}]{\makebox(14.5,8.0){}}}
+   \put(221.0,163.0){\hyperref[\foo{ext:bar:menu:}]{\makebox(21.0,8.0){}}}
+   \put(245.5,163.0){\hyperref[\foo{ext:command:menu:}]{\makebox(41.0,8.0){}}}
+   \put(19.5,150.0){\hyperref[\foo{undo:redo:and:history:}]{\makebox(86.0,11.0){}}}
+   \put(19.5,139.0){\hyperref[\foo{undo:redo:and:history:}]{\makebox(86.0,11.0){}}}
+   \put(19.5,124.5){\hyperref[\foo{edit:menu:cut}]{\makebox(86.0,11.0){}}}
+   \put(19.5,113.5){\hyperref[\foo{edit:menu:delete}]{\makebox(86.0,11.0){}}}
+   \put(19.5,102.5){\hyperref[\foo{edit:menu:copy:paste:and:duplicate:copy}]{\makebox(86.0,11.0){}}}
+   \put(19.5,91.5){\hyperref[\foo{edit:menu:copy:paste:and:duplicate:paste}]{\makebox(86.0,11.0){}}}
+   \put(19.5,80.5){\hyperref[\foo{edit:menu:copy:paste:and:duplicate:duplicate}]{\makebox(86.0,11.0){}}}
+   \put(19.5,66.0){\hyperref[\foo{edit:menu:remove:special:}]{\makebox(86.0,11.0){}}}
+   \put(19.5,51.5){\hyperref[\foo{edit:menu:clip:boundaries::}]{\makebox(86.0,11.0){}}}
+   \put(19.5,40.5){\hyperref[\foo{edit:menu:labels:}]{\makebox(86.0,11.0){}}}
+   \put(19.5,29.5){\hyperref[\foo{edit:menu:labeled:audio:}]{\makebox(86.0,11.0){}}}
+   \put(19.5,18.5){\hyperref[\foo{edit:menu:metadata}]{\makebox(86.0,11.0){}}}
+   \put(19.5,4.0){\hyperref[\foo{edit:menu:preferences}]{\makebox(86.0,11.0){}}}
+   \put(111.5,50.0){\hyperref[\foo{edit:menu:clip:boundaries::split}]{\makebox(89.5,11.0){}}}
+   \put(111.5,39.0){\hyperref[\foo{edit:menu:clip:boundaries::split:new}]{\makebox(89.5,11.0){}}}
+   \put(111.5,24.5){\hyperref[\foo{edit:menu:clip:boundaries::join}]{\makebox(89.5,11.0){}}}
+   \put(111.5,13.5){\hyperref[\foo{edit:menu:clip:boundaries::detach:at:silences}]{\makebox(89.5,11.0){}}}
+\end{picture}
+
+--></div></dd></dl>
+<div id="skiptheimage"></div>
+<div class="note"><!--\textbf{--><b>Mac users:</b><!--}--> <span class="kbrd" style="background-color: #e0e0f0">Ctrl</span> = <span class="kbrd" style="background-color: #e0e0f0">⌘</span> and <span class="kbrd" style="background-color: #e0e0f0">Alt</span> = <span class="kbrd" style="background-color: #e0e0f0">Option</span>. So, for example, <span class="kbrd" style="background-color: #e0e0f0">Ctrl + Alt + J</span> = <span class="kbrd" style="background-color: #e0e0f0">⌘ + Option + J</span></div>
+<div id="split"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Split_.C2.A0Ctrl_.2B_I">Split &nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">Ctrl + I</span></font></span></h2><!--}--><!--latex 
+\label{edit:menu:clip:boundaries:split}--><!--latex 
+\label{edit:menu:clip:boundaries:skiptheimage}-->
+<p>Splits the current clip into up to three clips at the selection boundaries.  The audio before, within, and after the selection can now all be shifted independently
+</p>
+<dl><dd><span title="Before"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="EditMenuClipBoundaries Split 01.png" height="133" src="../m/images/7/74/editmenuclipboundaries_split_01.png" width="474"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/7/74/editmenuclipboundaries_split_01.png--></img><!--}\par
+--></span></dd></dl>
+<dl><dd><span title="After"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="EditMenuClipBoundaries Split 02.png" height="133" src="../m/images/9/9c/editmenuclipboundaries_split_02.png" width="474"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/9/9c/editmenuclipboundaries_split_02.png--></img><!--}\par
+--></span></dd></dl>
+<dl><dd><span title="Moving"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="EditMenuClipBoundaries Split 03.png" height="133" src="../m/images/c/c4/editmenuclipboundaries_split_03.png" width="474"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/c/c4/editmenuclipboundaries_split_03.png--></img><!--}\par
+--></span></dd></dl>
+<div id="split_new"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Split_New_.C2.A0Ctrl.2B_Alt_.2B_I">Split New &nbsp;<font size="-1"><span class="kbrd" style="background-color: #f0f0ff;color: #b0b0b0">Ctrl+ Alt + I</span></font></span></h2><!--}--><!--latex 
+\label{edit:menu:clip:boundaries:split:new}-->
+<p>Does a <!--latex 
+\hyperref[\foo{edit:menu:remove:special:split:cut}]{--><a href="edit_menu_remove_special.html#split_cut" title="Edit Menu: Remove Special">Split Cut</a><!--latex }
+--> on the current selection in the current track, then creates a new track and pastes the selection into the new track.
+</p>
+<dl><dd><span title="Before"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="EditMenuClipBoundaries Split 01.png" height="133" src="../m/images/7/74/editmenuclipboundaries_split_01.png" width="474"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/7/74/editmenuclipboundaries_split_01.png--></img><!--}\par
+--></span></dd></dl>
+<dl><dd><span title="After"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="EditMenuClipBoundaries SplitNew 02.png" height="252" src="../m/images/0/0c/editmenuclipboundaries_splitnew_02.png" width="474"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/0/0c/editmenuclipboundaries_splitnew_02.png--></img><!--}\par
+--></span></dd></dl>
+<div id="join"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Join_.C2.A0Ctrl_.2B_J">Join &nbsp;<font size="-1"><span class="kbrd" style="background-color: #f0f0ff;color: #b0b0b0">Ctrl + J</span></font></span></h2><!--}--><!--latex 
+\label{edit:menu:clip:boundaries:join}-->
+<p>If you select an area that overlaps one or more clips, they are all joined into one large clip.  Regions in-between clips become silence.
+</p>
+<dl><dd><span title="Before"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="EditMenuClipBoundaries Join 01.png" height="133" src="../m/images/b/b9/editmenuclipboundaries_join_01.png" width="473"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/b9/editmenuclipboundaries_join_01.png--></img><!--}\par
+--></span></dd></dl>
+<dl><dd><span title="After"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="EditMenuClipBoundaries Join 02.png" height="133" src="../m/images/a/ac/editmenuclipboundaries_join_02.png" width="474"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/a/ac/editmenuclipboundaries_join_02.png--></img><!--}\par
+--></span></dd></dl>
+<div id="disjoin"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Detach_at_Silences.C2.A0Ctrl_.2B_Alt_.2B_J">Detach at Silences&nbsp;<font size="-1"><span class="kbrd" style="background-color: #f0f0ff;color: #b0b0b0">Ctrl + Alt + J</span></font></span></h2><!--}--><!--latex 
+\label{edit:menu:clip:boundaries:disjoin}-->
+<p>In a selection region that includes absolute silence and other audio, creates individual non-silent clips between the regions of silence. The silence in the selection becomes blank space between the clips. 
+</p>
+<dl><dd><span title="Before"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="EditMenuClipBoundaries Detach 01.png" height="134" src="../m/images/1/11/editmenuclipboundaries_detach_01.png" width="474"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/1/11/editmenuclipboundaries_detach_01.png--></img><!--}\par
+--></span></dd></dl>
+<dl><dd><span title="After"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="EditMenuClipBoundaries Detach 02.png" height="133" src="../m/images/6/69/editmenuclipboundaries_detach_02.png" width="474"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/6/69/editmenuclipboundaries_detach_02.png--></img><!--}\par
+--></span></dd></dl>
+<p>If the selection is entirely silence, it becomes blank space between the audio either side of the selection.  
+</p><p><br/>
+<!--latex 
+\hyperref[\foo{edit:menu:}]{--><a href="edit_menu.html" title="Edit Menu"><!--\textbf{--><b>&lt;</b><!--}-->&nbsp; Back to: Edit Menu</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

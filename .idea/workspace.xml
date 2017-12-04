@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="19d53a3f-3465-411f-b55c-a4cbe997b0eb" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wit-html/scroller-contents/select_menu_clip_boundaries.html" afterPath="$PROJECT_DIR$/wit-html/scroller-contents/select_menu_clip_boundaries.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wit-html/scroller-contents/303.css" afterPath="$PROJECT_DIR$/wit-html/scroller-contents/303.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wit-html/wit.htm" afterPath="$PROJECT_DIR$/wit-html/wit.htm" />
     </list>
     <ignored path="AudacityTeamTools.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,8 +27,8 @@
       <file leaf-file-name="wit.htm" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wit-html/wit.htm">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.230769">
-              <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+            <state vertical-scroll-proportion="-22.615385">
+              <caret line="42" column="7" selection-start-line="42" selection-start-column="7" selection-end-line="42" selection-end-column="7" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -36,11 +37,111 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="select_menu_clip_boundaries.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="edit_menu_clip_boundaries.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wit-html/scroller-contents/edit_menu_clip_boundaries.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-9.153846">
+              <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="edit_menu_find_zero_crossings.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wit-html/scroller-contents/edit_menu_find_zero_crossings.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-9.153846">
+              <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="edit_menu_labeled_audio.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wit-html/scroller-contents/edit_menu_labeled_audio.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-9.153846">
+              <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="edit_menu_remove_special.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wit-html/scroller-contents/edit_menu_remove_special.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-9.153846">
+              <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="edit_menu_labels.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wit-html/scroller-contents/edit_menu_labels.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-9.153846">
+              <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="edit_menu_select.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wit-html/scroller-contents/edit_menu_select.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-9.153846">
+              <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="edit_toolbar.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wit-html/scroller-contents/edit_toolbar.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-9.153846">
+              <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="edit_menu_copy_paste_and_duplicate.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wit-html/scroller-contents/edit_menu_copy_paste_and_duplicate.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-9.153846">
+              <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="select_menu_clip_boundaries.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wit-html/scroller-contents/select_menu_clip_boundaries.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5774805">
-              <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+            <state vertical-scroll-proportion="-3.7692308">
+              <caret line="25" column="6" selection-start-line="25" selection-start-column="6" selection-end-line="25" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="303.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/wit-html/scroller-contents/303.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.29654405">
+              <caret line="25" column="19" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="edit_menu.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wit-html/scroller-contents/edit_menu.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-9.153846">
+              <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -107,8 +208,18 @@
       <list>
         <option value="$PROJECT_DIR$/wit-html/wit.htm.html" />
         <option value="$PROJECT_DIR$/wit-html/js/boxes.js" />
-        <option value="$PROJECT_DIR$/wit-html/wit.htm" />
         <option value="$PROJECT_DIR$/wit-html/scroller-contents/select_menu_clip_boundaries.html" />
+        <option value="$PROJECT_DIR$/wit-html/scroller-contents/303.css" />
+        <option value="$PROJECT_DIR$/wit-html/scroller-contents/edit_menu.html" />
+        <option value="$PROJECT_DIR$/wit-html/wit.htm" />
+        <option value="$PROJECT_DIR$/wit-html/scroller-contents/edit_menu_clip_boundaries.html" />
+        <option value="$PROJECT_DIR$/wit-html/scroller-contents/edit_menu_copy_paste_and_duplicate.html" />
+        <option value="$PROJECT_DIR$/wit-html/scroller-contents/edit_menu_find_zero_crossings.html" />
+        <option value="$PROJECT_DIR$/wit-html/scroller-contents/edit_menu_labeled_audio.html" />
+        <option value="$PROJECT_DIR$/wit-html/scroller-contents/edit_menu_remove_special.html" />
+        <option value="$PROJECT_DIR$/wit-html/scroller-contents/edit_menu_labels.html" />
+        <option value="$PROJECT_DIR$/wit-html/scroller-contents/edit_menu_select.html" />
+        <option value="$PROJECT_DIR$/wit-html/scroller-contents/edit_toolbar.html" />
       </list>
     </option>
   </component>
@@ -309,9 +420,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="21" width="1924" height="1056" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17179215" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17179215" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -377,8 +488,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wit-html/wit.htm">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.230769">
-          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+        <state vertical-scroll-proportion="-22.615385">
+          <caret line="42" column="7" selection-start-line="42" selection-start-column="7" selection-end-line="42" selection-end-column="7" />
           <folding>
             <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -386,10 +497,90 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/wit-html/scroller-contents/edit_menu_clip_boundaries.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.153846">
+          <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wit-html/scroller-contents/edit_menu_copy_paste_and_duplicate.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.153846">
+          <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wit-html/scroller-contents/edit_menu_find_zero_crossings.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.153846">
+          <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wit-html/scroller-contents/edit_menu_labeled_audio.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.153846">
+          <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wit-html/scroller-contents/edit_menu_labels.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.153846">
+          <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wit-html/scroller-contents/edit_menu_remove_special.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.153846">
+          <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wit-html/scroller-contents/edit_menu_select.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.153846">
+          <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wit-html/scroller-contents/edit_toolbar.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.153846">
+          <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/wit-html/scroller-contents/select_menu_clip_boundaries.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5774805">
-          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+        <state vertical-scroll-proportion="-3.7692308">
+          <caret line="25" column="6" selection-start-line="25" selection-start-column="6" selection-end-line="25" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wit-html/scroller-contents/edit_menu.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.153846">
+          <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wit-html/scroller-contents/303.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.29654405">
+          <caret line="25" column="19" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
           <folding />
         </state>
       </provider>

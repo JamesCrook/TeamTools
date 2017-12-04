@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Edit Menu: Remove Special - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Edit_Menu_Remove_Special rootpage-Edit_Menu_Remove_Special skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Edit Menu: Remove Special</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{edit:menu:remove:special:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p><br/>
+
+</p>
+<div class="intro">Items in the <!--\textit{--><i><!--\textbf{--><b>Remove Special</b><!--}--></i><!--}--> &nbsp;cascading <!--latex 
+\hyperref[\foo{edit:menu:}]{--><a href="edit_menu.html" title="Edit Menu">Edit</a><!--latex }
+--> menu remove audio or <!--latex 
+\hyperref[\foo{label:tracks:}]{--><a href="label_tracks.html" title="Label Tracks">labels</a><!--latex }
+--> (or audio <!--\textit{--><i>with</i><!--}--> labels if both are <!--latex 
+\hyperref[\foo{audacity:selection:}]{--><a href="audacity_selection.html" title="Audacity Selection">selected</a><!--latex }
+-->) by Split Cut and Split Delete. These removal methods do not affect the audio or labels to right of the selection. <p> You can also silence or trim audio only, not affecting labels.</p></div>
+<dl><dd><!--\textit{--><i>Click, or hover, on any menu item in the image to read about that command.  &nbsp;<span style="font-size:0.8em"><!--latex 
+\hyperref[\foo{edit:menu:remove:special::skiptheimage}]{--><a href="#skiptheimage">Skip the image</a><!--latex }
+--></span></i><!--}--></dd>
+<dd><div class="noresize"><map name="ImageMap_1_821434482"><area alt="File Menu" coords="3,3,26,19" href="file_menu.html" shape="rect" title="File Menu"/><area alt="Edit Menu" coords="33,3,57,19" href="edit_menu.html" shape="rect" title="Edit Menu"/><area alt="Select Menu" coords="64,3,101,19" href="select_menu.html" shape="rect" title="Select Menu"/><area alt="View Menu" coords="108,3,137,19" href="view_menu.html" shape="rect" title="View Menu"/><area alt="Transport Menu" coords="144,3,200,19" href="transport_menu.html" shape="rect" title="Transport Menu"/><area alt="Tracks Menu" coords="207,3,247,19" href="tracks_menu.html" shape="rect" title="Tracks Menu"/><area alt="Generate Menu" coords="254,3,308,19" href="generate_menu.html" shape="rect" title="Generate Menu"/><area alt="Effect Menu" coords="315,3,348,19" href="effect_menu.html" shape="rect" title="Effect Menu"/><area alt="Analyze Menu" coords="355,3,399,19" href="analyze_menu.html" shape="rect" title="Analyze Menu"/><area alt="Help Menu" coords="406,3,435,19" href="help_menu.html" shape="rect" title="Help Menu"/><area alt="Ext-Bar Menu" coords="442,3,484,19" href="ext_bar_menu.html" shape="rect" title="Ext-Bar Menu"/><area alt="Ext-Command Menu" coords="491,3,573,19" href="ext_command_menu.html" shape="rect" title="Ext-Command Menu"/><area alt="Menu Bar" coords="0,0,600,22" href="menu_reference.html" shape="rect" title="Menu Bar"/><area alt="Undoes the most recent editing action" coords="39,23,211,45" href="undo_redo_and_history.html" shape="rect" title="Undoes the most recent editing action"/><area alt="Redoes the most recently undone editing action" coords="39,45,211,67" href="undo_redo_and_history.html" shape="rect" title="Redoes the most recently undone editing action"/><area alt="Removes the selected audio data and/or labels and places these on the Audacity clipboard" coords="39,74,211,96" href="edit_menu.html#cut" shape="rect" title="Removes the selected audio data and/or labels and places these on the Audacity clipboard"/><area alt="Removes the selected audio data and/or labels without copying these to the Audacity clipboard" coords="39,96,211,118" href="edit_menu.html#delete" shape="rect" title="Removes the selected audio data and/or labels without copying these to the Audacity clipboard"/><area alt="Copies the selected audio data to the Audacity clipboard without removing it from the project" coords="39,118,211,140" href="edit_menu_copy_paste_and_duplicate.html#copy" shape="rect" title="Copies the selected audio data to the Audacity clipboard without removing it from the project"/><area alt="Inserts whatever is on the Audacity clipboard at the position of the selection cursor in the project, replacing whatever audio data is currently selected, if any" coords="39,140,211,162" href="edit_menu_copy_paste_and_duplicate.html#paste" shape="rect" title="Inserts whatever is on the Audacity clipboard at the position of the selection cursor in the project, replacing whatever audio data is currently selected, if any"/><area alt="Creates a new track containing only the current selection as a new clip" coords="39,162,211,184" href="edit_menu_copy_paste_and_duplicate.html#duplicate" shape="rect" title="Creates a new track containing only the current selection as a new clip"/><area alt='For more "advanced" removal of audio' coords="39,191,211,213" href="#" shape="rect" title='For more "advanced" removal of audio'/><area alt="Create or remove separate clips in the audio track" coords="39,220,211,242" href="edit_menu_clip_boundaries.html" shape="rect" title="Create or remove separate clips in the audio track"/><area alt="These commands are to add and edit labels" coords="39,242,211,264" href="edit_menu_labels.html" shape="rect" title="These commands are to add and edit labels"/><area alt="Labeled Audio commands apply standard Edit Menu commands to the audio of one or more regions that are labeled" coords="39,264,211,286" href="edit_menu_labeled_audio.html" shape="rect" title="Labeled Audio commands apply standard Edit Menu commands to the audio of one or more regions that are labeled"/><area alt="The Metadata Editor modifies information about a track, such as the artist and genre" coords="39,286,211,308" href="edit_menu.html#metadata" shape="rect" title="The Metadata Editor modifies information about a track, such as the artist and genre"/><area alt="Preferences let you change most of the default behaviors and settings of Audacity" coords="39,315,211,337" href="edit_menu.html#preferences" shape="rect" title="Preferences let you change most of the default behaviors and settings of Audacity"/><area alt="Same as Cut, but none of the audio data or labels to right of the selection are shifted" coords="223,194,406,216" href="#split_cut" shape="rect" title="Same as Cut, but none of the audio data or labels to right of the selection are shifted"/><area alt="Same as Delete, but none of the audio data or labels to right of the selection are shifted" coords="223,216,406,238" href="#split_delete" shape="rect" title="Same as Delete, but none of the audio data or labels to right of the selection are shifted"/><area alt="Replaces the currently selected audio with absolute silence" coords="223,245,406,267" href="#silence_audio" shape="rect" title="Replaces the currently selected audio with absolute silence"/><area alt="Deletes all audio but the selection" coords="223,267,406,289" href="#trim_audio" shape="rect" title="Deletes all audio but the selection"/></map><!--
+
+\par\Needspace{202.5pt}\begin{picture}(209.5,172.5)
+--><!--   \put(0,0){\includegraphics[scale=0.5]{--><img alt="Edit-Remove SpecialMenu.png" height="345" src="../m/images/2/29/edit_remove_specialmenu.png" usemap="#ImageMap_1_821434482" width="419"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/2/29/edit_remove_specialmenu.png--></img><!--}}
+--><!--   \put(1.5,163.0){\hyperref[\foo{file:menu:}]{\makebox(11.5,8.0){}}}
+   \put(16.5,163.0){\hyperref[\foo{edit:menu:}]{\makebox(12.0,8.0){}}}
+   \put(32.0,163.0){\hyperref[\foo{select:menu:}]{\makebox(18.5,8.0){}}}
+   \put(54.0,163.0){\hyperref[\foo{view:menu:}]{\makebox(14.5,8.0){}}}
+   \put(72.0,163.0){\hyperref[\foo{transport:menu:}]{\makebox(28.0,8.0){}}}
+   \put(103.5,163.0){\hyperref[\foo{tracks:menu:}]{\makebox(20.0,8.0){}}}
+   \put(127.0,163.0){\hyperref[\foo{generate:menu:}]{\makebox(27.0,8.0){}}}
+   \put(157.5,163.0){\hyperref[\foo{effect:menu:}]{\makebox(16.5,8.0){}}}
+   \put(177.5,163.0){\hyperref[\foo{analyze:menu:}]{\makebox(22.0,8.0){}}}
+   \put(203.0,163.0){\hyperref[\foo{help:menu:}]{\makebox(14.5,8.0){}}}
+   \put(221.0,163.0){\hyperref[\foo{ext:bar:menu:}]{\makebox(21.0,8.0){}}}
+   \put(245.5,163.0){\hyperref[\foo{ext:command:menu:}]{\makebox(41.0,8.0){}}}
+   \put(19.5,150.0){\hyperref[\foo{undo:redo:and:history:}]{\makebox(86.0,11.0){}}}
+   \put(19.5,139.0){\hyperref[\foo{undo:redo:and:history:}]{\makebox(86.0,11.0){}}}
+   \put(19.5,124.5){\hyperref[\foo{edit:menu:cut}]{\makebox(86.0,11.0){}}}
+   \put(19.5,113.5){\hyperref[\foo{edit:menu:delete}]{\makebox(86.0,11.0){}}}
+   \put(19.5,102.5){\hyperref[\foo{edit:menu:copy:paste:and:duplicate:copy}]{\makebox(86.0,11.0){}}}
+   \put(19.5,91.5){\hyperref[\foo{edit:menu:copy:paste:and:duplicate:paste}]{\makebox(86.0,11.0){}}}
+   \put(19.5,80.5){\hyperref[\foo{edit:menu:copy:paste:and:duplicate:duplicate}]{\makebox(86.0,11.0){}}}
+   \put(19.5,66.0){\hyperref[\foo{edit:menu:remove:special::}]{\makebox(86.0,11.0){}}}
+   \put(19.5,51.5){\hyperref[\foo{edit:menu:clip:boundaries:}]{\makebox(86.0,11.0){}}}
+   \put(19.5,40.5){\hyperref[\foo{edit:menu:labels:}]{\makebox(86.0,11.0){}}}
+   \put(19.5,29.5){\hyperref[\foo{edit:menu:labeled:audio:}]{\makebox(86.0,11.0){}}}
+   \put(19.5,18.5){\hyperref[\foo{edit:menu:metadata}]{\makebox(86.0,11.0){}}}
+   \put(19.5,4.0){\hyperref[\foo{edit:menu:preferences}]{\makebox(86.0,11.0){}}}
+   \put(111.5,64.5){\hyperref[\foo{edit:menu:remove:special::split:cut}]{\makebox(91.5,11.0){}}}
+   \put(111.5,53.5){\hyperref[\foo{edit:menu:remove:special::split:delete}]{\makebox(91.5,11.0){}}}
+   \put(111.5,39.0){\hyperref[\foo{edit:menu:remove:special::silence:audio}]{\makebox(91.5,11.0){}}}
+   \put(111.5,28.0){\hyperref[\foo{edit:menu:remove:special::trim:audio}]{\makebox(91.5,11.0){}}}
+\end{picture}
+
+--></div></dd></dl>
+<div id="skiptheimage"></div>
+<div class="note"><!--\textbf{--><b>Mac users:</b><!--}--> <span class="kbrd" style="background-color: #e0e0f0">Ctrl</span> = <span class="kbrd" style="background-color: #e0e0f0">⌘</span> and <span class="kbrd" style="background-color: #e0e0f0">Alt</span> = <span class="kbrd" style="background-color: #e0e0f0">Option</span>. So, for example, <span class="kbrd" style="background-color: #e0e0f0">Ctrl + Alt + K</span> = <span class="kbrd" style="background-color: #e0e0f0">⌘ + Option + K</span></div>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">You may hear a click at the edit points when you remove or <!--latex 
+\hyperref[\foo{edit:menu:copy:paste:and:duplicate:paste}]{--><a href="edit_menu_copy_paste_and_duplicate.html#paste" title="Edit Menu: Copy, Paste and Duplicate">paste</a><!--latex }
+--> audio. This can be caused by <!--latex 
+\hyperref[\foo{glossary:dc:offset}]{--><a href="glossary.html#dc_offset" title="Glossary">DC offset</a><!--latex }
+--> in the waveform or by poor selection of the edit points. See this <!--latex 
+\hyperref[\foo{faq:editing:clicks}]{--><a href="faq_editing.html#clicks" title="FAQ:Editing">Editing Frequently Asked Question</a><!--latex }
+--> for how to deal with this.
+</td></tr></tbody></table>
+</div>
+<div id="split_cut"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Split_Cut_.C2.A0Ctrl_.2B_Alt_.2B_X">Split Cut &nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">Ctrl + Alt + X</span></font></span></h2><!--}--><!--latex 
+\label{edit:menu:remove:special:split:cut}--><!--latex 
+\label{edit:menu:remove:special:skiptheimage}-->
+
+<p>Same as <span class="menu">Edit &gt; <!--latex 
+\hyperref[\foo{edit:menu:cut}]{--><a href="edit_menu.html#cut" title="Edit Menu">Cut</a><!--latex }
+--></span>, but none of the audio data or labels to right of the selection are shifted. 
+A gap is thus left behind in the audio track which splits the existing audio <!--latex 
+\hyperref[\foo{audacity:tracks:and:clips:}]{--><a href="audacity_tracks_and_clips.html" title="Audacity Tracks and Clips">clip</a><!--latex }
+--> into two clips that can be moved independently using <!--latex 
+\hyperref[\foo{tools:toolbar:timeshift}]{--><a href="tools_toolbar.html#timeshift" title="Tools Toolbar">Time Shift Tool</a><!--latex }
+-->.
+</p>
+<dl><dd><!--\textbf{--><b>Split Cut with audio selected:</b><!--}--></dd>
+<dd><span title="Before Split Cut"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="EditMenuRemoveSpecial InitialSelection.png" height="115" src="../m/images/6/61/editmenuremovespecial_initialselection.png" width="423"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/6/61/editmenuremovespecial_initialselection.png--></img><!--}\par
+--></span></dd>
+<dd><span title="After Split Cut"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="EditMenuRemoveSpecial SplitCut 2.png" height="115" src="../m/images/c/c3/editmenuremovespecial_splitcut_2.png" width="423"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/c/c3/editmenuremovespecial_splitcut_2.png--></img><!--}\par
+--></span></dd></dl>
+<p>This is also a useful command to remove one label of a group of labels without affecting the other labels (be sure to select only in the label track unless you want to cut the audio as well as the label). The labels following the deleted section do not move to the left. The labels still correspond to the same audio regions. This is a quick way to delete a label without affecting any other labels on the Label Track.
+</p>
+<dl><dd><!--\textbf{--><b>Split Cut with label selected:</b><!--}--></dd>
+<dd><span title="Before Split Delete"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="EditMenuRemoveSpecial SplitDelete 1.png" height="188" src="../m/images/3/30/editmenuremovespecial_splitdelete_1.png" width="423"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/3/30/editmenuremovespecial_splitdelete_1.png--></img><!--}\par
+--></span></dd>
+<dd><span title="After Split Delete"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="EditMenuRemoveSpecial SplitDelete 2.png" height="188" src="../m/images/b/bd/editmenuremovespecial_splitdelete_2.png" width="423"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/bd/editmenuremovespecial_splitdelete_2.png--></img><!--}\par
+--></span></dd></dl>
+<div id="split_delete"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Split_Delete_.C2.A0Ctrl_.2B_Alt_.2B_K">Split Delete &nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">Ctrl + Alt + K</span></font></span></h2><!--}--><!--latex 
+\label{edit:menu:remove:special:split:delete}-->
+<p>Same as <span class="menu">Edit &gt; Split Cut</span> but the audio and/or labels are not put on the clipboard.
+</p>
+<div class="note">
+<p>The following two commands affect the audio in the selection but do not affect any labels that are in the selection.
+</p>
+</div>
+<div id="silence_audio"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Silence_Audio_.C2.A0Ctrl_.2B_L"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Tool edit silence.png" height="19" src="../m/images/1/16/tool_edit_silence.png" width="20"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/1/16/tool_edit_silence.png--></img><!--}}{}--> Silence Audio &nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">Ctrl + L</span></font></span></h2><!--}--><!--latex 
+\label{edit:menu:remove:special:silence:audio}-->
+<p>Replaces the selected audio with silence. 
+</p>
+<dl><dd><span title="Before Silence Audio"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="EditMenuRemoveSpecial InitialSelection.png" height="115" src="../m/images/6/61/editmenuremovespecial_initialselection.png" width="423"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/6/61/editmenuremovespecial_initialselection.png--></img><!--}\par
+--></span></dd>
+<dd><span title="After Silence Audio"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="EditMenuRemoveSpecial Silence 2.png" height="115" src="../m/images/4/40/editmenuremovespecial_silence_2.png" width="423"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/4/40/editmenuremovespecial_silence_2.png--></img><!--}\par
+--></span></dd></dl>
+<div id="trim_audio"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Trim_Audio_.C2.A0Ctrl_.2B_T"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Trim.png" height="24" src="../m/images/c/c9/trim.png" width="26"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/c/c9/trim.png--></img><!--}}{}--> Trim Audio &nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">Ctrl + T</span></font></span></h2><!--}--><!--latex 
+\label{edit:menu:remove:special:trim:audio}-->
+<p>Removes all audio from the current <!--latex 
+\hyperref[\foo{audacity:tracks:and:clips:}]{--><a href="audacity_tracks_and_clips.html" title="Audacity Tracks and Clips">clip</a><!--latex }
+--> except the selected part, creating its own clip from the remaining audio. If there are other separate clips in the same track these are not removed or shifted.</p>
+<dl><dd><span title="Before Trim Audio"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="EditMenuRemoveSpecial InitialSelection.png" height="115" src="../m/images/6/61/editmenuremovespecial_initialselection.png" width="423"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/6/61/editmenuremovespecial_initialselection.png--></img><!--}\par
+--></span></dd>
+<dd><span title="After Trim Audio"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="EditMenuRemoveSpecial Trim 2.png" height="114" src="../m/images/2/2c/editmenuremovespecial_trim_2.png" width="423"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/2/2c/editmenuremovespecial_trim_2.png--></img><!--}\par
+--></span></dd>
+<dd>Result: the audio in the clip to the right is unaffected.</dd></dl>
+ <p>If an entire clip (or clips) is selected then all other clips on the track will be deleted.</p> 
+<p><!--latex 
+\hyperref[\foo{edit:menu:}]{--><a href="edit_menu.html" title="Edit Menu"><!--\textbf{--><b>&lt;</b><!--}-->&nbsp; Back to: Edit Menu</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

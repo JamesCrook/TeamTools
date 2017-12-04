@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Edit Menu: Copy, Paste and Duplicate - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Edit_Menu_Copy_Paste_and_Duplicate rootpage-Edit_Menu_Copy_Paste_and_Duplicate skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Edit Menu: Copy, Paste and Duplicate</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{edit:menu:copy:paste:and:duplicate:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p><br/>
+
+</p>
+   
+<p><br/>
+</p>
+<div class="intro">Tools to copy, duplicate and paste audio and labels.<p>Only one item can be on the clipboard at a time.</p></div>
+<div id="copy"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Copy_.C2.A0Ctrl_.2B_C">Copy &nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">Ctrl + C</span></font></span></h2><!--}--><!--latex 
+\label{edit:menu:copy:paste:and:duplicate:copy}-->
+<p>Copies the selected audio data to the Audacity clipboard without removing it from the project.
+</p>
+<div id="cut"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Cut_.C2.A0Ctrl_.2B_X">Cut &nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">Ctrl + X</span></font></span></h2><!--}--><!--latex 
+\label{edit:menu:copy:paste:and:duplicate:cut}-->
+<p>Similar to Copy, but removes the selected audio data and and places these on the Audacity clipboard. Any audio data to the right of the selection are shifted to the left.
+</p>
+<div id="paste"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Paste_.C2.A0Ctrl_.2B_V">Paste &nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">Ctrl + V</span></font></span></h2><!--}--><!--latex 
+\label{edit:menu:copy:paste:and:duplicate:paste}-->
+<p>Pastes audio which has been <!--latex 
+\hyperref[\foo{edit:menu:copy:paste:and:duplicate::cut}]{--><a href="#cut">cut</a><!--latex }
+--> or <!--latex 
+\hyperref[\foo{edit:menu:copy:paste:and:duplicate::copy}]{--><a href="#copy">copied</a><!--latex }
+--> to the Audacity clipboard, either inserting it into the <!--latex 
+\hyperref[\foo{audacity:selection:}]{--><a href="audacity_selection.html" title="Audacity Selection">selected</a><!--latex }
+--> track(s) at the cursor point, or replacing the current selection region(s).
+</p><p><br/>
+</p>
+<div class="note">The behavior of the paste command changes depending on the setting of "Editing <!--latex 
+\hyperref[\foo{audacity:tracks:and:clips:}]{--><a href="audacity_tracks_and_clips.html" title="Audacity Tracks and Clips">clips</a><!--latex }
+--> can move other clips" in <!--latex 
+\hyperref[\foo{tracks:preferences:}]{--><a href="tracks_preferences.html" title="Tracks Preferences">Tracks Preferences</a><!--latex }
+-->. If the option is <!--\textit{--><i>checked</i><!--}--> pasting is always possible and following audio is shifted to make room. If this option is <!--\textit{--><i>not checked</i><!--}--> there must be room for the pasted audio.</div>
+<dl><dd><!--\textbf{--><b>Pasting inside a clip, with "Editing clips can move other clips" checked:</b><!--}--></dd>
+<dd><span title="Before"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="PasteIntoClip Before.png" height="184" src="../m/images/2/2b/pasteintoclip_before.png" width="566"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/2/2b/pasteintoclip_before.png--></img><!--}\par
+--></span></dd>
+<dd><span title="After"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="PasteIntoClip After.png" height="184" src="../m/images/b/bb/pasteintoclip_after.png" width="566"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/bb/pasteintoclip_after.png--></img><!--}\par
+--></span></dd></dl>
+<p>When you select Paste and the cursor is outside a clip, and there is enough room for the audio that is on the clipboard, the audio on the clipboard can be inserted without any other clips being shifted over if "Editing clips can move other clips" is not checked. If "Editing clips can move other clips" is checked, the following audio will always be moved.
+</p>
+<dl><dd><!--\textbf{--><b>Pasting outside a clip, with "Editing clips can move other clips" checked:</b><!--}--></dd>
+<dd><span title="Before"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="PasteInWhiteSpace Before.png" height="184" src="../m/images/d/d0/pasteinwhitespace_before.png" width="566"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d0/pasteinwhitespace_before.png--></img><!--}\par
+--></span></dd>
+<dd><span title="After"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="PasteInWhiteSpace CanMove After.png" height="184" src="../m/images/4/48/pasteinwhitespace_canmove_after.png" width="566"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/4/48/pasteinwhitespace_canmove_after.png--></img><!--}\par
+--></span></dd></dl>
+<dl><dd><!--\textbf{--><b>Pasting outside a clip, with "Editing clips can move other clips" not checked:</b><!--}--></dd>
+<dd><span title="Before"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="PasteInWhiteSpace Before.png" height="184" src="../m/images/d/d0/pasteinwhitespace_before.png" width="566"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d0/pasteinwhitespace_before.png--></img><!--}\par
+--></span></dd>
+<dd><span title="After"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="PasteInWhiteSpace CannotMove After.png" height="184" src="../m/images/4/41/pasteinwhitespace_cannotmove_after.png" width="566"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/4/41/pasteinwhitespace_cannotmove_after.png--></img><!--}\par
+--></span></dd></dl>
+<div id="paste_new"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Pasting_into_a_new_track">Pasting into a new track</span></h3><!--}--><!--latex 
+\label{edit:menu:copy:paste:and:duplicate:paste:new}-->
+<p>If you want to create a new track and paste into that, the paste will automatically create a new mono or stereo track as appropriate, with the audio starting at time zero, if you:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> Paste into an empty project window </li>
+<!--
+\item --><li> Click in the gray background underneath the last track in the project to deselect all the tracks, then paste.</li>
+<!--
+\item --><li> You can paste from a mono track into a stero track - the mono audio will be replicated in both stereo channels.</li>
+<!--
+\item --><li> You cannot paste from a stereo track into a mono track. <!--\textit{--><i>(You will get an error message if you try to do this.)</i><!--}--></li></ul><!--
+\end{itemize}
+-->
+<p>If you want the paste to start at other than time zero you must first use Tracks &gt; Add New &gt; Mono Track (or Add New &gt; Stereo Track), place the cursor where you want to paste, then make the paste.
+</p><p><br/>
+</p>
+<div id="duplicate"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Duplicate_.C2.A0Ctrl_.2B_D">Duplicate &nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">Ctrl + D</span></font></span></h2><!--}--><!--latex 
+\label{edit:menu:copy:paste:and:duplicate:duplicate}-->
+<p>Creates a new track containing only the current selection as a new clip. The new clip is at the same position on the Timeline as the original audio. This is essentially a shortcut method of performing copy, add new track and paste, except that the duplicated audio is not copied to the Audacity clipboard, so cannot be pasted anywhere else.  
+</p>
+<dl><dd><span title="Before"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Duplicate Before.png" height="184" src="../m/images/1/1f/duplicate_before.png" width="566"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/1/1f/duplicate_before.png--></img><!--}\par
+--></span></dd>
+<dd><span title="After"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Duplicate After.png" height="309" src="../m/images/2/2d/duplicate_after.png" width="566"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/2/2d/duplicate_after.png--></img><!--}\par
+--></span></dd></dl>
+<p><br/>
+</p>
+<div class="note">One benefit of Duplicate is the ability to experiment with <!--latex 
+\hyperref[\foo{effect:menu:}]{--><a href="effect_menu.html" title="Effect Menu">effects</a><!--latex }
+-->. You can do that with the original track too, but you cannot change the volume of your effect and the original audio separately, only lower the volume of the processed audio later on. If you duplicate the audio then use a <!--latex 
+\hyperref[\foo{effect:menu:reverb}]{--><a href="effect_menu.html#reverb" title="Effect Menu">reverb</a><!--latex }
+--> on that (with 100% reverb and 0% original signal), you can freely change the volume for both the original and reverb signal using the <!--latex 
+\hyperref[\foo{audio:tracks:gain}]{--><a href="audio_tracks.html#gain" title="Audio Tracks">gain slider</a><!--latex }
+--> on each track. 
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> You can do interesting things to your duplicates to create special effects. With two versions of the track to work with, you can silence a section, reverb another section, phase a third, filter another (in one track or the other) and see how that sounds.</li></ul><!--
+\end{itemize}
+--></div>
+<p><br/>
+</p><p><!--latex 
+\hyperref[\foo{edit:menu:}]{--><a href="edit_menu.html" title="Edit Menu"><!--\textbf{--><b>&lt;</b><!--}-->&nbsp; Back to: Edit Menu</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>
