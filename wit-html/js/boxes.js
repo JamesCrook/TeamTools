@@ -4,10 +4,11 @@
 
  /* x1,y1,x2,y2, name, level */
  image_boxes = [
-  [1,32,864,53, "Menu Bar", 1],
-  [11,54,329,108, "Transport Toolbar", 1],
-  [340,54,422,108, "Tools Toolbar", 1],
-  [435,55,857,80, "Recording Meter Toolbar", 1],
+  [0,0,0,0, "None", 1],
+  [1,32,864,52, "Menu Bar", 1],
+  [11,52,329,108, "Transport Toolbar", 1],
+  [340,52,422,108, "Tools Toolbar", 1],
+  [435,52,857,80, "Recording Meter Toolbar", 1],
   [435,80,857,108, "Playback Meter Toolbar", 1],
   [11,108,324,136, "Mixer Toolbar", 1],
   [338,108,665,136, "Edit Toolbar", 1],
