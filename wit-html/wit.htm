@@ -5,7 +5,7 @@
     <title>What is That?</title>
     <style type="text/css">
 
-        #gui {
+        #Gui {
             display: inline-block;
             margin-left: auto;
             margin-right: auto;
@@ -19,6 +19,21 @@
             /*float:left;*/
         }
 
+        #Clicker {
+            display: inline-block;
+            margin-left: auto;
+            margin-right: auto;
+            /*float:left;*/
+        }
+
+        #ClickerCanvas {
+            display: inline-block;
+            margin-left: auto;
+            margin-right: auto;
+            /*float:left;*/
+        }
+
+
         #scroller {
             display: inline-block;
             height: 587px;
@@ -29,12 +44,6 @@
             margin-right: auto;
         }
 
-        #click-list {
-            display: inline-block;
-            margin-left: auto;
-            margin-right: auto;
-            /*float:left;*/
-        }
 
 
     </style>
@@ -42,22 +51,24 @@
     <script>
 
         var Message = null;
-        var ClickList = null;
+        var Clicker = {};
+        var Gui = {};
         // @return var
-        function FindBox(x, y){
+        function FindBox(Source,x, y){
 
             var i;
             var v;
+            var boxes = Source.Boxes;
             //console.log( "Finding x:"+x+" y:"+y);
-            for( i = 1; i < image_boxes.length; i++ ){
-                v = image_boxes[i];
+            for( i = 1; i < boxes.length; i++ ){
+                v = boxes[i];
                 if( (v[0] <= x) && (v[1] <= y) && ( v[2] >= x ) &&
                         (v[3] >= y ) ){
                     v.ix = i;
                     return v;
                 }
             }
-            v = image_boxes[0];
+            v = boxes[0];
             v.ix = 0;
             return v;
         }
@@ -67,9 +78,9 @@
         }
 
         function MakeClickList(){
-            if( ClickList )
+            if( Clicker.Img )
                 return;
-            ClickList = document.getElementById("click-list");
+            Clicker = document.getElementById("Clicker");
 
             var text = '';
             var i;
@@ -84,54 +95,113 @@
                         'the project start or end" >' + image_boxes[i][4] +
                         '</span></a></b> &#160;' + '</span>';
             }
-            ClickList.innerHTML = text;
+            Clicker.innerHTML = text;
         }
 
-        var GuiCanvas;
-        var GuiImg;
-        var GuiCtx;
 
         function GuiInit(){
-            GuiImg = document.getElementById("gui");
-            GuiCanvas = document.getElementById("GuiCanvas");
-            GuiCanvas.width = GuiImg.width;
-            GuiCanvas.height = GuiImg.height;
-            GuiCtx = GuiCanvas.getContext("2d");
+            Gui.Boxes = image_boxes;
+            Gui.Img = document.getElementById("Gui");
+            Gui.Canvas = document.getElementById("GuiCanvas");
+            Gui.Canvas.width = Gui.Img.width;
+            Gui.Canvas.height = Gui.Img.height;
+            Gui.Ctx = Gui.Canvas.getContext("2d");
 
 
-            GuiCtx.drawImage( GuiImg, 0, 0 );
+            Gui.Ctx.drawImage( Gui.Img, 0, 0 );
+            Gui.Img.style.display = 'none';
+            Gui.Canvas.style.display = 'inline';
+        }
 
-            GuiImg.style.display = 'none';
-            GuiCanvas.style.display = 'inline';
+        function RedrawClicker(){
+            var G=Clicker;
+            var i;
+            var Box;
+            var XX = 40;
+            var YY = 4;
+            var w,h;
+            var str;
+            h=30;
+            G.Ctx.font="20px Arial";
+            G.Ctx.fillStyle='white';
+            G.Ctx.fillRect(0,0, G.Canvas.width, G.Canvas.height);
+            G.Ctx.fillStyle='blue';
+            //G.Ctx.clearRect(0,0, G.Canvas.width, G.Canvas.height);
+            for(i=1;i< G.Boxes.length;i++){
+                Box = G.Boxes[i];
+                str = Box[4];
+                w = G.Ctx.measureText(str).width + 30;
+                if( (XX + w) > 800 ){
+                    YY += 30;
+                    XX = 40;
+                }
+                G.Ctx.fillText( str, XX+15, YY+24 );
+                Box[0] = XX;
+                Box[1] = YY;
+                XX += w;
+                Box[2] = XX;
+                Box[3] = YY+h;
+
+            }
+            G.Img.src = G.Canvas.toDataURL("image/png");
+        }
+
+        function ClickerInit(){
+            Clicker.Boxes = clicker_boxes;
+            Clicker.Img = document.getElementById("Clicker");
+            Clicker.Canvas = document.getElementById("ClickerCanvas");
+            Clicker.Canvas.width = Clicker.Img.width;
+            Clicker.Canvas.height = Clicker.Img.height;
+            Clicker.Ctx = Clicker.Canvas.getContext("2d");
+
+
+            var i;
+            for( i=0;i<3;i++){
+            }
+            Clicker.Ctx.drawImage( Gui.Img, 0, 0 );
+            Clicker.Img.style.display = 'none';
+            Clicker.Canvas.style.display = 'inline';
+            RedrawClicker();
         }
 
         window.onload = function(){
-            MakeClickList();
             GuiInit();
+            ClickerInit();
         }
 
-        function RefreshImage( box ){
-            GuiCtx.drawImage( GuiImg, 0, 0 );
+        function RefreshImage( Gui, box, backfade ){
+            Gui.Ctx.drawImage( Gui.Img, 0, 0 );
             if( box.ix < 1 )
                 return;
-            GuiCtx.globalAlpha = 0.6;
-            GuiCtx.fillStyle='black';
-            GuiCtx.fillRect( 0, 0, GuiCanvas.width, GuiCanvas.height );
-            GuiCtx.globalAlpha = 1.0;
             var x= box[0];
             var y= box[1];
             var w= box[2]-box[0];
-            var h= box[3]-box[1]
-            GuiCtx.drawImage( GuiImg, x,y,w,h,x,y,w,h );
-            GuiCtx.beginPath();
-            GuiCtx.rect( x,y,w,h );
-            GuiCtx.stroke();
+            var h= box[3]-box[1];
+
+            if( backfade ){
+                Gui.Ctx.globalAlpha = 0.6;
+                Gui.Ctx.fillStyle = 'black';
+                Gui.Ctx.fillRect(0, 0, Gui.Canvas.width, Gui.Canvas.height);
+                Gui.Ctx.globalAlpha = 1.0;
+                Gui.Ctx.drawImage(Gui.Img, x, y, w, h, x, y, w, h);
+            } else {
+                Gui.Ctx.globalAlpha = 0.1;
+                Gui.Ctx.fillStyle = 'green';
+                Gui.Ctx.fillRect(x,y,w,h);
+                Gui.Ctx.globalAlpha = 1.0;
+            }
+
+            Gui.Ctx.strokeStyle = 'green';
+            Gui.Ctx.lineWidth = 4;
+            Gui.Ctx.beginPath();
+            Gui.Ctx.rect( x,y,w,h );
+            Gui.Ctx.stroke();
         }
 
 
         var lastIx = -1;
 
-        function ImageClick(event, isclick){
+        function ImageClick(Source, event, isclick){
             if( !Message )
                 Message = document.getElementById("message");
             //img.src = "./images/da-coloured.png";
@@ -140,7 +210,7 @@
             var XX = event.offsetX;
             var YY = event.offsetY;
 
-            var box = FindBox(XX, YY);
+            var box = FindBox(Source, XX, YY);
             if( isclick ){
                 console.log(box);
                 console.log("x:" + XX + " y:" + YY + " Box:" + box.ix);
@@ -148,7 +218,7 @@
             if( box.ix != lastIx ){
                 lastIx = box.ix;
                 Message.innerHTML = box[4];
-                RefreshImage(box);
+                RefreshImage(Source, box, false);
             }
             //alert( "X:"+ XX + " Y:"+ YY + " ix:"+ixx);
         }
@@ -164,16 +234,22 @@
     <div style="width:100%; text-align:center">
 
         <canvas id="GuiCanvas" width="100" height="100" style="display: none;"
-                OnClick="ImageClick(event,true);"
-                OnMouseMove="ImageClick(event,false)"
+                OnClick="ImageClick(Gui,event,true);"
+                OnMouseMove="ImageClick(Gui,event,false)"
                 alt="Clickable Canvas"></canvas>
-        <img id="gui" src="./images/blank-links.png"
-             OnClick="ImageClick(event,true);"
-             OnMouseMove="ImageClick(event,false);" alt="Audacity">
+        <img id="Gui" src="./images/blank-links.png"
+             OnClick="ImageClick(Gui,event,true);"
+             OnMouseMove="ImageClick(Gui,event,false);" alt="Audacity">
         <iframe id="scroller" src="./scroller-contents/top_menu.html"
                 seamless></iframe>
         <div id="message">some message</div>
-        <div id="click-list" style="width:1000px;">The ClickList</div>
+        <canvas id="ClickerCanvas" width="1000px" height="100" style="display: none;"
+                OnClick="ImageClick(Clicker,event,true);"
+                OnMouseMove="ImageClick(Clicker,event,false)"
+                alt="Clickable Canvas"></canvas>
+        <img id="Clicker" src="./images/blank-links.png" width="1000" height="140"
+             OnClick="ImageClick(Clicker,event,true);"
+             OnMouseMove="ImageClick(Clicker,event,false);" alt="Audacity">
     </div>
 </div>
 </body>
