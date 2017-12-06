@@ -124,3 +124,4 @@ src/RevisionIdent.h
 # Emacs backup files
 *~
 win/xaudacity.ico
+/.idea/workspace.xml
