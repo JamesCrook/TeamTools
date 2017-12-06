@@ -103,7 +103,7 @@
             Message = document.getElementById("message");
             GuiInit();
             ClickerInit();
-            Refresh( Gui, true );
+            Refresh( Gui, false );
             Refresh( Clicker, false );
         }
 
@@ -139,6 +139,24 @@
             Gui.Ctx.stroke();
         }
 
+        function ConnectBoxes(){
+            if( Gui.ThisIx < 1 )
+                    return;
+            var b1 = Gui.Boxes[ Gui.ThisIx ];
+            var b2 = Clicker.Boxes[ Clicker.ThisIx ];
+
+            var x1 = (b1[0]+b1[2])/2;
+            var y1 = b1[3];
+            var x2 = (b2[0]+b2[2])/2;
+            var y2 = b2[1];
+            Gui.Ctx.strokeStyle = 'green';
+            Gui.Ctx.lineWidth = 4;
+            Gui.Ctx.beginPath();
+            Gui.Ctx.moveTo(x2,y2);
+            Gui.Ctx.lineTo(x1,y1);
+            Gui.Ctx.stroke();
+        }
+
         var lastIx = -1;
 
         function Refresh(Source, isclick){
@@ -166,15 +184,18 @@
                 Gui.ThisIx = box2;
             else if( box2 < 1 )
                 Clicker.ThisIx = box1;
+            //var Change = (Gui.ThisIx != Gui.LastIx) || ( Clicker.ThisIx != Clicker.LastIx);
             Refresh( Gui, isclick );
             Refresh( Clicker, false );
+            if( isclick)
+                ConnectBoxes();
         }
     </script>
 </head>
 <body>
 
 <div style="width:100%; text-align:center">
-    <h1>What is That?</h1>
+    <h1>The Audacity "What is That?" Help Page</h1>
     <h2>Click on the diagram to find out more</h2><br>
 
     <div style="width:1225px;position:relative;display:inline-block;margin-left:auto;margin-right:auto;">
