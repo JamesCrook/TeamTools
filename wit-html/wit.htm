@@ -44,7 +44,7 @@
             Gui.Canvas = document.getElementById("GuiCanvas");
             Gui.Ctx = Gui.Canvas.getContext("2d");
             Gui.LastIx = -1;
-            Gui.ThisIx = 1;
+            Gui.ThisIx = 0;
             Gui.Rect = [0,0,865,583];
             Gui.BackDraw = function() { Gui.Ctx.drawImage(Gui.Img, 0, 0);}
             Gui.FrontDraw = function( x,y,w,h ){
@@ -58,7 +58,7 @@
             Clicker.Canvas = document.getElementById("GuiCanvas");
             Clicker.Ctx = Gui.Canvas.getContext("2d");
             Clicker.LastIx = -1;
-            Clicker.ThisIx = 1;
+            Clicker.ThisIx = 0;
             Clicker.Rect = [0,583,1225,740];
             Clicker.BackDraw = RedrawClicker;
             Clicker.FrontDraw = function( x,y,w,h ){;}
@@ -196,10 +196,8 @@
 
 <div style="width:100%; text-align:center">
     <h1>The Audacity "What is That?" Help Page</h1>
-    <h2>Click on the diagram to find out more</h2><br>
-
+    <h2>Click on the diagram to find out more</h2>
     <div style="width:1225px;position:relative;display:inline-block;margin-left:auto;margin-right:auto;">
-
         <canvas id="GuiCanvas"
                 style="position:absolute;left:0px;top:0px;"
                 height="740px"
