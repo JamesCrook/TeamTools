@@ -12,6 +12,7 @@
 
     </style>
     <script src="./js/boxes.js"></script>
+    <script src="./js/vec2.js"></script>
     <script>
 
         var Message = null;
@@ -119,24 +120,52 @@
             var h = box[3] - box[1];
 
             if( backfade ){
-                Gui.Ctx.globalAlpha = 0.6;
-                Gui.Ctx.fillStyle = 'black';
+                Gui.Ctx.globalAlpha = 0.85;
+                Gui.Ctx.fillStyle = 'white';
                 var R = Gui.Rect;
                 Gui.Ctx.fillRect(R[0],R[1], R[2]-R[0], R[3]-R[1]);
                 Gui.Ctx.globalAlpha = 1.0;
                 Gui.FrontDraw( x, y, w, h );
             } else {
                 Gui.Ctx.globalAlpha = 0.1;
-                Gui.Ctx.fillStyle = 'green';
+                Gui.Ctx.fillStyle = 'blue';
                 Gui.Ctx.fillRect(x, y, w, h);
                 Gui.Ctx.globalAlpha = 1.0;
             }
 
-            Gui.Ctx.strokeStyle = 'green';
+            Gui.Ctx.strokeStyle = 'blue';
             Gui.Ctx.lineWidth = 4;
             Gui.Ctx.beginPath();
             Gui.Ctx.rect(x, y, w, h);
             Gui.Ctx.stroke();
+        }
+
+        function Arrow( v1,v2 ){
+            var d1 = v2.sub(v1);
+            var d2 = d1.normal();
+            var d3 = d1.normalPerp();
+            var u1 = v1;
+            var u2 = v1.add( d1).sub( d2.times( 27 ));
+            var u3;
+            Gui.Ctx.strokeStyle = 'black';
+            Gui.Ctx.lineWidth = 4;
+            Gui.Ctx.beginPath();
+            Gui.Ctx.moveTo(u1.x(), u1.y());
+            Gui.Ctx.lineTo(u2.x(), u2.y());
+            Gui.Ctx.stroke();
+
+            Gui.Ctx.fillStyle = 'black';
+            u1 = u2.add( d3.times(5) );
+            u3 = u2.add( d2.times(22) );
+            u2 = u2.sub( d3.times(5) );
+            Gui.Ctx.beginPath();
+            Gui.Ctx.moveTo(u1.x(), u1.y());
+            Gui.Ctx.lineTo(u2.x(), u2.y());
+            Gui.Ctx.lineTo(u3.x(), u3.y());
+            Gui.Ctx.fill();
+            //console.log( v2.x );
+            //console.log( "from "+v1.asText()+" to "+v2.asText());
+
         }
 
         function ConnectBoxes(){
@@ -149,12 +178,7 @@
             var y1 = b1[3];
             var x2 = (b2[0]+b2[2])/2;
             var y2 = b2[1];
-            Gui.Ctx.strokeStyle = 'green';
-            Gui.Ctx.lineWidth = 4;
-            Gui.Ctx.beginPath();
-            Gui.Ctx.moveTo(x2,y2);
-            Gui.Ctx.lineTo(x1,y1);
-            Gui.Ctx.stroke();
+            Arrow( Vec2(x2,y2), Vec2( x1,y1)  );
         }
 
         var lastIx = -1;
