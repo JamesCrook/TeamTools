@@ -3,10 +3,17 @@
  */
 
  /* x1,y1,x2,y2, name, level */
- image_boxes = [
-  [0,0,0,0, "None", 1],
+image_boxes = [
   [1,32,864,52, "Menu Bar", 1],
-  [11,52,329,108, "Transport Toolbar", 1],
+  [11,52,329,108, "Transport Toolbar", 1,
+     [  16,55,66,103, "Pause"],
+     [ 66,55,116,103, "Play"],
+     [116,55,166,103, "Stop"],
+     [166,55,216,103, "Rewind"],
+     [216,55,266,103, "FFWd"],
+     [274,55,324,103, "Record"]
+   ],
+
   [340,52,422,108, "Tools Toolbar", 1],
   [435,52,857,80, "Recording Meter Toolbar", 1],
   [435,80,857,108, "Playback Meter Toolbar", 1],
@@ -29,9 +36,15 @@
 
 /* x1,y1,x2,y2, name, level */
 clicker_boxes = [
-  [0,0,0,0, "None", 1],
   [1,32,864,52, "Menu Bar", 1],
-  [11,52,329,108, "Transport Toolbar", 1],
+  [11,52,329,108, "Transport Toolbar", 1,
+    [  16,55,66,103, "Pause"],
+    [ 66,55,116,103, "Play"],
+    [116,55,166,103, "Stop"],
+    [166,55,216,103, "Rewind"],
+    [216,55,266,103, "FFWd"],
+    [274,55,324,103, "Record"]
+  ],
   [340,52,422,108, "Tools Toolbar", 1],
   [435,52,857,80, "Recording Meter Toolbar", 1],
   [435,80,857,108, "Playback Meter Toolbar", 1],
