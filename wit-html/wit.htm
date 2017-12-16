@@ -19,6 +19,7 @@
         var Clicker = {};
         var Gui = {};
         var Level = 0;
+        var Moving = true;
 
 
         // @return var
@@ -29,7 +30,7 @@
             var boxes = Source.Boxes[ Level ];
             Source.ThisIx = -1;
             //console.log( "Finding x:"+x+" y:"+y);
-            for( i = 1; i < boxes.length; i++ ){
+            for( i = 0; i < boxes.length; i++ ){
                 v = boxes[i];
                 if( (v[0] <= x) && (v[1] <= y) && ( v[2] >= x ) &&
                         (v[3] >= y ) ){
@@ -75,11 +76,13 @@
             }
             if( (delta == 1) && (Level ==0)){
                 var row = Gui.Boxes[ Level][ Gui.ThisIx];
-                if( row.length < 5 ){
+                if( row.length < 7 ){
                     return;
                 }
+                Gui.Boxes[ Level+1 ] = row[6];
+                row = Clicker.Boxes[ Level][ Clicker.ThisIx];
+                Clicker.Boxes[ Level+1 ] = row[6];
                 Level += 1;
-                Gui.Boxes[ Level ] = row;
             }
         }
 
@@ -99,7 +102,7 @@
             G.Ctx.fillStyle = 'blue';
             YY+=4;
             //G.Ctx.clearRect(0,0, G.Canvas.width, G.Canvas.height);
-            for( i = 1; i < G.Boxes[Level].length; i++ ){
+            for( i = 0; i < G.Boxes[Level].length; i++ ){
                 Box = G.Boxes[Level][i];
                 str = Box[4];
                 w = G.Ctx.measureText(str).width + 30;
@@ -129,7 +132,7 @@
         function RefreshImage(Gui, backfade){
             Gui.BackDraw();
             //Gui.Ctx.drawImage(Gui.Img, 0, 0);
-            if( Gui.ThisIx < 1 )
+            if( Gui.ThisIx < 0 )
                 return;
             var box = Gui.Boxes[ Level][Gui.ThisIx];
             var x = box[0];
@@ -199,6 +202,7 @@
             var x2 = (b2[0]+b2[2])/2;
             var y2 = b2[1];
             Arrow( Vec2(x2,y2), Vec2( x1,y1)  );
+            Moving = false;
         }
 
         var lastIx = -1;
@@ -227,20 +231,26 @@
             if( isclick ){
                 console.log("x:" + XX + " y:" + YY + " Box1:" + box1 + " Box2:" + box2 );
             }
-            if( Level == 0 ){
-                if( box1 < 1 )
+            if( Level < 2 ){
+                if( box1 < 0 )
                     Gui.ThisIx = box2;
-                else if( box2 < 1 )
+                else if( box2 < 0 )
                     Clicker.ThisIx = box1;
             }
             //var Change = (Gui.ThisIx != Gui.LastIx) || ( Clicker.ThisIx != Clicker.LastIx);
-            Refresh( Gui, isclick );
-            Refresh( Clicker, false );
+
+            if( Moving || isclick ){
+                Refresh(Gui, isclick);
+                Refresh(Clicker, false);
+            }
             if( isclick){
                 ConnectBoxes();
-                ChangeLevel(1);
-                if( Gui.ThisIx < 0 )
+                if( Gui.ThisIx < 0 ){
                     Level = 0;
+                    Moving = true;
+                }
+                else
+                    ChangeLevel(1);
             }
         }
     </script>
