@@ -41,8 +41,23 @@
             return Source.ThisIx;
         }
 
+        function Extract( List, from, to, level ){
+            var result = [];
+            var i;
+            for( i=from;i<to;i++){
+                if( List[i][0]==level ){
+                    var Item = List[i];
+                    var Entry =
+                        [ Item[1], Item[2], Item[3], Item[4], Item[5],i];
+                    result.push( Entry );
+                }
+            }
+            return result;
+        }
+
         function GuiInit(){
-            Gui.Boxes = [ image_boxes, [], [] ];
+            //Gui.Boxes = [ image_boxes, [], [] ];
+            Gui.Boxes = [ Extract( AudacityBoxes, 0, AudacityBoxes.length, 3),[],[]];
             Gui.Img = document.getElementById("Gui");
             Gui.Canvas = document.getElementById("GuiCanvas");
             Gui.Ctx = Gui.Canvas.getContext("2d");
@@ -56,7 +71,8 @@
         }
 
         function ClickerInit(){
-            Clicker.Boxes = [ clicker_boxes, [],[]];
+            //Clicker.Boxes = [ clicker_boxes, [],[]];
+            Clicker.Boxes = [ Extract( AudacityBoxes, 0, AudacityBoxes.length, 3),[],[]];
             Clicker.Img = document.getElementById("Gui");
             Clicker.Canvas = document.getElementById("GuiCanvas");
             Clicker.Ctx = Gui.Canvas.getContext("2d");
@@ -211,8 +227,10 @@
 
             if( Source.ThisIx != Source.LastIx ){
                 Source.LastIx = Source.ThisIx;
-                if( Source.ThisIx >= 0 )
-                    Message.innerHTML = Source.Boxes[ Level][Source.ThisIx][4];
+                if( Source.ThisIx >= 0 ){
+                    var B = Gui.Boxes[Level][Source.ThisIx];
+                    Message.innerHTML = B[4] + "<br>:"+B[0]+":"+B[1]+":"+B[2]+":"+B[3];
+                }
                 else
                     Message.innerHTML = 'None';
                 RefreshImage(Source, isclick);
