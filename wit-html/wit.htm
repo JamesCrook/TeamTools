@@ -41,11 +41,18 @@
             return Source.ThisIx;
         }
 
-        function Extract( List, from, to, level ){
+        function Extract( List, from, level ){
+            console.log( "Searching from "+from+"["+List[from][5]+
+                    "] for level "+level );
             var result = [];
             var i;
-            for( i=from;i<to;i++){
-                if( List[i][0]==level ){
+            for( i=from;i<List.length;i++){
+                var lev = List[i][0];
+                if( lev < level ){
+                    console.log( "Stopped at "+ i);
+                    return result;
+                }
+                if( lev ==level ){
                     var Item = List[i];
                     var Entry =
                         [ Item[1], Item[2], Item[3], Item[4], Item[5],i];
@@ -57,7 +64,7 @@
 
         function GuiInit(){
             //Gui.Boxes = [ image_boxes, [], [] ];
-            Gui.Boxes = [ Extract( AudacityBoxes, 0, AudacityBoxes.length, 3),[],[]];
+            Gui.Boxes = [ Extract( AudacityBoxes, 0,1),[],[],[],[],[],[]];
             Gui.Img = document.getElementById("Gui");
             Gui.Canvas = document.getElementById("GuiCanvas");
             Gui.Ctx = Gui.Canvas.getContext("2d");
@@ -72,7 +79,7 @@
 
         function ClickerInit(){
             //Clicker.Boxes = [ clicker_boxes, [],[]];
-            Clicker.Boxes = [ Extract( AudacityBoxes, 0, AudacityBoxes.length, 3),[],[]];
+            Clicker.Boxes = [ Extract( AudacityBoxes, 0,1),[],[],[],[],[],[]];
             Clicker.Img = document.getElementById("Gui");
             Clicker.Canvas = document.getElementById("GuiCanvas");
             Clicker.Ctx = Gui.Canvas.getContext("2d");
@@ -84,20 +91,22 @@
         }
 
         function ChangeLevel( delta ){
-            if( Level + delta > 2 ){
+            if( Level + delta > 4 ){
                 return;
             }
             if( (Level + delta) < 0 ){
                 return;
             }
-            if( (delta == 1) && (Level ==0)){
-                var row = Gui.Boxes[ Level][ Gui.ThisIx];
-                if( row.length < 7 ){
+            if( (delta == 1) && (Level < 6 )){
+                var index = Gui.Boxes[ Level ][Gui.ThisIx][5]+1;
+                var inside = Extract( AudacityBoxes,index, Level+2 );
+                console.log( "Descend: ", inside );
+                if( inside.length < 1 )
                     return;
-                }
-                Gui.Boxes[ Level+1 ] = row[6];
-                row = Clicker.Boxes[ Level][ Clicker.ThisIx];
-                Clicker.Boxes[ Level+1 ] = row[6];
+                Gui.Boxes[ Level+1 ] = inside;
+                // regenerate a new set...
+                inside = Extract( AudacityBoxes,index, Level+2 );
+                Clicker.Boxes[ Level+1 ] = inside;
                 Level += 1;
             }
         }
@@ -249,13 +258,14 @@
             if( isclick ){
                 console.log("x:" + XX + " y:" + YY + " Box1:" + box1 + " Box2:" + box2 );
             }
-            if( Level < 2 ){
+            if( Level < 6 ){
                 if( box1 < 0 )
                     Gui.ThisIx = box2;
                 else if( box2 < 0 )
                     Clicker.ThisIx = box1;
             }
             //var Change = (Gui.ThisIx != Gui.LastIx) || ( Clicker.ThisIx != Clicker.LastIx);
+
 
             if( Moving || isclick ){
                 Refresh(Gui, isclick);
@@ -267,9 +277,13 @@
                     Level = 0;
                     Moving = true;
                 }
-                else
+                else {
                     ChangeLevel(1);
+                    Gui.ThisIx = -1;
+                    Clicker.ThisIx = -1;
+                }
             }
+
         }
     </script>
 </head>
