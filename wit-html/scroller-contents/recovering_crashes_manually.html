@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Recovering crashes manually - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Recovering_crashes_manually rootpage-Recovering_crashes_manually skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Recovering crashes manually</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{recovering:crashes:manually:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><div class="intro">If Audacity crashes or the computer loses power, Audacity should normally <!--latex 
+\hyperref[\foo{recovery:}]{--><a href="recovery.html" title="Recovery">recover the projects automatically</a><!--latex }
+--> when you restart. The steps on this page describe how to recover audio from the project's _data folder or Audacity's temporary folder if:
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> Automatic Crash Recovery does not work correctly</li>
+<!--
+\item --><li> You saved a project without apparent crash, but Audacity was shut down before the AUP project file was written or you do not have a usable AUP file. </li></ul><!--
+\end{itemize}
+-->
+<!--\textbf{--><b>The steps on this page will only recover unedited recordings</b><!--}--> (and may recover stereo recordings with some sections of left and right channel in the wrong channel).</div>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FFCCCC; color:black; border:1px solid #CC0000; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Stopicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/6/6c/stopicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/6/6c/stopicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top"><!--\textbf{--><b>If the Automatic Crash Recovery dialog has appeared but recovery is incorrect, do not close the project or save any changes until manual recovery using these instructions is complete.</b><!--}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> If you need to shut down the computer before manually fixing an incorrect Automatic Crash Recovery, force quit Audacity in the system task manager. This will preserve the temporary data for next launch of Audacity.</li>
+<!--
+\item --><li> If you had successfully saved the project just before the crash, it may be simpler to discard the unsaved project in the Automatic Crash Recovery dialogue then open the saved AUP file.</li></ul><!--
+\end{itemize}
+-->
+</td></tr></tbody></table>
+</div>
+
+
+<!--
+\subsection{--><h2><span class="mw-headline" id="Location_of_the_project_data_folder">Location of the project _data folder</span></h2><!--}-->
+<p>If you saved an AUP project file, the _data folder you need to recover from will be in the directory to which you originally saved the AUP file. 
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Location_of_Temporary_Folder">Location of Temporary Folder</span></h2><!--}-->
+<p>If you never saved an AUP project file, you need to recover from Audacity's temporary folder. You can see the exact location in <!--latex 
+\hyperref[\foo{directories:preferences:}]{--><a href="directories_preferences.html" title="Directories Preferences">Directories Preferences</a><!--latex }
+-->, otherwise you can see the location in the "TempDir" line in the <!--latex 
+\hyperref[\foo{preferences:stored}]{--><a href="preferences.html#stored" title="Preferences">audacity.cfg settings file</a><!--latex }
+-->. By default the Audacity temporary folder should be as follows.
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>Windows:</b><!--}--> <span class="path">C:\Users\&lt;your username&gt;\AppData\Local\Audacity\SessionData</span></li>
+<!--
+\item --><li> <!--\textbf{--><b>Mac:</b><!--}--> <span class="path">/Users/&lt;your username&gt;/Library/Application Support/audacity/SessionData</span></li>
+<!--
+\item --><li> <!--\textbf{--><b>GNU/Linux:</b><!--}--> <span class="path">/var/tmp/audacity-&lt;your username&gt;</span></li></ul><!--
+\end{itemize}
+-->
+<p>If you are upgrading from previous Audacity, that version's temporary directory may be changed to the relevant safe location above if the previous location was known to be prone to deletion by cleanup applications or system restart.
+</p>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Bulbicon.png" title="Bulb icon"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Bulb icon" height="32" src="../m/images/d/d7/bulbicon.png" width="32"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d7/bulbicon.png--></img><!--}\par
+--></a>
+</td>
+<td align="left" valign="top">In order to see the default location of the Audacity temp folder on Windows or Mac you need to show hidden files and folders or type the folder location into your file manager's address bar.
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>Windows:</b><!--}--> In the tree on the left of Explorer, double-click "Users" then double-click your username, then on the right, open the AppData or Application Data folder, then the "Local" or "Locale Settings" folder and finally the "Temp" folder. <p>If you cannot see those folders, you can type <!--\textbf{--><b>%localappdata%</b><!--}--> into the Explorer address bar then look for the "Temp" folder. Otherwise, see how to <a class="external text" href="http://www.bleepingcomputer.com/tutorials/how-to-see-hidden-files-in-windows/" rel="nofollow">show hidden files and folders</a>.</p></li>
+<!--
+\item --><li> <!--\textbf{--><b>Mac:</b><!--}--> Open Finder, use the "Go" menu, choose "Go to Folder" and type the required path. </li></ul><!--
+\end{itemize}
+-->
+<!--
+\begin{itemize}--><ul><!--\item -->If that does not work, try to make the Finder show its hidden files and folders by entering the following commands in the terminal:<span style="color:#FA58AC;font-size:118%">
+<dl><dd>defaults write com.apple.finder AppleShowAllFiles TRUE </dd>
+<dd>killall Finder</dd></dl>
+</span> then relaunch Finder to show the hidden files. Alternatively, try <a class="external text" href="http://www.bresink.com/osx/TinkerTool.html" rel="nofollow">TinkerTool</a> to do the same thing, or you can type Shift-Command-Period(.) to show or hide hidden files and folders in an Open or Save dialog.</ul><!--
+\end{itemize}
+-->
+</td></tr></tbody></table>
+</div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Manual_recovery">Manual recovery</span></h2><!--}-->
+<p>If you only have a few AU files to recover, use the "Import Audio" command to open all the .au files from the Audacity temporary folder or project _data folder.  Use shift-click or control-click to select multiple files.  The files will be in approximately 6-second chunks and will be on separate tracks in the Audacity screen.  Files from stereo tracks will alternate between left and right channels.  
+</p>
+<!--
+\begin{enumerate}--><ol><!--
+\item --><li>Click in the Track Control Panel (by the Mute/Solo buttons) of the topmost track.</li>
+<!--
+\item --><li>Shortcut <span class="kbrd" style="background-color: #e0e0f0">Z</span> or <span class="menu">Select &gt; Region &gt; <!--latex 
+\hyperref[\foo{select:menu:region:ends:to:zero:crossings}]{--><a href="select_menu_region.html#ends_to_zero_crossings" title="Select Menu: Region">Ends to Zero Crossings</a><!--latex }
+--></span>.</li>
+<!--
+\item --><li> <span class="menu">Edit &gt; Remove Special &gt; <!--latex 
+\hyperref[\foo{edit:menu:remove:special:trim}]{--><a href="edit_menu_remove_special.html#trim" title="Edit Menu: Remove Special">Trim</a><!--latex }
+--></span>. </li>
+<!--
+\item --><li>Click in the Track Control Panel of the first track you want to join to the topmost track.</li>
+<!--
+\item --><li>Shortcut <span class="kbrd" style="background-color: #e0e0f0">Z</span> or <span class="menu">Edit &gt; Find Zero Crossings</span>.</li>
+<!--
+\item --><li>Shortcut <span class="kbrd" style="background-color: #e0e0f0">Z</span> or <span class="menu">Select &gt; Region &gt; <!--latex 
+\hyperref[\foo{select:menu:region:ends:to:zero:crossings}]{--><a href="select_menu_region.html#ends_to_zero_crossings" title="Select Menu: Region">Ends to Zero Crossings</a><!--latex }
+--></span>. </li>
+<!--
+\item --><li>Click after the end of the topmost track.</li>
+<!--
+\item --><li>Press <span class="kbrd" style="background-color: #e0e0f0">End</span> on the keyboard. </li>
+<!--
+\item --><li>Click <span class="menu">Edit &gt; <!--latex 
+\hyperref[\foo{edit:menu:paste}]{--><a href="edit_menu.html#paste" title="Edit Menu">Paste</a><!--latex }
+--></span> and the cut track will attach to the end of the topmost track.</li>
+<!--
+\item --><li>Repeat as necessary to join all the tracks onto the topmost track.</li></ol><!--
+\end{enumerate}
+-->
+<p>Play the result. 
+</p><p>Cut and paste as needed if any files are found to be in the wrong order or the wrong channel.
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Automatic_recovery_tools">Automatic recovery tools</span></h2><!--}-->
+<p>Tools written for legacy Audacity 1.2 can automate data recovery. 
+</p>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">All these utilities require the .au files to be input in consecutive alphanumerical order. Audacity names files randomly so files will need to renamed.
+</td></tr></tbody></table>
+</div>
+<p>Open Audacity's temporary or project _data folder in your system file manager. Sort the files by timestamp order (earliest first), then rename them using a consecutive alphanumerical sequence, lowest number first. An arrangement looking something like this should work:
+</p>
+<dl><dd><dl><dd>b001.au 15:56:02</dd>
+<dd>b002.au 15:56:02</dd>
+<dd>b003.au 15:56:10</dd>
+<dd>b004.au 15:56:10</dd></dl></dd></dl>
+<div class="note"><!--\textbf{--><b>Utilities for renaming files to consecutive alphanumerical order</b><!--}--> 
+<!--
+\begin{itemize}--><ul><!--
+\item --><li>On <!--\textbf{--><b>Windows,</b><!--}--> Explorer cannot rename to a sequence acceptable to the recovery tools. You can use instead the Mass Rename tool in the 21-day trial Professional or Ultimate versions of <a class="external text" href="http://zabkat.com/x2down.htm" rel="nofollow">xplorer<sup>2</sup></a>. These versions will let you recover an unedited stereo recording with exact allocation of left and right channels, if Windows is running the <a class="external text" href="https://en.wikipedia.org/wiki/NTFS" rel="nofollow">NTFS</a> file system. The <a class="external text" href="http://zabkat.com/x2lite.htm" rel="nofollow">free version of xplorer<sup>2</sup></a> cannot guarantee correct channel allocation. 
+<!--
+\begin{enumerate}--><ol>
+<!--
+\item --><li><!--\textit{--><i>(only in the Professional and Ultimate versions)</i><!--}--> Click <span class="menu">View &gt; Raw Contents</span> to enable maximum date resolution.  
+</li><!--
+\item --><li> Open the required folder in xplorer<sup>2</sup> and sort the .au files by time modified as above.
+</li><!--
+\item --><li><span class="kbrd" style="background-color: #e0e0f0">Ctrl + A</span> to select all the files. 
+</li><!--
+\item --><li> File &gt; Mass Rename.
+</li><!--
+\item --><li> In the "Mass Rename Wizard", click in "Target name template" and type the letter <!--\textbf{--><b>e</b><!--}--> with a <!--\textbf{--><b>$</b><!--}--> after the letter. For example, <!--\textbf{--><b>e$0001.au</b><!--}--> will rename the files to e0001.au, e0002.au and so on. Use enough zeros in the file name so that all the .au files will have the same number of digits.
+</li><!--
+\item --><li> Press "Preview", and if the preview looks correct, hit "Rename"</li></ol><!--
+\end{enumerate}
+-->
+</li><!--
+\item --><li>On <!--\textbf{--><b>Mac</b><!--}-->, try Applications &gt; <a class="external text" href="http://www.macosxautomation.com/automator/" rel="nofollow">Automator</a>.
+</li><!--
+\item --><li>On <!--\textbf{--><b>Linux</b><!--}-->, try the file manager <a class="external text" href="https://en.wikipedia.org/wiki/Thunar" rel="nofollow">Thunar</a> included in the <a class="external text" href="https://xfce.org/" rel="nofollow">xfce desktop</a> See <a class="external text" href="http://www.ubuntugeek.com/switch-to-a-lightweight-filemanager.html" rel="nofollow">here</a> for help running Thunar on the Ubuntu desktop. 
+</li></ul><!--
+\end{itemize}
+--></div>
+<p><br/>
+</p>
+<div class="note"><!--\textbf{--><b>Linux command-line alternatives for timestamp sorting</b><!--}-->
+<!--
+\begin{enumerate}--><ol><!--
+\item --><li>Open a terminal then "cd" into the directory that contains the .AU files.
+</li><!--
+\item --><li> Type the following command in a terminal to sort and rename the files into numerical timestamp order:<br/> 
+<!--\textbf{--><b>mkdir "renamed" | find -type f -name "*.au" -printf "cp %h/%f renamed/%h/%TY%Tm%Td-%TH%TM%TS_%f\n"|sh</b><!--}-->
+</li><!--
+\item --><li>The file names produced in the "renamed" folder are <!--\textbf{--><b>not</b><!--}--> in a consecutive sequence suitable for the Audacity recovery utilities. Instead, use the <a class="external text" href="https://wiki.audacityteam.org/wiki/Nyquist_Plugins" rel="nofollow">Nyquist</a> plug-in <a class="external text" href="https://forum.audacityteam.org/viewtopic.php?f=42&amp;t=59528" rel="nofollow">Append Import</a> to import the files end-to-end into Audacity automatically in file name order.   
+</li></ol><!--
+\end{enumerate}
+--></div>
+<div id="limitations"></div>  
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Limitations_of_automatic_recovery_utilities">Limitations of automatic recovery utilities</span></h3><!--}--><!--latex 
+\label{recovering:crashes:manually:limitations}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li>There is a <!--\textbf{--><b>2 GB maximum size for any WAV file created from the reconstructed temporary files</b><!--}-->. This implies no more than 2000 .au files can be recovered. Sometimes (probably due to bugs in the utilities) there can be errors when recovering only 1000 or so files. In that case you would need to split the .au files in the temporary or_data folder into two or more folders, each containing consecutively numbered files, and recover a separate WAV file from each folder.  </li>
+<!--
+\item --><li> Recovery of unedited mono recordings should be correct in most cases.  </li>
+<!--
+\item --><li> Recovery of unedited stereo recordings may recover with transposed left/right channels in places. Channel allocation will only be correct if you are using the NTFS (Windows) or <a class="external text" href="https://en.wikipedia.org/wiki/Ext4" rel="nofollow">ext 4</a> (Linux) file system and if your file manager supports sufficiently fine date resolution (see the Windows example above). This is because the files for each channel may have timestamps that are too close together to be correctly distinguished by other file systems.  </li>
+<!--
+\item --><li> If any of the project data has been edited, it is unlikely to recover correctly. </li></ul><!--
+\end{itemize}
+-->
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="1.2_Audacity_Recovery_Utility">1.2 Audacity Recovery Utility</span></h3><!--}-->
+<p>The 1.2 Audacity Recovery Utility assumes the project rate was 44100 Hz. If your project was at other than 44100 Hz, the recovered WAV file will be the wrong length and play at the wrong speed. To correct this after importing the recovery WAV file, click in the name of the track (by the downward-pointing arrow) then use "Set Rate" to choose the correct rate. 
+</p><p><!--\textbf{--><b>Windows and Linux</b><!--}--> 
+</p><p>Follow the instructions on the <a class="external text" href="http://www.mesw.de/audacity/recovery/" rel="nofollow">Audacity Recovery Utility</a> page. On Linux, you may need to install additional libraries before you can use the utility, following the instructions provided.
+</p><p><!--\textbf{--><b>Mac</b><!--}-->
+</p><p>Download the following utilities instead which are ready-compiled with the necessary libraries:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><a class="external text" href="http://www.gaclrecords.org.uk/audacity_recovery_osx_ppc.zip" rel="nofollow">for Power PCs</a></li>
+<!--
+\item --><li><a class="external text" href="http://www.gaclrecords.org.uk/audacity_recovery_osx_intel.zip" rel="nofollow">for Intel Macs</a></li></ul><!--
+\end{itemize}
+-->
+<p>Then follow the instructions on the <a class="external text" href="http://www.mesw.de/audacity/recovery/" rel="nofollow">Audacity Recovery Utility</a> page from "About the Audacity Recovery Utility" onwards. 
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Other_Tools_.2F_scripts">Other Tools / scripts</span></h2><!--}-->
+<div class="note">There is no implication that these tools will necessarily do what you want, nor have they necessarily been tested by Audacity Team.</div>  
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="File_merge_tools">File merge tools</span></h3><!--}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> It has been reported that AU files may be converted to WAV (for example in Audacity) then joined using the disk output utility in <a class="external text" href="http://forums.winamp.com/showthread.php?t=374929#download" rel="nofollow">Winamp</a>.</li></ul><!--
+\end{itemize}
+-->
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Scripts_for_GNU.2FLinux_and_Mac">Scripts for GNU/Linux and Mac</span></h3><!--}-->
+<!--
+\subsubsection{--><h4><span class="mw-headline" id="audacity_rescue.sh">audacity_rescue.sh</span></h4><!--}-->
+<p>This <a class="external text" href="https://gist.github.com/mef/2c90295920dc66f669a6" rel="nofollow">shell script</a> can reassemble a few thousand .au files. It may be simpler to apply (at a bash terminal) than some of the solutions mentioned on this page, particularly for mono recordings.
+</p>
+<!--
+\subsubsection{--><h4><span class="mw-headline" id="SoX">SoX</span></h4><!--}-->
+<!--
+\begin{enumerate}--><ol>
+<!--
+\item --><li>Using <a class="external text" href="http://sox.sourceforge.net/" rel="nofollow">SoX</a>, make a copy of the temp directory and its files from a mono recording:
+<table cellpadding="5px" style="margin-left:10px;line-height:1.1em;letter-spacing:-0.04em;background-color:#FDEEF4;font-family:monospace;font-size:1.1em;border:1px dashed black">
+<tbody><!--\par --><tr>
+<td>$ cp -r /tmp/audacity1.2-jbn ~/rescue
+</td></tr></tbody></table>
+</li><!--
+\item --><li>Convert the AU files into raw (headerless) files. The files must already be time-sorted and numbered with leading zeroes:
+<table cellpadding="5px" style="margin-left:10px;line-height:1.1em;letter-spacing:-0.04em;background-color:#FDEEF4;font-family:monospace;font-size:1.1em;border:1px dashed black">
+<tbody><!--\par --><tr>
+<td>$ for f in *.au&nbsp;; do sox ${f} -t raw ${f}.raw&nbsp;; done
+</td></tr></tbody></table>
+</li><!--
+\item --><li>Concatenate the raw files together to make one long raw file. Concatenating the AU files together (each with its own header) would produce noise at the joins between each AU file.  
+<table cellpadding="5px" style="margin-left:10px;line-height:1.1em;letter-spacing:-0.04em;background-color:#FDEEF4;font-family:monospace;font-size:1.1em;border:1px dashed black">
+<tbody><!--\par --><tr>
+<td>$ cat *.raw &gt; bigfile.raw
+</td></tr></tbody></table>
+</li><!--
+\item --><li>Finally, import the raw file into Audacity specifying the appropriate encoding, endianness, channels and sample rate.
+</li></ol><!--
+\end{enumerate}
+-->
+
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>AAC Export Options - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-AAC_Export_Options rootpage-AAC_Export_Options skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">AAC Export Options</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{aac:export:options:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"> 
+<p>
+
+
+</p><p><br/>
+</p>
+<div class="intro"><!--\textbf{--><b>AAC</b><!--}--> is a <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:lossy}]{--><a href="glossary.html#lossy" title="Glossary">lossy</a><!--latex }
+--></b><!--}--></i><!--}-->, <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:compressed:format}]{--><a href="glossary.html#compressed_format" title="Glossary">compressed</a><!--latex }
+--></b><!--}--></i><!--}--> audio format. It is the default audio format for Apple iTunes&reg;, iPod&reg; and iPhone&reg;. </div>
+<dl><dd>Accessed by: <span class="menu">File &gt; Save Other &gt; <!--latex 
+\hyperref[\foo{file:menu:save:other:exportaudio}]{--><a href="file_menu_save_other.html#exportaudio" title="File Menu: Save Other">Export Audio...</a><!--latex }
+--></span> then choosing <!--\textbf{--><b>M4A(AAC) Files FFmpeg</b><!--}--> from the <!--\textbf{--><b>Save as type</b><!--}--> dropdown menu</dd></dl>
+<dl><dd><span title="AAC Export Options at the bottom of the Export Audio dialog"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="AACExportOptions.png" height="576" src="../m/images/4/47/aacexportoptions.png" width="571"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/4/47/aacexportoptions.png--></img><!--}\par
+--></span></dd></dl>
+<dl><dd>Also accessed by: <span class="menu">File &gt; Save Other &gt; <!--latex 
+\hyperref[\foo{file:menu:save:other:exportmultiple}]{--><a href="file_menu_save_other.html#exportmultiple" title="File Menu: Save Other">Export Multiple...</a><!--latex }
+--></span> then choosing <!--\textbf{--><b>M4A(AAC) Files FFmpeg</b><!--}-->  from the <!--\textbf{--><b>Save as type</b><!--}--> dropdown menu.  In this case the options dialog will appear in the center of the Export Multiple dialog.</dd></dl>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">FFmpeg is not shipped with Audacity but you can download it and then export as AAC by following <!--latex 
+\hyperref[\foo{faq:installation:and:plug:ins:ffdown}]{--><a href="faq_installation_and_plug_ins.html#ffdown" title="FAQ:Installation and Plug-Ins">these instructions</a><!--latex }
+-->.
+</td></tr></tbody></table>
+</div> 
+<div id="setup"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="AAC_Export_Setup">AAC Export Setup</span></h2><!--}--><!--latex 
+\label{aac:export:options:setup}-->
+
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>Quality:</b><!--}--> Currently this slider has no effect with the version of FFmpeg <!--latex 
+\hyperref[\foo{faq:installation:and:plug:ins:ffdown}]{--><a href="faq_installation_and_plug_ins.html#ffdown" title="FAQ:Installation and Plug-Ins">recommended for Windows and Mac</a><!--latex }
+-->. The exported file is always a constant bit rate (<!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:cbr}]{--><a href="glossary.html#cbr" title="Glossary">CBR</a><!--latex }
+--></b><!--}--></i><!--}-->) 196 kbps (stereo) or 98 kbps (mono) file. Exporting more than two channels using <!--latex 
+\hyperref[\foo{advanced:mixing:options:}]{--><a href="advanced_mixing_options.html" title="Advanced Mixing Options">Advanced Mixing Options</a><!--latex }
+--> is not currently supported.<p>To specify a different constant bit rate for a mono or stereo AAC file, choose <!--\textbf{--><b>Custom FFmpeg Export</b><!--}--> in the <!--latex 
+\hyperref[\foo{file:export:dialog:}]{--><a href="file_export_dialog.html" title="File Export Dialog">Export Audio Dialog</a><!--latex }
+-->. Then use the <span class="button">Open custom FFmpeg format options</span> button to open the <!--latex 
+\hyperref[\foo{custom:ffmpeg:export:options:}]{--><a href="custom_ffmpeg_export_options.html" title="Custom FFmpeg Export Options">Custom FFmpeg Export Options</a><!--latex }
+--> dialog. See the <!--latex 
+\hyperref[\foo{custom:ffmpeg:export:options:example}]{--><a href="custom_ffmpeg_export_options.html#example" title="Custom FFmpeg Export Options">example</a><!--latex }
+--> on that page for details.</p></li></ul><!--
+\end{itemize}
+-->
+
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

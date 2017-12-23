@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Removing Labels - Examples - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Removing_Labels_-_Examples rootpage-Removing_Labels_-_Examples skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Removing Labels - Examples</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{removing:labels:examples:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+</p><p><br/>
+</p>
+<div class="intro">This page contains five examples of how to remove labels:
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--latex 
+\hyperref[\foo{removing:labels:examples::usecase5}]{--><a href="#usecase5">Delete Label using the label dropdown menu</a><!--latex }
+--> </li>
+<!--
+\item --><li><!--latex 
+\hyperref[\foo{removing:labels:examples::usecase1}]{--><a href="#usecase1">Removing labels without moving any following labels - Split method</a><!--latex }
+--></li>
+<!--
+\item --><li><!--latex 
+\hyperref[\foo{removing:labels:examples::usecase4}]{--><a href="#usecase4">Label text removal method</a><!--latex }
+--></li>
+<!--
+\item --><li><!--latex 
+\hyperref[\foo{removing:labels:examples::usecase2}]{--><a href="#usecase2">Removing labels (or regions of label track), moving back any following labels - Delete method</a><!--latex }
+--></li>
+<!--
+\item --><li><!--latex 
+\hyperref[\foo{removing:labels:examples::usecase3}]{--><a href="#usecase3">Removing labels together with their associated audio</a><!--latex }
+--></li></ul><!--
+\end{itemize}
+-->
+</div>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top"><span class="menu">Edit &gt; <!--latex 
+\hyperref[\foo{edit:menu:delete}]{--><a href="edit_menu.html#delete" title="Edit Menu">Delete</a><!--latex }
+--></span> (shortcut <span class="kbrd" style="background-color: #e0e0f0">Ctrl + K</span>), <span class="menu">Edit &gt; Remove Special &gt; <!--latex 
+\hyperref[\foo{edit:menu:remove:special:split:delete}]{--><a href="edit_menu_remove_special.html#split_delete" title="Edit Menu: Remove Special">Split Delete</a><!--latex }
+--></span> (shortcut <span class="kbrd" style="background-color: #e0e0f0">Ctrl + Alt + K</span>) or their Cut/Split Cut alternatives cannot be used to remove point labels because there is no audio region associated with them.
+</td></tr></tbody></table>
+</div>   
+<div id="usecase5"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Delete_Label">Delete Label</span></h2><!--}--><!--latex 
+\label{removing:labels:examples:usecase5}-->
+<p>The simplest way to delete a single label is to right-click inside the label's text box, then choose <!--\textbf{--><b>Delete Label</b><!--}--> from the dropdown menu. Any labels lying to right of the removed labels stay where they are, still associated with their original audio. 
+</p>
+<div class="example">Suppose you have labeled different song tracks in the Audio track and you've also labeled some noise in the middle of Track 2. You have removed the noise so you need to delete the label without moving any other labels. 
+<dl><dd><span title="Label Menu Delete - full track"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Label Menu Delete - full track.png" height="230" src="../m/images/b/b0/label_menu_delete_full_track.png" width="749"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/b0/label_menu_delete_full_track.png--></img><!--}\par
+--></span></dd></dl>
+<p>Right-click in the label's text box to show the label dropdown menu. 
+</p>
+<dl><dd><span title="Label Menu Delete - dropdown menu"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Label Menu - Delete highlighted.png" height="126" src="../m/images/7/74/label_menu_delete_highlighted.png" width="235"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/7/74/label_menu_delete_highlighted.png--></img><!--}\par
+--></span></dd></dl>
+<p>Choose <!--\textbf{--><b>Delete Label</b><!--}--> and the label will be removed, leaving any following labels in their original place.
+</p>
+<dl><dd><span title="Label Menu Delete - deleted label"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Label Menu Delete - deleted label.png" height="230" src="../m/images/4/40/label_menu_delete_deleted_label.png" width="749"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/4/40/label_menu_delete_deleted_label.png--></img><!--}\par
+--></span></dd></dl>
+<!--\textit{--><i>It's like having stickers on a paper chain, and lifting one of the stickers off the chain.</i><!--}--></div>
+<p><br/>
+</p>
+<div id="usecase1"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Removing_labels_without_moving_any_following_labels_.28Split_method.29">Removing labels without moving any following labels (Split method)</span></h2><!--}--><!--latex 
+\label{removing:labels:examples:usecase1}-->
+<p>You can use this method to remove single or multiple labels, without removing their associated audio, by split deleting a region in the label track. This method keeps the remaining labels synchronized with their audio. 
+</p>
+<div class="example">Suppose you have labeled different song tracks in the Audio track and you've also labeled some clicks after half-way through Track-2. You have <!--latex 
+\hyperref[\foo{click:removal:}]{--><a href="click_removal.html" title="Click Removal">removed</a><!--latex }
+--> the clicks so you need  to delete their labels without moving any other labels.
+<dl><dd><span title="Removing labels without moving back any following labels - before"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Removing labels without moving back any following labels - before.png" height="211" src="../m/images/1/1d/removing_labels_without_moving_back_any_following_labels_before.png" width="737"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/1/1d/removing_labels_without_moving_back_any_following_labels_before.png--></img><!--}\par
+--></span></dd></dl>
+<p>Select in the label track around the two labels to be removed.  Only drag horizontally, so as to avoid extending the selection up into the audio track.
+</p>
+<dl><dd><span title="Removing labels without moving back any following labels - selection"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Removing labels without moving back any following labels - selection.png" height="211" src="../m/images/7/7d/removing_labels_without_moving_back_any_following_labels_selection.png" width="740"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/7/7d/removing_labels_without_moving_back_any_following_labels_selection.png--></img><!--}\par
+--></span></dd></dl>
+<p>Use <span class="menu">Edit &gt; Remove Special &gt; <!--latex 
+\hyperref[\foo{edit:menu:remove:special:split:delete}]{--><a href="edit_menu_remove_special.html#split_delete" title="Edit Menu: Remove Special">Split Delete</a><!--latex }
+--></span> or its keyboard shortcut <span class="kbrd" style="background-color: #e0e0f0">Ctrl + Alt + K</span>.  The two labels are removed and the labels for Track-3 and Track-4 remain where they were previously.  Note that the selection remains after performing this split delete in the label track.
+</p>
+<dl><dd><span title="Removing labels without moving back any following labels - after"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Removing labels without moving back any following labels - after.png" height="210" src="../m/images/3/34/removing_labels_without_moving_back_any_following_labels_after.png" width="738"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/3/34/removing_labels_without_moving_back_any_following_labels_after.png--></img><!--}\par
+--></span></dd></dl>
+<!--\textit{--><i>It's like having stickers on a paper chain, and lifting some stickers off the chain.</i><!--}--></div>
+<p><br/>
+</p>
+<div id="usecase4"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Label_text_removal_method">Label text removal method</span></h2><!--}--><!--latex 
+\label{removing:labels:examples:usecase4}-->
+<p>You can use this method to remove a single label, all remaining labels remain synchronized with their audio.
+</p>
+<div class="example">
+<p>Open the label by clicking in its text box, remove the text then press <span class="kbrd" style="background-color: #e0e0f0">Backspace</span> or <span class="kbrd" style="background-color: #e0e0f0">Delete</span> once to remove the empty label. This can be achieved in several ways, for example: 
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> Single-click before the first character in the label text (or click anywhere in the text then press <span class="kbrd" style="background-color: #e0e0f0">Home</span>), then press the <span class="kbrd" style="background-color: #e0e0f0">Delete</span> key until the text is removed, then press <span class="kbrd" style="background-color: #e0e0f0">Delete</span> once more.   </li>
+<!--
+\item --><li> Single-click before the first character in the label text (or click anywhere in the text then press <span class="kbrd" style="background-color: #e0e0f0">Home</span>), then hold <span class="kbrd" style="background-color: #e0e0f0">Shift</span> and press <span class="kbrd" style="background-color: #e0e0f0">End</span>. Now press <span class="kbrd" style="background-color: #e0e0f0">Delete</span> twice.</li>
+<!--
+\item --><li> Single-click anywhere after the first character in the label text, then use first <span class="kbrd" style="background-color: #e0e0f0">Backspace</span> then <span class="kbrd" style="background-color: #e0e0f0">Delete</span> if needed until the text and label are removed.  </li></ul><!--
+\end{itemize}
+-->
+<div class="note"><!--\textbf{--><b>Keyboard use:</b><!--}--> Use <span class="kbrd" style="background-color: #e0e0f0">Up</span> or <span class="kbrd" style="background-color: #e0e0f0">Down</span> to move the focus into the label track if needed, then <span class="kbrd" style="background-color: #e0e0f0">Tab</span> into the label to be removed. Now press <span class="kbrd" style="background-color: #e0e0f0">Backspace</span> until the label text and label are removed. You can also use <!--latex 
+\hyperref[\foo{label:tracks:editor}]{--><a href="label_tracks.html#editor" title="Label Tracks">Labels Editor</a><!--latex }
+--> to remove an individual label without affecting the following labels.</div>
+</div>
+<p><br/>
+</p>
+<div id="usecase2"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Removing_labels_.28or_regions_of_label_track.29.2C_moving_back_any_following_labels_.28Delete_method.29">Removing labels (or regions of label track), moving back any following labels (Delete method)</span></h2><!--}--><!--latex 
+\label{removing:labels:examples:usecase2}-->
+<p>You can use this method to remove labels or regions between labels, moving back (leftwards) any following labels.  If you only remove the labels without also deleting the same region in the audio track Delete will desynchronize the following labels with their audio.
+</p>
+<div class="example">You have a podcast and have placed labels every two minutes where you will change to a different piece of accompanying music (not yet added). Then you decide not to use the second piece of music but to otherwise keep the same order for the following pieces of music. The easiest answer is to delete a region of label track corresponding to the "Vivaldi" piece, which allows the following labels to move back. We will not split delete because that would leave a section with no music label, and this method avoids having to rename any labels.
+<dl><dd><span title="Removing labels moving back any following labels - before2"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Removing labels moving back any following labels - before2.png" height="219" src="../m/images/3/39/removing_labels_moving_back_any_following_labels_before2.png" width="746"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/3/39/removing_labels_moving_back_any_following_labels_before2.png--></img><!--}\par
+--></span></dd></dl>
+<p>Select in the label track over the label to be removed.  Only drag horizontally, so as to avoid extending the selection up into the audio track or the other label track. The labels following the removed label will move back by the length of region removed from the label track. It does not matter <!--\textit{--><i>exactly</i><!--}--> where that region starts and ends, providing the selected length is correct and providing we select over the "Vivaldi" label point but do not let the selection touch the "Mozart" label.  
+</p>
+<dl><dd><span title="Removing labels moving back any following labels - selection2"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Removing labels moving back any following labels - selection2.png" height="219" src="../m/images/6/66/removing_labels_moving_back_any_following_labels_selection2.png" width="746"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/6/66/removing_labels_moving_back_any_following_labels_selection2.png--></img><!--}\par
+--></span></dd></dl>
+<p>Use <span class="menu">Edit &gt; <!--latex 
+\hyperref[\foo{edit:menu:delete}]{--><a href="edit_menu.html#delete" title="Edit Menu">Delete</a><!--latex }
+--></span> or its shortcut <span class="kbrd" style="background-color: #e0e0f0">Ctrl + K</span> to delete the selected part of the label track, moving back the following labels accordingly.
+</p>
+<dl><dd><span title="Removing labels moving back any following labels - after2"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Removing labels moving back any following labels - after2.png" height="219" src="../m/images/a/ab/removing_labels_moving_back_any_following_labels_after2.png" width="744"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/a/ab/removing_labels_moving_back_any_following_labels_after2.png--></img><!--}\par
+--></span></dd></dl>
+<!--\textit{--><i>This is like removing part of a paper chain, making the following parts move back.</i><!--}--></div>
+<p><br/>
+</p>
+<div id="usecase3"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Removing_labels_together_with_their_associated_audio">Removing labels together with their associated audio</span></h2><!--}--><!--latex 
+\label{removing:labels:examples:usecase3}-->
+<p>In most cases when you remove parts of the label track, you will also want to remove the corresponding audio so that the remaining labels are still synchronized with their original audio. For example, you may have labeled a region of noisy audio for later deletion, as in the example below where there is a section of a performance with clapping.
+</p>
+<div class="example">You have identified a section of applause at the end of Track-3 that you want to remove and have labeled this section with a region label.
+<dl><dd><span title="Removing labels together with their associated audio - before"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Removing labels together with their associated audio - before.png" height="211" src="../m/images/0/02/removing_labels_together_with_their_associated_audio_before.png" width="737"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/0/02/removing_labels_together_with_their_associated_audio_before.png--></img><!--}\par
+--></span></dd></dl>
+<p>Select in the audio track from one edge of the label to the other then drag down into the label track, or simply click in the text of the "clap" label.
+</p>
+<dl><dd><span title="Removing labels together with their associated audio - selection"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Removing labels together with their associated audio - selection.png" height="210" src="../m/images/8/89/removing_labels_together_with_their_associated_audio_selection.png" width="738"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/8/89/removing_labels_together_with_their_associated_audio_selection.png--></img><!--}\par
+--></span></dd></dl>
+<p>Then use <span class="menu">Edit &gt; <!--latex 
+\hyperref[\foo{edit:menu:delete}]{--><a href="edit_menu.html#delete" title="Edit Menu">Delete</a><!--latex }
+--></span> or its shortcut <span class="kbrd" style="background-color: #e0e0f0">Ctrl + K</span> to make the deletion. As you can see, the label for Track-4 and its audio both move back (leftwards) on the Timeline thus keeping the label for Track-4 at the start of that track. If you already had the labeled audio selected on its own, you could equally have dragged either edge of that selection down into the label track.
+</p>
+<dl><dd><span title="Removing labels together with their associated audio - after"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Removing labels together with their associated audio - after.png" height="208" src="../m/images/2/24/removing_labels_together_with_their_associated_audio_after.png" width="739"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/2/24/removing_labels_together_with_their_associated_audio_after.png--></img><!--}\par
+--></span></dd></dl></div>
+<p><br/>  
+</p><p><!--latex 
+\hyperref[\foo{label:tracks:remove}]{--><a href="label_tracks.html#remove" title="Label Tracks"><!--\textbf{--><b>|&lt;</b><!--}--> Label Tracks</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

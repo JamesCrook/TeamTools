@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Export Options - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Export_Options rootpage-Export_Options skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Export Options</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{export:options:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p><br/>
+</p><p>This screenshot shows the <!--latex 
+\hyperref[\foo{file:export:dialog:}]{--><a href="file_export_dialog.html" title="File Export Dialog">Export Audio dialog</a><!--latex }
+--> with options for <!--\textbf{--><b>MP3</b><!--}--> format export:
+</p>
+<dl><dd><span title="Export Audio dialog for export to MP3"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Export Audio to MP3 dialog W10.png" height="570" src="../m/images/f/f2/export_audio_to_mp3_dialog_w10.png" width="557"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/f/f2/export_audio_to_mp3_dialog_w10.png--></img><!--}\par
+--></span></dd></dl>
+<p><br/>
+Options for the various formats are:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--latex 
+\hyperref[\foo{mp3:export:options:}]{--><a href="mp3_export_options.html" title="MP3 Export Options">MP3 Export Options</a><!--latex }
+--></li>
+<!--
+\item --><li> <!--latex 
+\hyperref[\foo{aac:export:options:}]{--><a href="aac_export_options.html" title="AAC Export Options">AAC Export Options</a><!--latex }
+--></li>
+<!--
+\item --><li> <!--latex 
+\hyperref[\foo{ac3:export:options:}]{--><a href="ac3_export_options.html" title="AC3 Export Options">AC3 Export Options</a><!--latex }
+--> </li>
+<!--
+\item --><li> <!--latex 
+\hyperref[\foo{amr:export:options:}]{--><a href="amr_export_options.html" title="AMR Export Options">AMR Export Options</a><!--latex }
+--> </li>
+<!--
+\item --><li> <!--latex 
+\hyperref[\foo{custom:ffmpeg:export:options:}]{--><a href="custom_ffmpeg_export_options.html" title="Custom FFmpeg Export Options">Custom FFmpeg Export Options</a><!--latex }
+--> </li>
+<!--
+\item --><li> <!--latex 
+\hyperref[\foo{flac:export:options:}]{--><a href="flac_export_options.html" title="FLAC Export Options">FLAC Export Options</a><!--latex }
+--></li>
+<!--
+\item --><li> <!--latex 
+\hyperref[\foo{mp2:export:options:}]{--><a href="mp2_export_options.html" title="MP2 Export Options">MP2 Export Options</a><!--latex }
+--> </li>
+<!--
+\item --><li> <!--latex 
+\hyperref[\foo{ogg:vorbis:export:options:}]{--><a href="ogg_vorbis_export_options.html" title="Ogg Vorbis Export Options">Ogg Vorbis Export Options</a><!--latex }
+--> </li>
+<!--
+\item --><li> <!--latex 
+\hyperref[\foo{other:uncompressed:files:export:options:}]{--><a href="other_uncompressed_files_export_options.html" title="Other uncompressed files Export Options">Other uncompressed files Export Options</a><!--latex }
+--> </li>
+<!--
+\item --><li> <!--latex 
+\hyperref[\foo{wma:export:options:}]{--><a href="wma_export_options.html" title="WMA Export Options">WMA Export Options</a><!--latex }
+--> </li></ul><!--
+\end{itemize}
+-->
+<p><br/>
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--latex 
+\hyperref[\foo{advanced:mixing:options:}]{--><a href="advanced_mixing_options.html" title="Advanced Mixing Options">Advanced Mixing Options</a><!--latex }
+--></li></ul><!--
+\end{itemize}
+-->
+<p><br/>
+</p>
+<div class="note">By default, all exports are <!--latex 
+\hyperref[\foo{mixing:}]{--><a href="mixing.html" title="Mixing">mixed</a><!--latex }
+--> down to mono (one channel) or stereo (two channels). If you want to export to more channels, enable "Use custom mix" in <!--latex 
+\hyperref[\foo{import:export:preferences:}]{--><a href="import_export_preferences.html" title="Import - Export Preferences">Import / Export Preferences</a><!--latex }
+-->. After pressing "Save" in the export dialog, the <!--latex 
+\hyperref[\foo{advanced:mixing:options:}]{--><a href="advanced_mixing_options.html" title="Advanced Mixing Options">Advanced Mixing Options</a><!--latex }
+--> dialog appears where you can map the Audacity tracks to channels. Metadata Editor (if enabled) appears after OK'ing the Advanced Mixing Options.</div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Custom_FFmpeg_export_options">Custom FFmpeg export options</span></h3><!--}-->
+<p>In the Export dialog when you select <!--\textbf{--><b>Custom FFmpeg Export</b><!--}--> in the <!--\textbf{--><b>Save as type</b><!--}--> dropdown, then the Options pane will contain the <span class="button">Open custom FFmpeg format options</span> button.  Clicking on the button will bring up the custom options dialog. See <!--latex 
+\hyperref[\foo{custom:ffmpeg:export:options:}]{--><a href="custom_ffmpeg_export_options.html" title="Custom FFmpeg Export Options">Custom FFmpeg Export Options</a><!--latex }
+--> for more details.
+</p>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">Note that when using custom FFmpeg export it is necessary to supply the full file name and the extension in the <!--\textbf{--><b>File name:</b><!--}--> field as Audacity does not automatically add the extension in this case.  Otherwise you will need to manually add the extension to the file name after export.
+</td></tr></tbody></table>
+</div>
+
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

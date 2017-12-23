@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>AMR Export Options - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-AMR_Export_Options rootpage-AMR_Export_Options skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">AMR Export Options</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{amr:export:options:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+
+
+</p>
+<div class="intro"><!--\textbf{--><b>AMR</b><!--}--> the Adaptive Multi-Rate codec is a patented compression scheme optimized for speech, but also used for mobile telephone ringtones. The wide band variant uses higher bandwidth for higher quality. </div>
+<dl><dd>Accessed by: <span class="menu">File &gt; Save Other &gt; <!--latex 
+\hyperref[\foo{file:menu:save:other:exportaudio}]{--><a href="file_menu_save_other.html#exportaudio" title="File Menu: Save Other">Export Audio...</a><!--latex }
+--></span> then choosing <!--\textbf{--><b>AMR (narrow band) Files (FFmpeg)</b><!--}--> from the <!--\textbf{--><b>Save as type</b><!--}--> dropdown menu.</dd></dl>
+<dl><dd><span title="AMR Export Options at the bottom of the Export Audio dialog"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="AMRExportOptions.png" height="576" src="../m/images/8/80/amrexportoptions.png" width="571"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/8/80/amrexportoptions.png--></img><!--}\par
+--></span></dd></dl>
+<dl><dd>Also accessed by: <span class="menu">File &gt; Save Other &gt; <!--latex 
+\hyperref[\foo{file:menu:save:other:exportmultiple}]{--><a href="file_menu_save_other.html#exportmultiple" title="File Menu: Save Other">Export Multiple...</a><!--latex }
+--></span> then choosing <!--\textbf{--><b>AMR (narrow band) Files (FFmpeg)</b><!--}--> from the <!--\textbf{--><b>Save as type</b><!--}--> dropdown menu.  In this case the options dialog will appear in the center of the Export Multiple dialog.</dd></dl>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">FFmpeg is not shipped with Audacity but you can download it and then export as AMR (NB) by following <!--latex 
+\hyperref[\foo{faq:installation:and:plug:ins:ffdown}]{--><a href="faq_installation_and_plug_ins.html#ffdown" title="FAQ:Installation and Plug-Ins">these instructions</a><!--latex }
+-->.
+</td></tr></tbody></table>
+</div> 
+<div id="setup"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="AMR-NB_Export_Setup">AMR-NB Export Setup</span></h2><!--}--><!--latex 
+\label{amr:export:options:setup}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>Bit Rate:</b><!--}--> Choose a <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:bit:rate}]{--><a href="glossary.html#bit_rate" title="Glossary">bit rate</a><!--latex }
+--></b><!--}--></i><!--}--> from 4.75 kbps to 12.2 kbps (defaults to 12.2 kbps). Higher bit rates give higher quality but produce larger files.</li></ul><!--
+\end{itemize}
+-->
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">Due to the format specification, AMR-NB files are always exported at 8000 <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:hz}]{--><a href="glossary.html#hz" title="Glossary">Hz</a><!--latex }
+--></b><!--}--></i><!--}--> <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:sample:rate}]{--><a href="glossary.html#sample_rate" title="Glossary">sample rate</a><!--latex }
+--></b><!--}--></i><!--}--> irrespective of the Audacity <!--latex 
+\hyperref[\foo{selection:toolbar:rate}]{--><a href="selection_toolbar.html#rate" title="Selection Toolbar">Project Rate</a><!--latex }
+-->.
+</td></tr></tbody></table>
+</div>
+
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Chains - for batch processing and effects automation - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="chains_for_batch_processing_and_effects_automation.html" rel="canonical"/>
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Chains_-_for_batch_processing_and_effects_automation rootpage-Chains_-_for_batch_processing_and_effects_automation skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Chains - for batch processing and effects automation</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{file:menu:chains:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+
+
+
+</p><p><br/>
+</p>
+<div class="intro">
+A <!--\textit{--><i><!--\textbf{--><b>Chain</b><!--}--></i><!--}--> is a sequence of preconfigured commands in a set order (mainly effects) that can be applied automatically to <!--latex 
+\hyperref[\foo{audacity:projects:}]{--><a href="audacity_projects.html" title="Audacity Projects">projects</a><!--latex }
+--> or audio files. Any <!--latex 
+\hyperref[\foo{effect:menu:built-in}]{--><a href="effect_menu.html#built-in" title="Effect Menu">built-in</a><!--latex }
+-->, <!--latex 
+\hyperref[\foo{effect:menu:LADSPA:effects}]{--><a href="effect_menu.html#LADSPA_effects" title="Effect Menu">LADSPA</a><!--latex }
+-->, <!--latex 
+\hyperref[\foo{effect:menu:LV2:effects}]{--><a href="effect_menu.html#LV2_effects" title="Effect Menu">LV2</a><!--latex }
+-->, <!--latex 
+\hyperref[\foo{effect:menu:nyquist:effects}]{--><a href="effect_menu.html#nyquist_effects" title="Effect Menu">Nyquist</a><!--latex }
+-->, <!--latex 
+\hyperref[\foo{effect:menu:vst}]{--><a href="effect_menu.html#vst" title="Effect Menu">VST</a><!--latex }
+--> or <!--latex 
+\hyperref[\foo{effect:menu:Audio:Unit:effects}]{--><a href="effect_menu.html#Audio_Unit_effects" title="Effect Menu">Audio Unit</a><!--latex }
+--> (Mac) effect shown in the <!--latex 
+\hyperref[\foo{effect:menu:}]{--><a href="effect_menu.html" title="Effect Menu">Effect Menu</a><!--latex }
+--> can be added to a Chain. You can also add plug-ins in any format that are shown in the <!--latex 
+\hyperref[\foo{generate:menu:}]{--><a href="generate_menu.html" title="Generate Menu">Generate</a><!--latex }
+--> or <!--latex 
+\hyperref[\foo{analyze:menu:}]{--><a href="analyze_menu.html" title="Analyze Menu">Analyze</a><!--latex }
+--> Menus (including <!--latex 
+\hyperref[\foo{analyze:menu:vamp}]{--><a href="analyze_menu.html#vamp" title="Analyze Menu">VAMP</a><!--latex }
+--> analysis effects), the built-in <!--latex 
+\hyperref[\foo{find:clipping:}]{--><a href="find_clipping.html" title="Find Clipping">Find Clipping</a><!--latex }
+--> analyzer and a number of export commands. </div>
+<dl><dd><!--\textit{--><i>Click, or hover, on any menu item in the image to read about that command.  &nbsp;<span style="font-size:0.8em"><!--latex 
+\hyperref[\foo{file:menu:chains::skiptheimage}]{--><a href="#skiptheimage">Skip the image</a><!--latex }
+--></span></i><!--}--></dd>
+<dd><div class="noresize"><map name="ImageMap_1_1224634949"><area alt="File Menu" coords="33,3,56,19" href="file_menu.html" shape="rect" title="File Menu"/><area alt="Edit Menu" coords="63,3,87,19" href="edit_menu.html" shape="rect" title="Edit Menu"/><area alt="Select Menu" coords="94,3,131,19" href="select_menu.html" shape="rect" title="Select Menu"/><area alt="View Menu" coords="138,3,167,19" href="view_menu.html" shape="rect" title="View Menu"/><area alt="Transport Menu" coords="174,3,230,19" href="transport_menu.html" shape="rect" title="Transport Menu"/><area alt="Tracks Menu" coords="237,3,277,19" href="tracks_menu.html" shape="rect" title="Tracks Menu"/><area alt="Generate Menu" coords="284,3,338,19" href="generate_menu.html" shape="rect" title="Generate Menu"/><area alt="Effect Menu" coords="345,3,378,19" href="effect_menu.html" shape="rect" title="Effect Menu"/><area alt="Analyze Menu" coords="385,3,429,19" href="analyze_menu.html" shape="rect" title="Analyze Menu"/><area alt="Help Menu" coords="436,3,465,19" href="help_menu.html" shape="rect" title="Help Menu"/><area alt="Ext-Bar Menu" coords="472,3,514,19" href="ext_bar_menu.html" shape="rect" title="Ext-Bar Menu"/><area alt="Ext-Command Menu" coords="521,3,603,19" href="ext_command_menu.html" shape="rect" title="Ext-Command Menu"/><area alt="Menu Bar" coords="0,0,600,22" href="menu_reference.html" shape="rect" title="Menu Bar"/><area alt="Creates a new and empty project window to start working on new or imported Tracks" coords="39,23,220,45" href="file_menu.html#new" shape="rect" title="Creates a new and empty project window to start working on new or imported Tracks"/><area alt="Presents you with a file selection dialog box to open files" coords="39,45,220,67" href="file_menu.html#open" shape="rect" title="Presents you with a file selection dialog box to open files"/><area alt="Lists the full path to the twelve most recently saved or opened projects or most recently imported audio files" coords="39,67,220,89" href="file_menu_recent_files.html" shape="rect" title="Lists the full path to the twelve most recently saved or opened projects or most recently imported audio files"/><area alt="Closes the current project window, prompting you to save your work if you have not saved" coords="39,96,220,118" href="file_menu.html#close" shape="rect" title="Closes the current project window, prompting you to save your work if you have not saved"/><area alt="Saves the current Audacity project" coords="39,118,220,140" href="file_menu.html#save_project" shape="rect" title="Saves the current Audacity project"/><area alt='Same as "Save Project" above, but allows you to save a copy of an open project to a different name or location' coords="39,140,220,162" href="file_menu.html#save_project_as" shape="rect" title='Same as "Save Project" above, but allows you to save a copy of an open project to a different name or location'/><area alt="For exporting audio files" coords="39,162,220,184" href="file_menu_save_other.html" shape="rect" title="For exporting audio files"/><area alt="For importing audio files or label files into your project" coords="39,191,220,213" href="file_menu_import.html" shape="rect" title="For importing audio files or label files into your project"/><area alt="Chains are Audacity's form of batch processing" coords="39,220,220,242" href="#" shape="rect" title="Chains are Audacity's form of batch processing"/><area alt="Opens the standard Page Setup dialog box prior to printing" coords="39,249,220,271" href="file_menu.html#page_setup" shape="rect" title="Opens the standard Page Setup dialog box prior to printing"/><area alt="Prints all the waveforms in the current project window (and the contents of Label Tracks or other tracks), with the Timeline above" coords="39,271,220,293" href="file_menu.html#print" shape="rect" title="Prints all the waveforms in the current project window (and the contents of Label Tracks or other tracks), with the Timeline above"/><area alt="Closes all project windows and exits Audacity" coords="39,300,220,322" href="file_menu.html#exit" shape="rect" title="Closes all project windows and exits Audacity"/><area alt="Creates a new Chain or edits an existing chain" coords="232,223,360,245" href="#apply_chain" shape="rect" title="Creates a new Chain or edits an existing chain"/><area alt="Show the existing chains and allows you to select and run one" coords="232,245,360,267" href="#edit_chains" shape="rect" title="Show the existing chains and allows you to select and run one"/></map><!--
+
+\par\Needspace{195.0pt}\begin{picture}(186.5,165.0)
+--><!--   \put(0,0){\includegraphics[scale=0.5]{--><img alt="File-ChainsMenu.png" height="330" src="../m/images/e/e1/file_chainsmenu.png" usemap="#ImageMap_1_1224634949" width="373"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/e/e1/file_chainsmenu.png--></img><!--}}
+--><!--   \put(16.5,155.5){\hyperref[\foo{file:menu:}]{\makebox(11.5,8.0){}}}
+   \put(31.5,155.5){\hyperref[\foo{edit:menu:}]{\makebox(12.0,8.0){}}}
+   \put(47.0,155.5){\hyperref[\foo{select:menu:}]{\makebox(18.5,8.0){}}}
+   \put(69.0,155.5){\hyperref[\foo{view:menu:}]{\makebox(14.5,8.0){}}}
+   \put(87.0,155.5){\hyperref[\foo{transport:menu:}]{\makebox(28.0,8.0){}}}
+   \put(118.5,155.5){\hyperref[\foo{tracks:menu:}]{\makebox(20.0,8.0){}}}
+   \put(142.0,155.5){\hyperref[\foo{generate:menu:}]{\makebox(27.0,8.0){}}}
+   \put(172.5,155.5){\hyperref[\foo{effect:menu:}]{\makebox(16.5,8.0){}}}
+   \put(192.5,155.5){\hyperref[\foo{analyze:menu:}]{\makebox(22.0,8.0){}}}
+   \put(218.0,155.5){\hyperref[\foo{help:menu:}]{\makebox(14.5,8.0){}}}
+   \put(236.0,155.5){\hyperref[\foo{ext:bar:menu:}]{\makebox(21.0,8.0){}}}
+   \put(260.5,155.5){\hyperref[\foo{ext:command:menu:}]{\makebox(41.0,8.0){}}}
+   \put(19.5,142.5){\hyperref[\foo{file:menu:new}]{\makebox(90.5,11.0){}}}
+   \put(19.5,131.5){\hyperref[\foo{file:menu:open}]{\makebox(90.5,11.0){}}}
+   \put(19.5,120.5){\hyperref[\foo{file:menu:recent:files:}]{\makebox(90.5,11.0){}}}
+   \put(19.5,106.0){\hyperref[\foo{file:menu:close}]{\makebox(90.5,11.0){}}}
+   \put(19.5,95.0){\hyperref[\foo{file:menu:save:project}]{\makebox(90.5,11.0){}}}
+   \put(19.5,84.0){\hyperref[\foo{file:menu:save:project:as}]{\makebox(90.5,11.0){}}}
+   \put(19.5,73.0){\hyperref[\foo{file:menu:save:other:}]{\makebox(90.5,11.0){}}}
+   \put(19.5,58.5){\hyperref[\foo{file:menu:import:}]{\makebox(90.5,11.0){}}}
+   \put(19.5,44.0){\hyperref[\foo{file:menu:chains::}]{\makebox(90.5,11.0){}}}
+   \put(19.5,29.5){\hyperref[\foo{file:menu:page:setup}]{\makebox(90.5,11.0){}}}
+   \put(19.5,18.5){\hyperref[\foo{file:menu:print}]{\makebox(90.5,11.0){}}}
+   \put(19.5,4.0){\hyperref[\foo{file:menu:exit}]{\makebox(90.5,11.0){}}}
+   \put(116.0,42.5){\hyperref[\foo{file:menu:chains::apply:chain}]{\makebox(64.0,11.0){}}}
+   \put(116.0,31.5){\hyperref[\foo{file:menu:chains::edit:chains}]{\makebox(64.0,11.0){}}}
+\end{picture}
+
+--></div></dd></dl>
+<div id="skiptheimage"></div>
+<div class="note">There are two related Chain commands accessible from the File Menu called <!--latex 
+\hyperref[\foo{file:menu:chains::editchains}]{--><a href="#editchains">Edit Chains</a><!--latex }
+--> and <!--latex 
+\hyperref[\foo{file:menu:chains::applychain}]{--><a href="#applychain">Apply Chain</a><!--latex }
+-->:</div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="How_to_use_Chains">How to use Chains</span></h2><!--}--><!--latex 
+\label{file:menu:chains:skiptheimage}-->
+<p>The two uses of Chains are for: 
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>Batch processing</b><!--}--> (where many audio files are processed unattended with one or more effects then exported to a new file)</li>
+<!--
+\item --><li> <!--\textbf{--><b>Effects automation</b><!--}--> (where the <!--latex 
+\hyperref[\foo{audacity:selection:}]{--><a href="audacity_selection.html" title="Audacity Selection">selected audio</a><!--latex }
+--> in the <!--latex 
+\hyperref[\foo{audio:tracks:}]{--><a href="audio_tracks.html" title="Audio Tracks"> track</a><!--latex }
+--> or tracks in the current project is subjected to the same prescribed sequence of effects, and optionally, a file exported from the entire audio.)</li></ul><!--
+\end{itemize}
+-->
+<p>Look first at Edit Chains to determine if an existing Chain will suit your needs (Audacity only ships with one) or to create a new chain. Next, use Apply Chain to perform the action on your selected audio.
+</p><p>See the <!--latex 
+\hyperref[\foo{file:menu:chains::examples}]{--><a href="#examples">examples</a><!--latex }
+--> below. 
+</p>
+<div id="editchains"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Edit_Chains"><!--latex 
+\hyperref[\foo{edit:chains:}]{--><a href="edit_chains.html" title="Edit Chains">Edit Chains</a><!--latex }
+--></span></h2><!--}--><!--latex 
+\label{file:menu:chains:editchains}-->
+<p>Use <span class="menu">File &gt; Chains &gt; <!--latex 
+\hyperref[\foo{edit:chains:}]{--><a href="edit_chains.html" title="Edit Chains">Edit Chains...</a><!--latex }
+--></span> if you need to create a new Chain or to edit an existing Chain. 
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li>The Chain can include a number of common Audacity functions and effects to be executed in any order you specify.</li>
+<!--
+\item --><li>To create an audio file as part of the Chain process you must include an "Export"  command (such as <!--\textbf{--><b>ExportWAV</b><!--}-->).  </li>
+<!--
+\item --><li>In many cases the parameters for each command in the Chain can be specified within the Edit Chains dialog. </li></ul><!--
+\end{itemize}
+-->
+<dl><dd><span title="Edit Chains dialog box"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Edit chains W10.png" height="327" src="../m/images/a/aa/edit_chains_w10.png" width="826"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/a/aa/edit_chains_w10.png--></img><!--}\par
+--></span></dd></dl>
+<p>The left hand box in the dialog (labeled <!--\textbf{--><b>Chains</b><!--}-->) contains a list of already defined Chains. Until you add a new Chain, it only has a single built-in "MP3 Conversion" Chain. You can:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li>Use the <span class="button">Add</span> button to create a new Chain</li>
+<!--
+\item --><li>Use left-click <!--\textit{--><i>(or use the <span class="kbrd" style="background-color: #e0e0f0">Up</span> or <span class="kbrd" style="background-color: #e0e0f0">Down</span> arrow on the keyboard)</i><!--}--> to select the Chain you want to work on </li>
+<!--
+\item --><li>Delete any user-added Chain with the <span class="button">Remove</span> button</li>
+<!--
+\item --><li>Rename any user-added Chain with the <span class="button">Rename</span> button</li></ul><!--
+\end{itemize}
+-->
+<div class="note">The Remove and Rename buttons are grayed out when the <!--\textbf{--><b>MP3 Conversion</b><!--}--> Chain is selected.</div>
+<p>The right-hand box (labeled <!--\textbf{--><b>Chain</b><!--}-->) lists the ordered sequence of commands for the Chain selected in the "Chains" box on the  left. You can: 
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li>Add or remove commands for the selected Chain </li>
+<!--
+\item --><li>Change the order in which the commands execute in the Chain </li>
+<!--
+\item --><li>Edit the parameters for some effects in the Chain  </li></ul><!--
+\end{itemize}
+-->
+<p>For further details on creating, editing and sharing Chains, see the <!--latex 
+\hyperref[\foo{edit:chains:}]{--><a href="edit_chains.html" title="Edit Chains">Edit Chains</a><!--latex }
+--> page.
+</p>
+<div id="applychain"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Apply_Chain"><!--latex 
+\hyperref[\foo{apply:chain:}]{--><a href="apply_chain.html" title="Apply Chain">Apply Chain</a><!--latex }
+--></span></h2><!--}--><!--latex 
+\label{file:menu:chains:applychain}-->
+<p>Use <span class="menu">File &gt; Chains &gt; <!--latex 
+\hyperref[\foo{apply:chain:}]{--><a href="apply_chain.html" title="Apply Chain">Apply Chain...</a><!--latex }
+--></span>  to show the existing chains. Select the chain you require by using left-click <!--\textit{--><i>(or using the <span class="kbrd" style="background-color: #e0e0f0">Up</span> or <span class="kbrd" style="background-color: #e0e0f0">Down</span> arrow on the keyboard)</i><!--}--> to select the Chain you want to work on, then <!--\textbf{--><b>either:</b><!--}-->
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> choose <span class="button">Apply to Current Project</span> to run the Chain on the entire project in the current window <!--\textbf{--><b>or</b><!--}-->
+</li><!--
+\item --><li>choose <span class="button">Apply to Files...</span> to run the Chain on selected external audio files in a single directory </li></ul><!--
+\end{itemize}
+-->
+<dl><dd><span title="Apply Chain dialog box"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Apply Chain W10.png" height="243" src="../m/images/7/7f/apply_chain_w10.png" width="400"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/7/7f/apply_chain_w10.png--></img><!--}\par
+--></span></dd></dl>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">If you already have audio in the current project window, you must save and close that project using <span class="menu">File &gt; <!--latex 
+\hyperref[\foo{file:menu:close}]{--><a href="file_menu.html#close" title="File Menu">Close</a><!--latex }
+--></span> before applying a Chain to files.
+</td></tr></tbody></table>
+</div>
+<p>For more details see the <!--latex 
+\hyperref[\foo{apply:chain:}]{--><a href="apply_chain.html" title="Apply Chain">Apply Chain</a><!--latex }
+--> page.
+</p>
+<div id="examples"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Chain_Examples">Chain Examples</span></h2><!--}--><!--latex 
+\label{file:menu:chains:examples}-->
+<p>In this section we look at a couple of examples of how a Chain might be used. In the image below we have added two additional Chains.  It is important to note that the only Chain that Audacity ships with is <!--\textbf{--><b>MP3 Conversion</b><!--}--> (shown as selected in blue). All other Chains must be added by the user.
+</p>
+<dl><dd><dl><dd><dl><dd><span title="Edit Chains dialog showing an example of a full dialog with the MP3 Conversion selected and displayed"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Chain examples full window.png" height="221" src="../m/images/f/fb/chain_examples_full_window.png" width="750"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/f/fb/chain_examples_full_window.png--></img><!--}\par
+--></span></dd></dl></dd></dl></dd></dl>
+<p><br/>
+</p>
+<div class="example"><!--
+\subsubsection{--><h3><span class="mw-headline" id="Example_1:_Loud_MP3">Example 1: Loud MP3</span></h3><!--}-->
+<p>A <!--\textbf{--><b>batch processing</b><!--}--> Chain to compress and normalize <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:wav}]{--><a href="glossary.html#wav" title="Glossary">WAV</a><!--latex }
+--></b><!--}--></i><!--}--> files then convert them to MP3:
+</p>
+<!--
+\begin{enumerate}--><ol>
+<!--
+\item --><li> Insert <!--latex 
+\hyperref[\foo{compressor:}]{--><a href="compressor.html" title="Compressor">Compressor</a><!--latex }
+--> to reduce the <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:dynamic:range}]{--><a href="glossary.html#dynamic_range" title="Glossary">dynamic range</a><!--latex }
+--></b><!--}--></i><!--}--> of each WAV, also normalizing them to maximum <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:amplitude}]{--><a href="glossary.html#amplitude" title="Glossary">amplitude</a><!--latex }
+--></b><!--}--></i><!--}-->  of 0 <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:decibel}]{--><a href="glossary.html#decibel" title="Glossary">dB</a><!--latex }
+--></b><!--}--></i><!--}-->
+</li><!--
+\item --><li> Insert ExportMP3 to convert them to <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:mp3}]{--><a href="glossary.html#mp3" title="Glossary">MP3</a><!--latex }
+--></b><!--}--></i><!--}--> format
+</li><!--
+\item --><li> Click <span class="button">OK</span> to close the "Edit Chains" window
+<div style="margin-left:-28px;margin-top:6px"> <span title="Edit Chains dialog showing an example of a chain for batch processing to compress and normalize then export as MP3"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Chain examples cropped LoudMP3.png" height="205" src="../m/images/a/ae/chain_examples_cropped_loudmp3.png" width="800"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/a/ae/chain_examples_cropped_loudmp3.png--></img><!--}\par
+--></span> </div>
+</li><!--
+\item --><li> Finally, choose <span class="menu">File &gt; Chains &gt; <!--latex 
+\hyperref[\foo{file:menu:chains::applychain}]{--><a href="#applychain">Apply Chain...</a><!--latex }
+--></span>, select the "Loud MP3" Chain then click <span class="button">Apply to Files...</span> where you can select the files on which to run the Chain.</li></ol><!--
+\end{enumerate}
+--></div>
+<p><br/>
+</p>
+<div class="example"><!--
+\subsubsection{--><h3><span class="mw-headline" id="Example_2:_NR.26EQ">Example 2: NR&amp;EQ</span></h3><!--}-->
+<p>An <!--\textbf{--><b>effects automation</b><!--}--> Chain for the current project that applies noise reduction and equalization:
+</p>
+<!--
+\begin{enumerate}--><ol>
+<!--
+\item --><li> Insert <!--latex 
+\hyperref[\foo{normalize:}]{--><a href="normalize.html" title="Normalize">Normalize</a><!--latex }
+--> with settings of:
+<!--
+\begin{enumerate}--><ol><!--
+\item --><li> Remove any <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:dc:offset}]{--><a href="glossary.html#dc_offset" title="Glossary">DC offset</a><!--latex }
+--></b><!--}--></i><!--}-->
+</li><!--
+\item --><li> -10 dB (to allow for boosting <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:frequency}]{--><a href="glossary.html#frequency" title="Glossary">frequencies</a><!--latex }
+--></b><!--}--></i><!--}--> later in the Chain without <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:clipping}]{--><a href="glossary.html#clipping" title="Glossary">clipping</a><!--latex }
+--></b><!--}--></i><!--}-->) </li></ol><!--
+\end{enumerate}
+-->
+</li><!--
+\item --><li> Insert <!--latex 
+\hyperref[\foo{noise:reduction:}]{--><a href="noise_reduction.html" title="Noise Reduction">Noise Reduction</a><!--latex }
+-->
+</li><!--
+\item --><li> Insert <!--latex 
+\hyperref[\foo{equalization:}]{--><a href="equalization.html" title="Equalization">Equalization</a><!--latex }
+--> (to perform the frequency adjustment)
+</li><!--
+\item --><li> Insert another Normalize at different settings (without offset removal, setting a final amplitude of -1 dB)
+</li><!--
+\item --><li> Click <span class="button">OK</span> to close the "Edit Chains" window
+<div style="margin-left:-28px;margin-top:5px"><span title="Edit Chains dialog showing an example of a chain for noise reduction and equalization"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Chain examples cropped NRandEQ.png" height="301" src="../m/images/f/fb/chain_examples_cropped_nrandeq.png" width="692"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/f/fb/chain_examples_cropped_nrandeq.png--></img><!--}\par
+--></span> </div>
+</li><!--
+\item --><li> Finally, choose <span class="menu">File &gt; Chains &gt; <!--latex 
+\hyperref[\foo{file:menu:chains::applychain}]{--><a href="#applychain">Apply Chain...</a><!--latex }
+--></span>, select the "NR&amp;EQ" Chain then click <span class="button">Apply to Current Project</span> to apply the Chain to the selected track(s) in the current project window.</li></ol><!--
+\end{enumerate}
+-->
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Bulbicon.png" title="Bulb icon"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Bulb icon" height="32" src="../m/images/d/d7/bulbicon.png" width="32"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d7/bulbicon.png--></img><!--}\par
+--></a>
+</td>
+<td align="left" valign="top">
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> If a Noise Profile exists, that Noise Profile will be used. It is often best to capture a suitable Noise Profile before running a Chain.</li>
+<!--
+\item --><li> If a Noise Profile does not exist:
+<!--
+\begin{itemize}--><ul><!--
+\item --><li>If the Chain is applied to the current project (as above), the current selection is used to create the Noise Profile. Therefore, other effect commands in the Chain will also only apply to that selection. If an export command is added, the entire file will be exported.</li>
+<!--
+\item --><li> If the Chain is applied to files, the first file (all of it) is used to create the Noise Profile. It may be useful to prepare a file containing a suitable Noise Profile and name it so that it is alphabetically the first file of those to be run in the Chain. </li></ul><!--
+\end{itemize}
+--></li></ul><!--
+\end{itemize}
+-->
+</td></tr></tbody></table>
+</div></div>
+<p><br/>
+</p><p><!--latex 
+\hyperref[\foo{file:menu:}]{--><a href="file_menu.html" title="File Menu"><!--\textbf{--><b>&lt;</b><!--}-->&nbsp; Back to: File Menu</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

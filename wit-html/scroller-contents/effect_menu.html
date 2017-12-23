@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Effect Menu - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Effect_Menu rootpage-Effect_Menu skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Effect Menu</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{effect:menu:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+
+
+</p><p><br/>
+</p>
+<div class="intro"><!--\textbf{--><b>Audacity includes many built-in effects and also lets you use a wide range of plug-in effects.</b><!--}--> You can download many free plug-ins for Audacity from <a class="external text" href="https://web.audacityteam.org/download/plugins" rel="nofollow">our website</a>. Plug-ins always appear underneath the divider in the Effect menu. Released builds of Audacity include sample Nyquist and/or LADSPA effects.
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Bulbicon.png" title="Bulb icon"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Bulb icon" height="32" src="../m/images/d/d7/bulbicon.png" width="32"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d7/bulbicon.png--></img><!--}\par
+--></a>
+</td>
+<td align="left" valign="top">To apply an effect, select part or all of the track(s) you want to modify, and select the effect from the menu.
+</td></tr></tbody></table>
+</div> </div>
+<dl><dd><!--\textit{--><i>Click, or hover, on any menu item in the image to read about that command.  &nbsp;<span style="font-size:0.8em"><!--latex 
+\hyperref[\foo{effect:menu::skiptheimage}]{--><a href="#skiptheimage">Skip the image</a><!--latex }
+--></span></i><!--}--></dd>
+<dd><div class="noresize"><map name="ImageMap_1_1598159411"><area alt="Generate Menu" coords="0,3,26,19" href="generate_menu.html" shape="rect" title="Generate Menu"/><area alt="Effect Menu" coords="33,3,66,19" href="#" shape="rect" title="Effect Menu"/><area alt="Analyze Menu" coords="73,3,117,19" href="analyze_menu.html" shape="rect" title="Analyze Menu"/><area alt="Help Menu" coords="124,3,153,19" href="help_menu.html" shape="rect" title="Help Menu"/><area alt="Ext-Bar Menu" coords="160,3,202,19" href="ext_bar_menu.html" shape="rect" title="Ext-Bar Menu"/><area alt="Ext-Command Menu" coords="209,3,291,19" href="ext_command_menu.html" shape="rect" title="Ext-Command Menu"/><area alt="Menu Bar" coords="0,0,600,22" href="menu_reference.html" shape="rect" title="Menu Bar"/><area alt="Selecting this option from the Effect Menu (or the Generate Menu or Analyze Menu) takes you to a dialog where you can enable or disable particular Effects, Generators and Analyzers in Audacity" coords="39,23,259,45" href="#add_remove_plugins" shape="rect" title="Selecting this option from the Effect Menu (or the Generate Menu or Analyze Menu) takes you to a dialog where you can enable or disable particular Effects, Generators and Analyzers in Audacity"/><area alt="Repeats the last used effect at its last used settings and without displaying any dialog" coords="39,52,259,74" href="#repeat_last_effect" shape="rect" title="Repeats the last used effect at its last used settings and without displaying any dialog"/><area alt="Effects built in to Audacity" coords="39,81,259,103" href="effect_menu_audacity.html" shape="rect" title="Effects built in to Audacity"/><area alt='"Linux Audio Plug-in Audio" effects' coords="39,110,259,132" href="effect_menu_ladspa.html" shape="rect" title='"Linux Audio Plug-in Audio" effects'/><area alt='Effects created using a LISP-variant called "Nyquist"' coords="39,132,259,154" href="effect_menu_nyquist.html" shape="rect" title='Effects created using a LISP-variant called "Nyquist"'/></map><!--
+
+\par\Needspace{111.0pt}\begin{picture}(136.0,81.0)
+--><!--   \put(0,0){\includegraphics[scale=0.5]{--><img alt="EffectMenu.png" height="162" src="../m/images/b/b9/effectmenu.png" usemap="#ImageMap_1_1598159411" width="272"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/b9/effectmenu.png--></img><!--}}
+--><!--   \put(0.0,71.5){\hyperref[\foo{generate:menu:}]{\makebox(13.0,8.0){}}}
+   \put(16.5,71.5){\hyperref[\foo{effect:menu::}]{\makebox(16.5,8.0){}}}
+   \put(36.5,71.5){\hyperref[\foo{analyze:menu:}]{\makebox(22.0,8.0){}}}
+   \put(62.0,71.5){\hyperref[\foo{help:menu:}]{\makebox(14.5,8.0){}}}
+   \put(80.0,71.5){\hyperref[\foo{ext:bar:menu:}]{\makebox(21.0,8.0){}}}
+   \put(104.5,71.5){\hyperref[\foo{ext:command:menu:}]{\makebox(41.0,8.0){}}}
+   \put(19.5,58.5){\hyperref[\foo{effect:menu::add:remove:plugins}]{\makebox(110.0,11.0){}}}
+   \put(19.5,44.0){\hyperref[\foo{effect:menu::repeat:last:effect}]{\makebox(110.0,11.0){}}}
+   \put(19.5,29.5){\hyperref[\foo{effect:menu:audacity:}]{\makebox(110.0,11.0){}}}
+   \put(19.5,15.0){\hyperref[\foo{effect:menu:ladspa:}]{\makebox(110.0,11.0){}}}
+   \put(19.5,4.0){\hyperref[\foo{effect:menu:nyquist:}]{\makebox(110.0,11.0){}}}
+\end{picture}
+
+--></div></dd></dl>
+<div id="skiptheimage"></div> 
+
+<div id="using_effects"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Using_Effects">Using Effects</span></h2><!--}--><!--latex 
+\label{effect:menu:using:effects}--><!--latex 
+\label{effect:menu:skiptheimage}-->
+<p>Titles which end in an ellipsis (...) will bring up a dialog asking you for more parameters.
+</p><p>All effects that have a dialog let you hear the audio as modified by the effect before you apply the effect to the waveform. 
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--latex 
+\hyperref[\foo{effect:menu::built-in}]{--><a href="#built-in">Built-in effects</a><!--latex }
+-->,  <!--latex 
+\hyperref[\foo{effect:menu::nyquist:incl}]{--><a href="#nyquist_incl">Nyquist plug-ins included in Audacity</a><!--latex }
+--> and other <!--latex 
+\hyperref[\foo{effect:menu::nyquist:effects}]{--><a href="#nyquist_effects">Nyquist plug-ins</a><!--latex }
+--> have a <!--\textit{--><i>Preview</i><!--}--> button - press this to listen if the current effect settings produce what you want, and if not, change the settings then Preview again. Press <span class="button">OK</span> to apply the effect to the waveform. </li>
+<!--
+\item --><li> All other effect types supported in Audacity (<!--latex 
+\hyperref[\foo{effect:menu::LADSPA:effects}]{--><a href="#LADSPA_effects">LADSPA</a><!--latex }
+-->, <!--latex 
+\hyperref[\foo{effect:menu::LV2:effects}]{--><a href="#LV2_effects">LV2</a><!--latex }
+-->, <!--latex 
+\hyperref[\foo{effect:menu::vst}]{--><a href="#vst" title="Effect Menu">VST</a><!--latex }
+--> and <!--latex 
+\hyperref[\foo{effect:menu::Audio:Unit:effects}]{--><a href="#Audio_Unit_effects">Audio Units</a><!--latex }
+--> for Mac) support <!--\textbf{--><b><!--latex 
+\hyperref[\foo{real:time:preview:of:effects:}]{--><a href="real_time_preview_of_effects.html" title="Real-time preview of effects">real-time preview</a><!--latex }
+--></b><!--}--> - you can change the effect settings while listening then press <span class="button">Apply</span> to apply the effect to the waveform. </li></ul><!--
+\end{itemize}
+-->
+   
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">Effects in the Effect menu <!--\textit{--><i>that do not support real-time preview</i><!--}--> will appear grayed out when playing or recording.
+</td></tr></tbody></table>
+</div>
+<p><br/>
+</p>
+<div id="add_remove_plugins"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Add_.2F_Remove_Plug-ins...">Add / Remove Plug-ins...</span></h2><!--}--><!--latex 
+\label{effect:menu:add:remove:plugins}-->
+<p>Selecting this option from the Effect Menu (or the <!--latex 
+\hyperref[\foo{generate:menu:}]{--><a href="generate_menu.html" title="Generate Menu">Generate Menu</a><!--latex }
+--> or <!--latex 
+\hyperref[\foo{analyze:menu:}]{--><a href="analyze_menu.html" title="Analyze Menu">Analyze Menu</a><!--latex }
+-->) takes you to a dialog which enables you to load and unload Effects (and Generators and Analyzers) from Audacity.  This enables you to customize your Effect Menu making it shorter or longer as required.  For details see <!--latex 
+\hyperref[\foo{manage:effects:generators:and:analyzers:}]{--><a href="manage_effects_generators_and_analyzers.html" title="Manage Effects, Generators and Analyzers">Add / Remove Effects, Generators and Analyzers</a><!--latex }
+-->.
+</p><p>By default all the Built-in effects, with the exception of Classic Filters, are loaded in Audacity.
+</p>
+<div class="note"><!--\textbf{--><b>Additional plug-ins can also be loaded into Audacity.  For details see the following FAQs for: <!--latex 
+\hyperref[\foo{installing:effect:generator:and:analyzer:plug:ins:on:windows:}]{--><a href="installing_effect_generator_and_analyzer_plug_ins_on_windows.html" title="Installing Effect, Generator and Analyzer plug-ins on Windows">Windows</a><!--latex }
+-->, <!--latex 
+\hyperref[\foo{installing:effect:generator:and:analyzer:plug:ins:on:mac:os:x:}]{--><a href="installing_effect_generator_and_analyzer_plug_ins_on_mac_os_x.html" title="Installing Effect, Generator and Analyzer plug-ins on MAC OS X">Mac</a><!--latex }
+--> and <!--latex 
+\hyperref[\foo{installing:effect:generator:and:analyzer:plug:ins:on:linux:}]{--><a href="installing_effect_generator_and_analyzer_plug_ins_on_linux.html" title="Installing Effect, Generator and Analyzer plug-ins on Linux">Linux</a><!--latex }
+--></b><!--}-->
+<p>See also this <a class="external text" href="https://wiki.audacityteam.org/wiki/Download_Nyquist_Plug-ins#effect" rel="nofollow">list of available Nyquist effect plug-ins</a> on the Audacity Wiki, that you can easily download and add to Audacity.
+</p>
+</div>
+<div id="repeat_last_effect"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Repeat_Last_Effect_.C2.A0Ctrl_.2BR">Repeat Last Effect &nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">Ctrl +R</span></font></span></h2><!--}--><!--latex 
+\label{effect:menu:repeat:last:effect}-->
+<p>Using this command from the Effect menu will repeat the last effect that you used at the same settings. For quick access to the last used effect, you can use <span class="kbrd" style="background-color: #e0e0f0">Ctrl + R</span> to repeat it the same settings.
+</p>
+<div class="note">For effects that you use often you can use <!--latex 
+\hyperref[\foo{keyboard:preferences:}]{--><a href="keyboard_preferences.html" title="Keyboard Preferences">Keyboard Preferences</a><!--latex }
+--> to set up keyboard shortcuts for those effects.</div> 
+<p><br/>
+</p>
+<div id="audacity"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Audacity_built-in_effects.C2.A0"><!--latex 
+\hyperref[\foo{effect:menu:audacity:}]{--><a href="effect_menu_audacity.html" title="Effect Menu: Audacity">Audacity built-in effects</a><!--latex }
+-->&nbsp;<font size="-1"></font></span></h2><!--}--><!--latex 
+\label{effect:menu:audacity}-->
+<p>Audacity's built-in effects (those that appear in the application irrespective of the contents of your Audacity and other "Plug-Ins" folders) are above the divider in the Effect menu.
+</p><p>Built-in effects support saving of user presets but do not yet support <!--latex 
+\hyperref[\foo{real:time:preview:of:effects:}]{--><a href="real_time_preview_of_effects.html" title="Real-time preview of effects">real-time preview</a><!--latex }
+--> or import/export of presets from/to other machines.
+</p><p>Find out more about the 'Audacity' submenu for built-in effects <!--latex 
+\hyperref[\foo{effect:menu:audacity:}]{--><a href="effect_menu_audacity.html" title="Effect Menu: Audacity">here</a><!--latex }
+-->.
+</p>
+<div id="nyquist"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Nyquist_effects.C2.A0"><!--latex 
+\hyperref[\foo{effect:menu:nyquist:}]{--><a href="effect_menu_nyquist.html" title="Effect Menu: Nyquist">Nyquist effects</a><!--latex }
+-->&nbsp;<font size="-1"></font></span></h2><!--}--><!--latex 
+\label{effect:menu:nyquist}-->
+<p><a class="external text" href="https://wiki.audacityteam.org/wiki/Nyquist" rel="nofollow">Nyquist</a> plug-ins provide most of the optional effects underneath the divider in the Effect menu. They are also used to provide some of Audacity's built-in audio <!--latex 
+\hyperref[\foo{generate:menu:}]{--><a href="generate_menu.html" title="Generate Menu">generators</a><!--latex }
+--> and <!--latex 
+\hyperref[\foo{analyze:menu:}]{--><a href="analyze_menu.html" title="Analyze Menu">analysis tools</a><!--latex }
+-->. A wide range of additional Nyquist effect, generation and analysis plug-ins can be obtained from <a class="external text" href="https://wiki.audacityteam.org/wiki/Download_Nyquist_Plug-ins" rel="nofollow">Download Nyquist Plug-ins</a> on our Wiki.
+</p><p>Nyquist effects support saving of user presets but do not yet support <!--latex 
+\hyperref[\foo{real:time:preview:of:effects:}]{--><a href="real_time_preview_of_effects.html" title="Real-time preview of effects">real-time preview</a><!--latex }
+--> or import/export of presets from/to other machines.
+</p><p>Find out more about the 'Nyquist' submenu for plug-in effects  <!--latex 
+\hyperref[\foo{effect:menu:nyquist:}]{--><a href="effect_menu_nyquist.html" title="Effect Menu: Nyquist">here</a><!--latex }
+-->.
+</p>
+<div id="ladspa"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="LADSPA_effects.C2.A0"><!--latex 
+\hyperref[\foo{effect:menu:ladspa:}]{--><a href="effect_menu_ladspa.html" title="Effect Menu: LADSPA">LADSPA effects</a><!--latex }
+-->&nbsp;<font size="-1"></font></span></h2><!--}--><!--latex 
+\label{effect:menu:ladspa}-->
+<p><a class="external text" href="https://en.wikipedia.org/wiki/LADSPA" rel="nofollow">LADSPA</a> (Linux Audio Developer's Simple Plug-in API) plug-ins were originally developed for the Linux platform, but ports of some plug-ins are available for Windows and Mac as well. Most LADSPA plug-ins are effects, but they are also used to provide some of Audacity's built-in  audio <!--latex 
+\hyperref[\foo{generate:menu:}]{--><a href="generate_menu.html" title="Generate Menu">generators</a><!--latex }
+--> and can be used for audio <!--latex 
+\hyperref[\foo{analyze:menu:}]{--><a href="analyze_menu.html" title="Analyze Menu">analysis</a><!--latex }
+-->. 
+</p><p>Additional LADSPA plug-ins can be downloaded for Windows, Mac and Linux. Please see the <a class="external text" href="http://www.audacityteam.org/download/plug-ins/#ladspa" rel="nofollow">LADSPA section</a> of the Download page on the <a class="external text" href="http://www.audacityteam.org/" rel="nofollow">Audacity Website</a> for more details and links.
+</p><p>LADSPA effects support <!--\textbf{--><b><!--latex 
+\hyperref[\foo{real:time:preview:of:effects:}]{--><a href="real_time_preview_of_effects.html" title="Real-time preview of effects">real-time preview</a><!--latex }
+--></b><!--}-->. They do not support import/export of presets but do support saving presets for use in Audacity only. A few LADSPA plug-ins have an "Effect Output" section which is populated after the effect is applied.
+</p><p>Find out more about the 'LADSPA' submenu for plug-in effects <!--latex 
+\hyperref[\foo{effect:menu:ladspa:}]{--><a href="effect_menu_ladspa.html" title="Effect Menu: LADSPA">here</a><!--latex }
+-->.  
+</p><p><br/>
+</p>
+<div class="note">The following effect classes: LV2 and VST  are always third-party plug-ins added by the user.<p>Audio Units <!--\textit{--><i>(Mac only)</i><!--}-->, are added by the operating system, macOS, on Apple Mac computers.</p></div>   
+<div id="lv2"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="LV2_effects"><!--latex 
+\hyperref[\foo{effect:menu:lv2:}]{--><a href="effect_menu_lv2.html" title="Effect Menu: LV2">LV2 effects</a><!--latex }
+--></span></h2><!--}--><!--latex 
+\label{effect:menu:lv2}-->
+<p><a class="external text" href="https://en.wikipedia.org/wiki/LV2" rel="nofollow">LV2</a> is a more advanced evolution of the LADSPA plug-in architecture. Note that LV2 effects in Audacity cannot yet display a full graphical interface.
+</p>
+<div id="vst"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="VST_effects"><!--latex 
+\hyperref[\foo{effect:menu:vst:}]{--><a href="effect_menu_vst.html" title="Effect Menu: VST">VST effects</a><!--latex }
+--></span></h2><!--}--><!--latex 
+\label{effect:menu:vst}-->
+<p><a class="external text" href="https://en.wikipedia.org/wiki/Virtual_Studio_Technology" rel="nofollow">Virtual Studio Technology (VST)</a> is a software interface that integrates software audio synthesizer and effect plug-ins with audio editors and recording systems, such as Audacity. 
+</p>
+<div id="audio_unit"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Audio_Unit_effects_.28Mac_only.29"><!--latex 
+\hyperref[\foo{effect:menu:audio:unit:}]{--><a href="effect_menu_audio_unit.html" title="Effect Menu: Audio Unit">Audio Unit effects</a><!--latex }
+--> <!--\textit{--><i>(Mac only)</i><!--}--></span></h2><!--}--><!--latex 
+\label{effect:menu:audio:unit}-->
+<p><a class="external text" href="https://en.wikipedia.org/wiki/Audio_Units" rel="nofollow">Audio Unit</a> (AU) is a system-level plug-in architecture provided only on Mac computers.
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

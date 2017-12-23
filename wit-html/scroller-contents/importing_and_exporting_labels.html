@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Importing and Exporting Labels - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Importing_and_Exporting_Labels rootpage-Importing_and_Exporting_Labels skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Importing and Exporting Labels</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{importing:and:exporting:labels:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+</p>
+<div class="intro"><!--latex 
+\hyperref[\foo{label:tracks:}]{--><a href="label_tracks.html" title="Label Tracks">Label Tracks</a><!--latex }
+--> can be exported to, and imported from plain text files (.txt extension). The structure of the file is a tab-delimited plain text format that can be opened by any text editor or spreadsheet application and edited there.</div>
+<p>The standard structure to display a label denoting its <!--latex 
+\hyperref[\foo{timeline:}]{--><a href="timeline.html" title="Timeline">Timeline</a><!--latex }
+--> position and any text it contains is as below.
+</p>
+<div class="example">
+<p><code>
+2.150000&nbsp;&nbsp;&rarr;&nbsp;&nbsp;2.150000&nbsp;&nbsp;&rarr;&nbsp;&nbsp;point label at 2.15 seconds<br/>
+3.400000&nbsp;&nbsp;&rarr;&nbsp;&nbsp;6.100000&nbsp;&nbsp;&rarr;&nbsp;&nbsp;region label from 3.4 to 6.1 seconds
+</code></p><code>
+</code></div>
+<p>In the example above, the first column has the start time in seconds, the second column has the end time, and the third column if present shows the text of the label. Start time and end time are identical for a point label. Values are separated by tab characters (which will often appear as an arrow in text editors, as shown above).
+</p><p>If a label is created from a point or region in a <!--latex 
+\hyperref[\foo{audio:track:dropdown:menu:spgram}]{--><a href="audio_track_dropdown_menu.html#spgram" title="Audio Track Dropdown Menu">Spectrogram</a><!--latex }
+--> track where <!--latex 
+\hyperref[\foo{spectral:selection:}]{--><a href="spectral_selection.html" title="Spectral Selection">Spectral Selection</a><!--latex }
+--> is enabled (or if a label is otherwise created when a low frequency and high frequency value are already stored in the project), the labels file also contains the frequency range for that label.     
+</p>
+<div class="example">
+<p><code>
+1.000000&nbsp;&nbsp;&rarr;&nbsp;&nbsp;1.000000&nbsp;&nbsp;&rarr;&nbsp;&nbsp;This point was clicked at 6928.456055 Hz<br/>
+\&nbsp;&nbsp;&rarr;&nbsp;&nbsp;6928.456055&nbsp;&nbsp;&rarr;&nbsp;&nbsp;6928.456055<br/>
+2.000000&nbsp;&nbsp;&rarr;&nbsp;&nbsp;2.500000&nbsp;&nbsp;&rarr;&nbsp;&nbsp;Low frequency undefined, High frequency 6334.588867 Hz<br/>
+\&nbsp;&nbsp;&rarr;&nbsp;&nbsp;-1.000000&nbsp;&nbsp;&rarr;&nbsp;&nbsp;6334.588867<br/>
+3.000000&nbsp;&nbsp;&rarr;&nbsp;&nbsp;3.500000&nbsp;&nbsp;&rarr;&nbsp;&nbsp;Low frequency 8908.015625, High frequency undefined<br/>
+\&nbsp;&nbsp;&rarr;&nbsp;&nbsp;8908.015625&nbsp;&nbsp;&rarr;&nbsp;&nbsp;-1.000000<br/>
+4.000000&nbsp;&nbsp;&rarr;&nbsp;&nbsp;4.500000&nbsp;&nbsp;&rarr;&nbsp;&nbsp;Low frequency 1484.669312 Hz, High frequency 2969.338523 Hz<br/>
+\&nbsp;&nbsp;&rarr;&nbsp;&nbsp;1484.669312&nbsp;&nbsp;&rarr;&nbsp;&nbsp;2969.338523 
+</code></p><code>
+</code></div>
+<p>In the example above, there is a point label at 1 second, then three region labels each starting one second further along. After the time position and text content information in the first line, a second line for each label records the low frequency followed by the high frequency. 
+</p>
+<div class="note">To view the low and high frequency values for a label, either select the label then look in <!--latex 
+\hyperref[\foo{spectral:selection:toolbar:}]{--><a href="spectral_selection_toolbar.html" title="Spectral Selection Toolbar">Spectral Selection Toolbar</a><!--latex }
+-->, or right-click the label and choose "Edit" to open the <!--latex 
+\hyperref[\foo{labels:editor:}]{--><a href="labels_editor.html" title="Labels Editor">Edit Labels</a><!--latex }
+--> window.</div>   
+<p>Sometimes it may be useful to use these labels in another application (for example if somebody wanted to know the time where each piece of an interview starts or stops), or to import a labels file that someone has shared with you.   
+</p><p>You can export labels using the Edit Labels window mentioned above, or by choosing <span class="menu">File &gt; Save Other &gt; <!--latex 
+\hyperref[\foo{file:menu:save:other:exportlabels}]{--><a href="file_menu_save_other.html#exportlabels" title="File Menu: Save Other">Export Labels...</a><!--latex }
+--></span>. By default the exported file has the same name as the current name of the label track. If there are multiple label tracks, the labels of all those tracks are combined into a single label track in the exported file, which by default has the same name as the current name of the last label track.  
+</p><p>Labels can be imported using the Edit Labels window, or by choosing <span class="menu">File &gt; Import &gt; <!--latex 
+\hyperref[\foo{file:menu:import:labels}]{--><a href="file_menu_import.html#labels" title="File Menu: Import">Labels...</a><!--latex }
+--></span>. Imported label tracks are added to the bottom of all existing track types in the project, just as when you <!--latex 
+\hyperref[\foo{importing:audio:}]{--><a href="importing_audio.html" title="Importing Audio">import an audio track</a><!--latex }
+-->. 
+</p>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">If you import labels created by some application other than Audacity, make sure the application supports <a class="external text" href="https://en.wikipedia.org/wiki/UTF-8" rel="nofollow">UTF-8</a> or use only <a class="external text" href="https://en.wikipedia.org/wiki/ASCII" rel="nofollow">ASCII</a> (Latin unaccented) characters and numbers. Otherwise, accented or any other non-Latin characters may cause the file to not import.
+<p>If you use a Windows application to create the file, you may have to use "Save As" and look for a specific option that saves with UTF-8 encoding.
+</p>
+</td></tr></tbody></table>
+</div>
+<p><br/>
+<!--latex 
+\hyperref[\foo{label:tracks:export}]{--><a href="label_tracks.html#export" title="Label Tracks"><!--\textbf{--><b>|&lt;</b><!--}--> Label Tracks</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

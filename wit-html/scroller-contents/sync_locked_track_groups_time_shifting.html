@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Sync-Locked Track Groups - Time Shifting - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Sync-Locked_Track_Groups_-_Time_Shifting rootpage-Sync-Locked_Track_Groups_-_Time_Shifting skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Sync-Locked Track Groups - Time Shifting</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{sync:locked:track:groups:time:shifting:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Time_shifting_operations_on_Sync-Locked_Track_Groups">Time shifting operations on Sync-Locked Track Groups</span></h2><!--}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b><span class="menu">Tracks &gt; <!--latex 
+\hyperref[\foo{tracks:menu:align:tracks:}]{--><a href="tracks_menu_align_tracks.html" title="Tracks Menu: Align Tracks">Align Tracks</a><!--latex }
+--></span>:</b><!--}--> All of the "Align Tracks" commands (with the exception of the "Align Together" command) will move all tracks in a group by the same amount, even if this means pushing the start(s) of some track(s) before zero on the timeline. By its nature the <!--\textbf{--><b>Align Tracks Together</b><!--}--> command cannot respect sync-lock since its job is to align the selected tracks so they all start at the same point on the timeline.</li>
+<!--
+\item --><li><!--\textbf{--><b><!--latex 
+\hyperref[\foo{tools:toolbar:timeshift}]{--><a href="tools_toolbar.html#timeshift" title="Tools Toolbar">Time Shift Tool</a><!--latex }
+-->:</b><!--}--> Using the Time Shift tool on any audio track in a Sync-Locked Track Group will move all <!--latex 
+\hyperref[\foo{audacity:tracks:and:clips:}]{--><a href="audacity_tracks_and_clips.html" title="Audacity Tracks and Clips">clips</a><!--latex }
+--> in all audio tracks, and will move any <!--latex 
+\hyperref[\foo{label:tracks:}]{--><a href="label_tracks.html" title="Label Tracks">Label Track</a><!--latex }
+--> defining the Group, even if none of the tracks are selected. However a clip will not move unless it overlaps with at least one other clip above or below. If you want non-overlapping clips to move too, select over all clips you want to move then drag from inside the selection.</li></ul><!--
+\end{itemize}
+-->
+<!--
+\subsection{--><h2><span class="mw-headline" id="Example-1:_Start_to_Cursor.2FSelection_Start">Example-1: <!--latex 
+\hyperref[\foo{tracks:menu:align:tracks:start:to:cursorselection:start}]{--><a href="tracks_menu_align_tracks.html#start_to_cursorselection_start" title="Tracks Menu: Align Tracks">Start to Cursor/Selection Start</a><!--latex }
+--></span></h2><!--}-->
+<div class="example"><!--\textbf{--><b>Before <span class="menu">Tracks &gt; Align Tracks &gt; <!--latex 
+\hyperref[\foo{tracks:menu:align:tracks:start:to:cursorselection:start}]{--><a href="tracks_menu_align_tracks.html#start_to_cursorselection_start" title="Tracks Menu: Align Tracks">Start to Cursor/Selection Start</a><!--latex }
+--></span></b><!--}-->
+<dl><dd><span title="Before aligning tracks"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="SLTG Time Shift 1.png" height="234" src="../m/images/9/9c/sltg_time_shift_1.png" width="750"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/9/9c/sltg_time_shift_1.png--></img><!--}\par
+--></span></dd></dl>
+<p><br/>
+</p>
+<dl><dd><!--\textbf{--><b>After Tracks &gt; Align Tracks &gt; Start to Cursor/Selection Start</b><!--}--></dd>
+<dd><span title="align with cursor"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="SLTG Time Shift 2.png" height="229" src="../m/images/0/0a/sltg_time_shift_2.png" width="750"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/0/0a/sltg_time_shift_2.png--></img><!--}\par
+--></span></dd></dl>
+<dl><dd><!--\textbf{--><b>Result:</b><!--}--> The selected track is moved so the start of the track aligns with the cursor. </dd>
+<dd>The Sync-Locked track moves by the same amount.</dd></dl></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Example-2:_Time_Shifting">Example-2: <!--latex 
+\hyperref[\foo{tools:toolbar:timeshift}]{--><a href="tools_toolbar.html#timeshift" title="Tools Toolbar">Time Shifting</a><!--latex }
+--></span></h2><!--}-->
+<div class="example"><!--\textbf{--><b> Before time shifting the tracks with the <!--latex 
+\hyperref[\foo{tools:toolbar:timeshift}]{--><a href="tools_toolbar.html#timeshift" title="Tools Toolbar">Time Shift</a><!--latex }
+--> tool <!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Time Shift Tool button" height="20" src="../m/images/3/3c/timeshifttool.png" title="Time Shift Tool button" width="20"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/3/3c/timeshifttool.png--></img><!--}}{}--></b><!--}-->
+<dl><dd><span title="Before time shifting the tracks with the Time Shift tool"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="SLTG Time Shift 3-2.png" height="185" src="../m/images/f/fc/sltg_time_shift_3_2.png" width="749"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/f/fc/sltg_time_shift_3_2.png--></img><!--}\par
+--></span></dd></dl>
+<p><br/>
+</p>
+<dl><dd><!--\textbf{--><b>After time shifting the tracks</b><!--}--></dd>
+<dd><span title="after time shifting the tracks"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="SLTG Time Shift 4.png" height="185" src="../m/images/c/cf/sltg_time_shift_4.png" width="748"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/c/cf/sltg_time_shift_4.png--></img><!--}\par
+--></span></dd></dl>
+<dl><dd><!--\textbf{--><b>Result:</b><!--}--> All the tracks move together.</dd></dl></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Links">Links</span></h2><!--}-->
+<p><!--latex 
+\hyperref[\foo{sync:locked:track:groups:time:stretching:}]{--><a href="sync_locked_track_groups_time_stretching.html" title="Sync-Locked Track Groups - Time Stretching"><!--\textbf{--><b>&gt;</b><!--}-->&nbsp; Forward to: Sync-Locked Track Groups - Time Stretching</a><!--latex }
+--> <br/>
+</p><p><!--latex 
+\hyperref[\foo{sync:locked:track:groups:editing:}]{--><a href="sync_locked_track_groups_editing.html" title="Sync-Locked Track Groups - Editing"><!--\textbf{--><b>&lt;</b><!--}-->&nbsp; Back to: Sync-Locked Track Groups - Editing</a><!--latex }
+--> <br/>
+</p><p><!--latex 
+\hyperref[\foo{sync:locked:track:groups:}]{--><a href="sync_locked_track_groups.html" title="Sync-Locked Track Groups"><!--\textbf{--><b>|&lt;</b><!--}-->&nbsp; Sync-Locked Track Groups</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

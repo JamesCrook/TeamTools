@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>View Menu: Zoom - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-View_Menu_Zoom rootpage-View_Menu_Zoom skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">View Menu: Zoom</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{view:menu:zoom:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p><br/>
+</p>
+<div class="intro">The <!--latex 
+\hyperref[\foo{zooming:}]{--><a href="zooming.html" title="Zooming">Zoom</a><!--latex }
+--> commands enable you to control the amount of audio, longer or shorter periods of time, that is visible on your screen. 
+<div class="note"><!--\textbf{--><b>See Also:</b><!--}--> <!--latex 
+\hyperref[\foo{zooming:}]{--><a href="zooming.html" title="Zooming">Zooming</a><!--latex }
+--> for details about other ways to zoom in and out, for example, using the magnifier icons on the edit toolbar.
+</div> </div>
+<dl><dd><!--\textit{--><i>Click, or hover, on any menu item in the image to read about that command.  &nbsp;<span style="font-size:0.8em"><!--latex 
+\hyperref[\foo{view:menu:zoom::skiptheimage}]{--><a href="#skiptheimage">Skip the image</a><!--latex }
+--></span></i><!--}--></dd>
+<dd><div class="noresize"><map name="ImageMap_1_196242830"><area alt="Select Menu" coords="0,3,26,19" href="select_menu.html" shape="rect" title="Select Menu"/><area alt="View Menu" coords="33,3,62,19" href="view_menu.html" shape="rect" title="View Menu"/><area alt="Transport Menu" coords="69,3,125,19" href="transport_menu.html" shape="rect" title="Transport Menu"/><area alt="Tracks Menu" coords="132,3,172,19" href="tracks_menu.html" shape="rect" title="Tracks Menu"/><area alt="Generate Menu" coords="179,3,233,19" href="generate_menu.html" shape="rect" title="Generate Menu"/><area alt="Effect Menu" coords="240,3,273,19" href="effect_menu.html" shape="rect" title="Effect Menu"/><area alt="Analyze Menu" coords="280,3,324,19" href="analyze_menu.html" shape="rect" title="Analyze Menu"/><area alt="Help Menu" coords="331,3,360,19" href="help_menu.html" shape="rect" title="Help Menu"/><area alt="Ext-Bar Menu" coords="367,3,409,19" href="ext_bar_menu.html" shape="rect" title="Ext-Bar Menu"/><area alt="Ext-Command Menu" coords="416,3,498,19" href="ext_command_menu.html" shape="rect" title="Ext-Command Menu"/><area alt="Menu Bar" coords="0,0,600,22" href="menu_reference.html" shape="rect" title="Menu Bar"/><area alt="Zoom in/out on the horizontal axis" coords="39,23,215,45" href="#" shape="rect" title="Zoom in/out on the horizontal axis"/><area alt="Controls the sizes of tracks" coords="39,45,215,67" href="view_menu_track_size.html" shape="rect" title="Controls the sizes of tracks"/><area alt="Move forward/backwards through the audio" coords="39,67,215,89" href="view_menu_skip_to.html" shape="rect" title="Move forward/backwards through the audio"/><area alt="Brings up the History window which can then be left open while using Audacity normally" coords="39,96,215,118" href="undo_redo_and_history.html#history" shape="rect" title="Brings up the History window which can then be left open while using Audacity normally"/><area alt='Brings up the Karaoke window, which displays the labels in a "bouncing ball" scrolling display' coords="39,118,215,140" href="karaoke.html" shape="rect" title='Brings up the Karaoke window, which displays the labels in a "bouncing ball" scrolling display'/><area alt="Mixer Board is an alternative view to the audio tracks in the main tracks window" coords="39,140,215,162" href="mixer_board.html" shape="rect" title="Mixer Board is an alternative view to the audio tracks in the main tracks window"/><area alt="Toolbars can be used to determine which of the Audacity toolbars are displayed" coords="39,169,215,191" href="view_menu_toolbars.html" shape="rect" title="Toolbars can be used to determine which of the Audacity toolbars are displayed"/><area alt="Shows extra menus with many extra less-used commands" coords="39,198,215,220" href="view_menu.html#extra_menus_onoff" shape="rect" title="Shows extra menus with many extra less-used commands"/><area alt="Option to show or not show audio that is too loud (in red) on the wave form" coords="39,220,215,242" href="view_menu.html#show_clipping_onoff" shape="rect" title="Option to show or not show audio that is too loud (in red) on the wave form"/><area alt="Zooms in on the horizontal axis of the audio displaying more detail over a shorter length of time" coords="227,26,411,48" href="#zoom_in" shape="rect" title="Zooms in on the horizontal axis of the audio displaying more detail over a shorter length of time"/><area alt="Zooms to the default view which displays about one inch per second" coords="227,48,411,70" href="#zoom_normal" shape="rect" title="Zooms to the default view which displays about one inch per second"/><area alt="Zooms out displaying less detail over a greater length of time" coords="227,70,411,92" href="#zoom_out" shape="rect" title="Zooms out displaying less detail over a greater length of time"/><area alt="Zooms in or out so that the selected audio fills the width of the window" coords="227,92,411,114" href="#zoom_to_selection" shape="rect" title="Zooms in or out so that the selected audio fills the width of the window"/></map><!--
+
+\par\Needspace{155.0pt}\begin{picture}(212.0,125.0)
+--><!--   \put(0,0){\includegraphics[scale=0.5]{--><img alt="View-ZoomMenu.png" height="250" src="../m/images/2/2f/view_zoommenu.png" usemap="#ImageMap_1_196242830" width="424"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/2/2f/view_zoommenu.png--></img><!--}}
+--><!--   \put(0.0,115.5){\hyperref[\foo{select:menu:}]{\makebox(13.0,8.0){}}}
+   \put(16.5,115.5){\hyperref[\foo{view:menu:}]{\makebox(14.5,8.0){}}}
+   \put(34.5,115.5){\hyperref[\foo{transport:menu:}]{\makebox(28.0,8.0){}}}
+   \put(66.0,115.5){\hyperref[\foo{tracks:menu:}]{\makebox(20.0,8.0){}}}
+   \put(89.5,115.5){\hyperref[\foo{generate:menu:}]{\makebox(27.0,8.0){}}}
+   \put(120.0,115.5){\hyperref[\foo{effect:menu:}]{\makebox(16.5,8.0){}}}
+   \put(140.0,115.5){\hyperref[\foo{analyze:menu:}]{\makebox(22.0,8.0){}}}
+   \put(165.5,115.5){\hyperref[\foo{help:menu:}]{\makebox(14.5,8.0){}}}
+   \put(183.5,115.5){\hyperref[\foo{ext:bar:menu:}]{\makebox(21.0,8.0){}}}
+   \put(208.0,115.5){\hyperref[\foo{ext:command:menu:}]{\makebox(41.0,8.0){}}}
+   \put(19.5,102.5){\hyperref[\foo{view:menu:zoom::}]{\makebox(88.0,11.0){}}}
+   \put(19.5,91.5){\hyperref[\foo{view:menu:track:size:}]{\makebox(88.0,11.0){}}}
+   \put(19.5,80.5){\hyperref[\foo{view:menu:skip:to:}]{\makebox(88.0,11.0){}}}
+   \put(19.5,66.0){\hyperref[\foo{undo:redo:and:history:history}]{\makebox(88.0,11.0){}}}
+   \put(19.5,55.0){\hyperref[\foo{karaoke:}]{\makebox(88.0,11.0){}}}
+   \put(19.5,44.0){\hyperref[\foo{mixer:board:}]{\makebox(88.0,11.0){}}}
+   \put(19.5,29.5){\hyperref[\foo{view:menu:toolbars:}]{\makebox(88.0,11.0){}}}
+   \put(19.5,15.0){\hyperref[\foo{view:menu:extra:menus:onoff}]{\makebox(88.0,11.0){}}}
+   \put(19.5,4.0){\hyperref[\foo{view:menu:show:clipping:onoff}]{\makebox(88.0,11.0){}}}
+   \put(113.5,101.0){\hyperref[\foo{view:menu:zoom::zoom:in}]{\makebox(92.0,11.0){}}}
+   \put(113.5,90.0){\hyperref[\foo{view:menu:zoom::zoom:normal}]{\makebox(92.0,11.0){}}}
+   \put(113.5,79.0){\hyperref[\foo{view:menu:zoom::zoom:out}]{\makebox(92.0,11.0){}}}
+   \put(113.5,68.0){\hyperref[\foo{view:menu:zoom::zoom:to:selection}]{\makebox(92.0,11.0){}}}
+\end{picture}
+
+--></div></dd></dl>
+<div id="skiptheimage"></div>
+
+
+<div class="note">The <!--\textbf{--><b>Zoom In</b><!--}--> and <!--\textbf{--><b>Zoom Out</b><!--}--> commands will attempt to keep the editing cursor position, or the selection, centered in the track display. That may not always be possible.
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> If the editing cursor or selection is near the start or end of the track <!--\textit{--><i>and</i><!--}--> "Enable scrolling left of zero" is <!--\textit{--><i><!--\textbf{--><b>off</b><!--}--></i><!--}--> <!--\textit{--><i>(default setting)</i><!--}-->, then it may not be possible for the zoom in or zoom out commands to place the editing cursor or selection at the center of the track display.</li>
+<!--
+\item --><li> If "Enable scrolling left of zero" is <!--\textit{--><i><!--\textbf{--><b>on</b><!--}--></i><!--}--> then it will always be possible for the zoom in or zoom out commands to place the editing cursor or selection at the center of the track display. </li></ul><!--
+\end{itemize}
+--></div>
+
+
+<div id="zoom_in"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Zoom_In_.C2.A0Ctrl_.2B_1">Zoom In &nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">Ctrl + 1</span></font></span></h2><!--}--><!--latex 
+\label{view:menu:zoom:zoom:in}--><!--latex 
+\label{view:menu:zoom:skiptheimage}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <span class="menu">View &gt; Zoom &gt; Zoom In</span>: Doubles the current zoom level.</li></ul><!--
+\end{itemize}
+-->
+<p>Zooms in on the horizontal axis of the audio, displaying more detail over a shorter length of time.  You can also use the <!--latex 
+\hyperref[\foo{tools:toolbar:zoom}]{--><a href="tools_toolbar.html#zoom" title="Tools Toolbar">Zoom</a><!--latex }
+--> tool from the <!--latex 
+\hyperref[\foo{tools:toolbar:}]{--><a href="tools_toolbar.html" title="Tools Toolbar">Tools Toolbar</a><!--latex }
+--> to zoom in on a particular part of the window.
+</p>
+<div id="zoom_normal"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Zoom_Normal_.C2.A0Ctrl_.2B_2">Zoom Normal &nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">Ctrl + 2</span></font></span></h2><!--}--><!--latex 
+\label{view:menu:zoom:zoom:normal}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <span class="menu">View &gt; Zoom &gt; Zoom Normal</span>: Reverts back to Audacity's default zoom, where you can see 5 - 10 seconds at a time.</li></ul><!--
+\end{itemize}
+-->
+<p>Zooms to the default view, which displays about one inch per second. It centers the cursor in the track display, or if you have a selection it will attempt to keep some part of a selection visible.
+</p>
+<div id="zoom_out"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Zoom_Out_.C2.A0Ctrl_.2B_3">Zoom Out &nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">Ctrl + 3</span></font></span></h2><!--}--><!--latex 
+\label{view:menu:zoom:zoom:out}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <span class="menu">View &gt; Zoom &gt; Zoom Out</span>: Cuts the current zoom level in half.</li></ul><!--
+\end{itemize}
+-->
+<p>Zooms out, displaying less detail over a greater length of time.
+</p>
+
+<div id="zoom_to_selection"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Zoom_to_Selection_.C2.A0Ctrl_.2B_E">Zoom to Selection &nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">Ctrl + E</span> </font></span></h2><!--}--><!--latex 
+\label{view:menu:zoom:zoom:to:selection}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <span class="menu">View &gt; Zoom &gt; Zoom to Selection</span>: If you have audio selected, this zooms and scrolls so that the selection just fits in the window.</li></ul><!--
+\end{itemize}
+-->
+<p>Zooms in or out so that the selected audio fills the width of the project window. Its most useful purpose is to zoom in when the selection is only a small part of the visible waveform. </p>
+<p>If there is a region of audio selected and it is not visible on the screen, the Zoom to Selection command will move the selection to fill the track display.</p>
+
+<p><!--latex 
+\hyperref[\foo{view:menu:}]{--><a href="view_menu.html" title="View Menu"><!--\textbf{--><b>&lt;</b><!--}-->&nbsp; Back to: View Menu</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

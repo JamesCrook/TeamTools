@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Tutorial - Making a Test Recording - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Tutorial_-_Making_a_Test_Recording rootpage-Tutorial_-_Making_a_Test_Recording skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Tutorial - Making a Test Recording</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{tutorial:making:a:test:recording:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+
+</p>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Bulbicon.png" title="Bulb icon"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Bulb icon" height="32" src="../m/images/d/d7/bulbicon.png" width="32"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d7/bulbicon.png--></img><!--}\par
+--></a>
+</td>
+<td align="left" valign="top">When making recordings, particular critical recordings, you should consider shutting down all other applications giving Audacity sole use of the computer.  This can help to avoid skips, small dropouts, and ticks in your recordings.
+<div class="note">And on Mac that means fully Quitting them not just closing them, as otherwise Mac will leave them open consuming computer resources.</div> 
+</td></tr></tbody></table>
+</div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Step_1:_Turn_on_monitoring">Step 1: Turn on monitoring</span></h2><!--}-->
+<p>Click on the microphone symbol in the <!--latex 
+\hyperref[\foo{meter:toolbar:recording}]{--><a href="meter_toolbar.html#recording" title="Meter Toolbar">Recording Meter</a><!--latex }
+--> and select "<!--\textbf{--><b>Start Monitoring</b><!--}-->". 
+</p>
+<dl><dd><span title="Recording Meter dropdown menu"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Recording meter dropdown menu.png" height="89" src="../m/images/5/5f/recording_meter_dropdown_menu.png" width="228"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/5/5f/recording_meter_dropdown_menu.png--></img><!--}\par
+--></span></dd></dl>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Step_2:_Start_the_recording">Step 2: Start the recording</span></h2><!--}-->
+<p>Talk or play at a normal volume and watch the <!--latex 
+\hyperref[\foo{meter:toolbar:recording}]{--><a href="meter_toolbar.html#recording" title="Meter Toolbar">Recording Meter</a><!--latex }
+-->.
+</p>
+<dl><dd><span title="Recording Meter Toolbar in use, default size"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Recording Toolbar in use.png" height="33" src="../m/images/7/7a/recording_toolbar_in_use.png" width="473"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/7/7a/recording_toolbar_in_use.png--></img><!--}\par
+--></span></dd></dl>
+<p>Try to aim for a maximum peak of around &ndash;6 <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:decibel}]{--><a href="glossary.html#decibel" title="Glossary">dB</a><!--latex }
+--></b><!--}--></i><!--}--> (or 0.5 if you have your meter set to linear rather than dB). You can always boost the level later after you have completed your editing.
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Step_3:_Adjust_the_level">Step 3: Adjust the level</span></h2><!--}-->
+<p>Adjust the recording volume with the right-hand Recording Volume Slider (by the microphone symbol). 
+</p>
+<dl><dd><span title="Mixer Toolbar"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Mixer Toolbar 101.png" height="27" src="../m/images/2/27/mixer_toolbar_101.png" width="323"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/2/27/mixer_toolbar_101.png--></img><!--}\par
+--></span></dd></dl>
+<p>You want the meter to get close to the right-hand edge without hitting it during the loudest parts <!--\textit{--><i>(-6 dB is a good target)</i><!--}-->.
+</p><p>Note that if you are using a USB microphone or USB adapter the recording volume control may have no effect or may be grayed out and set to maximum. If you cannot get a "good" reading on the recording meter (does not get close to the right edge - too quiet; or goes all the way to the right edge - too loud), go back to your system sound control panel and adjust the volume there.
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Step_4:_Test_recording">Step 4: Test recording</span></h2><!--}-->
+<p>You are now ready to do a test recording.
+</p><p>Get everything ready (microphone in place, guitar in hand) and click the <!--\textit{--><i><!--\textbf{--><b>Record</b><!--}--></i><!--}--> button <!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="image of Record button" height="16" src="../m/images/e/e8/record.png" title="image of Record button" width="16"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/e/e8/record.png--></img><!--}}{}--> in Transport Toolbar. Record for few seconds while talking or playing, then click the <!--\textbf{--><b>Stop</b><!--}--> button <!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="image of Stop button" height="16" src="../m/images/f/f9/stop.png" title="image of Stop button" width="16"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/f/f9/stop.png--></img><!--}}{}-->.
+</p><p>Have a look at the recorded <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:waveform}]{--><a href="glossary.html#waveform" title="Glossary">waveform</a><!--latex }
+--></b><!--}--></i><!--}--> - there should be no <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:clipping}]{--><a href="glossary.html#clipping" title="Glossary">clipping</a><!--latex }
+--></b><!--}--></i><!--}--> visible. Clipping is bad - this is when the volume of the source that was sent to Audacity is louder than Audacity can record. The result is that the tops and bottoms of the recorded wave are chopped off ("clipped"). The illustrations below show a properly-recorded waveform and a clipped waveform. Note that these images from Audacity show the waveform when zoomed in -  the total time displayed is about 0.004 seconds!
+</p>
+<dl><dd><!--\textbf{--><b> A properly recorded waveform</b><!--}--></dd>
+<dd><span title="An example of a waveform"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Waveform.png" height="156" src="../m/images/9/9c/waveform.png" width="577"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/9/9c/waveform.png--></img><!--}\par
+--></span></dd></dl>
+<dl><dd><!--\textbf{--><b> A clipped waveform</b><!--}--></dd>
+<dd><span title="An example of a digitized waveform showing clipping"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Waveform clipping.png" height="156" src="../m/images/4/4d/waveform_clipping.png" width="577"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/4/4d/waveform_clipping.png--></img><!--}\par
+--></span></dd></dl>
+<p>You can also check for clipping by clicking on <span class="menu">View &gt; <!--latex 
+\hyperref[\foo{view:menu:showclippingonoff}]{--><a href="view_menu.html#showclippingonoff" title="View Menu">Show Clipping</a><!--latex }
+--></span>. Audacity will display vertical red bars in the waveform wherever it detects clipping. 
+</p>
+<dl><dd><span title="Picture of the Show Clipping display"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="View Show Clipping.png" height="226" src="../m/images/3/35/view_show_clipping.png" width="519"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/3/35/view_show_clipping.png--></img><!--}\par
+--></span></dd></dl>
+<p>Click on <span class="menu">Edit &gt; <!--latex 
+\hyperref[\foo{edit:menu:undo}]{--><a href="edit_menu.html#undo" title="Edit Menu">Undo Record</a><!--latex }
+--></span> to remove the test recording.
+</p><p>If clipping occurred turn down the recording level a bit and try again. If no clipping occurred you are ready for the real thing!<br/>
+As stated above, try to aim for a maximum peak of around &ndash;6 dB (or 0.5 if you have your meter set to linear rather than dB).<br/>  
+</p>
+<div class="note"><!--\textbf{--><b>Tip:</b><!--}--> Enlarging the Meter Toolbar by clicking and dragging on the toolbar helps considerably with this task.  See <!--latex 
+\hyperref[\foo{meter:toolbar:resizing}]{--><a href="meter_toolbar.html#resizing" title="Meter Toolbar">Resizing and Undocking</a><!--latex }
+--> </div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Links">Links</span></h2><!--}-->
+<p><!--latex 
+\hyperref[\foo{tutorial:recording:and:editing:}]{--><a href="tutorial_recording_and_editing.html" title="Tutorial - Recording and Editing"><!--\textbf{--><b>&gt;</b><!--}-->&nbsp; Forward to: Tutorial - Recording and Editing</a><!--latex }
+--> <br/>
+</p><p><!--latex 
+\hyperref[\foo{tutorial:selecting:your:recording:device:}]{--><a href="tutorial_selecting_your_recording_device.html" title="Tutorial - Selecting Your Recording Device"><!--\textbf{--><b>&lt;</b><!--}-->&nbsp; Back to: Tutorial - Selecting Your Recording Device</a><!--latex }
+--> <br/>
+</p><p><!--latex 
+\hyperref[\foo{tutorial:your:first:recording:}]{--><a href="tutorial_your_first_recording.html" title="Tutorial - Your First Recording"><!--\textbf{--><b>|&lt;</b><!--}--> Tutorial - Your First Recording</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

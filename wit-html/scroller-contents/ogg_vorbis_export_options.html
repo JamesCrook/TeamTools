@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Ogg Vorbis Export Options - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Ogg_Vorbis_Export_Options rootpage-Ogg_Vorbis_Export_Options skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Ogg Vorbis Export Options</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{ogg:vorbis:export:options:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+
+</p>
+<div class="intro">The <!--\textbf{--><b>Ogg Vorbis</b><!--}--> export option uses the open-source <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:compressed:format}]{--><a href="glossary.html#compressed_format" title="Glossary">compressed</a><!--latex }
+--></b><!--}--></i><!--}-->, <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:lossy}]{--><a href="glossary.html#lossy" title="Glossary">lossy</a><!--latex }
+--></b><!--}--></i><!--}--> Vorbis <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:codec}]{--><a href="glossary.html#codec" title="Glossary">codec</a><!--latex }
+--></b><!--}--></i><!--}--> inside an Ogg format container. Ogg format can be played in Windows Media Player and iTunes, but requires additional codecs to be downloaded. Ogg is a popular format for streaming applications.<p> Audacity does not yet support use of the Speex low <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:bit:rate}]{--><a href="glossary.html#bit_rate" title="Glossary">bit rate</a><!--latex }
+--></b><!--}--></i><!--}--> voice codec within Ogg.</p> </div> 
+<dl><dd>Accessed by: <span class="menu">File &gt; Save Other &gt; Export Audio...</span> then choosing <!--\textbf{--><b>Ogg Vorbis Files</b><!--}--> from the <!--\textbf{--><b>Save as type</b><!--}--> dropdown menu.</dd></dl>
+<dl><dd><span title="Ogg Vorbis Options at the bottom of the Export Audio dialog"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="OptionsOgg.png" height="576" src="../m/images/8/89/optionsogg.png" width="571"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/8/89/optionsogg.png--></img><!--}\par
+--></span></dd></dl>
+<dl><dd>Also accessed by: <span class="menu">File &gt; Save Other &gt; <!--latex 
+\hyperref[\foo{file:menu:save:other:exportmultiple}]{--><a href="file_menu_save_other.html#exportmultiple" title="File Menu: Save Other">Export Multiple...</a><!--latex }
+--></span> then choosing <!--\textbf{--><b>Ogg Vorbis Files</b><!--}--> from the <!--\textbf{--><b>Save as type</b><!--}--> dropdown menu.  In this case the options dialog will appear in the center of the Export Multiple dialog.</dd></dl>
+<div id="setup"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Ogg_Vorbis_Export_Setup">Ogg Vorbis Export Setup</span></h2><!--}--><!--latex 
+\label{ogg:vorbis:export:options:setup}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>Quality:</b><!--}--> Choose a quality setting from 0 (lowest) to 10 (best). The current quality setting is displayed in the center of the slider. The default level of 5 typically produces a file of about the same size as Audacity's default 128 kbps <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:mp3}]{--><a href="glossary.html#mp3" title="Glossary">MP3</a><!--latex }
+--></b><!--}--></i><!--}--> encoding, but of higher quality. Higher OGG quality settings mean a larger file size, because a higher overall bit rate will be used. </li></ul><!--
+\end{itemize}
+-->
+<div class="note"><!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:ogg}]{--><a href="glossary.html#ogg" title="Glossary">OGG</a><!--latex }
+--></b><!--}--></i><!--}--> encoding is technically a form of <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:vbr}]{--><a href="glossary.html#vbr" title="Glossary">VBR</a><!--latex }
+--></b><!--}--></i><!--}--> or variable bit rate encoding, as opposed to the <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:cbr}]{--><a href="glossary.html#cbr" title="Glossary">CBR</a><!--latex }
+--></b><!--}--></i><!--}--> or constant bit rate encoding used by default when exporting <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:mp3}]{--><a href="glossary.html#mp3" title="Glossary">MP3</a><!--latex }
+--></b><!--}--></i><!--}--> files. <p> This means that in order to maintain consistent quality throughout a track, a higher bit rate will be used when encoding a complex piece of audio (such as a full orchestral passage) than when encoding a solo voice or instrument.  A recording which has more  complex audio will produce a larger file. Increasing the <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:sample:rate}]{--><a href="glossary.html#sample_rate" title="Glossary">sample rate</a><!--latex }
+--></b><!--}--></i><!--}-->  in <!--latex 
+\hyperref[\foo{selection:toolbar:}]{--><a href="selection_toolbar.html" title="Selection Toolbar">Selection Toolbar</a><!--latex }
+--> will increase the bit rate and so the file size (and vice versa).</p> </div>
+
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

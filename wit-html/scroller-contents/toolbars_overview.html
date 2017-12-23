@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Toolbars Overview - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Toolbars_Overview rootpage-Toolbars_Overview skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Toolbars Overview</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{toolbars:overview:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+
+
+
+
+</p><p><br/>
+</p>
+<div class="intro"><!--\textit{--><i><!--\textbf{--><b>Toolbars</b><!--}--></i><!--}--> provide quick access to many functions in Audacity. In some cases the functions provided by a toolbar are available only through that toolbar. Other than the <!--latex 
+\hyperref[\foo{toolbars:overview::spectral:selection}]{--><a href="#spectral_selection">Spectral Selection Toolbar</a><!--latex }
+--> and the <!--latex 
+\hyperref[\foo{toolbars:overview::scrub}]{--><a href="#scrub" title="Toolbars Overview">Scrub Toolbar</a><!--latex }
+-->, all toolbars are enabled by default. If your desired toolbar is not visible, choose <span class="menu">View &gt; <!--latex 
+\hyperref[\foo{view:menu:toolbars:}]{--><a href="view_menu_toolbars.html" title="View Menu: Toolbars">Toolbars</a><!--latex }
+--></span> and click to put a checkmark by the toolbar you wish to enable.
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> The Meter toolbars are a special case. You may have one or both of the separate Recording and Playback Meter toolbars visible (both are visible by default). Alternatively you can have only the Combined Meter Toolbar visible (which displays recording and playback levels in a single meter).</li>
+<!--
+\item --><li>The tooltips for the toolbars and tools <!--\textit{--><i>(visible when hovering over the toobar or tool)</i><!--}--> will display the shortcut for that tool/toolbar if one is set.</li></ul><!--
+\end{itemize}
+--></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Toolbar_dock_areas">Toolbar dock areas</span></h2><!--}-->
+<p>There are two dock areas for toolbars in Audacity. By default, most of the Audacity toolbars are in the upper dock, with only the Selection Toolbar in the lower dock.
+</p><p>Toolbars can be <!--latex 
+\hyperref[\foo{toolbars:overview::arrange}]{--><a href="#arrange">arranged and resized</a><!--latex }
+--> within either of the two docks, or floated free of the docks. 
+</p>
+
+<div class="full-width"><!--\end{multicols}
+-->
+
+<div id="upper_tooldock"></div> 
+<p><!--\textbf{--><b>Hover over each green-bordered toolbar in the dock images to learn more then click to go to that toolbar's details page. Or <!--latex 
+\hyperref[\foo{toolbars:overview::toolbars}]{--><a href="#toolbars">jump to the brief toolbar descriptions</a><!--latex }
+--></b><!--}-->.
+</p>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Upper_Toolbar_dock_area">Upper Toolbar dock area</span></h3><!--}--><!--latex 
+\label{toolbars:overview:upper:tooldock}-->
+<dl><dd><div class="noresize"><map name="ImageMap_1_639847586"><area alt="Transport Toolbar has buttons for controlling playback and recording and for moving to the project start or end" coords="2,2,121,16" href="transport_toolbar.html" shape="rect" title="Transport Toolbar has buttons for controlling playback and recording and for moving to the project start or end"/><area alt="Transport Toolbar has buttons for controlling playback and recording and for moving to the project start or end" coords="0,42,298,95" href="transport_toolbar.html" shape="rect" title="Transport Toolbar has buttons for controlling playback and recording and for moving to the project start or end"/><area alt="Tools Toolbar lets you choose various tools for selection, volume adjustment, zooming and time-shifting of audio" coords="181,2,271,16" href="tools_toolbar.html" shape="rect" title="Tools Toolbar lets you choose various tools for selection, volume adjustment, zooming and time-shifting of audio"/><area alt="Tools Toolbar lets you choose various tools for selection, volume adjustment, zooming and time-shifting of audio" coords="299,42,384,95" href="tools_toolbar.html" shape="rect" title="Tools Toolbar lets you choose various tools for selection, volume adjustment, zooming and time-shifting of audio"/><area alt="Recording Meter Toolbar lets you see if audio being recorded is clipped, which results in distortion" coords="359,2,523,16" href="meter_toolbar.html" shape="rect" title="Recording Meter Toolbar lets you see if audio being recorded is clipped, which results in distortion"/><area alt="Recording Meter Toolbar lets you see if audio being recorded is clipped, which results in distortion" coords="385,42,806,68" href="meter_toolbar.html" shape="rect" title="Recording Meter Toolbar lets you see if audio being recorded is clipped, which results in distortion"/><area alt="Playback Meter Toolbar lets you see if audio being edited is clipped, which results in distortion" coords="650,2,806,16" href="meter_toolbar.html" shape="rect" title="Playback Meter Toolbar lets you see if audio being edited is clipped, which results in distortion"/><area alt="Playback Meter Toolbar lets you see if audio being edited is clipped, which results in distortion" coords="385,69,806,95" href="meter_toolbar.html" shape="rect" title="Playback Meter Toolbar lets you see if audio being edited is clipped, which results in distortion"/><area alt="Mixer Toolbar lets you adjust Recording Volume (the amplitude at which recordings will be made) and Playback Volume (how loud the project's audio sounds, not affecting the volume of exported audio" coords="4,178,94,191" href="mixer_toolbar.html" shape="rect" title="Mixer Toolbar lets you adjust Recording Volume (the amplitude at which recordings will be made) and Playback Volume (how loud the project's audio sounds, not affecting the volume of exported audio"/><area alt="Mixer Toolbar lets you adjust Recording Volume (the amplitude at which recordings will be made) and Playback Volume (how loud the project's audio sounds, not affecting the volume of exported audio" coords="0,96,294,121" href="mixer_toolbar.html" shape="rect" title="Mixer Toolbar lets you adjust Recording Volume (the amplitude at which recordings will be made) and Playback Volume (how loud the project's audio sounds, not affecting the volume of exported audio"/><area alt="Edit Toolbar has buttons for editing and zooming which are an alternative to using menu items or keyboard shortcuts for these tasks" coords="155,178,235,191" href="edit_toolbar.html" shape="rect" title="Edit Toolbar has buttons for editing and zooming which are an alternative to using menu items or keyboard shortcuts for these tasks"/><area alt="Edit Toolbar has buttons for editing and zooming which are an alternative to using menu items or keyboard shortcuts for these tasks" coords="295,96,598,121" href="edit_toolbar.html" shape="rect" title="Edit Toolbar has buttons for editing and zooming which are an alternative to using menu items or keyboard shortcuts for these tasks"/><area alt="Device Toolbar selects Audio Host, recording device, recording channels and playback device, avoiding the need to open Devices Preferences to make these settings" coords="269,178,368,191" href="device_toolbar.html" shape="rect" title="Device Toolbar selects Audio Host, recording device, recording channels and playback device, avoiding the need to open Devices Preferences to make these settings"/><area alt="Device Toolbar selects Audio Host, recording device, recording channels and playback device, avoiding the need to open Devices Preferences to make these settings" coords="0,122,565,148" href="device_toolbar.html" shape="rect" title="Device Toolbar selects Audio Host, recording device, recording channels and playback device, avoiding the need to open Devices Preferences to make these settings"/><area alt="Transcription Toolbar|Transcription Toolbar lets you play audio at a slower or faster speed than normal, also affecting pitch" coords="439,178,580,191" href="transcription_toolbar.html" shape="rect" title="Transcription Toolbar|Transcription Toolbar lets you play audio at a slower or faster speed than normal, also affecting pitch"/><area alt="Transcription Toolbar|Transcription Toolbar lets you play audio at a slower or faster speed than normal, also affecting pitch" coords="599,96,806,121" href="transcription_toolbar.html" shape="rect" title="Transcription Toolbar|Transcription Toolbar lets you play audio at a slower or faster speed than normal, also affecting pitch"/></map><!--
+
+\par\Needspace{153.52000000000004pt}\begin{picture}(516.4800000000001,123.52000000000002)
+--><!--   \put(0,0){\includegraphics[scale=0.6400000000000001]{--><img alt="Dock1Annotated.png" height="193" src="../m/images/4/4c/dock1annotated.png" usemap="#ImageMap_1_639847586" width="807"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/4/4c/dock1annotated.png--></img><!--}}
+--><!--   \put(1.2800000000000002,113.28000000000003){\hyperref[\foo{transport:toolbar:}]{\makebox(76.16000000000001,8.959999999999994){}}}
+   \put(0.0,62.72000000000001){\hyperref[\foo{transport:toolbar:}]{\makebox(190.72000000000003,33.92){}}}
+   \put(115.84000000000002,113.28000000000003){\hyperref[\foo{tools:toolbar:}]{\makebox(57.60000000000001,8.959999999999994){}}}
+   \put(191.36000000000004,62.72000000000001){\hyperref[\foo{tools:toolbar:}]{\makebox(54.400000000000006,33.92){}}}
+   \put(229.76000000000005,113.28000000000003){\hyperref[\foo{meter:toolbar:}]{\makebox(104.96000000000004,8.959999999999994){}}}
+   \put(246.40000000000003,80.00000000000001){\hyperref[\foo{meter:toolbar:}]{\makebox(269.4400000000001,16.64){}}}
+   \put(416.00000000000006,113.28000000000003){\hyperref[\foo{meter:toolbar:}]{\makebox(99.84000000000009,8.959999999999994){}}}
+   \put(246.40000000000003,62.72000000000001){\hyperref[\foo{meter:toolbar:}]{\makebox(269.4400000000001,16.64){}}}
+   \put(2.5600000000000005,1.2800000000000011){\hyperref[\foo{mixer:toolbar:}]{\makebox(57.60000000000001,8.320000000000007){}}}
+   \put(0.0,46.08000000000001){\hyperref[\foo{mixer:toolbar:}]{\makebox(188.16000000000003,16.0){}}}
+   \put(99.20000000000002,1.2800000000000011){\hyperref[\foo{edit:toolbar:}]{\makebox(51.20000000000002,8.320000000000007){}}}
+   \put(188.80000000000004,46.08000000000001){\hyperref[\foo{edit:toolbar:}]{\makebox(193.92000000000004,16.0){}}}
+   \put(172.16000000000003,1.2800000000000011){\hyperref[\foo{device:toolbar:}]{\makebox(63.360000000000014,8.320000000000007){}}}
+   \put(280.96000000000004,1.2800000000000011){\hyperref[\foo{transcription:toolbar:}]{\makebox(90.24000000000001,8.320000000000007){}}}
+   \put(383.36000000000007,46.08000000000001){\hyperref[\foo{transcription:toolbar:}]{\makebox(132.48000000000008,16.0){}}}
+\end{picture}
+
+--></div></dd></dl><!--\begin{multicols}{2}
+-->
+</div>
+
+<div id="lower_tooldock"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Lower_Toolbar_dock_area">Lower Toolbar dock area</span></h3><!--}--><!--latex 
+\label{toolbars:overview:lower:tooldock}-->
+<dl><dd><div class="noresize"><map name="ImageMap_2_846542899"><area alt="Selection Toolbar includes controls for Project Rate, Snap To and for manipulating units of time or other selection formats" coords="3,48,625,106" href="selection_toolbar.html" shape="rect" title="Selection Toolbar includes controls for Project Rate, Snap To and for manipulating units of time or other selection formats"/></map><!--
+
+\par\Needspace{64.56pt}\begin{picture}(227.84000000000003,34.56000000000001)
+--><!--   \put(0,0){\includegraphics[scale=0.32000000000000006]{--><img alt="Selection Toolbar in lower tooldock green-boxed.png" height="108" src="../m/images/3/3b/selection_toolbar_in_lower_tooldock_green_boxed.png" usemap="#ImageMap_2_846542899" width="712"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/3/3b/selection_toolbar_in_lower_tooldock_green_boxed.png--></img><!--}}
+--><!--\end{picture}
+
+--></div></dd></dl>
+<p>Additionally if you choose to show the <!--latex 
+\hyperref[\foo{spectral:selection:toolbar:}]{--><a href="spectral_selection_toolbar.html" title="Spectral Selection Toolbar">Spectral Selection Toolbar</a><!--latex }
+--> from the <!--latex 
+\hyperref[\foo{view:menu:}]{--><a href="view_menu.html" title="View Menu">View Menu</a><!--latex }
+--> <!--\textit{--><i>(it is not shown by default)</i><!--}--> then it will also be shown in the Lower Toolbar dock area. The image of the Selection Toolbar shown in this example has non-default settings for the <!--latex 
+\hyperref[\foo{selection:toolbar:formats}]{--><a href="selection_toolbar.html#formats" title="Selection Toolbar">selection formats</a><!--latex }
+-->.
+</p>
+<dl><dd><div class="noresize"><map name="ImageMap_3_1276668753"><area alt='Spectral Selection Toolbar includes controls for manipulating a Spectral Selection. Using the "Center Frequency" and "Width" boxes, or the "Low Frequency" and "High Frequency" boxes, you can create or adjust a precisely defined spectral selection without having to click or drag with a mouse in Spectrogram view.' coords="521,52,740,97" href="spectral_selection_toolbar.html" shape="rect" title='Spectral Selection Toolbar includes controls for manipulating a Spectral Selection. Using the "Center Frequency" and "Width" boxes, or the "Low Frequency" and "High Frequency" boxes, you can create or adjust a precisely defined spectral selection without having to click or drag with a mouse in Spectrogram view.'/></map><!--
+
+\par\Needspace{62.32000000000001pt}\begin{picture}(237.76000000000005,32.32000000000001)
+--><!--   \put(0,0){\includegraphics[scale=0.32000000000000006]{--><img alt="Spectral Selection Toolbar in lower tooldock green-boxed.png" height="101" src="../m/images/4/47/spectral_selection_toolbar_in_lower_tooldock_green_boxed.png" usemap="#ImageMap_3_1276668753" width="743"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/4/47/spectral_selection_toolbar_in_lower_tooldock_green_boxed.png--></img><!--}}
+--><!--   \put(166.72000000000003,1.2800000000000011){\hyperref[\foo{spectral:selection:toolbar:}]{\makebox(70.08000000000001,14.400000000000002){}}}
+\end{picture}
+
+--></div></dd></dl>
+<p><br/>
+</p>
+<div id="toolbars"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="The_Toolbars">The Toolbars</span></h2><!--}--><!--latex 
+\label{toolbars:overview:toolbars}-->
+<p>The individual toolbars are described briefly below. Click on any toolbar image to go the details page for that toolbar.
+</p>
+<div id="transport"></div>
+<div id="transport_toolbar"></div>
+<!--
+\subsubsection{--><h4><span class="mw-headline" id="Transport_Toolbar"><!--latex 
+\hyperref[\foo{transport:toolbar:}]{--><a href="transport_toolbar.html" title="Transport Toolbar">Transport Toolbar</a><!--latex }
+--></span></h4><!--}--><!--latex 
+\label{toolbars:overview:transport:toolbar}--><!--latex 
+\label{toolbars:overview:transport}-->
+<dl><dd><a href="transport_toolbar.html" title="Transport Toolbar controls recording, playback, pausing and stopping"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Transport Toolbar controls recording, playback, pausing and stopping" class="thumbborder" height="55" src="../m/images/5/5e/transporttoolbar.png" width="327"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/5/5e/transporttoolbar.png--></img><!--}\par
+--></a>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> Controls playback and recording and skips to start or end of project when neither playing or recording.</li></ul><!--
+\end{itemize}
+--></dd></dl>
+<div id="tools"></div>
+<div id="tools_toolbar"></div>
+<!--
+\subsubsection{--><h4><span class="mw-headline" id="Tools_Toolbar"><!--latex 
+\hyperref[\foo{tools:toolbar:}]{--><a href="tools_toolbar.html" title="Tools Toolbar">Tools Toolbar</a><!--latex }
+--></span></h4><!--}--><!--latex 
+\label{toolbars:overview:tools:toolbar}--><!--latex 
+\label{toolbars:overview:tools}-->
+<dl><dd><a href="tools_toolbar.html" title="Tools Toolbar showing the default Selection Tool chosen"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Tools Toolbar showing the default Selection Tool chosen" class="thumbborder" height="55" src="../m/images/8/82/toolstoolbar.png" width="94"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/8/82/toolstoolbar.png--></img><!--}\par
+--></a>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> Chooses various tools for selection, volume adjustment, zooming and time-shifting of audio.</li></ul><!--
+\end{itemize}
+--></dd></dl>
+<div id="recording"></div>
+<div id="recording_toolbar"></div>
+<!--
+\subsubsection{--><h4><span class="mw-headline" id="Recording_Meter_Toolbar"><!--latex 
+\hyperref[\foo{meter:toolbar:recording}]{--><a href="meter_toolbar.html#recording" title="Meter Toolbar"><span title="Meter Toolbars">Recording Meter Toolbar</span></a><!--latex }
+--></span></h4><!--}--><!--latex 
+\label{toolbars:overview:recording:toolbar}--><!--latex 
+\label{toolbars:overview:recording}-->
+<dl><dd><a href="meter_toolbar.html" title="RecordMeter Toolbar"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="RecordMeter Toolbar" class="thumbborder" height="27" src="../m/images/b/bd/recordmetertoolbar.png" width="460"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/bd/recordmetertoolbar.png--></img><!--}\par
+--></a>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li>Displays recording levels and toggles <!--latex 
+\hyperref[\foo{meter:toolbar:recordinglevel}]{--><a href="meter_toolbar.html#recordinglevel" title="Meter Toolbar"><span title="Meter Toolbars">input monitoring</span></a><!--latex }
+--> when not recording. <p><!--\textit{--><i>Note the two vertical bars at the right of this toolbar which mean that this toolbar can be resized by clicking and dragging on the bars.</i><!--}--></p></li></ul><!--
+\end{itemize}
+--></dd></dl>
+<div id="playback"></div>
+<div id="playback_toolbar"></div>
+<!--
+\subsubsection{--><h4><span class="mw-headline" id="Playback_Meter_Toolbar"><!--latex 
+\hyperref[\foo{meter:toolbar:playback}]{--><a href="meter_toolbar.html#playback" title="Meter Toolbar"><span title="Meter Toolbars">Playback Meter Toolbar</span></a><!--latex }
+--></span></h4><!--}--><!--latex 
+\label{toolbars:overview:playback:toolbar}--><!--latex 
+\label{toolbars:overview:playback}-->
+<dl><dd><a href="meter_toolbar.html" title="PlayMeter Toolbar"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="PlayMeter Toolbar" class="thumbborder" height="27" src="../m/images/7/7d/playmetertoolbar.png" width="460"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/7/7d/playmetertoolbar.png--></img><!--}\par
+--></a>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li>Displays playback levels. <p><!--\textit{--><i>Note the two vertical bars at the right of this toolbar which mean that this toolbar can be resized by clicking and dragging on the bars.</i><!--}--></p></li></ul><!--
+\end{itemize}
+--></dd></dl>
+<div id="mixer"></div>
+<div id="mixer_toolbar"></div>
+<!--
+\subsubsection{--><h4><span class="mw-headline" id="Mixer_Toolbar"><!--latex 
+\hyperref[\foo{mixer:toolbar:}]{--><a href="mixer_toolbar.html" title="Mixer Toolbar">Mixer Toolbar</a><!--latex }
+--></span></h4><!--}--><!--latex 
+\label{toolbars:overview:mixer:toolbar}--><!--latex 
+\label{toolbars:overview:mixer}-->
+<dl><dd><a href="mixer_toolbar.html" title="Mixer Toolbar has controls to manage the recording and playback levels"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Mixer Toolbar has controls to manage the recording and playback levels" class="thumbborder" height="27" src="../m/images/1/15/mixertoolbar.png" width="323"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/1/15/mixertoolbar.png--></img><!--}\par
+--></a>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> Adjusts the recording and playback volumes of the devices currently selected in <!--latex 
+\hyperref[\foo{device:toolbar:}]{--><a href="device_toolbar.html" title="Device Toolbar">Device Toolbar</a><!--latex }
+-->. </li></ul><!--
+\end{itemize}
+--></dd></dl>
+<div id="edit"></div>
+<div id="edit_toolbar"></div>
+<!--
+\subsubsection{--><h4><span class="mw-headline" id="Edit_Toolbar"><!--latex 
+\hyperref[\foo{edit:toolbar:}]{--><a href="edit_toolbar.html" title="Edit Toolbar">Edit Toolbar</a><!--latex }
+--></span></h4><!--}--><!--latex 
+\label{toolbars:overview:edit:toolbar}--><!--latex 
+\label{toolbars:overview:edit}-->
+<dl><dd><a href="edit_toolbar.html" title="Edit Toolbar"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Edit Toolbar" class="thumbborder" height="27" src="../m/images/a/a0/edittoolbar.png" width="336"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/a/a0/edittoolbar.png--></img><!--}\par
+--></a>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li>Cut, copy, paste, trim audio, silence audio, undo, redo, four zoom tools. </li></ul><!--
+\end{itemize}
+--></dd></dl>
+<div id="transcription"></div>
+<div id="transcription_toolbar"></div>
+<!--
+\subsubsection{--><h4><span class="mw-headline" id="Transcription_Toolbar"><!--latex 
+\hyperref[\foo{transcription:toolbar:}]{--><a href="transcription_toolbar.html" title="Transcription Toolbar">Transcription Toolbar</a><!--latex }
+--></span></h4><!--}--><!--latex 
+\label{toolbars:overview:transcription:toolbar}--><!--latex 
+\label{toolbars:overview:transcription}-->
+<dl><dd><a href="transcription_toolbar.html" title="Transcription Toolbar has a control slider to enable playing audio at a slower or faster speed than normal"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Transcription Toolbar has a control slider to enable playing audio at a slower or faster speed than normal" class="thumbborder" height="27" src="../m/images/2/2c/transcriptiontoolbar.png" width="140"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/2/2c/transcriptiontoolbar.png--></img><!--}\par
+--></a>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> Plays audio at a slower or faster speed than normal, affecting pitch.</li></ul><!--
+\end{itemize}
+--></dd></dl>
+<div id="scrub"></div>
+<div id="scrub_toolbar"></div>
+<!--
+\subsubsection{--><h4><span class="mw-headline" id="Scrub_Toolbar"><!--latex 
+\hyperref[\foo{scrub:toolbar:}]{--><a href="scrub_toolbar.html" title="Scrub Toolbar">Scrub Toolbar</a><!--latex }
+--></span></h4><!--}--><!--latex 
+\label{toolbars:overview:scrub:toolbar}--><!--latex 
+\label{toolbars:overview:scrub}-->
+<dl><dd><a href="scrub_toolbar.html" title="Scrub Toolbar"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Scrub Toolbar" class="thumbborder" height="27" src="../m/images/a/a9/scrubtoolbar.png" width="92"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/a/a9/scrubtoolbar.png--></img><!--}\par
+--></a>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> Starts, stops or switches to Scrub play or Seek play, and hides or displays the Scrub Ruler.</li>
+<!--
+\item --><li> This toolbar is not shown by default. Select <span class="menu">View &gt; Toolbars &gt; <!--latex 
+\hyperref[\foo{scrub:toolbar:}]{--><a href="scrub_toolbar.html" title="Scrub Toolbar">Scrub Toolbar</a><!--latex }
+--></span> to show the toolbar, which by default docks in the upper dock. </li></ul><!--
+\end{itemize}
+--></dd></dl>
+<div id="device"></div>
+<div id="device_toolbar"></div>
+<!--
+\subsubsection{--><h4><span class="mw-headline" id="Device_Toolbar"><!--latex 
+\hyperref[\foo{device:toolbar:}]{--><a href="device_toolbar.html" title="Device Toolbar">Device Toolbar</a><!--latex }
+--></span></h4><!--}--><!--latex 
+\label{toolbars:overview:device:toolbar}--><!--latex 
+\label{toolbars:overview:device}-->
+<dl><dd><a href="device_toolbar.html" title="Device Toolbar has controls for selecting audio host, recording device, number of recording channels and playback device"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Device Toolbar has controls for selecting audio host, recording device, number of recording channels and playback device" class="thumbborder" height="27" src="../m/images/0/05/devicetoolbar.png" width="618"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/0/05/devicetoolbar.png--></img><!--}\par
+--></a>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li>Selects audio host, recording device, number of recording channels and playback device.<p><!--\textit{--><i>Note the two vertical bars at the right of this toolbar which mean that this toolbar can be resized by clicking and dragging on the bars.</i><!--}--></p></li></ul><!--
+\end{itemize}
+--></dd></dl>
+<div id="selection"></div>
+<div id="selection_toolbar"></div>
+<!--
+\subsubsection{--><h4><span class="mw-headline" id="Selection_Toolbar"><!--latex 
+\hyperref[\foo{selection:toolbar:}]{--><a href="selection_toolbar.html" title="Selection Toolbar">Selection Toolbar</a><!--latex }
+--></span></h4><!--}--><!--latex 
+\label{toolbars:overview:selection:toolbar}--><!--latex 
+\label{toolbars:overview:selection}-->
+<dl><dd><a href="selection_toolbar.html" title="Selection Toolbar includes controls for Project Rate, Snap To and for manipulating units of time or other selection formats"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Selection Toolbar includes controls for Project Rate, Snap To and for manipulating units of time or other selection formats" class="thumbborder" height="57" src="../m/images/f/fc/selectiontoolbar.png" width="684"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/f/fc/selectiontoolbar.png--></img><!--}\par
+--></a>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> Controls the <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:sample:rate}]{--><a href="glossary.html#sample_rate" title="Glossary">sample rate</a><!--latex }
+--></b><!--}--></i><!--}--> of the project, <!--latex 
+\hyperref[\foo{selection:toolbar:snap}]{--><a href="selection_toolbar.html#snap" title="Selection Toolbar">snapping</a><!--latex }
+--> to the <!--latex 
+\hyperref[\foo{selection:toolbar:formats}]{--><a href="selection_toolbar.html#formats" title="Selection Toolbar">selection format</a><!--latex }
+--> and adjusts cursor and <!--latex 
+\hyperref[\foo{audacity:selection:}]{--><a href="audacity_selection.html" title="Audacity Selection">region</a><!--latex }
+--> position by keyboard input.<p><!--\textit{--><i>The default position of Selection Toolbar is at the bottom of the main Audacity window, thus it is not visible in the Toolbars image at the top of this page.</i><!--}--></p></li></ul><!--
+\end{itemize}
+--></dd></dl>
+<p><br/>
+</p>
+<div id="spectral_selection"></div>
+<div id="spectral_selection_toolbar"></div>
+<!--
+\subsubsection{--><h4><span class="mw-headline" id="Spectral_Selection_Toolbar"><!--latex 
+\hyperref[\foo{spectral:selection:toolbar:}]{--><a href="spectral_selection_toolbar.html" title="Spectral Selection Toolbar">Spectral Selection Toolbar</a><!--latex }
+--></span></h4><!--}--><!--latex 
+\label{toolbars:overview:spectral:selection:toolbar}--><!--latex 
+\label{toolbars:overview:spectral:selection}-->
+<dl><dd><a href="spectral_selection_toolbar.html#center" title="SpectralSelection Toolbar (FrequencyWidth variant)"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="SpectralSelection Toolbar (FrequencyWidth variant)" class="thumbborder" height="55" src="../m/images/c/cb/spectralselectiontoolbarfrequencywidth.png" width="245"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/c/cb/spectralselectiontoolbarfrequencywidth.png--></img><!--}\par
+--></a><a href="spectral_selection_toolbar.html#lowhigh" title="SpectralSelection Toolbar (LowHigh variant)"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="SpectralSelection Toolbar (LowHigh variant)" class="thumbborder" height="55" src="../m/images/f/ff/spectralselectiontoolbarlowhigh.png" width="238"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/f/ff/spectralselectiontoolbarlowhigh.png--></img><!--}\par
+--></a></dd></dl>
+<dl><dd><!--
+\begin{itemize}--><ul><!--
+\item --><li>Displays and lets you adjust the current spectral (frequency) selection without having to be in <!--latex 
+\hyperref[\foo{audio:track:dropdown:menu:spgram}]{--><a href="audio_track_dropdown_menu.html#spgram" title="Audio Track Dropdown Menu">Spectrogram view</a><!--latex }
+-->. </li>
+<!--
+\item --><li>This toolbar is not shown by default. Select <span class="menu">View &gt; Toolbars &gt; <!--latex 
+\hyperref[\foo{spectral:selection:toolbar:}]{--><a href="spectral_selection_toolbar.html" title="Spectral Selection Toolbar">Spectral Selection Toolbar</a><!--latex }
+--></span> to show the toolbar, which by default docks in the lower dock, beside or under <!--latex 
+\hyperref[\foo{selection:toolbar:}]{--><a href="selection_toolbar.html" title="Selection Toolbar">Selection Toolbar</a><!--latex }
+-->. </li>
+<!--
+\item --><li>Choose your preferred format option from the dropdown menu above the boxes: <span class="button">Center frequency and Width &nbsp;<a class="image" href="http://alphamanual.audacityteam.org/man/File:MenuDownArrow.png"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="MenuDownArrow.png" height="6" src="../m/images/e/ed/menudownarrow.png" style="vertical-align: middle" width="9"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/e/ed/menudownarrow.png--></img><!--}}{}--></a></span> or <span class="button">Low and High Frequencies &nbsp;<a class="image" href="http://alphamanual.audacityteam.org/man/File:MenuDownArrow.png"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="MenuDownArrow.png" height="6" src="../m/images/e/ed/menudownarrow.png" style="vertical-align: middle" width="9"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/e/ed/menudownarrow.png--></img><!--}}{}--></a></span>.</li></ul><!--
+\end{itemize}
+--></dd></dl>
+<div class="note">In Center frequency and Width view, to clear the spectral selection entirely just use the <span class="kbrd" style="background-color: #e0e0f0">Delete</span> key after having clicked on any of the digits (note carefully that this is <!--\textit{--><i><!--\textbf{--><b>not</b><!--}--></i><!--}--> the Delete key on the numerical keypad).  When in Low and High Frequencies view you can clear either input box individually with the <span class="kbrd" style="background-color: #e0e0f0">Delete</span> key.</div>
+<div id="arrange"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Arranging_and_resizing_Toolbars">Arranging and resizing Toolbars</span></h2><!--}--><!--latex 
+\label{toolbars:overview:arrange}-->
+<p>Toolbars can be docked in two toolbar areas of the Audacity Project window, providing there is space available: either above the <!--latex 
+\hyperref[\foo{timeline:}]{--><a href="timeline.html" title="Timeline">Timeline</a><!--latex }
+-->, or above the <!--latex 
+\hyperref[\foo{status:bar:}]{--><a href="status_bar.html" title="Status Bar">Status Bar</a><!--latex }
+--> at the bottom of the window (Selection Toolbar is in this location by default). Toolbars may also be floated anywhere else in or outside the project window, including on a secondary monitor. The toolbar positions on exiting Audacity are always remembered when restarting Audacity next time.
+</p><p>Toolbars can be docked or floated by dragging on their serrated left edge. When docking a toolbar into a toolbar area, a black triangle will appear, indicating an available docking position. The default toolbar docked positions can be restored at any time by clicking <span class="menu">View &gt; Toolbars &gt; <!--latex 
+\hyperref[\foo{view:menu:toolbars:reset:toolbars}]{--><a href="view_menu_toolbars.html#reset_toolbars" title="View Menu: Toolbars">Reset Toolbars</a><!--latex }
+--></span>.  Some of the Toolbars can be resized (the Meter Toolbars and the Device Toolbar) by clicking and dragging on the vertical bars at the right of the toolbars.
+</p><p>If you change your mind part way through a drag or a resize of a toolbar you can simply use the Escape key <span class="kbrd" style="background-color: #e0e0f0">Esc</span> to abort the action. 
+</p><p><br/>
+</p>
+<dl><dd><!--\textbf{--><b>The image below shows Mixer Toolbar being docked to the right of Device Toolbar:</b><!--}--></dd>
+<dd><span title="The black triangle indicates an available docking position for Mixer Toolbar alongside Device Toolbar"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Docking a toolbar black triangle.png" height="115" src="../m/images/9/98/docking_a_toolbar_black_triangle.png" width="814"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/9/98/docking_a_toolbar_black_triangle.png--></img><!--}\par
+--></span></dd></dl>
+<p><br/>
+</p>
+<dl><dd><!--\textbf{--><b>The image below shows the Transport and Recording Meter toolbars floated outside the Project window, with the Recording Meter dragged wider:</b><!--}--></dd>
+<dd><span title="Audacity Project Window with some toolbars floated outside the window"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Floating Toolbars.png" height="557" src="../m/images/e/e8/floating_toolbars.png" width="782"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/e/e8/floating_toolbars.png--></img><!--}\par
+--></span></dd></dl>
+
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

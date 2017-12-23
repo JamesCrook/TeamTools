@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Tutorial - Selecting Your Recording Device - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Tutorial_-_Selecting_Your_Recording_Device rootpage-Tutorial_-_Selecting_Your_Recording_Device skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Tutorial - Selecting Your Recording Device</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{tutorial:selecting:your:recording:device:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+
+</p><p><br/>
+Now that you know you're getting sound into the computer and you've made your Audacity settings, it's time to set up your recording device.
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Setting_up_the_audio_host_and_playback_device">Setting up the audio host and playback device</span></h2><!--}-->
+<div class="note">
+<p><!--\textbf{--><b>Device Toolbar</b><!--}-->
+</p><p>On the device toolbar, if you are unsure what settings to use, use MME if it is available, ALSA if on Linux and Core Audio if on Mac.
+</p>
+The choice of recording and play back devices may take some detective work (or trial and error).  The items earlier in the list are generally built in devices, e.g. a speaker actually in the laptop, and the later items devices that are plugged in, e.g. headphones.</div>
+<p><br/>
+The <!--\textbf{--><b>Device Toolbar</b><!--}-->, shown below, is displayed by default in a new installation of Audacity. If Device Toolbar is not visible, click on <span class="menu">View &gt; Toolbars &gt; <!--latex 
+\hyperref[\foo{device:toolbar:}]{--><a href="device_toolbar.html" title="Device Toolbar">Device Toolbar</a><!--latex }
+--></span>.
+</p>
+<dl><dd><span title="Image of device toolbar with annotations"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Annotated Device Toolbar.png" height="76" src="../m/images/2/27/annotated_device_toolbar.png" width="707"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/2/27/annotated_device_toolbar.png--></img><!--}\par
+--></span></dd></dl>
+<p>You may want to expand the size of the Device toolbar by dragging right on the drag handle.
+</p><p>Choose your preferred <!--\textbf{--><b>Audio Host</b><!--}-->, <!--\textbf{--><b>Recording Device</b><!--}--> and <!--\textbf{--><b>Playback Device</b><!--}--> from the dropdown menus. 
+This selects the particular interface with which Audacity communicates with your chosen recording and playback devices. 
+</p><p>The "Audio Host" is the interface between Audacity and the sound device. On <!--\textbf{--><b>Windows</b><!--}-->, the choice is between the following audio interfaces. 
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:mme}]{--><a href="glossary.html#mme" title="Glossary">MME</a><!--latex }
+-->:</b><!--}--></i><!--}--> This is the Audacity default and the most compatible with all audio devices.</li>
+<!--
+\item --><li> <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:wds}]{--><a href="glossary.html#wds" title="Glossary">Windows DirectSound</a><!--latex }
+-->:</b><!--}--></i><!--}--> This is more recent than MME with potentially less <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:latency}]{--><a href="glossary.html#latency" title="Glossary">latency</a><!--latex }
+--></b><!--}--></i><!--}-->.</li>
+<!--
+\item --><li> <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:wasapi}]{--><a href="glossary.html#wasapi" title="Glossary">Windows WASAPI</a><!--latex }
+-->:</b><!--}--></i><!--}--> This host is the most recent Windows interface, that Audacity supports, between applications (such as Audacity) and the soundcard driver. WASAPI was first officially released in 2007 in <a class="external text" href="https://en.wikipedia.org/wiki/Windows_Vista" rel="nofollow">Windows Vista</a>. WASAPI is particularly useful for "loopback" devices for <!--latex 
+\hyperref[\foo{tutorial:recording:computer:playback:on:windows:}]{--><a href="tutorial_recording_computer_playback_on_windows.html" title="Tutorial - Recording Computer Playback on Windows">recording computer playback</a><!--latex }
+-->. 24-bit recording devices are supported. Playback is <!--\textit{--><i>emulated</i><!--}--> using this host. As a result, the playback slider in <!--latex 
+\hyperref[\foo{mixer:toolbar:}]{--><a href="mixer_toolbar.html" title="Mixer Toolbar">Mixer Toolbar</a><!--latex }
+--> will only scale the system playback slider's current level up or down rather than directly manipulating that system slider.  </li></ul><!--
+\end{itemize}
+-->
+
+<p>On <!--\textbf{--><b>Mac</b><!--}--> the only choice is Core Audio.  
+</p><p>On <!--\textbf{--><b>Linux</b><!--}--> there is often only one option: <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:ALSA}]{--><a href="glossary.html#ALSA" title="Glossary">ALSA</a><!--latex }
+--></b><!--}--></i><!--}-->. Other options could be OSS and/or Jack Audio Connection Kit (also known as "Jack" or "Jackd")<!--\textit{--><i>.</i><!--}-->
+</p>
+<div class="note">On <!--\textbf{--><b>Windows</b><!--}-->:
+<!--
+\begin{itemize}--><ul><!--
+\item --><li>Windows DirectSound may by default have only slightly lower latency than MME.  </li>
+<!--
+\item --><li>Selecting Windows DirectSound or Windows WASAPI and enabling both "Exclusive Mode" boxes in <a class="external text" href="https://wiki.audacityteam.org/wiki/Mixer_Toolbar_Issues#vistacp" rel="nofollow">Windows&nbsp;Sound</a> allows Audacity to request audio direct from the device without <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:resampling}]{--><a href="glossary.html#resampling" title="Glossary">resampling</a><!--latex }
+--></b><!--}--></i><!--}-->.</li></ul><!--
+\end{itemize}
+--></div> 
+ 
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> For <!--\textit{--><i>output device</i><!--}-->, choose the named sound device your headphones or speakers are connected to (not a device like Microsoft Sound Mapper that uses the system default device). If you are using a USB-connected guitar, microphone or keyboard on Windows, you may also need to <!--latex 
+\hyperref[\foo{faq:playback:usb}]{--><a href="faq_playback.html#usb" title="FAQ:Playback">reset the default system playback device to your computer sound device</a><!--latex }
+--> in order to hear audio in other applications. </li></ul><!--
+\end{itemize}
+-->
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top"><!--\textbf{--><b>Windows computers almost always only have microphone inputs enabled by default.</b><!--}-->  Earlier Windows systems may also need some inputs to be made visible before Audacity can use them.<p> If your line-in or other inputs are not shown in Device Toolbar, go to the system mixer for <a class="external text" href="https://wiki.audacityteam.org/index.php?title=Mixer_Toolbar_Issues#vistacp" rel="nofollow">Windows</a>, show and enable the missing inputs, then use <span class="menuadvice">Transport &gt; <!--latex 
+\hyperref[\foo{transport:menu:rescan:audio:devices}]{--><a href="transport_menu.html#rescan_audio_devices" title="Transport Menu">Rescan Audio Devices</a><!--latex }
+--></span> or restart Audacity.</p>
+</td></tr></tbody></table>
+</div>
+<p>Click on <span class="menu">Generate &gt; <!--latex 
+\hyperref[\foo{generate:menu:tone}]{--><a href="generate_menu.html#tone" title="Generate Menu">Tone</a><!--latex }
+--></span>, accept the default values in the dialog then click OK: a 30-second tone will be generated into a new track. Press <span class="kbrd" style="background-color: #e0e0f0">Space</span> to begin playback - you should hear a loud tone coming from your computer speakers. You can use the output slider on the Mixer Toolbar to control the volume at which you listen to your Audacity project. 
+</p>
+<dl><dd><span title="Picture of the mixer toolbar"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Mixer Toolbar 101.png" height="27" src="../m/images/2/27/mixer_toolbar_101.png" width="323"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/2/27/mixer_toolbar_101.png--></img><!--}\par
+--></span></dd></dl>
+<p>Note that the <!--latex 
+\hyperref[\foo{meter:toolbar:playback}]{--><a href="meter_toolbar.html#playback" title="Meter Toolbar">Playback Meter</a><!--latex }
+--> does not change as you adjust the output slider: this meter always indicate the volume of the mix of your Audacity project.
+</p>
+<dl><dd><span title="Playback Meter Toolbar in use, default size"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Playback Toolbar in use - clipped signal.png" height="34" src="../m/images/7/7c/playback_toolbar_in_use_clipped_signal.png" width="473"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/7/7c/playback_toolbar_in_use_clipped_signal.png--></img><!--}\par
+--></span></dd></dl>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Setting_up_the_recording_device">Setting up the recording device</span></h2><!--}-->
+<p>Now that you know that you can hear what Audacity is playing you can continue setting up for recording.
+</p><p>Choose your preferred <!--\textit{--><i>recording device</i><!--}--> from the <!--\textit{--><i>Recording Device</i><!--}--> dropdown menu in the <!--latex 
+\hyperref[\foo{device:toolbar:}]{--><a href="device_toolbar.html" title="Device Toolbar">Device Toolbar</a><!--latex }
+-->.
+</p><p>In the <!--\textit{--><i>Recording Channels</i><!--}--> dropdown menu choose whether you want to record in mono (1 channel) or stereo (2 channels). In general if you are recording a microphone or guitar you will want to record in mono. If you are recording a keyboard and the keyboard has stereo outputs you will want to record in stereo.
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Audacity_Preferences">Audacity Preferences</span></h2><!--}-->
+<p>If you prefer, you can make the above settings in the Audacity's <!--latex 
+\hyperref[\foo{preferences:}]{--><a href="preferences.html" title="Preferences">Preferences</a><!--latex }
+-->.  To access this, use <span class="menu">Edit &gt; <!--latex 
+\hyperref[\foo{preferences:}]{--><a href="preferences.html" title="Preferences">Preferences</a><!--latex }
+--></span>
+</p><p>The image below shows the Devices section of Preferences: 
+</p>
+<dl><dd><span title="Devices section of Preferences"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Preferences Devices.png" height="500" src="../m/images/c/c1/preferences_devices.png" width="619"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/c/c1/preferences_devices.png--></img><!--}\par
+--></span></dd></dl>
+<p>There are many other settings that can be made in your <!--latex 
+\hyperref[\foo{preferences:}]{--><a href="preferences.html" title="Preferences">Preferences</a><!--latex }
+--> do take some time to explore and understand these.
+</p><p><br/>
+</p>
+<div class="note">
+<p><!--\textbf{--><b>Settings</b><!--}-->
+</p>
+The number of different settings for recording is somewhat daunting, reflecting the many options for recording.  Basically you can leave the settings at the default, and record just fine.  However you might want to check this <!--latex 
+\hyperref[\foo{tutorial:audacity:settings:for:recording:}]{--><a href="tutorial_audacity_settings_for_recording.html" title="Tutorial - Audacity Settings for Recording">Tutorial on recording settings</a><!--latex }
+--> to find out more.</div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Links">Links</span></h2><!--}-->
+<p><!--latex 
+\hyperref[\foo{tutorial:making:a:test:recording:}]{--><a href="tutorial_making_a_test_recording.html" title="Tutorial - Making a Test Recording"><!--\textbf{--><b>&gt;</b><!--}-->&nbsp; Forward to: Tutorial - Making a Test Recording</a><!--latex }
+--> <br/>
+</p><p><!--latex 
+\hyperref[\foo{tutorial:audacity:settings:for:recording:}]{--><a href="tutorial_audacity_settings_for_recording.html" title="Tutorial - Audacity Settings for Recording"><!--\textbf{--><b>&lt;</b><!--}-->&nbsp; Back to: Tutorial - Audacity Settings for Recording</a><!--latex }
+--> <br/>
+</p><p><!--latex 
+\hyperref[\foo{tutorial:your:first:recording:}]{--><a href="tutorial_your_first_recording.html" title="Tutorial - Your First Recording"><!--\textbf{--><b>|&lt;</b><!--}--> Tutorial - Your First Recording</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

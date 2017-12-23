@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Advanced Mixing Options - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Advanced_Mixing_Options rootpage-Advanced_Mixing_Options skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Advanced Mixing Options</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{advanced:mixing:options:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+
+</p>
+<div class="intro">The <!--\textit{--><i><!--\textbf{--><b>Advanced Mixing Options</b><!--}--></i><!--}--> dialog appears if you have chosen "<!--\textbf{--><b>Use custom mix</b><!--}-->" in the <!--latex 
+\hyperref[\foo{import:export:preferences:}]{--><a href="import_export_preferences.html" title="Import - Export Preferences">Import / Export</a><!--latex }
+--> section of <!--latex 
+\hyperref[\foo{preferences:}]{--><a href="preferences.html" title="Preferences">Preferences</a><!--latex }
+-->. Use this dialog to export multi-channel (surround sound) files or to make customised assignments between Audacity tracks and the channels in the exported file.</div>
+<dl><dd><span title="Advanced mixing options with each track mapped to a separate channel"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Custom mix basic7.png" height="480" src="../m/images/a/aa/custom_mix_basic7.png" width="640"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/a/aa/custom_mix_basic7.png--></img><!--}\par
+--></span>  </dd></dl>
+<div class="note">
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> When you click <span class="menu">File &gt; Save Other &gt; <!--latex 
+\hyperref[\foo{file:menu:save:other:exportaudio}]{--><a href="file_menu_save_other.html#exportaudio" title="File Menu: Save Other">Export Audio...</a><!--latex }
+--></span> and have chosen the name and format of your exported file, this dialog appears which presents you with the number of tracks you have in your project and allows you to map these as desired to each of up to 32 output channels (<!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:wav}]{--><a href="glossary.html#wav" title="Glossary">WAV</a><!--latex }
+--></b><!--}--></i><!--}-->, <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:aiff}]{--><a href="glossary.html#aiff" title="Glossary">AIFF</a><!--latex }
+--></b><!--}--></i><!--}--> or <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:ogg}]{--><a href="glossary.html#ogg" title="Glossary">OGG</a><!--latex }
+--></b><!--}--></i><!--}-->) or 8 output channels (<!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:flac}]{--><a href="glossary.html#flac" title="Glossary">FLAC</a><!--latex }
+--></b><!--}--></i><!--}-->). <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:aac}]{--><a href="glossary.html#aac" title="Glossary">AAC</a><!--latex }
+--></b><!--}--></i><!--}--> multi-channel export is subject to the <!--latex 
+\hyperref[\foo{faq:installation:and:plug:ins:ffdown}]{--><a href="faq_installation_and_plug_ins.html#ffdown" title="FAQ:Installation and Plug-Ins">FFmpeg</a><!--latex }
+--> encoder used, as described in our <!--latex 
+\hyperref[\foo{export:formats:supported:by:audacity:compare}]{--><a href="export_formats_supported_by_audacity.html#compare" title="Export Formats supported by Audacity">file formats comparison table</a><!--latex }
+-->. </li>
+<!--
+\item --><li> To include only specific tracks in the exported file, <!--latex 
+\hyperref[\foo{faq:editing:selcopy}]{--><a href="faq_editing.html#selcopy" title="FAQ:Editing">select those tracks</a><!--latex }
+--> then use <span class="menu">File &gt; Save Other &gt; <!--latex 
+\hyperref[\foo{file:menu:save:other:exportselectedaudio}]{--><a href="file_menu_save_other.html#exportselectedaudio" title="File Menu: Save Other">Export Selected Audio...</a><!--latex }
+--></span>, or <!--latex 
+\hyperref[\foo{audio:tracks:mute}]{--><a href="audio_tracks.html#mute" title="Audio Tracks">mute</a><!--latex }
+--> the tracks you do not want to export. </li>
+<!--
+\item --><li>Currently there is no support for exporting multi-channel files when using <span class="menu">File &gt; Save Other &gt; <!--latex 
+\hyperref[\foo{file:menu:save:other:exportmultiple}]{--><a href="file_menu_save_other.html#exportmultiple" title="File Menu: Save Other">Export Multiple...</a><!--latex }
+--></span>.</li></ul><!--
+\end{itemize}
+--></div>
+<p>The tracks from your project shown on the left will be mixed down into the output channels shown on the right:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li>The tracks in your project are shown in blue boxes.</li>
+<!--
+\item --><li>The output channels are shown in gray boxes.</li>
+<!--
+\item --><li>Adjust the <!--\textbf{--><b>Output Channels</b><!--}--> slider as desired to change the number of output channels.</li>
+<!--
+\item --><li>Click to select or deselect any box. A selected box is outlined in red.</li>
+<!--
+\item --><li>Clicking to select a box when another is already selected will link the boxes if they are not linked, or remove the link if they are linked. </li></ul><!--
+\end{itemize}
+-->
+<p>Connect the tracks to the channels in the way that you want, then click "<!--\textbf{--><b>OK</b><!--}-->" to export to the multi-channel file.
+</p>
+<div class="note">
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> There is no support at the moment for multi-channel playback of audio in Audacity - playback of a multi-channel file in Audacity will always be mixed down to stereo. Similarly, the <span class="menu">Tracks &gt; Mix &gt; <!--latex 
+\hyperref[\foo{tracks:menu:mix:mix:and:render}]{--><a href="tracks_menu_mix.html#mix_and_render" title="Tracks Menu: Mix">Mix and Render</a><!--latex }
+--></span> and <span class="menu">Tracks &gt; Mix &gt; <!--latex 
+\hyperref[\foo{tracks:menu:mix:mix:and:render:to:new:track}]{--><a href="tracks_menu_mix.html#mix_and_render_to_new_track" title="Tracks Menu: Mix">Mix and Render to New Track</a><!--latex }
+--></span> commands only mix down to mono or stereo.</li>
+<!--
+\item --><li> Audacity does not perform mapping of the channels in exported files to specific playback channels. Use the <!--latex 
+\hyperref[\foo{audio:track:dropdown:menu:}]{--><a href="audio_track_dropdown_menu.html" title="Audio Track Dropdown Menu">Audio Track Dropdown Menu</a><!--latex }
+--> or mouse drag on the <!--latex 
+\hyperref[\foo{audio:tracks:panel}]{--><a href="audio_tracks.html#panel" title="Audio Tracks">Track Control Panel</a><!--latex }
+--> of tracks to move tracks up and down so they match the <a class="external text" href="https://en.wikipedia.org/wiki/Surround_sound#Channel_identification" rel="nofollow">channel layout</a> of the format you are exporting to. In addition, 5.1 files in <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:ogg}]{--><a href="glossary.html#ogg" title="Glossary">OGG</a><!--latex }
+--></b><!--}--></i><!--}--> and <a class="external text" href="https://en.wikipedia.org/wiki/Dolby_Digital" rel="nofollow">AC3</a> formats are often FL, FC, FR, SL, SR, LFE. </li></ul><!--
+\end{itemize}
+-->
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">There is no guarantee that a sound device or any particular file will follow recommended channel mapping for the format.
+</td></tr></tbody></table>
+</div>
+</div>
+
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

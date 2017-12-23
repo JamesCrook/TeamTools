@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Tutorial - Connecting Up - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Tutorial_-_Connecting_Up rootpage-Tutorial_-_Connecting_Up skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Tutorial - Connecting Up</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{tutorial:connecting:up:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+
+
+</p>
+
+<div id="ports"></div>
+
+
+<!--
+\subsection{--><h2><span class="mw-headline" id="Identifying_the_sound_ports_on_your_computer">Identifying the sound ports on your computer</span></h2><!--}--><!--latex 
+\label{tutorial:connecting:up:ports}-->
+<p>First of all you need to know the sound input capabilities of your computer. 
+</p>
+<div id="PCs"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="PCs_-_Windows_and_Linux">PCs - Windows and Linux</span></h3><!--}--><!--latex 
+\label{tutorial:connecting:up:PCs}-->
+<p>Most desktop PCs (Windows and Linux) will have sound ports on the back of the computer similar to these illustrations.
+</p>
+<table>
+<tbody><!--\par --><tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</td>
+<td><span title="The rear of a typical PC"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="ComputerBack.jpg" height="192" src="../m/images/f/fa/computerback.jpg" width="256"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/f/fa/computerback.jpg--></img><!--}\par
+--></span>
+</td>
+<td><span title="Color-coded inputs on a soundcard"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="SoundCardColors.jpg" height="192" src="../m/images/3/3d/soundcardcolors.jpg" width="256"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/3/3d/soundcardcolors.jpg--></img><!--}\par
+--></span>
+</td></tr>
+<!--\par --><tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</td>
+<td align="center"><!--\textbf{--><b>The rear of a typical PC</b><!--}-->
+</td>
+<td align="center"><!--\textbf{--><b>The color-coded jacks on the soundcard</b><!--}-->
+</td></tr></tbody></table>
+<p>The pink port is normally the microphone input, and is usually mono but might be stereo. The light blue port is normally the line input port and is usually stereo. The green port is normally the headphone output port, also usually stereo. Check your computer manual to be sure.
+</p><p>PC laptops vary widely in the types of sound input and output ports they provide, where they are on the laptop, and how they are labeled.  Many modern laptops do not have a line input at all. Again, check your computer manual to be sure of the capabilities of your laptop, where the ports are and how they are labeled.
+</p>
+<div id="inputs"></div>
+<!--
+\subsubsection{--><h4><span class="mw-headline" id="Mic_In">Mic In</span></h4><!--}--><!--latex 
+\label{tutorial:connecting:up:inputs}-->
+<p>Generally the Mic In port on a computer is only meant to have a small computer microphone plugged into it.  If you have a microphone with an 1/8" (3.5mm) 3-conductor <a class="external text" href="https://en.wikipedia.org/wiki/Jack_plug" rel="nofollow">jack plug</a>, it will probably work if plugged into this port.
+</p>
+<!--
+\subsubsection{--><h4><span class="mw-headline" id="Line_In">Line In</span></h4><!--}-->
+<p>The Line In port is the highest quality input available on most soundcards (like the one pictured above).  It expects to have a Line level signal plugged into it, this is the same level used by most consumer-oriented audio equipment.  Equipment such as tape decks, record players, MiniDisc players, Video Game Systems and so on should be plugged into this port.
+</p><p><br/>
+</p>
+<div id="Macs"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Macs">Macs</span></h3><!--}--><!--latex 
+\label{tutorial:connecting:up:Macs}-->
+<p>Macs do not generally have a microphone input port. 
+</p>
+<table>
+<tbody><!--\par --><tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</td>
+<td><span title="Audio connections on a Mac PowerBook"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="MacAudioPorts.jpg" height="192" src="../m/images/0/03/macaudioports.jpg" width="256"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/0/03/macaudioports.jpg--></img><!--}\par
+--></span>
+</td>
+<td><span title="Audio connections on an iMac"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="ImacSoundPorts.jpg" height="192" src="../m/images/7/76/imacsoundports.jpg" width="256"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/7/76/imacsoundports.jpg--></img><!--}\par
+--></span>
+</td></tr>
+<!--\par --><tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</td>
+<td align="center"><!--\textbf{--><b>Audio connections on a PowerBook</b><!--}-->
+</td>
+<td align="center"><!--\textbf{--><b>Audio connections on an iMac</b><!--}-->
+</td></tr></tbody></table>
+<p>In these illustrations of sound ports on Macs, the round port with the headphone symbol is the Line Output port. The round port beside the headphone port is the line input port.
+</p><p>Other Macs (Mini, Mac Pro, MacBook and MacBook Pro) are similarly equipped. Check your manual for the locations and labeling of these ports.
+</p><p><br/>
+</p>
+<div id="USB"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="USB_devices">USB devices</span></h3><!--}--><!--latex 
+\label{tutorial:connecting:up:USB}-->
+<p>For better audio quality, many people use an <!--\textit{--><i>USB audio device</i><!--}-->.  If you have such a device, attach your microphone and speakers to that device, and plug the device into your computer's USB port.
+</p>
+<dl><dd><table border="0" cellpadding="10" cellspacing="0"><tbody><!--\par --><tr>
+<td align="center"><span title="USB Cable and Plug"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="USB Plug.jpg" height="259" src="../m/images/2/29/usb_plug.jpg" width="389"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/2/29/usb_plug.jpg--></img><!--}\par
+--></span><br/>USB Cable and Plug</td>
+<td align="center"><span title="USB Ports"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="USB Jacks.jpg" height="227" src="../m/images/6/64/usb_jacks.jpg" width="340"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/6/64/usb_jacks.jpg--></img><!--}\par
+--></span><br/>USB Ports</td>
+</tr></tbody></table>
+<p><br/>
+</p>
+<div id="input"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Connecting_a_microphone.2C_keyboard.2C_guitar_or_mixer_to_your_computer">Connecting a microphone, keyboard, guitar or mixer to your computer</span></h2><!--}--><!--latex 
+\label{tutorial:connecting:up:input}-->
+<p>Please click on the following links apropriate to the input device or instrument you wish to connect:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--latex 
+\hyperref[\foo{tutorial:connecting:a:microphone:}]{--><a href="tutorial_connecting_a_microphone.html" title="Tutorial - Connecting a Microphone">Microphone</a><!--latex }
+--></li>
+<!--
+\item --><li> <!--latex 
+\hyperref[\foo{tutorial:connecting:an:instrument:}]{--><a href="tutorial_connecting_an_instrument.html" title="Tutorial - Connecting an Instrument">Keyboard or Guitar</a><!--latex }
+--></li>
+<!--
+\item --><li> <!--latex 
+\hyperref[\foo{tutorial:connecting:a:mixer:}]{--><a href="tutorial_connecting_a_mixer.html" title="Tutorial - Connecting a Mixer">Mixer</a><!--latex }
+--></li></ul><!--
+\end{itemize}
+-->
+<p><br/>
+</p>
+<div id="test"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Testing_your_input_connection">Testing your input connection</span></h2><!--}--><!--latex 
+\label{tutorial:connecting:up:test}-->
+<p>Before you fire up Audacity you should use your computer's sound control panel or the custom mixer application for your specific soundcard, select the input device you want to use and verify that you are getting sound into the computer from that device.
+</p><p>Once you have verified that you are getting sound into the computer you can move on to getting that sound into Audacity.
+</p><p>If you are having trouble getting sound into Audacity there's lots of help available on the <a class="external text" href="https://wiki.audacityteam.org/index.php?title=Mixer_Toolbar_Issues" rel="nofollow">Audacity Wiki</a>.
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Links">Links</span></h2><!--}-->
+<p><!--latex 
+\hyperref[\foo{tutorial:audacity:settings:for:recording:}]{--><a href="tutorial_audacity_settings_for_recording.html" title="Tutorial - Audacity Settings for Recording"><!--\textbf{--><b>&gt;</b><!--}-->&nbsp; Forward to: Tutorial - Audacity Settings for Recording</a><!--latex }
+--> <br/>
+</p><p><!--latex 
+\hyperref[\foo{tutorial:your:first:recording:}]{--><a href="tutorial_your_first_recording.html" title="Tutorial - Your First Recording"><!--\textbf{--><b>|&lt;</b><!--}--> Tutorial - Your First Recording</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</dd></dl></div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

@@ -229,10 +229,17 @@
             var x2 = (b2[0]+b2[2])/2;
             var y2 = b2[1];
             Arrow( Vec2(x2,y2), Vec2( x1,y1)  );
-            var Target = b1[4].replace(/ /g,"_");
-            Scroller.src = "./scroller-contents/top_menu.html#" + Target;
-
+            var Target = b1[4];
+            var i;
             Moving = false;
+            for(i=0;i<urls.length;i++){
+                if( urls[i][0] == Target){
+                    var src = urls[i][1];
+                    Scroller.src = "./scroller-contents/" + src;
+                    return;
+                }
+            }
+
         }
 
         function Refresh(Source, isclick){

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Risset Drum - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Risset_Drum rootpage-Risset_Drum skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Risset Drum</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{risset:drum:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p><br/>
+</p>
+
+<p>
+</p><p><br/>
+</p>
+<div class="intro"><!--\textit{--><i><!--\textbf{--><b>Risset Drum</b><!--}--></i><!--}--> produces a sound based on work by the composer of electronic
+music, Jean Claude Risset. It consists of band-pass filtered noise, an <a class="external text" href="https://en.wikipedia.org/wiki/Enharmonic" rel="nofollow">enharmonic</a> tone and a relatively strong sine wave at the <a class="external text" href="https://en.wikipedia.org/wiki/Fundamental_frequency" rel="nofollow">fundamental</a>.</div>
+<dl><dd><!--\textbf{--><b>Accessed by:</b><!--}--> <span class="menu">Generate &gt; Risset Drum...</span></dd>
+<dd><span title="Risset Drum generator dialog"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Risset_Drum.png"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Risset Drum.png" height="296" src="../m/images/9/90/risset_drum.png" width="570"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/9/90/risset_drum.png--></img><!--}\par
+--></a></span></dd></dl>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Frequency_.28Hz.29">Frequency (Hz)</span></h2><!--}-->
+<p>The pitch of the drum note expressed in <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:hz}]{--><a href="glossary.html#hz" title="Glossary">Hz</a><!--latex }
+--></b><!--}--></i><!--}-->. This tunes the "fundamental frequency" or "base note" of the sound.
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Decay_.28seconds.29">Decay (seconds)</span></h2><!--}-->
+<p>Determines the length of the drum sound. Longer sounds can sound similar to a gong.
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Center_frequency_of_noise_.28Hz.29">Center frequency of noise (Hz)</span></h2><!--}-->
+<p>The center frequency of the band-pass filter that is applied to the noise. Higher frequencies can sound as if small cymbals are vibrating with the drum stroke.
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Width_of_noise_band_.28Hz.29">Width of noise band (Hz)</span></h2><!--}-->
+<p>The minimum width of the band-pass filter that is applied to the noise. Higher values can increase the impression of a gong sound. 
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Amount_of_noise_in_mix_.28percent.29">Amount of noise in mix (percent)</span></h2><!--}-->
+<p>The amount of noise in the drum sound as a percentage of the mix. Values near maximum can sound like a gun shot if other controls are left at default values. 
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Amplitude_.280-1.29">Amplitude (0-1)</span></h2><!--}-->
+<p>The peak <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:amplitude}]{--><a href="glossary.html#amplitude" title="Glossary">amplitude</a><!--latex }
+--></b><!--}--></i><!--}--> of the generated sound.
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Buttons">Buttons</span></h2><!--}-->
+<p>Clicking on the command buttons give the following results:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><span class="button">Manage</span> gives a dropdown menu enabling you to manage presets for the tool and to see some detail about the tool. For details see <!--latex 
+\hyperref[\foo{manage:presets:}]{--><a href="manage_presets.html" title="Manage presets">Manage presets</a><!--latex }
+-->.</li>
+<!--
+\item --><li><span class="button">Preview</span> plays a short preview of what the audio would sound like if the effect is applied with the current settings, without making actual changes to the audio.  The length of preview is determined by your setting in <span class="menu">Edit &gt; Preferences &gt; <!--latex 
+\hyperref[\foo{playback:preferences:}]{--><a href="playback_preferences.html" title="Playback Preferences">Playback</a><!--latex }
+--></span>, the default setting is 6 seconds.</li>
+<!--
+\item --><li><span class="button">OK</span> applies the effect to the selected audio with the current effect settings.</li>
+<!--
+\item --><li><span class="button">Cancel</span> aborts the effect and leaves the audio unchanged.</li>
+<!--
+\item --><li><a href="help_button.html" title="Help Button"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Help Button" height="27" src="../m/images/d/d6/help_button.png" width="27"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d6/help_button.png--></img><!--}}{}--></a> brings you to the appropriate page in the Manual, this page.</li></ul><!--
+\end{itemize}
+-->
+<p><br/>
+</p><p><br/>
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Links">Links</span></h2><!--}-->
+<p><!--latex 
+\hyperref[\foo{index:of:effects:generators:and:analyzers:generators}]{--><a href="index_of_effects_generators_and_analyzers.html#generators" title="Index of Effects, Generators and Analyzers"><!--\textbf{--><b>|&lt;</b><!--}--> Index of Effects, Generators and Analyzers</a><!--latex }
+-->
+</p><p><!--latex 
+\hyperref[\foo{generate:menu:}]{--><a href="generate_menu.html" title="Generate Menu"><!--\textbf{--><b>|&lt;</b><!--}--> Generate Menu</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

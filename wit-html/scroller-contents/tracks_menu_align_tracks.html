@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Tracks Menu: Align Tracks - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Tracks_Menu_Align_Tracks rootpage-Tracks_Menu_Align_Tracks skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Tracks Menu: Align Tracks</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{tracks:menu:align:tracks:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p><br/>
+</p>
+<div class="intro">The <!--\textbf{--><b>Align Tracks</b><!--}--> submenu provides a set of commands to help you align your selected tracks in various ways.  In particular there are two very useful commands that enable you to align tracks end-to-end, one after the other, or align them all together.
+</div>
+<dl><dd><!--\textit{--><i>Click, or hover, on any menu item in the image to read about that command.  &nbsp;<span style="font-size:0.8em"><!--latex 
+\hyperref[\foo{tracks:menu:align:tracks::skiptheimage}]{--><a href="#skiptheimage">Skip the image</a><!--latex }
+--></span></i><!--}--></dd>
+<dd><div class="noresize"><map name="ImageMap_1_1954701788"><area alt="Transport Menu" coords="0,3,26,19" href="transport_menu.html" shape="rect" title="Transport Menu"/><area alt="Tracks Menu" coords="33,3,73,19" href="tracks_menu.html" shape="rect" title="Tracks Menu"/><area alt="Generate Menu" coords="80,3,134,19" href="generate_menu.html" shape="rect" title="Generate Menu"/><area alt="Effect Menu" coords="141,3,174,19" href="effect_menu.html" shape="rect" title="Effect Menu"/><area alt="Analyze Menu" coords="181,3,225,19" href="analyze_menu.html" shape="rect" title="Analyze Menu"/><area alt="Help Menu" coords="232,3,261,19" href="help_menu.html" shape="rect" title="Help Menu"/><area alt="Ext-Bar Menu" coords="268,3,310,19" href="ext_bar_menu.html" shape="rect" title="Ext-Bar Menu"/><area alt="Ext-Command Menu" coords="317,3,399,19" href="ext_command_menu.html" shape="rect" title="Ext-Command Menu"/><area alt="Menu Bar" coords="0,0,600,22" href="menu_reference.html" shape="rect" title="Menu Bar"/><area alt="Adds a new track" coords="39,23,230,45" href="tracks_menu_add_new.html" shape="rect" title="Adds a new track"/><area alt="Mixes down selected tracks to mono or stereo tracks" coords="39,52,230,74" href="tracks_menu_mix.html" shape="rect" title="Mixes down selected tracks to mono or stereo tracks"/><area alt="Allows you to resample the selected track(s) to a new sample rate for use in the project" coords="39,74,230,96" href="tracks_menu.html#resample" shape="rect" title="Allows you to resample the selected track(s) to a new sample rate for use in the project"/><area alt="Removes the selected track(s) from the project" coords="39,103,230,125" href="tracks_menu.html#remove_tracks" shape="rect" title="Removes the selected track(s) from the project"/><area alt="Mutes or unmutes audio tracks in the project" coords="39,132,230,154" href="tracks_menu_mute/unmute.html" shape="rect" title="Mutes or unmutes audio tracks in the project"/><area alt="Pans left right or center audio tracks in the project" coords="39,154,230,176" href="tracks_menu_pan.html" shape="rect" title="Pans left right or center audio tracks in the project"/><area alt="Commands that provide an automatic way of aligning selected tracks with the cursor, the selection, or with the start of the project" coords="39,183,230,205" href="#" shape="rect" title="Commands that provide an automatic way of aligning selected tracks with the cursor, the selection, or with the start of the project"/><area alt="Sorts all tracks in the project from top to bottom in the project window, by Start Time or by Name" coords="39,205,230,227" href="tracks_menu_sort_tracks.html" shape="rect" title="Sorts all tracks in the project from top to bottom in the project window, by Start Time or by Name"/><area alt="Ensures that length changes occurring anywhere in a defined group of tracks also take place in all audio or label tracks in that group" coords="39,234,230,256" href="sync_locked_track_groups.html" shape="rect" title="Ensures that length changes occurring anywhere in a defined group of tracks also take place in all audio or label tracks in that group"/><area alt="Aligns the selected tracks one after the other, based on their top-to-bottom order in the project window" coords="242,66,485,88" href="#align_end_to_end" shape="rect" title="Aligns the selected tracks one after the other, based on their top-to-bottom order in the project window"/><area alt="Align the selected tracks so that they start at the same (averaged) start time" coords="242,88,485,110" href="#align_together" shape="rect" title="Align the selected tracks so that they start at the same (averaged) start time"/><area alt="Aligns the start of selected tracks with the start of the project" coords="242,117,485,139" href="#start_to_zero" shape="rect" title="Aligns the start of selected tracks with the start of the project"/><area alt="Aligns the start of selected tracks with the current cursor position or with the start of the current selection" coords="242,139,485,161" href="#start_to_cursorselection_start" shape="rect" title="Aligns the start of selected tracks with the current cursor position or with the start of the current selection"/><area alt="Aligns the start of selected tracks with the end of the current selection" coords="242,161,485,183" href="#start_to_selection_end" shape="rect" title="Aligns the start of selected tracks with the end of the current selection"/><area alt="Aligns the end of selected tracks with the current cursor position or with the start of the current selection" coords="242,183,485,205" href="#end_to_cursorselection_start" shape="rect" title="Aligns the end of selected tracks with the current cursor position or with the start of the current selection"/><area alt="Aligns the end of selected tracks with the end of the current selection" coords="242,205,485,227" href="#end_to_selection_end" shape="rect" title="Aligns the end of selected tracks with the end of the current selection"/><area alt="Toggles on/off the selection moving with the realigned tracks, or staying put" coords="242,234,485,256" href="#move_selection_with_tracks_onoff" shape="rect" title="Toggles on/off the selection moving with the realigned tracks, or staying put"/></map><!--
+
+\par\Needspace{162.0pt}\begin{picture}(249.0,132.0)
+--><!--   \put(0,0){\includegraphics[scale=0.5]{--><img alt="Tracks-Align TracksMenu.png" height="264" src="../m/images/a/a6/tracks_align_tracksmenu.png" usemap="#ImageMap_1_1954701788" width="498"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/a/a6/tracks_align_tracksmenu.png--></img><!--}}
+--><!--   \put(0.0,122.5){\hyperref[\foo{transport:menu:}]{\makebox(13.0,8.0){}}}
+   \put(16.5,122.5){\hyperref[\foo{tracks:menu:}]{\makebox(20.0,8.0){}}}
+   \put(40.0,122.5){\hyperref[\foo{generate:menu:}]{\makebox(27.0,8.0){}}}
+   \put(70.5,122.5){\hyperref[\foo{effect:menu:}]{\makebox(16.5,8.0){}}}
+   \put(90.5,122.5){\hyperref[\foo{analyze:menu:}]{\makebox(22.0,8.0){}}}
+   \put(116.0,122.5){\hyperref[\foo{help:menu:}]{\makebox(14.5,8.0){}}}
+   \put(134.0,122.5){\hyperref[\foo{ext:bar:menu:}]{\makebox(21.0,8.0){}}}
+   \put(158.5,122.5){\hyperref[\foo{ext:command:menu:}]{\makebox(41.0,8.0){}}}
+   \put(19.5,109.5){\hyperref[\foo{tracks:menu:add:new:}]{\makebox(95.5,11.0){}}}
+   \put(19.5,95.0){\hyperref[\foo{tracks:menu:mix:}]{\makebox(95.5,11.0){}}}
+   \put(19.5,84.0){\hyperref[\foo{tracks:menu:resample}]{\makebox(95.5,11.0){}}}
+   \put(19.5,69.5){\hyperref[\foo{tracks:menu:remove:tracks}]{\makebox(95.5,11.0){}}}
+   \put(19.5,55.0){\hyperref[\foo{tracks:menu:mute:unmute:}]{\makebox(95.5,11.0){}}}
+   \put(19.5,44.0){\hyperref[\foo{tracks:menu:pan:}]{\makebox(95.5,11.0){}}}
+   \put(19.5,29.5){\hyperref[\foo{tracks:menu:align:tracks::}]{\makebox(95.5,11.0){}}}
+   \put(19.5,18.5){\hyperref[\foo{tracks:menu:sort:tracks:}]{\makebox(95.5,11.0){}}}
+   \put(19.5,4.0){\hyperref[\foo{sync:locked:track:groups:}]{\makebox(95.5,11.0){}}}
+   \put(121.0,88.0){\hyperref[\foo{tracks:menu:align:tracks::align:end:to:end}]{\makebox(121.5,11.0){}}}
+   \put(121.0,77.0){\hyperref[\foo{tracks:menu:align:tracks::align:together}]{\makebox(121.5,11.0){}}}
+   \put(121.0,62.5){\hyperref[\foo{tracks:menu:align:tracks::start:to:zero}]{\makebox(121.5,11.0){}}}
+   \put(121.0,51.5){\hyperref[\foo{tracks:menu:align:tracks::start:to:cursorselection:start}]{\makebox(121.5,11.0){}}}
+   \put(121.0,40.5){\hyperref[\foo{tracks:menu:align:tracks::start:to:selection:end}]{\makebox(121.5,11.0){}}}
+   \put(121.0,29.5){\hyperref[\foo{tracks:menu:align:tracks::end:to:cursorselection:start}]{\makebox(121.5,11.0){}}}
+   \put(121.0,18.5){\hyperref[\foo{tracks:menu:align:tracks::end:to:selection:end}]{\makebox(121.5,11.0){}}}
+   \put(121.0,4.0){\hyperref[\foo{tracks:menu:align:tracks::move:selection:with:tracks:onoff}]{\makebox(121.5,11.0){}}}
+\end{picture}
+
+--></div></dd></dl>
+<div id="skiptheimage"></div>
+
+<p>These commands provide an automatic way of aligning <!--latex 
+\hyperref[\foo{audacity:selection:}]{--><a href="audacity_selection.html" title="Audacity Selection">selected tracks</a><!--latex }
+--> with the cursor, the selection, or with the start of the project. 
+</p><p>With the exception of the first two commands ("Align End to End" and "Align Together"), each selected track is moved along <!--\textit{--><i>equally</i><!--}--> so they remain synchronized with each other. If a <!--latex 
+\hyperref[\foo{label:tracks:}]{--><a href="label_tracks.html" title="Label Tracks">label track</a><!--latex }
+--> is included in the selection, its labels will also move equally so they remain synchronized.
+</p><p>When aligning end to end or aligning together, the tracks are always moved individually to enforce the requested alignment (as described below). Label tracks are not affected by these two commands.
+</p><p>When there is a selection, the commands that align tracks with the cursor/selection will align with the start of the selection, and when there is a cursor, the commands that align tracks with the cursor/selection will align with the cursor. 
+</p>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">If <!--latex 
+\hyperref[\foo{sync:locked:track:groups:}]{--><a href="sync_locked_track_groups.html" title="Sync-Locked Track Groups">Sync-Lock Tracks</a><!--latex }
+--> is enabled, unselected tracks in a Sync-Locked Track Group will also move so that all the tracks in that group remain synchronized, <!--\textbf{--><b>except for</b><!--}--> the Align "End to End" and "Together" commands where only the selected tracks will move. Aligning end to end or together overrides Sync-Lock Tracks if necessary, so the selected tracks in that group may become desynchronized.
+</td></tr></tbody></table>
+</div>
+<div class="note">
+If a track contains multiple clips and one of the Align commands is applied to that track then <!--\textit{--><i>all the clips move and maintain their relative positions</i><!--}--> to each other within the track. The start of the first clip is the "start of the track" and the end of the last clip is the "end of the track".</div>
+<div id="align_move"></div>
+<div id="align_end_to_end"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Align_End_to_End_.C2.A0">Align End to End &nbsp;<font size="-1"></font></span></h2><!--}--><!--latex 
+\label{tracks:menu:align:tracks:align:end:to:end}--><!--latex 
+\label{tracks:menu:align:tracks:align:move}--><!--latex 
+\label{tracks:menu:align:tracks:skiptheimage}-->
+<p>Aligns the selected tracks one after the other, based on their top-to-bottom order in the project window. The first selected track remains where it is, the start of the second selected track aligns with the end of the first selected track and so on. If you name a group of <!--latex 
+\hyperref[\foo{importing:audio:}]{--><a href="importing_audio.html" title="Importing Audio">imported</a><!--latex }
+--> files from an album so that their alphabetical order is the same as the order you want to align them in, Align End to End will make the imported files play in their album order. 
+</p><p>After the align, all tracks in the project (not just the selected tracks) will be fitted to the window so that the end of the last track will be visible in the project window. 
+</p>
+<dl><dd>Before doing <span class="menu">Tracks &gt; Align Tracks &gt; Align End to End</span></dd>
+<dd><span title="Three tracks, before doing Align End To End"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="AlignEndToEnd Before.png" height="244" src="../m/images/9/9e/alignendtoend_before.png" width="642"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/9/9e/alignendtoend_before.png--></img><!--}\par
+--></span></dd>
+<dd>After doing <span class="menu">Tracks &gt; Align Tracks &gt; Align End to End</span></dd>
+<dd><span title="Three tracks, after doing Align End To End"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="AlignEndToEnd After.png" height="244" src="../m/images/8/88/alignendtoend_after.png" width="642"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/8/88/alignendtoend_after.png--></img><!--}\par
+--></span></dd>
+<dd>Note that zoom level has changed to display the entire project, and that the original selection has been retained.</dd></dl>
+<div id="align_together"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Align_Together_.C2.A0">Align Together &nbsp;<font size="-1"></font></span></h2><!--}--><!--latex 
+\label{tracks:menu:align:tracks:align:together}-->
+<p>If you select multiple tracks, this command moves the tracks so that they all start at the same time, so audio within them changes its synchronization. The resultant start time is an average of all of the tracks' original starting times. To adjust the starting times of tracks with complete flexibility, use <!--latex 
+\hyperref[\foo{tools:toolbar:timeshift}]{--><a href="tools_toolbar.html#timeshift" title="Tools Toolbar">Time Shift Tool</a><!--latex }
+-->.
+</p>
+<dl><dd>Before doing <span class="menu">Tracks &gt; Align Tracks &gt; Align Together</span></dd>
+<dd><span title="Three tracks, before doing Align Together"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="AlignTogether Before.png" height="244" src="../m/images/2/21/aligntogether_before.png" width="642"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/2/21/aligntogether_before.png--></img><!--}\par
+--></span></dd>
+<dd>After doing <span class="menu">Tracks &gt; Align Tracks &gt; Align Together</span></dd>
+<dd><span title="Three tracks, after doing Align Together"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="AlignTogether After.png" height="244" src="../m/images/f/f2/aligntogether_after.png" width="642"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/f/f2/aligntogether_after.png--></img><!--}\par
+--></span></dd>
+<dd>Note that the three tracks now start at the same time, and the start time is the average of the original start times of the three tracks.</dd></dl>
+<div id="start_to_zero"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Start_to_Zero_.C2.A0">Start to Zero &nbsp;<font size="-1"></font></span></h2><!--}--><!--latex 
+\label{tracks:menu:align:tracks:start:to:zero}-->
+<p>Aligns the start of selected tracks with the start of the project.
+</p>
+<div id="start_to_cursorselection_start"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Start_to_Cursor.2FSelection_Start_.C2.A0">Start to Cursor/Selection Start &nbsp;<font size="-1"></font></span></h2><!--}--><!--latex 
+\label{tracks:menu:align:tracks:start:to:cursorselection:start}-->
+<p>Aligns the start of selected tracks with the current cursor position or with the start of the current selection.
+</p>
+<div id="start_to_selection_end"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Start_to_Selection_End_.C2.A0">Start to Selection End &nbsp;<font size="-1"></font></span></h2><!--}--><!--latex 
+\label{tracks:menu:align:tracks:start:to:selection:end}-->
+<p>Aligns the start of selected tracks with the end of the current selection.
+</p>
+<div id="end_to_cursorselection_start"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="End_to_Cursor.2FSelection_Start_.C2.A0">End to Cursor/Selection Start &nbsp;<font size="-1"></font></span></h2><!--}--><!--latex 
+\label{tracks:menu:align:tracks:end:to:cursorselection:start}-->
+<p>Aligns the end of selected tracks with the current cursor position or with the start of the current selection.
+</p>
+<div id="end_to_selection_end"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="End_to_Selection_End_.C2.A0">End to Selection End &nbsp;<font size="-1"></font></span></h2><!--}--><!--latex 
+\label{tracks:menu:align:tracks:end:to:selection:end}-->
+<p>Aligns the end of selected tracks with the end of the current selection.
+</p>
+<div id="move_selection_with_tracks_onoff"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Move_Selection_with_Tracks_.28on.2Foff.29_.C2.A0">Move Selection with Tracks (on/off) &nbsp;<font size="-1"></font></span></h2><!--}--><!--latex 
+\label{tracks:menu:align:tracks:move:selection:with:tracks:onoff}-->
+<p>When this option is <!--\textit{--><i>off</i><!--}--> (not checked), the cursor or selection remains in its position relative to the <!--latex 
+\hyperref[\foo{timeline:}]{--><a href="timeline.html" title="Timeline">Timeline</a><!--latex }
+-->. When it is <!--\textit{--><i>on</i><!--}-->, the cursor or selection is moved to maintain its position relative to the tracks being moved. For example, <span class="menu">Tracks&nbsp;&gt;Align&nbsp;Tracks&nbsp;&gt;&nbsp;Start&nbsp;to&nbsp;Cursor/Selection&nbsp;Start</span> will align the selected tracks with the current cursor position or selection start, but then also move the cursor or selection along so that it remains at the same position relative to the new position of the aligned tracks.
+</p>
+<div class="note">This option has no effect on the <!--\textbf{--><b>Align End to End</b><!--}--> and the <!--\textbf{--><b>Align Together</b><!--}--> commands.
+</div>
+<dl><dd>Before doing <span class="menu">Tracks &gt; Align Tracks &gt; Start to Zero</span></dd>
+<dd><span title="Three tracks, before doing Align Start to Zero"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="MoveSelectionWithTracks Before.png" height="244" src="../m/images/2/2b/moveselectionwithtracks_before.png" width="642"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/2/2b/moveselectionwithtracks_before.png--></img><!--}\par
+--></span></dd>
+<dd>After doing <span class="menu">Tracks &gt; Align Tracks &gt; Start to Zero</span>, with <!--\textbf{--><b>Move Selection with Tracks</b><!--}--> off.</dd>
+<dd><span title="Three tracks, after doing Align Start to Zero with Move Selection with Tracks off"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="MoveSelectionWithTracksOff After.png" height="244" src="../m/images/a/ae/moveselectionwithtracksoff_after.png" width="642"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/a/ae/moveselectionwithtracksoff_after.png--></img><!--}\par
+--></span></dd>
+<dd>Note that the cursor remains at the same position relative to the Time Line.</dd></dl>
+<dl><dd>After doing <span class="menu">Tracks &gt; Align Tracks &gt; Start to Zero</span>, with <!--\textbf{--><b>Move Selection with Tracks</b><!--}--> on.</dd>
+<dd><span title="Three tracks, after doing Align Start to Zero with Move Selection with Tracks on"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="MoveSelectionWithTracksOn After.png" height="244" src="../m/images/6/67/moveselectionwithtrackson_after.png" width="642"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/6/67/moveselectionwithtrackson_after.png--></img><!--}\par
+--></span></dd>
+<dd>Note that the cursor has moved to retain the same position relative to the audio.</dd></dl>
+<p><br/>
+<!--latex 
+\hyperref[\foo{tracks:menu:}]{--><a href="tracks_menu.html" title="Tracks Menu"><!--\textbf{--><b>&lt;</b><!--}-->&nbsp; Back to: Tracks Menu</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

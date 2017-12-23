@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Ext-Bar Menu: Transport - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Ext-Bar_Menu_Transport rootpage-Ext-Bar_Menu_Transport skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Ext-Bar Menu: Transport</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{ext:bar:menu:transport:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p><br/>
+</p>
+<div class="intro">The <!--\textit{--><i><!--\textbf{--><b>Ext-Bar &gt; Transport Menu</b><!--}--></i><!--}--> provides playback commands that are not available in the default Audacity menus.</div>
+<dl><dd><!--\textit{--><i>Click, or hover, on any menu item in the image to read about that command.  &nbsp;<span style="font-size:0.8em"><!--latex 
+\hyperref[\foo{ext:bar:menu:transport::skiptheimage}]{--><a href="#skiptheimage">Skip the image</a><!--latex }
+--></span></i><!--}--></dd>
+<dd><div class="noresize"><map name="ImageMap_1_745591294"><area alt="Help Menu" coords="0,3,26,19" href="help_menu.html" shape="rect" title="Help Menu"/><area alt="Ext-Bar Menu" coords="33,3,75,19" href="ext_bar_menu.html" shape="rect" title="Ext-Bar Menu"/><area alt="Ext-Command Menu" coords="82,3,164,19" href="ext_command_menu.html" shape="rect" title="Ext-Command Menu"/><area alt="Menu Bar" coords="0,0,600,22" href="menu_reference.html" shape="rect" title="Menu Bar"/><area alt="Extra commands related to play and record" coords="39,23,163,45" href="#" shape="rect" title="Extra commands related to play and record"/><area alt="Extra commands to select the tool, e" coords="39,45,163,67" href="ext_bar_menu_tools.html" shape="rect" title="Extra commands to select the tool, e"/><area alt="Extra commands related to volume" coords="39,67,163,89" href="ext_bar_menu_mixer.html" shape="rect" title="Extra commands related to volume"/><area alt="Extra commands related to editing" coords="39,89,163,111" href="ext_bar_menu_edit.html" shape="rect" title="Extra commands related to editing"/><area alt="Extra commands related to play at speed" coords="39,111,163,133" href="ext_bar_menu_transcription.html" shape="rect" title="Extra commands related to play at speed"/><area alt="Extra commands related to scrubbing" coords="39,133,163,155" href="ext_bar_menu_scrub.html" shape="rect" title="Extra commands related to scrubbing"/><area alt="Extra commands related to selecting a device" coords="39,155,163,177" href="ext_bar_menu_device.html" shape="rect" title="Extra commands related to selecting a device"/><area alt="Extra commands related to selecting" coords="39,177,163,199" href="ext_bar_menu_selection.html" shape="rect" title="Extra commands related to selecting"/><area alt="Play (or stop) audio" coords="175,26,426,48" href="#play" shape="rect" title="Play (or stop) audio"/><area alt="Stop audio" coords="175,48,426,70" href="#stop" shape="rect" title="Stop audio"/><area alt="Plays for one second centered on the current &lt;b&gt;mouse pointer&lt;/b&gt; position (not from the current cursor position)" coords="175,70,426,92" href="#play_one_second" shape="rect" title="Plays for one second centered on the current &lt;b&gt;mouse pointer&lt;/b&gt; position (not from the current cursor position)"/><area alt="Plays to or from the current &lt;b&gt;mouse pointer&lt;/b&gt; position to or from the start or end of the selection, depending on the pointer position" coords="175,92,426,114" href="#play_to_selection" shape="rect" title="Plays to or from the current &lt;b&gt;mouse pointer&lt;/b&gt; position to or from the start or end of the selection, depending on the pointer position"/><area alt="Plays a short period before the start of the selected audio, the period before shares the setting of the cut preview" coords="175,114,426,136" href="#play_before_selection_start" shape="rect" title="Plays a short period before the start of the selected audio, the period before shares the setting of the cut preview"/><area alt="Plays a short period after the start of the selected audio, the period after shares the setting of the cut preview" coords="175,136,426,158" href="#play_after_selection_start" shape="rect" title="Plays a short period after the start of the selected audio, the period after shares the setting of the cut preview"/><area alt="Plays a short period before the end of the selected audio, the period before shares the setting of the cut preview" coords="175,158,426,180" href="#play_before_selection_end" shape="rect" title="Plays a short period before the end of the selected audio, the period before shares the setting of the cut preview"/><area alt="Plays a short period after the end of the selected audio, the period after shares the setting of the cut preview" coords="175,180,426,202" href="#play_after_selection_end" shape="rect" title="Plays a short period after the end of the selected audio, the period after shares the setting of the cut preview"/><area alt="Plays a short period  before and after the start of the selected audio, the periods before and after share the setting of the cut preview" coords="175,202,426,224" href="#play_before_and_after_selection_start" shape="rect" title="Plays a short period  before and after the start of the selected audio, the periods before and after share the setting of the cut preview"/><area alt="Plays a short period  before and after the end of the selected audio, the periods before and after share the setting of the cut preview" coords="175,224,426,246" href="#play_before_and_after_selection_end" shape="rect" title="Plays a short period  before and after the end of the selected audio, the periods before and after share the setting of the cut preview"/><area alt="Plays audio excluding the selection" coords="175,246,426,268" href="#play_cut_preview" shape="rect" title="Plays audio excluding the selection"/></map><!--
+
+\par\Needspace{168.0pt}\begin{picture}(219.5,138.0)
+--><!--   \put(0,0){\includegraphics[scale=0.5]{--><img alt="ExtBar-TransportMenu.png" height="276" src="../m/images/5/54/extbar_transportmenu.png" usemap="#ImageMap_1_745591294" width="439"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/5/54/extbar_transportmenu.png--></img><!--}}
+--><!--   \put(0.0,128.5){\hyperref[\foo{help:menu:}]{\makebox(13.0,8.0){}}}
+   \put(16.5,128.5){\hyperref[\foo{ext:bar:menu:}]{\makebox(21.0,8.0){}}}
+   \put(41.0,128.5){\hyperref[\foo{ext:command:menu:}]{\makebox(41.0,8.0){}}}
+   \put(19.5,115.5){\hyperref[\foo{ext:bar:menu:transport::}]{\makebox(62.0,11.0){}}}
+   \put(19.5,104.5){\hyperref[\foo{ext:bar:menu:tools:}]{\makebox(62.0,11.0){}}}
+   \put(19.5,93.5){\hyperref[\foo{ext:bar:menu:mixer:}]{\makebox(62.0,11.0){}}}
+   \put(19.5,82.5){\hyperref[\foo{ext:bar:menu:edit:}]{\makebox(62.0,11.0){}}}
+   \put(19.5,71.5){\hyperref[\foo{ext:bar:menu:transcription:}]{\makebox(62.0,11.0){}}}
+   \put(19.5,60.5){\hyperref[\foo{ext:bar:menu:scrub:}]{\makebox(62.0,11.0){}}}
+   \put(19.5,49.5){\hyperref[\foo{ext:bar:menu:device:}]{\makebox(62.0,11.0){}}}
+   \put(19.5,38.5){\hyperref[\foo{ext:bar:menu:selection:}]{\makebox(62.0,11.0){}}}
+   \put(87.5,114.0){\hyperref[\foo{ext:bar:menu:transport::play}]{\makebox(125.5,11.0){}}}
+   \put(87.5,103.0){\hyperref[\foo{ext:bar:menu:transport::stop}]{\makebox(125.5,11.0){}}}
+   \put(87.5,92.0){\hyperref[\foo{ext:bar:menu:transport::play:one:second}]{\makebox(125.5,11.0){}}}
+   \put(87.5,81.0){\hyperref[\foo{ext:bar:menu:transport::play:to:selection}]{\makebox(125.5,11.0){}}}
+   \put(87.5,70.0){\hyperref[\foo{ext:bar:menu:transport::play:before:selection:start}]{\makebox(125.5,11.0){}}}
+   \put(87.5,59.0){\hyperref[\foo{ext:bar:menu:transport::play:after:selection:start}]{\makebox(125.5,11.0){}}}
+   \put(87.5,48.0){\hyperref[\foo{ext:bar:menu:transport::play:before:selection:end}]{\makebox(125.5,11.0){}}}
+   \put(87.5,37.0){\hyperref[\foo{ext:bar:menu:transport::play:after:selection:end}]{\makebox(125.5,11.0){}}}
+   \put(87.5,26.0){\hyperref[\foo{ext:bar:menu:transport::play:before:and:after:selection:start}]{\makebox(125.5,11.0){}}}
+   \put(87.5,15.0){\hyperref[\foo{ext:bar:menu:transport::play:before:and:after:selection:end}]{\makebox(125.5,11.0){}}}
+   \put(87.5,4.0){\hyperref[\foo{ext:bar:menu:transport::play:cut:preview}]{\makebox(125.5,11.0){}}}
+\end{picture}
+
+--></div></dd></dl>
+<div id="skiptheimage"></div>
+
+<div id="play"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Play_.C2.A0">Play &nbsp;<font size="-1"></font></span></h2><!--}--><!--latex 
+\label{ext:bar:menu:transport:play}--><!--latex 
+\label{ext:bar:menu:transport:skiptheimage}-->
+<p>Play (or stop) audio
+</p>
+<div id="stop"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Stop_.C2.A0">Stop &nbsp;<font size="-1"></font></span></h2><!--}--><!--latex 
+\label{ext:bar:menu:transport:stop}-->
+<p>Stop audio
+</p>
+<div id="play_one_second"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Play_One_Second_.C2.A01">Play One Second &nbsp;<font size="-1"><span class="kbrd" style="background-color: #f0f0ff;color: #b0b0b0">1</span></font></span></h2><!--}--><!--latex 
+\label{ext:bar:menu:transport:play:one:second}-->
+<p>Plays 1 second of audio at the current mouse position
+</p>
+<div id="play_to_selection"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Play_To_Selection_.C2.A0B">Play To Selection &nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">B</span></font></span></h2><!--}--><!--latex 
+\label{ext:bar:menu:transport:play:to:selection}-->
+<p>Plays from current mouse position to selection
+</p>
+<div class="note">For the following six commands, the amount of audio that is played before, after, or surrounding the selection edge, is set by the <!--\textbf{--><b>Cut Preview</b><!--}--> setting in <!--\textbf{--><b><!--latex 
+\hyperref[\foo{playback:preferences:}]{--><a href="playback_preferences.html" title="Playback Preferences">Playback Preferences</a><!--latex }
+--></b><!--}-->.
+</div>
+<div id="play_before_selection_start"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Play_Before_Selection_Start_.C2.A0Shift.2BF5">Play Before Selection Start &nbsp;<font size="-1"><span class="kbrd" style="background-color: #f0f0ff;color: #b0b0b0">Shift+F5</span></font></span></h2><!--}--><!--latex 
+\label{ext:bar:menu:transport:play:before:selection:start}-->
+<p>Plays a short period before the start of the selected audio.
+</p>
+<div id="play_after_selection_start"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Play_After_Selection_Start_.C2.A0Shift.2BF6">Play After Selection Start &nbsp;<font size="-1"><span class="kbrd" style="background-color: #f0f0ff;color: #b0b0b0">Shift+F6</span></font></span></h2><!--}--><!--latex 
+\label{ext:bar:menu:transport:play:after:selection:start}-->
+<p>Plays a short period after the end of the selected audio.
+</p>
+<div id="play_before_selection_end"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Play_Before_Selection_End_.C2.A0Shift.2BF7">Play Before Selection End &nbsp;<font size="-1"><span class="kbrd" style="background-color: #f0f0ff;color: #b0b0b0">Shift+F7</span></font></span></h2><!--}--><!--latex 
+\label{ext:bar:menu:transport:play:before:selection:end}-->
+<p>Plays a short period before the end of the selected audio.
+</p>
+<div id="play_after_selection_end"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Play_After_Selection_End_.C2.A0Shift.2BF8">Play After Selection End &nbsp;<font size="-1"><span class="kbrd" style="background-color: #f0f0ff;color: #b0b0b0">Shift+F8</span></font></span></h2><!--}--><!--latex 
+\label{ext:bar:menu:transport:play:after:selection:end}-->
+<p>Plays a short period after the end of the selected audio
+</p>
+<div id="play_before_and_after_selection_start"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Play_Before_and_After_Selection_Start_.C2.A0Ctrl.2BShift.2BF5">Play Before and After Selection Start &nbsp;<font size="-1"><span class="kbrd" style="background-color: #f0f0ff;color: #b0b0b0">Ctrl+Shift+F5</span></font></span></h2><!--}--><!--latex 
+\label{ext:bar:menu:transport:play:before:and:after:selection:start}-->
+<p>Plays a short period before and after the start of the selected audio.
+</p>
+<div id="play_before_and_after_selection_end"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Play_Before_and_After_Selection_End_.C2.A0Ctrl.2BShift.2BF7">Play Before and After Selection End &nbsp;<font size="-1"><span class="kbrd" style="background-color: #f0f0ff;color: #b0b0b0">Ctrl+Shift+F7</span></font></span></h2><!--}--><!--latex 
+\label{ext:bar:menu:transport:play:before:and:after:selection:end}-->
+<p>Plays a short period before and after the end of the selected audio.
+</p>
+<div id="play_cut_preview"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Play_Cut_Preview_.C2.A0C">Play Cut Preview &nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">C</span></font></span></h2><!--}--><!--latex 
+\label{ext:bar:menu:transport:play:cut:preview}-->
+<p>Plays audio excluding the selection. The amount of audio that is played before and after the section is set by the <!--\textit{--><i>Cut Preview</i><!--}--> setting in <!--latex 
+\hyperref[\foo{playback:preferences:}]{--><a href="playback_preferences.html" title="Playback Preferences">Playback Preferences</a><!--latex }
+-->.
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

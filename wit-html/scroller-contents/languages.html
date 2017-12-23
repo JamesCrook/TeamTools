@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Languages - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Languages rootpage-Languages skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Languages</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{languages:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+</p>
+<div class="intro">Audacity can display in many non-English languages. By default, Audacity runs in the language the operating system uses (the language chosen in the Windows installer of Audacity only determines the interface language of the installer). <p>To change the language Audacity runs in, use the Interface Preferences, or exit Audacity and modify the <!--\textit{--><i><!--\textbf{--><b>audacity.cfg</b><!--}--></i><!--}--> settings file. Reinstalling Audacity does not change the language setting in audacity.cfg, unless you run the Windows installer of Audacity and explicitly choose <!--latex 
+\hyperref[\foo{preferences:win:reset}]{--><a href="preferences.html#win_reset" title="Preferences">Reset Preferences</a><!--latex }
+-->.</p></div>
+
+<div id="install"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Changing_language_when_installing_on_Windows">Changing language when installing on Windows</span></h2><!--}--><!--latex 
+\label{languages:install}-->
+<p>When you install Audacity on Windows, during the installation you will get a dialog box which enables you to select the language to be used during the installation process.  This choice of language is also set to be the working language on subsequent use of Audacity.
+</p>
+<dl><dd><span title="Dialog box for setup and usage language"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Select Setup Language W7basic.png" height="153" src="../m/images/b/b0/select_setup_language_w7basic.png" width="303"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/b0/select_setup_language_w7basic.png--></img><!--}\par
+--></span></dd></dl>
+<p>This means that if you are on Windows and the language in your Audacity installation is not to your liking you can simply re-install Audacity and choose a different language.
+</p>
+<div id="prefs"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Changing_language_in_Interface_Preferences">Changing language in Interface Preferences</span></h2><!--}--><!--latex 
+\label{languages:prefs}-->
+<p>Open the <!--latex 
+\hyperref[\foo{interface:preferences:}]{--><a href="interface_preferences.html" title="Interface Preferences">Interface Preferences</a><!--latex }
+-->, choose the specific language required from the "Language" box, then click <span class="button">OK</span>. Most of the interface will change language at once, but a very few interface elements will change next time you restart Audacity. 
+</p>
+<div id="unknown"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Navigating_the_menus_in_an_unfamiliar_language">Navigating the menus in an unfamiliar language</span></h3><!--}--><!--latex 
+\label{languages:unknown}-->
+<p>If you cannot read the menus because the text is in an unfamiliar language or has&nbsp;??? characters, you can navigate the menus sequentially to change the language.  
+</p>
+<!--
+\begin{enumerate}--><ol><!--
+\item --><li> Choose the <!--\textbf{--><b>second menu from the left</b><!--}--> in the Audacity menus at top left of the screen <!--\textit{--><i>(on Mac, choose the first menu from the left)</i><!--}--></li>
+<!--
+\item --><li> Choose the <!--\textbf{--><b>bottom item of that menu</b><!--}-->, <!--\textit{--><i>(on Mac, choose the second item in that menu)</i><!--}--> which opens the Preferences</li>
+<!--
+\item --><li> In the list on the left of Preferences, choose the <!--\textbf{--><b>fifth item from the top</b><!--}--></li>
+<!--
+\item --><li> On the right, open the second dropdown box containing a list of the language choices</li>
+<!--
+\item --><li> Select the language you want and press <span class="kbrd" style="background-color: #e0e0f0">Enter</span> on your keyboard.</li>
+<!--
+\item --><li> Restart Audacity to fully complete the language change and re-order the Effect menu alphabetically.</li></ol><!--
+\end{enumerate}
+-->
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Missing_language_choices">Missing language choices</span></h3><!--}-->
+<p>If only "English" or "System" choices are in the Languages box in Interface Preferences, ensure the "Languages" folder is in the correct location as follows:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>Windows:</b><!--}--> <span class="path">C:\Program Files\&lt;your Audacity version&gt;\Languages</span> on 32-bit systems or <br/><span class="path">C:\Program Files (x86)\&lt;your Audacity version&gt;\Languages</span> on 64-bit systems</li>
+<!--
+\item --><li> <!--\textbf{--><b>Linux:</b><!--}--> <span class="path">/usr/share/locale</span> if Audacity was installed from a repository package, or <span class="path">/usr/local/share/locale</span> if you compiled Audacity from source code.</li></ul><!--
+\end{itemize}
+-->
+<p>On <!--\textbf{--><b>Mac</b><!--}--> open <span class="path">/Applications/Audacity/</span>, right-click or control-click over <span class="path">Audacity.app &gt; Show Package Contents</span> then ensure the "Resources" folder at <span class="path">Contents/Resources</span> contains the correct LPROJ folders for each language. 
+</p><p>Missing language files or folders can be corrected by reinstalling Audacity. 
+</p>
+<div id="system"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Change_language_in_the_system_settings">Change language in the system settings</span></h2><!--}--><!--latex 
+\label{languages:system}-->
+<p>Alternatively, you can quit Audacity and edit the <!--\textit{--><i><!--\textbf{--><b>audacity.cfg</b><!--}--></i><!--}--> settings file. The .cfg file can be edited with any text editor. The .cfg file is located in the Audacity settings folder as follows: 
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>Windows:</b><!--}-->  <span class="path">Users\&lt;username&gt;\AppData\Roaming\Audacity</span> </li>
+<!--
+\item --><li> <!--\textbf{--><b>Mac:</b><!--}--> <span class="path">~/Library/Application Support/audacity</span></li>
+<!--
+\item --><li> <!--\textbf{--><b>Linux:</b><!--}--> <span class="path">~/.audacity-data</span> </li></ul><!--
+\end{itemize}
+-->
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">In order to see the Audacity settings folder on Windows, Linux and OS X 10.7 or later, you may need to show hidden files and folders. See instructions for <a class="external text" href="http://www.bleepingcomputer.com/tutorials/how-to-see-hidden-files-in-windows/" rel="nofollow">all versions of Windows</a> and <a class="external text" href="http://osxdaily.com/2011/07/22/access-user-library-folder-in-os-x-lion/" rel="nofollow">OS X 10.7 and later</a>.
+</td></tr></tbody></table>
+</div>
+<p>To change language, find the <!--\textbf{--><b>[Locale]</b><!--}--> line in the .cfg file and change the line underneath it to your preferred language using the <span style="white-space:nowrap"><a class="external text" href="https://www.loc.gov/standards/iso639-2/php/code_list.php" rel="nofollow">two-digit ISO 639-1 code</a></span>. For example, "Language=en" (without quotes) sets English or "Language=de" sets German. 
+</p><p>If the two lines for Locale do not exist in audacity.cfg (which will be the case if Audacity has only ever run in the system language) add the lines as in this example:
+</p>
+<table cellpadding="5px" style="margin-left:10px;line-height:1.1em;letter-spacing:-0.04em;background-color:#FDEEF4;font-family:monospace;font-size:1.1em;border:1px dashed black">
+<tbody><!--\par --><tr>
+<td>[Locale]<br/>Language=de
+</td></tr></tbody></table>
+<p>Now save audacity.cfg, restart Audacity and it will launch in your chosen language. 
+</p>
+<div class="note">Deleting the [Locale] line and the line under that in audacity.cfg (or deleting audacity.cfg itself) is a quicker method if you only want to revert Audacity to use the language the operating system runs in.</div>   
+<div id="lang"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Supported_non-English_languages">Supported non-English languages</span></h2><!--}--><!--latex 
+\label{languages:lang}-->
+<p>As well as US English, the Audacity software supports a significant number of other languages. There are no localized versions of Audacity. Instead, single versions of Audacity for the various operating platforms are shipped with <a class="external text" href="https://www.gnu.org/software/gettext/" rel="nofollow">gettext</a> MO files. These files are then used to display the different languages. 
+</p>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">All translations are provided by volunteers and may at times be incomplete. Any untranslated parts of the software will appear in US English. We are always looking for new <a class="external text" href="http://www.audacityteam.org/community/translators/" rel="nofollow">volunteers</a> to help translate not only Audacity itself but also the main <a class="external text" href="https://web.audacityteam.org/" rel="nofollow">Audacity website</a> and <a href="http://alphamanual.audacityteam.org/man/Help:Translating" title="Help:Translating">this Manual</a>.
+</td></tr></tbody></table>
+</div>   
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Unicode_characters">Unicode characters</span></h3><!--}-->
+<p>Audacity is <a class="external text" href="https://en.wikipedia.org/wiki/Unicode" rel="nofollow">Unicode</a> and thus should display non-English languages correctly on any localisation of the operating system if the system supports that language. 
+</p>
+<div id="list"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Supported_non-English_languages_in_Audacity">Supported non-English languages in Audacity</span></h3><!--}--><!--latex 
+\label{languages:list}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li>af Afrikaans</li>
+<!--
+\item --><li>ar Arabic</li>
+<!--
+\item --><li>hy Armenian</li>
+<!--
+\item --><li>eu Basque</li>
+<!--
+\item --><li>eu_ES Basque (Spain)</li>
+<!--
+\item --><li>be Belarusian </li>
+<!--
+\item --><li>bn Bengali</li>
+<!--
+\item --><li>bs Bosnian</li>
+<!--
+\item --><li>bg Bulgarian</li>
+<!--
+\item --><li>my Burmese </li>
+<!--
+\item --><li>ca Catalan</li>
+<!--
+\item --><li>zh Chinese (Simplified)</li>
+<!--
+\item --><li>zh_TW Chinese (Taiwan)</li>
+<!--
+\item --><li>hr Croatian </li>
+<!--
+\item --><li>cy Cymraeg (Welsh)</li>
+<!--
+\item --><li>cs Czech</li>
+<!--
+\item --><li>da Danish</li>
+<!--
+\item --><li>nl Dutch</li>
+<!--
+\item --><li>fa Farsi (Persian)</li>
+<!--
+\item --><li>fi Finnish</li>
+<!--
+\item --><li>fr French</li>
+<!--
+\item --><li>ga Gaelige</li>
+<!--
+\item --><li>gl Galician</li>
+<!--
+\item --><li>ka Georgian </li>
+<!--
+\item --><li>de German</li>
+<!--
+\item --><li>el Greek</li>
+<!--
+\item --><li>he Hebrew </li>
+<!--
+\item --><li>hi Hindi</li>
+<!--
+\item --><li>hu Hungarian</li>
+<!--
+\item --><li>id Indonesian</li>
+<!--
+\item --><li>it Italian</li>
+<!--
+\item --><li>ja Japanese</li>
+<!--
+\item --><li>km Khmer</li>
+<!--
+\item --><li>ko Korean</li>
+<!--
+\item --><li>lt Lithuanian</li>
+<!--
+\item --><li>mk Macedonian</li>
+<!--
+\item --><li>nb Norwegian (Bokmal)</li>
+<!--
+\item --><li>oc Occitan</li>
+<!--
+\item --><li>pl Polish</li>
+<!--
+\item --><li>pt Portuguese</li>
+<!--
+\item --><li>pt_BR Portuguese (Brazilian)</li>
+<!--
+\item --><li>ro Romanian</li>
+<!--
+\item --><li>ru Russian</li>
+<!--
+\item --><li>sr_RS Serbian (Cyrillic)</li>
+<!--
+\item --><li><a class="__cf_email__" data-cfemail="c1b2b39e939281ada0b5a8af" href="http://alphamanual.audacityteam.org/cdn-cgi/l/email-protection">[email&nbsp;protected]</a> Serbian (Latin)</li>
+<!--
+\item --><li>sk Slovak</li>
+<!--
+\item --><li>sl Slovenian</li>
+<!--
+\item --><li>es Spanish</li>
+<!--
+\item --><li>sv Swedish</li>
+<!--
+\item --><li>tg Tajik </li>
+<!--
+\item --><li>ta Tamil </li>
+<!--
+\item --><li>tr Turkish</li>
+<!--
+\item --><li>uk Ukrainian</li>
+<!--
+\item --><li><a class="__cf_email__" data-cfemail="84e7e5dbc1d7c4f2e5e8e1eae7ede5" href="http://alphamanual.audacityteam.org/cdn-cgi/l/email-protection">[email&nbsp;protected]</a> Valencian</li>
+<!--
+\item --><li>vi Vietnamese</li></ul><!--
+\end{itemize}
+-->
+
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

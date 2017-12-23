@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Select Menu: At Zero Crossings - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Select_Menu_At_Zero_Crossings rootpage-Select_Menu_At_Zero_Crossings skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Select Menu: At Zero Crossings</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{select:menu:at:zero:crossings:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en">
+<div class="intro"><!--\textit{--><i><!--\textbf{--><b>At Zero Crossings</b><!--}--></i><!--}--> adjusts the selection region (or the cursor position) very slightly so that a boundary is at a <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:zero:crossing}]{--><a href="glossary.html#zero_crossing" title="Glossary">zero crossing</a><!--latex }
+--></b><!--}--></i><!--}--> (silent) point. This reduces the risk of clicks at editing points.</div>
+<p><!--\textbf{--><b>Accessed by: <span class="menu">Select &gt; <!--latex 
+\hyperref[\foo{select:menu:}]{--><a href="select_menu.html" title="Select Menu">At Zero Crossings</a><!--latex }
+--></span> or its <span class="kbrd" style="background-color: #e0e0f0">Z</span> shortcut.</b><!--}-->
+</p>
+<div id="zero"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="At_Zero_Crossings_.C2.A0Z">At Zero Crossings &nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">Z</span></font></span></h2><!--}--><!--latex 
+\label{select:menu:at:zero:crossings:zero}-->
+<p>Moves the edges of a selection region (or the cursor position) very slightly to be at a rising zero crossing point. This is a point where a line joining the audio <!--latex 
+\hyperref[\foo{glossary:Sample}]{--><a href="glossary.html#Sample" title="Glossary">samples</a><!--latex }
+--> rises from left to right and crosses the zero horizontal line that represents silence.
+</p><p>The shift in audio position is not itself detectable to the ear, but the fact that the joins in the <!--latex 
+\hyperref[\foo{audacity:waveform:}]{--><a href="audacity_waveform.html" title="Audacity Waveform">waveform</a><!--latex }
+--> are now of matching height helps avoid clicks when <!--latex 
+\hyperref[\foo{edit:menu:cut}]{--><a href="edit_menu.html#cut" title="Edit Menu">cutting</a><!--latex }
+--> or <!--latex 
+\hyperref[\foo{edit:menu:copy:paste:and:duplicate:paste}]{--><a href="edit_menu_copy_paste_and_duplicate.html#paste" title="Edit Menu: Copy, Paste and Duplicate">pasting</a><!--latex }
+--> audio.
+</p>
+<dl><dd><span title="A selection region before finding zero crossings"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="AtZeroCrossings Before.png" height="189" src="../m/images/c/c8/atzerocrossings_before.png" width="515"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/c/c8/atzerocrossings_before.png--></img><!--}\par
+--></span></dd>
+<dd><span title="A selection region after finding zero crossings, showing the selection boundaries moved to silence"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="AtZeroCrossings After.png" height="189" src="../m/images/c/ce/atzerocrossings_after.png" width="515"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/c/ce/atzerocrossings_after.png--></img><!--}\par
+--></span></dd></dl>
+<p>This works very effectively on mono tracks as illustrated above. In <!--latex 
+\hyperref[\foo{audio:tracks:stereo}]{--><a href="audio_tracks.html#stereo" title="Audio Tracks">stereo tracks</a><!--latex }
+-->, zero crossing points may occur at a different place in the left and right channels, so there may still be a click at the edit point in one channel. This can be solved by careful selection of edit points as explained in <!--latex 
+\hyperref[\foo{faq:editing:clicks}]{--><a href="faq_editing.html#clicks" title="FAQ:Editing">this FAQ</a><!--latex }
+-->. 
+</p>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">This feature does not necessarily find the nearest zero crossing to the current position. It aims to find the crossing where the average <!--latex 
+\hyperref[\foo{glossary:amplitude}]{--><a href="glossary.html#amplitude" title="Glossary">amplitude</a><!--latex }
+--> of samples in the vicinity is lowest.
+</td></tr></tbody></table>
+</div>
+<p><br/>
+</p><p><br/>
+<!--latex 
+\hyperref[\foo{select:menu:region:}]{--><a href="select_menu_region.html" title="Select Menu: Region"><!--\textbf{--><b>&lt;</b><!--}-->&nbsp; Back to: Select Menu: Region</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

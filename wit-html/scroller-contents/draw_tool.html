@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Draw Tool - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Draw_Tool rootpage-Draw_Tool skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Draw Tool</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{draw:tool:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><div class="intro">Draw Tool enables you to redraw the waveform; it can thus be used to make volume changes to individual samples or effect repairs to clicks/noise. </div>
+<dl><dd></dd>
+<dd><div class="noresize"><map name="ImageMap_1_246058875"><area alt="Selection tool for selecting audio before modifying it." coords="11,0,38,27" href="selection_tool.html" shape="rect" title="Selection tool for selecting audio before modifying it."/><area alt="Envelope tool for modifying loudness of audio." coords="39,0,66,27" href="envelope_tool.html" shape="rect" title="Envelope tool for modifying loudness of audio."/><area alt="Draw tool for changing the values of individual samples." coords="67,0,94,27" href="#" shape="rect" title="Draw tool for changing the values of individual samples."/><area alt="Zoom tool to zoom in or out." coords="11,28,38,55" href="zoom_tool.html" shape="rect" title="Zoom tool to zoom in or out."/><area alt="Time Shift tool to move audio clips into new positions." coords="39,28,66,55" href="time_shift_tool.html" shape="rect" title="Time Shift tool to move audio clips into new positions."/><area alt="Multi-Tool combines the actions of all five tools." coords="67,28,94,55" href="multi_tool.html" shape="rect" title="Multi-Tool combines the actions of all five tools."/></map><!--
+
+\par\Needspace{57.5pt}\begin{picture}(47.0,27.5)
+--><!--   \put(0,0){\includegraphics[scale=0.5]{--><img alt="ToolsToolbarSamples.png" height="55" src="../m/images/c/cd/toolstoolbarsamples.png" usemap="#ImageMap_1_246058875" width="94"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/c/cd/toolstoolbarsamples.png--></img><!--}}
+--><!--   \put(5.5,14.0){\hyperref[\foo{selection:tool:}]{\makebox(13.5,13.5){}}}
+   \put(19.5,14.0){\hyperref[\foo{envelope:tool:}]{\makebox(13.5,13.5){}}}
+   \put(33.5,14.0){\hyperref[\foo{draw:tool::}]{\makebox(13.5,13.5){}}}
+   \put(5.5,0.0){\hyperref[\foo{zoom:tool:}]{\makebox(13.5,13.5){}}}
+   \put(19.5,0.0){\hyperref[\foo{time:shift:tool:}]{\makebox(13.5,13.5){}}}
+   \put(33.5,0.0){\hyperref[\foo{multi:tool:}]{\makebox(13.5,13.5){}}}
+\end{picture}
+
+--></div></dd></dl>
+<div class="note">
+<p>The image above shows the <!--latex 
+\hyperref[\foo{tools:toolbar:}]{--><a href="tools_toolbar.html" title="Tools Toolbar">Tools Toolbar</a><!--latex }
+--> with the <!--\textbf{--><b>Draw Tool</b><!--}--> selected.
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> Click on this link to learn more about the <!--latex 
+\hyperref[\foo{tools:toolbar:}]{--><a href="tools_toolbar.html" title="Tools Toolbar">Tools Toolbar</a><!--latex }
+-->.</li>
+<!--
+\item --><li> Click on other tools in the image to learn more about those tools.  </li></ul><!--
+\end{itemize}
+-->
+</div>
+<p><br/>
+When <!--latex 
+\hyperref[\foo{zooming:}]{--><a href="zooming.html" title="Zooming">zoomed in</a><!--latex }
+--> close to maximum level, the Draw Tool enables you to adjust the volume level of individual audio <!--latex 
+\hyperref[\foo{digital:audio:Digital:Sampling}]{--><a href="digital_audio.html#Digital_Sampling" title="Digital Audio">samples</a><!--latex }
+-->. The closer the sample is to the horizontal line through the center of the track, the quieter the sample will be. 
+</p><p>Draw Tool <!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Draw Tool button" height="27" src="../m/images/7/7f/draw.png" title="Draw Tool button" width="27"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/7/7f/draw.png--></img><!--}}{}--> can be used to eliminate narrow clicks and pops in audio by smoothing out the contour of the samples, so that one sample is not at a very different vertical position to its neighbors. 
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="To_use_the_Draw_Tool">To use the Draw Tool</span></h2><!--}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li>Click above or below a sample to move it to that vertical position. You can keep holding the mouse and drag up or down to move the sample to the exact position required. Dragging left or right moves <!--\textit{--><i>adjacent</i><!--}--> samples to the current vertical position of the mouse pointer. If you only want to move one sample, hold down <span class="kbrd" style="background-color: #e0e0f0">Ctrl</span> before clicking. This ensures that no other samples are affected, even if you drag slightly left or right by accident. </li>
+<!--
+\item --><li>Smooth the vertical disparity in a group of samples by holding down <span class="kbrd" style="background-color: #e0e0f0">Alt</span> <!--\textit{--><i>(or <span class="kbrd" style="background-color: #e0e0f0">Ctrl + Alt</span> on Linux)</i><!--}-->. This changes the mouse pointer to a brush (or spray can on Linux). Position the pointer halfway along the group of samples then click repeatedly to progressively smooth the group.</li></ul><!--
+\end{itemize}
+-->
+<div class="note">Draw Tool only works when using the default <!--\textit{--><i><!--latex 
+\hyperref[\foo{audacity:waveform:}]{--><a href="audacity_waveform.html" title="Audacity Waveform">Waveform</a><!--latex }
+--></i><!--}--> view or <!--\textit{--><i><!--latex 
+\hyperref[\foo{audacity:waveform:db}]{--><a href="audacity_waveform.html#db" title="Audacity Waveform">Waveform (dB)</a><!--latex }
+--></i><!--}--> view (selectable on the <!--latex 
+\hyperref[\foo{audio:track:dropdown:menu:}]{--><a href="audio_track_dropdown_menu.html" title="Audio Track Dropdown Menu">Audio Track Dropdown Menu</a><!--latex }
+-->).  It does not work in <!--latex 
+\hyperref[\foo{spectrogram:view:}]{--><a href="spectrogram_view.html" title="Spectrogram View">Spectrogram</a><!--latex }
+--> view</div>  
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Bulbicon.png" title="Bulb icon"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Bulb icon" height="32" src="../m/images/d/d7/bulbicon.png" width="32"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d7/bulbicon.png--></img><!--}\par
+--></a>
+</td>
+<td align="left" valign="top">For very short lengths of audio up to 128 samples long, you can smooth out audio automatically with <!--\textbf{--><b><!--latex 
+\hyperref[\foo{repair:}]{--><a href="repair.html" title="Repair">Repair</a><!--latex }
+--></b><!--}--> tool under the <!--latex 
+\hyperref[\foo{effect:menu:}]{--><a href="effect_menu.html" title="Effect Menu">Effect Menu</a><!--latex }
+-->
+</td></tr></tbody></table>
+</div>
+
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Tutorial - Vocal Removal and Isolation - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Tutorial_-_Vocal_Removal_and_Isolation rootpage-Tutorial_-_Vocal_Removal_and_Isolation skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Tutorial - Vocal Removal and Isolation</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{tutorial:vocal:removal:and:isolation:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+</p>
+<div class="intro">This page describes techniques which, on <!--\textbf{--><b>some</b><!--}--> stereo tracks, <!--\textbf{--><b>may</b><!--}--> allow you to remove or isolate vocals (or other parts of a recording) from the rest. There is no universal, reliable way of doing this without having the original multi-track recordings. Different tracks will require different techniques to achieve maximum possible attenuation or isolation. This will depend on where the vocals are positioned in the stereo field, and on their <!--latex 
+\hyperref[\foo{glossary:frequency}]{--><a href="glossary.html#frequency" title="Glossary">frequency</a><!--latex }
+--> content compared to the rest of the audio.</div>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">
+<!--
+\begin{itemize}--><ul><!--
+\item --><li>It is <!--\textbf{--><b>strongly</b><!--}--> recommended that you make a backup copy of your original recording <!--\textbf{--><b>before</b><!--}--> attempting any of the editing described in this tutorial.</li>
+<!--
+\item --><li>For popular songs, consider downloading vocals-only tracks from the internet. Many studios release the instrumental tracks for use with things like karaoke and some singles even have them on the B side.</li></ul><!--
+\end{itemize}
+-->
+</td></tr></tbody></table>
+</div>
+
+<div id="removal"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Case_1:_Vocal_Removal_with_vocals_in_the_middle_and_instruments_spread_around_them">Case 1: Vocal Removal with vocals in the middle and instruments spread around them</span></h2><!--}--><!--latex 
+\label{tutorial:vocal:removal:and:isolation:removal}-->
+<p>If the vocals are panned in the center of a stereo track the so-called "vocal removal" technique can <!--\textit{--><i>sometimes</i><!--}--> be effective by removing what is common to both tracks (i.e. the vocals), leaving behind what is different (i.e. the instrumentals).
+</p><p>The underlying technique in Audacity is to split the stereo track into its left and right channels, make both mono, invert all <!--\textit{--><i>(or a selected part)</i><!--}--> of one of them then play back the result.  Note, this removes everything panned in the center, not just vocals, and returns a dual mono result (both channels have the same audio). In some music this could mean removing instrumental parts. Removal of the vocals can often be incomplete leaving artifacts behind; this is especially true where there are backing vocals or where reverb (echo) has been applied as this spreads sound sources and makes them very hard to extract from each other.
+</p>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Vocal_Reduction_and_Isolation"><!--latex 
+\hyperref[\foo{vocal:reduction:and:isolation:}]{--><a href="vocal_reduction_and_isolation.html" title="Vocal Reduction and Isolation">Vocal Reduction and Isolation</a><!--latex }
+--></span></h3><!--}-->
+<p>Audacity includes a Nyquist plug-in effect to automate the steps involved in Case&nbsp;1, at <span class="menu">Effect &gt; <!--latex 
+\hyperref[\foo{vocal:reduction:and:isolation:}]{--><a href="vocal_reduction_and_isolation.html" title="Vocal Reduction and Isolation"> Vocal Reduction and Isolation...</a><!--latex }
+--></span>. If you only wanted to automate Case 1 in the Vocal Reduction and Isolation effect, you would choose the option "Remove Center Classic (Mono)". As in Case 1 above, this removes the whole frequency spectrum of center-panned audio and returns a dual mono track.  
+</p><p>However the default option for Vocal Reduction and Isolation "Remove Vocals" is to be preferred in most cases because this returns stereo output. 
+</p><p>Vocal Reduction and Isolation also lets you specify frequencies above which or below which audio is not removed or isolated. This can help cure the common problem where center-panned bass or Hi-hat is also removed when removing vocals.      
+</p>
+<div id="split"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Case_2:_Vocal_Removal_with_vocals_in_one_channel_and_everything_else_in_the_other">Case 2: Vocal Removal with vocals in one channel and everything else in the other</span></h2><!--}--><!--latex 
+\label{tutorial:vocal:removal:and:isolation:split}-->
+<p>If you have an unusual stereo track where the vocals are mixed hard into one channel and everything else hard into the other channel you can split the stereo track into separate channels then delete the vocal channel. To isolate the vocals, rather than remove them, delete the other channel. 
+</p><p>To split a stereo track, click on the downward pointing arrow at the top of the <!--latex 
+\hyperref[\foo{audio:tracks:panel}]{--><a href="audio_tracks.html#panel" title="Audio Tracks">Track Control Panel</a><!--latex }
+--> then click on <span class="menu"><!--latex 
+\hyperref[\foo{splitting:and:joining:stereo:tracks:}]{--><a href="splitting_and_joining_stereo_tracks.html" title="Splitting and Joining Stereo Tracks">Split Stereo to Mono</a><!--latex }
+--></span>. To delete the unwanted channel, click the <span class="menu"><!--latex 
+\hyperref[\foo{audio:tracks:panel}]{--><a href="audio_tracks.html#panel" title="Audio Tracks">[X]</a><!--latex }
+--></span> to left of the downward pointing arrow. If you accidentally delete the wrong channel, use <span class="menu">Edit &gt; Undo</span> to get it back. 
+</p>
+<div id="isolate"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Case_3:_Vocal_Isolation">Case 3: Vocal Isolation</span></h2><!--}--><!--latex 
+\label{tutorial:vocal:removal:and:isolation:isolate}-->
+<p>You can use the <!--latex 
+\hyperref[\foo{vocal:reduction:and:isolation:}]{--><a href="vocal_reduction_and_isolation.html" title="Vocal Reduction and Isolation">Vocal Reduction and Isolation</a><!--latex }
+--> effect to attempt to isolate the vocals by choosing one of the Isolate Vocals in the <!--latex 
+\hyperref[\foo{vocal:reduction:and:isolation:action}]{--><a href="vocal_reduction_and_isolation.html#action" title="Vocal Reduction and Isolation">Action</a><!--latex }
+--> dropdown menu in the dialog.  But note that the end result may not be total vocal isolation or even satisfactory isolation of the vocals; it all depends on how the original recording was engineered.
+</p>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="A_technique_using_Audacity_for_vocal_isolation">A technique using Audacity for vocal isolation</span></h3><!--}-->
+<p>An Audacity user <!--\textit{--><i>(Marco Diego)</i><!--}--> suggested the following technique for using Audacity to attempt to isolate vocals. It will not work successfully in all cases.
+</p><p>It is sometimes possible to isolate vocals by using Audacity's <!--latex 
+\hyperref[\foo{noise:reduction:}]{--><a href="noise_reduction.html" title="Noise Reduction">Noise Reduction</a><!--latex }
+--> to capture the noise profile of a song that has had vocals removed, then run Noise Reduction with that profile on the original mix before vocals were removed.
+</p>
+<!--
+\begin{enumerate}--><ol><!--
+\item --><li>Make a copy of your original stereo track
+<!--
+\begin{enumerate}--><ol><!--
+\item --><li>Select the whole track (click in empty space in its <!--latex 
+\hyperref[\foo{audio:tracks:panel}]{--><a href="audio_tracks.html#panel" title="Audio Tracks">Track Control Panel</a><!--latex }
+--> for example where it says "Hz")</li>
+<!--
+\item --><li>Copy the track with <span class="menu">Edit &gt; <!--latex 
+\hyperref[\foo{edit:menu:copy:paste:and:duplicate:copy}]{--><a href="edit_menu_copy_paste_and_duplicate.html#copy" title="Edit Menu: Copy, Paste and Duplicate">Copy</a><!--latex }
+--></span></li>
+<!--
+\item --><li>Create a new stereo track with <span class="menu">Tracks &gt; Add New &gt; <!--latex 
+\hyperref[\foo{tracks:menu:add:new:stereo:track}]{--><a href="tracks_menu_add_new.html#stereo_track" title="Tracks Menu: Add New">Stereo Track</a><!--latex }
+--></span></li>
+<!--
+\item --><li>Use <span class="menu">Edit &gt; <!--latex 
+\hyperref[\foo{edit:menu:copy:paste:and:duplicate:paste}]{--><a href="edit_menu_copy_paste_and_duplicate.html#paste" title="Edit Menu: Copy, Paste and Duplicate">Paste</a><!--latex }
+--></span> to make a copy of the original track in the new stereo track</li></ol><!--
+\end{enumerate}
+--></li>
+<!--
+\item --><li>Select the whole of the copied track (click in empty space in its Track Control Panel)</li>
+<!--
+\item --><li>Remove the vocals in the copy by using <span class="menu">Effect &gt; <!--latex 
+\hyperref[\foo{vocal:reduction:and:isolation:}]{--><a href="vocal_reduction_and_isolation.html" title="Vocal Reduction and Isolation"> Vocal Reduction and Isolation...</a><!--latex }
+--></span></li>
+<!--
+\item --><li>The copied track should remain selected, so use <span class="menu">Effect &gt; <!--latex 
+\hyperref[\foo{noise:reduction:}]{--><a href="noise_reduction.html" title="Noise Reduction">Noise Reduction...</a><!--latex }
+--></span> and click on the <span class="button">Get Noise Profile</span> button</li>
+<!--
+\item --><li>Now select the original track (click in empty space in its Track Control Panel)</li>
+<!--
+\item --><li>Use <span class="menu">Effect &gt; <!--latex 
+\hyperref[\foo{noise:reduction:}]{--><a href="noise_reduction.html" title="Noise Reduction">Noise Reduction...</a><!--latex }
+--></span> and click on the <span class="button">OK</span> button</li>
+<!--
+\item --><li>Delete the copied track (click in the <span class="menu"><!--latex 
+\hyperref[\foo{audio:tracks:panel}]{--><a href="audio_tracks.html#panel" title="Audio Tracks">[X]</a><!--latex }
+--></span> at the top left of its Track Control Panel)</li></ol><!--
+\end{enumerate}
+-->
+<div class="note">The following may let you remove drums which are not centered but keep the vocals:
+<!--
+\begin{enumerate}--><ol><!--
+\item --><li>Use the steps above to create a track with isolated vocals.</li>
+<!--
+\item --><li>Import the original song into Audacity again. Download the <a class="external text" href="https://wiki.audacityteam.org/wiki/Nyquist_Effect_Plug-ins#Bass_to_Center" rel="nofollow">Bass to Center</a> Nyquist plug-in and <!--latex 
+\hyperref[\foo{effect:menu:nyquist:effects}]{--><a href="effect_menu.html#nyquist_effects" title="Effect Menu">install it</a><!--latex }
+-->. Use this plug-in to move the bass frequencies to center.</li>
+<!--
+\item --><li> Remove the drums (and the vocals) from the center using <span class="menu">Effect &gt; <!--latex 
+\hyperref[\foo{vocal:reduction:and:isolation:}]{--><a href="vocal_reduction_and_isolation.html" title="Vocal Reduction and Isolation"> Vocal Reduction and Isolation...</a><!--latex }
+--></span>.</li>
+<!--
+\item --><li>Finally mix the isolated vocals back in.</li></ol><!--
+\end{enumerate}
+-->
+</div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Using_an_instrumental_track_to_isolate_the_vocals">Using an instrumental track to isolate the vocals</span></h3><!--}-->
+<p>In order for this to work you will need to have a studio version of the instrumental track in which the instrumental part is <!--\textit{--><i><!--\textbf{--><b>identical</b><!--}--></i><!--}--> to the full track. Many studios release the instrumental tracks (with and without backup vocals) for use with things like karaoke. There are places online where you can buy these tracks (Karaoke-Version.com for example and some records even have them on the B side). MP3 encoding of one or both versions will create small differences that will make this technique less effective.
+</p><p>As opposed to the final mono track you get from removing vocals, this method will leave you with a full stereo track. As such, it becomes more important to try and match the quality of both tracks and align them before you isolate the vocals.
+</p>
+<!--
+\begin{enumerate}--><ol><!--
+\item --><li>Open Audacity and <!--latex 
+\hyperref[\foo{importing:audio:}]{--><a href="importing_audio.html" title="Importing Audio">Import</a><!--latex }
+--> both the regular and instrumental tracks. </li>
+<!--
+\item --><li>Select one of the tracks and use the <!--latex 
+\hyperref[\foo{tools:toolbar:timeshift}]{--><a href="tools_toolbar.html#timeshift" title="Tools Toolbar">Time Shift</a><!--latex }
+--> tool to roughly align the two tracks.</li>
+<!--
+\item --><li><!--latex 
+\hyperref[\foo{tools:toolbar:zoom}]{--><a href="tools_toolbar.html#zoom" title="Tools Toolbar">Zoom</a><!--latex }
+--> in really close and then zoom in more. </li>
+<!--
+\item --><li><!--\textit{--><i><!--\textbf{--><b>Exact alignment is critical</b><!--}--></i><!--}-->. Pick a peak or trough in the left channel of one track and match it precisely with the left channel of the other track. If the alignment isn&rsquo;t right the process won&rsquo;t work. </li>
+<!--
+\item --><li>Select the instrumental track, and invert it using <span class="menu">Effect &gt; <!--latex 
+\hyperref[\foo{invert:}]{--><a href="invert.html" title="Invert">Invert</a><!--latex }
+--></span>.</li>
+<!--
+\item --><li>Use <span class="kbrd" style="background-color: #e0e0f0">Ctrl + A</span> to select all of both tracks. </li>
+<!--
+\item --><li>Use <span class="menu">Tracks &gt; Mix &gt; <!--latex 
+\hyperref[\foo{tracks:menu:mix:mix:and:render}]{--><a href="tracks_menu_mix.html#mix_and_render" title="Tracks Menu: Mix">Mix and Render</a><!--latex }
+--></span>. </li></ol><!--
+\end{enumerate}
+-->
+<p>You should now have one combined track that should have a more diminished amplitude where the vocals were kept and the instrumentation removed.
+</p><p><br/>
+</p>
+<div id="3rdparty"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Third-party_plug-ins">Third-party plug-ins</span></h2><!--}--><!--latex 
+\label{tutorial:vocal:removal:and:isolation:3rdparty}-->
+<p>As well as the above methods supported by Audacity itself there are various third-party plug-ins that can be used to try and remove or isolate vocals.
+</p><p>Please see <a class="external text" href="https://wiki.audacityteam.org/wiki/Vocal_Removal_Plug-ins" rel="nofollow">Vocal Removal Plug-ins</a> in the Audacity Wiki for details.
+</p>
+
+
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

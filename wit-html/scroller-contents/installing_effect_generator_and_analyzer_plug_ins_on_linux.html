@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Installing Effect, Generator and Analyzer plug-ins on Linux - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Installing_Effect_Generator_and_Analyzer_plug-ins_on_Linux rootpage-Installing_Effect_Generator_and_Analyzer_plug-ins_on_Linux skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Installing Effect, Generator and Analyzer plug-ins on Linux</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{installing:effect:generator:and:analyzer:plug:ins:on:linux:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p><br/>
+</p>
+<div class="intro">You can download and install plug-ins to add extra functionality to Audacity. Plug-ins can give you extra effects, or more audio generation and analysis capabilities. 
+<p>Audacity on GNU/Linux supports a large number of <!--latex 
+\hyperref[\foo{effect:menu:nyquist:effects}]{--><a href="effect_menu.html#nyquist_effects" title="Effect Menu">Nyquist</a><!--latex }
+-->, <!--latex 
+\hyperref[\foo{effect:menu:LADSPA:effects}]{--><a href="effect_menu.html#LADSPA_effects" title="Effect Menu">LADSPA</a><!--latex }
+-->, <!--latex 
+\hyperref[\foo{effect:menu:LV2:effects}]{--><a href="effect_menu.html#LV2_effects" title="Effect Menu">LV2</a><!--latex }
+--> and <!--latex 
+\hyperref[\foo{analyze:menu:vamp}]{--><a href="analyze_menu.html#vamp" title="Analyze Menu">VAMP</a><!--latex }
+--> effects. <a class="external text" href="https://en.wikipedia.org/wiki/Virtual_Studio_Technology" rel="nofollow">VST</a> effects are now supported in Audacity on Linux and can be installed as described at <!--latex 
+\hyperref[\foo{effect:menu:vst}]{--><a href="effect_menu.html#vst" title="Effect Menu">VST Effects</a><!--latex }
+-->. However native Linux VST effects are quite rare. Consequently, if a specific VST effect is required on Linux, it may be necessary to employ <a class="external text" href="https://wiki.audacityteam.org/wiki/Linux_Issues#vst" rel="nofollow">workarounds</a> such as running Audacity for Windows in a <a class="external text" href="https://en.wikipedia.org/wiki/Virtual_machine" rel="nofollow">virtual machine</a>.
+</p>
+Audacity supports 64-bit effects in VST, LADSPA and VAMP format on 64-bit Linux systems (conversely, 32-bit plug-ins in those formats will not load into Audacity on 64-bit Linux).  </div>
+
+<div id="nyquist_install"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Installing_Nyquist_plug-ins">Installing Nyquist plug-ins</span></h2><!--}--><!--latex 
+\label{installing:effect:generator:and:analyzer:plug:ins:on:linux:nyquist:install}-->
+<p><a class="external text" href="https://wiki.audacityteam.org/wiki/Nyquist" rel="nofollow">Nyquist</a> plug-ins provide most of the optional effects underneath the divider in the <!--latex 
+\hyperref[\foo{effect:menu:}]{--><a href="effect_menu.html" title="Effect Menu">Effect menu</a><!--latex }
+-->. They are also used to provide some of Audacity's built-in audio <!--latex 
+\hyperref[\foo{generate:menu:}]{--><a href="generate_menu.html" title="Generate Menu">generators</a><!--latex }
+--> and <!--latex 
+\hyperref[\foo{analyze:menu:}]{--><a href="analyze_menu.html" title="Analyze Menu">analysis tools</a><!--latex }
+-->. A wide range of additional Nyquist effect, generator and analysis plug-ins can be obtained from <a class="external text" href="https://wiki.audacityteam.org/wiki/Download_Nyquist_Plug-ins" rel="nofollow">Download Nyquist Plug-ins</a> on our Wiki.
+</p>
+<div class="note">If the plug-in is downloaded as a ZIP archive, the contents of the package must be extracted. This can usually be achieved with the command:
+<table cellpadding="5px" style="margin-left:10px;line-height:1.1em;letter-spacing:-0.04em;background-color:#FDEEF4;font-family:monospace;font-size:1.1em;border:1px dashed black">
+<tbody><!--\par --><tr>
+<td>unzip file.zip -d destination_folder
+</td></tr></tbody></table>
+Alternatively, most Linux distributions include a GUI application for extracting ZIP archives.</div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Per_user_installation">Per user installation</span></h3><!--}-->
+<p>This is generally the preferred way to install Nyquist plug-ins as it can be performed with standard user permissions.
+</p>
+<!--
+\begin{enumerate}--><ol><!--
+\item --><li> If it does not already exist, create a folder called <!--\textbf{--><b>.audacity-files</b><!--}--> in your home directory. Note that the dot as the first character indicates that this will be a hidden folder, so if using a graphical file browser, enable viewing hidden files (for most graphical file browsers, this is an option in the "View" menu).</li>
+<!--
+\item --><li> Add a sub-directory to <!--\textbf{--><b>.audacity-files</b><!--}--> and name it <!--\textbf{--><b>plug-ins</b><!--}-->. The location of this folder may be described as <!--\textbf{--><b>~/.audacity-file/plug-ins</b><!--}-->, where "~/" means your home folder.</li>
+<!--
+\item --><li> Copy or move the Nyquist plug-in file (with ny or NY <!--latex 
+\hyperref[\foo{glossary:extension}]{--><a href="glossary.html#extension" title="Glossary">file name extension</a><!--latex }
+-->) into the <!--\textbf{--><b>~/.audacity-files/plug-ins</b><!--}--> folder.
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> If the plug-in includes a help file or help folder, that file should usually be copied or moved to the same location as the NY file. Check the plug-in documentation for details.</li></ul><!--
+\end{itemize}
+--></li>
+<!--
+\item --><li> To enable the new effects so they are available in the Audacity menu, use the <!--latex 
+\hyperref[\foo{manage:effects:generators:and:analyzers:}]{--><a href="manage_effects_generators_and_analyzers.html" title="Manage Effects, Generators and Analyzers">Plug-in Manager: Effects, Generators and Analyzers</a><!--latex }
+--> dialog.</li></ol><!--
+\end{enumerate}
+-->
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="System-wide_installation">System-wide installation</span></h3><!--}-->
+<p>This will install the plug-in for all users and requires root permissions.
+</p>
+<!--
+\begin{enumerate}--><ol><!--
+\item --><li> Copy or move the Nyquist plug-in file (with ny or NY <!--latex 
+\hyperref[\foo{glossary:extension}]{--><a href="glossary.html#extension" title="Glossary">file name extension</a><!--latex }
+-->) into:
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>/usr/share/audacity/plug-ins</b><!--}--> if Audacity was installed from a repository package</li>
+<!--
+\item --><li> <!--\textbf{--><b>/usr/local/share/audacity/plug-ins</b><!--}--> if you compiled Audacity from source code.</li>
+<!--
+\item --><li> If the plug-in includes a help file or help folder, that file should usually be copied or moved to the same location as the NY file. Check the plug-in documentation for details.</li></ul><!--
+\end{itemize}
+--></li>
+<!--
+\item --><li> To enable the new effects so they are available in the Audacity menu <!--\textit{--><i>for the current user</i><!--}-->, use the <!--latex 
+\hyperref[\foo{manage:effects:generators:and:analyzers:}]{--><a href="manage_effects_generators_and_analyzers.html" title="Manage Effects, Generators and Analyzers">Plug-in Manager: Effects, Generators and Analyzers</a><!--latex }
+--> dialog.</li></ol><!--
+\end{enumerate}
+-->
+<p>Note that the effect is loaded <!--\textit{--><i>per user</i><!--}-->, but will be available for loading to all users.
+</p><p>Audacity can currently load Nyquist plug-ins from other locations, but it is recommended to use the locations listed above. In particular, ~/.audacity-data/Plug-Ins is now deprecated as a location for Nyquist plug-ins, but at the moment it is still supported.  
+</p>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">Some Nyquist plug-ins could crash while processing very long audio selections (typically an hour or more). This is due to the plug-in using a large amount of memory and is a known issue in Audacity's current Nyquist implementation. Try using the plug-in on shorter selections instead.
+</td></tr></tbody></table>
+</div>
+<p><br/>
+</p>
+<div id="vst_install"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Installing_VST_plug-ins">Installing VST plug-ins</span></h2><!--}--><!--latex 
+\label{installing:effect:generator:and:analyzer:plug:ins:on:linux:vst:install}-->
+<p>Audacity supports almost all VST effect plug-ins on Linux including "shell" VSTs that host multiple VST effects. VST plugins for all users can be placed in a "<!--\textbf{--><b>plug-ins</b><!--}-->" folder that you must add to <!--\textbf{--><b>/usr/bin/</b><!--}--> (if you installed a packaged version of Audacity) or to <!--\textbf{--><b>/usr/local/bin</b><!--}--> (if you installed a self-compiled version of Audacity). Root permissions will be required for these operations. 
+</p>
+<div class="note">Audacity can also load VST plug-ins from other system and user locations including: 
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> All paths listed in the <!--\textbf{--><b>"VST_PATH"</b><!--}--> environment variable</li>
+<!--
+\item --><li> <!--\textbf{--><b>~/.vst</b><!--}--> (plug-ins can be added here with standard user permissions)</li>
+<!--
+\item --><li> <!--\textbf{--><b>LIBDIR/vst</b><!--}--> (where LIBDIR is defined at build time)</li>
+<!--
+\item --><li> <!--\textbf{--><b>/usr/lib/vst</b><!--}--></li>
+<!--
+\item --><li> <!--\textbf{--><b>/usr/local/lib/vst</b><!--}--></li>
+<!--
+\item --><li> ~/.audacity-data/Plug-Ins (deprecated). </li></ul><!--
+\end{itemize}
+--></div>
+<p>All the directories where you can place VST plug-ins are searched recursively, which means that plug-ins that are inside their own folder in that directory should still be found by Audacity.
+</p><p>You can install new VST effects into Audacity by using the <span class="menu">Effect &gt; <!--latex 
+\hyperref[\foo{effect:menu:add:remove:plugins}]{--><a href="effect_menu.html#add_remove_plugins" title="Effect Menu">Add / Remove Plug-ins...</a><!--latex }
+--></span> menu item. This opens the <!--latex 
+\hyperref[\foo{manage:effects:generators:and:analyzers:}]{--><a href="manage_effects_generators_and_analyzers.html" title="Manage Effects, Generators and Analyzers">Plug-in Manager: Effects, Generators and Analyzers</a><!--latex }
+--> dialog where you can select and enable the new effects then click <span class="button">OK</span> to load them. Next time you launch Audacity the enabled effect(s) will be cached and you will not need to re-enable them.      
+</p>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">The list of effects in the dialog will include any detected VST instrument (VSTi) plug-ins (such as synths) and any real-time VST effects that are capable of changing audio data while it's being written to disk. Neither of these are yet supported and they <!--\textbf{--><b>will not load</b><!--}--> even if you enable or re-enable them in the dialog.
+</td></tr></tbody></table>
+</div>
+<p><br/>
+</p>
+<div id="vst_faulty"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Why_do_some_VST_plug-ins_not_work_or_display_incorrectly.3F">Why do some VST plug-ins not work or display incorrectly?</span></h3><!--}--><!--latex 
+\label{installing:effect:generator:and:analyzer:plug:ins:on:linux:vst:faulty}-->
+<p>Audacity will by default display VST effect plug-ins with a full graphical interface where the plug-in supplies this. 
+</p><p>VST instruments (VSTi) (such as synths) and real-time VST effects (that change the audio data while it's being written) are not yet supported. These <!--\textbf{--><b>will not load</b><!--}--> even if you enable or re-enable them in the <!--latex 
+\hyperref[\foo{manage:effects:generators:and:analyzers:}]{--><a href="manage_effects_generators_and_analyzers.html" title="Manage Effects, Generators and Analyzers">Plug-in Manager: Effects, Generators and Analyzers</a><!--latex }
+--> dialog. <a class="external text" href="http://www.steinberg.net/en/company/technologies/vst3.html" rel="nofollow">VST 3</a> plug-ins are not supported. 
+</p><p>If any plug-in displays incorrectly, you can use the <!--\textit{--><i>Manage</i><!--}--> button <!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Manage button icon W10.png" height="28" src="../m/images/3/38/manage_button_icon_w10.png" width="28"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/3/38/manage_button_icon_w10.png--></img><!--}}{}--> in the effect's dialog then choose <!--\textit{--><i>Options...</i><!--}--> to open the 
+<!--latex 
+\hyperref[\foo{effect:menu:vst:options}]{--><a href="effect_menu.html#vst_options" title="Effect Menu">VST&nbsp;Effect&nbsp;Options</a><!--latex }
+--> for that effect. Then remove the checkmark from the "Enable graphical interface" checkbox <span class="button"><a class="image" href="http://alphamanual.audacityteam.org/man/File:CheckboxNotChecked.png"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="CheckboxNotChecked.png" height="13" src="../m/images/a/a8/checkboxnotchecked.png" style="vertical-align: text-top" width="13"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/a/a8/checkboxnotchecked.png--></img><!--}}{}--></a>&nbsp;Enable graphical interface</span> and click <span class="button">OK</span>. When you reopen the effect it will display a simpler tabular interface. 
+</p>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">On <!--\textbf{--><b>GNU/Linux</b><!--}-->, 32-bit systems will have 32-bit versions of Audacity which will not see 64-bit VST plug-ins. 64-bit systems will have 64-bit versions of Audacity which will see 64-bit VST plug-ins but will not see 32-bit plug-ins.
+</td></tr></tbody></table>
+</div>
+<p>If you experience a problem with a specific VST effect plug-in in Audacity, please <a class="external text" href="https://web.audacityteam.org/contact#feedback" rel="nofollow">contact us</a>.
+</p>
+<div id="ladspa_install"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Installing_LADSPA_plug-ins">Installing  LADSPA plug-ins</span></h2><!--}--><!--latex 
+\label{installing:effect:generator:and:analyzer:plug:ins:on:linux:ladspa:install}-->
+<div class="note">The <a class="external text" href="https://wiki.audacityteam.org/wiki/Ladspa_Plugins" rel="nofollow">LADSPA</a> plug-in architecture which was originally developed on Linux. Audacity supports both LV2 and LADSPA effects on GNU/Linux. You can download and install a <a class="external text" href="http://www.audacityteam.org/download/plug-ins/#ladspa" rel="nofollow">set of over 90 LADSPA plug-ins</a> for all operating systems. You can then choose which LADSPA plug-ins to enable in the <!--latex 
+\hyperref[\foo{manage:effects:generators:and:analyzers:}]{--><a href="manage_effects_generators_and_analyzers.html" title="Manage Effects, Generators and Analyzers">Plug-in Manager: Effects, Generators and Analyzers</a><!--latex }
+--> dialog. </div>
+<p>LADSPA plug-ins can be installed for all users by putting the plug-ins into the Audacity "Plug-Ins" folder:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>/usr/share/audacity/plug-ins</b><!--}--> if Audacity was installed from a repository package</li>
+<!--
+\item --><li> <!--\textbf{--><b>/usr/local/share/audacity/plug-ins</b><!--}--> if you compiled Audacity from source code. </li></ul><!--
+\end{itemize}
+-->
+<p>These locations are usually set as read-only, so the plug-ins will need to be copied as root (for example, by issuing an appropriate root command in the terminal, or by using the terminal to open a file manager application with root permissions).
+</p><p>To enable the new effects so they are available in the Audacity menu, use the <!--latex 
+\hyperref[\foo{manage:effects:generators:and:analyzers:}]{--><a href="manage_effects_generators_and_analyzers.html" title="Manage Effects, Generators and Analyzers">Plug-in Manager: Effects, Generators and Analyzers</a><!--latex }
+--> dialog.
+</p>
+<div class="note">Audacity can also load LADSPA plug-ins from other system and user locations including: 
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> All paths specified by the <!--\textbf{--><b>LADSPA_PATH environment variable</b><!--}--></li>
+<!--
+\item --><li> <!--\textbf{--><b>~/.ladspa</b><!--}--> (plug-ins can be added to here with standard user permissions)</li>
+<!--
+\item --><li> <!--\textbf{--><b>/usr/local/lib/ladspa</b><!--}--></li>
+<!--
+\item --><li> <!--\textbf{--><b>/usr/lib/ladspa</b><!--}--></li>
+<!--
+\item --><li> <!--\textbf{--><b>$LIBDIR/ladspa</b><!--}--> </li>
+<!--
+\item --><li> ~/.audacity-data/Plug-Ins (deprecated). </li></ul><!--
+\end{itemize}
+--></div>
+<div class="note">Audacity installed from a repository package or <a class="external text" href="https://wiki.audacityteam.org/wiki/CompilingAudacityForBeginners" rel="nofollow">compiled from source</a> should automatically find LADSPA plug-ins installed in /usr/lib/ladspa. This may not be the case if you are compiling older source code. If necessary you can set an environment variable to indicate to Audacity where LADSPA plug-ins are installed. For Debian-based distributions this can be done by entering the following code at the command prompt (change &lt;user&gt; to your account username):
+<table cellpadding="5px" style="margin-left:10px;line-height:1.1em;letter-spacing:-0.04em;background-color:#FDEEF4;font-family:monospace;font-size:1.1em;border:1px dashed black">
+<tbody><!--\par --><tr>
+<td>export LADSPA_PATH=$LADSPA_PATH:/home/&lt;user&gt;/.ladspa:/usr/local/lib/ladspa:/usr/lib/ladspa
+</td></tr></tbody></table>
+<p>If you wish this path to be set each time you boot, the LADSPA_PATH environment variable may be added to <!--\textbf{--><b>~/.profile</b><!--}--> or this file may be created if it does not exist. An example of how to add the LADSPA_PATH environment variable:
+</p>
+<table cellpadding="5px" style="margin-left:10px;line-height:1.1em;letter-spacing:-0.04em;background-color:#FDEEF4;font-family:monospace;font-size:1.1em;border:1px dashed black">
+<tbody><!--\par --><tr>
+<td>LADSPA_PATH=$LADSPA_PATH:/home/&lt;user&gt;/.ladspa:/usr/local/lib/ladspa:/usr/lib/ladspa<br/>export LADSPA_PATH
+</td></tr></tbody></table>
+<p>For OpenSuse 64, LADSPA plug-ins may be found in <!--\textbf{--><b>/usr/lib64/ladspa</b><!--}-->. This path can be set by adding the following line to your <!--\textbf{--><b>/etc/environment</b><!--}--> file:
+</p>
+<table cellpadding="5px" style="margin-left:10px;line-height:1.1em;letter-spacing:-0.04em;background-color:#FDEEF4;font-family:monospace;font-size:1.1em;border:1px dashed black">
+<tbody><!--\par --><tr>
+<td>LADSPA_PATH=/usr/lib64/ladspa
+</td></tr></tbody></table>
+<p><a class="external text" href="https://en.wikipedia.org/wiki/LV2" rel="nofollow">LV2</a> and <a class="external text" href="http://www.vamp-plugins.org/" rel="nofollow">VAMP</a> plug-ins cannot be placed in the Audacity "Plug-Ins" folder or your .audacity-files folder. <!--\textbf{--><b>LV2</b><!--}--> plug-ins should be installed by placing the complete .lv2 folder (not the individual files in that folder) in the root of ~/.lv2, /usr/local/lib/lv2, /usr/local/lib64/lv2, /usr/lib/lv2 or /usr/lib64/lv2. Alternatively the environment variable may be set as in this example:  
+</p>
+<table cellpadding="5px" style="margin-left:10px;line-height:1.1em;letter-spacing:-0.04em;background-color:#FDEEF4;font-family:monospace;font-size:1.1em;border:1px dashed black">
+<tbody><!--\par --><tr>
+<td>export LV2_PATH=$HOME/.lv2:/usr/local/lib/lv2:/usr/lib/lv2
+</td></tr></tbody></table>
+</div>
+<p><br/>
+</p><p><br/>
+</p>
+<div id="lv2_install"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Installing_LV2_plug-ins">Installing LV2 plug-ins</span></h2><!--}--><!--latex 
+\label{installing:effect:generator:and:analyzer:plug:ins:on:linux:lv2:install}-->
+<p><a class="external text" href="https://en.wikipedia.org/wiki/LV2" rel="nofollow">LV2</a> is a more advanced evolution of the <a class="external text" href="https://wiki.audacityteam.org/wiki/Ladspa_Plugins" rel="nofollow">LADSPA</a> plug-in architecture which was originally developed on Linux. 
+</p><p>To add a new LV2 effect, place its <!--\textbf{--><b>complete ".lv2" folder</b><!--}--> (<!--\textit{--><i>not</i><!--}--> the files alone) at the top level of any of the following searched for locations:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>~/.lv2</b><!--}--></li>
+<!--
+\item --><li> <!--\textbf{--><b>/usr/local/lib/lv2</b><!--}--> or <!--\textbf{--><b>/usr/local/lib64/lv2</b><!--}--></li>
+<!--
+\item --><li> <!--\textbf{--><b>/usr/lib/lv2</b><!--}--> or <!--\textbf{--><b>/usr/lib64/lv2</b><!--}--></li></ul><!--
+\end{itemize}
+-->
+<div class="note">Search paths where Audacity looks for LV2 plug-ins may also be specified by setting the <!--\textbf{--><b>LV2_PATH</b><!--}--> environment variable. The path listed below is legitimate.
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>$HOME/.lv2:/usr/local/lib/lv2:/usr/lib/lv2</b><!--}--> (assuming $PREFIX is /usr/local as it should be by default)  </li></ul><!--
+\end{itemize}
+--></div>
+<p>Then use <span class="menu">Effect &gt; <!--latex 
+\hyperref[\foo{effect:menu:add:remove:plugins}]{--><a href="effect_menu.html#add_remove_plugins" title="Effect Menu">Add / Remove Plug-ins...</a><!--latex }
+--></span> to enable the LV2 effects and load them into Audacity,  For details see <!--latex 
+\hyperref[\foo{manage:effects:generators:and:analyzers:}]{--><a href="manage_effects_generators_and_analyzers.html" title="Manage Effects, Generators and Analyzers">Plug-in Manager: Effects, Generators and Analyzers</a><!--latex }
+-->.
+</p><p><br/>
+</p>
+<div id="vamp_install"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Installing_VAMP_plug-ins">Installing VAMP plug-ins</span></h2><!--}--><!--latex 
+\label{installing:effect:generator:and:analyzer:plug:ins:on:linux:vamp:install}-->
+<p><a class="external text" href="http://www.vamp-plugins.org/" rel="nofollow">VAMP</a> plug-ins are usually for analyzing audio so will appear under Audacity's <!--latex 
+\hyperref[\foo{analyze:menu:}]{--><a href="analyze_menu.html" title="Analyze Menu">Analyze Menu</a><!--latex }
+-->. You can do interesting things like attempt to track beats, note pitches, chords or frequencies. Any VAMP plug-ins whose output is suitable for a label track should work in Audacity on GNU/Linux. To add a new VAMP analysis tool, add the plug-in's DLL, DYLIB or SO file and any supplied category or RDF files to any of the <!--latex 
+\hyperref[\foo{analyze:menu:vamp}]{--><a href="analyze_menu.html#vamp" title="Analyze Menu">VAMP search locations</a><!--latex }
+--> then enable the tool in the <!--latex 
+\hyperref[\foo{manage:effects:generators:and:analyzers:}]{--><a href="manage_effects_generators_and_analyzers.html" title="Manage Effects, Generators and Analyzers">Plug-in Manager: Effects, Generators and Analyzers</a><!--latex }
+--> dialog.
+</p><p><!--\textbf{--><b>VAMP</b><!--}--> plug-ins may be installed in 
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>$HOME/vamp</b><!--}--></li>
+<!--
+\item --><li> <!--\textbf{--><b>$HOME/.vamp</b><!--}--></li>
+<!--
+\item --><li> <!--\textbf{--><b>/usr/local/lib/vamp</b><!--}--></li>
+<!--
+\item --><li> <!--\textbf{--><b>/usr/lib/vamp</b><!--}-->. </li></ul><!--
+\end{itemize}
+-->
+<p>Alternatively the VAMP_PATH environment variable may be set to any of those specified VAMP installation directories. VAMP plug-ins will normally be placed in the Analyze Menu of Audacity.
+</p><p><br/>
+</p>
+<div id="launch"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="How_can_I_solve_Audacity_crashing_after_I_add_a_plug-in.3F">How can I solve Audacity crashing after I add a plug-in?</span></h2><!--}--><!--latex 
+\label{installing:effect:generator:and:analyzer:plug:ins:on:linux:launch}-->
+<p>Please see <!--latex 
+\hyperref[\foo{faq:installation:and:plug:ins:launch}]{--><a href="faq_installation_and_plug_ins.html#launch" title="FAQ:Installation and Plug-Ins">this FAQ</a><!--latex }
+-->    
+</p>
+<div class="note">If you discover a specific plug-in that misbehaves in Audacity, please email our <a class="external text" href="https://web.audacityteam.org/contact/#feedback" rel="nofollow">feedback address</a>. Please include any available <!--latex 
+\hyperref[\foo{help:menu:data}]{--><a href="help_menu.html#data" title="Help Menu">Debug report</a><!--latex }
+--> that Audacity generates.</div>
+
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

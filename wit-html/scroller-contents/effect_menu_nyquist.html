@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Effect Menu: Nyquist - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Effect_Menu_Nyquist rootpage-Effect_Menu_Nyquist skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Effect Menu: Nyquist</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{effect:menu:nyquist:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p><br/>
+</p>
+<div class="intro"><a class="external text" href="https://wiki.audacityteam.org/wiki/Nyquist" rel="nofollow">Nyquist</a> plug-ins provide most of the optional effects underneath the divider in the Effect menu. They are also used to provide some of Audacity's built-in audio <!--latex 
+\hyperref[\foo{generate:menu:}]{--><a href="generate_menu.html" title="Generate Menu">generators</a><!--latex }
+--> and <!--latex 
+\hyperref[\foo{analyze:menu:}]{--><a href="analyze_menu.html" title="Analyze Menu">analysis tools</a><!--latex }
+-->. A wide range of additional Nyquist effect, generation and analysis plug-ins can be obtained from <a class="external text" href="https://wiki.audacityteam.org/wiki/Download_Nyquist_Plug-ins" rel="nofollow">Download Nyquist Plug-ins</a> on our Wiki.<p>Nyquist effects support saving of user presets but do not yet support <!--latex 
+\hyperref[\foo{real:time:preview:of:effects:}]{--><a href="real_time_preview_of_effects.html" title="Real-time preview of effects">real-time preview</a><!--latex }
+--> or import/export of presets from/to other machines.</p> </div>
+<div class="note">Where a built-in or shipped Nyquist effect has an interface, its description page (accessed by the links below) shows an image of the interface and its default settings.</div>
+<dl><dd><!--\textit{--><i>Click, or hover, on any menu item in the image to read about that command.  &nbsp;<span style="font-size:0.8em"><!--latex 
+\hyperref[\foo{effect:menu:nyquist::skiptheimage}]{--><a href="#skiptheimage">Skip the image</a><!--latex }
+--></span></i><!--}--></dd>
+<dd><div class="noresize"><map name="ImageMap_1_1043231663"><area alt="Generate Menu" coords="0,3,26,19" href="generate_menu.html" shape="rect" title="Generate Menu"/><area alt="Effect Menu" coords="33,3,66,19" href="effect_menu.html" shape="rect" title="Effect Menu"/><area alt="Analyze Menu" coords="73,3,117,19" href="analyze_menu.html" shape="rect" title="Analyze Menu"/><area alt="Help Menu" coords="124,3,153,19" href="help_menu.html" shape="rect" title="Help Menu"/><area alt="Ext-Bar Menu" coords="160,3,202,19" href="ext_bar_menu.html" shape="rect" title="Ext-Bar Menu"/><area alt="Ext-Command Menu" coords="209,3,291,19" href="ext_command_menu.html" shape="rect" title="Ext-Command Menu"/><area alt="Menu Bar" coords="0,0,600,22" href="menu_reference.html" shape="rect" title="Menu Bar"/><area alt="Selecting this option from the Effect Menu (or the Generate Menu or Analyze Menu) takes you to a dialog where you can enable or disable particular Effects, Generators and Analyzers in Audacity" coords="39,23,259,45" href="effect_menu.html#add_remove_plugins" shape="rect" title="Selecting this option from the Effect Menu (or the Generate Menu or Analyze Menu) takes you to a dialog where you can enable or disable particular Effects, Generators and Analyzers in Audacity"/><area alt="Repeats the last used effect at its last used settings and without displaying any dialog" coords="39,52,259,74" href="effect_menu.html#repeat_last_effect" shape="rect" title="Repeats the last used effect at its last used settings and without displaying any dialog"/><area alt="Effects built in to Audacity" coords="39,81,259,103" href="effect_menu_audacity.html" shape="rect" title="Effects built in to Audacity"/><area alt='"Linux Audio Plug-in Audio" effects' coords="39,110,259,132" href="effect_menu_ladspa.html" shape="rect" title='"Linux Audio Plug-in Audio" effects'/><area alt='Effects created using a LISP-variant called "Nyquist"' coords="39,132,259,154" href="#" shape="rect" title='Effects created using a LISP-variant called "Nyquist"'/><area alt="enables you to control the shape of the fade (non-linear fading) to be applied by adjusting various parameters; allows partial (that is not from or to zero) fades up or down" coords="271,26,491,48" href="adjustable_fade.html" shape="rect" title="enables you to control the shape of the fade (non-linear fading) to be applied by adjusting various parameters; allows partial (that is not from or to zero) fades up or down"/><area alt="Clip Fix attempts to reconstruct clipped regions by interpolating the lost signal" coords="271,48,491,70" href="clip_fix.html" shape="rect" title="Clip Fix attempts to reconstruct clipped regions by interpolating the lost signal"/><area alt="Use Crossfade Clips to apply a simple crossfade to a selected pair of clips in a single audio track" coords="271,70,491,92" href="crossfade_clips.html" shape="rect" title="Use Crossfade Clips to apply a simple crossfade to a selected pair of clips in a single audio track"/><area alt="Use Crossfade Tracks to make a smooth transition between two overlapping tracks one above the other" coords="271,92,491,114" href="crossfade_tracks.html" shape="rect" title="Use Crossfade Tracks to make a smooth transition between two overlapping tracks one above the other"/><area alt="A configurable delay effect with variable delay time and pitch shifting of the delays" coords="271,114,491,136" href="delay.html" shape="rect" title="A configurable delay effect with variable delay time and pitch shifting of the delays"/><area alt="Passes frequencies above its cutoff frequency and attenuates frequencies below its cutoff frequency" coords="271,136,491,158" href="high_pass_filter.html" shape="rect" title="Passes frequencies above its cutoff frequency and attenuates frequencies below its cutoff frequency"/><area alt="Limiter passes signals below a specified input level unaffected or gently reduced, while preventing the peaks of stronger signals from exceeding this threshold" coords="271,158,491,180" href="limiter.html" shape="rect" title="Limiter passes signals below a specified input level unaffected or gently reduced, while preventing the peaks of stronger signals from exceeding this threshold"/><area alt="Passes frequencies below its cutoff frequency and attenuates frequencies above its cutoff frequency" coords="271,180,491,202" href="low_pass_filter.html" shape="rect" title="Passes frequencies below its cutoff frequency and attenuates frequencies above its cutoff frequency"/><area alt='Greatly attenuate ("notch out") a narrow frequency band' coords="271,202,491,224" href="notch_filter.html" shape="rect" title='Greatly attenuate ("notch out") a narrow frequency band'/><area alt="Brings up a dialog where you can enter Nyquist commands" coords="271,224,491,246" href="nyquist_prompt.html" shape="rect" title="Brings up a dialog where you can enter Nyquist commands"/><area alt="When the selected track is in spectrogram or spectrogram log(f) view, applies a  notch filter, high pass filter or low pass filter according to the spectral selection made" coords="271,246,491,268" href="spectral_edit_multi_tool.html" shape="rect" title="When the selected track is in spectrogram or spectrogram log(f) view, applies a  notch filter, high pass filter or low pass filter according to the spectral selection made"/><area alt="When the selected track is in spectrogram or spectrogram log(f) view and the spectral selection has a center frequency and an upper and lower boundary, performs the specified band cut or band boost" coords="271,268,491,290" href="spectral_edit_parametric_eq.html" shape="rect" title="When the selected track is in spectrogram or spectrogram log(f) view and the spectral selection has a center frequency and an upper and lower boundary, performs the specified band cut or band boost"/><area alt="When the selected track is in spectrogram or spectrogram log(f) view, applies either a low- or high-frequency shelving filter or both filters, according to the spectral selection made" coords="271,290,491,312" href="spectral_edit_shelves.html" shape="rect" title="When the selected track is in spectrogram or spectrogram log(f) view, applies either a low- or high-frequency shelving filter or both filters, according to the spectral selection made"/><area alt="Applies a more musical fade out to the selected audio, giving a more pleasing sounding result" coords="271,312,491,334" href="fades.html#studio_fadeout" shape="rect" title="Applies a more musical fade out to the selected audio, giving a more pleasing sounding result"/><area alt="Modulates the volume of the selection at the depth and rate selected in the dialog" coords="271,334,491,356" href="tremolo.html" shape="rect" title="Modulates the volume of the selection at the depth and rate selected in the dialog"/><area alt="Attempts to remove or isolate center-panned audio from a stereo track" coords="271,356,491,378" href="vocal_reduction_and_isolation.html" shape="rect" title="Attempts to remove or isolate center-panned audio from a stereo track"/><area alt="(Legacy effect) Attempts to remove center-panned vocals from a stereo track" coords="271,378,491,400" href="vocal_remover.html" shape="rect" title="(Legacy effect) Attempts to remove center-panned vocals from a stereo track"/><area alt="Synthesizes audio (usually a voice) in the left channel of a stereo track with a carrier wave (typically white noise) in the right channel to produce a modified version of the left channel" coords="271,400,491,422" href="vocoder.html" shape="rect" title="Synthesizes audio (usually a voice) in the left channel of a stereo track with a carrier wave (typically white noise) in the right channel to produce a modified version of the left channel"/></map><!--
+
+\par\Needspace{245.0pt}\begin{picture}(252.0,215.0)
+--><!--   \put(0,0){\includegraphics[scale=0.5]{--><img alt="Effect-NyquistMenu.png" height="430" src="../m/images/4/4d/effect_nyquistmenu.png" usemap="#ImageMap_1_1043231663" width="504"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/4/4d/effect_nyquistmenu.png--></img><!--}}
+--><!--   \put(0.0,205.5){\hyperref[\foo{generate:menu:}]{\makebox(13.0,8.0){}}}
+   \put(16.5,205.5){\hyperref[\foo{effect:menu:}]{\makebox(16.5,8.0){}}}
+   \put(36.5,205.5){\hyperref[\foo{analyze:menu:}]{\makebox(22.0,8.0){}}}
+   \put(62.0,205.5){\hyperref[\foo{help:menu:}]{\makebox(14.5,8.0){}}}
+   \put(80.0,205.5){\hyperref[\foo{ext:bar:menu:}]{\makebox(21.0,8.0){}}}
+   \put(104.5,205.5){\hyperref[\foo{ext:command:menu:}]{\makebox(41.0,8.0){}}}
+   \put(19.5,192.5){\hyperref[\foo{effect:menu:add:remove:plugins}]{\makebox(110.0,11.0){}}}
+   \put(19.5,178.0){\hyperref[\foo{effect:menu:repeat:last:effect}]{\makebox(110.0,11.0){}}}
+   \put(19.5,163.5){\hyperref[\foo{effect:menu:audacity:}]{\makebox(110.0,11.0){}}}
+   \put(19.5,149.0){\hyperref[\foo{effect:menu:ladspa:}]{\makebox(110.0,11.0){}}}
+   \put(19.5,138.0){\hyperref[\foo{effect:menu:nyquist::}]{\makebox(110.0,11.0){}}}
+   \put(135.5,191.0){\hyperref[\foo{adjustable:fade:}]{\makebox(110.0,11.0){}}}
+   \put(135.5,180.0){\hyperref[\foo{clip:fix:}]{\makebox(110.0,11.0){}}}
+   \put(135.5,169.0){\hyperref[\foo{crossfade:clips:}]{\makebox(110.0,11.0){}}}
+   \put(135.5,158.0){\hyperref[\foo{crossfade:tracks:}]{\makebox(110.0,11.0){}}}
+   \put(135.5,147.0){\hyperref[\foo{delay:}]{\makebox(110.0,11.0){}}}
+   \put(135.5,136.0){\hyperref[\foo{high:pass:filter:}]{\makebox(110.0,11.0){}}}
+   \put(135.5,125.0){\hyperref[\foo{limiter:}]{\makebox(110.0,11.0){}}}
+   \put(135.5,114.0){\hyperref[\foo{low:pass:filter:}]{\makebox(110.0,11.0){}}}
+   \put(135.5,103.0){\hyperref[\foo{notch:filter:}]{\makebox(110.0,11.0){}}}
+   \put(135.5,92.0){\hyperref[\foo{nyquist:prompt:}]{\makebox(110.0,11.0){}}}
+   \put(135.5,81.0){\hyperref[\foo{spectral:edit:multi:tool:}]{\makebox(110.0,11.0){}}}
+   \put(135.5,70.0){\hyperref[\foo{spectral:edit:parametric:eq:}]{\makebox(110.0,11.0){}}}
+   \put(135.5,59.0){\hyperref[\foo{spectral:edit:shelves:}]{\makebox(110.0,11.0){}}}
+   \put(135.5,48.0){\hyperref[\foo{fades:studio:fadeout}]{\makebox(110.0,11.0){}}}
+   \put(135.5,37.0){\hyperref[\foo{tremolo:}]{\makebox(110.0,11.0){}}}
+   \put(135.5,26.0){\hyperref[\foo{vocal:reduction:and:isolation:}]{\makebox(110.0,11.0){}}}
+   \put(135.5,15.0){\hyperref[\foo{vocal:remover:}]{\makebox(110.0,11.0){}}}
+   \put(135.5,4.0){\hyperref[\foo{vocoder:}]{\makebox(110.0,11.0){}}}
+\end{picture}
+
+--></div></dd></dl>
+<div id="skiptheimage"></div>
+<div id="nyquist_effects"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Nyquist_effects">Nyquist effects</span></h2><!--}--><!--latex 
+\label{effect:menu:nyquist:nyquist:effects}--><!--latex 
+\label{effect:menu:nyquist:skiptheimage}-->
+<div class="note">
+Nyquist effects support saving of user presets but do not yet support <!--latex 
+\hyperref[\foo{real:time:preview:of:effects:}]{--><a href="real_time_preview_of_effects.html" title="Real-time preview of effects">real-time preview</a><!--latex }
+--> or import/export of presets from/to other machines.</div>
+<p><a class="external text" href="https://wiki.audacityteam.org/wiki/Nyquist" rel="nofollow">Nyquist</a> plug-ins provide most of the optional effects underneath the divider in the Effect menu. They are also used to provide some of Audacity's built-in audio <!--latex 
+\hyperref[\foo{generate:menu:}]{--><a href="generate_menu.html" title="Generate Menu">generators</a><!--latex }
+--> and <!--latex 
+\hyperref[\foo{analyze:menu:}]{--><a href="analyze_menu.html" title="Analyze Menu">analysis tools</a><!--latex }
+-->. A wide range of additional Nyquist effect, generation and analysis plug-ins can be obtained from <a class="external text" href="https://wiki.audacityteam.org/wiki/Download_Nyquist_Plug-ins" rel="nofollow">Download Nyquist Plug-ins</a> on our Wiki.
+</p><p>The  <span class="button">Debug</span> button in most Nyquist effect dialogs opens a "Nyquist Output" window containing any informational or error output provided by the effect.   This is primarily of use when writing or editing <a class="external text" href="https://wiki.audacityteam.org/wiki/Nyquist_Plug-ins_Reference" rel="nofollow">Nyquist plug-ins</a>.  After pressing <span class="button">OK</span> in this window, the effect or other chosen action is attempted just as it would be if pressing OK in the effect instead of using the Debug button. 
+</p><p>For detailed instructions on installing Nyquist plug-ins for Audacity see: <!--latex 
+\hyperref[\foo{installing:effect:generator:and:analyzer:plug:ins:on:windows:nyquist:install}]{--><a href="installing_effect_generator_and_analyzer_plug_ins_on_windows.html#nyquist_install" title="Installing Effect, Generator and Analyzer plug-ins on Windows"><span title="A guide to installing Effect, Generator and Analyzer plug-ins for Audacity Windows computer platforms.">Windows</span></a><!--latex }
+-->, <!--latex 
+\hyperref[\foo{installing:effect:generator:and:analyzer:plug:ins:on:mac:os:x:nyquist:install}]{--><a href="installing_effect_generator_and_analyzer_plug_ins_on_mac_os_x.html#nyquist_install" title="Installing Effect, Generator and Analyzer plug-ins on MAC OS X"><span title="A guide to installing Effect, Generator and Analyzer plug-ins for Audacity on Mac computer platforms.">Mac</span></a><!--latex }
+--> or <!--latex 
+\hyperref[\foo{installing:effect:generator:and:analyzer:plug:ins:on:linux:nyquist:install}]{--><a href="installing_effect_generator_and_analyzer_plug_ins_on_linux.html#nyquist_install" title="Installing Effect, Generator and Analyzer plug-ins on Linux"><span title="A guide to installing Effect, Generator and Analyzer plug-ins for Audacity on Linux computer platforms.">Linux</span></a><!--latex }
+-->
+</p><p>To load the new effects into Audacity so they are available in the menu, use the <!--latex 
+\hyperref[\foo{manage:effects:generators:and:analyzers:}]{--><a href="manage_effects_generators_and_analyzers.html" title="Manage Effects, Generators and Analyzers">Plug-in Manager: Effects, Generators and Analyzers</a><!--latex }
+--> dialog.
+</p>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">Some Nyquist plug-ins could crash while processing very long audio selections (typically an hour or more). This is due to the plug-in using a large amount of memory and is a known issue in Audacity's current Nyquist implementation. Try using the plug-in on shorter selections instead.
+</td></tr></tbody></table>
+</div>
+<div id="workbench"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Nyquist_Workbench">Nyquist Workbench</span></h2><!--}--><!--latex 
+\label{effect:menu:nyquist:workbench}-->
+<p>For advanced users who can compile Audacity, Nyquist Workbench gives the ability to run arbitrary Nyquist code in Audacity from a graphical IDE <!--\textit{--><i>(Integrated Development Environment)</i><!--}-->.  See <a class="external text" href="https://wiki.audacityteam.org/wiki/Nyquist_Plug-ins_Reference#Nyquist_Workbench" rel="nofollow">Nyquist Workbench</a> in the Wiki for details. 
+</p>
+<div id="nyquist_incl"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Nyquist_plug-ins_included_in_Audacity">Nyquist plug-ins included in Audacity</span></h2><!--}--><!--latex 
+\label{effect:menu:nyquist:nyquist:incl}-->
+<p>The following sample Nyquist plug-ins are included in released builds of Audacity:
+</p>
+<div id="adjustable_fade"></div>
+<div id="adjustable"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Adjustable_Fade..."><!--latex 
+\hyperref[\foo{adjustable:fade:}]{--><a href="adjustable_fade.html" title="Adjustable Fade">Adjustable Fade...</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{effect:menu:nyquist:adjustable}--><!--latex 
+\label{effect:menu:nyquist:adjustable:fade}-->
+<p>Launches a dialog box where you can choose the shape of the fade in or fade out to be applied. You can also create fades to and from other than silence or full volume. An example of this might be a fade in from 20% of the original volume to 80% of the original volume.  
+</p>
+<div id="clip_fix"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Clip_Fix..."><!--latex 
+\hyperref[\foo{clip:fix:}]{--><a href="clip_fix.html" title="Clip Fix">Clip Fix...</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{effect:menu:nyquist:clip:fix}-->
+<p>Attempts to reconstruct clipped regions by interpolating the lost signal.
+</p>
+<div id="crossfade_clips"></div>
+<div id="xfade"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Crossfade_Clips"><!--latex 
+\hyperref[\foo{crossfade:clips:}]{--><a href="crossfade_clips.html" title="Crossfade Clips">Crossfade Clips</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{effect:menu:nyquist:xfade}--><!--latex 
+\label{effect:menu:nyquist:crossfade:clips}-->
+<p>Applies a simple crossfade to a selected pair of clips in a single audio track.
+</p>
+<div id="crossfade_tracks"></div>
+<div id="crossfade"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Crossfade_Tracks"><!--latex 
+\hyperref[\foo{crossfade:tracks:}]{--><a href="crossfade_tracks.html" title="Crossfade Tracks">Crossfade Tracks</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{effect:menu:nyquist:crossfade}--><!--latex 
+\label{effect:menu:nyquist:crossfade:tracks}-->
+<p>Applies a crossfade to a selected region of a pair of tracks.
+</p>
+<div id="delay"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Delay..."><!--latex 
+\hyperref[\foo{delay:}]{--><a href="delay.html" title="Delay">Delay...</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{effect:menu:nyquist:delay}-->
+<p>A configurable delay effect with variable delay time and pitch shifting of the delays.
+</p>
+<div id="high_pass_filter"></div>
+<div id="filters"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="High_Pass_Filter..."><!--latex 
+\hyperref[\foo{high:pass:filter:}]{--><a href="high_pass_filter.html" title="High Pass Filter">High Pass Filter...</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{effect:menu:nyquist:filters}--><!--latex 
+\label{effect:menu:nyquist:high:pass:filter}-->
+<p>Passes frequencies above its cutoff frequency and attenuates frequencies below its cutoff frequency; this can be used to reduce low frequency noise.
+</p>
+<div id="limiter"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Limiter..."><!--latex 
+\hyperref[\foo{limiter:}]{--><a href="limiter.html" title="Limiter">Limiter...</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{effect:menu:nyquist:limiter}-->
+<p>Limiter passes signals below a specified input level unaffected or gently reduced, while preventing the peaks of stronger signals from exceeding this threshold. Limiting is a type of dynamic range compression. Mastering engineers often use limiting combined with make-up gain to increase the perceived loudness of an audio recording during the audio mastering process.
+</p>
+<div id="low_pass_filter"></div>
+<div id="low_pass"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Low_Pass_Filter..."><!--latex 
+\hyperref[\foo{low:pass:filter:}]{--><a href="low_pass_filter.html" title="Low Pass Filter">Low Pass Filter...</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{effect:menu:nyquist:low:pass}--><!--latex 
+\label{effect:menu:nyquist:low:pass:filter}-->
+<p>Passes frequencies below its cutoff frequency and attenuates frequencies above its cutoff frequency; this can be used to reduce high pitched noise. 
+</p>
+<div id="notch_filter"></div>
+<div id="notch"></div>  
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Notch_Filter..."><!--latex 
+\hyperref[\foo{notch:filter:}]{--><a href="notch_filter.html" title="Notch Filter">Notch Filter...</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{effect:menu:nyquist:notch}--><!--latex 
+\label{effect:menu:nyquist:notch:filter}-->
+<p>Greatly attenuate ("notch out") a narrow frequency band. This is a good way to reduce mains hum or a whistle confined to a specific frequency with minimal damage to the remainder of the audio.  
+</p>
+<div id="nyquist_prompt"></div>
+<div id="Nyquist"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Nyquist_Prompt..."><!--latex 
+\hyperref[\foo{nyquist:prompt:}]{--><a href="nyquist_prompt.html" title="Nyquist Prompt">Nyquist Prompt...</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{effect:menu:nyquist:Nyquist}--><!--latex 
+\label{effect:menu:nyquist:nyquist:prompt}-->
+<p>Launches a dialog where you can enter Nyquist commands. Nyquist is a applicationming language for producing and processing audio. For more information see <a class="external text" href="https://wiki.audacityteam.org/wiki/Nyquist_Plug-ins_Reference" rel="nofollow">Nyquist Plug-ins Reference</a>.
+</p>
+<div id="spectral_edit_multi_tool"></div>
+<div id="spectral_multi"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Spectral_edit_multi_tool"><!--latex 
+\hyperref[\foo{spectral:edit:multi:tool:}]{--><a href="spectral_edit_multi_tool.html" title="Spectral edit multi tool">Spectral edit multi tool</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{effect:menu:nyquist:spectral:multi}--><!--latex 
+\label{effect:menu:nyquist:spectral:edit:multi:tool}-->
+<div class="note"><!--\textit{--><i><!--\textbf{--><b>Spectral edit multi tool</b><!--}--></i><!--}--> (and <!--\textit{--><i><!--\textbf{--><b>Spectral edit parametric EQ</b><!--}--></i><!--}--> and <!--\textit{--><i><!--\textbf{--><b>Spectral edit shelves</b><!--}--></i><!--}--> described immediately following) are intended for working on a combined frequency and time selection made when using <!--latex 
+\hyperref[\foo{audio:track:dropdown:menu:spgram}]{--><a href="audio_track_dropdown_menu.html#spgram" title="Audio Track Dropdown Menu">Spectrogram</a><!--latex }
+--> view.</div>
+<p>If a fully defined <!--latex 
+\hyperref[\foo{spectral:selection:}]{--><a href="spectral_selection.html" title="Spectral Selection">spectral selection</a><!--latex }
+--> has been made, choosing <!--\textit{--><i>Spectral edit multi-tool</i><!--}--> applies the appropriate filter for the selection. See <!--latex 
+\hyperref[\foo{spectral:selection:multi}]{--><a href="spectral_selection.html#multi" title="Spectral Selection">Spectral edit multi tool</a><!--latex }
+--> for more information.
+</p>
+<div id="spectral_edit_parametric_eq"></div>
+<div id="spectral_eq"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Spectral_edit_parametric_EQ..."><!--latex 
+\hyperref[\foo{spectral:edit:parametric:eq:}]{--><a href="spectral_edit_parametric_eq.html" title="Spectral edit parametric EQ">Spectral edit parametric EQ...</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{effect:menu:nyquist:spectral:eq}--><!--latex 
+\label{effect:menu:nyquist:spectral:edit:parametric:eq}-->
+<p>If a fully defined <!--latex 
+\hyperref[\foo{spectral:selection:}]{--><a href="spectral_selection.html" title="Spectral Selection">spectral selection</a><!--latex }
+--> has been made, the effect applies a band cut or band boost according to the value you enter in the "Gain (dB)" control. See <!--latex 
+\hyperref[\foo{spectral:edit:parametric:eq:}]{--><a href="spectral_edit_parametric_eq.html" title="Spectral edit parametric EQ">Spectral edit parametric EQ</a><!--latex }
+--> for more information.
+</p>
+<div id="spectral_edit_shelves"></div>
+<div id="spectral_shelves"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Spectral_edit_shelves..."><!--latex 
+\hyperref[\foo{spectral:edit:shelves:}]{--><a href="spectral_edit_shelves.html" title="Spectral edit shelves">Spectral edit shelves...</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{effect:menu:nyquist:spectral:shelves}--><!--latex 
+\label{effect:menu:nyquist:spectral:edit:shelves}-->
+<p>If a fully defined <!--latex 
+\hyperref[\foo{spectral:selection:}]{--><a href="spectral_selection.html" title="Spectral Selection">spectral selection</a><!--latex }
+--> has been made, the effect applies a low shelf filter, high shelf filter or combined low and high shelf filter according to the value you enter in the "Gain (dB)" control. See <!--latex 
+\hyperref[\foo{spectral:edit:shelves:}]{--><a href="spectral_edit_shelves.html" title="Spectral edit shelves">Spectral edit shelves</a><!--latex }
+--> for more information.
+</p>
+<div id="studio_fade_out"></div>
+<div id="studio_fadeout"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Studio_Fade_Out"><!--latex 
+\hyperref[\foo{fades:studio:fadeout}]{--><a href="fades.html#studio_fadeout" title="Fades">Studio Fade Out</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{effect:menu:nyquist:studio:fadeout}--><!--latex 
+\label{effect:menu:nyquist:studio:fade:out}-->
+<p>Produces a smooth and musical sounding fade out, by applying a sinusoidal fade with a progressive low pass filter from full spectrum at the start of the selection to 100 Hz at the end.
+</p>
+<div id="tremolo"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Tremolo..."><!--latex 
+\hyperref[\foo{tremolo:}]{--><a href="tremolo.html" title="Tremolo">Tremolo...</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{effect:menu:nyquist:tremolo}-->
+<p>Modulates the volume of the selection at the depth and rate selected in the dialog. The same as the tremolo effect familiar to guitar and keyboard players.
+</p>
+<div id="vocal_reduction_and_isolation"></div>
+<div id="vrandi"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Vocal_Reduction_and_Isolation..."><!--latex 
+\hyperref[\foo{vocal:reduction:and:isolation:}]{--><a href="vocal_reduction_and_isolation.html" title="Vocal Reduction and Isolation">Vocal Reduction and Isolation...</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{effect:menu:nyquist:vrandi}--><!--latex 
+\label{effect:menu:nyquist:vocal:reduction:and:isolation}-->
+<p>Attempts to remove or isolate center-panned audio from a stereo track. Vocals are often <!--\textit{--><i>(but not always)</i><!--}--> recorded in this way. The <!--\textit{--><i>classic method</i><!--}--> achieves this by subtracting one channel from the other, but the result will be (dual) mono <!--\textit{--><i>(this method can be found under the Actions menu in this effect as "Remove Center Classic (Mono)" and is a quick way to remove the center if only mono is needed)</i><!--}-->. All other "Remove" options in this effect preserve the stereo image
+</p>
+<div id="vocal_remover"></div>
+<div id="vocal"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Vocal_Remover_.28for_center-panned_vocals.29..."><!--latex 
+\hyperref[\foo{vocal:remover:}]{--><a href="vocal_remover.html" title="Vocal Remover">Vocal Remover (for center-panned vocals)...</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{effect:menu:nyquist:vocal}--><!--latex 
+\label{effect:menu:nyquist:vocal:remover}-->
+<p>Attempts to remove center-panned audio from a stereo track. Vocals are often <!--\textit{--><i>(but not always)</i><!--}--> recorded in this way. Vocals (or other audio) can only be removed with this plug-in when panned to center, in other words sounding equally loud in both left and right channels. Help text is available from within the effect's dialog box.  This is a "Legacy effect": the same result can be achieved by using the <!--\textit{--><i>Remove Center Classic (Mono)</i><!--}--> option in  <!--latex 
+\hyperref[\foo{vocal:reduction:and:isolation:}]{--><a href="vocal_reduction_and_isolation.html" title="Vocal Reduction and Isolation">Vocal Reduction and Isolation</a><!--latex }
+-->.
+</p>
+<div id="vocoder"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Vocoder..."><!--latex 
+\hyperref[\foo{vocoder:}]{--><a href="vocoder.html" title="Vocoder">Vocoder...</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{effect:menu:nyquist:vocoder}-->
+<p>Vocoder synthesizes a modulator (usually a voice) in the left channel of a stereo track with a carrier wave in the right channel to produce a modified version of the left channel. Vocoding a normal voice with white noise as provided in the effect will produce a robot-like voice for special effects. Other carriers can be used for subtly different voices. Vocoder can only be applied to unsplit stereo tracks.
+</p><p><br/>
+</p><p><!--latex 
+\hyperref[\foo{effect:menu:}]{--><a href="effect_menu.html" title="Effect Menu"><!--\textbf{--><b>&lt;</b><!--}-->&nbsp; Back to: Effect Menu</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

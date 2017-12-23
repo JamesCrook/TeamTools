@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Other uncompressed files Export Options - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Other_uncompressed_files_Export_Options rootpage-Other_uncompressed_files_Export_Options skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Other uncompressed files Export Options</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{other:uncompressed:files:export:options:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+
+
+</p>
+<dl><dd>Accessed by: <span class="menu">File &gt; Save Other &gt; Export Audio...</span> then choosing <!--\textbf{--><b>Other uncompressed files</b><!--}--> from the <!--\textbf{--><b>Save as type</b><!--}--> dropdown menu.</dd></dl>
+<dl><dd><span title="Specify Uncompressed Options at the bottom of the Export Audio dialog"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="OptionsUncompressed.PNG" height="576" src="../m/images/2/27/optionsuncompressed.png" width="571"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/2/27/optionsuncompressed.png--></img><!--}\par
+--></span></dd></dl>
+<dl><dd>Also accessed by: <span class="menu">File &gt; Save Other &gt; <!--latex 
+\hyperref[\foo{file:menu:save:other:exportmultiple}]{--><a href="file_menu_save_other.html#exportmultiple" title="File Menu: Save Other">Export Multiple...</a><!--latex }
+--></span> then choosing <!--\textbf{--><b>Other uncompressed files</b><!--}-->  from the <!--\textbf{--><b>Save as type</b><!--}--> dropdown menu.  In this case the options dialog will appear in the center of the Export Multiple dialog.</dd></dl>
+<div id="setup"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Uncompressed_Export_Setup">Uncompressed Export Setup</span></h2><!--}--><!--latex 
+\label{other:uncompressed:files:export:options:setup}-->
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Header">Header</span></h3><!--}-->
+<p>Specifies the "type" or <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:extension}]{--><a href="glossary.html#extension" title="Glossary">extension</a><!--latex }
+--></b><!--}--></i><!--}--> of the exported file.
+</p>
+<div class="note">"Raw (header-less)" or "RF64 (RIFF 64)" headers (with PCM encoding in either case) may be used if extremely large files similar to <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:wav}]{--><a href="glossary.html#wav" title="Glossary">WAV</a><!--latex }
+--></b><!--}--></i><!--}--> are required. The RF64 size limit is about 16 <a class="external text" href="https://en.wikipedia.org/wiki/Exabytes" rel="nofollow">exabytes</a>, making it suitable for very long multi-channel files.</div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Encoding">Encoding</span></h3><!--}-->
+<p>Determines the <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:codec}]{--><a href="glossary.html#codec" title="Glossary">codec</a><!--latex }
+--></b><!--}--></i><!--}--> and where appropriate, the <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:sample:format}]{--><a href="glossary.html#sample_format" title="Glossary">sample format</a><!--latex }
+--></b><!--}--></i><!--}--> (for example, 16-<!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:bit}]{--><a href="glossary.html#bit" title="Glossary">bit</a><!--latex }
+--></b><!--}--></i><!--}-->) of the audio. The fewer the number of bits, the less accurately the audio waveform will be represented, but the smaller file size that will be required. 
+</p>
+<div class="note">Only the most commonly used encoding types are shown below. Those that use less than 16-bit format (or are lossy codecs like GSM) are usually optimized for specific purposes such as speech telecommunication. With the possible exception of (A)DPCM, higher quality audio for the same reduced file size can generally be obtained by using other <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:lossy}]{--><a href="glossary.html#lossy" title="Glossary">lossy</a><!--latex }
+--></b><!--}--></i><!--}--> codecs like <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:mp3}]{--><a href="glossary.html#mp3" title="Glossary">MP3</a><!--latex }
+--></b><!--}--></i><!--}-->, <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:ogg}]{--><a href="glossary.html#ogg" title="Glossary">OGG</a><!--latex }
+--></b><!--}--></i><!--}--> or <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:aac}]{--><a href="glossary.html#aac" title="Glossary">AAC</a><!--latex }
+--></b><!--}--></i><!--}-->. These use psychoacoustic modelling to try and make the retained audio sound similar to the original.</div> 
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>Signed/unsigned PCM:</b><!--}--> These formats represent the audio data by integer numbers. There are 8-bit, 16-bit, 24-bit, or 32-bit choices.</li>
+<!--
+\item --><li><!--\textbf{--><b>Float:</b><!--}--> These formats represent the audio data by floating-point numbers. This allows a much wider range of sample values to be represented, further increasing its accuracy. There are "32-bit" and "64-bit" choices. </li>
+<!--
+\item --><li><!--\textbf{--><b>U-Law, A-Law:</b><!--}--> 8-bit formats using different types of <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:companding}]{--><a href="glossary.html#companding" title="Glossary">companding</a><!--latex }
+--></b><!--}--></i><!--}--> algorithms. These reduce the dynamic range of the audio when written to the file, but restore it when played back.  </li>
+<!--
+\item --><li><!--\textbf{--><b>ADPCM, DPCM:</b><!--}--> ADPCM are 4-bit formats that sound near-identical to PCM except where there is a lot of low frequency content. There are various ADPCM choices according to the header chosen, such as IMA, Microsoft, G721, G723 and VOX. ADPCM and DPCM both save storage space by predicting the next sample, and encoding the PCM values only as differences between the predicted and actual value. ADPCM saves further space by varying the size of the quantization step. </li>
+<!--
+\item --><li><!--\textbf{--><b>GSM 6.10:</b><!--}--> A lossy voice codec producing small file sizes, used on GSM mobile digital telephone networks.</li></ul><!--
+\end{itemize}
+-->
+
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

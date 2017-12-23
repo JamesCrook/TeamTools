@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Regular Interval Labels - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Regular_Interval_Labels rootpage-Regular_Interval_Labels skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Regular Interval Labels</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{regular:interval:labels:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p><br/>
+</p>
+
+<p><br/>
+
+</p>
+<div class="intro"><!--\textit{--><i><!--\textbf{--><b>Regular Interval Labels</b><!--}--></i><!--}--> places point <!--latex 
+\hyperref[\foo{label:tracks:}]{--><a href="label_tracks.html" title="Label Tracks">labels</a><!--latex }
+--> in a label track so as to divide the associated audio into smaller, equally-sized segments. This can be useful for distributing a large file on the internet or ensuring that all exported files are the same size. <p>You can either choose the number of labels to be created or the interval between them. Each label produced can contain specified label text and the labels can be given sequential numbers before or after the text.</p></div>
+<dl><dd><!--\textbf{--><b>Accessed by:</b><!--}--> <span class="menu">Analyze &gt; Regular Interval Labels...</span></dd>
+<dd><span title="Regular Interval Labels effect dialog"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Regular_Interval_Labels.png"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Regular Interval Labels.png" height="323" src="../m/images/8/80/regular_interval_labels.png" width="482"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/8/80/regular_interval_labels.png--></img><!--}\par
+--></a></span></dd></dl>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Bulbicon.png" title="Bulb icon"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Bulb icon" height="32" src="../m/images/d/d7/bulbicon.png" width="32"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d7/bulbicon.png--></img><!--}\par
+--></a>
+</td>
+<td align="left" valign="top">After running "Regular Interval Labels", you can choose <span class="menu">File &gt; Save Other &gt; <!--latex 
+\hyperref[\foo{export:multiple:}]{--><a href="export_multiple.html" title="Export Multiple">Export Multiple...</a><!--latex }
+--></span> to export all the files in one process based on the label points.
+</td></tr></tbody></table>
+</div>
+<div id="method"></div> 
+<!--
+\subsection{--><h2><span class="mw-headline" id="Use_.22Number_of_labels.22_OR_.22Label_interval.22">Use "Number of labels" OR "Label interval"</span></h2><!--}--><!--latex 
+\label{regular:interval:labels:method}-->
+<p>This enables you to choose the label placement method:
+</p><p>To create a chosen number of labels within the selection, select <span class="button">Number of Labels &nbsp;<a class="image" href="http://alphamanual.audacityteam.org/man/File:MenuDownArrow.png"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="MenuDownArrow.png" height="6" src="../m/images/e/ed/menudownarrow.png" style="vertical-align: middle" width="9"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/e/ed/menudownarrow.png--></img><!--}}{}--></a></span> from the dropdown (this is the default setting).
+</p><p>To place labels within the selection a chosen distance apart, select <span class="button">Label Interval &nbsp;<a class="image" href="http://alphamanual.audacityteam.org/man/File:MenuDownArrow.png"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="MenuDownArrow.png" height="6" src="../m/images/e/ed/menudownarrow.png" style="vertical-align: middle" width="9"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/e/ed/menudownarrow.png--></img><!--}}{}--></a></span> from the dropdown then enter that distance in <!--\textbf{--><b>Label interval (seconds)</b><!--}-->.
+</p>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Number_of_labels">Number of labels</span></h3><!--}-->
+<p>If you selected <span class="button">Number of Labels &nbsp;<a class="image" href="http://alphamanual.audacityteam.org/man/File:MenuDownArrow.png"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="MenuDownArrow.png" height="6" src="../m/images/e/ed/menudownarrow.png" style="vertical-align: middle" width="9"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/e/ed/menudownarrow.png--></img><!--}}{}--></a></span> (the default) then your specified number of labels (default is 10) will be created. The number can be changed by typing in the input box, the allowed range is between 2 and 1000 labels.
+</p>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Label_interval">Label interval</span></h3><!--}-->
+<p>If you selected <span class="button">Label Interval &nbsp;<a class="image" href="http://alphamanual.audacityteam.org/man/File:MenuDownArrow.png"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="MenuDownArrow.png" height="6" src="../m/images/e/ed/menudownarrow.png" style="vertical-align: middle" width="9"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/e/ed/menudownarrow.png--></img><!--}}{}--></a></span> then the labels will be placed at your specified interval within the selected audio.  The default interval is 60.0 seconds. The allowed range is between 0.001 and 3600 seconds.
+</p>
+<div id="fit"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Adjust_label_interval_to_fit_length">Adjust label interval to fit length</span></h2><!--}--><!--latex 
+\label{regular:interval:labels:fit}-->
+<p>This only operates if you have chosen the <!--\textit{--><i>Label interval</i><!--}--> placement method. <span class="button">Number of Labels &nbsp;<a class="image" href="http://alphamanual.audacityteam.org/man/File:MenuDownArrow.png"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="MenuDownArrow.png" height="6" src="../m/images/e/ed/menudownarrow.png" style="vertical-align: middle" width="9"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/e/ed/menudownarrow.png--></img><!--}}{}--></a></span>
+</p><p>If you select <span class="button">Yes &nbsp;<a class="image" href="http://alphamanual.audacityteam.org/man/File:MenuDownArrow.png"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="MenuDownArrow.png" height="6" src="../m/images/e/ed/menudownarrow.png" style="vertical-align: middle" width="9"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/e/ed/menudownarrow.png--></img><!--}}{}--></a></span> from the dropdown for this control, it adjusts your chosen label interval if necessary to make <!--\textit{--><i>all</i><!--}--> the audio segments of equal length, including the final segment between the last label and the end of the selection. 
+</p><p>When set to <span class="button">No &nbsp;<a class="image" href="http://alphamanual.audacityteam.org/man/File:MenuDownArrow.png"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="MenuDownArrow.png" height="6" src="../m/images/e/ed/menudownarrow.png" style="vertical-align: middle" width="9"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/e/ed/menudownarrow.png--></img><!--}}{}--></a></span>, the interval between labels will be exactly the length specified in the <!--\textbf{--><b>Label interval</b><!--}--> control, but the final segment from the last label to the end of the selection may be different (depending on whether the selection length is exactly divisible by the specified interval duration.
+</p><p><br/>
+When <span class="button">Number of Labels &nbsp;<a class="image" href="http://alphamanual.audacityteam.org/man/File:MenuDownArrow.png"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="MenuDownArrow.png" height="6" src="../m/images/e/ed/menudownarrow.png" style="vertical-align: middle" width="9"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/e/ed/menudownarrow.png--></img><!--}}{}--></a></span> is selected, the label interval will always be the length of the selection divided by the number of labels, irrespective of this setting.
+</p><p>The default setting for this control is <span class="button">No &nbsp;<a class="image" href="http://alphamanual.audacityteam.org/man/File:MenuDownArrow.png"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="MenuDownArrow.png" height="6" src="../m/images/e/ed/menudownarrow.png" style="vertical-align: middle" width="9"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/e/ed/menudownarrow.png--></img><!--}}{}--></a></span>.
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Label_text">Label text</span></h2><!--}-->
+<p>The text that will be included in each label. The default setting is <!--\textbf{--><b>Label</b><!--}--> but this can be replaced by any text (or no text) by using the input box.
+</p><p>The label text may include spaces and/or punctuation characters, but note that if you intend to use the labels with <!--latex 
+\hyperref[\foo{export:multiple:}]{--><a href="export_multiple.html" title="Export Multiple">Export Multiple</a><!--latex }
+-->, some characters <!--latex 
+\hyperref[\foo{faq:opening:and:saving:files:Characters:forbidden:by:the:operating:system}]{--><a href="faq_opening_and_saving_files.html#Characters_forbidden_by_the_operating_system" title="FAQ:Opening and Saving Files">may not be valid for file names</a><!--latex }
+-->.
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Minimum_number_of_digits_in_label">Minimum number of digits in label</span></h2><!--}-->
+<p>Choose the minimum number of number of digits in the label numbers and whether the number is placed before or after the label text. The default setting is <span class="button">2(before label) &nbsp;<a class="image" href="http://alphamanual.audacityteam.org/man/File:MenuDownArrow.png"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="MenuDownArrow.png" height="6" src="../m/images/e/ed/menudownarrow.png" style="vertical-align: middle" width="9"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/e/ed/menudownarrow.png--></img><!--}}{}--></a></span>. With that setting, if you had 10 labels with "Label" as the label text, the first label would be "01Label", the next "02Label" and the last would be "10Label".
+</p><p>If you select <span class="button">None - text only &nbsp;<a class="image" href="http://alphamanual.audacityteam.org/man/File:MenuDownArrow.png"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="MenuDownArrow.png" height="6" src="../m/images/e/ed/menudownarrow.png" style="vertical-align: middle" width="9"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/e/ed/menudownarrow.png--></img><!--}}{}--></a></span> then no numbering will be applied to the labels.  If you choose this and set no label text then you will produce a set of empty labels.
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Begin_numbering_from">Begin numbering from</span></h2><!--}-->
+<p>If a minimum number of digits has been chosen in the control above, enter the number from which the sequential numbering will start. The default value of 1 can be changed by typing in the input box. You can enter any whole number equal or greater than 0.
+</p>
+<div class="note">The number of digits actually produced in the label is determined by your choice in <!--\textit{--><i>Minimum number of digits in label</i><!--}--> above. For example, if you type "10" in <!--\textit{--><i>Begin numbering from</i><!--}--> and your minimum number of digits is 3, then the first label will be numbered from "010".</div>  
+<div id="buttons"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Buttons">Buttons</span></h2><!--}--><!--latex 
+\label{regular:interval:labels:buttons}-->
+<p>Clicking on the command buttons give the following results:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><span class="button">Manage</span> gives a dropdown menu enabling you to manage presets for the tool and to see some detail about the tool. For details see <!--latex 
+\hyperref[\foo{manage:presets:}]{--><a href="manage_presets.html" title="Manage presets">Manage presets</a><!--latex }
+-->.</li>
+<!--
+\item --><li><span class="button">OK</span> applies the effect to the selected audio with the current effect settings.</li>
+<!--
+\item --><li><span class="button">Cancel</span> aborts the effect and leaves the audio unchanged.</li>
+<!--
+\item --><li><a href="help_button.html" title="Help Button"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Help Button" height="27" src="../m/images/d/d6/help_button.png" width="27"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d6/help_button.png--></img><!--}}{}--></a> brings you to the appropriate page in the Manual, this page.</li></ul><!--
+\end{itemize}
+-->
+<p><br/>
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Links">Links</span></h2><!--}-->
+<p><!--latex 
+\hyperref[\foo{index:of:effects:generators:and:analyzers:analyzers}]{--><a href="index_of_effects_generators_and_analyzers.html#analyzers" title="Index of Effects, Generators and Analyzers"><!--\textbf{--><b>|&lt;</b><!--}--> Index of Effects, Generators and Analyzers</a><!--latex }
+-->
+</p><p><!--latex 
+\hyperref[\foo{analyze:menu:}]{--><a href="analyze_menu.html" title="Analyze Menu"><!--\textbf{--><b>|&lt;</b><!--}--> Analyze Menu</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

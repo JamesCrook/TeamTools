@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Mixer Board - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Mixer_Board rootpage-Mixer_Board skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Mixer Board</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{mixer:board:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><div class="intro"><!--\textbf{--><b>Mixer Board</b><!--}--> is an alternative view to the audio tracks in the main tracks window, and is analogous to a hardware mixer board. Each audio track is displayed in a Track Strip. Each Track Strip has its own pair of meters, gain slider, pan slider, and mute/solo buttons, echoing that track's controls in its <!--latex 
+\hyperref[\foo{audio:tracks:Track:Control:Panel}]{--><a href="audio_tracks.html#Track_Control_Panel" title="Audio Tracks">Track Control Panel</a><!--latex }
+-->.<p>The <!--\textbf{--><b>Mixer Board...</b><!--}--> command is enabled whenever there's an audio track - it can even be brought up during playback.</p> </div>
+  
+<dl><dd><!--\textbf{--><b>Accessed by:</b><!--}--> <span class="menu">View &gt; Mixer Board...</span></dd></dl>
+<p>The <!--\textbf{--><b>Mixer Board...</b><!--}--> command is enabled whenever there is an audio track - it can even be brought up during playback. When there are no audio tracks it is grayed-out and unavailable.
+</p>
+<dl><dd><span title="Mixer Board window with five tracks"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Mixer Board.png" height="453" src="../m/images/1/19/mixer_board.png" width="596"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/1/19/mixer_board.png--></img><!--}\par
+--></span></dd></dl>
+<div id="controls"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Mixer_Board_controls">Mixer Board controls</span></h2><!--}--><!--latex 
+\label{mixer:board:controls}-->
+<p>All Mixer Board controls update the controls in their respective Track Control Panel and vice versa. For example, muting a track in the Mixer Board also mutes that track in the main tracks window. 
+</p><p>As in the Track Control Panels, double-click in either Mixer Board slider to enter an exact gain or pan value in a text box.
+</p><p>The meters are <!--\textit{--><i>post-fade</i><!--}-->, like the <!--latex 
+\hyperref[\foo{meter:toolbar:}]{--><a href="meter_toolbar.html" title="Meter Toolbar">Meter Toolbars</a><!--latex }
+-->, such that they show the levels as modified by the track's gain/pan sliders and mute/solo buttons. Mono tracks show in both track meters, as in the Meter Toolbar. 
+</p>
+
+<p>You can select a Mixer Board track by clicking its Track Strip on the image near the top. Selection of a track in Mixer Board is indicated by the gray half-border that sits right and bottom of an unselected track moves to left and top of a selected track; in the example above it is the "Horns" track that is selected.  Deselect all tracks by clicking in the dark gray between track strips or the dark gray at the bottom of the Mixer Board, note that the shortcut <span class="kbrd" style="background-color: #e0e0f0">Ctrl + Shift +A</span> to deselect all tracks does <!--\textbf{--><b>not</b><!--}--> work in Mixer Board.
+</p>
+<div class="note">Similar to <!--latex 
+\hyperref[\foo{audacity:selection:track:mouse}]{--><a href="audacity_selection.html#track_mouse" title="Audacity Selection">Audacity Selection</a><!--latex }
+--> you can also add specific tracks to the selection and remove specific tracks from the selection:
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> Holding <span class="kbrd" style="background-color: #e0e0f0">Ctrl</span> and clicking in a track's Track Strip<!--\textbf{--><b>toggles the selectedness</b><!--}--> of that track only. So if a  track is not selected, <span class="kbrd" style="background-color: #e0e0f0">Ctrl</span>-clicking its Track Strip selects it, or deselects it if it is already selected. </li>
+<!--
+\item --><li>If you select a track by clicking on its Track Strip and then use <span class="kbrd" style="background-color: #e0e0f0">Shift</span> and click in another track's Track Strip, all tracks between and including those two tracks will be selected.</li></ul><!--
+\end{itemize}
+--></div>
+<div id="trackid"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Track_identification">Track identification</span></h2><!--}--><!--latex 
+\label{mixer:board:trackid}-->
+<p>By default, the image at the top of each Track Strip is the Audacity logo, but if you <!--latex 
+\hyperref[\foo{audio:track:dropdown:menu:Name...}]{--><a href="audio_track_dropdown_menu.html#Name..." title="Audio Track Dropdown Menu">name</a><!--latex }
+--> the track in the Track Control Panel with an instrument name or abbreviation thereof, Mixer Board automatically shows an appropriate image as listed below. A track name that contains any of the keywords (in bold) will display the image that is associated with those keywords. If the track name contains keywords for more than one instrument, the Mixer Board will display the best match.
+</p>
+<table>
+
+<tbody><!--\par --><tr>
+<td valign="top" width="33%">
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>acoustic, guitar, gtr</b><!--}--> = acoustic guitar</li>
+<!--
+\item --><li> <!--\textbf{--><b>acoustic, piano, pno</b><!--}--> = acoustic piano</li>
+<!--
+\item --><li> <!--\textbf{--><b>back, vocal, bg, vox</b><!--}--> = backing vocal </li>
+<!--
+\item --><li> <!--\textbf{--><b>clap</b><!--}--> = handclaps</li>
+<!--
+\item --><li> <!--\textbf{--><b>drums, dr</b><!--}--> = drum kit</li>
+<!--
+\item --><li> <!--\textbf{--><b>electric, bass, guitar, bs, gtr</b><!--}--> = electric bass guitar</li>
+<!--
+\item --><li> <!--\textbf{--><b>electric, guitar, gtr</b><!--}--> = (standard) electric guitar</li></ul><!--
+\end{itemize}
+-->
+</td>
+<td valign="top" width="33%">
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>electric, piano, pno, key</b><!--}--> = electronic keyboard</li>
+<!--
+\item --><li> <!--\textbf{--><b>kick</b><!--}--> = kick drum</li>
+<!--
+\item --><li> <!--\textbf{--><b>loop</b><!--}--> = loop track</li>
+<!--
+\item --><li> <!--\textbf{--><b>organ, org</b><!--}--> = organ</li>
+<!--
+\item --><li> <!--\textbf{--><b>perc</b><!--}--> = percussion</li>
+<!--
+\item --><li> <!--\textbf{--><b>sax</b><!--}--> = saxophone</li>
+<!--
+\item --><li> <!--\textbf{--><b>snare</b><!--}--> = snare drum</li></ul><!--
+\end{itemize}
+-->
+</td>
+<td valign="top" width="33%">
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>string, violin, cello</b><!--}--> = generic stringed instrument</li>
+<!--
+\item --><li> <!--\textbf{--><b>synth</b><!--}--> = synthesizer</li>
+<!--
+\item --><li> <!--\textbf{--><b>tambo</b><!--}--> = tambourine </li>
+<!--
+\item --><li> <!--\textbf{--><b>trumpet, horn</b><!--}--> = generic brass instrument</li>
+<!--
+\item --><li> <!--\textbf{--><b>turntable</b><!--}--> = record player</li>
+<!--
+\item --><li> <!--\textbf{--><b>vibraphone, vibes</b><!--}--> = vibraphone</li>
+<!--
+\item --><li> <!--\textbf{--><b>vocal, vox</b><!--}--> = lead vocal</li></ul><!--
+\end{itemize}
+-->
+</td></tr></tbody></table>
+<div class="example">
+<p><!--\textbf{--><b>Examples:</b><!--}-->
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> "electric b" displays an standard electric guitar ("b" is not a keyword), but "electric bs" displays an electric bass guitar ("bs" is a keyword). </li>
+<!--
+\item --><li> "electric gtr" will display an electric guitar. Although these keywords are also in the bass guitar list, in the absence of the keywords <!--\textbf{--><b>bass</b><!--}--> or <!--\textbf{--><b>bs</b><!--}-->, the Mixer Board sees the (standard) electric guitar as a better match.</li>
+<!--
+\item --><li> "drums" will display a drum kit as it is a keyword. "drum" will also display a drum kit as it contains <!--\textbf{--><b>dr</b><!--}--> which is a keyword. </li></ul><!--
+\end{itemize}
+-->
+</div>
+
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

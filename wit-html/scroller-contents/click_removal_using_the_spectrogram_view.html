@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Click removal using the Spectrogram view - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Click_removal_using_the_Spectrogram_view rootpage-Click_removal_using_the_Spectrogram_view skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Click removal using the Spectrogram view</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{click:removal:using:the:spectrogram:view:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en">
+<div class="intro">This is a workflow Tutorial which gives steps to remove hard-to-spot clicks using Audacity's <!--latex 
+\hyperref[\foo{audio:track:dropdown:menu:spgram}]{--><a href="audio_track_dropdown_menu.html#spgram" title="Audio Track Dropdown Menu">Spectrogram</a><!--latex }
+--> view.<p>In the example the user can hear some clicks but cannot spot them with the default <!--latex 
+\hyperref[\foo{audio:track:dropdown:menu:waveform}]{--><a href="audio_track_dropdown_menu.html#waveform" title="Audio Track Dropdown Menu">Waveform</a><!--latex }
+--> view despite <!--latex 
+\hyperref[\foo{zooming:horizontal}]{--><a href="zooming.html#horizontal" title="Zooming">zooming in</a><!--latex }
+--> quite far. In Waveform view loud clicks often show up as easily seen spikes but smaller, lower amplitude clicks can be very hard to spot without changing to Spectrogram view.</p></div>
+
+<!--
+\subsection{--><h2><span class="mw-headline" id="Clicks_heard_on_playback">Clicks heard on playback</span></h2><!--}-->
+<p>The user has identified a region where there are some clicks by listening closely on his/her headphones, and has zoomed in to try to spot them but it's very hard to identify them visually in the default waveform view.
+</p>
+<dl><dd><span title="Waveform view of audio with audible but not easily seen clicks"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Clicky example waveform view.png" height="348" src="../m/images/4/4d/clicky_example_waveform_view.png" width="547"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/4/4d/clicky_example_waveform_view.png--></img><!--}\par
+--></span></dd></dl>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Spectrogram_view">Spectrogram view</span></h2><!--}-->
+<p>So we change to the Spectrogram view <!--\textit{--><i>(use the <!--latex 
+\hyperref[\foo{audio:tracks:track:menu}]{--><a href="audio_tracks.html#track_menu" title="Audio Tracks">dropdown menu</a><!--latex }
+--> from the downward-pointing black triangle in the <!--latex 
+\hyperref[\foo{audio:tracks:panel}]{--><a href="audio_tracks.html#panel" title="Audio Tracks">Track Control Panel</a><!--latex }
+-->)</i><!--}-->. This gives us a better chance of seeing clicks because Spectrogram view picks up the greater energy in the click compared to the surrounding audio. 
+</p>
+<dl><dd><span title="Spectrogram view of the same audio showing clicks as vertical pink lines"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Clicky example spectrogram view.png" height="347" src="../m/images/a/a1/clicky_example_spectrogram_view.png" width="545"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/a/a1/clicky_example_spectrogram_view.png--></img><!--}\par
+--></span></dd></dl>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Clicks_are_pink">Clicks are pink</span></h3><!--}-->
+<p>In the Spectrogram view the clicks will normally show up as vertical pink (or possibly vertical red) lines.  Note that the Spectrogram view has identified two regions of clicks between 55.70 and 55.80 seconds that do not look like clicks in Waveform view. 
+</p><p>Because we want to zoom in on these regions later, we will not select from 55.70 to 55.80 seconds but for now, just select the second clicky region. To select this region, click and drag with your mouse and then label the region by using <span class="kbrd" style="background-color: #e0e0f0">Ctrl + B</span> <!--\textit{--><i>(on a Mac <span class="kbrd" style="background-color: #e0e0f0">⌘ + B</span> )</i><!--}--> and typing a label name.
+</p>
+<dl><dd><span title="Spectrogram view with a clicky region labeled"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Clicky example spectrogram view click labelled.png" height="351" src="../m/images/8/84/clicky_example_spectrogram_view_click_labelled.png" width="547"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/8/84/clicky_example_spectrogram_view_click_labelled.png--></img><!--}\par
+--></span></dd></dl>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Back_to_Waveform">Back to Waveform</span></h2><!--}-->
+<p>Change back to Waveform view as it is easier to work with to make the repairs. 
+</p>
+<dl><dd><span title="Back to waveform view with a clicky region labeled"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Clicky example waveform view click labelled.png" height="349" src="../m/images/b/bf/clicky_example_waveform_view_click_labelled.png" width="545"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/bf/clicky_example_waveform_view_click_labelled.png--></img><!--}\par
+--></span></dd></dl>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Zoom_in_to_clicks_and_delete_or_repair">Zoom in to clicks and delete or repair</span></h2><!--}-->
+<p>Now zoom in to see the clicks in the selection more clearly (spot the little vertical spikes in the waveform). 
+</p><p>Select a little more than the exact part of the selection that contains clicks by clicking and dragging with your mouse:
+</p>
+<dl><dd><span title="Waveform view zoomed in with clicks selected inside the clicky region label"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Clicky example waveform view click labelled and zoomed red arrows.png" height="348" src="../m/images/e/ef/clicky_example_waveform_view_click_labelled_and_zoomed_red_arrows.png" width="547"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/e/ef/clicky_example_waveform_view_click_labelled_and_zoomed_red_arrows.png--></img><!--}\par
+--></span></dd></dl>
+<p>Use <span class="menu">Select &gt; Region &gt; <!--latex 
+\hyperref[\foo{select:menu:region:ends:to:zero:crossings}]{--><a href="select_menu_region.html#ends_to_zero_crossings" title="Select Menu: Region">Ends to Zero Crossings</a><!--latex }
+--></span> or its <span class="kbrd" style="background-color: #e0e0f0">Z</span> shortcut. 
+</p><p><br/>
+</p><p>Now use the <span class="kbrd" style="background-color: #e0e0f0">Delete</span> key or the <span class="kbrd" style="background-color: #e0e0f0">Ctrl + K</span>  keyboard shortcut <!--\textit{--><i>(on a Mac <span class="kbrd" style="background-color: #e0e0f0">⌘ + K</span> )</i><!--}--> to delete the selection, resulting in the image below:
+</p>
+<dl><dd><span title="Waveform view after deleting selected clicks inside the clicky region label"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Clicky example waveform view clicks deleted.png" height="349" src="../m/images/4/44/clicky_example_waveform_view_clicks_deleted.png" width="546"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/4/44/clicky_example_waveform_view_clicks_deleted.png--></img><!--}\par
+--></span></dd></dl>
+<p>When you used <!--\textbf{--><b>Zero Crossings</b><!--}--> this tried to move the selection edges a very small distance to a place where the audio sample dots were at zero amplitude (exactly on the center line). This helps to avoid a click at the new join after deleting the selection, but a residual click is still possible. Therefore the next step coming up will be to listen to the audio after the deletion. 
+</p>
+<div class="note">Deletion removes a very small portion of the audio; you may instead prefer to retain the original audio length, not least because removing longer selections may be audible. As an alternative to deletion, zoom in much closer to each click and then for each click, use either of the following techniques:
+<!--
+\begin{itemize}--><ul><!--
+\item --><li>carefully use <!--latex 
+\hyperref[\foo{tools:toolbar:draw}]{--><a href="tools_toolbar.html#draw" title="Tools Toolbar">Draw Tool</a><!--latex }
+--> to smooth the waveform manually</li>
+<!--
+\item --><li>select a very small region (up to 128 samples in length) that includes both a click and some undamaged audio, then use the <!--latex 
+\hyperref[\foo{repair:}]{--><a href="repair.html" title="Repair">Repair</a><!--latex }
+--> effect.</li></ul><!--
+\end{itemize}
+--></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Test_the_click_deletion">Test the click deletion</span></h2><!--}-->
+<p>Now test the result <!--\textit{--><i>(this is easier using headphones)</i><!--}-->. Zoom out and play from a little before the point where the selection was deleted. Note that we deliberately did not yet remove the label of the previously clicky region as this helps us to identify the location as we play back for testing. 
+</p>
+<dl><dd><span title="Waveform view zoomed out for testing the repair"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Clicky example waveform view click repaired for test.png" height="291" src="../m/images/2/24/clicky_example_waveform_view_click_repaired_for_test.png" width="547"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/2/24/clicky_example_waveform_view_click_repaired_for_test.png--></img><!--}\par
+--></span></dd></dl>
+<p>If you are happy with the audible results then there is no further work to be done on this particular click.
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="If_a_discontinuity_is_heard_at_the_join">If a discontinuity is heard at the join</span></h2><!--}-->
+<p>If a residual click is heard after deletion despite using <!--\textbf{--><b>Zero Crossings</b><!--}-->, the click will probably be in one of the channels in a stereo track. 
+</p><p>The zoomed in example below shows a very obvious visual discontinuity in both channels of the stereo track resulting from not using <!--\textbf{--><b>Zero Crossings</b><!--}--> before deletion. 
+</p><p>Any residual clicks heard must be repaired. You could use Draw Tool as above, but we will repair the discontinuity shown below automatically using the Repair effect.  
+</p>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Select_the_discontinuity">Select the discontinuity</span></h3><!--}-->
+<p>Select the waveform around the discontinuity; a maximum of 128 samples (the maximum length for the Repair effect).
+</p>
+<dl><dd><span title="Waveform view zoomed in further to show each sample dot, discontinuity selected"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Clicky example waveform view discontinuity selected.png" height="345" src="../m/images/b/bf/clicky_example_waveform_view_discontinuity_selected.png" width="547"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/bf/clicky_example_waveform_view_discontinuity_selected.png--></img><!--}\par
+--></span></dd></dl>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Repair_the_discontinuity">Repair the discontinuity</span></h3><!--}-->
+<p>Now use <span class="menu">Effect &gt; <!--latex 
+\hyperref[\foo{repair:}]{--><a href="repair.html" title="Repair">Repair</a><!--latex }
+--></span> to fix the discontinuity; note the resulting smooth curve. 
+</p>
+<dl><dd><span title="Waveform view with discontinuity repaired"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Clicky example waveform view discontinuity repaired.png" height="348" src="../m/images/6/66/clicky_example_waveform_view_discontinuity_repaired.png" width="547"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/6/66/clicky_example_waveform_view_discontinuity_repaired.png--></img><!--}\par
+--></span></dd></dl>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Final_test_of_the_repaired_region">Final test of the repaired region</span></h2><!--}-->
+<p>As a final step you should audibly test all repairs in the region chosen in Spectrogram view, again preferably on headphones. Zoom out sufficiently and start playback a little earlier, so you can play a reasonable amount of audio either side of the label (which we've still retained to identify the repaired location):
+</p>
+<dl><dd><span title="Waveform zoomed out for final audition"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Clicky example waveform view click repaired for final testing.png" height="294" src="../m/images/f/fc/clicky_example_waveform_view_click_repaired_for_final_testing.png" width="545"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/f/fc/clicky_example_waveform_view_click_repaired_for_final_testing.png--></img><!--}\par
+--></span></dd></dl>
+<p>Once you are happy with the results, the label can be deleted if required (see <!--latex 
+\hyperref[\foo{label:tracks:remove}]{--><a href="label_tracks.html#remove" title="Label Tracks">this page</a><!--latex }
+-->).  
+</p>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Undo_your_repairs_if_you_are_unhappy_with_the_result">Undo your repairs if you are unhappy with the result</span></h3><!--}-->
+<p>If you are unhappy with your results you can use <span class="menu">Edit &gt; <!--latex 
+\hyperref[\foo{edit:menu:undo}]{--><a href="edit_menu.html#undo" title="Edit Menu">Undo</a><!--latex }
+--></span> repeatedly to revert back to your original unedited audio.  Alternatively you may use the <span class="menu">View &gt; <!--latex 
+\hyperref[\foo{view:menu:history}]{--><a href="view_menu.html#history" title="View Menu">History...</a><!--latex }
+--></span> command to choose or compare several previous editing states.
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Deal_with_the_remaining_clicks">Deal with the remaining clicks</span></h2><!--}-->
+<p>Now we have to repeat the process of finding the exact clicks within the first clicky region identified by Spectrogram, repair those clicks and audition the repairs, then likewise with any further clicks in our audio. If you have been making a lot of repairs you may want to take a break and come back to listen to the whole repaired track a little later.
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

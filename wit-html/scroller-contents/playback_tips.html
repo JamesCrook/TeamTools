@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Playback Tips - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Playback_Tips rootpage-Playback_Tips skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Playback Tips</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{playback:tips:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+</p>
+<div class="intro">This page explains how to view and adjust playback volume, and achieve smooth playback quality. <p>For tips on how to navigate the waveform or tracks (including moving the playback position), and how to find and mark edit points, see <!--latex 
+\hyperref[\foo{navigation:tips:}]{--><a href="navigation_tips.html" title="Navigation Tips">Navigation Tips</a><!--latex }
+-->.</p></div>   
+
+
+<!--
+\subsection{--><h2><span class="mw-headline" id="Viewing_and_adjusting_playback_volume">Viewing and adjusting playback volume</span></h2><!--}-->
+<p>The volume of audio playback (output) which will be saved in an Audacity <!--latex 
+\hyperref[\foo{audacity:projects:}]{--><a href="audacity_projects.html" title="Audacity Projects">project</a><!--latex }
+--> or exported as a finished audio file can be seen in the <!--latex 
+\hyperref[\foo{meter:toolbar:playback}]{--><a href="meter_toolbar.html#playback" title="Meter Toolbar">Playback Meter</a><!--latex }
+-->: 
+</p>
+<dl><dd><span title="Playback Meter Toolbar in use, default size"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Playback Toolbar in use - clipped signal.png" height="34" src="../m/images/7/7c/playback_toolbar_in_use_clipped_signal.png" width="473"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/7/7c/playback_toolbar_in_use_clipped_signal.png--></img><!--}\par
+--></span></dd></dl>
+<p>If Meter Toolbar is not visible, go to <span class="menu">View &gt; <!--latex 
+\hyperref[\foo{view:menu:toolbars}]{--><a href="view_menu.html#toolbars" title="View Menu">Toolbars</a><!--latex }
+--></span> and enable the Meter Toolbar.
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> This volume level can be modified with the -....+ gain slider on the <!--latex 
+\hyperref[\foo{audio:tracks:panel}]{--><a href="audio_tracks.html#panel" title="Audio Tracks">Track Control Panel</a><!--latex }
+--> of each track. Note this does not affect the volume level stored in the audio data and represented in the waveform, but is a modification on top of it. Avoid accidentally moving the gain slider away from center when exporting an audio file. If the slider goes too far to right, this may lead to excessive volume and therefore distortion in the exported file. If it goes too far to left, the file may not be audible.</li></ul><!--
+\end{itemize}
+-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> The left-hand playback (output) volume slider on the <!--latex 
+\hyperref[\foo{mixer:toolbar:}]{--><a href="mixer_toolbar.html" title="Mixer Toolbar">Mixer Toolbar</a><!--latex }
+--> controls only the volume at which you hear the tracks in Audacity. It does not affect the Playback Meter. Only moving the gain slider, or changing the track volume by editing will affect the meter.  </li></ul><!--
+\end{itemize}
+-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>If multiple tracks are played simultaneously, their volume is combined.</b><!--}--> You may need to move the gain sliders leftwards on each Track Control Panel to reduce the combined volume. To keep the current balance between all the tracks, move each slider to left by the same amount. To judge if you have distortion, look at the Playback Meter. If the colored bars are changing to red and hitting the right-hand edge of the scale and so bringing on the red hold lights to right of the meter, you have distortion in the output and must reduce the gain.</li></ul><!--
+\end{itemize}
+-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> The Playback Meter Toolbar can be resized, making it bigger provides more detail and make it more accurate and easier to use.  See <!--latex 
+\hyperref[\foo{meter:toolbar:resizing}]{--><a href="meter_toolbar.html#resizing" title="Meter Toolbar">this page</a><!--latex }
+--> for details of how to do this. </li></ul><!--
+\end{itemize}
+-->
+<div id="playback"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Smooth_Playback">Smooth Playback</span></h2><!--}--><!--latex 
+\label{playback:tips:playback}-->
+<p>A project with a track lasting several hours or multiple tracks of any length will eat a lot of computer resources. To play many tracks simultaneously you will likely need far in excess of Audacity's stated minimum requirements (mentioned on the <a class="external text" href="https://web.audacityteam.org/download/" rel="nofollow">download</a> page for each operating system). Think of 500 MB <a class="external text" href="https://en.wikipedia.org/wiki/Random-access_memory" rel="nofollow">RAM</a> and 1 GHz processor speed upwards, depending on the number of other running applications and processes, and the number and length of tracks you have. Generally the more RAM you have the better.
+</p><p>You can click <span class="menu">Help &gt; Run Benchmark...</span> to run a test that gives an <!--\textit{--><i>approximate</i><!--}--> idea of how many tracks could be played simultaneously. 
+</p><p>Try all these other tips if you are having problems with uneven playback: 
+</p>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Computer_Resources">Computer Resources</span></h3><!--}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> Try exiting and restarting Audacity or rebooting </li>
+<!--
+\item --><li> Close as many other applications as possible</li>
+<!--
+\item --><li> Set the project rate (bottom left of the Audacity screen) to 44100 Hz or 48000 Hz. Higher rates will give the computer more work to do and will have to be resampled if your sound device does not support those rates, leading to worse quality   </li>
+<!--
+\item --><li> Go to the <!--latex 
+\hyperref[\foo{quality:preferences:}]{--><a href="quality_preferences.html" title="Quality Preferences">Quality</a><!--latex }
+--> tab of Prefences and set the Default Sample Format to 16-bit, which halves the work the computer needs to do to play the tracks  </li>
+<!--
+\item --><li> Zoom out using <span class="menu">View &gt; Zoom <!--latex 
+\hyperref[\foo{view:menu:zoom:zoomout}]{--><a href="view_menu_zoom.html#zoomout" title="View Menu: Zoom">Zoom Out</a><!--latex }
+--></span> (or <span class="kbrd" style="background-color: #e0e0f0">Ctrl + 3</span>)</li>
+<!--
+\item --><li> Don't use a network drive for your Audacity temporary folder or project _data folder, or for storing uncompressed files for import into Audacity - it will be too slow    </li>
+<!--
+\item --><li> On Windows, keep your drives defragmented, so the data files can be accessed  quickly and efficiently. Instead of the Windows defrag utility, try <a class="external text" href="http://majorgeeks.com/fragdown_d4182.html" rel="nofollow">fragdown</a>.This will give you a replacement shutdown button that will automatically defragment all detected disks, then shut the system down.  </li>
+<!--
+\item --><li> Consider <a class="external text" href="https://wiki.audacityteam.org/wiki/DMA_mode" rel="nofollow">enabling DMA</a> on your drive if it is not already</li>
+<!--
+\item --><li> Ensure your <a class="external text" href="https://wiki.audacityteam.org/wiki/Updating_Sound_Device_Drivers" rel="nofollow">sound device drivers are up to date</a></li>
+<!--
+\item --><li> Consider reinstalling Windows if updating your sound drivers does not help - Windows problems can lead to erratic sound behavior especially when the CPU is busy   </li>
+<!--
+\item --><li> See the tips at <a class="external text" href="https://wiki.audacityteam.org/wiki/Managing_Computer_Resources_and_Drivers" rel="nofollow">Managing Computer Resources and Drivers</a> in the Audacity Wiki.</li></ul><!--
+\end{itemize}
+-->
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Managing_Tracks">Managing Tracks</span></h3><!--}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> Muting the tracks you do not need to hear may help slightly</li>
+<!--
+\item --><li> Select areas of tracks rather than the whole, in order to hear what a mix sounds like</li>
+<!--
+\item --><li> If you need separate Audacity tracks, select all of each track in turn (by clicking in the Track Control Panel where the  mute/solo buttons are) and <span class="menu">Tracks &gt; Mix &gt; <!--latex 
+\hyperref[\foo{tracks:menu:mix:mix:and:render}]{--><a href="tracks_menu_mix.html#mix_and_render" title="Tracks Menu: Mix">Mix and Render</a><!--latex }
+--></span> - this may help playback by ordering the audio data files more logically</li>
+<!--
+\item --><li> Consider mixing some tracks together (again with <span class="menu">Tracks &gt; Mix &gt; Mix and Render</span> as soon as you no longer need them to be separate</li>
+<!--
+\item --><li> Consider cutting tracks you are not currently working with into a new project window (<span class="menu">File &gt; <!--latex 
+\hyperref[\foo{file:menu:new}]{--><a href="file_menu.html#new" title="File Menu">New</a><!--latex }
+--></span>). This will make a big difference. </li>
+<!--
+\item --><li> If you are recording sections one at a time, use Pause in the same Audacity session to keep the recording on one Audacity track </li>
+<!--
+\item --><li> You can always hold <span class="kbrd" style="background-color: #e0e0f0">Shift</span> and click <span class="button">Record</span> (shortcut <span class="kbrd" style="background-color: #e0e0f0">Shift + R</span>) to record at the end of an existing track, even when re-opening a saved project </li>
+<!--
+\item --><li> On slower machines, try right-clicking over the Playback Meter Toolbar, hit "Preferences" and choose a lower refresh rate </li>
+<!--
+\item --><li> Try increasing the default "Audio to buffer" setting of 100 milliseconds at the <!--latex 
+\hyperref[\foo{recording:preferences:}]{--><a href="recording_preferences.html" title="Recording Preferences">Recording</a><!--latex }
+--> tab of Preferences. This might lead to smoother playback on slower machines. The disadvantage would be that playback would take longer to start, and there would be more delay in laying down and monitoring recordings.</li></ul><!--
+\end{itemize}
+-->
+
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

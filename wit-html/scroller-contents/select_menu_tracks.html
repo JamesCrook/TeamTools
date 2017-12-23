@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Select Menu: Tracks - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Select_Menu_Tracks rootpage-Select_Menu_Tracks skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Select Menu: Tracks</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{select:menu:tracks:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p><br/>
+</p>
+<div class="intro">These commands extend the current selection up and/or down into all tracks, or Sync-Locked tracks in the project.</div>
+<dl><dd><!--\textit{--><i>Click, or hover, on any menu item in the image to read about that command.  &nbsp;<span style="font-size:0.8em"><!--latex 
+\hyperref[\foo{select:menu:tracks::skiptheimage}]{--><a href="#skiptheimage">Skip the image</a><!--latex }
+--></span></i><!--}--></dd>
+<dd><div class="noresize"><map name="ImageMap_1_1141265396"><area alt="Edit Menu" coords="2,3,26,19" href="edit_menu.html" shape="rect" title="Edit Menu"/><area alt="Select Menu" coords="33,3,70,19" href="select_menu.html" shape="rect" title="Select Menu"/><area alt="View Menu" coords="77,3,106,19" href="view_menu.html" shape="rect" title="View Menu"/><area alt="Transport Menu" coords="113,3,169,19" href="transport_menu.html" shape="rect" title="Transport Menu"/><area alt="Tracks Menu" coords="176,3,216,19" href="tracks_menu.html" shape="rect" title="Tracks Menu"/><area alt="Generate Menu" coords="223,3,277,19" href="generate_menu.html" shape="rect" title="Generate Menu"/><area alt="Effect Menu" coords="284,3,317,19" href="effect_menu.html" shape="rect" title="Effect Menu"/><area alt="Analyze Menu" coords="324,3,368,19" href="analyze_menu.html" shape="rect" title="Analyze Menu"/><area alt="Help Menu" coords="375,3,404,19" href="help_menu.html" shape="rect" title="Help Menu"/><area alt="Ext-Bar Menu" coords="411,3,453,19" href="ext_bar_menu.html" shape="rect" title="Ext-Bar Menu"/><area alt="Ext-Command Menu" coords="460,3,542,19" href="ext_command_menu.html" shape="rect" title="Ext-Command Menu"/><area alt="Menu Bar" coords="0,0,600,22" href="menu_reference.html" shape="rect" title="Menu Bar"/><area alt="Selects all of the audio in all of the tracks" coords="39,23,298,45" href="select_menu.html#all" shape="rect" title="Selects all of the audio in all of the tracks"/><area alt="Deselects all of the audio in all of the tracks" coords="39,45,298,67" href="select_menu.html#none" shape="rect" title="Deselects all of the audio in all of the tracks"/><area alt="For extending a selection to more tracks" coords="39,67,298,89" href="#" shape="rect" title="For extending a selection to more tracks"/><area alt="For modifying, saving and restoring a selection" coords="39,89,298,111" href="select_menu_region.html" shape="rect" title="For modifying, saving and restoring a selection"/><area alt="For making a selection of a frequency range" coords="39,111,298,133" href="select_menu_spectral.html" shape="rect" title="For making a selection of a frequency range"/><area alt="For modifying a selection, taking account of clips" coords="39,133,298,155" href="select_menu_clip_boundaries.html" shape="rect" title="For modifying a selection, taking account of clips"/><area alt="Selects from the position of the cursor to the previously stored cursor position" coords="39,162,298,184" href="select_menu.html#cursor_to_stored_cursor_position" shape="rect" title="Selects from the position of the cursor to the previously stored cursor position"/><area alt="Stores the current cursor position for use in a later selection" coords="39,184,298,206" href="select_menu.html#store_cursor_position" shape="rect" title="Stores the current cursor position for use in a later selection"/><area alt="Moves the edges of a selection region (or the cursor position) slightly so they are at a rising zero crossing point" coords="39,213,298,235" href="select_menu_at_zero_crossings.html" shape="rect" title="Moves the edges of a selection region (or the cursor position) slightly so they are at a rising zero crossing point"/><area alt="Extends the current selection up and/or down into all tracks in the project" coords="310,70,565,92" href="#in_all_tracks" shape="rect" title="Extends the current selection up and/or down into all tracks in the project"/><area alt="Extends the current selection up and/or down into all sync-locked tracks in the currently selected track group" coords="310,92,565,114" href="#in_all_synclocked_tracks" shape="rect" title="Extends the current selection up and/or down into all sync-locked tracks in the currently selected track group"/></map><!--
+
+\par\Needspace{127.2pt}\begin{picture}(231.20000000000002,97.2)
+--><!--   \put(0,0){\includegraphics[scale=0.4]{--><img alt="Select-TracksMenu.png" height="243" src="../m/images/8/86/select_tracksmenu.png" usemap="#ImageMap_1_1141265396" width="578"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/8/86/select_tracksmenu.png--></img><!--}}
+--><!--   \put(0.8,89.60000000000001){\hyperref[\foo{edit:menu:}]{\makebox(9.6,6.3999999999999915){}}}
+   \put(13.200000000000001,89.60000000000001){\hyperref[\foo{select:menu:}]{\makebox(14.799999999999999,6.3999999999999915){}}}
+   \put(30.8,89.60000000000001){\hyperref[\foo{view:menu:}]{\makebox(11.600000000000005,6.3999999999999915){}}}
+   \put(45.2,89.60000000000001){\hyperref[\foo{transport:menu:}]{\makebox(22.400000000000006,6.3999999999999915){}}}
+   \put(70.4,89.60000000000001){\hyperref[\foo{tracks:menu:}]{\makebox(16.0,6.3999999999999915){}}}
+   \put(89.2,89.60000000000001){\hyperref[\foo{generate:menu:}]{\makebox(21.60000000000001,6.3999999999999915){}}}
+   \put(113.60000000000001,89.60000000000001){\hyperref[\foo{effect:menu:}]{\makebox(13.200000000000003,6.3999999999999915){}}}
+   \put(129.6,89.60000000000001){\hyperref[\foo{analyze:menu:}]{\makebox(17.600000000000023,6.3999999999999915){}}}
+   \put(150.0,89.60000000000001){\hyperref[\foo{help:menu:}]{\makebox(11.600000000000023,6.3999999999999915){}}}
+   \put(164.4,89.60000000000001){\hyperref[\foo{ext:bar:menu:}]{\makebox(16.80000000000001,6.3999999999999915){}}}
+   \put(184.0,89.60000000000001){\hyperref[\foo{ext:command:menu:}]{\makebox(32.80000000000001,6.3999999999999915){}}}
+   \put(15.600000000000001,79.2){\hyperref[\foo{select:menu:all}]{\makebox(103.6,8.799999999999997){}}}
+   \put(15.600000000000001,70.4){\hyperref[\foo{select:menu:none}]{\makebox(103.6,8.799999999999997){}}}
+   \put(15.600000000000001,61.6){\hyperref[\foo{select:menu:tracks::}]{\makebox(103.6,8.800000000000004){}}}
+   \put(15.600000000000001,52.8){\hyperref[\foo{select:menu:region:}]{\makebox(103.6,8.800000000000004){}}}
+   \put(15.600000000000001,44.0){\hyperref[\foo{select:menu:spectral:}]{\makebox(103.6,8.799999999999997){}}}
+   \put(15.600000000000001,35.2){\hyperref[\foo{select:menu:clip:boundaries:}]{\makebox(103.6,8.799999999999997){}}}
+   \put(15.600000000000001,23.599999999999994){\hyperref[\foo{select:menu:cursor:to:stored:cursor:position}]{\makebox(103.6,8.800000000000011){}}}
+   \put(15.600000000000001,14.799999999999997){\hyperref[\foo{select:menu:store:cursor:position}]{\makebox(103.6,8.799999999999997){}}}
+   \put(15.600000000000001,3.200000000000003){\hyperref[\foo{select:menu:at:zero:crossings:}]{\makebox(103.6,8.799999999999997){}}}
+   \put(124.0,60.4){\hyperref[\foo{select:menu:tracks::in:all:tracks}]{\makebox(102.0,8.800000000000004){}}}
+   \put(124.0,51.6){\hyperref[\foo{select:menu:tracks::in:all:synclocked:tracks}]{\makebox(102.0,8.799999999999997){}}}
+\end{picture}
+
+--></div></dd></dl>
+<div id="skiptheimage"></div>
+<div id="in_all_tracks"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="In_All_Tracks_.C2.A0Ctrl_.2B_Shift_.2B_K">In All Tracks &nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">Ctrl + Shift + K</span></font></span></h2><!--}--><!--latex 
+\label{select:menu:tracks:in:all:tracks}--><!--latex 
+\label{select:menu:tracks:skiptheimage}-->
+<p>Extends the current selection up and/or down into all tracks in the project.
+</p>
+<dl><dd><span title="Before"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="EditSelectBefore.png" height="323" src="../m/images/d/dc/editselectbefore.png" width="411"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/dc/editselectbefore.png--></img><!--}\par
+--></span></dd>
+<dd><span title="After"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="EditSelectAllTracksAfter.png" height="323" src="../m/images/4/45/editselectalltracksafter.png" width="410"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/4/45/editselectalltracksafter.png--></img><!--}\par
+--></span></dd></dl>
+<div id="in_all_synclocked_tracks"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="In_All_Sync-Locked_Tracks_.C2.A0Ctrl_.2B_Shift_.2B_Y">In All Sync-Locked Tracks &nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">Ctrl + Shift + Y</span></font></span></h2><!--}--><!--latex 
+\label{select:menu:tracks:in:all:synclocked:tracks}-->
+<p>Extends the current selection up and/or down into all Sync-Locked tracks in the currently selected track group.
+</p>
+<dl><dd><span title="Before"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="EditSelectBefore.png" height="323" src="../m/images/d/dc/editselectbefore.png" width="411"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/dc/editselectbefore.png--></img><!--}\par
+--></span></dd>
+<dd><span title="After"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="EditSelectSyncLockAfter.png" height="314" src="../m/images/1/13/editselectsynclockafter.png" width="405"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/1/13/editselectsynclockafter.png--></img><!--}\par
+--></span></dd></dl>
+<p><br/>
+</p><p><br/>
+<!--latex 
+\hyperref[\foo{select:menu:}]{--><a href="select_menu.html" title="Select Menu"><!--\textbf{--><b>&lt;</b><!--}-->&nbsp; Back to: Select Menu</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

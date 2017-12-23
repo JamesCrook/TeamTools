@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Installing and updating on Mac OS X - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Installing_and_updating_Audacity_on_Mac_OS_X rootpage-Installing_and_updating_Audacity_on_Mac_OS_X skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Installing and updating on Mac OS X</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{installing:and:updating:audacity:on:mac:os:x:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+</p><p><br/>
+</p>
+<div class="intro">This page provides instructions for installing and updating Audacity on Mac OS X and macOS computer platforms.
+<!--
+\begin{itemize}--><ul><!--
+\item --><li>In addition to basic Audacity you may wish to install the optional <!--latex 
+\hyperref[\foo{installing:and:updating:audacity:on:mac:os:x::maclame}]{--><a href="#maclame">LAME</a><!--latex }
+--> <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:mp3}]{--><a href="glossary.html#mp3" title="Glossary">MP3</a><!--latex }
+--></b><!--}--></i><!--}--> encoding software</li>
+<!--
+\item --><li>Also the optional <!--latex 
+\hyperref[\foo{installing:and:updating:audacity:on:mac:os:x::macff}]{--><a href="#macff">FFmpeg</a><!--latex }
+--> library which allows Audacity to import and export a much larger <a class="external text" href="https://wiki.audacityteam.org/wiki/FFmpeg_integration#Functionality" rel="nofollow">range of audio formats</a> including AC3, AMR (narrow band) and <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:wma}]{--><a href="glossary.html#wma" title="Glossary">WMA</a><!--latex }
+--></b><!--}--></i><!--}--> and also to import audio from most video files.  But note that on Mac Audacity can import, without FFmpeg, <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:aac}]{--><a href="glossary.html#aac" title="Glossary">M4A (AAC)</a><!--latex }
+--></b><!--}--></i><!--}-->, MP4 (including videos) and all other QuickTime-supported files.</li></ul><!--
+\end{itemize}
+-->
+<div class="note">Because of software patents, Audacity cannot include LAME or FFmpeg encoding software or distribute such software from its own websites.  Instead, use the instructions below to download and install the free and recommended third-party libraries for <!--latex 
+\hyperref[\foo{installing:and:updating:audacity:on:mac:os:x::maclame}]{--><a href="#maclame">LAME</a><!--latex }
+--> and <!--latex 
+\hyperref[\foo{installing:and:updating:audacity:on:mac:os:x::macff}]{--><a href="#macff">FFmpeg</a><!--latex }
+-->.</div>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">Note carefully that simply re-installing Audacity will <!--\textit{--><i><!--\textbf{--><b>not</b><!--}--></i><!--}--> clear and reset your Audacity settings for preferences and plug-ins.  For instructions on how to achieve this please see <!--latex 
+\hyperref[\foo{installing:and:updating:audacity:on:mac:os:x::purge}]{--><a href="#purge">Reset Audacity Settings</a><!--latex }
+-->.
+</td></tr></tbody></table>
+</div> </div>
+<p><br/>
+</p>
+
+<div id="install"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Installation_instructions">Installation instructions</span></h2><!--}--><!--latex 
+\label{installing:and:updating:audacity:on:mac:os:x:install}-->
+<p>Installation instructions using .dmg files:
+</p>
+<!--
+\begin{enumerate}--><ol><!--
+\item --><li>On the <a class="external text" href="http://www.audacityteam.org/download/mac/" rel="nofollow">download page</a>, left-click the "installer" link, the .dmg file, (<!--\textbf{--><b>do not right-click</b><!--}-->). This takes you to the <a class="external text" href="https://www.fosshub.com/" rel="nofollow">FossHub</a> site where our downloads are hosted and the download should commence. </li>
+<!--
+\item --><li>Double-click the downloaded DMG to mount it.</li>
+<!--
+\item --><li>Do not double-click the &ldquo;Audacity&rdquo; application in the DMG window. Instead drag Audacity rightwards onto the /Applications folder shortcut. You can also drag Audacity out of the DMG to any other location. <!--\textit{--><i>You need the administrator password to copy Audacity to /Applications.</i><!--}--></li>
+<!--
+\item --><li>Eject the DMG at bottom left of Finder, then launch Audacity.app from /Applications or from your chosen location.  </li></ol><!--
+\end{enumerate}
+-->
+<div class="note">
+<p>If you see any error messages when launching Audacity, please see our FAQ about <!--latex 
+\hyperref[\foo{faq:installation:and:plug:ins:mac:launch}]{--><a href="faq_installation_and_plug_ins.html#mac_launch" title="FAQ:Installation and Plug-Ins">Mac launch</a><!--latex }
+-->.
+</p>
+</div>
+<div id="sysreq"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="System_Requirements">System Requirements</span></h3><!--}--><!--latex 
+\label{installing:and:updating:audacity:on:mac:os:x:sysreq}-->
+<p>Audacity for Mac is for <!--\textbf{--><b>OS X 10.6 and later</b><!--}-->. Audacity runs best with at least <!--\textbf{--><b>1 GB RAM and a 1 GHz processor (2 GB RAM/2 GHz on OS X 10.7 and later).</b><!--}-->
+</p><p>For lengthy multi-track projects, we recommend a minimum of 2 GB RAM and 2 GHz processor (4 GB RAM on OS X 10.7 and later).
+</p>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">The 2.1.1 release was the final release for PPC Macs.
+</td></tr></tbody></table>
+</div>
+<div id="compatible_projects"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Projects_saved_by_old_versions_of_Audacity">Projects saved by old versions of Audacity</span></h3><!--}--><!--latex 
+\label{installing:and:updating:audacity:on:mac:os:x:compatible:projects}-->
+<p>Current Audacity is compatible with project files saved by versions of Audacity 1.3.x and later, including 2.x.x. 
+</p>
+<div id="updates"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Check_for_Updates">Check for Updates</span></h2><!--}--><!--latex 
+\label{installing:and:updating:audacity:on:mac:os:x:updates}-->
+<p>You can check to see if you have the latest version of Audacity by using <span class="menu">Help &gt; Check for Updates...</span>.
+</p><p>This takes you to the <a class="external text" href="https://web.audacityteam.org/download/" rel="nofollow">Download page</a> of the Audacity website where you can check what the latest release version of Audacity is. 
+</p><p>You can then compare the latest release with the version you have now as shown by using <span class="menu">Audacity &gt; About Audacity...</span>. 
+</p>
+<div id="plugins"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Plug-ins_from_previous_Audacity_installations">Plug-ins from previous Audacity installations</span></h2><!--}--><!--latex 
+\label{installing:and:updating:audacity:on:mac:os:x:plugins}-->
+
+<p>If you had a previous installation of Audacity 2.1.2 or earlier, its shipped plug-ins were in the "plug-ins" folder where Audacity was installed. Versions of Audacity before 2.1.3 were <!--\textit{--><i>usually</i><!--}--> installed inside a folder named "Audacity" which was in the "Applications" folder. Because Audacity's shipped plug-ins are now bundled inside the application, any still extant <!--latex 
+\hyperref[\foo{effect:menu:nyquist:}]{--><a href="effect_menu_nyquist.html" title="Effect Menu: Nyquist">Nyquist</a><!--latex }
+--> plug-ins that came with previous Audacity will appear as a <!--\textit{--><i>second</i><!--}--> copy of the plug-in in the Generate, Effect or Analyze Menu. Duplicates of other previously shipped plug-ins might appear even if they no longer exist, in which case they will fail to run. 
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> You can remove any duplicates that don't run by using <span class="menu">Effect &gt; <!--latex 
+\hyperref[\foo{effect:menu:add:remove:plugins}]{--><a href="effect_menu.html#add_remove_plugins" title="Effect Menu">Add / Remove Plug-ins...</a><!--latex }
+--></span> then click <span class="button">OK</span>. This does not remove the duplicates from the Plug-in Manager's list, but disables them so they do not appears in the menus.</li>
+<!--
+\item --><li> Alternatively you can remove all unwanted duplicates, whether you have deleted the old Audacity installation folder or not, by deleting the file <!--\textbf{--><b>pluginregistry.cfg</b><!--}--> in <!--\textbf{--><b>~/Library/Application Support/audacity/</b><!--}-->.
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> If you delete the Audacity folder from a previous installation, remember to move any optional plug-ins you added to its plug-ins folder to the new Audacity Plug-Ins folder at <!--\textbf{--><b>~/Library/Application Support/audacity/Plug-Ins</b><!--}-->.      </li></ul><!--
+\end{itemize}
+--></li></ul><!--
+\end{itemize}
+-->
+<div id="maclame"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Installing_LAME_on_Mac">Installing LAME on Mac</span></h2><!--}--><!--latex 
+\label{installing:and:updating:audacity:on:mac:os:x:maclame}-->
+<div class="note">Because of software patents, Audacity cannot include <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:mp3}]{--><a href="glossary.html#mp3" title="Glossary">MP3</a><!--latex }
+--></b><!--}--></i><!--}--> encoding software or distribute such software from its own websites. Instead, use the following instructions to download and install the free and recommended <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:lame}]{--><a href="glossary.html#lame" title="Glossary">LAME</a><!--latex }
+--></b><!--}--></i><!--}--> third-party encoder to export MP3 files with Audacity.  See the <!--latex 
+\hyperref[\foo{lame:legal:issues:}]{--><a href="lame_legal_issues.html" title="LAME Legal Issues">LAME Legal Issues</a><!--latex }
+--> page for more details.</div>
+<div id="maclame_installer"></div>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>Recommended Installer</b><!--}--></li></ul><!--
+\end{itemize}
+-->
+<!--
+\begin{enumerate}--><ol><!--
+\item --><li> Go to the external <a class="external text" href="http://lame.buanzo.org#lameosxdl" rel="nofollow">download page</a> <br/>&nbsp;<!--\textit{--><i><!--\textbf{--><b>Left-click this link, do not right-click</b><!--}--></i><!--}-->.
+</li><!--
+\item --><li> Directly underneath "For FFmpeg and LAME on Mac OSX click below:", left-click the link <!--\textbf{--><b>"Lame_Library_v3.99.5_for_Audacity_on_macOS.dmg"</b><!--}-->.
+</li><!--
+\item --><li> When you have finished downloading, double-click the DMG to mount it, if it has not been mounted automatically already. 
+</li><!--
+\item --><li> In the DMG window, or using the menu item for the mounted DMG in the Finder sidebar, double-click "Lame Library v3.99.5 for Audacity.pkg" to launch the standard Mac installer. If you receive a warning that the package cannot be opened, right-click or Ctrl-click the package, choose "Open", then click "Open". 
+</li><!--
+\item --><li> Click through the steps in the installer. This will remove any previous libmp3.dylib at /usr/local/lib/audacity and install the 3.99.5 libmp3lame.dylib file in the system library at /Library/Application Support/audacity/libs/.
+</li><!--
+\item --><li> Audacity should detect LAME automatically when you export as MP3. If Audacity cannot find LAME:
+<!--
+\begin{enumerate}--><ol><!--
+\item --><li> Click <span class="menu">Audacity &gt; <!--latex 
+\hyperref[\foo{preferences:}]{--><a href="preferences.html" title="Preferences">Preferences...</a><!--latex }
+--></span> then choose "Libraries" on the left.
+</li><!--
+\item --><li> Click <span class="button">Locate...</span> to right of "MP3 Library:", then in the "Locate Lame" dialog that appears, click <span class="button">Browse...</span>. 
+</li><!--
+\item --><li> The "Where is libmp3lame.dylib?" window will open at /Library/Application Support/audacity/libs/. Select the "libmp3lame.dylib" file. If the file is grayed out, change the <!--\textbf{--><b>File type:</b><!--}--> dropdown entry to <!--\textbf{--><b>All Files</b><!--}--> or <!--\textbf{--><b>Dynamic Libraries</b><!--}-->. 
+</li><!--
+\item --><li>Click <span class="button">Open</span> then <span class="button">OK</span> and <span class="button">OK</span>.
+</li></ol><!--
+\end{enumerate}
+--></li></ol><!--
+\end{enumerate}
+-->
+<div id="maclame_zip"></div>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>Alternative zip download</b><!--}--></li></ul><!--
+\end{itemize}
+-->
+<!--
+\begin{enumerate}--><ol><!--
+\item --><li> Go to the external <a class="external text" href="http://lame.buanzo.org#lameosxdl" rel="nofollow">download page</a> <br/>&nbsp;<!--\textit{--><i><!--\textbf{--><b>Left-click this link, do not right-click</b><!--}--></i><!--}-->.
+</li><!--
+\item --><li> Directly underneath "For FFmpeg/LAME on Mac OSX click below:", left-click the link <!--\textbf{--><b>"Lame_Library_v3.99.5_for_Audacity_on_macOS.zip"</b><!--}-->.
+</li><!--
+\item --><li> Double-click the downloaded ZIP file. On most Macs this should extract the contents of the ZIP to a new sub-folder "Lame_Library_v3.99.5_for_Audacity_on_macOS" in the folder you downloaded to. Optionally, open that new subfolder then copy the file "libmp3lame.dylib" and paste it anywhere you have full permissions (such as your Documents folder). 
+
+<div class="note">It is not recommended to extract the files to /usr/local/lib because administrative or root permissions may be needed to read the LAME library from there.</div>
+</li><!--
+\item --><li> Click <span class="menu">Audacity &gt; <!--latex 
+\hyperref[\foo{preferences:}]{--><a href="preferences.html" title="Preferences">Preferences...</a><!--latex }
+--></span> then choose "Libraries" on the left.
+</li><!--
+\item --><li> Click <span class="button">Locate...</span> to right of "MP3 Library:", then in the "Locate Lame" dialog that appears, click <span class="button">Browse...</span>. 
+</li><!--
+\item --><li> Navigate to and open the folder where "libmp3lame.dylib" is, and select the "libmp3lame.dylib" file. If the file is grayed out, change the <!--\textbf{--><b>File type:</b><!--}--> dropdown entry to <!--\textbf{--><b>All Files</b><!--}--> or <!--\textbf{--><b>Dynamic Libraries</b><!--}-->.
+</li><!--
+\item --><li> Click <span class="button">Open</span> to return to the Locate Lame dialog.
+</li><!--
+\item --><li> Click <span class="button">OK</span> in the Locate Lame dialog then <span class="button">OK</span> to exit Preferences.</li></ol><!--
+\end{enumerate}
+-->
+<!--
+\begin{itemize}--><ul style="list-style-type:none"><!--\item -->
+You should now be able to export MP3s without any further configuration, choosing <span class="menu">File &gt; Save Other &gt; <!--latex 
+\hyperref[\foo{file:menu:save:other:exportaudio}]{--><a href="file_menu_save_other.html#exportaudio" title="File Menu: Save Other">Export Audio...</a><!--latex }
+--></span> then selecting "MP3 Files" in the <!--latex 
+\hyperref[\foo{file:export:dialog:}]{--><a href="file_export_dialog.html" title="File Export Dialog">Export Audio Dialog</a><!--latex }
+-->.</ul><!--
+\end{itemize}
+-->
+<div id="macff"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Installing_the_FFmpeg_Import.2FExport_Library_on_Mac">Installing the FFmpeg Import/Export Library on Mac</span></h2><!--}--><!--latex 
+\label{installing:and:updating:audacity:on:mac:os:x:macff}--><!--latex 
+\label{installing:and:updating:audacity:on:mac:os:x:maclame:zip}--><!--latex 
+\label{installing:and:updating:audacity:on:mac:os:x:maclame:installer}-->
+<div class="note">The optional <!--latex 
+\hyperref[\foo{faq:opening:and:saving:files:foreign}]{--><a href="faq_opening_and_saving_files.html#foreign" title="FAQ:Opening and Saving Files">FFmpeg library</a><!--latex }
+--> allows Audacity to import and export a much larger <a class="external text" href="https://wiki.audacityteam.org/wiki/FFmpeg_integration#Functionality" rel="nofollow">range of audio formats</a> including <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:aac}]{--><a href="glossary.html#aac" title="Glossary">M4A (AAC)</a><!--latex }
+--></b><!--}--></i><!--}-->, AC3, AMR (narrow band) and <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:wma}]{--><a href="glossary.html#wma" title="Glossary">WMA</a><!--latex }
+--></b><!--}--></i><!--}--> and also to import audio from most video files. 
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> Because of software patents, Audacity cannot include the FFmpeg software or distribute it from its own websites. Instead, use the following instructions to download and install the free and recommended FFmpeg third-party library.</li>
+<!--
+\item --><li><!--\textbf{--><b>Advanced usage:</b><!--}--> If you already have Audacity-compatible FFmpeg 2.2.x or 2.3.x shared libraries in the system PATH, Audacity will use those as long as you do not install FFmpeg from the links below and as long as you do not specify the FFmpeg you want Audacity to use in <!--latex 
+\hyperref[\foo{libraries:preferences:}]{--><a href="libraries_preferences.html" title="Libraries Preferences">Libraries Preferences</a><!--latex }
+-->.</li></ul><!--
+\end{itemize}
+-->
+<div class="note">But note that on Mac Audacity does not need FFmpeg to import <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:aac}]{--><a href="glossary.html#aac" title="Glossary">M4A (AAC)</a><!--latex }
+--></b><!--}--></i><!--}-->, MP4 (including videos) and all other QuickTime-supported files.</div> </div>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">
+<!--\textbf{--><b>FFmpeg 2.2.2 Mac from the links below should be used with the <a class="external text" href="http://www.audacityteam.org/download/" rel="nofollow">latest version of Audacity</a>.</b><!--}--> <p> The previous FFmpeg 0.6.2 for Audacity will <!--\textbf{--><b>not</b><!--}--> be recognized by Audacity 2.0.6 and later, and FFmpeg 2.2.2 will <!--\textbf{--><b>not</b><!--}--> be recognized by Audacity versions before 2.0.6.</p> 
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> FFmpeg 2.3.x shared libraries should also be recognized by Audacity 2.0.6 and later. FFmpeg 2.4.x and later is not supported, except for exports using Audacity's <!--latex 
+\hyperref[\foo{exporting:to:an:external:program:}]{--><a href="exporting_to_an_external_program.html" title="Exporting to an External Program">command-line encoder</a><!--latex }
+-->. </li></ul><!--
+\end{itemize}
+-->
+</td></tr></tbody></table>
+</div>
+<div id="macff_dmg"></div>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>Recommended Installer:</b><!--}--></li></ul><!--
+\end{itemize}
+-->
+<!--
+\begin{enumerate}--><ol><!--
+\item --><li> Go to the external <a class="external text" href="http://lame.buanzo.org#lameosxdl" rel="nofollow">download page</a> <br/>&nbsp;<!--\textit{--><i><!--\textbf{--><b>Left-click this link, do not right-click</b><!--}--></i><!--}-->.
+</li><!--
+\item --><li> Directly underneath "For FFmpeg/LAME on Mac click below:", left-click the link <!--\textbf{--><b>"ffmpeg-mac-2.2.2.dmg"</b><!--}--> and save the file anywhere on your computer. 
+</li><!--
+\item --><li> When you have finished downloading, double-click the DMG file to mount it (if you download with Safari, the FFmpeg virtual disk image will be extracted and mounted automatically after downloading). If the DMG window is not on top, go to Finder, then under "Devices" on the left, click the "ffmpeg-mac-2.2.2" DMG.  
+</li><!--
+\item --><li> In the DMG window, double-click the "ffmpeg-mac-2.2.2.pkg" to launch the standard OS X package installer. If you receive a warning that the package cannot be opened, right-click or Ctrl-click the package, choose "Open", then click "Open". 
+</li><!--
+\item --><li> Click through the steps in the installer, accepting the defaults in all cases. This will install the FFmpeg libraries in /Library/Application Support/audacity/libs.
+</li><!--
+\item --><li> Restart Audacity if it was running when you installed FFmpeg then Audacity should detect FFmpeg automatically.   
+</li><!--
+\item --><li>If you have problems with Audacity detecting FFmpeg, follow the steps to <!--latex 
+\hyperref[\foo{installing:and:updating:audacity:on:mac:os:x::locate}]{--><a href="#locate">manually locate FFmpeg</a><!--latex }
+-->.</li></ol><!--
+\end{enumerate}
+-->
+<div id="macff_zip"></div>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>Alternative Zip download:</b><!--}--></li></ul><!--
+\end{itemize}
+-->
+<!--
+\begin{enumerate}--><ol><!--
+\item --><li> Go to the external <a class="external text" href="http://lame.buanzo.org#lameosxdl" rel="nofollow">download page</a> <br/>&nbsp;<!--\textit{--><i><!--\textbf{--><b>Left-click this link, do not right-click</b><!--}--></i><!--}-->.
+</li><!--
+\item --><li> Directly underneath "For FFmpeg/LAME on Mac click below:", left-click the link <!--\textbf{--><b>"ffmpeg-mac-2.2.2.zip"</b><!--}--> and save the file anywhere on your computer. 
+</li><!--
+\item --><li> Some Mac computers may extract the files from the zip automatically to a new folder in the download directory. Otherwise, extract the entire contents of the downloaded ZIP file to a folder called "ffmpeg-mac-2.2.2" anywhere you have full permissions (such as your Desktop). Then follow the instructions <!--latex 
+\hyperref[\foo{installing:and:updating:audacity:on:mac:os:x::locate}]{--><a href="#locate">below</a><!--latex }
+--> to locate libavformat.55.dylib using the Libraries Preferences.
+
+<div class="note">It is not recommended to extract the files to /usr/local/lib because administrative or root permissions may be needed to read the FFmpeg library from there.</div></li></ol><!--
+\end{enumerate}
+-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>Compiling Audacity against another build of FFmpeg:</b><!--}--> </li></ul><!--
+\end{itemize}
+-->
+<!--
+\begin{itemize}--><ul style="list-style-image: none; list-style-type: none"><!--\item -->You can also build and install your own copy of FFmpeg 1.2 or later using source code from the <a class="external text" href="https://www.ffmpeg.org/" rel="nofollow">FFmpeg project</a>. Then build Audacity from <a class="external text" href="https://github.com/audacity/audacity" rel="nofollow">Git sources</a> according to <a class="external text" href="https://github.com/audacity/audacity/blob/master/mac/Build.txt" rel="nofollow">mac/Build.txt</a>, linking to your self-installed copy of FFmpeg according to <a class="external text" href="https://forum.audacityteam.org/viewtopic.php?f=17&amp;t=7245&amp;p=29157#p29157" rel="nofollow">these principles</a>. </ul><!--
+\end{itemize}
+-->
+<div id="locate"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Locating_the_FFmpeg_library_manually">Locating the FFmpeg library manually</span></h3><!--}--><!--latex 
+\label{installing:and:updating:audacity:on:mac:os:x:locate}--><!--latex 
+\label{installing:and:updating:audacity:on:mac:os:x:macff:zip}--><!--latex 
+\label{installing:and:updating:audacity:on:mac:os:x:macff:dmg}-->
+<p>If you installed FFmpeg while Audacity was running, or if you installed FFmpeg to a non-default location, Audacity will ask you to configure Preferences to locate the FFmpeg library. To do this, access <!--latex 
+\hyperref[\foo{preferences:}]{--><a href="preferences.html" title="Preferences">Preferences</a><!--latex }
+--> then the "Libraries" tab on the left: 
+</p>
+<dl><dd><span title="Libraries Preferences showing the FFmpeg Locate... and Download... buttons, showing FFmpeg library not found"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Preferences Libraries NOT Found Mac.png" height="511" src="../m/images/f/f4/preferences_libraries_not_found_mac.png" width="779"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/f/f4/preferences_libraries_not_found_mac.png--></img><!--}\par
+--></span></dd></dl>
+<p>As in the image above, the "FFmpeg Library Version" will say "not found". To correct this:
+</p>
+<!--
+\begin{enumerate}--><ol><!--
+\item --><li> Click the <span class="button">Locate...</span> button to right of <!--\textbf{--><b>FFmpeg Library:</b><!--}-->.</li>
+<!--
+\item --><li> If a "Success" message indicates Audacity has now automatically detected valid FFmpeg libraries and asks if you want to detect them manually, click <span class="button">No</span>, then <span class="button">OK</span> to close Preferences. </li>
+<!--
+\item --><li> If the "Locate FFmpeg" dialog appears, click <span class="button">Browse...</span>.</li>
+<!--
+\item --><li> Navigate to the folder that contains FFmpeg and select the file "libavformat.55.dylib". </li>
+<!--
+\item --><li> Click <span class="button">Open</span> then <span class="button">OK</span> and <span class="button">OK</span> again to close Preferences.</li></ol><!--
+\end{enumerate}
+-->
+<p><!--\textbf{--><b>FFmpeg Library Version</b><!--}--> should now show a set of three version numbers for the sub-libraries of FFmpeg ("F" for libavformat version, "C" for libavcodec version and "U" for libavutil version). If you still see "not found", you may have installed the wrong libraries. Click the <span class="button">Download...</span> button to obtain the correct library for your operating system. You can also choose <span class="menu">Help &gt; Diagnostics &gt; <!--latex 
+\hyperref[\foo{help:menu:diagnostics:show:log}]{--><a href="help_menu_diagnostics.html#show_log" title="Help Menu: Diagnostics">Show Log...</a><!--latex }
+--></span> to see diagnostic information about FFmpeg detection.
+</p><p><br/>
+</p>
+<div id="purge"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Reset_Audacity_Settings_on_Mac">Reset Audacity Settings on Mac</span></h2><!--}--><!--latex 
+\label{installing:and:updating:audacity:on:mac:os:x:purge}-->
+<p>As stated in the introduction on this page, simply re-installing Audacity will not clear and reset your Audacity settings for preferences and plug-ins.
+</p><p>The data for these are stored in a folder called <!--\textbf{--><b>audacity</b><!--}--> in the Library&gt;Application Support in your user directory.  
+</p><p>On macOS the full pathname is:  <!--\textbf{--><b> <!--\textit{--><i>your username</i><!--}--> &gt; Library &gt; Application Support &gt; audacity</b><!--}-->
+</p><p>To open the <!--\textbf{--><b>audacity</b><!--}--> settings folder:
+</p>
+<!--
+\begin{enumerate}--><ol><!--
+\item --><li>Open Finder and click on Go &gt; Go to Folder...</li>
+<!--
+\item --><li>In the dialog box type <!--\textbf{--><b>~/Library/Application Support/audacity</b><!--}--> </li>
+<!--
+\item --><li>click the <span class="button">Go</span> button</li></ol><!--
+\end{enumerate}
+-->
+<div class="note"><!--\textbf{--><b>Alternatively:</b><!--}--> on macOS the Library folder is usually hidden by default.  To reveal it for future use: 
+<!--
+\begin{itemize}--><ul><!--
+\item --><li>In the sidebar of a Finder window, click on your username (it will have a house icon beside it)</li>
+<!--
+\item --><li>Click on the View menu and select Show View Options</li>
+<!--
+\item --><li>check "on" "Show Library Folder"</li>
+<!--
+\item --><li>The Library folder will then show in your username folder</li></ul><!--
+\end{itemize}
+-->
+</div>
+<p>First you will need to quit Audacity.
+</p>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="To_completely_reset_your_Audacity_settings">To completely reset your Audacity settings</span></h3><!--}-->
+<p>Navigate to that <!--\textbf{--><b>audacity</b><!--}--> folder with Finder and delete the entire contents.  Then restart Audacity.
+</p>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">If you have added additional plug-ins to the <!--\textit{--><i>Plug-Ins</i><!--}--> folder and wish to keep them, do not delete that folder.
+</td></tr></tbody></table>
+</div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="To_reset_just_your_Audacity_preferences">To reset just your Audacity preferences</span></h3><!--}-->
+<p>Navigate to that <!--\textbf{--><b>audacity</b><!--}--> folder with Finder and delete the <!--\textbf{--><b>audacity.cfg file</b><!--}-->.  Then restart Audacity.
+</p>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="To_reset_just_your_plug-ins">To reset just your plug-ins</span></h3><!--}-->
+<p>Navigate to that <!--\textbf{--><b>audacity</b><!--}--> folder with Finder and delete the:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>pluginregistry.cfg</b><!--}--> file</li>
+<!--
+\item --><li><!--\textbf{--><b>pluginsettings.cfg</b><!--}--> file</li>
+<!--
+\item --><li><!--\textbf{--><b>Plug-Ins</b><!--}--> folder</li></ul><!--
+\end{itemize}
+-->
+<p>Then restart Audacity
+</p>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">If you want to reset your plug-in settings but do not want to lose any additional plug-ins you have added to the <!--\textit{--><i>Plug-Ins</i><!--}--> folder, do not delete that folder.
+</td></tr></tbody></table>
+</div>
+
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

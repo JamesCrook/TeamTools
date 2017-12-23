@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Bass and Treble - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Bass_and_Treble rootpage-Bass_and_Treble skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Bass and Treble</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{bass:and:treble:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p><br/>
+</p>
+
+<p>
+</p><p><br/>
+</p>
+<div class="intro"><!--\textit{--><i><!--\textbf{--><b>Bass and Treble</b><!--}--></i><!--}--> increases or decreases the lower <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:frequency}]{--><a href="glossary.html#frequency" title="Glossary">frequencies</a><!--latex }
+--></b><!--}--></i><!--}--> and higher frequencies of your audio independently.  It behaves just like the bass, treble and volume controls on a domestic stereo system.</div>
+<dl><dd><!--\textbf{--><b>Accessed by:</b><!--}--> <span class="menu">Effect &gt;Bass and Treble...</span></dd>
+<dd><span title="Bass and Treble effect dialog"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Bass_and_Treble.png"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Bass and Treble.png" height="280" src="../m/images/b/bb/bass_and_treble.png" width="729"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/bb/bass_and_treble.png--></img><!--}\par
+--></a></span></dd></dl>
+<div id="bass"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Bass_.28dB.29">Bass (dB)</span></h2><!--}--><!--latex 
+\label{bass:and:treble:bass}-->
+<p>The amount of <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:gain}]{--><a href="glossary.html#gain" title="Glossary">gain</a><!--latex }
+--></b><!--}--></i><!--}--> (amplification above 0 <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:decibel}]{--><a href="glossary.html#decibel" title="Glossary">dB</a><!--latex }
+--></b><!--}--></i><!--}--> or attenuation below 0 dB) to bass (low) frequencies. Set this to a positive amount to boost the bass, or to a negative amount to reduce the bass. Bass gain is applied to frequencies lower than 1000 Hz, with the most gain being applied to frequencies about 100 Hz or lower. 
+</p>
+<div id="treble"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Treble_.28dB.29">Treble (dB)</span></h2><!--}--><!--latex 
+\label{bass:and:treble:treble}-->
+<p>The amount of gain (amplification above 0 dB or attenuation below 0 dB) to treble (high) frequencies. Set this to a positive amount to boost the treble, or to a negative amount to reduce the treble.  Treble gain is applied to frequencies higher than 1000 Hz, with the most gain being applied to frequencies above 10000 Hz. 
+</p>
+<div id="volume"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Volume_.28dB.29">Volume (dB)</span></h2><!--}--><!--latex 
+\label{bass:and:treble:volume}-->
+<p>This increases or reduces the overall level by up to +/- 30 dB.
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>Applying a boost to the bass or treble will tend to increase the overall level.</b><!--}--> As a result, the final level may be pushed so high that it distorts (<!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:clipping}]{--><a href="glossary.html#clipping" title="Glossary">clips</a><!--latex }
+--></b><!--}--></i><!--}-->). To avoid clipping, reduce the level by setting the Volume control lower.</li>
+<!--
+\item --><li> <!--\textbf{--><b>Reducing the bass or treble may make the final level too quiet.</b><!--}--> To compensate for the lower level, set the Volume control higher.</li></ul><!--
+\end{itemize}
+-->
+<div class="note">If both the treble and bass frequencies are increased and the overall volume lowered, the overall effect is a reduction in the middle frequencies. Similarly, reducing both the bass and treble and increasing the volume has an overall effect of boosting the middle frequencies.</div>
+<div id="link"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Link_Volume_control_to_Tone_controls">Link Volume control to Tone controls</span></h2><!--}--><!--latex 
+\label{bass:and:treble:link}-->
+
+<p>When this is enabled (checked), adjusting either the Bass or Treble controls will automatically adjust the Volume control so as to lessen the change in the resulting output level. 
+</p>
+ 
+<div class="note">Even when linking the Volume control, the overall output level may still change a little, depending on the frequency content and how much the bass or treble are changed. Therefore always check <!--latex 
+\hyperref[\foo{meter:toolbar:playback:use}]{--><a href="meter_toolbar.html#playback_use" title="Meter Toolbar">Playback Meter Toolbar</a><!--latex }
+--> for possible clipping when trying out different bass and treble settings. Even when linked, you can still adjust the Volume control  independently of the tone controls.</div>
+<div id="details"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Technical_details">Technical details</span></h2><!--}--><!--latex 
+\label{bass:and:treble:details}-->
+<p><!--\textbf{--><b>Bass and Treble</b><!--}--> is a two-band Equalizer. 
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li>The Bass control is a low-shelf filter with the <!--latex 
+\hyperref[\foo{bass:and:treble::half:gain}]{--><a href="#half_gain">half gain frequency</a><!--latex }
+--> at 250 Hz. </li>
+<!--
+\item --><li>The Treble control is a high-shelf filter with the half gain frequency at 4000 Hz. </li>
+<!--
+\item --><li>All slider controls have a gain range of +/- 30 dB.</li></ul><!--
+\end{itemize}
+-->
+<div id="half_gain">
+<div class="note">The <!--\textit{--><i><!--\textbf{--><b>half gain frequency</b><!--}--></i><!--}--> is the <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:frequency}]{--><a href="glossary.html#frequency" title="Glossary">frequency</a><!--latex }
+--></b><!--}--></i><!--}--> at which the <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:gain}]{--><a href="glossary.html#gain" title="Glossary">gain</a><!--latex }
+--></b><!--}--></i><!--}--> is half of the filter gain. For example, if the filter gain was +10 dB then the half gain frequency would be the frequency at which the gain is +5 dB. However for shelf filters the half gain frequency is typically a fixed frequency regardless of the amount of gain. For other types of filter it is more common to define the <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{high:pass:filter:cutoff}]{--><a href="high_pass_filter.html#cutoff" title="High Pass Filter">cutoff frequency</a><!--latex }
+--></b><!--}--></i><!--}--> as the frequency at which the gain is -3 dB.</div></div>
+<div id="buttons"></div>
+
+<!--
+\subsection{--><h2><span class="mw-headline" id="Buttons">Buttons</span></h2><!--}--><!--latex 
+\label{bass:and:treble:buttons}-->
+<p>Clicking on the command buttons give the following results:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><span class="button">Manage</span> gives a dropdown menu enabling you to manage presets for the tool and to see some detail about the tool. For details see <!--latex 
+\hyperref[\foo{manage:presets:}]{--><a href="manage_presets.html" title="Manage presets">Manage presets</a><!--latex }
+-->.</li>
+<!--
+\item --><li> <span class="button"> Start Playback</span> starts playback of the effect preview</li>
+<!--
+\item --><li> <span class="button"> Skip Backward</span> skips forward through the effect preview</li>
+<!--
+\item --><li> <span class="button"> Skip Forward</span> skips forward through the effect preview</li>
+<!--
+\item --><li> <span class="button"><a class="image" href="http://alphamanual.audacityteam.org/man/File:CheckboxChecked.png"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="CheckboxChecked.png" height="13" src="../m/images/8/85/checkboxchecked.png" style="vertical-align: text-top" width="13"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/8/85/checkboxchecked.png--></img><!--}}{}--></a>&nbsp;Enable</span> listen to the preview with and without the effect applied</li>
+<!--
+\item --><li><span class="button">OK</span> applies the effect to the selected audio with the current effect settings.</li>
+<!--
+\item --><li><span class="button">Cancel</span> aborts the effect and leaves the audio unchanged.</li>
+<!--
+\item --><li><a href="help_button.html" title="Help Button"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Help Button" height="27" src="../m/images/d/d6/help_button.png" width="27"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d6/help_button.png--></img><!--}}{}--></a> brings you to the appropriate page in the Manual, this page.</li></ul><!--
+\end{itemize}
+-->
+<p><br/>
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Real-time_preview">Real-time preview</span></h2><!--}-->
+<p>This effect supports <!--latex 
+\hyperref[\foo{real:time:preview:of:effects:}]{--><a href="real_time_preview_of_effects.html" title="Real-time preview of effects">Real-time preview</a><!--latex }
+--> - effect settings can be changed while playing and listening to the result in real-time. Text-based button controls are provided as in the image above. The Enable checkbox acts like a live "Bypass" control. Uncheck the checkbox <span class="button"><a class="image" href="http://alphamanual.audacityteam.org/man/File:CheckboxNotChecked.png"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="CheckboxNotChecked.png" height="13" src="../m/images/a/a8/checkboxnotchecked.png" style="vertical-align: text-top" width="13"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/a/a8/checkboxnotchecked.png--></img><!--}}{}--></a>&nbsp;Enable</span> to hear the audio without the effect applied, and recheck the box <span class="button"><a class="image" href="http://alphamanual.audacityteam.org/man/File:CheckboxChecked.png"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="CheckboxChecked.png" height="13" src="../m/images/8/85/checkboxchecked.png" style="vertical-align: text-top" width="13"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/8/85/checkboxchecked.png--></img><!--}}{}--></a>&nbsp;Enable</span> to hear the effect applied at its current settings. 
+</p><p>The <span class="button">Manage</span> button accesses choices to add, delete, import or export presets for this effect and to set options for this effect. For details see <!--latex 
+\hyperref[\foo{manage:presets:}]{--><a href="manage_presets.html" title="Manage presets">Manage presets</a><!--latex }
+-->.
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Links">Links</span></h2><!--}-->
+<p><!--latex 
+\hyperref[\foo{index:of:effects:generators:and:analyzers:}]{--><a href="index_of_effects_generators_and_analyzers.html" title="Index of Effects, Generators and Analyzers"><!--\textbf{--><b>|&lt;</b><!--}--> Index of Effects, Generators and Analyzers</a><!--latex }
+--> <br/>
+</p><p><!--latex 
+\hyperref[\foo{effect:menu:}]{--><a href="effect_menu.html" title="Effect Menu"><!--\textbf{--><b>|&lt;</b><!--}--> Effect Menu</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

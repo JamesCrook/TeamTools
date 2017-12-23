@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Sync-Locked Track Groups - Time Stretching - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Sync-Locked_Track_Groups_-_Time_Stretching rootpage-Sync-Locked_Track_Groups_-_Time_Stretching skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Sync-Locked Track Groups - Time Stretching</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{sync:locked:track:groups:time:stretching:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+</p>
+
+<!--
+\subsection{--><h2><span class="mw-headline" id="Time_stretching_operations_on_Sync-Locked_Track_Groups">Time stretching operations on Sync-Locked Track Groups</span></h2><!--}-->
+<p>The following effects, when applied to a region in a selected track (or tracks) in a Sync-Locked group, will cause the length of non-selected tracks in the group to be adjusted to match the change in length of the selected track, either by truncating the non-selected tracks from the right or by adding silence. Audio before and after the selection will remain synchronized. Audio within the selection may or may not remain synchronized, as the time stretching effect is not applied to the Sync-Locked tracks.
+</p><p>Any Label track that forms part of the Sync-Locked Track Group will be stretched positively or negatively, the same as the selected track(s) - or in the case of Repeat will have that section of the Label track repeated.
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><span style="font-weight: bold; font-size:118%"><!--latex 
+\hyperref[\foo{change:speed:}]{--><a href="change_speed.html" title="Change Speed">Change Speed</a><!--latex }
+-->:</span> Sync-Locked tracks will be adjusted by having the selected region(s) shortened from the right (if the change in speed is positive), or have silence inserted after the selected region (if the change in speed is negative).</li>
+<!--
+\item --><li><span style="font-weight: bold; font-size:118%"><!--latex 
+\hyperref[\foo{change:tempo:}]{--><a href="change_tempo.html" title="Change Tempo">Change Tempo</a><!--latex }
+-->:</span> Sync-Locked tracks will be adjusted by having the selected region(s) shortened from the right (if the change in tempo is positive - faster), or have silence inserted after the selected region (if the change in tempo is negative - slower).</li>
+<!--
+\item --><li><span style="font-weight: bold; font-size:118%"><!--latex 
+\hyperref[\foo{repeat:}]{--><a href="repeat.html" title="Repeat">Repeat</a><!--latex }
+-->:</span> If applied to a selection that does not end on the end of a track, silence is inserted in the Sync-Locked tracks where the repeats are placed in the selected track(s)</li>
+<!--
+\item --><li><span style="font-weight: bold; font-size:118%"><!--latex 
+\hyperref[\foo{sliding:time:scale:pitch:shift:}]{--><a href="sliding_time_scale_pitch_shift.html" title="Sliding Time Scale - Pitch Shift">Sliding Time Scale/Pitch Shift</a><!--latex }
+-->:</span> If the time-scale changes shorten the selection then the Sync-Locked tracks will be shortened from the right to maintain time synchronization among the tracks; if the time-scale changes lengthen the selection then the Sync-Locked tracks will have silence inserted to maintain time synchronization among the tracks.</li>
+<!--
+\item --><li><span style="font-weight: bold; font-size:118%"><!--latex 
+\hyperref[\foo{truncate:silence:}]{--><a href="truncate_silence.html" title="Truncate Silence">Truncate Silence</a><!--latex }
+-->:</span> Removes audio from Sync-Locked tracks to maintain time synchronization with remaining sections of the selected track.</li>
+<!--
+\item --><li><span style="font-weight: bold; font-size:118%"><!--latex 
+\hyperref[\foo{delay:}]{--><a href="delay.html" title="Delay">Delay</a><!--latex }
+-->:</span> If applied to a selection that does not end on the end of a track, silence is inserted in the Sync-Locked tracks where the delays are placed in the selected track(s) to maintain time synchronization among the tracks.</li></ul><!--
+\end{itemize}
+-->
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top"><!--\textbf{--><b><!--latex 
+\hyperref[\foo{paulstretch:}]{--><a href="paulstretch.html" title="Paulstretch">Paulstretch</a><!--latex }
+--></b><!--}--> also changes the selection length of any selected tracks in the Sync-Locked Track Group, but currently does <!--\textit{--><i><!--\textbf{--><b>not</b><!--}--></i><!--}--> observe the sync-locking and does not cause changes to any un-selected Sync-Locked tracks. Label tracks are not affected by Paulstretch whether selected or not.
+</td></tr></tbody></table>
+</div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Example-1:_Change_Speed">Example-1: <!--latex 
+\hyperref[\foo{change:speed:}]{--><a href="change_speed.html" title="Change Speed">Change Speed</a><!--latex }
+--></span></h2><!--}-->
+<div class="example"><!--\textbf{--><b>Before <span class="menu">&gt;Effect &gt; <!--latex 
+\hyperref[\foo{change:speed:}]{--><a href="change_speed.html" title="Change Speed">Change Speed</a><!--latex }
+--></span></b><!--}-->
+<dl><dd><span title="before Change Speed"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="SLTG Stretching 1.png" height="237" src="../m/images/e/e6/sltg_stretching_1.png" width="749"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/e/e6/sltg_stretching_1.png--></img><!--}\par
+--></span></dd></dl>
+<dl><dd><!--\textbf{--><b>After Effect &gt; Change Speed</b><!--}--></dd>
+<dd>with a setting of 50%, which makes the selection faster and shorter</dd>
+<dd><span title="after a speed change of fifty percent"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="SLTG Stretching 2.png" height="238" src="../m/images/7/75/sltg_stretching_2.png" width="749"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/7/75/sltg_stretching_2.png--></img><!--}\par
+--></span></dd></dl>
+<dl><dd><!--\textbf{--><b>Result:</b><!--}--> Audio has been removed from the lower audio track. Note that in this case audio within the selection does not remain in synchronization since the Change Speed effect is not applied to the Sync-Locked track. Audio before and after the selection remains synchronized.</dd></dl>
+<dl><dd>But note too that the Label track has been stretched, shrunk, appropriately (and not truncated) to maintain synchronicity the the select track, the top track.</dd></dl></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Example-2:_Repeat">Example-2: <!--latex 
+\hyperref[\foo{repeat:}]{--><a href="repeat.html" title="Repeat">Repeat</a><!--latex }
+--></span></h2><!--}-->
+<div class="example"><!--\textbf{--><b>Before <span class="menu">Effect &gt; <!--latex 
+\hyperref[\foo{effect:menu:repeat}]{--><a href="effect_menu.html#repeat" title="Effect Menu">Repeat</a><!--latex }
+--></span></b><!--}-->
+<dl><dd><span title="before repeat"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="SLTG Stretching 3.png" height="239" src="../m/images/d/d1/sltg_stretching_3.png" width="749"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d1/sltg_stretching_3.png--></img><!--}\par
+--></span></dd></dl>
+<dl><dd><!--\textbf{--><b>After Effect &gt; Repeat</b><!--}--></dd>
+<dd>with 3 repeats</dd>
+<dd><span title="after three repeats"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="SLTG Stretching 4.png" height="239" src="../m/images/7/7a/sltg_stretching_4.png" width="749"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/7/7a/sltg_stretching_4.png--></img><!--}\par
+--></span></dd></dl>
+<dl><dd><!--\textbf{--><b>Result:</b><!--}--> Silence has been inserted into the lower audio track and the Label track has had its synced "selection" repeated three times.</dd></dl></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Links">Links</span></h2><!--}-->
+<p><!--latex 
+\hyperref[\foo{sync:locked:track:groups:time:shifting:}]{--><a href="sync_locked_track_groups_time_shifting.html" title="Sync-Locked Track Groups - Time Shifting"><!--\textbf{--><b>&lt;</b><!--}-->&nbsp; Back to: Sync-Locked Track Groups - Time Shifting</a><!--latex }
+--> <br/>
+</p><p><!--latex 
+\hyperref[\foo{sync:locked:track:groups:}]{--><a href="sync_locked_track_groups.html" title="Sync-Locked Track Groups"><!--\textbf{--><b>|&lt;</b><!--}-->&nbsp; Sync-Locked Track Groups</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

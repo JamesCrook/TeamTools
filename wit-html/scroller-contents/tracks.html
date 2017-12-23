@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Tracks Overview - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Tracks rootpage-Tracks skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Tracks Overview</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{tracks:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+
+
+</p><p><br/>
+</p>
+<div class="intro">Anything that is added to the <!--latex 
+\hyperref[\foo{index:reference}]{--><a href="../index.html#reference" title="Main Page">Project Window</a><!--latex }
+--> will be placed inside a track container, underneath the <!--latex 
+\hyperref[\foo{timeline:}]{--><a href="timeline.html" title="Timeline">Timeline</a><!--latex }
+--> of the project. There are four different types of tracks: <!--latex 
+\hyperref[\foo{audio:tracks:}]{--><a href="audio_tracks.html" title="Audio Tracks"> Audio Tracks</a><!--latex }
+-->, <!--latex 
+\hyperref[\foo{label:tracks:}]{--><a href="label_tracks.html" title="Label Tracks"> Label Tracks</a><!--latex }
+-->, <!--latex 
+\hyperref[\foo{time:tracks:}]{--><a href="time_tracks.html" title="Time Tracks"> Time Tracks</a><!--latex }
+--> and <!--latex 
+\hyperref[\foo{note:tracks:}]{--><a href="note_tracks.html" title="Note Tracks"> Note Tracks</a><!--latex }
+-->.</div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Audio_tracks"><!--latex 
+\hyperref[\foo{audio:tracks:}]{--><a href="audio_tracks.html" title="Audio Tracks"> Audio tracks</a><!--latex }
+--></span></h2><!--}-->
+<p>Audio Tracks contain <!--latex 
+\hyperref[\foo{digital:audio:}]{--><a href="digital_audio.html" title="Digital Audio">digitally sampled</a><!--latex }
+--> sounds.  They presents from left to right:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> a <!--latex 
+\hyperref[\foo{tracks::panel}]{--><a href="#panel">Track Control Panel</a><!--latex }
+--> with <!--latex 
+\hyperref[\foo{audio:track:dropdown:menu:}]{--><a href="audio_track_dropdown_menu.html" title="Audio Track Dropdown Menu">Audio Track Dropdown Menu</a><!--latex }
+--> for changing View Mode and audio properties of that individual track </li>
+<!--
+\item --><li> a <!--latex 
+\hyperref[\foo{tracks::scale}]{--><a href="#scale">Vertical Scale</a><!--latex }
+--> with units </li>
+<!--
+\item --><li> a visual representation of the audio (by default this is the <!--latex 
+\hyperref[\foo{audacity:waveform:}]{--><a href="audacity_waveform.html" title="Audacity Waveform">Waveform</a><!--latex }
+--> view as in the images below). </li></ul><!--
+\end{itemize}
+-->
+<dl><dd><span title="Mono Audio Track"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Mono comparison 220.png" height="169" src="../m/images/9/9d/mono_comparison_220.png" width="694"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/9/9d/mono_comparison_220.png--></img><!--}\par
+--></span></dd></dl>
+
+<dl><dd><span title="Stereo Audio Track"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Stereo Track Example 220.png" height="243" src="../m/images/6/6f/stereo_track_example_220.png" width="691"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/6/6f/stereo_track_example_220.png--></img><!--}\par
+--></span></dd></dl>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Label_tracks"><!--latex 
+\hyperref[\foo{label:tracks:}]{--><a href="label_tracks.html" title="Label Tracks"> Label tracks</a><!--latex }
+--></span></h2><!--}-->
+<p>A Label Track is an additional track that can be created in your project; it is used in conjunction with audio tracks but contains no audio itself. It can be used to mark specific points or ranges in the project with point labels or range labels.
+</p>
+<dl><dd><span title="Label Track"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Label Track 220.png" height="77" src="../m/images/7/7a/label_track_220.png" width="692"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/7/7a/label_track_220.png--></img><!--}\par
+--></span></dd></dl>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Time_Tracks"><!--latex 
+\hyperref[\foo{time:tracks:}]{--><a href="time_tracks.html" title="Time Tracks"> Time Tracks</a><!--latex }
+--></span></h2><!--}-->
+<p>A Time Track is used in conjunction with one or more <!--latex 
+\hyperref[\foo{audio:tracks:}]{--><a href="audio_tracks.html" title="Audio Tracks">audio tracks</a><!--latex }
+--> to progressively increase or decrease playback speed (and pitch) over the length of the audio. Speed changes are controlled by manipulating the blue "time warp" line with the <!--latex 
+\hyperref[\foo{envelope:tool:}]{--><a href="envelope_tool.html" title="Envelope Tool">Envelope Tool</a><!--latex }
+--> used for making gradual volume changes. If the blue line is dragged above the horizontal, the audio plays faster; if dragged below, it plays slower.
+</p>
+<dl><dd><span title="Time Track"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Time Track 220.png" height="104" src="../m/images/8/88/time_track_220.png" width="692"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/8/88/time_track_220.png--></img><!--}\par
+--></span></dd></dl>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Note_Tracks"><!--latex 
+\hyperref[\foo{note:tracks:}]{--><a href="note_tracks.html" title="Note Tracks"> Note Tracks</a><!--latex }
+--></span></h2><!--}-->
+
+<p>Note Tracks display data from <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:midi}]{--><a href="glossary.html#midi" title="Glossary">MIDI</a><!--latex }
+--></b><!--}--></i><!--}--> files - these can be imported with the <span class="menu">File &gt; Import &gt; Import MIDI...</span> command. 
+</p><p>Audacity can play these MIDI files, but note that although this should just work on Windows on Mac and Linux additional software may be required <!--\textit{--><i>(for details please see <!--latex 
+\hyperref[\foo{playing:and:recording:midi}]{--><a href="playing_and_recording.html#midi" title="Playing and Recording">this page</a><!--latex }
+-->)</i><!--}-->. 
+</p><p>Editing these Note tracks is possible, but very limited.
+</p>
+<dl><dd><span title="Note Track"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Note Track with Velocity slider.png" height="163" src="../m/images/5/53/note_track_with_velocity_slider.png" width="704"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/5/53/note_track_with_velocity_slider.png--></img><!--}\par
+--></span></dd></dl>
+<p>For more details please see: <!--latex 
+\hyperref[\foo{note:tracks:}]{--><a href="note_tracks.html" title="Note Tracks">Note Tracks</a><!--latex }
+-->.
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Track_focus">Track focus</span></h2><!--}-->
+<p>You may have noticed in the images on this page that Note track has a yellow border around it. This border indicates that this track has <!--\textit{--><i>focus</i><!--}-->.
+</p><p>The track that has focus is the track that accepts any command whose name includes "focused track". These commands include commands such as "Close focused track" (<span class="kbrd" style="background-color: #e0e0f0">Shift + C</span>), "Mute/Unmute focused track" (<span class="kbrd" style="background-color: #e0e0f0">Shift + U</span>) and "Toggle focused track" (<span class="kbrd" style="background-color: #e0e0f0">Return</span> or <span class="kbrd" style="background-color: #e0e0f0">Enter</span>, which toggles whether the focused track is <!--latex 
+\hyperref[\foo{audacity:selection:}]{--><a href="audacity_selection.html" title="Audacity Selection">selected</a><!--latex }
+--> or not).
+</p><p>The complete list of "focused track" commands can be seen by searching for "focused track" (without quotes) in <!--latex 
+\hyperref[\foo{keyboard:preferences:}]{--><a href="keyboard_preferences.html" title="Keyboard Preferences">Keyboard Preferences</a><!--latex }
+--> or by viewing the description of these commands in <!--latex 
+\hyperref[\foo{keyboard:shortcut:reference:}]{--><a href="keyboard_shortcut_reference.html" title="Keyboard Shortcut Reference">Keyboard Shortcut Reference</a><!--latex }
+-->. 
+</p><p>Track focus is used to <!--latex 
+\hyperref[\foo{faq:editing:select}]{--><a href="faq_editing.html#select" title="FAQ:Editing">select audio</a><!--latex }
+--> and to <!--latex 
+\hyperref[\foo{faq:editing:selcopy}]{--><a href="faq_editing.html#selcopy" title="FAQ:Editing">extend or move the selection region into other tracks</a><!--latex }
+--> using the keyboard.
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

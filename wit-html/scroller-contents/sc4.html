@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>SC4 - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-SC4 rootpage-SC4 skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">SC4</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{sc4:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+</p><p><br/>
+</p>
+<div class="intro">
+<p><!--\textit{--><i><!--\textbf{--><b>SC4</b><!--}--></i><!--}--> is a stereo <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:compression}]{--><a href="glossary.html#compression" title="Glossary">compressor</a><!--latex }
+--></b><!--}--></i><!--}--> with a variable envelope follower for <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:rms}]{--><a href="glossary.html#rms" title="Glossary">RMS</a><!--latex }
+--></b><!--}--></i><!--}--> / peak behavior. Unlike the built-in <!--latex 
+\hyperref[\foo{compressor:}]{--><a href="compressor.html" title="Compressor">Compressor</a><!--latex }
+-->, SC4 does not "look-ahead" in order to begin reducing volume before a peak occurs. 
+</p>
+</div>
+<dl><dd><!--\textbf{--><b>Accessed by:</b><!--}--> <span class="menu">Effect &gt; SC4...</span></dd>
+<dd><span title="SC4 effect dialog"><a class="image" href="http://alphamanual.audacityteam.org/man/File:SC4.png"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="SC4.png" height="432" src="../m/images/c/c2/sc4.png" width="692"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/c/c2/sc4.png--></img><!--}\par
+--></a></span></dd></dl>
+<div class="note">
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> On Mac, SC4 has to be enabled at <!--latex 
+\hyperref[\foo{manage:effects:generators:and:analyzers:}]{--><a href="manage_effects_generators_and_analyzers.html" title="Manage Effects, Generators and Analyzers">Add / Remove Plug-ins...</a><!--latex }
+-->. </li>
+<!--
+\item --><li> On GNU/Linux, SC4 is not installed by default. If SC4 is not available in your copy of Audacity, you can obtain SC4 in the <a class="external text" href="http://plugin.org.uk/download.php" rel="nofollow">LADSPA-swh plugins set</a> and then <!--latex 
+\hyperref[\foo{installing:effect:generator:and:analyzer:plug:ins:on:linux:ladspa:install}]{--><a href="installing_effect_generator_and_analyzer_plug_ins_on_linux.html#ladspa_install" title="Installing Effect, Generator and Analyzer plug-ins on Linux">install</a><!--latex }
+--> it.</li></ul><!--
+\end{itemize}
+--></div> 
+<!--
+\subsection{--><h2><span class="mw-headline" id="Effect_Settings">Effect Settings</span></h2><!--}-->
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="RMS.2Fpeak">RMS/peak</span></h3><!--}-->
+<p>The balance between the RMS and peak envelope followers. The followers use the <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:amplitude}]{--><a href="glossary.html#amplitude" title="Glossary">amplitude</a><!--latex }
+--></b><!--}--></i><!--}--> variation information in the waveform to affect the <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:gain}]{--><a href="glossary.html#gain" title="Glossary">gain</a><!--latex }
+--></b><!--}--></i><!--}--> applied by the compressor. The RMS follower is generally better for subtle, musical compression and the peak follower is better for heavier, fast compression and percussion.
+</p>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Attack_time_.28ms.29">Attack time (ms)</span></h3><!--}-->
+<p>How soon the compressor starts to compress the dynamics after the threshold is exceeded, in milliseconds. 
+</p>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Release_time_.28ms.29">Release time (ms)</span></h3><!--}-->
+<p>How soon the compressor starts to release the volume level back to normal after the level drops below the threshold, in milliseconds.
+</p>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Threshold_level_.28dB.29">Threshold level (dB)</span></h3><!--}-->
+<p>The level at which the compressor will start to apply. 
+</p>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Ratio_.281:n.29">Ratio (1:n)</span></h3><!--}-->
+<p>The gain reduction ratio used when the signal level exceeds the threshold level. Higher ratios reduce the gain more. 
+</p>
+<div class="note">
+<p>You must move this control from the default ratio of 1:1 for the effect to apply.
+</p>
+</div>  
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Knee_radius_.28dB.29">Knee radius (dB)</span></h3><!--}-->
+<p>The distance from the threshold where the <a class="external text" href="https://en.wikipedia.org/wiki/Dynamic_range_compression#Soft_and_hard_knees" rel="nofollow">knee curve</a> starts. 
+</p>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Makeup_gain_.28dB.29">Makeup gain (dB)</span></h3><!--}-->
+<p>The amount of gain added to the processed result.
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Effect_Output">Effect Output</span></h2><!--}-->
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Amplitude_.28dB.29">Amplitude (dB)</span></h3><!--}-->
+<p>After applying the effect, this displays what was the original RMS (<!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:decibel}]{--><a href="glossary.html#decibel" title="Glossary">dB</a><!--latex }
+--></b><!--}--></i><!--}-->) level of the selection before compression. 
+</p>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Gain_reduction_.28dB.29">Gain reduction (dB)</span></h3><!--}-->
+<p>Displays the degree of gain reduction that the effect applied to the original selection, in dB.
+</p>
+<div class="note">The Effect Output values are not editable and only change on applying the effect, so will appear as zero when you first open the effect. If you close and reopen the effect, the Amplitude (dB) always displays the input level prior to the last application of the effect, not the current RMS level of the selection.</div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Real-time_preview">Real-time preview</span></h2><!--}-->
+<p>This effect supports <!--latex 
+\hyperref[\foo{real:time:preview:of:effects:}]{--><a href="real_time_preview_of_effects.html" title="Real-time preview of effects">Real-time preview</a><!--latex }
+--> - effect settings can be changed while playing and listening to the result in real-time. Text-based button controls are provided as in the image above. The Enable checkbox acts like a live "Bypass" control. Uncheck the checkbox <span class="button"><a class="image" href="http://alphamanual.audacityteam.org/man/File:CheckboxNotChecked.png"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="CheckboxNotChecked.png" height="13" src="../m/images/a/a8/checkboxnotchecked.png" style="vertical-align: text-top" width="13"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/a/a8/checkboxnotchecked.png--></img><!--}}{}--></a>&nbsp;Enable</span> to hear the audio without the effect applied, and recheck the box <span class="button"><a class="image" href="http://alphamanual.audacityteam.org/man/File:CheckboxChecked.png"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="CheckboxChecked.png" height="13" src="../m/images/8/85/checkboxchecked.png" style="vertical-align: text-top" width="13"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/8/85/checkboxchecked.png--></img><!--}}{}--></a>&nbsp;Enable</span> to hear the effect applied at its current settings. 
+</p><p>The <span class="button">Manage</span> button accesses choices to add, delete, import or export presets for this effect and to set options for this effect. For details see <!--latex 
+\hyperref[\foo{manage:presets:}]{--><a href="manage_presets.html" title="Manage presets">Manage presets</a><!--latex }
+-->.
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Buttons">Buttons</span></h2><!--}-->
+<p>Clicking on the command buttons give the following results:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><span class="button">Manage</span> gives a dropdown menu enabling you to manage presets for the tool and to see some detail about the tool. For details see <!--latex 
+\hyperref[\foo{manage:presets:}]{--><a href="manage_presets.html" title="Manage presets">Manage presets</a><!--latex }
+-->.</li>
+<!--
+\item --><li> <span class="button"> Start Playback</span> starts playback of the effect preview</li>
+<!--
+\item --><li> <span class="button"> Skip Backward</span> skips forward through the effect preview</li>
+<!--
+\item --><li> <span class="button"> Skip Forward</span> skips forward through the effect preview</li>
+<!--
+\item --><li> <span class="button"><a class="image" href="http://alphamanual.audacityteam.org/man/File:CheckboxChecked.png"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="CheckboxChecked.png" height="13" src="../m/images/8/85/checkboxchecked.png" style="vertical-align: text-top" width="13"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/8/85/checkboxchecked.png--></img><!--}}{}--></a>&nbsp;Enable</span> listen to the preview with and without the effect applied</li>
+<!--
+\item --><li><span class="button">OK</span> applies the effect to the selected audio with the current effect settings.</li>
+<!--
+\item --><li><span class="button">Cancel</span> aborts the effect and leaves the audio unchanged.</li>
+<!--
+\item --><li><a href="help_button.html" title="Help Button"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Help Button" height="27" src="../m/images/d/d6/help_button.png" width="27"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d6/help_button.png--></img><!--}}{}--></a> brings you to the appropriate page in the Manual, this page.</li></ul><!--
+\end{itemize}
+-->
+<p><br/>
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Links">Links</span></h2><!--}-->
+<p><!--latex 
+\hyperref[\foo{index:of:effects:generators:and:analyzers:}]{--><a href="index_of_effects_generators_and_analyzers.html" title="Index of Effects, Generators and Analyzers"><!--\textbf{--><b>|&lt;</b><!--}--> Index of Effects, Generators and Analyzers</a><!--latex }
+--> <br/>
+</p><p><!--latex 
+\hyperref[\foo{effect:menu:}]{--><a href="effect_menu.html" title="Effect Menu"><!--\textbf{--><b>|&lt;</b><!--}--> Effect Menu</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

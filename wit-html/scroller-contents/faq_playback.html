@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>FAQ:Playback - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-FAQ_Playback rootpage-FAQ_Playback skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">FAQ:Playback</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{faq:playback:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+
+
+
+
+</p><p><br/>
+<!--latex 
+\hyperref[\foo{faq:opening:and:saving:files:}]{--><a href="faq_opening_and_saving_files.html" title="FAQ:Opening and Saving Files"><!--\textbf{--><b>&gt;</b><!--}-->&nbsp; Forward To: FAQ:Opening and Saving Files</a><!--latex }
+--> <br/>
+</p><p><!--latex 
+\hyperref[\foo{faq:recording:how:to:s:}]{--><a href="faq_recording_how_to_s.html" title="FAQ:Recording - How To's"><!--\textbf{--><b>&lt;</b><!--}-->&nbsp; Back To: FAQ:Recording - How To's</a><!--latex }
+--> <br/>
+</p><p><!--latex 
+\hyperref[\foo{faq:}]{--><a href="faq.html" title="FAQ"><!--\textbf{--><b>|&lt;</b><!--}--> Index of Frequently Asked Questions</a><!--latex }
+-->
+</p><p><br/>
+</p>
+
+
+<!--
+\subsection{--><h2><span class="mw-headline" id="Troubleshooting">Troubleshooting</span></h2><!--}-->
+<div id="usb"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Why_have_I_lost_sound_after_connecting_a_USB_device_on_Windows.3F">Why have I lost sound after connecting a USB device on Windows?</span></h3><!--}--><!--latex 
+\label{faq:playback:usb}-->
+<p>When you connect a USB audio device to a Windows computer, it may automatically become the "default" device that is normally used for both playback and recording. If the USB audio device is not meant as a playback device for the computer (such as a microphone, turntable or tape deck) you may lose sound in Audacity or in most applications on your computer. You can fix the problem as follows. 
+</p><p>Right-click over the <span class="menu">Speaker icon</span> by the system clock, choose <span class="menu">Playback Devices</span>, then right-click over the speakers or headphones device you are using, choose "Set as Default Device" and click "OK". 
+</p><p>Alternatively, you can disconnect the USB device from the computer after you have finished recording.  
+</p><p><!--\textbf{--><b>Note:</b><!--}--> To hear audio while you are recording, ensure "Software Playthrough" is "on".  This can be toggled on/off by clicking <span class="menu">Transport &gt; Transport Options &gt; <!--latex 
+\hyperref[\foo{transport:menu:transport:options:software:playthrough:onoff}]{--><a href="transport_menu_transport_options.html#software_playthrough_onoff" title="Transport Menu: Transport Options">Software Playthrough (on/off)</a><!--latex }
+--></span>.
+</p><p><!--latex 
+\hyperref[\foo{faq:playback::top}]{--><a href="#top">back to top</a><!--latex }
+-->
+</p>
+<div id="muted"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Why_does_playback_go_quiet_when_I_record_or_adjust_the_recording_volume.3F">Why does playback go quiet when I record or adjust the recording volume?</span></h3><!--}--><!--latex 
+\label{faq:playback:muted}-->
+<p>You may notice this on <a class="external text" href="https://wiki.audacityteam.org/wiki/Windows_7_OS" rel="nofollow">Windows 7</a> or later, for example  when recording <!--latex 
+\hyperref[\foo{faq:recording:how:to:s:overdub}]{--><a href="faq_recording_how_to_s.html#overdub" title="FAQ:Recording - How To's">overdubs</a><!--latex }
+--> while playing an existing track. This system setting turns down or mutes other sounds when audio goes through the recording or playback devices set as "Default Communication Device" in Windows. This feature can be useful when making or receiving internet phone calls but is undesirable for other audio. To turn off this adjustment:
+</p>
+<!--
+\begin{enumerate}--><ol><!--
+\item --><li> Right-click over the <span class="menu">Speaker icon</span> by the system clock then choose <span class="menu">Sounds</span></li>
+<!--
+\item --><li> In the dialog that opens, click the <span class="menu">Communications tab</span></li>
+<!--
+\item --><li> Underneath "When Windows detects communications activity", choose "Do nothing" and click "OK"  </li>
+<!--
+\item --><li> On the <!--\textit{--><i>Playback</i><!--}--> and <!--\textit{--><i>Recording</i><!--}--> tabs, you can optionally right-click over a device and set or unset it as "Default Communication Device."  </li></ol><!--
+\end{enumerate}
+-->
+<p>If there are other problems with audio inputs or outputs not interacting properly, make sure your sound device has the latest drivers specific to your particular computer model and operating system. The drivers should be obtained from the motherboard or computer manufacturer's
+website, or if not available there, from the sound device manufacturer's website. For more help, see our Wiki page <a class="external text" href="https://wiki.audacityteam.org/wiki/Updating_Sound_Device_Drivers" rel="nofollow">Updating Sound Device Drivers</a>. Also note that Skype can sometimes manipulate playback and recording levels when it is running, even if not being used.  
+</p><p>See also:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--latex 
+\hyperref[\foo{faq:recording:troubleshooting:enhancements}]{--><a href="faq_recording_troubleshooting.html#enhancements" title="FAQ:Recording - Troubleshooting">Why do my recordings fade out or sound as if they were made in a tunnel?</a><!--latex }
+--></li></ul><!--
+\end{itemize}
+-->
+<p><!--latex 
+\hyperref[\foo{faq:playback::top}]{--><a href="#top">back to top</a><!--latex }
+-->
+</p><p><br/>
+</p>
+<div id="mac_buffer"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Why_do_I_hear_clicky_playback_on_Mac.3F">Why do I hear clicky playback on Mac?</span></h3><!--}--><!--latex 
+\label{faq:playback:mac:buffer}-->
+ 
+<p>This is most likely to occur if you use <!--\textit{--><i>Soundflower</i><!--}--> or an external USB or Firewire playback device rather than the built-in audio output. The problem can usually be fixed by opening <!--latex 
+\hyperref[\foo{recording:preferences:}]{--><a href="recording_preferences.html" title="Recording Preferences">Recording Preferences</a><!--latex }
+--> and adjusting the "Audio to Buffer" setting which also affects playback. Reduce the setting to 0 milliseconds. If playback breaks up or does not start, increase "Audio to Buffer" in increments of 10 milliseconds until playback is smooth. 
+</p><p>Sometimes running other audio applications while Audacity is running can cause clicky playback in Audacity. This might be the case if you are running another audio editor, iTunes or QuickTime Player. 
+</p><p>If you are playing a recording that you made in Audacity and the clicks are at the same place on every playback, you may need to redo the recording at the lower buffer settings.    
+</p><p>See also:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--latex 
+\hyperref[\foo{faq:recording:troubleshooting:mac:crackle}]{--><a href="faq_recording_troubleshooting.html#mac_crackle" title="FAQ:Recording - Troubleshooting">How can I prevent clicky recordings on Mac?</a><!--latex }
+--></li></ul><!--
+\end{itemize}
+-->
+<p><!--latex 
+\hyperref[\foo{faq:playback::top}]{--><a href="#top">back to top</a><!--latex }
+-->
+</p><p><br/>
+</p>
+<div id="dither"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Why_is_there_a_very_low_level_hiss_on_exported_files.3F">Why is there a very low level hiss on exported files?</span></h3><!--}--><!--latex 
+\label{faq:playback:dither}-->
+<p>Deliberate low-level noise is normally added when you <!--\textit{--><i>downsample</i><!--}--> to a lower <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:sample:format}]{--><a href="glossary.html#sample_format" title="Glossary">sample format</a><!--latex }
+--></b><!--}--></i><!--}-->, for example when you export from a project at default 32-bit depth to a 16-bit <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:wav}]{--><a href="glossary.html#wav" title="Glossary">WAV</a><!--latex }
+--></b><!--}--></i><!--}--> or <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:aiff}]{--><a href="glossary.html#aiff" title="Glossary">AIFF</a><!--latex }
+--></b><!--}--></i><!--}--> file, or when you run effects on a project containing 16-bit audio. The additional noise is known as <a class="external text" href="https://wiki.audacityteam.org/wiki/Dither" rel="nofollow">dither</a> and is generally beneficial. Dither prevents clicky noises which might otherwise occur due to not being able to accurately represent 32-bit values in a 16-bit format. 
+</p><p>If you still want to turn dither off for all data processing (including export) you can do so at "High-quality Conversion" in <!--latex 
+\hyperref[\foo{quality:preferences:}]{--><a href="quality_preferences.html" title="Quality Preferences">Quality Preferences</a><!--latex }
+-->. Alternatively you can turn dither off just for the export step. This may help avoid cumulative dither noise if you are exporting regularly over the same file. 
+</p><p><!--latex 
+\hyperref[\foo{faq:playback::top}]{--><a href="#top">back to top</a><!--latex }
+-->
+</p>
+<div id="set_cursor"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="How_can_I_pause_playback_so_I_can_edit_there.3F">How can I pause playback so I can edit there?</span></h3><!--}--><!--latex 
+\label{faq:playback:set:cursor}-->
+<p>Audacity cannot apply <!--latex 
+\hyperref[\foo{index:of:effects:generators:and:analyzers:}]{--><a href="index_of_effects_generators_and_analyzers.html" title="Index of Effects, Generators and Analyzers">effects</a><!--latex }
+--> or change the audio while playback is paused. To stop playback and set the editing cursor where you stopped, it's easiest to press <span class="kbrd" style="background-color: #e0e0f0">X</span> on your keyboard to "Stop and Set Cursor" (if there is a <!--latex 
+\hyperref[\foo{audacity:selection:}]{--><a href="audacity_selection.html" title="Audacity Selection">selection region</a><!--latex }
+-->, <span class="kbrd" style="background-color: #e0e0f0">X</span> trims the left edge of the selection to start at the stop position). Use either <span class="kbrd" style="background-color: #e0e0f0">Space</span> or <span class="kbrd" style="background-color: #e0e0f0">X</span> to restart playback from the stop position. 
+</p><p>Note that except for <!--latex 
+\hyperref[\foo{scrubbing:and:seeking:}]{--><a href="scrubbing_and_seeking.html" title="Scrubbing and Seeking">Scrub or Seek playback</a><!--latex }
+-->, using <span class="kbrd" style="background-color: #e0e0f0">Space</span> or the Stop button <!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="The Stop button" height="16" src="../m/images/f/f9/stop.png" title="The Stop button" width="16"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/f/f9/stop.png--></img><!--}}{}--> to stop will leave the editing cursor where playback started - probably not what you want.    
+</p><p>You do not always have to stop paused playback yourself. If you have a selection region, you can still access many menu items when paused and Audacity will stop playback so as to apply your change to that region. If there is no selection region, Audacity will stop playback but will warn you that no audio is selected to act on.   
+</p>
+<div class="note"><!--latex 
+\hyperref[\foo{real:time:preview:of:effects:}]{--><a href="real_time_preview_of_effects.html" title="Real-time preview of effects">Real-time preview effects</a><!--latex }
+--> are always available in the Effect menu. Playback remains paused after you open the effect, but you can stop then restart playback to adjust the effect while listening, and Audacity will stop playback when you apply the effect. You must still make a selection for the effect to act on.</div> 
+<p>There are many other alternative workflows, depending on your purpose. Here are two examples:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> Instead of stopping at each edit point, keep playing and use <span class="kbrd" style="background-color: #e0e0f0">Ctrl + M</span> ( <!--\textit{--><i><span class="kbrd" style="background-color: #e0e0f0">⌘ + .</span> on Mac</i><!--}--> ) to add a <!--latex 
+\hyperref[\foo{label:tracks:}]{--><a href="label_tracks.html" title="Label Tracks">label</a><!--latex }
+--> when you hear each point of interest. After stopping, click in any label to set the cursor there for editing.    </li>
+<!--
+\item --><li> While playing and listening for an edit region, use  <span class="kbrd" style="background-color: #e0e0f0">[</span> on your keyboard when you hear the start of the audio you are interested in, then press <span class="kbrd" style="background-color: #e0e0f0">]</span> when you hear the end of the audio of interest. The <span class="kbrd" style="background-color: #e0e0f0">]</span> shortcut draws a selection region from the point where you pressed <span class="kbrd" style="background-color: #e0e0f0">[</span> to the point where you pressed <span class="kbrd" style="background-color: #e0e0f0">]</span>.  Now you can press <span class="kbrd" style="background-color: #e0e0f0">Space</span> twice to easily stop playback then play that selection. </li></ul><!--
+\end{itemize}
+-->
+<div class="note">
+<p>You can change any of the above shortcuts in <!--latex 
+\hyperref[\foo{keyboard:preferences:}]{--><a href="keyboard_preferences.html" title="Keyboard Preferences">Keyboard Preferences</a><!--latex }
+-->.
+</p>
+</div> 
+<p>See <!--latex 
+\hyperref[\foo{navigation:tips:}]{--><a href="navigation_tips.html" title="Navigation Tips">Navigation Tips</a><!--latex }
+--> for useful ways to find the audio you want to edit then mark points or regions for cutting.    
+</p><p><!--latex 
+\hyperref[\foo{faq:playback::top}]{--><a href="#top">back to top</a><!--latex }
+-->
+</p><p><br/>
+</p>
+<div id="multi-channel"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="How_can_I_play_or_export_multi-channel_.28surround_sound.29_files.3F">How can I play or export multi-channel (surround sound) files?</span></h3><!--}--><!--latex 
+\label{faq:playback:multi-channel}-->
+<p>Audacity can export multi-channel files by enabling "<!--\textbf{--><b>Use custom mix</b><!--}-->" in <!--latex 
+\hyperref[\foo{import:export:preferences:}]{--><a href="import_export_preferences.html" title="Import - Export Preferences">Import / Export Preferences</a><!--latex }
+-->. You will need to adjust the mapping of tracks to channels in <!--latex 
+\hyperref[\foo{advanced:mixing:options:}]{--><a href="advanced_mixing_options.html" title="Advanced Mixing Options">Advanced Mixing Options</a><!--latex }
+--> according to the <a class="external text" href="https://en.wikipedia.org/wiki/Surround_sound#Channel_identification" rel="nofollow">channel order</a> of the format you are exporting to, though some files or playback software/hardware might not necessarily respect that order.  
+</p><p>However Audacity playback is currently limited to mixing down tracks to mono or stereo (two channels). Therefore playback will only reach two channels of the device unless you configure the device to duplicate audio to other channels. Many playback systems also have optional "bass management" where you can route the bass signals in a stereo signal to the low frequency channel for the subwoofer speaker.  
+</p><p><!--latex 
+\hyperref[\foo{faq:playback::top}]{--><a href="#top">back to top</a><!--latex }
+-->
+</p>
+
+<p><br/>
+<!--latex 
+\hyperref[\foo{faq:opening:and:saving:files:}]{--><a href="faq_opening_and_saving_files.html" title="FAQ:Opening and Saving Files"><!--\textbf{--><b>&gt;</b><!--}-->&nbsp; Forward To: FAQ:Opening and Saving Files</a><!--latex }
+--> <br/>
+</p><p><!--latex 
+\hyperref[\foo{faq:recording:how:to:s:}]{--><a href="faq_recording_how_to_s.html" title="FAQ:Recording - How To's"><!--\textbf{--><b>&lt;</b><!--}-->&nbsp; Back To: FAQ:Recording - How To's</a><!--latex }
+--> <br/>
+</p><p><!--latex 
+\hyperref[\foo{faq:}]{--><a href="faq.html" title="FAQ"><!--\textbf{--><b>|&lt;</b><!--}--> Index of Frequently Asked Questions</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

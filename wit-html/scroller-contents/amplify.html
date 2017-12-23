@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Amplify - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Amplify rootpage-Amplify skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Amplify</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{amplify:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p><br/>
+</p>
+
+<p>
+
+
+</p><p><br/>
+</p>
+<div class="intro">Use the <!--\textit{--><i><!--\textbf{--><b>Amplify</b><!--}--></i><!--}--> effect to change the volume of the <!--latex 
+\hyperref[\foo{audacity:selection:}]{--><a href="audacity_selection.html" title="Audacity Selection">selected</a><!--latex }
+--> audio <!--latex 
+\hyperref[\foo{audio:tracks:}]{--><a href="audio_tracks.html" title="Audio Tracks">track(s)</a><!--latex }
+-->. Amplify always preserves the relative volumes of the tracks and/or <!--latex 
+\hyperref[\foo{audio:tracks:stereo}]{--><a href="audio_tracks.html#stereo" title="Audio Tracks">channels</a><!--latex }
+-->.
+<p>You can also use the "Amplification (dB)" box in Amplify as a quick check of the current peak level of the selection.</p></div>
+<dl><dd><!--\textbf{--><b>Accessed by:</b><!--}--> <span class="menu">Effect &gt; Amplify...</span></dd>
+<dd><span title="Amplify dialog"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Amplify.png" height="217" src="../m/images/6/6d/amplify.png" width="474"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/6/6d/amplify.png--></img><!--}\par
+--></span></dd></dl>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">When the Amplify dialog first appears it shows in the <!--\textit{--><i><!--\textbf{--><b>Amplification (dB)</b><!--}--></i><!--}--> box the amplification amount needed to create a <!--\textbf{--><b>New Peak Amplitude</b><!--}--> of 0 <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:decibel}]{--><a href="glossary.html#decibel" title="Glossary">dB</a><!--latex }
+--></b><!--}--></i><!--}-->, thus maximizing the volume of the selected track. If this is your goal you can just click the <span class="button">OK</span> button. <p>Note that when applied to a single stereo track or to multiple tracks, Amplify shows the amplification needed to maximize the volume of the <!--\textbf{--><b>loudest</b><!--}--> track or channel and will apply that amount of  amplification to all selected tracks and/or channels. In this way, Amplify preserves the relative volumes of the selected tracks and/or channels. This is different from the <!--latex 
+\hyperref[\foo{normalize:}]{--><a href="normalize.html" title="Normalize">Normalize</a><!--latex }
+--> effect which can be optionally set to maximize the volume of each track or channel independently.</p><p>For a full discussion of the differences, see <!--latex 
+\hyperref[\foo{amplify:and:normalize:}]{--><a href="amplify_and_normalize.html" title="Amplify and Normalize">Amplify and Normalize</a><!--latex }
+-->.</p>
+</td></tr></tbody></table>
+</div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Amplification_.28dB.29">Amplification (dB)</span></h2><!--}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>Input Box:</b><!--}--> Type a value for the amount of amplification you would like to apply. Positive values make the sound louder, negative values make it quieter. As you type, the <!--\textbf{--><b>New Peak Amplitude</b><!--}--> input box will be updated.</li></ul><!--
+\end{itemize}
+-->
+<div class="note">If you take the <!--\textit{--><i><!--\textbf{--><b>negative</b><!--}--></i><!--}--> of the value shown in the <!--\textit{--><i><!--\textbf{--><b>Amplification (dB)</b><!--}--></i><!--}--> box, this will give you the current peak <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:amplitude}]{--><a href="glossary.html#amplitude" title="Glossary">amplitude</a><!--latex }
+--></b><!--}--></i><!--}--> of the selection. For example, in the image above, the audio selection had a peak amplitude of -3 dB.</div>  
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>Slider:</b><!--}--> Drag the slider right to make the sound louder, or to the left to make it quieter. As you drag, your selected value will be updated in the input box, and the <!--\textbf{--><b>New Peak Amplitude</b><!--}--> input box will be updated.</li></ul><!--
+\end{itemize}
+-->
+<!--
+\subsection{--><h2><span class="mw-headline" id="New_Peak_Amplitude_.28dB.29">New Peak Amplitude (dB)</span></h2><!--}-->
+<p>Type in the value you would like for the new peak amplitude of your track. As you type, the <!--\textbf{--><b>Amplification</b><!--}--> input box will be updated.
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Allow_Clipping">Allow Clipping</span></h2><!--}-->
+<p>If this box is not checked, and you attempt to enter an <!--\textbf{--><b>Amplification</b><!--}--> value that will result in a <!--\textbf{--><b>New Peak Amplitude</b><!--}--> of greater than 0 dB, the <!--\textbf{--><b>OK</b><!--}--> button will become inactive. This will prevent you from applying too much amplification.
+If this box is checked you can apply as much amplification as you want, possibly creating a horribly distorted sound.
+</p>
+<div id="buttons"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Buttons">Buttons</span></h2><!--}--><!--latex 
+\label{amplify:buttons}-->
+<p>Clicking on the command buttons give the following results:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><span class="button">Manage</span> gives a dropdown menu enabling you to manage presets for the tool and to see some detail about the tool. For details see <!--latex 
+\hyperref[\foo{manage:presets:}]{--><a href="manage_presets.html" title="Manage presets">Manage presets</a><!--latex }
+-->.</li>
+<!--
+\item --><li><span class="button">Preview</span> plays a short preview of what the audio would sound like if the effect is applied with the current settings, without making actual changes to the audio.  The length of preview is determined by your setting in <span class="menu">Edit &gt; Preferences &gt; <!--latex 
+\hyperref[\foo{playback:preferences:}]{--><a href="playback_preferences.html" title="Playback Preferences">Playback</a><!--latex }
+--></span>, the default setting is 6 seconds.</li>
+<!--
+\item --><li><span class="button">OK</span> applies the effect to the selected audio with the current effect settings.</li>
+<!--
+\item --><li><span class="button">Cancel</span> aborts the effect and leaves the audio unchanged.</li>
+<!--
+\item --><li><a href="help_button.html" title="Help Button"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Help Button" height="27" src="../m/images/d/d6/help_button.png" width="27"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d6/help_button.png--></img><!--}}{}--></a> brings you to the appropriate page in the Manual, this page.</li></ul><!--
+\end{itemize}
+-->
+<p><br/>
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Links">Links</span></h2><!--}-->
+<p><!--latex 
+\hyperref[\foo{index:of:effects:generators:and:analyzers:}]{--><a href="index_of_effects_generators_and_analyzers.html" title="Index of Effects, Generators and Analyzers"><!--\textbf{--><b>|&lt;</b><!--}--> Index of Effects, Generators and Analyzers</a><!--latex }
+--> <br/>
+</p><p><!--latex 
+\hyperref[\foo{effect:menu:}]{--><a href="effect_menu.html" title="Effect Menu"><!--\textbf{--><b>|&lt;</b><!--}--> Effect Menu</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

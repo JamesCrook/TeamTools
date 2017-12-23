@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Editing, resizing and moving Labels - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Editing_resizing_and_moving_Labels rootpage-Editing_resizing_and_moving_Labels skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Editing, resizing and moving Labels</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{editing:resizing:and:moving:labels:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+</p>
+
+<p><br/>
+</p>
+<div class="intro">Methods for changing labels: moving them, resizing them, changing their text content.</div>
+
+<div id="mouse"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Changing_the_length_and_position_of_labels_with_the_mouse">Changing the length and position of labels with the mouse</span></h2><!--}--><!--latex 
+\label{editing:resizing:and:moving:labels:mouse}-->
+<p>You can move a label by clicking and dragging its circle handle. You can change the length of a label by clicking and dragging its triangle handle.
+</p><p>Holding <span class="kbrd" style="background-color: #e0e0f0">Shift</span> while dragging reverses this behavior, so that dragging a circle handle changes the length of the label, and dragging a triangle handle moves the label. For example, this lets you resize a label by holding <span class="kbrd" style="background-color: #e0e0f0">Shift</span> while dragging its circle handle, then release <span class="kbrd" style="background-color: #e0e0f0">Shift</span> to move the resized label without having to move the mouse pointer to its triangle handle.
+</p><p>In the case where two labels meet you can adjust the junction point where they meet by clicking and dragging their shared circle handle.
+</p>
+<div id="move_point"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Moving_a_point_label">Moving a point label</span></h2><!--}--><!--latex 
+\label{editing:resizing:and:moving:labels:move:point}-->
+<p>You can move a point label by clicking and dragging its circle handle:
+</p>
+<dl><dd><table>
+
+<tbody><!--\par --><tr>
+<td><span title="Before"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="PointMoveBefore.png" height="191" src="../m/images/0/0c/pointmovebefore.png" width="262"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/0/0c/pointmovebefore.png--></img><!--}\par
+--></span>
+</td>
+<td><span title="After"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="PointMoveAfter.png" height="191" src="../m/images/8/80/pointmoveafter.png" width="262"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/8/80/pointmoveafter.png--></img><!--}\par
+--></span>
+</td></tr>
+<!--\par --><tr>
+<td align="center">Before
+</td>
+<td align="center">After
+</td></tr></tbody></table></dd></dl>
+<div id="expand_point"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Expanding_a_point_label">Expanding a point label</span></h2><!--}--><!--latex 
+\label{editing:resizing:and:moving:labels:expand:point}-->
+<p>You can expand a point label into a region label by clicking and dragging either of its triangle handles:
+</p>
+<dl><dd><table>
+
+<tbody><!--\par --><tr>
+<td><span title="Before"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="PointExpandBefore.png" height="193" src="../m/images/6/6c/pointexpandbefore.png" width="308"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/6/6c/pointexpandbefore.png--></img><!--}\par
+--></span>
+</td>
+<td><span title="After"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="PointExpandAfter.png" height="193" src="../m/images/3/36/pointexpandafter.png" width="308"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/3/36/pointexpandafter.png--></img><!--}\par
+--></span>
+</td></tr>
+<!--\par --><tr>
+<td align="center">Before
+</td>
+<td align="center">After
+</td></tr></tbody></table></dd></dl>
+<div id="move_region"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Moving_and_resizing_a_region_label">Moving and resizing a region label</span></h2><!--}--><!--latex 
+\label{editing:resizing:and:moving:labels:move:region}-->
+<p>You can move a region label by clicking and dragging either of its circle handles:
+</p>
+<dl><dd><table>
+
+<tbody><!--\par --><tr>
+<td><span title="Before"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="RegionMoveBefore.png" height="193" src="../m/images/a/a6/regionmovebefore.png" width="308"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/a/a6/regionmovebefore.png--></img><!--}\par
+--></span>
+</td>
+<td><span title="After"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="RegionMoveAfter.png" height="193" src="../m/images/5/51/regionmoveafter.png" width="308"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/5/51/regionmoveafter.png--></img><!--}\par
+--></span>
+</td></tr>
+<!--\par --><tr>
+<td align="center">Before
+</td>
+<td align="center">After
+</td></tr></tbody></table></dd></dl>
+<p>You can change the length of a region label by clicking and dragging one of its triangle handles:
+</p>
+<dl><dd><table>
+
+<tbody><!--\par --><tr>
+<td><span title="Before"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="RegionAdjustBefore.png" height="193" src="../m/images/9/99/regionadjustbefore.png" width="308"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/9/99/regionadjustbefore.png--></img><!--}\par
+--></span>
+</td>
+<td><span title="After"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="RegionAdjustAfter.png" height="193" src="../m/images/5/5f/regionadjustafter.png" width="308"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/5/5f/regionadjustafter.png--></img><!--}\par
+--></span>
+</td></tr>
+<!--\par --><tr>
+<td align="center">Before
+</td>
+<td align="center">After
+</td></tr></tbody></table></dd></dl>
+<div id="junction"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Adjusting_the_junction_point_where_two_labels_meet">Adjusting the junction point where two labels meet</span></h2><!--}--><!--latex 
+\label{editing:resizing:and:moving:labels:junction}-->
+<p>You can adjust the junction point where two labels meet by clicking and dragging their shared circle handle:
+</p>
+<dl><dd><table>
+
+<tbody><!--\par --><tr>
+<td><span title="Before"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="LinkedRegionMoveBefore.png" height="193" src="../m/images/1/17/linkedregionmovebefore.png" width="394"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/1/17/linkedregionmovebefore.png--></img><!--}\par
+--></span>
+</td>
+<td><span title="After"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="LinkedRegionMoveAfter.png" height="193" src="../m/images/f/fe/linkedregionmoveafter.png" width="394"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/f/fe/linkedregionmoveafter.png--></img><!--}\par
+--></span>
+</td></tr>
+<!--\par --><tr>
+<td align="center">Before
+</td>
+<td align="center">After
+</td></tr></tbody></table></dd></dl>
+<div id="selected"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Moving_a_label_when_there_is_a_selection">Moving a label when there is a selection</span></h2><!--}--><!--latex 
+\label{editing:resizing:and:moving:labels:selected}-->
+<p>The illustration below shows what happens if you click in a label to select it, press <span class="kbrd" style="background-color: #e0e0f0">Enter</span>, then move the label.
+</p>
+<dl><dd><table>
+
+<tbody><!--\par --><tr>
+<td><span title="Before"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="LabelRegionMove1Before.png" height="199" src="../m/images/3/3e/labelregionmove1before.png" width="283"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/3/3e/labelregionmove1before.png--></img><!--}\par
+--></span>
+</td>
+<td><span title="After"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="LabelRegionMove1After.png" height="199" src="../m/images/d/d7/labelregionmove1after.png" width="283"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d7/labelregionmove1after.png--></img><!--}\par
+--></span>
+</td></tr>
+<!--\par --><tr>
+<td align="center">Before
+</td>
+<td align="center">After
+</td></tr></tbody></table></dd></dl>
+<p>Contrast this to what happens if you click in a label to select it, then move the label.
+</p>
+<dl><dd><table>
+
+<tbody><!--\par --><tr>
+<td><span title="Before"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="LabelRegionMove2Before.png" height="199" src="../m/images/c/ce/labelregionmove2before.png" width="283"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/c/ce/labelregionmove2before.png--></img><!--}\par
+--></span>
+</td>
+<td><span title="After"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="LabelRegionMove2After.png" height="199" src="../m/images/f/f5/labelregionmove2after.png" width="283"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/f/f5/labelregionmove2after.png--></img><!--}\par
+--></span>
+</td></tr>
+<!--\par --><tr>
+<td align="center">Before
+</td>
+<td align="center">After
+</td></tr></tbody></table></dd></dl>
+<div id="cutcopypaste"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Using_cut.2C_copy_and_paste">Using cut, copy and paste</span></h2><!--}--><!--latex 
+\label{editing:resizing:and:moving:labels:cutcopypaste}-->
+<div class="note">The following examples of cutting labels with <span class="menu">Edit &gt; <!--latex 
+\hyperref[\foo{edit:menu:cut}]{--><a href="edit_menu.html#cut" title="Edit Menu">Cut</a><!--latex }
+--></span> will move back any labels that follow to right of the removed label(s).  To cut the label without moving following labels, use  <span class="menu">Edit &gt; Remove Special &gt; <!--latex 
+\hyperref[\foo{edit:menu:remove:special:split:cut}]{--><a href="edit_menu_remove_special.html#split_cut" title="Edit Menu: Remove Special">Split Cut</a><!--latex }
+--></span>.</div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Cutting_and_Pasting_Region_Labels">Cutting and Pasting Region Labels</span></h3><!--}-->
+<p>You can cut and paste region labels using <span class="menu">Edit &gt; <!--latex 
+\hyperref[\foo{edit:menu:cut}]{--><a href="edit_menu.html#cut" title="Edit Menu">Cut</a><!--latex }
+--></span> and <span class="menu">Edit &gt; <!--latex 
+\hyperref[\foo{edit:menu:copy:paste:and:duplicate:paste}]{--><a href="edit_menu_copy_paste_and_duplicate.html#paste" title="Edit Menu: Copy, Paste and Duplicate">Paste</a><!--latex }
+--></span>, but you have to make sure you do not select any audio, or you will end up cutting and pasting audio where you probably did not intend.
+</p><p>In the image below, the label was selected by clicking in it, then the audio track was unselected by shift-clicking in the Track Control Panel of the audio track (this can also be done with the keyboard by <span class="kbrd" style="background-color: #e0e0f0">Enter</span>, <span class="kbrd" style="background-color: #e0e0f0">Up</span> then <span class="kbrd" style="background-color: #e0e0f0">Enter</span>). The label was then cut to the clipboard with <span class="menu">Edit &gt; <!--latex 
+\hyperref[\foo{edit:menu:cut}]{--><a href="edit_menu.html#cut" title="Edit Menu">Cut</a><!--latex }
+--></span>:
+</p>
+<dl><dd><span title="image of label in label track ready for Edit Cut"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="LabelTrackPrepareToCopy.png" height="176" src="../m/images/3/33/labeltrackpreparetocopy.png" width="503"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/3/33/labeltrackpreparetocopy.png--></img><!--}\par
+--></span></dd></dl>
+<p>To paste the label at a different point in the audio track, either a) click in the audio track at the point where you would like the label to begin then shift-click in the label track to select it; or b) click in the label track at the point where you would like the label to begin. The label can then be pasted to that spot using <span class="menu">Edit &gt; <!--latex 
+\hyperref[\foo{edit:menu:copy:paste:and:duplicate:paste}]{--><a href="edit_menu_copy_paste_and_duplicate.html#paste" title="Edit Menu: Copy, Paste and Duplicate">Paste</a><!--latex }
+--></span>.
+</p>
+<dl><dd><span title="image of label track after Edit Paste"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="LabelTrackAfterPaste.png" height="174" src="../m/images/2/20/labeltrackafterpaste.png" width="499"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/2/20/labeltrackafterpaste.png--></img><!--}\par
+--></span></dd></dl>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Cutting_and_Pasting_Point_Labels">Cutting and Pasting Point Labels</span></h3><!--}-->
+<p>You can also cut and paste point labels, but the procedure is tricky.
+In the image below, the point label is selected for editing as in the above example with a region label, <!--\textit{--><i>but there is no selected region in the label track</i><!--}-->.
+</p>
+<dl><dd><span title="image of label track with point label selected for editing"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="PointLabelCutFail.png" height="178" src="../m/images/d/d8/pointlabelcutfail.png" width="498"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d8/pointlabelcutfail.png--></img><!--}\par
+--></span></dd></dl>
+<p>What happens next depends on the setting of the "Select all audio in project, if none selected" preference in <!--latex 
+\hyperref[\foo{tracks:preferences:}]{--><a href="tracks_preferences.html" title="Tracks Preferences">Tracks Preferences</a><!--latex }
+-->:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> If that preference <!--\textit{--><i>is not</i><!--}--> selected, <span class="menu">Edit &gt; <!--latex 
+\hyperref[\foo{edit:menu:cut}]{--><a href="edit_menu.html#cut" title="Edit Menu">Cut</a><!--latex }
+--></span> will be disabled and pressing <span class="kbrd" style="background-color: #e0e0f0">Ctrl + X</span> will do nothing.</li>
+<!--
+\item --><li> If that preference <!--\textit{--><i>is</i><!--}--> selected and you do <span class="menu">Edit &gt; <!--latex 
+\hyperref[\foo{edit:menu:cut}]{--><a href="edit_menu.html#cut" title="Edit Menu">Cut</a><!--latex }
+--></span>, <!--\textit{--><i>all audio and labels in the project will be cut to the clipboard</i><!--}-->.</li></ul><!--
+\end{itemize}
+-->
+<p>To cut and paste a point label to a different location, first select the <!--\textit{--><i>text</i><!--}--> of the label as shown below. Note the difference in appearance of selected label text (the text is highlighted separately from the box) versus a selected label (where the entire label box is highlighted).
+</p>
+<dl><dd><span title="image of label track with point label text selected"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="PointLabelTextSelected.png" height="176" src="../m/images/7/7f/pointlabeltextselected.png" width="501"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/7/7f/pointlabeltextselected.png--></img><!--}\par
+--></span></dd></dl>
+<p>Do <span class="menu">Edit &gt; <!--latex 
+\hyperref[\foo{edit:menu:cut}]{--><a href="edit_menu.html#cut" title="Edit Menu">Cut</a><!--latex }
+--></span> - the <!--\textit{--><i>text</i><!--}--> of the label is cut to the clipboard, leaving a label with no text. Press <span class="kbrd" style="background-color: #e0e0f0">Delete</span> to delete the label.
+Click in the new location for the label and do <span class="menu">Edit &gt; Labels &gt; <!--latex 
+\hyperref[\foo{edit:menu:labels:paste:text}]{--><a href="edit_menu_labels.html#paste_text" title="Edit Menu: Labels">Paste Text to New Label</a><!--latex }
+--></span>:
+</p>
+<dl><dd><span title="image of label track after Paste Text to New Label"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="PasteTextToNewLabel.png" height="175" src="../m/images/9/9f/pastetexttonewlabel.png" width="502"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/9/9f/pastetexttonewlabel.png--></img><!--}\par
+--></span></dd></dl>
+<div id="context"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Using_the_Context_Menu">Using the Context Menu</span></h2><!--}--><!--latex 
+\label{editing:resizing:and:moving:labels:context}-->
+<p>There is a handy feature where you can select an area of text in a label then right-click to cut, copy or paste over (if there is text currently in the clipboard) that text. This allows you to click in another label, right-click, then paste that text in. So in our example you could select and copy "Question" and then paste it into the appropriate labels without having to type that word every time. The example below shows one way this can be used.
+</p><p>Click in a label, then select the label text. Note the difference in appearance of selected label text (as shown below - the text is highlighted separately from the box) versus a selected label (where the entire label box is highlighted). Right-click in the label:
+</p>
+<dl><dd><span title="image of contextual menu in a label with Copy selected, Windows 7 Basic style"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="ContextLabelCopy added Delete.png" height="216" src="../m/images/0/02/contextlabelcopy_added_delete.png" width="469"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/0/02/contextlabelcopy_added_delete.png--></img><!--}\par
+--></span></dd></dl>
+<p>Now select the range of audio corresponding to the second question and click on <span class="menu">Edit &gt; Labels &gt; <!--latex 
+\hyperref[\foo{edit:menu:labels:addlabelatselection}]{--><a href="edit_menu_labels.html#addlabelatselection" title="Edit Menu: Labels">Add Label at Selection</a><!--latex }
+--></span>. Right click (control-click on a Mac) in the new label:
+</p>
+<dl><dd><span title="image of new label and contextual menu ready to paste text into the label, Windows 7 Basic style"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="ContextLabelPaste added delete.png" height="212" src="../m/images/9/9d/contextlabelpaste_added_delete.png" width="469"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/9/9d/contextlabelpaste_added_delete.png--></img><!--}\par
+--></span></dd></dl>
+<p>The text "Question" will be pasted into the label, and all you have to type is " 2" to complete the label. Alternatively you could select the range in the label track instead of the audio track, then <span class="menu">Edit &gt; Labels &gt; <!--latex 
+\hyperref[\foo{edit:menu:labels:paste:text}]{--><a href="edit_menu_labels.html#paste_text" title="Edit Menu: Labels">Paste Text to New Label</a><!--latex }
+--></span> to create the label with that text.
+</p><p><br/>
+</p><p><!--latex 
+\hyperref[\foo{label:tracks:editing}]{--><a href="label_tracks.html#editing" title="Label Tracks"><!--\textbf{--><b>|&lt;</b><!--}--> Label Tracks</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

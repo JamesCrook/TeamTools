@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Spectral edit multi tool - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Spectral_edit_multi_tool rootpage-Spectral_edit_multi_tool skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Spectral edit multi tool</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{spectral:edit:multi:tool:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p><br/>
+</p>
+<div class="intro">The <!--\textbf{--><b>Spectral edit multi tool</b><!--}--> is used with a <!--latex 
+\hyperref[\foo{spectral:selection:}]{--><a href="spectral_selection.html" title="Spectral Selection">Spectral Selection</a><!--latex }
+--> to apply either a <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:notch}]{--><a href="glossary.html#notch" title="Glossary">notch filter</a><!--latex }
+--></b><!--}--></i><!--}-->, <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:hp}]{--><a href="glossary.html#hp" title="Glossary">high-pass filter</a><!--latex }
+--></b><!--}--></i><!--}--> or <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:lp}]{--><a href="glossary.html#lp" title="Glossary">low-pass filter</a><!--latex }
+--></b><!--}--></i><!--}--> to the selection, depending on the type of selection made.
+</div>
+<dl><dd><!--\textbf{--><b>Accessed by:</b><!--}--> <span class="menu">Effect &gt; Spectral edit multi tool...</span></dd></dl>
+
+<p>Depending on how the track is displayed and what spectral selection has been made, this effect will do one of the following:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> When the track is not in a <!--latex 
+\hyperref[\foo{spectrogram:view:}]{--><a href="spectrogram_view.html" title="Spectrogram View">Spectrogram View</a><!--latex }
+--> with <!--latex 
+\hyperref[\foo{spectral:selection:}]{--><a href="spectral_selection.html" title="Spectral Selection">Spectral Selection</a><!--latex }
+--> enabled, an error message will be displayed</li>
+<!--
+\item --><li> When the spectral selection has a center, upper and lower frequency this effect performs as a <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:notch}]{--><a href="glossary.html#notch" title="Glossary">notch filter</a><!--latex }
+--></b><!--}--></i><!--}--> with the center frequency defined by the center frequency of the spectral selection and the width defined by the upper and lower frequencies of the spectral selection</li>
+<!--
+\item --><li> When the spectral selection begins at 0 Hz this effect performs a <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:hp}]{--><a href="glossary.html#hp" title="Glossary">high pass filter</a><!--latex }
+--></b><!--}--></i><!--}--> with a rolloff of 12 dB/octave and with the cutoff frequency defined by the upper frequency of the spectral selection</li>
+<!--
+\item --><li> When the spectral selection ends at the Nyquist frequency of the track this effect performs a <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:lp}]{--><a href="glossary.html#lp" title="Glossary">low pass filter</a><!--latex }
+--></b><!--}--></i><!--}--> with a rolloff of 12 dB/octave and with the cutoff frequency defined by the lower frequency of the spectral selection</li>
+<!--
+\item --><li> When both the upper and lower frequency bound of the spectral selection are undefined, an error message will be displayed. You should go back and define one or both frequency bounds.  </li></ul><!--
+\end{itemize}
+-->
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Bulbicon.png" title="Bulb icon"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Bulb icon" height="32" src="../m/images/d/d7/bulbicon.png" width="32"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d7/bulbicon.png--></img><!--}\par
+--></a>
+</td>
+<td align="left" valign="top">If the attenuation is not sufficient, you can use <span class="kbrd" style="background-color: #e0e0f0">Ctrl + R</span> to repeat the effect.
+</td></tr></tbody></table>
+</div> 
+<!--
+\subsection{--><h2><span class="mw-headline" id="Examples">Examples</span></h2><!--}-->
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Notch_Filter">Notch Filter</span></h3><!--}-->
+<p>If you make a spectral selection that has both an upper and lower boundary, selecting <span class="menu">Effect &gt; Spectral edit multi tool</span> will apply a notch filter.
+</p><p>In the following example the spectral selection had a center frequency of 2000 Hz and a bandwidth of 0.5 octave. 
+</p>
+<dl><dd><span title="Spectrum plot of Spectral edit multi tool notch effect, 2000 Hz, 0.5 octave"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="SpectralEditNotch.png" height="367" src="../m/images/d/dd/spectraleditnotch.png" width="574"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/dd/spectraleditnotch.png--></img><!--}\par
+--></span></dd></dl>
+<p>In the following example the spectral selection had a center frequency of 2000 Hz and a bandwidth of 2 octaves. 
+</p>
+<dl><dd><span title="Spectrum plot of Spectral edit multi tool notch effect, 2000 Hz, 2 octaves"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="SpectralEditNotch02.png" height="367" src="../m/images/e/e3/spectraleditnotch02.png" width="574"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/e/e3/spectraleditnotch02.png--></img><!--}\par
+--></span></dd></dl>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="High-pass_filter">High-pass filter</span></h3><!--}-->
+<p>If you make a spectral selection that has the lower boundary at 0 Hz, selecting <span class="menu">Effect &gt; Spectral edit multi tool</span> will apply a high-pass filter.</p>
+<p>In the following example the spectral selection had a lower boundary of 0 Hz and an upper boundary of 500 Hz.</p> 
+<dl><dd><span title="Spectrum plot of Spectral edit multi tool high-pass effect"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="SpectralEditMultiHP500.png" height="367" src="../m/images/8/83/spectraleditmultihp500.png" width="574"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/8/83/spectraleditmultihp500.png--></img><!--}\par
+--></span></dd></dl>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Low-pass_filter">Low-pass filter</span></h3><!--}-->
+<p>If you make a spectral selection that has the upper boundary at the Nyquist frequency of the track, selecting <span class="menu">Effect &gt; Spectral edit multi tool</span> will apply a low-pass filter.</p>
+<p>In the following example the spectral selection had a lower boundary of 0 Hz and an upper boundary of 2000 Hz.</p> 
+<dl><dd><span title="Spectrum plot of Spectral edit multi tool low-pass effect"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="SpectralEditMultiLP2000.png" height="367" src="../m/images/f/f8/spectraleditmultilp2000.png" width="574"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/f/f8/spectraleditmultilp2000.png--></img><!--}\par
+--></span></dd></dl>
+
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

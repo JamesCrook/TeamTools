@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Sync-Locked Track Groups - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Sync-Locked_Track_Groups rootpage-Sync-Locked_Track_Groups skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Sync-Locked Track Groups</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{sync:locked:track:groups:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en">
+<p>
+</p>
+<div class="intro">The <!--\textit{--><i><!--\textbf{--><b>Sync-Locked Track Groups</b><!--}--></i><!--}--> feature is enabled by the "Sync-Lock Tracks" menu item. It ensures that length and position changes occurring anywhere in a defined group of tracks also take place in all <!--latex 
+\hyperref[\foo{audio:tracks:}]{--><a href="audio_tracks.html" title="Audio Tracks">audio</a><!--latex }
+--> or <!--latex 
+\hyperref[\foo{label:tracks:}]{--><a href="label_tracks.html" title="Label Tracks">label</a><!--latex }
+--> tracks in that Sync-Locked track group even if those tracks were not selected. <p>This lets you keep existing audio or labels synchronized with each other even when carrying out actions like inserting, deleting or changing speed or tempo.</p> </div>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">This command does <!--\textbf{--><b>NOT</b><!--}--> let you select particular individual tracks then interlock those selected tracks, rather Sync-Locking is based on <!--latex 
+\hyperref[\foo{sync:locked:track:groups::sltg}]{--><a href="#sltg">Track Groups</a><!--latex }
+-->.
+</td></tr></tbody></table>
+</div>
+<div id="slt"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Sync-Lock_Tracks">Sync-Lock Tracks</span></h2><!--}--><!--latex 
+\label{sync:locked:track:groups:slt}-->
+<p>Sync-Lock Tracks can be turned on or off at <span class="menu">Tracks &gt; Sync-Lock Tracks</span>. Sync-Lock Tracks is off by default.  Turning on Sync-Lock Tracks does not immediately realign tracks or labels. It forces tracks and labels to remain synchronized if they move after Sync-Lock Tracks is enabled. 
+</p><p>You need to look for the Sync-Lock icons <!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="image of sync-lock icon" height="14" src="../m/images/3/33/trackpanelsynclockicon.png" title="image of sync-lock icon" width="13"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/3/33/trackpanelsynclockicon.png--></img><!--}}{}--> in the Track Control Panels to know if tracks are Sync-Locked.
+</p>
+<div class="note">The Sync-Lock Tracks setting that you choose is a global one that applies to all Audacity projects, not just the current one, unless and until you subsequently change the setting.</div>
+<div id="sltg"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Sync-Locked_Track_Groups">Sync-Locked Track Groups</span></h2><!--}--><!--latex 
+\label{sync:locked:track:groups:sltg}-->
+<p>Any audio track in Audacity can be in a group of one or more adjacent tracks that can be <!--\textit{--><i>Sync-Locked</i><!--}--> with other tracks in that group. 
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> To form a single Sync-Locked Track Group, the tracks <!--\textbf{--><b>must</b><!--}--> be adjacent to each other. Optionally, the group can  be terminated with a <!--latex 
+\hyperref[\foo{label:tracks:}]{--><a href="label_tracks.html" title="Label Tracks">Label Track</a><!--latex }
+-->. </li>
+<!--
+\item --><li> If you require multiple Sync-Locked Track Groups, the terminating label track is optional only for the last Group. All the preceding Sync-Locked Track Groups <!--\textbf{--><b>must</b><!--}--> be terminated with a label track to delimit them from adjacent  Groups. </li>
+<!--
+\item --><li> A Sync-Locked Track Group may have multiple label tracks as long as the label tracks are together at the bottom of the group.</li></ul><!--
+\end{itemize}
+-->
+<p>When Sync-Lock is on, an icon <!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="image of sync-lock icon" height="14" src="../m/images/3/33/trackpanelsynclockicon.png" title="image of sync-lock icon" width="13"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/3/33/trackpanelsynclockicon.png--></img><!--}}{}--> shows bottom right in the <!--latex 
+\hyperref[\foo{audio:tracks:panel}]{--><a href="audio_tracks.html#panel" title="Audio Tracks">Track Control Panel</a><!--latex }
+--> of each track in a Sync-Locked Track Group, provided at least one of those tracks is selected. The icon denotes all tracks that will be affected when a menu operation in a selected track inserts or deletes audio (or otherwise changes the audio's position on the <!--latex 
+\hyperref[\foo{timeline:}]{--><a href="timeline.html" title="Timeline">Timeline</a><!--latex }
+-->). The unselected tracks in the Group that will be affected are denoted by a patterned "Sync-Lock" selection in the waveform <!--\textit{--><i>(a wallpaper with clockfaces)</i><!--}--> instead of the dark gray of a normally selected track.
+</p>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Selecting_Groups_for_Sync-Locking">Selecting Groups for Sync-Locking</span></h3><!--}-->
+<p>Selecting at least one track from within a Group will mark that particular group as Sync-Locked, the icon <!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="image of sync-lock icon" height="14" src="../m/images/3/33/trackpanelsynclockicon.png" title="image of sync-lock icon" width="13"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/3/33/trackpanelsynclockicon.png--></img><!--}}{}--> will appear in the Track Control Panel of all the tracks in that Group.  If you have multiple Groups then clicking on a track in a different Group will cause the Sync-Lock selection to move to the new Group.  
+</p><p>You can select multiple Groups to be Sync-Locked. Following your initial group selection, hold <span class="kbrd" style="background-color: #e0e0f0">Shift</span> while clicking on the <!--latex 
+\hyperref[\foo{audio:tracks:panel}]{--><a href="audio_tracks.html#panel" title="Audio Tracks">Track Control Panel</a><!--latex }
+--> in one of the tracks in the additional Group(s) that you require.  See the <!--latex 
+\hyperref[\foo{sync:locked:track:groups::example}]{--><a href="#example">example</a><!--latex }
+--> below.
+</p>
+<div class="note">
+<!--
+\begin{itemize}--><ul><!--
+\item --><li>In the common scenario of audio tracks only, or one or more audio tracks with only label tracks underneath them, the project only has a single Group. </li>
+<!--
+\item --><li>However if separate Groups are defined (typically by inserting a label track <!--\textit{--><i>between</i><!--}--> audio tracks) each Group is <!--\textbf{--><b>independent</b><!--}--> and will not interact with another Group unless at least one track in each Group is selected.</li>
+<!--
+\item --><li><!--\textbf{--><b>All</b><!--}--> tracks in a Sync-Locked Track Group are interlocked with each other even if unselected.</li></ul><!--
+\end{itemize}
+--></div>
+<div id="example"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Example">Example</span></h2><!--}--><!--latex 
+\label{sync:locked:track:groups:example}-->
+
+<div class="example">This shows a Project with three Sync-Locked Track Groups.  The top two are both delimited by label tracks, the bottom one just has audio tracks and no label track.
+<div style="overflow:auto">
+<dl><dd><span title="Track Panel and Timeline showing a project with three Sync-Locked Track Groups"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Sync-Locked Track Groups example.jpg" height="387" src="../m/images/1/1e/sync_locked_track_groups_example.jpg" width="685"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/1/1e/sync_locked_track_groups_example.jpg--></img><!--}\par
+--></span></dd></dl></div>
+Note that the top group and the bottom group are both selected, see the clock icons in the Track Control Panels for each of the tracks, including the label track, in those selected Groups. <p>
+Also observe that although a selection has been made only in the second track of the first group and the first track of the bottom group all the other tracks in both Groups, including the label track, have the clock-wallpaper background to indicate that they are Sync-Locked.  The middle group is <!--\textbf{--><b>not</b><!--}--> Sync-Locked and would remain unaffected by any editing changes applied to the selected Groups.</p></div>
+<div id="using"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Using_Sync-Locked_Tracks">Using Sync-Locked Tracks</span></h2><!--}--><!--latex 
+\label{sync:locked:track:groups:using}-->
+<p>The following links demonstrate in more detail the use of Sync-Locked Tracks in Audacity for common editing tasks:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--latex 
+\hyperref[\foo{sync:locked:track:groups:editing:}]{--><a href="sync_locked_track_groups_editing.html" title="Sync-Locked Track Groups - Editing">Using Sync-Locked Track Groups for Editing audio</a><!--latex }
+--></li></ul><!--
+\end{itemize}
+-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--latex 
+\hyperref[\foo{sync:locked:track:groups:time:shifting:}]{--><a href="sync_locked_track_groups_time_shifting.html" title="Sync-Locked Track Groups - Time Shifting">Using Sync-Locked Track Groups for Time Shifting audio</a><!--latex }
+--></li></ul><!--
+\end{itemize}
+-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--latex 
+\hyperref[\foo{sync:locked:track:groups:time:stretching:}]{--><a href="sync_locked_track_groups_time_stretching.html" title="Sync-Locked Track Groups - Time Stretching">Using Sync-Locked Track Groups for Time Stretching audio</a><!--latex }
+--></li></ul><!--
+\end{itemize}
+-->
+
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Error opening sound device - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Error_opening_sound_device rootpage-Error_opening_sound_device skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Error opening sound device</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{error:opening:sound:device:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p><br/>
+</p>
+<div class="intro">This error message asks you to check the recording or playback device settings and the Audacity <!--latex 
+\hyperref[\foo{selection:toolbar:}]{--><a href="selection_toolbar.html" title="Selection Toolbar">project sample rate</a><!--latex }
+-->. If the message mentions "recording device", it means there's a problem with your Audacity, operating system or sound device recording settings. If the message mentions "playback device", it means there is a problem with your playback settings. 
+<p>Either message can suggest a problem with the drivers of the sound device, or possibly that you are asking the device to do something it cannot do. For example you will see this error if you attempt to <!--latex 
+\hyperref[\foo{transport:menu:record}]{--><a href="transport_menu.html#record" title="Transport Menu">Record</a><!--latex }
+--> to more channels than your device supports, or if you try to <!--latex 
+\hyperref[\foo{faq:recording:how:to:s:overdub}]{--><a href="faq_recording_how_to_s.html#overdub" title="FAQ:Recording - How To's">overdub</a><!--latex }
+--> on a device that can either record or play back but not both.
+</p>
+The recording device message most commonly occurs on Windows when one of the sound device inputs is not properly enabled or otherwise cannot respond to Audacity's request to start recording.  </div> 
+<!--
+\subsection{--><h2><span class="mw-headline" id="Check_Audacity_Settings">Check Audacity Settings</span></h2><!--}-->
+<div class="note">It may be a good idea to try to play or record after checking or changing each of the following Audacity settings. Sometimes a project rate change is all that is needed.</div>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> Set the project rate bottom left of the Audacity window to the standard rate of 44100 Hz (or if your soundcard only supports a particular rate such as 48000 Hz, set the project rate to that). <span class="menu">Help &gt; Diagnostics &gt; <!--latex 
+\hyperref[\foo{help:menu:diagnostics:audio:device:info}]{--><a href="help_menu_diagnostics.html#audio_device_info" title="Help Menu: Diagnostics">Audio Device Info...</a><!--latex }
+--></span> should show the rates the device claims to support. </li></ul><!--
+\end{itemize}
+-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> Try turning off <span class="menu">Transport &gt; Transport Options &gt; <!--latex 
+\hyperref[\foo{transport:menu:transport:options:software:playthrough:onoff}]{--><a href="transport_menu_transport_options.html#software_playthrough_onoff" title="Transport Menu: Transport Options">Software Playthrough (on/off)</a><!--latex }
+--></span> (this should never be enabled if <!--latex 
+\hyperref[\foo{tutorial:recording:audio:playing:on:the:computer:}]{--><a href="tutorial_recording_audio_playing_on_the_computer.html" title="Tutorial - Recording audio playing on the computer">recording computer playback</a><!--latex }
+-->). </li></ul><!--
+\end{itemize}
+-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> Try turning off <span class="menu">Transport &gt; Transport Options &gt; <!--latex 
+\hyperref[\foo{transport:menu:transport:options:overdub:onoff}]{--><a href="transport_menu_transport_options.html#overdub_onoff" title="Transport Menu: Transport Options">Overdub (on/off)</a><!--latex }
+--></span> because recording while playing could stress your sound device or computer. If this solves the problem, read the Wiki pages <a class="external text" href="https://wiki.audacityteam.org/wiki/Updating_Sound_Device_Drivers" rel="nofollow">Updating Sound Device Drivers</a> and <a class="external text" href="https://wiki.audacityteam.org/wiki/Managing_Computer_Resources_and_Drivers" rel="nofollow">Managing Computer Resources and Drivers</a> for advice on how to make your sound device or computer more capable. </li></ul><!--
+\end{itemize}
+-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li>Check in <!--latex 
+\hyperref[\foo{device:toolbar:}]{--><a href="device_toolbar.html" title="Device Toolbar">Device Toolbar</a><!--latex }
+--> that the playback and recording devices are correctly and explicitly selected. 
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> On Windows, do not choose "Microsoft Sound Mapper" or "Primary Sound Driver" which point to the current Windows default device; choose the required device by name. Try selecting "Windows Direct Sound" as the "Host" instead of "MME".</li></ul><!--
+\end{itemize}
+--></li></ul><!--
+\end{itemize}
+-->
+<p><br/>
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Check_operating_system_settings">Check operating system settings</span></h2><!--}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>Windows:</b><!--}--> Follow the Wiki instructions for <a class="external text" href="https://wiki.audacityteam.org/index.php?title=Mixer_Toolbar_Issues#vistacp" rel="nofollow">Windows</a> to configure the Windows sound settings. The key points are:
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>Ensure all available inputs are listed and enabled in the Windows Control Panel.</b><!--}--> </li>
+<!--
+\item --><li> <!--\textbf{--><b>Additionally for Windows:</b><!--}--> Ensure Default Format for the playback and recording devices contains the same <!--latex 
+\hyperref[\foo{selection:toolbar:}]{--><a href="selection_toolbar.html" title="Selection Toolbar">sample rate</a><!--latex }
+--> and number of <!--latex 
+\hyperref[\foo{device:toolbar:}]{--><a href="device_toolbar.html" title="Device Toolbar">recording channels</a><!--latex }
+--> as in Audacity. 
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> Very rarely, it can help to use 16-bit or 24-bit Default Format then change the Audacity <!--latex 
+\hyperref[\foo{quality:preferences:Sampling}]{--><a href="quality_preferences.html#Sampling" title="Quality Preferences">Quality Preferences</a><!--latex }
+--> to that sample format.</li>
+<!--
+\item --><li> If necessary, put a checkmark in both Exclusive Mode boxes then set the "Host" in Audacity's Device Toolbar to "Windows DirectSound" and choose a <!--latex 
+\hyperref[\foo{selection:toolbar:}]{--><a href="selection_toolbar.html" title="Selection Toolbar">project rate</a><!--latex }
+--> that your playback and recording devices support. Audacity can then request that rate directly from the sound device. </li></ul><!--
+\end{itemize}
+--></li></ul><!--
+\end{itemize}
+--></li></ul><!--
+\end{itemize}
+-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>Mac:</b><!--}--> In Finder, choose <span class="menu">Go &gt; Utilities &gt; Audio MIDI Setup.app</span>. In "Audio Devices", select in turn the required Recording and Playback devices. Set "Format" to the same <!--latex 
+\hyperref[\foo{selection:toolbar:}]{--><a href="selection_toolbar.html" title="Selection Toolbar">sample rate</a><!--latex }
+-->, <!--latex 
+\hyperref[\foo{quality:preferences:Sampling}]{--><a href="quality_preferences.html#Sampling" title="Quality Preferences">bit-depth</a><!--latex }
+--> and number of <!--latex 
+\hyperref[\foo{device:toolbar:}]{--><a href="device_toolbar.html" title="Device Toolbar">recording channels</a><!--latex }
+--> as in Audacity.</li></ul><!--
+\end{itemize}
+-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>Linux:</b><!--}--> </li></ul><!--
+\end{itemize}
+-->
+<div class="note">While troubleshooting, ensure that <span class="menu">Transport &gt; Transport Options &gt; <!--latex 
+\hyperref[\foo{transport:menu:transport:options:software:playthrough:onoff}]{--><a href="transport_menu_transport_options.html#software_playthrough_onoff" title="Transport Menu: Transport Options">Software Playthrough (on/off)</a><!--latex }
+--></span> is off. Only enable this option if you really need it, after you have established that Audacity is recording correctly.</div>
+<!--
+\begin{enumerate}--><ol><!--
+\item --><li> In the first instance, try refreshing Audacity's list of audio devices at <span class="menu">Transport &gt; <!--latex 
+\hyperref[\foo{transport:menu:rescan:audio:devices}]{--><a href="transport_menu.html#rescan_audio_devices" title="Transport Menu">Rescan Audio Devices</a><!--latex }
+--></span> then select the <!--\textbf{--><b>default</b><!--}--> option in <!--latex 
+\hyperref[\foo{device:toolbar:}]{--><a href="device_toolbar.html" title="Device Toolbar">Device Toolbar</a><!--latex }
+-->. If the error still occurs, recheck the <!--latex 
+\hyperref[\foo{error:opening:sound:device::Check:Audacity:Settings}]{--><a href="#Check_Audacity_Settings">Audacity settings</a><!--latex }
+-->.</li>
+<!--
+\item --><li> It is possible that another application may have exclusive access to the audio device. Try logging out and back in again, then re-check the Audacity settings before opening any other application that may use the audio device.
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> If <!--\textit{--><i><!--\textbf{--><b>pulse</b><!--}--></i><!--}--> is an option in Device Toolbar, ensure that you have Pulse Audio Volume Control (<!--\textit{--><i>pavucontrol</i><!--}-->) installed. If it is not installed, use your system's package manager to install it. Open Pulse Audio Volume Control and check that there is an available output device.</li>
+<!--
+\item --><li> If <!--\textit{--><i><!--\textbf{--><b>Jack Audio System</b><!--}--></i><!--}--> is running on the computer, ensure that it is selected as the <!--\textbf{--><b>Host</b><!--}--> in Device Toolbar.</li></ul><!--
+\end{itemize}
+--></li>
+<!--
+\item --><li> Open the system <!--\textbf{--><b>Sound Preferences</b><!--}--> and check that a recording device is available. Sound Preferences is often available through a loudspeaker icon on the Desktop, Desktop panel, or in the system Preferences menu.</li>
+<!--
+\item --><li> Open AlsaMixer (type <!--\textbf{--><b>alsamixer</b><!--}--> in a terminal window) and check the soundcard and recording device settings. To view the AlsaMixer manual, type <!--\textbf{--><b>man alsamixer</b><!--}--> in a terminal window.</li></ol><!--
+\end{enumerate}
+-->
+<!--
+\subsection{--><h2><span class="mw-headline" id="Check_sound_device_drivers_and_firmware">Check sound device drivers and firmware</span></h2><!--}-->
+<p>The computer's built-in sound device should usually have the latest drivers for your operating system, supplied by the motherboard or computer manufacturer. A PCI or external soundcard should usually have the latest drivers and firmware supplied by the manufacturer of the device. See <a class="external text" href="https://wiki.audacityteam.org/wiki/Updating_Sound_Device_Drivers" rel="nofollow">Updating Sound Device Drivers</a> on the Wiki for help with correcting driver issues.  
+</p><p><br/>
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Check_PCI_card_or_external_sound_device_settings_and_connections">Check PCI card or external sound device settings and connections</span></h2><!--}-->
+<p>If you use a high-end PCI soundcard or external USB or Firewire interface, you must make the sample rate, bit-depth and number of input channels the same in all possible places. This is especially important if you are recording <!--latex 
+\hyperref[\foo{tutorial:recording:multi:track:overdubs:}]{--><a href="tutorial_recording_multi_track_overdubs.html" title="Tutorial - Recording Multi-track Overdubs">Multi-Track Overdubs</a><!--latex }
+--> where you play and record at the same time. Settings must match in:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> the Audacity Project Rate</li>
+<!--
+\item --><li> the track(s) in Audacity (to resample tracks to the Project Rate, <!--latex 
+\hyperref[\foo{audacity:selection:}]{--><a href="audacity_selection.html" title="Audacity Selection">select</a><!--latex }
+--> each track in turn then choose <span class="menu">Tracks &gt; <!--latex 
+\hyperref[\foo{tracks:menu:resample}]{--><a href="tracks_menu.html#resample" title="Tracks Menu">Resample...</a><!--latex }
+--></span>). </li>
+<!--
+\item --><li> all inputs and outputs in the operating system sound control panel or application </li>
+<!--
+\item --><li> all inputs and outputs in any software or hardware control panel the sound device may have.</li></ul><!--
+\end{itemize}
+-->
+<div class="note"><!--\textbf{--><b>Make sure the device is connected properly.</b><!--}--> "Error opening sound device..." will occur if the device becomes disconnected during an Audacity session and you then try to play or record. Reconnect the device then choose <span class="menu">Transport &gt; <!--latex 
+\hyperref[\foo{transport:menu:rescan:audio:devices}]{--><a href="transport_menu.html#rescan_audio_devices" title="Transport Menu">Rescan Audio Devices</a><!--latex }
+--></span> </div>
+<p><br/>
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Links">Links</span></h2><!--}-->
+<p><!--latex 
+\hyperref[\foo{faq:errors:}]{--><a href="faq_errors.html" title="FAQ:Errors"><!--\textbf{--><b>|&lt;</b><!--}--> FAQ:Errors</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

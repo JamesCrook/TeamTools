@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Exporting Audio - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Exporting_Audio rootpage-Exporting_Audio skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Exporting Audio</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{exporting:audio:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+</p>
+<div class="intro">You <!--\textbf{--><b>must</b><!--}--> use one of the <!--latex 
+\hyperref[\foo{file:menu:export}]{--><a href="file_menu.html#export" title="File Menu">Export</a><!--latex }
+--> commands to make an audio file for playing on your music player, burning <!--latex 
+\hyperref[\foo{burning:music:files:to:a:cd:}]{--><a href="burning_music_files_to_a_cd.html" title="Burning music files to a CD">CDs</a><!--latex }
+--> or for use in other applications. <!--latex 
+\hyperref[\foo{file:menu:save}]{--><a href="file_menu.html#save" title="File Menu">Saving</a><!--latex }
+--> an <!--latex 
+\hyperref[\foo{audacity:projects:}]{--><a href="audacity_projects.html" title="Audacity Projects">Audacity project</a><!--latex }
+--> only makes a text file that tells Audacity how to work with the audio you see in Audacity itself.</div>
+<div id="commands"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Export_Commands">Export Commands</span></h2><!--}--><!--latex 
+\label{exporting:audio:commands}-->
+<p>There are two Export commands for exporting a <!--\textbf{--><b>single audio file</b><!--}-->. These let you export either the whole project or a <!--latex 
+\hyperref[\foo{audacity:selection:}]{--><a href="audacity_selection.html" title="Audacity Selection">selected</a><!--latex }
+--> part of it.  
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <span class="menu">File &gt; Save Other &gt; <!--latex 
+\hyperref[\foo{file:menu:save:other:exportaudio}]{--><a href="file_menu_save_other.html#exportaudio" title="File Menu: Save Other">Export Audio...</a><!--latex }
+--></span> exports all the <!--latex 
+\hyperref[\foo{audio:tracks:}]{--><a href="audio_tracks.html" title="Audio Tracks">audio tracks</a><!--latex }
+--> in the project. By default, multiple mono tracks are mixed down to a mono file, but if you <!--latex 
+\hyperref[\foo{audio:tracks:pan}]{--><a href="audio_tracks.html#pan" title="Audio Tracks">pan</a><!--latex }
+--> any mono tracks to left or right or if there are any stereo tracks, the tracks are mixed to a stereo file. See <!--latex 
+\hyperref[\foo{mixing:}]{--><a href="mixing.html" title="Mixing">Mixing</a><!--latex }
+--> for details.  </li>
+<!--
+\item --><li> <span class="menu">File &gt; Save Other &gt; <!--latex 
+\hyperref[\foo{file:menu:save:other:exportselectedaudio}]{--><a href="file_menu_save_other.html#exportselectedaudio" title="File Menu: Save Other">Export Selected Audio...</a><!--latex }
+--></span> exports only the selected audio, mixing it down as above. </li></ul><!--
+\end{itemize}
+-->
+<p>Alternatively, you may export <!--\textbf{--><b>multiple audio files</b><!--}--> in a single process. This is useful when making a long recording or group of recordings that you want to export as separate songs. Selected tracks or regions are ignored when exporting multiple.  
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <span class="menu">File &gt; Save Other &gt; <!--latex 
+\hyperref[\foo{export:multiple:}]{--><a href="export_multiple.html" title="Export Multiple">Export Multiple...</a><!--latex }
+--></span> exports multiple files in one process, one file for each audio track, or one file for each <!--latex 
+\hyperref[\foo{label:tracks:}]{--><a href="label_tracks.html" title="Label Tracks">labeled</a><!--latex }
+--> area in a track.</li>
+<!--
+\item --><li>Use <span class="menu">Edit &gt; Labels &gt; <!--latex 
+\hyperref[\foo{edit:menu:labels:addlabelatplaybackposition}]{--><a href="edit_menu_labels.html#addlabelatplaybackposition" title="Edit Menu: Labels">Add Label at Playback Position</a><!--latex }
+--></span> prior to export to add labels so as to <!--latex 
+\hyperref[\foo{splitting:a:recording:into:separate:tracks:}]{--><a href="splitting_a_recording_into_separate_tracks.html" title="Splitting a recording into separate tracks">split a long Audacity track into separate song tracks</a><!--latex }
+-->. 
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> If there are multiple audio tracks, exporting multiple files split on labels will export a <!--latex 
+\hyperref[\foo{mixing:}]{--><a href="mixing.html" title="Mixing">mix</a><!--latex }
+--> of the tracks for each labeled area.   </li></ul><!--
+\end{itemize}
+--></li></ul><!--
+\end{itemize}
+-->
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">
+<p>For either Export Audio, Export Selected Audio or Export Multiple, tracks on which the <!--latex 
+\hyperref[\foo{audio:tracks:mute}]{--><a href="audio_tracks.html#mute" title="Audio Tracks">Mute</a><!--latex }
+--> button is pressed are not exported. There will be a warning if you export with all audio tracks muted.
+</p>
+</td></tr></tbody></table>
+</div>  
+<div id="single"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Export_Audio_and_Export_Selected_Audio_Dialogs"><!--latex 
+\hyperref[\foo{file:export:dialog:}]{--><a href="file_export_dialog.html" title="File Export Dialog">Export Audio and Export Selected Audio Dialogs</a><!--latex }
+--></span></h2><!--}--><!--latex 
+\label{exporting:audio:single}-->
+<p>The identical Export File or Export Selection dialogs enable you to select the file name, folder location, audio format (such as <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:wav}]{--><a href="glossary.html#wav" title="Glossary">WAV</a><!--latex }
+--></b><!--}--></i><!--}--> or <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:mp3}]{--><a href="glossary.html#mp3" title="Glossary">MP3</a><!--latex }
+--></b><!--}--></i><!--}-->) and any options for that format (such as <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:compressed:format}]{--><a href="glossary.html#compressed_format" title="Glossary">file size compression</a><!--latex }
+--></b><!--}--></i><!--}--> or <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:sample:format}]{--><a href="glossary.html#sample_format" title="Glossary">bit depth</a><!--latex }
+--></b><!--}--></i><!--}-->).
+</p>
+<!--
+\begin{enumerate}--><ol><!--
+\item --><li>Choose your folder location.
+</li><!--
+\item --><li>Type the name of your audio file in the <!--\textbf{--><b>File name</b><!--}--> box. 
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Bulbicon.png" title="Bulb icon"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Bulb icon" height="32" src="../m/images/d/d7/bulbicon.png" width="32"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d7/bulbicon.png--></img><!--}\par
+--></a>
+</td>
+<td align="left" valign="top"><!--latex 
+\hyperref[\foo{faq:opening:and:saving:files:extensions}]{--><a href="faq_opening_and_saving_files.html#extensions" title="FAQ:Opening and Saving Files">Help with choosing the file name</a><!--latex }
+-->:
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>Avoid periods (dots)</b><!--}--> in the file name, or you will have to add the <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:extension}]{--><a href="glossary.html#extension" title="Glossary">extension</a><!--latex }
+--></b><!--}--></i><!--}--> such as .wav or .mp3 at the end of the name.</li>
+<!--
+\item --><li>Some characters cannot be used on all operating systems or for email or internet use. Use <!--\textbf{--><b>A to Z or a to z characters, whole numbers (0 to 9) and underscores ( _ )</b><!--}--> for maximum compatibility.</li></ul><!--
+\end{itemize}
+-->
+</td></tr></tbody></table>
+</div>  
+</li><!--
+\item --><li>Choose your <!--latex 
+\hyperref[\foo{exporting:audio::format}]{--><a href="#format">file type</a><!--latex }
+--> (export format) from the <!--\textbf{--><b>Save as type</b><!--}--> dropdown.
+</li><!--
+\item --><li>Press the <span class="button">Options...</span> button.to check if the format has additional settings that control its quality.
+</li><!--
+\item --><li>Press <span class="button">Save</span> to export the audio.</li></ol><!--
+\end{enumerate}
+-->
+<div class="note">
+<p>See <!--latex 
+\hyperref[\foo{file:export:dialog:}]{--><a href="file_export_dialog.html" title="File Export Dialog">Export Audio Dialog</a><!--latex }
+--> for more detailed information on this dialog.
+</p>
+</div>
+<div id="multiple"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Export_Multiple_Dialog"><!--latex 
+\hyperref[\foo{export:multiple:}]{--><a href="export_multiple.html" title="Export Multiple">Export Multiple Dialog</a><!--latex }
+--></span></h2><!--}--><!--latex 
+\label{exporting:audio:multiple}-->
+<p>The Export Multiple dialog has extra choices for whether exported files are split based on <!--latex 
+\hyperref[\foo{label:tracks:}]{--><a href="label_tracks.html" title="Label Tracks">labels</a><!--latex }
+--> or <!--latex 
+\hyperref[\foo{audio:tracks:}]{--><a href="audio_tracks.html" title="Audio Tracks">audio tracks</a><!--latex }
+--> and whether numerical prefixes or suffixes are added to the name.
+</p>
+<!--
+\begin{enumerate}--><ol>
+<!--
+\item --><li>Choose your <!--latex 
+\hyperref[\foo{exporting:audio::format}]{--><a href="#format">export format</a><!--latex }
+--> from the dropdown (press the <span class="button">Options...</span> button.to check if the format has additional settings that control its quality).
+</li><!--
+\item --><li>Choose the export location - either over-type in the text box (use <span class="button">Create...</span> to create the directory named in the box if needed) or browse for the folder to export to using <span class="button">Choose...</span>.
+</li><!--
+\item --><li>Select whether splits are based on labels or tracks using the radio buttons in the <!--\textbf{--><b>Split files based on:</b><!--}--> box.
+<!--
+\begin{itemize}--><ul><!--
+\item --><li>If exporting based on labels, put a check mark in <span class="button"><a class="image" href="http://alphamanual.audacityteam.org/man/File:CheckboxChecked.png"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="CheckboxChecked.png" height="13" src="../m/images/8/85/checkboxchecked.png" style="vertical-align: text-top" width="13"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/8/85/checkboxchecked.png--></img><!--}}{}--></a>&nbsp;Include audio before first label</span> and choose a file name if you require an exported file for any audio to left of the first label. </li></ul><!--
+\end{itemize}
+-->
+</li><!--
+\item --><li>Select a numbering scheme for file names (none, numbering before or numbering after) using the radio buttons in the <!--\textbf{--><b>Name files:</b><!--}--> box.
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">Some characters <!--latex 
+\hyperref[\foo{faq:opening:and:saving:files:illegal}]{--><a href="faq_opening_and_saving_files.html#illegal" title="FAQ:Opening and Saving Files">cannot be used</a><!--latex }
+--> on all operating systems or for email or internet use. <p>When typing a folder name or file name <!--\textit{--><i>(including Audacity track names, names in labels or the Export Multiple "file name" boxes)</i><!--}--> use <!--\textbf{--><b>A to Z or a to z characters, whole numbers (0&nbsp;to&nbsp;9) and underscores (&nbsp;_&nbsp;)</b><!--}--> for maximum compatibility.</p>
+</td></tr></tbody></table>
+</div>
+</li><!--
+\item --><li>Use <span class="button"><a class="image" href="http://alphamanual.audacityteam.org/man/File:CheckboxChecked.png"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="CheckboxChecked.png" height="13" src="../m/images/8/85/checkboxchecked.png" style="vertical-align: text-top" width="13"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/8/85/checkboxchecked.png--></img><!--}}{}--></a>&nbsp;Overwrite existing files</span> to enable overwriting of existing files with the same name if desired.
+</li><!--
+\item --><li>Click on <span class="button">Export</span> to export the audio. </li></ol><!--
+\end{enumerate}
+-->
+<div class="note">
+<p>See <!--latex 
+\hyperref[\foo{export:multiple:}]{--><a href="export_multiple.html" title="Export Multiple">Export Multiple</a><!--latex }
+--> for more information on this dialog.
+</p>
+</div>
+<div id="format"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Export_Formats">Export Formats</span></h2><!--}--><!--latex 
+\label{exporting:audio:format}-->
+<p>There are a number of audio formats that Audacity, as shipped, can export to. Other formats can be added by installing extra software libraries. 
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li>As shipped formats include <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:wav}]{--><a href="glossary.html#wav" title="Glossary">WAV</a><!--latex }
+--></b><!--}--></i><!--}-->, <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:aiff}]{--><a href="glossary.html#aiff" title="Glossary">AIFF</a><!--latex }
+--></b><!--}--></i><!--}-->, <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:ogg}]{--><a href="glossary.html#ogg" title="Glossary">Ogg Vorbis</a><!--latex }
+--></b><!--}--></i><!--}-->, <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:flac}]{--><a href="glossary.html#flac" title="Glossary">FLAC</a><!--latex }
+--></b><!--}--></i><!--}--> and <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:mp2}]{--><a href="glossary.html#mp2" title="Glossary">MP2</a><!--latex }
+--></b><!--}--></i><!--}-->.</li>
+<!--
+\item --><li>To export as <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:mp3}]{--><a href="glossary.html#mp3" title="Glossary">MP3</a><!--latex }
+--></b><!--}--></i><!--}-->, the optional <!--latex 
+\hyperref[\foo{faq:installation:and:plug:ins:lame}]{--><a href="faq_installation_and_plug_ins.html#lame" title="FAQ:Installation and Plug-Ins">Lame MP3 encoder</a><!--latex }
+--> must be installed.</li>
+<!--
+\item --><li>You may install the optional <!--latex 
+\hyperref[\foo{faq:installation:and:plug:ins:installffmpeg}]{--><a href="faq_installation_and_plug_ins.html#installffmpeg" title="FAQ:Installation and Plug-Ins">FFmpeg library</a><!--latex }
+--> to  export to many more audio formats including <!--\textbf{--><b>AC3, AMR(NB), <!--\textit{--><i><!--latex 
+\hyperref[\foo{glossary:aac}]{--><a href="glossary.html#aac" title="Glossary">M4A(AAC) including MP4</a><!--latex }
+--></i><!--}--> and <!--\textit{--><i><!--latex 
+\hyperref[\foo{glossary:wma}]{--><a href="glossary.html#wma" title="Glossary">WMA</a><!--latex }
+--></i><!--}--></b><!--}-->.</li></ul><!--
+\end{itemize}
+-->
+
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

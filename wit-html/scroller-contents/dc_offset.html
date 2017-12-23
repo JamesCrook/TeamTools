@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>DC offset - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-DC_offset rootpage-DC_offset skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">DC offset</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{dc:offset:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+</p>
+<div class="intro"><!--\textit{--><i><!--\textbf{--><b>DC offset</b><!--}--></i><!--}-->  is a <a class="external text" href="https://en.wikipedia.org/wiki/DC_bias" rel="nofollow">mean amplitude displacement from zero</a>. In Audacity it can be seen as an offset of the recorded waveform away from the center zero point. DC offset  is a potential source of clicks, distortion and loss of audio volume.</div> 
+
+
+<!--
+\subsection{--><h2><span class="mw-headline" id="Background">Background</span></h2><!--}-->
+<p>DC offset is an offsetting of a signal from zero. On the Audacity waveform it would mean that the waveform in default view appears not to be centered on the 0.0 horizontal line, as in the upper track in this image:  
+</p>
+<dl><dd><span title="Left and right channels of a recording where the upper (left) channel displays noticeable DC offset"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="DC-offset.png" height="200" src="../m/images/d/df/dc_offset.png" width="373"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/df/dc_offset.png--></img><!--}\par
+--></span></dd></dl>
+<p>The cause is almost always a fixed voltage offset somewhere in the audio chain before the analog signal is converted to digital values. For example, the voltage may be directly caused by a faulty soundcard, or may come from some other device that is attached to the card. Any offset is normally so small as to not be noticeable, but with defective or poor quality hardware it may become large enough to be a problem. 
+</p>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">You should check for and remove offset in any audio you are working with <!--\textbf{--><b>before</b><!--}--> editing it, even if the audio is not your own recording but an audio file you have obtained elsewhere.
+</td></tr></tbody></table>
+</div>     
+<!--
+\begin{itemize}--><ul><!--
+\item --><li>A sound that has DC offset will not be at its loudest possible volume when amplified or normalized. This is because the offset reduces the headroom between the peak level of the audio and the maximum possible level without <!--latex 
+\hyperref[\foo{glossary:clipping}]{--><a href="glossary.html#clipping" title="Glossary">clipping</a><!--latex }
+-->. This problem can possibly extend to the mix as a whole, since a sound with DC offset and a sound without DC offset will have DC offset when mixed.</li>
+<!--
+\item --><li>DC offset can cause inaudible low level distortion. The distortion may become audible when effects that change the <!--latex 
+\hyperref[\foo{glossary:frequency}]{--><a href="glossary.html#frequency" title="Glossary">frequency</a><!--latex }
+--> content are applied, or when exporting the audio to a size-compressed format like <!--latex 
+\hyperref[\foo{glossary:MP3}]{--><a href="glossary.html#MP3" title="Glossary">MP3</a><!--latex }
+-->. </li>
+<!--
+\item --><li>DC offset can cause audible clicks where audio sections are cut and pasted together, and can cause a click on playback at the start and end of the track, even without editing.</li>
+<!--
+\item --><li>DC offset will become worse if the recording is amplified.</li></ul><!--
+\end{itemize}
+-->
+<!--
+\subsection{--><h2><span class="mw-headline" id="Removing_DC_offset">Removing DC offset</span></h2><!--}-->
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Audacity.27s_Normalize_Effect">Audacity's Normalize Effect</span></h3><!--}-->
+<p>Audacity's DC removal method performs a calculation to make the average positive and negative sample values equal. To perform removal, choose <span class="menu">Effect &gt; Normalize...</span>,  with the option checked "<!--\textbf{--><b>Remove any DC offset (center on 0 vertically)</b><!--}-->". Uncheck the "Normalize maximum amplitude..." box unless you want to run Normalize as well (see <!--latex 
+\hyperref[\foo{amplify:and:normalize:}]{--><a href="amplify_and_normalize.html" title="Amplify and Normalize">Amplify and Normalize</a><!--latex }
+--> for what Normalize does and when to use it).
+</p>
+
+<div id="dcremove"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="LADSPA_dcRemove">LADSPA dcRemove</span></h3><!--}--><!--latex 
+\label{dc:offset:dcremove}-->
+<p>An alternative method is to use the <!--\textit{--><i>dcRemove</i><!--}--> plug-in in the <!--\textit{--><i>swh LADSPA plug-ins bundle</i><!--}-->. Links to the bundle are on <!--\textbf{--><b><a class="external text" href="https://wiki.audacityteam.org/wiki/Ladspa_Plugins" rel="nofollow">this page on the Audacity wiki</a></b><!--}-->. The plug-in <!--\textit{--><i>dcRemove</i><!--}--> uses a <!--latex 
+\hyperref[\foo{high:pass:filter:}]{--><a href="high_pass_filter.html" title="High Pass Filter">High Pass Filter</a><!--latex }
+--> to remove the DC (0 Hz) component from the audio. 
+</p>
+<div id="cancel"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Cancel_DC_offset_in_sound_devices_on_Windows">Cancel DC offset in sound devices on Windows</span></h3><!--}--><!--latex 
+\label{dc:offset:cancel}-->
+<p>Newer Windows PCs may have a DC offset cancellation feature when recording from the built-in sound inputs. To check for or enable this:
+</p>
+<!--
+\begin{enumerate}--><ol><!--
+\item --><li>Right-click over the speaker icon in the <span class="menu">System Tray &gt; Recording Devices</span>, or click <span class="menu">Start &gt; Control Panel &gt; Hardware and Sound &gt; Sound</span>, then the "Recording" tab</li>
+<!--
+\item --><li>Right-click over empty space, show disabled and disconnected devices, then right-click over each device and enable it</li>
+<!--
+\item --><li>Right-click or select each device, choose "Properties" then look in the "Enhancements" tab </li>
+<!--
+\item --><li>If there is no "Enhancements" tab, look in the sound device's own control panel in "Hardware and Sound".</li></ol><!--
+\end{enumerate}
+-->
+<!--
+\subsection{--><h2><span class="mw-headline" id="Limitations_of_offset_removal">Limitations of offset removal</span></h2><!--}-->
+<p>Audacity's DC offset removal method could potentially create a new offset and therefore a click in some rare cases. Two cases are noteworthy:
+</p>
+
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> where only part of the audio is offset, for example if absolute silence with no offset has been inserted into an offset recording. </li></ul><!--
+\end{itemize}
+-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> where the offset is not constant. Strictly speaking this is not <!--\textit{--><i>DC</i><!--}--> offset, it is sub-sonic modulation or  "slowly changing DC bias", but over a short time period it looks very much like DC offset.</li></ul><!--
+\end{itemize}
+-->
+<p>In the case where some sections of the audio are clearly offset and some not, the solution in Audacity is to first carefully select each section of non-offset audio then use <span class="menu">Edit &gt; Clip Boundaries &gt; <!--latex 
+\hyperref[\foo{edit:menu:clip:boundaries:split:new}]{--><a href="edit_menu_clip_boundaries.html#split_new" title="Edit Menu: Clip Boundaries">Split New</a><!--latex }
+--></span> to split it a new track. Then remove the offset from the remaining audio, and paste the non-offset audio back. Use <span class="menu">Select &gt; Region &gt; <!--latex 
+\hyperref[\foo{select:menu:region:ends:to:zero:crossings}]{--><a href="select_menu_region.html#ends_to_zero_crossings" title="Select Menu: Region">Ends to Zero Crossings</a><!--latex }
+--></span> before split and paste if the non-offset audio is not absolute silence.  
+</p><p>High Pass DC removal may well remove offset without adding new clicks if the offset is not constant.
+</p>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top"><!--\textbf{--><b>Note: Removing offset after the event does not reinstate the original loss of headroom.</b><!--}--> Without offset it would have been possible to record louder, so with greater <a class="external text" href="https://manual.audacityteam.org/o/man/glossary.html#dynamic_range" rel="nofollow">dynamic range</a> and greater signal-to-noise ratio. It is always preferable to try to find and fix the source of the offset in the hardware. <a class="external text" href="https://wiki.audacityteam.org/wiki/Updating_Sound_Device_Drivers" rel="nofollow">Updating your sound device drivers</a> might help, too.
+</td></tr></tbody></table>
+</div>
+
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

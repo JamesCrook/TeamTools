@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Ext-Command Menu - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Ext-Command_Menu rootpage-Ext-Command_Menu skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Ext-Command Menu</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{ext:command:menu:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p><br/>
+</p>
+<div class="intro">The <!--\textit{--><i><!--\textbf{--><b>Ext-Command Menu</b><!--}--></i><!--}--> <!--\textit{--><i>(Extended Command Menu)</i><!--}--> provides access to extra commands for <!--latex 
+\hyperref[\foo{audio:tracks:focus}]{--><a href="audio_tracks.html#focus" title="Audio Tracks">track focus</a><!--latex }
+--> and movement of the editing or playback cursor that are not available in the default Audacity menus. These will be of most interest to visually-impaired users or those who have difficulty using the mouse.<p><!--latex 
+\hyperref[\foo{keyboard:preferences:}]{--><a href="keyboard_preferences.html" title="Keyboard Preferences">Shortcuts</a><!--latex }
+--> can be assigned to these commands if required.</p><p> This menu can be turned on <!--\textit{--><i>(or off)</i><!--}--> at <span class="menu">View &gt; <!--latex 
+\hyperref[\foo{view:menu:extra:menus:onoff}]{--><a href="view_menu.html#extra_menus_onoff" title="View Menu">Extra Menus (on/off)</a><!--latex }
+--></span> or the Interface pane of <!--latex 
+\hyperref[\foo{preferences:}]{--><a href="preferences.html" title="Preferences">Preferences</a><!--latex }
+-->.</p></div>
+<dl><dd><!--\textit{--><i>Click, or hover, on any menu item in the image to read about that command.  &nbsp;<span style="font-size:0.8em"><!--latex 
+\hyperref[\foo{ext:command:menu::skiptheimage}]{--><a href="#skiptheimage">Skip the image</a><!--latex }
+--></span></i><!--}--></dd>
+<dd><div class="noresize"><map name="ImageMap_1_2131036849"><area alt="Ext-Bar Menu" coords="0,3,26,19" href="ext_bar_menu.html" shape="rect" title="Ext-Bar Menu"/><area alt="Ext-Command Menu" coords="33,3,115,19" href="#" shape="rect" title="Ext-Command Menu"/><area alt="Menu Bar" coords="0,0,600,22" href="menu_reference.html" shape="rect" title="Menu Bar"/><area alt="Extra commands to set focus, usually focus on one track" coords="39,23,212,45" href="ext_command_menu_focus.html" shape="rect" title="Extra commands to set focus, usually focus on one track"/><area alt="Extra commands to move the cursor" coords="39,45,212,67" href="ext_command_menu_cursor.html" shape="rect" title="Extra commands to move the cursor"/><area alt="Extra commands to operate on a track that has focus" coords="39,67,212,89" href="ext_command_menu_track.html" shape="rect" title="Extra commands to operate on a track that has focus"/><area alt="Toggle full screen mode with no title bar" coords="39,89,212,111" href="#full_screen_onoff" shape="rect" title="Toggle full screen mode with no title bar"/></map><!--
+
+\par\Needspace{89.5pt}\begin{picture}(112.5,59.5)
+--><!--   \put(0,0){\includegraphics[scale=0.5]{--><img alt="ExtCommandMenu.png" height="119" src="../m/images/8/81/extcommandmenu.png" usemap="#ImageMap_1_2131036849" width="225"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/8/81/extcommandmenu.png--></img><!--}}
+--><!--   \put(0.0,50.0){\hyperref[\foo{ext:bar:menu:}]{\makebox(13.0,8.0){}}}
+   \put(16.5,50.0){\hyperref[\foo{ext:command:menu::}]{\makebox(41.0,8.0){}}}
+   \put(19.5,37.0){\hyperref[\foo{ext:command:menu:focus:}]{\makebox(86.5,11.0){}}}
+   \put(19.5,26.0){\hyperref[\foo{ext:command:menu:cursor:}]{\makebox(86.5,11.0){}}}
+   \put(19.5,15.0){\hyperref[\foo{ext:command:menu:track:}]{\makebox(86.5,11.0){}}}
+   \put(19.5,4.0){\hyperref[\foo{ext:command:menu::full:screen:onoff}]{\makebox(86.5,11.0){}}}
+\end{picture}
+
+--></div></dd></dl>
+<div id="skiptheimage"></div>
+<div id="focus"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Focus_SubMenu_.C2.A0"><!--latex 
+\hyperref[\foo{ext:command:menu:focus:}]{--><a href="ext_command_menu_focus.html" title="Ext-Command Menu: Focus">Focus SubMenu</a><!--latex }
+--> &nbsp;<font size="-1"></font></span></h2><!--}--><!--latex 
+\label{ext:command:menu:focus}--><!--latex 
+\label{ext:command:menu:skiptheimage}-->
+<p>Extra commands to set focus, usually focus on one track. Find out more about the 'Focus' submenu <!--latex 
+\hyperref[\foo{ext:command:menu:focus:}]{--><a href="ext_command_menu_focus.html" title="Ext-Command Menu: Focus">here</a><!--latex }
+-->.
+</p>
+<div id="cursor"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Cursor_SubMenu_.C2.A0"><!--latex 
+\hyperref[\foo{ext:command:menu:cursor:}]{--><a href="ext_command_menu_cursor.html" title="Ext-Command Menu: Cursor">Cursor SubMenu</a><!--latex }
+--> &nbsp;<font size="-1"></font></span></h2><!--}--><!--latex 
+\label{ext:command:menu:cursor}-->
+<p>Extra commands to move the cursor. Find out more about the 'Cursor' submenu <!--latex 
+\hyperref[\foo{ext:command:menu:cursor:}]{--><a href="ext_command_menu_cursor.html" title="Ext-Command Menu: Cursor">here</a><!--latex }
+-->.
+</p>
+<div id="track"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Track_SubMenu_.C2.A0"><!--latex 
+\hyperref[\foo{ext:command:menu:track:}]{--><a href="ext_command_menu_track.html" title="Ext-Command Menu: Track">Track SubMenu</a><!--latex }
+--> &nbsp;<font size="-1"></font></span></h2><!--}--><!--latex 
+\label{ext:command:menu:track}-->
+<p>Extra commands to operate on a track that has focus. Find out more about the 'Track' submenu <!--latex 
+\hyperref[\foo{ext:command:menu:track:}]{--><a href="ext_command_menu_track.html" title="Ext-Command Menu: Track">here</a><!--latex }
+-->.
+</p>
+<div id="full_screen_onoff"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Full_screen_.28on.2Foff.29_.C2.A0F11_.28on_Mac_.E2.8C.98_.2B_.2F.29">Full screen (on/off) &nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">F11</span> (on Mac <span class="kbrd" style="background-color: #e0e0f0">⌘ + /</span>)</font></span></h2><!--}--><!--latex 
+\label{ext:command:menu:full:screen:onoff}-->
+<p>Toggle full screen mode with no title bar.
+</p>
+<div id="minimize_all_projects"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Minimize_all_Projects_.C2.A0Option_.2B_.E2.8C.98_.2B_M_-_Mac_only">Minimize all Projects &nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">Option + ⌘ + M</span></font> - Mac only</span></h2><!--}--><!--latex 
+\label{ext:command:menu:minimize:all:projects}-->
+<p>On Mac only there is an extra command in this menu "<!--\textbf{--><b>Minimize all projects</b><!--}-->", shortcut <span class="kbrd" style="background-color: #e0e0f0">Option + ⌘ + M</span>, which minimizes all Audacity projects that you have open.
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

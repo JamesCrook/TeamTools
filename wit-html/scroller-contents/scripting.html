@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Scripting - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Scripting rootpage-Scripting skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Scripting</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{scripting:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+
+</p>
+<div class="intro">The scripting module is an experimental <a class="external text" href="https://wiki.audacityteam.org/wiki/GUI_Plugins" rel="nofollow">GUI plug-in</a> that allows Audacity to be driven from an external <a class="external text" href="https://www.perl.org/" rel="nofollow">Perl</a> script.  Commands are sent to Audacity over a named pipe.  Any scripting language that supports named pipes can be used in place of Perl.
+External scripting is one of <a class="external text" href="https://wiki.audacityteam.org/index.php?title=Creating_your_own_Plugin" rel="nofollow">several ways</a> to extend the functionality of Audacity.</div>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">Scripting support is currently considered <!--\textbf{--><b>experimental</b><!--}--> and is mainly intended for use by developers for the time being. Feel free to try it out, but don't be too surprised if there are problems.
+</td></tr></tbody></table>
+</div>
+<div id="scripting"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="How_to_get_started_with_scripting">How to get started with scripting</span></h2><!--}--><!--latex 
+\label{scripting:scripting}-->
+<p>Audacity can currently only be used with scripting if you compile a separate plug-in module from our <a class="external text" href="https://github.com/audacity/audacity" rel="nofollow">Git sources</a> called "mod-script-pipe", as well as compile Audacity itself. See the Wiki <a class="external text" href="https://wiki.audacityteam.org/wiki/Developer_Guide" rel="nofollow">Developer Guide</a> for help. You'll also need the scripting language Perl to try out the examples. For actually writing scripts however, any language that can write to and read from a named pipe should be able to use the interface.
+</p><p>We may provide a ready-compiled mod-script-pipe at some future time. If you just want to use scripting but don't want to do the developer steps then you will need to wait for that to be released. Feel free to <a class="external text" href="https://web.audacityteam.org/contact/#feedback" rel="nofollow">let us know</a> if you would like ready-to-go scripting in Audacity, and what you would use it for.   
+</p>
+<div id="build"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Building">Building</span></h3><!--}--><!--latex 
+\label{scripting:build}-->
+<p>Ensure you have the latest <a class="external text" href="https://github.com/audacity/audacity" rel="nofollow">Git version of Audacity</a> built, installed and working. The scripting module, "mod-script-pipe" is in Git (under lib-src), but is not built automatically.
+</p><p>In MSVC, open "mod-script-pipe.vcproj" and build. If all goes to plan, the DLL will be placed in the "modules" directory.
+</p><p>Under GCC, move into the lib-src/mod-script-pipe directory and type "make". This will build the module then copy "mod-script-pipe.so" to the "modules" directory in the source code tree. To have Audacity see mod-script-pipe.so, copy it to /usr/local/share/audacity/modules or ~/.audacity-files/modules/.
+</p>
+
+<p>While mod-script-pipe allows a script to communicate with Audacity, it is not concerned with the actual interpretation and processing of received commands. That is done by Audacity itself, so for full scripting capabilities it is important to have a recent build of the main program as well as the scripting module.
+</p>
+<div id="test"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Testing">Testing</span></h3><!--}--><!--latex 
+\label{scripting:test}-->
+<p>A basic test script "scripts/pipe-test.pl" is included in the development repository. Naturally, this requires <a class="external text" href="https://www.perl.org/get.html" rel="nofollow">Perl</a>. It contains a variety of tests and subroutines for sending commands on the pipe. 
+</p><p>The test script exports audio files to (and imports them from) a ~/pipetest/ directory which you will need to create.
+</p><p>Launch Audacity first, then execute the test script.
+</p><p>If everything is fine, the commands in the script will be sent to Audacity, executed, and the results sent back to the script.
+</p><p>You can experiment with changing the commands in the script (see below).
+</p><p>If the script hangs, waiting for a response, it probably means that Audacity did not load the scripting module. Examine the logging output to check if this is the case.
+</p><p>If the module was notloaded, it could be because it has not been placed in the correct directory or because the module version does not match the version of Audacity. The surest way to avoid this problem is to build both Audacity and mod-script-pipe from HEAD at the same time.
+</p>
+<div id="commands"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Commands">Commands</span></h2><!--}--><!--latex 
+\label{scripting:commands}-->
+<p>Some documentation for the parts of Audacity that can currently be controlled via script command follows. Be aware that this is likely to change significantly until scripting has matured. Note also that commands and parameters are <!--\textbf{--><b>case-sensitive</b><!--}-->.
+</p><p>The command invocations should take the following form:
+</p>
+<table style="background:#f0f0cc; border:1px solid #cccccc;" width="100%">
+<tbody><!--\par --><tr>
+<td valign="top" width="50%"><tt>Command: Param1=Value1 Param2=Value2</tt>
+</td>
+<td valign="top" width="50%"><tt></tt>
+</td></tr></tbody></table>
+<p>This is followed by a line break. Then the command is executed, and any responses are written on the return pipe, on separate lines. The end of the responses is signalled by an empty line. Further commands should not be sent until all responses have been read.
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> See also <a class="external text" href="https://wiki.audacityteam.org/wiki/Scripting_Syntax" rel="nofollow">additional commands</a> on the Audacity Wiki.</li></ul><!--
+\end{itemize}
+-->
+<p><br/>
+</p>
+<!--\vspace{1mm}\hrule --><hr/>
+<div id="batch"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="BatchCommand">BatchCommand</span></h3><!--}--><!--latex 
+\label{scripting:batch}-->
+<p>This can be invoked differently from the other commands because, at the moment, all unrecognized commands are treated as batch commands. To see what these commands do and how they should be formed, please examine the Edit Chains dialog. As an example, the batch system can be used to apply an effect to some selected audio.
+</p><p>It is also possible to explicitly call a batch command, but be aware that it is not currently possible for a parameter value to contain spaces, so this way of doing it is fairly restricted. If ChainName is provided, the command applies the saved batch chain of that name rather than a single command.
+</p><p><!--\textbf{--><b>Parameters:</b><!--}-->
+</p>
+<table style="background:#ffe0e0; border:1px solid #aaaacc;" width="90%">
+<tbody><!--\par --><tr>
+<td valign="top" width="20%"><!--\textbf{--><b>ChainName:</b><!--}-->
+</td>
+<td valign="top" width="80%">If provided, applies the batch chain of that name
+</td></tr></tbody></table>
+<table style="background:#ffe0e0; border:1px solid #aaaacc;" width="90%">
+<tbody><!--\par --><tr>
+<td valign="top" width="20%"><!--\textbf{--><b>CommandName:</b><!--}-->
+</td>
+<td valign="top" width="80%">Name of the batch command to execute
+</td></tr></tbody></table>
+<table style="background:#ffe0e0; border:1px solid #aaaacc;" width="90%">
+<tbody><!--\par --><tr>
+<td valign="top" width="20%"><!--\textbf{--><b>ParamString:</b><!--}-->
+</td>
+<td valign="top" width="80%">Parameters for the batch command
+</td></tr></tbody></table>
+<p><br/>
+<!--\textbf{--><b>Examples:</b><!--}-->
+</p>
+<table style="background:#e0e0bb; border:1px solid #cccccc;" width="100%">
+<tbody><!--\par --><tr>
+<td width="50%"><!--\textbf{--><b>Send</b><!--}-->
+</td>
+<td width="50%"><!--\textbf{--><b>Receive</b><!--}-->
+</td></tr></tbody></table>
+<table style="background:#f0f0cc; border:1px solid #cccccc;" width="100%">
+<tbody><!--\par --><tr>
+<td valign="top" width="50%"><tt>BatchCommand: CommandName=Noise</tt>
+</td>
+<td valign="top" width="50%"><tt>BatchCommand finished: OK</tt>
+</td></tr></tbody></table>
+<table style="background:#f0f0cc; border:1px solid #cccccc;" width="100%">
+<tbody><!--\par --><tr>
+<td valign="top" width="50%"><tt>ChangeTempo: Percentage=10.0</tt>
+</td>
+<td valign="top" width="50%"><tt>BatchCommand finished: OK</tt>
+</td></tr></tbody></table>
+<!--\vspace{1mm}\hrule --><hr/>
+<div id="compare"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="CompareAudio">CompareAudio</span></h3><!--}--><!--latex 
+\label{scripting:compare}-->
+<p>With two tracks selected, running this command compares the tracks sample by sample, and counts the number of samples whose absolute difference exceeds the given threshold. The total count is returned, as well as the number of seconds of audio that these samples represent.
+</p><p><!--\textbf{--><b>Parameters:</b><!--}-->
+</p>
+<table style="background:#ffe0e0; border:1px solid #aaaacc;" width="90%">
+<tbody><!--\par --><tr>
+<td valign="top" width="20%"><!--\textbf{--><b>Threshold:</b><!--}-->
+</td>
+<td valign="top" width="80%">Floating point number 0.0 to 1.0
+</td></tr></tbody></table>
+<p><br/>
+<!--\textbf{--><b>Example:</b><!--}-->
+</p>
+<table style="background:#e0e0bb; border:1px solid #cccccc;" width="100%">
+<tbody><!--\par --><tr>
+<td width="50%"><!--\textbf{--><b>Send</b><!--}-->
+</td>
+<td width="50%"><!--\textbf{--><b>Receive</b><!--}-->
+</td></tr></tbody></table>
+<table style="background:#f0f0cc; border:1px solid #cccccc;" width="100%">
+<tbody><!--\par --><tr>
+<td valign="top" width="50%"><tt>CompareAudio: Threshold=0.1</tt>
+</td>
+<td valign="top" width="50%"><tt>Comparing tracks 'Audio Track 1' and 'Audio Track 2'.<br/>Finished comparison: 764480 samples (17.335 seconds) exceeded the error threshold of 0.200000.<br/>CompareAudio finished: OK</tt>
+</td></tr></tbody></table>
+<!--\vspace{1mm}\hrule --><hr/>
+<div id="menu"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="MenuCommand">MenuCommand</span></h3><!--}--><!--latex 
+\label{scripting:menu}-->
+<p>Executes a 'menu command', using the system that controls the Audacity menus. This is simple but powerful, and many of the tasks that can be performed by clicking menu items or pressing shortcuts can also be triggered by a script using this command. Use GetAllMenuCommands to see a full list of available commands.
+</p><p><!--\textbf{--><b>Parameters:</b><!--}-->
+</p>
+<table style="background:#ffe0e0; border:1px solid #aaaacc;" width="90%">
+<tbody><!--\par --><tr>
+<td valign="top" width="20%"><!--\textbf{--><b>CommandName:</b><!--}-->
+</td>
+<td valign="top" width="80%">Name of the menu command to execute
+</td></tr></tbody></table>
+<p><br/>
+<!--\textbf{--><b>Examples:</b><!--}-->
+</p>
+<table style="background:#e0e0bb; border:1px solid #cccccc;" width="100%">
+<tbody><!--\par --><tr>
+<td width="50%"><!--\textbf{--><b>Send</b><!--}-->
+</td>
+<td width="50%"><!--\textbf{--><b>Receive</b><!--}-->
+</td></tr></tbody></table>
+<table style="background:#f0f0cc; border:1px solid #cccccc;" width="100%">
+<tbody><!--\par --><tr>
+<td valign="top" width="50%"><tt>MenuCommand: CommandName=SplitDelete</tt>
+</td>
+<td valign="top" width="50%"><tt>MenuCommand finished: OK</tt>
+</td></tr></tbody></table>
+<table style="background:#f0f0cc; border:1px solid #cccccc;" width="100%">
+<tbody><!--\par --><tr>
+<td valign="top" width="50%"><tt>MenuCommand: CommandName=Play</tt>
+</td>
+<td valign="top" width="50%"><tt>MenuCommand finished: OK</tt>
+</td></tr></tbody></table>
+<table style="background:#f0f0cc; border:1px solid #cccccc;" width="100%">
+<tbody><!--\par --><tr>
+<td valign="top" width="50%"><tt>MenuCommand: CommandName=TrackMute</tt>
+</td>
+<td valign="top" width="50%"><tt>MenuCommand finished: OK</tt>
+</td></tr></tbody></table>
+<!--\vspace{1mm}\hrule --><hr/>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="GetAllMenuCommands">GetAllMenuCommands</span></h3><!--}-->
+<p>Returns a list of all available menu commands. These are the commands that can be sent using MenuCommand.
+</p><p><!--\textbf{--><b>No parameters.</b><!--}-->
+</p>
+<!--\vspace{1mm}\hrule --><hr/>
+<div id="TrackInfo"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="GetTrackInfo">GetTrackInfo</span></h3><!--}--><!--latex 
+\label{scripting:TrackInfo}-->
+<p>Allows information about a project's tracks to be returned to the script.
+</p><p><!--\textbf{--><b>Parameters:</b><!--}-->
+</p>
+<table style="background:#ffe0e0; border:1px solid #aaaacc;" width="90%">
+<tbody><!--\par --><tr>
+<td valign="top" width="20%"><!--\textbf{--><b>TrackIndex:</b><!--}-->
+</td>
+<td valign="top" width="80%">An integer (default: 0) identifying the track
+</td></tr></tbody></table>
+<table style="background:#ffe0e0; border:1px solid #aaaacc;" width="90%">
+<tbody><!--\par --><tr>
+<td valign="top" width="20%"><!--\textbf{--><b>Type:</b><!--}-->
+</td>
+<td valign="top" width="80%">Info to get. One of: Name, StartTime, EndTime (default: Name)
+</td></tr></tbody></table>
+<p><br/>
+<!--\textbf{--><b>Examples:</b><!--}-->
+</p>
+<table style="background:#e0e0bb; border:1px solid #cccccc;" width="100%">
+<tbody><!--\par --><tr>
+<td width="50%"><!--\textbf{--><b>Send</b><!--}-->
+</td>
+<td width="50%"><!--\textbf{--><b>Receive</b><!--}-->
+</td></tr></tbody></table>
+<table style="background:#f0f0cc; border:1px solid #cccccc;" width="100%">
+<tbody><!--\par --><tr>
+<td valign="top" width="50%"><tt>GetTrackInfo: Type=Name TrackIndex=0</tt>
+</td>
+<td valign="top" width="50%"><tt>Audio Track<br/>GetTrackInfo finished: OK</tt>
+</td></tr></tbody></table>
+<table style="background:#f0f0cc; border:1px solid #cccccc;" width="100%">
+<tbody><!--\par --><tr>
+<td valign="top" width="50%"><tt>GetTrackInfo: Type=EndTime TrackIndex=0</tt>
+</td>
+<td valign="top" width="50%"><tt>24.000000<br/>GetTrackInfo finished: OK</tt>
+</td></tr></tbody></table>
+<!--\vspace{1mm}\hrule --><hr/>
+<div id="help"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Help">Help</span></h3><!--}--><!--latex 
+\label{scripting:help}-->
+<p>Returns information about the parameters accepted by a given command.
+</p><p><!--\textbf{--><b>Parameters:</b><!--}-->
+</p>
+<table style="background:#ffe0e0; border:1px solid #aaaacc;" width="90%">
+<tbody><!--\par --><tr>
+<td valign="top" width="20%"><!--\textbf{--><b>CommandName:</b><!--}-->
+</td>
+<td valign="top" width="80%">The command on which to get help
+</td></tr></tbody></table>
+<p><br/>
+<!--\textbf{--><b>Example:</b><!--}-->
+</p>
+<table style="background:#e0e0bb; border:1px solid #cccccc;" width="100%">
+<tbody><!--\par --><tr>
+<td width="50%"><!--\textbf{--><b>Send</b><!--}-->
+</td>
+<td width="50%"><!--\textbf{--><b>Receive</b><!--}-->
+</td></tr></tbody></table>
+<table style="background:#f0f0cc; border:1px solid #cccccc;" width="100%">
+<tbody><!--\par --><tr>
+<td valign="top" width="50%"><tt>Help: CommandName=Select</tt>
+</td>
+<td valign="top" width="50%"><tt>Select<br/>Parameters:<br/>EndTime: a floating-point number (default: 0)<br/>FirstTrack: an integer (default: 0)<br/> LastTrack: an integer (default: 0)<br/>Mode: one of: None, All, Range, Name (default: All)<br/>StartTime: a floating-point number (default: 0)<br/>TrackName: any value (default: 0)<br/>Help finished: OK</tt>
+</td></tr></tbody></table>
+<!--\vspace{1mm}\hrule --><hr/>
+<div id="message"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Message">Message</span></h3><!--}--><!--latex 
+\label{scripting:message}-->
+<p>Sends a message to the command's status target. Since command status messages are currently sent to the script (if the command was triggered by a script), this means the message is sent back to the script.
+</p><p><!--\textbf{--><b>Parameters:</b><!--}-->
+</p>
+<table style="background:#ffe0e0; border:1px solid #aaaacc;" width="90%">
+<tbody><!--\par --><tr>
+<td valign="top" width="20%"><!--\textbf{--><b>MessageString:</b><!--}-->
+</td>
+<td valign="top" width="80%">The message to send
+</td></tr></tbody></table>
+<p><br/>
+<!--\textbf{--><b>Example:</b><!--}-->
+</p>
+<table style="background:#e0e0bb; border:1px solid #cccccc;" width="100%">
+<tbody><!--\par --><tr>
+<td width="50%"><!--\textbf{--><b>Send</b><!--}-->
+</td>
+<td width="50%"><!--\textbf{--><b>Receive</b><!--}-->
+</td></tr></tbody></table>
+<table style="background:#f0f0cc; border:1px solid #cccccc;" width="100%">
+<tbody><!--\par --><tr>
+<td valign="top" width="50%"><tt>Message: MessageString=hello</tt>
+</td>
+<td valign="top" width="50%"><tt>hello<br/>Message finished: OK</tt>
+</td></tr></tbody></table>
+<!--\vspace{1mm}\hrule --><hr/>
+<div id="screenshot"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Screenshot">Screenshot</span></h3><!--}--><!--latex 
+\label{scripting:screenshot}-->
+<p>The <!--\textit{--><i>screenshot</i><!--}--> command is modelled closely on the Screenshot Tools dialog and takes three parameters.
+</p><p><!--\textbf{--><b>Parameters:</b><!--}-->
+</p>
+<table style="background:#ffe0e0; border:1px solid #aaaacc;" width="90%">
+<tbody><!--\par --><tr>
+<td valign="top" width="20%"><!--\textbf{--><b>FilePath:</b><!--}-->
+</td>
+<td valign="top" width="80%">A string representing the directory path in which the captured images should be saved.
+</td></tr></tbody></table>
+<table style="background:#ffe0e0; border:1px solid #aaaacc;" width="90%">
+<tbody><!--\par --><tr>
+<td valign="top" width="20%"><!--\textbf{--><b>CaptureMode:</b><!--}-->
+</td>
+<td valign="top" width="80%">A string specifying which area of the screen should be captured.
+<p>Possible values:
+<!--\textit{--><i>window, fullwindow, windowplus, fullscreen, toolbars, selectionbar, tools, control, mixer, meter, edit, device, transcription, trackpanel, ruler, tracks, firsttrack, secondtrack.</i><!--}-->
+</p>
+</td></tr></tbody></table>
+<table style="background:#ffe0e0; border:1px solid #aaaacc;" width="90%">
+<tbody><!--\par --><tr>
+<td valign="top" width="20%"><!--\textbf{--><b>Background:</b><!--}-->
+</td>
+<td valign="top" width="80%">Type of background to use in the shots where one is possible.
+<p>Possible values:
+<!--\textit{--><i>White, Blue, None.</i><!--}-->
+</p>
+</td></tr></tbody></table>
+<p><br/>
+<!--\textbf{--><b>Example:</b><!--}-->
+</p>
+<table style="background:#e0e0bb; border:1px solid #cccccc;" width="100%">
+<tbody><!--\par --><tr>
+<td width="50%"><!--\textbf{--><b>Send</b><!--}-->
+</td>
+<td width="50%"><!--\textbf{--><b>Receive</b><!--}-->
+</td></tr></tbody></table>
+<table style="background:#f0f0cc; border:1px solid #cccccc;" width="100%">
+<tbody><!--\par --><tr>
+<td valign="top" width="50%"><tt>Screenshot: FilePath=/home/dan/Temp CaptureMode=fullwindow Background=None</tt>
+</td>
+<td valign="top" width="50%"><tt>Saved /home/dan/Temp/fullwindow001.png<br/>Screenshot finished: OK</tt>
+</td></tr></tbody></table>
+<!--\vspace{1mm}\hrule --><hr/>
+<div id="select"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Select">Select</span></h3><!--}--><!--latex 
+\label{scripting:select}-->
+<p>Provides some control over the project selection. Tracks between FirstTrack and LastTrack inclusive are selected, and the time interval selected is from StartTime to EndTime. Alternatively, if TrackName is specified, then the track with that name is selected.
+</p><p><!--\textbf{--><b>Parameters:</b><!--}-->
+</p>
+<table style="background:#ffe0e0; border:1px solid #aaaacc;" width="90%">
+<tbody><!--\par --><tr>
+<td valign="top" width="20%"><!--\textbf{--><b>FirstTrack:</b><!--}-->
+</td>
+<td valign="top" width="80%">An integer (default: 0)
+</td></tr></tbody></table>
+<table style="background:#ffe0e0; border:1px solid #aaaacc;" width="90%">
+<tbody><!--\par --><tr>
+<td valign="top" width="20%"><!--\textbf{--><b>LastTrack:</b><!--}-->
+</td>
+<td valign="top" width="80%">An integer (default: 0)
+</td></tr></tbody></table>
+<table style="background:#ffe0e0; border:1px solid #aaaacc;" width="90%">
+<tbody><!--\par --><tr>
+<td valign="top" width="20%"><!--\textbf{--><b>TrackName:</b><!--}-->
+</td>
+<td valign="top" width="80%">Name of a track (not required if using FirstTrack and LastTrack)
+</td></tr></tbody></table>
+<table style="background:#ffe0e0; border:1px solid #aaaacc;" width="90%">
+<tbody><!--\par --><tr>
+<td valign="top" width="20%"><!--\textbf{--><b>StartTime:</b><!--}-->
+</td>
+<td valign="top" width="80%">A floating-point number (default: 0)
+</td></tr></tbody></table>
+<table style="background:#ffe0e0; border:1px solid #aaaacc;" width="90%">
+<tbody><!--\par --><tr>
+<td valign="top" width="20%"><!--\textbf{--><b>EndTime:</b><!--}-->
+</td>
+<td valign="top" width="80%">A floating-point number (default: 0)
+</td></tr></tbody></table>
+<table style="background:#ffe0e0; border:1px solid #aaaacc;" width="90%">
+<tbody><!--\par --><tr>
+<td valign="top" width="20%"><!--\textbf{--><b>Mode:</b><!--}-->
+</td>
+<td valign="top" width="80%">One of: None, All, Range, Name (default: All)
+</td></tr></tbody></table>
+<p><br/>
+<!--\textbf{--><b>Example:</b><!--}-->
+</p>
+<table style="background:#e0e0bb; border:1px solid #cccccc;" width="100%">
+<tbody><!--\par --><tr>
+<td width="50%"><!--\textbf{--><b>Send</b><!--}-->
+</td>
+<td width="50%"><!--\textbf{--><b>Receive</b><!--}-->
+</td></tr></tbody></table>
+<table style="background:#f0f0cc; border:1px solid #cccccc;" width="100%">
+<tbody><!--\par --><tr>
+<td valign="top" width="50%"><tt>Select: Mode=Range FirstTrack=0 LastTrack=1 StartTime=3.2 EndTime=8.4</tt>
+</td>
+<td valign="top" width="50%"><tt>Selected track 'Audio Track 1'<br/>Selected track 'Audio Track 2'<br/> Select finished: OK</tt>
+</td></tr></tbody></table>
+<table style="background:#f0f0cc; border:1px solid #cccccc;" width="100%">
+<tbody><!--\par --><tr>
+<td valign="top" width="50%"><tt>Select: Mode=Range FirstTrack=0 LastTrack=0 StartTime=0.1 EndTime=9.9</tt>
+</td>
+<td valign="top" width="50%"><tt>Selected track 'Audio Track 1'<br/>Select finished: OK</tt>
+</td></tr></tbody></table>
+<!--\vspace{1mm}\hrule --><hr/>
+<div id="getpref"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="GetPreference">GetPreference</span></h3><!--}--><!--latex 
+\label{scripting:getpref}-->
+<p>Prints the value of the requested preference as a response.
+</p><p><!--\textbf{--><b>Parameters:</b><!--}-->
+</p>
+<table style="background:#ffe0e0; border:1px solid #aaaacc;" width="90%">
+<tbody><!--\par --><tr>
+<td valign="top" width="20%"><!--\textbf{--><b>PrefName:</b><!--}-->
+</td>
+<td valign="top" width="80%">String containing the name of the preference (as in audacity.cfg)
+</td></tr></tbody></table>
+<p><br/>
+<!--\textbf{--><b>Example:</b><!--}-->
+</p>
+<table style="background:#e0e0bb; border:1px solid #cccccc;" width="100%">
+<tbody><!--\par --><tr>
+<td width="50%"><!--\textbf{--><b>Send</b><!--}-->
+</td>
+<td width="50%"><!--\textbf{--><b>Receive</b><!--}-->
+</td></tr></tbody></table>
+<table style="background:#f0f0cc; border:1px solid #cccccc;" width="100%">
+<tbody><!--\par --><tr>
+<td valign="top" width="50%"><tt>GetPreference: PrefName=/CsPresets/NoiseGen_Duration</tt>
+</td>
+<td valign="top" width="50%"><tt>30<br/>GetPreference finished: OK</tt>
+</td></tr></tbody></table>
+<!--\vspace{1mm}\hrule --><hr/>
+<div id="setpref"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="SetPreference">SetPreference</span></h3><!--}--><!--latex 
+\label{scripting:setpref}-->
+<p>Sets the preference with the given name to the given value.
+</p><p><!--\textbf{--><b>Parameters:</b><!--}-->
+</p>
+<table style="background:#ffe0e0; border:1px solid #aaaacc;" width="90%">
+<tbody><!--\par --><tr>
+<td valign="top" width="20%"><!--\textbf{--><b>PrefName:</b><!--}-->
+</td>
+<td valign="top" width="80%">String containing the name of the preference (as in audacity.cfg)
+</td></tr></tbody></table>
+<table style="background:#ffe0e0; border:1px solid #aaaacc;" width="90%">
+<tbody><!--\par --><tr>
+<td valign="top" width="20%"><!--\textbf{--><b>PrefValue:</b><!--}-->
+</td>
+<td valign="top" width="80%">Value of the preference
+</td></tr></tbody></table>
+<p><br/>
+<!--\textbf{--><b>Example:</b><!--}-->
+</p>
+<table style="background:#e0e0bb; border:1px solid #cccccc;" width="100%">
+<tbody><!--\par --><tr>
+<td width="50%"><!--\textbf{--><b>Send</b><!--}-->
+</td>
+<td width="50%"><!--\textbf{--><b>Receive</b><!--}-->
+</td></tr></tbody></table>
+<table style="background:#f0f0cc; border:1px solid #cccccc;" width="100%">
+<tbody><!--\par --><tr>
+<td valign="top" width="50%"><tt>SetPreference: PrefName=/CsPresets/NoiseGen_Duration PrefValue=12.0</tt>
+</td>
+<td valign="top" width="50%"><tt>SetPreference finished: OK</tt>
+</td></tr></tbody></table>
+<!--\vspace{1mm}\hrule --><hr/>
+<div id="settrackinfo"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="SetTrackInfo">SetTrackInfo</span></h3><!--}--><!--latex 
+\label{scripting:settrackinfo}-->
+<p>For setting track information - currently track name only. (Note mute/solo can be set with menu commands)
+</p><p><!--\textbf{--><b>Parameters:</b><!--}-->
+</p>
+<table style="background:#ffe0e0; border:1px solid #aaaacc;" width="90%">
+<tbody><!--\par --><tr>
+<td valign="top" width="20%"><!--\textbf{--><b>TrackIndex:</b><!--}-->
+</td>
+<td valign="top" width="80%">Specifies which track to modify
+</td></tr></tbody></table>
+<table style="background:#ffe0e0; border:1px solid #aaaacc;" width="90%">
+<tbody><!--\par --><tr>
+<td valign="top" width="20%"><!--\textbf{--><b>Type:</b><!--}-->
+</td>
+<td valign="top" width="80%">Type of info to set - currently 'Name' is the only option
+</td></tr></tbody></table>
+<table style="background:#ffe0e0; border:1px solid #aaaacc;" width="90%">
+<tbody><!--\par --><tr>
+<td valign="top" width="20%"><!--\textbf{--><b>Name:</b><!--}-->
+</td>
+<td valign="top" width="80%">String to which the track name is to be set
+</td></tr></tbody></table>
+<p><br/>
+<!--\textbf{--><b>Example:</b><!--}-->
+</p>
+<table style="background:#e0e0bb; border:1px solid #cccccc;" width="100%">
+<tbody><!--\par --><tr>
+<td width="50%"><!--\textbf{--><b>Send</b><!--}-->
+</td>
+<td width="50%"><!--\textbf{--><b>Receive</b><!--}-->
+</td></tr></tbody></table>
+<table style="background:#f0f0cc; border:1px solid #cccccc;" width="100%">
+<tbody><!--\par --><tr>
+<td valign="top" width="50%"><tt>SetTrackInfo: TrackIndex=0 Type=Name Name=Eric</tt>
+</td>
+<td valign="top" width="50%"><tt>SetTrackInfo finished: OK</tt>
+</td></tr></tbody></table>
+<!--\vspace{1mm}\hrule --><hr/>
+<div id="import"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Import">Import</span></h3><!--}--><!--latex 
+\label{scripting:import}-->
+<p>Load audio data from a file into a track. The file type is detected from the extension, and any format understood by Audacity can be used.
+</p><p><!--\textbf{--><b>Parameters:</b><!--}-->
+</p>
+<table style="background:#ffe0e0; border:1px solid #aaaacc;" width="90%">
+<tbody><!--\par --><tr>
+<td valign="top" width="20%"><!--\textbf{--><b>Filename:</b><!--}-->
+</td>
+<td valign="top" width="80%">Name of the file to import
+</td></tr></tbody></table>
+<p><br/>
+<!--\textbf{--><b>Example:</b><!--}-->
+</p>
+<table style="background:#e0e0bb; border:1px solid #cccccc;" width="100%">
+<tbody><!--\par --><tr>
+<td width="50%"><!--\textbf{--><b>Send</b><!--}-->
+</td>
+<td width="50%"><!--\textbf{--><b>Receive</b><!--}-->
+</td></tr></tbody></table>
+<table style="background:#f0f0cc; border:1px solid #cccccc;" width="100%">
+<tbody><!--\par --><tr>
+<td valign="top" width="50%"><tt>Import: Filename=/home/dan/ArtTatum-Indiana.flac</tt>
+</td>
+<td valign="top" width="50%"><tt>Import finished: OK</tt>
+</td></tr></tbody></table>
+<!--\vspace{1mm}\hrule --><hr/>
+<div id="OpenProject"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="OpenProject">OpenProject</span></h3><!--}--><!--latex 
+\label{scripting:OpenProject}-->
+<p>Opens an audacity project file, optionally from a supplied file name. If the Filename parameter is omitted or empty the user is prompted to choose a project to open. Note that if the current project is not empty and unsaved, a new project window is opened, which may break your script.
+</p><p><!--\textbf{--><b>Parameters:</b><!--}-->
+</p>
+<table style="background:#ffe0e0; border:1px solid #aaaacc;" width="90%">
+<tbody><!--\par --><tr>
+<td valign="top" width="20%"><!--\textbf{--><b>Filename:</b><!--}-->
+</td>
+<td valign="top" width="80%">File name of the project to open. Default is to prompt the user to choose a file. Must include .aup file extension.<br/>default=ask user
+</td></tr></tbody></table>
+<table style="background:#ffe0e0; border:1px solid #aaaacc;" width="90%">
+<tbody><!--\par --><tr>
+<td valign="top" width="20%"><!--\textbf{--><b>AddToHistory:</b><!--}-->
+</td>
+<td valign="top" width="80%">Include opened file in File -&gt; Recent Files? Has no effect on User prompted files; they always appear in Recent Files.<br/>default=yes
+</td></tr></tbody></table>
+<p><br/>
+<!--\textbf{--><b>Example:</b><!--}-->
+</p>
+<table style="background:#e0e0bb; border:1px solid #cccccc;" width="100%">
+<tbody><!--\par --><tr>
+<td width="50%"><!--\textbf{--><b>Send</b><!--}-->
+</td>
+<td width="50%"><!--\textbf{--><b>Receive</b><!--}-->
+</td></tr></tbody></table>
+<table style="background:#f0f0cc; border:1px solid #cccccc;" width="100%">
+<tbody><!--\par --><tr>
+<td valign="top" width="50%"><tt>OpenProject: Filename=myproject.aup</tt>
+</td>
+<td valign="top" width="50%"><tt>OpenProject finished: OK</tt>
+</td></tr></tbody></table>
+<!--\vspace{1mm}\hrule --><hr/>
+<div id="SaveProject"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="SaveProject">SaveProject</span></h3><!--}--><!--latex 
+\label{scripting:SaveProject}-->
+<p>Saves an Audacity project file, optionally to a supplied file name. If the Filename parameter is omitted or empty the user is prompted to choose a saved file. Note: trying to overwrite another existing project will result in an error message to the user.
+</p><p><!--\textbf{--><b>Parameters:</b><!--}-->
+</p>
+<table style="background:#ffe0e0; border:1px solid #aaaacc;" width="90%">
+<tbody><!--\par --><tr>
+<td valign="top" width="20%"><!--\textbf{--><b>Filename:</b><!--}-->
+</td>
+<td valign="top" width="80%">File name of the project to save to. Default is to prompt the User to choose a file. Must include .aup file extension.<br/>default=ask user
+</td></tr></tbody></table>
+<table style="background:#ffe0e0; border:1px solid #aaaacc;" width="90%">
+<tbody><!--\par --><tr>
+<td valign="top" width="20%"><!--\textbf{--><b>Compress:</b><!--}-->
+</td>
+<td valign="top" width="80%">Save audio in compressed (OGG) format?<br/>default=no
+</td></tr></tbody></table>
+<table style="background:#ffe0e0; border:1px solid #aaaacc;" width="90%">
+<tbody><!--\par --><tr>
+<td valign="top" width="20%"><!--\textbf{--><b>AddToHistory:</b><!--}-->
+</td>
+<td valign="top" width="80%">Include opened file in File -&gt; Recent Files? Has no effect on User prompted files; they always appear in Recent Files.<br/>default=yes
+</td></tr></tbody></table>
+<p><br/>
+<!--\textbf{--><b>Example:</b><!--}-->
+</p>
+<table style="background:#e0e0bb; border:1px solid #cccccc;" width="100%">
+<tbody><!--\par --><tr>
+<td width="50%"><!--\textbf{--><b>Send</b><!--}-->
+</td>
+<td width="50%"><!--\textbf{--><b>Receive</b><!--}-->
+</td></tr></tbody></table>
+<table style="background:#f0f0cc; border:1px solid #cccccc;" width="100%">
+<tbody><!--\par --><tr>
+<td valign="top" width="50%"><tt>SaveProject: Filename=myproject.aup</tt>
+</td>
+<td valign="top" width="50%"><tt>SaveProject finished: OK</tt>
+</td></tr></tbody></table>
+<!--\vspace{1mm}\hrule --><hr/>
+<div id="export"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Export">Export</span></h3><!--}--><!--latex 
+\label{scripting:export}-->
+<p>Save audio from the project into a file. The file type to export to is detected from the extension, and any format understood by Audacity can be used.
+</p><p><!--\textbf{--><b>Parameters:</b><!--}-->
+</p>
+<table style="background:#ffe0e0; border:1px solid #aaaacc;" width="90%">
+<tbody><!--\par --><tr>
+<td valign="top" width="20%"><!--\textbf{--><b>Mode:</b><!--}-->
+</td>
+<td valign="top" width="80%">Either 'All' or 'Selection' - sets which audio is to be exported
+</td></tr></tbody></table>
+<table style="background:#ffe0e0; border:1px solid #aaaacc;" width="90%">
+<tbody><!--\par --><tr>
+<td valign="top" width="20%"><!--\textbf{--><b>Filename:</b><!--}-->
+</td>
+<td valign="top" width="80%">File to export to
+</td></tr></tbody></table>
+<table style="background:#ffe0e0; border:1px solid #aaaacc;" width="90%">
+<tbody><!--\par --><tr>
+<td valign="top" width="20%"><!--\textbf{--><b>Channels:</b><!--}-->
+</td>
+<td valign="top" width="80%">Number of channels to export
+</td></tr></tbody></table>
+<p><br/>
+<!--\textbf{--><b>Example:</b><!--}-->
+</p>
+<table style="background:#e0e0bb; border:1px solid #cccccc;" width="100%">
+<tbody><!--\par --><tr>
+<td width="50%"><!--\textbf{--><b>Send</b><!--}-->
+</td>
+<td width="50%"><!--\textbf{--><b>Receive</b><!--}-->
+</td></tr></tbody></table>
+<table style="background:#f0f0cc; border:1px solid #cccccc;" width="100%">
+<tbody><!--\par --><tr>
+<td valign="top" width="50%"><tt>Export: Mode=All Filename=/home/dan/ArtTatum-Indiana.mp3 Channels=2</tt>
+</td>
+<td valign="top" width="50%"><tt>Exported to MP3 format: /home/dan/ArtTatum-Indiana.mp3<br/>Export finished: OK</tt>
+</td></tr></tbody></table>
+<!--\vspace{1mm}\hrule --><hr/>
+<div id="adding"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Adding_Commands_to_Audacity_.28for_developers.29">Adding Commands to Audacity <!--\textit{--><i>(for developers)</i><!--}--></span></h2><!--}--><!--latex 
+\label{scripting:adding}-->
+<p>For a command to be callable from a script, a CommandType object for it must be added to the CommandDirectory, which is a singleton class. A CommandType has the job of creating specific Command objects, which actually do the work.
+</p><p>To implement a new command called Foo, it is simplest to create new classes FooCommandType and FooCommand which derive from CommandType and CommandImplementation respectively, and then override the virtual methods as appropriate. Then add an instance of FooCommandType to the CommandDirectory.
+</p><p>In the future, the repetitive nature of some of this code may be reduced, for example by using macros (as in wxwidgets). For more information on the workings of the command system, see the source code - in particular the files in the src/commands directory.
+</p>
+<!--\vspace{1mm}\hrule --><hr/>
+<div id="issues"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Known_Issues_.26_Missing_Features">Known Issues &amp; Missing Features</span></h2><!--}--><!--latex 
+\label{scripting:issues}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> Parameters to BatchCommand cannot currently contain spaces.</li>
+<!--
+\item --><li> Scripting only works with one project at a time. </li>
+<!--
+\item --><li> For some menu commands, the project window must have focus for the command to succeed.</li>
+<!--
+\item --><li> Scripts have no control over the type and verbosity of responses they receive. (Related: it's not straightforward to get 'output' responses from commands like GetTrackInfo.)</li>
+<!--
+\item --><li> Current commands could have stricter parameter validation.</li>
+<!--
+\item --><li> There's no consistent way to abort or interrupt commands.</li>
+<!--
+\item --><li> There are still many parts of Audacity that cannot currently be controlled from a script because commands for them have not yet been created.</li>
+<!--
+\item --><li> Due to a slight problem with module management, the scripting module is not unloaded when Audacity quits. This means the script pipes are not properly deleted.</li>
+<!--
+\item --><li> There may or may not be security problems relating to the use of pipes. You're advised not to use mod-script-pipe on a system with multiple simultaneous users.</li>
+<!--
+\item --><li> The interface on the script side of the pipe is still quite low-level. It may be possible to generate libraries for specific scripting languages from the internal descriptions of the commands.</li></ul><!--
+\end{itemize}
+-->
+
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

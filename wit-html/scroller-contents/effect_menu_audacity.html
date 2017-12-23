@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Effect Menu: Audacity - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Effect_Menu_Audacity rootpage-Effect_Menu_Audacity skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Effect Menu: Audacity</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{effect:menu:audacity:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p><br/>
+</p>
+<div class="intro">Audacity's built-in effects (those that appear in the application irrespective of the contents of your Audacity and other "Plug-Ins" folders) are above the divider in the Effect menu.<p>Built-in effects support saving of user presets but do not yet support real-time preview or import/export of presets from/to other machines.</p> </div>
+<dl><dd><!--\textit{--><i>Click, or hover, on any menu item in the image to read about that command.  &nbsp;<span style="font-size:0.8em"><!--latex 
+\hyperref[\foo{effect:menu:audacity::skiptheimage}]{--><a href="#skiptheimage">Skip the image</a><!--latex }
+--></span></i><!--}--></dd>
+<dd><div class="noresize"><map name="ImageMap_1_425556242"><area alt="Generate Menu" coords="0,3,26,19" href="generate_menu.html" shape="rect" title="Generate Menu"/><area alt="Effect Menu" coords="33,3,66,19" href="effect_menu.html" shape="rect" title="Effect Menu"/><area alt="Analyze Menu" coords="73,3,117,19" href="analyze_menu.html" shape="rect" title="Analyze Menu"/><area alt="Help Menu" coords="124,3,153,19" href="help_menu.html" shape="rect" title="Help Menu"/><area alt="Ext-Bar Menu" coords="160,3,202,19" href="ext_bar_menu.html" shape="rect" title="Ext-Bar Menu"/><area alt="Ext-Command Menu" coords="209,3,291,19" href="ext_command_menu.html" shape="rect" title="Ext-Command Menu"/><area alt="Menu Bar" coords="0,0,600,22" href="menu_reference.html" shape="rect" title="Menu Bar"/><area alt="Selecting this option from the Effect Menu (or the Generate Menu or Analyze Menu) takes you to a dialog where you can enable or disable particular Effects, Generators and Analyzers in Audacity" coords="39,23,259,45" href="effect_menu.html#add_remove_plugins" shape="rect" title="Selecting this option from the Effect Menu (or the Generate Menu or Analyze Menu) takes you to a dialog where you can enable or disable particular Effects, Generators and Analyzers in Audacity"/><area alt="Repeats the last used effect at its last used settings and without displaying any dialog" coords="39,52,259,74" href="effect_menu.html#repeat_last_effect" shape="rect" title="Repeats the last used effect at its last used settings and without displaying any dialog"/><area alt="Effects built in to Audacity" coords="39,81,259,103" href="#" shape="rect" title="Effects built in to Audacity"/><area alt='"Linux Audio Plug-in Audio" effects' coords="39,110,259,132" href="effect_menu_ladspa.html" shape="rect" title='"Linux Audio Plug-in Audio" effects'/><area alt='Effects created using a LISP-variant called "Nyquist"' coords="39,132,259,154" href="effect_menu_nyquist.html" shape="rect" title='Effects created using a LISP-variant called "Nyquist"'/><area alt="Increases or decreases the volume of the audio you have selected" coords="271,26,489,48" href="amplify.html" shape="rect" title="Increases or decreases the volume of the audio you have selected"/><area alt='Reduces (ducks) the volume of one or more tracks whenever the volume of a specified "control" track reaches a particular level' coords="271,48,489,70" href="auto_duck.html" shape="rect" title='Reduces (ducks) the volume of one or more tracks whenever the volume of a specified "control" track reaches a particular level'/><area alt="Increases or decreases the lower  frequencies  and higher frequencies of your audio independently; behaves just like the bass and treble controls on a stereo system" coords="271,70,489,92" href="bass_and_treble.html" shape="rect" title="Increases or decreases the lower  frequencies  and higher frequencies of your audio independently; behaves just like the bass and treble controls on a stereo system"/><area alt="Change the pitch of a selection without changing its tempo" coords="271,92,489,114" href="change_pitch.html" shape="rect" title="Change the pitch of a selection without changing its tempo"/><area alt="Change the speed of a selection, also changing its pitch" coords="271,114,489,136" href="change_speed.html" shape="rect" title="Change the speed of a selection, also changing its pitch"/><area alt="Change the tempo and length (duration) of a selection without changing its pitch" coords="271,136,489,158" href="change_tempo.html" shape="rect" title="Change the tempo and length (duration) of a selection without changing its pitch"/><area alt="Click Removal is designed to remove clicks on audio tracks and is especially suited to declicking recordings made from vinyl records" coords="271,158,489,180" href="click_removal.html" shape="rect" title="Click Removal is designed to remove clicks on audio tracks and is especially suited to declicking recordings made from vinyl records"/><area alt="Compresses the dynamic range by two alternative methods" coords="271,180,489,202" href="compressor.html" shape="rect" title="Compresses the dynamic range by two alternative methods"/><area alt="Use the Distortion effect to make the audio sound distorted" coords="271,202,489,224" href="distortion.html" shape="rect" title="Use the Distortion effect to make the audio sound distorted"/><area alt="Repeats the selected audio again and again, normally softer each time and normally not blended into the original sound until some time after it starts" coords="271,224,489,246" href="echo.html" shape="rect" title="Repeats the selected audio again and again, normally softer each time and normally not blended into the original sound until some time after it starts"/><area alt="Adjusts the volume levels of particular frequencies" coords="271,246,489,268" href="equalization.html" shape="rect" title="Adjusts the volume levels of particular frequencies"/><area alt="Applies a linear fade-in to the selected audio - the rapidity of the fade-in depends entirely on the length of the selection it is applied to" coords="271,268,489,290" href="fades.html#linearfade" shape="rect" title="Applies a linear fade-in to the selected audio - the rapidity of the fade-in depends entirely on the length of the selection it is applied to"/><area alt="Applies a linear fade-out to the selected audio - the rapidity of the fade-out depends entirely on the length of the selection it is applied to" coords="271,290,489,312" href="fades.html#linearfade" shape="rect" title="Applies a linear fade-out to the selected audio - the rapidity of the fade-out depends entirely on the length of the selection it is applied to"/><area alt="This effect flips the audio samples upside-down" coords="271,312,489,334" href="invert.html" shape="rect" title="This effect flips the audio samples upside-down"/><area alt="This effect is ideal for reducing constant background noise such as fans, tape noise, or hums" coords="271,334,489,356" href="noise_reduction.html" shape="rect" title="This effect is ideal for reducing constant background noise such as fans, tape noise, or hums"/><area alt="Use the Normalize effect to set the maximum amplitude of a track, equalize the amplitudes of the left and right channels of a stereo track and optionally remove any DC offset from the track" coords="271,356,489,378" href="normalize.html" shape="rect" title="Use the Normalize effect to set the maximum amplitude of a track, equalize the amplitudes of the left and right channels of a stereo track and optionally remove any DC offset from the track"/><area alt='Use Paulstretch only for an extreme time-stretch or "stasis" effect, This may be useful for synthesizer pad sounds, identifying performance glitches or just creating interesting aural textures' coords="271,378,489,400" href="paulstretch.html" shape="rect" title='Use Paulstretch only for an extreme time-stretch or "stasis" effect, This may be useful for synthesizer pad sounds, identifying performance glitches or just creating interesting aural textures'/><area alt='The name "Phaser" comes from "Phase Shifter", because it works by combining phase-shifted signals with the original signal' coords="271,400,489,422" href="phaser.html" shape="rect" title='The name "Phaser" comes from "Phase Shifter", because it works by combining phase-shifted signals with the original signal'/><area alt="Fix one particular short click, pop or other glitch no more than 128 samples long" coords="271,422,489,444" href="repair.html" shape="rect" title="Fix one particular short click, pop or other glitch no more than 128 samples long"/><area alt="Repeats the selection the specified number of times" coords="271,444,489,466" href="repeat.html" shape="rect" title="Repeats the selection the specified number of times"/><area alt="A configurable stereo reverberation effect with built-in and user-added presets" coords="271,466,489,488" href="reverb.html" shape="rect" title="A configurable stereo reverberation effect with built-in and user-added presets"/><area alt="Reverses the selected audio; after the effect the end of the audio will be heard first and the beginning last" coords="271,488,489,510" href="reverse.html" shape="rect" title="Reverses the selected audio; after the effect the end of the audio will be heard first and the beginning last"/><area alt="This effect allows you to make a continuous change to the tempo and/or pitch of a selection by choosing initial and/or final change values" coords="271,510,489,532" href="sliding_time_scale_pitch_shift.html" shape="rect" title="This effect allows you to make a continuous change to the tempo and/or pitch of a selection by choosing initial and/or final change values"/><area alt="Automatically try to find and eliminate audible silences" coords="271,532,489,554" href="truncate_silence.html" shape="rect" title="Automatically try to find and eliminate audible silences"/><area alt="Rapid tone quality variations, like that guitar sound so popular in the 1970's" coords="271,554,489,576" href="wahwah.html" shape="rect" title="Rapid tone quality variations, like that guitar sound so popular in the 1970's"/></map><!--
+
+\par\Needspace{322.0pt}\begin{picture}(251.0,292.0)
+--><!--   \put(0,0){\includegraphics[scale=0.5]{--><img alt="Effect-AudacityMenu.png" height="584" src="../m/images/f/f9/effect_audacitymenu.png" usemap="#ImageMap_1_425556242" width="502"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/f/f9/effect_audacitymenu.png--></img><!--}}
+--><!--   \put(0.0,282.5){\hyperref[\foo{generate:menu:}]{\makebox(13.0,8.0){}}}
+   \put(16.5,282.5){\hyperref[\foo{effect:menu:}]{\makebox(16.5,8.0){}}}
+   \put(36.5,282.5){\hyperref[\foo{analyze:menu:}]{\makebox(22.0,8.0){}}}
+   \put(62.0,282.5){\hyperref[\foo{help:menu:}]{\makebox(14.5,8.0){}}}
+   \put(80.0,282.5){\hyperref[\foo{ext:bar:menu:}]{\makebox(21.0,8.0){}}}
+   \put(104.5,282.5){\hyperref[\foo{ext:command:menu:}]{\makebox(41.0,8.0){}}}
+   \put(19.5,269.5){\hyperref[\foo{effect:menu:add:remove:plugins}]{\makebox(110.0,11.0){}}}
+   \put(19.5,255.0){\hyperref[\foo{effect:menu:repeat:last:effect}]{\makebox(110.0,11.0){}}}
+   \put(19.5,240.5){\hyperref[\foo{effect:menu:audacity::}]{\makebox(110.0,11.0){}}}
+   \put(19.5,226.0){\hyperref[\foo{effect:menu:ladspa:}]{\makebox(110.0,11.0){}}}
+   \put(19.5,215.0){\hyperref[\foo{effect:menu:nyquist:}]{\makebox(110.0,11.0){}}}
+   \put(135.5,268.0){\hyperref[\foo{amplify:}]{\makebox(109.0,11.0){}}}
+   \put(135.5,257.0){\hyperref[\foo{auto:duck:}]{\makebox(109.0,11.0){}}}
+   \put(135.5,246.0){\hyperref[\foo{bass:and:treble:}]{\makebox(109.0,11.0){}}}
+   \put(135.5,235.0){\hyperref[\foo{change:pitch:}]{\makebox(109.0,11.0){}}}
+   \put(135.5,224.0){\hyperref[\foo{change:speed:}]{\makebox(109.0,11.0){}}}
+   \put(135.5,213.0){\hyperref[\foo{change:tempo:}]{\makebox(109.0,11.0){}}}
+   \put(135.5,202.0){\hyperref[\foo{click:removal:}]{\makebox(109.0,11.0){}}}
+   \put(135.5,191.0){\hyperref[\foo{compressor:}]{\makebox(109.0,11.0){}}}
+   \put(135.5,180.0){\hyperref[\foo{distortion:}]{\makebox(109.0,11.0){}}}
+   \put(135.5,169.0){\hyperref[\foo{echo:}]{\makebox(109.0,11.0){}}}
+   \put(135.5,158.0){\hyperref[\foo{equalization:}]{\makebox(109.0,11.0){}}}
+   \put(135.5,147.0){\hyperref[\foo{fades:linearfade}]{\makebox(109.0,11.0){}}}
+   \put(135.5,136.0){\hyperref[\foo{fades:linearfade}]{\makebox(109.0,11.0){}}}
+   \put(135.5,125.0){\hyperref[\foo{invert:}]{\makebox(109.0,11.0){}}}
+   \put(135.5,114.0){\hyperref[\foo{noise:reduction:}]{\makebox(109.0,11.0){}}}
+   \put(135.5,103.0){\hyperref[\foo{normalize:}]{\makebox(109.0,11.0){}}}
+   \put(135.5,92.0){\hyperref[\foo{paulstretch:}]{\makebox(109.0,11.0){}}}
+   \put(135.5,81.0){\hyperref[\foo{phaser:}]{\makebox(109.0,11.0){}}}
+   \put(135.5,70.0){\hyperref[\foo{repair:}]{\makebox(109.0,11.0){}}}
+   \put(135.5,59.0){\hyperref[\foo{repeat:}]{\makebox(109.0,11.0){}}}
+   \put(135.5,48.0){\hyperref[\foo{reverb:}]{\makebox(109.0,11.0){}}}
+   \put(135.5,37.0){\hyperref[\foo{reverse:}]{\makebox(109.0,11.0){}}}
+   \put(135.5,26.0){\hyperref[\foo{sliding:time:scale:pitch:shift:}]{\makebox(109.0,11.0){}}}
+   \put(135.5,15.0){\hyperref[\foo{truncate:silence:}]{\makebox(109.0,11.0){}}}
+   \put(135.5,4.0){\hyperref[\foo{wahwah:}]{\makebox(109.0,11.0){}}}
+\end{picture}
+
+--></div></dd></dl>
+<div id="skiptheimage"></div>
+<div id="built-in"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Built-in_effects">Built-in effects</span></h2><!--}--><!--latex 
+\label{effect:menu:audacity:built-in}--><!--latex 
+\label{effect:menu:audacity:skiptheimage}-->
+<p>Audacity's built-in effects (those that appear in the application irrespective of the contents of your Audacity and other "Plug-Ins" folders) are above the divider in the Effect menu.
+</p>
+<div class="note">Most of the built-in effects (and most <!--latex 
+\hyperref[\foo{effect:menu:audacity::nyquist:effects}]{--><a href="#nyquist_effects">Nyquist effect plug-ins</a><!--latex }
+--> shipped with Audacity) have a <span class="button">Preview</span> button. This allows you to listen to how the first six seconds <!--\textit{--><i>(by default)</i><!--}--> of the selected audio would sound if you pressed <span class="button">OK</span> to apply the effect. The preview length can be changed on the <!--latex 
+\hyperref[\foo{playback:preferences:}]{--><a href="playback_preferences.html" title="Playback Preferences">Playback</a><!--latex }
+--> tab of <!--latex 
+\hyperref[\foo{preferences:}]{--><a href="preferences.html" title="Preferences">Preferences</a><!--latex }
+-->.<p> All <!--\textit{--><i>selected</i><!--}--> tracks are previewed irrespective of whether the tracks are <!--latex 
+\hyperref[\foo{audio:tracks:mute}]{--><a href="audio_tracks.html#mute" title="Audio Tracks">muted</a><!--latex }
+--> or <!--latex 
+\hyperref[\foo{audio:tracks:solo}]{--><a href="audio_tracks.html#solo" title="Audio Tracks">soloed</a><!--latex }
+-->. This is because the effect is applied to the selected audio. If Preview does not sound quite as you want, adjust the controls of the effect and Preview again.</p>
+<p>Built-in effects support saving of user presets but do not yet support <!--latex 
+\hyperref[\foo{real:time:preview:of:effects:}]{--><a href="real_time_preview_of_effects.html" title="Real-time preview of effects">real-time preview</a><!--latex }
+--> or import/export of presets from/to other machines.</p></div>
+<div class="note">Most of the effects that are included with Audacity have a <a href="help_button.html" title="Help Button"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Help Button" height="27" src="../m/images/d/d6/help_button.png" width="27"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d6/help_button.png--></img><!--}}{}--></a> <!--latex 
+\hyperref[\foo{help:button:}]{--><a href="help_button.html" title="Help Button">help button</a><!--latex }
+--> in the bottom left corner.  Clicking on it will take you to help in the manual about that effect.  The titles below are also links to more detailed information about each effect.</div>
+<div id="amplify"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Amplify..."><!--latex 
+\hyperref[\foo{amplify:}]{--><a href="amplify.html" title="Amplify">Amplify...</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{effect:menu:audacity:amplify}-->
+<p>Increases or decreases the volume of the audio you have selected.  When you open the dialog, Audacity automatically calculates the maximum amount you could amplify the selected audio without causing <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:clipping}]{--><a href="glossary.html#clipping" title="Glossary">clipping</a><!--latex }
+--></b><!--}--></i><!--}--> (distortion caused by trying to make the audio too loud).
+</p>
+<div id="auto_duck"></div>
+<div id="duck"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Auto_Duck..."><!--latex 
+\hyperref[\foo{auto:duck:}]{--><a href="auto_duck.html" title="Auto Duck">Auto Duck...</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{effect:menu:audacity:duck}--><!--latex 
+\label{effect:menu:audacity:auto:duck}-->
+<p>Reduces (ducks) the volume of one or more tracks whenever the volume of a specified "control" track reaches a particular level. Typically used to make a music track softer whenever speech in a commentary track is heard.
+</p>
+<div id="bass_and_treble"></div>
+<div id="bass"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Bass_and_Treble..."><!--latex 
+\hyperref[\foo{bass:and:treble:}]{--><a href="bass_and_treble.html" title="Bass and Treble">Bass and Treble...</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{effect:menu:audacity:bass}--><!--latex 
+\label{effect:menu:audacity:bass:and:treble}-->
+<p>Increases or decreases the lower <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:frequency}]{--><a href="glossary.html#frequency" title="Glossary">frequencies</a><!--latex }
+--></b><!--}--></i><!--}--> and higher frequencies of your audio independently.  It behaves just like the bass and treble controls on a domestic stereo system.
+</p>
+<div id="change_pitch"></div>
+<div id="pitch"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Change_Pitch..."><!--latex 
+\hyperref[\foo{change:pitch:}]{--><a href="change_pitch.html" title="Change Pitch">Change Pitch...</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{effect:menu:audacity:pitch}--><!--latex 
+\label{effect:menu:audacity:change:pitch}-->
+<p>Change the pitch of a selection without changing its tempo.
+</p>
+<div id="change_speed"></div>
+<div id="speed"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Change_Speed..."><!--latex 
+\hyperref[\foo{change:speed:}]{--><a href="change_speed.html" title="Change Speed">Change Speed...</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{effect:menu:audacity:speed}--><!--latex 
+\label{effect:menu:audacity:change:speed}-->
+<p>Change the speed of a selection, also changing its pitch.
+</p>
+<div id="change_tempo"></div>
+<div id="tempo"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Change_Tempo..."><!--latex 
+\hyperref[\foo{change:tempo:}]{--><a href="change_tempo.html" title="Change Tempo">Change Tempo...</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{effect:menu:audacity:tempo}--><!--latex 
+\label{effect:menu:audacity:change:tempo}-->
+<p>Change the tempo and length (duration) of a selection without changing its pitch.
+</p>
+<div id="classic"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Classic_Filters..."><!--latex 
+\hyperref[\foo{classic:filters:}]{--><a href="classic_filters.html" title="Classic Filters">Classic Filters...</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{effect:menu:audacity:classic}-->
+<p>Provides three different types of filters which together emulate the vast majority of analog filters, and provides useful tools for analysis and measurement.
+</p>
+<div class="note"><!--\textbf{--><b>Classic Filters</b><!--}--> is not loaded into the Effect Menu by default but you can use <!--latex 
+\hyperref[\foo{effect:menu:audacity::manage}]{--><a href="#manage">Add / Remove Plug-ins...</a><!--latex }
+--> from the Effect Menu to load it if required. </div>
+<div id="click_removal"></div>
+<div id="click"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Click_Removal..."><!--latex 
+\hyperref[\foo{click:removal:}]{--><a href="click_removal.html" title="Click Removal">Click Removal...</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{effect:menu:audacity:click}--><!--latex 
+\label{effect:menu:audacity:click:removal}-->
+<p>Click Removal is designed to remove clicks on audio tracks and is especially suited to declicking recordings made from vinyl records. It will usually work best on very short clicks. For broader individual pops in selections up to 128 <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:sample}]{--><a href="glossary.html#sample" title="Glossary">samples</a><!--latex }
+--></b><!--}--></i><!--}--> wide (about three&nbsp;milliseconds at 44100 <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:hz}]{--><a href="glossary.html#hz" title="Glossary">Hz</a><!--latex }
+--></b><!--}--></i><!--}--> project rate), you could try the <!--latex 
+\hyperref[\foo{effect:menu:audacity::repair}]{--><a href="#repair">Repair</a><!--latex }
+--> effect. 
+</p>
+<div id="compressor"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Compressor..."><!--latex 
+\hyperref[\foo{compressor:}]{--><a href="compressor.html" title="Compressor">Compressor...</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{effect:menu:audacity:compressor}-->
+<p>Compresses the <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:dynamic:range}]{--><a href="glossary.html#dynamic_range" title="Glossary">dynamic range</a><!--latex }
+--></b><!--}--></i><!--}--> by two alternative methods. The default "<!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:rms}]{--><a href="glossary.html#rms" title="Glossary">RMS</a><!--latex }
+--></b><!--}--></i><!--}-->" method makes the louder parts softer, but leaves the quieter audio alone. The alternative "peaks" method makes the entire audio louder, but amplifies the louder parts less than the quieter parts. Make-up <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:gain}]{--><a href="glossary.html#gain" title="Glossary">gain</a><!--latex }
+--></b><!--}--></i><!--}--> can be applied to either method, making the result as loud as possible without <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:clipping}]{--><a href="glossary.html#clipping" title="Glossary">clipping</a><!--latex }
+--></b><!--}--></i><!--}-->, but not changing the dynamic range further.      
+</p>
+<div id="distortion"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Distortion..."><!--latex 
+\hyperref[\foo{distortion:}]{--><a href="distortion.html" title="Distortion">Distortion...</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{effect:menu:audacity:distortion}-->
+<p>Use the Distortion effect to make the audio sound distorted. By distorting the waveform the frequency content is changed, which will often make the sound "crunchy" or "abrasive".  
+</p><p>Technically this effect is a <a class="external text" href="https://en.wikipedia.org/wiki/Waveshaper" rel="nofollow">waveshaper</a>. The result of waveshaping is equivalent to applying non-linear amplification to the audio waveform. Preset shaping functions are provided, each of which produces a different type of distortion. 
+</p>
+<div id="echo"></div>
+<div id="shorecho"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Echo..."><!--latex 
+\hyperref[\foo{echo:}]{--><a href="echo.html" title="Echo">Echo...</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{effect:menu:audacity:shorecho}--><!--latex 
+\label{effect:menu:audacity:echo}-->
+<p>Repeats the selected audio again and again, normally softer each time. The delay time between each repeat is fixed, with no pause in between each repeat. For a more configurable echo effect with a variable delay time and pitch-changed echoes, see <!--latex 
+\hyperref[\foo{effect:menu:Delay...}]{--><a href="effect_menu.html#Delay..." title="Effect Menu">Delay...</a><!--latex }
+--> 
+</p>
+<div id="equalization"></div>
+<div id="equalize"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Equalization..."><!--latex 
+\hyperref[\foo{equalization:}]{--><a href="equalization.html" title="Equalization">Equalization...</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{effect:menu:audacity:equalize}--><!--latex 
+\label{effect:menu:audacity:equalization}-->
+<p>Adjusts the volume levels of particular frequencies.
+</p>
+<div id="fade_in"></div>
+<div id="linearfade"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Fade_In"><!--latex 
+\hyperref[\foo{fades:linearfade}]{--><a href="fades.html#linearfade" title="Fades">Fade In</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{effect:menu:audacity:linearfade}--><!--latex 
+\label{effect:menu:audacity:fade:in}-->
+<p>Applies a fade-in to the selected audio, so that the <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:amplitude}]{--><a href="glossary.html#amplitude" title="Glossary">amplitude</a><!--latex }
+--></b><!--}--></i><!--}--> changes gradually from silence at the start of the selection to the original amplitude at the end of the selection. The shape of the fade is <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:linear}]{--><a href="glossary.html#linear" title="Glossary">linear</a><!--latex }
+--></b><!--}--></i><!--}-->. The rapidity of the fade-in depends entirely on the length of the selection it is applied to.
+</p>
+<div id="fade_out"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Fade_Out"><!--latex 
+\hyperref[\foo{fades:linearfade}]{--><a href="fades.html#linearfade" title="Fades">Fade Out</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{effect:menu:audacity:fade:out}-->
+<p>Applies a fade-out to the selected audio, so that the <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:amplitude}]{--><a href="glossary.html#amplitude" title="Glossary">amplitude</a><!--latex }
+--></b><!--}--></i><!--}--> changes gradually from the original amplitude at the start of the selection down to silence at the end of the selection. The shape of the fade is <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:linear}]{--><a href="glossary.html#linear" title="Glossary">linear</a><!--latex }
+--></b><!--}--></i><!--}-->. The rapidity of the fade-out depends entirely on the length of the selection it is applied to.  
+</p>
+<div id="invert"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Invert"><!--latex 
+\hyperref[\foo{invert:}]{--><a href="invert.html" title="Invert">Invert</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{effect:menu:audacity:invert}-->
+<p>Flips the audio samples upside-down. This normally does not affect the sound of the audio at all. It is occasionally useful for vocal removal.
+</p>
+<div id="noise_reduction"></div>
+<div id="noise"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Noise_Reduction..."><!--latex 
+\hyperref[\foo{noise:reduction:}]{--><a href="noise_reduction.html" title="Noise Reduction">Noise Reduction...</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{effect:menu:audacity:noise}--><!--latex 
+\label{effect:menu:audacity:noise:reduction}-->
+<p>Reduces constant background noise such as fans, tape noise, or hums.  It will not work for removing talking or music in the background.
+</p>
+<div id="normalize"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Normalize..."><!--latex 
+\hyperref[\foo{normalize:}]{--><a href="normalize.html" title="Normalize">Normalize...</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{effect:menu:audacity:normalize}-->
+<p>Use the Normalize effect to set the maximum amplitude of a track, equalize the amplitudes of the left and right channels of a stereo track and optionally remove any <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:dc:offset}]{--><a href="glossary.html#dc_offset" title="Glossary">DC Offset</a><!--latex }
+--></b><!--}--></i><!--}--> from the track.
+</p>
+<div id="paulstretch"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Paulstretch..."><!--latex 
+\hyperref[\foo{paulstretch:}]{--><a href="paulstretch.html" title="Paulstretch">Paulstretch...</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{effect:menu:audacity:paulstretch}-->
+<p>Use Paulstretch only for an extreme time-stretch or "stasis" effect. This may be useful for synthesizer pad sounds, identifying performance glitches or just creating interesting aural textures. Use <!--latex 
+\hyperref[\foo{effect:menu:audacity::tempo}]{--><a href="#tempo">Change Tempo</a><!--latex }
+--> or <!--latex 
+\hyperref[\foo{effect:menu:audacity::slide}]{--><a href="#slide">Sliding Time Scale</a><!--latex }
+--> rather than Paulstretch for tasks like slowing down a song to a "practice" tempo. 
+</p>
+<div id="phaser"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Phaser..."><!--latex 
+\hyperref[\foo{phaser:}]{--><a href="phaser.html" title="Phaser">Phaser...</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{effect:menu:audacity:phaser}-->
+<p>The name "Phaser" comes from "Phase Shifter", because it works by combining phase-shifted signals with the original signal.  The movement of the phase-shifted signals is controlled using a Low <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:frequency}]{--><a href="glossary.html#frequency" title="Glossary">Frequency</a><!--latex }
+--></b><!--}--></i><!--}--> Oscillator (LFO).
+</p>
+<div id="repair"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Repair"><!--latex 
+\hyperref[\foo{repair:}]{--><a href="repair.html" title="Repair">Repair</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{effect:menu:audacity:repair}-->
+<p>Fix one particular short click, pop or other glitch no more than 128 samples long.
+</p>
+<div id="repeat"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Repeat..."><!--latex 
+\hyperref[\foo{repeat:}]{--><a href="repeat.html" title="Repeat">Repeat...</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{effect:menu:audacity:repeat}-->
+<p>Repeats the selection the specified number of times.
+</p>
+<div id="reverb"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Reverb..."><!--latex 
+\hyperref[\foo{reverb:}]{--><a href="reverb.html" title="Reverb">Reverb...</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{effect:menu:audacity:reverb}-->
+<p>Adds ambience or a "hall effect".
+</p>
+<div id="reverse"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Reverse"><!--latex 
+\hyperref[\foo{reverse:}]{--><a href="reverse.html" title="Reverse">Reverse</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{effect:menu:audacity:reverse}-->
+<p>Reverses the selected audio, so that it will sound as if it is playing from the end to the start.
+</p>
+<div id="sliding_time_scalepitch_shift"></div>
+<div id="slide"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Sliding_Time_Scale_.2F_Pitch_Shift..."><!--latex 
+\hyperref[\foo{sliding:time:scale:pitch:shift:}]{--><a href="sliding_time_scale_pitch_shift.html" title="Sliding Time Scale - Pitch Shift">Sliding Time Scale / Pitch Shift...</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{effect:menu:audacity:slide}--><!--latex 
+\label{effect:menu:audacity:sliding:time:scalepitch:shift}-->
+<p>Allows you to make a continuous change to the tempo and/or pitch of a selection by choosing initial and/or final change values. 
+</p><p><!--latex 
+\hyperref[\foo{time:tracks:}]{--><a href="time_tracks.html" title="Time Tracks">Time Tracks</a><!--latex }
+--> can be used to bend tempo more flexibly (also affecting pitch) using <!--latex 
+\hyperref[\foo{envelope:tool:}]{--><a href="envelope_tool.html" title="Envelope Tool">Envelope Tool</a><!--latex }
+-->. 
+</p>
+<div id="truncate_silence"></div>
+<div id="truncate"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Truncate_Silence..."><!--latex 
+\hyperref[\foo{truncate:silence:}]{--><a href="truncate_silence.html" title="Truncate Silence">Truncate Silence...</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{effect:menu:audacity:truncate}--><!--latex 
+\label{effect:menu:audacity:truncate:silence}-->
+<p>Automatically try to find and eliminate audible silences. Don't use with faded audio.
+</p>
+<div id="wahwah"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Wahwah..."><!--latex 
+\hyperref[\foo{wahwah:}]{--><a href="wahwah.html" title="Wahwah">Wahwah...</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{effect:menu:audacity:wahwah}-->
+<p>Rapid tone quality variations, like that guitar sound so popular in the 1970's.
+</p><p>Wahwah uses a moving bandpass filter to create its sound.  A low frequency oscillator (LFO) is used to control the movement of the filter throughout the frequency <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:spectrum}]{--><a href="glossary.html#spectrum" title="Glossary">spectrum</a><!--latex }
+--></b><!--}--></i><!--}-->.
+</p><p>The phase of the left and right channels is automatically adjusted when given a stereo track, so that the effect seems to travel across the speakers.
+</p><p><br/>
+</p><p><!--latex 
+\hyperref[\foo{effect:menu:}]{--><a href="effect_menu.html" title="Effect Menu"><!--\textbf{--><b>&lt;</b><!--}-->&nbsp; Back to: Effect Menu</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

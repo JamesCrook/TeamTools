@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Effect Menu: VST - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Effect_Menu_VST rootpage-Effect_Menu_VST skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Effect Menu: VST</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{effect:menu:vst:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p><br/>
+</p>
+<div class="intro"><a class="external text" href="https://en.wikipedia.org/wiki/Virtual_Studio_Technology" rel="nofollow">VST</a> effects support <!--\textbf{--><b><!--latex 
+\hyperref[\foo{real:time:preview:of:effects:}]{--><a href="real_time_preview_of_effects.html" title="Real-time preview of effects">real-time preview</a><!--latex }
+--></b><!--}-->.<p>They support import/export of presets (where the particular effect supports this) and support saving presets for use in Audacity only. </p> </div>
+<div id="install"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Installing_VST_effects">Installing VST  effects</span></h2><!--}--><!--latex 
+\label{effect:menu:vst:install}-->
+<p>For detailed instructions on installing VST plug-ins for Audacity see: <!--latex 
+\hyperref[\foo{installing:effect:generator:and:analyzer:plug:ins:on:windows:vst:install}]{--><a href="installing_effect_generator_and_analyzer_plug_ins_on_windows.html#vst_install" title="Installing Effect, Generator and Analyzer plug-ins on Windows"><span title="A guide to installing Effect, Generator and Analyzer plug-ins for Audacity Windows computer platforms.">Windows</span></a><!--latex }
+-->, <!--latex 
+\hyperref[\foo{installing:effect:generator:and:analyzer:plug:ins:on:mac:os:x:vst:install}]{--><a href="installing_effect_generator_and_analyzer_plug_ins_on_mac_os_x.html#vst_install" title="Installing Effect, Generator and Analyzer plug-ins on MAC OS X"><span title="A guide to installing Effect, Generator and Analyzer plug-ins for Audacity on Mac computer platforms.">Mac</span></a><!--latex }
+--> or <!--latex 
+\hyperref[\foo{installing:effect:generator:and:analyzer:plug:ins:on:linux:vst:install}]{--><a href="installing_effect_generator_and_analyzer_plug_ins_on_linux.html#vst_install" title="Installing Effect, Generator and Analyzer plug-ins on Linux"><span title="A guide to installing Effect, Generator and Analyzer plug-ins for Audacity on Linux computer platforms.">Linux</span></a><!--latex }
+-->
+</p>
+<div id="add_vst"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Adding_a_new_VST_effect_in_Audacity">Adding a new VST effect in Audacity</span></h2><!--}--><!--latex 
+\label{effect:menu:vst:add:vst}-->
+<p>A wide range of VST effects can be <a class="external text" href="https://wiki.audacityteam.org/wiki/VST_Plug-ins" rel="nofollow">obtained online</a>. VST instruments are not supported. 64-bit VST effects are not supported on Windows or Mac even on 64-bit systems. Conversely on Linux 64-bit systems, only 64-bit VST's are supported.   
+</p><p>To add a new VST effect most easily on Windows, put its DLL file into the "Plug-Ins" folder where you have Audacity installed. On Mac, the easiest folder to put the plug-in's VST file in is <!--\textbf{--><b>~/Library/Application Support/audacity/Plug-Ins</b><!--}-->. Then use <span class="menu">Effect &gt; <!--latex 
+\hyperref[\foo{effect:menu:manage}]{--><a href="effect_menu.html#manage" title="Effect Menu">Add / Remove Plug-ins...</a><!--latex }
+--></span> to enable the VST effects and load them into Audacity,  For details see <!--latex 
+\hyperref[\foo{manage:effects:generators:and:analyzers:}]{--><a href="manage_effects_generators_and_analyzers.html" title="Manage Effects, Generators and Analyzers">Manage Effects</a><!--latex }
+-->.
+</p>
+<div id="syslocs"></div> 
+<p>For detailed instructions on installing VST plug-ins for Audacity see: <!--latex 
+\hyperref[\foo{installing:effect:generator:and:analyzer:plug:ins:on:windows:vst:install}]{--><a href="installing_effect_generator_and_analyzer_plug_ins_on_windows.html#vst_install" title="Installing Effect, Generator and Analyzer plug-ins on Windows"><span title="A guide to installing Effect, Generator and Analyzer plug-ins for Audacity Windows computer platforms.">Windows</span></a><!--latex }
+-->, <!--latex 
+\hyperref[\foo{installing:effect:generator:and:analyzer:plug:ins:on:mac:os:x:vst:install}]{--><a href="installing_effect_generator_and_analyzer_plug_ins_on_mac_os_x.html#vst_install" title="Installing Effect, Generator and Analyzer plug-ins on MAC OS X"><span title="A guide to installing Effect, Generator and Analyzer plug-ins for Audacity on Mac computer platforms.">Mac</span></a><!--latex }
+--> or <!--latex 
+\hyperref[\foo{installing:effect:generator:and:analyzer:plug:ins:on:linux:vst:install}]{--><a href="installing_effect_generator_and_analyzer_plug_ins_on_linux.html#vst_install" title="Installing Effect, Generator and Analyzer plug-ins on Linux"><span title="A guide to installing Effect, Generator and Analyzer plug-ins for Audacity on Linux computer platforms.">Linux</span></a><!--latex }
+-->.
+</p>
+<div id="vst_presets"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Saving.2C_Exporting_and_Importing_VST_Effect_Presets">Saving, Exporting and Importing VST Effect Presets</span></h2><!--}--><!--latex 
+\label{effect:menu:vst:vst:presets}--><!--latex 
+\label{effect:menu:vst:syslocs}-->
+<div class="note">Not all VST effects support importing and exporting of presets. If an exported preset file is empty, the effect probably does not support presets and Audacity will not be able to import the saved presets.</div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Save_Preset...">Save Preset...</span></h3><!--}-->
+<p>To save the current effect settings as a User Preset, select <span class="menu">Save Preset...</span> from the Manage menu <span title="Manage menu"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Manage button icon W10.png" height="28" src="../m/images/3/38/manage_button_icon_w10.png" width="28"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/3/38/manage_button_icon_w10.png--></img><!--}}{}--></span> in the effect dialog, which brings up the following dialog: 
+</p>
+<dl><dd><span title="Save Audio Unit Preset dialog"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Save Preset Dialog.png" height="98" src="../m/images/4/44/save_preset_dialog.png" width="246"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/4/44/save_preset_dialog.png--></img><!--}\par
+--></span></dd></dl>
+<p>Type a name for the preset then click <span class="button">OK</span> after which the saved preset will appear in the "User Presets" list in the Manage menu.
+</p>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Export...">Export...</span></h3><!--}-->
+<p>Presets for VST effects are exported to a file. A presets file lets you move settings for a particular effect between computers on any operating platform that supports that effect.</p>
+<p>Select <!--\textit{--><i>Export...</i><!--}--> from the Manage menu <span title="Manage menu"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Manage button icon W10.png" height="28" src="../m/images/3/38/manage_button_icon_w10.png" width="28"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/3/38/manage_button_icon_w10.png--></img><!--}}{}--></span> in the effect dialog to bring up the "Save VST Preset As:" dialog</p>
+<p>Be sure to choose a file type in the &ldquo;Save as type:&rdquo; dropdown menu (&ldquo;Format&rdquo; dropdown menu on Mac)</p>
+<p>Type a name for the file in the "File Name" box ("Save As:" box on Mac) then click <span class="button">OK</span> to export the current effect settings to a separate file.</p>
+<p>The following file formats are supported:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>XML format:</b><!--}--> The default choice, which saves an Audacity VST preset file. This is the least flexible choice, mainly useful for the small number of effects that do not support FXP presets. Most other VST host applications do not support XML, so you may only be able to share XML presets between other computers running Audacity.  </li>
+<!--
+\item --><li> <!--\textbf{--><b>FXP format:</b><!--}--> Saves a standard VST application file, which is the most portable choice. It allows you to save the currently visible settings. The saved preset can then be loaded by the same effect running in Audacity or most other VST host applications, on any computer or operating platform it supports. Similarly FXP presets saved by a given effect in any VST host on any computer can be loaded into that effect in Audacity. </li>
+<!--
+\item --><li> <!--\textbf{--><b>FXB format:</b><!--}--> Saves a standard VST bank file, containing the current settings of all the factory presets for the effect. The saved "bank" of factory presets at your favorite settings can then be loaded by the same effect running in Audacity or any other VST host application supporting FXB presets, on any computer or operating platform it supports. Similarly an FXB bank  saved by a given effect in any VST host on any computer can be loaded into that effect in Audacity. <p>By default presets are saved to the same location as the audacity.cfg file, but you can choose to save them anywhere. Since there is no distinction between preset files saved by different effects you may want to create a folder for each effect you save presets for, or include the effect name in the file name.</p></li></ul><!--
+\end{itemize}
+-->
+
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top"><!--\textbf{--><b>On Mac and Linux please take note:</b><!--}-->
+ <!--
+\begin{itemize}--><ul><!--\item -->
+<!--
+\item --><li> the XML, FXP or FXB file extension is not automatically added by Audacity - be sure to include it in the file name (for example, "myPreset.fxp")</li>
+<!--
+\item --><li> make sure the file extension you add is the same as that shown in the "File Format" dropdown menu, otherwise the preset cannot be loaded.</li></ul><!--
+\end{itemize}
+-->
+</td></tr></tbody></table>
+</div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Import...">Import...</span></h3><!--}-->
+<p>Select <!--\textit{--><i>Import...</i><!--}--> from the Manage menu <span title="Manage menu"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Manage button icon W10.png" height="28" src="../m/images/3/38/manage_button_icon_w10.png" width="28"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/3/38/manage_button_icon_w10.png--></img><!--}}{}--></span> in the effect dialog to bring up the "Load VST Preset:" dialog</p>
+<p>Navigate to the place where you exported a VST preset file.</p>
+<p>Click the open button to load the settings.</p>
+<p>Depending on how the particular VST effect handles importing presets, the imported preset may show up in the User Presets submenu, the Factory Presets submenu or may not show up at all.</p>
+<div id="vst_options"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="VST_Effect_Options">VST Effect Options</span></h2><!--}--><!--latex 
+\label{effect:menu:vst:vst:options}-->
+<p>In the effect's dialog, click the <!--\textit{--><i>Manage</i><!--}--> <span title="Manage menu button"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Manage button icon W10.png" height="28" src="../m/images/3/38/manage_button_icon_w10.png" width="28"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/3/38/manage_button_icon_w10.png--></img><!--}}{}--></span> button then choose <span class="button">Options... &nbsp;<a class="image" href="http://alphamanual.audacityteam.org/man/File:MenuDownArrow.png"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="MenuDownArrow.png" height="6" src="../m/images/e/ed/menudownarrow.png" style="vertical-align: middle" width="9"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/e/ed/menudownarrow.png--></img><!--}}{}--></a></span> to bring up the dialog illustrated below. When you change the options in this dialog, the changes apply only to the current effect that's open. All other VST effects will remain at the default options shown below until you change their options. 
+</p>
+<dl><dd><span title="VST Effect Settings dialog"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="VST effect settings.png" height="411" src="../m/images/9/9d/vst_effect_settings.png" width="680"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/9/9d/vst_effect_settings.png--></img><!--}\par
+--></span></dd></dl>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>Buffer Size:</b><!--}--> Controls the number of samples sent to the effect in each round of processing. The default buffer size of 8192 should be safe for all VST effects. You can set a higher value which will allow faster processing but some effects may not work at higher values. Changing the buffer size is effective immediately. </li>
+<!--
+\item --><li> <!--\textbf{--><b>Latency Compensation:</b><!--}--> This setting (enabled by default) compensates for waveform delay caused by VST effects which preload audio data to a buffer. Compensation may not work in all cases, and for it to work, any compensation or latency reporting settings in the effect itself must be enabled. If compensation fails or if this Audacity setting is unchecked, effects that buffer audio will insert silence at the start of the processed selection and remove a corresponding amount of audio from the end of the selection. Therefore leave this option checked unless a particular VST does not work even after reducing the buffer size, in which case you can experiment by unchecking this option. Enabling or disabling compensation is effective immediately. </li>
+<!--
+\item --><li> <!--\textbf{--><b>Graphical Mode:</b><!--}--> This setting (enabled by default) allows most VST effects to display a graphical (instead of a plain text) interface. If you change this setting you must close the settings dialog, then close and reopen the effect to see the change.</li></ul><!--
+\end{itemize}
+-->
+<p><br/>
+</p><p><!--latex 
+\hyperref[\foo{effect:menu:}]{--><a href="effect_menu.html" title="Effect Menu"><!--\textbf{--><b>&lt;</b><!--}-->&nbsp; Back to: Effect Menu</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

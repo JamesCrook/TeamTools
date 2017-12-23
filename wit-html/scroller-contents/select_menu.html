@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Select Menu - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Select_Menu rootpage-Select_Menu skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Select Menu</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{select:menu:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en">
+<div class="intro">The <!--\textit{--><i><!--\textbf{--><b>Select Menu</b><!--}--></i><!--}--> provides a set of commands for defining selection regions (prior to acting on those regions with edits, effects and exports) or the position of the editing cursor.  You can also select between and navigate <!--latex 
+\hyperref[\foo{audacity:tracks:and:clips:}]{--><a href="audacity_tracks_and_clips.html" title="Audacity Tracks and Clips">clips</a><!--latex }
+-->.</div> 
+<dl><dd><!--\textit{--><i>Click, or hover, on any menu item in the image to read about that command.  &nbsp;<span style="font-size:0.8em"><!--latex 
+\hyperref[\foo{select:menu::skiptheimage}]{--><a href="#skiptheimage">Skip the image</a><!--latex }
+--></span></i><!--}--></dd>
+<dd><div class="noresize"><map name="ImageMap_1_2011071123"><area alt="Edit Menu" coords="2,3,26,19" href="edit_menu.html" shape="rect" title="Edit Menu"/><area alt="Select Menu" coords="33,3,70,19" href="#" shape="rect" title="Select Menu"/><area alt="View Menu" coords="77,3,106,19" href="view_menu.html" shape="rect" title="View Menu"/><area alt="Transport Menu" coords="113,3,169,19" href="transport_menu.html" shape="rect" title="Transport Menu"/><area alt="Tracks Menu" coords="176,3,216,19" href="tracks_menu.html" shape="rect" title="Tracks Menu"/><area alt="Generate Menu" coords="223,3,277,19" href="generate_menu.html" shape="rect" title="Generate Menu"/><area alt="Effect Menu" coords="284,3,317,19" href="effect_menu.html" shape="rect" title="Effect Menu"/><area alt="Analyze Menu" coords="324,3,368,19" href="analyze_menu.html" shape="rect" title="Analyze Menu"/><area alt="Help Menu" coords="375,3,404,19" href="help_menu.html" shape="rect" title="Help Menu"/><area alt="Ext-Bar Menu" coords="411,3,453,19" href="ext_bar_menu.html" shape="rect" title="Ext-Bar Menu"/><area alt="Ext-Command Menu" coords="460,3,542,19" href="ext_command_menu.html" shape="rect" title="Ext-Command Menu"/><area alt="Menu Bar" coords="0,0,600,22" href="menu_reference.html" shape="rect" title="Menu Bar"/><area alt="Selects all of the audio in all of the tracks" coords="39,23,298,45" href="#all" shape="rect" title="Selects all of the audio in all of the tracks"/><area alt="Deselects all of the audio in all of the tracks" coords="39,45,298,67" href="#none" shape="rect" title="Deselects all of the audio in all of the tracks"/><area alt="For extending a selection to more tracks" coords="39,67,298,89" href="select_menu_tracks.html" shape="rect" title="For extending a selection to more tracks"/><area alt="For modifying, saving and restoring a selection" coords="39,89,298,111" href="select_menu_region.html" shape="rect" title="For modifying, saving and restoring a selection"/><area alt="For making a selection of a frequency range" coords="39,111,298,133" href="select_menu_spectral.html" shape="rect" title="For making a selection of a frequency range"/><area alt="For modifying a selection, taking account of clips" coords="39,133,298,155" href="select_menu_clip_boundaries.html" shape="rect" title="For modifying a selection, taking account of clips"/><area alt="Selects from the position of the cursor to the previously stored cursor position" coords="39,162,298,184" href="#cursor_to_stored_cursor_position" shape="rect" title="Selects from the position of the cursor to the previously stored cursor position"/><area alt="Stores the current cursor position for use in a later selection" coords="39,184,298,206" href="#store_cursor_position" shape="rect" title="Stores the current cursor position for use in a later selection"/><area alt="Moves the edges of a selection region (or the cursor position) slightly so they are at a rising zero crossing point" coords="39,213,298,235" href="select_menu_at_zero_crossings.html" shape="rect" title="Moves the edges of a selection region (or the cursor position) slightly so they are at a rising zero crossing point"/></map><!--
+
+\par\Needspace{151.5pt}\begin{picture}(155.5,121.5)
+--><!--   \put(0,0){\includegraphics[scale=0.5]{--><img alt="SelectMenu.png" height="243" src="../m/images/0/05/selectmenu.png" usemap="#ImageMap_1_2011071123" width="311"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/0/05/selectmenu.png--></img><!--}}
+--><!--   \put(1.0,112.0){\hyperref[\foo{edit:menu:}]{\makebox(12.0,8.0){}}}
+   \put(16.5,112.0){\hyperref[\foo{select:menu::}]{\makebox(18.5,8.0){}}}
+   \put(38.5,112.0){\hyperref[\foo{view:menu:}]{\makebox(14.5,8.0){}}}
+   \put(56.5,112.0){\hyperref[\foo{transport:menu:}]{\makebox(28.0,8.0){}}}
+   \put(88.0,112.0){\hyperref[\foo{tracks:menu:}]{\makebox(20.0,8.0){}}}
+   \put(111.5,112.0){\hyperref[\foo{generate:menu:}]{\makebox(27.0,8.0){}}}
+   \put(142.0,112.0){\hyperref[\foo{effect:menu:}]{\makebox(16.5,8.0){}}}
+   \put(162.0,112.0){\hyperref[\foo{analyze:menu:}]{\makebox(22.0,8.0){}}}
+   \put(187.5,112.0){\hyperref[\foo{help:menu:}]{\makebox(14.5,8.0){}}}
+   \put(205.5,112.0){\hyperref[\foo{ext:bar:menu:}]{\makebox(21.0,8.0){}}}
+   \put(230.0,112.0){\hyperref[\foo{ext:command:menu:}]{\makebox(41.0,8.0){}}}
+   \put(19.5,99.0){\hyperref[\foo{select:menu::all}]{\makebox(129.5,11.0){}}}
+   \put(19.5,88.0){\hyperref[\foo{select:menu::none}]{\makebox(129.5,11.0){}}}
+   \put(19.5,77.0){\hyperref[\foo{select:menu:tracks:}]{\makebox(129.5,11.0){}}}
+   \put(19.5,66.0){\hyperref[\foo{select:menu:region:}]{\makebox(129.5,11.0){}}}
+   \put(19.5,55.0){\hyperref[\foo{select:menu:spectral:}]{\makebox(129.5,11.0){}}}
+   \put(19.5,44.0){\hyperref[\foo{select:menu:clip:boundaries:}]{\makebox(129.5,11.0){}}}
+   \put(19.5,29.5){\hyperref[\foo{select:menu::cursor:to:stored:cursor:position}]{\makebox(129.5,11.0){}}}
+   \put(19.5,18.5){\hyperref[\foo{select:menu::store:cursor:position}]{\makebox(129.5,11.0){}}}
+   \put(19.5,4.0){\hyperref[\foo{select:menu:at:zero:crossings:}]{\makebox(129.5,11.0){}}}
+\end{picture}
+
+--></div></dd></dl>
+<div id="skiptheimage"></div>
+<div class="note"><!--\textbf{--><b>Mac users:</b><!--}--> <span class="kbrd" style="background-color: #e0e0f0">Ctrl</span> = <span class="kbrd" style="background-color: #e0e0f0">⌘</span>. So, for example, <span class="kbrd" style="background-color: #e0e0f0">Ctrl + A</span> = <span class="kbrd" style="background-color: #e0e0f0">⌘ + A</span></div>
+<div id="all"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="All_.C2.A0Ctrl_.2B_A">All &nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">Ctrl + A</span></font></span></h2><!--}--><!--latex 
+\label{select:menu:all}--><!--latex 
+\label{select:menu:skiptheimage}-->
+<p>Selects all of the audio in all of the tracks.
+</p>
+<div id="none"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="None_.C2.A0Ctrl_.2B_Shift_.2B_A">None &nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">Ctrl + Shift + A</span></font></span></h2><!--}--><!--latex 
+\label{select:menu:none}-->
+<p>Deselects all of the audio in all of the tracks.
+</p>
+<div id="tracks"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Tracks"><!--latex 
+\hyperref[\foo{select:menu:tracks:}]{--><a href="select_menu_tracks.html" title="Select Menu: Tracks">Tracks</a><!--latex }
+--></span></h2><!--}--><!--latex 
+\label{select:menu:tracks}-->
+<p>The <!--latex 
+\hyperref[\foo{select:menu:tracks:}]{--><a href="select_menu_tracks.html" title="Select Menu: Tracks">Tracks</a><!--latex }
+--> submenu has commands to extend the current selection up and/or down into all tracks, or into all Sync-Locked tracks in the project.
+</p>
+<div id="region"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Region"><!--latex 
+\hyperref[\foo{select:menu:region:}]{--><a href="select_menu_region.html" title="Select Menu: Region">Region</a><!--latex }
+--></span></h2><!--}--><!--latex 
+\label{select:menu:region}-->
+<p>The <!--latex 
+\hyperref[\foo{select:menu:region:}]{--><a href="select_menu_region.html" title="Select Menu: Region">Region</a><!--latex }
+--> submenu has commands for defining <!--latex 
+\hyperref[\foo{select:menu:region:}]{--><a href="select_menu_region.html" title="Select Menu: Region">selection regions</a><!--latex }
+--> and lets you store and retrieve the position of the editing cursor or selection region.  
+</p>
+<div id="spectral"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Spectral"><!--latex 
+\hyperref[\foo{select:menu:spectral:}]{--><a href="select_menu_spectral.html" title="Select Menu: Spectral">Spectral</a><!--latex }
+--></span></h2><!--}--><!--latex 
+\label{select:menu:spectral}-->
+<p>The <!--latex 
+\hyperref[\foo{select:menu:spectral:}]{--><a href="select_menu_spectral.html" title="Select Menu: Spectral">Spectral</a><!--latex }
+--> submenu has contains to enable you to make <!--latex 
+\hyperref[\foo{spectral:selection:}]{--><a href="spectral_selection.html" title="Spectral Selection">Spectral selection</a><!--latex }
+--> which can be used to make selections that include a frequency range as well as a time range on tracks in <!--latex 
+\hyperref[\foo{audio:track:dropdown:menu:spgram}]{--><a href="audio_track_dropdown_menu.html#spgram" title="Audio Track Dropdown Menu">Spectrogram</a><!--latex }
+--> view. Spectral selection is used with special <!--latex 
+\hyperref[\foo{spectral:selection:edit}]{--><a href="spectral_selection.html#edit" title="Spectral Selection">spectral edit</a><!--latex }
+--> effects to make changes to the frequency content of the selected audio.
+</p>
+<div id="clip_boundaries"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Clip_Boundaries"><!--latex 
+\hyperref[\foo{select:menu:clip:boundaries:}]{--><a href="select_menu_clip_boundaries.html" title="Select Menu: Clip Boundaries">Clip Boundaries</a><!--latex }
+--></span></h2><!--}--><!--latex 
+\label{select:menu:clip:boundaries}-->
+<p>The <!--latex 
+\hyperref[\foo{select:menu:clip:boundaries:}]{--><a href="select_menu_clip_boundaries.html" title="Select Menu: Clip Boundaries">Clip Boundaries</a><!--latex }
+--> submenu lets you select between the editing cursor and <!--latex 
+\hyperref[\foo{audacity:tracks:and:clips:}]{--><a href="audacity_tracks_and_clips.html" title="Audacity Tracks and Clips">clip</a><!--latex }
+--> boundaries or to navigate though clips, selecting all of the current clip.  
+</p>
+<div id="cursor_to_stored_cursor_position"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Cursor_to_Stored_Cursor_Position_.C2.A0">Cursor to Stored Cursor Position &nbsp;<font size="-1"></font></span></h2><!--}--><!--latex 
+\label{select:menu:cursor:to:stored:cursor:position}-->
+<p><!--\textbf{--><b>When playing or recording (or paused):</b><!--}-->, selection is made from the the position of the Playback cursor <!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="PlaybackCursor.png" height="10" src="../m/images/d/d0/playbackcursor.png" width="13"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d0/playbackcursor.png--></img><!--}}{}--> or Recording cursor <!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="RecordingCursor.png" height="10" src="../m/images/b/bf/recordingcursor.png" width="13"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/bf/recordingcursor.png--></img><!--}}{}--> to the position previously saved by the <span class="menu">Select &gt; <!--latex 
+\hyperref[\foo{select:menu::store:cursor:position}]{--><a href="#store_cursor_position">Store Cursor Position</a><!--latex }
+--></span> command. For easier use without having to Pause, you may want to <!--latex 
+\hyperref[\foo{keyboard:preferences:}]{--><a href="keyboard_preferences.html" title="Keyboard Preferences">add a shortcut</a><!--latex }
+--> for "<!--\textbf{--><b>Cursor to Stored Cursor Position</b><!--}-->". 
+</p><p><!--\textbf{--><b>When there is no active audio:</b><!--}--> selects from the current position of the editing cursor (or from the left edge of the current selection region) to the stored position.
+</p>
+<div class="example"><!--\textbf{--><b>Example:</b><!--}--> Suppose you had <!--latex 
+\hyperref[\foo{transport:menu:pause}]{--><a href="transport_menu.html#pause" title="Transport Menu">paused</a><!--latex }
+--> playback (or <!--latex 
+\hyperref[\foo{transport:menu:set}]{--><a href="transport_menu.html#set" title="Transport Menu">stopped playback and set cursor</a><!--latex }
+-->) at the starting point of an intended selection and had stored that position. You could then start playback further along from the stored position in order to find the ending point of the intended selection. When you hear that ending, use "Cursor to Stored Cursor Position" to select from the stored position to the position of the playback cursor. You can then stop playback and the selection region will be retained. </div>
+<p>An alternative procedure if you want to store many positions is to <!--latex 
+\hyperref[\foo{tracks:menu:add:label}]{--><a href="tracks_menu.html#add_label" title="Tracks Menu">add a label</a><!--latex }
+--> when required at the editing cursor or playback/recording cursor.  
+</p>
+
+<p><br/>
+</p>
+<div id="store_cursor_position"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Store_Cursor_Position_.C2.A0">Store Cursor Position &nbsp;<font size="-1"></font></span></h2><!--}--><!--latex 
+\label{select:menu:store:cursor:position}-->
+<p>Stores a cursor position as defined below, which can then be used with the <span class="menu">Select &gt; <!--latex 
+\hyperref[\foo{select:menu::cursor:to:stored:cursor:position}]{--><a href="#cursor_to_stored_cursor_position">Cursor to Stored Cursor Position</a><!--latex }
+--></span> command to create or modify a selection region. 
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>If audio is not actively playing, recording or paused:</b><!--}--> the stored cursor position is the position of the editing cursor or of the left edge of the selection region.</li>
+<!--
+\item --><li> <!--\textbf{--><b>If audio is active:</b><!--}--> the stored cursor position is the position of the Playback cursor <!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="PlaybackCursor.png" height="10" src="../m/images/d/d0/playbackcursor.png" width="13"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d0/playbackcursor.png--></img><!--}}{}--> or Recording cursor <!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="RecordingCursor.png" height="10" src="../m/images/b/bf/recordingcursor.png" width="13"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/bf/recordingcursor.png--></img><!--}}{}--> at the time you issue the command to store. For easier use without having to Pause, you may want to <!--latex 
+\hyperref[\foo{keyboard:preferences:}]{--><a href="keyboard_preferences.html" title="Keyboard Preferences">add a shortcut</a><!--latex }
+--> for "Store Cursor Position". </li></ul><!--
+\end{itemize}
+-->
+<p>If you want to store the position of the editing cursor (or both boundaries of a selection) while audio is active, use the <span class="menu">Select &gt; Region &gt; <!--latex 
+\hyperref[\foo{select:menu:region:save:selection}]{--><a href="select_menu_region.html#save_selection" title="Select Menu: Region">Store Selection</a><!--latex }
+--></span> command. 
+</p>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">There is no visual cue marker to remind you what position you saved, you will need to remember it.
+</td></tr></tbody></table>
+</div> 
+<div id="at_zero_crossings"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="At_Zero_Crossings_.C2.A0Z"><!--latex 
+\hyperref[\foo{select:menu:at:zero:crossings:}]{--><a href="select_menu_at_zero_crossings.html" title="Select Menu: At Zero Crossings">At Zero Crossings</a><!--latex }
+--> &nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">Z</span></font></span></h2><!--}--><!--latex 
+\label{select:menu:at:zero:crossings}-->
+<p>At Zero Crossings helps to avoid <!--latex 
+\hyperref[\foo{faq:editing:clicks}]{--><a href="faq_editing.html#clicks" title="FAQ:Editing">clicks</a><!--latex }
+--> at edit points when making cuts and joins by moving the edges of a selection region (or the cursor position) very slightly so they are at a rising <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:zero:crossing}]{--><a href="glossary.html#zero_crossing" title="Glossary">zero crossing</a><!--latex }
+--></b><!--}--></i><!--}--> point.
+</p>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">This feature does not necessarily find the nearest zero crossing to the current position. It aims to find the crossing where the average <!--latex 
+\hyperref[\foo{glossary:amplitude}]{--><a href="glossary.html#amplitude" title="Glossary">amplitude</a><!--latex }
+--> of samples in the vicinity is lowest.
+</td></tr></tbody></table>
+</div>
+
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

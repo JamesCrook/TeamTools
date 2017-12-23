@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Transcription Toolbar - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Transcription_Toolbar rootpage-Transcription_Toolbar skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Transcription Toolbar</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{transcription:toolbar:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+
+
+
+
+
+
+</p>
+<div class="intro"><!--\textit{--><i><!--\textbf{--><b>Transcription Toolbar</b><!--}--></i><!--}--> lets you Play or Loop Play audio at a slower or faster speed than normal, also affecting <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:pitch}]{--><a href="glossary.html#pitch" title="Glossary">pitch</a><!--latex }
+--></b><!--}--></i><!--}-->. Slower than normal speeds can make it easier to transcribe speech or song lyrics.<p>Click on the toolbar image below to see this toolbar displayed in context of the default upper tooldock layout.</p> </div>
+<dl><dd></dd>
+<dd><a class="image" href="http://alphamanual.audacityteam.org/man/File:TranscriptionToolbar.png" title="Will automagically be replaced"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Will automagically be replaced" height="27" src="../m/images/2/2c/transcriptiontoolbar.png" width="140"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/2/2c/transcriptiontoolbar.png--></img><!--}\par
+--></a></dd></dl>
+
+<p><!--\textbf{--><b>Transcription Toolbar</b><!--}--> has its own Play-at-Speed button which plays (or restarts playback) at the speed set by the Play-at-Speed slider to the right. Playback can be paused and resumed at the adjusted speed using the Pause button 
+<span title="Pause button"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Pause.png" height="16" src="../m/images/4/47/pause.png" width="16"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/4/47/pause.png--></img><!--}}{}--></span> in <!--latex 
+\hyperref[\foo{transport:toolbar:}]{--><a href="transport_toolbar.html" title="Transport Toolbar">Transport Toolbar</a><!--latex }
+--> or the shortcut <span class="kbrd" style="background-color: #e0e0f0">P</span>. Irrespective of the setting on the slider, using <span class="kbrd" style="background-color: #e0e0f0">Space</span> or the green Play button on Transport Toolbar will only play at normal speed. You can however set a <!--latex 
+\hyperref[\foo{keyboard:preferences:}]{--><a href="keyboard_preferences.html" title="Keyboard Preferences">keyboard shortcut</a><!--latex }
+--> for "Play-at-Speed" with which you can start or restart playback at adjusted speed.       
+</p><p>Drag the slider to set a lowest speed of one-hundredth of normal (0.01x) to three times as fast (3.00x). Using the keyboard, right-click on the slider then use the keyboard arrow keys to change speed by 0.05x increments. Alternatively you can set keyboard shortcuts for "Decrease playback speed" and "Increase playback speed". Each press of those shortcuts decreases or increases speed respectively by 0.03x increments.  
+</p><p>To set a precise playback speed, double-click over the slider (or create a keyboard shortcut for "Adjust playback speed"), enter the desired speed in the box and click OK. 
+</p>
+<dl><dd><span title="Transcription Toolbar's Playback Speed dialog"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Transcription Toolbar Playback Speed dialog.png" height="155" src="../m/images/7/71/transcription_toolbar_playback_speed_dialog.png" width="350"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/7/71/transcription_toolbar_playback_speed_dialog.png--></img><!--}\par
+--></span></dd></dl>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> To <!--\textbf{--><b>Loop Play at speed</b><!--}--> (play the track or selection over and over at adjusted speed until you stop), hold down <span class="kbrd" style="background-color: #e0e0f0">Shift</span> while clicking the Play-at-Speed button. This causes the button image to change to Loop Play <!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="The Loop Play button" height="16" src="../m/images/7/7e/loop_play.png" title="The Loop Play button" width="16"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/7/7e/loop_play.png--></img><!--}}{}-->. The standard <span class="kbrd" style="background-color: #e0e0f0">Shift + Space</span> shortcut for Loop Play will only play at normal speed whatever the setting on the Play-at-Speed slider, but you can set a keyboard shortcut for "Loop Play at speed" in Keyboard Preferences.
+</li><!--
+\item --><li> To <!--\textbf{--><b><!--latex 
+\hyperref[\foo{playing:and:recording:play:cut}]{--><a href="playing_and_recording.html#play_cut" title="Playing and Recording">Play Cut Preview</a><!--latex }
+--> at speed</b><!--}--> (play audio either side of a <!--latex 
+\hyperref[\foo{audacity:selection:}]{--><a href="audacity_selection.html" title="Audacity Selection">selection</a><!--latex }
+--> at adjusted speed to preview what deleting the selection will sound like), hold down <span class="kbrd" style="background-color: #e0e0f0">Ctrl</span> while clicking the Play-at-Speed button (this works on Mac too, but using <span class="kbrd" style="background-color: #e0e0f0">⌘</span> while clicking does not). This causes the button image to change to Play Cut Preview <!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="The Play Cut Preview button" height="15" src="../m/images/5/55/play_cut_preview.png" title="The Play Cut Preview button" width="15"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/5/55/play_cut_preview.png--></img><!--}}{}--> <!--\textit{--><i>(like the green Play button but with a vertical cut through it)</i><!--}-->. The standard <span class="kbrd" style="background-color: #e0e0f0">C</span> shortcut for Play Cut Preview will only play at normal speed whatever the setting on the Play-at-Speed slider, but you can set a keyboard shortcut for "Play Cut Preview at speed" in Keyboard Preferences. </li></ul><!--
+\end{itemize}
+-->   
+
+<p>It is not currently possible to change speed during playback. To change speed when audio is already playing, change the speed first with the slider, then click the green Play-at-Speed button to play at the new speed. Playback resumes from the original cursor position. This can also be achieved by setting keyboard shortcuts to control Play-at-Speed as described above. 
+</p>
+<div class="note"><!--latex 
+\hyperref[\foo{file:export:dialog:}]{--><a href="file_export_dialog.html" title="File Export Dialog">Export</a><!--latex }
+--> of the audio will be at normal speed whatever the position of the Play-at-Speed slider. To export at an adjusted speed, use <!--latex 
+\hyperref[\foo{effect:menu:tempo}]{--><a href="effect_menu.html#tempo" title="Effect Menu">Change Tempo...</a><!--latex }
+--> in the <!--latex 
+\hyperref[\foo{effect:menu:}]{--><a href="effect_menu.html" title="Effect Menu">Effect Menu</a><!--latex }
+--> to change speed without modifying pitch. Alternatively, use either <!--latex 
+\hyperref[\foo{effect:menu:speed}]{--><a href="effect_menu.html#speed" title="Effect Menu">Change Speed...</a><!--latex }
+--> or a <!--latex 
+\hyperref[\foo{time:tracks:}]{--><a href="time_tracks.html" title="Time Tracks">Time Track</a><!--latex }
+--> to change speed also affecting pitch.  </div>
+<p><br/>
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

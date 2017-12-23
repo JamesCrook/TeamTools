@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Sliding Time Scale / Pitch Shift - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Sliding_Time_Scale_-_Pitch_Shift rootpage-Sliding_Time_Scale_-_Pitch_Shift skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Sliding Time Scale / Pitch Shift</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{sliding:time:scale:pitch:shift:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p><br/>
+</p>
+
+<p><!--\textbf{--><b>Bold text</b><!--}-->
+
+</p><p><br/>
+</p>
+<div class="intro"><!--\textit{--><i><!--\textbf{--><b>Sliding Time Scale / Pitch Shift...</b><!--}--></i><!--}--> allows you to make a continuous change to the tempo and/or pitch of a selection by choosing initial and/or final change values. 
+<p>Tempo changes made without selecting a pitch change preserve the original pitch, and pitch changes made without selecting a tempo change preserve the original tempo. By changing only one of tempo and pitch and choosing the same initial and final value, you can use Sliding Time Scale / Pitch Shift in the same way as <!--latex 
+\hyperref[\foo{sliding:time:scale:pitch:shift::tempo}]{--><a href="#tempo">Change Tempo</a><!--latex }
+--> or <!--latex 
+\hyperref[\foo{sliding:time:scale:pitch:shift::pitch}]{--><a href="#pitch">Change Pitch</a><!--latex }
+--> to produce a high quality fixed change. However Sliding Time Scale / Pitch Shift lets you for example set the initial tempo change to -50% while also setting the final tempo change to +20%, the initial pitch change to +3 semitones and the final pitch change to +1 semitones. 
+</p>
+Because of the high quality <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:algorithm}]{--><a href="glossary.html#algorithm" title="Glossary">algorithm</a><!--latex }
+--></b><!--}--></i><!--}--> used, Sliding Time Scale / Pitch Shift is normally slower compared to performing the same effect with Change Tempo or Change Pitch.  </div>
+<dl><dd><!--\textbf{--><b>Accessed by:</b><!--}--> <span class="menu">Effect &gt; Sliding Time Scale / Pitch Shift...</span></dd>
+<dd><span title="Sliding Time Scale / Pitch Shift effect dialog"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Sliding_Time_ScalePitch_Shift.png"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Sliding Time ScalePitch Shift.png" height="286" src="../m/images/9/90/sliding_time_scalepitch_shift.png" width="474"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/9/90/sliding_time_scalepitch_shift.png--></img><!--}\par
+--></a></span></dd></dl>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Tempo_Change">Tempo Change</span></h2><!--}-->
+<p>Initial and final tempo change values can be managed using the slider (which will move in whole number values only) or by entering a value in the box, which can be either a whole number or a number including a fraction.  
+</p>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Initial_.28.25.29">Initial (%)</span></h3><!--}-->
+<p>The percentage of the original rate required for the beginning of the processed audio.  Positive percentages speed the audio up and negative percentages slow the audio down: -50% is half-speed, 0% is unchanged, 50% is 1.5 times the original speed, 100% is double speed and so on. 
+</p>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Final_.28.25.29">Final (%)</span></h3><!--}-->
+<p>The percentage of the original rate required for the end of the processed audio.
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Pitch_Shift">Pitch Shift</span></h2><!--}-->
+<div class="note">The two "Initial" input boxes are interdependent. Entering the required value in one of the boxes for Initial Pitch Shift will automatically display the equivalent value in the other Initial box. Similarly, entering a value in either "Final" input box will display the equivalent value in the other Final box.</div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Initial_.28semitones.29">Initial (semitones)</span></h3><!--}-->
+<p>Enter the pitch shift in semitones (half steps) required for the beginning of the processed audio.
+</p>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Initial_.28.25.29_2">Initial (%)</span></h3><!--}-->
+<p>Alternatively, enter the pitch shift as a percentage of the original frequency as required for the beginning of the processed audio.
+</p>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Final_.28semitones.29">Final (semitones)</span></h3><!--}-->
+<p>Enter the pitch shift in semitones (half steps) required for the end of the processed audio.
+</p>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Final_.28.25.29_2">Final (%)</span></h3><!--}-->
+<p>Alternatively, enter the pitch shift as a percentage of the original frequency as required for the end of the processed audio.
+</p>
+<div id="buttons"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Buttons">Buttons</span></h2><!--}--><!--latex 
+\label{sliding:time:scale:pitch:shift:buttons}-->
+<p>Clicking on the command buttons give the following results:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><span class="button">Manage</span> gives a dropdown menu enabling you to manage presets for the tool and to see some detail about the tool. For details see <!--latex 
+\hyperref[\foo{manage:presets:}]{--><a href="manage_presets.html" title="Manage presets">Manage presets</a><!--latex }
+-->.</li>
+<!--
+\item --><li><span class="button">Preview</span> plays a short preview of what the audio would sound like if the effect is applied with the current settings, without making actual changes to the audio.  The length of preview is determined by your setting in <span class="menu">Edit &gt; Preferences &gt; <!--latex 
+\hyperref[\foo{playback:preferences:}]{--><a href="playback_preferences.html" title="Playback Preferences">Playback</a><!--latex }
+--></span>, the default setting is 6 seconds.</li>
+<!--
+\item --><li><span class="button">OK</span> applies the effect to the selected audio with the current effect settings.</li>
+<!--
+\item --><li><span class="button">Cancel</span> aborts the effect and leaves the audio unchanged.</li>
+<!--
+\item --><li><a href="help_button.html" title="Help Button"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Help Button" height="27" src="../m/images/d/d6/help_button.png" width="27"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d6/help_button.png--></img><!--}}{}--></a> brings you to the appropriate page in the Manual, this page.</li></ul><!--
+\end{itemize}
+-->
+<p><br/>
+</p><p><br/>
+</p>
+<div class="note"><!--latex 
+\hyperref[\foo{time:tracks:}]{--><a href="time_tracks.html" title="Time Tracks">Time Tracks</a><!--latex }
+--> can be used to bend tempo more flexibly (also affecting pitch) using the <!--latex 
+\hyperref[\foo{envelope:tool:}]{--><a href="envelope_tool.html" title="Envelope Tool">Envelope Tool</a><!--latex }
+-->. </div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Links">Links</span></h2><!--}-->
+<p><!--latex 
+\hyperref[\foo{index:of:effects:generators:and:analyzers:}]{--><a href="index_of_effects_generators_and_analyzers.html" title="Index of Effects, Generators and Analyzers"><!--\textbf{--><b>|&lt;</b><!--}--> Index of Effects, Generators and Analyzers</a><!--latex }
+--> <br/>
+</p><p><!--latex 
+\hyperref[\foo{effect:menu:}]{--><a href="effect_menu.html" title="Effect Menu"><!--\textbf{--><b>|&lt;</b><!--}--> Effect Menu</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

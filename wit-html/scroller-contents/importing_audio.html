@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Importing Audio - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Importing_Audio rootpage-Importing_Audio skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Importing Audio</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{importing:audio:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+</p>
+
+<p><br/>
+</p>
+<div class="intro">This page is about importing audio files into Audacity (like WAV or MP3) that other applications on the computer can play. 
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">If you have already saved your audio as an Audacity Project, use <span class="menu">File &gt; <!--latex 
+\hyperref[\foo{file:menu:open}]{--><a href="file_menu.html#open" title="File Menu">Open</a><!--latex }
+--></span> or <span class="menu">File &gt; <!--latex 
+\hyperref[\foo{file:menu:recentfiles}]{--><a href="file_menu.html#recentfiles" title="File Menu">Recent Files</a><!--latex }
+--></span> to open the <!--\textit{--><i><!--\textbf{--><b>&lt;my_project_name&gt;.aup</b><!--}--></i><!--}-->. <p>Do not attempt to open, import or manipulate any individual AU files. See <!--latex 
+\hyperref[\foo{audacity:projects:}]{--><a href="audacity_projects.html" title="Audacity Projects">Audacity Projects</a><!--latex }
+--> for more information.</p>
+</td></tr></tbody></table>
+</div> </div>
+
+<div id="formats"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Audio_File_Formats_Supported_by_Audacity">Audio File Formats Supported by Audacity</span></h2><!--}--><!--latex 
+\label{importing:audio:formats}-->
+<p>The audio formats importable by Audacity as shipped are:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:uncompressed:format}]{--><a href="glossary.html#uncompressed_format" title="Glossary">Uncompressed</a><!--latex }
+--></b><!--}--></i><!--}--> audio formats: most <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:wav}]{--><a href="glossary.html#wav" title="Glossary">WAV</a><!--latex }
+--></b><!--}--></i><!--}--> and <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:aiff}]{--><a href="glossary.html#aiff" title="Glossary">AIFF</a><!--latex }
+--></b><!--}--></i><!--}--> files including all <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:pcm}]{--><a href="glossary.html#pcm" title="Glossary">PCM</a><!--latex }
+--></b><!--}--></i><!--}--> variants.  </li></ul><!--
+\end{itemize}
+-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:compressed:format}]{--><a href="glossary.html#compressed_format" title="Glossary">Compressed</a><!--latex }
+--></b><!--}--></i><!--}--> audio formats: <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:ogg}]{--><a href="glossary.html#ogg" title="Glossary">Ogg Vorbis</a><!--latex }
+--></b><!--}--></i><!--}-->, <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:flac}]{--><a href="glossary.html#flac" title="Glossary">FLAC</a><!--latex }
+--></b><!--}--></i><!--}-->, <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:mp2}]{--><a href="glossary.html#mp2" title="Glossary">MP2</a><!--latex }
+--></b><!--}--></i><!--}--> and <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:mp3}]{--><a href="glossary.html#mp3" title="Glossary">MP3</a><!--latex }
+--></b><!--}--></i><!--}-->.</li></ul><!--
+\end{itemize}
+-->
+<p>You can install the optional <!--latex 
+\hyperref[\foo{faq:installation:and:plug:ins:installffmpeg}]{--><a href="faq_installation_and_plug_ins.html#installffmpeg" title="FAQ:Installation and Plug-Ins">FFmpeg library</a><!--latex }
+--> to import a much larger <a class="external text" href="https://wiki.audacityteam.org/wiki/FFmpeg_integration#Functionality" rel="nofollow">range of audio formats</a> including <!--\textbf{--><b>AC3, AMR(NB), M4A, MP4 and WMA</b><!--}--> (if the files are not <a class="external text" href="https://en.wikipedia.org/wiki/Digital_rights_management" rel="nofollow">DRM-protected</a> to work only in particular software). FFmpeg will also import audio from most video files or DVDs that are not DRM-protected.  On Mac only, Audacity can import M4A, MP4 and MOV files without FFmpeg.
+</p>
+<div class="note">
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> Older uncompressed file types such as WAV with U-Law or IMA ADPCM encoding are generally supported provided they contain correctly formatted header information. </li>
+<!--
+\item --><li> If files do not have header information (such as RAW or <a class="external text" href="https://en.wikipedia.org/wiki/Dialogic_ADPCM" rel="nofollow">VOX ADPCM</a>) or have non-standard header information, you can normally import them using <span class="menu">File &gt; Import &gt; <!--latex 
+\hyperref[\foo{file:menu:import:raw}]{--><a href="file_menu_import.html#raw" title="File Menu: Import">Raw Data...</a><!--latex }
+--></span>.</li>
+<!--
+\item --><li> WAV files from portable recorders may contain proprietary compressed audio. These should not be imported as Raw Data, but by installing the <!--latex 
+\hyperref[\foo{faq:installation:and:plug:ins:ffdown}]{--><a href="faq_installation_and_plug_ins.html#ffdown" title="FAQ:Installation and Plug-Ins">FFmpeg library</a><!--latex }
+-->.   </li>
+<!--
+\item --><li> <!--latex 
+\hyperref[\foo{lof:files:}]{--><a href="lof_files.html" title="LOF Files">LOF files</a><!--latex }
+--> (lists of files) are also supported if the list is correctly formatted and contains supported files. </li></ul><!--
+\end{itemize}
+--></div>  
+<div id="rate_and_depth"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Sample_Rate_and_Sample_Format_of_imported_files">Sample Rate and Sample Format of imported files</span></h2><!--}--><!--latex 
+\label{importing:audio:rate:and:depth}-->
+<p>Audacity always imports files at their original <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:sample:rate}]{--><a href="glossary.html#sample_rate" title="Glossary">sample rate</a><!--latex }
+--></b><!--}--></i><!--}-->, as displayed in the <!--latex 
+\hyperref[\foo{audio:tracks:info}]{--><a href="audio_tracks.html#info" title="Audio Tracks">Track Information Area</a><!--latex }
+--> of the <!--latex 
+\hyperref[\foo{audio:tracks:panel}]{--><a href="audio_tracks.html#panel" title="Audio Tracks">Track Control Panel</a><!--latex }
+-->. 
+</p><p>When importing a file into an empty project window (as always happens when using <span class="menu">File &gt; <!--latex 
+\hyperref[\foo{file:menu:open}]{--><a href="file_menu.html#open" title="File Menu">Open...</a><!--latex }
+--></span> as described below), the <!--\textit{--><i>Project Rate</i><!--}--> control in <!--latex 
+\hyperref[\foo{selection:toolbar:}]{--><a href="selection_toolbar.html" title="Selection Toolbar">Selection Toolbar</a><!--latex }
+--> changes if necessary to reflect the rate of the file. The Project Rate determines the sample rate a file will be <!--latex 
+\hyperref[\foo{exporting:audio:}]{--><a href="exporting_audio.html" title="Exporting Audio">exported</a><!--latex }
+--> at, so no further adjustment is needed to export that file at its original rate. However, once there is already an audio track of any origin in the project (either an imported file, a <!--latex 
+\hyperref[\foo{record:}]{--><a href="record.html" title="Record">recording</a><!--latex }
+--> or <!--latex 
+\hyperref[\foo{generate:menu:}]{--><a href="generate_menu.html" title="Generate Menu">generated audio</a><!--latex }
+-->), importing an audio file will never change the project rate.
+</p><p>Generally, Audacity imports files at the <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:sample:format}]{--><a href="glossary.html#sample_format" title="Glossary">sample format</a><!--latex }
+--></b><!--}--></i><!--}--> (bit depth) specified at <!--\textit{--><i>Default Sample Format</i><!--}--> in <!--latex 
+\hyperref[\foo{quality:preferences:}]{--><a href="quality_preferences.html" title="Quality Preferences">Quality Preferences</a><!--latex }
+-->. This setting defaults to 32-bit float. Therefore by default an imported file will show in the Track Control Panel as 32-bit float, even if its original bit depth is lower. This is best for high-quality editing. Even if you choose a lower Default Sample Format than 32-bit float, Audacity will never downconvert a file that has a higher bit depth, as shown in the following table for WAV and AIFF imports using the standard uncompressed files importer.   
+</p>
+<dl><dd><table class="prettytablerows" rules="rows" width="40%">
+<caption> Resolution of imported WAV and AIFF files using standard importer
+</caption>
+<tbody><!--\par --><tr style="background: #add8e6">
+<td valign="top"><!--\textbf{--><b><!--latex 
+\hyperref[\foo{quality:preferences:}]{--><a href="quality_preferences.html" title="Quality Preferences">Default Sample Format</a><!--latex }
+--></b><!--}-->
+</td>
+<td valign="top"><!--\textbf{--><b>File bit depth</b><!--}-->
+</td>
+<td valign="top"><!--\textbf{--><b>Resolution imported at</b><!--}-->
+</td></tr>
+<!--\par --><tr>
+<td>16
+</td>
+<td>16
+</td>
+<td>16
+</td></tr>
+<!--\par --><tr>
+<td>16
+</td>
+<td>24
+</td>
+<td>32
+</td></tr>
+<!--\par --><tr>
+<td>16
+</td>
+<td>32
+</td>
+<td>32
+</td></tr>
+<!--\par --><tr>
+<td>24
+</td>
+<td>16
+</td>
+<td>24
+</td></tr>
+<!--\par --><tr>
+<td>24
+</td>
+<td>24
+</td>
+<td>32
+</td></tr>
+<!--\par --><tr>
+<td>24
+</td>
+<td>32
+</td>
+<td>32
+</td></tr>
+<!--\par --><tr>
+<td>32 (default)
+</td>
+<td>16
+</td>
+<td>32
+</td></tr>
+<!--\par --><tr>
+<td>32 (default)
+</td>
+<td>24
+</td>
+<td>32
+</td></tr>
+<!--\par --><tr>
+<td>32 (default)
+</td>
+<td>32
+</td>
+<td>32
+</td></tr></tbody></table></dd></dl>
+<p><!--latex 
+\hyperref[\foo{glossary:ogg}]{--><a href="glossary.html#ogg" title="Glossary">OGG</a><!--latex }
+--> is unusual in that it will always import at 16-bit resolution using the standard OGG Vorbis importer, irrespective of Default Sample Format. This is due to the design of the OGG codec. However OGG can be imported at 32-bit resolution using <!--latex 
+\hyperref[\foo{faq:installation:and:plug:ins:ffdown}]{--><a href="faq_installation_and_plug_ins.html#ffdown" title="FAQ:Installation and Plug-Ins">FFmpeg</a><!--latex }
+-->, as described at <!--latex 
+\hyperref[\foo{importing:audio::filetypes}]{--><a href="#filetypes">Using the file type dropdown menu</a><!--latex }
+-->.
+</p>
+<div id="ways"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Four_Ways_to_Import_Audio">Four Ways to Import Audio</span></h2><!--}--><!--latex 
+\label{importing:audio:ways}-->
+<p>No matter which method you use to bring an audio file into Audacity, the file is always <!--\textit{--><i>imported</i><!--}--> into a saved or unsaved <!--latex 
+\hyperref[\foo{audacity:projects:}]{--><a href="audacity_projects.html" title="Audacity Projects">Audacity project</a><!--latex }
+-->. The imported file always appears in a new track in that project.
+</p><p><!--\textbf{--><b>1. <span class="menu">File &gt; Import &gt; <!--latex 
+\hyperref[\foo{file:menu:import:audio}]{--><a href="file_menu_import.html#audio" title="File Menu: Import">Audio...</a><!--latex }
+--></span></b><!--}-->
+</p>
+<p>If you select the <span class="menu">File &gt; Import &gt; <!--latex 
+\hyperref[\foo{file:menu:import:audio}]{--><a href="file_menu_import.html#audio" title="File Menu: Import">Audio...</a><!--latex }
+--></span> command, then choose one or more audio files, Audacity will import the selected file(s) into the <!--\textit{--><i>existing project</i><!--}-->. This is useful to bring the content of one or more audio files into a project that already contains audio (for example, to mix several audio files together).</p>
+<p><br/>
+<!--\textbf{--><b>2. <span class="menu">File &gt; <!--latex 
+\hyperref[\foo{file:menu:open}]{--><a href="file_menu.html#open" title="File Menu">Open...</a><!--latex }
+--></span></b><!--}-->
+</p>
+<p>This command behaves differently according to whether the project window in which you use the Open command has ever contained <!--latex 
+\hyperref[\foo{tracks:}]{--><a href="tracks.html" title="Tracks">tracks</a><!--latex }
+--> of any type.</p>     
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> If the project contains or has ever contained tracks at some point in its <!--latex 
+\hyperref[\foo{undo:redo:and:history:}]{--><a href="undo_redo_and_history.html" title="Undo, Redo and History">history</a><!--latex }
+--> (so that <span class="menu">Edit &gt; <!--latex 
+\hyperref[\foo{edit:menu:undo}]{--><a href="edit_menu.html#undo" title="Edit Menu">Undo</a><!--latex }
+--></span> and <span class="menu">Edit &gt; <!--latex 
+\hyperref[\foo{edit:menu:redo}]{--><a href="edit_menu.html#redo" title="Edit Menu">Redo</a><!--latex }
+--></span> are not empty), Open imports each file you select into its own new project window. For example, selecting three files would create three new project windows, each containing one of the files and each a separate project with its own history.  This is handy if you want to apply different actions to different (or even the same) files and easily compare the results of each.</li>
+<!--
+\item --><li> If the project is empty and has never contained any tracks (for example, you used <span class="menu">File &gt; <!--latex 
+\hyperref[\foo{file:menu:new}]{--><a href="file_menu.html#new" title="File Menu">New</a><!--latex }
+--></span> to create a new, empty project or used <span class="menu">File &gt; <!--latex 
+\hyperref[\foo{file:menu:close}]{--><a href="file_menu.html#close" title="File Menu">Close</a><!--latex }
+--></span> to close an existing project), Open imports the first file into the empty project window, then imports each subsequent file into its own new project window.</li></ul><!--
+\end{itemize}
+-->
+<div class="note">As with the other three import methods, Open does not directly open your selected file(s). The imported audio data is converted into a large number of small files in <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:au}]{--><a href="glossary.html#au" title="Glossary">AU</a><!--latex }
+--></b><!--}--></i><!--}--> audio format, preserving the current quality of the data. Conversion occurs even if you never explicitly save your work as an <!--latex 
+\hyperref[\foo{audacity:projects:}]{--><a href="audacity_projects.html" title="Audacity Projects">Audacity project</a><!--latex }
+-->.<p>So to save your edits to an audio file for the computer you always have to choose an <!--latex 
+\hyperref[\foo{exporting:audio:}]{--><a href="exporting_audio.html" title="Exporting Audio">Export</a><!--latex }
+--> command from the <!--latex 
+\hyperref[\foo{file:menu:}]{--><a href="file_menu.html" title="File Menu">File Menu</a><!--latex }
+-->, even if you want to overwrite the exact same file that you imported.</p></div> 
+<p><br/>
+<!--\textbf{--><b>3. <span class="menu">File &gt;  <!--latex 
+\hyperref[\foo{file:menu:recentfiles}]{--><a href="file_menu.html#recentfiles" title="File Menu">Recent Files</a><!--latex }
+--></span></b><!--}--> (<!--\textit{--><i>Open Recent</i><!--}--> on Mac)
+</p>
+<p>This command imports a single file from a list of the 12 most recently imported files or recently saved projects. The file opens in a new window exactly as <span class="menu">File &gt; Open</span>.</p>
+<p><br/>
+<!--\textbf{--><b>4. Drag and drop</b><!--}-->
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>On Windows and Mac</b><!--}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> Drag and drop one or more audio files into an open Audacity project window: this is equivalent to <span class="menu">File &gt; Import &gt; Audio</span>.</li>
+<!--
+\item --><li> Drag and drop one or more audio files onto the Audacity icon: this is equivalent to <span class="menu">File &gt; Open</span>.</li></ul><!--
+\end{itemize}
+--></li></ul><!--
+\end{itemize}
+-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>On Linux:</b><!--}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> Drag and drop files into an open Audacity Project window: this is equivalent to <span class="menu">File &gt; Import &gt; Audio</span>.</li>
+<!--
+\item --><li> Drag and drop one or more audio files onto the Audacity icon: only the first file will open. More than one file dragged and dropped onto the icon will do the same as the <span class="menu">File &gt; Open</span> command for the first file, but the other files will generate an error message saying that Audacity is already running.</li></ul><!--
+\end{itemize}
+--></li></ul><!--
+\end{itemize}
+-->
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top"><!--\textbf{--><b>Metadata:</b><!--}--> Each time an audio file is imported into the same project window, the <!--latex 
+\hyperref[\foo{metadata:editor:}]{--><a href="metadata_editor.html" title="Metadata Editor">metadata tags</a><!--latex }
+--> for that file replace the previously stored metadata for the project. So if the last imported file has no metadata, the project will no longer have any stored metadata. Using one of the above methods that imports each file into its own project window will ensure each file's metadata is stored.
+</td></tr></tbody></table>
+</div>
+<p><br/>
+</p>
+<div id="format"></div>
+<div id="filetypes"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Using_the_file_type_dropdown_menu_in_the_Open_and_Import_Audio_Dialogs">Using the file type dropdown menu in the Open and Import Audio Dialogs</span></h2><!--}--><!--latex 
+\label{importing:audio:filetypes}--><!--latex 
+\label{importing:audio:format}-->
+<p>This menu (called "Format" on Mac) contains a list of different file types.
+</p>
+<dl><dd><span title="File type dropdown menu"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="File type drop-down menu W10.png" height="167" src="../m/images/8/87/file_type_drop_down_menu_w10.png" width="353"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/8/87/file_type_drop_down_menu_w10.png--></img><!--}\par
+--></span></dd></dl>
+<p>Choosing a particular file type in the menu performs two functions. 
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> The file type choice <!--\textbf{--><b>filters the list of files in the window</b><!--}--> by restricting it to files of that type. </li></ul><!--
+\end{itemize}
+-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> The file type choice <!--\textbf{--><b>determines which importer attempts the file first</b><!--}--> when using the Open or Import Audio dialogs. For example, a WAV file could be imported by Audacity's native WAV importer or by the optional <!--latex 
+\hyperref[\foo{faq:installation:and:plug:ins:ffdown}]{--><a href="faq_installation_and_plug_ins.html#ffdown" title="FAQ:Installation and Plug-Ins">FFmpeg library</a><!--latex }
+--> if this was installed.</li></ul><!--
+\end{itemize}
+-->
+<p>Additionally, rules for the order in which different importers attempt files of particular types can be created at <!--latex 
+\hyperref[\foo{extended:import:preferences:}]{--><a href="extended_import_preferences.html" title="Extended Import Preferences">Extended Import Preferences</a><!--latex }
+--> with an option to over-ride the Open and Import Audio file type choice. See <!--latex 
+\hyperref[\foo{import:filtering:and:importer:order:}]{--><a href="import_filtering_and_importer_order.html" title="Import Filtering and Importer Order">Import Filtering and Importer Order</a><!--latex }
+--> for more details.
+</p>
+<div id="uncompressed"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Importing_Uncompressed_Audio_Files">Importing Uncompressed Audio Files</span></h2><!--}--><!--latex 
+\label{importing:audio:uncompressed}-->
+<p>The two most common uncompressed file types you will encounter are WAV and AIFF.
+</p>
+<div id="warning"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Warning_Dialog_when_Importing_Uncompressed_Audio_Files">Warning Dialog when Importing Uncompressed Audio Files</span></h3><!--}--><!--latex 
+\label{importing:audio:warning}-->
+<p>The first time you import an uncompressed audio file into Audacity, you will see this dialog.
+</p>
+<dl><dd><span title="Warning Importing Uncompressed Audio dialog"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Warning Import Uncompressed Audio.png" height="364" src="../m/images/f/f7/warning_import_uncompressed_audio.png" width="513"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/f/f7/warning_import_uncompressed_audio.png--></img><!--}\par
+--></span></dd></dl>
+<p>For each imported file, you can choose:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> Whether to copy the imported file's data into the project or to read its data directly from the file, as described below. </li>
+<!--
+\item --><li> Whether to make your copy or read directly choice permanent and never show this warning again.</li></ul><!--
+\end{itemize}
+-->
+<div id="method"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Import_Methods">Import Methods</span></h3><!--}--><!--latex 
+\label{importing:audio:method}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>Make a copy before editing (safer)</b><!--}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> This is the default setting. When this option is chosen, Audacity copies the imported file(s) into the project's audio data. It is <!--\textbf{--><b>essential</b><!--}--> that files are copied into the project if the Audacity project is to be moved, opened on another computer or sent to someone else, or if you need to to move, rename or delete the original files.</li>
+<!--
+\item --><li> This option does <!--\textbf{--><b>not</b><!--}--> make a backup copy of the original file in its original location. If you do not want to lose the original content of the file when <!--latex 
+\hyperref[\foo{exporting:audio:}]{--><a href="exporting_audio.html" title="Exporting Audio">exporting</a><!--latex }
+--> to the same file name and location, please change the file name when exporting. </li></ul><!--
+\end{itemize}
+--></li>
+<!--
+\item --><li><!--\textbf{--><b>Read directly from the original (faster)</b><!--}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> When this option is chosen Audacity always reads imported files from the folder you first imported them from, <!--\textit{--><i>without copying them into the project</i><!--}-->. Therefore with this option set, <!--\textit{--><i>you must not move, rename or delete imported uncompressed files, or the folder they are in</i><!--}-->. The advantage of this option is that you can begin editing a long file almost immediately, since <!--latex 
+\hyperref[\foo{on:demand:loading:}]{--><a href="on_demand_loading.html" title="On-Demand Loading">On-Demand Loading</a><!--latex }
+--> will be used to import the file.</li>
+<!--
+\item --><li> If you export to the same file name and location as the original file, Audacity will make a copy of the original file's content (renamed to include "-old" and a number) and will then read the project from this "-old" file. Therefore <!--\textit{--><i>you must not move, rename or delete any "-old" files until you have completely finished working on the project</i><!--}-->.  </li></ul><!--
+\end{itemize}
+--></li></ul><!--
+\end{itemize}
+-->
+<div class="note">You can change your import preference at any time in <!--latex 
+\hyperref[\foo{import:export:preferences:}]{--><a href="import_export_preferences.html" title="Import - Export Preferences">Import / Export Preferences</a><!--latex }
+-->, and you can turn the warning dialog on and off in <!--latex 
+\hyperref[\foo{warnings:preferences:}]{--><a href="warnings_preferences.html" title="Warnings Preferences">Warnings Preferences</a><!--latex }
+-->.</div>
+<div id="dependencies"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Dependencies">Dependencies</span></h3><!--}--><!--latex 
+\label{importing:audio:dependencies}-->
+<p>If you import any uncompressed audio files into your project using the "read directly" option, then your project <!--\textbf{--><b>depends</b><!--}--> on those files remaining available. At any time you can check which files your project depends on by clicking on <span class="menu">Help &gt; Diagnostics &gt; <!--latex 
+\hyperref[\foo{dependencies:dialog:}]{--><a href="dependencies_dialog.html" title="Dependencies Dialog">Check Dependencies...</a><!--latex }
+--></span>. See the <!--latex 
+\hyperref[\foo{dependencies:dialog:}]{--><a href="dependencies_dialog.html" title="Dependencies Dialog">Dependencies Dialog</a><!--latex }
+--> page for details.
+</p><p>When you save a project you can choose whether or not to copy dependent files into the project. See the <!--latex 
+\hyperref[\foo{projects:preferences:}]{--><a href="projects_preferences.html" title="Projects Preferences">Projects Preferences</a><!--latex }
+--> page for details.
+</p>
+<div id="compressed"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Importing_Compressed_Audio_Files">Importing Compressed Audio Files</span></h2><!--}--><!--latex 
+\label{importing:audio:compressed}-->
+<p>When you import a compressed audio file into your project on Windows or Mac, either a <!--latex 
+\hyperref[\foo{glossary:lossy}]{--><a href="glossary.html#lossy" title="Glossary">lossy</a><!--latex }
+--> format like <!--\textbf{--><b>MP3</b><!--}-->, <!--\textbf{--><b>MP2</b><!--}-->, <!--\textbf{--><b>M4A</b><!--}--> or <!--\textbf{--><b>Ogg Vorbis</b><!--}--> or the <!--latex 
+\hyperref[\foo{glossary:lossless}]{--><a href="glossary.html#lossless" title="Glossary">lossless</a><!--latex }
+--> compressed <!--\textbf{--><b>FLAC</b><!--}--> format, there is no choice between "safer" and "faster" - the file's data is <!--\textit{--><i>always copied into the project</i><!--}-->. 
+</p><p>However by default on Linux, FLAC is imported by the Audacity importer for uncompressed files, so the warning for "Importing uncompressed audio files" will appear with the choice to copy in the audio or read it directly. Reading directly permits faster <!--latex 
+\hyperref[\foo{on:demand:loading:}]{--><a href="on_demand_loading.html" title="On-Demand Loading">On-Demand Loading</a><!--latex }
+-->.
+</p>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top"><!--\textbf{--><b>Re-encoding lossy compressed audio files</b><!--}--><p>If you import a <!--latex 
+\hyperref[\foo{glossary:lossy}]{--><a href="glossary.html#lossy" title="Glossary">lossy</a><!--latex }
+--> compressed audio file into Audacity, edit it then export it as a lossy compressed audio file, you will lose quality <!--\textit{--><i><!--\textbf{--><b>twice</b><!--}--></i><!--}-->, once in the original encoding of the imported audio, then again when you export it from Audacity as a compressed file. So never do production work in lossy compressed audio formats, instead work with a lossless format such as WAV, AIFF or FLAC and for final use then export to compressed formats.</p><p>
+See <a class="external text" href="https://wiki.audacityteam.org/wiki/MP3#mp3apps" rel="nofollow">this page</a> in the Audacity Wiki for other applications that can be used to directly edit MP3 audio files, thereby avoiding lossy re-encoding.</p>
+</td></tr></tbody></table>
+</div>
+<div id="cd"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Importing_audio_from_CDs">Importing audio from CDs</span></h2><!--}--><!--latex 
+\label{importing:audio:cd}-->
+<p>Audacity <!--\textit{--><i><!--\textbf{--><b>does not</b><!--}--></i><!--}--> contain any function for importing (<!--\textit{--><i>ripping</i><!--}-->) audio from CDs. This can, however, be achieved by using other applications to extract the data into a file format Audacity does support.
+</p><p>See the tutorial <!--latex 
+\hyperref[\foo{tutorial:how:to:import:cds:}]{--><a href="tutorial_how_to_import_cds.html" title="Tutorial - How to import CDs">How to import CDs</a><!--latex }
+-->.
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

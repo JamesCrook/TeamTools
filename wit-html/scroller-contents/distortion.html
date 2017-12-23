@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Distortion - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Distortion rootpage-Distortion skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Distortion</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{distortion:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p><br/>
+</p>
+
+<p><br/>
+</p>
+<div class="intro"><p>Use the <!--\textit{--><i><!--\textbf{--><b>Distortion</b><!--}--></i><!--}--> effect to make the audio sound distorted. By distorting the waveform the frequency content is changed, which will often make the sound 'crunchy' or 'abrasive'.</p>
+<p>Technically this effect is a <a class="external text" href="https://en.wikipedia.org/wiki/Waveshaper" rel="nofollow">waveshaper</a>. The result of waveshaping is equivalent to applying non-linear amplification to the audio waveform. Preset <!--\textit{--><i>shaping functions</i><!--}--> are provided, each of which produces a different type of distortion.  </p>
+<p>Presets are provided in the <span class="button">Manage</span> menu, which suggest typical settings for a wide range of uses.</p></div>
+<dl><dd><!--\textbf{--><b>Accessed by:</b><!--}--> <span class="menu">Effect &gt; Distortion...</span></dd>
+<dd><span title="Distortion effect dialog"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Distortion.png"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Distortion.png" height="366" src="../m/images/2/22/distortion.png" width="729"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/2/22/distortion.png--></img><!--}\par
+--></a></span></dd></dl>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top"><p>For more "analog" sounding distortion, the track should be <!--latex 
+\hyperref[\foo{tracks:menu:resample}]{--><a href="tracks_menu.html#resample" title="Tracks Menu">resampled</a><!--latex }
+--> to a high <!--latex 
+\hyperref[\foo{glossary:sample:rate}]{--><a href="glossary.html#sample_rate" title="Glossary">sampling rate</a><!--latex }
+--> so as to reduce aliasing.</p><p>
+Equalization may also be applied, before or after applying the distortion effect to modify the timbre of the distorted audio.</p>
+</td></tr></tbody></table>
+</div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Distortion_type">Distortion type</span></h2><!--}-->
+<p>These are the <!--\textit{--><i>shaping functions</i><!--}-->. Each <!--\textit{--><i>type</i><!--}--> defines how the input signal is mapped to the output level.
+</p><p>Each distortion type has one or more control parameters that determine how the shaping function is applied. There is a total of five slider controls. The controls are enabled or disabled automatically depending on which "type" of distortion is selected.
+</p>
+<div class="note">For all distortion types, input signals above 0 dB are "hard clipped" at 0 dB in addition to the specified 'shaping'.</div>
+<p><br/>
+</p>
+<div id="clipping"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Clipping_Distortion">Clipping Distortion</span></h3><!--}--><!--latex 
+\label{distortion:clipping}-->
+<div id="hard"></div>
+<!--
+\subsubsection{--><h4><span class="mw-headline" id="Hard_Clipping">Hard Clipping</span></h4><!--}--><!--latex 
+\label{distortion:hard}-->
+
+<p>This type of distortion cuts off peaks at the top and bottom of the waveform. Note that hard clipping is very likely to cause <!--latex 
+\hyperref[\foo{glossary:aliasing}]{--><a href="glossary.html#aliasing" title="Glossary">aliasing distortion</a><!--latex }
+-->, which may be undesirable.
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>Clipping level (-100 to 0 dB):</b><!--}--> Peaks greater than this level are cut off. The slider control has a logarithmic scale to allow settings close to 0 dB to be made more easily and accurately.</li>
+<!--
+\item --><li><!--\textbf{--><b>Drive (0 to 100):</b><!--}--> When set to greater than 0, the waveform is amplified this amount (dB) prior to being clipped.</li>
+<!--
+\item --><li><!--\textbf{--><b>Make-up Gain (0 to 100):</b><!--}--> When set greater than 0, the output from the effect is amplified. When set to 100, the amplification is such that an input level of 0 dB (full track height) will produce an output level of 0 dB.</li></ul><!--
+\end{itemize}
+-->
+<div id="soft"></div>
+<!--
+\subsubsection{--><h4><span class="mw-headline" id="Soft_Clipping">Soft Clipping</span></h4><!--}--><!--latex 
+\label{distortion:soft}-->
+<p>This type of distortion is similar to <!--latex 
+\hyperref[\foo{distortion::hard}]{--><a href="#hard">Hard Clipping</a><!--latex }
+--> except that 'corners' where clipping intersects with the waveform are rounded. This is achieved by progressively reducing the gain when the input is above the clipping threshold. The softer the clipping, the more rounded the clipped peaks and the less risk of aliasing distortion.
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>Clipping threshold (-100 to 0 dB):</b><!--}--> The level at which gain reduction (clipping) starts. The slider control has a logarithmic scale to allow settings close to 0 dB to be made more easily and accurately.</li>
+<!--
+\item --><li><!--\textbf{--><b>Hardness (0 to 100):</b><!--}--> The 'hardness' of the clipping (100&nbsp;% being "hard").</li>
+<!--
+\item --><li><!--\textbf{--><b>Make-up Gain (0 to 100):</b><!--}--> When set greater than 0, the output from the effect is amplified. When set to 100, the amplification is such that an input level of 0 dB (full track height) will produce an output level of 0 dB.</li></ul><!--
+\end{itemize}
+-->
+<p>Note that even without "Make-up Gain", the output level may be higher than the clipping threshold because the peaks are in effect 'squashed' flatter rather than being completely cut off.
+</p><p><br/>
+</p>
+<div id="overdrive"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Overdrive_Distortion">Overdrive Distortion</span></h3><!--}--><!--latex 
+\label{distortion:overdrive}-->
+<div class="note">For all three 'Overdrive' types, the shaping function is a continuous smooth curve.</div>
+<div id="soft_OD"></div>
+<!--
+\subsubsection{--><h4><span class="mw-headline" id="Soft_Overdrive">Soft Overdrive</span></h4><!--}--><!--latex 
+\label{distortion:soft:OD}-->
+<p>This is the "softest" of the overdrive types and produces the least amount of high harmonics. It can be useful for reducing the dynamic range (thus increasing the sustain of musical instruments) while adding the least amount of "crunch" to the sound.
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>Distortion amount (0 to 100):</b><!--}--> The amount / strength of the distortion.</li>
+<!--
+\item --><li><!--\textbf{--><b>Output level (0 to 100):</b><!--}--> An output level adjustment. When set to 0 the output is silent.</li></ul><!--
+\end{itemize}
+-->
+<div id="medium_OD"></div>
+<!--
+\subsubsection{--><h4><span class="mw-headline" id="Medium_Overdrive">Medium Overdrive</span></h4><!--}--><!--latex 
+\label{distortion:medium:OD}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>Distortion amount (0 to 100):</b><!--}--> The amount / strength of the distortion.</li>
+<!--
+\item --><li><!--\textbf{--><b>Output level (0 to 100):</b><!--}--> An output level adjustment. When set to 0 the output is silent.</li></ul><!--
+\end{itemize}
+-->
+<div id="hard_OD"></div>
+<!--
+\subsubsection{--><h4><span class="mw-headline" id="Hard_Overdrive">Hard Overdrive</span></h4><!--}--><!--latex 
+\label{distortion:hard:OD}-->
+<p>This is the "hardest" of the overdrive types and produces the greatest amount of high harmonics. This would typically be used for producing a heavily distorted effect.
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>Distortion amount (0 to 100):</b><!--}--> The amount / strength of the distortion.</li>
+<!--
+\item --><li><!--\textbf{--><b>Output level (0 to 100):</b><!--}--> An output level adjustment. When set to 0 the output is silent.</li></ul><!--
+\end{itemize}
+-->
+<p><br/>
+</p>
+<div id="harmonic"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Harmonic_Distortion">Harmonic Distortion</span></h3><!--}--><!--latex 
+\label{distortion:harmonic}-->
+<div class="note">These types of distortion create a series of odd or even harmonics. "Odd" harmonics have frequencies that are an odd number of times higher than the fundamental frequency, whereas even harmonics are an even number of times higher than the fundamental frequency. For example, the second harmonic of a 440 Hz sine wave is a sine wave with a frequency  of 880 Hz. Note that because real world sounds contain many frequencies, these distortion effects are unlikely to create recognizable "harmony" type sounds, but rather will produce distortion with a unique tonal character.</div>
+<div id="cubic"></div>
+<!--
+\subsubsection{--><h4><span class="mw-headline" id="Cubic_Curve_.28odd_harmonics.29">Cubic Curve (odd harmonics)</span></h4><!--}--><!--latex 
+\label{distortion:cubic}-->
+
+<p>This shaping function is often used in electric guitar distortion effects as it is possible to avoid <!--latex 
+\hyperref[\foo{glossary:aliasing}]{--><a href="glossary.html#aliasing" title="Glossary">aliasing distortion</a><!--latex }
+--> with only a modest amount of <!--latex 
+\hyperref[\foo{glossary:oversampling}]{--><a href="glossary.html#oversampling" title="Glossary">oversampling</a><!--latex }
+-->. This implementation does not use oversampling, though oversampling can be applied manually by <!--latex 
+\hyperref[\foo{tracks:menu:resample}]{--><a href="tracks_menu.html#resample" title="Tracks Menu">resampling the track</a><!--latex }
+--> to a higher rate prior to applying this distortion effect.
+</p><p>One limitation of this type of distortion is that even when applied fully, the effect is still quite mild. Stronger effects can be achieved by applying the algorithm multiple times, which can be achieved by setting the "Repeat processing" control greater than 0.
+</p><p>When applied once only, each frequency component of the sound gains one harmonic overtone that is 3 times the original frequency. When the effect is applied multiple times, additional odd numbered harmonics are created.
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>Distortion amount (0 to 100):</b><!--}--> The amount / strength of the distortion.</li>
+<!--
+\item --><li><!--\textbf{--><b>Output level (0 to 100):</b><!--}--> An output level adjustment. When set to 0 the output is silent.</li>
+<!--
+\item --><li><!--\textbf{--><b>Repeat processing (0 to 5):</b><!--}--> The number of times to repeat the distortion algorithm. When set to 0 the effect is applied once only.</li></ul><!--
+\end{itemize}
+-->
+<div id="even"></div>
+<!--
+\subsubsection{--><h4><span class="mw-headline" id="Even_Harmonics">Even Harmonics</span></h4><!--}--><!--latex 
+\label{distortion:even}-->
+<p>This type of distortion produces a series of harmonics that are 2, 4, 6... times the frequency of the original waveform (even numbers). Producing even harmonics requires that the waveform is distorted asymmetrically, which if not corrected will produce substantial <!--latex 
+\hyperref[\foo{dc:offset:}]{--><a href="dc_offset.html" title="DC offset">DC offset</a><!--latex }
+-->. To counter the DC offset, a DC blocking filter is provided.
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>DC blocking filter</b><!--}--> (checkbox) When checked, a low frequency filter is applied which will reduce the DC component of the processed audio.</li>
+<!--
+\item --><li><!--\textbf{--><b>Distortion amount (0 to 100):</b><!--}--> The amount / strength of the distortion.</li>
+<!--
+\item --><li><!--\textbf{--><b>Harmonic brightness (0 to 100):</b><!--}--> Higher values produce a greater number of harmonics.</li></ul><!--
+\end{itemize}
+-->
+<p><br/>
+</p>
+<div id="hybrid"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Hybrid_Distortion">Hybrid Distortion</span></h3><!--}--><!--latex 
+\label{distortion:hybrid}-->
+<div class="note">This type of distortion is distinct from the other presets in that the shaping functions curves in two directions (an "S" shape). Thus low level signals are "expanded" downwards, becoming quieter, while medium level signals are made louder creating dynamic range compression for louder sounds.</div>
+<div id="expand-compress"></div>
+<!--
+\subsubsection{--><h4><span class="mw-headline" id="Expand_and_Compress">Expand and Compress</span></h4><!--}--><!--latex 
+\label{distortion:expand-compress}-->
+<p>The transformation shape for this type of distortion is a sinusoidal "S" shape for both positive and negative going signals. The distortion of high peaks is similar to soft clipping or overdrive, while distortion of low level sounds is similar to <a class="external text" href="https://en.wikipedia.org/wiki/Crossover_distortion" rel="nofollow">crossover distortion</a>.
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>Distortion amount (0 to 100):</b><!--}--> The amount / strength of the distortion.</li>
+<!--
+\item --><li><!--\textbf{--><b>Output level (0 to 100):</b><!--}--> An output level adjustment. When set to 0 the output is silent.</li></ul><!--
+\end{itemize}
+-->
+<p><br/>
+</p>
+<div id="modeled"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Modeled_Distortion">Modeled Distortion</span></h3><!--}--><!--latex 
+\label{distortion:modeled}-->
+<div class="note">These distortion types are modeled on other effects. "Leveller" and "Hard Limiter 1413" were included in old versions of Audacity.</div>
+<div id="leveller"></div>
+<!--
+\subsubsection{--><h4><span class="mw-headline" id="Leveller">Leveller</span></h4><!--}--><!--latex 
+\label{distortion:leveller}-->
+<p>This type of distortion is modeled on the "Leveller" (or "Leveler") effect that was included in older versions of Audacity.
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>Noise floor (-80 to -20):</b><!--}--> [default = -70] This is equivalent to the "Noise Threshold" setting in the original "Leveller" effect. It sets the noise threshold for the effect. For audio that is not already at maximum volume, higher threshold settings tend to amplify the audio by a lesser amount, and may reduce the chance of background noise becoming obtrusive.</li>
+<!--
+\item --><li><!--\textbf{--><b>Levelling fine adjustment (0 to 100):</b><!--}--> [default = 0] This is an additional control that was not available in the original effect. It allows fine adjustment of the amounts of "levelling".</li>
+<!--
+\item --><li><!--\textbf{--><b>Degree of Levelling (0 to 5):</b><!--}--> [default = 1] Controls the amount of levelling that is applied to the signal. When the fine adjustment is at zero, the amounts 0 to 5 are equivalent to the original effect choices: 1 = Light, 2 = Moderate, 3 = Heavy, 4 = Heavier, 5 =  Heaviest.</li></ul><!--
+\end{itemize}
+-->
+<div id="rectifier"></div>
+<!--
+\subsubsection{--><h4><span class="mw-headline" id="Rectifier_Distortion">Rectifier Distortion</span></h4><!--}--><!--latex 
+\label{distortion:rectifier}-->
+<p>This type of distortion is modeled on a simple electronic component called a <a class="external text" href="https://en.wikipedia.org/wiki/Rectifier" rel="nofollow">rectifier</a>.
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>DC blocking filter</b><!--}--> (checkbox) When checked, a low frequency filter is applied which will reduce the DC component of the processed audio.</li>
+<!--
+\item --><li><!--\textbf{--><b>Distortion amount (0 to 100):</b><!--}--> The amount / strength of the distortion. From 0 to 50&nbsp;% the lower half of the waveform is progressively clipped (hard clipping) until at 50&nbsp;% only the upper half of the waveform remains (equivalent to <a class="external text" href="https://en.wikipedia.org/wiki/Rectifier#Half-wave_rectification" rel="nofollow">half wave rectification</a>.. From 50 to 100&nbsp;%, the lower half of the input waveform is progressively reproduced on the positive side (upper half) of the audio channel, until at 100% the waveform comprises of the upper half plus the inverted lower half of the original waveform (equivalent to <a class="external text" href="https://en.wikipedia.org/wiki/Rectifier#Full-wave_rectification" rel="nofollow">full wave rectification</a>)</li></ul><!--
+\end{itemize}
+-->
+<div id="limiter"></div>
+<!--
+\subsubsection{--><h4><span class="mw-headline" id="Hard_Limiter_1413">Hard Limiter 1413</span></h4><!--}--><!--latex 
+\label{distortion:limiter}-->
+<p>This type of distortion is modeled on the "<a class="external text" href="http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#tth_sEc2.53" rel="nofollow">Hard Limiter</a>" LADSPA plug-in that was included in older versions of Audacity. The default settings are different from the original effect (the original defaults would produce no effect).
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>dB limit (-100 to 0dB):</b><!--}--> [default = -6] This is the amplitude level above which the input signal is processed. If the Wet level is 100% and Residue level 0%, the peak level of the result will be clipped down to this level. </li></ul><!--
+\end{itemize}
+-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>Wet level (-100 to 0dB):</b><!--}--> [default = 50] This is the percentage of the clipped signal that is fed to the output. It thus acts as a volume control for audio below the dB limit. When set to 100%, all sounds below the dB limit are fed to the output. At lower settings, the volume of the result will be reduced.</li></ul><!--
+\end{itemize}
+-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>Residue level (-100 to 0dB):</b><!--}--> [default = 50] This allows a proportion of the signal that has been removed by clipping to be added back to the output and so <!--\textit{--><i>soften</i><!--}--> the effect. When set to 0%, all of the clipped signal is discarded. At higher settings, some of the clipped signal will be restored, making the limit softer. More peaks and troughs of the original waveform will be retained, and the resultant volume level will be higher than that set in the dB limit. </li></ul><!--
+\end{itemize}
+-->
+<p><br/>
+</p>
+<div id="buttons"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Buttons">Buttons</span></h2><!--}--><!--latex 
+\label{distortion:buttons}-->
+<p>Clicking on the command buttons give the following results:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <span class="button">Manage</span> opens a dropdown menu enabling you to select factory presets, save or delete user presets, and see some detail about the tool. For details of these menu items, see <!--latex 
+\hyperref[\foo{manage:presets:}]{--><a href="manage_presets.html" title="Manage presets">Manage presets</a><!--latex }
+-->. The included factory presets are:</li></ul><!--
+\end{itemize}
+-->
+<dl><dd><!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>Defaults</b><!--}--> The factory default setting.</li>
+<!--
+\item --><li><!--\textbf{--><b>Hard clip -12dB, 80% make-up gain</b><!--}--> Distortion that <!--latex 
+\hyperref[\foo{glossary:clipping}]{--><a href="glossary.html#clipping" title="Glossary">clips</a><!--latex }
+--> peaks at -12 db and then boosts the output level</li>
+<!--
+\item --><li><!--\textbf{--><b>Soft clip -12dB, 80% make-up gain</b><!--}--> Similar to the "Hard clip" preset but with slightly rounded clipping for less aliasing.</li>
+<!--
+\item --><li><!--\textbf{--><b>Fuzz Box</b><!--}--> A clipping effect commonly used with electric guitars. </li>
+<!--
+\item --><li><!--\textbf{--><b>Walkie-talkie</b><!--}--> A heavily distorted effect suggestive of military walkie-talkies. May be used in conjunction with the <!--latex 
+\hyperref[\foo{equalization:}]{--><a href="equalization.html" title="Equalization">Equalization</a><!--latex }
+--> effect for a more authentic walkie-talkie effect.</li>
+<!--
+\item --><li><!--\textbf{--><b>Blues drive sustain</b><!--}--> A soft overdrive effect that raises the volume of quiet sounds.</li>
+<!--
+\item --><li><!--\textbf{--><b>Light Crunch Overdrive</b><!--}--> A medium/strong overdrive effect, reminiscent of high input gain on a guitar amplifier.</li>
+<!--
+\item --><li><!--\textbf{--><b>Heavy Overdrive</b><!--}--> <!--\textit{--><i>Severe</i><!--}--> distortion. A <a class="external text" href="https://en.wikipedia.org/wiki/Up_to_eleven" rel="nofollow">"turn it up to 11"</a> type effect.</li>
+<!--
+\item --><li><!--\textbf{--><b>3rd Harmonic (Perfect Fifth)</b><!--}--> When applied to a <!--latex 
+\hyperref[\foo{generate:menu:tone}]{--><a href="generate_menu.html#tone" title="Generate Menu">sine tone</a><!--latex }
+-->, adds one harmonic that is three times the frequency of the original tone.</li>
+<!--
+\item --><li><!--\textbf{--><b>Valve Overdrive</b><!--}--> A fairly subtle overdrive effect with even harmonics. Even harmonics have frequencies that are even number multiples of the original frequencies.</li>
+<!--
+\item --><li><!--\textbf{--><b>2nd Harmonic (Octave)</b><!--}--> When applied to a <!--latex 
+\hyperref[\foo{generate:menu:tone}]{--><a href="generate_menu.html#tone" title="Generate Menu">sine tone</a><!--latex }
+-->, adds one harmonic that is double the frequency of the original tone (one octave above).</li>
+<!--
+\item --><li><!--\textbf{--><b>Gated Expansion Distortion</b><!--}--> Heavily distorts both high and low level signals, making peaks "crunchy" and quiet parts much quieter.</li>
+<!--
+\item --><li><!--\textbf{--><b>Leveller, Light, -70dB noise floor</b><!--}--> The same as the "Leveller" effect that was shipped in earlier versions of Audacity.</li>
+<!--
+\item --><li><!--\textbf{--><b>Leveller, Moderate, -70dB noise floor</b><!--}--></li>
+<!--
+\item --><li><!--\textbf{--><b>Leveller, Heavy, -70dB noise floor</b><!--}--></li>
+<!--
+\item --><li><!--\textbf{--><b>Leveller, Heavier, -70dB noise floor</b><!--}--></li>
+<!--
+\item --><li><!--\textbf{--><b>Leveller, Heaviest, -70dB noise floor</b><!--}--></li>
+<!--
+\item --><li><!--\textbf{--><b>Half-wave Rectifier</b><!--}--> Equivalent to <a class="external text" href="https://en.wikipedia.org/wiki/Rectifier#Half-wave_rectification" rel="nofollow">half-wave rectification</a>.</li>
+<!--
+\item --><li><!--\textbf{--><b>Full-wave Rectifier</b><!--}--> Equivalent to <a class="external text" href="https://en.wikipedia.org/wiki/Rectifier#Full-wave_rectification" rel="nofollow">full-wave rectification</a>.</li>
+<!--
+\item --><li><!--\textbf{--><b>Full-wave Rectifier (DC blocked)</b><!--}--> Equivalent to full-wave rectification with a high pass filter to reduce <!--latex 
+\hyperref[\foo{glossary:dc:offset}]{--><a href="glossary.html#dc_offset" title="Glossary">DC offset</a><!--latex }
+--></li>
+<!--
+\item --><li><!--\textbf{--><b>Percussion Limiter</b><!--}--> A hard clipping limiter that restores a portion of the clipped peaks to make the distortion less harsh. Can be effective for limiting peaks and adding "bite" to percussive sounds like snare drums and <a class="external text" href="https://en.wikipedia.org/wiki/Hi-hat" rel="nofollow">hi-hats</a>.</li></ul><!--
+\end{itemize}
+--></dd></dl>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <span class="button"> Start Playback</span> ...</li>
+<!--
+\item --><li> <span class="button"> Skip Backward</span> ...</li>
+<!--
+\item --><li> <span class="button"> Skip Forward</span> ...</li>
+<!--
+\item --><li> <span class="button"><a class="image" href="http://alphamanual.audacityteam.org/man/File:CheckboxChecked.png"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="CheckboxChecked.png" height="13" src="../m/images/8/85/checkboxchecked.png" style="vertical-align: text-top" width="13"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/8/85/checkboxchecked.png--></img><!--}}{}--></a>&nbsp;Enable</span></li></ul><!--
+\end{itemize}
+-->
+<p><br/>
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <span class="button">Close</span> ...</li>
+<!--
+\item --><li> <span class="button">Apply</span> ...</li></ul><!--
+\end{itemize}
+-->
+<!--
+\subsection{--><h2><span class="mw-headline" id="Links">Links</span></h2><!--}-->
+<p><!--latex 
+\hyperref[\foo{index:of:effects:generators:and:analyzers:}]{--><a href="index_of_effects_generators_and_analyzers.html" title="Index of Effects, Generators and Analyzers"><!--\textbf{--><b>|&lt;</b><!--}--> Index of Effects, Generators and Analyzers</a><!--latex }
+--> <br/>
+</p><p><!--latex 
+\hyperref[\foo{effect:menu:}]{--><a href="effect_menu.html" title="Effect Menu"><!--\textbf{--><b>|&lt;</b><!--}--> Effect Menu</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

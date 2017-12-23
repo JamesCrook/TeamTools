@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Add / Remove Effects, Generators and Analyzers - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Manage_Effects_Generators_and_Analyzers rootpage-Manage_Effects_Generators_and_Analyzers skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Add / Remove Effects, Generators and Analyzers</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{manage:effects:generators:and:analyzers:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+</p><p><br/>
+</p>
+<div class="intro">Use the <!--\textit{--><i><!--\textbf{--><b>Effects, Generators and Analyzers</b><!--}--></i><!--}--> Plug-in Manager to add or remove <!--latex 
+\hyperref[\foo{index:of:effects:generators:and:analyzers:}]{--><a href="index_of_effects_generators_and_analyzers.html" title="Index of Effects, Generators and Analyzers">shipped effects and plug-ins</a><!--latex }
+--> and third-party plug-ins of <!--latex 
+\hyperref[\foo{effect:menu:plugin:types}]{--><a href="effect_menu.html#plugin_types" title="Effect Menu">supported types</a><!--latex }
+-->, without the need to restart Audacity.</div>
+<dl><dd><!--\textbf{--><b>Accessed by:</b><!--}--> <span class="menu">Effect &gt; Add / Remove Plug-ins...</span>,  <span class="menu">Generate &gt; Add / Remove Plug-ins...</span> or <span class="menu">Analyze &gt; Add / Remove Plug-ins... .</span></dd>
+<dd><span title="Manage effects, generators and analyzers dialog"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Manager.png" height="344" src="../m/images/1/15/manager.png" width="749"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/1/15/manager.png--></img><!--}\par
+--></span></dd></dl>
+<div class="note">By default all the Built-in effects, with the exception of <!--latex 
+\hyperref[\foo{classic:filters:}]{--><a href="classic_filters.html" title="Classic Filters">Classic Filters</a><!--latex }
+-->, are loaded in Audacity. <!--\textbf{--><b>The shipped plug-ins must be enabled using this dialog.</b><!--}--> </div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Radio_buttons">Radio buttons</span></h2><!--}-->
+<p>Every time you open the dialog, Audacity scans for all detected plug-ins and lists these together with the built-in effects it ships with.  
+</p><p>Select the <!--\textbf{--><b>All</b><!--}--> button to see all those built-in effects and plug-ins and their current disabled, enabled or "new" state (see below). 
+</p><p>The buttons <!--\textbf{--><b>Disabled</b><!--}-->, <!--\textbf{--><b>Enabled</b><!--}--> and <!--\textbf{--><b>New</b><!--}--> enable you to list only those effects, generators and analyzers in that respective state.  
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Enabling_and_disabling">Enabling and disabling</span></h2><!--}-->
+<p>All effects shown in the dialog as <!--\textbf{--><b>Enabled</b><!--}--> will be visible in the appropriate menu: Effect, Generate or Analyze.
+</p><p><!--\textbf{--><b>New</b><!--}--> relates to those effects that have never been registered as <!--\textbf{--><b>Enabled</b><!--}--> in your installation of Audacity. Use this <!--\textbf{--><b>New</b><!--}--> view to quickly locate an effect that you have just added to your system and wish to enable.
+</p><p>To change the state of any effect, generator or analyzer select it by clicking on it in the list in the dialog, then use either the <span class="button">Enable</span> or <span class="button">Disable</span> button and click the <span class="button">OK</span> button. Note that escaping, clicking Cancel or the window close button will discard your changes. Alternatively you can use  <span class="kbrd" style="background-color: #e0e0f0">Space</span> to toggle the state of the effect from <!--\textbf{--><b>New</b><!--}--> to <!--\textbf{--><b>Enabled</b><!--}--> and thence between <!--\textbf{--><b>Enabled</b><!--}--> and <!--\textbf{--><b>Disabled</b><!--}-->. 
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> Press <span class="button">Select All</span> to select all items in the view you are in. The items will now appear with light gray background. The <span class="button">Clear All</span> button deselects all items and can be used to change your mind and quickly enable only one or two individual effects.   </li>
+<!--
+\item --><li> Multiple individual items from the list can be selected using <span class="kbrd" style="background-color: #e0e0f0">Ctrl + Click</span> to select each additional item or <span class="kbrd" style="background-color: #e0e0f0">Shift + Click</span> to select a range of items. </li></ul><!--
+\end{itemize}
+-->
+<p>Once enabled, an effect can only be disabled (which removes it from the menu) or re-enabled. Unless you are in the "All" view, changing the state of an effect always removes it from the view you are in. The effect can then be seen in the appropriate view for its current state.  
+</p>
+<div class="note">
+<p>Disabling an effect only disables it in Audacity, and does not uninstall it from your system.
+</p>
+</div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Resetting_effects">Resetting effects</span></h2><!--}-->
+<p><!--latex 
+\hyperref[\foo{faq:installation:and:plug:ins:reset}]{--><a href="faq_installation_and_plug_ins.html#reset" title="FAQ:Installation and Plug-Ins">Resetting your Audacity settings</a><!--latex }
+--> (for example, by reinstalling Audacity using the Windows installer with "Reset Preferences" enabled) does not change the enabled or disabled state of your effects. 
+</p><p>If you want to go back to the enabled effects, generators and analyzers that Audacity was installed with (Classic Filters and all shipped or third-party plug-ins are "New" and not in the menus), exit Audacity, open Audacity's <!--latex 
+\hyperref[\foo{preferences:stored}]{--><a href="preferences.html#stored" title="Preferences">folder for application data</a><!--latex }
+--> and delete the file "pluginregistry.cfg".
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

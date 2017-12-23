@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Nyquist Prompt - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Nyquist_Prompt rootpage-Nyquist_Prompt skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Nyquist Prompt</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{nyquist:prompt:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p><br/>
+</p>
+
+<p><br/>
+
+</p>
+<div class="intro"><!--\textit{--><i><!--\textbf{--><b>Nyquist Prompt</b><!--}--></i><!--}--> lets you run and debug code snippets for your own plug-ins created using the <a class="external text" href="https://wiki.audacityteam.org/wiki/Nyquist" rel="nofollow">Nyquist</a> programming language. See  <a class="external text" href="https://wiki.audacityteam.org/wiki/Nyquist_Plugins_Reference" rel="nofollow">Nyquist Plug-ins Reference - Audacity Wiki</a> for more information about writing Nyquist code.</div>
+<div class="note">To use Nyquist Prompt, first <!--latex 
+\hyperref[\foo{audacity:selection:}]{--><a href="audacity_selection.html" title="Audacity Selection">select</a><!--latex }
+--> some audio. If the code you want to test generates audio, you can avoid the initial steps of preparing an audio selection by installing the <a class="external text" href="https://wiki.audacityteam.org/wiki/Nyquist_Generate_Plugins#Nyquist_Generate_Prompt" rel="nofollow">Nyquist Generate Prompt</a> plug-in instead.</div>
+ 
+<dl><dd><!--\textbf{--><b>Accessed by:</b><!--}--> <span class="menu">Effect &gt; Nyquist Prompt...</span></dd>
+<dd><span title="Nyquist Prompt effect dialog"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Nyquist_Prompt.png"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Nyquist Prompt.png" height="350" src="../m/images/1/1b/nyquist_prompt.png" width="570"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/1/1b/nyquist_prompt.png--></img><!--}\par
+--></a></span></dd></dl>
+
+<!--
+\subsection{--><h2><span class="mw-headline" id="Enter_Nyquist_Command">Enter Nyquist Command</span></h2><!--}-->
+<p>Type the command as required. <span class="kbrd" style="background-color: #e0e0f0">Enter</span> on the keyboard moves the cursor to a new line. The last entered code is stored in the pluginsettings.cfg file in Audacity's <!--latex 
+\hyperref[\foo{preferences:stored}]{--><a href="preferences.html#stored" title="Preferences">folder for application data</a><!--latex }
+--> so is retained after exiting Audacity. 
+</p><p>Plugin GUI can be tested if you include complete <a class="external text" href="https://wiki.audacityteam.org/wiki/Nyquist_Plugins_Reference#Nyquist_Plug-in_Header" rel="nofollow">Nyquist Plug-in Headers</a>.
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Use_legacy_.28version_3.29_syntax">Use legacy (version 3) syntax</span></h2><!--}-->
+<p>When selected, commands entered in the main text window will be interpreted as the "version 3" code.
+When not selected (default), commands entered in the main text window will be interpreted as "version 4" code.
+</p><p>Version 4 code includes a number of variables that are not available in version 3. In particular, the <!--\textbf{--><b>S</b><!--}--> variable is no longer used to pass sound from Audacity to Nyquist. In version 4 the <!--\textbf{--><b>S</b><!--}--> variable has been replaced by <!--\textbf{--><b>*TRACK*</b><!--}-->. Full details about the difference between version 3 and version 4 code can be found in the <a class="external text" href="https://wiki.audacityteam.org/wiki/Nyquist_Plugins_Reference" rel="nofollow">Audacity wiki</a>.
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Buttons">Buttons</span></h2><!--}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <span class="button">Load</span> Load a Nyquist plugin or script file saved with .ny extension.</li>
+<!--
+\item --><li> <span class="button">Save</span> Save the current contents of the editor window as an .ny file. </li>
+<!--
+\item --><li> <span class="button">Manage</span> Opens a dropdown menu where you can save the window contents as a preset then reload those contents  by selecting the preset. You can also see some descriptive text about the plugin. For details see <!--latex 
+\hyperref[\foo{manage:presets:}]{--><a href="manage_presets.html" title="Manage presets">Manage presets</a><!--latex }
+-->.</li>
+<!--
+\item --><li> <span class="button">Preview</span> Previews what the code would sound like if applied. As with preview in all effects, playback lasts for the length of preview specified in <!--latex 
+\hyperref[\foo{playback:preferences:}]{--><a href="playback_preferences.html" title="Playback Preferences">Playback Preferences</a><!--latex }
+-->.</li></ul><!--
+\end{itemize}
+-->
+<div class="note">Plugin authors should use this button to test if a Preview button in their plug-in would accurately preview the effect as applied to the <!--latex 
+\hyperref[\foo{audacity:waveform:}]{--><a href="audacity_waveform.html" title="Audacity Waveform">waveform</a><!--latex }
+-->. Preview should not be used in effects that change over time (such as a fade effect) because Audacity's preview as currently implemented only applies the effect to the length of the previewed selection.</div>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <span class="button">Debug</span> The Debug button works as it does in all <!--latex 
+\hyperref[\foo{effect:menu:Nyquist:Effects}]{--><a href="effect_menu.html#Nyquist_Effects" title="Effect Menu">Nyquist effects</a><!--latex }
+-->. Clicking this button shows a progress dialog for processing the code, followed by an uneditable "Nyquist Output" window listing any errors or other output. Click <span class="button">OK</span> to close the output window and process the command, or use <span class="kbrd" style="background-color: #e0e0f0">Enter</span> on the keyboard. Hold <span class="kbrd" style="background-color: #e0e0f0">Ctrl</span> on Windows or <span class="kbrd" style="background-color: #e0e0f0">⌘</span> on Mac before pressing <span class="kbrd" style="background-color: #e0e0f0">Enter</span>. </li>
+<!--
+\item --><li> <span class="button">OK</span> Applies the code to the waveform selection without debug output. Your entered code will be retained next time you open Nyquist Prompt in the Audacity session. Using the keyboard, hold <span class="kbrd" style="background-color: #e0e0f0">Ctrl</span> on Windows <!--\textit{--><i>(or <span class="kbrd" style="background-color: #e0e0f0">⌘</span> on Mac)</i><!--}--> then press <span class="kbrd" style="background-color: #e0e0f0">Enter</span>. </li>
+<!--
+\item --><li> <span class="button">Cancel</span>  No code is processed or debugged. Any code you entered after opening the window this time will be discarded.</li></ul><!--
+\end{itemize}
+-->
+<div class="note">The Nyquist prompt supports both LISP syntax and SAL syntax. If the code you enter cannot be recognized as valid Nyquist code in either LISP or SAL syntax, an error message will appear with a hint about making a correction.</div>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Bulbicon.png" title="Bulb icon"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Bulb icon" height="32" src="../m/images/d/d7/bulbicon.png" width="32"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d7/bulbicon.png--></img><!--}\par
+--></a>
+</td>
+<td align="left" valign="top"><!--\textbf{--><b>Advanced users:</b><!--}--> An experimental "Nyquist Workbench"  graphical editor module is available if you compile the module and Audacity from source code, then enable the module in <!--latex 
+\hyperref[\foo{modules:preferences:}]{--><a href="modules_preferences.html" title="Modules Preferences">Modules Preferences</a><!--latex }
+-->.
+</td></tr></tbody></table>
+</div>
+
+<!--
+\subsection{--><h2><span class="mw-headline" id="Links">Links</span></h2><!--}-->
+<p><!--latex 
+\hyperref[\foo{index:of:effects:generators:and:analyzers:}]{--><a href="index_of_effects_generators_and_analyzers.html" title="Index of Effects, Generators and Analyzers"><!--\textbf{--><b>|&lt;</b><!--}--> Index of Effects, Generators and Analyzers</a><!--latex }
+--> <br/>
+</p><p><!--latex 
+\hyperref[\foo{effect:menu:}]{--><a href="effect_menu.html" title="Effect Menu"><!--\textbf{--><b>|&lt;</b><!--}--> Effect Menu</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Record - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Record rootpage-Record skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Record</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{record:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>   
+</p>
+<div class="intro"><!--\textbf{--><b>To record:</b><!--}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li>Set the Recording Device, </li>
+<!--
+\item --><li>monitor and then adjust the recording level, </li>
+<!--
+\item --><li>then press the Record <!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Record button" height="16" src="../m/images/e/e8/record.png" title="Record button" width="16"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/e/e8/record.png--></img><!--}}{}--> button. <p> <!--\textbf{--><b>Correct adjustment of level before recording is essential to avoid noise or distortion.</b><!--}--> </p></li></ul><!--
+\end{itemize}
+--></div>
+<div class="note">If you are having problems recording, have a look at the <!--latex 
+\hyperref[\foo{faq:recording:how:to:s:}]{--><a href="faq_recording_how_to_s.html" title="FAQ:Recording - How To's">FAQ on recording</a><!--latex }
+--> which answers some frequently asked questions.</div>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Bulbicon.png" title="Bulb icon"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Bulb icon" height="32" src="../m/images/d/d7/bulbicon.png" width="32"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d7/bulbicon.png--></img><!--}\par
+--></a>
+</td>
+<td align="left" valign="top">When making recordings, particular critical recordings, you should consider shutting down all other applications giving Audacity sole use of the computer.  This can help to avoid skips, small dropouts, and ticks in your recordings.
+<div class="note">And on Mac that means fully Quitting them not just closing them, as otherwise Mac will leave them open consuming computer resources.</div> 
+</td></tr></tbody></table>
+</div>
+<p><br/>
+</p>
+<!--
+\begin{enumerate}--><ol><!--
+\item --><li> Set the <!--latex 
+\hyperref[\foo{device:}]{--><a href="device.html" title="Device">Recording Device</a><!--latex }
+--> either in the <!--latex 
+\hyperref[\foo{devices:preferences:}]{--><a href="devices_preferences.html" title="Devices Preferences">Devices section of Preferences</a><!--latex }
+--> or in <!--latex 
+\hyperref[\foo{device:toolbar:}]{--><a href="device_toolbar.html" title="Device Toolbar">Device Toolbar</a><!--latex }
+-->. 
+</li><!--
+\item --><li> Click in the <!--latex 
+\hyperref[\foo{meter:toolbar:recording}]{--><a href="meter_toolbar.html#recording" title="Meter Toolbar">Recording Meter</a><!--latex }
+--> to start <!--latex 
+\hyperref[\foo{meter:toolbar:Monitoring}]{--><a href="meter_toolbar.html#Monitoring" title="Meter Toolbar">monitoring</a><!--latex }
+--> as in the following image:<br/>
+<dl><dd><span title="Recording Meter Toolbar in use, default size"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Recording Toolbar in use.png" height="33" src="../m/images/7/7a/recording_toolbar_in_use.png" width="473"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/7/7a/recording_toolbar_in_use.png--></img><!--}\par
+--></span></dd></dl>
+</li><!--
+\item --><li> Singing or playing the loudest part of what you are recording, adjust the recording level using the right-hand slider on <!--latex 
+\hyperref[\foo{mixer:toolbar:}]{--><a href="mixer_toolbar.html" title="Mixer Toolbar">Mixer Toolbar</a><!--latex }
+-->:<br/>
+<dl><dd><span title="Mixer Toolbar Playback and Recording Sliders"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="MixerToolbarWithoutInputSelect.png" height="30" src="../m/images/2/2b/mixertoolbarwithoutinputselect.png" width="326"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/2/2b/mixertoolbarwithoutinputselect.png--></img><!--}\par
+--></span></dd></dl>
+so that the moving Meter Toolbar bars do not get too close to the right-hand edge of the meter. 
+</li><!--
+\item --><li> Optionally, turn on <span class="menu">Transport &gt; Transport Options &gt; <!--latex 
+\hyperref[\foo{transport:menu:transport:options:software:playthrough:onoff}]{--><a href="transport_menu_transport_options.html#software_playthrough_onoff" title="Transport Menu: Transport Options">Software Playthrough (on/off)</a><!--latex }
+--></span> (so it has a check mark) to hear what the recording will sound like.
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">Do not enable Software Playthrough when <!--latex 
+\hyperref[\foo{tutorial:recording:audio:playing:on:the:computer:}]{--><a href="tutorial_recording_audio_playing_on_the_computer.html" title="Tutorial - Recording audio playing on the computer">recording computer playback</a><!--latex }
+--> because it creates echoes and feedback. To hear what a recording of computer playback will sound like, make a test recording to check the level before recording for real.
+</td></tr></tbody></table>
+</div>  
+</li><!--
+\item --><li> Press the Record <!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Record button" height="16" src="../m/images/e/e8/record.png" title="Record button" width="16"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/e/e8/record.png--></img><!--}}{}--> button to record for real. 
+</li><!--
+\item --><li> Audacity will record until you stop the recording using the Stop <!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Stop button" height="16" src="../m/images/f/f9/stop.png" title="Stop button" width="16"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/f/f9/stop.png--></img><!--}}{}--> button.</li></ol><!--
+\end{enumerate}
+-->
+<p><br/>
+<span style="font-weight: bold; font-size:118%">More help at:</span> 
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--latex 
+\hyperref[\foo{basic:recording:editing:and:exporting:}]{--><a href="basic_recording_editing_and_exporting.html" title="Basic Recording, Editing and Exporting">Basic Recording, Editing and Exporting</a><!--latex }
+--> - more getting-started information
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--latex 
+\hyperref[\foo{recording:}]{--><a href="recording.html" title="Recording">Recording</a><!--latex }
+--> a detailed description of various ways of controlling recording in Audacity</li></ul><!--
+\end{itemize}
+--></li>
+<!--
+\item --><li><!--latex 
+\hyperref[\foo{tutorial:your:first:recording:}]{--><a href="tutorial_your_first_recording.html" title="Tutorial - Your First Recording"> Tutorial - Your First Recording</a><!--latex }
+--> for recording microphones, guitar or keyboard</li>
+<!--
+\item --><li><!--latex 
+\hyperref[\foo{tutorial:copying:tapes:lps:or:minidiscs:to:cd:}]{--><a href="tutorial_copying_tapes_lps_or_minidiscs_to_cd.html" title="Tutorial - Copying tapes, LPs or minidiscs to CD">Tutorial - Copying tapes, LPs or MiniDiscs to CD</a><!--latex }
+-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--latex 
+\hyperref[\foo{recording:with:usb:turntables:}]{--><a href="recording_with_usb_turntables.html" title="Recording with USB turntables">Recording with USB turntables or USB cassette decks</a><!--latex }
+--></li></ul><!--
+\end{itemize}
+--></li>
+<!--
+\item --><li><!--latex 
+\hyperref[\foo{faq:recording:troubleshooting:}]{--><a href="faq_recording_troubleshooting.html" title="FAQ:Recording - Troubleshooting">Troubleshooting Recordings: Frequently Asked Questions</a><!--latex }
+--></li>
+<!--
+\item --><li><a class="external text" href="https://wiki.audacityteam.org/wiki/Recording_Tips" rel="nofollow">Recording Tips</a> on the Wiki </li></ul><!--
+\end{itemize}
+-->
+<p><br/>
+<!--latex 
+\hyperref[\foo{quick:help:}]{--><a href="../quick_help.html" title="Quick Help"><!--\textbf{--><b>|&lt;</b><!--}--> Back to: Getting Started</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

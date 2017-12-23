@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Installing and updating Audacity on Windows - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Installing_and_updating_Audacity_on_Windows rootpage-Installing_and_updating_Audacity_on_Windows skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Installing and updating Audacity on Windows</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{installing:and:updating:audacity:on:windows:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+</p><p><br/>
+</p>
+<div class="intro">This page provides instructions for installing and updating Audacity on Windows computer platforms.
+<!--
+\begin{itemize}--><ul><!--
+\item --><li>In addition to basic Audacity you may wish to install the optional <!--latex 
+\hyperref[\foo{installing:and:updating:audacity:on:windows::winlame}]{--><a href="#winlame">LAME</a><!--latex }
+--> <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:mp3}]{--><a href="glossary.html#mp3" title="Glossary">MP3</a><!--latex }
+--></b><!--}--></i><!--}--> encoding software</li>
+<!--
+\item --><li>Also the optional <!--latex 
+\hyperref[\foo{installing:and:updating:audacity:on:windows::winff}]{--><a href="#winff">FFmpeg</a><!--latex }
+--> library which allows Audacity to import and export a much larger range of audio formats including <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:aac}]{--><a href="glossary.html#aac" title="Glossary">M4A (AAC)</a><!--latex }
+--></b><!--}--></i><!--}-->, AC3, AMR (narrow band) and <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:wma}]{--><a href="glossary.html#wma" title="Glossary">WMA</a><!--latex }
+--></b><!--}--></i><!--}--> and also to import audio from most video files.  </li></ul><!--
+\end{itemize}
+-->
+<div class="note">Because of software patents, Audacity cannot include LAME or FFmpeg encoding software or distribute such software from its own websites.  Instead, use the instructions below to download and install the free and recommended third-party libraries for <!--latex 
+\hyperref[\foo{installing:and:updating:audacity:on:windows::winlame}]{--><a href="#winlame">LAME</a><!--latex }
+--> and <!--latex 
+\hyperref[\foo{installing:and:updating:audacity:on:windows::winff}]{--><a href="#winff">FFmpeg</a><!--latex }
+-->.</div> 
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">Note carefully that simply re-installing Audacity will <!--\textit{--><i><!--\textbf{--><b>not</b><!--}--></i><!--}--> clear and reset your Audacity settings for preferences and plug-ins.  For instructions on how to achieve this please see <!--latex 
+\hyperref[\foo{installing:and:updating:audacity:on:windows::purge}]{--><a href="#purge">Reset Audacity Settings</a><!--latex }
+-->.
+</td></tr></tbody></table>
+</div>
+</div>
+
+<div id="install"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Installation_instructions">Installation instructions</span></h2><!--}--><!--latex 
+\label{installing:and:updating:audacity:on:windows:install}-->
+<p><!--\textbf{--><b>Save:</b><!--}--> On the <a class="external text" href="http://audacityteam.org/download/windows" rel="nofollow">download page</a>, left-click the "installer" link (<!--\textbf{--><b>do not right-click</b><!--}-->). Left-clicking pops up the download box for the Audacity installer or in Microsoft Edge starts the download at once (at this point you will be on the <a class="external text" href="https://www.fosshub.com/" rel="nofollow">FossHub</a> site where our downloads are hosted). Save the download to your computer if prompted to do so.  Check the browser preferences if necessary to find out where your downloads are saved. Then double-click the downloaded .exe file to start the installer. You must be logged in as an administrator on the computer to do this, or follow the prompts to confirm your permission to install. 
+</p><p><!--\textbf{--><b>Run:</b><!--}--> Using Internet Explorer and a few other browsers, you can left-click the "installer" link and select an option to "Run" the file. This launches the Audacity setup as soon as it has downloaded. <!--\textbf{--><b>Note:</b><!--}--> Some security applications will query or block installers running from the computer's temporary space.
+</p>
+<div class="note">If you prefer not to use the installer (or security restrictions prevent installing applications), left-click the link for the "zip" file instead. Then right-click the downloaded file and choose the option to extract the contents. You can also use <a class="external text" href="http://www.7-zip.org/download.html" rel="nofollow">7-Zip</a> or other extraction utilities.</div> 
+<div id="sysreq"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="System_Requirements">System Requirements</span></h3><!--}--><!--latex 
+\label{installing:and:updating:audacity:on:windows:sysreq}-->
+<p>For detailed system requirements for a Windows installation see <a class="external text" href="http://www.audacityteam.org/download/windows/#sysreq" rel="nofollow">this page</a> on the <a class="external text" href="http://www.audacityteam.org/" rel="nofollow">Audacity Website</a>
+</p>
+<div id="uninstall"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="No_need_to_uninstall_a_previous_version_before_updating.2C_unless_updating_from_Audacity_1.3.x">No need to uninstall a previous version before updating, unless updating from Audacity 1.3.x</span></h3><!--}--><!--latex 
+\label{installing:and:updating:audacity:on:windows:uninstall}-->
+If you install a new Audacity version after installing a previous one, the installer will offer to install to the same directory as the previous installation. If the previous installation was Audacity 1.2 or 2.x, the installation directory is normally <span class="path">Program&nbsp;Files\Audacity</span> (or <span class="path">Program Files(x86)\Audacity</span> on 64-bit Windows). As long as you do not change the installation directory, Audacity will install over the previous 1.2 or 2.x version, and any extra plug-ins you added to the "Plug-Ins" folder will still be available.<p> If the previous version was 1.3.x, please uninstall 1.3 before installing the current 2.x version. After uninstalling 1.3, any extra plug-ins you added to that version will remain, and you can move them to the "Plug-Ins" folder of the new installation.</p> 
+<div id="winlib"></div>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> If upgrading from Audacity 2.0.5 or earlier, you must upgrade to the latest <!--latex 
+\hyperref[\foo{faq:installation:and:plug:ins:ffdown}]{--><a href="faq_installation_and_plug_ins.html#ffdown" title="FAQ:Installation and Plug-Ins">FFmpeg</a><!--latex }
+--> library if you require import and export of <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:aac}]{--><a href="glossary.html#aac" title="Glossary">M4A (AAC)</a><!--latex }
+--></b><!--}--></i><!--}-->, AC3, AMR (narrow band) and <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:wma}]{--><a href="glossary.html#wma" title="Glossary">WMA</a><!--latex }
+--></b><!--}--></i><!--}-->. 		</li>
+<!--
+\item --><li> If upgrading from Audacity 1.3.6 or earlier, you must update to the latest <!--latex 
+\hyperref[\foo{faq:installation:and:plug:ins:lame}]{--><a href="faq_installation_and_plug_ins.html#lame" title="FAQ:Installation and Plug-Ins">LAME</a><!--latex }
+--> library if you require <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:mp3}]{--><a href="glossary.html#mp3" title="Glossary">MP3</a><!--latex }
+--></b><!--}--></i><!--}--> export. </li></ul><!--
+\end{itemize}
+-->
+<p>Otherwise there is no need to upgrade LAME or FFmpeg unless this is indicated in the <a class="external text" href="https://wiki.audacityteam.org/wiki/Release_Notes" rel="nofollow">Release Notes</a> for the new version of Audacity.
+</p>
+</td></tr></tbody></table>
+</div>
+<div id="compatible_projects"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Projects_saved_by_old_versions_of_Audacity">Projects saved by old versions of Audacity</span></h3><!--}--><!--latex 
+\label{installing:and:updating:audacity:on:windows:compatible:projects}--><!--latex 
+\label{installing:and:updating:audacity:on:windows:winlib}-->
+<p>Current Audacity is compatible with project files saved by versions of Audacity 1.3.x and later, including 2.x.x. 
+</p>
+<div id="updates"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Check_for_Updates">Check for Updates</span></h2><!--}--><!--latex 
+\label{installing:and:updating:audacity:on:windows:updates}-->
+<p>You can check to see if you have the latest version of Audacity by using <span class="menu">Help &gt; Check for Updates...</span>.
+</p><p>This takes you to the <a class="external text" href="https://web.audacityteam.org/download/" rel="nofollow">Download page</a> of the Audacity website where you can check what the latest release version of Audacity is. 
+</p><p>You can then compare the latest release with the version you have now as shown by using <span class="menu">Help &gt; About Audacity...</span>. 
+</p>
+<div id="winlame"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Installing_LAME_on_Windows">Installing LAME on Windows</span></h2><!--}--><!--latex 
+\label{installing:and:updating:audacity:on:windows:winlame}-->
+<div class="note">Because of software patents, Audacity cannot include <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:mp3}]{--><a href="glossary.html#mp3" title="Glossary">MP3</a><!--latex }
+--></b><!--}--></i><!--}--> encoding software or distribute such software from its own websites. Instead, use the following instructions to download and install the free and recommended <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:lame}]{--><a href="glossary.html#lame" title="Glossary">LAME</a><!--latex }
+--></b><!--}--></i><!--}--> third-party encoder to export MP3 files with Audacity.  See the <!--latex 
+\hyperref[\foo{lame:legal:issues:}]{--><a href="lame_legal_issues.html" title="LAME Legal Issues">LAME Legal Issues</a><!--latex }
+--> page for more details.</div>
+<!--
+\begin{enumerate}--><ol><!--
+\item --><li>Go to the external <a class="external text" href="http://lame.buanzo.org#lamewindl" rel="nofollow">LAME download page</a><br/>&nbsp;<!--\textit{--><i><!--\textbf{--><b>Left-click this link, do not right-click.</b><!--}--></i><!--}-->   </li>
+<!--
+\item --><li>Directly underneath "TO DOWNLOAD Lame and FFmpeg for Windows, click links BELOW:", left-click the link <!--\textbf{--><b>Lame v3.99.3 for Windows.exe</b><!--}--> and save the file anywhere on your computer.</li>
+<!--
+\item --><li>Double-click "Lame v3.99.3 for Windows.exe" to launch it (you can safely ignore any warnings that the "publisher could not be verified").</li>
+<!--
+\item --><li>Follow the Setup instructions to install LAME for Audacity, making sure not to change the offered installation location of "C:\Program Files\Lame for Audacity" (or "C:\Program Files (x86)\Lame for Audacity" on a 64-bit version of Windows).  </li></ol><!--
+\end{enumerate}
+-->
+<p>You should now be able to export MP3s without any further configuration, choosing <span class="menu">File &gt; Save Other &gt; <!--latex 
+\hyperref[\foo{file:menu:save:other:exportaudio}]{--><a href="file_menu_save_other.html#exportaudio" title="File Menu: Save Other">Export Audio...</a><!--latex }
+--></span> then selecting "MP3 Files" in the <!--latex 
+\hyperref[\foo{file:export:dialog:}]{--><a href="file_export_dialog.html" title="File Export Dialog">Export Audio Dialog</a><!--latex }
+-->.
+</p><p><!--\textbf{--><b>ZIP file option</b><!--}-->
+</p><p>If you cannot run the LAME installer due to restrictions on your computer, or if you want a later specially built LAME 3.99.5 version, download the appropriate ZIP file from the <a class="external text" href="http://lame.buanzo.org/#lamewindl" rel="nofollow">LAME download page</a>. Extract the contents of the ZIP file to a location of your choosing, then use the <span class="button">Locate...</span> button for LAME in <!--latex 
+\hyperref[\foo{libraries:preferences:}]{--><a href="libraries_preferences.html" title="Libraries Preferences">Libraries Preferences</a><!--latex }
+--> to browse for and open the extracted DLL file.  
+</p>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Troubleshooting">Troubleshooting</span></h3><!--}-->
+<p>Occasionally, there may be a conflict where Audacity still tries to detect the path to an older lame_enc.dll file. To correct this:
+</p>
+<!--
+\begin{enumerate}--><ol><!--
+\item --><li>Ensure there are no older versions of lame_enc.dll in any locations where Audacity detects it, namely:</li> 
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>C:\Program Files\Lame for Audacity</b><!--}--> or <!--\textbf{--><b>C:\Program Files (x86)\Lame for Audacity</b><!--}--> (this is where the installer puts the new .dll)</li>
+<!--
+\item --><li> the <!--\textbf{--><b>Audacity installation folder</b><!--}--> (usually C:\Program Files\Audacity or C:\Program Files (x86)\Audacity<!--\textbf{--><b>), or in the "Plug-Ins" folder inside that.</b><!--}--></li></ul><!--
+\end{itemize}
+-->
+<!--
+\item --><li> Exit Audacity and navigate to the <!--\textit{--><i><!--\textbf{--><b>audacity.cfg</b><!--}--></i><!--}--> preferences file at:</li>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>Users\&lt;username&gt;\AppData\Roaming\Audacity\audacity.cfg</b><!--}--></li></ul><!--
+\end{itemize}
+-->
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Bulbicon.png" title="Bulb icon"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Bulb icon" height="32" src="../m/images/d/d7/bulbicon.png" width="32"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d7/bulbicon.png--></img><!--}\par
+--></a>
+</td>
+<td align="left" valign="top">In order to see audacity.cfg, you may need to set the operating system to show hidden files and folders. See instructions for  <a class="external text" href="https://www.howtogeek.com/howto/windows-vista/show-hidden-files-and-folders-in-windows-vista/" rel="nofollow">Showing hidden files on Windows</a>.
+</td></tr></tbody></table>
+</div>
+<!--
+\item --><li> Open audacity.cfg in a text editor such as Notepad, and delete the two lines starting with:
+<!--
+\begin{itemize}--><ul style="list-style-image: none; list-style-type: none"><!--
+\item --><li><!--\textbf{--><b>[MP3]<br/>MP3LibPath= </b><!--}--></li></ul><!--
+\end{itemize}
+-->
+</li><!--
+\item --><li> Save the changes to audacity.cfg and restart Audacity.</li></ol><!--
+\end{enumerate}
+-->
+<div class="note">As an alternative to editing the audacity.cfg file, you may instead delete that file itself. However this will completely reset your <!--latex 
+\hyperref[\foo{preferences:}]{--><a href="preferences.html" title="Preferences">Audacity Preferences</a><!--latex }
+-->, which may not be what you want.</div>
+<p><br/>
+</p>
+<div id="winff"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Installing_the_FFmpeg_Import.2FExport_Library_on_Windows">Installing the FFmpeg Import/Export Library on Windows</span></h2><!--}--><!--latex 
+\label{installing:and:updating:audacity:on:windows:winff}-->
+<div class="note">The optional <!--latex 
+\hyperref[\foo{faq:opening:and:saving:files:foreign}]{--><a href="faq_opening_and_saving_files.html#foreign" title="FAQ:Opening and Saving Files">FFmpeg library</a><!--latex }
+--> allows Audacity to import and export a much larger <a class="external text" href="https://wiki.audacityteam.org/wiki/FFmpeg_integration#Functionality" rel="nofollow">range of audio formats</a> including <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:aac}]{--><a href="glossary.html#aac" title="Glossary">M4A (AAC)</a><!--latex }
+--></b><!--}--></i><!--}-->, AC3, AMR (narrow band) and <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:wma}]{--><a href="glossary.html#wma" title="Glossary">WMA</a><!--latex }
+--></b><!--}--></i><!--}--> and also to import audio from most video files. 
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> Because of software patents, Audacity cannot include the FFmpeg software or distribute it from its own websites. Instead, use the following instructions to download and install the free and recommended FFmpeg third-party library.</li>
+<!--
+\item --><li><!--\textbf{--><b>Advanced usage:</b><!--}--> If you already have Audacity-compatible FFmpeg 2.2.x or 2.3.x shared libraries in the system PATH, Audacity will use those as long as you do not install FFmpeg from the links below and as long as you do not specify the FFmpeg you want Audacity to use in <!--latex 
+\hyperref[\foo{libraries:preferences:}]{--><a href="libraries_preferences.html" title="Libraries Preferences">Libraries Preferences</a><!--latex }
+-->.</li></ul><!--
+\end{itemize}
+--></div> 
+<!--
+\begin{enumerate}--><ol><!--
+\item --><li> Go to the external <a class="external text" href="http://lame.buanzo.org#lamewindl" rel="nofollow">download page</a> <br/>&nbsp;<!--\textit{--><i><!--\textbf{--><b>Left-click this link, do not right-click</b><!--}--></i><!--}-->.
+</li><!--
+\item --><li> Directly underneath "TO DOWNLOAD Lame and FFmpeg for Windows, click links BELOW:", left-click the link <!--\textbf{--><b>ffmpeg-win-2.2.2.exe</b><!--}--> and save the file anywhere on your computer. 
+</li><!--
+\item --><li> Double-click <!--\textbf{--><b>ffmpeg-win-2.2.2.exe</b><!--}--> to launch the installer (you can safely ignore any warnings that the "publisher could not be verified").
+</li><!--
+\item --><li> Read the License and click Next, Next and Install to install the required files to <!--\textbf{--><b>C:\Program Files\FFmpeg for Audacity</b><!--}--> (or <!--\textbf{--><b>C:\Program Files (x86)\FFmpeg for Audacity</b><!--}--> on a 64-bit version of Windows). 
+
+<div class="note">If you have the previous FFmpeg 0.6.2 installed to the same location, the FFmpeg 2.2.2 installation will overwrite the 0.6.2 installation with the new files. There is no need to uninstall FFmpeg 0.6.2 first.</div>  
+</li><!--
+\item --><li> If Audacity was running when you installed FFmpeg, either restart Audacity or follow the steps to <!--latex 
+\hyperref[\foo{installing:and:updating:audacity:on:windows::locate}]{--><a href="#locate">manually locate FFmpeg</a><!--latex }
+-->.</li></ol><!--
+\end{enumerate}
+-->
+<div id="winff_zip"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Alternative_zip_download_for_FFmpeg_2.2.2">Alternative zip download for FFmpeg 2.2.2</span></h3><!--}--><!--latex 
+\label{installing:and:updating:audacity:on:windows:winff:zip}-->
+<!--
+\begin{enumerate}--><ol><!--
+\item --><li> Go to the external <a class="external text" href="http://lame.buanzo.org#lamewindl" rel="nofollow">download page</a> <br/>&nbsp;<!--\textit{--><i><!--\textbf{--><b>Left-click this link, do not right-click</b><!--}--></i><!--}-->.</li>
+<!--
+\item --><li> Under "TO DOWNLOAD Lame and FFmpeg for Windows, click links BELOW:", left-click the link <!--\textbf{--><b>ffmpeg-win-2.2.2.zip</b><!--}--> and save the file anywhere on your computer. </li>
+<!--
+\item --><li> Extract the entire contents of the downloaded ZIP file to a folder called "ffmpeg-win-2.2.2" anywhere on your computer, then follow the instructions <!--latex 
+\hyperref[\foo{installing:and:updating:audacity:on:windows::locate}]{--><a href="#locate">below</a><!--latex }
+--> to locate the file "avformat-55.dll" using the Libraries Preferences.  </li></ol><!--
+\end{enumerate}
+-->
+<div id="locate"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Locating_the_FFmpeg_library_manually">Locating the FFmpeg library manually</span></h3><!--}--><!--latex 
+\label{installing:and:updating:audacity:on:windows:locate}-->
+<p>If you installed FFmpeg while Audacity was running, or if you installed FFmpeg to a non-default location, Audacity will ask you to configure Preferences to locate the FFmpeg library. To do this, access <!--latex 
+\hyperref[\foo{preferences:}]{--><a href="preferences.html" title="Preferences">Preferences</a><!--latex }
+--> then the "Libraries" tab on the left: 
+</p>
+<dl><dd><span title="Libraries Preferences showing the FFmpeg Locate... and Download... buttons, with the FFmpeg libray not found"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Preferences Libraries NOT Found W10.png" height="497" src="../m/images/c/c7/preferences_libraries_not_found_w10.png" width="618"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/c/c7/preferences_libraries_not_found_w10.png--></img><!--}\par
+--></span></dd></dl>
+<p>As seen in the image above, the "FFmpeg Library Version" will say "not found". To correct this:
+</p>
+<!--
+\begin{enumerate}--><ol><!--
+\item --><li> Click the <span class="button">Locate...</span> button to right of <!--\textbf{--><b>FFmpeg Library:</b><!--}-->.</li>
+<!--
+\item --><li> If a "Success" message indicates Audacity has now automatically detected valid FFmpeg libraries and asks if you want to detect them manually, click <span class="button">No</span>, then <span class="button">OK</span> to close Preferences. </li>
+<!--
+\item --><li> If the "Locate FFmpeg" dialog appears, click <span class="button">Browse...</span>.</li>
+<!--
+\item --><li> Navigate to the folder that contains FFmpeg, and select the file <!--\textbf{--><b>avformat-55.dll</b><!--}-->.</li>
+<!--
+\item --><li> Click <span class="button">Open</span> then <span class="button">OK</span> and <span class="button">OK</span> again to close Preferences.</li></ol><!--
+\end{enumerate}
+-->
+<p><!--\textbf{--><b>FFmpeg Library Version</b><!--}--> should now show a set of three version numbers for the sub-libraries of FFmpeg ("F" for libavformat version, "C" for libavcodec version and "U" for libavutil version). If you still see "not found", you may have installed the wrong libraries. Click the <span class="button">Download...</span> button to obtain the correct library for your operating system. You can also choose <span class="menu">Help &gt; Diagnostics &gt; <!--latex 
+\hyperref[\foo{help:menu:diagnostics:show:log}]{--><a href="help_menu_diagnostics.html#show_log" title="Help Menu: Diagnostics">Show Log...</a><!--latex }
+--></span> to see diagnostic information about FFmpeg detection.
+</p><p><br/>
+</p>
+<div id="purge"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Reset_Audacity_Settings_on_Windows">Reset Audacity Settings on Windows</span></h2><!--}--><!--latex 
+\label{installing:and:updating:audacity:on:windows:purge}-->
+<p>As stated in the introduction on this page, simply re-installing Audacity will not clear and reset your Audacity settings for preferences and plug-ins.
+</p><p>The data for these are stored in a folder called audacity in the &gt;Appdata&gt;Roaming folder in your user directory.  
+</p><p>On Windows the full pathname is:  <!--\textbf{--><b>C:\ Users &gt; <!--\textit{--><i>your username</i><!--}--> &gt; Appdata &gt; Roaming &gt; audacity</b><!--}-->
+</p><p>First you will need to quit Audacity.
+</p>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="To_completely_reset_your_Audacity_settings">To completely reset your Audacity settings</span></h3><!--}-->
+<p>Navigate to that <!--\textbf{--><b>audacity</b><!--}--> folder with Windows Explorer and delete the entire contents.  Then restart Audacity.
+</p>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="To_reset_just_your_Audacity_preferences">To reset just your Audacity preferences</span></h3><!--}-->
+<p>Navigate to that <!--\textbf{--><b>audacity</b><!--}--> folder with Windows Explorer and delete the <!--\textbf{--><b>audacity.cfg file</b><!--}-->.  Then restart Audacity.
+</p>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="To_reset_just_your_plug-ins">To reset just your plug-ins</span></h3><!--}-->
+<p>Navigate to that <!--\textbf{--><b>audacity</b><!--}--> folder with Windows Explorer and delete the:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>pluginregistry.cfg</b><!--}--> file</li>
+<!--
+\item --><li><!--\textbf{--><b>pluginsettings.cfg</b><!--}--> file</li>
+<!--
+\item --><li><!--\textbf{--><b>Plug-Ins</b><!--}--> folder</li></ul><!--
+\end{itemize}
+-->
+<p>Then restart Audacity
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

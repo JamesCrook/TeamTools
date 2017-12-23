@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Change Speed - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Change_Speed rootpage-Change_Speed skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Change Speed</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{change:speed:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p><br/>
+</p>
+
+<p>
+
+
+</p><p><br/>
+</p>
+<div class="intro">Use <!--\textit{--><i><!--\textbf{--><b>Change Speed</b><!--}--></i><!--}--> to change the speed of a <!--latex 
+\hyperref[\foo{audacity:selection:}]{--><a href="audacity_selection.html" title="Audacity Selection">selection</a><!--latex }
+-->, affecting its tempo, <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:pitch}]{--><a href="glossary.html#pitch" title="Glossary">pitch</a><!--latex }
+--></b><!--}--></i><!--}--> and <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:frequency}]{--><a href="glossary.html#frequency" title="Glossary">frequency</a><!--latex }
+--></b><!--}--></i><!--}--> content. When reducing speed, all frequencies become lower. When increasing speed, all frequencies become higher.<p> To change tempo without affecting pitch or frequency range, use <span class="menu">Effect &gt; <!--latex 
+\hyperref[\foo{change:tempo:}]{--><a href="change_tempo.html" title="Change Tempo">Change Tempo</a><!--latex }
+--></span> or  <span class="menu">Effect &gt; <!--latex 
+\hyperref[\foo{sliding:time:scale:pitch:shift:}]{--><a href="sliding_time_scale_pitch_shift.html" title="Sliding Time Scale - Pitch Shift">Sliding Time Scale / Pitch Shift</a><!--latex }
+--></span>.</p><p>All controls are linked, so changing one will change the others.</p></div> 
+<dl><dd><!--\textbf{--><b>Accessed by:</b><!--}--> <span class="menu">Effect &gt; Change Speed...</span></dd>
+<dd><span title="Change Speed effect dialog"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Change_Speed.png"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Change Speed.png" height="306" src="../m/images/a/a4/change_speed.png" width="474"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/a/a4/change_speed.png--></img><!--}\par
+--></a></span></dd></dl>
+<div id="multiplier"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Speed_Multiplier">Speed Multiplier</span></h2><!--}--><!--latex 
+\label{change:speed:multiplier}-->
+<p>This sets how many times faster or slower the audio will play. For example, setting this to "2.000" will double the speed (and raise the pitch by one <a class="external text" href="https://en.wikipedia.org/wiki/Octave" rel="nofollow">octave</a>), or setting this to "0.500" will halve the playback speed (and lower the pitch by one octave).
+</p><p>Values between 0.010 (1/100th of the original speed) and 50.000 (50 times faster) are permitted. Values outside of this range will gray out the <span class="button">OK</span> and <span class="button">Preview</span> buttons and cannot be applied.
+</p>
+<div id="percent"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Percent_Change">Percent Change</span></h2><!--}--><!--latex 
+\label{change:speed:percent}-->
+<p>If you know how much you want to change the speed of the audio in percent, enter that value here. You can also drag the slider to choose a Percent Change - the input box and the Speed Multiplier will update as you drag the slider.
+</p><p>Values between -99.000&nbsp;% (equivalent to 1/100th of the original speed) and 4900.000&nbsp;% (equivalent to 50 times faster) are permitted. Values outside of this range will gray out the <span class="button">OK</span> and <span class="button">Preview</span> buttons and cannot be applied.
+</p>
+<div class="example">
+<p><!--\textbf{--><b>Examples:</b><!--}-->
+</p>
+<!--
+\begin{enumerate}--><ol><!--
+\item --><li>A change of +100&nbsp;% (double speed) is the same as multiplying the speed (<!--\textbf{--><b>Speed Multiplier</b><!--}--> setting) by 2.</li>
+<!--
+\item --><li>A change of -50&nbsp;% (half speed) is the same as multiplying the speed by 0.5.</li>
+<!--
+\item --><li>A change of +20&nbsp;% is the same as multiplying the speed by 1.2.</li>
+<!--
+\item --><li>A change of -20&nbsp;% is the same as multiplying the speed by 0.8</li></ol><!--
+\end{enumerate}
+-->
+</div>
+<div id="vinyl"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Standard_Vinyl_rpm">Standard Vinyl rpm</span></h2><!--}--><!--latex 
+\label{change:speed:vinyl}-->
+<p>If you have a recording of a record that was played back and recorded at the wrong speed you can correct that using these two dropdown menus. In the <!--\textbf{--><b>from</b><!--}--> dropdown choose the speed the record was played back at then in the <!--\textbf{--><b>to</b><!--}--> dropdown choose the speed it <!--\textit{--><i>should have</i><!--}--> been played back at.
+</p>
+<div id="length"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Selection_Length">Selection Length</span></h2><!--}--><!--latex 
+\label{change:speed:length}-->
+<p>The <!--\textbf{--><b>Current Length</b><!--}--> time control indicates the length of the current selection. This control is for information only and cannot be modified.
+</p><p>The <!--\textbf{--><b>New Length</b><!--}--> time control sets the length that the selection will be after applying the effect.
+</p><p>The Selection Format may be changed by selecting the required option from the dropdown menu of the <!--\textbf{--><b>New Length</b><!--}--> control. To access the dropdown menu, click the little black downwards-pointing triangle on the right end of the time control, right-click over any of its time digits, or select any of the digits then use the keyboard Menu Key. Changing the format in the <!--\textbf{--><b>New Length</b><!--}--> control will also update the digits in the <!--\textbf{--><b>Current Length</b><!--}--> control.
+</p>
+<div id="buttons"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Buttons">Buttons</span></h2><!--}--><!--latex 
+\label{change:speed:buttons}-->
+<p>Clicking on the command buttons give the following results:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><span class="button">Manage</span> gives a dropdown menu enabling you to manage presets for the tool and to see some detail about the tool. For details see <!--latex 
+\hyperref[\foo{manage:presets:}]{--><a href="manage_presets.html" title="Manage presets">Manage presets</a><!--latex }
+-->.</li>
+<!--
+\item --><li><span class="button">Preview</span> plays a short preview of what the audio would sound like if the effect is applied with the current settings, without making actual changes to the audio.  The length of preview is determined by your setting in <span class="menu">Edit &gt; Preferences &gt; <!--latex 
+\hyperref[\foo{playback:preferences:}]{--><a href="playback_preferences.html" title="Playback Preferences">Playback</a><!--latex }
+--></span>, the default setting is 6 seconds.</li>
+<!--
+\item --><li><span class="button">OK</span> applies the effect to the selected audio with the current effect settings.</li>
+<!--
+\item --><li><span class="button">Cancel</span> aborts the effect and leaves the audio unchanged.</li>
+<!--
+\item --><li><a href="help_button.html" title="Help Button"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Help Button" height="27" src="../m/images/d/d6/help_button.png" width="27"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d6/help_button.png--></img><!--}}{}--></a> brings you to the appropriate page in the Manual, this page.</li></ul><!--
+\end{itemize}
+-->
+<p><br/>
+</p><p><br/>
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Links">Links</span></h2><!--}-->
+<p><!--latex 
+\hyperref[\foo{index:of:effects:generators:and:analyzers:}]{--><a href="index_of_effects_generators_and_analyzers.html" title="Index of Effects, Generators and Analyzers"><!--\textbf{--><b>|&lt;</b><!--}--> Index of Effects, Generators and Analyzers</a><!--latex }
+--> <br/>
+</p><p><!--latex 
+\hyperref[\foo{effect:menu:}]{--><a href="effect_menu.html" title="Effect Menu"><!--\textbf{--><b>|&lt;</b><!--}--> Effect Menu</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

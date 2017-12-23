@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>View Menu - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-View_Menu rootpage-View_Menu skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">View Menu</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{view:menu:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+
+
+
+</p><p><br/>
+</p>
+<div class="intro"><!--\textit{--><i><!--\textbf{--><b>View Menu</b><!--}--></i><!--}--> has commands that determine the amount of detail you see in all the <!--latex 
+\hyperref[\foo{tracks:}]{--><a href="tracks.html" title="Tracks">tracks</a><!--latex }
+--> in the project window. It also lets you show or hide <!--latex 
+\hyperref[\foo{toolbars:overview:}]{--><a href="toolbars_overview.html" title="Toolbars Overview">Toolbars</a><!--latex }
+--> and some additional windows such as <!--latex 
+\hyperref[\foo{undo:redo:and:history:}]{--><a href="undo_redo_and_history.html" title="Undo, Redo and History">Undo History</a><!--latex }
+-->.</div>
+<dl><dd><!--\textit{--><i>Click, or hover, on any menu item in the image to read about that command.  &nbsp;<span style="font-size:0.8em"><!--latex 
+\hyperref[\foo{view:menu::skiptheimage}]{--><a href="#skiptheimage">Skip the image</a><!--latex }
+--></span></i><!--}--></dd>
+<dd><div class="noresize"><map name="ImageMap_1_1193604076"><area alt="Select Menu" coords="0,3,26,19" href="select_menu.html" shape="rect" title="Select Menu"/><area alt="View Menu" coords="33,3,62,19" href="#" shape="rect" title="View Menu"/><area alt="Transport Menu" coords="69,3,125,19" href="transport_menu.html" shape="rect" title="Transport Menu"/><area alt="Tracks Menu" coords="132,3,172,19" href="tracks_menu.html" shape="rect" title="Tracks Menu"/><area alt="Generate Menu" coords="179,3,233,19" href="generate_menu.html" shape="rect" title="Generate Menu"/><area alt="Effect Menu" coords="240,3,273,19" href="effect_menu.html" shape="rect" title="Effect Menu"/><area alt="Analyze Menu" coords="280,3,324,19" href="analyze_menu.html" shape="rect" title="Analyze Menu"/><area alt="Help Menu" coords="331,3,360,19" href="help_menu.html" shape="rect" title="Help Menu"/><area alt="Ext-Bar Menu" coords="367,3,409,19" href="ext_bar_menu.html" shape="rect" title="Ext-Bar Menu"/><area alt="Ext-Command Menu" coords="416,3,498,19" href="ext_command_menu.html" shape="rect" title="Ext-Command Menu"/><area alt="Menu Bar" coords="0,0,600,22" href="menu_reference.html" shape="rect" title="Menu Bar"/><area alt="Zoom in/out on the horizontal axis" coords="39,23,215,45" href="view_menu_zoom.html" shape="rect" title="Zoom in/out on the horizontal axis"/><area alt="Controls the sizes of tracks" coords="39,45,215,67" href="view_menu_track_size.html" shape="rect" title="Controls the sizes of tracks"/><area alt="Move forward/backwards through the audio" coords="39,67,215,89" href="view_menu_skip_to.html" shape="rect" title="Move forward/backwards through the audio"/><area alt="Brings up the History window which can then be left open while using Audacity normally" coords="39,96,215,118" href="undo_redo_and_history.html#history" shape="rect" title="Brings up the History window which can then be left open while using Audacity normally"/><area alt='Brings up the Karaoke window, which displays the labels in a "bouncing ball" scrolling display' coords="39,118,215,140" href="karaoke.html" shape="rect" title='Brings up the Karaoke window, which displays the labels in a "bouncing ball" scrolling display'/><area alt="Mixer Board is an alternative view to the audio tracks in the main tracks window" coords="39,140,215,162" href="mixer_board.html" shape="rect" title="Mixer Board is an alternative view to the audio tracks in the main tracks window"/><area alt="Toolbars can be used to determine which of the Audacity toolbars are displayed" coords="39,169,215,191" href="view_menu_toolbars.html" shape="rect" title="Toolbars can be used to determine which of the Audacity toolbars are displayed"/><area alt="Shows extra menus with many extra less-used commands" coords="39,198,215,220" href="#extra_menus_onoff" shape="rect" title="Shows extra menus with many extra less-used commands"/><area alt="Option to show or not show audio that is too loud (in red) on the wave form" coords="39,220,215,242" href="#show_clipping_onoff" shape="rect" title="Option to show or not show audio that is too loud (in red) on the wave form"/></map><!--
+
+\par\Needspace{155.0pt}\begin{picture}(114.0,125.0)
+--><!--   \put(0,0){\includegraphics[scale=0.5]{--><img alt="ViewMenu.png" height="250" src="../m/images/4/40/viewmenu.png" usemap="#ImageMap_1_1193604076" width="228"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/4/40/viewmenu.png--></img><!--}}
+--><!--   \put(0.0,115.5){\hyperref[\foo{select:menu:}]{\makebox(13.0,8.0){}}}
+   \put(16.5,115.5){\hyperref[\foo{view:menu::}]{\makebox(14.5,8.0){}}}
+   \put(34.5,115.5){\hyperref[\foo{transport:menu:}]{\makebox(28.0,8.0){}}}
+   \put(66.0,115.5){\hyperref[\foo{tracks:menu:}]{\makebox(20.0,8.0){}}}
+   \put(89.5,115.5){\hyperref[\foo{generate:menu:}]{\makebox(27.0,8.0){}}}
+   \put(120.0,115.5){\hyperref[\foo{effect:menu:}]{\makebox(16.5,8.0){}}}
+   \put(140.0,115.5){\hyperref[\foo{analyze:menu:}]{\makebox(22.0,8.0){}}}
+   \put(165.5,115.5){\hyperref[\foo{help:menu:}]{\makebox(14.5,8.0){}}}
+   \put(183.5,115.5){\hyperref[\foo{ext:bar:menu:}]{\makebox(21.0,8.0){}}}
+   \put(208.0,115.5){\hyperref[\foo{ext:command:menu:}]{\makebox(41.0,8.0){}}}
+   \put(19.5,102.5){\hyperref[\foo{view:menu:zoom:}]{\makebox(88.0,11.0){}}}
+   \put(19.5,91.5){\hyperref[\foo{view:menu:track:size:}]{\makebox(88.0,11.0){}}}
+   \put(19.5,80.5){\hyperref[\foo{view:menu:skip:to:}]{\makebox(88.0,11.0){}}}
+   \put(19.5,66.0){\hyperref[\foo{undo:redo:and:history:history}]{\makebox(88.0,11.0){}}}
+   \put(19.5,55.0){\hyperref[\foo{karaoke:}]{\makebox(88.0,11.0){}}}
+   \put(19.5,44.0){\hyperref[\foo{mixer:board:}]{\makebox(88.0,11.0){}}}
+   \put(19.5,29.5){\hyperref[\foo{view:menu:toolbars:}]{\makebox(88.0,11.0){}}}
+   \put(19.5,15.0){\hyperref[\foo{view:menu::extra:menus:onoff}]{\makebox(88.0,11.0){}}}
+   \put(19.5,4.0){\hyperref[\foo{view:menu::show:clipping:onoff}]{\makebox(88.0,11.0){}}}
+\end{picture}
+
+--></div></dd></dl>
+<div id="skiptheimage"></div>
+<div class="note"><!--latex 
+\hyperref[\foo{audio:tracks:}]{--><a href="audio_tracks.html" title="Audio Tracks">Audio tracks</a><!--latex }
+--> support different View Modes such as <!--latex 
+\hyperref[\foo{audio:track:dropdown:menu:wave}]{--><a href="audio_track_dropdown_menu.html#wave" title="Audio Track Dropdown Menu">Waveform</a><!--latex }
+--> (the default), <!--latex 
+\hyperref[\foo{audio:track:dropdown:menu:wavedb}]{--><a href="audio_track_dropdown_menu.html#wavedb" title="Audio Track Dropdown Menu">Waveform dB</a><!--latex }
+--> or <!--latex 
+\hyperref[\foo{audio:track:dropdown:menu:spgram}]{--><a href="audio_track_dropdown_menu.html#spgram" title="Audio Track Dropdown Menu">Spectrogram</a><!--latex }
+-->. These views can be changed individually for each track using the <!--latex 
+\hyperref[\foo{audio:track:dropdown:menu:}]{--><a href="audio_track_dropdown_menu.html" title="Audio Track Dropdown Menu">Audio Track Dropdown Menu</a><!--latex }
+-->, or you can change the default View Mode for all tracks in <!--latex 
+\hyperref[\foo{tracks:preferences:}]{--><a href="tracks_preferences.html" title="Tracks Preferences">Tracks Preferences</a><!--latex }
+-->. </div>
+<p><br/>
+</p>
+<div id="zoom"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Zoom"><!--latex 
+\hyperref[\foo{view:menu:zoom:}]{--><a href="view_menu_zoom.html" title="View Menu: Zoom">Zoom</a><!--latex }
+--></span></h2><!--}--><!--latex 
+\label{view:menu:zoom}--><!--latex 
+\label{view:menu:skiptheimage}-->
+<p>The <!--latex 
+\hyperref[\foo{view:menu:zoom:}]{--><a href="view_menu_zoom.html" title="View Menu: Zoom">Zoom</a><!--latex }
+--> submenu has commands that enable you to control the amount of audio, longer or shorter periods of time, that is visible on your screen. 
+</p>
+<div id="track_size"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Track_Size"><!--latex 
+\hyperref[\foo{view:menu:track:size:}]{--><a href="view_menu_track_size.html" title="View Menu: Track Size">Track Size</a><!--latex }
+--></span></h2><!--}--><!--latex 
+\label{view:menu:track:size}-->
+<p>The <!--latex 
+\hyperref[\foo{view:menu:track:size:}]{--><a href="view_menu_track_size.html" title="View Menu: Track Size">Track Size</a><!--latex }
+--> submenu contains commands that help you to fit your project to the screen horizontally and vertically. 
+</p>
+<div id="skip_to"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Skip_To"><!--latex 
+\hyperref[\foo{view:menu:skip:to:}]{--><a href="view_menu_skip_to.html" title="View Menu: Skip to">Skip To</a><!--latex }
+--></span></h2><!--}--><!--latex 
+\label{view:menu:skip:to}-->
+<p>The <!--latex 
+\hyperref[\foo{view:menu:skip:to:}]{--><a href="view_menu_skip_to.html" title="View Menu: Skip to">Skip to</a><!--latex }
+--> submenu has commands that enable you to readily skip the cursor position to the beginning or end of your current selection. 
+</p>
+<div id="history"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="History..."><!--latex 
+\hyperref[\foo{undo:redo:and:history:history}]{--><a href="undo_redo_and_history.html#history" title="Undo, Redo and History">History...</a><!--latex }
+--></span></h2><!--}--><!--latex 
+\label{view:menu:history}-->
+<p>Brings up the History window which can then be left open while using Audacity normally. History lists all undoable actions performed in the current project, including importing. The right-hand column shows the amount of hard disk space each operation used and the total space used is shown in the first (uneditable) box beneath the list. In the project shown in the image below we normalized both the recorded track and the Risset Drum track, so Normalize took a little more space than that taken by the recording. 
+</p>
+<dl><dd><span title="Undo History dialog"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="History dialog.png" height="381" src="../m/images/2/22/history_dialog.png" width="387"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/2/22/history_dialog.png--></img><!--}\par
+--></span></dd></dl>
+<p>If you discard Undo levels you can reclaim the disk space used by the project. To save the most space (removing ability to undo or redo any past edits), select the bottom Action in the list using the mouse or keyboard <span class="kbrd" style="background-color: #e0e0f0">Up</span> or <span class="kbrd" style="background-color: #e0e0f0">Down</span> arrow, increase "Levels to Discard" to the highest possible number then click "Discard".    
+</p><p>You can also easily jump back and forth between editing steps by selecting the entries
+in the window. This can be quicker than choosing Undo and Redo multiple times from the <!--latex 
+\hyperref[\foo{edit:menu:}]{--><a href="edit_menu.html" title="Edit Menu">Edit Menu</a><!--latex }
+-->.
+</p><p>See <!--\textbf{--><b><!--latex 
+\hyperref[\foo{undo:redo:and:history:history}]{--><a href="undo_redo_and_history.html#history" title="Undo, Redo and History">Undo, Redo and History</a><!--latex }
+--></b><!--}--> for details on using the Undo History window.
+</p>
+<div id="karaoke"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Karaoke..."><!--latex 
+\hyperref[\foo{karaoke:}]{--><a href="karaoke.html" title="Karaoke">Karaoke...</a><!--latex }
+--></span></h2><!--}--><!--latex 
+\label{view:menu:karaoke}-->
+<p><!--\textbf{--><b>Karaoke...</b><!--}--> shows a bouncing ball that follows text as audio plays.  The <!--\textbf{--><b>Karaoke...</b><!--}--> command is enabled whenever you have at least one <!--latex 
+\hyperref[\foo{label:tracks:}]{--><a href="label_tracks.html" title="Label Tracks">label track</a><!--latex }
+-->. If you have multiple label tracks, it uses only the first one. 
+</p><p>For more details see the <!--latex 
+\hyperref[\foo{karaoke:}]{--><a href="karaoke.html" title="Karaoke">Karaoke</a><!--latex }
+--> page.
+</p>
+<div id="mixer_board"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Mixer_Board..."><!--latex 
+\hyperref[\foo{mixer:board:}]{--><a href="mixer_board.html" title="Mixer Board">Mixer Board...</a><!--latex }
+--></span></h2><!--}--><!--latex 
+\label{view:menu:mixer:board}-->
+<p><!--\textbf{--><b>Mixer Board...</b><!--}--> is an alternative view to the audio tracks in the main tracks window, and is analogous to a hardware mixer board. Each audio track is displayed in a Track Strip. Each Track Strip has its own pair of meters, gain slider, pan slider, and mute/solo buttons, echoing that track's controls in its <!--latex 
+\hyperref[\foo{audio:tracks:Track:Control:Panel}]{--><a href="audio_tracks.html#Track_Control_Panel" title="Audio Tracks">Track Control Panel</a><!--latex }
+-->. The <!--\textbf{--><b>Mixer Board...</b><!--}--> command is enabled whenever there's an audio track - it can even be brought up during playback.  
+</p><p>For more details see the <!--latex 
+\hyperref[\foo{mixer:board:}]{--><a href="mixer_board.html" title="Mixer Board">Mixer Board</a><!--latex }
+--> page.
+</p>
+<div id="extra_menus_onoff"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Extra_Menus_.28on.2Foff.29_.C2.A0">Extra Menus (on/off) &nbsp;<font size="-1"></font></span></h2><!--}--><!--latex 
+\label{view:menu:extra:menus:onoff}-->
+<p>Shows extra menus with many extra less-used commands.  These appear after the help menu.  An example is shown below:
+</p><p><br/>
+</p>
+<dl><dd><!--\textit{--><i>Click, or hover, on any menu item in the image to read about that command.  &nbsp;<span style="font-size:0.8em"><!--latex 
+\hyperref[\foo{view:menu::skiptheimage}]{--><a href="#skiptheimage">Skip the image</a><!--latex }
+--></span></i><!--}--></dd>
+<dd><div class="noresize"><map name="ImageMap_2_1834357707"><area alt="Help Menu" coords="0,3,26,19" href="help_menu.html" shape="rect" title="Help Menu"/><area alt="Ext-Bar Menu" coords="33,3,75,19" href="ext_bar_menu.html" shape="rect" title="Ext-Bar Menu"/><area alt="Ext-Command Menu" coords="82,3,164,19" href="ext_command_menu.html" shape="rect" title="Ext-Command Menu"/><area alt="Menu Bar" coords="0,0,600,22" href="menu_reference.html" shape="rect" title="Menu Bar"/><area alt="Extra commands related to play and record" coords="39,23,163,45" href="ext_bar_menu_transport.html" shape="rect" title="Extra commands related to play and record"/><area alt="Extra commands to select the tool, e" coords="39,45,163,67" href="ext_bar_menu_tools.html" shape="rect" title="Extra commands to select the tool, e"/><area alt="Extra commands related to volume" coords="39,67,163,89" href="ext_bar_menu_mixer.html" shape="rect" title="Extra commands related to volume"/><area alt="Extra commands related to editing" coords="39,89,163,111" href="ext_bar_menu_edit.html" shape="rect" title="Extra commands related to editing"/><area alt="Extra commands related to play at speed" coords="39,111,163,133" href="ext_bar_menu_transcription.html" shape="rect" title="Extra commands related to play at speed"/><area alt="Extra commands related to scrubbing" coords="39,133,163,155" href="ext_bar_menu_scrub.html" shape="rect" title="Extra commands related to scrubbing"/><area alt="Extra commands related to selecting a device" coords="39,155,163,177" href="ext_bar_menu_device.html" shape="rect" title="Extra commands related to selecting a device"/><area alt="Extra commands related to selecting" coords="39,177,163,199" href="ext_bar_menu_selection.html" shape="rect" title="Extra commands related to selecting"/><area alt="Play (or stop) audio" coords="175,26,426,48" href="#play" shape="rect" title="Play (or stop) audio"/><area alt="Stop audio" coords="175,48,426,70" href="#stop" shape="rect" title="Stop audio"/><area alt="Plays for one second centered on the current &lt;b&gt;mouse pointer&lt;/b&gt; position (not from the current cursor position)" coords="175,70,426,92" href="#play_one_second" shape="rect" title="Plays for one second centered on the current &lt;b&gt;mouse pointer&lt;/b&gt; position (not from the current cursor position)"/><area alt="Plays to or from the current &lt;b&gt;mouse pointer&lt;/b&gt; position to or from the start or end of the selection, depending on the pointer position" coords="175,92,426,114" href="#play_to_selection" shape="rect" title="Plays to or from the current &lt;b&gt;mouse pointer&lt;/b&gt; position to or from the start or end of the selection, depending on the pointer position"/><area alt="Plays a short period before the start of the selected audio, the period before shares the setting of the cut preview" coords="175,114,426,136" href="#play_before_selection_start" shape="rect" title="Plays a short period before the start of the selected audio, the period before shares the setting of the cut preview"/><area alt="Plays a short period after the start of the selected audio, the period after shares the setting of the cut preview" coords="175,136,426,158" href="#play_after_selection_start" shape="rect" title="Plays a short period after the start of the selected audio, the period after shares the setting of the cut preview"/><area alt="Plays a short period before the end of the selected audio, the period before shares the setting of the cut preview" coords="175,158,426,180" href="#play_before_selection_end" shape="rect" title="Plays a short period before the end of the selected audio, the period before shares the setting of the cut preview"/><area alt="Plays a short period after the end of the selected audio, the period after shares the setting of the cut preview" coords="175,180,426,202" href="#play_after_selection_end" shape="rect" title="Plays a short period after the end of the selected audio, the period after shares the setting of the cut preview"/><area alt="Plays a short period  before and after the start of the selected audio, the periods before and after share the setting of the cut preview" coords="175,202,426,224" href="#play_before_and_after_selection_start" shape="rect" title="Plays a short period  before and after the start of the selected audio, the periods before and after share the setting of the cut preview"/><area alt="Plays a short period  before and after the end of the selected audio, the periods before and after share the setting of the cut preview" coords="175,224,426,246" href="#play_before_and_after_selection_end" shape="rect" title="Plays a short period  before and after the end of the selected audio, the periods before and after share the setting of the cut preview"/><area alt="Plays audio excluding the selection" coords="175,246,426,268" href="#play_cut_preview" shape="rect" title="Plays audio excluding the selection"/></map><!--
+
+\par\Needspace{168.0pt}\begin{picture}(219.5,138.0)
+--><!--   \put(0,0){\includegraphics[scale=0.5]{--><img alt="ExtBar-TransportMenu.png" height="276" src="../m/images/5/54/extbar_transportmenu.png" usemap="#ImageMap_2_1834357707" width="439"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/5/54/extbar_transportmenu.png--></img><!--}}
+--><!--   \put(0.0,128.5){\hyperref[\foo{help:menu:}]{\makebox(13.0,8.0){}}}
+   \put(16.5,128.5){\hyperref[\foo{ext:bar:menu:}]{\makebox(21.0,8.0){}}}
+   \put(41.0,128.5){\hyperref[\foo{ext:command:menu:}]{\makebox(41.0,8.0){}}}
+   \put(19.5,115.5){\hyperref[\foo{ext:bar:menu:transport:}]{\makebox(62.0,11.0){}}}
+   \put(19.5,104.5){\hyperref[\foo{ext:bar:menu:tools:}]{\makebox(62.0,11.0){}}}
+   \put(19.5,93.5){\hyperref[\foo{ext:bar:menu:mixer:}]{\makebox(62.0,11.0){}}}
+   \put(19.5,82.5){\hyperref[\foo{ext:bar:menu:edit:}]{\makebox(62.0,11.0){}}}
+   \put(19.5,71.5){\hyperref[\foo{ext:bar:menu:transcription:}]{\makebox(62.0,11.0){}}}
+   \put(19.5,60.5){\hyperref[\foo{ext:bar:menu:scrub:}]{\makebox(62.0,11.0){}}}
+   \put(19.5,49.5){\hyperref[\foo{ext:bar:menu:device:}]{\makebox(62.0,11.0){}}}
+   \put(19.5,38.5){\hyperref[\foo{ext:bar:menu:selection:}]{\makebox(62.0,11.0){}}}
+   \put(87.5,114.0){\hyperref[\foo{view:menu::play}]{\makebox(125.5,11.0){}}}
+   \put(87.5,103.0){\hyperref[\foo{view:menu::stop}]{\makebox(125.5,11.0){}}}
+   \put(87.5,92.0){\hyperref[\foo{view:menu::play:one:second}]{\makebox(125.5,11.0){}}}
+   \put(87.5,81.0){\hyperref[\foo{view:menu::play:to:selection}]{\makebox(125.5,11.0){}}}
+   \put(87.5,70.0){\hyperref[\foo{view:menu::play:before:selection:start}]{\makebox(125.5,11.0){}}}
+   \put(87.5,59.0){\hyperref[\foo{view:menu::play:after:selection:start}]{\makebox(125.5,11.0){}}}
+   \put(87.5,48.0){\hyperref[\foo{view:menu::play:before:selection:end}]{\makebox(125.5,11.0){}}}
+   \put(87.5,37.0){\hyperref[\foo{view:menu::play:after:selection:end}]{\makebox(125.5,11.0){}}}
+   \put(87.5,26.0){\hyperref[\foo{view:menu::play:before:and:after:selection:start}]{\makebox(125.5,11.0){}}}
+   \put(87.5,15.0){\hyperref[\foo{view:menu::play:before:and:after:selection:end}]{\makebox(125.5,11.0){}}}
+   \put(87.5,4.0){\hyperref[\foo{view:menu::play:cut:preview}]{\makebox(125.5,11.0){}}}
+\end{picture}
+
+--></div></dd></dl>
+<div id="skiptheimage"></div>
+<div id="show_clipping_onoff"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Show_Clipping">Show Clipping</span></h2><!--}--><!--latex 
+\label{view:menu:show:clipping:onoff}--><!--latex 
+\label{view:menu:skiptheimage}-->
+<p>Click this menu item to turn display of <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:clipping}]{--><a href="glossary.html#clipping" title="Glossary">clipped</a><!--latex }
+--></b><!--}--></i><!--}--> samples on and off - a check mark in the item indicates that display is turned on. If turned on <!--\textit{--><i>(the default is off)</i><!--}-->, individual or multiple clipped samples display as a red vertical line when in one of the <!--latex 
+\hyperref[\foo{audacity:waveform:}]{--><a href="audacity_waveform.html" title="Audacity Waveform">waveform views</a><!--latex }
+-->. A sample is displayed as clipped if it touches or exceeds 0 <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:decibel}]{--><a href="glossary.html#decibel" title="Glossary">dB</a><!--latex }
+--></b><!--}--></i><!--}--> and so touches or exceeds the volume envelope defined by +1.0 to - 1.0 on the <!--latex 
+\hyperref[\foo{audio:tracks:scale}]{--><a href="audio_tracks.html#scale" title="Audio Tracks">vertical scale</a><!--latex }
+--> to left of the waveform. 
+</p><p>A run of four or more consecutive clipped samples will also trigger the red clipping indicator in <!--latex 
+\hyperref[\foo{meter:toolbar:annotated}]{--><a href="meter_toolbar.html#annotated" title="Meter Toolbar">Meter Toolbar</a><!--latex }
+-->. A solid block of red in the waveform will almost certainly indicate multiple or extended runs of lost audio information above 0 dB, resulting in severe distortion. Avoid clipped samples where possible, for example by setting the <!--latex 
+\hyperref[\foo{meter:toolbar:recording}]{--><a href="meter_toolbar.html#recording" title="Meter Toolbar">recording level</a><!--latex }
+--> correctly. You may turn "Show Clipping" off if it behaves sluggishly on slower machines.    
+</p>
+<dl><dd><span title="Clipped positive and negative samples marked in red"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="ShowClipping02.png" height="105" src="../m/images/7/7d/showclipping02.png" width="515"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/7/7d/showclipping02.png--></img><!--}\par
+--></span></dd></dl>
+<div class="note">By choosing <span class="menu">Analyze &gt; Find Clipping...</span>, clipping can also be shown diagrammatically in a <!--latex 
+\hyperref[\foo{label:tracks:}]{--><a href="label_tracks.html" title="Label Tracks">Label Track</a><!--latex }
+--> so that screen-readers can access the information.</div>
+<p><br/>
+</p>
+<div id="mac_full_screen"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Enter_.2F_Exit_Full_Screen_.28Mac_only.29">Enter / Exit Full Screen <!--\textit{--><i>(Mac only)</i><!--}--></span></h2><!--}--><!--latex 
+\label{view:menu:mac:full:screen}-->
+<p>This menu item only appears on Mac OS X Lion and above. Enter Full Screen enters full screen state, occupying the entire display and hiding the Audacity menu bar and window buttons and the Dock. This is the same as clicking the green window button top left of the Audacity title bar. To leave Full Screen, hover your mouse at the top of the monitor to show the menu bar and window buttons then access View &gt; Exit Full Screen or click the green window button. 
+</p><p>The Mac keyboard shortcut <span class="kbrd" style="background-color: #e0e0f0">Ctrl + ⌘ + F</span> to toggle full screen does not work in Audacity and so does not appear alongside the Enter / Exit Full Screen menu items. Separate "App Shortcuts" for "Enter Full Screen" and "Exit Full Screen" can be added for Audacity in the Mac Keyboard Preferences, but it is probably easier to use Audacity's own shortcut <span class="kbrd" style="background-color: #e0e0f0">COMMAND + /</span> &nbsp; for "Full screen on/off" which performs the same full screen function.
+</p>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">"Full screen on/off" is not interchangeable with the menu item or full screen button. Thus the Audacity shortcut cannot exit full screen entered by other methods, and the other methods cannot exit full screen entered by using the Audacity shortcut.
+</td></tr></tbody></table>
+</div>
+
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

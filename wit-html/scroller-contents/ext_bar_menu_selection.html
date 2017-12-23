@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Ext-Bar Menu: Selection - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Ext-Bar_Menu_Selection rootpage-Ext-Bar_Menu_Selection skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Ext-Bar Menu: Selection</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{ext:bar:menu:selection:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p><br/>
+</p>
+<div class="intro">The <!--\textit{--><i><!--\textbf{--><b>Ext-Bar &gt; Selection Menu</b><!--}--></i><!--}--> provides commands for changing the Snap-To settings, and for extending and contracting the selection. </div>
+<dl><dd><!--\textit{--><i>Click, or hover, on any menu item in the image to read about that command.  &nbsp;<span style="font-size:0.8em"><!--latex 
+\hyperref[\foo{ext:bar:menu:selection::skiptheimage}]{--><a href="#skiptheimage">Skip the image</a><!--latex }
+--></span></i><!--}--></dd>
+<dd><div class="noresize"><map name="ImageMap_1_523027931"><area alt="Help Menu" coords="0,3,26,19" href="help_menu.html" shape="rect" title="Help Menu"/><area alt="Ext-Bar Menu" coords="33,3,75,19" href="ext_bar_menu.html" shape="rect" title="Ext-Bar Menu"/><area alt="Ext-Command Menu" coords="82,3,164,19" href="ext_command_menu.html" shape="rect" title="Ext-Command Menu"/><area alt="Menu Bar" coords="0,0,600,22" href="menu_reference.html" shape="rect" title="Menu Bar"/><area alt="Extra commands related to play and record" coords="39,23,163,45" href="ext_bar_menu_transport.html" shape="rect" title="Extra commands related to play and record"/><area alt="Extra commands to select the tool, e" coords="39,45,163,67" href="ext_bar_menu_tools.html" shape="rect" title="Extra commands to select the tool, e"/><area alt="Extra commands related to volume" coords="39,67,163,89" href="ext_bar_menu_mixer.html" shape="rect" title="Extra commands related to volume"/><area alt="Extra commands related to editing" coords="39,89,163,111" href="ext_bar_menu_edit.html" shape="rect" title="Extra commands related to editing"/><area alt="Extra commands related to play at speed" coords="39,111,163,133" href="ext_bar_menu_transcription.html" shape="rect" title="Extra commands related to play at speed"/><area alt="Extra commands related to scrubbing" coords="39,133,163,155" href="ext_bar_menu_scrub.html" shape="rect" title="Extra commands related to scrubbing"/><area alt="Extra commands related to selecting a device" coords="39,155,163,177" href="ext_bar_menu_device.html" shape="rect" title="Extra commands related to selecting a device"/><area alt="Extra commands related to selecting" coords="39,177,163,199" href="#" shape="rect" title="Extra commands related to selecting"/><area alt='Equivalent to setting the Snap To control in Selection Toolbar to "Off"' coords="175,26,474,48" href="#snap_to_off" shape="rect" title='Equivalent to setting the Snap To control in Selection Toolbar to "Off"'/><area alt='Equivalent to setting the Snap To control in Selection Toolbar to "Nearest"' coords="175,48,474,70" href="#snap_to_nearest" shape="rect" title='Equivalent to setting the Snap To control in Selection Toolbar to "Nearest"'/><area alt='Equivalent to setting the Snap To control in Selection Toolbar to "Prior"' coords="175,70,474,92" href="#snap_to_prior" shape="rect" title='Equivalent to setting the Snap To control in Selection Toolbar to "Prior"'/><area alt="Select from cursor to start of track" coords="175,92,474,114" href="#selection_to_start" shape="rect" title="Select from cursor to start of track"/><area alt="Select from cursor to end of track" coords="175,114,474,136" href="#selection_to_end" shape="rect" title="Select from cursor to end of track"/><area alt="Increases the size of the selection by extending it to the left" coords="175,136,474,158" href="#selection_extend_left" shape="rect" title="Increases the size of the selection by extending it to the left"/><area alt="Increases the size of the selection by extending it to the right" coords="175,158,474,180" href="#selection_extend_right" shape="rect" title="Increases the size of the selection by extending it to the right"/><area alt="Extend selection left a little (is this a duplicate?)" coords="175,180,474,202" href="#set_or_extend_left_selection" shape="rect" title="Extend selection left a little (is this a duplicate?)"/><area alt="Extend selection right a litlle (is this a duplicate?)" coords="175,202,474,224" href="#set_or_extend_right_selection" shape="rect" title="Extend selection right a litlle (is this a duplicate?)"/><area alt="Decreases the size of the selection by contracting it from the right" coords="175,224,474,246" href="#selection_contract_left" shape="rect" title="Decreases the size of the selection by contracting it from the right"/><area alt="Decreases the size of the selection by contracting it from the left" coords="175,246,474,268" href="#selection_contract_right" shape="rect" title="Decreases the size of the selection by contracting it from the left"/></map><!--
+
+\par\Needspace{168.0pt}\begin{picture}(243.5,138.0)
+--><!--   \put(0,0){\includegraphics[scale=0.5]{--><img alt="ExtBar-SelectionMenu.png" height="276" src="../m/images/c/ca/extbar_selectionmenu.png" usemap="#ImageMap_1_523027931" width="487"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/c/ca/extbar_selectionmenu.png--></img><!--}}
+--><!--   \put(0.0,128.5){\hyperref[\foo{help:menu:}]{\makebox(13.0,8.0){}}}
+   \put(16.5,128.5){\hyperref[\foo{ext:bar:menu:}]{\makebox(21.0,8.0){}}}
+   \put(41.0,128.5){\hyperref[\foo{ext:command:menu:}]{\makebox(41.0,8.0){}}}
+   \put(19.5,115.5){\hyperref[\foo{ext:bar:menu:transport:}]{\makebox(62.0,11.0){}}}
+   \put(19.5,104.5){\hyperref[\foo{ext:bar:menu:tools:}]{\makebox(62.0,11.0){}}}
+   \put(19.5,93.5){\hyperref[\foo{ext:bar:menu:mixer:}]{\makebox(62.0,11.0){}}}
+   \put(19.5,82.5){\hyperref[\foo{ext:bar:menu:edit:}]{\makebox(62.0,11.0){}}}
+   \put(19.5,71.5){\hyperref[\foo{ext:bar:menu:transcription:}]{\makebox(62.0,11.0){}}}
+   \put(19.5,60.5){\hyperref[\foo{ext:bar:menu:scrub:}]{\makebox(62.0,11.0){}}}
+   \put(19.5,49.5){\hyperref[\foo{ext:bar:menu:device:}]{\makebox(62.0,11.0){}}}
+   \put(19.5,38.5){\hyperref[\foo{ext:bar:menu:selection::}]{\makebox(62.0,11.0){}}}
+   \put(87.5,114.0){\hyperref[\foo{ext:bar:menu:selection::snap:to:off}]{\makebox(149.5,11.0){}}}
+   \put(87.5,103.0){\hyperref[\foo{ext:bar:menu:selection::snap:to:nearest}]{\makebox(149.5,11.0){}}}
+   \put(87.5,92.0){\hyperref[\foo{ext:bar:menu:selection::snap:to:prior}]{\makebox(149.5,11.0){}}}
+   \put(87.5,81.0){\hyperref[\foo{ext:bar:menu:selection::selection:to:start}]{\makebox(149.5,11.0){}}}
+   \put(87.5,70.0){\hyperref[\foo{ext:bar:menu:selection::selection:to:end}]{\makebox(149.5,11.0){}}}
+   \put(87.5,59.0){\hyperref[\foo{ext:bar:menu:selection::selection:extend:left}]{\makebox(149.5,11.0){}}}
+   \put(87.5,48.0){\hyperref[\foo{ext:bar:menu:selection::selection:extend:right}]{\makebox(149.5,11.0){}}}
+   \put(87.5,37.0){\hyperref[\foo{ext:bar:menu:selection::set:or:extend:left:selection}]{\makebox(149.5,11.0){}}}
+   \put(87.5,26.0){\hyperref[\foo{ext:bar:menu:selection::set:or:extend:right:selection}]{\makebox(149.5,11.0){}}}
+   \put(87.5,15.0){\hyperref[\foo{ext:bar:menu:selection::selection:contract:left}]{\makebox(149.5,11.0){}}}
+   \put(87.5,4.0){\hyperref[\foo{ext:bar:menu:selection::selection:contract:right}]{\makebox(149.5,11.0){}}}
+\end{picture}
+
+--></div></dd></dl>
+<div id="skiptheimage"></div>
+<div id="snap_to_off"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Snap_To_Off_.C2.A0">Snap To Off &nbsp;<font size="-1"></font></span></h2><!--}--><!--latex 
+\label{ext:bar:menu:selection:snap:to:off}--><!--latex 
+\label{ext:bar:menu:selection:skiptheimage}-->
+<p>Equivalent to setting the Snap To control in Selection Toolbar to "Off".
+</p>
+<div id="snap_to_nearest"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Snap_To_Nearest_.C2.A0">Snap To Nearest &nbsp;<font size="-1"></font></span></h2><!--}--><!--latex 
+\label{ext:bar:menu:selection:snap:to:nearest}-->
+<p>Equivalent to setting the Snap To control in Selection Toolbar to "Nearest".
+</p>
+<div id="snap_to_prior"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Snap_To_Prior_.C2.A0">Snap To Prior &nbsp;<font size="-1"></font></span></h2><!--}--><!--latex 
+\label{ext:bar:menu:selection:snap:to:prior}-->
+<p>Equivalent to setting the Snap To control in Selection Toolbar to "Prior".
+</p>
+<div id="selection_to_start"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Selection_to_Start_.C2.A0Shift.2BHome">Selection to Start &nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">Shift+Home</span></font></span></h2><!--}--><!--latex 
+\label{ext:bar:menu:selection:selection:to:start}-->
+<p>Select from cursor to start of track
+</p>
+<div id="selection_to_end"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Selection_to_End_.C2.A0Shift.2BEnd">Selection to End &nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">Shift+End</span></font></span></h2><!--}--><!--latex 
+\label{ext:bar:menu:selection:selection:to:end}-->
+<p>Select from cursor to end of track
+</p>
+<div id="selection_extend_left"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Selection_Extend_Left_.C2.A0Shift.2BLeft">Selection Extend Left &nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">Shift+Left</span></font></span></h2><!--}--><!--latex 
+\label{ext:bar:menu:selection:selection:extend:left}-->
+<p>Increases the size of the selection by extending it to the left. The amount of increase is dependent on the zoom level. If there is no selection one is created starting at the cursor position. 
+</p>
+<div id="selection_extend_right"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Selection_Extend_Right_.C2.A0Shift.2BRight">Selection Extend Right &nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">Shift+Right</span></font></span></h2><!--}--><!--latex 
+\label{ext:bar:menu:selection:selection:extend:right}-->
+<p>Increases the size of the selection by extending it to the right. The amount of increase is dependent on the zoom level. If there is no selection one is created starting at the cursor position. 
+</p>
+
+<div id="set_or_extend_left_selection"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Set_.28or_Extend.29_Left_Selection_.C2.A0">Set (or Extend) Left Selection &nbsp;<font size="-1"></font></span></h2><!--}--><!--latex 
+\label{ext:bar:menu:selection:set:or:extend:left:selection}-->
+<p>When playing or recording, sets the left boundary of a potential selection by moving the cursor to the current position of the green playback cursor (or red recording cursor). The selection can then be drawn by using "Set (or Extend) Right Selection"(below).</p>
+<p>When stopped, increases the size of the selection by extending it to the left. The amount of increase is dependent on the zoom level. If there is no selection one is created starting at the cursor position. 
+</p>
+<div id="set_or_extend_right_selection"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Set_.28or_Extend.29_Right_Selection_.C2.A0">Set (or Extend) Right Selection &nbsp;<font size="-1"></font></span></h2><!--}--><!--latex 
+\label{ext:bar:menu:selection:set:or:extend:right:selection}-->
+<p>When playing or recording, sets the right boundary of the selection, thus drawing the selection from the cursor position to the current position of the green playback cursor (or red recording cursor). This is a quick way to mark a selection for future editing while playing or recording. Selections can be <!--latex 
+\hyperref[\foo{label:tracks:}]{--><a href="label_tracks.html" title="Label Tracks">labeled</a><!--latex }
+--> while playing or recording using <span class="menu">Edit&nbsp;&gt;&nbsp;Labels&nbsp;&gt;&nbsp;<!--latex 
+\hyperref[\foo{edit:menu:labels:addlabelatselection}]{--><a href="edit_menu_labels.html#addlabelatselection" title="Edit Menu: Labels">Add&nbsp;Label&nbsp;at&nbsp;Selection</a><!--latex }
+--></span> or shortcut <span class="kbrd" style="background-color: #e0e0f0">Ctrl + B</span>.</p>
+<p>When stopped, increases the size of the selection by extending it to the right. The amount of increase is dependent on the zoom level. If there is no selection one is created starting at the cursor position. 
+</p>
+<div id="selection_contract_left"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Selection_Contract_Left_.C2.A0Ctrl.2BShift.2BRight">Selection Contract Left &nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">Ctrl+Shift+Right</span></font></span></h2><!--}--><!--latex 
+\label{ext:bar:menu:selection:selection:contract:left}-->
+<p>Decreases the size of the selection by contracting it from the right. The amount of decrease is dependent on the zoom level. If there is no selection no action is taken.
+</p>
+<div id="selection_contract_right"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Selection_Contract_Right_.C2.A0Ctrl.2BShift.2BLeft">Selection Contract Right &nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">Ctrl+Shift+Left</span></font></span></h2><!--}--><!--latex 
+\label{ext:bar:menu:selection:selection:contract:right}-->
+<p>Decreases the size of the selection by contracting it from the left. The amount of decrease is dependent on the zoom level. If there is no selection no action is taken.
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

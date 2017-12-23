@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Effect Menu: LADSPA - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Effect_Menu_LADSPA rootpage-Effect_Menu_LADSPA skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Effect Menu: LADSPA</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{effect:menu:ladspa:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"> 
+
+
+<div class="intro"><a class="external text" href="https://en.wikipedia.org/wiki/LADSPA" rel="nofollow">LADSPA</a> (Linux Audio Developer's Simple Plug-in API) plug-ins were originally developed for the Linux platform, but ports of some plug-ins are available for Windows and Mac as well. 
+<!--
+\begin{itemize}--><ul><!--
+\item --><li>Most LADSPA plug-ins are effects, but they are also used to provide some of Audacity's built-in  audio <!--latex 
+\hyperref[\foo{generate:menu:}]{--><a href="generate_menu.html" title="Generate Menu">generators</a><!--latex }
+--> and can be used for audio <!--latex 
+\hyperref[\foo{analyze:menu:}]{--><a href="analyze_menu.html" title="Analyze Menu">analysis</a><!--latex }
+-->. </li></ul><!--
+\end{itemize}
+-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li>Additional LADSPA plug-ins can be downloaded for Windows, Mac and Linux.  Please see the <a class="external text" href="http://www.audacityteam.org/download/plug-ins/#ladspa" rel="nofollow">LADSPA section</a> of the Download page on the <a class="external text" href="http://www.audacityteam.org/" rel="nofollow">Audacity Website</a> for more details and links.</li></ul><!--
+\end{itemize}
+-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li>LADSPA effects support <!--\textbf{--><b><!--latex 
+\hyperref[\foo{real:time:preview:of:effects:}]{--><a href="real_time_preview_of_effects.html" title="Real-time preview of effects">real-time preview</a><!--latex }
+--></b><!--}-->. They do not support import/export of presets but do support saving presets for use in Audacity only. A few LADSPA plug-ins have an "Effect Output" section which is populated after the effect is applied.</li></ul><!--
+\end{itemize}
+-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li>Loading of LADSPA effects is controlled by the <!--latex 
+\hyperref[\foo{manage:effects:generators:and:analyzers:}]{--><a href="manage_effects_generators_and_analyzers.html" title="Manage Effects, Generators and Analyzers">Plug-in Manager: Effects, Generators and Analyzers</a><!--latex }
+--> dialog. </li></ul><!--
+\end{itemize}
+--></div>
+<dl><dd><!--\textit{--><i>Click, or hover, on any menu item in the image to read about that command.  &nbsp;<span style="font-size:0.8em"><!--latex 
+\hyperref[\foo{effect:menu:ladspa::skiptheimage}]{--><a href="#skiptheimage">Skip the image</a><!--latex }
+--></span></i><!--}--></dd>
+<dd><div class="noresize"><map name="ImageMap_1_209978401"><area alt="Generate Menu" coords="0,3,26,19" href="generate_menu.html" shape="rect" title="Generate Menu"/><area alt="Effect Menu" coords="33,3,66,19" href="effect_menu.html" shape="rect" title="Effect Menu"/><area alt="Analyze Menu" coords="73,3,117,19" href="analyze_menu.html" shape="rect" title="Analyze Menu"/><area alt="Help Menu" coords="124,3,153,19" href="help_menu.html" shape="rect" title="Help Menu"/><area alt="Ext-Bar Menu" coords="160,3,202,19" href="ext_bar_menu.html" shape="rect" title="Ext-Bar Menu"/><area alt="Ext-Command Menu" coords="209,3,291,19" href="ext_command_menu.html" shape="rect" title="Ext-Command Menu"/><area alt="Menu Bar" coords="0,0,600,22" href="menu_reference.html" shape="rect" title="Menu Bar"/><area alt="Selecting this option from the Effect Menu (or the Generate Menu or Analyze Menu) takes you to a dialog where you can enable or disable particular Effects, Generators and Analyzers in Audacity" coords="39,23,259,45" href="effect_menu.html#add_remove_plugins" shape="rect" title="Selecting this option from the Effect Menu (or the Generate Menu or Analyze Menu) takes you to a dialog where you can enable or disable particular Effects, Generators and Analyzers in Audacity"/><area alt="Repeats the last used effect at its last used settings and without displaying any dialog" coords="39,52,259,74" href="effect_menu.html#repeat_last_effect" shape="rect" title="Repeats the last used effect at its last used settings and without displaying any dialog"/><area alt="Effects built in to Audacity" coords="39,81,259,103" href="effect_menu_audacity.html" shape="rect" title="Effects built in to Audacity"/><area alt='"Linux Audio Plug-in Audio" effects' coords="39,110,259,132" href="#" shape="rect" title='"Linux Audio Plug-in Audio" effects'/><area alt='Effects created using a LISP-variant called "Nyquist"' coords="39,132,259,154" href="effect_menu_nyquist.html" shape="rect" title='Effects created using a LISP-variant called "Nyquist"'/><area alt="This effect is a stereo compressor with a variable envelope follower for RMS (average) / peak behavior" coords="271,113,354,135" href="sc4.html" shape="rect" title="This effect is a stereo compressor with a variable envelope follower for RMS (average) / peak behavior"/></map><!--
+
+\par\Needspace{111.0pt}\begin{picture}(183.5,81.0)
+--><!--   \put(0,0){\includegraphics[scale=0.5]{--><img alt="Effect-LADSPAMenu.png" height="162" src="../m/images/b/ba/effect_ladspamenu.png" usemap="#ImageMap_1_209978401" width="367"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/effect_ladspamenu.png--></img><!--}}
+--><!--   \put(0.0,71.5){\hyperref[\foo{generate:menu:}]{\makebox(13.0,8.0){}}}
+   \put(16.5,71.5){\hyperref[\foo{effect:menu:}]{\makebox(16.5,8.0){}}}
+   \put(36.5,71.5){\hyperref[\foo{analyze:menu:}]{\makebox(22.0,8.0){}}}
+   \put(62.0,71.5){\hyperref[\foo{help:menu:}]{\makebox(14.5,8.0){}}}
+   \put(80.0,71.5){\hyperref[\foo{ext:bar:menu:}]{\makebox(21.0,8.0){}}}
+   \put(104.5,71.5){\hyperref[\foo{ext:command:menu:}]{\makebox(41.0,8.0){}}}
+   \put(19.5,58.5){\hyperref[\foo{effect:menu:add:remove:plugins}]{\makebox(110.0,11.0){}}}
+   \put(19.5,44.0){\hyperref[\foo{effect:menu:repeat:last:effect}]{\makebox(110.0,11.0){}}}
+   \put(19.5,29.5){\hyperref[\foo{effect:menu:audacity:}]{\makebox(110.0,11.0){}}}
+   \put(19.5,15.0){\hyperref[\foo{effect:menu:ladspa::}]{\makebox(110.0,11.0){}}}
+   \put(19.5,4.0){\hyperref[\foo{effect:menu:nyquist:}]{\makebox(110.0,11.0){}}}
+   \put(135.5,13.5){\hyperref[\foo{sc4:}]{\makebox(41.5,11.0){}}}
+\end{picture}
+
+--></div></dd></dl>
+<div id="skiptheimage"></div>
+<div id="lpiia"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="LADSPA_plug-ins_shipped_with_Audacity">LADSPA plug-ins shipped with Audacity</span></h2><!--}--><!--latex 
+\label{effect:menu:ladspa:lpiia}--><!--latex 
+\label{effect:menu:ladspa:skiptheimage}-->
+<p>One sample LADSPA effect is included with Windows and Mac builds of Audacity:
+</p>
+<div id="sc4"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="SC4..."><!--latex 
+\hyperref[\foo{sc4:}]{--><a href="sc4.html" title="SC4">SC4...</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{effect:menu:ladspa:sc4}-->
+<p>A stereo <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:compression}]{--><a href="glossary.html#compression" title="Glossary">compressor</a><!--latex }
+--></b><!--}--></i><!--}--> with a variable envelope follower for <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:rms}]{--><a href="glossary.html#rms" title="Glossary">RMS</a><!--latex }
+--></b><!--}--></i><!--}--> / peak behavior. 
+</p>
+<div class="note">Although shipped, SC4 is not enabled by default on Mac.  To enable it for use you will need to use <!--latex 
+\hyperref[\foo{effect:menu:add:remove:plugins}]{--><a href="effect_menu.html#add_remove_plugins" title="Effect Menu">Add/Remove Plugins...</a><!--latex }
+--> from the top of the <!--latex 
+\hyperref[\foo{effect:menu:}]{--><a href="effect_menu.html" title="Effect Menu">Effect menu</a><!--latex }
+-->.  See <!--latex 
+\hyperref[\foo{effect:menu:add:remove:plugins}]{--><a href="effect_menu.html#add_remove_plugins" title="Effect Menu">this page</a><!--latex }
+--> for details. </div>
+<div id="add_ladspa"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Adding_a_LADSPA_plug-in">Adding a LADSPA plug-in</span></h2><!--}--><!--latex 
+\label{effect:menu:ladspa:add:ladspa}-->
+<p>For detailed instructions on installing LADSPA plug-ins for Audacity see: <!--latex 
+\hyperref[\foo{installing:effect:generator:and:analyzer:plug:ins:on:windows:ladspa:install}]{--><a href="installing_effect_generator_and_analyzer_plug_ins_on_windows.html#ladspa_install" title="Installing Effect, Generator and Analyzer plug-ins on Windows"><span title="A guide to installing Effect, Generator and Analyzer plug-ins for Audacity Windows computer platforms.">Windows</span></a><!--latex }
+-->, <!--latex 
+\hyperref[\foo{installing:effect:generator:and:analyzer:plug:ins:on:mac:os:x:ladspa:install}]{--><a href="installing_effect_generator_and_analyzer_plug_ins_on_mac_os_x.html#ladspa_install" title="Installing Effect, Generator and Analyzer plug-ins on MAC OS X"><span title="A guide to installing Effect, Generator and Analyzer plug-ins for Audacity on Mac computer platforms.">Mac</span></a><!--latex }
+--> or <!--latex 
+\hyperref[\foo{installing:effect:generator:and:analyzer:plug:ins:on:linux:ladspa:install}]{--><a href="installing_effect_generator_and_analyzer_plug_ins_on_linux.html#ladspa_install" title="Installing Effect, Generator and Analyzer plug-ins on Linux"><span title="A guide to installing Effect, Generator and Analyzer plug-ins for Audacity on Linux computer platforms.">Linux</span></a><!--latex }
+-->
+</p>
+<div id="saving_ladspa"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Saving_LADPSA_effect_settings_as_a_User_Preset">Saving LADPSA effect settings as a User Preset</span></h2><!--}--><!--latex 
+\label{effect:menu:ladspa:saving:ladspa}-->
+<p>To save the current effect settings as a User Preset, in the effect's dialog, click the <span class="button">Manage</span> button then choose <span class="button">Save Preset... &nbsp;<a class="image" href="http://alphamanual.audacityteam.org/man/File:MenuDownArrow.png"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="MenuDownArrow.png" height="6" src="../m/images/e/ed/menudownarrow.png" style="vertical-align: middle" width="9"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/e/ed/menudownarrow.png--></img><!--}}{}--></a></span> which brings up the following dialog: 
+</p>
+<dl><dd><span title="Save Preset dialog for a LADSPA effect"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Save Preset Dialog.png" height="98" src="../m/images/4/44/save_preset_dialog.png" width="246"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/4/44/save_preset_dialog.png--></img><!--}\par
+--></span></dd></dl>
+<p>Type a name for the preset then click <span class="button">OK</span> after which the saved preset will appear in the "User Presets" list in the Manage menu.  
+</p>
+<div id="ladspa_options"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="LADSPA_Effect_Options">LADSPA Effect Options</span></h2><!--}--><!--latex 
+\label{effect:menu:ladspa:ladspa:options}-->
+<p>In the effect's dialog, click the <span class="button">Manage</span> button then choose <span class="button">Options... &nbsp;<a class="image" href="http://alphamanual.audacityteam.org/man/File:MenuDownArrow.png"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="MenuDownArrow.png" height="6" src="../m/images/e/ed/menudownarrow.png" style="vertical-align: middle" width="9"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/e/ed/menudownarrow.png--></img><!--}}{}--></a></span> to bring up the dialog illustrated below. When you change the options in this dialog, the changes apply only to the current effect that's open. All other LADSPA effects will remain at the default options shown below until you change their options. 
+</p>
+<dl><dd><span title="LADSPA effect settings dialog"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Ladspa effect settings.png" height="186" src="../m/images/b/bc/ladspa_effect_settings.png" width="676"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/bc/ladspa_effect_settings.png--></img><!--}\par
+--></span></dd></dl>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>Latency Compensation:</b><!--}--> This setting (enabled by default) compensates for waveform delay caused by LADSPA effects which preload audio data to a buffer. Compensation may not work in all cases, and for it to work, any compensation or latency reporting settings in the effect itself must be enabled. If compensation fails or if this Audacity setting is unchecked, effects that buffer audio will insert silence at the start of the processed selection and remove a corresponding amount of audio from the end of the selection. Enabling or disabling compensation is effective immediately.</li></ul><!--
+\end{itemize}
+-->
+<p><br/>
+</p><p><!--latex 
+\hyperref[\foo{effect:menu:}]{--><a href="effect_menu.html" title="Effect Menu"><!--\textbf{--><b>&lt;</b><!--}-->&nbsp; Back to: Effect Menu</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Audio Tracks and Clips - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Audacity_Tracks_and_Clips rootpage-Audacity_Tracks_and_Clips skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Audio Tracks and Clips</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{audacity:tracks:and:clips:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p><br/>
+
+</p>
+<div class="intro">An Audacity project can contain multiple <!--\textbf{--><b><!--latex 
+\hyperref[\foo{audio:tracks:}]{--><a href="audio_tracks.html" title="Audio Tracks">audio tracks</a><!--latex }
+--></b><!--}-->.  Each track is normally in one unbroken section, something like a single film clip. However, Audacity can <!--\textbf{--><b>split</b><!--}--> a track so as to create multiple <!--\textbf{--><b>clips</b><!--}--> within that track.<p> Each clip in a track can then be moved around independently, but they all share several properties of the parent track such as its overall volume, panning, <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:sample:rate}]{--><a href="glossary.html#sample_rate" title="Glossary">sample rate</a><!--latex }
+--></b><!--}--></i><!--}--> and <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:sample:format}]{--><a href="glossary.html#sample_format" title="Glossary">sample format</a><!--latex }
+--></b><!--}--></i><!--}-->.</p></div>
+<div id="overview"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Channels.2C_Tracks_and_Clips">Channels, Tracks and Clips</span></h2><!--}--><!--latex 
+\label{audacity:tracks:and:clips:overview}-->
+<p>The terms <!--\textbf{--><b>channel</b><!--}-->, <!--\textbf{--><b>track</b><!--}--> and <!--\textbf{--><b>clip</b><!--}--> can be a little confusing, especially because some applications may use them to mean slightly different things.  Within Audacity, the meaning is as follows:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> A channel is for audio recording (input) or playback (output).  Audacity can record two channels of input (stereo), and more if you have a special soundcard or audio device that supports more than two simultaneous channels.  Audacity supports only two channels of playback (output), no matter what kind of audio hardware you have.</li>
+<!--
+\item --><li> An audio track is like one instrument in your symphony, or one voice in your podcast. You can add more  tracks, and all of them will be <!--latex 
+\hyperref[\foo{mixing:}]{--><a href="mixing.html" title="Mixing">mixed</a><!--latex }
+--> together to create your final output, but during editing you can manipulate each track independently.  If you have an interview recorded with two microphones, each one can go in a separate track.  If you have background music, that could go in a third track. You can <!--latex 
+\hyperref[\foo{tools:toolbar:timeshift}]{--><a href="tools_toolbar.html#timeshift" title="Tools Toolbar">move</a><!--latex }
+--> the whole track along the <!--latex 
+\hyperref[\foo{timeline:}]{--><a href="timeline.html" title="Timeline">Timeline</a><!--latex }
+--> so that it plays at a different point in time in the mix, but until it is split you cannot move individual parts of it around.  </li>
+<!--
+\item --><li> A clip inside an audio track is a separate section of that track which has been <!--latex 
+\hyperref[\foo{audacity:tracks:and:clips::split}]{--><a href="#split">split</a><!--latex }
+--> so that it can be manipulated somewhat independently of the other clips in the track. For example, you can split an interview into separate clips for each sentence then move them around individually although they are all from the same track. Or you could move a clip to another track that is <!--latex 
+\hyperref[\foo{mixing:gain}]{--><a href="mixing.html#gain" title="Mixing">panned</a><!--latex }
+--> further right, or split it to a new, empty track. The new track only contains that single clip, so again you can only move that whole track unless you split it into multiple clips. </li></ul><!--
+\end{itemize}
+-->
+<div id="split"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Splitting_a_track_into_clips">Splitting a track into clips</span></h2><!--}--><!--latex 
+\label{audacity:tracks:and:clips:split}-->
+<p>When you record some audio or import audio from a file, you get a single track.  In many cases, there are natural gaps in the audio - silence between sentences or pauses between phrases in music.  Those are good candidates for splitting the track into multiple clips, allowing you to move or otherwise manipulate those clips independently. There are eight ways to create multiple clips in a track.
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <span class="menu">Edit &gt; Remove Special &gt; <!--latex 
+\hyperref[\foo{edit:menu:remove:special:split:delete}]{--><a href="edit_menu_remove_special.html#split_delete" title="Edit Menu: Remove Special">Split Delete</a><!--latex }
+--></span> at a region in an existing track or clip, removing the selected audio without shifting the following audio.</li>
+<!--
+\item --><li> <span class="menu">Edit &gt; Remove Special &gt; <!--latex 
+\hyperref[\foo{edit:menu:remove:special:split:cut}]{--><a href="edit_menu_remove_special.html#split_cut" title="Edit Menu: Remove Special">Split Cut</a><!--latex }
+--></span> at a region in an existing track or clip, removing the selected audio to the Audacity clipboard without shifting the following audio.       </li>
+<!--
+\item --><li> <span class="menu">Edit &gt; Clip Boundaries &gt; <!--latex 
+\hyperref[\foo{edit:menu:clip:boundaries:split}]{--><a href="edit_menu_clip_boundaries.html#split" title="Edit Menu: Clip Boundaries">Split</a><!--latex }
+--></span> at the cursor or region in an existing track or clip, doing nothing except separating it into multiple clips. </li>
+<!--
+\item --><li> <span class="menu">Edit &gt; Clip Boundaries &gt; <!--latex 
+\hyperref[\foo{edit:menu:clip:boundaries:split:new}]{--><a href="edit_menu_clip_boundaries.html#split_new" title="Edit Menu: Clip Boundaries">Split New</a><!--latex }
+--></span> at a region in an existing track or clip, moving the selected audio to the same position in a new track at the bottom of the project.   </li>
+<!--
+\item --><li> <span class="menu">Edit &gt; Clip Boundaries &gt; <!--latex 
+\hyperref[\foo{edit:menu:clip:boundaries:disjoin}]{--><a href="edit_menu_clip_boundaries.html#disjoin" title="Edit Menu: Clip Boundaries">Detach at Silences</a><!--latex }
+--></span> at a region in an existing track or clip, creating clips either side of absolute silences.  </li>
+<!--
+\item --><li> <span class="menu">Edit &gt; <!--latex 
+\hyperref[\foo{edit:menu:copy:paste:and:duplicate:paste}]{--><a href="edit_menu_copy_paste_and_duplicate.html#paste" title="Edit Menu: Copy, Paste and Duplicate">Paste</a><!--latex }
+--></span> from the Audacity clipboard into vacant space in an existing track.</li>
+<!--
+\item --><li> <!--latex 
+\hyperref[\foo{generate:menu:}]{--><a href="generate_menu.html" title="Generate Menu">Generate</a><!--latex }
+--> some audio into vacant space in an existing track.</li>
+<!--
+\item --><li> <!--latex 
+\hyperref[\foo{audacity:tracks:and:clips::move}]{--><a href="#move">Drag</a><!--latex }
+--> a clip from a different track (or the whole track) into vacant space in an existing track using <!--latex 
+\hyperref[\foo{tools:toolbar:timeshift}]{--><a href="tools_toolbar.html#timeshift" title="Tools Toolbar">Time Shift Tool</a><!--latex }
+-->.</li></ul><!--
+\end{itemize}
+-->
+<p>As an example, the "before Split " and "after Split" images below show that after selecting <span class="menu">Edit &gt; Clip Boundaries &gt; Split</span>, the two boundaries of the gray selection region are overlaid with a solid black <!--\textit{--><i>split line</i><!--}-->, marking the boundaries of the three resulting clips. 
+</p>
+<dl><dd><span title="Gray selection region before Split"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="SplitBefore.png" height="134" src="../m/images/5/5e/splitbefore.png" width="410"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/5/5e/splitbefore.png--></img><!--}\par
+--></span></dd></dl>
+<dl><dd><span title="Gray selection region after Split showing dark black split lines"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="SplitAfter.png" height="134" src="../m/images/5/57/splitafter.png" width="410"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/5/57/splitafter.png--></img><!--}\par
+--></span></dd></dl>
+<div class="note">It's easy to select all the audio of a given clip. Make sure that Selection Tool <span style="position:relative;top:3px"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="SelectionPointer.png" height="11" src="../m/images/0/04/selectionpointer.png" width="8"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/0/04/selectionpointer.png--></img><!--}}{}--></span> is enabled in <!--latex 
+\hyperref[\foo{tools:toolbar:}]{--><a href="tools_toolbar.html" title="Tools Toolbar">Tools Toolbar</a><!--latex }
+--> then double-click in the clip. You can also select all of an entire track that has no individual clips in this way.</div>   
+<div id="join"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Merging_or_joining_clips">Merging or joining clips</span></h2><!--}--><!--latex 
+\label{audacity:tracks:and:clips:join}-->
+<p>Unlike cursor points or selection regions, split lines representing boundaries between clips  persist in the waveform of the track until the clips are <!--\textit{--><i>merged</i><!--}--> or <!--\textit{--><i>joined</i><!--}--> back into one clip. 
+</p><p>An adjacent pair of clips may be "merged" into one clip by clicking on the split line to remove it. You can perform a similar "join" action without a mouse by selecting across one or more split lines then using <span class="menu">Edit &gt; Clip Boundaries &gt; <!--latex 
+\hyperref[\foo{edit:menu:clip:boundaries:join}]{--><a href="edit_menu_clip_boundaries.html#join" title="Edit Menu: Clip Boundaries">Join</a><!--latex }
+--></span> to remove the split lines so as to make one clip.   
+</p>
+<div class="note">If you hover over the Clip line and click the <span class="kbrd" style="background-color: #e0e0f0">Esc</span> key you can then click on the Clip line and select from there by dragging, without deleting the clip line and merging the clips. </div>
+<div id="shift"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Time-shifting_clips">Time-shifting clips</span></h2><!--}--><!--latex 
+\label{audacity:tracks:and:clips:shift}-->
+<p>To move clips around independently, use the <!--latex 
+\hyperref[\foo{tools:toolbar:timeshift}]{--><a href="tools_toolbar.html#timeshift" title="Tools Toolbar">Time Shift Tool</a><!--latex }
+--> <!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Time Shift Tool" height="20" src="../m/images/3/3c/timeshifttool.png" title="Time Shift Tool" width="20"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/3/3c/timeshifttool.png--></img><!--}}{}-->.  When you click on a clip and drag it to the left or right, this is called <!--\textit{--><i>time-shifting</i><!--}--> because you are changing the time at which that audio will be heard.
+</p>
+<dl><dd><span title="Moving a clip after splitting a track into different tracks using Split"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="SplitMove.png" height="134" src="../m/images/d/db/splitmove.png" width="410"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/db/splitmove.png--></img><!--}\par
+--></span></dd></dl>
+<p>If you click outside a selection region when dragging clips with the <!--latex 
+\hyperref[\foo{tools:toolbar:timeshift}]{--><a href="tools_toolbar.html#timeshift" title="Tools Toolbar">Time Shift Tool</a><!--latex }
+-->, the selection region will remain where it was as shown above. Otherwise, the selection region will move with the clip(s).
+</p><p>To move multiple clips at once, select all of the clips you want to move using the <!--latex 
+\hyperref[\foo{tools:toolbar:selection}]{--><a href="tools_toolbar.html#selection" title="Tools Toolbar">Selection Tool</a><!--latex }
+--><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Selection Tool" height="27" src="../m/images/1/1f/ibeam.png" title="Selection Tool" width="27"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/1/1f/ibeam.png--></img><!--}}{}-->, then use the <!--latex 
+\hyperref[\foo{tools:toolbar:timeshift}]{--><a href="tools_toolbar.html#timeshift" title="Tools Toolbar">Time Shift Tool</a><!--latex }
+--> to click and drag <!--\textit{--><i>within the selection region</i><!--}--> - all selected clips will move together (see before and after figures below).
+</p>
+<dl><dd><span title="Creating a selection so you can move multiple clips at once"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="ClipsMoveTogetherBefore.png" height="226" src="../m/images/2/22/clipsmovetogetherbefore.png" width="410"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/2/22/clipsmovetogetherbefore.png--></img><!--}\par
+--></span></dd></dl>
+<dl><dd><span title="After moving two clips together"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="ClipsMoveTogetherAfter.png" height="227" src="../m/images/f/f3/clipsmovetogetherafter.png" width="410"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/f/f3/clipsmovetogetherafter.png--></img><!--}\par
+--></span></dd></dl>
+<div class="note">Note that moving clips can make use of the yellow <!--latex 
+\hyperref[\foo{boundary:snap:guides:}]{--><a href="boundary_snap_guides.html" title="Boundary Snap Guides">Boundary Snap Guides</a><!--latex }
+--> <!--\textit{--><i>(also seen in the chapter on <!--latex 
+\hyperref[\foo{audacity:selection:}]{--><a href="audacity_selection.html" title="Audacity Selection">Audacity Selection</a><!--latex }
+-->)</i><!--}-->.  When you move a clip, Audacity will snap the left or right boundary of a clip to the nearest edge of a clip in any other track marking it with a yellow vertical line, making it very easy to line up clips during editing.</div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Time-shifting_stereo_clips">Time-shifting stereo clips</span></h3><!--}-->
+<p>In most cases time-shifting a clip in a stereo track will work exactly the same way as in a mono track. Most stereo tracks will have continuous audio in both channels and time-shifting a clip will move both channels equally.
+</p><p>Here is an example of a "standard" stereo track.
+</p>
+<dl><dd><span title="A standard stereo track with audio in both channels"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="TimeShiftStereo01.png" height="199" src="../m/images/b/be/timeshiftstereo01.png" width="414"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/be/timeshiftstereo01.png--></img><!--}\par
+--></span></dd></dl>
+<p>When you time-shift a clip in this track, both channels move simultaneously.
+</p>
+<dl><dd><span title="{display text here}"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="TimeShiftStereo02.png" height="199" src="../m/images/8/84/timeshiftstereo02.png" width="414"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/8/84/timeshiftstereo02.png--></img><!--}\par
+--></span></dd></dl>
+<p>However, there may be times when you will have a stereo track containing separate clips in each channel.
+</p><p>Here we see two mono tracks with multiple clips in each track.
+</p>
+<dl><dd><span title="Two mono tracks with multiple clips in each track"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="TimeShiftStereo03.png" height="197" src="../m/images/c/c7/timeshiftstereo03.png" width="415"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/c/c7/timeshiftstereo03.png--></img><!--}\par
+--></span></dd></dl>
+<p>After selecting "Make Stereo Track" from the <!--latex 
+\hyperref[\foo{audio:track:dropdown:menu:}]{--><a href="audio_track_dropdown_menu.html" title="Audio Track Dropdown Menu">Audio Track Dropdown Menu</a><!--latex }
+--> in the upper track, we get this.
+</p>
+<dl><dd><span title="Stereo track with separate clips in each channel"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="TimeShiftStereo04.png" height="198" src="../m/images/f/fc/timeshiftstereo04.png" width="414"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/f/fc/timeshiftstereo04.png--></img><!--}\par
+--></span></dd></dl>
+<p>Here we have positioned the Time Shift pointer over the first clip in the left channel of the stereo track.
+</p>
+<dl><dd><span title="Ready to time-shift the first clip in the left channel of the stereo track"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="TimeShiftStereo05.png" height="198" src="../m/images/f/f5/timeshiftstereo05.png" width="414"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/f/f5/timeshiftstereo05.png--></img><!--}\par
+--></span></dd></dl>
+<p>After dragging with the Time Shift tool, the first clip in the left channel has moved independently of the clips in the right channel.
+</p>
+<dl><dd><span title="After time-shifting the first clip in the left channel of the stereo track"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="TimeShiftStereo06.png" height="198" src="../m/images/a/af/timeshiftstereo06.png" width="414"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/a/af/timeshiftstereo06.png--></img><!--}\par
+--></span></dd></dl>
+<p>If you stop dragging the first left-channel clip just after it starts to overlap with the right-channel clip below, then click in the left-channel clip at any point where the right-channel clip now overlaps with it, you can drag the right-channel clip simultaneously with the left-channel clip. 
+</p><p>If you click in the right-channel clip where there is not yet an overlap, you can resume dragging that clip independently. 
+</p>
+<div class="note">If you always want to drag overlapped left-and right-channel clips simultaneously wherever you click in the clip, you can enable <span class="menu">Tracks &gt; <!--latex 
+\hyperref[\foo{tracks:menu:synclock:tracks:onoff}]{--><a href="tracks_menu.html#synclock_tracks_onoff" title="Tracks Menu">Sync-Lock Tracks</a><!--latex }
+-->.</span></div>
+<div id="move"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Moving_a_Clip_Between_Tracks">Moving a Clip Between Tracks</span></h2><!--}--><!--latex 
+\label{audacity:tracks:and:clips:move}-->
+<p>The <!--latex 
+\hyperref[\foo{tools:toolbar:timeshift}]{--><a href="tools_toolbar.html#timeshift" title="Tools Toolbar">Time Shift Tool</a><!--latex }
+--> can also be used to move a single clip between tracks, but there must be room for the clip between the clips on the second track.
+</p>
+<dl><dd><table>
+
+<tbody><!--\par --><tr>
+<td align="center">Getting ready to drag a clip from the first track into the second track.
+</td></tr>
+<!--\par --><tr>
+<td><span title="Getting ready to drag a clip from the first track into the second track"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Clips017a.png" height="223" src="../m/images/6/65/clips017a.png" width="410"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/6/65/clips017a.png--></img><!--}\par
+--></span>
+</td></tr>
+<!--\par --><tr>
+<td align="center">The clip <!--\textbf{--><b>does not fit</b><!--}--> between the two clips in the second track.
+</td></tr>
+<!--\par --><tr>
+<td><span title="The clip does not fit between the two clips in the second track"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Clips017b.png" height="223" src="../m/images/0/00/clips017b.png" width="410"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/0/00/clips017b.png--></img><!--}\par
+--></span>
+</td></tr>
+<!--\par --><tr>
+<td align="center">The clip <!--\textbf{--><b>does fit</b><!--}--> after the second clip in the second track.
+</td></tr>
+<!--\par --><tr>
+<td><span title="The clip does fit after the second clip in the second track"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Clips017c.png" height="227" src="../m/images/b/b2/clips017c.png" width="410"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/b2/clips017c.png--></img><!--}\par
+--></span>
+</td></tr></tbody></table></dd></dl>
+
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

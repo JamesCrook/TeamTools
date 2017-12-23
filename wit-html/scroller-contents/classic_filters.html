@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Classic Filters - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Classic_Filters rootpage-Classic_Filters skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Classic Filters</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{classic:filters:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p><br/>
+</p>
+
+<p><br/>
+
+</p>
+<div class="intro"><!--\textit{--><i><!--\textbf{--><b>Classic Filters</b><!--}--></i><!--}--> offers three different types of <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:filter}]{--><a href="glossary.html#filter" title="Glossary">filter</a><!--latex }
+--></b><!--}--></i><!--}--> which together emulate the vast majority of analog filters, providing a useful graphical tool for analysis and measurement. </div>
+<div class="note"><!--\textbf{--><b>Accessed by:</b><!--}--> <span class="menu">Effect &gt; Classic Filters...</span>. <!--\textbf{--><b>This effect is not enabled by default.</b><!--}--> To enable it, use <span class="menu">Effect &gt; <!--latex 
+\hyperref[\foo{effect:menu:manage}]{--><a href="effect_menu.html#manage" title="Effect Menu">Add / Remove Plug-ins... </a><!--latex }
+--></span>  to open the <!--latex 
+\hyperref[\foo{manage:effects:generators:and:analyzers:}]{--><a href="manage_effects_generators_and_analyzers.html" title="Manage Effects, Generators and Analyzers">Add / Remove Effects, Generators and Analyzers</a><!--latex }
+--> dialog.</div>
+<dl><dd><span title="Classic Filters effect dialog"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Classic_Filters.png"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Classic Filters.png" height="426" src="../m/images/5/5b/classic_filters.png" width="640"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/5/5b/classic_filters.png--></img><!--}\par
+--></a></span></dd></dl>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Graph_Scale_and_Sliders">Graph Scale and Sliders</span></h2><!--}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>Vertical Scale:</b><!--}--> This scale is in <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:decibel}]{--><a href="glossary.html#decibel" title="Glossary">dB</a><!--latex }
+--></b><!--}--></i><!--}--> and shows the amount of <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:gain}]{--><a href="glossary.html#gain" title="Glossary">gain</a><!--latex }
+--></b><!--}--></i><!--}--> (amplification above 0 dB or attenuation below 0 dB) that will be applied to the audio at any given <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:frequency}]{--><a href="glossary.html#frequency" title="Glossary">frequency</a><!--latex }
+--></b><!--}--></i><!--}-->. </li>
+<!--
+\item --><li><!--\textbf{--><b>Horizontal Scale:</b><!--}--> This shows the frequencies in <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:hz}]{--><a href="glossary.html#hz" title="Glossary">Hz</a><!--latex }
+--></b><!--}--></i><!--}--> to which volume adjustments will be applied. Dragging the Classic Filters window wider displays some additional points on the scale. </li>
+<!--
+\item --><li> <!--\textbf{--><b>Vertical scale sliders:</b><!--}--> By default the vertical scale reads from 0 dB to -10 dB, but these two sliders to left of the scale let you adjust the upper and lower dB values so as to change the visible range on the graph. Note that moving either slider may change the horizontal position of the 0 dB line.</li></ul><!--
+\end{itemize}
+-->
+<!--
+\subsection{--><h2><span class="mw-headline" id="Filter_Type">Filter Type</span></h2><!--}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>Butterworth:</b><!--}--> An analog Butterworth filter provides a "maximally flat" passband (ie. no ripples), the magnitude response at the cutoff frequency is -3 dB, and above (for lowpass) or below (for highpass) the cutoff frequency, the attenuation increases at approximately 6 dB per octave times the filter order (so e.g. 60 dB per octave for 10th order).</li>
+<!--
+\item --><li> <!--\textbf{--><b>Chebyshev Type I:</b><!--}--> Chebyshev Type I filters are similar to Butterworth filters, except that a) the magnitude response of the passband has "ripples" in it (usually small), b) at the cutoff frequency the magnitude response is equal to the ripple value, and c) above (below for highpass) the cutoff frequency, the stopband attenuation increases more rapidly, for a given filter order, than Butterworth.</li>
+<!--
+\item --><li> <!--\textbf{--><b>Chebyshev Type II:</b><!--}--> Chebyshev Type II filters are similar to Butterworth, including the flat passband response, except that a) at the cutoff frequency the magnitude response is equal to the ripple value, b) above (below for highpass) the cutoff frequency, the stopband attenuation increases more rapidly, for a given filter order, than Butterworth, and c) the stopband attenuation varies from infinite to the ripple value. (Here it's common to use a ripple value of 20, 30 or more dB).</li></ul><!--
+\end{itemize}
+-->
+
+<div class="note">For details about these filters see the Wikipedia pages on <a class="external text" href="https://en.wikipedia.org/wiki/Butterworth_filter" rel="nofollow">Butterworth filters</a> and see <a class="external text" href="https://en.wikipedia.org/wiki/Chebyshev_filter" rel="nofollow">Chebyshev filters</a>. </div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Subtype">Subtype</span></h2><!--}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>Lowpass:</b><!--}--> The filter passes low frequencies and attenuates high frequencies.</li>
+<!--
+\item --><li> <!--\textbf{--><b>Highpass:</b><!--}--> The filter passes high frequencies and attenuates low frequencies.</li></ul><!--
+\end{itemize}
+-->
+<!--
+\subsection{--><h2><span class="mw-headline" id="Order">Order</span></h2><!--}-->
+<p>Choose a value between 1 and 10. "1" - first-order filters - have the most gradual cutoff slope
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Cutoff">Cutoff</span></h2><!--}-->
+<p>Enter the cutoff frequency.
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Passband_Ripple">Passband Ripple</span></h2><!--}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> For Butterworth filters no value can be entered and any value displayed is ignored.</li>
+<!--
+\item --><li> For Chebyshev Type I filters type in the acceptable amount of passband ripple. Higher values of passband ripple will also increase the cutoff slope.</li>
+<!--
+\item --><li> For Chebyshev Type II filters no value can be entered and any value displayed is ignored.</li></ul><!--
+\end{itemize}
+-->
+<!--
+\subsection{--><h2><span class="mw-headline" id="Minimum_Stopband_Attenuation">Minimum Stopband Attenuation</span></h2><!--}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> For Butterworth filters no value can be entered and any value displayed is ignored.</li>
+<!--
+\item --><li> For Chebyshev Type I filters no value can be entered and any value displayed is ignored.</li>
+<!--
+\item --><li> For Chebyshev Type II filters type in the desired amount of stopband ripple.</li></ul><!--
+\end{itemize}
+-->
+
+<!--
+\subsection{--><h2><span class="mw-headline" id="Buttons">Buttons</span></h2><!--}-->
+<p>Clicking on the command buttons give the following results:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><span class="button">Manage</span> gives a dropdown menu enabling you to manage presets for the tool and to see some detail about the tool. For details see <!--latex 
+\hyperref[\foo{manage:presets:}]{--><a href="manage_presets.html" title="Manage presets">Manage presets</a><!--latex }
+-->.</li>
+<!--
+\item --><li><span class="button">Preview</span> plays a short preview of what the audio would sound like if the effect is applied with the current settings, without making actual changes to the audio.  The length of preview is determined by your setting in <span class="menu">Edit &gt; Preferences &gt; <!--latex 
+\hyperref[\foo{playback:preferences:}]{--><a href="playback_preferences.html" title="Playback Preferences">Playback</a><!--latex }
+--></span>, the default setting is 6 seconds.</li>
+<!--
+\item --><li><span class="button">OK</span> applies the effect to the selected audio with the current effect settings.</li>
+<!--
+\item --><li><span class="button">Cancel</span> aborts the effect and leaves the audio unchanged.</li>
+<!--
+\item --><li><a href="help_button.html" title="Help Button"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Help Button" height="27" src="../m/images/d/d6/help_button.png" width="27"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d6/help_button.png--></img><!--}}{}--></a> brings you to the appropriate page in the Manual, this page.</li></ul><!--
+\end{itemize}
+-->
+<p><br/>
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Links">Links</span></h2><!--}-->
+<p><!--latex 
+\hyperref[\foo{index:of:effects:generators:and:analyzers:}]{--><a href="index_of_effects_generators_and_analyzers.html" title="Index of Effects, Generators and Analyzers"><!--\textbf{--><b>|&lt;</b><!--}--> Index of Effects, Generators and Analyzers</a><!--latex }
+--> <br/>
+</p><p><!--latex 
+\hyperref[\foo{effect:menu:}]{--><a href="effect_menu.html" title="Effect Menu"><!--\textbf{--><b>|&lt;</b><!--}--> Effect Menu</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

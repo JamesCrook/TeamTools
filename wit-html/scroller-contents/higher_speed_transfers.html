@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Higher speed transfers - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Higher_speed_transfers rootpage-Higher_speed_transfers skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Higher speed transfers</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{higher:speed:transfers:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+</p>
+<div class="intro"> Higher speed transfers (high speed dubbing) is sometimes used to speed up the recording process by recording records at higher speeds than they were created at and then adjusting the recording back to the correct speed.
+<p>The best advice that we can give you is&nbsp;: <!--\textbf{--><b>do not be tempted to do it</b><!--}-->.
+</p><p>You will save a little time, but your recordings will be compromized, you will lose high frequencies - and you may damage both your records and your equipment.
+</p>
+</div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="High_Speed_Dubbing">High Speed Dubbing</span></h2><!--}-->
+<p>Because Audacity can change the speed of recordings, it's possible to record your 33 1/3 rpm records into Audacity at 45 rpm (so transfer them more quickly).  Once the track is recorded into Audacity, simply select all the track by clicking in the Track Control Panel (where the mute/solo buttons are) and click <span class="menu">Effect &gt; <!--latex 
+\hyperref[\foo{change:speed:}]{--><a href="change_speed.html" title="Change Speed">Change Speed</a><!--latex }
+--></span>. In the "From" box choose the speed you played the record at (for example "33 1/3" or "45") and in the "To" box choose the speed you want to convert the recording to (that is, the speed it should be played at according to the label).   
+</p><p>Where you are recording at a faster speed than normal for example recording a 33 1/3 rpm record at 45 rpm, it's recommended to set the sample rate in the Project Rate dropdown menu at the bottom left of the Audacity window to a higher sample rate than 44.1kHz to ensure you record the full audio spectrum. For recording 33rpm records played at 45rpm, a sample rate of 60k or more is needed to record the full 20kHz spectrum. If 44.1k sample rate is used when recording, the final audio will be limited to 14.8kHz bandwidth.  Also set the bit depth to 32-bit as this will give better quality when the Change Speed effect is applied.
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Why_you_should_not_do_this">Why you should <!--\textit{--><i><!--\textbf{--><b>not</b><!--}--></i><!--}--> do this</span></h2><!--}-->
+<p>Accelerated recording does not give the best sound quality, for two reasons:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> The playback equalization curve is being applied incorrectly in the record deck preamp. While correct for normal speed play, all music content is frequency shifted during accelerated play, and equalization is therefore incorrect.</li>
+<!--
+\item --><li>Cartridges behave poorly beyond 20kHz, and an accelerated deck is using the cartridge at up to 27kHz to play back audio content of up to 20kHz. Consequently distortion will rise, high frequency response will be more peaky, and generally the highest frequencies will be lost. How much of an issue this quality loss is depends on the cartridge, but it will always be present, with no cartridges giving as good performance to 27kHz as they do to 20kHz.</li></ul><!--
+\end{itemize}
+-->
+<!--
+\subsection{--><h2><span class="mw-headline" id="More_detail">More detail</span></h2><!--}-->
+<p>Consider the case where you have a superbly-recorded 33 1/3 rpm vinyl LP that contains audio with frequencies ranging from 20Hz to 20kHz (the nominal full range of human hearing). When you play it back at 78 it will sound like chipmunks on helium. In effect you have translated that original frequency range to the range of approximately 47Hz to 46.8kHz. Now the cartridge that is playing back these frequencies was designed to reproduce the 20-20kHz range, and if it's really, really high end it might be able to reproduce frequencies up to 25kHz. So everything from 25kHz upwards is lost during high-speed playback. You end up with recorded frequencies in the range 47Hz to 25kHz. Now we use software to reduce the speed back to normal. The chipmunks become human again. And the resulting frequency range we're left with is 20Hz to 10.7kHz.  You basically lost all the high frequencies. This is assuming the best possible recording with the best possible cartridge and no losses during the software speed-reduction step. The results will be even worse if the cartridge is average - if it cannot reproduce frequencies above 20kHz your resulting recording (after speed reduction) will have no frequencies above 8.5kHz.
+</p><p>Now this is just the first part. The second part involves the RIAA playback equalization (EQ). The LP was recorded with this EQ curve at normal speed. When you play it back at high speed all the frequencies are shifted and the playback EQ curve is applied to the wrong frequencies. This would also need to be corrected in software.
+</p><p>Third, even if your cartridge could reproduce frequencies up to 50kHz (which is highly doubtful), there is no guarantee that your pre-amp will pass these frequencies, and even if it did it is highly unlikely that the playback EQ curve would be well-defined at frequencies above 20kHz.
+</p><p>Not only will your recordings sound muffled, you will damage your LPs by doing this. The stylus that tracks the groove in the record is part of a mechanical system. When it cannot move fast enough to follow the grooves (which is what happens when you play a 33 at 78), it just ploughs through the grooves, inflicting permanent damage.
+</p><p>Running a record fast to "get it over with" has one problem above all else. The needle is designed to vibrate and move very accurately only in a narrow range. Exceed that range and the needle stops picking up the music.
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Links">Links</span></h2><!--}-->
+<p><!--latex 
+\hyperref[\foo{tutorial:copying:tapes:lps:or:minidiscs:to:cd:}]{--><a href="tutorial_copying_tapes_lps_or_minidiscs_to_cd.html" title="Tutorial - Copying tapes, LPs or minidiscs to CD"><!--\textbf{--><b>|&lt;</b><!--}--> Tutorial - Copying tapes, LPs or MiniDiscs to CD</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

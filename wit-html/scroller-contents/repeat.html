@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Repeat - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Repeat rootpage-Repeat skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Repeat</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{repeat:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p><br/>
+</p>
+
+<p>
+</p><p><br/>
+</p>
+<div class="intro"><!--\textit{--><i><!--\textbf{--><b>Repeat</b><!--}--></i><!--}--> repeats the selection the specified number of times. </div>
+<dl><dd><!--\textbf{--><b>Accessed by:</b><!--}--> <span class="menu">Effect &gt; Repeat</span></dd>
+<dd><span title="Repeat effect dialog"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Repeat.png"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Repeat.png" height="178" src="../m/images/7/71/repeat.png" width="474"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/7/71/repeat.png--></img><!--}\par
+--></a></span></dd></dl>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Number_of_repeats_to_add">Number of repeats to add</span></h2><!--}-->
+<p>Specifies the number of times the selected audio will be repeated. The default setting is 1 repeat <!--\textit{--><i>(that is you will than have two copies of the selected audio)</i><!--}-->.
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Current_selection_length">Current selection length</span></h2><!--}-->
+<p>Shows what the resultant selection length of the currently selected aufio is prior to the repeat.
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="New_selection_length">New selection length</span></h2><!--}-->
+<p>Shows what the resultant selection length will be, depending on the specified number of repeats. The resultant selection includes both the originally selected audio and the inserted audio that has been repeated.
+</p>
+<div class="note">
+<!--
+\begin{itemize}--><ul><!--
+\item --><li>If the selection to be repeated borders the right edge of an audio <!--latex 
+\hyperref[\foo{audacity:tracks:and:clips:}]{--><a href="audacity_tracks_and_clips.html" title="Audacity Tracks and Clips">clip</a><!--latex }
+-->, each repeat becomes a separate clip bordered by black vertical <!--latex 
+\hyperref[\foo{edit:menu:clip:boundaries:split}]{--><a href="edit_menu_clip_boundaries.html#split" title="Edit Menu: Clip Boundaries">split lines</a><!--latex }
+-->.</li>
+<!--
+\item --><li>Any audio to right of the inserted repeats is moved to right, and so not overwritten. However the repeat will not be allowed if it would move other clips and "Editing a clip can move other clips" in <!--latex 
+\hyperref[\foo{tracks:preferences:}]{--><a href="tracks_preferences.html" title="Tracks Preferences">Tracks Preferences</a><!--latex }
+--> is unchecked. </li>
+<!--
+\item --><li>Repeat does not copy the original or resultant selection to the Audacity clipboard.</li></ul><!--
+\end{itemize}
+--></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Buttons">Buttons</span></h2><!--}-->
+<p>Clicking on the command buttons give the following results:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><span class="button">Manage</span> gives a dropdown menu enabling you to manage presets for the tool and to see some detail about the tool. For details see <!--latex 
+\hyperref[\foo{manage:presets:}]{--><a href="manage_presets.html" title="Manage presets">Manage presets</a><!--latex }
+-->.</li>
+<!--
+\item --><li><span class="button">Preview</span> plays a short preview of what the audio would sound like if the effect is applied with the current settings, without making actual changes to the audio.  The length of preview is determined by your setting in <span class="menu">Edit &gt; Preferences &gt; <!--latex 
+\hyperref[\foo{playback:preferences:}]{--><a href="playback_preferences.html" title="Playback Preferences">Playback</a><!--latex }
+--></span>, the default setting is 6 seconds.</li>
+<!--
+\item --><li><span class="button">OK</span> applies the effect to the selected audio with the current effect settings.</li>
+<!--
+\item --><li><span class="button">Cancel</span> aborts the effect and leaves the audio unchanged.</li>
+<!--
+\item --><li><a href="help_button.html" title="Help Button"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Help Button" height="27" src="../m/images/d/d6/help_button.png" width="27"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d6/help_button.png--></img><!--}}{}--></a> brings you to the appropriate page in the Manual, this page.</li></ul><!--
+\end{itemize}
+-->
+<p><br/>
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Links">Links</span></h2><!--}-->
+<p><!--latex 
+\hyperref[\foo{index:of:effects:generators:and:analyzers:}]{--><a href="index_of_effects_generators_and_analyzers.html" title="Index of Effects, Generators and Analyzers"><!--\textbf{--><b>|&lt;</b><!--}--> Index of Effects, Generators and Analyzers</a><!--latex }
+--> <br/>
+</p><p><!--latex 
+\hyperref[\foo{effect:menu:}]{--><a href="effect_menu.html" title="Effect Menu"><!--\textbf{--><b>|&lt;</b><!--}--> Effect Menu</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

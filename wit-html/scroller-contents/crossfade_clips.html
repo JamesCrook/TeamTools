@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Crossfade Clips - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Crossfade_Clips rootpage-Crossfade_Clips skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Crossfade Clips</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{crossfade:clips:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en">
+<div class="intro"><!--\textit{--><i><!--\textbf{--><b>Crossfade Clips</b><!--}--></i><!--}--> applies a simple crossfade to a selected pair of clips in a single audio track.  </div>
+<dl><dd><!--\textbf{--><b>Accessed by:</b><!--}--> <span class="menu">Effect &gt; Crossfade Clips</span></dd></dl>
+<dl><dd>There are no parameters to set for this effect; the effect operates on the audio that is currently selected.</dd></dl>
+<dl><dd>If the crossfade takes an appreciable time, a progress dialog will appear as below:</dd></dl>
+<dl><dd><span title="Dialog box showing the Crossfade Clips effect in progress"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Crossfade Clips W10.png" height="176" src="../m/images/a/a1/crossfade_clips_w10.png" width="302"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/a/a1/crossfade_clips_w10.png--></img><!--}\par
+--></span></dd>
+<dd><!--\textbf{--><b>Crossfade Clips progress dialog</b><!--}--></dd></dl>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Instructions">Instructions</span></h2><!--}-->
+<!--
+\begin{enumerate}--><ol><!--
+\item --><li>Place two <!--latex 
+\hyperref[\foo{audacity:tracks:and:clips:}]{--><a href="audacity_tracks_and_clips.html" title="Audacity Tracks and Clips">audio clips</a><!--latex }
+--> into the same track.</li>
+<!--
+\item --><li>Select (approximately) the same amount of audio from the end of one clip and the start of the other.</li>
+<!--
+\item --><li>Apply the effect.</li>
+<!--
+\item --><li>The selected regions will be crossfaded.</li></ol><!--
+\end{enumerate}
+-->
+<p>Note, the audio clips do not need to be touching. Any white-space between the clips is ignored.
+</p><p>If the selected region is continuous audio with no splits, the first half and last half of the selected audio will be crossfaded.
+</p>
+<div class="note"><!--\textbf{--><b>Advanced Tip:</b><!--}--> A discontinuity in a waveform, such as a large click, may be smoothed by applying a short crossfade across the glitch. </div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Limitations">Limitations</span></h2><!--}-->
+<p>These should not occur in normal usage:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> There may be no more than two clips selected in each channel.</li>
+<!--
+\item --><li> The selection may not start or end in white-space.</li></ul><!--
+\end{itemize}
+-->
+<div id="examples"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Examples">Examples</span></h2><!--}--><!--latex 
+\label{crossfade:clips:examples}-->
+<div class="example"><!--\textbf{--><b>Example of using the effect for a simple crossfade</b><!--}-->
+<p>1) Place your audio clips end to end in a track.
+</p>
+<dl><dd><span title="Two audio clips placed end to end in a track"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Xfade Example-1.png" height="223" src="../m/images/a/af/xfade_example_1.png" width="533"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/a/af/xfade_example_1.png--></img><!--}\par
+--></span></dd></dl>
+<p>2) Zoom in a bit.
+</p>
+<dl><dd><span title="Zoomed in on the two tracks"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Xfade Example-2.png" height="222" src="../m/images/4/45/xfade_example_2.png" width="560"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/4/45/xfade_example_2.png--></img><!--}\par
+--></span></dd></dl>
+<p>3) Select the part that you want to crossfade (does not matter if the tracks are right up against each other or not - just select the parts to crossfade).
+</p>
+<dl><dd><span title="Part of both tracks selected for the simple crossfade"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Xfade Example-3.png" height="236" src="../m/images/9/90/xfade_example_3.png" width="557"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/9/90/xfade_example_3.png--></img><!--}\par
+--></span></dd></dl>
+<p>4) Select the <span class="menu">Effect &gt; Crossfade Clips</span>.
+</p><p>5) Simple crossfade completed
+</p>
+<dl><dd><span title="Simple crossfade complete"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Xfade Example-4.png" height="219" src="../m/images/b/b2/xfade_example_4.png" width="561"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/b2/xfade_example_4.png--></img><!--}\par
+--></span></dd></dl></div>
+<p><br/>
+</p>
+<div class="example"><!--\textbf{--><b>Example of using the effect to repair a glitch</b><!--}-->
+<p>You can use <!--\textbf{--><b>Crossfade Clips</b><!--}--> to fix glitches when there are no convenient zero crossing points for making a clean edit.
+1) Audio surrounding the glitch is selected
+</p>
+<dl><dd><span title="Selecting around the glitch"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Glitch repair before.png" height="302" src="../m/images/2/2f/glitch_repair_before.png" width="626"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/2/2f/glitch_repair_before.png--></img><!--}\par
+--></span></dd></dl>
+<p>2) Using <span class="menu">Effect &gt; Crossfade Clips</span> repairs the glitch.
+</p>
+<dl><dd><span title="The glitch repaired"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Glitch repair after.png" height="302" src="../m/images/4/49/glitch_repair_after.png" width="626"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/4/49/glitch_repair_after.png--></img><!--}\par
+--></span></dd></dl></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Links">Links</span></h2><!--}-->
+<p><!--latex 
+\hyperref[\foo{index:of:effects:generators:and:analyzers:}]{--><a href="index_of_effects_generators_and_analyzers.html" title="Index of Effects, Generators and Analyzers"><!--\textbf{--><b>|&lt;</b><!--}--> Index of Effects, Generators and Analyzers</a><!--latex }
+--> 
+</p><p><!--latex 
+\hyperref[\foo{effect:menu:}]{--><a href="effect_menu.html" title="Effect Menu"><!--\textbf{--><b>|&lt;</b><!--}--> Effect Menu</a><!--latex }
+-->.
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Sync-Locked Track Groups - Editing - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Sync-Locked_Track_Groups_-_Editing rootpage-Sync-Locked_Track_Groups_-_Editing skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Sync-Locked Track Groups - Editing</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{sync:locked:track:groups:editing:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Editing_operations_on_Sync-Locked_Track_Groups">Editing operations on Sync-Locked Track Groups</span></h2><!--}-->
+<p>The <!--\textbf{--><b>Edit</b><!--}--> menu commands <!--\textbf{--><b>Cut</b><!--}-->, <!--\textbf{--><b>Delete</b><!--}--> and <!--\textbf{--><b>Paste</b><!--}--> will affect all tracks in the currently selected Sync-Locked Track Group because these commands change the length of the tracks(s). 
+</p>
+<div class="note">All other commands in the <!--\textbf{--><b>Edit</b><!--}--> menu will <!--\textbf{--><b>not</b><!--}--> affect Sync-Locked tracks because these commands <!--\textbf{--><b>do not</b><!--}--> change the length of the selected track(s). <br/>
+These commands are: <!--\textbf{--><b>Split Cut</b><!--}-->,&nbsp;&nbsp;<!--\textbf{--><b>Copy</b><!--}-->,&nbsp;&nbsp;<!--\textbf{--><b>Trim Audio</b><!--}-->,&nbsp;&nbsp;<!--\textbf{--><b>Split Delete</b><!--}-->,&nbsp;&nbsp;<!--\textbf{--><b>Silence Audio</b><!--}-->,&nbsp;&nbsp;<!--\textbf{--><b>Split</b><!--}-->, &nbsp;&nbsp;<!--\textbf{--><b>Split New</b><!--}-->,&nbsp;&nbsp;<!--\textbf{--><b>Detach at Silences</b><!--}--> and &nbsp;&nbsp;<!--\textbf{--><b>Duplicate</b><!--}-->.</div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Examples_of_editing_operations_on_Sync-Locked_Track_Groups">Examples of editing operations on Sync-Locked Track Groups</span></h3><!--}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--latex 
+\hyperref[\foo{sync:locked:track:groups:editing::cut}]{--><a href="#cut"><!--\textbf{--><b>Cut</b><!--}--></a><!--latex }
+--></li>
+<!--
+\item --><li><!--latex 
+\hyperref[\foo{sync:locked:track:groups:editing::silence}]{--><a href="#silence"><!--\textbf{--><b>Silence Audio</b><!--}--></a><!--latex }
+--></li>
+<!--
+\item --><li><!--latex 
+\hyperref[\foo{sync:locked:track:groups:editing::trim}]{--><a href="#trim"><!--\textbf{--><b>Trim Audio</b><!--}--></a><!--latex }
+--></li>
+<!--
+\item --><li><!--latex 
+\hyperref[\foo{sync:locked:track:groups:editing::paste}]{--><a href="#paste"><!--\textbf{--><b>Paste</b><!--}--></a><!--latex }
+--> </li>
+<!--
+\item --><li><!--latex 
+\hyperref[\foo{sync:locked:track:groups:editing::ltd:sltg}]{--><a href="#ltd_sltg"><!--\textbf{--><b>Label track defined Sync-Locked Track Groups</b><!--}--></a><!--latex }
+--> </li>
+<!--
+\item --><li><!--latex 
+\hyperref[\foo{sync:locked:track:groups:editing::label:tracks}]{--><a href="#label_tracks"><!--\textbf{--><b>Selecting in label tracks</b><!--}--></a><!--latex }
+--> </li>
+<!--
+\item --><li><!--latex 
+\hyperref[\foo{sync:locked:track:groups:editing::reverse}]{--><a href="#reverse"><!--\textbf{--><b>Reversing Audio</b><!--}--></a><!--latex }
+--> </li></ul><!--
+\end{itemize}
+-->
+<p><br/>
+</p>
+<div id="cut"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Cut"><!--latex 
+\hyperref[\foo{edit:menu:cut}]{--><a href="edit_menu.html#cut" title="Edit Menu">Cut</a><!--latex }
+--></span></h2><!--}--><!--latex 
+\label{sync:locked:track:groups:editing:cut}-->
+<dl><dd><!--\textbf{--><b>Before <span class="menu">Edit &gt; <!--latex 
+\hyperref[\foo{edit:menu:cut}]{--><a href="edit_menu.html#cut" title="Edit Menu">Cut</a><!--latex }
+--></span></b><!--}--></dd>
+<dd><span title="Two sync-locked tracks with audio selected in the top track, ready to be cut"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="SLTG edits 1.png" height="185" src="../m/images/7/78/sltg_edits_1.png" width="747"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/7/78/sltg_edits_1.png--></img><!--}\par
+--></span></dd></dl>
+<dl><dd><!--\textbf{--><b>After Edit &gt; Cut</b><!--}--></dd>
+<dd><span title="The two sync-locked tracks from the previous image, after the cut operation, showing that audio was removed from both tracks, keeping them synchronized"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="SLTG edits 2.png" height="186" src="../m/images/7/7b/sltg_edits_2.png" width="748"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/7/7b/sltg_edits_2.png--></img><!--}\par
+--></span></dd></dl>
+<dl><dd><!--\textbf{--><b>Result:</b><!--}--> Audio has been cut from the lower track as well as the upper track. </dd>
+<dd>The same thing happens for <!--\textbf{--><b>Edit &gt; Delete</b><!--}--> because those commands remove audio from a track and the following audio on all sync-locked tracks must move to remain synchronized.</dd></dl>
+<p><br/>
+</p>
+<div id="silence"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Silence_Audio"><!--latex 
+\hyperref[\foo{edit:menu:remove:special:silence}]{--><a href="edit_menu_remove_special.html#silence" title="Edit Menu: Remove Special">Silence Audio</a><!--latex }
+--></span></h2><!--}--><!--latex 
+\label{sync:locked:track:groups:editing:silence}-->
+<dl><dd><!--\textbf{--><b>Before <span class="menu">Edit &gt; Remove Special &gt; <!--latex 
+\hyperref[\foo{edit:menu:::Remove:Specialremove}]{--><a href="edit_menu.html#:_Remove_Specialremove" title="Edit Menu">Silence Audio</a><!--latex }
+--></span></b><!--}--></dd>
+<dd><span title="Two sync-locked tracks with audio selected in the top track, ready to be silenced"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="SLTG edits 3.png" height="185" src="../m/images/0/08/sltg_edits_3.png" width="748"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/0/08/sltg_edits_3.png--></img><!--}\par
+--></span></dd></dl>
+<dl><dd><!--\textbf{--><b>After Edit &gt; Remove Special &gt; Silence Audio</b><!--}--></dd>
+<dd><span title="The two sync-locked tracks from the previous image, after the silence operation, showing that audio was silenced in the upper track but nothing happened to the lower track"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="SLTG edits 4.png" height="186" src="../m/images/b/b4/sltg_edits_4.png" width="748"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/b4/sltg_edits_4.png--></img><!--}\par
+--></span></dd></dl>
+<dl><dd><!--\textbf{--><b>Result:</b><!--}--> There has been no change in the lower track.</dd>
+<dd>This is because <!--\textbf{--><b>"Silence Audio"</b><!--}--> does not move (change the time position of) any audio in the selected track.</dd></dl>
+<p><br/>
+</p>
+<div id="trim"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Trim_Audio"><!--latex 
+\hyperref[\foo{edit:menu:remove:special:trim}]{--><a href="edit_menu_remove_special.html#trim" title="Edit Menu: Remove Special">Trim Audio</a><!--latex }
+--></span></h2><!--}--><!--latex 
+\label{sync:locked:track:groups:editing:trim}-->
+<dl><dd><!--\textbf{--><b>Before <span class="menu">Edit &gt; Remove Special &gt; <!--latex 
+\hyperref[\foo{edit:menu:remove:special:trim}]{--><a href="edit_menu_remove_special.html#trim" title="Edit Menu: Remove Special">Trim Audio</a><!--latex }
+--></span></b><!--}--></dd>
+<dd><span title="Two sync-locked tracks with audio selected in the top track, ready to be trimmed"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="SLTG edits 5.png" height="185" src="../m/images/8/84/sltg_edits_5.png" width="749"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/8/84/sltg_edits_5.png--></img><!--}\par
+--></span></dd></dl>
+<dl><dd><!--\textbf{--><b>After Edit &gt; Remove Special &gt; Trim Audio</b><!--}--></dd>
+<dd><span title="The two sync-locked tracks from the previous image, after the trim operation, showing that the leading and trailing audio was trimmed in the upper track but no change was needed to the lower track to keep it synchronized"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="SLTG edits 6.png" height="185" src="../m/images/f/fe/sltg_edits_6.png" width="749"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/f/fe/sltg_edits_6.png--></img><!--}\par
+--></span></dd></dl>
+<dl><dd><!--\textbf{--><b>Result:</b><!--}--> There is no change in the lower track.</dd>
+<dd>Although the length of the upper track has changed, it remains synchronized with the lower track.</dd></dl>
+<p><br/>
+</p>
+<div id="paste"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Paste"><!--latex 
+\hyperref[\foo{edit:menu:copy:paste:and:duplicate:paste}]{--><a href="edit_menu_copy_paste_and_duplicate.html#paste" title="Edit Menu: Copy, Paste and Duplicate">Paste</a><!--latex }
+--></span></h2><!--}--><!--latex 
+\label{sync:locked:track:groups:editing:paste}-->
+<p>Here is the same project but now there is no selection. The cursor is in the top track, and that track is selected as can be seen by darker gray color of the Track Control Panel. 
+</p>
+<div class="note">You need to look for the Sync-Lock icons <!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="image of sync-lock icon" height="14" src="../m/images/3/33/trackpanelsynclockicon.png" title="image of sync-lock icon" width="13"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/3/33/trackpanelsynclockicon.png--></img><!--}}{}--> in the Track Control Panels to know that these tracks are Sync-Locked.</div>
+<dl><dd><!--\textbf{--><b>Before <span class="menu">Edit &gt; <!--latex 
+\hyperref[\foo{edit:menu:copy}]{--><a href="edit_menu.html#copy" title="Edit Menu">Paste</a><!--latex }
+--></span></b><!--}--></dd>
+<dd><span title="Two sync-locked tracks with no audio selected; the cursor is in the top track which is selected and ready to have audio pasted in."><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="SLTG edits 7.png" height="185" src="../m/images/6/6f/sltg_edits_7.png" width="748"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/6/6f/sltg_edits_7.png--></img><!--}\par
+--></span></dd></dl>
+<dl><dd><!--\textbf{--><b>After Edit &gt; Paste</b><!--}--></dd>
+<dd><span title="Audio has been pasted into the top track moving the following audio to the right; silence has been inserted in the lower track corresponding to the length and position of the pasted region."><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="SLTG edits 8.png" height="185" src="../m/images/9/99/sltg_edits_8.png" width="748"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/9/99/sltg_edits_8.png--></img><!--}\par
+--></span></dd></dl>
+<dl><dd><!--\textbf{--><b>Result:</b><!--}--> Audio is pasted into the top track moving the following audio to the right.</dd>
+<dd>Silence is inserted in the lower track to keep it synchronized with the top track.</dd></dl>
+<p><br/>
+</p>
+<div id="ltd_sltg"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Label_track_defined_Sync-Locked_Track_Groups">Label track defined Sync-Locked Track Groups</span></h2><!--}--><!--latex 
+\label{sync:locked:track:groups:editing:ltd:sltg}-->
+<p>Here is a project with two mono audio tracks above a label track all of which are above a stereo music track. There is a selection in the upper mono audio track. The sync-locked selection extends into the second mono audio track and into the label track but not into the stereo music track. The label track defines a Sync-Locked Track Group comprised of itself and the two mono audio tracks above it; this can be verified by examining the Track Control Panels and observing the sync-lock icons at the lower right-hand corners.
+</p>
+<dl><dd><!--\textbf{--><b>Before <span class="menu">Edit &gt; <!--latex 
+\hyperref[\foo{edit:menu:cut}]{--><a href="edit_menu.html#cut" title="Edit Menu">Cut</a><!--latex }
+--></span></b><!--}--></dd>
+<dd><span title="Two mono tracks (one containing a selection to be cut) above a label track that separates a stereo track below into a second Sync-Locked Track Group."><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="SLTG edits 9.png" height="362" src="../m/images/3/37/sltg_edits_9.png" width="749"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/3/37/sltg_edits_9.png--></img><!--}\par
+--></span></dd></dl>
+<dl><dd><!--\textbf{--><b>After Edit &gt; Cut</b><!--}--></dd>
+<dd><span title="The tracks above the label track remain synchronized after the cut, while the stereo track in the second Sync-Locked Track Group is not affected."><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="SLTG edits 10.png" height="364" src="../m/images/3/37/sltg_edits_10.png" width="747"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/3/37/sltg_edits_10.png--></img><!--}\par
+--></span></dd></dl>
+<dl><dd> <!--\textbf{--><b>Result:</b><!--}--> Audio is removed from the two mono audio tracks along with the first label and other label in the label track is moved so that the three tracks remain synchronized. </dd>
+<dd>No audio is removed from the stereo music track.</dd></dl>
+<p><br/>
+</p>
+<div id="label_tracks"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Selecting_in_label_tracks">Selecting in label tracks</span></h2><!--}--><!--latex 
+\label{sync:locked:track:groups:editing:label:tracks}-->
+<dl><dd>Selections can be made in a label track and the Sync-Locked selection will extend into any audio and label tracks in the group.</dd></dl>
+<dl><dd><!--\textbf{--><b>Before <span class="menu">Edit &gt; <!--latex 
+\hyperref[\foo{edit:menu:cut}]{--><a href="edit_menu.html#cut" title="Edit Menu">Cut</a><!--latex }
+--></span></b><!--}--></dd>
+<dd><span title="Before Remove Special"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="SLTG edits 11.png" height="234" src="../m/images/e/e1/sltg_edits_11.png" width="749"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/e/e1/sltg_edits_11.png--></img><!--}\par
+--></span></dd></dl>
+<dl><dd><!--\textbf{--><b>After Edit &gt; Cut</b><!--}--></dd>
+<dd><span title="The selected portion of the label track is removed"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="SLTG edits 12.png" height="234" src="../m/images/0/08/sltg_edits_12.png" width="749"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/0/08/sltg_edits_12.png--></img><!--}\par
+--></span></dd></dl>
+<dl><dd><!--\textbf{--><b>Result:</b><!--}--> The selected portion of the label track is removed, including the label spanned by the selection. </dd>
+<dd>Audio is removed from the Sync-Locked audio tracks as well.</dd></dl>
+<p><br/>
+</p>
+<div id="reverse"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Reversing_audio">Reversing audio</span></h2><!--}--><!--latex 
+\label{sync:locked:track:groups:editing:reverse}-->
+<p>When using the <!--latex 
+\hyperref[\foo{reverse:}]{--><a href="reverse.html" title="Reverse">Reverse</a><!--latex }
+--> effect on audio or labels within a Sync-Locked Track Group then all audio within the selected time range in all tracks of that Sync-Locked Track Group will be reversed, as will labels within any associated Label track.
+</p><p>Here is a project with two mono audio tracks above a label track all of which are above a stereo music track. There is a selection in the upper mono audio track. The sync-locked selection extends into the second mono audio track and into the label track.
+</p>
+<dl><dd><!--\textbf{--><b>Before <span class="menu">Effect &gt; <!--latex 
+\hyperref[\foo{reverse:}]{--><a href="reverse.html" title="Reverse">Reverse</a><!--latex }
+--></span></b><!--}--></dd>
+<dd><span title="Two sync-locked tracks with audio selected in the top track and a label track, ready to be reversed"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="SLTG edits 15.png" height="229" src="../m/images/7/75/sltg_edits_15.png" width="748"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/7/75/sltg_edits_15.png--></img><!--}\par
+--></span></dd></dl>
+<dl><dd><!--\textbf{--><b>After Effect &gt; Reverse</b><!--}--></dd>
+<dd><span title="The two sync-locked tracks and label track from the previous image, after the reverse operation, showing that audio was reversed in both tracks and the labels in the label track is reversed, keeping them synchronized"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="SLTG edits 16.png" height="229" src="../m/images/e/ea/sltg_edits_16.png" width="749"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/e/ea/sltg_edits_16.png--></img><!--}\par
+--></span></dd></dl>
+<dl><dd><!--\textbf{--><b>Result:</b><!--}--> Audio has been reversed in the lower track as well as the upper track, also the labels in the Label track have been reversed this keeping everthing in synchronization.</dd>
+<dd>Note that in the audio tracks Audacity has turned both reversed audio sections into <!--latex 
+\hyperref[\foo{edit:menu:clip:boundaries:}]{--><a href="edit_menu_clip_boundaries.html" title="Edit Menu: Clip Boundaries">Clips</a><!--latex }
+-->, observe the black clip lines.</dd></dl>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Links">Links</span></h2><!--}-->
+<p><!--latex 
+\hyperref[\foo{sync:locked:track:groups:time:shifting:}]{--><a href="sync_locked_track_groups_time_shifting.html" title="Sync-Locked Track Groups - Time Shifting"><!--\textbf{--><b>&gt;</b><!--}-->&nbsp; Forward to: Sync-Locked Track Groups - Time Shifting</a><!--latex }
+--> <br/>
+</p><p><!--latex 
+\hyperref[\foo{sync:locked:track:groups:}]{--><a href="sync_locked_track_groups.html" title="Sync-Locked Track Groups"><!--\textbf{--><b>|&lt;</b><!--}-->&nbsp; Sync-Locked Track Groups</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

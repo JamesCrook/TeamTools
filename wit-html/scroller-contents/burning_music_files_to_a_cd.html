@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Tutorial - Burning music files to a CD - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Burning_music_files_to_a_CD rootpage-Burning_music_files_to_a_CD skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Tutorial - Burning music files to a CD</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{burning:music:files:to:a:cd:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+</p><p><br/>
+</p>
+<div class="intro">This page provides an overview of how to burn an audio CD.<p>
+Audacity does not burn CDs directly but audio files created with Audacity can be used with a CD burning application to create an audio CD.</p></div>
+<div id="audio_cd"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Audio_CDs">Audio CDs</span></h2><!--}--><!--latex 
+\label{burning:music:files:to:a:cd:audio:cd}-->
+<p>There are two main types of CDs that you can create with CD burning software: <!--\textbf{--><b>audio CDs</b><!--}--> and <!--\textbf{--><b>data CDs</b><!--}-->.
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li>To ensure that you create a CD that will play anywhere it is important to choose the option to burn an "Audio CD"  or "Music CD" and <!--\textit{--><i><!--\textbf{--><b>not</b><!--}--></i><!--}--> a "Data CD". A data CD containing for example MP3 or WAV files will play happily on your computer but is unlikely to play in a standalone CD player or in-car CD player <!--\textit{--><i>(note that some modern CD players will play data CDs)</i><!--}-->.  An audio CD will play on any standalone or in-car CD player and in your computer and in modern DVD players.</li></ul><!--
+\end{itemize}
+-->
+<div class="note">Audio CDs do not have files or a file system like data CDs and other computer storage media, but consist essentially of a stream of bits on the disc in a single spiral "track" with a TOC (Table of Contents) index.</div>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li>Audio CDs are generally limited to 74 minutes playing time on a 650 MB disc <!--\textit{--><i>("Red Book Standard")</i><!--}--> or 80 minutes on a 700 MB disc.</li></ul><!--
+\end{itemize}
+-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li>When buying blank CDs for burning, it is strongly recommended that you purchase good quality <!--\textbf{--><b>CD-R</b><!--}-->s (that can be burnt just once) and <!--\textit{--><i>not</i><!--}--> the rewritable CD-RWs.</li></ul><!--
+\end{itemize}
+-->
+<div id="setup"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Audacity_setup">Audacity setup</span></h2><!--}--><!--latex 
+\label{burning:music:files:to:a:cd:setup}-->
+<p>Audio CDs always contain uncompressed PCM stereo audio at 44100 Hz <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:sample:rate}]{--><a href="glossary.html#sample_rate" title="Glossary">sample rate</a><!--latex }
+--></b><!--}--></i><!--}-->, 16-bit <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:sample:format}]{--><a href="glossary.html#sample_format" title="Glossary">sample format</a><!--latex }
+--></b><!--}--></i><!--}-->. So to burn an audio CD, export the file(s) you want to burn as a 44100 Hz 16-bit stereo <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:wav}]{--><a href="glossary.html#wav" title="Glossary">WAV</a><!--latex }
+--></b><!--}--></i><!--}--> or <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:aiff}]{--><a href="glossary.html#aiff" title="Glossary">AIFF</a><!--latex }
+--></b><!--}--></i><!--}--> file.
+</p><p>To configure Audacity for this:
+</p>
+<!--
+\begin{enumerate}--><ol><!--
+\item --><li> At the bottom left of the Audacity window, set the Project Rate to 44100 Hz.</li>
+<!--
+\item --><li> Some CD burning software require you to have a stereo track. If your Project does not already contain a stereo track, click <span class="menu">Tracks&nbsp;&gt;&nbsp;Add&nbsp;New&nbsp;&gt;&nbsp;<!--latex 
+\hyperref[\foo{tracks:menu:add:new:stereo:track}]{--><a href="tracks_menu_add_new.html#stereo_track" title="Tracks Menu: Add New">Stereo&nbsp;Track</a><!--latex }
+--></span>. It does not matter that this track is empty, its purpose is just to make Audacity export your recording as a stereo file. This step is not needed if you are burning to CD with iTunes or Toast.</li>
+<!--
+\item --><li> Click <span class="menu">File &gt; Save Other &gt; <!--latex 
+\hyperref[\foo{file:menu:save:other:exportaswav}]{--><a href="file_menu_save_other.html#exportaswav" title="File Menu: Save Other">Export as WAV</a><!--latex }
+--></span>.</li></ol><!--
+\end{enumerate}
+-->
+<p>It may be possible to use other formats if your CD-burning software supports them, but they may not give the best quality or they may not be playable on all CD players. 
+</p>
+<div class="note">If you experience clicks at the start or end in the resulting CD tracks, this may because your CD burning drive or software does not correct for track splits made outside CD frame boundaries. To enable splits at CD frames, right-click or use the context key when over any of the three fields in <!--latex 
+\hyperref[\foo{selection:toolbar:}]{--><a href="selection_toolbar.html" title="Selection Toolbar">Selection Toolbar</a><!--latex }
+-->, then choose one of the selection formats for <!--\textbf{--><b>CDDA frames</b><!--}-->. This may also be required if burning <!--latex 
+\hyperref[\foo{burning:music:files:to:a:cd::gapless}]{--><a href="#gapless">gapless CDs</a><!--latex }
+-->.</div>
+<div id="multiple"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Multiple_songs">Multiple songs</span></h2><!--}--><!--latex 
+\label{burning:music:files:to:a:cd:multiple}-->
+<p>If you are exporting a long Audacity track that contains multiple songs, please see "<!--latex 
+\hyperref[\foo{splitting:a:recording:into:separate:tracks:}]{--><a href="splitting_a_recording_into_separate_tracks.html" title="Splitting a recording into separate tracks">Splitting a recording into separate tracks</a><!--latex }
+-->" for how to export multiple files for each of the songs by using labels to identify songs for the <!--latex 
+\hyperref[\foo{export:multiple:}]{--><a href="export_multiple.html" title="Export Multiple">Export Multiple</a><!--latex }
+--> command to operate on.
+</p><p>An alternative method is to use <!--latex 
+\hyperref[\foo{burning:music:files:to:a:cd::cuesheets}]{--><a href="#cuesheets">Cue Sheets</a><!--latex }
+--> to define individual songs.
+</p>
+<div id="burn"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Burning_software">Burning software</span></h2><!--}--><!--latex 
+\label{burning:music:files:to:a:cd:burn}-->
+<p>In order to burn an audio CD you will need a CD burning application. Most computers already come with media player software that can burn CDs. For example, you can use <!--\textbf{--><b>Windows Media Player</b><!--}--> built into Windows or <!--\textbf{--><b>iTunes</b><!--}--> built into Macs. Ensure in either <!--\textbf{--><b>Windows Media Player</b><!--}--> or <!--\textbf{--><b>iTunes</b><!--}--> that you select the option for burning a "Music CD" and not a "Data CD" as mentioned above, unless you choose Audio CD, the CD will not play on most CD players.
+</p>
+<div id="wmp"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Windows_Media_Player">Windows Media Player</span></h3><!--}--><!--latex 
+\label{burning:music:files:to:a:cd:wmp}-->
+<p>In Windows Media Player: 
+</p>
+<!--
+\begin{enumerate}--><ol><!--
+\item --><li>Use the <!--\textbf{--><b>Burn</b><!--}--> tab </li>
+<!--
+\item --><li>Drag the files you want to burn to CD onto its "<!--\textbf{--><b>Burn list</b><!--}-->"</li>
+<!--
+\item --><li>Click on "<!--\textbf{--><b>Start burn</b><!--}-->".</li></ol><!--
+\end{enumerate}
+-->
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">Windows Media Player 11 will not accept WAV files for burning if they are dragged straight into a burn list without having previously been played in Media Player. You will see a red symbol and a "length of file cannot be determined" error. To solve this problem, drag the file into the Media Player Library or into a playlist, then from there into a burn list. Windows Media Player 12 does not have this problem.
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> Also, neither Windows Media Player 11 or 12 can burn AIFF files, so you must export from Audacity as WAV. </li></ul><!--
+\end{itemize}
+-->
+</td></tr></tbody></table>
+</div>
+<div id="itunes"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="iTunes">iTunes</span></h3><!--}--><!--latex 
+\label{burning:music:files:to:a:cd:itunes}-->
+<p>In iTunes: 
+</p>
+<!--
+\begin{enumerate}--><ol><!--
+\item --><li>Create a playlist</li>
+<!--
+\item --><li>Drag the files you want to burn into it</li>
+<!--
+\item --><li>Right-click on the playlist in the left hand panel and click on the "<!--\textbf{--><b>Burn Playlist to Disc</b><!--}-->" in the dropdown menu
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textit{--><i>in iTunes version 9 and earlier, click the <span class="button">Burn Disc</span> button bottom right of the window</i><!--}--></li></ul><!--
+\end{itemize}
+--></li>
+<!--
+\item --><li>Select the burner speed, the gap between songs if you are burning multiple files onto the CD</li>
+<!--
+\item --><li>Make sure "<!--\textbf{--><b>Audio CD</b><!--}-->" is selected as the "<!--\textbf{--><b>Disc Format</b><!--}-->"</li>
+<!--
+\item --><li>Click "<!--\textbf{--><b>Burn</b><!--}-->".</li></ol><!--
+\end{enumerate}
+-->
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top"><!--\textbf{--><b>Troubleshooting:</b><!--}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> If you receive a "computer not authorized" error, double-click the file in the iTunes playlist and enter the password you use to login to iTunes store.</li>
+<!--
+\item --><li> You cannot burn a playlist containing protected M4P files that have been burned more than seven times. In many cases you can re-download <a class="external text" href="https://support.apple.com/kb/ht1711" rel="nofollow">iTunes Plus</a> versions of the songs without Digital Rights Management by subscribing to <a class="external text" href="https://support.apple.com/kb/HT4914" rel="nofollow">iTunes Match</a>. </li>
+<!--
+\item --><li> If you receive "<a class="external text" href="https://forum.audacityteam.org/viewtopic.php?f=28&amp;t=7325&amp;p=28945&amp;hilit=4880#p28945" rel="nofollow">Error 4880</a>",  burning cannot initialize because of a hardware defect or because the burn speed is too high.</li></ul><!--
+\end{itemize}
+-->
+</td></tr></tbody></table>
+</div> 
+<div id="other"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Other_burning_software">Other burning software</span></h3><!--}--><!--latex 
+\label{burning:music:files:to:a:cd:other}-->
+<p>You can also use a standalone Windows burning application like <a class="external text" href="https://cdburnerxp.se/en/home" rel="nofollow">CDBurnerXP</a>, <a class="external text" href="http://www.deepburner.com/" rel="nofollow">Deep Burner</a> or  <!--\textbf{--><b>Nero</b><!--}--> (or <a class="external text" href="http://burn-osx.sourceforge.net/Pages/English/home.html" rel="nofollow">Burn</a> or <!--\textbf{--><b>Toast</b><!--}-->  for Mac) to burn your exported files. Most Linux distributions include <!--\textbf{--><b>Brasero</b><!--}--> or <!--\textbf{--><b>K3B</b><!--}--> for CD burning.  When using standalone burning applications, open the files from within that software, do not drag and drop them from your file manager. Once again do not forget to select the setting to burn an "Audio CD" or "Music CD" as explained above.
+</p>
+<div class="note"><!--\textbf{--><b>Common Pitfalls</b><!--}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textit{--><i>Wrong sample rate</i><!--}-->:  Most CD burning software expects all files to be at 44100 Hz.</li>
+<!--
+\item --><li> <!--\textit{--><i>Unsupported formats</i><!--}-->:  Some CD burning software does not support compressed formats such as <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:mp3}]{--><a href="glossary.html#mp3" title="Glossary">MP3</a><!--latex }
+--></b><!--}--></i><!--}-->, <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:ogg}]{--><a href="glossary.html#ogg" title="Glossary">OGG</a><!--latex }
+--></b><!--}--></i><!--}-->, or <!--\textbf{--><b><!--\textit{--><i><!--latex 
+\hyperref[\foo{glossary:aac}]{--><a href="glossary.html#aac" title="Glossary">M4A/AAC</a><!--latex }
+-->.</i><!--}--></b><!--}--></li></ul><!--
+\end{itemize}
+-->
+</div>
+<div id="cd-text"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Metadata_and_CD-Text">Metadata and CD-Text</span></h3><!--}--><!--latex 
+\label{burning:music:files:to:a:cd:cd-text}-->
+<p>Even if you use Audacity's <!--latex 
+\hyperref[\foo{metadata:editor:}]{--><a href="metadata_editor.html" title="Metadata Editor">Metadata Tags editor</a><!--latex }
+--> to add metadata such as Title, Artist and Genre to your exported WAV files, that metadata does not get automatically burned to the CD. You can set iTunes and some other burning applications (but not Windows Media Player) to burn metadata to each track as separate <a class="external text" href="https://en.wikipedia.org/wiki/CD-Text" rel="nofollow">CD-Text</a>. Providing your CD burner supports CD-Text, a standalone CD player that supports CD-Text will then be able to display each track's metadata.
+</p><p>You can also use a <!--latex 
+\hyperref[\foo{burning:music:files:to:a:cd::cuesheets}]{--><a href="#cuesheets">Cue Sheet</a><!--latex }
+--> to add CD-Text in burning applications that support Cue Sheets.      
+</p>
+<div id="gapless"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Gapless_burning">Gapless burning</span></h2><!--}--><!--latex 
+\label{burning:music:files:to:a:cd:gapless}-->
+<p>By default, many CD burning applications add a two-second gap between CD tracks as part of the standard for audio CDs. So be aware of CD track gaps when placing <!--latex 
+\hyperref[\foo{label:tracks:}]{--><a href="label_tracks.html" title="Label Tracks">labels</a><!--latex }
+--> between album tracks for <!--latex 
+\hyperref[\foo{export:multiple:}]{--><a href="export_multiple.html" title="Export Multiple">Export Multiple</a><!--latex }
+--> and consider deleting excess silences between tracks. 
+</p><p>However most CD burning applications have an option to burn the CD with no gaps between tracks. This is useful for recordings such as live concerts, allowing the CD to play continuously if the player supports gapless playback while still permitting skipping to individual CD tracks. If burning a gapless CD, you will need to place the Audacity labels exactly where you intend the burner to mark the track splits. Some CD burning applications (for example, older versions of Windows Media Player) have no option to burn without gaps. Gapless burning is also only available if the optical drive supports <a class="external text" href="https://en.wikipedia.org/wiki/Optical_disc_recording_modes#CD_Disc-At-Once" rel="nofollow">Disc-At-Once (DAO)</a>.
+</p><p>Additionally, make sure you do not export MP3 files for burning to your gapless CD, even if you're burning a "data CD", because MP3s have inherent silence padding due to a restriction of the MP3 format.
+</p><p>Note you may still hear the most momentary gaps between tracks even on DAO burned CDs, unless the CD player supports true gapless playback. Many CD players do not support gapless playback properly because the hardware simply does not buffer the audio data properly. However quite a few computer-based media players can use DSP effects when playing back audio to give proper gapless playback, even of CDs not burned with DAO. An example of such a player is Apple's iTunes.
+</p>
+<div class="note"><div id="cuesheets"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Cue_Sheets">Cue Sheets</span></h3><!--}--><!--latex 
+\label{burning:music:files:to:a:cd:cuesheets}-->
+<p>An alternative solution is to not split the track up at all in Audacity. The best way to get apparently gapless playback of a live concert recording or live album is to burn as one WAV file with with DAO and a "cue sheet" that marks the starting times of each CD track. Cue sheets can be created as simple plain text files.
+</p><p>Each track in a Cue Sheet is of this format:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> TRACK (number) AUDIO</li>
+<!--
+\item --><li> TITLE "(name)"</li>
+<!--
+\item --><li> PERFORMER "(name)"</li>
+<!--
+\item --><li> INDEX 01 (start time) in the format minutes:seconds:frames with the first track always being 00:00:00</li></ul><!--
+\end{itemize}
+-->
+<p>Audacity cannot currently export Cue Sheets but it is possible to use the <span class="menu">File &gt; Save Other &gt; <!--latex 
+\hyperref[\foo{file:menu:save:other:exportlabels}]{--><a href="file_menu_save_other.html#exportlabels" title="File Menu: Save Other">Export Labels...</a><!--latex }
+--></span> command to export a text file representing the label positions, then on Windows and Linux use <a class="external text" href="https://wiki.audacityteam.org/wiki/Cue_sheets" rel="nofollow">label2cue</a> to convert the minutes and seconds data in the text file to minutes, seconds and frames data laid out in cue sheet format.
+</p>
+You can read more about cue sheets on Wikipedia <a class="external text" href="https://en.wikipedia.org/wiki/Cue_sheet_%28computing%29" rel="nofollow">here</a>.</div>
+<div id="longer"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Burning_longer_recordings_to_disc">Burning longer recordings to disc</span></h2><!--}--><!--latex 
+\label{burning:music:files:to:a:cd:longer}-->
+<p>As stated above audio CDs are generally limited to either 74 or 80 minutes, however it is sometimes possible to achive longer times by using <!--latex 
+\hyperref[\foo{burning:music:files:to:a:cd::overburn}]{--><a href="#overburn">Overburning</a><!--latex }
+-->.  Alternatively, for longer recordings, you may be able to use <!--latex 
+\hyperref[\foo{burning:music:files:to:a:cd::datacd}]{--><a href="#datacd">data discs</a><!--latex }
+--> provided your player will support and play these. <!--\textit{--><i>(A data CD will not normally play on older standalone CD players. It will play on computers, most DVD players and in MP3 CD players)</i><!--}-->.
+</p>
+<div id="datacd"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Data_CDs_and_Data_DVDs">Data CDs and Data DVDs</span></h3><!--}--><!--latex 
+\label{burning:music:files:to:a:cd:datacd}-->
+<p>For burning really long files to optical media, you must burn either a <!--\textbf{--><b>data CD</b><!--}--> or a <!--\textbf{--><b>data DVD</b><!--}--> which can contain a set of WAV, MP3 or other audio format files. 
+</p><p>For example, burning MP3 files to a 700 MB data CD (sometimes called an "MP3 CD"), and using Audacity's default 128 kbps MP3 export bit rate gives over 11.5 hours playing time. But if 64 kbps MP3 bit rate was chosen (either in "MP3 Export Setup" in the File Formats tab of Preferences, or <span class="button">Options</span> at time of export) about 23 hours of audio would fit on the CD. Note that the penalty of reducing the bit rate would be reduced sound quality (especially so for music but less so for speech).   
+</p><p>A single layer 4.7 GB data DVD can accommodate nearly 80 hours of 128 kbps MP3 audio, though some older DVD players will not play DVD data discs, or only those containing certain audio or video formats.
+</p>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Bulbicon.png" title="Bulb icon"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Bulb icon" height="32" src="../m/images/d/d7/bulbicon.png" width="32"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d7/bulbicon.png--></img><!--}\par
+--></a>
+</td>
+<td align="left" valign="top">A data CD will <!--\textbf{--><b>not</b><!--}--> normally play on older standalone CD players. It will play on computers, most DVD players and in MP3 CD players.
+</td></tr></tbody></table>
+</div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Overburning">Overburning</span></h3><!--}-->
+<p>You can also get increased playing time by using overburning, though this is not recommended as it will produce a non-standard CD which may not play on all CD players.  
+</p><p>See <a class="external text" href="https://wiki.audacityteam.org/wiki/Audio_CD#overburn" rel="nofollow">this article</a> in the Wiki for more information.
+</p><p><br/>
+</p>
+<div id="links"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Links">Links</span></h2><!--}--><!--latex 
+\label{burning:music:files:to:a:cd:links}-->
+<p><!--latex 
+\hyperref[\foo{splitting:a:recording:into:separate:tracks:}]{--><a href="splitting_a_recording_into_separate_tracks.html" title="Splitting a recording into separate tracks"><!--\textbf{--><b>&lt;</b><!--}-->&nbsp; Back to: Splitting a recording into separate tracks</a><!--latex }
+--> <br/>
+</p><p><!--latex 
+\hyperref[\foo{tutorial:copying:tapes:lps:or:minidiscs:to:cd:}]{--><a href="tutorial_copying_tapes_lps_or_minidiscs_to_cd.html" title="Tutorial - Copying tapes, LPs or minidiscs to CD"><!--\textbf{--><b>|&lt;</b><!--}--> Tutorial - Copying tapes, LPs or MiniDiscs to CD</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

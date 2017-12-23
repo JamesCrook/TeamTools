@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Device - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Device rootpage-Device skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Device</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{device:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+</p>
+<div class="intro">The <!--\textit{--><i><!--\textbf{--><b>device</b><!--}--></i><!--}--> is the actual physical sound device you are recording from (or playing back to). The recording and playback devices are chosen either in the <!--latex 
+\hyperref[\foo{devices:preferences:}]{--><a href="devices_preferences.html" title="Devices Preferences">Devices section of Preferences</a><!--latex }
+--> or in <!--latex 
+\hyperref[\foo{device:toolbar:}]{--><a href="device_toolbar.html" title="Device Toolbar">Device Toolbar</a><!--latex }
+-->.<p>The recording and playback volume of the selected devices is normally adjusted in <!--latex 
+\hyperref[\foo{mixer:toolbar:}]{--><a href="mixer_toolbar.html" title="Mixer Toolbar">Mixer Toolbar</a><!--latex }
+-->.</p></div> 
+
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>Windows:</b><!--}--> Recording and playback devices are normally shown as the type of recording or playback it is (for example, "Microphone" or "Speakers") followed by the device that input or output belongs to. Examples could look like: 
+<!--
+\begin{itemize}--><ul><!--
+\item --><li>Microphone (High Def Audio)</li>
+<!--
+\item --><li>Speakers (Realtek HD)</li>
+<!--
+\item --><li>Line In (USB Audio). </li></ul><!--
+\end{itemize}
+--></li></ul><!--
+\end{itemize}
+-->
+<!--
+\begin{itemize}--><ul style="list-style-image: none; list-style-type: none"><!--\item -->In addition, there are "Sound Mapper" or "Primary Driver" input and output devices that are always the same as whatever device is currently set as default in the Windows control panel for sound.</ul><!--
+\end{itemize}
+-->  
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top"><!--\textbf{--><b>Many new Windows computers come with only the microphone recording device enabled.</b><!--}--> Any other playback devices the sound device has, such as "Stereo Mix", "Wave Out" or "Sum" for <!--latex 
+\hyperref[\foo{tutorial:recording:audio:playing:on:the:computer:}]{--><a href="tutorial_recording_audio_playing_on_the_computer.html" title="Tutorial - Recording audio playing on the computer">recording computer playback</a><!--latex }
+-->, must be enabled in "Sound" in the Windows Control Panel. See <!--latex 
+\hyperref[\foo{faq:recording:troubleshooting:Vista:7}]{--><a href="faq_recording_troubleshooting.html#Vista_7" title="FAQ:Recording - Troubleshooting">Why can I not record in Windows</a><!--latex }
+--> for more help.
+</td></tr></tbody></table>
+</div> 
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>Mac:</b><!--}--> The built-in audio's playback device normally appears as "Built-in Output". Unless the Mac has a second digital input, the recording device normally appears as "Built-in Input". A USB audio soundcard that has different inputs should give the device name followed by the type of input.</li></ul><!--
+\end{itemize}
+-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>Linux:</b><!--}--> It is often best to choose the "default" recording and playback device. Recording sources can be chosen if necessary in either alsamixer or pulseaudio volume control (on machines where pulseaudio is the default audio system).  </li></ul><!--
+\end{itemize}
+-->
+<div class="note">Many USB or Firewire recording devices (for example USB turntables or most USB interfaces) do not present a choice of recording devices to the operating system. Such devices will just appear as the device name, for example "USB Audio CODEC" (or on Windows, sometimes "Microphone (USB Audio CODEC)" even though the device is not a "microphone").</div> 
+<p><br/>
+Back to <!--latex 
+\hyperref[\foo{record:}]{--><a href="record.html" title="Record"> Recording Audio</a><!--latex }
+-->.
+</p><p>Back to <!--latex 
+\hyperref[\foo{quick:help:}]{--><a href="../quick_help.html" title="Quick Help">Getting Started</a><!--latex }
+-->.
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Other plug-ins and tools for fades - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Other_plug-ins_and_tools_for_fades rootpage-Other_plug-ins_and_tools_for_fades skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Other plug-ins and tools for fades</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{other:plug:ins:and:tools:for:fades:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p><br/>
+</p>
+<div class="intro">
+<p>This page lists some downloadable or more advanced tools for making <!--latex 
+\hyperref[\foo{fade:and:crossfade:}]{--><a href="fade_and_crossfade.html" title="Fade and Crossfade">fades</a><!--latex }
+-->.
+</p>
+</div>
+
+<div id="fade"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Fade_In_and_Out"><a class="external text" href="https://wiki.audacityteam.org/wiki/Nyquist_Effect_Plug-ins#Fade_In_and_Out" rel="nofollow">Fade In and Out</a></span></h2><!--}--><!--latex 
+\label{other:plug:ins:and:tools:for:fades:fade}-->
+<p>This is a Nyquist plug-in that can apply a linear fade in and fade out to the selected audio.
+</p>
+<div class="note">Nyquist plug-ins extend the capabilities of Audacity and are supported on Windows, Mac and GNU/Linux. Instructions for installing Nyquist plug-ins can be found on our Wiki page  <a class="external text" href="https://wiki.audacityteam.org/wiki/Download_Nyquist_Plug-ins#" rel="nofollow">Download Nyquist Plug-ins</a>.</div>
+<p>This tool was written by <a class="external text" href="http://www.garyallendj.com/davidsky/index.html" rel="nofollow">David R Sky</a> to provide a simple, accessible way for visually impaired and other non-mouse users to apply fade in and out effects. The current Audacity 2.x has a Selection Toolbar providing a screen-reader friendly display of selection start time and duration (* except on Linux) which can be used for similar purpose, but this effect may be found to be quicker and easier to use.
+</p>
+<div id="envelope"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Text_Envelope"><a class="external text" href="https://wiki.audacityteam.org/wiki/Nyquist_Effect_Plug-ins#Text_Envelope" rel="nofollow">Text Envelope</a></span></h2><!--}--><!--latex 
+\label{other:plug:ins:and:tools:for:fades:envelope}-->
+<p>This is a Nyquist plug-in that can apply multiple changes to the amplitude of the selected audio, fading from one level to another as required.
+</p><p>This tool was written by Steve Daulton to provide an accessible alternative to the "Envelope Tool" for visually impaired and other users that do not use pointing devices.
+</p>
+<div id="make_fade"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Creating_Fades_from_the_Nyquist_Prompt">Creating Fades from the Nyquist Prompt</span></h2><!--}--><!--latex 
+\label{other:plug:ins:and:tools:for:fades:make:fade}-->
+<p>Nyquist is a programming language that is included in Audacity. It can be used to write <!--latex 
+\hyperref[\foo{effect:menu:Nyquist:Effects}]{--><a href="effect_menu.html#Nyquist_Effects" title="Effect Menu">plug-ins</a><!--latex }
+--> for Audacity that may provide new effects, generators and analysis plug-ins. Nyquist commands may also be run directly in Audacity by entering code into the <!--latex 
+\hyperref[\foo{effect:menu:Nyquist}]{--><a href="effect_menu.html#Nyquist" title="Effect Menu">Nyquist Prompt</a><!--latex }
+--> Effect. Below are a few short code samples that may be run in the Nyquist Prompt to produce fades to selected audio. More information about Nyquist programming may be found in the <a class="external text" href="https://wiki.audacityteam.org/wiki/Nyquist" rel="nofollow">Nyquist</a> section of the Wiki.
+</p><p><br/>
+</p>
+<div class="note">The code examples below require that the "Legacy (version 3) syntax" option is selected</div>
+<pre>; Linear Fade Out:
+(mult s (pwlv 1 1 0))
+</pre>
+<pre>; Linear Fade In.
+; To avoid a click at the end, the pwlv envelope
+; extends beyond the end of the selection.
+(mult s (pwlv 0 1 1 1.1 1))
+</pre>
+<pre>; Multi-step fade out.
+(mult s (pwlv 1 0.4 0.775 0.8 0.447 0.9 0.316 0.95 0.224 1.0 0.0))
+</pre>
+<pre>; sine curve fade in:
+(mult s 0.5
+  (sum 1
+    (osc (hz-to-step (/ (get-duration 2)))
+      1 *table* -90)))
+</pre>
+<pre>; wiggly fade:
+(setf wiggle (mult 0.2 (hzosc (/ 6.0 (get-duration 1)))))
+(mult s (sum 1.0 wiggle))
+</pre>
+<p><br/>
+</p>
+<div class="note">The above examples may be run without the "Legacy (version 3) syntax" option selected if the <!--\textbf{--><b>S</b><!--}--> parameter is replaced with <!--\textbf{--><b>*track*</b><!--}-->. One example using version 4 syntax is given below.</div>
+<pre>; wiggly fade out (version 4 syntax):
+(setf wiggle (mult 0.2 (hzosc (/ 6.0 (get-duration 1)))))
+(mult *track* (pwlv 1 1 0) (sum 1.0 wiggle))
+</pre>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

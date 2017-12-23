@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Envelope Tool - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Envelope_Tool rootpage-Envelope_Tool skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Envelope Tool</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{envelope:tool:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en">
+<p>
+
+</p>
+<div class="intro"> In Audacity, every track has an "amplitude envelope" which is controlled with the Envelope Tool on the <!--latex 
+\hyperref[\foo{tools:toolbar:}]{--><a href="tools_toolbar.html" title="Tools Toolbar">Tools Toolbar</a><!--latex }
+-->. An amplitude envelope just means that you can control a track's volume changes smoothly over time. People in the recording industry sometimes call this technique <!--\textit{--><i>volume automation</i><!--}-->, because in a recording studio you would typically change the volume of tracks by moving volume sliders up and down, and fancy mixing boards had the ability to remember your movements and automate them from then on.  Manipulating a track's amplitude envelope in Audacity is similar, except that Envelope Tool is used to create and manipulate "control points" at various points in the track. The control points then determine its volume changes over time.  </div>
+<dl><dd></dd>
+<dd><div class="noresize"><map name="ImageMap_1_185189668"><area alt="Selection tool for selecting audio before modifying it." coords="11,0,38,27" href="selection_tool.html" shape="rect" title="Selection tool for selecting audio before modifying it."/><area alt="Envelope tool for modifying loudness of audio." coords="39,0,66,27" href="#" shape="rect" title="Envelope tool for modifying loudness of audio."/><area alt="Draw tool for changing the values of individual samples." coords="67,0,94,27" href="draw_tool.html" shape="rect" title="Draw tool for changing the values of individual samples."/><area alt="Zoom tool to zoom in or out." coords="11,28,38,55" href="zoom_tool.html" shape="rect" title="Zoom tool to zoom in or out."/><area alt="Time Shift tool to move audio clips into new positions." coords="39,28,66,55" href="time_shift_tool.html" shape="rect" title="Time Shift tool to move audio clips into new positions."/><area alt="Multi-Tool combines the actions of all five tools." coords="67,28,94,55" href="multi_tool.html" shape="rect" title="Multi-Tool combines the actions of all five tools."/></map><!--
+
+\par\Needspace{57.5pt}\begin{picture}(47.0,27.5)
+--><!--   \put(0,0){\includegraphics[scale=0.5]{--><img alt="ToolsToolbarEnvelope.png" height="55" src="../m/images/7/76/toolstoolbarenvelope.png" usemap="#ImageMap_1_185189668" width="94"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/7/76/toolstoolbarenvelope.png--></img><!--}}
+--><!--   \put(5.5,14.0){\hyperref[\foo{selection:tool:}]{\makebox(13.5,13.5){}}}
+   \put(19.5,14.0){\hyperref[\foo{envelope:tool::}]{\makebox(13.5,13.5){}}}
+   \put(33.5,14.0){\hyperref[\foo{draw:tool:}]{\makebox(13.5,13.5){}}}
+   \put(5.5,0.0){\hyperref[\foo{zoom:tool:}]{\makebox(13.5,13.5){}}}
+   \put(19.5,0.0){\hyperref[\foo{time:shift:tool:}]{\makebox(13.5,13.5){}}}
+   \put(33.5,0.0){\hyperref[\foo{multi:tool:}]{\makebox(13.5,13.5){}}}
+\end{picture}
+
+--></div></dd></dl>
+<div class="note">
+<p>The image above shows the <!--latex 
+\hyperref[\foo{tools:toolbar:}]{--><a href="tools_toolbar.html" title="Tools Toolbar">Tools Toolbar</a><!--latex }
+--> with the <!--\textbf{--><b>Envelope Tool</b><!--}--> selected.
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> Click on this link to learn more about the <!--latex 
+\hyperref[\foo{tools:toolbar:}]{--><a href="tools_toolbar.html" title="Tools Toolbar">Tools Toolbar</a><!--latex }
+-->.</li>
+<!--
+\item --><li> Click on other tools in the image to learn more about those tools.  </li></ul><!--
+\end{itemize}
+-->
+</div>
+<p><br/>
+</p>
+<div id="envelope"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Envelope_Tool">Envelope Tool</span></h2><!--}--><!--latex 
+\label{envelope:tool:envelope}-->
+<p>When you select Envelope Tool <!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Envelope Tool button" height="27" src="../m/images/0/02/envelope.png" title="Envelope Tool button" width="27"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/0/02/envelope.png--></img><!--}}{}--> from the <!--latex 
+\hyperref[\foo{tools:toolbar:}]{--><a href="tools_toolbar.html" title="Tools Toolbar">Tools Toolbar</a><!--latex }
+-->, your track, which normally looks like this:
+</p>
+<dl><dd><span title="A normal audio track when the envelope tool is not selected"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Envelope0.png" height="164" src="../m/images/2/21/envelope0.png" width="580"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/2/21/envelope0.png--></img><!--}\par
+--></span></dd></dl>
+<p>now has a thick blue border at the top and bottom of the <!--\textit{--><i><!--latex 
+\hyperref[\foo{audacity:waveform:}]{--><a href="audacity_waveform.html" title="Audacity Waveform">waveform</a><!--latex }
+--></i><!--}-->, like this:
+</p>
+<dl><dd><span title="An audio track after the envelope tool has been selected"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Envelope1.png" height="164" src="../m/images/c/c2/envelope1.png" width="579"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/c/c2/envelope1.png--></img><!--}\par
+--></span></dd></dl>
+<p>Here's an example of an amplitude envelope applied to the track. The volume is made to diminish slowly between 9 and 11 seconds, and then to grow again much faster during the next half second (note the much steeper slope of the blue line). The volume is directly proportional to the height of the <!--latex 
+\hyperref[\foo{audacity:waveform:}]{--><a href="audacity_waveform.html" title="Audacity Waveform">waveform</a><!--latex }
+--> - the smaller you make the waveform, the quieter it will sound:
+</p>
+<dl><dd><span title="Example of amplitude envelope applied to the track"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Envelope4.png" height="165" src="../m/images/e/e8/envelope4.png" width="579"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/e/e8/envelope4.png--></img><!--}\par
+--></span></dd></dl>
+<p>An amplitude envelope is manipulated by a number of <!--\textit{--><i>control points</i><!--}-->. Each control point is visible by its four <!--\textit{--><i>handles</i><!--}--> (the small circles in the image above), by which you can drag the point up or down to control the volume level.
+</p>
+  
+<div class="note">Note that the lines connecting the control points are not straight (unless viewed in <!--latex 
+\hyperref[\foo{audacity:waveform:db}]{--><a href="audacity_waveform.html#db" title="Audacity Waveform">Waveform (dB) view</a><!--latex }
+-->). Control points define the end points of an <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:exponential}]{--><a href="glossary.html#exponential" title="Glossary">exponential</a><!--latex }
+--></b><!--}--></i><!--}--> curve. Thus <!--\textbf{--><b>it is not generally possible to use the Envelope tool to fade an audio selection to or from zero amplitude.</b><!--}--> To achieve this, use one of the <!--\textbf{--><b><!--latex 
+\hyperref[\foo{fades:}]{--><a href="fades.html" title="Fades">fade</a><!--latex }
+--></b><!--}--> effects.</div>
+<div id="addcontrol"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Adding_and_editing_Control_Points">Adding and editing Control Points</span></h2><!--}--><!--latex 
+\label{envelope:tool:addcontrol}-->
+<p>Just click the mouse button anywhere in a track to create a new control point.  
+</p>
+<dl><dd><span title="A control point created with the Envelope tool"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Envelope2.png" height="152" src="../m/images/3/3b/envelope2.png" width="574"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/3/3b/envelope2.png--></img><!--}\par
+--></span></dd></dl>
+<p>The entire track follows your new control point until you add another one.  Click in a different spot to add a new control point. 
+</p>
+<dl><dd><span title="Adding a second control point to the track"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Envelope3.png" height="155" src="../m/images/b/b5/envelope3.png" width="576"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/b5/envelope3.png--></img><!--}\par
+--></span></dd></dl>
+<p>The audio will always change smoothly between each control point, so you only need to add as many as are necessary. You can click in either the top or bottom half of a track to create a new point. If you have a stereo track, the same envelope will apply to both channels.
+</p><p>If you want to place a new control point very near an existing one, Audacity might get confused and try to move the existing one rather than create a new one.  It's sometimes easier to click farther away from the existing one and then drag it closer.
+</p>
+<div id="removecontrol"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Removing_control_points">Removing control points</span></h2><!--}--><!--latex 
+\label{envelope:tool:removecontrol}-->
+<p>To remove a control point, click on any one of its control points and drag it outside the track.  Remember, you can also use <span class="menu">Edit &gt; <!--latex 
+\hyperref[\foo{edit:menu:undo}]{--><a href="edit_menu.html#undo" title="Edit Menu">Undo</a><!--latex }
+--></span> to undo your envelope changes in sequence.
+</p>
+<div id="amplify"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Extra_amplification">Extra amplification</span></h2><!--}--><!--latex 
+\label{envelope:tool:amplify}-->
+<p>If you are amplifying a quiet passage, you can amplify outside the original volume envelope of the track by grabbing either of the inner control points. When you do this, Audacity cannot display the full shape of the envelope, and changes the border to a dotted line in the affected area: 
+</p>
+<dl><dd><span title="Dotted line where an envelope goes beyond the track boundary"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Envelope5.png" height="165" src="../m/images/f/f8/envelope5.png" width="581"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/f/f8/envelope5.png--></img><!--}\par
+--></span></dd></dl>
+<p>However you can make the extended amplitude envelope visible by <!--latex 
+\hyperref[\foo{zooming:Vertical:zooming}]{--><a href="zooming.html#Vertical_zooming" title="Zooming">zooming out vertically</a><!--latex }
+-->.
+</p>
+<dl><dd><span title="Zooming out vertically, you can see more of the envelope"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Envelope6.png" height="166" src="../m/images/2/25/envelope6.png" width="578"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/2/25/envelope6.png--></img><!--}\par
+--></span></dd></dl>
+<div id="gain"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Track_gain_control">Track gain control</span></h2><!--}--><!--latex 
+\label{envelope:tool:gain}-->
+<p>Totally separate from the amplitude envelope, each track has a <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:gain}]{--><a href="glossary.html#gain" title="Glossary">gain</a><!--latex }
+--></b><!--}--></i><!--}--> slider in its <!--latex 
+\hyperref[\foo{audio:tracks:Track:Control:Panel}]{--><a href="audio_tracks.html#Track_Control_Panel" title="Audio Tracks">Track Control Panel</a><!--latex }
+--> (the slider is just underneath the Mute and Solo buttons). This adjusts the volume of the <!--\textbf{--><b>whole</b><!--}--> track, like <span class="menu"><!--latex 
+\hyperref[\foo{effect:menu:}]{--><a href="effect_menu.html" title="Effect Menu">Effect</a><!--latex }
+--> &gt; <!--latex 
+\hyperref[\foo{effect:menu:Amplify...}]{--><a href="effect_menu.html#Amplify..." title="Effect Menu">Amplify...</a><!--latex }
+--></span> can do, but without modifying the <!--latex 
+\hyperref[\foo{audacity:waveform:}]{--><a href="audacity_waveform.html" title="Audacity Waveform">waveform</a><!--latex }
+--> itself. Therefore you do not have to use Envelope Tool to adjust the overall volume of a track - use it to specify <!--\textbf{--><b>changes</b><!--}--> in volume through the course of the track, then you can make fine adjustments to the overall volume with the gain slider.
+</p>
+<div id="render"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Rendering_envelope_changes">Rendering envelope changes</span></h2><!--}--><!--latex 
+\label{envelope:tool:render}-->
+<p>A lot of volume changes can make a track more cumbersome to work with, so sometimes when you're sure you've got them right, you may want to replace the original track and its control points with a new track that has the envelope changes rendered to the waveform and thus has its control points removed. To do this, <!--latex 
+\hyperref[\foo{audacity:selection:}]{--><a href="audacity_selection.html" title="Audacity Selection">select</a><!--latex }
+--> the track you're finished with and click <span class="menu">Tracks &gt; Mix &gt; <!--latex 
+\hyperref[\foo{tracks:menu:mix:mix:and:render}]{--><a href="tracks_menu_mix.html#mix_and_render" title="Tracks Menu: Mix">Mix and Render</a><!--latex }
+--></span>. <!--\textit{--><i>This option is sometimes called <!--\textit{--><i>Bounce</i><!--}--> in other software.</i><!--}--> The resulting track will sound the same but will no longer have its amplitude envelope control points.
+</p><p>Naturally you can always add further control points later on, or get all the original control points back by undoing the Mix and Render if you're not happy with it. As an alternative you could <span class="menu">Tracks &gt; Mix &gt; <!--latex 
+\hyperref[\foo{tracks:menu:mix:mix:and:render:to:new:track}]{--><a href="tracks_menu_mix.html#mix_and_render_to_new_track" title="Tracks Menu: Mix">Mix and Render to New Track</a><!--latex }
+--></span> which lets you render to a new track without envelope points but keep the original track with its envelope points. This allows you to more easily experiment on a visually "clean" track by adding extra points while still being able to use the <span class="button">Mute</span> or <span class="button">Solo</span> buttons to compare with the original unrendered track.
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

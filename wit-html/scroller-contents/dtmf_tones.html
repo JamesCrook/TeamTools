@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>DTMF Tones - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-DTMF_Tones rootpage-DTMF_Tones skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">DTMF Tones</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{dtmf:tones:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p><br/>
+</p>
+
+<p><br/>
+</p>
+<div class="intro"><!--\textit{--><i><!--\textbf{--><b>DTMF Tones</b><!--}--></i><!--}--> generates dual-tone multi-frequency (DTMF) tones like those produced by the keypad on telephones.  </div>
+<dl><dd><!--\textbf{--><b>Accessed by:</b><!--}--> <span class="menu">Generate &gt; DTMF Tones...</span></dd>
+<dd><span title="DTMF Tones generator dialog"><a class="image" href="http://alphamanual.audacityteam.org/man/File:DTMF_Tones.png"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="DTMF Tones.png" height="308" src="../m/images/f/f9/dtmf_tones.png" width="474"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/f/f9/dtmf_tones.png--></img><!--}\par
+--></a></span></dd>
+<dd><!--\textit{--><i><!--\textbf{--><b>The image above illustrates replacing a selection region with generated audio.</b><!--}--></i><!--}--> </dd></dl>
+<!--
+\subsection{--><h2><span class="mw-headline" id="DTMF_sequence">DTMF sequence</span></h2><!--}-->
+<p>For each tone you wish to generate, enter numbers from 0 to 9, lower case letters from a to z, and the * and # characters. You can also enter the four "priority" tones used by the US Military (upper case A, B, C and D).
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Amplitude">Amplitude</span></h2><!--}-->
+<p>Lets you type an <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:amplitude}]{--><a href="glossary.html#amplitude" title="Glossary">amplitude</a><!--latex }
+--></b><!--}--></i><!--}--> value for the loudness of the generated audio. Permitted values are between 0 (silence) and 1 (the maximum possible volume without <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:clipping}]{--><a href="glossary.html#clipping" title="Glossary">clipping</a><!--latex }
+--></b><!--}--></i><!--}-->), with a default of 0.8.
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Duration">Duration</span></h2><!--}-->
+<p>Type (or use the keyboard arrows) to enter the required Duration. If the first digit you want is highlighted, just type the whole number. If the required first digit is not highlighted, use <span class="kbrd" style="background-color: #e0e0f0">Left</span> or <span class="kbrd" style="background-color: #e0e0f0">Right</span> arrow on your keyboard to move to the first digit, then type. You can also increment a highlighted digit with keyboard <span class="kbrd" style="background-color: #e0e0f0">Up</span> or <span class="kbrd" style="background-color: #e0e0f0">Down</span> arrow instead of typing.
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>When generating at the cursor</b><!--}-->, Duration initializes to 30.000 seconds (except for the DTMF generator which defaults to 1.000 second). However, your last entered Duration is always remembered.</li>
+<!--
+\item --><li> <!--\textbf{--><b>When replacing a selection region</b><!--}-->, Duration always displays the exact duration of that selection to the nearest audio <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:sample}]{--><a href="glossary.html#sample" title="Glossary">sample</a><!--latex }
+--></b><!--}--></i><!--}-->. </li></ul><!--
+\end{itemize}
+-->
+<!--
+\subsection{--><h2><span class="mw-headline" id="Tone.2Fsilence_ratio">Tone/silence ratio</span></h2><!--}-->
+<p>Use the slider to select the ratio between the length of each tone in the series and the length of the silences between them. This ratio is displayed underneath the slider as the "duty cycle" along with the resulting duration of each tone and silence. Changing the DTMF Duration  changes the duration of each tone and silence while retaining the ratio between them. 
+</p><p>For example, if you generate four tones in a sequence lasting four seconds, choosing a duty cycle of 50% in order to make the tones and silences of equal duration, the four tones and the three silences between them will all be 571 milliseconds long.
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="The_command_buttons">The command buttons</span></h2><!--}-->
+<p>Clicking on the command buttons give the following results:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><span class="button">Manage</span> gives a dropdown menu enabling you to manage presets for the tool and to see some detail about the tool. For details see <!--latex 
+\hyperref[\foo{manage:presets:}]{--><a href="manage_presets.html" title="Manage presets">Manage presets</a><!--latex }
+-->.</li>
+<!--
+\item --><li><span class="button">Preview</span> plays a short preview of what the audio would sound like if the effect is applied with the current settings, without making actual changes to the audio.  The length of preview is determined by your setting in <span class="menu">Edit &gt; Preferences &gt; <!--latex 
+\hyperref[\foo{playback:preferences:}]{--><a href="playback_preferences.html" title="Playback Preferences">Playback</a><!--latex }
+--></span>, the default setting is 6 seconds.</li>
+<!--
+\item --><li><span class="button">OK</span> applies the effect to the selected audio with the current effect settings.</li>
+<!--
+\item --><li><span class="button">Cancel</span> aborts the effect and leaves the audio unchanged.</li>
+<!--
+\item --><li><a href="help_button.html" title="Help Button"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Help Button" height="27" src="../m/images/d/d6/help_button.png" width="27"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d6/help_button.png--></img><!--}}{}--></a> brings you to the appropriate page in the Manual, this page.</li></ul><!--
+\end{itemize}
+-->
+<p><br/>
+</p><p><br/>
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Links">Links</span></h2><!--}-->
+<p><!--latex 
+\hyperref[\foo{index:of:effects:generators:and:analyzers:generators}]{--><a href="index_of_effects_generators_and_analyzers.html#generators" title="Index of Effects, Generators and Analyzers"><!--\textbf{--><b>|&lt;</b><!--}--> Index of Effects, Generators and Analyzers</a><!--latex }
+-->
+</p><p><!--latex 
+\hyperref[\foo{generate:menu:}]{--><a href="generate_menu.html" title="Generate Menu"><!--\textbf{--><b>|&lt;</b><!--}--> Generate Menu</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

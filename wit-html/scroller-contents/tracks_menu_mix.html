@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Tracks Menu: Mix - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Tracks_Menu_Mix rootpage-Tracks_Menu_Mix skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Tracks Menu: Mix</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{tracks:menu:mix:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p><br/>
+</p>
+<div class="intro">These commands provide tools for mixing and rendering your selected tracks to a singlestereo or mono track. </div>
+<dl><dd><!--\textit{--><i>Click, or hover, on any menu item in the image to read about that command.  &nbsp;<span style="font-size:0.8em"><!--latex 
+\hyperref[\foo{tracks:menu:mix::skiptheimage}]{--><a href="#skiptheimage">Skip the image</a><!--latex }
+--></span></i><!--}--></dd>
+<dd><div class="noresize"><map name="ImageMap_1_274624583"><area alt="Transport Menu" coords="0,3,26,19" href="transport_menu.html" shape="rect" title="Transport Menu"/><area alt="Tracks Menu" coords="33,3,73,19" href="tracks_menu.html" shape="rect" title="Tracks Menu"/><area alt="Generate Menu" coords="80,3,134,19" href="generate_menu.html" shape="rect" title="Generate Menu"/><area alt="Effect Menu" coords="141,3,174,19" href="effect_menu.html" shape="rect" title="Effect Menu"/><area alt="Analyze Menu" coords="181,3,225,19" href="analyze_menu.html" shape="rect" title="Analyze Menu"/><area alt="Help Menu" coords="232,3,261,19" href="help_menu.html" shape="rect" title="Help Menu"/><area alt="Ext-Bar Menu" coords="268,3,310,19" href="ext_bar_menu.html" shape="rect" title="Ext-Bar Menu"/><area alt="Ext-Command Menu" coords="317,3,399,19" href="ext_command_menu.html" shape="rect" title="Ext-Command Menu"/><area alt="Menu Bar" coords="0,0,600,22" href="menu_reference.html" shape="rect" title="Menu Bar"/><area alt="Adds a new track" coords="39,23,230,45" href="tracks_menu_add_new.html" shape="rect" title="Adds a new track"/><area alt="Mixes down selected tracks to mono or stereo tracks" coords="39,52,230,74" href="#" shape="rect" title="Mixes down selected tracks to mono or stereo tracks"/><area alt="Allows you to resample the selected track(s) to a new sample rate for use in the project" coords="39,74,230,96" href="tracks_menu.html#resample" shape="rect" title="Allows you to resample the selected track(s) to a new sample rate for use in the project"/><area alt="Removes the selected track(s) from the project" coords="39,103,230,125" href="tracks_menu.html#remove_tracks" shape="rect" title="Removes the selected track(s) from the project"/><area alt="Mutes or unmutes audio tracks in the project" coords="39,132,230,154" href="tracks_menu_mute/unmute.html" shape="rect" title="Mutes or unmutes audio tracks in the project"/><area alt="Pans left right or center audio tracks in the project" coords="39,154,230,176" href="tracks_menu_pan.html" shape="rect" title="Pans left right or center audio tracks in the project"/><area alt="Commands that provide an automatic way of aligning selected tracks with the cursor, the selection, or with the start of the project" coords="39,183,230,205" href="tracks_menu_align_tracks.html" shape="rect" title="Commands that provide an automatic way of aligning selected tracks with the cursor, the selection, or with the start of the project"/><area alt="Sorts all tracks in the project from top to bottom in the project window, by Start Time or by Name" coords="39,205,230,227" href="tracks_menu_sort_tracks.html" shape="rect" title="Sorts all tracks in the project from top to bottom in the project window, by Start Time or by Name"/><area alt="Ensures that length changes occurring anywhere in a defined group of tracks also take place in all audio or label tracks in that group" coords="39,234,230,256" href="sync_locked_track_groups.html" shape="rect" title="Ensures that length changes occurring anywhere in a defined group of tracks also take place in all audio or label tracks in that group"/><area alt="Converts the selected stereo track(s) into the same number of mono tracks, combining left and right channels equally by averaging the volume of both channels" coords="242,55,451,77" href="#mix_stereo_down_to_mono" shape="rect" title="Converts the selected stereo track(s) into the same number of mono tracks, combining left and right channels equally by averaging the volume of both channels"/><area alt="Mixes down all selected tracks to a single mono or stereo track, rendering to the waveform all real-time transformations that had been applied (such as track gain, panning, amplitude envelopes or a change in project rate)" coords="242,77,451,99" href="#mix_and_render" shape="rect" title="Mixes down all selected tracks to a single mono or stereo track, rendering to the waveform all real-time transformations that had been applied (such as track gain, panning, amplitude envelopes or a change in project rate)"/><area alt='Same as Tracks &gt; Mix and Render except that the original tracks are preserved rather than being replaced by the resulting "Mix" track' coords="242,99,451,121" href="#mix_and_render_to_new_track" shape="rect" title='Same as Tracks &gt; Mix and Render except that the original tracks are preserved rather than being replaced by the resulting "Mix" track'/></map><!--
+
+\par\Needspace{162.0pt}\begin{picture}(232.0,132.0)
+--><!--   \put(0,0){\includegraphics[scale=0.5]{--><img alt="Tracks-MixMenu.png" height="264" src="../m/images/3/33/tracks_mixmenu.png" usemap="#ImageMap_1_274624583" width="464"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/3/33/tracks_mixmenu.png--></img><!--}}
+--><!--   \put(0.0,122.5){\hyperref[\foo{transport:menu:}]{\makebox(13.0,8.0){}}}
+   \put(16.5,122.5){\hyperref[\foo{tracks:menu:}]{\makebox(20.0,8.0){}}}
+   \put(40.0,122.5){\hyperref[\foo{generate:menu:}]{\makebox(27.0,8.0){}}}
+   \put(70.5,122.5){\hyperref[\foo{effect:menu:}]{\makebox(16.5,8.0){}}}
+   \put(90.5,122.5){\hyperref[\foo{analyze:menu:}]{\makebox(22.0,8.0){}}}
+   \put(116.0,122.5){\hyperref[\foo{help:menu:}]{\makebox(14.5,8.0){}}}
+   \put(134.0,122.5){\hyperref[\foo{ext:bar:menu:}]{\makebox(21.0,8.0){}}}
+   \put(158.5,122.5){\hyperref[\foo{ext:command:menu:}]{\makebox(41.0,8.0){}}}
+   \put(19.5,109.5){\hyperref[\foo{tracks:menu:add:new:}]{\makebox(95.5,11.0){}}}
+   \put(19.5,95.0){\hyperref[\foo{tracks:menu:mix::}]{\makebox(95.5,11.0){}}}
+   \put(19.5,84.0){\hyperref[\foo{tracks:menu:resample}]{\makebox(95.5,11.0){}}}
+   \put(19.5,69.5){\hyperref[\foo{tracks:menu:remove:tracks}]{\makebox(95.5,11.0){}}}
+   \put(19.5,55.0){\hyperref[\foo{tracks:menu:mute:unmute:}]{\makebox(95.5,11.0){}}}
+   \put(19.5,44.0){\hyperref[\foo{tracks:menu:pan:}]{\makebox(95.5,11.0){}}}
+   \put(19.5,29.5){\hyperref[\foo{tracks:menu:align:tracks:}]{\makebox(95.5,11.0){}}}
+   \put(19.5,18.5){\hyperref[\foo{tracks:menu:sort:tracks:}]{\makebox(95.5,11.0){}}}
+   \put(19.5,4.0){\hyperref[\foo{sync:locked:track:groups:}]{\makebox(95.5,11.0){}}}
+   \put(121.0,93.5){\hyperref[\foo{tracks:menu:mix::mix:stereo:down:to:mono}]{\makebox(104.5,11.0){}}}
+   \put(121.0,82.5){\hyperref[\foo{tracks:menu:mix::mix:and:render}]{\makebox(104.5,11.0){}}}
+   \put(121.0,71.5){\hyperref[\foo{tracks:menu:mix::mix:and:render:to:new:track}]{\makebox(104.5,11.0){}}}
+\end{picture}
+
+--></div></dd></dl>
+<div id="skiptheimage"></div>
+<div id="mix_stereo_down_to_mono"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Mix_Stereo_down_to_Mono_.C2.A0">Mix Stereo down to Mono &nbsp;<font size="-1"></font></span></h2><!--}--><!--latex 
+\label{tracks:menu:mix:mix:stereo:down:to:mono}--><!--latex 
+\label{tracks:menu:mix:skiptheimage}-->
+<p>Converts the <!--latex 
+\hyperref[\foo{audacity:selection:}]{--><a href="audacity_selection.html" title="Audacity Selection">selected</a><!--latex }
+--> stereo track(s) into the same number of mono tracks, combining left and right channels equally by averaging the volume of both channels. An important reason to convert stereo to mono is that it produces higher quality for the same <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:bit:rate}]{--><a href="glossary.html#bit_rate" title="Glossary">bit rate</a><!--latex }
+--></b><!--}--></i><!--}--> (and hence file size) in <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:lossy}]{--><a href="glossary.html#lossy" title="Glossary">lossy</a><!--latex }
+--></b><!--}--></i><!--}-->, <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:compressed:format}]{--><a href="glossary.html#compressed_format" title="Glossary">compressed</a><!--latex }
+--></b><!--}--></i><!--}--> audio files like <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:mp3}]{--><a href="glossary.html#mp3" title="Glossary">MP3</a><!--latex }
+--></b><!--}--></i><!--}--> or <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:aac}]{--><a href="glossary.html#aac" title="Glossary">AAC</a><!--latex }
+--></b><!--}--></i><!--}-->. Stereo Track to Mono is not available with stereo tracks split into left and right channels, or where the start or end positions of the channels are different. 
+</p><p>If you have a split stereo track, you can use the <!--latex 
+\hyperref[\foo{audio:track:dropdown:menu:Splitting:and:Joining:Channels}]{--><a href="audio_track_dropdown_menu.html#Splitting_and_Joining_Channels" title="Audio Track Dropdown Menu">Track Dropdown Menu</a><!--latex }
+--> to join the channels into a single stereo track before converting to mono. This menu also lets you convert a stereo track to a mono track containing only <!--\textit{--><i>one</i><!--}--> of the channels:
+</p>
+<!--
+\begin{enumerate}--><ol><!--
+\item --><li> Choose "Split Stereo to Mono" from the Track Dropdown Menu if your stereo track is not already split into separate tracks</li>
+<!--
+\item --><li> Close the unwanted track using the <span class="button">X</span> button at the top left of the <!--latex 
+\hyperref[\foo{audio:tracks:Track:Control:Panel}]{--><a href="audio_tracks.html#Track_Control_Panel" title="Audio Tracks">Track Control Panel</a><!--latex }
+-->.</li></ol><!--
+\end{enumerate}
+-->
+<div id="mix_and_render"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Mix_and_Render_.C2.A0">Mix and Render &nbsp;<font size="-1"></font></span></h2><!--}--><!--latex 
+\label{tracks:menu:mix:mix:and:render}-->
+<p>Your audio tracks are implicitly mixed whenever you click the Play button on <!--latex 
+\hyperref[\foo{transport:toolbar:}]{--><a href="transport_toolbar.html" title="Transport Toolbar">Transport Toolbar</a><!--latex }
+--> or <!--latex 
+\hyperref[\foo{export:}]{--><a href="export.html" title="Export">export audio</a><!--latex }
+-->. Mix and Render explicitly mixes down all selected tracks to a single mono or stereo track, rendering to the waveform all real-time transformations that had been applied (such as track <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:gain}]{--><a href="glossary.html#gain" title="Glossary">gain</a><!--latex }
+--></b><!--}--></i><!--}-->, panning, <!--latex 
+\hyperref[\foo{envelope:tool:}]{--><a href="envelope_tool.html" title="Envelope Tool">amplitude envelopes</a><!--latex }
+--> or a change in <!--latex 
+\hyperref[\foo{selection:toolbar:rate}]{--><a href="selection_toolbar.html#rate" title="Selection Toolbar">project rate</a><!--latex }
+-->). The resulting track (called "Mix") replaces the selected tracks and is placed underneath any tracks that were not mixed and rendered.
+</p><p>Like all tracks, the "Mix" track can be renamed using the <!--latex 
+\hyperref[\foo{audio:track:dropdown:menu:}]{--><a href="audio_track_dropdown_menu.html" title="Audio Track Dropdown Menu">Audio Track Dropdown Menu</a><!--latex }
+-->.    
+</p>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">If you try to mix two very loud tracks together, you may get <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:clipping}]{--><a href="glossary.html#clipping" title="Glossary">clipping</a><!--latex }
+--></b><!--}--></i><!--}--> (it will sound like pops, clicks and noise).  To avoid this, use the <!--latex 
+\hyperref[\foo{audio:tracks:gain}]{--><a href="audio_tracks.html#gain" title="Audio Tracks">track gain controls</a><!--latex }
+--> to reduce the <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:amplitude}]{--><a href="glossary.html#amplitude" title="Glossary">amplitude</a><!--latex }
+--></b><!--}--></i><!--}--> of all of your tracks before mixdown.
+</td></tr></tbody></table>
+</div>
+<p>See <!--latex 
+\hyperref[\foo{mixing:}]{--><a href="mixing.html" title="Mixing">Mixing Audio Tracks</a><!--latex }
+--> for more details.
+</p>
+<div id="mix_and_render_to_new_track"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Mix_and_Render_to_New_Track_.C2.A0Ctrl_.2B_Shift_.2B_M">Mix and Render to New Track &nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">Ctrl + Shift + M</span></font></span></h2><!--}--><!--latex 
+\label{tracks:menu:mix:mix:and:render:to:new:track}-->
+<p>This command performs the same actions as Mix and Render above, except that the original tracks are preserved rather than being replaced by the "Mix" track.
+</p><p><br/>
+</p><p><br/>
+<!--latex 
+\hyperref[\foo{tracks:menu:}]{--><a href="tracks_menu.html" title="Tracks Menu"><!--\textbf{--><b>&lt;</b><!--}-->&nbsp; Back to: Tracks Menu</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Recording length - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Recording_length rootpage-Recording_length skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Recording length</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{recording:length:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+</p>
+<div class="intro">Audacity lets you record for as long and as often as you need, subject to the disk space you have available. <p>The disk space needed for recording depends on the quality (<!--latex 
+\hyperref[\foo{glossary:sample:rate}]{--><a href="glossary.html#sample_rate" title="Glossary">sample rate</a><!--latex }
+-->  and <!--latex 
+\hyperref[\foo{glossary:sample:format}]{--><a href="glossary.html#sample_format" title="Glossary">bit depth/sample format</a><!--latex }
+-->) at which you record.</p></div>
+
+
+<div id="remain"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Recording_time.2Fdisk_space_remaining">Recording time/disk space remaining</span></h2><!--}--><!--latex 
+\label{recording:length:remain}-->
+<p>When recording, the audio data is written to your hard disk. For example, if you just press the red Record button without having yet saved a Project, it's written to Audacity's temporary folder. Therefore, the amount of time you can record for is limited by the available disk space on the drive you are writing to. Audacity lets you know the amount of time you can record for based on that remaining space, giving a clear indication in the <!--latex 
+\hyperref[\foo{status:bar:}]{--><a href="status_bar.html" title="Status Bar">Status Bar</a><!--latex }
+--> at the bottom of the screen as to how much time you can record for:
+</p>
+<dl><dd><span title="Status Bar showing disk space remaining for recording"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Status Bar Disc space remaining.png" height="81" src="../m/images/5/57/status_bar_disc_space_remaining.png" width="778"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/5/57/status_bar_disc_space_remaining.png--></img><!--}\par
+--></span></dd></dl>
+<p>The time remaining depends on the current space on the drive, and on the <!--latex 
+\hyperref[\foo{quality:preferences:}]{--><a href="quality_preferences.html" title="Quality Preferences">quality</a><!--latex }
+--> (sample rate and sample format/bit depth) at which you are recording.  
+</p>
+
+<p>Although there are rarely problems if you record to Audacity's temporary folder and then save the recording as an Audacity Project, it may be preferable if you're intending to save a Project to save an empty Project before you start recording, with the <span class="menu">File &gt; <!--latex 
+\hyperref[\foo{file:menu:saveprojectas}]{--><a href="file_menu.html#saveprojectas" title="File Menu">Save Project As...</a><!--latex }
+--></span> command. That way, the recorded data will be saved to a permanent location in the Project's _data folder. When the recording is over, and now and again during editing, use <span class="menu">File &gt; <!--latex 
+\hyperref[\foo{file:menu:saveproject}]{--><a href="file_menu.html#saveproject" title="File Menu">Save Project</a><!--latex }
+--></span> (<!--\textit{--><i><!--\textbf{--><b>not</b><!--}--></i><!--}--> <span class="menu">File &gt; Save Project As...</span>) to update the Project.   
+</p>
+<div id="space"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Increasing_disk_space_for_longer_recordings">Increasing disk space for longer recordings</span></h2><!--}--><!--latex 
+\label{recording:length:space}-->
+<p>To get more recording time:
+</p>
+<!--
+\begin{enumerate}--><ol><!--
+\item --><li> Obviously, free up some more disk space. One good way to do that is to ensure you delete your old Audacity Projects (the .aup and any .aup.bak files and the _data folders) as soon as you've finished the Project and are sure you will not need to export any more files from it. </li>
+<!--
+\item --><li> Save the Project you're starting (or change the location of Audacity's temporary folder) to a disk with more space on it. The location of Audacity's temporary folder can be changed on the <!--latex 
+\hyperref[\foo{directories:preferences:}]{--><a href="directories_preferences.html" title="Directories Preferences">Directories</a><!--latex }
+--> tab of Preferences.</li>
+<!--
+\item --><li> Audacity only uses uncompressed (so lossless) <!--latex 
+\hyperref[\foo{glossary:pcm}]{--><a href="glossary.html#pcm" title="Glossary">PCM</a><!--latex }
+--> audio data for recording and editing, but the amount of disk space consumed can be reduced by changing the following settings in Preferences:
+<!--
+\begin{enumerate}--><ol><!--
+\item --><li> on the <!--latex 
+\hyperref[\foo{devices:preferences:devices}]{--><a href="devices_preferences.html#devices" title="Devices Preferences">Devices</a><!--latex }
+--> tab, record in <!--\textbf{--><b>mono</b><!--}--> instead of stereo. This halves the disk space used. </li>
+<!--
+\item --><li> on the <!--latex 
+\hyperref[\foo{quality:preferences:quality}]{--><a href="quality_preferences.html#quality" title="Quality Preferences">Quality</a><!--latex }
+--> tab, reduce the <!--\textbf{--><b>Default Sample Format</b><!--}--> (bit depth) from 32-bit float to 16-bit, which again halves the disk space used. In speech recordings you may also be able to reduce the <!--\textbf{--><b>Default Sample Rate</b><!--}--> without significantly affecting the quality. Generally for music, leave the Sample Rate at 44100 Hz, but if 22050 Hz gives acceptable quality, it takes only half the disk space of 44100 Hz. </li></ol><!--
+\end{enumerate}
+--></li>
+<!--
+\item --><li> Note that because unlimited undo is available in an Audacity session, editing a project itself uses disk space. To reduce the space a project is taking, <span class="menu">File &gt; <!--latex 
+\hyperref[\foo{file:menu:saveproject}]{--><a href="file_menu.html#saveproject" title="File Menu">Save Project</a><!--latex }
+--></span>, exit Audacity and relaunch it. This will clear out the space being used by the Undo mechanism. Alternatively, leave the project open, click <span class="menu">View  &gt; <!--latex 
+\hyperref[\foo{view:menu:history}]{--><a href="view_menu.html#history" title="View Menu">History</a><!--latex }
+--></span> and discard the Undo levels you do not need.</li></ol><!--
+\end{enumerate}
+-->
+<div class="note"><!--\textbf{--><b>Examples of disk space usage when recording and editing at different quality settings:</b><!--}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> 44100 Hz, 32-bit, stereo = 20 MB of space per minute. <span style="color:#333300;font-style:italic">44100 Hz and 32-bit are Audacity's default quality settings</span></li>
+<!--
+\item --><li> 44100 Hz, 16-bit, stereo = 10 MB per minute.<span style="color:#333300;font-style:italic"> CD quality</span></li>
+<!--
+\item --><li> 22050 Hz, 8-bit, mono = 1.25 MB per minute. <span style="color:#333300;font-style:italic"> This would be generally acceptable for speech recordings from lower quality sources</span></li></ul><!--
+\end{itemize}
+--></div>
+<p>Note that reducing the <!--\textit{--><i>sample rate</i><!--}--> will reduce the audio frequency limit. 44100 Hz gives a theoretical maximum of less than 22050 Hz that can be captured. A sample rate of 22050 Hz gives you less than 11025 Hz. For speech, you can take out the high frequencies without much loss of intelligibility. Likewise, reducing the <!--\textit{--><i>bit depth</i><!--}--> reduces the dynamic range of the audio.  For example, 16-bit gives a whopping 96dB of dynamic range. 8-bit recording reduces dynamic range to 48dB. A 22050 Hz, 8-bit recording would rival the sound of a good quality cassette tape.
+</p><p>Note that disk space usage above relates solely to the size of audio data held by Audacity, not to the size of audio files exported from it. You need this space to record and edit, but if you do not save an Audacity Project, the temporary data is deleted and the space released as soon as you exit Audacity.
+</p>
+<div class="note">When making a longer recording of a few hours or more, other computer resource issues may be involved apart from disk space. These include the need to have sufficient <a class="external text" href="https://en.wikipedia.org/wiki/RAM" rel="nofollow">RAM</a> and swap file space available, and ensuring automated events such as system or application updates or screen savers are not able to disrupt a recording. For details, see <a class="external text" href="https://wiki.audacityteam.org/wiki/Managing_Computer_Resources_and_Drivers" rel="nofollow">Managing Computer Resources and Drivers</a> in the Audacity Wiki. Having stable, up-to-date sound device drivers properly matched to your hardware also becomes more important.  See <a class="external text" href="https://wiki.audacityteam.org/wiki/Updating_Sound_Device_Drivers" rel="nofollow">this page</a> in the Audacity Wiki for details. </div>      
+<div id="long"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Long_recordings">Long recordings</span></h2><!--}--><!--latex 
+\label{recording:length:long}-->
+<p>Audacity stores samples as 64-bit values (even on 32-bit machines); therefore there is no inherent 32-bit limitation that recordings may not exceed 2^31 samples in length (which is for example just over 13.5 hours at 44100 Hz sample rate). 
+</p><p>44100 Hz now offers a theoretical maximum recording length of a mere 58 billion hours or more than 6.6 years (if you have the disk space).
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

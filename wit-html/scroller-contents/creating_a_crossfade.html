@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Creating a Crossfade - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Creating_a_Crossfade rootpage-Creating_a_Crossfade skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Creating a Crossfade</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{creating:a:crossfade:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p><br/>
+</p>
+<div class="intro">The purpose of a crossfade is to produce a smooth transition between two sections of audio. The two sections overlap and as one section fades out the other fades in. This technique is commonly used by DJ's, for "compilation" tracks and <a class="external text" href="https://en.wikipedia.org/wiki/Mashup_%28music%29" rel="nofollow">mashups</a>. The use of crossfades is not limited to joining pieces of music, but can be used in many other situations where a smooth transition is required, including editing speech recordings, extending songs, creating loops for audio sequencers, repairing damaged recordings and much more.</div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="How_to_crossfade_two_tracks">How to crossfade two tracks</span></h2><!--}-->
+<p>First, the tracks should be <!--latex 
+\hyperref[\foo{importing:audio:}]{--><a href="importing_audio.html" title="Importing Audio">imported</a><!--latex }
+--> or <!--latex 
+\hyperref[\foo{record:}]{--><a href="record.html" title="Record">recorded</a><!--latex }
+-->. By default, importing two audio files will create two audio tracks one above the other. Similarly, recording a new track will by default create a new track below any other tracks in the project. This is the arrangement that we want as the starting point (for clarity the illustrations show mono tracks, but the procedure is exactly the same for stereo tracks).
+</p>
+<div class="note">If you want to crossfade multiple songs that are currently one after the other in a single <!--latex 
+\hyperref[\foo{audio:tracks:}]{--><a href="audio_tracks.html" title="Audio Tracks">audio track</a><!--latex }
+--> then before making a crossfade using the methods described in this article you must <!--latex 
+\hyperref[\foo{audacity:selection:}]{--><a href="audacity_selection.html" title="Audacity Selection">select</a><!--latex }
+--> the first song, use <span class="menu">Edit &gt; Clip Boundaries &gt; <!--latex 
+\hyperref[\foo{edit:menu:clip:boundaries:split:new}]{--><a href="edit_menu_clip_boundaries.html#split_new" title="Edit Menu: Clip Boundaries">Split New</a><!--latex }
+--></span> to move that song to its own separate track, then select and Split New the other songs.</div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Roughly_position_the_tracks">Roughly position the tracks</span></h2><!--}-->
+<p>Drag the second track to roughly the right place using the <!--latex 
+\hyperref[\foo{tools:toolbar:timeshift}]{--><a href="tools_toolbar.html#timeshift" title="Tools Toolbar">Time Shift</a><!--latex }
+--> tool <img alt="TimeShiftTool.png" src="https://manual.audacityteam.org/m/images/3/3c/TimeShiftTool.png"><!--C:/OpenSourceGit/AudacityTeamTools/test/man/https:/manual.audacityteam.org/m/images/3/3c/TimeShiftTool.png--></img> . Don't worry about getting the position too precise at this stage as we will adjust the position later. For crossfading two music tracks, an overlap of around 5 seconds is usually suitable, though sometimes a much shorter, or longer crossfade may sound better. How long the crossfade transition lasts is largely a matter of personal taste.
+</p>
+<dl><dd><span title="Tracks overlapped"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Crossfade-overlap-tracks.png" height="323" src="../m/images/d/d0/crossfade_overlap_tracks.png" width="564"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d0/crossfade_overlap_tracks.png--></img><!--}\par
+--></span></dd></dl>
+<div class="note">For detailed information about handling Tracks and Clips, see <!--latex 
+\hyperref[\foo{audacity:tracks:and:clips:}]{--><a href="audacity_tracks_and_clips.html" title="Audacity Tracks and Clips">Audio Tracks and Clips</a><!--latex }
+-->.</div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Align_tracks_more_precisely">Align tracks more precisely</span></h2><!--}-->
+<p>Tracks will often begin and end with a short period of silence. Leading/trailing silence may be removed by selecting and deleting. Audacity's <!--latex 
+\hyperref[\foo{playing:and:recording:play:cut}]{--><a href="playing_and_recording.html#play_cut" title="Playing and Recording">Cut Preview</a><!--latex }
+--> can be useful to check that the selection to be deleted is correct.
+</p><p>The end of the first track will be the point at which the first track finally stops (has faded to silence). The start of the second track will be the point at which the second track starts to fade in. 
+</p>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Bulbicon.png" title="Bulb icon"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Bulb icon" height="32" src="../m/images/d/d7/bulbicon.png" width="32"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d7/bulbicon.png--></img><!--}\par
+--></a>
+</td>
+<td align="left" valign="top">For rhythmic music it will often sound best if the second track is carefully positioned so that the beats in the second track line up with the beats in the first track. If the tempi of the tracks are different it will not be possible to make all of the beats line up. In this case, try to make the beats align at a point just to left of halfway through the overlap.  <!--latex 
+\hyperref[\foo{zooming:}]{--><a href="zooming.html" title="Zooming">Zoom</a><!--latex }
+--> in/out as necessary to see an appropriate level of detail.
+</td></tr></tbody></table>
+</div>
+<dl><dd><span title="Beats matched"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Crossfade-beat-match.png" height="356" src="../m/images/f/f2/crossfade_beat_match.png" width="564"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/f/f2/crossfade_beat_match.png--></img><!--}\par
+--></span></dd></dl>
+<p>After selecting the region to be crossfaded, create a <!--latex 
+\hyperref[\foo{edit:menu:clip:boundaries:split}]{--><a href="edit_menu_clip_boundaries.html#split" title="Edit Menu: Clip Boundaries">split</a><!--latex }
+--> at both ends of the selection using <span class="kbrd" style="background-color: #e0e0f0">Ctrl + I</span>. The split marks will greatly facilitate selecting the appropriate areas in each track.
+</p>
+<dl><dd><span title="Splits added at start and end of crossfade"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Crossfade-split-tracks.png" height="304" src="../m/images/e/ea/crossfade_split_tracks.png" width="564"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/e/ea/crossfade_split_tracks.png--></img><!--}\par
+--></span></dd></dl>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Trim_the_tracks">Trim the tracks</span></h2><!--}-->
+<p>If, as in the images above, it is necessary to trim the tracks further, select the unwanted region after the fade out (in the upper track in this case) by double-clicking in it, then delete it. 
+</p>
+<div class="note">When deleting the audio before the fade in (in the lower track in this case) use <span class="menu">Edit &gt; Remove Special &gt; <!--latex 
+\hyperref[\foo{edit:menu:remove:special:split:delete}]{--><a href="edit_menu_remove_special.html#split_delete" title="Edit Menu: Remove Special">Split Delete</a><!--latex }
+--></span>, or the keyboard shortcut <span class="kbrd" style="background-color: #e0e0f0">Ctrl + Alt + K</span> so as to avoid moving the remaining part of the track.</div>
+<dl><dd><span title="Excess audio trimmed from ends"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Crossfade-trimmed.png" height="304" src="../m/images/6/6b/crossfade_trimmed.png" width="564"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/6/6b/crossfade_trimmed.png--></img><!--}\par
+--></span></dd></dl>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Apply_fades">Apply fades</span></h2><!--}-->
+<p>The quickest way to apply the fades is with the <!--latex 
+\hyperref[\foo{crossfade:tracks:}]{--><a href="crossfade_tracks.html" title="Crossfade Tracks">Crossfade Tracks</a><!--latex }
+--> effect. This effect applies a fade-out to the upper selected track, and a fade-in to the lower of the two tracks. For more complex fading, the <!--latex 
+\hyperref[\foo{adjustable:fade:}]{--><a href="adjustable_fade.html" title="Adjustable Fade">Adjustable Fade</a><!--latex }
+--> effect may be applied to each of the tracks in turn, applying a fade-out to the overlapping section in the first track, and a fade-in to the overlapping section of the second track.
+</p>
+<dl><dd><span title="Completed crossfade"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Crossfade-complete.png" height="303" src="../m/images/d/de/crossfade_complete.png" width="564"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/de/crossfade_complete.png--></img><!--}\par
+--></span></dd></dl>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Bulbicon.png" title="Bulb icon"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Bulb icon" height="32" src="../m/images/d/d7/bulbicon.png" width="32"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d7/bulbicon.png--></img><!--}\par
+--></a>
+</td>
+<td align="left" valign="top">Using linear fades can cause the volume level to drop midway through the fade.
+<!--
+\begin{itemize}--><ul><!--
+\item --><li>For rhythmic music with closely matched tempo this will often be undesirable and may be prevented by using fade shapes that bow up higher than a linear fade (such as the <!--latex 
+\hyperref[\foo{fade:and:crossfade:equal}]{--><a href="fade_and_crossfade.html#equal" title="Fade and Crossfade">Equal Power</a><!--latex }
+--> fade shape). </li>
+<!--
+\item --><li>For crossfading music where there is a substantial difference in tempo, a smoother sounding crossfade may be achieved by allowing the volume to drop by the use of fade shapes that dip lower than a linear fade.</li></ul><!--
+\end{itemize}
+-->
+</td></tr></tbody></table>
+</div>
+
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

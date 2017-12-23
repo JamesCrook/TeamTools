@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Compressor - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Compressor rootpage-Compressor skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Compressor</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{compressor:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p><br/>
+</p>
+
+<p><br/>
+
+
+
+</p>
+<div class="intro">The Compressor effect reduces the <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:dynamic:range}]{--><a href="glossary.html#dynamic_range" title="Glossary">dynamic range</a><!--latex }
+--></b><!--}--></i><!--}--> of audio.
+One of the main purposes of reducing dynamic range is to permit the audio to be amplified further (without <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:clipping}]{--><a href="glossary.html#clipping" title="Glossary">clipping</a><!--latex }
+--></b><!--}--></i><!--}-->) than would be otherwise possible. Therefore by default the Compressor amplifies audio as much as possible after <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:compression}]{--><a href="glossary.html#compression" title="Glossary">compression</a><!--latex }
+--></b><!--}--></i><!--}-->. The resultant increase in average or <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:rms}]{--><a href="glossary.html#rms" title="Glossary">RMS</a><!--latex }
+--></b><!--}--></i><!--}--> level can be useful for audio played in a noisy environment such as in a car, or in speech, to make a distant voice sound as loud as a close one. Because the <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:gain}]{--><a href="glossary.html#gain" title="Glossary">gain</a><!--latex }
+--></b><!--}--></i><!--}--> changes relatively slowly, a compressor does not distort the signal in the way that a Limiter or clipping would do.</div>
+<dl><dd><!--\textbf{--><b>Accessed by:</b><!--}--> <span class="menu">Effect &gt; Compressor...</span></dd>
+<dd><span title="Compressor effect dialog"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Compressor.png"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Compressor.png" height="518" src="../m/images/a/ac/compressor.png" width="474"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/a/ac/compressor.png--></img><!--}\par
+--></a></span></dd></dl>
+<div id="graph"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Graph">Graph</span></h2><!--}--><!--latex 
+\label{compressor:graph}-->
+<p>The graph shows the input level along the bottom (horizontal axis) and the output level scale on the left (vertical axis) to illustrate the dynamic range compression effect. The graph will change as you adjust the Threshold and Ratio sliders, reflecting those settings. The graph does not reflect changes in any of the other controls, although they all affect how the audio sounds after applying the effect.
+</p>
+<div id="controls"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Controls">Controls</span></h2><!--}--><!--latex 
+\label{compressor:controls}-->
+<div class="note">The principle of how each control works is described below. In practice the effect works internally in a rather more complex manner in that, as it processes the sound, it looks ahead to determine if there are high peaks coming up. This enables the "attack" stage of the effect to work in advance of increasing level as can be seen in the <!--latex 
+\hyperref[\foo{compressor::Example}]{--><a href="#Example">example</a><!--latex }
+--> below. This feature is called <a class="external text" href="https://en.wikipedia.org/wiki/Dynamic_range_compression#Look-ahead" rel="nofollow">look-ahead</a> and it is enabled within the effect with no user adjustment. The benefit of look-ahead is  that sudden peaks do not pass through the effect before the gain has had time to change.</div>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>Threshold:</b><!--}--> The level above which compression is applied to the audio.</li></ul><!--
+\end{itemize}
+-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:noise:floor}]{--><a href="glossary.html#noise_floor" title="Glossary">Noise Floor</a><!--latex }
+-->:</b><!--}--></i><!--}--> The compressor adjusts the gain on audio below this background level so as to prevent it being unduly amplified in processing. This is mainly useful when compressing speech, to prevent the gain increasing during pauses and so over-amplifying the background noise. </li></ul><!--
+\end{itemize}
+-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>Ratio:</b><!--}--> The amount of compression applied to the audio once it passes the threshold level. The higher the Ratio the more the loud parts of the audio will be compressed. The Ratio sets the slope of the blue line on the graph above the threshold.</li></ul><!--
+\end{itemize}
+-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>Attack Time:</b><!--}--> How soon the compressor starts to compress the dynamics after the threshold is exceeded. If volume changes are slow, you can push this to a high value. Short attack times will result in a fast response to sudden, loud sounds, but will make the changes in volume much more obvious to listeners.</li></ul><!--
+\end{itemize}
+-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>Release Time:</b><!--}--> How soon the compressor starts to release the volume level back to normal after the level drops below the threshold. A long time value will tend to lose quiet sounds that come after loud ones, but will avoid the volume being raised too much during short quiet sections like pauses in speech.</li></ul><!--
+\end{itemize}
+-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>Make-up gain for 0 dB after compressing:</b><!--}--> Amplifies the resultant audio in all selected tracks after compression to a peak level of 0 dB. All tracks are amplified by the same amount as in the <!--latex 
+\hyperref[\foo{amplify:}]{--><a href="amplify.html" title="Amplify">Amplify</a><!--latex }
+--> effect.</li></ul><!--
+\end{itemize}
+-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>Compress based on Peaks:</b><!--}--> Base the threshold and gain adjustment on peak values of the <!--latex 
+\hyperref[\foo{audacity:waveform:}]{--><a href="audacity_waveform.html" title="Audacity Waveform">waveform</a><!--latex }
+--> rather than the average (RMS) value used when in default (unchecked) state. </li></ul><!--
+\end{itemize}
+-->
+<dl><dd><!--
+\begin{itemize}--><ul><!--
+\item --><li> When using RMS, the compressor uses "downward" compression, making louder sounds above the threshold quieter while leaving quieter ones below it untouched.</li>
+<!--
+\item --><li>When using peak values, "upwards" compression is applied which makes the audio louder, but amplifies the louder sounds above the threshold progressively less than those below it. Where the original (input) level is 0 dB there is no amplification.</li></ul><!--
+\end{itemize}
+--></dd></dl>
+<div id="buttons"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Buttons">Buttons</span></h2><!--}--><!--latex 
+\label{compressor:buttons}-->
+<p>Clicking on the command buttons give the following results:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><span class="button">Manage</span> gives a dropdown menu enabling you to manage presets for the tool and to see some detail about the tool. For details see <!--latex 
+\hyperref[\foo{manage:presets:}]{--><a href="manage_presets.html" title="Manage presets">Manage presets</a><!--latex }
+-->.</li>
+<!--
+\item --><li><span class="button">Preview</span> plays a short preview of what the audio would sound like if the effect is applied with the current settings, without making actual changes to the audio.  The length of preview is determined by your setting in <span class="menu">Edit &gt; Preferences &gt; <!--latex 
+\hyperref[\foo{playback:preferences:}]{--><a href="playback_preferences.html" title="Playback Preferences">Playback</a><!--latex }
+--></span>, the default setting is 6 seconds.</li>
+<!--
+\item --><li><span class="button">OK</span> applies the effect to the selected audio with the current effect settings.</li>
+<!--
+\item --><li><span class="button">Cancel</span> aborts the effect and leaves the audio unchanged.</li>
+<!--
+\item --><li><a href="help_button.html" title="Help Button"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Help Button" height="27" src="../m/images/d/d6/help_button.png" width="27"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d6/help_button.png--></img><!--}}{}--></a> brings you to the appropriate page in the Manual, this page.</li></ul><!--
+\end{itemize}
+-->
+<p><br/>
+</p><p><br/>
+</p>
+<div id="example"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Example">Example</span></h2><!--}--><!--latex 
+\label{compressor:example}-->
+<div class="example"><!--\textbf{--><b>Before Compression:</b><!--}-->
+<p>A simple sine wave that begins at -12 <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:decibel}]{--><a href="glossary.html#decibel" title="Glossary">dB</a><!--latex }
+--></b><!--}--></i><!--}-->, jumps up to 0 dB, then drops back down to -12 dB, to demonstrate how the Audacity compressors handle signals.
+</p><p>When <!--\textbf{--><b>Compress based on Peaks</b><!--}--> is not selected, audio with an <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:rms}]{--><a href="glossary.html#rms" title="Glossary">RMS</a><!--latex }
+--></b><!--}--></i><!--}--> level beyond the threshold range will be reduced. If <!--\textbf{--><b>Make up gain</b><!--}--> is enabled then the entire selection will be boosted to make up for this gain reduction.
+</p><p>When <!--\textbf{--><b>Compress based on Peaks</b><!--}--> is selected, audio with a peak level within the threshold range will be boosted.
+</p>
+<dl><dd><span title="Uncompressed signal"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Compressor-before.png" height="181" src="../m/images/2/25/compressor_before.png" width="483"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/2/25/compressor_before.png--></img><!--}\par
+--></span></dd></dl>
+<p><!--\textbf{--><b>After Compression:</b><!--}-->
+</p><p>In this example:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>Compressing based on peaks</b><!--}--> is enabled so audio with a peak level below the threshold is boosted. You can see that the audio before 1.5 seconds on the Timeline has been made louder than it was in the "Before Compression" image. </li>
+<!--
+\item --><li> <!--\textbf{--><b>Attack</b><!--}--> is 0.5 seconds, during which period the compressor progressively anticipates the coming peak. </li>
+<!--
+\item --><li> <!--\textbf{--><b>Release</b><!--}--> is 1.0 seconds, during which period the boost to the quieter audio is progressively resumed.   </li>
+<!--
+\item --><li> <!--\textbf{--><b>Ratio</b><!--}--> is 10:1.  </li></ul><!--
+\end{itemize}
+-->
+<dl><dd><span title="Compressed signal"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Compressor-after.png" height="238" src="../m/images/5/54/compressor_after.png" width="485"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/5/54/compressor_after.png--></img><!--}\par
+--></span></dd></dl></div>
+<div class="note">
+<!--
+\subsection{--><h2><span class="mw-headline" id="Further_reading_on_compressors">Further reading on compressors</span></h2><!--}-->
+<p>There are some good (but not too technical) explanations of compression here:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <a class="external text" href="http://www.harmonycentral.com/t5/Effects-Signal-Processors/Compressors-Demystified/ba-p/35515615" rel="nofollow">Compressors demystified</a>  (Harmony Central)</li>
+<!--
+\item --><li> <a class="external text" href="http://www.soundonsound.com/sos/sep09/articles/compressionmadeeasy.htm" rel="nofollow">Compression Made Easy</a> with <a class="external text" href="http://www.soundonsound.com/sos/sep09/articles/compressioneasyaudio.htm" rel="nofollow">audio files</a> (Sound On Sound)</li></ul><!--
+\end{itemize}
+-->
+<p>More advanced:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <a class="external text" href="http://www.soundonsound.com/sos/dec00/articles/adcompression.htm" rel="nofollow">Advanced Compression Techniques Part 1</a> and  <a class="external text" href="http://www.soundonsound.com/sos/jan01/articles/advanced.asp" rel="nofollow">Part 2</a>  (Sound On Sound)</li></ul><!--
+\end{itemize}
+-->
+</div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="An_alternative_free_compressor">An alternative free compressor</span></h2><!--}-->
+<p>Please see <!--latex 
+\hyperref[\foo{chris:s:dynamic:compressor:}]{--><a href="chris_s_dynamic_compressor.html" title="Chris's Dynamic Compressor">Chris's Dynamic Compressor</a><!--latex }
+--> for a popular alternative compressor which may be downloaded for free.
+</p><p><br/>
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Links">Links</span></h2><!--}-->
+<p><!--latex 
+\hyperref[\foo{index:of:effects:generators:and:analyzers:}]{--><a href="index_of_effects_generators_and_analyzers.html" title="Index of Effects, Generators and Analyzers"><!--\textbf{--><b>|&lt;</b><!--}--> Index of Effects, Generators and Analyzers</a><!--latex }
+--> <br/>
+</p><p><!--latex 
+\hyperref[\foo{effect:menu:}]{--><a href="effect_menu.html" title="Effect Menu"><!--\textbf{--><b>|&lt;</b><!--}--> Effect Menu</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

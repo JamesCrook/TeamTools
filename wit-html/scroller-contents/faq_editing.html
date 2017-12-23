@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>FAQ:Editing - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-FAQ_Editing rootpage-FAQ_Editing skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">FAQ:Editing</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{faq:editing:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+
+
+
+
+</p><p><br/>
+<!--latex 
+\hyperref[\foo{faq:errors:}]{--><a href="faq_errors.html" title="FAQ:Errors"><!--\textbf{--><b>&gt;</b><!--}-->&nbsp; Forward To: FAQ:Errors</a><!--latex }
+--> <br/>
+</p><p><!--latex 
+\hyperref[\foo{faq:opening:and:saving:files:}]{--><a href="faq_opening_and_saving_files.html" title="FAQ:Opening and Saving Files"><!--\textbf{--><b>&lt;</b><!--}-->&nbsp; Back to: FAQ:Opening and Saving Files</a><!--latex }
+--> <br/>
+</p><p><!--latex 
+\hyperref[\foo{faq:}]{--><a href="faq.html" title="FAQ"><!--\textbf{--><b>|&lt;</b><!--}--> Index of Frequently Asked Questions</a><!--latex }
+-->
+</p>
+
+
+<!--
+\subsection{--><h2><span class="mw-headline" id="It.27s_Not_Working.21">It's Not Working!</span></h2><!--}-->
+<div id="grayed"></div> 
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Why_can.E2.80.99t_I_use_the_effects_or_other_menu_items.3F">Why can&rsquo;t I use the effects or other menu items?</span></h3><!--}--><!--latex 
+\label{faq:editing:grayed}-->
+<p>Many menu items and other functions are disabled while playing or recording. To enable them, press the <!--\textbf{--><b>Stop</b><!--}--> button <a class="image" href="http://alphamanual.audacityteam.org/man/File:Stop.png" title="The Stop button"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="The Stop button" height="16" src="../m/images/f/f9/stop.png" width="16"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/f/f9/stop.png--></img><!--}}{}--></a>. To stop playback and set the cursor where you stopped, so playback resumes from there, you can use the <!--latex 
+\hyperref[\foo{keyboard:shortcut:reference:}]{--><a href="keyboard_shortcut_reference.html" title="Keyboard Shortcut Reference">keyboard shortcut</a><!--latex }
+--> <span class="kbrd" style="background-color: #e0e0f0">X</span>.  
+</p><p>All <!--latex 
+\hyperref[\foo{effect:menu:}]{--><a href="effect_menu.html" title="Effect Menu">effects</a><!--latex }
+-->, most <!--latex 
+\hyperref[\foo{edit:menu:}]{--><a href="edit_menu.html" title="Edit Menu">Edit Menu</a><!--latex }
+--> items and Cut, Copy, Trim and Silence in <!--latex 
+\hyperref[\foo{edit:toolbar:}]{--><a href="edit_toolbar.html" title="Edit Toolbar">Edit Toolbar</a><!--latex }
+--> require you to select the audio you want to change. 
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> To select a specific region of audio, click and drag with the <!--latex 
+\hyperref[\foo{tools:toolbar:}]{--><a href="tools_toolbar.html" title="Tools Toolbar">Selection tool</a><!--latex }
+--> enabled so as to highlight the selected track.</li>
+<!--
+\item --><li> To select all the audio in the project, choose <span class="menu">Select &gt; All</span> or its shortcut <span class="kbrd" style="background-color: #e0e0f0">Ctrl + A</span>. </li></ul><!--
+\end{itemize}
+-->
+<div class="note">
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> You can Pause during playback or recording then use effect and other menu items, which will stop the audio stream.</li>
+<!--
+\item --><li> If you choose an effect or other menu item requiring a selection without making a selection, Audacity will, by default, select all the audio in the project. You can disable this behavior in the <!--latex 
+\hyperref[\foo{tracks:preferences:behaviors}]{--><a href="tracks_preferences.html#behaviors" title="Tracks Preferences">Tracks Preferences</a><!--latex }
+--> by unchecking <!--\textbf{--><b>Select all audio in project, if none selected</b><!--}--> but menu items requiring a selection will then be grayed out if there is no selection.</li>
+<!--
+\item --><li> If you Pause while Scrubbing or Seeking menu commands are greyed out for now. </li></ul><!--
+\end{itemize}
+--></div>  
+<p><!--latex 
+\hyperref[\foo{faq:editing::top}]{--><a href="#top">back to top</a><!--latex }
+-->
+</p>
+<div id="snap"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Why_can.27t_I_select_less_than_one_second_or_click_between_whole_seconds_.3F">Why can't I select less than one second or click between whole seconds&nbsp;?</span></h3><!--}--><!--latex 
+\label{faq:editing:snap}-->
+<p>Change "<!--latex 
+\hyperref[\foo{selection:toolbar:snap}]{--><a href="selection_toolbar.html#snap" title="Selection Toolbar">Snap To</a><!--latex }
+-->" in <!--latex 
+\hyperref[\foo{selection:toolbar:}]{--><a href="selection_toolbar.html" title="Selection Toolbar">Selection Toolbar</a><!--latex }
+--> to "Off". If Snap To is set to "Nearest" or "Prior", the selection edges or cursor will be force-snapped to an exact time unit (for example, whole seconds) or to the nearest <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:sample}]{--><a href="glossary.html#sample" title="Glossary">sample</a><!--latex }
+--></b><!--}--></i><!--}--> or media frame, according to the <!--latex 
+\hyperref[\foo{selection:toolbar:formats}]{--><a href="selection_toolbar.html#formats" title="Selection Toolbar">selection format</a><!--latex }
+--> chosen in Selection Toolbar.  "Nearest" or "Prior" determines respectively whether the nearest or previous time unit, sample or frame is snapped to.    
+</p>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">If Snap To is set to "Nearest" or "Prior", selection format set to seconds and you are <!--latex 
+\hyperref[\foo{zooming:}]{--><a href="zooming.html" title="Zooming">zoomed in</a><!--latex }
+--> with less than one second of track visible, you will not be able to click or select in the track until you <!--latex 
+\hyperref[\foo{view:menu:zoom:out}]{--><a href="view_menu.html#zoom_out" title="View Menu">zoom out</a><!--latex }
+--> or set Snap To to "Off".
+</td></tr></tbody></table>
+</div>
+<p><!--latex 
+\hyperref[\foo{faq:editing::top}]{--><a href="#top">back to top</a><!--latex }
+-->
+</p><p><br/>
+</p>
+<div id="clicks"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Why_do_I_hear_clicks_when_I_remove_or_paste_audio.2C_or_at_the_start_or_end_of_the_track.3F">Why do I hear clicks when I remove or paste audio, or at the start or end of the track?</span></h3><!--}--><!--latex 
+\label{faq:editing:clicks}-->
+<p>Clicks where audio is <!--latex 
+\hyperref[\foo{edit:menu:remove}]{--><a href="edit_menu.html#remove" title="Edit Menu">removed</a><!--latex }
+--> or <!--latex 
+\hyperref[\foo{edit:menu:paste}]{--><a href="edit_menu.html#paste" title="Edit Menu">pasted</a><!--latex }
+--> may be caused by <!--latex 
+\hyperref[\foo{glossary:dc:offset}]{--><a href="glossary.html#dc_offset" title="Glossary">DC offset</a><!--latex }
+--> in the waveform or by poor selection of the edit points.
+</p><p>DC offset may also cause a click at the start or end of the track, even if you do not edit the audio before <!--latex 
+\hyperref[\foo{file:export:dialog:}]{--><a href="file_export_dialog.html" title="File Export Dialog">exporting</a><!--latex }
+-->. Make it part of your workflow to use the <!--latex 
+\hyperref[\foo{normalize:}]{--><a href="normalize.html" title="Normalize">Normalize</a><!--latex }
+--> effect with "Remove any DC offset" checked as soon as audio is recorded or imported. You can set the <!--latex 
+\hyperref[\foo{import:export:preferences:}]{--><a href="import_export_preferences.html" title="Import - Export Preferences">Import / Export Preferences</a><!--latex }
+--> to run Normalize automatically on all the project tracks when importing any audio file.   
+</p><p>When removing or pasting audio, <span class="menu">Select &gt; Region &gt; <!--latex 
+\hyperref[\foo{select:menu:region:ends:to:zero:crossings}]{--><a href="select_menu_region.html#ends_to_zero_crossings" title="Select Menu: Region">Ends to Zero Crossings</a><!--latex }
+--></span> can be used to move the cursor point or selection boundaries to a safe position where the audio <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:sample}]{--><a href="glossary.html#sample" title="Glossary">samples</a><!--latex }
+--></b><!--}--></i><!--}--> are at silence. This works very effectively on mono tracks.
+</p><p>In stereo tracks, zero crossing points may be in a different place on the left and right channels, so Find Zero Crossings may still leave a click in one of the channels. Splitting a stereo track to left and right channels then finding zero crossings on each channel will not help, because the cut or paste must be in the same place on each channel to keep synchronization. 
+</p><p>The solution is to take care where edit points are positioned in stereo tracks. For example, <!--latex 
+\hyperref[\foo{zooming:}]{--><a href="zooming.html" title="Zooming">zoom</a><!--latex }
+--> in then try to place the selection edges or cursor point where there is silence, or at the onset of a strong beat (which will mask any click). 
+</p><p>If none of these solutions are available, you can fix a click by whichever of the following methods produces the best-sounding result:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> Use the <!--latex 
+\hyperref[\foo{repair:}]{--><a href="repair.html" title="Repair">Repair</a><!--latex }
+--> effect</li>
+<!--
+\item --><li> <!--latex 
+\hyperref[\foo{fade:and:crossfade:declick}]{--><a href="fade_and_crossfade.html#declick" title="Fade and Crossfade">Apply a short linear fade in</a><!--latex }
+--> to the click</li>
+<!--
+\item --><li> <span class="menu">Edit &gt; <!--latex 
+\hyperref[\foo{edit:menu:duplicate}]{--><a href="edit_menu.html#duplicate" title="Edit Menu">Duplicate</a><!--latex }
+--></span> the selection to a new track underneath, then <!--latex 
+\hyperref[\foo{creating:a:crossfade:}]{--><a href="creating_a_crossfade.html" title="Creating a Crossfade">crossfade</a><!--latex }
+--> the joins so they sound seamless.</li></ul><!--
+\end{itemize}
+-->
+<p><br/>
+<!--latex 
+\hyperref[\foo{faq:editing::top}]{--><a href="#top">back to top</a><!--latex }
+-->
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="I.27d_Like_To...">I'd Like To...</span></h2><!--}-->
+<div id="select"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="How_do_I_select_audio_in_one_track.3F">How do I select audio in one track?</span></h3><!--}--><!--latex 
+\label{faq:editing:select}-->
+<div class="note">
+<p>See <!--latex 
+\hyperref[\foo{audacity:selection:}]{--><a href="audacity_selection.html" title="Audacity Selection">Audacity Selection</a><!--latex }
+--> for an extended overview of the principles of selecting audio.
+</p>
+</div>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>How do I select audio in one track using the mouse?</b><!--}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> Make sure Selection Tool <a class="image" href="http://alphamanual.audacityteam.org/man/File:Tool_select.png" title="Selection Tool"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Selection Tool" height="20" src="../m/images/2/25/tool_select.png" width="20"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/2/25/tool_select.png--></img><!--}}{}--></a> from Tools Toolbar is selected, or press <span class="kbrd" style="background-color: #e0e0f0">F1</span> on your keyboard. Left-click to place the cursor on the track's <!--latex 
+\hyperref[\foo{audacity:waveform:}]{--><a href="audacity_waveform.html" title="Audacity Waveform">waveform</a><!--latex }
+-->, keep holding the left mouse button, drag the mouse in either direction then release the button. <!--latex 
+\hyperref[\foo{zooming:horizontal}]{--><a href="zooming.html#horizontal" title="Zooming">Zoom in</a><!--latex }
+--> if you need to see from left to right in more detail.</li></ul><!--
+\end{itemize}
+--></li></ul><!--
+\end{itemize}
+-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>How do I expand or contract an existing selection using the mouse?</b><!--}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> Hover over either selection edge. When the mouse pointer changes to a pointing finger, hold down the left mouse button and drag in either direction. Release the button when the edge is in the correct position.  </li>
+<!--
+\item --><li> It is often quicker instead to hold <span class="kbrd" style="background-color: #e0e0f0">Shift</span> then left-click and hold the button at the point to which you want to move the selection edge. Then drag to fine tune the edge position and release when satisfied. When contracting a selection, hold <span class="kbrd" style="background-color: #e0e0f0">Shift</span> and click inside that selection to left of center to move the left edge, or click to right of center to move the right edge.  </li></ul><!--
+\end{itemize}
+--></li></ul><!--
+\end{itemize}
+-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>How can I select and modify selections using the keyboard instead?</b><!--}-->   </li></ul><!--
+\end{itemize}
+-->
+<!--
+\begin{enumerate}--><ol><!--
+\item --><li>If necessary, use <span class="kbrd" style="background-color: #e0e0f0">Up</span> or <span class="kbrd" style="background-color: #e0e0f0">Down</span> arrow on the keyboard to give focus to the track, then <span class="kbrd" style="background-color: #e0e0f0">Enter</span> to select it.</li>
+<!--
+\item --><li>Press <span class="kbrd" style="background-color: #e0e0f0">J</span> to move to the start of the track, then use <span class="kbrd" style="background-color: #e0e0f0">Shift + .</span> to <!--\textit{--><i>seek</i><!--}--> (move the cursor) 15 seconds to right or <span class="kbrd" style="background-color: #e0e0f0">.</span> to seek one second to right. Or press <span class="kbrd" style="background-color: #e0e0f0">K</span> to move to the end of the track and use comma instead of period in the shortcut to seek left. The seek lengths can be changed in <!--latex 
+\hyperref[\foo{playback:preferences:}]{--><a href="playback_preferences.html" title="Playback Preferences">Playback Preferences</a><!--latex }
+-->. When not playing the track, <span class="kbrd" style="background-color: #e0e0f0">Left</span> or <span class="kbrd" style="background-color: #e0e0f0">Right</span> nudge the cursor in that direction by one screen pixel.</li>
+<!--
+\item --><li>When the cursor is in the correct position, use <span class="kbrd" style="background-color: #e0e0f0">Shift + Right</span> to expand the selection rightwards or <span class="kbrd" style="background-color: #e0e0f0">Shift + Left</span> to expand leftwards. <span class="kbrd" style="background-color: #e0e0f0">Ctrl + Shift + Left</span> contracts the selection from the right and <span class="kbrd" style="background-color: #e0e0f0">Ctrl + Shift + Right</span> contracts from the left. </li></ol><!--
+\end{enumerate}
+-->
+<div class="note">
+<p>Alternatively, use <!--latex 
+\hyperref[\foo{audacity:selection:Selection:Toolbar}]{--><a href="audacity_selection.html#Selection_Toolbar" title="Audacity Selection">Selection Toolbar</a><!--latex }
+--> to place the selection accurately without the need to zoom in.
+</p>
+</div>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>Is there a quick way to select from the cursor to start or end?</b><!--}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>Select from cursor to track start:</b><!--}--> Choose <span class="menu">Select &gt; Region &gt; <!--latex 
+\hyperref[\foo{select:menu:region:track:start:to:cursor}]{--><a href="select_menu_region.html#track_start_to_cursor" title="Select Menu: Region">Track Start to Cursor</a><!--latex }
+--></span> or use the <span class="kbrd" style="background-color: #e0e0f0">Shift + J</span> shortcut.</li>
+<!--
+\item --><li><!--\textbf{--><b>Select from cursor to track end:</b><!--}--> Choose <span class="menu">Select &gt; Region &gt; <!--latex 
+\hyperref[\foo{select:menu:region:cursor:to:track:end}]{--><a href="select_menu_region.html#cursor_to_track_end" title="Select Menu: Region">Cursor to Track End</a><!--latex }
+--></span> or use the <span class="kbrd" style="background-color: #e0e0f0">Shift + K</span> shortcut. </li>
+<!--
+\item --><li><!--\textbf{--><b>Select from cursor to project start:</b><!--}--> Hold the <span class="kbrd" style="background-color: #e0e0f0">Shift</span> key and click on the <a class="image" href="http://alphamanual.audacityteam.org/man/File:Rewind.png" title="The Skip to Start button"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="The Skip to Start button" height="16" src="../m/images/0/01/rewind.png" width="16"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/0/01/rewind.png--></img><!--}}{}--></a> Skip to Start button. Alternatively, use the <span class="kbrd" style="background-color: #e0e0f0">Shift + Home</span> shortcut. This may be useful if one more of your tracks do not start at time zero.  </li>
+<!--
+\item --><li><!--\textbf{--><b>Select from cursor to project end:</b><!--}--> Hold the <span class="kbrd" style="background-color: #e0e0f0">Shift</span> key and click on the <a class="image" href="http://alphamanual.audacityteam.org/man/File:FFwd.png" title="The Skip to End button"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="The Skip to End button" height="16" src="../m/images/0/07/ffwd.png" width="16"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/0/07/ffwd.png--></img><!--}}{}--></a> Skip to End button. Alternatively, use the <span class="kbrd" style="background-color: #e0e0f0">Shift + End</span> shortcut. This may be useful if your tracks are of unequal length.</li></ul><!--
+\end{itemize}
+--></li></ul><!--
+\end{itemize}
+-->
+<p>See also:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--latex 
+\hyperref[\foo{faq:editing::selcopy}]{--><a href="#selcopy">How do I extend or move the selected region to make it display in other tracks?</a><!--latex }
+--></li></ul><!--
+\end{itemize}
+-->
+<p><!--latex 
+\hyperref[\foo{faq:editing::top}]{--><a href="#top">back to top</a><!--latex }
+-->
+</p><p><br/>
+</p>
+<div id="selcopy"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="How_do_I_extend_or_move_the_selected_region_into_other_tracks.3F">How do I extend or move the selected region into other tracks?</span></h3><!--}--><!--latex 
+\label{faq:editing:selcopy}-->
+<p>A <!--latex 
+\hyperref[\foo{audacity:selection:}]{--><a href="audacity_selection.html" title="Audacity Selection">selection</a><!--latex }
+--> is always shown on the <!--latex 
+\hyperref[\foo{timeline:}]{--><a href="timeline.html" title="Timeline">Timeline</a><!--latex }
+-->, but the selection only exists in a track when that track is selected. For example, you may want to extend the selected region up or down into more than one track, which lets you edit the selection in all those tracks at the same time. To make that selection display in other tracks, you have to change which tracks are selected. 
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>To extend the selected region up or down into other tracks:</b><!--}--> Hover over either selection edge. When the mouse pointer changes to a pointing finger, hold down the left mouse button then drag directly up or down into an adjacent track. <p>If you also want to extend or contract the selection to left or right, you can drag left or right before releasing the button.</p><p>If you do not want to change the selection length, there is no need to drag. Hold <span class="kbrd" style="background-color: #e0e0f0">Ctrl</span> (or <span class="kbrd" style="background-color: #e0e0f0">⌘</span> on Mac) while clicking on the <!--latex 
+\hyperref[\foo{audio:tracks:}]{--><a href="audio_tracks.html" title="Audio Tracks">Track Control Panel</a><!--latex }
+--> to left of the waveform to include that track in the selection, thereby extending the selection into it. In some cases it can be quicker to click in a track's Track Control Panel to select it then hold <span class="kbrd" style="background-color: #e0e0f0">Shift</span> and click another track's Track Control Panel to select <!--\textit{--><i>all</i><!--}--> tracks between and including the tracks you clicked. 
+</p><!--
+\begin{itemize}--><ul><!--
+\item --><li>Keyboard users can include tracks in the selection by using <span class="kbrd" style="background-color: #e0e0f0">Up</span> or <span class="kbrd" style="background-color: #e0e0f0">Down</span> to change the track that has the yellow <!--\textit{--><i>focus</i><!--}--> border, followed by <span class="kbrd" style="background-color: #e0e0f0">Enter</span> to select that track. Hold <span class="kbrd" style="background-color: #e0e0f0">Shift</span> while pressing <span class="kbrd" style="background-color: #e0e0f0">Up</span> or <span class="kbrd" style="background-color: #e0e0f0">Down</span> to extend the selection up or down adjacent tracks.</li></ul><!--
+\end{itemize}
+--></li></ul><!--
+\end{itemize}
+-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>To move the selected region into other tracks:</b><!--}--> Extend the selection as above into all the tracks which you want to contain the selection. Then hold <span class="kbrd" style="background-color: #e0e0f0">Ctrl</span> (or <span class="kbrd" style="background-color: #e0e0f0">⌘</span> on Mac) and click on the Track Control Panel of the track or tracks from which you were moving the selection, so as to deselect those tracks. 
+<!--
+\begin{itemize}--><ul><!--
+\item --><li>Keyboard users can press <span class="kbrd" style="background-color: #e0e0f0">Up</span> or <span class="kbrd" style="background-color: #e0e0f0">Down</span> to move the focus to the track from which the selection is to be removed, then press <span class="kbrd" style="background-color: #e0e0f0">Enter</span>.</li></ul><!--
+\end{itemize}
+--></li></ul><!--
+\end{itemize}
+-->
+<div class="note">Extending or moving the selected region into other tracks only determines if the selected region appears in a track. It does not move the audio content of the selection. To copy or move the content of a selection, use <span class="menu">Edit &gt; <!--latex 
+\hyperref[\foo{edit:menu:copy}]{--><a href="edit_menu.html#copy" title="Edit Menu">Copy</a><!--latex }
+--></span> or <span class="menu">Edit &gt; <!--latex 
+\hyperref[\foo{edit:menu:cut}]{--><a href="edit_menu.html#cut" title="Edit Menu">Cut</a><!--latex }
+--></span> then <span class="menu">Edit &gt; <!--latex 
+\hyperref[\foo{edit:menu:paste}]{--><a href="edit_menu.html#paste" title="Edit Menu">Paste</a><!--latex }
+--></span>.</div>
+<p>See also:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--latex 
+\hyperref[\foo{faq:editing::select}]{--><a href="#select">How do I select audio in one track?</a><!--latex }
+--></li></ul><!--
+\end{itemize}
+-->
+<p><!--latex 
+\hyperref[\foo{faq:editing::top}]{--><a href="#top">back to top</a><!--latex }
+-->
+</p>
+<div id="join"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="How_do_I_combine_two_files_into_one_longer_file.3F">How do I combine two files into one longer file?</span></h3><!--}--><!--latex 
+\label{faq:editing:join}-->
+<p>Follow these steps to splice two files together:
+</p>
+<!--
+\begin{enumerate}--><ol><!--
+\item --><li>Use <span class="menu">File &gt; Import &gt; <!--latex 
+\hyperref[\foo{file:menu:import:audio}]{--><a href="file_menu_import.html#audio" title="File Menu: Import">Audio...</a><!--latex }
+--></span> to import both files into separate Audacity tracks one above the other </li>
+<!--
+\item --><li>Select the second file by clicking above the Mute/Solo buttons on its <!--latex 
+\hyperref[\foo{audio:tracks:panel}]{--><a href="audio_tracks.html#panel" title="Audio Tracks">Track Control Panel</a><!--latex }
+--> (where the <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:sample:rate}]{--><a href="glossary.html#sample_rate" title="Glossary">sample rate</a><!--latex }
+--></b><!--}--></i><!--}--> in <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:hz}]{--><a href="glossary.html#hz" title="Glossary">Hz</a><!--latex }
+--></b><!--}--></i><!--}--> is shown)</li>
+<!--
+\item --><li>Choose <span class="menu">Select &gt; Region &gt; <!--latex 
+\hyperref[\foo{select:menu:region:ends:to:zero:crossings}]{--><a href="select_menu_region.html#ends_to_zero_crossings" title="Select Menu: Region">Ends to Zero Crossings</a><!--latex }
+--></span></li>
+<!--
+\item --><li>Choose <span class="menu">Edit &gt; <!--latex 
+\hyperref[\foo{edit:menu:cut}]{--><a href="edit_menu.html#cut" title="Edit Menu">Cut</a><!--latex }
+--></span></li>
+<!--
+\item --><li>Place the cursor at the end of the first track by clicking in it then pressing <span class="kbrd" style="background-color: #e0e0f0">K</span></li>
+<!--
+\item --><li>Choose <span class="menu">Edit &gt; <!--latex 
+\hyperref[\foo{edit:menu:Paste}]{--><a href="edit_menu.html#Paste" title="Edit Menu">Paste</a><!--latex }
+--></span></li>
+<!--
+\item --><li>Optionally, click the <span class="button">X</span> track close button top left of the <!--latex 
+\hyperref[\foo{audio:tracks:panel}]{--><a href="audio_tracks.html#panel" title="Audio Tracks">Track Control Panel</a><!--latex }
+--> on the tracks you cut the audio from.  </li></ol><!--
+\end{enumerate}
+-->
+<div class="note">A time-saving alternative if you have many tracks to combine is to choose <span class="menu">Select &gt; <!--latex 
+\hyperref[\foo{select:menu:all}]{--><a href="select_menu.html#all" title="Select Menu">All</a><!--latex }
+--></span>, then <span class="menu">Tracks &gt; Align Tracks &gt; <!--latex 
+\hyperref[\foo{tracks:menu:align:tracks:align:end:to:end}]{--><a href="tracks_menu_align_tracks.html#align_end_to_end" title="Tracks Menu: Align Tracks">Align End&nbsp;to&nbsp;End</a><!--latex }
+--></span>. This aligns the selected tracks one after the other so they follow the <!--latex 
+\hyperref[\foo{timeline:}]{--><a href="timeline.html" title="Timeline">Timeline</a><!--latex }
+-->. If it's more convenient to make the result into one Audacity track, you can then choose <span class="menu">Tracks &gt; Mix &gt; <!--latex 
+\hyperref[\foo{tracks:menu:mix:mix:and:render}]{--><a href="tracks_menu_mix.html#mix_and_render" title="Tracks Menu: Mix">Mix and Render</a><!--latex }
+--></span>.</div>    
+<p>Press the green "Play" button to hear the result, and use the <span class="menu">File &gt; Save Other &gt; <!--latex 
+\hyperref[\foo{file:menu:save:other:exportaudio}]{--><a href="file_menu_save_other.html#exportaudio" title="File Menu: Save Other">Export Audio...</a><!--latex }
+--></span> command to save it as an audio file.
+</p><p><!--latex 
+\hyperref[\foo{faq:editing::top}]{--><a href="#top">back to top</a><!--latex }
+-->
+</p>
+<div id="mix"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="How_do_I_mix_two_tracks_together.3F">How do I mix two tracks together?</span></h3><!--}--><!--latex 
+\label{faq:editing:mix}-->
+<p>To mix two files, import both of them into Audacity. They will appear in separate tracks.
+</p><p>When you press the <!--\textbf{--><b>Play</b><!--}--> button, you'll hear both tracks play together. Because this adds the sounds together, the end result may become too loud and distorted. To fix this, turn down the <!--\textbf{--><b>-...+ gain sliders</b><!--}--> on each track until you see no clipping light on the <!--latex 
+\hyperref[\foo{meter:toolbar:playback}]{--><a href="meter_toolbar.html#playback" title="Meter Toolbar">Playback Meter</a><!--latex }
+-->. Use the <!--\textbf{--><b>L...R pan sliders</b><!--}--> to adjust the spatial position of each track in the mix.  You can also use <span class="menu">View &gt; <!--latex 
+\hyperref[\foo{mixer:board:}]{--><a href="mixer_board.html" title="Mixer Board">Mixer Board...</a><!--latex }
+--></span> to display the controls for each track together in a separate window. 
+</p><p>When you use <span class="menu">File &gt; Save Other &gt; <!--latex 
+\hyperref[\foo{file:menu:save:other:exportaudio}]{--><a href="file_menu_save_other.html#exportaudio" title="File Menu: Save Other">Export Audio...</a><!--latex }
+--></span>, the tracks will be automatically mixed to an audio file for use in other applications. If you want to mix tracks together explicitly before export, so that they are replaced with a single mixed track, <!--latex 
+\hyperref[\foo{audacity:selection:}]{--><a href="audacity_selection.html" title="Audacity Selection">select</a><!--latex }
+--> the tracks, then <span class="menu">Tracks &gt; Mix &gt; <!--latex 
+\hyperref[\foo{tracks:menu:mix:mix:and:render}]{--><a href="tracks_menu_mix.html#mix_and_render" title="Tracks Menu: Mix">Mix and Render</a><!--latex }
+--></span>.   
+</p><p>For more details, see <!--latex 
+\hyperref[\foo{mixing:}]{--><a href="mixing.html" title="Mixing">Mixing Audio Tracks</a><!--latex }
+-->. 
+</p>
+ 
+<p><!--latex 
+\hyperref[\foo{faq:editing::top}]{--><a href="#top">back to top</a><!--latex }
+-->
+</p>
+<div id="karaoke"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Can_I_remove_the_vocals_from_a_recording_to_make_a_Karaoke_track.3F">Can I remove the vocals from a recording to make a Karaoke track?</span></h3><!--}--><!--latex 
+\label{faq:editing:karaoke}-->
+<p>This is only possible for <!--\textbf{--><b>certain stereo tracks</b><!--}-->. When the vocals are exactly the same on both stereo channels, you can remove them by &ldquo;subtracting&rdquo; one channel from the other. This works for recordings where the vocal track is mixed exactly in the center and stereo reverberation has not been added. See this tutorial: <!--latex 
+\hyperref[\foo{tutorial:vocal:removal:and:isolation:}]{--><a href="tutorial_vocal_removal_and_isolation.html" title="Tutorial - Vocal Removal and Isolation">Vocal Removal and Isolation</a><!--latex }
+-->.
+</p><p><!--latex 
+\hyperref[\foo{faq:editing::top}]{--><a href="#top">back to top</a><!--latex }
+-->
+</p><p><br/>
+</p>
+<div id="ringtones"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Can_I_create_Ringtones_or_IVR_messages_with_Audacity.3F">Can I create Ringtones or IVR messages with Audacity?</span></h3><!--}--><!--latex 
+\label{faq:editing:ringtones}-->
+<p>See this tutorial in the Manual: <!--latex 
+\hyperref[\foo{tutorial:making:ringtones:and:ivr:messages:}]{--><a href="tutorial_making_ringtones_and_ivr_messages.html" title="Tutorial - Making Ringtones and IVR messages">Making Ringtones and IVR messages</a><!--latex }
+-->.  
+</p>
+<div class="note"><!--latex 
+\hyperref[\foo{glossary:ivr}]{--><a href="glossary.html#ivr" title="Glossary">IVR</a><!--latex }
+--> stands for Interactive Voice Response, a technology that allows a computer to interact with humans through the use of voice and DTMF tones input via keypad.</div>
+<p><!--latex 
+\hyperref[\foo{faq:editing::top}]{--><a href="#top">back to top</a><!--latex }
+-->
+</p><p><br/>
+</p>
+<div id="clipping"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Why_do_I_see_a_lot_of_vertical_red_lines_in_the_track_I_just_recorded.3F">Why do I see a lot of vertical red lines in the track I just recorded?</span></h3><!--}--><!--latex 
+\label{faq:editing:clipping}-->
+<p>This happens when you have an oversaturated recording, where <!--latex 
+\hyperref[\foo{glossary:clipping}]{--><a href="glossary.html#clipping" title="Glossary">clipping</a><!--latex }
+--> has occurred, that is, the signal has exceeded the maximum allowed level.  The vertical red lines show where clipping has happened. The clipping indicators can be turned on and off <!--\textit{--><i>(Audacity's default setting is "off")</i><!--}--> by selecting <span class="menu">View &gt; <!--latex 
+\hyperref[\foo{view:menu:showclippingonoff}]{--><a href="view_menu.html#showclippingonoff" title="View Menu">Show Clipping</a><!--latex }
+--></span>.
+</p><p>See the <!--latex 
+\hyperref[\foo{audacity:waveform:}]{--><a href="audacity_waveform.html" title="Audacity Waveform">Audacity Waveform</a><!--latex }
+--> page for more explanation of how the waveform is displayed.  
+</p><p><!--latex 
+\hyperref[\foo{faq:editing::top}]{--><a href="#top">back to top</a><!--latex }
+-->
+</p><p><br/>
+</p>
+<div id="real_time"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Can_Audacity_preview_or_apply_effects_live.2C_in_real-time.3F">Can Audacity preview or apply effects live, in real-time?</span></h3><!--}--><!--latex 
+\label{faq:editing:real:time}-->
+<p><!--latex 
+\hyperref[\foo{effect:menu:ladspa:}]{--><a href="effect_menu_ladspa.html" title="Effect Menu: LADSPA">LADSPA</a><!--latex }
+-->, <!--latex 
+\hyperref[\foo{effect:menu:lv2:}]{--><a href="effect_menu_lv2.html" title="Effect Menu: LV2">LV2</a><!--latex }
+-->, <!--latex 
+\hyperref[\foo{effect:menu:vst:}]{--><a href="effect_menu_vst.html" title="Effect Menu: VST">VST</a><!--latex }
+--> and <!--latex 
+\hyperref[\foo{installing:effect:generator:and:analyzer:plug:ins:on:mac:os:x:au:install}]{--><a href="installing_effect_generator_and_analyzer_plug_ins_on_mac_os_x.html#au_install" title="Installing Effect, Generator and Analyzer plug-ins on MAC OS X">Audio Unit</a><!--latex }
+--> (Mac only) effects support <!--latex 
+\hyperref[\foo{real:time:preview:of:effects:}]{--><a href="real_time_preview_of_effects.html" title="Real-time preview of effects">real-time preview of effects</a><!--latex }
+-->. Only a few shipped effects support real-time preview but we hope to extend this to more effects in due course. 
+</p><p>Audacity cannot yet apply effects in real-time while recording or while otherwise writing data to the project.    
+</p><p>Advanced users can apply effects to recordings in real-time by applying the effects in a VST host and routing the effect output to be recorded by Audacity. See <a class="external text" href="https://forum.audacityteam.org/viewtopic.php?f=26&amp;t=5033" rel="nofollow">this Forum topic</a> and ask on the Forum if you need any help. 
+</p><p><!--latex 
+\hyperref[\foo{faq:editing::top}]{--><a href="#top">back to top</a><!--latex }
+-->
+</p><p><br/>
+</p>
+<div id="stereomono"></div>
+
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="How_do_I_convert_a_stereo_track_to_mono.2C_or_mono_to_stereo.3F">How do I convert a stereo track to mono, or mono to stereo?</span></h3><!--}--><!--latex 
+\label{faq:editing:stereomono}-->
+<p>Use <span class="menu">Tracks &gt; Mix &gt; <!--latex 
+\hyperref[\foo{tracks:menu:mix:mix:stereo:down:to:mono}]{--><a href="tracks_menu_mix.html#mix_stereo_down_to_mono" title="Tracks Menu: Mix">Mix Stereo down to Mono</a><!--latex }
+--></span>. This converts the <!--latex 
+\hyperref[\foo{audacity:selection:}]{--><a href="audacity_selection.html" title="Audacity Selection">selected</a><!--latex }
+--> stereo track(s) into the same number of mono tracks, combining left and right channels equally. This command is not available for stereo tracks split into left and right channels. Stereo Track to Mono mixes the two channels together then reduces the volume of the mix by -6 <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:decibel}]{--><a href="glossary.html#decibel" title="Glossary">dB</a><!--latex }
+--></b><!--}--></i><!--}--> (halves the volume) to produce an average of the two channels. Therefore if one channel of the stereo track is louder than the other, the peak volume of the resulting mono track will be reduced. The resulting track will never <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:clipping}]{--><a href="glossary.html#clipping" title="Glossary">clip</a><!--latex }
+--></b><!--}--></i><!--}--> if the original stereo track does not.
+</p><p>Alternatively you can use <span class="menu"><!--latex 
+\hyperref[\foo{audio:track:dropdown:menu:split}]{--><a href="audio_track_dropdown_menu.html#split" title="Audio Track Dropdown Menu">Split Stereo to Mono</a><!--latex }
+--></span> from the <!--latex 
+\hyperref[\foo{audio:track:dropdown:menu:}]{--><a href="audio_track_dropdown_menu.html" title="Audio Track Dropdown Menu">Audio Track Dropdown Menu</a><!--latex }
+--> in the <!--latex 
+\hyperref[\foo{audio:tracks:panel}]{--><a href="audio_tracks.html#panel" title="Audio Tracks">Track Control Panel</a><!--latex }
+--> to create separate mono tracks for each channel. If you want to discard one faulty or noisy channel entirely, use the <span class="button">X</span> button top left of the track, or select the track then choose <span class="menu">Tracks &gt; <!--latex 
+\hyperref[\foo{tracks:menu:remove:tracks}]{--><a href="tracks_menu.html#remove_tracks" title="Tracks Menu">Remove Tracks</a><!--latex }
+--></span>. Split Stereo to Mono can also be useful if you are making a <!--latex 
+\hyperref[\foo{mixing:}]{--><a href="mixing.html" title="Mixing">mix</a><!--latex }
+--> of multiple tracks. You have more control using the <!--latex 
+\hyperref[\foo{audio:tracks:pan}]{--><a href="audio_tracks.html#pan" title="Audio Tracks">Pan Sliders</a><!--latex }
+--> on mono tracks than if you use the Track Dropdown Menu to Split Stereo Track to left and right channels.      
+</p><p>There is no general audio benefit in converting a mono track to stereo. A mono track will already play on both speakers of a stereo player. If you want to add an illusion of stereo space and depth, try this <a class="external text" href="https://wiki.audacityteam.org/wiki/Nyquist_Effect_Plugins#Pseudo-Stereo" rel="nofollow">Pseudo-Stereo plug-in</a>.
+</p><p><br/>
+<!--latex 
+\hyperref[\foo{faq:editing::top}]{--><a href="#top">back to top</a><!--latex }
+-->
+</p><p><br/>
+<!--latex 
+\hyperref[\foo{faq:errors:}]{--><a href="faq_errors.html" title="FAQ:Errors"><!--\textbf{--><b>&gt;</b><!--}-->&nbsp; Forward To: FAQ:Errors</a><!--latex }
+--> <br/>
+</p><p><!--latex 
+\hyperref[\foo{faq:opening:and:saving:files:}]{--><a href="faq_opening_and_saving_files.html" title="FAQ:Opening and Saving Files"><!--\textbf{--><b>&lt;</b><!--}-->&nbsp; Back to: FAQ:Opening and Saving Files</a><!--latex }
+--> <br/>
+</p>
+<!--latex 
+\hyperref[\foo{faq:}]{--><a href="faq.html" title="FAQ"><!--\textbf{--><b>|&lt;</b><!--}--> Index of Frequently Asked Questions</a><!--latex }
+--><p></p>
+
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

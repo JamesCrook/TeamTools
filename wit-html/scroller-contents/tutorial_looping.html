@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Tutorial - Looping - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Tutorial_-_Looping rootpage-Tutorial_-_Looping skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Tutorial - Looping</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{tutorial:looping:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+</p>
+<div class="intro">This page provides tips on how to make an <a class="external text" href="https://en.wikipedia.org/wiki/Music_loop" rel="nofollow">audio loop</a> with Audacity.</div>
+
+<div id="create"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Creating_an_audio_loop">Creating an audio loop</span></h2><!--}--><!--latex 
+\label{tutorial:looping:create}-->
+<p>To create an audio loop from an audio track, the first step is to find a suitable section. Ideally the sound will be reasonably constant for as long as possible. Looping is much easier with mono tracks, so if you have a stereo recording but a mono track would be sufficient, the track could first be converted to mono using <span class="menu">Tracks &gt; Mix &gt; <!--latex 
+\hyperref[\foo{tracks:menu:mix:mix:stereo:down:to:mono}]{--><a href="tracks_menu_mix.html#mix_stereo_down_to_mono" title="Tracks Menu: Mix">Mix Stereo down to Mono</a><!--latex }
+--></span>.
+</p>
+<dl><dd><span title="Loop Selection"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Loop selection.png" height="161" src="../m/images/1/13/loop_selection.png" width="566"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/1/13/loop_selection.png--></img><!--}\par
+--></span></dd></dl>
+<p>The start of the selection should match (look like) the end of the selection as closely as possible and both selection edges should be positioned so that the blue line of the waveform seems to cross the selection edge at zero amplitude (where the horizontal line appears).
+</p>
+<div class="note">There are items in the View menu that allow jumping from one end of the selection to the other while zoomed in:
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><span class="menu">View &gt; Skip to &gt; <!--latex 
+\hyperref[\foo{view:menu:skip:to:selectionstart}]{--><a href="view_menu_skip_to.html#selectionstart" title="View Menu: Skip to">Selection Start</a><!--latex }
+--></span> ( shortcut is <span class="kbrd" style="background-color: #e0e0f0">Ctrl + [&nbsp;</span> )</li>
+<!--
+\item --><li><span class="menu">View &gt; Skip to &gt; <!--latex 
+\hyperref[\foo{view:menu:skip:to:selectionend}]{--><a href="view_menu_skip_to.html#selectionend" title="View Menu: Skip to">Go to Selection End</a><!--latex }
+--></span> ( shortcut is <span class="kbrd" style="background-color: #e0e0f0">Ctrl + ]&nbsp;</span> )</li></ul><!--
+\end{itemize}
+--></div>
+<p>To look for appropriate loop points, zoom in horizontally on the start of the selection and then on the end of the selection. To zoom, place the mouse pointer at the selection edge and scroll with the wheel or ball.  Drag the selection edges leftwards or rightwards as necessary so as to find loop points that have a similar shape, amplitude and slope so that the end of the loop may flow smoothly into the start of the loop. It may also be useful to <!--latex 
+\hyperref[\foo{audio:tracks:scale}]{--><a href="audio_tracks.html#scale" title="Audio Tracks">zoom in on the vertical scale</a><!--latex }
+--> to left of the waveform, as shown in the following images: 
+</p>
+<dl><dd><dl><dd><!--\textbf{--><b>Beginning of the loop selection</b><!--}--></dd></dl></dd>
+<dd><span title="Beginning of the loop selection"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Loop start.png" height="161" src="../m/images/9/9f/loop_start.png" width="566"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/9/9f/loop_start.png--></img><!--}\par
+--></span></dd></dl>
+<dl><dd><dl><dd><!--\textbf{--><b>End of the loop selection</b><!--}--></dd></dl></dd>
+<dd><span title="End of the loop selection"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Loop end.png" height="161" src="../m/images/4/4f/loop_end.png" width="566"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/4/4f/loop_end.png--></img><!--}\par
+--></span></dd></dl>
+<p>To avoid clicks (glitches) it can often help to use <span class="menu">Select &gt; <!--latex 
+\hyperref[\foo{select:menu:at:zero:crossings:}]{--><a href="select_menu_at_zero_crossings.html" title="Select Menu: At Zero Crossings">At Zero Crossings</a><!--latex }
+--></span> so as to ensure the start and end of the selection lie accurately on a  <!--\textit{--><i>zero crossing point</i><!--}-->. In the image below, the sample at the end of the selection (as shown by the dot) is at 0.0 amplitude according to the vertical scale on the left.     
+</p>
+<dl><dd><dl><dd><!--\textbf{--><b>Zero crossing point</b><!--}--></dd></dl></dd>
+<dd><span title="Zero crossing point"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Zero-crossing.png" height="161" src="../m/images/e/e6/zero_crossing.png" width="566"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/e/e6/zero_crossing.png--></img><!--}\par
+--></span></dd></dl>
+<p>The loop may be tested using <!--\textit{--><i>Loop Play</i><!--}--> (shortcut <span class="kbrd" style="background-color: #e0e0f0">Shift + Space</span>).
+</p>
+<div id="using"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Using_loops_in_Audacity">Using loops in Audacity</span></h2><!--}--><!--latex 
+\label{tutorial:looping:using}-->
+<p>If the loop is to be used in Audacity, the selection may be trimmed: <span class="kbrd" style="background-color: #e0e0f0">Ctrl + T</span>.
+The loop may be repeated using Copy and Paste, though it is usually more convenient to use the <!--\textit{--><i>Repeat</i><!--}--> function: <span class="menu">Effect &gt; <!--latex 
+\hyperref[\foo{effect:menu:repeat}]{--><a href="effect_menu.html#repeat" title="Effect Menu">Repeat...</a><!--latex }
+--></span>.
+</p>
+<div id="exporting"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Exporting_Loops">Exporting Loops</span></h2><!--}--><!--latex 
+\label{tutorial:looping:exporting}-->
+<p>The selection may be exported using <span class="menu">File &gt; Save Other &gt; <!--latex 
+\hyperref[\foo{file:menu:save:other:exportselectedaudio}]{--><a href="file_menu_save_other.html#exportselectedaudio" title="File Menu: Save Other">Export Selected Audio...</a><!--latex }
+--></span>. 
+</p><p>The lossless <!--latex 
+\hyperref[\foo{glossary:wav}]{--><a href="glossary.html#wav" title="Glossary">PCM WAV</a><!--latex }
+--> format is the best format for loops. Choose "WAV (Microsoft) signed 16-bit PCM" when exporting. Many lossy, size-compressed formats like <!--latex 
+\hyperref[\foo{glossary:mp3}]{--><a href="glossary.html#mp3" title="Glossary">MP3</a><!--latex }
+-->, <!--latex 
+\hyperref[\foo{glossary:wma}]{--><a href="glossary.html#wma" title="Glossary">WMA</a><!--latex }
+--> and <a class="external text" href="https://en.wikipedia.org/wiki/Adaptive_DPCM" rel="nofollow">ADPCM WAV</a> suffer from added silence at the the start or end of the file or other issues that do not respect the exact length.  
+</p><p>If a lossy compressed audio format is required then <!--latex 
+\hyperref[\foo{glossary:ogg}]{--><a href="glossary.html#ogg" title="Glossary">OGG Vorbis</a><!--latex }
+--> may be a better choice as it does not suffer from length issues.
+</p>
+<div id="tqp"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Using_Timeline_Quick-Play_to_create_loops">Using Timeline Quick-Play to create loops</span></h2><!--}--><!--latex 
+\label{tutorial:looping:tqp}-->
+<p>The above process can be aided by using the <!--latex 
+\hyperref[\foo{timeline:}]{--><a href="timeline.html" title="Timeline">Timeline</a><!--latex }
+--> to help create a seamless loop:
+</p>
+<!--
+\begin{enumerate}--><ol><!--
+\item --><li>Ensure that <!--latex 
+\hyperref[\foo{timeline:tqp}]{--><a href="timeline.html#tqp" title="Timeline">Quick-Play</a><!--latex }
+--> is enabled in the Timeline right-click context <!--latex 
+\hyperref[\foo{timeline:menu}]{--><a href="timeline.html#menu" title="Timeline">menu</a><!--latex }
+-->.</li>
+<!--
+\item --><li>Select "<!--\textbf{--><b>Enable dragging selection</b><!--}-->" in the Timeline right-click context menu.</li>
+<!--
+\item --><li>Make an approximate selection of the audio to be looped.</li>
+<!--
+\item --><li><span class="kbrd" style="background-color: #e0e0f0">Shift + Left-Click</span> within the selection to loop play the selection.</li>
+<!--
+\item --><li><span class="kbrd" style="background-color: #e0e0f0">Shift + Left-Click</span> and drag the start/end of the selection as necessary to adjust the selection closer to "seamless" looping positions.</li>
+<!--
+\item --><li>If necessary, <!--latex 
+\hyperref[\foo{zooming:}]{--><a href="zooming.html" title="Zooming">zoom</a><!--latex }
+--> in on the start / end positions to make adjustments to the play region and selection.</li>
+<!--
+\item --><li>Note that if zooming in causes the selected region to extend beyond the visible track area, Audacity will, by default, cause the waveform to scroll. The scrolling behavior can be disabled from the Timeline right-click context menu.</li>
+<!--
+\item --><li>While zoomed in, use <span class="kbrd" style="background-color: #e0e0f0">Ctrl + [</span> and <span class="kbrd" style="background-color: #e0e0f0">Ctrl + ]</span> to view the start / end of the selection.</li>
+<!--
+\item --><li>If a long selection is being looped, playback may be stopped at any time by pressing the <span class="kbrd" style="background-color: #e0e0f0">Space</span> key, then looped Quick-Play may be restarted from a short way before the end of the selection with <span class="kbrd" style="background-color: #e0e0f0">Shift + Click</span> on the Timeline</li>
+<!--
+\item --><li>Then Optionally label the loop region (use <span class="kbrd" style="background-color: #e0e0f0">Ctrl + B</span>)</li></ol><!--
+\end{enumerate}
+-->
+<p>When the selection loops seamlessly, playback may be stopped (using <span class="button">Stop button</span> or its <span class="kbrd" style="background-color: #e0e0f0">Space</span> shortcut) and the selection exported or trimmed as required (use <span class="kbrd" style="background-color: #e0e0f0">Ctrl + T</span> to trim to the selection).
+</p><p>Seamless loops should normally be exported in a lossless format such as <!--latex 
+\hyperref[\foo{glossary:wav}]{--><a href="glossary.html#wav" title="Glossary">WAV</a><!--latex }
+-->. Note that seamless loops should NOT be exported in <!--latex 
+\hyperref[\foo{glossary:mp3}]{--><a href="glossary.html#mp3" title="Glossary">MP3</a><!--latex }
+--> format because encoder/decoder overall delay is not defined, which means there is no official provision for gapless playback. 
+</p><p>If a compressed file format is required, try <!--latex 
+\hyperref[\foo{glossary:ogg}]{--><a href="glossary.html#ogg" title="Glossary">OGG Vorbis</a><!--latex }
+--> <!--\textit{--><i>(though understand that because OGG Vorbis is a lossy format, the encoded audio is not exactly identical to the original audio)</i><!--}-->. OGG Vorbis loops will generally perform acceptably provided that the start / end of the loop are at <!--latex 
+\hyperref[\foo{edit:menu:find:zero:crossings:}]{--><a href="edit_menu_find_zero_crossings.html" title="Edit Menu: Find Zero Crossings">zero crossing points</a><!--latex }
+-->.
+</p>
+<div class="note"><!--\textbf{--><b>Finding free loops created by others</b><!--}-->
+<p>Try:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><span title="Creative Commons logo"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="CRC.png" height="20" src="../m/images/3/32/crc.png" width="20"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/3/32/crc.png--></img><!--}\par
+--></span> <a class="external free" href="http://ibeat.org/" rel="nofollow">http://ibeat.org/</a> (loops are available under a <a class="external text" href="https://creativecommons.org/" rel="nofollow">Creative Commons</a> licence).  </li>
+<!--
+\item --><li> <a class="external free" href="http://www.looperman.com/" rel="nofollow">http://www.looperman.com/</a></li></ul><!--
+\end{itemize}
+--></div>
+
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

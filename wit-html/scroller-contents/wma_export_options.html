@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>WMA Export Options - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-WMA_Export_Options rootpage-WMA_Export_Options skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">WMA Export Options</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{wma:export:options:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+
+</p>
+<div class="intro"><!--\textbf{--><b>WMA</b><!--}--> is a <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:compressed:format}]{--><a href="glossary.html#compressed_format" title="Glossary">compressed</a><!--latex }
+--></b><!--}--></i><!--}-->, <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:lossy}]{--><a href="glossary.html#lossy" title="Glossary">lossy</a><!--latex }
+--></b><!--}--></i><!--}--> audio format developed by Microsoft. It is the default audio format for Windows Media Player. </div>
+<dl><dd>Accessed by: <span class="menu">File &gt; Save Other &gt; <!--latex 
+\hyperref[\foo{file:menu:save:other:exportaudio}]{--><a href="file_menu_save_other.html#exportaudio" title="File Menu: Save Other">Export Audio...</a><!--latex }
+--></span> then choosing <!--\textbf{--><b>WMA (version2) Files (FFmpeg)</b><!--}--> from the <!--\textbf{--><b>Save as type</b><!--}--> dropdown menu.</dd></dl>
+<dl><dd><span title="WMA Export Options at the bottom of the Export Audio dialog"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="WMAExportOptions.png" height="576" src="../m/images/3/3b/wmaexportoptions.png" width="571"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/3/3b/wmaexportoptions.png--></img><!--}\par
+--></span></dd></dl>
+<dl><dd>Also accessed by: <span class="menu">File &gt; Save Other &gt; <!--latex 
+\hyperref[\foo{export:multiple:}]{--><a href="export_multiple.html" title="Export Multiple">Export Multiple...</a><!--latex }
+--></span> then choosing <!--\textbf{--><b>WMA (version2) Files (FFmpeg)</b><!--}--> from the <!--\textbf{--><b>Save as type</b><!--}--> dropdown menu.  In this case the options dialog will appear in the center of the Export Multiple dialog.</dd></dl>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">FFmpeg is not shipped with Audacity but you can download it and then export as WMA (version 2) by following <!--latex 
+\hyperref[\foo{faq:installation:and:plug:ins:ffdown}]{--><a href="faq_installation_and_plug_ins.html#ffdown" title="FAQ:Installation and Plug-Ins">these instructions</a><!--latex }
+-->.
+</td></tr></tbody></table>
+</div> 
+<div id="setup"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="WMA_Export_Setup">WMA Export Setup</span></h2><!--}--><!--latex 
+\label{wma:export:options:setup}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>Bit Rate:</b><!--}--> Choose a <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:bit:rate}]{--><a href="glossary.html#bit_rate" title="Glossary">bit rate</a><!--latex }
+--></b><!--}--></i><!--}--> from 24 kbps to 576 kbps. The default is 180 kbps. This produces a larger file of higher quality than default 128 kbps <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:mp3}]{--><a href="glossary.html#mp3" title="Glossary">MP3</a><!--latex }
+--></b><!--}--></i><!--}--> encoding, the general consensus being that WMA v2 and MP3 produce comparable quality for the same file size. Increasing the WMA bit rate will increase the quality further but produce larger files. </li></ul><!--
+\end{itemize}
+-->
+<div class="note">WMA version 2 only supports <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:cbr}]{--><a href="glossary.html#cbr" title="Glossary">CBR</a><!--latex }
+--></b><!--}--></i><!--}--> (constant bit rate) encoding. This means that increasing the <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:sample:rate}]{--><a href="glossary.html#sample_rate" title="Glossary">sample rate</a><!--latex }
+--></b><!--}--></i><!--}-->  in <!--latex 
+\hyperref[\foo{selection:toolbar:}]{--><a href="selection_toolbar.html" title="Selection Toolbar">Selection Toolbar</a><!--latex }
+--> will not produce larger files. </div>
+
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Time Tracks - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Time_Tracks rootpage-Time_Tracks skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Time Tracks</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{time:tracks:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+
+
+</p><p><br/>
+</p>
+<div class="intro">A <!--\textit{--><i><!--\textbf{--><b>Time Track</b><!--}--></i><!--}--> is used in conjunction with one or more <!--latex 
+\hyperref[\foo{audio:tracks:}]{--><a href="audio_tracks.html" title="Audio Tracks">audio tracks</a><!--latex }
+--> to progressively increase or decrease playback speed (and pitch) over the length of the audio. Speed changes are controlled by manipulating the blue "time warp" line with the <!--latex 
+\hyperref[\foo{envelope:tool:}]{--><a href="envelope_tool.html" title="Envelope Tool">Envelope Tool</a><!--latex }
+--> used for making gradual volume changes. If the blue line is dragged above the horizontal, the audio plays faster; if dragged below, it plays slower.</div>
+<dl><dd><span title="Time Track showing the vertical scale, warp line and control points"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Time Track example.png" height="102" src="../m/images/7/7f/time_track_example.png" width="697"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/7/7f/time_track_example.png--></img><!--}\par
+--></span></dd></dl>
+<p><!--\textbf{--><b>General method of use:</b><!--}--> 
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> Hover your cursor over the warp line until the <!--\textbf{--><b>envelope cursor</b><!--}--> &nbsp;<span title="Envelope cursor"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="EnvelopePointer.png" height="18" src="../m/images/1/1b/envelopepointer.png" width="7"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/1/1b/envelopepointer.png--></img><!--}}{}--></span>&nbsp; appears, then click (and optionally, drag up or down) to create a <!--\textbf{--><b>control point</b><!--}-->. </li>
+<!--
+\item --><li> To remove a control point, drag it outside the track, or use <span class="menu">Edit &gt; <!--latex 
+\hyperref[\foo{edit:menu:undo}]{--><a href="edit_menu.html#undo" title="Edit Menu">Undo</a><!--latex }
+--></span> to undo envelope changes in sequence.</li>
+<!--
+\item --><li> By default you can warp playback speed by a maximum increase of 10% (110 on the vertical scale to left of the warp line) or a maximum decrease of 10% (90 on the vertical scale).</li>
+<!--
+\item --><li> To warp the speed by greater amounts, click in the name of the Time Track (in the panel that contains the downward pointing arrow) and choose "Set Range". Here you can specify the lower and upper speed limit of the vertical scale:</li></ul><!--
+\end{itemize}
+-->
+<dl><dd><dl><dd><div style="min-width:580px"><span title="Lower speed dialog, showing default value of 90"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Time Track Range dialog lower limit W10.png" height="144" src="../m/images/6/6f/time_track_range_dialog_lower_limit_w10.png" width="275"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/6/6f/time_track_range_dialog_lower_limit_w10.png--></img><!--}\par
+--></span><span style="margin-left:20px"> <span title="Upper speed dialog, showing default value of 110"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Time Track Range dialog upper limit W10.png" height="144" src="../m/images/a/a0/time_track_range_dialog_upper_limit_w10.png" width="275"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/a/a0/time_track_range_dialog_upper_limit_w10.png--></img><!--}\par
+--></span></span></div><div style="clear:both"></div> </dd></dl></dd></dl>
+<p>Changing the range rescales the Time Track to the new limits, preserving the warp value of any envelope points that were there before. Having changed the range, you can now move the warp line up or down anywhere within the new upper or lower limit of the range.     
+</p>
+<div class="note">
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> Only one Time Track can be used in a project, and it affects all audio tracks on screen.</li>
+<!--
+\item --><li> Time Track has no effect when audio is speed-adjusted using the Play-at-Speed slider in <!--latex 
+\hyperref[\foo{transcription:toolbar:}]{--><a href="transcription_toolbar.html" title="Transcription Toolbar">Transcription Toolbar</a><!--latex }
+-->.</li></ul><!--
+\end{itemize}
+--></div>
+<div id="menu"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Time_Track_Dropdown_Menu">Time Track Dropdown Menu</span></h2><!--}--><!--latex 
+\label{time:tracks:menu}-->
+<dl><dd><span title="Time Track Dropdown menu"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Time Track dropdown menu.png" height="274" src="../m/images/9/9f/time_track_dropdown_menu.png" width="281"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/9/9f/time_track_dropdown_menu.png--></img><!--}\par
+--></span></dd></dl>
+<p>Clicking in the panel containing the downward-pointing triangle (to the left of the track) opens the Time Track Dropdown Menu containing display choices for the track:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>Name...:</b><!--}--> Displays the "Track Name" dialog where you can give the track a new name. </li>
+<!--
+\item --><li> <!--\textbf{--><b>Move Track Up:</b><!--}--> Moves the track up.</li>
+<!--
+\item --><li> <!--\textbf{--><b>Move Track Down:</b><!--}--> Moves the track down.</li>
+<!--
+\item --><li> <!--\textbf{--><b>Move Track to Top</b><!--}-->: Moves track to become the topmost track in the project.</li>
+<!--
+\item --><li> <!--\textbf{--><b>Move Track to Bottom</b><!--}-->: Moves track to become the bottom track in the project.</li>
+<!--
+\item --><li> <!--\textbf{--><b>Linear scale:</b><!--}--> Sets the vertical scale of Time Track to a <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:linear}]{--><a href="glossary.html#linear" title="Glossary">linear</a><!--latex }
+--></b><!--}--></i><!--}--> display; this is the default.</li>
+<!--
+\item --><li> <!--\textbf{--><b>Logarithmic scale:</b><!--}--> Sets the vertical ruler to a <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:log}]{--><a href="glossary.html#log" title="Glossary">logarithmic</a><!--latex }
+--></b><!--}--></i><!--}--> display.</li>
+<!--
+\item --><li> <!--\textbf{--><b>Range...:</b><!--}--> Opens dialogs where you can first set the minimum and then the maximum speed change value to be displayed on the vertical scale. Values are expressed in percentages relative to the "no change" value of 100%. Only integer values (whole numbers) can be set. The lowest speed change value that can be set is 10% and the highest speed change value that can be set is 1000% . </li>
+<!--
+\item --><li> <!--\textbf{--><b>Logarithmic Interpolation:</b><!--}--> The curve between control points is by default calculated using <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:log}]{--><a href="glossary.html#log" title="Glossary">logarithmic</a><!--latex }
+--></b><!--}--></i><!--}--> <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:interpolate}]{--><a href="glossary.html#interpolate" title="Glossary">interpolation</a><!--latex }
+--></b><!--}--></i><!--}-->. Uncheck this option to use <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:linear}]{--><a href="glossary.html#linear" title="Glossary">linear</a><!--latex }
+--></b><!--}--></i><!--}--> interpolation between control points, so drawing an exactly straight line between points (assuming the vertical scale is set to "Linear").</li></ul><!--
+\end{itemize}
+-->
+<p>Label tracks can also be moved up or down by clicking between the controls in the track's Track Control Panel then dragging upwards or downwards.   
+</p>
+<div id="warp"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="A_Tutorial_on_Time_Warping">A Tutorial on Time Warping</span></h2><!--}--><!--latex 
+\label{time:tracks:warp}-->
+    
+<dl><dd><span title="Time Track with Audio Track below"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="TimeTrackExample.png" height="311" src="../m/images/1/12/timetrackexample.png" width="765"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/1/12/timetrackexample.png--></img><!--}\par
+--></span></dd></dl>
+<p><!--\textbf{--><b>Key points about the image above:</b><!--}-->
+</p>
+<!--
+\begin{itemize}--><ul><!--\item -->
+<!--
+\item --><li>The Time Track curves are drawn with default display types (linear vertical scaling with <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:log}]{--><a href="glossary.html#log" title="Glossary">logarithmic</a><!--latex }
+--></b><!--}--></i><!--}--> interpolation).
+</li><!--
+\item --><li>The range of the vertical scale has been increased to a lower limit of 50 and an upper limit of 200. 
+</li><!--
+\item --><li> The horizontal ruler underneath the <!--latex 
+\hyperref[\foo{timeline:}]{--><a href="timeline.html" title="Timeline">Timeline</a><!--latex }
+--> warps as you change the warp line. It shows when the speed-changed playback will reach each time point in the audio. Thus the green playback cursor moves faster or slower than normal as it moves along Time Track's horizontal ruler. 
+</li><!--
+\item --><li> In our example:
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> we started playing twice as fast as normal
+</li><!--
+\item --><li> we slowed down fairly suddenly to a speed twice as slow as normal
+</li><!--
+\item --><li> then increased very gradually to a steady speed a little faster than the normal speed of 100%.</li></ul><!--
+\end{itemize}
+--><p>After all the changes, the resultant audio ends up with only a few seconds shorter playing time than it had before (about 3 minutes 42 seconds, where the end of the audio lies against the Time Track horizontal ruler). </p></li></ul><!--
+\end{itemize}
+-->
+
+<p><!--\textbf{--><b>Important Steps:</b><!--}--> 
+</p>
+<!--
+\begin{enumerate}--><ol><!--
+\item --><li> You must first have at least one audio track to manipulate.
+</li><!--
+\item --><li> Choose <span class="menu">Tracks &gt; Add New &gt; New Time Track</span>.
+</li><!--
+\item --><li> If you want to warp the speed by more than plus or minus 10%, open the Time Track Dropdown Menu and choose <!--\textbf{--><b>Set Range...</b><!--}-->. The dialog will appear twice, the first time to choose the lower limit of the range and the second time to choose the upper limit of the range.
+
+<dl><dd></dd></dl>
+<div class="note">
+<!--
+\begin{itemize}--><ul><!--
+\item --><li>For example if you set a Lower Speed Limit of 50%, you can make the audio play up to twice as slowly (an envelope point at the bottom of the Time Track would make the playback twice as slow, just like a <!--latex 
+\hyperref[\foo{change:speed:}]{--><a href="change_speed.html" title="Change Speed">Change Speed</a><!--latex }
+--> effect of -50%). </li>
+<!--
+\item --><li> If you set an Upper Speed Limit of 200%, you can make the audio play up to twice as fast (an envelope point at the top of the Time Track would double the playback speed, like a Change Speed effect of 100%).</li></ul><!--
+\end{itemize}
+--></div></li>
+<!--
+\item --><li> When you hover your cursor over the warp line, the cursor changes to the <!--\textbf{--><b>envelope cursor</b><!--}--> &nbsp;<span title="Envelope cursor"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="EnvelopePointer.png" height="18" src="../m/images/1/1b/envelopepointer.png" width="7"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/1/1b/envelopepointer.png--></img><!--}}{}--></span>&nbsp;, which lets you shape the time warp line.  Creating one envelope point only changes the speed of the whole track by the same amount, just like the Change Speed effect. To make a speed change that varies over time you must create at least one more point. Thereafter when you drag a point the line on each side of that point moves to reflect your change. 
+</li><!--
+\item --><li>You can press <span class="kbrd" style="background-color: #e0e0f0">Space</span> at any time to listen to how the warping sounds and change the points on the warp line further. 
+</li><!--
+\item --><li>If you wish to continue editing after completing your warp points, it is often advisable to click in the <!--latex 
+\hyperref[\foo{audio:tracks:panel}]{--><a href="audio_tracks.html#panel" title="Audio Tracks">Track Control Panel</a><!--latex }
+--> of the audio track to <!--latex 
+\hyperref[\foo{audacity:selection:}]{--><a href="audacity_selection.html" title="Audacity Selection">select</a><!--latex }
+--> it <!--\textit{--><i>(hold <span class="kbrd" style="background-color: #e0e0f0">Shift</span> and click to select multiple tracks)</i><!--}--> then <span class="menu">Tracks &gt; Mix &gt; <!--latex 
+\hyperref[\foo{tracks:menu:mix:mix:and:render}]{--><a href="tracks_menu_mix.html#mix_and_render" title="Tracks Menu: Mix">Mix and Render</a><!--latex }
+--></span>. This writes the <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:resampling}]{--><a href="glossary.html#resampling" title="Glossary">resampled</a><!--latex }
+--></b><!--}--></i><!--}--> audio data directly to the project rather than resampling the speed-changed audio back to the current <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:sample:rate}]{--><a href="glossary.html#sample_rate" title="Glossary">sample rate</a><!--latex }
+--></b><!--}--></i><!--}--> in real-time. This may therefore make project playback more responsive.  
+<!--
+\begin{itemize}--><ul><!--
+\item --><li>The quality setting of the resampling library used for playing or rendering Time Tracks is chosen automatically by Audacity. Therefore changing the converter quality settings in <!--latex 
+\hyperref[\foo{quality:preferences:}]{--><a href="quality_preferences.html" title="Quality Preferences">Quality Preferences</a><!--latex }
+--> will not affect Time Tracks.</li></ul><!--
+\end{itemize}
+-->
+</li><!--
+\item --><li>To use the speed-changed audio in other applications, choose <span class="menu">File &gt; Save Other &gt; <!--latex 
+\hyperref[\foo{file:menu:save:other:exportaudio}]{--><a href="file_menu_save_other.html#exportaudio" title="File Menu: Save Other">Export Audio...</a><!--latex }
+--></span>, which opens the <!--latex 
+\hyperref[\foo{file:export:dialog:}]{--><a href="file_export_dialog.html" title="File Export Dialog">Export Audio Dialog</a><!--latex }
+-->.   
+</li></ol><!--
+\end{enumerate}
+-->
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top"> Time Track is always active (and therefore modifies audio speed when playing or exporting) whenever it is visible in the project. This applies even after rendering the audio. Therefore after render (or as soon as you want to work with audio that you do not want to speed-change), use the <!--\textbf{--><b>[X]</b><!--}--> "Close" button to left of the Time Track to remove it.
+</td></tr></tbody></table>
+</div>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Bulbicon.png" title="Bulb icon"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Bulb icon" height="32" src="../m/images/d/d7/bulbicon.png" width="32"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d7/bulbicon.png--></img><!--}\par
+--></a>
+</td>
+<td align="left" valign="top">Older computers may be incapable of playing audio in real-time that makes use of a Time Track. However you can always export the file as a <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:wav}]{--><a href="glossary.html#wav" title="Glossary">WAV</a><!--latex }
+--></b><!--}--></i><!--}--> and then play the WAV file later.
+</td></tr></tbody></table>
+</div>
+
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

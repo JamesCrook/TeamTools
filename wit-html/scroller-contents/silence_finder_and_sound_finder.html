@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Silence Finder and Sound Finder - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Silence_Finder_and_Sound_Finder rootpage-Silence_Finder_and_Sound_Finder skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Silence Finder and Sound Finder</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{silence:finder:and:sound:finder:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p><br/>
+</p>
+
+<p>
+</p><p><br/>
+</p>
+<div class="intro"><!--latex 
+\hyperref[\foo{silence:finder:}]{--><a href="silence_finder.html" title="Silence Finder">Silence Finder</a><!--latex }
+--> and <!--latex 
+\hyperref[\foo{sound:finder:}]{--><a href="sound_finder.html" title="Sound Finder">Sound Finder</a><!--latex }
+--> are two related tools which can useful to label the different songs or sections in a long recording, such as the tracks from an LP or cassette.<p>This page provides examples comparing and contrasting the use of the two tools.</p><p>The main difference is that Silence Finder divides up a selection by placing point <!--latex 
+\hyperref[\foo{label:tracks:}]{--><a href="label_tracks.html" title="Label Tracks">labels</a><!--latex }
+--> inside areas of silence, wherwas Sound Finder divides up a selection by placing region <!--latex 
+\hyperref[\foo{label:tracks:}]{--><a href="label_tracks.html" title="Label Tracks">labels</a><!--latex }
+--> for areas of sound that are separated by silence.</p></div> 
+<p><br/>
+</p>
+<div class="example"><p>Here is a stereo track with six songs.  The entire project is selected prior to using the Analyze functions.</p>
+<dl><dd><span title="a stereo track with six songs"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Silence-Sound Finder six songs.png" height="180" src="../m/images/d/d9/silence_sound_finder_six_songs.png" width="512"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d9/silence_sound_finder_six_songs.png--></img><!--}\par
+--></span></dd></dl>
+<div id="silence"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Example_with_Silence_Finder">Example with <!--latex 
+\hyperref[\foo{silence:finder:}]{--><a href="silence_finder.html" title="Silence Finder">Silence Finder</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{silence:finder:and:sound:finder:silence}-->
+<p>After running <span class="menu">Analyze &gt; <!--latex 
+\hyperref[\foo{silence:finder:}]{--><a href="silence_finder.html" title="Silence Finder">Silence Finder...</a><!--latex }
+--></span> we can see that Audacity has identified the six songs, placing an "S" label just before the beginning of each song plus a seventh label at the end (as the final track ends in silence).
+</p>
+<dl><dd><span title="a stereo track with six songs labelled with 'S'"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Silence Finder six songs shown.png" height="253" src="../m/images/b/ba/silence_finder_six_songs_shown.png" width="511"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/silence_finder_six_songs_shown.png--></img><!--}\par
+--></span></dd></dl>
+<div id="sound"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Example_with_Sound_Finder">Example with <!--latex 
+\hyperref[\foo{sound:finder:}]{--><a href="sound_finder.html" title="Sound Finder">Sound Finder</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{silence:finder:and:sound:finder:sound}-->
+<p>If instead we run <span class="menu">Analyze &gt; <!--latex 
+\hyperref[\foo{sound:finder:}]{--><a href="sound_finder.html" title="Sound Finder">Sound Finder...</a><!--latex }
+--></span> on the same selected audio we can see that Audacity has again identified the six songs giving them numerical labels. The labels exclude a small amount of the gaps between the songs (seen most clearly between labels 5 and 6) so the lead-in and lead-out for each song would be shorter.
+</p>
+<dl><dd><span title="a stereo track with six songs labelled with numbers"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Sound Finder six songs shown.png" height="255" src="../m/images/c/c1/sound_finder_six_songs_shown.png" width="512"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/c/c1/sound_finder_six_songs_shown.png--></img><!--}\par
+--></span></dd></dl></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Links">Links</span></h2><!--}-->
+<p><!--latex 
+\hyperref[\foo{silence:finder:}]{--><a href="silence_finder.html" title="Silence Finder"><!--\textbf{--><b>&gt;</b><!--}--> Silence Finder</a><!--latex }
+-->
+</p><p><!--latex 
+\hyperref[\foo{sound:finder:}]{--><a href="sound_finder.html" title="Sound Finder"><!--\textbf{--><b>&gt;</b><!--}--> Sound Finder</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Export Multiple - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Export_Multiple rootpage-Export_Multiple skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Export Multiple</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{export:multiple:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+</p>
+<div class="intro">The <!--\textbf{--><b>Export Multiple</b><!--}--> dialog appears in response to the <span class="menu">File &gt; Save Other &gt; <!--latex 
+\hyperref[\foo{file:menu:save:other:exportmultiple}]{--><a href="file_menu_save_other.html#exportmultiple" title="File Menu: Save Other">Export Multiple...</a><!--latex }
+--></span> command. This command exports multiple files at once, either one file for each Audacity <!--latex 
+\hyperref[\foo{audio:tracks:}]{--><a href="audio_tracks.html" title="Audio Tracks">audio track</a><!--latex }
+-->, or one file for each <!--latex 
+\hyperref[\foo{label:tracks:}]{--><a href="label_tracks.html" title="Label Tracks">label</a><!--latex }
+--> placed below audio tracks. Exporting Multiple by labels is a convenient way to <!--latex 
+\hyperref[\foo{splitting:a:recording:into:separate:tracks:}]{--><a href="splitting_a_recording_into_separate_tracks.html" title="Splitting a recording into separate tracks">export separate files for each track in a long recording</a><!--latex }
+-->.<p>For Export Multiple, <!--latex 
+\hyperref[\foo{audacity:selection:}]{--><a href="audacity_selection.html" title="Audacity Selection">selections</a><!--latex }
+--> in the <!--latex 
+\hyperref[\foo{audacity:waveform:}]{--><a href="audacity_waveform.html" title="Audacity Waveform">waveform</a><!--latex }
+--> play no part in determining the audio that is exported.</p><p>See the <!--latex 
+\hyperref[\foo{tutorial:copying:tapes:lps:or:minidiscs:to:cd:}]{--><a href="tutorial_copying_tapes_lps_or_minidiscs_to_cd.html" title="Tutorial - Copying tapes, LPs or minidiscs to CD">Tutorial - Copying tapes, LPs or MiniDiscs to CD</a><!--latex }
+--> for an example of how
+this is used.</p></div>
+<dl><dd><span title="Export Multiple dialog"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Export Multiple W10.png" height="447" src="../m/images/6/6f/export_multiple_w10.png" width="708"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/6/6f/export_multiple_w10.png--></img><!--}\par
+--></span></dd></dl>
+<div id="format"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Export_Location_and_Format">Export Location and Format</span></h2><!--}--><!--latex 
+\label{export:multiple:format}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>Folder:</b><!--}--> Shows the location to which the audio files will be exported.</li></ul><!--
+\end{itemize}
+-->
+<dl><dd><!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>Choose:</b><!--}--> Clicking the <span class="button">Choose</span> button opens a standard File Export Dialog in which you select the location to which the files will be exported.</li>
+<!--
+\item --><li><!--\textbf{--><b>Create:</b><!--}--> Type a file path in the "Folder:" box then click the <span class="button">Create</span> button and that directory will be created. If a partial file path is specified that directory will be created in the same folder in which the Audacity application resides. For example, typing "myLP/myTracks" in the Export Location box and then clicking the <span class="button">Create</span> button will create the folder "myLP" in the same directory as the Audacity application, and the folder "myTracks" inside the "myLP" folder. </li></ul><!--
+\end{itemize}
+--></dd></dl>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">Use the Create function with caution and only if you know what you are doing - it is possible to create folders in non-standard locations for your operating system. Note that you will receive a "success" message even when you specify an existing file path or directory.
+</td></tr></tbody></table>
+</div>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>Format:</b><!--}--> Choose one of the available export formats from this menu. See <!--latex 
+\hyperref[\foo{export:formats:supported:by:audacity:}]{--><a href="export_formats_supported_by_audacity.html" title="Export Formats supported by Audacity">Export Formats supported by Audacity</a><!--latex }
+--> for advice on which format to choose.</li></ul><!--
+\end{itemize}
+-->
+<div id="options"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Options">Options</span></h2><!--}--><!--latex 
+\label{export:multiple:options}-->
+<p>Use the Options pane to choose the options for the export format you have selected. It enables you to make settings like <!--\textit{--><i>quality</i><!--}--> or <!--\textit{--><i>encoding</i><!--}--> for formats with options. As an example, here is the Export Multiple dialog with the <!--\textbf{--><b>MP3</b><!--}--> format selected showing the options available for that format:
+</p>
+<dl><dd><span title="Export Multiple to MP3 dialog"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Export Multiple MP3 W10.png" height="447" src="../m/images/0/04/export_multiple_mp3_w10.png" width="708"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/0/04/export_multiple_mp3_w10.png--></img><!--}\par
+--></span></dd></dl>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Custom_FFmpeg_and_.28external_program.29_export_options">Custom FFmpeg and (external program) export options</span></h3><!--}-->
+<p>When you select <!--\textbf{--><b>Custom FFmpeg Export</b><!--}--> in the <!--\textbf{--><b>Format</b><!--}--> dropdown, the Options pane will contain the <span class="button">Open custom FFmpeg format options</span> button. See <!--latex 
+\hyperref[\foo{custom:ffmpeg:export:options:}]{--><a href="custom_ffmpeg_export_options.html" title="Custom FFmpeg Export Options">Custom FFmpeg Export Options</a><!--latex }
+--> for more details. 
+</p><p>When you choose <!--latex 
+\hyperref[\foo{exporting:to:an:external:program:}]{--><a href="exporting_to_an_external_program.html" title="Exporting to an External Program">(external program)</a><!--latex }
+--> in the dropdown, a text box will be provided to enter the export command.
+</p>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">When exporting using Custom FFmpeg Export or (external program), Audacity will not add an <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:extension}]{--><a href="glossary.html#extension" title="Glossary">extension</a><!--latex }
+--></b><!--}--></i><!--}--> to the file name. <p>As workarounds:
+</p><!--
+\begin{itemize}--><ul><!--
+\item --><li>add the appropriate file extension to the labels or the track names</li>
+<!--
+\item --><li>add the extension to the files after export.<p></p> </li></ul><!--
+\end{itemize}
+-->
+</td></tr></tbody></table>
+</div>
+<div id="split"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Split_files_based_on:">Split files based on:</span></h2><!--}--><!--latex 
+\label{export:multiple:split}-->
+<!--
+\begin{itemize}--><ul><!--\item -->
+<!--
+\item --><li><!--\textbf{--><b>Tracks:</b><!--}--> Export each audio track in your project to a separate file. File names are based on the track names. Any labels in the project are ignored.   
+</li><!--
+\item --><li><!--\textbf{--><b>Labels:</b><!--}--> Choose this option if your project contains <!--latex 
+\hyperref[\foo{label:tracks:}]{--><a href="label_tracks.html" title="Label Tracks">labels</a><!--latex }
+--> as well as one or more audio tracks. <p> Only labels in the uppermost label track are used for export. If more than one audio track is above the uppermost label track, the audio of all those tracks will be <!--latex 
+\hyperref[\foo{mixing:}]{--><a href="mixing.html" title="Mixing">mixed</a><!--latex }
+--> into the exported files, unless you press the <!--latex 
+\hyperref[\foo{audio:tracks:mute}]{--><a href="audio_tracks.html#mute" title="Audio Tracks">Mute</a><!--latex }
+--> button on some of the tracks to exclude them from the mix. </p>
+</li><!--
+\item --><li style="list-style-image: none; list-style-type: none"> The label track must contain at least one <!--\textit{--><i>point</i><!--}--> or <!--\textit{--><i>region</i><!--}--> label, thus:
+<dl><dd><dl><dd><dl><dd>&bull;&nbsp;Point labels mark the start of each section of audio you want to make into a separate file<br/></dd>
+<dd>&bull;&nbsp;Region labels span each section of audio you want to make into a separate file.</dd></dl></dd></dl></dd></dl>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>Include audio before first label:</b><!--}--> Check this option only if you do not have a point label marking the start of the first file or do not have a region label spanning the first file.
+</li><!--
+\item --><li><!--\textbf{--><b>First file name:</b><!--}--> If you have checked "Include audio before first label", this option will be enabled. Type in the name you want to be used for the first exported audio file. If you have imported audio files, this text box contains the name of the first imported file, but you can still change the text.</li></ul><!--
+\end{itemize}
+--></li></ul><!--
+\end{itemize}
+-->
+<div class="note">For both splitting files based on tracks or labels, the metadata exported for each file will be the same (except for Track Title and Track Number) unless your <!--latex 
+\hyperref[\foo{import:export:preferences:}]{--><a href="import_export_preferences.html" title="Import - Export Preferences">Import / Export Preferences</a><!--latex }
+--> are set to show <!--latex 
+\hyperref[\foo{metadata:editor:}]{--><a href="metadata_editor.html" title="Metadata Editor">Metadata Editor</a><!--latex }
+--> and you enter the metadata for each file manually. If you want to import and export multiple audio files and preserve each file's tag values automatically, use <!--latex 
+\hyperref[\foo{chains:for:batch:processing:and:effects:automation:}]{--><a href="chains_for_batch_processing_and_effects_automation.html" title="Chains - for batch processing and effects automation">Chains</a><!--latex }
+--> instead. </div>      
+<div id="name"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Name_files:">Name files:</span></h2><!--}--><!--latex 
+\label{export:multiple:name}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>Using Label/Track name:</b><!--}--> Each file will be named exactly as the text of each label if "Split files based on Labels" was selected, or exactly as the name of each track if "Split files based on Tracks" was selected. If any labels are empty (track names cannot be empty), Audacity will name each associated file as "untitled" and add a number as necessary to distinguish multiple "untitled" files.</li>
+<!--
+\item --><li><!--\textbf{--><b>Numbering before Label/Track Name:</b><!--}--> Label or track names are used but a consecutive two-digit number and hyphen are prefixed to each file name. The numbering starts from "00-" if you chose "Include audio before first label", or from "01-" if you did not. This is a good choice if you are burning tracks to an <!--latex 
+\hyperref[\foo{burning:music:files:to:a:cd:}]{--><a href="burning_music_files_to_a_cd.html" title="Burning music files to a CD">Audio CD</a><!--latex }
+-->. </li></ul><!--
+\end{itemize}
+-->
+<div class="note"><!--\textbf{--><b>Examples for numbering before:</b><!--}--> If you had a label named "Reflection" marking the start of the first file, followed by a label marked "Rejoicing", then the exported files would be "<!--\textbf{--><b>01-Reflection</b><!--}-->" and "<!--\textbf{--><b>02-Rejoicing</b><!--}-->"; If the labels were empty in the above case, the exported files would be "<!--\textbf{--><b>01-untitled</b><!--}-->" and "<!--\textbf{--><b>02-untitled".</b><!--}--></div>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>Numbering after File Name Prefix:</b><!--}--> Label or track names are ignored. Instead, each file is named using a standard prefix specified in "File Name Prefix" below followed by a hyphen and a consecutive two-digit number. The numbering starts from "-00" if you chose "Include audio before first label", or from "-01" if you did not. </li></ul><!--
+\end{itemize}
+-->
+<dl><dd><!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>File Name Prefix:</b><!--}--> Specifies a file name prefix to be used which will be followed by consecutive numbering. This name will default to the name of the project that you see in the Audacity title bar. If your first action in a project was to import audio files, this text box contains the name of the first imported file. You may change the text to whatever you like.    </li></ul><!--
+\end{itemize}
+--></dd></dl>
+<div class="note"><!--\textbf{--><b>Example for numbering after:</b><!--}--> If you had labels that marked the start of the second and third files, chose "Include audio before first label" and entered "Remaster" as the prefix, then the exported files would be "<!--\textbf{--><b>Remaster-00</b><!--}-->", "<!--\textbf{--><b>Remaster-01</b><!--}-->" and "<!--\textbf{--><b>Remaster-02</b><!--}-->". </div>
+<div id="other"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Overwrite_existing_files">Overwrite existing files</span></h2><!--}--><!--latex 
+\label{export:multiple:other}-->
+<p>This item is off (unchecked) by default; if unchecked, any files to be exported which have the same name as pre-existing files in the export location will be renamed with a hyphen and numerical suffix. The pre-existing files are left "as is". The first file which is exported with an identical name is renamed with suffix "-2" and subsequent files exported with that same name are renamed with suffix "-3", "-4" and so on.
+</p>
+<p>When checked, any pre-existing files in the chosen export location which have the same name as the file to be exported will be <!--\textbf{--><b>replaced</b><!--}--> (without prompt) by the new file. However, there is an exception to this; if the Export Multiple process would create identically named files based on label text or track name these files will not be overwritten but given an ascending numerical suffixes.</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Export_and_Cancel">Export and Cancel</span></h2><!--}-->
+<p>Clicking the <span class="button">Export</span> button will export the audio to the folder location, with the file name(s) and type you have selected.
+</p><p>Clicking the <span class="button">Cancel</span> button will abort the export dialog without exporting any files.
+{{note|
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> After pressing <!--\textbf{--><b>"Export"</b><!--}-->, <!--latex 
+\hyperref[\foo{metadata:editor:}]{--><a href="metadata_editor.html" title="Metadata Editor">Metadata Editor</a><!--latex }
+--> (for embedded file information such as artist or genre) will appear for each file to be exported, unless you disable it for the export step in the <!--latex 
+\hyperref[\foo{import:export:preferences:}]{--><a href="import_export_preferences.html" title="Import - Export Preferences">Import / Export Preferences</a><!--latex }
+-->.</li>
+<!--
+\item --><li> If splitting files based on Tracks, any audio behind 0.0 on the <!--latex 
+\hyperref[\foo{timeline:}]{--><a href="timeline.html" title="Timeline">Timeline</a><!--latex }
+--> (indicated by two left-pointing arrows at left of the <!--latex 
+\hyperref[\foo{audacity:waveform:}]{--><a href="audacity_waveform.html" title="Audacity Waveform">waveform</a><!--latex }
+-->) is included in the export. With single <!--latex 
+\hyperref[\foo{file:export:dialog:}]{--><a href="file_export_dialog.html" title="File Export Dialog">exports</a><!--latex }
+-->, audio behind 0.0 is only exported if explicitly selected and then exported using the <span class="menu">File &gt; Save Other &gt; <!--latex 
+\hyperref[\foo{file:menu:save:other:exportselectedaudio}]{--><a href="file_menu_save_other.html#exportselectedaudio" title="File Menu: Save Other">Export Selected Audio...</a><!--latex }
+--></span> command.</li></ul><!--
+\end{itemize}
+-->
+<!--
+\subsection{--><h2><span class="mw-headline" id="Export_progress_dialog">Export progress dialog</span></h2><!--}-->
+<p>Once you have clicked the <span class="button">Export</span> button, or the final metadata <span class="button">OK</span> button, Audacity will display a dialog enabling you to monitor the progress of the export:
+</p>
+<dl><dd><span title="Export Multiple progress dialog, 25% complete"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Export Audio progress dialog W10.png" height="186" src="../m/images/7/78/export_audio_progress_dialog_w10.png" width="280"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/7/78/export_audio_progress_dialog_w10.png--></img><!--}\par
+--></span></dd></dl>
+<p>The green bar is a visual progress indicator.  The Elapsed Time and Remaining Time are based on an estimate of the total time needed to export the file (the estimate may change as the export progresses).
+</p><p>Clicking the <span class="button">Stop</span> button immediately stops the current export, leaving the partly exported file in place.  It then it moves on to start processing the next labeled section.
+</p><p>Clicking the  <span class="button">Cancel</span> button immediately stops the current export, leaving the part exported file then cancels the rest of the exports, returning to the Export Multiple dialog.
+</p><p><br/>
+</p>
+<div id="results"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Export_results">Export results</span></h2><!--}--><!--latex 
+\label{export:multiple:results}-->
+<p>Once multiple exporting has completed, a status window is displayed showing the resulting files:
+</p>
+<dl><dd><span title="Export Multiple results"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Export Multiple results W10.png" height="393" src="../m/images/2/2f/export_multiple_results_w10.png" width="436"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/2/2f/export_multiple_results_w10.png--></img><!--}\par
+--></span></dd></dl>
+<p>Click the <span class="button">OK</span> button to close this results dialog.
+</p>
+<div id="examples"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Examples_of_use_of_labels_with_Export_Multiple">Examples of use of labels with Export Multiple</span></h2><!--}--><!--latex 
+\label{export:multiple:examples}-->
+
+<div class="note">In the following examples the choices in the dialog would be: "Split files based on: Labels" and "Name files: Using Label/Track name".</div>
+<div class="example"><!--
+\subsubsection{--><h3><span class="mw-headline" id="Case_1:_A_point_label_marking_each_song">Case 1: A point label marking each song</span></h3><!--}-->
+<dl><dd><span title="point label marking each song"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="ExportMultipleExample01.png" height="209" src="../m/images/b/be/exportmultipleexample01.png" width="627"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/be/exportmultipleexample01.png--></img><!--}\par
+--></span>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li>In this case the first file will be named "First song" and will contain the audio between the "First song" label and the "Second song" label. </li>
+<!--
+\item --><li>Similarly the second file will be named "Second song" and will contain the audio between the "Second song" label and the "Third song" label, and so on for the rest of the labels. </li>
+<!--
+\item --><li>The last file will contain the audio from the last label to the end of the audio track and will be named according to the last label in the label track.</li></ul><!--
+\end{itemize}
+--></dd></dl></div>
+<p><br/>
+</p>
+<div class="example"><!--
+\subsubsection{--><h3><span class="mw-headline" id="Case_2:_A_region_label_marking_each_song">Case 2: A region label marking each song</span></h3><!--}-->
+<dl><dd><span title="region label marking each song"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="ExportMultipleExample02.png" height="209" src="../m/images/e/e1/exportmultipleexample02.png" width="627"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/e/e1/exportmultipleexample02.png--></img><!--}\par
+--></span>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li>In this case the first file will be named "First song" and will contain the audio spanned by the "First song" label.</li>
+<!--
+\item --><li>Similarly the second file will be named "Second song" and will contain the audio spanned by the "Second song" label, and so on for the rest of the labels.</li>
+<!--
+\item --><li>Any audio beyond the last region label will not be exported</li></ul><!--
+\end{itemize}
+--></dd></dl></div>
+<p><br/>
+</p>
+<div class="example"><!--
+\subsubsection{--><h3><span class="mw-headline" id="Case_3:_A_point_label_marking_each_song_except_the_first">Case 3: A point label marking each song except the first</span></h3><!--}-->
+<dl><dd><span title="point label marking each song except the first"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="ExportMultipleExample03.png" height="207" src="../m/images/2/27/exportmultipleexample03.png" width="628"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/2/27/exportmultipleexample03.png--></img><!--}\par
+--></span></dd>
+<dd>This is a case where you would want to check "Include audio before first label" and supply a file name in the "First file name" text box. 
+<!--
+\begin{itemize}--><ul><!--
+\item --><li>The first file will be named whatever is typed into the "First file name" text box and will contain the audio between the start of the track and the "Second song" label. </li>
+<!--
+\item --><li>Similarly the second file will be named "Second song" and will contain the audio between the "Second song" label and the "Third song" label, and so on for the rest of the labels. </li>
+<!--
+\item --><li>The last file will contain the audio from the last label to the end of the audio track.</li></ul><!--
+\end{itemize}
+--></dd></dl></div>
+<p><br/>
+</p>
+<div class="example"><!--
+\subsubsection{--><h3><span class="mw-headline" id="Case_4:_Region_labels_marking_two_chosen_songs">Case 4: Region labels marking two chosen songs</span></h3><!--}-->
+<dl><dd><span title="Region labels marking two selected songs"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="ExportMultipleExample04.png" height="209" src="../m/images/4/42/exportmultipleexample04.png" width="627"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/4/42/exportmultipleexample04.png--></img><!--}\par
+--></span></dd>
+<dd>In this case we want to export only two songs - perhaps songs by the same artist from a compilation album. Each song is marked with a region label. 
+<!--
+\begin{itemize}--><ul><!--
+\item --><li>Only two files will be exported - "Second Song" and "Fourth Song" - corresponding to the audio spanned by those labels. No other audio will be exported.</li></ul><!--
+\end{itemize}
+--></dd></dl></div>
+<p><br/>
+</p>
+<div class="example"><!--
+\subsubsection{--><h3><span class="mw-headline" id="Case_5:_A_mix_of_point_and_region_labels">Case 5: A mix of point and region labels</span></h3><!--}-->
+<dl><dd><span title="a mix of point and region labels"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="ExportMultipleExample05a.png" height="213" src="../m/images/3/32/exportmultipleexample05a.png" width="628"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/3/32/exportmultipleexample05a.png--></img><!--}\par
+--></span></dd></dl>
+<p>In the case above we have an interview with a series of questions (upper track) and answers (lower track), and a concluding statement by the interviewer. We want to export the question-answer pairs and the interviewer's conclusion as separate files.  
+</p><p>In most cases the question-answer pairs follow one after another, so point labels are a quick and convenient way to mark them. However after the third answer, the interviewer is told by the studio manager that time is running out, and the two parties discuss this. We want to omit this exchange.  
+</p>
+<dl><dd><!--
+\begin{itemize}--><ul><!--
+\item --><li>We mark the start of the first two question-answer pairs with point labels "QA1" and QA2".</li>
+<!--
+\item --><li>We mark the third pair with a region label "QA3" since we want to omit the discussion about running out of time.</li>
+<!--
+\item --><li>We mark the start of the fourth pair with point label "QA4" and the start of the interviewer's conclusion with point label "Outro". </li></ul><!--
+\end{itemize}
+--></dd></dl>
+<p>So this is what will be exported:
+</p>
+<dl><dd><!--
+\begin{itemize}--><ul><!--
+\item --><li>The first file will be named "QA1" and will include the audio between the "QA1" and "QA2" point labels.</li>
+<!--
+\item --><li>The second file will be named "QA2" and will include the audio between the "QA2" point label and the start of the "QA3" region label.</li>
+<!--
+\item --><li>The third file will be named "QA3" and will include the audio spanned by the "QA3" region label.</li>
+<!--
+\item --><li>The fourth file will be named "QA4" and will include the audio between the "QA4" and "QA5" point labels. Note that the audio between the end of the "QA3" region label and the "QA4" point label is not exported.</li>
+<!--
+\item --><li>The final file will be named "Outro" and will include the audio between the "Outro" label and the end. Had we decided to cut off the conclusion half way through, we would have selected what we wanted to keep and labeled that, producing a region label "Outro" instead. Then the audio beyond the "Outro" label would not have been exported. </li></ul><!--
+\end{itemize}
+--></dd></dl>
+Note that in order to export the pairs and the conclusion excluding the interruption, we could equally have drawn region labels for each, similarly to Case 4 above. Had we needed to edit each of these regions individually before export, it might have made sense to label them as regions in any case.</div>
+
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

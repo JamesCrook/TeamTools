@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Tracks Menu - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Tracks_Menu rootpage-Tracks_Menu skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Tracks Menu</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{tracks:menu:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+</p><p><br/>
+</p>
+<div class="intro"><!--\textit{--><i><!--\textbf{--><b>Tracks Menu</b><!--}--></i><!--}--> provides commands for:
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> Creating and removing tracks</li>
+<!--
+\item --><li> Applying operations to <!--latex 
+\hyperref[\foo{audacity:selection:}]{--><a href="audacity_selection.html" title="Audacity Selection">selected</a><!--latex }
+--> tracks such as <!--latex 
+\hyperref[\foo{mixing:}]{--><a href="mixing.html" title="Mixing">mixing</a><!--latex }
+-->, <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:resampling}]{--><a href="glossary.html#resampling" title="Glossary">resampling</a><!--latex }
+--></b><!--}--></i><!--}-->, converting from stereo to mono, aligning or muting</li></ul><!--
+\end{itemize}
+-->
+</div>
+<dl><dd><!--\textit{--><i>Click, or hover, on any menu item in the image to read about that command.  &nbsp;<span style="font-size:0.8em"><!--latex 
+\hyperref[\foo{tracks:menu::skiptheimage}]{--><a href="#skiptheimage">Skip the image</a><!--latex }
+--></span></i><!--}--></dd>
+<dd><div class="noresize"><map name="ImageMap_1_1955224909"><area alt="Transport Menu" coords="0,3,26,19" href="transport_menu.html" shape="rect" title="Transport Menu"/><area alt="Tracks Menu" coords="33,3,73,19" href="#" shape="rect" title="Tracks Menu"/><area alt="Generate Menu" coords="80,3,134,19" href="generate_menu.html" shape="rect" title="Generate Menu"/><area alt="Effect Menu" coords="141,3,174,19" href="effect_menu.html" shape="rect" title="Effect Menu"/><area alt="Analyze Menu" coords="181,3,225,19" href="analyze_menu.html" shape="rect" title="Analyze Menu"/><area alt="Help Menu" coords="232,3,261,19" href="help_menu.html" shape="rect" title="Help Menu"/><area alt="Ext-Bar Menu" coords="268,3,310,19" href="ext_bar_menu.html" shape="rect" title="Ext-Bar Menu"/><area alt="Ext-Command Menu" coords="317,3,399,19" href="ext_command_menu.html" shape="rect" title="Ext-Command Menu"/><area alt="Menu Bar" coords="0,0,600,22" href="menu_reference.html" shape="rect" title="Menu Bar"/><area alt="Adds a new track" coords="39,23,230,45" href="tracks_menu_add_new.html" shape="rect" title="Adds a new track"/><area alt="Mixes down selected tracks to mono or stereo tracks" coords="39,52,230,74" href="tracks_menu_mix.html" shape="rect" title="Mixes down selected tracks to mono or stereo tracks"/><area alt="Allows you to resample the selected track(s) to a new sample rate for use in the project" coords="39,74,230,96" href="#resample" shape="rect" title="Allows you to resample the selected track(s) to a new sample rate for use in the project"/><area alt="Removes the selected track(s) from the project" coords="39,103,230,125" href="#remove_tracks" shape="rect" title="Removes the selected track(s) from the project"/><area alt="Mutes or unmutes audio tracks in the project" coords="39,132,230,154" href="tracks_menu_mute/unmute.html" shape="rect" title="Mutes or unmutes audio tracks in the project"/><area alt="Pans left right or center audio tracks in the project" coords="39,154,230,176" href="tracks_menu_pan.html" shape="rect" title="Pans left right or center audio tracks in the project"/><area alt="Commands that provide an automatic way of aligning selected tracks with the cursor, the selection, or with the start of the project" coords="39,183,230,205" href="tracks_menu_align_tracks.html" shape="rect" title="Commands that provide an automatic way of aligning selected tracks with the cursor, the selection, or with the start of the project"/><area alt="Sorts all tracks in the project from top to bottom in the project window, by Start Time or by Name" coords="39,205,230,227" href="tracks_menu_sort_tracks.html" shape="rect" title="Sorts all tracks in the project from top to bottom in the project window, by Start Time or by Name"/><area alt="Ensures that length changes occurring anywhere in a defined group of tracks also take place in all audio or label tracks in that group" coords="39,234,230,256" href="sync_locked_track_groups.html" shape="rect" title="Ensures that length changes occurring anywhere in a defined group of tracks also take place in all audio or label tracks in that group"/></map><!--
+
+\par\Needspace{162.0pt}\begin{picture}(121.5,132.0)
+--><!--   \put(0,0){\includegraphics[scale=0.5]{--><img alt="TracksMenu.png" height="264" src="../m/images/7/79/tracksmenu.png" usemap="#ImageMap_1_1955224909" width="243"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/7/79/tracksmenu.png--></img><!--}}
+--><!--   \put(0.0,122.5){\hyperref[\foo{transport:menu:}]{\makebox(13.0,8.0){}}}
+   \put(16.5,122.5){\hyperref[\foo{tracks:menu::}]{\makebox(20.0,8.0){}}}
+   \put(40.0,122.5){\hyperref[\foo{generate:menu:}]{\makebox(27.0,8.0){}}}
+   \put(70.5,122.5){\hyperref[\foo{effect:menu:}]{\makebox(16.5,8.0){}}}
+   \put(90.5,122.5){\hyperref[\foo{analyze:menu:}]{\makebox(22.0,8.0){}}}
+   \put(116.0,122.5){\hyperref[\foo{help:menu:}]{\makebox(14.5,8.0){}}}
+   \put(134.0,122.5){\hyperref[\foo{ext:bar:menu:}]{\makebox(21.0,8.0){}}}
+   \put(158.5,122.5){\hyperref[\foo{ext:command:menu:}]{\makebox(41.0,8.0){}}}
+   \put(19.5,109.5){\hyperref[\foo{tracks:menu:add:new:}]{\makebox(95.5,11.0){}}}
+   \put(19.5,95.0){\hyperref[\foo{tracks:menu:mix:}]{\makebox(95.5,11.0){}}}
+   \put(19.5,84.0){\hyperref[\foo{tracks:menu::resample}]{\makebox(95.5,11.0){}}}
+   \put(19.5,69.5){\hyperref[\foo{tracks:menu::remove:tracks}]{\makebox(95.5,11.0){}}}
+   \put(19.5,55.0){\hyperref[\foo{tracks:menu:mute:unmute:}]{\makebox(95.5,11.0){}}}
+   \put(19.5,44.0){\hyperref[\foo{tracks:menu:pan:}]{\makebox(95.5,11.0){}}}
+   \put(19.5,29.5){\hyperref[\foo{tracks:menu:align:tracks:}]{\makebox(95.5,11.0){}}}
+   \put(19.5,18.5){\hyperref[\foo{tracks:menu:sort:tracks:}]{\makebox(95.5,11.0){}}}
+   \put(19.5,4.0){\hyperref[\foo{sync:locked:track:groups:}]{\makebox(95.5,11.0){}}}
+\end{picture}
+
+--></div></dd></dl>
+<div id="skiptheimage"></div>
+<div class="note">To change properties of <!--\textit{--><i>individual</i><!--}--> <!--latex 
+\hyperref[\foo{audio:tracks:}]{--><a href="audio_tracks.html" title="Audio Tracks">audio tracks</a><!--latex }
+-->, such as <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:gain}]{--><a href="glossary.html#gain" title="Glossary">gain</a><!--latex }
+--></b><!--}--></i><!--}--> and pan, View Mode (such as the default <!--latex 
+\hyperref[\foo{audio:track:dropdown:menu:wave}]{--><a href="audio_track_dropdown_menu.html#wave" title="Audio Track Dropdown Menu">Waveform</a><!--latex }
+--> view) and channel display, use the <!--latex 
+\hyperref[\foo{audio:track:dropdown:menu:}]{--><a href="audio_track_dropdown_menu.html" title="Audio Track Dropdown Menu">Audio Track Dropdown Menu</a><!--latex }
+--> in the <!--latex 
+\hyperref[\foo{audio:tracks:panel}]{--><a href="audio_tracks.html#panel" title="Audio Tracks">Track Control Panel</a><!--latex }
+-->.</div>
+<p><br/>
+</p>
+<div id="add_new"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Add_New_.C2.A0"><!--latex 
+\hyperref[\foo{tracks:menu:add:new:}]{--><a href="tracks_menu_add_new.html" title="Tracks Menu: Add New">Add New</a><!--latex }
+--> &nbsp;<font size="-1"></font></span></h2><!--}--><!--latex 
+\label{tracks:menu:add:new}--><!--latex 
+\label{tracks:menu:skiptheimage}-->
+<p>The <!--latex 
+\hyperref[\foo{tracks:menu:add:new:}]{--><a href="tracks_menu_add_new.html" title="Tracks Menu: Add New"><!--\textbf{--><b>Add New</b><!--}--></a><!--latex }
+--> submenu provides commands for adding stereo or mono tracks, label tracks and time tracks.
+</p><p>See <!--latex 
+\hyperref[\foo{tracks:}]{--><a href="tracks.html" title="Tracks">Tracks Overview</a><!--latex }
+--> for details of the different kinds of tracks.
+</p>
+<div id="mix"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Mix_.C2.A0"><!--latex 
+\hyperref[\foo{tracks:menu:mix:}]{--><a href="tracks_menu_mix.html" title="Tracks Menu: Mix">Mix</a><!--latex }
+--> &nbsp;<font size="-1"></font></span></h2><!--}--><!--latex 
+\label{tracks:menu:mix}-->
+<p>The <!--latex 
+\hyperref[\foo{tracks:menu:mix:}]{--><a href="tracks_menu_mix.html" title="Tracks Menu: Mix"><!--\textbf{--><b>Mix</b><!--}--></a><!--latex }
+--> submenu provides commands for mixing and rendering your selected tracks to a singlestereo or mono track.
+</p>
+<div id="resample"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Resample..._.C2.A0">Resample... &nbsp;<font size="-1"></font></span></h2><!--}--><!--latex 
+\label{tracks:menu:resample}-->
+<p>Allows you to <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:resampling}]{--><a href="glossary.html#resampling" title="Glossary">resample</a><!--latex }
+--></b><!--}--></i><!--}--> the selected track(s) to a new sample rate for use in the project, leaving the length (and hence playback speed and <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:pitch}]{--><a href="glossary.html#pitch" title="Glossary">pitch</a><!--latex }
+--></b><!--}--></i><!--}-->) unchanged. To resample for <!--latex 
+\hyperref[\foo{file:export:dialog:}]{--><a href="file_export_dialog.html" title="File Export Dialog">export</a><!--latex }
+-->, change the <!--\textit{--><i>Project Rate</i><!--}--> in <!--latex 
+\hyperref[\foo{selection:toolbar:}]{--><a href="selection_toolbar.html" title="Selection Toolbar">Selection Toolbar</a><!--latex }
+-->.  
+</p>
+<div id="remove_tracks"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Remove_Tracks_.C2.A0">Remove Tracks &nbsp;<font size="-1"></font></span></h2><!--}--><!--latex 
+\label{tracks:menu:remove:tracks}-->
+<p>Removes the selected track(s) from the project. Even if only part of a track is selected, the entire track is removed. You can also remove a track by clicking the <span class="button">X</span> in its upper left corner.
+</p><p>To remove only the selected audio in a track (without adding it to the clipboard) use
+<span class="menu">Edit &gt; <!--latex 
+\hyperref[\foo{edit:menu:delete}]{--><a href="edit_menu.html#delete" title="Edit Menu">Delete</a><!--latex }
+--></span> or either <!--latex 
+\hyperref[\foo{edit:menu:remove:special:split:delete}]{--><a href="edit_menu_remove_special.html#split_delete" title="Edit Menu: Remove Special">Split Delete</a><!--latex }
+--> or <!--latex 
+\hyperref[\foo{edit:menu:remove:special:silence}]{--><a href="edit_menu_remove_special.html#silence" title="Edit Menu: Remove Special">Silence Audio</a><!--latex }
+--> at <span class="menu">Edit &gt; <!--latex 
+\hyperref[\foo{edit:menu:remove:special:}]{--><a href="edit_menu_remove_special.html" title="Edit Menu: Remove Special">Remove Special</a><!--latex }
+-->.</span>  
+</p>
+<div id="mute_unmute"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Mute.2FUnmute_.C2.A0"><!--latex 
+\hyperref[\foo{tracks:menu:mute:unmute:}]{--><a href="tracks_menu_mute/unmute.html" title="Tracks Menu: Mute/Unmute">Mute/Unmute</a><!--latex }
+--> &nbsp;<font size="-1"></font></span></h2><!--}--><!--latex 
+\label{tracks:menu:mute:unmute}-->
+<p>The <!--latex 
+\hyperref[\foo{tracks:menu:mute:unmute:}]{--><a href="tracks_menu_mute/unmute.html" title="Tracks Menu: Mute/Unmute"><!--\textbf{--><b>Mute/Unmute</b><!--}--></a><!--latex }
+--> submenu enables you to mute or unmute all of the tracks in your project in one go, without having to use the buttons <span class="button">Mute</span> and <span class="button">Unmute</span> in each track's <!--latex 
+\hyperref[\foo{audio:tracks:panel}]{--><a href="audio_tracks.html#panel" title="Audio Tracks">Track Control Panel</a><!--latex }
+-->.
+</p>
+<div id="pan"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Pan_.C2.A0"><!--latex 
+\hyperref[\foo{tracks:menu:pan:}]{--><a href="tracks_menu_pan.html" title="Tracks Menu: Pan">Pan</a><!--latex }
+--> &nbsp;<font size="-1"></font></span></h2><!--}--><!--latex 
+\label{tracks:menu:pan}-->
+<p>The <!--latex 
+\hyperref[\foo{tracks:menu:pan:}]{--><a href="tracks_menu_pan.html" title="Tracks Menu: Pan"><!--\textbf{--><b>Pan</b><!--}--></a><!--latex }
+--> submenu enables you to change the panning of all the tracks you have <!--latex 
+\hyperref[\foo{audacity:selection:}]{--><a href="audacity_selection.html" title="Audacity Selection">selected</a><!--latex }
+--> or partially selected, in one go, without having to use the Pan sliders in each track's <!--latex 
+\hyperref[\foo{audio:tracks:pan}]{--><a href="audio_tracks.html#pan" title="Audio Tracks">Track Control Panel</a><!--latex }
+-->.  The panning choices are extreme <!--\textbf{--><b>Left</b><!--}--> or <!--\textbf{--><b>Right</b><!--}--> pan or <!--\textbf{--><b>Center</b><!--}--> pan. If no tracks are selected, pan is changed in all tracks.
+</p>
+<div id="align_tracks"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Align_Tracks_.C2.A0"><!--latex 
+\hyperref[\foo{tracks:menu:align:tracks:}]{--><a href="tracks_menu_align_tracks.html" title="Tracks Menu: Align Tracks">Align Tracks</a><!--latex }
+--> &nbsp;<font size="-1"></font></span></h2><!--}--><!--latex 
+\label{tracks:menu:align:tracks}-->
+<p>The <!--latex 
+\hyperref[\foo{tracks:menu:align:tracks:}]{--><a href="tracks_menu_align_tracks.html" title="Tracks Menu: Align Tracks"><!--\textbf{--><b>Align Tracks</b><!--}--></a><!--latex }
+--> submenu provides a set of commands to help you align your selected tracks in various ways.  In particular there are two very useful commands that enable you to align tracks end-to-end, one after the other, or align them all together.
+</p>
+<div id="sort_tracks"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Sort_Tracks_.C2.A0"><!--latex 
+\hyperref[\foo{tracks:menu:sort:tracks:}]{--><a href="tracks_menu_sort_tracks.html" title="Tracks Menu: Sort Tracks">Sort Tracks</a><!--latex }
+--> &nbsp;<font size="-1"></font></span></h2><!--}--><!--latex 
+\label{tracks:menu:sort:tracks}-->
+<p>The <!--latex 
+\hyperref[\foo{tracks:menu:sort:tracks:}]{--><a href="tracks_menu_sort_tracks.html" title="Tracks Menu: Sort Tracks"><!--\textbf{--><b>Sort Tracks</b><!--}--></a><!--latex }
+--> submenu provides commands to sort your tracks by <!--latex 
+\hyperref[\foo{audio:tracks:panel}]{--><a href="audio_tracks.html#panel" title="Audio Tracks">Track Names</a><!--latex }
+--> or the tracks' start times.
+</p>
+<div id="synclock_tracks_onoff"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Sync-Lock_Tracks_.28on.2Foff.29_.C2.A0"><!--latex 
+\hyperref[\foo{sync:locked:track:groups:}]{--><a href="sync_locked_track_groups.html" title="Sync-Locked Track Groups">Sync-Lock Tracks</a><!--latex }
+--> (on/off) &nbsp;<font size="-1"></font></span></h2><!--}--><!--latex 
+\label{tracks:menu:synclock:tracks:onoff}-->
+<p>The Sync-Lock Tracks feature ensures that length changes occurring anywhere in a defined group of tracks also take place in all audio or label tracks in that group, even if those tracks were not selected. This lets you keep existing audio or labels synchronized with each other, even when carrying out actions like inserting, deleting or changing speed or tempo. You can turn this feature "on" or "off" <!--\textit{--><i>(default is unchecked "off")</i><!--}--> by clicking this menu item. See <!--latex 
+\hyperref[\foo{sync:locked:track:groups:}]{--><a href="sync_locked_track_groups.html" title="Sync-Locked Track Groups">Sync-Locked Track Groups</a><!--latex }
+--> for more information.
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

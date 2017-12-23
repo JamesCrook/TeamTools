@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Undo, Redo and History - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Undo_Redo_and_History rootpage-Undo_Redo_and_History skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Undo, Redo and History</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{undo:redo:and:history:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+
+</p>
+<div id="undo"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Undo_and_Redo"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Undo.png"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Undo.png" height="24" src="../m/images/8/8b/undo.png" width="26"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/8/8b/undo.png--></img><!--}}{}--></a><a class="image" href="http://alphamanual.audacityteam.org/man/File:Redo.png"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Redo.png" height="24" src="../m/images/0/09/redo.png" width="26"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/0/09/redo.png--></img><!--}}{}--></a> Undo and Redo</span></h2><!--}--><!--latex 
+\label{undo:redo:and:history:undo}-->
+<div class="intro">Audacity is a forgiving application.  If you're afraid of messing up, relax, because Audacity is designed to let you try something and then undo it if you do not like it, or redo it if you like your first idea after all. This is really the only way to work with audio because it's often hard to judge an <!--latex 
+\hyperref[\foo{index:of:effects:generators:and:analyzers:}]{--><a href="index_of_effects_generators_and_analyzers.html" title="Index of Effects, Generators and Analyzers">effect</a><!--latex }
+--> or other change in context of the entire project until you do it. <p>Undo/Redo is fast, irrespective of how long the original action took. Use it to listen easily to "before" and "after" versions of your work. </p><p> As you apply more actions, the disk space needed to allow Undo/Redo of those actions grows, but the Undo/Redo space usage is discarded on closing the project. Undo/Redo steps for an open project can be managed in the <!--latex 
+\hyperref[\foo{undo:redo:and:history::history}]{--><a href="#history">History window</a><!--latex }
+-->.</p></div>
+<p>There are four ways to Undo or Redo.
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> The Undo and Redo choices at the top of <!--latex 
+\hyperref[\foo{edit:menu:}]{--><a href="edit_menu.html" title="Edit Menu">Edit Menu</a><!--latex }
+--></li>
+<!--
+\item --><li> Two buttons in the Edit Toolbar: <!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="The Undo button" height="24" src="../m/images/8/8b/undo.png" title="The Undo button" width="26"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/8/8b/undo.png--></img><!--}}{}--> Undo and <!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="The Redo button" height="24" src="../m/images/0/09/redo.png" title="The Redo button" width="26"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/0/09/redo.png--></img><!--}}{}--> Redo</li>
+<!--
+\item --><li> Select "History..." from the <!--latex 
+\hyperref[\foo{view:menu:}]{--><a href="view_menu.html" title="View Menu">View Menu</a><!--latex }
+--> and click on an action to jump the project state to there</li>
+<!--
+\item --><li> Use the Keyboard shortcuts:</li></ul><!--
+\end{itemize}
+-->
+<dl><dd><table class="prettytablerows" id="undo_keyboard_shortcuts">
+
+<tbody><!--\par --><tr>
+<th> </th>
+<th> Windows </th>
+<th> Linux </th>
+<th> Mac
+</th></tr>
+<!--\par --><tr>
+<td> <!--\textbf{--><b>Undo</b><!--}--> </td>
+<td> <span class="kbrd" style="background-color: #e0e0f0">Ctrl+Z</span> </td>
+<td> <span class="kbrd" style="background-color: #e0e0f0">Ctrl+Z</span> </td>
+<td> <span class="kbrd" style="background-color: #e0e0f0">⌘+Z</span>
+</td></tr>
+<!--\par --><tr>
+<td> <!--\textbf{--><b>Redo</b><!--}--> </td>
+<td> <span class="kbrd" style="background-color: #e0e0f0">Ctrl+Y</span> </td>
+<td> <span class="kbrd" style="background-color: #e0e0f0">Ctrl+Shift+Z</span> </td>
+<td> <span class="kbrd" style="background-color: #e0e0f0">⌘+Shift+Z</span>
+</td></tr></tbody></table></dd></dl>
+<div class="note">Only changes that modify the project data can be undone. Changes that cannot be undone include:
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> Saving or exporting</li>
+<!--
+\item --><li> Changing the track height or the selection or cursor position (these are saved when you save a change that is recorded by Undo/Redo).</li></ul><!--
+\end{itemize}
+--></div> 
+<p>Undo is unlimited, back to the first action you took in the project. That means you can make a hundred changes, then change your mind and undo them all.  
+</p><p>Undo is <!--\textit{--><i><!--\textbf{--><b>stepwise</b><!--}--></i><!--}-->. This means that if you Undo to several steps back then perform a new action, you cannot then redo the old steps that followed the point you went back to. For example, suppose you made ten edits, numbered 1 through 10.  Now you undo back to step 5, and then perform a new edit, which we'll call 6b because it's different from the original 6.  At this point you can undo back to step 5 or all the way back to 1, but you can no longer get back to the original steps 6 through 10, which will be removed from the project history. 
+</p><p>Undo History is stored for each project, while that project remains open. So saving a project does not erase your Undo History, but closing a project does erase it. When you reopen a saved project, it starts with an empty history. 
+</p>
+<div id="history"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="History_window">History window</span></h2><!--}--><!--latex 
+\label{undo:redo:and:history:history}-->
+<p>The History dialog lets you view and manage all of the actions you've taken since you opened a project.  You can open it by selecting <span class="menu">View &gt; <!--latex 
+\hyperref[\foo{view:menu:history}]{--><a href="view_menu.html#history" title="View Menu">History...</a><!--latex }
+--> .</span>
+</p>
+
+<dl><dd><span title="The History dialog"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Undo History dialog.png" height="381" src="../m/images/a/ae/undo_history_dialog.png" width="387"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/a/ae/undo_history_dialog.png--></img><!--}\par
+--></span></dd></dl>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>History list:</b><!--}--> This has two columns. 
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> "Action" shows a list of all project states that you can go back or forwards to, earliest state first. 
+</li><!--
+\item --><li> "Reclaimable Space" shows for each action in the list the amount of disk space that will be released if you discard that action's Undo level.  
+
+<div class="note">To ensure that "Reclaimable Space" displays an accurate calculation of space that could be freed by discarding actions, space usage is always allocated to the <!--\textit{--><i>latest</i><!--}--> step that uses that data. So if some steps were only applied to part of the project, then as each new action is applied, the action before will have its reclaimable space reduced. </div>  </li></ul><!--
+\end{itemize}
+-->
+<p>Select an item in the history list to Undo or Redo immediately to that action. It's the same as choosing <span class="menu">Edit &gt; Undo</span> or <span class="menu">Edit &gt; Redo</span> multiple times, but quicker. </p>
+</li><!--
+\item --><li> <!--\textbf{--><b>Total space used:</b><!--}--> Displays the total disk space currently used by the project, which is the total of all the "Reclaimable Space" values shown in the history list.   
+</li><!--
+\item --><li> <!--\textbf{--><b>Undo Levels Available:</b><!--}--> (Uneditable). Displays how many actions are available to Undo. Select the next item down in the history list to increase the number of available undo levels by one. To choose the maximum possible number of Undo levels, select the bottom item in the list. 
+</li><!--
+\item --><li> <!--\textbf{--><b>Levels to Discard:</b><!--}--> Edit this text box to choose the number of Undo levels that will be discarded when you click the <!--\textbf{--><b>Discard</b><!--}--> button. Items are discarded <!--\textit{--><i>starting from the top of the history list</i><!--}-->.
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>Discard button:</b><!--}--> Removes the number of actions specified in the <!--\textbf{--><b>Levels to Discard</b><!--}--> box. This action is immediate and cannot be undone. Discarding undo levels will release the disk space taken by the discarded items and the value displayed in the "Total space used" box will accordingly reduce.    </li></ul><!--
+\end{itemize}
+-->
+</li><!--
+\item --><li> <!--\textbf{--><b>Clipboard space used:</b><!--}--> Indicates the amount of disk space currently used by the Audacity Clipboard.
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>Discard button:</b><!--}--> Empties the data on the Audacity Clipboard, releasing the disk space displayed in <!--\textbf{--><b>Clipboard space used</b><!--}--> and resetting that value to zero. This action is immediate and cannot be undone. After discard, pasting will do nothing. </li></ul><!--
+\end{itemize}
+-->
+</li><!--
+\item --><li> <!--\textbf{--><b>OK button:</b><!--}--> Accepts the changes made in the History window, if any, and closes the window. </li></ul><!--
+\end{itemize}
+-->
+<div class="note">Note the difference between <!--\textbf{--><b>Undo</b><!--}--> and <!--\textbf{--><b>Discard</b><!--}-->.
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>Undo</b><!--}--> (by any method) grays out steps starting from the <!--\textit{--><i><!--\textbf{--><b>bottom</b><!--}--></i><!--}--> of the History list.
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> When you Undo, you can still Redo to the grayed out list items (as shown in the third image in the example below) <!--\textit{--><i>until you perform another editing action</i><!--}-->. After the new action, the grayed out steps will be removed from the list and replaced by the new action.</li></ul><!--
+\end{itemize}
+--></li>
+<!--
+\item --><li><!--\textbf{--><b>Discard</b><!--}--> removes steps from the <!--\textit{--><i><!--\textbf{--><b>top</b><!--}--></i><!--}--> of the History list. <!--\textit{--><i>This action is immediate and cannot be Undone</i><!--}-->.
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> Undo information is removed and the disk space it uses is released when you close an Audacity project. Thus you should only need to discard Undo levels if you are working on a very large project and are running short of disk space. </li></ul><!--
+\end{itemize}
+--></li></ul><!--
+\end{itemize}
+--></div>
+<div id="historyexample"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Example">Example</span></h2><!--}--><!--latex 
+\label{undo:redo:and:history:historyexample}-->
+<div class="example"><!--\textbf{--><b>Example of using History Window</b><!--}-->
+<p>In the image below we see the History window positioned beside a stereo track that has been imported into a project. The file size was 67.7 MB, and at the moment that amount of space is taken up on the  drive by the ability to undo the import. 
+</p>
+<dl><dd><span title="Project with imported stereo file and History window beside it"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="History01 2-2-0.png" height="409" src="../m/images/c/c1/history01_2_2_0.png" width="667"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/c/c1/history01_2_2_0.png--></img><!--}\par
+--></span></dd></dl>
+<p>In the next image the user has repaired two clicks and amplified the entire track. These edits have slightly more than doubled the space used by the project to 139.5 MB.
+</p>
+<dl><dd><span title="Project after several edits with History window showing list of those edits"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="History02 2-2-0.png" height="410" src="../m/images/0/0e/history02_2_2_0.png" width="667"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/0/0e/history02_2_2_0.png--></img><!--}\par
+--></span></dd></dl>
+<p>We see here that the user could for example quickly undo the "Amplify" step and the two "Repair" steps, returning to the project to the state it was in immediately after the file was imported. This is equivalent to selecting <span class="menu">Edit &gt; Undo</span> three times. The project still uses 139.5 MB of disk space because it is still possible to Redo those actions.
+</p><p>Having now selected the "Imported" item to undo back to that stage, the project reflects that change - the amplification has been removed and the clicks are back.
+</p>
+<dl><dd><span title="Project and History window after selecting in the History window to undo several levels"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="History03 2-2-0.png" height="409" src="../m/images/0/09/history03_2_2_0.png" width="667"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/0/09/history03_2_2_0.png--></img><!--}\par
+--></span></dd></dl>
+<p>Instead of undoing back to the import of the audio file the user could decide that everything done up to this point is perfect. Therefore in order to save disk space the user could <!--\textbf{--><b>Discard</b><!--}--> unwanted Undo levels. In the image below the user has selected the "Amplify" item in order to make the maximum four Undo levels available, then set "Levels to Discard" to "4". Note that the effect on disk space would be the same if the user saved and closed the project, which would also discard all the Undo levels.
+</p>
+<dl><dd><span title="Project and History window preparing to discard four undo levels"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="History04 2-2-0.png" height="411" src="../m/images/a/a6/history04_2_2_0.png" width="668"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/a/a6/history04_2_2_0.png--></img><!--}\par
+--></span></dd></dl>
+<p>After clicking the <!--\textbf{--><b>Discard</b><!--}--> button, four Undo levels are discarded <!--\textit{--><i>starting from the top of the history list</i><!--}-->, so leaving the final "Amplify" item which was the last action applied. The total disk space used by the project has been reduced by the sum of the discarded items to 67.7 MB.
+</p>
+<dl><dd><span title="Project and History window after discarding four undo levels"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="History05 2-2-0.png" height="412" src="../m/images/e/e9/history05_2_2_0.png" width="667"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/e/e9/history05_2_2_0.png--></img><!--}\par
+--></span></dd></dl></div>
+
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Simplifying Audacity - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Simplifying_Audacity rootpage-Simplifying_Audacity skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Simplifying Audacity</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{simplifying:audacity:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en">.
+<p>
+
+
+</p>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top"><!--\textbf{--><b>Simplified menus no longer work in Audacity 2.1.2.</b><!--}--> You can use the feature in Audacity 2.1.1 from <a class="external free" href="http://www.oldfoss.com/Audacity.html" rel="nofollow">http://www.oldfoss.com/Audacity.html</a>.
+</td></tr></tbody></table>
+</div>  
+<div class="note">This page is primarily intended for <!--\textbf{--><b>teachers</b><!--}--> (and anyone working with others) who want to create an easier version of Audacity with fewer menu items.</div>
+<div class="advice"><p>These are advanced instructions that let you use freely available language tools to make a customized language file for Audacity that shows fewer menu items. </p> <p>The customized language file can be in English or any other <a class="external text" href="https://wiki.audacityteam.org/wiki/Changing_the_current_language#list" rel="nofollow">supported language</a>.</p></div> 
+<p><br/>
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Instructions">Instructions</span></h2><!--}-->
+<div class="note">Eventually we hope to provide a customized language file with reduced menus ourself. Meantime, you can follow the below instructions to create your own file. If you need help following these instructions, please ask on the <a class="external text" href="https://forum.audacityteam.org" rel="nofollow">Audacity Forum</a>. </div>
+<!--
+\begin{enumerate}--><ol><!--
+\item --><li> Obtain <a class="external text" href="https://sourceforge.net/projects/poedit/" rel="nofollow">Poedit</a>. </li>
+<!--
+\item --><li> Obtain the current version of Audacity  from <a class="external free" href="http://audacityteam.org/download/" rel="nofollow">http://audacityteam.org/download/</a>.</li>
+<!--
+\item --><li> Obtain the translations file for your language from <a class="external free" href="https://github.com/audacity/audacity/tree/master/locale" rel="nofollow">https://github.com/audacity/audacity/tree/master/locale</a>.
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> For English language, right-click over "audacity.pot" and save the link or target to your computer.</li>
+<!--
+\item --><li> For languages other than English, right-click over the ".po" file for your language and save the link or target to your computer. You can check the two digit code that corresponds to your language <!--latex 
+\hyperref[\foo{languages:list}]{--><a href="languages.html#list" title="Languages">here</a><!--latex }
+-->.</li></ul><!--
+\end{itemize}
+--></li>
+<!--
+\item --><li> Load the .po or .pot file into Poedit.</li>
+<!--
+\item --><li> Add a "<!--\textbf{--><b>!</b><!--}-->" (exclamation mark) to left of the translation of each menu item you want to hide. The .pot file will not have translations, so just add a "<!--\textbf{--><b>!</b><!--}-->" in the empty translation box. <div class="advice"><!--\textbf{--><b>View &gt; Simplified View:</b><!--}--> <!--
+\begin{itemize}--><ul><!--
+\item --><li>You can provide a <!--\textit{--><i>View &gt; Simplified View</i><!--}--> checkbox menu item to turn your simplified language on or off. To do this, ADD "Simplified View" (without the "!") in the empty translation box in the .pot file, or REMOVE the "<!--\textbf{--><b>!</b><!--}-->" from the translation of "!Simplified View" in the .po file.</li><!--
+\item --><li>If you provide View &gt; Simplified View and use the .pot file you should translate the items you want to remove and place "!" in front of them. Otherwise when you uncheck Simplified View there will be empty menu items.</li></ul><!--
+\end{itemize}
+--></div>  </li>
+<!--
+\item --><li> Click <span class="menu">File &gt; Save as...</span>, type "Audacity" (without quotes) in the file name box and save. Poedit may warn you that some strings are not translated, or that some settings have not been specified, but that is not a problem.  Poedit will save "Audacity.po" and "Audacity.mo" (or "audacity.po" and "audacity.mo" with lower case "a" on Mac and Linux). All you need is the "Audacity.mo" or "audacity.mo" file.  </li>
+<!--
+\item --><li> Open the location to install your new "Audacity.mo" file.
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> On <!--\textbf{--><b>Windows</b><!--}-->, open the "Languages" directory inside the Audacity installation directory.</li>
+<!--
+\item --><li> On <!--\textbf{--><b>Mac</b><!--}-->, right-click or control-click over Audacity.app &gt; Show Package Contents then open the "Contents" directory then the "Resources" directory. </li>
+<!--
+\item --><li> On <!--\textbf{--><b>GNU/Linux</b><!--}-->, open the "locale" directory in usr/share/ (for Audacity packaged builds) or in usr/local/share (if you built Audacity yourself).</li></ul><!--
+\end{itemize}
+--></li>
+<!--
+\item --><li> In the directory opened in Step 7 above
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> For <!--\textbf{--><b>English language</b><!--}-->, on Windows and Mac, create a folder called "<!--\textbf{--><b>en-simple</b><!--}-->" (without quotes) and paste your saved "Audacity.mo" or "audacity.mo" file inside that. On Linux, create a folder "<!--\textbf{--><b>en-simple</b><!--}-->", create a folder "<!--\textbf{--><b>LC_MESSAGES</b><!--}-->" inside that, then paste your "audacity.mo" file inside the "LC_MESSAGES" folder.   </li>
+<!--
+\item --><li> For <!--\textbf{--><b>languages other than English</b><!--}-->, open the directory for your language (for example, "fr" for French) and paste in the "Audacity.mo" file you saved so that it replaces the previous "Audacity.mo". </li></ul><!--
+\end{itemize}
+--></li>
+<!--
+\item --><li> Restart Audacity and select your modified non-English language in <!--latex 
+\hyperref[\foo{interface:preferences:}]{--><a href="interface_preferences.html" title="Interface Preferences">Interface Preferences</a><!--latex }
+--> (if it is not already displaying). To display the simplified English language, choose "Simplified".</li></ol><!--
+\end{enumerate}
+-->
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">Not all menu and other items can be hidden yet. For example, the Mute/Solo buttons, shipped Nyquist and LADSPA plug-ins and Preferences items cannot be hidden.
+</td></tr></tbody></table>
+</div>
+
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

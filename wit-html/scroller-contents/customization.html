@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Customization - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Customization rootpage-Customization skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Customization</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{customization:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+
+
+
+</p>
+<div class="intro">Audacity can be customized in a number of ways including adding to and changing the provided keyboard shortcuts and loading additional plug-ins</div>
+<div id="keyboard"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Customizable_Keyboard_Shortcuts">Customizable Keyboard Shortcuts</span></h2><!--}--><!--latex 
+\label{customization:keyboard}-->
+<p>You can use <!--latex 
+\hyperref[\foo{keyboard:shortcut:reference:}]{--><a href="keyboard_shortcut_reference.html" title="Keyboard Shortcut Reference">keyboard combinations</a><!--latex }
+--> to perform many actions in Audacity; for example pressing <span class="kbrd" style="background-color: #e0e0f0">Ctrl + 1</span> on the keyboard zooms in a step. The combinations associated with different commands can be changed or added to on the <!--latex 
+\hyperref[\foo{keyboard:preferences:}]{--><a href="keyboard_preferences.html" title="Keyboard Preferences">Keyboard Preferences</a><!--latex }
+--> tab.  
+</p><p>Mouse clicks and movements can also be used to perform some actions. The <!--latex 
+\hyperref[\foo{mouse:preferences:}]{--><a href="mouse_preferences.html" title="Mouse Preferences">Mouse Preferences</a><!--latex }
+--> tab lists the mouse gestures which are available but these cannot be changed at the moment.
+</p>
+<div id="plug-ins"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Plug-ins">Plug-ins</span></h2><!--}--><!--latex 
+\label{customization:plug-ins}-->
+<p>You can download and install plug-ins to add extra functionality to Audacity. Plug-ins can give you extra effects, or more audio generation and analysis capability. 
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>Nyquist:</b><!--}--> A number of <a class="external text" href="https://wiki.audacityteam.org/wiki/Nyquist_Plug-ins" rel="nofollow">Nyquist</a> plug-ins are already included with Audacity. Nyquist is a dialect of LISP specially developed for audio processing. It can generate or process sound effects, or analyze audio content.
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><a class="external text" href="https://wiki.audacityteam.org/wiki/Download_Nyquist_Plug-ins#list" rel="nofollow">List of additional Nyquist plug-ins available for download</a></li>
+<!--
+\item --><li><a class="external text" href="https://wiki.audacityteam.org/wiki/Download_Nyquist_Plug-ins#download" rel="nofollow">Download and installation instructions for Nyquist plug-ins</a></li></ul><!--
+\end{itemize}
+--></li></ul><!--
+\end{itemize}
+-->
+<div class="note">
+<p>Nyquist plug-ins are text files, so it is relatively easy to modify them or even <a class="external text" href="https://wiki.audacityteam.org/wiki/Nyquist_Plug-ins_Reference" rel="nofollow">create your own Nyquist plug-ins</a> in any text editor.
+</p>
+</div>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>Other plug-in formats:</b><!--}--> Other plug-in formats can be added:
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <a class="external text" href="https://wiki.audacityteam.org/wiki/Ladspa_Plug-ins" rel="nofollow">LADSPA</a> effects</li>
+<!--
+\item --><li> <!--latex 
+\hyperref[\foo{effect:menu:LV2:effects}]{--><a href="effect_menu.html#LV2_effects" title="Effect Menu">LV2</a><!--latex }
+--> effects</li>
+<!--
+\item --><li> <a class="external text" href="https://wiki.audacityteam.org/wiki/Vamp_Plug-ins" rel="nofollow">VAMP</a> analysis plug-ins </li>
+<!--
+\item --><li> <a class="external text" href="https://wiki.audacityteam.org/wiki/VST_Plug-ins" rel="nofollow">VST</a> effects</li>
+<!--
+\item --><li> <a class="external text" href="https://wiki.audacityteam.org/wiki/Audio_Units" rel="nofollow">Audio Unit</a> effects (for Mac OS X amd macOS).</li>
+<!--
+\item --><li> <!--latex 
+\hyperref[\foo{modules:preferences:}]{--><a href="modules_preferences.html" title="Modules Preferences">Module Plug-ins</a><!--latex }
+--> (advanced - usually requires compiling Audacity).</li></ul><!--
+\end{itemize}
+--></li></ul><!--
+\end{itemize}
+-->
+<div class="note">Instructions for installing plug-ins can be found at:
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--latex 
+\hyperref[\foo{installing:effect:generator:and:analyzer:plug:ins:on:windows:}]{--><a href="installing_effect_generator_and_analyzer_plug_ins_on_windows.html" title="Installing Effect, Generator and Analyzer plug-ins on Windows">Installing Effect, Generator and Analyzer plug-ins on Windows</a><!--latex }
+--></li>
+<!--
+\item --><li> <!--latex 
+\hyperref[\foo{installing:effect:generator:and:analyzer:plug:ins:on:mac:os:x:}]{--><a href="installing_effect_generator_and_analyzer_plug_ins_on_mac_os_x.html" title="Installing Effect, Generator and Analyzer plug-ins on MAC OS X">Installing Effect, Generator and Analyzer plug-ins on Mac OS X/macOS</a><!--latex }
+--></li>
+<!--
+\item --><li> <!--latex 
+\hyperref[\foo{installing:effect:generator:and:analyzer:plug:ins:on:linux:}]{--><a href="installing_effect_generator_and_analyzer_plug_ins_on_linux.html" title="Installing Effect, Generator and Analyzer plug-ins on Linux">Installing Effect, Generator and Analyzer plug-ins on Linux</a><!--latex }
+--></li></ul><!--
+\end{itemize}
+-->
+</div>
+<div id="ultimate"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Ultimate_Customization">Ultimate Customization</span></h2><!--}--><!--latex 
+\label{customization:ultimate}-->
+<p>Anyone can download our <a class="external text" href="https://web.audacityteam.org/community/developers#git" rel="nofollow">source code</a>. Changing the code and recompiling Audacity allows you to change any aspect of its behavior or turn on experimental or optional features. 
+</p><p>See our guides to compiling Audacity for <a class="external text" href="https://wiki.audacityteam.org/wiki/Developing_On_Windows" rel="nofollow">Windows</a>, <a class="external text" href="https://wiki.audacityteam.org/wiki/Developing_On_Mac" rel="nofollow">Mac</a> and <a class="external text" href="https://wiki.audacityteam.org/wiki/Developing_On_Linux" rel="nofollow">GNU/Linux</a> on the <a class="external text" href="https://wiki.audacityteam.org" rel="nofollow">Audacity Wiki</a>. If you need help compiling, please ask on the <a class="external text" href="https://forum.audacityteam.org/viewforum.php?f=19" rel="nofollow">Compiling Audacity</a> board on our <a class="external text" href="https://forum.audacityteam.org" rel="nofollow">Audacity Forum</a>. 
+</p><p>If you are interested in working with the Audacity codebase please consider <!--latex 
+\hyperref[\foo{information:for:developers:}]{--><a href="information_for_developers.html" title="Information for Developers">joining our Developer Community</a><!--latex }
+-->. Your code changes can then potentially be incorporated into Audacity for the benefit of all users.
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

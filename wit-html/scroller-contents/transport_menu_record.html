@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Transport Menu: Record - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Transport_Menu_Record rootpage-Transport_Menu_Record skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Transport Menu: Record</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{transport:menu:record:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p><br/>
+</p>
+<div class="intro">These commands control recording in Audacity.  You can <!--\textbf{--><b>Start</b><!--}-->, <!--\textbf{--><b>Stop</b><!--}--> or <!--\textbf{--><b>Pause</b><!--}--> recording in your project. <p>You can either start  a recording on your existing track or an a new track.</p><p>There is also a Timer Record function to enable you to make unattended timed recordings.</p></div>
+<dl><dd><!--\textit{--><i>Click, or hover, on any menu item in the image to read about that command.  &nbsp;<span style="font-size:0.8em"><!--latex 
+\hyperref[\foo{transport:menu:record::skiptheimage}]{--><a href="#skiptheimage">Skip the image</a><!--latex }
+--></span></i><!--}--></dd>
+<dd><div class="noresize"><map name="ImageMap_1_1682205383"><area alt="View Menu" coords="0,3,26,19" href="view_menu.html" shape="rect" title="View Menu"/><area alt="Transport Menu" coords="33,3,89,19" href="transport_menu.html" shape="rect" title="Transport Menu"/><area alt="Tracks Menu" coords="96,3,136,19" href="tracks_menu.html" shape="rect" title="Tracks Menu"/><area alt="Generate Menu" coords="143,3,197,19" href="generate_menu.html" shape="rect" title="Generate Menu"/><area alt="Effect Menu" coords="204,3,237,19" href="effect_menu.html" shape="rect" title="Effect Menu"/><area alt="Analyze Menu" coords="244,3,288,19" href="analyze_menu.html" shape="rect" title="Analyze Menu"/><area alt="Help Menu" coords="295,3,324,19" href="help_menu.html" shape="rect" title="Help Menu"/><area alt="Ext-Bar Menu" coords="331,3,373,19" href="ext_bar_menu.html" shape="rect" title="Ext-Bar Menu"/><area alt="Ext-Command Menu" coords="380,3,462,19" href="ext_command_menu.html" shape="rect" title="Ext-Command Menu"/><area alt="Menu Bar" coords="0,0,600,22" href="menu_reference.html" shape="rect" title="Menu Bar"/><area alt="These commands control playback in Audacity" coords="39,23,208,45" href="transport_menu_play.html" shape="rect" title="These commands control playback in Audacity"/><area alt="These commands control recording in Audacity" coords="39,45,208,67" href="#" shape="rect" title="These commands control recording in Audacity"/><area alt="Scrubbing is the action of moving the mouse pointer right or left so as to adjust the position, speed or direction of playback, listening to the audio at the same time - a convenient way to quickly navigate the waveform to find a particular event of interest" coords="39,67,208,89" href="transport_menu_scrubbing.html" shape="rect" title="Scrubbing is the action of moving the mouse pointer right or left so as to adjust the position, speed or direction of playback, listening to the audio at the same time - a convenient way to quickly navigate the waveform to find a particular event of interest"/><area alt="These commands let you move the cursor to the start or end of the selection, track or any adjacent Clip that you may have" coords="39,89,208,111" href="transport_menu_cursor_to.html" shape="rect" title="These commands let you move the cursor to the start or end of the selection, track or any adjacent Clip that you may have"/><area alt="These commands enable you to lock a play region and unlock it" coords="39,118,208,140" href="transport_menu_play_region.html" shape="rect" title="These commands enable you to lock a play region and unlock it"/><area alt="Rescan for audio devices connected to your computer, and update the playback and recording dropdown menus in Device Toolbar" coords="39,147,208,169" href="transport_menu.html#rescan_audio_devices" shape="rect" title="Rescan for audio devices connected to your computer, and update the playback and recording dropdown menus in Device Toolbar"/><area alt="This submenu lets you manage and set various options for transport (playing and recording) in Audacity" coords="39,169,208,191" href="transport_menu_transport_options.html" shape="rect" title="This submenu lets you manage and set various options for transport (playing and recording) in Audacity"/><area alt="Starts recording at the end of the currently selected track(s)" coords="220,48,409,70" href="#record" shape="rect" title="Starts recording at the end of the currently selected track(s)"/><area alt="Recording begins on a new track at either the current cursor location or at the beginning of the current selection" coords="220,70,409,92" href="#record_new_track" shape="rect" title="Recording begins on a new track at either the current cursor location or at the beginning of the current selection"/><area alt="Brings up the Timer Record dialog" coords="220,92,409,114" href="timer_record.html" shape="rect" title="Brings up the Timer Record dialog"/><area alt="Temporarily pauses playing or recording without losing your place" coords="220,114,409,136" href="#pause" shape="rect" title="Temporarily pauses playing or recording without losing your place"/></map><!--
+
+\par\Needspace{129.5pt}\begin{picture}(211.0,99.5)
+--><!--   \put(0,0){\includegraphics[scale=0.5]{--><img alt="Transport-RecordMenu.png" height="199" src="../m/images/2/2f/transport_recordmenu.png" usemap="#ImageMap_1_1682205383" width="422"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/2/2f/transport_recordmenu.png--></img><!--}}
+--><!--   \put(0.0,90.0){\hyperref[\foo{view:menu:}]{\makebox(13.0,8.0){}}}
+   \put(16.5,90.0){\hyperref[\foo{transport:menu:}]{\makebox(28.0,8.0){}}}
+   \put(48.0,90.0){\hyperref[\foo{tracks:menu:}]{\makebox(20.0,8.0){}}}
+   \put(71.5,90.0){\hyperref[\foo{generate:menu:}]{\makebox(27.0,8.0){}}}
+   \put(102.0,90.0){\hyperref[\foo{effect:menu:}]{\makebox(16.5,8.0){}}}
+   \put(122.0,90.0){\hyperref[\foo{analyze:menu:}]{\makebox(22.0,8.0){}}}
+   \put(147.5,90.0){\hyperref[\foo{help:menu:}]{\makebox(14.5,8.0){}}}
+   \put(165.5,90.0){\hyperref[\foo{ext:bar:menu:}]{\makebox(21.0,8.0){}}}
+   \put(190.0,90.0){\hyperref[\foo{ext:command:menu:}]{\makebox(41.0,8.0){}}}
+   \put(19.5,77.0){\hyperref[\foo{transport:menu:play:}]{\makebox(84.5,11.0){}}}
+   \put(19.5,66.0){\hyperref[\foo{transport:menu:record::}]{\makebox(84.5,11.0){}}}
+   \put(19.5,55.0){\hyperref[\foo{transport:menu:scrubbing:}]{\makebox(84.5,11.0){}}}
+   \put(19.5,44.0){\hyperref[\foo{transport:menu:cursor:to:}]{\makebox(84.5,11.0){}}}
+   \put(19.5,29.5){\hyperref[\foo{transport:menu:play:region:}]{\makebox(84.5,11.0){}}}
+   \put(19.5,15.0){\hyperref[\foo{transport:menu:rescan:audio:devices}]{\makebox(84.5,11.0){}}}
+   \put(19.5,4.0){\hyperref[\foo{transport:menu:transport:options:}]{\makebox(84.5,11.0){}}}
+   \put(110.0,64.5){\hyperref[\foo{transport:menu:record::record}]{\makebox(94.5,11.0){}}}
+   \put(110.0,53.5){\hyperref[\foo{transport:menu:record::record:new:track}]{\makebox(94.5,11.0){}}}
+   \put(110.0,42.5){\hyperref[\foo{timer:record:}]{\makebox(94.5,11.0){}}}
+   \put(110.0,31.5){\hyperref[\foo{transport:menu:record::pause}]{\makebox(94.5,11.0){}}}
+\end{picture}
+
+--></div></dd></dl>
+<div id="skiptheimage"></div>
+<div id="record"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Record_.C2.A0R">Record &nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">R</span></font></span></h2><!--}--><!--latex 
+\label{transport:menu:record:record}--><!--latex 
+\label{transport:menu:record:skiptheimage}-->
+<p>Clicking <!--\textbf{--><b>Record</b><!--}-->  or using the <span class="kbrd" style="background-color: #e0e0f0">R</span> shortcut always begins recording at the end of the currently selected track(s). 
+</p>
+<div id="record_new_track"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Record_New_Track_.C2.A0Shift_.2B_R">Record New Track &nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">Shift + R</span></font></span></h2><!--}--><!--latex 
+\label{transport:menu:record:record:new:track}-->
+<p>This will cause Audacity to create a new track and begin recording on that track from the current cursor position (or from the left edge of a region on the Timeline). 
+Starts recording at the end of the currently <!--latex 
+\hyperref[\foo{audacity:selection:}]{--><a href="audacity_selection.html" title="Audacity Selection">selected</a><!--latex }
+--> track(s). Append Record can also be started by holding <span class="kbrd" style="background-color: #e0e0f0">Shift</span> while clicking the Record button in <!--latex 
+\hyperref[\foo{transport:toolbar:}]{--><a href="transport_toolbar.html" title="Transport Toolbar">Transport Toolbar</a><!--latex }
+-->.  When you hold down the <span class="kbrd" style="background-color: #e0e0f0">Shift</span> key the Record button will change to the Record New Track <!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="The Record New Track button" height="15" src="../m/images/7/72/record_new_track.png" title="The Record New Track button" width="15"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/7/72/record_new_track.png--></img><!--}}{}-->  button.
+</p><p><br/>
+</p>
+<div id="timer_record"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Timer_Record..._.C2.A0Shift_.2B_T">Timer Record... &nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">Shift + T</span></font></span></h2><!--}--><!--latex 
+\label{transport:menu:record:timer:record}-->
+<dl><dd><a href="timer_record.html" title="The Timer Record dialog, click for details of usage."><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="The Timer Record dialog, click for details of usage." height="373" src="../m/images/8/8a/timer_record_w10_setup_dialog_with_save_and_export.png" width="530"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/8/8a/timer_record_w10_setup_dialog_with_save_and_export.png--></img><!--}\par
+--></a></dd></dl>
+<p>Brings up the Timer Record setup dialog for scheduling when a recording ends and optionally, when it begins. Pressing "OK" starts the process of recording, or waiting for the recording to start.
+</p><p>For full details of the timer recording function please see the <!--latex 
+\hyperref[\foo{timer:record:}]{--><a href="timer_record.html" title="Timer Record">Timer Record</a><!--latex }
+--> page.
+</p>
+<div id="pause"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Pause_.C2.A0P">Pause &nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">P</span></font></span></h2><!--}--><!--latex 
+\label{transport:menu:record:pause}-->
+<p>Temporarily pauses playing or recording without losing your place. Same as clicking the Pause button <!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Pause button" height="16" src="../m/images/4/47/pause.png" title="Pause button" width="16"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/4/47/pause.png--></img><!--}}{}--> in <!--latex 
+\hyperref[\foo{transport:toolbar:}]{--><a href="transport_toolbar.html" title="Transport Toolbar">Transport Toolbar</a><!--latex }
+-->.
+</p><p><br/>
+</p><p><br/>
+<!--latex 
+\hyperref[\foo{transport:menu:}]{--><a href="transport_menu.html" title="Transport Menu"><!--\textbf{--><b>&lt;</b><!--}-->&nbsp; Back to: Transport Menu</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

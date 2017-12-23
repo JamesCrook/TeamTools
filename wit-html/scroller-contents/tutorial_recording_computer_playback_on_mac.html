@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Tutorial - Recording Computer Playback on Mac - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Tutorial_-_Recording_Computer_Playback_on_Mac rootpage-Tutorial_-_Recording_Computer_Playback_on_Mac skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Tutorial - Recording Computer Playback on Mac</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{tutorial:recording:computer:playback:on:mac:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en">
+<p>
+</p><p><br/>
+</p>
+<div class="intro">Mac computers have no built-in ability to record streaming audio playing on a sound device. You can use <!--latex 
+\hyperref[\foo{tutorial:recording:computer:playback:on:mac::soundflower}]{--><a href="#soundflower">Soundflower</a><!--latex }
+--> to record computer playback directly into Audacity or can do so by using a connecting a <!--latex 
+\hyperref[\foo{tutorial:recording:computer:playback:on:mac::loopback}]{--><a href="#loopback">loopback cable</a><!--latex }
+--> from audio out to the separate audio input available on some Macs. <p>Alternatively there are <!--latex 
+\hyperref[\foo{tutorial:recording:computer:playback:on:mac::commercial}]{--><a href="#commercial">commercial</a><!--latex }
+--> applications which can record computer playback to a file that is importable into Audacity, or that like Soundflower can provide an additional audio device from which Audacity can record computer playback.</p></div>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top"><!--\textit{--><i><!--\textbf{--><b>Copyright or website restrictions may prevent you recording or distributing material. Check first.</b><!--}--></i><!--}-->
+</td></tr></tbody></table>
+</div>
+
+<div id="soundflower"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Soundflower">Soundflower</span></h2><!--}--><!--latex 
+\label{tutorial:recording:computer:playback:on:mac:soundflower}-->
+<p>Soundflower is a free open source system add-on for Mac computers that allows you to route what is playing on the computer digitally back to the input without using a cable. Set Soundflower as your system <!--\textbf{--><b>output</b><!--}--> device, then in Audacity, set Soundflower as your <!--\textbf{--><b>recording</b><!--}--> device. 
+</p>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Download_Soundflower">Download Soundflower</span></h3><!--}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>OS X 10.9 (Mavericks) and later including macOS:</b><!--}--> <a class="external text" href="https://github.com/mattingalls/Soundflower/releases/download/2.0b2/Soundflower-2.0b2.dmg" rel="nofollow">Soundflower-2.0b2.dmg</a> from <a class="external free" href="https://github.com/mattingalls/Soundflower/releases/" rel="nofollow">https://github.com/mattingalls/Soundflower/releases/</a>.  </li>
+<!--
+\item --><li><!--\textbf{--><b>OS X 10.6 to 10.8 (Snow Leopard/Lion/Mountain Lion):</b><!--}-->  <a class="external text" href="https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/soundflower/Soundflower-1.6.6b.dmg" rel="nofollow">Soundflower-1.6.6b.dmg</a> from <a class="external free" href="https://code.google.com/p/soundflower/downloads/list" rel="nofollow">https://code.google.com/p/soundflower/downloads/list</a> (if you are running NoScript you must disable it on that page).</li></ul><!--
+\end{itemize}
+-->
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Obtaining_Soundflowerbed_if_you_install_Soundflower_2.0b2">Obtaining Soundflowerbed if you install Soundflower 2.0b2</span></h3><!--}-->
+<p><!--\textbf{--><b>Important:</b><!--}--> The 2.0b2 version is the only version that will work on El Capitan and later.  It can also be used on Mavericks or Yosemite but it lacks the "Soundflowerbed" application that lets you hear audio on your computer while Soundflower is set as the system output device. Fortunately Soundflowerbed from Soundflower 1.6.6b can be used on its own with Soundflower 2.0b2. 
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>If you already have Soundflower 1.6.x:</b><!--}-->
+<!--
+\begin{enumerate}--><ol><!--
+\item --><li> Copy Soundflowerbed.app from the /Applications/Soundflower/ folder to your Desktop or somewhere else. </li>
+<!--
+\item --><li> In the same "Soundflower" folder, double-click "Uninstall Soundflower.scpt" to uninstall Soundflower 1.6.x. In the window that opens, press the "Run" button. You should see "Done!" in the results, indicating that the uninstallation completed satisfactorily.</li>
+<!--
+\item --><li> <!--\textbf{--><b>Reboot the computer</b><!--}--> then run the "Soundflower-2.0b2.dmg" installer as above.</li></ol><!--
+\end{enumerate}
+--></li>
+<!--
+\item --><li> <!--\textbf{--><b>If you do not have Soundflowerbed.app:</b><!--}--> the easiest solution is to download it by clicking this link <a class="external free" href="https://forum.audacityteam.org/download/file.php?id=14089" rel="nofollow">https://forum.audacityteam.org/download/file.php?id=14089</a>. Unzip the "Soundflowerbed.app" from the download, then place it anywhere that is convenient.</li></ul><!--
+\end{itemize}
+-->
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Install_your_chosen_Soundflower_version">Install your chosen Soundflower version</span></h3><!--}-->
+<!--
+\begin{enumerate}--><ol>
+<!--
+\item --><li>To install the downloaded DMG file, double-click it to mount it. In the DMG itself, double-click the PKG file.
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">If you see a warning on OS X 10.7.5 or later that Soundflower cannot be opened due to your Security Preferences, right-click or control-click over the PKG file and choose "Open", then choose "Open" again.
+</td></tr></tbody></table>
+</div>
+</li><!--
+\item --><li> After opening the PKG file, you may see a warning that the certificate for the installer has expired. Press "Show Certificate" to review the certificate then choose "Continue". 
+</li><!--
+\item --><li>Then run through the standard installer steps. If you obtained the 1.6.x installer, save your work in other applications, then press the button in the installer to restart your Mac. The 2.x.x installer does not require restarting the computer.  
+</li><!--
+\item --><li> Choose <span class="menu">Apple Menu &gt; System Preferences</span> and select the <!--\textbf{--><b>Sound</b><!--}--> preferences panel.
+</li><!--
+\item --><li> In the Sound preferences panel, choose the Output tab, then select "Soundflower (2ch)" from the "Select a device for sound output:" list and turn the Output volume up.
+<dl><dd><span title="Mac OS X Sound Preferences Output tab with Soundflower (2ch) selected"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="MacSoundPrefsSoundflower.png" height="487" src="../m/images/3/35/macsoundprefssoundflower.png" width="668"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/3/35/macsoundprefssoundflower.png--></img><!--}\par
+--></span></dd></dl>
+</li><!--
+\item --><li> In the same panel, choose the Input tab, select "Soundflower (2ch)" and and turn the Input volume up.  
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> At this point you will no longer be able to hear what is playing on the computer. The sound output of the computer is being sent to Soundflower.</li></ul><!--
+\end{itemize}
+-->
+</li><!--
+\item --><li> Click on the "Sound Effects" tab, and from the "Play sound effects through" dropdown menu choose "Line Out", "Headphones" or "Internal Speakers" (whichever is appropriate for your system).
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> This will route <!--\textbf{--><b>some</b><!--}--> system alert sounds (such as Mail alert sounds) to the Line Out or Internal Speakers and not to Soundflower. Thus these sounds will not be recorded by Audacity.<p>Some Macintosh applications are better behaved than others when it comes to alert sounds. Tests on a recent iMac running 10.7.2 show that Mail and TextEdit alert sounds will not be recorded with the above setup, but iCal and Yahoo Messenger alert sounds <!--\textbf{--><b>will</b><!--}--> be recorded. To be safe you should disable the sound on any iCal alerts that may occur while you are recording, and quit any other application that may make an alert sound.</p></li></ul><!--
+\end{itemize}
+-->
+</li><!--
+\item --><li> Close the System Preferences window.
+</li><!--
+\item --><li> Start Audacity.
+</li><!--
+\item --><li> In Audacity's <!--latex 
+\hyperref[\foo{device:toolbar:}]{--><a href="device_toolbar.html" title="Device Toolbar">Device Toolbar</a><!--latex }
+-->, select <span class="button">Built-in Output &nbsp;<a class="image" href="http://alphamanual.audacityteam.org/man/File:MenuDownArrow.png"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="MenuDownArrow.png" height="6" src="../m/images/e/ed/menudownarrow.png" style="vertical-align: middle" width="9"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/e/ed/menudownarrow.png--></img><!--}}{}--></a></span> or similar as Playback Device and <span class="button">Soundflower (2ch) &nbsp;<a class="image" href="http://alphamanual.audacityteam.org/man/File:MenuDownArrow.png"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="MenuDownArrow.png" height="6" src="../m/images/e/ed/menudownarrow.png" style="vertical-align: middle" width="9"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/e/ed/menudownarrow.png--></img><!--}}{}--></a></span> as Recording Device.<br/>
+<dl><dd><span title="Audacity Device Toolbar with Soundflower (2ch) as Recording Device"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="DeviceToolbarMac02.png" height="29" src="../m/images/f/f9/devicetoolbarmac02.png" width="790"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/f/f9/devicetoolbarmac02.png--></img><!--}\par
+--></span></dd></dl>
+</li><!--
+\item --><li> Click on the <span class="menu">Transport</span> menu and make sure that "Software Playthrough" is checked. 
+</li><!--
+\item --><li> Go to the application that will be playing the sound you want to record. For example, start Safari and go to a website that plays sound clips. Start some audio playing. 
+</li><!--
+\item --><li> Click on the recording level meters (beside the microphone symbol) to begin monitoring:
+<dl><dd><span title="Recording Meter Toolbar in use, default size"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Recording Toolbar in use.png" height="33" src="../m/images/7/7a/recording_toolbar_in_use.png" width="473"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/7/7a/recording_toolbar_in_use.png--></img><!--}\par
+--></span></dd>
+<dd><!--\textbf{--><b>You should now be able to hear the sound playing on your computer.</b><!--}--></dd></dl>
+</li><!--
+\item --><li>Now click Record to record anything playing on your computer.</li></ol><!--
+\end{enumerate}
+-->
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="To_set_things_back_to_.22normal.22_so_you_can_hear_audio_playing_on_your_computer_without_running_Audacity">To set things back to "normal" so you can hear audio playing on your computer without running Audacity</span></h3><!--}-->
+<p>1) Click on <span class="menu">Apple Menu &gt; System Preferences</span> then the Sound panel, and select the Output tab. Select "Line Out", "Internal Speakers" or "Headphones" in the output device list. See step 3 above for an illustration.
+</p><p>2) In Audacity, if you want to record from a different source (such as the Line Input or an external USB device), click on <span class="menu">Audacity &gt; Preferences</span> then the Devices section and select the input you want to record from in the Recording section. See step 7 above for an illustration.
+</p>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="For_help_if_you.27re_stuck">For help if you're stuck</span></h3><!--}-->
+<p>Visit the <a class="external text" href="https://forum.audacityteam.org/viewforum.php?f=47" rel="nofollow">Mac 2.0.x forum</a>, click the "New Topic" button and ask your question.
+</p>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="To_hear_what_is_playing_on_the_computer_while_using_Soundflower">To hear what is playing on the computer while using Soundflower</span></h3><!--}-->
+<p>When you install Soundflower 1.6.x, a new folder will be installed in your Applications folder called "Soundflower". Inside that folder is an app called "Soundflowerbed". Launch Soundflowerbed and it will install a "flower" menu at right of your menu bar.
+</p>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">If you see a warning on OS X 10.7.5 or later that Soundflowerbed cannot be opened due to your Security Preferences, right-click or control-click over the app and choose "Open", then choose "Open" again.
+</td></tr></tbody></table>
+</div>
+<dl><dd><span title="The Soundflowerbed menu, showing monitoring Line Output"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="SoundflowerbedMenu.png" height="297" src="../m/images/1/14/soundflowerbedmenu.png" width="247"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/1/14/soundflowerbedmenu.png--></img><!--}\par
+--></span></dd></dl>
+<p>The choices below the "Soundflower (2ch)" and "Soundflower (16ch)" menu items determine how the output of Soundflower will be monitored. "None (OFF)" means that you will not hear anything from your computer speakers. Selecting "Built-in Audio" will allow you to hear (monitor) the sound that is passing through Soundflower.
+</p><p>If you are using Soundflowerbed to monitor the sound, you will want to uncheck "Software Playthrough" in Audacity's Transport menu.
+</p><p>The original Soundflowerbed could not restart itself if the system was put to sleep then resumed. You can download a <a class="external text" href="http://cycling74.com/forums/topic/modified-soundflowerbedimprove-stability-volume-control/" rel="nofollow">modified version</a> that solves that problem and adds a volume control to Soundflowerbed.
+</p>
+<div id="loopback"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Use_a_loopback_cable">Use a loopback cable</span></h2><!--}--><!--latex 
+\label{tutorial:recording:computer:playback:on:mac:loopback}-->
+<p>This is a simple and effective method of recording what is playing on the computer. It has the disadvantage that the audio signal is converted from digital to analog, then from analog to digital, instead of staying in the digital domain. This may result in some slight increase in noise and distortion.
+</p>
+<!--
+\begin{enumerate}--><ol><!--
+\item --><li> Using a cable with a stereo mini-plug (1/8") at each end, connect the headphone output port to the line input port.
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> At this point you will no longer be able to hear what is playing on the computer. As a workaround, you could attach a single to double stereo connector to the output port provide an extra jack for speakers or headphones.</li></ul><!--
+\end{itemize}
+-->
+</li><!--
+\item --><li> Choose <span class="menu">Apple Menu &gt; System Preferences</span> and select the Sound preferences panel.
+</li><!--
+\item --><li> In the Sound preferences panel:
+<!--
+\begin{enumerate}--><ol><!--
+\item --><li> Click on the Output tab, then select "Line Out" from the "Choose a device for sound output" list.
+</li><!--
+\item --><li> Click on the Input tab, then select "Line Input" from the "Choose a device for sound input" list.
+</li><!--
+\item --><li> Leaving the Sound preferences panel open, start sound audio playing on the computer (this could be from iTunes, or streaming audio, or some other source).
+</li><!--
+\item --><li> Adjust the Input volume slider so that the top 3 bars of the Input level meter do not light up on the loudest passages, but the rest of the bars do light up.
+</li><!--
+\item --><li> Close the System Preferences window.</li></ol><!--
+\end{enumerate}
+-->
+</li><!--
+\item --><li> In Audacity's Device Toolbar select <span class="button">Built-in Input &nbsp;<a class="image" href="http://alphamanual.audacityteam.org/man/File:MenuDownArrow.png"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="MenuDownArrow.png" height="6" src="../m/images/e/ed/menudownarrow.png" style="vertical-align: middle" width="9"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/e/ed/menudownarrow.png--></img><!--}}{}--></a></span> or similar as Recording Device. Note you need to choose a line-in for this, not a four-position port meant only for connecting a headset.<br/>
+<dl><dd><span title="Audacity Device Toolbar with Built-in Input as chosen Recording Device"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="DeviceToolbarMac01.png" height="29" src="../m/images/7/78/devicetoolbarmac01.png" width="789"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/7/78/devicetoolbarmac01.png--></img><!--}\par
+--></span></dd></dl>
+</li><!--
+\item --><li> Click on the Transport menu and make sure that "Software Playthrough" is <!--\textbf{--><b>not</b><!--}--> checked.
+</li></ol><!--
+\end{enumerate}
+-->
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">
+<p>All system alert sounds such as email and application alerts will be recorded using this method. If you have iCal alerts or have turned on event sounds in Mail, you may want to turn them off. You should also quit any application that may make an alert sound while you are recording.
+</p>
+</td></tr></tbody></table>
+</div>
+<div id="commercial"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Commercial_applications">Commercial applications</span></h2><!--}--><!--latex 
+\label{tutorial:recording:computer:playback:on:mac:commercial}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <a class="external text" href="https://www.rogueamoeba.com/audiohijack/" rel="nofollow"><!--\textbf{--><b>Audio Hijack</b><!--}--></a> sold by Rogue Amoeba. It can "hijack" the sound output of any application and record that audio to disk in a number of formats. It requires OS X 10.9 or higher. For OS X 10.6 through 10.8, use Audio Hijack Pro 2 from <a class="external free" href="https://rogueamoeba.com/legacy/#outdatedversions" rel="nofollow">https://rogueamoeba.com/legacy/#outdatedversions</a>. <p> Once you have captured the audio with Audio Hijack you can <!--latex 
+\hyperref[\foo{importing:audio:}]{--><a href="importing_audio.html" title="Importing Audio">import</a><!--latex }
+--> the file into Audacity for editing. Audio Hijack records the sound output of a particular application so there is no danger of recording system alert sounds.</p><p>If you need help editing the audio captured by Audio Hijack, have a look at our <!--latex 
+\hyperref[\foo{tutorial:editing:an:existing:file:}]{--><a href="tutorial_editing_an_existing_file.html" title="Tutorial - Editing an Existing File">tutorial on editing an existing file</a><!--latex }
+-->.</p></li></ul><!--
+\end{itemize}
+-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <a class="external text" href="https://staticz.com/soundsiphon/" rel="nofollow"><!--\textbf{--><b>Sound Siphon</b><!--}--></a> sold by Static Z software. It is advertised for OS X 10.9 to 10.11 but also works on macOS 10.12 Sierra. Like Soundflower, Sound Siphon is a software package that makes your Mac&rsquo;s audio output available as an audio input device. Turn Audacity's Software Playthrough off, because unlike Soundflower, you can automatically hear audio during recording. </li></ul><!--
+\end{itemize}
+-->
+
+<!--
+\subsection{--><h2><span class="mw-headline" id="Links">Links</span></h2><!--}-->
+<p><!--latex 
+\hyperref[\foo{tutorial:recording:audio:playing:on:the:computer:setup}]{--><a href="tutorial_recording_audio_playing_on_the_computer.html#setup" title="Tutorial - Recording audio playing on the computer"><!--\textbf{--><b>|&lt;</b><!--}--> Tutorial - Recording audio playing on the computer</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

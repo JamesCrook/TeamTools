@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Generate Menu - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Generate_Menu rootpage-Generate_Menu skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Generate Menu</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{generate:menu:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p><br/>
+</p>
+
+<p>
+
+</p><p><br/>
+</p>
+<div class="intro"><!--\textit{--><i><!--\textbf{--><b>Generate Menu</b><!--}--></i><!--}--> lets you create audio containing tones, noise or silence. Generated audio can be inserted at the cursor position so as to extend the track, or can replace an existing <!--latex 
+\hyperref[\foo{audacity:selection:}]{--><a href="audacity_selection.html" title="Audacity Selection">selection</a><!--latex }
+--> with the newly generated audio.  
+<p>Although by default, no keyboard shortcuts are provided for the generators, it is possible to create your own shortcut for any Generate command. See <!--latex 
+\hyperref[\foo{keyboard:preferences:}]{--><a href="keyboard_preferences.html" title="Keyboard Preferences">Keyboard Preferences</a><!--latex }
+--> for help with creating shortcuts.</p></div> 
+<dl><dd><!--\textit{--><i>Click, or hover, on any menu item in the image to read about that command.  &nbsp;<span style="font-size:0.8em"><!--latex 
+\hyperref[\foo{generate:menu::skiptheimage}]{--><a href="#skiptheimage">Skip the image</a><!--latex }
+--></span></i><!--}--></dd>
+<dd><div class="noresize"><map name="ImageMap_1_303081947"><area alt="Tracks Menu" coords="0,3,26,19" href="tracks_menu.html" shape="rect" title="Tracks Menu"/><area alt="Generate Menu" coords="33,3,87,19" href="#" shape="rect" title="Generate Menu"/><area alt="Effect Menu" coords="94,3,127,19" href="effect_menu.html" shape="rect" title="Effect Menu"/><area alt="Analyze Menu" coords="134,3,178,19" href="analyze_menu.html" shape="rect" title="Analyze Menu"/><area alt="Help Menu" coords="185,3,214,19" href="help_menu.html" shape="rect" title="Help Menu"/><area alt="Ext-Bar Menu" coords="221,3,263,19" href="ext_bar_menu.html" shape="rect" title="Ext-Bar Menu"/><area alt="Ext-Command Menu" coords="270,3,352,19" href="ext_command_menu.html" shape="rect" title="Ext-Command Menu"/><area alt="Menu Bar" coords="0,0,600,22" href="menu_reference.html" shape="rect" title="Menu Bar"/><area alt="Selecting this option from the Effect Menu (or the Generate Menu or Analyze Menu) takes you to a dialog where you can enable or disable particular Effects, Generators and Analyzers in Audacity" coords="39,23,225,45" href="#add_remove_plugins" shape="rect" title="Selecting this option from the Effect Menu (or the Generate Menu or Analyze Menu) takes you to a dialog where you can enable or disable particular Effects, Generators and Analyzers in Audacity"/><area alt="Generates four different types of tone waveform like the #Tone" coords="39,52,225,74" href="#chirp" shape="rect" title="Generates four different types of tone waveform like the #Tone"/><area alt="Generates dual-tone multi-frequency (DTMF) tones like those produced by the keypad on telephones" coords="39,74,225,96" href="#dtmf_tones" shape="rect" title="Generates dual-tone multi-frequency (DTMF) tones like those produced by the keypad on telephones"/><area alt="Generates 'white', 'pink' or 'brown' noise" coords="39,96,225,118" href="#noise" shape="rect" title="Generates 'white', 'pink' or 'brown' noise"/><area alt="Creates audio of zero amplitude, the only configurable setting being duration" coords="39,118,225,140" href="#silence" shape="rect" title="Creates audio of zero amplitude, the only configurable setting being duration"/><area alt="Generates one of four different tone waveforms: Sine, Square, Sawtooth or Square (no alias), and a frequency between 1 Hz and half the current project rate" coords="39,140,225,162" href="#tone" shape="rect" title="Generates one of four different tone waveforms: Sine, Square, Sawtooth or Square (no alias), and a frequency between 1 Hz and half the current project rate"/><area alt="A synthesized pluck tone with abrupt or gradual fade-out, and selectable pitch corresponding to a MIDI note" coords="39,169,225,191" href="pluck.html" shape="rect" title="A synthesized pluck tone with abrupt or gradual fade-out, and selectable pitch corresponding to a MIDI note"/><area alt="Generates a track with regularly spaced sounds at a specified tempo and number of beats per measure (bar)" coords="39,191,225,213" href="#rhythm_track" shape="rect" title="Generates a track with regularly spaced sounds at a specified tempo and number of beats per measure (bar)"/><area alt="Produces a realistic drum sound" coords="39,213,225,235" href="risset_drum.html" shape="rect" title="Produces a realistic drum sound"/><area alt="Create audio from imported numeric data" coords="39,235,225,257" href="sample_data_import.html" shape="rect" title="Create audio from imported numeric data"/></map><!--
+
+\par\Needspace{162.5pt}\begin{picture}(119.0,132.5)
+--><!--   \put(0,0){\includegraphics[scale=0.5]{--><img alt="GenerateMenu.png" height="265" src="../m/images/2/2d/generatemenu.png" usemap="#ImageMap_1_303081947" width="238"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/2/2d/generatemenu.png--></img><!--}}
+--><!--   \put(0.0,123.0){\hyperref[\foo{tracks:menu:}]{\makebox(13.0,8.0){}}}
+   \put(16.5,123.0){\hyperref[\foo{generate:menu::}]{\makebox(27.0,8.0){}}}
+   \put(47.0,123.0){\hyperref[\foo{effect:menu:}]{\makebox(16.5,8.0){}}}
+   \put(67.0,123.0){\hyperref[\foo{analyze:menu:}]{\makebox(22.0,8.0){}}}
+   \put(92.5,123.0){\hyperref[\foo{help:menu:}]{\makebox(14.5,8.0){}}}
+   \put(110.5,123.0){\hyperref[\foo{ext:bar:menu:}]{\makebox(21.0,8.0){}}}
+   \put(135.0,123.0){\hyperref[\foo{ext:command:menu:}]{\makebox(41.0,8.0){}}}
+   \put(19.5,110.0){\hyperref[\foo{generate:menu::add:remove:plugins}]{\makebox(93.0,11.0){}}}
+   \put(19.5,95.5){\hyperref[\foo{generate:menu::chirp}]{\makebox(93.0,11.0){}}}
+   \put(19.5,84.5){\hyperref[\foo{generate:menu::dtmf:tones}]{\makebox(93.0,11.0){}}}
+   \put(19.5,73.5){\hyperref[\foo{generate:menu::noise}]{\makebox(93.0,11.0){}}}
+   \put(19.5,62.5){\hyperref[\foo{generate:menu::silence}]{\makebox(93.0,11.0){}}}
+   \put(19.5,51.5){\hyperref[\foo{generate:menu::tone}]{\makebox(93.0,11.0){}}}
+   \put(19.5,37.0){\hyperref[\foo{pluck:}]{\makebox(93.0,11.0){}}}
+   \put(19.5,26.0){\hyperref[\foo{generate:menu::rhythm:track}]{\makebox(93.0,11.0){}}}
+   \put(19.5,15.0){\hyperref[\foo{risset:drum:}]{\makebox(93.0,11.0){}}}
+   \put(19.5,4.0){\hyperref[\foo{sample:data:import:}]{\makebox(93.0,11.0){}}}
+\end{picture}
+
+--></div></dd></dl>
+<div id="skiptheimage"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Audacity.27s_Generators">Audacity's Generators</span></h2><!--}--><!--latex 
+\label{generate:menu:skiptheimage}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> The <!--latex 
+\hyperref[\foo{generate:menu::generators}]{--><a href="#generators">built-in generators</a><!--latex }
+--> are: <!--latex 
+\hyperref[\foo{generate:menu::chirp}]{--><a href="#chirp">Chirp</a><!--latex }
+-->, <!--latex 
+\hyperref[\foo{generate:menu::dtmf}]{--><a href="#dtmf">DTMF</a><!--latex }
+-->, <!--latex 
+\hyperref[\foo{generate:menu::noise}]{--><a href="#noise">Noise</a><!--latex }
+-->, <!--latex 
+\hyperref[\foo{generate:menu::silence}]{--><a href="#silence">Silence</a><!--latex }
+--> and <!--latex 
+\hyperref[\foo{generate:menu::tone}]{--><a href="#tone">Tone</a><!--latex }
+-->.   </li>
+<!--
+\item --><li> The <!--latex 
+\hyperref[\foo{generate:menu::plugin}]{--><a href="#plugin">plugin generators</a><!--latex }
+--> included with Audacity are: <!--latex 
+\hyperref[\foo{generate:menu::click}]{--><a href="#click">Rhythm Track</a><!--latex }
+-->, <!--latex 
+\hyperref[\foo{generate:menu::pluck}]{--><a href="#pluck">Pluck</a><!--latex }
+-->, <!--latex 
+\hyperref[\foo{generate:menu::risset}]{--><a href="#risset">Risset Drum</a><!--latex }
+--> and <!--latex 
+\hyperref[\foo{generate:menu::sample:import}]{--><a href="#sample_import">Sample Data Import</a><!--latex }
+-->. Other plug-ins can be added in various formats. </li></ul><!--
+\end{itemize}
+-->
+<div id="add__remove_plugins"></div>
+<div id="manage"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Add_.2F_Remove_Plug-ins...">Add / Remove Plug-ins...</span></h2><!--}--><!--latex 
+\label{generate:menu:manage}--><!--latex 
+\label{generate:menu:add:remove:plugins}-->
+<p>Selecting this option from the Generate Menu (or the <!--latex 
+\hyperref[\foo{effect:menu:}]{--><a href="effect_menu.html" title="Effect Menu">Effect Menu</a><!--latex }
+--> or <!--latex 
+\hyperref[\foo{analyze:menu:}]{--><a href="analyze_menu.html" title="Analyze Menu">Analyze Menu</a><!--latex }
+-->) takes you to a dialog which enables you to load and unload Generators (and Effects and Analyzers) from Audacity.  This enables you to customize your Generate Menu making it shorter or longer as required.  For details see <!--latex 
+\hyperref[\foo{manage:effects:generators:and:analyzers:}]{--><a href="manage_effects_generators_and_analyzers.html" title="Manage Effects, Generators and Analyzers">Plug-in Manager: Effects, Generators and Analyzers</a><!--latex }
+-->.
+</p>
+<div class="note">Additional plug-ins can also be loaded into Audacity.  For details see the following FAQs: <!--latex 
+\hyperref[\foo{installing:effect:generator:and:analyzer:plug:ins:on:windows:}]{--><a href="installing_effect_generator_and_analyzer_plug_ins_on_windows.html" title="Installing Effect, Generator and Analyzer plug-ins on Windows">Windows</a><!--latex }
+-->, <!--latex 
+\hyperref[\foo{installing:effect:generator:and:analyzer:plug:ins:on:mac:os:x:}]{--><a href="installing_effect_generator_and_analyzer_plug_ins_on_mac_os_x.html" title="Installing Effect, Generator and Analyzer plug-ins on MAC OS X">Mac</a><!--latex }
+--> and <!--latex 
+\hyperref[\foo{installing:effect:generator:and:analyzer:plug:ins:on:linux:}]{--><a href="installing_effect_generator_and_analyzer_plug_ins_on_linux.html" title="Installing Effect, Generator and Analyzer plug-ins on Linux">Linux</a><!--latex }
+-->
+<p>See also this <a class="external text" href="https://wiki.audacityteam.org/wiki/Download_Nyquist_Plug-ins#generate" rel="nofollow">list of available Nyquist generator plug-ins</a> on the Audacity Wiki, that you can easily download and add to Audacity.
+</p>
+</div>
+<div id="usage"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Using_Audacity.27s_Generators">Using Audacity's Generators</span></h2><!--}--><!--latex 
+\label{generate:menu:usage}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>Generate audio into a new track:</b><!--}--> If there are no existing tracks, choose the required generator. If there are existing tracks, click outside the tracks (in the gray background) to deselect them, then Generate. </li>
+<!--
+\item --><li> <!--\textbf{--><b>Insert generated audio at the cursor position:</b><!--}--> Place the cursor in the track then Generate.  The specified duration of audio will be inserted into the selected track(s) at the cursor position. The total length of the selected track(s) will therefore be increased.  </li>
+<!--
+\item --><li> <!--\textbf{--><b>Replace an existing selection with generated audio:</b><!--}--> Select the region then Generate. The selected region(s) will be replaced with the generated audio. The total length of the selected track(s) will remain the same, unless you change the length in the generator to replace the selection with a longer or shorter one.</li></ul><!--
+\end{itemize}
+-->
+<div class="note">Having placed the cursor or selected the region, there are several ways to select extra tracks so as to generate into those at the same time. The simplest method is to hold down <span class="kbrd" style="background-color: #e0e0f0">Shift</span> then use <span class="kbrd" style="background-color: #e0e0f0">Up</span> or <span class="kbrd" style="background-color: #e0e0f0">Down</span> arrow on the keyboard. See <!--latex 
+\hyperref[\foo{faq:editing:selcopy}]{--><a href="faq_editing.html#selcopy" title="FAQ:Editing">How do I extend or move the selected region into other tracks?</a><!--latex }
+--> . </div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Amplitude">Amplitude</span></h3><!--}-->
+<p>All built-in generators (except of course Silence) let you type an <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:amplitude}]{--><a href="glossary.html#amplitude" title="Glossary">amplitude</a><!--latex }
+--></b><!--}--></i><!--}--> value for the loudness of the generated audio. Permitted values are between 0 (silence) and 1 (the maximum possible volume without <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:clipping}]{--><a href="glossary.html#clipping" title="Glossary">clipping</a><!--latex }
+--></b><!--}--></i><!--}-->), with a default of 0.8.
+</p>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Duration">Duration</span></h3><!--}-->
+<p>Type (or use the keyboard arrows) to enter the required Duration. If the first digit you want is highlighted, just type the whole number. If the required first digit is not highlighted, use <span class="kbrd" style="background-color: #e0e0f0">Left</span> or <span class="kbrd" style="background-color: #e0e0f0">Right</span> arrow on your keyboard to move to the first digit, then type. You can also increment a highlighted digit with keyboard <span class="kbrd" style="background-color: #e0e0f0">Up</span> or <span class="kbrd" style="background-color: #e0e0f0">Down</span> arrow instead of typing.
+</p>
+<div class="note">
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>When generating at the cursor</b><!--}-->, Duration initializes to 30.000 seconds (except for the DTMF generator which defaults to 1.000 second). However, your last entered Duration is always remembered.</li>
+<!--
+\item --><li> <!--\textbf{--><b>When replacing a selection region</b><!--}-->, Duration always displays the exact duration of that selection to the nearest audio <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:sample}]{--><a href="glossary.html#sample" title="Glossary">sample</a><!--latex }
+--></b><!--}--></i><!--}-->.</li></ul><!--
+\end{itemize}
+--></div> 
+<!--
+\subsubsection{--><h4><span class="mw-headline" id="Selection_Format_for_Duration">Selection Format for Duration</span></h4><!--}-->
+<p>Whether generating in a selection or not, you can change the <!--latex 
+\hyperref[\foo{audacity:selection:selection:formats}]{--><a href="audacity_selection.html#selection_formats" title="Audacity Selection">Selection Format</a><!--latex }
+--> to another unit of Duration so that the generation will be in those units. To do this, open the context menu by clicking the triangle to right of the digits. You can also open the menu by hovering over or selecting in the Duration digits, then right-clicking or using a keyboard equivalent.
+</p>
+<div class="example"><span style="font-weight: bold; font-size:118%">Examples of Generator Usage:</span> see <!--latex 
+\hyperref[\foo{examples:of:generator:usage:}]{--><a href="examples_of_generator_usage.html" title="Examples of Generator Usage">Examples of Generator Usage</a><!--latex }
+--> for some examples of using the Audacity generators.
+</div>
+<p><br/>
+</p>
+<div id="generators"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Built-in_Generators">Built-in Generators</span></h2><!--}--><!--latex 
+\label{generate:menu:generators}-->
+<div id="chirp"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Chirp..."><!--latex 
+\hyperref[\foo{chirp:}]{--><a href="chirp.html" title="Chirp">Chirp...</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{generate:menu:chirp}-->
+<p>Chirp produces four different types of tones like the <!--latex 
+\hyperref[\foo{generate:menu::tone}]{--><a href="#tone">Tone Generator</a><!--latex }
+--> but additionally allows setting of the start and end amplitude and frequency. Short tones can be made to sound very much like a bird-call. As with Tone, frequencies can be specified anywhere between 1 <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:hz}]{--><a href="glossary.html#hz" title="Glossary">Hz</a><!--latex }
+--></b><!--}--></i><!--}--> and <!--\textit{--><i>half</i><!--}--> the current project rate as shown in <!--latex 
+\hyperref[\foo{selection:toolbar:}]{--><a href="selection_toolbar.html" title="Selection Toolbar">Selection Toolbar</a><!--latex }
+-->.
+</p>
+<div id="dtmf_tones"></div>
+<div id="dtmf"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="DTMF_Tones..."><!--latex 
+\hyperref[\foo{dtmf:tones:}]{--><a href="dtmf_tones.html" title="DTMF Tones">DTMF Tones...</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{generate:menu:dtmf}--><!--latex 
+\label{generate:menu:dtmf:tones}-->
+<p>Generates dual-tone multi-frequency (DTMF) tones like those produced by the keypad on telephones. For each tone you wish to generate, enter numbers from 0 to 9, lower case letters from a to z, and the * and # characters. You can also enter the four "priority" tones used by the US Military (upper case A, B, C and D).          
+</p>
+<div id="noise"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Noise..."><!--latex 
+\hyperref[\foo{noise:}]{--><a href="noise.html" title="Noise">Noise...</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{generate:menu:noise}-->
+<p>Generates one of three different types of noise. White noise is that which has the greatest ability to mask other sounds, as it has similar energy at all frequency levels. Pink noise and Brownian noise both have more energy at lower frequencies, especially Brownian, which has the most muffled, low pitched sound of the three types. By their nature, pink and Brownian noise may have a few peaks not exactly at the requested amplitude if the tracks are only a few seconds long.   
+</p>
+<div id="silence"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Silence..."><!--latex 
+\hyperref[\foo{silence:}]{--><a href="silence.html" title="Silence">Silence...</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{generate:menu:silence}-->
+<p>Generates audio of zero amplitude, the only configurable setting being duration. When applied to an audio selection, the result is identical to <span class="menu">Edit &gt; Remove Special &gt; <!--latex 
+\hyperref[\foo{edit:menu:remove:special:silence:audio}]{--><a href="edit_menu_remove_special.html#silence_audio" title="Edit Menu: Remove Special">Silence Audio</a><!--latex }
+--></span>.
+</p>
+<div id="tone"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Tone..."><!--latex 
+\hyperref[\foo{tone:}]{--><a href="tone.html" title="Tone">Tone...</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{generate:menu:tone}-->
+<p>Generates one of four different tone <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:waveform}]{--><a href="glossary.html#waveform" title="Glossary">waveforms</a><!--latex }
+--></b><!--}--></i><!--}-->: Sine, Aquare, Sawtaooth and Square (no alias).  The name of each tone roughly describes its appearance when <!--latex 
+\hyperref[\foo{zooming:}]{--><a href="zooming.html" title="Zooming">zoomed in</a><!--latex }
+--> sufficiently to see each <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:cycle}]{--><a href="glossary.html#cycle" title="Glossary">cycle</a><!--latex }
+--></b><!--}--></i><!--}--> of the waveform. 
+</p><p><br/>
+</p>
+<div id="plugin"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Plug-in_Generators">Plug-in Generators</span></h2><!--}--><!--latex 
+\label{generate:menu:plugin}-->
+<p>Any additional generators which appear underneath the menu divider are <!--latex 
+\hyperref[\foo{effect:menu:Nyquist:effects}]{--><a href="effect_menu.html#Nyquist_effects" title="Effect Menu">Nyquist</a><!--latex }
+-->, <!--latex 
+\hyperref[\foo{effect:menu:LADSPA:effects}]{--><a href="effect_menu.html#LADSPA_effects" title="Effect Menu">LADSPA</a><!--latex }
+--> or <!--latex 
+\hyperref[\foo{effect:menu:LV2:effects}]{--><a href="effect_menu.html#LV2_effects" title="Effect Menu">LV2</a><!--latex }
+--> plug-ins. Click the links in the preceding sentence to see how to add new plug-ins of each type.  
+</p><p>Audacity includes the following Nyquist generators, but more are available on  <a class="external text" href="https://wiki.audacityteam.org/wiki/Download_Nyquist_Plug-ins" rel="nofollow">Download Nyquist Plug-ins</a> on our Wiki.  
+</p>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top"><!--\textbf{--><b>Nyquist generators do not usually take the length of selected audio as the length of the audio to be generated.</b><!--}--> Instead, specify the length required in the appropriate input field(s) of the plugin. Any selected audio will be replaced by the length of audio specified in the plug-in, thus the total length of the track(s) will change unless the selected and specified lengths are identical.
+</td></tr></tbody></table>
+</div>       
+<div class="note">The description page for each plug-in generator (accessed by the links below) shows an image of the interface and its default settings.
+</div>
+<p><br/>
+</p>
+<div id="pluck"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Pluck..."><!--latex 
+\hyperref[\foo{pluck:}]{--><a href="pluck.html" title="Pluck">Pluck...</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{generate:menu:pluck}-->
+<p>A synthesized pluck tone with abrupt or gradual fade-out, and selectable pitch corresponding to a <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:midi}]{--><a href="glossary.html#midi" title="Glossary">MIDI</a><!--latex }
+--></b><!--}--></i><!--}--> note.  
+</p>
+<div id="rhythm_track"></div>
+<div id="click"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Rhythm_Track..."><!--latex 
+\hyperref[\foo{rhythm:track:}]{--><a href="rhythm_track.html" title="Rhythm Track">Rhythm Track...</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{generate:menu:click}--><!--latex 
+\label{generate:menu:rhythm:track}-->
+<p>Generates a track with regularly spaced sounds at a specified tempo and number of beats per measure (bar). It can be used like a metronome for setting a steady beat against which an <!--latex 
+\hyperref[\foo{faq:recording:how:to:s:overdub}]{--><a href="faq_recording_how_to_s.html#overdub" title="FAQ:Recording - How To's">overdub</a><!--latex }
+--> recording can be made.
+</p>
+<div id="risset_drum"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Risset_Drum..."><!--latex 
+\hyperref[\foo{risset:drum:}]{--><a href="risset_drum.html" title="Risset Drum">Risset Drum...</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{generate:menu:risset:drum}-->
+<p>Produces a realistic drum sound consisting of a sine wave ring-modulated by narrow band noise, an <a class="external text" href="https://en.wikipedia.org/wiki/Enharmonic" rel="nofollow">enharmonic</a> tone and a relatively strong sine wave at the fundamental.
+</p>
+<div id="sample_data_import"></div>
+<div id="sample_data_import"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Sample_Data_Import..."><!--latex 
+\hyperref[\foo{sample:data:import:}]{--><a href="sample_data_import.html" title="Sample Data Import">Sample Data Import...</a><!--latex }
+--></span></h3><!--}--><!--latex 
+\label{generate:menu:sample:data:import}--><!--latex 
+\label{generate:menu:sample:data:import}-->
+<p>Produces audio from imported numeric data.
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

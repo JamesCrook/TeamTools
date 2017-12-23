@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>How to set up Audacity - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-How_to_set_up_Audacity rootpage-How_to_set_up_Audacity skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">How to set up Audacity</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{how:to:set:up:audacity:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+</p><p><br/>
+</p>
+<div class="note">If you are recording from a USB turntable, USB cassette deck or USB interface, please go to the set up instructions at <!--latex 
+\hyperref[\foo{recording:with:usb:turntables:}]{--><a href="recording_with_usb_turntables.html" title="Recording with USB turntables">Recording with USB turntables or USB cassette decks</a><!--latex }
+-->.</div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Setting_Up_Audacity">Setting Up Audacity</span></h2><!--}-->
+<p>The Device toolbar is displayed by default in a new installation of Audacity. If the Device toolbar is not visible, click on <span class="menu">View &gt; Toolbars</span>.
+</p>
+<dl><dd><span title="Image of device toolbar with annotations"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="DeviceToolbarWin10Basic.png" height="96" src="../m/images/5/5d/devicetoolbarwin10basic.png" width="599"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/5/5d/devicetoolbarwin10basic.png--></img><!--}\par
+--></span></dd></dl>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Bulbicon.png" title="Bulb icon"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Bulb icon" height="32" src="../m/images/d/d7/bulbicon.png" width="32"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d7/bulbicon.png--></img><!--}\par
+--></a>
+</td>
+<td align="left" valign="top">You may want to expand the width of Device Toolbar by dragging right on the drag handle.
+</td></tr></tbody></table>
+</div>
+<!--
+\begin{enumerate}--><ol><!--
+\item --><li>Click on the <!--\textit{--><i>Recording Channels</i><!--}--> dropdown menu and choose whether to record in stereo or mono </li>
+<!--
+\item --><li>Set the <!--\textit{--><i>Playback Device</i><!--}--> and <!--\textit{--><i>Recording Device</i><!--}--> dropdown menus to the built-in computer sound device, or to the specific sound device your cable is plugged into. 
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>Windows:</b><!--}--> Choose the line-in option for your connected sound device (for example, "Line-In: Realtek HD Device"). Do <!--\textbf{--><b>NOT</b><!--}--> select "Microsoft Sound Mapper" or "Primary Sound Capture Driver".</li>
+<!--
+\item --><li><!--\textbf{--><b>Linux:</b><!--}--> Select the connected sound device.</li>
+<!--
+\item --><li><!--\textbf{--><b>Mac:</b><!--}--> Select the "Built-in Audio: Line In" input device, or "USB Audio CODEC" if you are using an external USB audio adapter.</li></ul><!--
+\end{itemize}
+--></li>
+<!--
+\item --><li>If you cannot choose your input source as described above, or if the line-in input will not record, you can use the operating system mixer device to choose the required input. For instructions, see the further help for <a class="external text" href="https://wiki.audacityteam.org/wiki/Mixer_Toolbar_Issues#cp" rel="nofollow">Windows</a>, <a class="external text" href="https://wiki.audacityteam.org/wiki/Mixer_Toolbar_Issues#osx" rel="nofollow">Mac</a> or <a class="external text" href="https://wiki.audacityteam.org/wiki/Mixer_Toolbar_Issues#linux" rel="nofollow">Linux</a> on our Wiki.</li></ol><!--
+\end{enumerate}
+-->
+<div id="monitor"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Monitoring">Monitoring</span></h2><!--}--><!--latex 
+\label{how:to:set:up:audacity:monitor}-->
+<p>Decide if you want to "monitor" your recording, that is hear it played back as you make it. 
+</p>
+<div id="softplay"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Software_playthrough">Software playthrough</span></h3><!--}--><!--latex 
+\label{how:to:set:up:audacity:softplay}-->
+<p>Using software playthrough you can route the input to the output through the computer enabling you to hear what you are recording. All such methods have <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:latency}]{--><a href="glossary.html#latency" title="Glossary">latency</a><!--latex }
+--></b><!--}--></i><!--}-->  and cause extra load on the computer. 
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>In Audacity for all platforms:</b><!--}-->  Choose <!--\textit{--><i>Software Playthrough</i><!--}--> in <!--latex 
+\hyperref[\foo{recording:preferences:}]{--><a href="recording_preferences.html" title="Recording Preferences">Recording Preferences</a><!--latex }
+--> or under the <span class="menu">Transport &gt; <!--latex 
+\hyperref[\foo{transport:menu:transport:options:}]{--><a href="transport_menu_transport_options.html" title="Transport Menu: Transport Options">Transport Options</a><!--latex }
+--></span> menu.</li>
+<!--
+\item --><li><!--\textbf{--><b>Windows:</b><!--}--> On some  machines you can instead select your input in Windows "Sound", choose "Properties" then on the "Listen" tab, choose "Listen to this device".  This usually has less latency than Audacity's Software Playthrough. </li></ul><!--
+\end{itemize}
+-->
+ 
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>Linux:</b><!--}--> Most modern Linux systems use ALSA and Pulse Audio with no software playthrough module installed.  ALSA  has the optional alsaloop playthrough module in alsa-utils and PulseAudio has an optional  <a class="external text" href="https://www.freedesktop.org/wiki/Software/PulseAudio/Documentation/User/Modules/#index62h3" rel="nofollow">module-loopback</a>, but these modules may have noticeable latency and audio breakup. Linux distributions specifically for music or media applications are likely to have <a class="external text" href="http://jackaudio.org/" rel="nofollow">JACK</a> pre-installed, in which case low latency software playthrough can be configured in QjackCtl. &lt;/ul&gt;</li></ul><!--
+\end{itemize}
+-->
+<div id="hardplay"></div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Hardware_playthrough">Hardware playthrough</span></h3><!--}--><!--latex 
+\label{how:to:set:up:audacity:hardplay}-->
+<p>If hardware playthrough is required, <!--\textit{--><i>usually only needed for <!--latex 
+\hyperref[\foo{tutorial:recording:multi:track:overdubs:}]{--><a href="tutorial_recording_multi_track_overdubs.html" title="Tutorial - Recording Multi-track Overdubs">overdubbing</a><!--latex }
+--></i><!--}-->, it is best to use an external USB or Firewire audio device that has a headphones jack for no-latency monitoring <!--\textit{--><i>(such as the Behringer UCA 202 USB or Zoom H2 USB)</i><!--}-->.
+</p>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Set_the_volume_level_of_your_recording_input">Set the volume level of your recording input</span></h3><!--}-->
+<p>Click on the downward pointing arrow in the <!--latex 
+\hyperref[\foo{meter:toolbar:recording}]{--><a href="meter_toolbar.html#recording" title="Meter Toolbar">Recording Meter</a><!--latex }
+-->:and click "Start Monitoring". 
+</p>
+<dl><dd><span title="Recording Meter Toolbar in use, default size"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Recording Toolbar in use.png" height="33" src="../m/images/7/7a/recording_toolbar_in_use.png" width="473"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/7/7a/recording_toolbar_in_use.png--></img><!--}\par
+--></span></dd></dl>
+<p>While playing a loud part of your tape or record, adjust the Recording Slider on the <!--latex 
+\hyperref[\foo{mixer:toolbar:}]{--><a href="mixer_toolbar.html" title="Mixer Toolbar">Mixer Toolbar</a><!--latex }
+--> so the Recording Meters are almost reaching the right-hand end of the scale. Don't let the meter bars actually reach the right edge, or the red hold lights to right of the meter will come on, indicating you'll have distortion in the recording. If the Recording Meters are not visible, click <span class="menu">View &gt; Toolbars</span> and check <!--\textbf{--><b>Meter Toolbar</b><!--}-->. Try to aim for a maximum peak of around &ndash;6.0 dB (or 0.5 if you have your meters set to linear rather than dB). <!--latex 
+\hyperref[\foo{meter:toolbar:resizing}]{--><a href="meter_toolbar.html#resizing" title="Meter Toolbar">Enlarging</a><!--latex }
+--> the Recording Meter Toolbar by clicking and dragging helps with this task, see <!--latex 
+\hyperref[\foo{meter:toolbar:resizing}]{--><a href="meter_toolbar.html#resizing" title="Meter Toolbar">this page</a><!--latex }
+--> in the manual for details,
+</p>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Bulbicon.png" title="Bulb icon"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Bulb icon" height="32" src="../m/images/d/d7/bulbicon.png" width="32"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d7/bulbicon.png--></img><!--}\par
+--></a>
+</td>
+<td align="left" valign="top">If the Mixer Toolbar Recording Slider does not control the input level correctly, or is grayed out on maximum, use the input slider in the operating system mixer device to regulate the input level. For instructions, see the further help for <a class="external text" href="https://wiki.audacityteam.org/wiki/Mixer_Toolbar_Issues#cp" rel="nofollow">Windows</a>, <a class="external text" href="https://wiki.audacityteam.org/wiki/Mixer_Toolbar_Issues#osx" rel="nofollow">Mac</a> or <a class="external text" href="https://wiki.audacityteam.org/wiki/Mixer_Toolbar_Issues#linux" rel="nofollow">Linux</a> on our Wiki.
+</td></tr></tbody></table>
+</div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Links">Links</span></h2><!--}-->
+<p><!--latex 
+\hyperref[\foo{basic:recording:editing:and:exporting:}]{--><a href="basic_recording_editing_and_exporting.html" title="Basic Recording, Editing and Exporting"><!--\textbf{--><b>&gt;</b><!--}-->&nbsp; Forward to: Basic Recording, Editing and Exporting</a><!--latex }
+--> <br/>
+</p><p><!--latex 
+\hyperref[\foo{how:to:connect:your:equipment:}]{--><a href="how_to_connect_your_equipment.html" title="How to connect your equipment"><!--\textbf{--><b>&lt;</b><!--}-->&nbsp; Back to: How to connect your equipment</a><!--latex }
+--> <br/>
+</p><p><!--latex 
+\hyperref[\foo{tutorial:copying:tapes:lps:or:minidiscs:to:cd:}]{--><a href="tutorial_copying_tapes_lps_or_minidiscs_to_cd.html" title="Tutorial - Copying tapes, LPs or minidiscs to CD"><!--\textbf{--><b>|&lt;</b><!--}--> Tutorial - Copying tapes, LPs or MiniDiscs to CD</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

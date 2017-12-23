@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>File Menu: Import - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-File_Menu_Import rootpage-File_Menu_Import skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">File Menu: Import</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{file:menu:import:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p><br/>
+</p>
+<div class="intro">Enables you to import audio files or label files into your project. Files in various audio formats can be imported into Audacity. </div>
+<dl><dd><!--\textit{--><i>Click, or hover, on any menu item in the image to read about that command.  &nbsp;<span style="font-size:0.8em"><!--latex 
+\hyperref[\foo{file:menu:import::skiptheimage}]{--><a href="#skiptheimage">Skip the image</a><!--latex }
+--></span></i><!--}--></dd>
+<dd><div class="noresize"><map name="ImageMap_1_885507426"><area alt="File Menu" coords="33,3,56,19" href="file_menu.html" shape="rect" title="File Menu"/><area alt="Edit Menu" coords="63,3,87,19" href="edit_menu.html" shape="rect" title="Edit Menu"/><area alt="Select Menu" coords="94,3,131,19" href="select_menu.html" shape="rect" title="Select Menu"/><area alt="View Menu" coords="138,3,167,19" href="view_menu.html" shape="rect" title="View Menu"/><area alt="Transport Menu" coords="174,3,230,19" href="transport_menu.html" shape="rect" title="Transport Menu"/><area alt="Tracks Menu" coords="237,3,277,19" href="tracks_menu.html" shape="rect" title="Tracks Menu"/><area alt="Generate Menu" coords="284,3,338,19" href="generate_menu.html" shape="rect" title="Generate Menu"/><area alt="Effect Menu" coords="345,3,378,19" href="effect_menu.html" shape="rect" title="Effect Menu"/><area alt="Analyze Menu" coords="385,3,429,19" href="analyze_menu.html" shape="rect" title="Analyze Menu"/><area alt="Help Menu" coords="436,3,465,19" href="help_menu.html" shape="rect" title="Help Menu"/><area alt="Ext-Bar Menu" coords="472,3,514,19" href="ext_bar_menu.html" shape="rect" title="Ext-Bar Menu"/><area alt="Ext-Command Menu" coords="521,3,603,19" href="ext_command_menu.html" shape="rect" title="Ext-Command Menu"/><area alt="Menu Bar" coords="0,0,600,22" href="menu_reference.html" shape="rect" title="Menu Bar"/><area alt="Creates a new and empty project window to start working on new or imported Tracks" coords="39,23,220,45" href="file_menu.html#new" shape="rect" title="Creates a new and empty project window to start working on new or imported Tracks"/><area alt="Presents you with a file selection dialog box to open files" coords="39,45,220,67" href="file_menu.html#open" shape="rect" title="Presents you with a file selection dialog box to open files"/><area alt="Lists the full path to the twelve most recently saved or opened projects or most recently imported audio files" coords="39,67,220,89" href="file_menu_recent_files.html" shape="rect" title="Lists the full path to the twelve most recently saved or opened projects or most recently imported audio files"/><area alt="Closes the current project window, prompting you to save your work if you have not saved" coords="39,96,220,118" href="file_menu.html#close" shape="rect" title="Closes the current project window, prompting you to save your work if you have not saved"/><area alt="Saves the current Audacity project" coords="39,118,220,140" href="file_menu.html#save_project" shape="rect" title="Saves the current Audacity project"/><area alt='Same as "Save Project" above, but allows you to save a copy of an open project to a different name or location' coords="39,140,220,162" href="file_menu.html#save_project_as" shape="rect" title='Same as "Save Project" above, but allows you to save a copy of an open project to a different name or location'/><area alt="For exporting audio files" coords="39,162,220,184" href="file_menu_save_other.html" shape="rect" title="For exporting audio files"/><area alt="For importing audio files or label files into your project" coords="39,191,220,213" href="#" shape="rect" title="For importing audio files or label files into your project"/><area alt="Chains are Audacity's form of batch processing" coords="39,220,220,242" href="file_menu_chains.html" shape="rect" title="Chains are Audacity's form of batch processing"/><area alt="Opens the standard Page Setup dialog box prior to printing" coords="39,249,220,271" href="file_menu.html#page_setup" shape="rect" title="Opens the standard Page Setup dialog box prior to printing"/><area alt="Prints all the waveforms in the current project window (and the contents of Label Tracks or other tracks), with the Timeline above" coords="39,271,220,293" href="file_menu.html#print" shape="rect" title="Prints all the waveforms in the current project window (and the contents of Label Tracks or other tracks), with the Timeline above"/><area alt="Closes all project windows and exits Audacity" coords="39,300,220,322" href="file_menu.html#exit" shape="rect" title="Closes all project windows and exits Audacity"/><area alt="Similar to 'Open', except that the file is added as a new track to your existing project" coords="232,194,406,216" href="#audio" shape="rect" title="Similar to 'Open', except that the file is added as a new track to your existing project"/><area alt="Launches a file selection window where you can choose to import a single text file into the project containing point or region labels" coords="232,216,406,238" href="#labels" shape="rect" title="Launches a file selection window where you can choose to import a single text file into the project containing point or region labels"/><area alt="Imports a MIDI (MIDI or MID extension) or Allegro (GRO) file to a Note Track where simple cut-and-paste edits can be performed" coords="232,238,406,260" href="#midi" shape="rect" title="Imports a MIDI (MIDI or MID extension) or Allegro (GRO) file to a Note Track where simple cut-and-paste edits can be performed"/><area alt='Attempts to import an uncompressed audio file that might be "raw" data without any headers to define its format, might have incorrect headers or be otherwise partially corrupted, or might be in a format that Audacity is unable to recognize' coords="232,260,406,282" href="#raw_data" shape="rect" title='Attempts to import an uncompressed audio file that might be "raw" data without any headers to define its format, might have incorrect headers or be otherwise partially corrupted, or might be in a format that Audacity is unable to recognize'/></map><!--
+
+\par\Needspace{195.0pt}\begin{picture}(209.5,165.0)
+--><!--   \put(0,0){\includegraphics[scale=0.5]{--><img alt="File-ImportMenu.png" height="330" src="../m/images/8/80/file_importmenu.png" usemap="#ImageMap_1_885507426" width="419"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/8/80/file_importmenu.png--></img><!--}}
+--><!--   \put(16.5,155.5){\hyperref[\foo{file:menu:}]{\makebox(11.5,8.0){}}}
+   \put(31.5,155.5){\hyperref[\foo{edit:menu:}]{\makebox(12.0,8.0){}}}
+   \put(47.0,155.5){\hyperref[\foo{select:menu:}]{\makebox(18.5,8.0){}}}
+   \put(69.0,155.5){\hyperref[\foo{view:menu:}]{\makebox(14.5,8.0){}}}
+   \put(87.0,155.5){\hyperref[\foo{transport:menu:}]{\makebox(28.0,8.0){}}}
+   \put(118.5,155.5){\hyperref[\foo{tracks:menu:}]{\makebox(20.0,8.0){}}}
+   \put(142.0,155.5){\hyperref[\foo{generate:menu:}]{\makebox(27.0,8.0){}}}
+   \put(172.5,155.5){\hyperref[\foo{effect:menu:}]{\makebox(16.5,8.0){}}}
+   \put(192.5,155.5){\hyperref[\foo{analyze:menu:}]{\makebox(22.0,8.0){}}}
+   \put(218.0,155.5){\hyperref[\foo{help:menu:}]{\makebox(14.5,8.0){}}}
+   \put(236.0,155.5){\hyperref[\foo{ext:bar:menu:}]{\makebox(21.0,8.0){}}}
+   \put(260.5,155.5){\hyperref[\foo{ext:command:menu:}]{\makebox(41.0,8.0){}}}
+   \put(19.5,142.5){\hyperref[\foo{file:menu:new}]{\makebox(90.5,11.0){}}}
+   \put(19.5,131.5){\hyperref[\foo{file:menu:open}]{\makebox(90.5,11.0){}}}
+   \put(19.5,120.5){\hyperref[\foo{file:menu:recent:files:}]{\makebox(90.5,11.0){}}}
+   \put(19.5,106.0){\hyperref[\foo{file:menu:close}]{\makebox(90.5,11.0){}}}
+   \put(19.5,95.0){\hyperref[\foo{file:menu:save:project}]{\makebox(90.5,11.0){}}}
+   \put(19.5,84.0){\hyperref[\foo{file:menu:save:project:as}]{\makebox(90.5,11.0){}}}
+   \put(19.5,73.0){\hyperref[\foo{file:menu:save:other:}]{\makebox(90.5,11.0){}}}
+   \put(19.5,58.5){\hyperref[\foo{file:menu:import::}]{\makebox(90.5,11.0){}}}
+   \put(19.5,44.0){\hyperref[\foo{file:menu:chains:}]{\makebox(90.5,11.0){}}}
+   \put(19.5,29.5){\hyperref[\foo{file:menu:page:setup}]{\makebox(90.5,11.0){}}}
+   \put(19.5,18.5){\hyperref[\foo{file:menu:print}]{\makebox(90.5,11.0){}}}
+   \put(19.5,4.0){\hyperref[\foo{file:menu:exit}]{\makebox(90.5,11.0){}}}
+   \put(116.0,57.0){\hyperref[\foo{file:menu:import::audio}]{\makebox(87.0,11.0){}}}
+   \put(116.0,46.0){\hyperref[\foo{file:menu:import::labels}]{\makebox(87.0,11.0){}}}
+   \put(116.0,35.0){\hyperref[\foo{file:menu:import::midi}]{\makebox(87.0,11.0){}}}
+   \put(116.0,24.0){\hyperref[\foo{file:menu:import::raw:data}]{\makebox(87.0,11.0){}}}
+\end{picture}
+
+--></div></dd></dl>
+<div id="skiptheimage"></div>
+<div id="audio"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Audio..._.C2.A0Ctrl_.2BShift_.2B_I">Audio... &nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">Ctrl +Shift + I</span></font></span></h2><!--}--><!--latex 
+\label{file:menu:import:audio}--><!--latex 
+\label{file:menu:import:skiptheimage}-->
+<p>Launches a file selection window where you can choose to <!--\textit{--><i>import</i><!--}--> one or more audio files <!--\textit{--><i>into</i><!--}--> the current Audacity project. The file(s) will always be added as a new track to the project. This lets you mix two or more files together.<br/>
+</p><p>See <!--latex 
+\hyperref[\foo{importing:audio:}]{--><a href="importing_audio.html" title="Importing Audio">Importing Audio</a><!--latex }
+--> for more information.
+</p><p><br/>
+</p>
+<div id="labels"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Labels...">Labels...</span></h2><!--}--><!--latex 
+\label{file:menu:import:labels}-->
+<p>Launches a file selection window where you can choose to <!--\textit{--><i>import</i><!--}--> a single text file into the project containing point or region <!--latex 
+\hyperref[\foo{label:tracks:}]{--><a href="label_tracks.html" title="Label Tracks">labels</a><!--latex }
+-->. For more information about the syntax for labels files, see <!--latex 
+\hyperref[\foo{label:tracks:export}]{--><a href="label_tracks.html#export" title="Label Tracks">Importing and Exporting Labels</a><!--latex }
+-->. 
+</p><p><br/>
+</p>
+<div id="midi"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="MIDI...">MIDI...</span></h2><!--}--><!--latex 
+\label{file:menu:import:midi}-->
+<p>Imports a <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:midi}]{--><a href="glossary.html#midi" title="Glossary">MIDI</a><!--latex }
+--></b><!--}--></i><!--}--> (MIDI or MID <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:extension}]{--><a href="glossary.html#extension" title="Glossary">extension</a><!--latex }
+--></b><!--}--></i><!--}-->) or Allegro (GRO) file to a <!--latex 
+\hyperref[\foo{note:tracks:}]{--><a href="note_tracks.html" title="Note Tracks">Note Track</a><!--latex }
+--> where the Note track can be played. 
+</p><p>This should just work on Windows but for playback on Mac and Linux additional software may be required, see <!--latex 
+\hyperref[\foo{playing:and:recording:midi}]{--><a href="playing_and_recording.html#midi" title="Playing and Recording">this section</a><!--latex }
+--> on the <!--latex 
+\hyperref[\foo{playing:and:recording:}]{--><a href="playing_and_recording.html" title="Playing and Recording">Playing and Recording</a><!--latex }
+--> page.
+</p><p>Simple cut-and-paste edits can also be performed. The result can be exported with the <span class="menu">File &gt; Save Other&gt; &gt; <!--latex 
+\hyperref[\foo{file:menu:save:other:exportmidi}]{--><a href="file_menu_save_other.html#exportmidi" title="File Menu: Save Other">Export MIDI</a><!--latex }
+--></span> command.   
+</p><p><br/>
+</p>
+<div id="raw"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Raw_Data...">Raw Data...</span></h2><!--}--><!--latex 
+\label{file:menu:import:raw}-->
+<dl><dd><span title="input fields in Input Raw Data dialog"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="ImportRawData.PNG" height="273" src="../m/images/c/cd/importrawdata.png" width="259"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/c/cd/importrawdata.png--></img><!--}\par
+--></span> </dd></dl>
+<p>Attempts to import an uncompressed audio file that might be "raw" data without any headers to define its format, might have incorrect headers or be otherwise partially corrupted, or might be in a format that Audacity is unable to recognize. Raw data in textual format cannot be imported. 
+</p><p>First, select the file in question in the "Select any uncompressed audio file" dialog. Then select appropriate parameters to assist Audacity in the formatting of the data. The fields in the dialog require you select:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> Encoding (<!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:pcm}]{--><a href="glossary.html#pcm" title="Glossary">PCM</a><!--latex }
+--></b><!--}--></i><!--}-->, ADPCM, float...)</li>
+<!--
+\item --><li> Byte order (this is almost always Little-endian if the file was created on Windows)</li>
+<!--
+\item --><li> Number of channels (expected to be found in the file and created as a result) </li>
+<!--
+\item --><li> Start offset in bytes</li>
+<!--
+\item --><li> Percentage amount of the file to import</li>
+<!--
+\item --><li> <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:sample:rate}]{--><a href="glossary.html#sample_rate" title="Glossary">Sample rate</a><!--latex }
+--></b><!--}--></i><!--}--> to be applied to the import (currently, only rates between 100 Hz and 100000 Hz are supported)</li></ul><!--
+\end{itemize}
+-->
+<p><br/>
+</p><p><!--latex 
+\hyperref[\foo{file:menu:}]{--><a href="file_menu.html" title="File Menu"><!--\textbf{--><b>&lt;</b><!--}-->&nbsp; Back to: File Menu</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

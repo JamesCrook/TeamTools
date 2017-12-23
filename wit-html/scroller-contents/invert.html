@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Invert - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Invert rootpage-Invert skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Invert</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{invert:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+</p><p><br/>
+</p>
+<div class="intro"><!--\textit{--><i><!--\textbf{--><b>Invert</b><!--}--></i><!--}--> flips the audio <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:sample}]{--><a href="glossary.html#sample" title="Glossary">samples</a><!--latex }
+--></b><!--}--></i><!--}--> upside-down, reversing their polarity. The positive samples (above the horizontal zero line in the <!--latex 
+\hyperref[\foo{audacity:waveform:}]{--><a href="audacity_waveform.html" title="Audacity Waveform">Audacity Waveform</a><!--latex }
+-->) are moved below the zero line (so becoming negative), and negative samples are made positive.<p>Invert does not usually affect the sound of the audio at all, but it can be used for audio <!--\textit{--><i>cancellation</i><!--}-->. If Invert is applied to one track and that track is <!--latex 
+\hyperref[\foo{mixing:}]{--><a href="mixing.html" title="Mixing">mixed</a><!--latex }
+--> with another uninverted track that has identical audio, the identical audio is cancelled out (silenced).</p></div> 
+<dl><dd><!--\textbf{--><b>Accessed by:</b><!--}--> <span class="menu">Effect &gt; Invert</span></dd></dl>
+<dl><dd>There is no effect dialog containing parameters for this effect; Invert operates directly on the selected audio. </dd></dl>
+<dl><dd>If the inversion takes an appreciable time, a progress dialog will appear as below:</dd></dl>
+<dl><dd><span title="Dialog box showing the inversion effect in progress"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Invert.png" height="186" src="../m/images/3/3d/invert.png" width="209"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/3/3d/invert.png--></img><!--}\par
+--></span></dd></dl>
+<p><br/>
+</p>
+<div class="example"><!--\textbf{--><b>Usage Examples</b><!--}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>Manually remove vocals:</b><!--}--> This will only work where the left and right channels of a stereo song both contain equal amounts of the exact same vocals, but unequal amounts of background instruments. 
+<!--
+\begin{enumerate}--><ol><!--
+\item --><li> Use the <!--latex 
+\hyperref[\foo{audio:track:dropdown:menu:}]{--><a href="audio_track_dropdown_menu.html" title="Audio Track Dropdown Menu">Audio Track Dropdown Menu</a><!--latex }
+--> and choose <!--latex 
+\hyperref[\foo{audio:track:dropdown:menu:split}]{--><a href="audio_track_dropdown_menu.html#split" title="Audio Track Dropdown Menu">Split Stereo to Mono</a><!--latex }
+-->.</li>
+<!--
+\item --><li> <!--latex 
+\hyperref[\foo{audacity:selection:}]{--><a href="audacity_selection.html" title="Audacity Selection">Select</a><!--latex }
+--> one channel but not the other, apply Invert and then Play. The vocals in each track will cancel each other out, leaving just the instrumentals. </li></ol><!--
+\end{enumerate}
+--></li></ul><!--
+\end{itemize}
+-->
+<!--
+\begin{itemize}--><ul style="list-style-image: none; list-style-type: none"><!--\item -->Also see the similar but more configurable <!--latex 
+\hyperref[\foo{vocal:remover:}]{--><a href="vocal_remover.html" title="Vocal Remover">Vocal Remover</a><!--latex }
+--> effect.</ul><!--
+\end{itemize}
+-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>Find out how different the stereo channels are:</b><!--}--> Use the same steps 1 and 2 above on any stereo track. If the audio is just as loud after the steps as before, the channels are very different. If the result is silence, the track is not really stereo but <!--\textit{--><i>dual mono</i><!--}-->, where both left and right contain completely identical audio.</li></ul><!--
+\end{itemize}
+--></div>
+<p><br/>
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Links">Links</span></h2><!--}-->
+<p><!--latex 
+\hyperref[\foo{index:of:effects:generators:and:analyzers:}]{--><a href="index_of_effects_generators_and_analyzers.html" title="Index of Effects, Generators and Analyzers"><!--\textbf{--><b>|&lt;</b><!--}--> Index of Effects, Generators and Analyzers</a><!--latex }
+--> <br/>
+</p><p><!--latex 
+\hyperref[\foo{effect:menu:}]{--><a href="effect_menu.html" title="Effect Menu"><!--\textbf{--><b>|&lt;</b><!--}--> Effect Menu</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

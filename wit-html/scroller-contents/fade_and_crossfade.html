@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Fade and Crossfade - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Fade_and_Crossfade rootpage-Fade_and_Crossfade skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Fade and Crossfade</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{fade:and:crossfade:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+</p><p><br/>
+</p>
+<div class="intro"><a class="external text" href="https://en.wikipedia.org/wiki/Fade_%28audio_engineering%29" rel="nofollow">Fade</a> effects are among the most common effects used in audio production. They can be used to create a smooth lead in or a gradual end to a musical recording. Short fades can be useful for avoiding clicks at the beginning of an audio clip. They may be used to create a smooth transition from one piece of audio to another.
+<p>Fade effects frequently produce a transition from silence (fade in) or a transition to silence (fade out) but may equally refer to a transition from one volume level to another quieter or louder level. A crossfade is when one section of audio fades out while another fades in.</p>
+<div class="note">The standard fade types described on this page may be produced quickly and easily using the presets in the <!--latex 
+\hyperref[\foo{adjustable:fade:}]{--><a href="adjustable_fade.html" title="Adjustable Fade">Adjustable Fade</a><!--latex }
+--> effect.</div>
+</div>
+
+<div id="linear"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Linear_Fade">Linear Fade</span></h2><!--}--><!--latex 
+\label{fade:and:crossfade:linear}-->
+<div class="note">The default setting of the <!--latex 
+\hyperref[\foo{adjustable:fade:}]{--><a href="adjustable_fade.html" title="Adjustable Fade">Adjustable Fade</a><!--latex }
+--> effect produces a linear fade-in.
+<!--
+\begin{itemize}--><ul><!--
+\item --><li>Although fades commonly start or end at silence (fade-in and fade-out respectively), a fade is simply a transition from one <!--latex 
+\hyperref[\foo{glossary:amplitude}]{--><a href="glossary.html#amplitude" title="Glossary">amplitude</a><!--latex }
+--> level to another. The <!--latex 
+\hyperref[\foo{adjustable:fade:}]{--><a href="adjustable_fade.html" title="Adjustable Fade">Adjustable Fade</a><!--latex }
+--> effect allows fading from any arbitrary level to any other level.</li></ul><!--
+\end{itemize}
+--></div>
+<p>This is the most simple type of fade where the level rises or falls at a constant rate. A linear fade in from silence is easily created in Audacity using <span class="menu">Effect &gt; <!--latex 
+\hyperref[\foo{fades:linear:in}]{--><a href="fades.html#linear_in" title="Fades">Fade In</a><!--latex }
+--></span>. A linear fade out to silence is created using <span class="menu">Effect &gt; <!--latex 
+\hyperref[\foo{fades:linear:out}]{--><a href="fades.html#linear_out" title="Fades">Fade Out</a><!--latex }
+--></span>.
+</p><p>The "shape" of a fade is commonly described in terms that suggest the appearance of a constant level signal that has had the effect applied to it. For example, if a linear fade in is applied to a generated tone, the fade can be seen to follow a straight line from silence up to the original level.
+</p>
+<dl><dd><span title="Linear fade in of a sine wave"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Linear-fade-in.png" height="152" src="../m/images/1/1d/linear_fade_in.png" width="544"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/1/1d/linear_fade_in.png--></img><!--}\par
+--></span></dd></dl>
+<div id="exponential"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Exponential_Fade">Exponential Fade</span></h2><!--}--><!--latex 
+\label{fade:and:crossfade:exponential}-->
+<div class="note">
+<p>The <!--latex 
+\hyperref[\foo{adjustable:fade:}]{--><a href="adjustable_fade.html" title="Adjustable Fade">Adjustable Fade</a><!--latex }
+--> effect has Exponential presets for fading in or out.
+</p>
+</div>
+
+<p>This is another very common fade type. Its popularity stems from the fact that it closely models the way in which sounds naturally decay. For example, comparing the waveform of a gunshot recording with that of a bell, we can clearly see that although the time scales are very different, the <!--\textit{--><i>shape</i><!--}--> of the sound as it decays is very similar:
+</p>
+<dl><dd><span title="Gun shot waveform"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Gunshot.png" height="152" src="../m/images/1/10/gunshot.png" width="544"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/1/10/gunshot.png--></img><!--}\par
+--></span></dd></dl>
+<dl><dd><span title="Bell ring waveform"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Bell.png" height="152" src="../m/images/6/6e/bell.png" width="544"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/6/6e/bell.png--></img><!--}\par
+--></span></dd></dl>
+<p>In Audacity, the <!--latex 
+\hyperref[\foo{envelope:tool:}]{--><a href="envelope_tool.html" title="Envelope Tool">Envelope Tool</a><!--latex }
+--> produces exponential fades.
+</p><p>A similar (but not identical) fade shape may be produced by applying a linear fade several times to the same selection. For example, here is a fade created by applying the Fade Out effect, then repeating it three times using the <span class="kbrd" style="background-color: #e0e0f0">Ctrl + R</span> shortcut (Repeat Last Effect).
+</p>
+<dl><dd><span title="Repeated fade-out"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Repeated-fade-out.png" height="152" src="../m/images/b/b2/repeated_fade_out.png" width="544"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/b2/repeated_fade_out.png--></img><!--}\par
+--></span></dd></dl>
+<p>Exponential curves may also be used as a fade-in.
+</p>
+<dl><dd><span title="Exponential Fade-in"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Exponential-fade-in.png" height="152" src="../m/images/e/e3/exponential_fade_in.png" width="544"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/e/e3/exponential_fade_in.png--></img><!--}\par
+--></span></dd></dl>
+<div id="logarithmic"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Logarithmic_Fade">Logarithmic Fade</span></h2><!--}--><!--latex 
+\label{fade:and:crossfade:logarithmic}-->
+<div class="note">
+<p>The <!--latex 
+\hyperref[\foo{adjustable:fade:}]{--><a href="adjustable_fade.html" title="Adjustable Fade">Adjustable Fade</a><!--latex }
+--> effect has Logarithmic presets for fading in or out.
+</p>
+</div>
+<p>Essentially the same as an <!--\textit{--><i>exponential</i><!--}--> fade, but curving <!--\textit{--><i>the other way</i><!--}-->.
+</p>
+<dl><dd><span title="Logarithmic fade-in"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Logarithmic-fade-in.png" height="152" src="../m/images/0/0b/logarithmic_fade_in.png" width="544"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/0/0b/logarithmic_fade_in.png--></img><!--}\par
+--></span></dd>
+<dd><span title="Logarithmic fade-out"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Logarithmic-fade-out.png" height="152" src="../m/images/5/57/logarithmic_fade_out.png" width="544"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/5/57/logarithmic_fade_out.png--></img><!--}\par
+--></span></dd></dl>
+<div id="equal"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Equal_Power_Fade">Equal Power Fade</span></h2><!--}--><!--latex 
+\label{fade:and:crossfade:equal}-->
+<div class="note">The "Cosine" presets in the <!--latex 
+\hyperref[\foo{adjustable:fade:}]{--><a href="adjustable_fade.html" title="Adjustable Fade">Adjustable Fade</a><!--latex }
+--> effect produce this type of fade.<br/></div>
+<p>If one sound is fading out while another sound is fading in, this is called a <!--latex 
+\hyperref[\foo{fade:and:crossfade::create}]{--><a href="#create">crossfade</a><!--latex }
+-->. A common problem when crossfading two sounds using linear fade effects is that the volume level may drop a little midway through the transition. To mitigate this problem it is common to use a fade shape that, compared to a linear fade, bows up in the middle, so that the volume level stays a little higher in the middle of the transition. One of the most commonly used crossfade shapes is an "Equal Power Fade"; so called because the average power (and hence loudness) remains fairly constant during a crossfade transition for music and other uncorrelated sounds.
+The next image shows two tracks, one with <a class="external text" href="https://en.wikipedia.org/wiki/White_noise" rel="nofollow">white noise</a> and one with <a class="external text" href="https://en.wikipedia.org/wiki/Pink_noise" rel="nofollow">pink noise</a> that are crossfading using Equal Power Fades.
+</p>
+<dl><dd><span title="Crossfade white noise with pink noise with equal power fade"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Equal power cross-fade.png" height="323" src="../m/images/8/85/equal_power_cross_fade.png" width="529"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/8/85/equal_power_cross_fade.png--></img><!--}\par
+--></span></dd></dl>
+<div id="sine"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Sine_Curve_Fade">Sine Curve Fade</span></h2><!--}--><!--latex 
+\label{fade:and:crossfade:sine}-->
+<div class="note">
+<p>The "S-Curve" presets in the <!--latex 
+\hyperref[\foo{adjustable:fade:}]{--><a href="adjustable_fade.html" title="Adjustable Fade">Adjustable Fade</a><!--latex }
+--> effect produce this type of fade.
+</p>
+</div>
+<p>A <!--\textit{--><i>raised sine curve</i><!--}--> (or cosine curve) is based on the shape of a <a class="external text" href="https://en.wikipedia.org/wiki/Sine_wave" rel="nofollow">sine wave</a>. This fade type is often used for fading out music as it produces a smoother, more <!--\textit{--><i>musical</i><!--}--> sounding fade out than a linear fade. It is also sometimes used as an alternative to the <!--latex 
+\hyperref[\foo{fade:and:crossfade::Equal:Power:Fade}]{--><a href="#Equal_Power_Fade">Equal Power Fade</a><!--latex }
+--> for crossfading as it avoids the possibility of the peak level increasing during the crossfade (Like linear fades, it produces an "Equal Gain" crossfade).
+</p>
+<dl><dd><span title="Raised cosine fade"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Raised-cosine-fade.png" height="152" src="../m/images/4/40/raised_cosine_fade.png" width="544"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/4/40/raised_cosine_fade.png--></img><!--}\par
+--></span></dd></dl>
+<div id="dj"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="DJ_Crossfade_Curve">DJ Crossfade Curve</span></h2><!--}--><!--latex 
+\label{fade:and:crossfade:dj}-->
+<p>DJ Mixers have a crossfade slide control that is essentially two faders back to back in one unit. Moved in one direction it will fade in source A and fade out source B, and when moved to the other extreme it will fade out source A and fade in source B. Early DJ mixing desks crossfaders produced a (roughly) <!--latex 
+\hyperref[\foo{fade:and:crossfade::Equal:Power:Fade}]{--><a href="#Equal_Power_Fade">equal power</a><!--latex }
+--> crossfade, but in response to demand from DJs, other fade shapes were developed that have a more pronounced curve, thus making the mix more pronounced during the transition. More information about the history of DJ crossfaders can be found on the <a class="external text" href="http://www.rane.com/note146.html" rel="nofollow">Rane website</a>.
+</p><p>Modern DJ mixers provide a <!--\textit{--><i><!--\textbf{--><b>curve</b><!--}--></i><!--}--> control to provide adjustment of the fade taper contour. This works in a similar manner to the <!--\textbf{--><b>Mid-fade adjust</b><!--}--> control in Audacity's <!--latex 
+\hyperref[\foo{adjustable:fade:}]{--><a href="adjustable_fade.html" title="Adjustable Fade">Adjustable Fade</a><!--latex }
+--> effect. The image below compares the shapes of an equal power fade with a high curve fade that is similar to what would be achieved by setting the curve control fairly high on a DJ mixer's crossfader.
+</p>
+<dl><dd><span title="Comparison of an equal power taper with a high curve taper"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="High-curve.png" height="297" src="../m/images/f/f9/high_curve.png" width="566"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/f/f9/high_curve.png--></img><!--}\par
+--></span></dd></dl>
+<div id="adjustable"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Adjustable_Fade"><!--latex 
+\hyperref[\foo{adjustable:fade:}]{--><a href="adjustable_fade.html" title="Adjustable Fade">Adjustable Fade</a><!--latex }
+--></span></h2><!--}--><!--latex 
+\label{fade:and:crossfade:adjustable}-->
+<p>This is a more sophisticated and advanced fade that offers you settings to control the shape of the fade.
+</p><p>It enables you to increase or reduce the audio volume by a varying amount. This effect is more versatile than Fade In and Fade Out in that it can fade to or from any amplification level rather than only between silence and the original level.
+</p>
+<dl><dd><span title="Fade Up from 20&nbsp;% to 100&nbsp;%, Mid Fade Boost +50. Fade Down from 100&nbsp;% to 20&nbsp;%. Mid Fade Cut -50"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Adjustable-Fades-Simple-Curves.png" height="213" src="../m/images/7/7a/adjustable_fades_simple_curves.png" width="502"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/7/7a/adjustable_fades_simple_curves.png--></img><!--}\par
+--></span></dd></dl>
+<div id="envelope"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Creating_Fades_with_the_Envelope_Tool"><!--latex 
+\hyperref[\foo{creating:fades:with:the:envelope:tool:}]{--><a href="creating_fades_with_the_envelope_tool.html" title="Creating Fades with the Envelope Tool">Creating Fades with the Envelope Tool</a><!--latex }
+--></span></h2><!--}--><!--latex 
+\label{fade:and:crossfade:envelope}-->
+<p>The main advantage of creating fades with the Envelope Tool is that it is <a class="external text" href="https://en.wikipedia.org/wiki/Non-destructive_editing" rel="nofollow">non-destructive</a>. The envelope may be changed or removed at any time with no loss to the audio data.
+</p><p>See <!--latex 
+\hyperref[\foo{creating:fades:with:the:envelope:tool:}]{--><a href="creating_fades_with_the_envelope_tool.html" title="Creating Fades with the Envelope Tool">this page</a><!--latex }
+--> for details of how to use the <!--latex 
+\hyperref[\foo{envelope:tool:}]{--><a href="envelope_tool.html" title="Envelope Tool">Envelope Tool</a><!--latex }
+--> to create a fade.
+</p>
+<div id="create"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Creating_a_Crossfade"><!--latex 
+\hyperref[\foo{creating:a:crossfade:}]{--><a href="creating_a_crossfade.html" title="Creating a Crossfade">Creating a Crossfade</a><!--latex }
+--></span></h2><!--}--><!--latex 
+\label{fade:and:crossfade:create}-->
+<p>The purpose of a crossfade is to produce a smooth transition between two sections of audio. The two sections overlap and as one section fades out the other fades in. This technique is commonly used by DJ's, for "compilation" tracks and <a class="external text" href="https://en.wikipedia.org/wiki/Mashup_%28music%29" rel="nofollow">mashups</a>. The use of crossfades is not limited to joining pieces of music, but can be used in many other situations where a smooth transition is required, including editing speech recordings, extending songs, creating loops for audio sequencers, repairing damaged recordings and much more.
+</p><p>There are two crossfade effects available in Audacity
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> The first is a simple one which crossfades between two adjacent clips in the same track, see <!--latex 
+\hyperref[\foo{crossfade:clips:}]{--><a href="crossfade_clips.html" title="Crossfade Clips">Crossfade Clips</a><!--latex }
+--></li>
+<!--
+\item --><li> The second is a more precise tool that crossfades between two separate audio tracks. See the <!--latex 
+\hyperref[\foo{crossfade:tracks:}]{--><a href="crossfade_tracks.html" title="Crossfade Tracks">Crossfade Tracks</a><!--latex }
+--> effect. For detailed information and advanced techniques, see: <!--latex 
+\hyperref[\foo{creating:a:crossfade:}]{--><a href="creating_a_crossfade.html" title="Creating a Crossfade">Creating a Crossfade</a><!--latex }
+-->.</li></ul><!--
+\end{itemize}
+-->
+<div id="examples"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Examples">Examples</span></h2><!--}--><!--latex 
+\label{fade:and:crossfade:examples}-->
+<div class="example"><!--latex 
+\label{fade:and:crossfade:declick}--><div id="declick"></div>
+<p><!--\textbf{--><b>Example 1: Using a fade to remove a click from the start of a sound</b><!--}-->
+</p>
+<div class="note"> When editing sounds, clicks can often be avoided by ensuring that edit points occur at <!--latex 
+\hyperref[\foo{edit:menu:zero}]{--><a href="edit_menu.html#zero" title="Edit Menu">zero crossing points</a><!--latex }
+--> (where the waveform crosses the center zero line).</div>
+<p>If a sound starts suddenly, there will often be a noticeable click at the beginning. This is due to the waveform suddenly jumping from silence to the start of the waveform. This "jump" is often visible by <!--latex 
+\hyperref[\foo{zooming:}]{--><a href="zooming.html" title="Zooming">zooming</a><!--latex }
+--> in closely on the start of the sound so you can see the original sample dots:
+</p>
+<dl><dd><span title="Audio starts at non-zero"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Click-at-start.png" height="144" src="../m/images/6/6b/click_at_start.png" width="564"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/6/6b/click_at_start.png--></img><!--}\par
+--></span></dd></dl>
+<p>Applying a short, linear fade in can eliminate the click by smoothing the transition from silence to the start of the sound.
+</p>
+<dl><dd><span title="Fade in to eliminate click at start of audio"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Fade-in-start.png" height="144" src="../m/images/6/62/fade_in_start.png" width="564"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/6/62/fade_in_start.png--></img><!--}\par
+--></span></dd></dl></div>
+<p><br/>
+</p>
+<div class="example"><!--latex 
+\label{fade:and:crossfade:backing}--><div id="backing"></div>
+<p><!--\textbf{--><b>Example 2: Adding an extract of music to a presentation using fades</b><!--}-->
+</p><p>For presentations, whether you are using PowerPoint, OpenOffice Impress, a slide show for YouTube or any other audio-video presentation, it is often desirable to include audio clips within the presentation. Rather than simply cutting a recording to the required length, applying a fade in and fade out to the audio clip can add a touch of professionalism to the production.
+</p><p>The duration of the fade as well as the shape of the fade are crucial to the overall effect. Typically an audio clip will have a relatively short fade in and a longer fade out, but there are no hard and fast rules. Audacity allows you to experiment with different fade lengths. When preparing audio clips for use in your presentation you can export several versions with differing fade lengths, then when putting together the presentation, try your alternative versions and use whichever you most like.
+</p><p>Fading in music with an <!--latex 
+\hyperref[\foo{fade:and:crossfade::Exponential:Fade}]{--><a href="#Exponential_Fade">exponential shape fade</a><!--latex }
+--> is often very effective as you get a hint of the music first, then it rapidly fades to full volume. For fading out music, a <!--latex 
+\hyperref[\foo{fade:and:crossfade::Sine:Curve:Fade}]{--><a href="#Sine_Curve_Fade">sine curve fade</a><!--latex }
+--> often works well.
+</p>
+See also: <!--latex 
+\hyperref[\foo{mixing:}]{--><a href="mixing.html" title="Mixing">Mixing</a><!--latex }
+--></div>
+<div id="other"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Other_plug-ins_and_tools_for_fades"><!--latex 
+\hyperref[\foo{other:plug:ins:and:tools:for:fades:}]{--><a href="other_plug_ins_and_tools_for_fades.html" title="Other plug-ins and tools for fades">Other plug-ins and tools for fades</a><!--latex }
+--></span></h2><!--}--><!--latex 
+\label{fade:and:crossfade:other}-->
+<p>See <!--latex 
+\hyperref[\foo{other:plug:ins:and:tools:for:fades:}]{--><a href="other_plug_ins_and_tools_for_fades.html" title="Other plug-ins and tools for fades">this page</a><!--latex }
+--> for details of other plug-ins and tools for making fades. The page carries information on the following:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--latex 
+\hyperref[\foo{other:plug:ins:and:tools:for:fades:fade}]{--><a href="other_plug_ins_and_tools_for_fades.html#fade" title="Other plug-ins and tools for fades">Fade In and Out</a><!--latex }
+--></li>
+<!--
+\item --><li><!--latex 
+\hyperref[\foo{other:plug:ins:and:tools:for:fades:envelope}]{--><a href="other_plug_ins_and_tools_for_fades.html#envelope" title="Other plug-ins and tools for fades">Text Envelope</a><!--latex }
+--></li>
+<!--
+\item --><li><!--latex 
+\hyperref[\foo{other:plug:ins:and:tools:for:fades:make:fade}]{--><a href="other_plug_ins_and_tools_for_fades.html#make_fade" title="Other plug-ins and tools for fades">Creating Fades from the Nyquist Prompt</a><!--latex }
+-->.</li></ul><!--
+\end{itemize}
+-->
+
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

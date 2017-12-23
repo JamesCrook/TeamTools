@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Creating Fades with the Envelope Tool - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Creating_Fades_with_the_Envelope_Tool rootpage-Creating_Fades_with_the_Envelope_Tool skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Creating Fades with the Envelope Tool</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{creating:fades:with:the:envelope:tool:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><div class="intro">The principal advantage of creating fades with the <!--latex 
+\hyperref[\foo{envelope:tool:}]{--><a href="envelope_tool.html" title="Envelope Tool">Envelope Tool</a><!--latex }
+--> is that it is <a class="external text" href="https://en.wikipedia.org/wiki/Non-destructive_editing" rel="nofollow">non-destructive</a>. The envelope may be changed or removed at any time with no loss to the audio data.</div>
+<p>Because the Envelope Tool uses exponential fades, creating a precise fade shape can be very fiddly, but with patience almost any type of fade shape can be achieved.
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li>The fade shape does not need to look exactly smooth to provide an effective fade. Check what the fade sounds like before spending an unnecessary amount of time trying to make the fade <!--\textit{--><i>look</i><!--}--> right. The <!--\textit{--><i>sound</i><!--}--> is far more important than what it looks like.</li>
+<!--
+\item --><li>To make small adjustments to the envelope it can be useful to <!--latex 
+\hyperref[\foo{audio:tracks:display}]{--><a href="audio_tracks.html#display" title="Audio Tracks">expand the track vertically</a><!--latex }
+-->.</li></ul><!--
+\end{itemize}
+-->
+<div class="note">When related to fades, the terms <!--latex 
+\hyperref[\foo{glossary:exponential}]{--><a href="glossary.html#exponential" title="Glossary">exponential</a><!--latex }
+--> and <!--latex 
+\hyperref[\foo{glossary:log}]{--><a href="glossary.html#log" title="Glossary">logarithmic</a><!--latex }
+--> are frequently interchanged, which can be confusing, but it is really just a matter of perspective. <!--\textit{--><i>Exponential growth</i><!--}--> is said to occur when something increases at an ever greater rate, whereas <!--\textit{--><i>exponential decay</i><!--}--> is said to occur when something decreases at an ever decreasing rate. <!--\textit{--><i>Logarithmic</i><!--}--> is the inverse of <!--\textit{--><i>exponential</i><!--}-->, so if something is growing exponentially over time, then the time taken for a given amount of growth is shortened logarithmically. Within this article the term <!--\textit{--><i>exponential</i><!--}--> is used in the sense of "exponential decay", where the level gets closer and closer to a target level without ever reaching it.
+For an exponential fade out, this means that the audio level will get quieter and quieter but will never be totally silent. In practice, it is usual that an <!--\textit{--><i>exponential</i><!--}--> fade out will only actually follow the logarithmic/exponential scale until it is very close to silence and will then be made to go silent by either dropping directly from the very low level to silence, or via a short linear fade to silence.</div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Tips_for_drawing_fades_with_the_Envelope_Tool:">Tips for drawing fades with the Envelope Tool:</span></h2><!--}-->
+<p>In this example we will create a fade that starts at full volume, then starts to fade slowly, then gradually more rapidly to silence, as illustrated here:
+</p>
+<dl><dd><span title="Start, end and shape of the fade to be created"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Making-a-fade-shape.png" height="237" src="../m/images/b/b0/making_a_fade_shape.png" width="642"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/b0/making_a_fade_shape.png--></img><!--}\par
+--></span></dd></dl>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> Begin the fade by setting a control point at the time position where the fade starts at full volume:</li></ul><!--
+\end{itemize}
+-->
+<dl><dd><!--
+\begin{itemize}--><ul><!--
+\item --><li> Click on the waveform with the envelope tool at the "start position" of the fade.</li>
+<!--
+\item --><li> Drag the control point vertically to the nearest edge of the track to achieve full volume.</li>
+<!--
+\item --><li> Note that if you drag the point beyond the edge of the track, the control point will be removed.</li></ul><!--
+\end{itemize}
+--></dd></dl>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> Set a control point where the fade becomes <!--\textit{--><i>silent</i><!--}-->.</li></ul><!--
+\end{itemize}
+-->
+<dl><dd><!--
+\begin{itemize}--><ul><!--
+\item --><li> Click on the waveform with the envelope tool at the "end position" of the fade.</li>
+<!--
+\item --><li> Drag the control point up or down toward the vertical center of the track.</li>
+<!--
+\item --><li> Note that the fade will be almost silent for a large section of the fade.</li></ul><!--
+\end{itemize}
+--></dd></dl>
+<dl><dd><dl><dd><dl><dd><span title="Start and end fade control points"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Logarithmic-envelope.png" height="142" src="../m/images/0/09/logarithmic_envelope.png" width="521"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/0/09/logarithmic_envelope.png--></img><!--}\par
+--></span></dd></dl></dd></dl></dd></dl>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> Click where you want to add additional control points as necessary to <!--\textit{--><i>push out</i><!--}--> the envelope to the required shape.</li></ul><!--
+\end{itemize}
+-->
+<dl><dd><dl><dd><dl><dd><span title="Shaping the envelope with additional control points"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Equal-power-envelope.png" height="145" src="../m/images/8/8f/equal_power_envelope.png" width="522"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/8/8f/equal_power_envelope.png--></img><!--}\par
+--></span></dd></dl></dd></dl></dd></dl>
+
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

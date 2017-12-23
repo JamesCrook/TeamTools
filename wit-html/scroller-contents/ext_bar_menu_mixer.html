@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Ext-Bar Menu: Mixer - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Ext-Bar_Menu_Mixer rootpage-Ext-Bar_Menu_Mixer skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Ext-Bar Menu: Mixer</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{ext:bar:menu:mixer:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p><br/>
+</p>
+<div class="intro">The <!--\textit{--><i><!--\textbf{--><b>Ext-Bar &gt; Mixer Menu</b><!--}--></i><!--}--> provides commands for adjusting the playback and recording volumes. You can use these commands instead of manipulating the recording and playback sliders on the <!--\textbf{--><b><!--latex 
+\hyperref[\foo{mixer:toolbar:}]{--><a href="mixer_toolbar.html" title="Mixer Toolbar">Mixer Toolbar</a><!--latex }
+--></b><!--}-->. </div>
+<dl><dd><!--\textit{--><i>Click, or hover, on any menu item in the image to read about that command.  &nbsp;<span style="font-size:0.8em"><!--latex 
+\hyperref[\foo{ext:bar:menu:mixer::skiptheimage}]{--><a href="#skiptheimage">Skip the image</a><!--latex }
+--></span></i><!--}--></dd>
+<dd><div class="noresize"><map name="ImageMap_1_1224854489"><area alt="Help Menu" coords="0,3,26,19" href="help_menu.html" shape="rect" title="Help Menu"/><area alt="Ext-Bar Menu" coords="33,3,75,19" href="ext_bar_menu.html" shape="rect" title="Ext-Bar Menu"/><area alt="Ext-Command Menu" coords="82,3,164,19" href="ext_command_menu.html" shape="rect" title="Ext-Command Menu"/><area alt="Menu Bar" coords="0,0,600,22" href="menu_reference.html" shape="rect" title="Menu Bar"/><area alt="Extra commands related to play and record" coords="39,23,163,45" href="ext_bar_menu_transport.html" shape="rect" title="Extra commands related to play and record"/><area alt="Extra commands to select the tool, e" coords="39,45,163,67" href="ext_bar_menu_tools.html" shape="rect" title="Extra commands to select the tool, e"/><area alt="Extra commands related to volume" coords="39,67,163,89" href="#" shape="rect" title="Extra commands related to volume"/><area alt="Extra commands related to editing" coords="39,89,163,111" href="ext_bar_menu_edit.html" shape="rect" title="Extra commands related to editing"/><area alt="Extra commands related to play at speed" coords="39,111,163,133" href="ext_bar_menu_transcription.html" shape="rect" title="Extra commands related to play at speed"/><area alt="Extra commands related to scrubbing" coords="39,133,163,155" href="ext_bar_menu_scrub.html" shape="rect" title="Extra commands related to scrubbing"/><area alt="Extra commands related to selecting a device" coords="39,155,163,177" href="ext_bar_menu_device.html" shape="rect" title="Extra commands related to selecting a device"/><area alt="Extra commands related to selecting" coords="39,177,163,199" href="ext_bar_menu_selection.html" shape="rect" title="Extra commands related to selecting"/><area alt="Displays the Playback Volume dialog" coords="175,67,373,89" href="#adjust_playback_volume" shape="rect" title="Displays the Playback Volume dialog"/><area alt="Each key press will increase the playback volume by 0" coords="175,89,373,111" href="#increase_playback_volume" shape="rect" title="Each key press will increase the playback volume by 0"/><area alt="Each key press will decrease the playback volume by 0" coords="175,111,373,133" href="#decrease_playback_volume" shape="rect" title="Each key press will decrease the playback volume by 0"/><area alt="Displays the Recording Volume dialog" coords="175,133,373,155" href="#adjust_recording_volume" shape="rect" title="Displays the Recording Volume dialog"/><area alt="Each key press will increase the recording volume by 0" coords="175,155,373,177" href="#increase_recording_volume" shape="rect" title="Each key press will increase the recording volume by 0"/><area alt="Each key press will decrease the recording volume by 0" coords="175,177,373,199" href="#decrease_recording_volume" shape="rect" title="Each key press will decrease the recording volume by 0"/></map><!--
+
+\par\Needspace{133.5pt}\begin{picture}(193.0,103.5)
+--><!--   \put(0,0){\includegraphics[scale=0.5]{--><img alt="ExtBar-MixerMenu.png" height="207" src="../m/images/1/1e/extbar_mixermenu.png" usemap="#ImageMap_1_1224854489" width="386"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/1/1e/extbar_mixermenu.png--></img><!--}}
+--><!--   \put(0.0,94.0){\hyperref[\foo{help:menu:}]{\makebox(13.0,8.0){}}}
+   \put(16.5,94.0){\hyperref[\foo{ext:bar:menu:}]{\makebox(21.0,8.0){}}}
+   \put(41.0,94.0){\hyperref[\foo{ext:command:menu:}]{\makebox(41.0,8.0){}}}
+   \put(19.5,81.0){\hyperref[\foo{ext:bar:menu:transport:}]{\makebox(62.0,11.0){}}}
+   \put(19.5,70.0){\hyperref[\foo{ext:bar:menu:tools:}]{\makebox(62.0,11.0){}}}
+   \put(19.5,59.0){\hyperref[\foo{ext:bar:menu:mixer::}]{\makebox(62.0,11.0){}}}
+   \put(19.5,48.0){\hyperref[\foo{ext:bar:menu:edit:}]{\makebox(62.0,11.0){}}}
+   \put(19.5,37.0){\hyperref[\foo{ext:bar:menu:transcription:}]{\makebox(62.0,11.0){}}}
+   \put(19.5,26.0){\hyperref[\foo{ext:bar:menu:scrub:}]{\makebox(62.0,11.0){}}}
+   \put(19.5,15.0){\hyperref[\foo{ext:bar:menu:device:}]{\makebox(62.0,11.0){}}}
+   \put(19.5,4.0){\hyperref[\foo{ext:bar:menu:selection:}]{\makebox(62.0,11.0){}}}
+   \put(87.5,59.0){\hyperref[\foo{ext:bar:menu:mixer::adjust:playback:volume}]{\makebox(99.0,11.0){}}}
+   \put(87.5,48.0){\hyperref[\foo{ext:bar:menu:mixer::increase:playback:volume}]{\makebox(99.0,11.0){}}}
+   \put(87.5,37.0){\hyperref[\foo{ext:bar:menu:mixer::decrease:playback:volume}]{\makebox(99.0,11.0){}}}
+   \put(87.5,26.0){\hyperref[\foo{ext:bar:menu:mixer::adjust:recording:volume}]{\makebox(99.0,11.0){}}}
+   \put(87.5,15.0){\hyperref[\foo{ext:bar:menu:mixer::increase:recording:volume}]{\makebox(99.0,11.0){}}}
+   \put(87.5,4.0){\hyperref[\foo{ext:bar:menu:mixer::decrease:recording:volume}]{\makebox(99.0,11.0){}}}
+\end{picture}
+
+--></div></dd></dl>
+<div id="skiptheimage"></div>
+<div id="adjust_playback_volume"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Adjust_playback_volume_.C2.A0">Adjust playback volume &nbsp;<font size="-1"></font></span></h2><!--}--><!--latex 
+\label{ext:bar:menu:mixer:adjust:playback:volume}--><!--latex 
+\label{ext:bar:menu:mixer:skiptheimage}-->
+<p>Displays the Playback Volume dialog. You can type a new value for the playback volume (between 0 and 1), or press <span class="kbrd" style="background-color: #e0e0f0">Tab</span>, then use the left and right arrow keys to adjust the slider.
+</p>
+<div id="increase_playback_volume"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Increase_playback_volume_.C2.A0">Increase playback volume &nbsp;<font size="-1"></font></span></h2><!--}--><!--latex 
+\label{ext:bar:menu:mixer:increase:playback:volume}-->
+<p>Each key press will increase the playback volume by 0.1.
+</p>
+<div id="decrease_playback_volume"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Decrease_playback_volume_.C2.A0">Decrease playback volume &nbsp;<font size="-1"></font></span></h2><!--}--><!--latex 
+\label{ext:bar:menu:mixer:decrease:playback:volume}-->
+<p>Each key press will decrease the playback volume by 0.1.
+</p>
+<div id="adjust_recording_volume"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Adjust_recording_volume_.C2.A0">Adjust recording volume &nbsp;<font size="-1"></font></span></h2><!--}--><!--latex 
+\label{ext:bar:menu:mixer:adjust:recording:volume}-->
+<p>Displays the Recording Volume dialog. You can type a new value for the recording volume (between 0 and 1), or press <span class="kbrd" style="background-color: #e0e0f0">Tab</span>, then use the left and right arrow keys to adjust the slider.
+</p>
+<div id="increase_recording_volume"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Increase_recording_volume_.C2.A0">Increase recording volume &nbsp;<font size="-1"></font></span></h2><!--}--><!--latex 
+\label{ext:bar:menu:mixer:increase:recording:volume}-->
+<p>Each key press will increase the recording volume by 0.1.
+</p>
+<div id="decrease_recording_volume"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Decrease_recording_volume_.C2.A0">Decrease recording volume &nbsp;<font size="-1"></font></span></h2><!--}--><!--latex 
+\label{ext:bar:menu:mixer:decrease:recording:volume}-->
+<p>Each key press will decrease the recording volume by 0.1.
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

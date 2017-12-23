@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Dependencies Dialog - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Dependencies_Dialog rootpage-Dependencies_Dialog skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Dependencies Dialog</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{dependencies:dialog:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+</p><p><br/>
+</p>
+<div class="intro">Uncompressed WAV and AIFF files that are imported into a project with the "Read uncompressed audio files directly from the original (faster)" option in <!--latex 
+\hyperref[\foo{import:export:preferences:import}]{--><a href="import_export_preferences.html#import" title="Import - Export Preferences">Import / Export Preferences</a><!--latex }
+--> are not copied into the project. Instead, Audacity keeps a reference to these files, and the project is <!--\textit{--><i>dependent</i><!--}--> on them. Dependencies Dialog lists these dependencies and allows you to optionally remove them. You may select some, none or all the files to be copied in.</div>
+<dl><dd><!--\textbf{--><b>Accessed by <span class="menu">Help &gt; Diagnostics &gt; Check Dependencies...</span> or when <!--latex 
+\hyperref[\foo{file:menu:Save:Project}]{--><a href="file_menu.html#Save_Project" title="File Menu">saving a project</a><!--latex }
+--> that depends on other audio files</b><!--}--></dd>
+<dd><span title="image of Check Dependencies dialog"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="CheckDependenciesDialog.png" height="310" src="../m/images/b/b6/checkdependenciesdialog.png" width="360"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/b6/checkdependenciesdialog.png--></img><!--}\par
+--></span></dd></dl>
+<div class="note">If you select "Make a copy of uncompressed audio files before editing (safer)" in <!--latex 
+\hyperref[\foo{import:export:preferences:import}]{--><a href="import_export_preferences.html#import" title="Import - Export Preferences">Import / Export Preferences</a><!--latex }
+-->, your projects will never have dependencies, but more disk space may be used to store the project, and importing WAV or AIFF files will be slower.</div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Project_Dependencies">Project Dependencies</span></h2><!--}-->
+<p>This dialog appears when you click <span class="menu">Help &gt; Diagnostics &gt; <!--latex 
+\hyperref[\foo{help:menu:diagnostics:check:dependencies}]{--><a href="help_menu_diagnostics.html#check_dependencies" title="Help Menu: Diagnostics">Check Dependencies...</a><!--latex }
+--></span> and the project depends on other files. 
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>File list:</b><!--}--> When the dialog opens, you can move into the list using the keyboard by pressing &lt;<!--\textbf{--><b>up arrow</b><!--}-->&gt; (on Mac, focus is already in the list). You can resize the list columns by hovering the mouse over the boundary between them and then drag when the pointer changes to arrows. On Windows, hovering over a file name shows a tooltip containing the complete path to the file.</li></ul><!--
+\end{itemize}
+-->
+<dl><dd><!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>Audio File:</b><!--}--> Lists the uncompressed files that were imported using the "Read uncompressed audio files directly from the original (faster)" option in <!--latex 
+\hyperref[\foo{import:export:preferences:}]{--><a href="import_export_preferences.html" title="Import - Export Preferences">Import / Export Preferences</a><!--latex }
+-->.</li>
+<!--
+\item --><li><!--\textbf{--><b>Disk space:</b><!--}--> Shows the amount of additional disk space that will be used by the project if the file(s) are copied in. The disk space shown will depend on the default <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:sample:format}]{--><a href="glossary.html#sample_format" title="Glossary">sample format</a><!--latex }
+--></b><!--}--></i><!--}--> of the project as set in <!--latex 
+\hyperref[\foo{quality:preferences:}]{--><a href="quality_preferences.html" title="Quality Preferences">Quality Preferences</a><!--latex }
+-->.</li></ul><!--
+\end{itemize}
+--></dd></dl>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>Copy Selected Files:</b><!--}--> Copies the files selected in the list into the project. The project no longer depends on the selected files but still depends on the unselected files. </li>
+<!--
+\item --><li><!--\textbf{--><b>Do Not Copy:</b><!--}--> Dismisses the dialog (but continues to save the project if you were saving it) without copying any of the listed files into the project. The project will continue to depend on the listed files, so you must <!--\textbf{--><b>not</b><!--}--> move, rename or delete those files, or the folder they are in.</li>
+<!--
+\item --><li><!--\textbf{--><b>Copy All Files (Safer):</b><!--}--> All the listed files will be copied into the project, removing all the dependencies. You can then safely move, rename or delete those files if you wish.</li></ul><!--
+\end{itemize}
+-->
+<!--
+\subsection{--><h2><span class="mw-headline" id="When_saving_a_project_that_depends_on_other_files">When saving a project that depends on other files</span></h2><!--}-->
+<p>This similar dialog appears when you save a project that has dependencies, and have chosen in <!--latex 
+\hyperref[\foo{projects:preferences:}]{--><a href="projects_preferences.html" title="Projects Preferences">Projects Preferences</a><!--latex }
+--> to be asked whether dependent files should be copied in or not.
+</p>
+<dl><dd><span title="Dependencies Dialog when saving a project that has dependencies"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="SavingDependsDialog.png" height="418" src="../m/images/0/00/savingdependsdialog.png" width="455"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/0/00/savingdependsdialog.png--></img><!--}\par
+--></span></dd></dl>
+<p>As with the above version, you may select some, none or all the files for copying in. This dialog gives you the option of directly setting your preference for copying in behavior when saving a project. 
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>Copy Selected Files</b><!--}--> Saves the project while copying only the files selected in the list into the project. The project no longer depends on the selected files but still depends on the unselected files. </li>
+<!--
+\item --><li><!--\textbf{--><b>Cancel Save:</b><!--}--> Allows you to cancel saving of the project, without copying any of the listed files into it. You will be asked to say "Yes" if this is your intention. The project will continue to depend on the listed files.</li>
+<!--
+\item --><li><!--\textbf{--><b>Save without Copying:</b><!--}--> Save the project without copying in the dependent files. The project will continue to depend on the listed files.</li>
+<!--
+\item --><li><!--\textbf{--><b>Copy All Files (Safer):</b><!--}--> Saves the project while copying all the listed files into the project, removing all the dependencies. You can then safely move, rename or delete those files if you wish.</li>
+<!--
+\item --><li><!--\textbf{--><b>Whenever a project depends on other files:</b><!--}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>Ask me</b><!--}--> The default option; the Dependencies Dialog will always appear when saving a project that has dependencies.</li>
+<!--
+\item --><li><!--\textbf{--><b>Always copy all audio (safest):</b><!--}--> On all future occasions when saving a project that has dependencies, Dependencies Dialog will not appear, and all dependent files will be copied into the project.</li>
+<!--
+\item --><li><!--\textbf{--><b>Never copy any audio:</b><!--}--> On all future occasions when saving a project that has dependencies, Dependencies Dialog will not appear, and no files will be copied into the project. The project will continue to depend on the listed files.</li></ul><!--
+\end{itemize}
+--></li></ul><!--
+\end{itemize}
+-->
+<p>You can change your decision in this menu at any time by going to <!--latex 
+\hyperref[\foo{projects:preferences:}]{--><a href="projects_preferences.html" title="Projects Preferences">Projects Preferences</a><!--latex }
+-->.
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Delay - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Delay rootpage-Delay skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Delay</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{delay:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p><br/>
+</p>
+
+<p>
+
+
+</p><p><br/>
+</p>
+<div class="intro">Use <!--\textit{--><i><!--\textbf{--><b>Delay</b><!--}--></i><!--}--> to create a multiple echo effect with options for variable delay times between successive echoes and the number, amplitude and pitch of successive repeats.</div>
+<dl><dd><!--\textbf{--><b>Accessed by:</b><!--}--> <span class="menu">Effect &gt; Delay...</span></dd>
+<dd><span title="Delay effect dialog"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Delay.png"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Delay.png" height="327" src="../m/images/5/53/delay.png" width="570"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/5/53/delay.png--></img><!--}\par
+--></a></span></dd></dl>
+<div id="type"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Delay_type">Delay type</span></h2><!--}--><!--latex 
+\label{delay:type}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>Regular</b><!--}-->: Each echo is delayed by the same amount.</li>
+<!--
+\item --><li><!--\textbf{--><b>Bouncing ball</b><!--}-->: Makes the echoes occur increasingly close together (faster).</li>
+<!--
+\item --><li><!--\textbf{--><b>Reverse bouncing ball</b><!--}-->: Makes the echoes occur increasingly far apart (slower).</li></ul><!--
+\end{itemize}
+-->
+<div id="level"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Delay_level_per_echo_.28dB.29">Delay level per echo (dB)</span></h2><!--}--><!--latex 
+\label{delay:level}-->
+<p>This controls the amount in <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:decibel}]{--><a href="glossary.html#decibel" title="Glossary">dB</a><!--latex }
+--></b><!--}--></i><!--}--> by which each successive echo will change loudness. The more negative this value, the more the echoes will die away. Positive values cause successive echoes to be louder. When set to 0.0, all echoes will be the same volume.
+</p>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">Because echoes are often <!--\textit{--><i>added</i><!--}--> to the original audio, the processed audio will often have a higher peak level than the original. If the output exceeds 0 dB (full track height) and so triggers the red <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:clipping}]{--><a href="glossary.html#clipping" title="Glossary">clipping</a><!--latex }
+--></b><!--}--></i><!--}--> warning lights in <!--latex 
+\hyperref[\foo{meter:toolbar:playback}]{--><a href="meter_toolbar.html#playback" title="Meter Toolbar">Playback Meter Toolbar</a><!--latex }
+-->, you should open <span class="menu">Effect &gt; <!--latex 
+\hyperref[\foo{effect:menu:amplify}]{--><a href="effect_menu.html#amplify" title="Effect Menu">Amplify...</a><!--latex }
+--></span>, ensure "Amplification (dB)" shows a <!--\textbf{--><b>negative dB value</b><!--}--> (not "0.0 dB") then click <span class="button">OK</span>.
+<p>If "Amplification (dB)" in Amplify shows "0.0 dB", the track does not contain 32-bit audio and the clipping cannot be repaired. In that case, <span class="menu">Edit &gt; <!--latex 
+\hyperref[\foo{edit:menu:undo}]{--><a href="edit_menu.html#undo" title="Edit Menu">Undo</a><!--latex }
+--></span> Delay, use Amplify to reduce the track to a lower amplitude then reapply Delay.</p>
+</td></tr></tbody></table>
+</div>
+<div id="time"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Delay_time_.28seconds.29">Delay time (seconds)</span></h2><!--}--><!--latex 
+\label{delay:time}-->
+<p>This controls the time between echoes. For the <!--\textit{--><i>Bouncing Ball</i><!--}--> types of delay, this sets the delay time for the <!--\textit{--><i>longest</i><!--}--> (slowest) echo.
+</p>
+<div id="effect"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Pitch_change_effect">Pitch change effect</span></h2><!--}--><!--latex 
+\label{delay:effect}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>Pitch/Tempo:</b><!--}--> Changes the <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:pitch}]{--><a href="glossary.html#pitch" title="Glossary">pitch</a><!--latex }
+--></b><!--}--></i><!--}--> in the same way that the <!--latex 
+\hyperref[\foo{change:speed:}]{--><a href="change_speed.html" title="Change Speed">Change Speed</a><!--latex }
+--> effect causes a change in pitch. The sound quality of each echo is very good, but an increase in pitch speeds up the delayed audio and a decrease in pitch slows it down. The echoes will be noticeably desynchronized with any comparable echoes in other tracks where "Pitch/Tempo" was not applied. </li>
+<!--
+\item --><li> <!--\textbf{--><b>LQ Pitch Shift:</b><!--}--> Changes the pitch while maintaining the same tempo in a similar way to the <!--latex 
+\hyperref[\foo{change:pitch:}]{--><a href="change_pitch.html" title="Change Pitch">Change Pitch</a><!--latex }
+--> effect. The sound quality of each echo is of lower quality than the "Pitch/Tempo" effect (including a short additional echo on percussive sounds) and the delay time will often be a little longer than specified. However, interesting "spiraling" effects can be produced. </li></ul><!--
+\end{itemize}
+-->
+<div id="pitch"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Pitch_change_per_echo_.28semitones.29">Pitch change per echo (semitones)</span></h2><!--}--><!--latex 
+\label{delay:pitch}-->
+<p>This controls the amount in semitones by which each successive echo will change pitch. The change can be set to fractions of a semitone which can produce a "glissando" type of delay. When set to zero, the pitch change effect is disabled.
+</p>
+<div id="number"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Number_of_echoes">Number of echoes</span></h2><!--}--><!--latex 
+\label{delay:number}-->
+<p>This controls how many echoes are produced.
+</p>
+<div id="duration"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Allow_duration_to_change">Allow duration to change</span></h2><!--}--><!--latex 
+\label{delay:duration}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>Yes:</b><!--}--> (Default). Allows the processed audio to lengthen so as to accommodate all the requested echoes.</li>
+<!--
+\item --><li> <!--\textbf{--><b>No:</b><!--}--> The processed audio is trimmed to the same length as the original selection. Any echoes that would have occurred after the end of the original selection will be deleted. Choose this option if you need to keep the delayed track synchronized with other tracks in the project.</li></ul><!--
+\end{itemize}
+-->
+<div id="buttons"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Buttons">Buttons</span></h2><!--}--><!--latex 
+\label{delay:buttons}-->
+<p>Clicking on the command buttons give the following results:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><span class="button">Manage</span> gives a dropdown menu enabling you to manage presets for the tool and to see some detail about the tool. For details see <!--latex 
+\hyperref[\foo{manage:presets:}]{--><a href="manage_presets.html" title="Manage presets">Manage presets</a><!--latex }
+-->.</li>
+<!--
+\item --><li><span class="button">Preview</span> plays a short preview of what the audio would sound like if the effect is applied with the current settings, without making actual changes to the audio.  The length of preview is determined by your setting in <span class="menu">Edit &gt; Preferences &gt; <!--latex 
+\hyperref[\foo{playback:preferences:}]{--><a href="playback_preferences.html" title="Playback Preferences">Playback</a><!--latex }
+--></span>, the default setting is 6 seconds.</li>
+<!--
+\item --><li><span class="button">OK</span> applies the effect to the selected audio with the current effect settings.</li>
+<!--
+\item --><li><span class="button">Cancel</span> aborts the effect and leaves the audio unchanged.</li>
+<!--
+\item --><li><a href="help_button.html" title="Help Button"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Help Button" height="27" src="../m/images/d/d6/help_button.png" width="27"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d6/help_button.png--></img><!--}}{}--></a> brings you to the appropriate page in the Manual, this page.</li></ul><!--
+\end{itemize}
+-->
+<p><br/>
+</p><p><br/>
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Links">Links</span></h2><!--}-->
+<p><!--latex 
+\hyperref[\foo{index:of:effects:generators:and:analyzers:}]{--><a href="index_of_effects_generators_and_analyzers.html" title="Index of Effects, Generators and Analyzers"><!--\textbf{--><b>|&lt;</b><!--}--> Index of Effects, Generators and Analyzers</a><!--latex }
+--> <br/>
+</p><p><!--latex 
+\hyperref[\foo{effect:menu:}]{--><a href="effect_menu.html" title="Effect Menu"><!--\textbf{--><b>|&lt;</b><!--}--> Effect Menu</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

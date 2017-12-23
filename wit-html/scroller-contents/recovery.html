@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Automatic Crash Recovery - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Recovery rootpage-Recovery skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Automatic Crash Recovery</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{recovery:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p> 
+
+
+</p><p><br/>
+</p>
+<div class="intro">In the event of a crash while Audacity has unsaved data (such as a recording that has not yet been saved as a <!--latex 
+\hyperref[\foo{audacity:projects:}]{--><a href="audacity_projects.html" title="Audacity Projects">project</a><!--latex }
+-->, or an existing project with unsaved changes), Audacity will attempt to recover that data on next launch from an <!--latex 
+\hyperref[\foo{audacity:projects:autosave}]{--><a href="audacity_projects.html#autosave" title="Audacity Projects">autosave</a><!--latex }
+--> recovery file.<p>If there were no unsaved changes at the time of the crash, there will be no recovery dialog - all you need to do is re-open the saved AUP file.</p></div>
+<dl><dd><span title="Automatic Crash Recovery dialog box"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="CrashRecovery.png" height="295" src="../m/images/c/c4/crashrecovery.png" width="381"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/c/c4/crashrecovery.png--></img><!--}\par
+--></span></dd>
+<dd> The project name in the list of recoverable projects includes the date and time of the autosave file, preceded by either the name of the project or by "New Project" for a project that was never saved as an .aup file.</dd></dl>
+<div id="recovery"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Automatic_Crash_Recovery">Automatic Crash Recovery</span></h2><!--}--><!--latex 
+\label{recovery:recovery}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <span class="button"><!--\textbf{--><b>Quit Audacity</b><!--}--></span> Exits Audacity without any changes. The Automatic Crash Recovery dialog will reappear next time you launch Audacity.</li>
+<!--
+\item --><li> <span class="button"><!--\textbf{--><b>Discard Projects</b><!--}--></span> Discards the unsaved data for all projects. You will receive a prompt asking if you are sure this is what you want to do. If you confirm that want to discard all projects, they will not be recoverable later.</li>
+<!--
+\item --><li> <span class="button"><!--\textbf{--><b>Recover Projects</b><!--}--></span> Attempts to recover the unsaved data for all projects, and load the recovered <!--latex 
+\hyperref[\foo{audacity:waveform:}]{--><a href="audacity_waveform.html" title="Audacity Waveform">waveforms</a><!--latex }
+-->. If there are multiple unsaved projects, each will recover into their own project window. Note that the project <!--latex 
+\hyperref[\foo{undo:redo:and:history:}]{--><a href="undo_redo_and_history.html" title="Undo, Redo and History">history</a><!--latex }
+--> is not recoverable, so you can only recover to the project state at or just before the crash. You also cannot recover the text contents of a <!--latex 
+\hyperref[\foo{label:tracks:}]{--><a href="label_tracks.html" title="Label Tracks">label</a><!--latex }
+--> whose text was being added at the time of the crash or where there was no action that triggered autosave after closing the new label. </li></ul><!--
+\end{itemize}
+-->
+<p>Note that it is common if there are unsaved changes at the time of the crash for Audacity to warn of "file inconsistencies" when recovering the project. This usually means merely that there are "orphan block files" in the data that were there to enable undo or redo of a project action but which are now superfluous to the recovered project. If this was the case, you would see a note on opening <span class="menu">Help &gt; Diagnostics &gt; <!--latex 
+\hyperref[\foo{help:menu:diagnostics:show:log}]{--><a href="help_menu_diagnostics.html#show_log" title="Help Menu: Diagnostics">Show Log...</a><!--latex }
+--></span> that orphan files would be deleted on saving the project, but no warnings about other kinds of file error. 
+</p>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>After recovery, the data is still in unsaved state.</b><!--}--> If the recovery appears correct, use <span class="menuadvice">File &gt; <!--latex 
+\hyperref[\foo{file:menu:saveproject}]{--><a href="file_menu.html#saveproject" title="File Menu">Save Project</a><!--latex }
+--></span> to save the recovered project immediately. If the project is not saved when you exit, Audacity will prompt if you want to save the changes. If you choose not to save, all unsaved changes will be deleted and not recoverable.</li>
+<!--
+\item --><li> <!--\textbf{--><b>If the recovered project appears incorrect, for example with silenced audio, do not save the project in incorrect state and do not close it and discard changes.</b><!--}--> 
+<!--
+\begin{enumerate}--><ol><!--
+\item --><li>Open <span class="menuadvice">Help &gt; Diagnostics &gt; <!--latex 
+\hyperref[\foo{help:menu:diagnostics:show:log}]{--><a href="help_menu_diagnostics.html#show_log" title="Help Menu: Diagnostics">Show Log...</a><!--latex }
+--></span> and copy the errors shown - typically these would list "missing data block files". </li>
+<!--
+\item --><li>Force quit Audacity in the operating system's task manager to keep the autosave file and audio data safe, and search your computer or use a data recovery application to locate any files that were noted as missing. </li>
+<!--
+\item --><li>If you can restore these files to the location shown for them in the log, then you should be able to re-open Audacity and recover correctly. </li></ol><!--
+\end{enumerate}
+--></li></ul><!--
+\end{itemize}
+-->
+</td></tr></tbody></table>
+</div>
+<div id="manual"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Manual_Recovery">Manual Recovery</span></h2><!--}--><!--latex 
+\label{recovery:manual}-->
+<p>If the Automatic Crash Recovery does not appear after a crash with unsaved changes, or the recovered audio cannot be corrected by searching for files, it may be possible to recover a <!--\textbf{--><b>single, unedited mono recording</b><!--}--> using crash recovery tools written for previous versions of Audacity. <!--\textbf{--><b>Stereo or edited audio is unlikely to be recovered in the correct sequence.</b><!--}-->  
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> In order to use the crash recovery tools, it is essential to rename the unsaved <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:au}]{--><a href="glossary.html#au" title="Glossary">.au files</a><!--latex }
+--></b><!--}--></i><!--}--> to a consecutive alphanumeric sequence. See "<!--latex 
+\hyperref[\foo{recovering:crashes:manually:}]{--><a href="recovering_crashes_manually.html" title="Recovering crashes manually">Recovering crashes manually</a><!--latex }
+-->" for detailed help.   </li></ul><!--
+\end{itemize}
+-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> If you had never saved a project before the crash, the .au files will be in Audacity's temporary folder, whose location can be found by looking in <!--latex 
+\hyperref[\foo{directories:preferences:}]{--><a href="directories_preferences.html" title="Directories Preferences">Directories Preferences</a><!--latex }
+-->. </li></ul><!--
+\end{itemize}
+-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> If you had saved the project previously, the .au files will be in the _data folder inside the directory containing the .aup <!--latex 
+\hyperref[\foo{audacity:projects:}]{--><a href="audacity_projects.html" title="Audacity Projects">project file</a><!--latex }
+-->.</li></ul><!--
+\end{itemize}
+-->
+<div class="note">If manual recovery produces a poor result, check if you have an earlier saved state of the project to go back to whose audio would at least be correct. It is always a wise precaution to backup a project periodically to separately named AUP files as an insurance against crashes. See "<!--latex 
+\hyperref[\foo{faq:opening:and:saving:files:backup}]{--><a href="faq_opening_and_saving_files.html#backup" title="FAQ:Opening and Saving Files">How can I backup my Audacity Projects?</a><!--latex }
+-->" for how to do this.</div>
+
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

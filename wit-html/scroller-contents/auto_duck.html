@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Auto Duck - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Auto_Duck rootpage-Auto_Duck skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Auto Duck</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{auto:duck:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p><br/>
+</p>
+
+<p>
+
+
+
+
+</p>
+<div class="intro"><!--\textit{--><i><!--\textbf{--><b>Auto Duck</b><!--}--></i><!--}--> reduces (<a class="external text" href="https://en.wikipedia.org/wiki/Ducking" rel="nofollow">ducks</a>) the volume of one or more selected tracks whenever the volume of a single unselected "control track" placed underneath reaches a particular threshold level. <p>The effect can be used to create voice-overs for podcasts or DJ sets, for automatic "ramping" of background music in radio productions and for turning down a voice in original language as soon as its translation kicks in.</p></div>
+<dl><dd><!--\textbf{--><b>Accessed by:</b><!--}--> <span class="menu">Effect &gt; Auto Duck...</span></dd>
+<dd><span title="Auto Duck effect dialog"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Auto_Duck.png"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Auto Duck.png" height="530" src="../m/images/8/85/auto_duck.png" width="612"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/8/85/auto_duck.png--></img><!--}\par
+--></a></span></dd></dl>
+<div id="prep"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Preparation">Preparation</span></h2><!--}--><!--latex 
+\label{auto:duck:prep}-->
+<!--
+\begin{enumerate}--><ol><!--
+\item --><li> <!--latex 
+\hyperref[\foo{audacity:selection:}]{--><a href="audacity_selection.html" title="Audacity Selection">Select</a><!--latex }
+--> the track(s) or region(s) whose volume you want to modify (for example, a background music track). </li>
+<!--
+\item --><li> Deselect the track that is to act as the control track (for example, a spoken commentary). Note that the first unselected track underneath the selected track(s) acts as the control track. </li>
+<!--
+\item --><li> Place the tracks so that at least one of the selected tracks to be modified is above the unselected control track. Any other tracks below the unselected control track will also be modified if they are selected. You can use the <!--latex 
+\hyperref[\foo{audio:track:dropdown:menu:}]{--><a href="audio_track_dropdown_menu.html" title="Audio Track Dropdown Menu">Audio Track Dropdown Menu</a><!--latex }
+--> to move tracks up or down if needed. 
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> The control track should be properly synchronized with the tracks to be "ducked" - you can use <!--latex 
+\hyperref[\foo{tools:toolbar:Time:Shift:F5}]{--><a href="tools_toolbar.html#Time_Shift_F5" title="Tools Toolbar">Time Shift Tool</a><!--latex }
+--> to align the tracks with each other as required. </li></ul><!--
+\end{itemize}
+--></li>
+<!--
+\item --><li> Choose "Auto Duck" from the <!--latex 
+\hyperref[\foo{effect:menu:}]{--><a href="effect_menu.html" title="Effect Menu">Effect Menu</a><!--latex }
+-->. </li></ol><!--
+\end{enumerate}
+-->
+<p>Auto Duck analyzes the control track first of all, then applies the effect to the selected track(s). This second stage takes longer to complete than the first, so the estimated time remaining in the progress bar may be an underestimate until the later stages of processing. 
+</p>
+<div id="graph"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Graph_and_Parameters">Graph and Parameters</span></h2><!--}--><!--latex 
+\label{auto:duck:graph}-->
+<p>All the effect parameters can be set by inputting values in the boxes. The graph above the input boxes is a convenient visual representation of the changes made to the volume of the ducked track when Auto Duck takes effect. If preferred, you can modify the Duck amount and Fade Down and Fade Up lengths by dragging the "control points" (the small white circles) on the graph. Simply hover over a control point with the mouse and drag in the direction indicated by the cursor arrows.   
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>Duck Amount:</b><!--}--> The amount (default: -12 <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:decibel}]{--><a href="glossary.html#decibel" title="Glossary">dB</a><!--latex }
+--></b><!--}--></i><!--}-->) of volume reduction in the selected track when a signal above the threshold level is detected</li>
+<!--
+\item --><li><!--\textbf{--><b>Maximum Pause:</b><!--}--> Avoids over-rapid volume changes by setting a length of time following the ramp down that must be exceeded before the volume is ramped up again. The default value is 1 second, but irrespective of the setting, volume will not ramp up unless the pause is at least as long as the fade down length plus the fade up length. </li>
+<!--
+\item --><li><!--\textbf{--><b>Fade Down Lengths:</b><!--}--> The length of time over which the selected tracks fade down to the ducked volume (default: 0.5 seconds). </li>
+<!--
+\item --><li><!--\textbf{--><b>Fade Up Lengths:</b><!--}--> The length of time over which the selected tracks fade up from the ducked volume (default: 0.5 seconds)</li></ul><!--
+\end{itemize}
+-->
+<div class="note">The "outer" and "inner" fade lengths both adjust the perceived speed of the fade. In effect, the inner length controls the length of time the ducked track is attenuated by the full Duck amount. If you play with the fade lengths you will be able to see this in the graph. </div>   
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><!--\textbf{--><b>Threshold:</b><!--}--> The level (default: -30 dB) used for detecting a signal in the control track.</li></ul><!--
+\end{itemize}
+-->
+<!--
+\subsection{--><h2><span class="mw-headline" id="Buttons">Buttons</span></h2><!--}-->
+<p>Clicking on the command buttons give the following results:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><span class="button">Manage</span> gives a dropdown menu enabling you to manage presets for the tool and to see some detail about the tool. For details see <!--latex 
+\hyperref[\foo{manage:presets:}]{--><a href="manage_presets.html" title="Manage presets">Manage presets</a><!--latex }
+-->.</li>
+<!--
+\item --><li><span class="button">Preview</span> plays a short preview of what the audio would sound like if the effect is applied with the current settings, without making actual changes to the audio.  The length of preview is determined by your setting in <span class="menu">Edit &gt; Preferences &gt; <!--latex 
+\hyperref[\foo{playback:preferences:}]{--><a href="playback_preferences.html" title="Playback Preferences">Playback</a><!--latex }
+--></span>, the default setting is 6 seconds.</li>
+<!--
+\item --><li><span class="button">OK</span> applies the effect to the selected audio with the current effect settings.</li>
+<!--
+\item --><li><span class="button">Cancel</span> aborts the effect and leaves the audio unchanged.</li>
+<!--
+\item --><li><a href="help_button.html" title="Help Button"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Help Button" height="27" src="../m/images/d/d6/help_button.png" width="27"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d6/help_button.png--></img><!--}}{}--></a> brings you to the appropriate page in the Manual, this page.</li></ul><!--
+\end{itemize}
+-->
+<p><br/>
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Links">Links</span></h2><!--}-->
+<p><!--latex 
+\hyperref[\foo{index:of:effects:generators:and:analyzers:}]{--><a href="index_of_effects_generators_and_analyzers.html" title="Index of Effects, Generators and Analyzers"><!--\textbf{--><b>|&lt;</b><!--}--> Index of Effects, Generators and Analyzers</a><!--latex }
+--> <br/>
+</p><p><!--latex 
+\hyperref[\foo{effect:menu:}]{--><a href="effect_menu.html" title="Effect Menu"><!--\textbf{--><b>|&lt;</b><!--}--> Effect Menu</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

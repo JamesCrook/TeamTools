@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Ext-Command Menu: Focus - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Ext-Command_Menu_Focus rootpage-Ext-Command_Menu_Focus skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Ext-Command Menu: Focus</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{ext:command:menu:focus:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p><br/>
+</p>
+<div class="intro">The <!--\textit{--><i><!--\textbf{--><b>Ext-Command &gt; Focus Menu</b><!--}--></i><!--}--> provides provides access to extra commands for <!--latex 
+\hyperref[\foo{audio:tracks:focus}]{--><a href="audio_tracks.html#focus" title="Audio Tracks">track focus</a><!--latex }
+--> that are not available in the default Audacity menus.</div>
+<dl><dd><!--\textit{--><i>Click, or hover, on any menu item in the image to read about that command.  &nbsp;<span style="font-size:0.8em"><!--latex 
+\hyperref[\foo{ext:command:menu:focus::skiptheimage}]{--><a href="#skiptheimage">Skip the image</a><!--latex }
+--></span></i><!--}--></dd>
+<dd><div class="noresize"><map name="ImageMap_1_309742692"><area alt="Ext-Bar Menu" coords="0,3,26,19" href="ext_bar_menu.html" shape="rect" title="Ext-Bar Menu"/><area alt="Ext-Command Menu" coords="33,3,115,19" href="ext_command_menu.html" shape="rect" title="Ext-Command Menu"/><area alt="Menu Bar" coords="0,0,600,22" href="menu_reference.html" shape="rect" title="Menu Bar"/><area alt="Extra commands to set focus, usually focus on one track" coords="39,23,212,45" href="#" shape="rect" title="Extra commands to set focus, usually focus on one track"/><area alt="Extra commands to move the cursor" coords="39,45,212,67" href="ext_command_menu_cursor.html" shape="rect" title="Extra commands to move the cursor"/><area alt="Extra commands to operate on a track that has focus" coords="39,67,212,89" href="ext_command_menu_track.html" shape="rect" title="Extra commands to operate on a track that has focus"/><area alt="Toggle full screen mode with no title bar" coords="39,89,212,111" href="ext_command_menu.html#full_screen_onoff" shape="rect" title="Toggle full screen mode with no title bar"/><area alt="Move backward through currently focused toolbar in Upper Toolbar dock area, Track View and currently focused toolbar in Lower Toolbar dock area" coords="224,26,579,48" href="#move_backward_from_toolbars_to_tracks" shape="rect" title="Move backward through currently focused toolbar in Upper Toolbar dock area, Track View and currently focused toolbar in Lower Toolbar dock area"/><area alt="Move forward through currently focused toolbar in Upper Toolbar dock area, Track View and currently focused toolbar in Lower Toolbar dock area" coords="224,48,579,70" href="#move_forward_from_toolbars_to_tracks" shape="rect" title="Move forward through currently focused toolbar in Upper Toolbar dock area, Track View and currently focused toolbar in Lower Toolbar dock area"/><area alt="Focus one track up" coords="224,70,579,92" href="#move_focus_to_previous_track" shape="rect" title="Focus one track up"/><area alt="Focus one track down" coords="224,92,579,114" href="#move_focus_to_next_track" shape="rect" title="Focus one track down"/><area alt="Focus on first track" coords="224,114,579,136" href="#move_focus_to_first_track" shape="rect" title="Focus on first track"/><area alt="Focus on last track" coords="224,136,579,158" href="#move_focus_to_last_track" shape="rect" title="Focus on last track"/><area alt="Focus one track up and select it" coords="224,158,579,180" href="#move_focus_to_previous_and_select" shape="rect" title="Focus one track up and select it"/><area alt="Focus one track down and select it" coords="224,180,579,202" href="#move_focus_to_next_and_select" shape="rect" title="Focus one track down and select it"/><area alt="Toggle focus on current track" coords="224,202,579,224" href="#toggle_focused_track" shape="rect" title="Toggle focus on current track"/><area alt="Toggle focus on current track" coords="224,224,579,246" href="#toggle_focused_track" shape="rect" title="Toggle focus on current track"/></map><!--
+
+\par\Needspace{131.60000000000002pt}\begin{picture}(236.8,101.60000000000001)
+--><!--   \put(0,0){\includegraphics[scale=0.4]{--><img alt="ExtCommand-FocusMenu.png" height="254" src="../m/images/3/3c/extcommand_focusmenu.png" usemap="#ImageMap_1_309742692" width="592"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/3/3c/extcommand_focusmenu.png--></img><!--}}
+--><!--   \put(0.0,94.00000000000001){\hyperref[\foo{ext:bar:menu:}]{\makebox(10.4,6.3999999999999915){}}}
+   \put(13.200000000000001,94.00000000000001){\hyperref[\foo{ext:command:menu:}]{\makebox(32.8,6.3999999999999915){}}}
+   \put(15.600000000000001,83.60000000000001){\hyperref[\foo{ext:command:menu:focus::}]{\makebox(69.20000000000002,8.799999999999997){}}}
+   \put(15.600000000000001,74.80000000000001){\hyperref[\foo{ext:command:menu:cursor:}]{\makebox(69.20000000000002,8.799999999999997){}}}
+   \put(15.600000000000001,66.0){\hyperref[\foo{ext:command:menu:track:}]{\makebox(69.20000000000002,8.800000000000011){}}}
+   \put(15.600000000000001,57.2){\hyperref[\foo{ext:command:menu:full:screen:onoff}]{\makebox(69.20000000000002,8.799999999999997){}}}
+   \put(89.60000000000001,82.4){\hyperref[\foo{ext:command:menu:focus::move:backward:from:toolbars:to:tracks}]{\makebox(142.0,8.799999999999997){}}}
+   \put(89.60000000000001,73.60000000000001){\hyperref[\foo{ext:command:menu:focus::move:forward:from:toolbars:to:tracks}]{\makebox(142.0,8.799999999999997){}}}
+   \put(89.60000000000001,64.80000000000001){\hyperref[\foo{ext:command:menu:focus::move:focus:to:previous:track}]{\makebox(142.0,8.799999999999997){}}}
+   \put(89.60000000000001,56.00000000000001){\hyperref[\foo{ext:command:menu:focus::move:focus:to:next:track}]{\makebox(142.0,8.800000000000004){}}}
+   \put(89.60000000000001,47.2){\hyperref[\foo{ext:command:menu:focus::move:focus:to:first:track}]{\makebox(142.0,8.800000000000004){}}}
+   \put(89.60000000000001,38.400000000000006){\hyperref[\foo{ext:command:menu:focus::move:focus:to:last:track}]{\makebox(142.0,8.799999999999997){}}}
+   \put(89.60000000000001,29.60000000000001){\hyperref[\foo{ext:command:menu:focus::move:focus:to:previous:and:select}]{\makebox(142.0,8.799999999999997){}}}
+   \put(89.60000000000001,20.799999999999997){\hyperref[\foo{ext:command:menu:focus::move:focus:to:next:and:select}]{\makebox(142.0,8.800000000000011){}}}
+   \put(89.60000000000001,12.0){\hyperref[\foo{ext:command:menu:focus::toggle:focused:track}]{\makebox(142.0,8.799999999999997){}}}
+   \put(89.60000000000001,3.200000000000003){\hyperref[\foo{ext:command:menu:focus::toggle:focused:track}]{\makebox(142.0,8.799999999999997){}}}
+\end{picture}
+
+--></div></dd></dl>
+<div id="skiptheimage"></div>
+<div id="move_backward_from_toolbars_to_tracks"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Move_backward_from_toolbars_to_tracks_.C2.A0Ctrl.2BShift.2BF6">Move backward from toolbars to tracks &nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">Ctrl+Shift+F6</span></font></span></h2><!--}--><!--latex 
+\label{ext:command:menu:focus:move:backward:from:toolbars:to:tracks}--><!--latex 
+\label{ext:command:menu:focus:skiptheimage}-->
+<p>Move backward through currently focused toolbar in <!--latex 
+\hyperref[\foo{toolbars:overview:upper:tooldock}]{--><a href="toolbars_overview.html#upper_tooldock" title="Toolbars Overview">Upper Toolbar dock area</a><!--latex }
+-->, Track View and currently focused toolbar in <!--latex 
+\hyperref[\foo{toolbars:overview:lower:tooldock}]{--><a href="toolbars_overview.html#lower_tooldock" title="Toolbars Overview">Lower Toolbar dock area</a><!--latex }
+-->.  Each use moves the keyboard focus as indicated. 
+</p>
+<div id="move_forward_from_toolbars_to_tracks"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Move_forward_from_toolbars_to_tracks_.C2.A0Ctrl.2BF6">Move forward from toolbars to tracks &nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">Ctrl+F6</span></font></span></h2><!--}--><!--latex 
+\label{ext:command:menu:focus:move:forward:from:toolbars:to:tracks}-->
+<p>Move forward through currently focused toolbar in <!--latex 
+\hyperref[\foo{toolbars:overview:upper:tooldock}]{--><a href="toolbars_overview.html#upper_tooldock" title="Toolbars Overview">Upper Toolbar dock area</a><!--latex }
+-->, Track View and currently focused toolbar in <!--latex 
+\hyperref[\foo{toolbars:overview:lower:tooldock}]{--><a href="toolbars_overview.html#lower_tooldock" title="Toolbars Overview">Lower Toolbar dock area</a><!--latex }
+-->.  Each use moves the keyboard focus as indicated. 
+</p>
+<div id="move_focus_to_previous_track"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Move_Focus_to_Previous_Track_.C2.A0Up">Move Focus to Previous Track &nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">Up</span></font></span></h2><!--}--><!--latex 
+\label{ext:command:menu:focus:move:focus:to:previous:track}-->
+<p>Focus one track up
+</p>
+<div id="move_focus_to_next_track"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Move_Focus_to_Next_Track_.C2.A0Down">Move Focus to Next Track &nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">Down</span></font></span></h2><!--}--><!--latex 
+\label{ext:command:menu:focus:move:focus:to:next:track}-->
+<p>Focus one track down
+</p>
+<div id="move_focus_to_first_track"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Move_Focus_to_First_Track_.C2.A0Ctrl.2BHome">Move Focus to First Track &nbsp;<font size="-1"><span class="kbrd" style="background-color: #f0f0ff;color: #b0b0b0">Ctrl+Home</span></font></span></h2><!--}--><!--latex 
+\label{ext:command:menu:focus:move:focus:to:first:track}-->
+<p>Focus on first track
+</p>
+<div id="move_focus_to_last_track"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Move_Focus_to_Last_Track_.C2.A0Ctrl.2BEnd">Move Focus to Last Track &nbsp;<font size="-1"><span class="kbrd" style="background-color: #f0f0ff;color: #b0b0b0">Ctrl+End</span></font></span></h2><!--}--><!--latex 
+\label{ext:command:menu:focus:move:focus:to:last:track}-->
+<p>Focus on last track
+</p>
+<div id="move_focus_to_previous_and_select"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Move_Focus_to_Previous_and_Select_.C2.A0Shift.2BUp">Move Focus to Previous and Select &nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">Shift+Up</span></font></span></h2><!--}--><!--latex 
+\label{ext:command:menu:focus:move:focus:to:previous:and:select}-->
+<p>Focus one track up and select it
+</p>
+<div id="move_focus_to_next_and_select"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Move_Focus_to_Next_and_Select_.C2.A0Shift.2BDown">Move Focus to Next and Select &nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">Shift+Down</span></font></span></h2><!--}--><!--latex 
+\label{ext:command:menu:focus:move:focus:to:next:and:select}-->
+<p>Focus one track down and select it
+</p>
+<div id="toggle_focused_track"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Toggle_Focused_Track_.C2.A0Return">Toggle Focused Track &nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">Return</span></font></span></h2><!--}--><!--latex 
+\label{ext:command:menu:focus:toggle:focused:track}-->
+<p>Toggle focus on current track
+</p>
+<div id="toggle_focused_track"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Toggle_Focused_Track_.C2.A0NUMPAD_ENTER">Toggle Focused Track &nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">NUMPAD_ENTER</span></font></span></h2><!--}--><!--latex 
+\label{ext:command:menu:focus:toggle:focused:track}-->
+<p>Toggle focus on current track
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

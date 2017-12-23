@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Chirp - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Chirp rootpage-Chirp skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Chirp</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{chirp:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p><br/>
+</p>
+
+<p><br/>
+</p>
+<div class="intro"><!--\textit{--><i><!--\textbf{--><b>Chirp</b><!--}--></i><!--}--> produces four different types of tones. </div>
+<dl><dd><!--\textbf{--><b>Accessed by:</b><!--}--> <span class="menu">Generate &gt; Chirp...</span></dd>
+<dd><span title="Chirp generator dialog"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Chirp.png"><!--
+\par\includegraphics[max width=\linewidth]{--><img alt="Chirp.png" height="268" src="../m/images/3/33/chirp.png" width="474"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/3/33/chirp.png--></img><!--}\par
+--></a></span></dd>
+<dd><!--\textit{--><i><!--\textbf{--><b>The image above illustrates replacing a selection region with generated audio.</b><!--}--></i><!--}--> </dd></dl>
+<p>Chirp produces four different types of tones like the <!--latex 
+\hyperref[\foo{tone:}]{--><a href="tone.html" title="Tone">Tone Generator</a><!--latex }
+--> but additionally allows setting of the start and end amplitude and frequency. Short tones can be made to sound very much like a bird-call. 
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Waveform">Waveform</span></h2><!--}-->
+<p>Generates one of four different tone <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:waveform}]{--><a href="glossary.html#waveform" title="Glossary">waveforms</a><!--latex }
+--></b><!--}--></i><!--}-->. The name of each tone roughly describes its appearance when <!--latex 
+\hyperref[\foo{zooming:}]{--><a href="zooming.html" title="Zooming">zoomed in</a><!--latex }
+--> sufficiently to see each <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:cycle}]{--><a href="glossary.html#cycle" title="Glossary">cycle</a><!--latex }
+--></b><!--}--></i><!--}--> of the waveform. 
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <span style="font-weight: bold; font-size:118%">Sine:</span> A mathematical curve that describes a smooth repetitive oscillation. It contains no <a class="external text" href="https://en.wikipedia.org/wiki/Overtone" rel="nofollow">overtones</a> so sounds very "pure".</li>
+<!--
+\item --><li> <span style="font-weight: bold; font-size:118%">Square:</span> Has fixed maximum and minimum values of identical duration with a near-vertical line between them, giving a characteristic "castle turret" shape. It contains every other overtone. Square waves are distinguished by having identical peak and <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:rms}]{--><a href="glossary.html#rms" title="Glossary">RMS</a><!--latex }
+--></b><!--}--></i><!--}--> levels and so their waveforms show as entirely light blue when zoomed out.   </li>
+<!--
+\item --><li> <span style="font-weight: bold; font-size:118%">Sawtooth:</span> Has a gradual upwards slope followed by a shorter downwards slope. It contains all overtones, so sounds very "nasal", "bright" and penetrating. </li>
+<!--
+\item --><li> <span style="font-weight: bold; font-size:118%">Square (no alias):</span> Similar to the Square wave but does not produce <a class="external text" href="https://en.wikipedia.org/wiki/Aliasing" rel="nofollow">aliasing</a> distortion. This makes it take longer to generate the tone.</li></ul><!--
+\end{itemize}
+-->
+<!--
+\subsection{--><h2><span class="mw-headline" id="Frequency">Frequency</span></h2><!--}-->
+<p>As with <!--latex 
+\hyperref[\foo{tone:}]{--><a href="tone.html" title="Tone">Tone</a><!--latex }
+-->, frequencies can be specified anywhere between 1 <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:hz}]{--><a href="glossary.html#hz" title="Glossary">Hz</a><!--latex }
+--></b><!--}--></i><!--}--> and <!--\textit{--><i>half</i><!--}--> the current project rate as shown in <!--latex 
+\hyperref[\foo{selection:toolbar:}]{--><a href="selection_toolbar.html" title="Selection Toolbar">Selection Toolbar</a><!--latex }
+-->.
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Amplitude">Amplitude</span></h2><!--}-->
+<p>Lets you type an <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:amplitude}]{--><a href="glossary.html#amplitude" title="Glossary">amplitude</a><!--latex }
+--></b><!--}--></i><!--}--> value for the loudness of the generated audio. Permitted values are between 0 (silence) and 1 (the maximum possible volume without <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:clipping}]{--><a href="glossary.html#clipping" title="Glossary">clipping</a><!--latex }
+--></b><!--}--></i><!--}-->), with a default of 0.8.
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Interpolation">Interpolation</span></h2><!--}-->
+<p>You can choose linear <!--\textit{--><i>(default)</i><!--}--> or logarithmic interpolation.
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Duration">Duration</span></h2><!--}-->
+<p>Type (or use the keyboard arrows) to enter the required Duration. If the first digit you want is highlighted, just type the whole number. If the required first digit is not highlighted, use <span class="kbrd" style="background-color: #e0e0f0">Left</span> or <span class="kbrd" style="background-color: #e0e0f0">Right</span> arrow on your keyboard to move to the first digit, then type. You can also increment a highlighted digit with keyboard <span class="kbrd" style="background-color: #e0e0f0">Up</span> or <span class="kbrd" style="background-color: #e0e0f0">Down</span> arrow instead of typing.
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>When generating at the cursor</b><!--}-->, Duration initializes to 30.000 seconds (except for the DTMF generator which defaults to 1.000 second). However, your last entered Duration is always remembered.</li>
+<!--
+\item --><li> <!--\textbf{--><b>When replacing a selection region</b><!--}-->, Duration always displays the exact duration of that selection to the nearest audio <!--\textit{--><i><!--\textbf{--><b><!--latex 
+\hyperref[\foo{glossary:sample}]{--><a href="glossary.html#sample" title="Glossary">sample</a><!--latex }
+--></b><!--}--></i><!--}-->. </li></ul><!--
+\end{itemize}
+-->
+<!--
+\subsection{--><h2><span class="mw-headline" id="The_command_buttons">The command buttons</span></h2><!--}-->
+<p>Clicking on the command buttons give the following results:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li><span class="button">Manage</span> gives a dropdown menu enabling you to manage presets for the tool and to see some detail about the tool. For details see <!--latex 
+\hyperref[\foo{manage:presets:}]{--><a href="manage_presets.html" title="Manage presets">Manage presets</a><!--latex }
+-->.</li>
+<!--
+\item --><li><span class="button">Preview</span> plays a short preview of what the audio would sound like if the effect is applied with the current settings, without making actual changes to the audio.  The length of preview is determined by your setting in <span class="menu">Edit &gt; Preferences &gt; <!--latex 
+\hyperref[\foo{playback:preferences:}]{--><a href="playback_preferences.html" title="Playback Preferences">Playback</a><!--latex }
+--></span>, the default setting is 6 seconds.</li>
+<!--
+\item --><li><span class="button">OK</span> applies the effect to the selected audio with the current effect settings.</li>
+<!--
+\item --><li><span class="button">Cancel</span> aborts the effect and leaves the audio unchanged.</li>
+<!--
+\item --><li><a href="help_button.html" title="Help Button"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Help Button" height="27" src="../m/images/d/d6/help_button.png" width="27"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d6/help_button.png--></img><!--}}{}--></a> brings you to the appropriate page in the Manual, this page.</li></ul><!--
+\end{itemize}
+-->
+<p><br/>
+</p><p><br/>
+</p>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Links">Links</span></h2><!--}-->
+<p><!--latex 
+\hyperref[\foo{index:of:effects:generators:and:analyzers:generators}]{--><a href="index_of_effects_generators_and_analyzers.html#generators" title="Index of Effects, Generators and Analyzers"><!--\textbf{--><b>|&lt;</b><!--}--> Index of Effects, Generators and Analyzers</a><!--latex }
+-->
+</p><p><!--latex 
+\hyperref[\foo{generate:menu:}]{--><a href="generate_menu.html" title="Generate Menu"><!--\textbf{--><b>|&lt;</b><!--}--> Generate Menu</a><!--latex }
+-->
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

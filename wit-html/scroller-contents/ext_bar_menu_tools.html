@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Ext-Bar Menu: Tools - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Ext-Bar_Menu_Tools rootpage-Ext-Bar_Menu_Tools skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Ext-Bar Menu: Tools</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{ext:bar:menu:tools:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p><br/>
+</p>
+<div class="intro">The <!--\textit{--><i><!--\textbf{--><b>Ext-Bar &gt; Tools Menu</b><!--}--></i><!--}--> provides commands for selecting tools from the <!--latex 
+\hyperref[\foo{tools:toolbar:}]{--><a href="tools_toolbar.html" title="Tools Toolbar">Tools Toolbar</a><!--latex }
+-->. </div>
+<dl><dd><!--\textit{--><i>Click, or hover, on any menu item in the image to read about that command.  &nbsp;<span style="font-size:0.8em"><!--latex 
+\hyperref[\foo{ext:bar:menu:tools::skiptheimage}]{--><a href="#skiptheimage">Skip the image</a><!--latex }
+--></span></i><!--}--></dd>
+<dd><div class="noresize"><map name="ImageMap_1_1899077519"><area alt="Help Menu" coords="0,3,26,19" href="help_menu.html" shape="rect" title="Help Menu"/><area alt="Ext-Bar Menu" coords="33,3,75,19" href="ext_bar_menu.html" shape="rect" title="Ext-Bar Menu"/><area alt="Ext-Command Menu" coords="82,3,164,19" href="ext_command_menu.html" shape="rect" title="Ext-Command Menu"/><area alt="Menu Bar" coords="0,0,600,22" href="menu_reference.html" shape="rect" title="Menu Bar"/><area alt="Extra commands related to play and record" coords="39,23,163,45" href="ext_bar_menu_transport.html" shape="rect" title="Extra commands related to play and record"/><area alt="Extra commands to select the tool, e" coords="39,45,163,67" href="#" shape="rect" title="Extra commands to select the tool, e"/><area alt="Extra commands related to volume" coords="39,67,163,89" href="ext_bar_menu_mixer.html" shape="rect" title="Extra commands related to volume"/><area alt="Extra commands related to editing" coords="39,89,163,111" href="ext_bar_menu_edit.html" shape="rect" title="Extra commands related to editing"/><area alt="Extra commands related to play at speed" coords="39,111,163,133" href="ext_bar_menu_transcription.html" shape="rect" title="Extra commands related to play at speed"/><area alt="Extra commands related to scrubbing" coords="39,133,163,155" href="ext_bar_menu_scrub.html" shape="rect" title="Extra commands related to scrubbing"/><area alt="Extra commands related to selecting a device" coords="39,155,163,177" href="ext_bar_menu_device.html" shape="rect" title="Extra commands related to selecting a device"/><area alt="Extra commands related to selecting" coords="39,177,163,199" href="ext_bar_menu_selection.html" shape="rect" title="Extra commands related to selecting"/><area alt="Chooses Selection tool" coords="175,26,322,48" href="#selection_tool" shape="rect" title="Chooses Selection tool"/><area alt="Chooses Envelope tool" coords="175,48,322,70" href="#envelope_tool" shape="rect" title="Chooses Envelope tool"/><area alt="Chooses Draw tool" coords="175,70,322,92" href="#draw_tool" shape="rect" title="Chooses Draw tool"/><area alt="Chooses Zoom tool" coords="175,92,322,114" href="#zoom_tool" shape="rect" title="Chooses Zoom tool"/><area alt="Chooses Time Shift tool" coords="175,114,322,136" href="#time_shift_tool" shape="rect" title="Chooses Time Shift tool"/><area alt="Chooses the Mulit-Tool" coords="175,136,322,158" href="#multi_tool" shape="rect" title="Chooses the Mulit-Tool"/><area alt="Cycles backwards through the tools, starting from the currently selected tool: starting from Selection, it would navigate to Multi-tool to Time Shift to Zoom to Draw to Envelope to Selection" coords="175,158,322,180" href="#previous_tool" shape="rect" title="Cycles backwards through the tools, starting from the currently selected tool: starting from Selection, it would navigate to Multi-tool to Time Shift to Zoom to Draw to Envelope to Selection"/><area alt="Cycles forwards through the tools, starting from the currently selected tool: starting from Selection, it would navigate to Envelope to Draw to Zoom to Time Shift to Multi-tool to Selection" coords="175,180,322,202" href="#next_tool" shape="rect" title="Cycles forwards through the tools, starting from the currently selected tool: starting from Selection, it would navigate to Envelope to Draw to Zoom to Time Shift to Multi-tool to Selection"/></map><!--
+
+\par\Needspace{135.0pt}\begin{picture}(167.5,105.0)
+--><!--   \put(0,0){\includegraphics[scale=0.5]{--><img alt="ExtBar-ToolsMenu.png" height="210" src="../m/images/a/a2/extbar_toolsmenu.png" usemap="#ImageMap_1_1899077519" width="335"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/a/a2/extbar_toolsmenu.png--></img><!--}}
+--><!--   \put(0.0,95.5){\hyperref[\foo{help:menu:}]{\makebox(13.0,8.0){}}}
+   \put(16.5,95.5){\hyperref[\foo{ext:bar:menu:}]{\makebox(21.0,8.0){}}}
+   \put(41.0,95.5){\hyperref[\foo{ext:command:menu:}]{\makebox(41.0,8.0){}}}
+   \put(19.5,82.5){\hyperref[\foo{ext:bar:menu:transport:}]{\makebox(62.0,11.0){}}}
+   \put(19.5,71.5){\hyperref[\foo{ext:bar:menu:tools::}]{\makebox(62.0,11.0){}}}
+   \put(19.5,60.5){\hyperref[\foo{ext:bar:menu:mixer:}]{\makebox(62.0,11.0){}}}
+   \put(19.5,49.5){\hyperref[\foo{ext:bar:menu:edit:}]{\makebox(62.0,11.0){}}}
+   \put(19.5,38.5){\hyperref[\foo{ext:bar:menu:transcription:}]{\makebox(62.0,11.0){}}}
+   \put(19.5,27.5){\hyperref[\foo{ext:bar:menu:scrub:}]{\makebox(62.0,11.0){}}}
+   \put(19.5,16.5){\hyperref[\foo{ext:bar:menu:device:}]{\makebox(62.0,11.0){}}}
+   \put(19.5,5.5){\hyperref[\foo{ext:bar:menu:selection:}]{\makebox(62.0,11.0){}}}
+   \put(87.5,81.0){\hyperref[\foo{ext:bar:menu:tools::selection:tool}]{\makebox(73.5,11.0){}}}
+   \put(87.5,70.0){\hyperref[\foo{ext:bar:menu:tools::envelope:tool}]{\makebox(73.5,11.0){}}}
+   \put(87.5,59.0){\hyperref[\foo{ext:bar:menu:tools::draw:tool}]{\makebox(73.5,11.0){}}}
+   \put(87.5,48.0){\hyperref[\foo{ext:bar:menu:tools::zoom:tool}]{\makebox(73.5,11.0){}}}
+   \put(87.5,37.0){\hyperref[\foo{ext:bar:menu:tools::time:shift:tool}]{\makebox(73.5,11.0){}}}
+   \put(87.5,26.0){\hyperref[\foo{ext:bar:menu:tools::multi:tool}]{\makebox(73.5,11.0){}}}
+   \put(87.5,15.0){\hyperref[\foo{ext:bar:menu:tools::previous:tool}]{\makebox(73.5,11.0){}}}
+   \put(87.5,4.0){\hyperref[\foo{ext:bar:menu:tools::next:tool}]{\makebox(73.5,11.0){}}}
+\end{picture}
+
+--></div></dd></dl>
+<div id="skiptheimage"></div>
+<div class="note">This menu duplicates the functionality of the <!--latex 
+\hyperref[\foo{tools:toolbar:}]{--><a href="tools_toolbar.html" title="Tools Toolbar">Tools Toolbar</a><!--latex }
+-->, in menu form</div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Tools_Toolbar">Tools Toolbar</span></h2><!--}--><!--latex 
+\label{ext:bar:menu:tools:skiptheimage}-->
+<dl><dd></dd>
+<dd><div class="noresize"><map name="ImageMap_2_709539125"><area alt="Selection tool for selecting audio before modifying it." coords="0,0,52,14" href="selection_tool.html" shape="rect" title="Selection tool for selecting audio before modifying it."/><area alt="Envelope tool for modifying loudness of audio." coords="53,0,124,14" href="envelope_tool.html" shape="rect" title="Envelope tool for modifying loudness of audio."/><area alt="Draw tool for changing the values of individual samples." coords="125,0,188,14" href="draw_tool.html" shape="rect" title="Draw tool for changing the values of individual samples."/><area alt="Selection tool for selecting audio before modifying it." coords="41,30,68,55" href="selection_tool.html" shape="rect" title="Selection tool for selecting audio before modifying it."/><area alt="Envelope tool for modifying loudness of audio." coords="69,30,96,55" href="envelope_tool.html" shape="rect" title="Envelope tool for modifying loudness of audio."/><area alt="Draw tool for changing the values of individual samples." coords="97,30,124,55" href="draw_tool.html" shape="rect" title="Draw tool for changing the values of individual samples."/><area alt="Zoom tool to zoom in or out." coords="0,97,44,111" href="zoom_tool.html" shape="rect" title="Zoom tool to zoom in or out."/><area alt="Time-shift tool to move audio clips into new positions." coords="45,97,126,111" href="time_shift_tool.html" shape="rect" title="Time-shift tool to move audio clips into new positions."/><area alt="Multi-Tool combines the actions of all five tools." coords="127,97,188,111" href="multi_tool.html" shape="rect" title="Multi-Tool combines the actions of all five tools."/><area alt="Zoom tool to zoom in or out." coords="41,56,68,84" href="zoom_tool.html" shape="rect" title="Zoom tool to zoom in or out."/><area alt="Time-shift tool to move audio clips into new positions." coords="69,56,96,84" href="time_shift_tool.html" shape="rect" title="Time-shift tool to move audio clips into new positions."/><area alt="Multi-Tool combines the actions of all five tools." coords="97,56,124,84" href="multi_tool.html" shape="rect" title="Multi-Tool combines the actions of all five tools."/><area alt="Tools Toolbar - click on the image to see this toolbar displayed in the default context of the upper tooldock layout" coords="0,0,500,500" href="toolbars_overview.html#upper_tooldock" shape="rect" title="Tools Toolbar - click on the image to see this toolbar displayed in the default context of the upper tooldock layout"/></map><!--
+
+\par\Needspace{86.0pt}\begin{picture}(94.5,56.0)
+--><!--   \put(0,0){\includegraphics[scale=0.5]{--><img alt="ToolsToolbarAnnotated.png" height="112" src="../m/images/0/02/toolstoolbarannotated.png" usemap="#ImageMap_2_709539125" width="189"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/0/02/toolstoolbarannotated.png--></img><!--}}
+--><!--   \put(0.0,49.0){\hyperref[\foo{selection:tool:}]{\makebox(26.0,7.0){}}}
+   \put(26.5,49.0){\hyperref[\foo{envelope:tool:}]{\makebox(35.5,7.0){}}}
+   \put(62.5,49.0){\hyperref[\foo{draw:tool:}]{\makebox(31.5,7.0){}}}
+   \put(20.5,28.5){\hyperref[\foo{selection:tool:}]{\makebox(13.5,12.5){}}}
+   \put(34.5,28.5){\hyperref[\foo{envelope:tool:}]{\makebox(13.5,12.5){}}}
+   \put(48.5,28.5){\hyperref[\foo{draw:tool:}]{\makebox(13.5,12.5){}}}
+   \put(0.0,0.5){\hyperref[\foo{zoom:tool:}]{\makebox(22.0,7.0){}}}
+   \put(22.5,0.5){\hyperref[\foo{time:shift:tool:}]{\makebox(40.5,7.0){}}}
+   \put(63.5,0.5){\hyperref[\foo{multi:tool:}]{\makebox(30.5,7.0){}}}
+   \put(20.5,14.0){\hyperref[\foo{zoom:tool:}]{\makebox(13.5,14.0){}}}
+   \put(34.5,14.0){\hyperref[\foo{time:shift:tool:}]{\makebox(13.5,14.0){}}}
+   \put(48.5,14.0){\hyperref[\foo{multi:tool:}]{\makebox(13.5,14.0){}}}
+   \put(0.0,-194.0){\hyperref[\foo{toolbars:overview:upper:tooldock}]{\makebox(250.0,250.0){}}}
+\end{picture}
+
+--></div></dd></dl>
+<div id="next_tool"></div>
+<div id="previous_tool"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Previous_.2F_Next_Shortcuts.C2.A0.C2.A0A.C2.A0_.C2.A0D.C2.A0">Previous / Next Shortcuts&nbsp;<font size="-1"><span class="kbrd" style="background-color: #f0f0ff;color: #b0b0b0">&nbsp;A&nbsp;</span> <span class="kbrd" style="background-color: #f0f0ff;color: #b0b0b0">&nbsp;D&nbsp;</span></font></span></h2><!--}--><!--latex 
+\label{ext:bar:menu:tools:previous:tool}--><!--latex 
+\label{ext:bar:menu:tools:next:tool}-->
+<div class="note">There are two keyboard shortcuts that enable you to navigate through the various available tools:
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <span class="kbrd" style="background-color: #f0f0ff;color: #b0b0b0">&nbsp;A&nbsp;</span> This shortcut cycles backwards selecting each tool in turn, returning to the <!--latex 
+\hyperref[\foo{ext:bar:menu:tools::multitool}]{--><a href="#multitool">Multi</a><!--latex }
+--> tool after the <!--latex 
+\hyperref[\foo{ext:bar:menu:tools::selection}]{--><a href="#selection">Selection</a><!--latex }
+--> tool</li>
+<!--
+\item --><li> <span class="kbrd" style="background-color: #f0f0ff;color: #b0b0b0">&nbsp;D&nbsp;</span> This shortcut cycles forwards also selecting each tool in turn.</li></ul><!--
+\end{itemize}
+-->
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+
+<tbody><!--\par --><tr>
+<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+</td>
+<td align="left" valign="top">Note carefully that these two shortcuts will only be available if you select the <!--\textbf{--><b>Full</b><!--}--> set of shortcuts in <!--latex 
+\hyperref[\foo{keyboard:preferences:}]{--><a href="keyboard_preferences.html" title="Keyboard Preferences">Keyboard Preferences</a><!--latex }
+-->.  They are <!--\textit{--><i><!--\textbf{--><b>not</b><!--}--></i><!--}--> available in the default <!--\textbf{--><b>Standard</b><!--}--> set of shortcuts.
+</td></tr></tbody></table>
+</div>
+</div>
+<div id="selection"></div>
+<div id="selection_tool"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Selection.C2.A0F1"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Selection Tool button" height="27" src="../m/images/1/1f/ibeam.png" title="Selection Tool button" width="27"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/1/1f/ibeam.png--></img><!--}}{}--> <!--latex 
+\hyperref[\foo{selection:tool:}]{--><a href="selection_tool.html" title="Selection Tool">Selection</a><!--latex }
+-->&nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">F1</span></font></span></h2><!--}--><!--latex 
+\label{ext:bar:menu:tools:selection:tool}--><!--latex 
+\label{ext:bar:menu:tools:selection}-->
+<p>Click to select a start point for audio playback, or click and drag to select a range of audio to play or edit. You can also create a selection region between two points by clicking at one point, then holding down <span class="kbrd" style="background-color: #e0e0f0">Shift</span> while left-clicking at the other point.     
+</p>
+<div id="envelope_tool"></div>
+<div id="envelope"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Envelope.C2.A0F2"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Envelope Tool button" height="27" src="../m/images/0/02/envelope.png" title="Envelope Tool button" width="27"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/0/02/envelope.png--></img><!--}}{}--> <!--latex 
+\hyperref[\foo{envelope:tool:}]{--><a href="envelope_tool.html" title="Envelope Tool">Envelope</a><!--latex }
+-->&nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">F2</span></font></span></h2><!--}--><!--latex 
+\label{ext:bar:menu:tools:envelope}--><!--latex 
+\label{ext:bar:menu:tools:envelope:tool}-->
+<p>Allows smooth volume changes to be made over the length of a track by means of embedded volume "control points". Click in the track to create a control point, then set the volume of that point by dragging one of its four vertically arranged "handles". When you create other control points at different levels, a smooth curve is interpolated between them. 
+Dragging either the top or bottom handle ensures you can never distort the track by dragging outside its original volume envelope. Dragging an inner handle allows you to amplify a quiet piece of audio beyond the original volume envelope of the track.
+</p>
+<div id="draw"></div>
+<div id="draw_tool"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Draw_Samples.C2.A0F3"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Draw Tool button" height="27" src="../m/images/7/7f/draw.png" title="Draw Tool button" width="27"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/7/7f/draw.png--></img><!--}}{}--> <!--latex 
+\hyperref[\foo{draw:tool:}]{--><a href="draw_tool.html" title="Draw Tool">Draw Samples</a><!--latex }
+-->&nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">F3</span></font></span></h2><!--}--><!--latex 
+\label{ext:bar:menu:tools:draw:tool}--><!--latex 
+\label{ext:bar:menu:tools:draw}-->
+<p>Draw Tool enables you to manually redraw the waveform; it can thus be used to make volume changes to individual samples or to effect repairs to clicks/noise.
+</p>
+<div id="zoom"></div>
+<div id="zoom_tool"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Zoom.C2.A0F4"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Zoom Tool button" height="27" src="../m/images/9/96/zoom.png" title="Zoom Tool button" width="27"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/9/96/zoom.png--></img><!--}}{}--> <!--latex 
+\hyperref[\foo{zoom:tool:}]{--><a href="zoom_tool.html" title="Zoom Tool">Zoom</a><!--latex }
+-->&nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">F4</span></font></span></h2><!--}--><!--latex 
+\label{ext:bar:menu:tools:zoom:tool}--><!--latex 
+\label{ext:bar:menu:tools:zoom}-->
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> Left-click zooms in one step at the position of the mouse pointer.</li>
+<!--
+\item --><li> Click and drag zooms in to the dragged region. The drag draws a dotted region in the <!--latex 
+\hyperref[\foo{audacity:waveform:}]{--><a href="audacity_waveform.html" title="Audacity Waveform">waveform</a><!--latex }
+--> which is fitted to the entire track width when you release the drag. No Audacity <!--latex 
+\hyperref[\foo{audacity:selection:}]{--><a href="audacity_selection.html" title="Audacity Selection">selection region</a><!--latex }
+--> is created. </li>
+<!--
+\item --><li> <span class="kbrd" style="background-color: #e0e0f0">Shift</span> and left-click or right-click zooms out one step at the position of the mouse pointer.</li>
+<!--
+\item --><li> <span class="kbrd" style="background-color: #e0e0f0">Shift</span> and drag zooms out based on the dragged region. The drag draws a dotted region in the waveform and when you release the drag, the audio at the left edge of the dotted region is repositioned at the start of the visible waveform. The smaller the dragged region, the farther the audio will be zoomed out. No Audacity selection region is created. </li>
+<!--
+\item --><li> Middle button zooms in or out to Audacity's default zoom level of about one inch per second. </li></ul><!--
+\end{itemize}
+-->
+<div class="note">
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> If you commence a drag to zoom by mistake, you can press <span class="kbrd" style="background-color: #e0e0f0">Esc</span> before releasing the mouse to cancel the zoom operation.</li>
+<!--
+\item --><li> You can also zoom without using Zoom Tool by using <!--latex 
+\hyperref[\foo{keyboard:shortcut:reference:}]{--><a href="keyboard_shortcut_reference.html" title="Keyboard Shortcut Reference">keyboard shortcuts</a><!--latex }
+-->, or the zoom buttons on <!--latex 
+\hyperref[\foo{edit:toolbar:}]{--><a href="edit_toolbar.html" title="Edit Toolbar">Edit Toolbar</a><!--latex }
+-->.</li></ul><!--
+\end{itemize}
+--></div>
+<div id="timeshift"></div>
+<div id="time_shift_tool"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Time_Shift.C2.A0F5"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Time Shift Tool button" height="27" src="../m/images/a/ad/timeshift.png" title="Time Shift Tool button" width="27"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/a/ad/timeshift.png--></img><!--}}{}--> <!--latex 
+\hyperref[\foo{time:shift:tool:}]{--><a href="time_shift_tool.html" title="Time Shift Tool">Time Shift</a><!--latex }
+-->&nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">F5</span></font></span></h2><!--}--><!--latex 
+\label{ext:bar:menu:tools:time:shift:tool}--><!--latex 
+\label{ext:bar:menu:tools:timeshift}-->
+<p>Selecting this tool lets you synchronize audio in a project by dragging individual or multiple <!--latex 
+\hyperref[\foo{audio:tracks:}]{--><a href="audio_tracks.html" title="Audio Tracks">audio tracks</a><!--latex }
+-->, <!--latex 
+\hyperref[\foo{note:tracks:}]{--><a href="note_tracks.html" title="Note Tracks">note tracks</a><!--latex }
+--> or <!--latex 
+\hyperref[\foo{audacity:tracks:and:clips:}]{--><a href="audacity_tracks_and_clips.html" title="Audacity Tracks and Clips">audio clips</a><!--latex }
+--> left or right along the <!--latex 
+\hyperref[\foo{timeline:}]{--><a href="timeline.html" title="Timeline">Timeline</a><!--latex }
+-->. Also use this tool to drag individual tracks or clips up or down into another track. To use Time Shift Tool, click in the track or clip you want to move, then drag in the required direction. 
+</p>
+<div class="note">Dragged audio cannot paste into other audio, so the area being dragged into must have sufficient space to accommodate the drag.</div>
+<p>See <!--latex 
+\hyperref[\foo{time:shift:tool:}]{--><a href="time_shift_tool.html" title="Time Shift Tool">this page</a><!--latex }
+--> for more details.
+</p>
+<div id="multitool"></div>
+<div id="multi_tool"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Multi-Tool.C2.A0F6"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Multi-Tool Mode button" height="27" src="../m/images/6/60/multi.png" title="Multi-Tool Mode button" width="27"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/6/60/multi.png--></img><!--}}{}--> <!--latex 
+\hyperref[\foo{multi:tool:}]{--><a href="multi_tool.html" title="Multi-Tool">Multi-Tool</a><!--latex }
+-->&nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">F6</span></font></span></h2><!--}--><!--latex 
+\label{ext:bar:menu:tools:multi:tool}--><!--latex 
+\label{ext:bar:menu:tools:multitool}-->
+<p>Combines all five tools in one. One tool is available at a time, according to the mouse position and modifier key chosen. The shape of the pointer changes to show which tool is active. If you exit Audacity with Multi-Tool Mode selected, it will be also be enabled next time you launch Audacity. More details on Multi-Tool Mode <!--latex 
+\hyperref[\foo{multi:tool:}]{--><a href="multi_tool.html" title="Multi-Tool">here</a><!--latex }
+-->.
+</p>
+<div id="previous_tool"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Previous_Tool_.C2.A0A">Previous Tool &nbsp;<font size="-1"><span class="kbrd" style="background-color: #f0f0ff;color: #b0b0b0">A</span></font></span></h2><!--}--><!--latex 
+\label{ext:bar:menu:tools:previous:tool}-->
+<p>Cycles backwards through the tools, starting from the currently selected tool: starting from Selection, it would navigate to Multi-tool to Time Shift to Zoom to Draw to Envelope to Selection.
+</p>
+<div id="next_tool"></div>
+<!--
+\subsection{--><h2><span class="mw-headline" id="Next_Tool_.C2.A0D">Next Tool &nbsp;<font size="-1"><span class="kbrd" style="background-color: #f0f0ff;color: #b0b0b0">D</span></font></span></h2><!--}--><!--latex 
+\label{ext:bar:menu:tools:next:tool}-->
+<p>Cycles forwards through the tools, starting from the currently selected tool: starting from Selection, it would navigate to Envelope to Draw to Zoom to Time Shift to Multi-tool to Selection.
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>

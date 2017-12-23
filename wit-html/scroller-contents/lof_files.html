@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<title>LOF Files - Audacity Development Manual</title>
+
+
+
+
+
+<meta content="" name="ResourceLoaderDynamicStyles"/>
+
+<meta content="MediaWiki 1.28.2" name="generator"/>
+<link href="../favicon.ico" rel="shortcut icon"/>
+<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
+<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
+<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-LOF_Files rootpage-LOF_Files skin-monobook action-view"><div id="globalWrapper">
+		<div id="column-content">
+			<div class="mw-body" id="content" role="main">
+				<a id="top"></a>
+				
+				<div class="mw-indicators">
+</div>
+				<!--
+\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">LOF Files</h1><!--}
+\par\vspace{1mm}\hrule
+--><!--latex \begin{multicols}{2}--><!--latex \label{lof:files:}-->
+				
+				<div class="mw-body-content" id="bodyContent">
+					
+					
+										
+
+					
+					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+
+</p>
+<div class="intro">A LOF file is a plain text file ending with the extension ".lof" that contains a list of audio files to import into an Audacity project window. It can optionally contain commands to create new project windows.
+</div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Syntax">Syntax</span></h3><!--}-->
+<p>There are only two commands "file" and "window", each with associated options:
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>file</b><!--}-->: <!--\textit{--><i>(required)</i><!--}--> specifies the full path to the file which then imports as a new track in the current window (the path must always be in double quotes) 
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>offset</b><!--}-->: an optional parameter to the <!--\textit{--><i>file</i><!--}--> command, specifying the start time of the audio file in seconds</li></ul><!--
+\end{itemize}
+--></li>
+<!--
+\item --><li> <!--\textbf{--><b>window</b><!--}-->: <!--\textit{--><i>(optional)</i><!--}--> creates a new Audacity project window for a subsequent file in the list (the first file always creates a new window unless the existing project is empty) 
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> <!--\textbf{--><b>offset</b><!--}-->: an optional parameter to the <!--\textit{--><i>window</i><!--}--> command, specifying the left-most time displayed in the window</li>
+<!--
+\item --><li> <!--\textbf{--><b>duration</b><!--}-->: an optional parameter to the <!--\textit{--><i>window</i><!--}--> command, specifying how much time should be displayed in the window</li></ul><!--
+\end{itemize}
+--></li>
+<!--
+\item --><li> <!--\textbf{--><b>#</b><!--}-->: <!--\textit{--><i>(optional)</i><!--}--> can be used anywhere on a line to precede a comment - everything after <!--\textbf{--><b>#</b><!--}--> on that line is ignored by the importer.</li></ul><!--
+\end{itemize}
+-->
+<div class="note"> 
+<p><!--\textbf{--><b>Tips:</b><!--}-->
+</p>
+<!--
+\begin{itemize}--><ul><!--
+\item --><li> Each command must be placed on a separate line.</li>
+<!--
+\item --><li> Files are imported in the order shown in the LOF file. </li>
+<!--
+\item --><li> If the file to be imported is in the same folder as the LOF file, you need only give the file name inside double quotes.    </li></ul><!--
+\end{itemize}
+-->
+</div>
+<!--
+\subsubsection{--><h3><span class="mw-headline" id="Example">Example</span></h3><!--}-->
+<p>Given an empty project window, the following LOF file located at C:\Desktop imports the audio file "sample1.wav" from the Desktop into that window, followed by "sample2.wav" and "sample3.wav" from other locations underneath. Then a new project window is created and the audio file "sample4.wav" from the Desktop is imported into it.
+</p>
+<pre># everything following the hash character is ignored
+window # an initial window command is implicit and optional
+file "sample1.wav"                   # sample1.wav is displayed
+file "C:\Ken\sample2.wav" offset 5   # sample2.wav is displayed with a 5s offset
+file "C:\Dave\sample3.wav"           # sample3.wav is displayed with no offset
+window offset 5 duration 10          # open a new window, then zoom to display
+# 10 seconds of sample4.wav from 5 seconds to 15 seconds, offsetting it by 2.5 seconds
+file "sample4.wav" offset 2.5
+</pre>
+<p>The file names shown are for a Windows system, but the same syntax applies on Macintosh and Linux with the obvious change to a suitable file path.
+</p>
+
+
+
+
+
+</div>
+										
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="visualClear"></div>
+					
+		</div><!--latex \end{multicols}-->
+		
+</body></html>
