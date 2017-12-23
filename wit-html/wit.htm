@@ -230,8 +230,6 @@
             Moving = false;
         }
 
-        var lastIx = -1;
-
         function Refresh(Source, isclick){
 
             if( Source.ThisIx != Source.LastIx ){
@@ -279,8 +277,9 @@
                 }
                 else {
                     ChangeLevel(1);
-                    Gui.ThisIx = -1;
-                    Clicker.ThisIx = -1;
+                    // Force an update on next refresh.
+                    Gui.LastIx = -2;
+                    Clicker.LastIx = -2;
                 }
             }
 
