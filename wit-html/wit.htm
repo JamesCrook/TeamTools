@@ -44,7 +44,8 @@
         }
 
         function Extract( List, from, level ){
-            console.log( "Searching from "+from+"["+List[from][5]+
+            if( from < List.length )
+                console.log( "Searching from "+from+"["+List[from][5]+
                     "] for level "+level );
             var result = [];
             var i;
@@ -116,39 +117,55 @@
             }
         }
 
+        function DrawClicky( G, Where, Box ){
+            var str = Box[4];
+            var w = G.Ctx.measureText(str).width + 30;
+            var XX = Where[0];
+            var YY = Where[1];
+
+            G.Ctx.font = "18px Arial";
+            G.Ctx.fillStyle = 'blue';
+            G.Ctx.fillText(str, XX + 15, YY + 22);
+            Box[0] = XX;
+            Box[1] = YY;
+            XX += w;
+            Box[2] = XX;
+            Box[3] = YY + Where[3];
+
+            Where[0]=XX;
+            Where[1]=YY;
+
+        }
 
         function RedrawClicker(){
             var G = Clicker;
             var i;
-            var Box;
-            var XX = 40;
             var YY = Gui.Img.height;
-            var w, h;
-            var str;
-            h = 30;
-            G.Ctx.font = "18px Arial";
+
             G.Ctx.fillStyle = 'white';
             G.Ctx.fillRect(0, YY, G.Canvas.width, G.Canvas.height-YY);
-            G.Ctx.fillStyle = 'blue';
             YY+=4;
-            //G.Ctx.clearRect(0,0, G.Canvas.width, G.Canvas.height);
-            for( i = 0; i < G.Boxes[Level].length; i++ ){
-                Box = G.Boxes[Level][i];
-                str = Box[4];
-                w = G.Ctx.measureText(str).width + 30;
-                if( (XX + w) > (1225-40) ){
-                    YY += 30;
-                    XX = 40;
-                }
-                G.Ctx.fillText(str, XX + 15, YY + 22);
-                Box[0] = XX;
-                Box[1] = YY;
-                XX += w;
-                Box[2] = XX;
-                Box[3] = YY + h;
+            var LL = Level;
+            if( LL > 0 )
+                LL-=1;
 
+            var Channels = [[ 40, YY, 1225-40, 30 ],[ 40, YY+30, 1225-40, 30 ]];
+            for( i = 0; i < G.Boxes[LL].length; i++ ){
+                DrawClicky( G, Channels[i%2], G.Boxes[LL][i] )
             }
-            //G.Img.src = G.Canvas.toDataURL("image/png");
+            if( Level < 1)
+                return;
+            LL=Level;
+            //Channels = [[ 40, YY-100, 1225-40, 30 ],[ 40, YY-70, 1225-40, 30 ]];
+            var BoxRow = Gui.Boxes[LL-1][ClickedBox];
+            var Start = Math.max( 2, BoxRow[0] - 100);
+            var Spread = Math.min( Math.min( Math.max( BoxRow[1]-70, 10 ), 30),
+                    Gui.Rect[2]-BoxRow[3]-320);
+            Channels =[[Start, BoxRow[1]-40-Spread, 0, 30],
+                [Start, BoxRow[3]+10+Spread, 0, 30]];
+            for( i = 0; i < G.Boxes[LL].length; i++ ){
+                DrawClicky( G, Channels[i%2], G.Boxes[LL][i] )
+            }
         }
 
         window.onload = function(){
