@@ -24,6 +24,61 @@
         var ClickedBox = -1;
 
 
+        function Corner( Box, index ){
+            if( index == 0)
+                return Vec2( Box[0], Box[1] );
+            if( index == 1)
+                return Vec2( Box[2], Box[1] );
+            if( index == 2)
+                return Vec2( Box[0], Box[3] );
+            return Vec2( Box[2], Box[3] );
+        }
+
+        function MinMax( Box, direction ){
+            var i;
+            var result = {};
+            for( i=0;i<4;i++){
+                var dot = dotProd(Corner( Box, i), direction);
+                if( i==0 || result.min > dot )
+                    result.min = dot;
+                if( i==0 || result.max < dot )
+                    result.max = dot;
+            }
+            return result;
+        }
+
+        function SomeArrow( Box1, Box2, direction ){
+            var result = { quality:0, p1: Vec2(0,0), p2: Vec2(0,0)};
+            var Limits1, Limits2;
+            Limits1 = MinMax( Box1, direction );
+            Limits2 = MinMax( Box2, direction );
+            var min = Math.max(Limits1.min, Limits2.min );
+            var max = Math.min(Limits1.max, Limits2.max );
+            result.quality = max - min;
+            result.direction = Vec2( direction );
+            result.value = (max + min) /2;
+            return result;
+        }
+
+        // Finds the 'best' arrow connecting two boxes.
+        function BestArrow( Box1, Box2 ){
+            var Arrow = [];
+            // Try four distinct directions for the arrow.
+            Arrow.push( SomeArrow( Box1, Box2, Vec2( 1, 0 ) ));
+            Arrow.push( SomeArrow( Box1, Box2, Vec2( 0, 1 ) ));
+            Arrow.push( SomeArrow( Box1, Box2, Vec2( 0.707, 0.707 ) ));
+            Arrow.push( SomeArrow( Box1, Box2, Vec2( 0.707, -0.707 ) ));
+            var result = Arrow[0];
+            var i;
+            for(i=1;i<4;i++){
+                if( Arrow[i].quality > result.quality )
+                    result = Arrow[i];
+            }
+
+            return result;
+        }
+
+
         // @return var
         function FindBox(Source, x, y){
 
