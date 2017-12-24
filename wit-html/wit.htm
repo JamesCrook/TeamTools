@@ -21,6 +21,7 @@
         var Level = 0;
         var Moving = true;
         var Scroller;
+        var ClickedBox = -1;
 
 
         // @return var
@@ -71,6 +72,7 @@
             Gui.Ctx = Gui.Canvas.getContext("2d");
             Gui.LastIx = -2;
             Gui.ThisIx = -1;
+            Gui.DoesFade = true;
             Gui.Rect = [0,0,865,583];
             Gui.BackDraw = function() { Gui.Ctx.drawImage(Gui.Img, 0, 0);}
             Gui.FrontDraw = function( x,y,w,h ){
@@ -86,6 +88,7 @@
             Clicker.Ctx = Gui.Canvas.getContext("2d");
             Clicker.LastIx = -2;
             Clicker.ThisIx = -1;
+            Clicker.DoesFade = false;
             Clicker.Rect = [0,583,1225,740];
             Clicker.BackDraw = RedrawClicker;
             Clicker.FrontDraw = function( x,y,w,h ){;}
@@ -104,6 +107,7 @@
                 console.log( "Descend: ", inside );
                 if( inside.length < 1 )
                     return;
+                ClickedBox = Gui.ThisIx;
                 Gui.Boxes[ Level+1 ] = inside;
                 // regenerate a new set...
                 inside = Extract( AudacityBoxes,index, Level+2 );
@@ -156,36 +160,67 @@
             Refresh( Clicker, false );
         }
 
-        function RefreshImage(Gui, backfade){
+        function DrawFadedBack( Gui ){
             Gui.BackDraw();
-            //Gui.Ctx.drawImage(Gui.Img, 0, 0);
-            if( Gui.ThisIx < 0 )
-                return;
-            var box = Gui.Boxes[ Level][Gui.ThisIx];
-            var x = box[0];
-            var y = box[1];
-            var w = box[2] - box[0];
-            var h = box[3] - box[1];
+            Gui.Ctx.globalAlpha = 0.85;
+            Gui.Ctx.fillStyle = 'white';
+            var R = Gui.Rect;
+            Gui.Ctx.fillRect(R[0],R[1], R[2]-R[0], R[3]-R[1]);
+            Gui.Ctx.globalAlpha = 1.0;
+        }
 
-            if( backfade ){
-                Gui.Ctx.globalAlpha = 0.85;
-                Gui.Ctx.fillStyle = 'white';
-                var R = Gui.Rect;
-                Gui.Ctx.fillRect(R[0],R[1], R[2]-R[0], R[3]-R[1]);
-                Gui.Ctx.globalAlpha = 1.0;
-                Gui.FrontDraw( x, y, w, h );
-            } else {
-                Gui.Ctx.globalAlpha = 0.1;
-                Gui.Ctx.fillStyle = 'blue';
-                Gui.Ctx.fillRect(x, y, w, h);
-                Gui.Ctx.globalAlpha = 1.0;
-            }
+        function DrawBlueFade( Gui, x, y, w, h ){
+            Gui.Ctx.globalAlpha = 0.1;
+            Gui.Ctx.fillStyle = 'blue';
+            Gui.Ctx.fillRect(x, y, w, h);
+            Gui.Ctx.globalAlpha = 1.0;
+        }
+
+        function DrawBlueSurround( Gui, x, y, w, h ){
 
             Gui.Ctx.strokeStyle = 'blue';
             Gui.Ctx.lineWidth = 4;
             Gui.Ctx.beginPath();
             Gui.Ctx.rect(x, y, w, h);
             Gui.Ctx.stroke();
+        }
+
+        function DrawRedSurround( Gui, x, y, w, h ){
+            Gui.Ctx.strokeStyle = 'red';
+            Gui.Ctx.lineWidth = 4;
+            Gui.Ctx.beginPath();
+            Gui.Ctx.rect(x, y, w, h);
+            Gui.Ctx.stroke();
+        }
+
+        function RefreshImage(Gui){
+            var backfade = (Level > 0) && Gui.DoesFade;
+
+            if( backfade ){
+                DrawFadedBack( Gui );
+                var box = Gui.Boxes[Level - 1][ClickedBox];
+                var x = box[0];
+                var y = box[1];
+                var w = box[2] - box[0];
+                var h = box[3] - box[1];
+                Gui.FrontDraw( x, y, w, h );
+                DrawRedSurround(Gui, x, y, w, h);
+            }
+            else
+                Gui.BackDraw();
+
+            //Gui.Ctx.drawImage(Gui.Img, 0, 0);
+            if( Gui.ThisIx < 0 )
+                return;
+
+            var box = Gui.Boxes[ Level][Gui.ThisIx];
+            var x = box[0];
+            var y = box[1];
+            var w = box[2] - box[0];
+            var h = box[3] - box[1];
+            DrawBlueFade( Gui, x,y,w,h);
+            DrawBlueSurround( Gui, x,y,w,h );
+
         }
 
         function Arrow( v1,v2 ){
@@ -252,10 +287,10 @@
                 }
                 else
                     Message.innerHTML = 'None';
-                RefreshImage(Source, isclick);
+                RefreshImage(Source);
             }
             else if( isclick ){
-                RefreshImage(Source, isclick);
+                RefreshImage(Source);
             }
             //alert( "X:"+ XX + " Y:"+ YY + " ix:"+ixx);
         }
@@ -283,11 +318,10 @@
             }
             if( isclick){
                 ConnectBoxes();
+                Moving = true;
                 if( Gui.ThisIx < 0 ){
                     Level = 0;
-                    Moving = true;
-                }
-                else {
+                } else {
                     ChangeLevel(1);
                     // Force an update on next refresh.
                     Gui.LastIx = -2;
