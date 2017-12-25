@@ -219,12 +219,16 @@
             LL=Level;
             var BoxRow = Gui.Boxes[LL-1][ClickedBox];
             var Start = Math.max( 2, BoxRow[0] - 100);
-            var Spread = Math.min( Math.min( Math.max( BoxRow[1]-70, 10 ), 30),
-                    Gui.Rect[2]-BoxRow[3]-320);
-            Channels =[[Start, BoxRow[1]-40-Spread, 0, 30],
-                [Start, BoxRow[3]+10+Spread, 0, 30]];
+            var Spread = Math.min( Math.max( BoxRow[1]-70, 10 ), 30);
+
+            Channels =[];
+
+            Channels.push( [Start, BoxRow[1]-40-Spread, 0, 30] );
+            if( (Gui.Rect[2]-BoxRow[3]-320 ) > 80 )
+                Channels.push( [Start, BoxRow[3]+10+Spread, 0, 30] );
+
             for( i = 0; i < G.Boxes[LL].length; i++ ){
-                DrawClicky( G, Channels[i%2], G.Boxes[LL][i] )
+                DrawClicky( G, Channels[i%Channels.length], G.Boxes[LL][i] )
             }
         }
 
@@ -312,7 +316,7 @@
         function Arrow( v1,v2, style ){
             var Head = 'black';
             if( style < 0 ){
-                Head = 'red';
+                Head = 'grey';
                 style = -style;
             }
             var headLength = 27-style*5;
