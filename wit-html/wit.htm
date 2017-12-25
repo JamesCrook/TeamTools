@@ -262,7 +262,7 @@
         }
 
         function DrawRedSurround( Gui, x, y, w, h ){
-            Gui.Ctx.strokeStyle = 'red';
+            Gui.Ctx.strokeStyle = 'blue';
             Gui.Ctx.lineWidth = 4;
             Gui.Ctx.beginPath();
             Gui.Ctx.rect(x, y, w, h);
@@ -284,8 +284,15 @@
             } else {
 
                 Gui.BackDraw();
-                ConnectBoxes(Level - 1, ClickedBox);
+                // Connect parent box...
+                ConnectBoxes(Level - 1, ClickedBox, 0);
                 Gui.FrontDraw();
+                if( Level > 0 ){
+                    var i;
+                    for( i=0;i<Gui.Boxes[Level].length; i++){
+                        ConnectBoxes( Level, i, 2 );
+                    }
+                }
             }
 
             // The highlighted box...
@@ -302,24 +309,32 @@
 
         }
 
-        function Arrow( v1,v2 ){
+        function Arrow( v1,v2, style ){
+            var Head = 'black';
+            if( style < 0 ){
+                Head = 'red';
+                style = -style;
+            }
+            var headLength = 27-style*5;
+            var headWidth = 5-style;
+
             var d1 = v2.sub(v1);
             var d2 = d1.normal();
             var d3 = d1.normalPerp();
             var u1 = v1;
-            var u2 = v1.add( d1).sub( d2.times( 27 ));
+            var u2 = v1.add( d1).sub( d2.times( headLength ));
             var u3;
             Gui.Ctx.strokeStyle = 'grey';
-            Gui.Ctx.lineWidth = 4;
+            Gui.Ctx.lineWidth = 4-style;
             Gui.Ctx.beginPath();
             Gui.Ctx.moveTo(u1.x(), u1.y());
             Gui.Ctx.lineTo(u2.x(), u2.y());
             Gui.Ctx.stroke();
 
-            Gui.Ctx.fillStyle = 'black';
-            u1 = u2.add( d3.times(5) );
-            u3 = u2.add( d2.times(22) );
-            u2 = u2.sub( d3.times(5) );
+            Gui.Ctx.fillStyle = Head;
+            u1 = u2.add( d3.times(headWidth) );
+            u3 = u2.add( d2.times( headLength - headWidth) );
+            u2 = u2.sub( d3.times(headWidth) );
             Gui.Ctx.beginPath();
             Gui.Ctx.moveTo(u1.x(), u1.y());
             Gui.Ctx.lineTo(u2.x(), u2.y());
@@ -341,7 +356,7 @@
             }
         }
 
-        function ConnectBoxes(level, boxIx){
+        function ConnectBoxes(level, boxIx, style){
             if( level < 0 )
                 return;
             var b1 = Gui.Boxes[ level][boxIx ];
@@ -351,7 +366,51 @@
             var y1 = b1[3];
             var x2 = (b2[0]+b2[2])/2;
             var y2 = b2[1];
-            Arrow( Vec2(x2,y2), Vec2( x1,y1)  );
+            if( y1 > y2 ){
+                y2 = b2[3];
+                y1 = b1[1];
+            }
+            var xmin;
+            var xmax;
+            var h;
+            var bImproved = false;
+            // Possibly vertical arrow.
+            if( !bImproved ){
+                xmin = Math.max( b1[0]+10,b2[0] );
+                xmax = Math.min( b1[2]-10,b2[2] );
+                if( xmin < xmax ){
+                    x1 = (xmin + xmax) / 2;
+                    x2 = x1;
+                    bImproved = true;
+                }
+            }
+            if( !bImproved ){
+                h = y2-y1;
+                h*=1.5;
+                xmin = Math.max( b1[0]+10,b2[0]-h );
+                xmax = Math.min( b1[2]-10,b2[2]-h );
+                if( xmin < xmax ){
+                    x1 = (xmin + xmax) / 2;
+                    x2 = x1+h;
+                    bImproved = true;
+                }
+            }
+            if( !bImproved ){
+                h = y1-y2;
+                h*=1.5;
+                xmin = Math.max( b1[0]+10,b2[0]-h );
+                xmax = Math.min( b1[2]-10,b2[2]-h );
+                if( xmin < xmax ){
+                    x1 = (xmin + xmax) / 2;
+                    x2 = x1+h;
+                    bImproved = true;
+                }
+            }
+            if( !bImproved ){
+                style = -style;
+            }
+
+            Arrow( Vec2(x2,y2), Vec2( x1,y1), style  );
         }
 
         function MayRefresh(){
@@ -381,11 +440,12 @@
 
         function ImageClick(event, isclick){
             HoverBox = GetHoverBox( event );
+            var Target;
             if( isclick){
                 if( HoverBox < 0){
+                    LastHover = -2;
                     Level = 0;
                     ClickedBox = -1;
-                    LastHover = -2;
                     HoverBox = GetHoverBox( event );
                 }
                 ChangeLevel(1);
@@ -393,8 +453,11 @@
                     HoverBox = GetHoverBox( event );
                     ChangeLevel(1);
                 }
-                if( HoverBox > 0 ){
-                    var Target = Gui.Boxes[ Level][HoverBox][4];
+                if( HoverBox >= 0 ){
+                    Target = Gui.Boxes[ Level][HoverBox][4];
+                    ScrollTo( Target );
+                } else if( ClickedBox >= 0 ){
+                    Target = Gui.Boxes[ Level-1][ClickedBox][4];
                     ScrollTo( Target );
                 }
             }
