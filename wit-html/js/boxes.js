@@ -101,10 +101,12 @@ var AudacityBoxes = [
   [  2, 398,  53, 424,  79, "Draw" ],
   [  1, 426,  53, 857,  79, "Recording Meter Toolbar" ],
   [  2, 426,  53, 435,  79, "Grabber" ],
-  [  2, 437,  53, 852,  79, "Record Meter" ],
+  [  2, 435,  53, 462,  79, "Record Options" ],
+  [  2, 462,  53, 852,  79, "Record Meter" ],
   [  1, 426,  81, 857, 107, "Playback Meter Toolbar" ],
   [  2, 426,  81, 435, 107, "Grabber" ],
-  [  2, 437,  81, 852, 107, "Play Meter" ],
+  [  2, 435,  81, 462, 107, "Playback Options" ],
+  [  2, 462,  81, 852, 107, "Play Meter" ],
   [  1,   3, 109, 325, 135, "Mixer Toolbar" ],
   [  2,   3, 109,  12, 135, "Grabber" ],
   [  2,  39, 110, 168, 134, "Slider Recording" ],
@@ -128,17 +130,47 @@ var AudacityBoxes = [
   [  2, 702, 110, 801, 134, "Playback Speed" ],
   [  1,   3, 137, 597, 163, "Device Toolbar" ],
   [  2,   3, 137,  12, 163, "Grabber" ],
-  [  2,  14, 139, 114, 161, "Audio Host" ],
-  [  2, 140, 139, 300, 161, "Recording Device" ],
-  [  2, 301, 139, 405, 161, "Recording Channels" ],
-  [  2, 431, 139, 591, 161, "Playback Device" ],
+  [  2,  14, 139, 117, 161, "Audio Host" ],
+  [  2, 143, 139, 309, 161, "Recording Device" ],
+  [  2, 309, 139, 415, 161, "Recording Channels" ],
+  [  2, 442, 139, 597, 161, "Playback Device" ],
   [  1,   2, 165, 865, 207, "Timeline" ],
-  [  2,   3, 165,  13, 191, "Grabber" ],
-  [  2,  14, 165,  40, 191, "Pin" ],
+//  [  2,   3, 165,  13, 193, "Grabber" ], // It's a fake grabber!
+  [  2,  14, 165,  40, 193, "Pin" ],
+  [  2,   2, 193, 865, 207, "Scrubbing Bar" ],
+  [  2,  40, 165, 865, 193, "Quick Play Region" ],
+
+
   [  1,   2, 208, 865, 504, "Track Panel" ],
 //  [  1,   2, 208, 848, 487, "Track Panel" ],
-  [  2, 102, 213, 137, 413, "VRuler" ],
-  [  2, 102, 421, 137, 457, "VRuler" ],
+
+
+  [ 2, 5,213,842,416, "Audio Track" ],
+
+  [ 3, 5,214,102,416, "Track Control Panel" ],
+  [ 4, 5,214,26,232, "Close" ],
+  [ 4, 5,397,86,415, "Collapse" ],
+  [ 4, 26,214,103,232, "DropDown" ],
+  [ 4, 5,310,100,354, "TrackData" ],
+  [ 4, 7,230,53,249, "Mute" ],
+  [ 4, 5,281,100,310, "Pan" ],
+  [ 4, 52,230,103,249, "Solo" ],
+  [ 4, 5,249,100,280, "Volume" ],
+  [ 3, 102, 214, 137, 416, "VRuler" ],
+  [ 3, 140,213,842,312, "Left Channel" ],
+  [ 3, 140,318,842,416, "Right Channel" ],
+
+  [ 2, 5,423,842,460, "Label Track" ],
+  [ 3, 5,423,103,459, "Track Control Panel" ],
+  [ 4, 8,423,25,441, "Close" ],
+  [ 4, 5,441,86,461, "Collapse" ],
+  [ 4, 25,423,102,441, "Dropdown" ],
+//  [ 3, 102, 423, 137, 460, "VRuler" ], // DNGN - Does nothing, Goes Nowhere.
+  [ 3, 188,424,301,458, "Point Label" ],
+  [ 3, 324,424,828,458, "Region Label" ],
+
+
+
   [  2, 138, 488, 848, 504, "Horizontal Scrollbar" ],
   [  2, 849, 208, 865, 487, "Vertical Scrollbar" ],
 //  [  1,   2, 505, 865, 561, "ToolDock" ],
@@ -147,10 +179,11 @@ var AudacityBoxes = [
   [  2,  19, 511, 113, 557, "Project Rate" ],
   [  2, 127, 511, 199, 557, "Snap To" ],
   [  2, 213, 511, 362, 558, "Audio Position" ],
-  [  2, 374, 511, 673, 533, "Selection Type Chooser" ],
   [  2, 376, 537, 523, 558, "Start" ],
   [  2, 529, 537, 676, 558, "End" ],
+  [  2, 374, 511, 673, 533, "Selection Type Chooser" ],
   [  1,   2, 562, 865, 584, "Status Bar" ],
+  [  2,  10, 562, 150, 584, "Status" ],
   [  2, 842, 562, 865, 584, "Resizer"],
 
 ];
