@@ -19,9 +19,10 @@
         var Clicker = {};
         var Gui = {};
         var Level = 0;
-        var Moving = true;
         var Scroller;
         var ClickedBox = -1;
+        var HoverBox = -1;
+        var LastHover = -2;
 
 
         function Corner( Box, index ){
@@ -98,16 +99,13 @@
             return Source.ThisIx;
         }
 
+        // Finds subitems from the main list at the chosen level.
         function Extract( List, from, level ){
-            if( from < List.length )
-                console.log( "Searching from "+from+"["+List[from][5]+
-                    "] for level "+level );
             var result = [];
             var i;
             for( i=from;i<List.length;i++){
                 var lev = List[i][0];
                 if( lev < level ){
-                    console.log( "Stopped at "+ i);
                     return result;
                 }
                 if( lev ==level ){
@@ -126,8 +124,6 @@
             Gui.Img = document.getElementById("Gui");
             Gui.Canvas = document.getElementById("GuiCanvas");
             Gui.Ctx = Gui.Canvas.getContext("2d");
-            Gui.LastIx = -2;
-            Gui.ThisIx = -1;
             Gui.DoesFade = true;
             Gui.Rect = [0,0,865,583];
             Gui.BackDraw = function() { Gui.Ctx.drawImage(Gui.Img, 0, 0);}
@@ -142,12 +138,15 @@
             Clicker.Img = document.getElementById("Gui");
             Clicker.Canvas = document.getElementById("GuiCanvas");
             Clicker.Ctx = Gui.Canvas.getContext("2d");
-            Clicker.LastIx = -2;
-            Clicker.ThisIx = -1;
             Clicker.DoesFade = false;
             Clicker.Rect = [0,583,1225,740];
-            Clicker.BackDraw = RedrawClicker;
-            Clicker.FrontDraw = function( x,y,w,h ){;}
+            Clicker.BackDraw = function(){
+                var G = Clicker;
+                var YY = Gui.Img.height;
+                G.Ctx.fillStyle = 'white';
+                G.Ctx.fillRect(0, YY, G.Canvas.width, G.Canvas.height-YY);
+            };
+            Clicker.FrontDraw = RedrawClicker;
         }
 
         function ChangeLevel( delta ){
@@ -157,21 +156,29 @@
             if( (Level + delta) < 0 ){
                 return;
             }
-            if( (delta == 1) && (Level < 6 )){
-                var index = Gui.Boxes[ Level ][Gui.ThisIx][5]+1;
+            if( HoverBox < 0 )
+                    return;
+            if( delta == 1){
+                var index = Gui.Boxes[ Level ][HoverBox][5]+1;
                 var inside = Extract( AudacityBoxes,index, Level+2 );
-                console.log( "Descend: ", inside );
                 if( inside.length < 1 )
                     return;
-                ClickedBox = Gui.ThisIx;
+
+                console.log( "Descending: ", inside );
+                ClickedBox = HoverBox;
+                HoverBox = -1;
+                LastHover = -2;
+
                 Gui.Boxes[ Level+1 ] = inside;
-                // regenerate a new set...
+                // Rather than deep copy the extracted items,
+                // we just extract them a second time.
                 inside = Extract( AudacityBoxes,index, Level+2 );
                 Clicker.Boxes[ Level+1 ] = inside;
                 Level += 1;
             }
         }
 
+        // Draws one text item
         function DrawClicky( G, Where, Box ){
             var str = Box[4];
             var w = G.Ctx.measureText(str).width + 30;
@@ -195,23 +202,21 @@
         function RedrawClicker(){
             var G = Clicker;
             var i;
-            var YY = Gui.Img.height;
-
-            G.Ctx.fillStyle = 'white';
-            G.Ctx.fillRect(0, YY, G.Canvas.width, G.Canvas.height-YY);
-            YY+=4;
+            var YY = Gui.Img.height+4;
             var LL = Level;
             if( LL > 0 )
                 LL-=1;
 
+            // Clicker at bottom of image...
             var Channels = [[ 40, YY, 1225-40, 30 ],[ 40, YY+30, 1225-40, 30 ]];
             for( i = 0; i < G.Boxes[LL].length; i++ ){
                 DrawClicky( G, Channels[i%2], G.Boxes[LL][i] )
             }
             if( Level < 1)
                 return;
+
+            // Clicker superimposed on image...
             LL=Level;
-            //Channels = [[ 40, YY-100, 1225-40, 30 ],[ 40, YY-70, 1225-40, 30 ]];
             var BoxRow = Gui.Boxes[LL-1][ClickedBox];
             var Start = Math.max( 2, BoxRow[0] - 100);
             var Spread = Math.min( Math.min( Math.max( BoxRow[1]-70, 10 ), 30),
@@ -228,8 +233,7 @@
             Scroller = document.getElementById("scroller");
             GuiInit();
             ClickerInit();
-            Refresh( Gui, false );
-            Refresh( Clicker, false );
+            MayRefresh();
         }
 
         function DrawFadedBack( Gui ){
@@ -277,15 +281,18 @@
                 var h = box[3] - box[1];
                 Gui.FrontDraw( x, y, w, h );
                 DrawRedSurround(Gui, x, y, w, h);
-            }
-            else
-                Gui.BackDraw();
+            } else {
 
-            //Gui.Ctx.drawImage(Gui.Img, 0, 0);
-            if( Gui.ThisIx < 0 )
+                Gui.BackDraw();
+                ConnectBoxes(Level - 1, ClickedBox);
+                Gui.FrontDraw();
+            }
+
+            // The highlighted box...
+            if( HoverBox < 0 )
                 return;
 
-            var box = Gui.Boxes[ Level][Gui.ThisIx];
+            var box = Gui.Boxes[ Level][HoverBox];
             var x = box[0];
             var y = box[1];
             var w = box[2] - box[0];
@@ -302,7 +309,7 @@
             var u1 = v1;
             var u2 = v1.add( d1).sub( d2.times( 27 ));
             var u3;
-            Gui.Ctx.strokeStyle = 'black';
+            Gui.Ctx.strokeStyle = 'grey';
             Gui.Ctx.lineWidth = 4;
             Gui.Ctx.beginPath();
             Gui.Ctx.moveTo(u1.x(), u1.y());
@@ -323,22 +330,8 @@
 
         }
 
-        function ConnectBoxes(){
-            if( Gui.ThisIx < 0 )
-                return;
-            if( Clicker.ThisIx < 0 )
-                return;
-            var b1 = Gui.Boxes[ Level][Gui.ThisIx ];
-            var b2 = Clicker.Boxes[ Level][Clicker.ThisIx ];
-
-            var x1 = (b1[0]+b1[2])/2;
-            var y1 = b1[3];
-            var x2 = (b2[0]+b2[2])/2;
-            var y2 = b2[1];
-            Arrow( Vec2(x2,y2), Vec2( x1,y1)  );
-            var Target = b1[4];
+        function ScrollTo( Target ){
             var i;
-            Moving = false;
             for(i=0;i<urls.length;i++){
                 if( urls[i][0] == Target){
                     var src = urls[i][1];
@@ -346,61 +339,66 @@
                     return;
                 }
             }
-
         }
 
-        function Refresh(Source, isclick){
+        function ConnectBoxes(level, boxIx){
+            if( level < 0 )
+                return;
+            var b1 = Gui.Boxes[ level][boxIx ];
+            var b2 = Clicker.Boxes[ level][boxIx ];
 
-            if( Source.ThisIx != Source.LastIx ){
-                Source.LastIx = Source.ThisIx;
-                if( Source.ThisIx >= 0 ){
-                    var B = Gui.Boxes[Level][Source.ThisIx];
+            var x1 = (b1[0]+b1[2])/2;
+            var y1 = b1[3];
+            var x2 = (b2[0]+b2[2])/2;
+            var y2 = b2[1];
+            Arrow( Vec2(x2,y2), Vec2( x1,y1)  );
+        }
+
+        function MayRefresh(){
+            if( LastHover != HoverBox ){
+                RefreshImage(Gui);
+                RefreshImage(Clicker);
+                LastHover = HoverBox;
+                if( HoverBox >= 0 ){
+                    var B = Gui.Boxes[Level][HoverBox];
                     Message.innerHTML = B[4] + "<br>:"+B[0]+":"+B[1]+":"+B[2]+":"+B[3];
                 }
                 else
-                    Message.innerHTML = 'None';
-                RefreshImage(Source);
+                    Message.innerHTML = 'None '+Level;
             }
-            else if( isclick ){
-                RefreshImage(Source);
-            }
-            //alert( "X:"+ XX + " Y:"+ YY + " ix:"+ixx);
+        }
+
+        function GetHoverBox( event ){
+            var XX = event.offsetX;
+            var YY = event.offsetY;
+            var box;
+            box = FindBox(Gui, XX, YY);
+            if( box >=0 )
+                return box;
+            box = FindBox(Clicker, XX, YY);
+            return box;
         }
 
         function ImageClick(event, isclick){
-            var XX = event.offsetX;
-            var YY = event.offsetY;
-            var box1 = FindBox(Gui, XX, YY);
-            var box2 = FindBox(Clicker, XX, YY);
-            if( isclick ){
-                console.log("x:" + XX + " y:" + YY + " Box1:" + box1 + " Box2:" + box2 );
-            }
-            if( Level < 6 ){
-                if( box1 < 0 )
-                    Gui.ThisIx = box2;
-                else if( box2 < 0 )
-                    Clicker.ThisIx = box1;
-            }
-            //var Change = (Gui.ThisIx != Gui.LastIx) || ( Clicker.ThisIx != Clicker.LastIx);
-
-
-            if( Moving || isclick ){
-                Refresh(Gui, isclick);
-                Refresh(Clicker, false);
-            }
+            HoverBox = GetHoverBox( event );
             if( isclick){
-                ConnectBoxes();
-                Moving = true;
-                if( Gui.ThisIx < 0 ){
+                if( HoverBox < 0){
                     Level = 0;
-                } else {
+                    ClickedBox = -1;
+                    LastHover = -2;
+                    HoverBox = GetHoverBox( event );
+                }
+                ChangeLevel(1);
+                if( Level == 1 ){
+                    HoverBox = GetHoverBox( event );
                     ChangeLevel(1);
-                    // Force an update on next refresh.
-                    Gui.LastIx = -2;
-                    Clicker.LastIx = -2;
+                }
+                if( HoverBox > 0 ){
+                    var Target = Gui.Boxes[ Level][HoverBox][4];
+                    ScrollTo( Target );
                 }
             }
-
+            MayRefresh();
         }
     </script>
 </head>
