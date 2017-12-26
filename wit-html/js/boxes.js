@@ -72,6 +72,37 @@ var urls = [
   [ "End" , "selection_toolbar.html#Selection_Position_Boxes" ],
   [ "Status Bar" , "top_menu.html#Status_Bar" ],
   [ "Resizer", "edit_toolbar.html#" ],
+
+
+
+
+  [ "Audio Track", "audio_tracks.html" ],
+  [ "Track Control Panel", "audio_tracks.html#panel" ],
+  [ "Close", "audio_tracks.html#close" ],
+  [ "Collapse", "audio_tracks.html#collapse" ],
+  [ "Track Menu", "audio_tracks.html#track_menu" ],
+  [ "Track Data", "audio_tracks.html#info" ],
+  [ "Mute", "audio_tracks.html#mute" ],
+  [ "Pan", "audio_tracks.html#pan" ],
+  [ "Solo", "audio_tracks.html#solo" ],
+  [ "Volume", "audio_tracks.html#gain" ],
+  [ "Vertical Scale", "audio_tracks.html#scale" ],
+  [ "Left Channel", "audio_tracks.html#display" ],
+  [ "Right Channel", "audio_tracks.html#display" ],
+
+  [ "Label Track", "audio_tracks.html#" ],
+  [ "Point Label", "audio_tracks.html#" ],
+  [ "Region Label", "audio_tracks.html#" ],
+
+
+//  ,"stereo"
+//  ,"single"
+//  ,"controls"
+//  ,"sync"
+//  ,"name"
+//  ,"display"
+//  ,"focus"
+//  ,"working"
   
   ];
 
@@ -150,13 +181,13 @@ var AudacityBoxes = [
   [ 3, 5,214,102,416, "Track Control Panel" ],
   [ 4, 5,214,26,232, "Close" ],
   [ 4, 5,397,86,415, "Collapse" ],
-  [ 4, 26,214,103,232, "DropDown" ],
-  [ 4, 5,310,100,354, "TrackData" ],
+  [ 4, 26,214,103,232, "Track Menu" ],
+  [ 4, 5,310,100,354, "Track Data" ],
   [ 4, 7,230,53,249, "Mute" ],
   [ 4, 5,281,100,310, "Pan" ],
   [ 4, 52,230,103,249, "Solo" ],
   [ 4, 5,249,100,280, "Volume" ],
-  [ 3, 102, 214, 137, 416, "VRuler" ],
+  [ 3, 102, 214, 137, 416, "Vertical Scale" ],
   [ 3, 140,213,842,312, "Left Channel" ],
   [ 3, 140,318,842,416, "Right Channel" ],
 
@@ -164,7 +195,7 @@ var AudacityBoxes = [
   [ 3, 5,423,103,459, "Track Control Panel" ],
   [ 4, 8,423,25,441, "Close" ],
   [ 4, 5,441,86,461, "Collapse" ],
-  [ 4, 25,423,102,441, "Dropdown" ],
+  [ 4, 25,423,102,441, "Track Menu" ],
 //  [ 3, 102, 423, 137, 460, "VRuler" ], // DNGN - Does nothing, Goes Nowhere.
   [ 3, 188,424,301,458, "Point Label" ],
   [ 3, 324,424,828,458, "Region Label" ],
@@ -856,4 +887,26 @@ bitmap_boxes = [
   [325, 786, 10, 10, "Spectro5Sel"],
   [0, 0, 0, 0, "Not in Theme"],
 ];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
