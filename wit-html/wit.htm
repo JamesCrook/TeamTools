@@ -81,7 +81,7 @@
 
 
         // @return var
-        function FindBox(Source, x, y){
+        function FindBox(Source, x, y, Level){
 
             var i;
             var v;
@@ -147,6 +147,18 @@
                 G.Ctx.fillRect(0, YY, G.Canvas.width, G.Canvas.height-YY);
             };
             Clicker.FrontDraw = RedrawClicker;
+        }
+
+        function EmptyLevel(){
+            ClickedBox = HoverBox;
+            HoverBox = -1;
+            LastHover = -2;
+
+            Gui.Boxes[ Level+1 ] = [];
+            Clicker.Boxes[ Level+1 ] = [];
+            Level += 1;
+            return true;
+
         }
 
         function ChangeLevel( delta ){
@@ -290,9 +302,9 @@
             } else {
 
                 Gui.BackDraw();
+                Gui.FrontDraw();
                 // Connect parent box...
                 ConnectBoxes(Level - 1, ClickedBox, 0);
-                Gui.FrontDraw();
                 if( Level > 0 ){
                     var i;
                     for( i=0;i<Gui.Boxes[Level].length; i++){
@@ -437,26 +449,87 @@
             var XX = event.offsetX;
             var YY = event.offsetY;
             var box;
-            box = FindBox(Gui, XX, YY);
-            if( box >=0 )
-                return box;
-            box = FindBox(Clicker, XX, YY);
+            box = FindBox(Gui, XX, YY, Level);
             return box;
         }
 
-        function ImageClick(event, isclick){
+        function GetHoverAnnoTextBox( event ){
+            var XX = event.offsetX;
+            var YY = event.offsetY;
+            var box;
+            box = FindBox(Clicker, XX, YY, Level);
+            return box;
+        }
+
+        function GetHoverLowTextBox( event ){
+            var XX = event.offsetX;
+            var YY = event.offsetY;
+            var box =-1;
+            if( Level < 1 )
+                return box;
+            box = FindBox(Clicker, XX, YY, Level-1);
+            return box;
+        }
+
+        function UpdateSelection(){
+            // Try bottom rows.
+            HoverBox = GetHoverLowTextBox( event );
+            if( HoverBox >= 0 ){
+                Level -=1;
+                LastHover = -2;
+                ClickedBox = HoverBox;
+                if( !ChangeLevel(1) ){
+                    EmptyLevel();
+                }
+                return;
+            }
+            // Try items in on-screen annotation
+            HoverBox = GetHoverAnnoTextBox( event );
+            if( HoverBox >= 0 ){
+                ChangeLevel(1)
+                //LastHover = -2;
+                //MayRefresh();
+                return;
+            }
+            // Try items on screen
             HoverBox = GetHoverBox( event );
+            if( HoverBox >= 0 ){
+                while ( ChangeLevel(1) ){
+                    HoverBox = GetHoverBox( event );
+                    LastHover = -2;
+                    MayRefresh();
+                }
+                if( Level < 1 )
+                    EmptyLevel();
+                return;
+            }
+
+            // Nothing found.  Reset to 0.
+            Level = 0;
+            ClickedBox = -1;
+            HoverBox = -1;//GetHoverBox( event );
+            LastHover = -2;
+
+            // Try items on screen again.
+            HoverBox = GetHoverBox( event );
+            if( HoverBox >= 0 ){
+                while ( ChangeLevel(1) ){
+                    HoverBox = GetHoverBox( event );
+                    LastHover = -2;
+                    MayRefresh();
+                }
+                if( Level < 1 )
+                    EmptyLevel();
+                return;
+            }
+
+
+        }
+
+        function ImageClick(event, isclick){
             var Target;
             if( isclick){
-                if( HoverBox < 0){
-                    LastHover = -2;
-                    Level = 0;
-                    ClickedBox = -1;
-                    HoverBox = GetHoverBox( event );
-                }
-                while( ChangeLevel(1) ){
-                    HoverBox = GetHoverBox( event );
-                }
+                UpdateSelection();
                 if( HoverBox >= 0 ){
                     Target = Gui.Boxes[ Level][HoverBox][4];
                     ScrollTo( Target );
@@ -464,6 +537,10 @@
                     Target = Gui.Boxes[ Level-1][ClickedBox][4];
                     ScrollTo( Target );
                 }
+            }  else {
+                HoverBox = GetHoverBox( event );
+                if( HoverBox < 0 )
+                    HoverBox = GetHoverAnnoTextBox( event );
             }
             MayRefresh();
         }

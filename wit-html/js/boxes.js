@@ -55,9 +55,11 @@ var urls = [
   [ "Recording Device" , "device_toolbar.html#Recording_Device" ],
   [ "Recording Channels" , "device_toolbar.html#Recording_Channels" ],
   [ "Playback Device" , "device_toolbar.html#Playback_Device" ],
-  [ "Timeline" , "timeline.html#Timeline" ],
-  [ "Grabber" , "timeline.html#" ],
-  [ "Pin" , "timeline.html#pin" ],
+  [ "Timeline" , "timeline.html" ],
+  [ "Pin" , "timeline.html#pinned" ],
+  [ "Scrubbing Bar", "scrubbing_and_seeking.html" ],
+  [ "Timeline Ruler", "timeline.html#usage" ],
+
   [ "Track Panel" , "track_control_panel_and_vertical_scale.html#" ],
   [ "VRuler" , "track_control_panel_and_vertical_scale.html#" ],
   [ "Horizontal Scrollbar" , "track_control_panel_and_vertical_scale.html#" ],
@@ -70,8 +72,9 @@ var urls = [
   [ "Selection Type Chooser" , "selection_toolbar.html#Selection_Position_Boxes" ],
   [ "Start" , "selection_toolbar.html#Selection_Position_Boxes" ],
   [ "End" , "selection_toolbar.html#Selection_Position_Boxes" ],
-  [ "Status Bar" , "top_menu.html#Status_Bar" ],
-  [ "Resizer", "edit_toolbar.html#" ],
+  [ "Status Bar" , "status_bar.html" ],
+  [ "Status" , "status_bar.html#sections" ],
+  [ "Grab Handle", "status_bar.html#grab" ],
 
 
 
@@ -83,16 +86,16 @@ var urls = [
   [ "Track Menu", "audio_tracks.html#track_menu" ],
   [ "Track Data", "audio_tracks.html#info" ],
   [ "Mute", "audio_tracks.html#mute" ],
-  [ "Pan", "audio_tracks.html#pan" ],
+  [ "Pan Slider", "audio_tracks.html#pan" ],
   [ "Solo", "audio_tracks.html#solo" ],
-  [ "Volume", "audio_tracks.html#gain" ],
+  [ "Gain Slider", "audio_tracks.html#gain" ],
   [ "Vertical Scale", "audio_tracks.html#scale" ],
   [ "Left Channel", "audio_tracks.html#display" ],
   [ "Right Channel", "audio_tracks.html#display" ],
 
-  [ "Label Track", "audio_tracks.html#" ],
-  [ "Point Label", "audio_tracks.html#" ],
-  [ "Region Label", "audio_tracks.html#" ],
+  [ "Label Track", "label_tracks.html#" ],
+  [ "Point Label", "label_tracks.html#" ],
+  [ "Region Label", "label_tracks.html#" ],
 
 
 //  ,"stereo"
@@ -169,7 +172,7 @@ var AudacityBoxes = [
 //  [  2,   3, 165,  13, 193, "Grabber" ], // It's a fake grabber!
   [  2,  14, 165,  40, 193, "Pin" ],
   [  2,   2, 193, 865, 207, "Scrubbing Bar" ],
-  [  2,  40, 165, 865, 193, "Quick Play Region" ],
+  [  2,  40, 165, 865, 193, "Timeline Ruler" ],
 
 
   [  1,   2, 208, 865, 504, "Track Panel" ],
@@ -184,9 +187,9 @@ var AudacityBoxes = [
   [ 4, 26,214,103,232, "Track Menu" ],
   [ 4, 5,310,100,354, "Track Data" ],
   [ 4, 7,230,53,249, "Mute" ],
-  [ 4, 5,281,100,310, "Pan" ],
+  [ 4, 5,281,100,310, "Pan Slider" ],
   [ 4, 52,230,103,249, "Solo" ],
-  [ 4, 5,249,100,280, "Volume" ],
+  [ 4, 5,249,100,280, "Gain Slider" ],
   [ 3, 102, 214, 137, 416, "Vertical Scale" ],
   [ 3, 140,213,842,312, "Left Channel" ],
   [ 3, 140,318,842,416, "Right Channel" ],
@@ -215,7 +218,7 @@ var AudacityBoxes = [
   [  2, 374, 511, 673, 533, "Selection Type Chooser" ],
   [  1,   2, 562, 865, 584, "Status Bar" ],
   [  2,  10, 562, 150, 584, "Status" ],
-  [  2, 842, 562, 865, 584, "Resizer"],
+  [  2, 842, 562, 865, 584, "Grab Handle"],
 
 ];
 
