@@ -199,8 +199,8 @@
             var XX = Where[0];
             var YY = Where[1];
 
-            G.Ctx.font = "18px Arial";
-            G.Ctx.fillStyle = 'blue';
+            G.Ctx.font = "900 14px Helvetica";// heavier than bold.
+            G.Ctx.fillStyle = 'rgb(0,43,184)';
             G.Ctx.fillText(str, XX + 15, YY + 22);
             Box[0] = XX;
             Box[1] = YY;
@@ -232,11 +232,12 @@
             // Clicker superimposed on image...
             LL=Level;
             var BoxRow = Gui.Boxes[LL-1][ClickedBox];
-            var Start = Math.max( 2, BoxRow[0] - 100);
-            var Spread = Math.min( Math.max( BoxRow[1]-70, 10 ), 30);
+            var Start = Math.max( 2, BoxRow[0] - 72);
 
             Channels =[];
-
+            // Spread potentially increases vertical spread between the two
+            // rows of annotations.
+            var Spread = Math.min( Math.max( BoxRow[1]-70, 10 ), 30);
             Channels.push( [Start, BoxRow[1]-40-Spread, 0, 30] );
             if( (Gui.Rect[2]-BoxRow[3]-320 ) > 80 )
                 Channels.push( [Start, BoxRow[3]+10+Spread, 0, 30] );
@@ -272,7 +273,7 @@
 
         function DrawBlueSurround( Gui, x, y, w, h ){
 
-            Gui.Ctx.strokeStyle = 'blue';
+            Gui.Ctx.strokeStyle =  'blue';
             Gui.Ctx.lineWidth = 4;
             Gui.Ctx.beginPath();
             Gui.Ctx.rect(x, y, w, h);
@@ -280,7 +281,7 @@
         }
 
         function DrawRedSurround( Gui, x, y, w, h ){
-            Gui.Ctx.strokeStyle = 'blue';
+            Gui.Ctx.strokeStyle = 'rgb(0,43,184)';
             Gui.Ctx.lineWidth = 4;
             Gui.Ctx.beginPath();
             Gui.Ctx.rect(x, y, w, h);
@@ -308,7 +309,7 @@
                 if( Level > 0 ){
                     var i;
                     for( i=0;i<Gui.Boxes[Level].length; i++){
-                        ConnectBoxes( Level, i, 2 );
+                        ConnectBoxes( Level, i, 1 );
                     }
                 }
             }
@@ -333,7 +334,7 @@
                 Head = 'grey';
                 style = -style;
             }
-            var headLength = 27-style*5;
+            var headLength = 27-style*10;
             var headWidth = 5-style;
 
             var d1 = v2.sub(v1);
@@ -342,7 +343,10 @@
             var u1 = v1;
             var u2 = v1.add( d1).sub( d2.times( headLength ));
             var u3;
-            Gui.Ctx.strokeStyle = 'grey';
+            Gui.Ctx.save();
+            if( style == 0 )
+                Gui.Ctx.globalAlpha = 0.4;
+            Gui.Ctx.strokeStyle = 'black';
             Gui.Ctx.lineWidth = 4-style;
             Gui.Ctx.beginPath();
             Gui.Ctx.moveTo(u1.x(), u1.y());
@@ -358,6 +362,7 @@
             Gui.Ctx.lineTo(u2.x(), u2.y());
             Gui.Ctx.lineTo(u3.x(), u3.y());
             Gui.Ctx.fill();
+            Gui.Ctx.restore();
             //console.log( v2.x );
             //console.log( "from "+v1.asText()+" to "+v2.asText());
 
@@ -392,38 +397,48 @@
             var xmax;
             var h;
             var bImproved = false;
+            var TextEnd = 20;
+            // d is the margin on the target in which arrow must not land.
+            // allow margin of 1/4 of width, or 5px whichever is less.
+            // in particular the mid point of the target is always acceptable.
+            var d = Math.min( 5, (b1[2]-b1[0])/4);
             // Possibly vertical arrow.
             if( !bImproved ){
-                xmin = Math.max( b1[0]+10,b2[0] );
-                xmax = Math.min( b1[2]-10,b2[2] );
-                if( xmin < xmax ){
-                    x1 = (xmin + xmax) / 2;
-                    x2 = x1;
+                xmin = Math.max( b2[0]+TextEnd,b1[0]+d);
+                xmax = Math.min( b2[2]-TextEnd,b1[2]-d);
+                if( xmin <= xmax ){
+                    x2 = (xmin + xmax) / 2;
+                    x1 = x2;
                     bImproved = true;
                 }
             }
-            if( !bImproved ){
-                h = y2-y1;
-                h*=1.5;
-                xmin = Math.max( b1[0]+10,b2[0]-h );
-                xmax = Math.min( b1[2]-10,b2[2]-h );
-                if( xmin < xmax ){
-                    x1 = (xmin + xmax) / 2;
-                    x2 = x1+h;
-                    bImproved = true;
+
+            // Only short lines are encouraged to take standard slopes.
+            if( (y2-y1 < 200 ) ){
+                if( !bImproved ){
+                    h = y2 - y1;
+                    h *= 1.5;
+                    xmin = Math.max(b2[0] + TextEnd, b1[0] - h);
+                    xmax = Math.min(b2[2] - TextEnd, b1[2] - h);
+                    if( xmin < xmax ){
+                        x2 = (xmin + xmax) / 2;
+                        x1 = x2 + h;
+                        bImproved = true;
+                    }
+                }
+                if( !bImproved ){
+                    h = y1 - y2;
+                    h *= 1.5;
+                    xmin = Math.max(b2[0] + TextEnd, b1[0] - h);
+                    xmax = Math.min(b2[2] - TextEnd, b1[2] - h);
+                    if( xmin < xmax ){
+                        x2 = (xmin + xmax) / 2;
+                        x1 = x2 + h;
+                        bImproved = true;
+                    }
                 }
             }
-            if( !bImproved ){
-                h = y1-y2;
-                h*=1.5;
-                xmin = Math.max( b1[0]+10,b2[0]-h );
-                xmax = Math.min( b1[2]-10,b2[2]-h );
-                if( xmin < xmax ){
-                    x1 = (xmin + xmax) / 2;
-                    x2 = x1+h;
-                    bImproved = true;
-                }
-            }
+            // negative style shows a grey head.
             if( !bImproved ){
                 style = -style;
             }
