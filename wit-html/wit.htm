@@ -151,18 +151,18 @@
 
         function ChangeLevel( delta ){
             if( Level + delta > 4 ){
-                return;
+                return false;
             }
             if( (Level + delta) < 0 ){
-                return;
+                return false;
             }
             if( HoverBox < 0 )
-                    return;
+                return false;
             if( delta == 1){
                 var index = Gui.Boxes[ Level ][HoverBox][5]+1;
                 var inside = Extract( AudacityBoxes,index, Level+2 );
                 if( inside.length < 1 )
-                    return;
+                    return false;
 
                 console.log( "Descending: ", inside );
                 ClickedBox = HoverBox;
@@ -175,7 +175,9 @@
                 inside = Extract( AudacityBoxes,index, Level+2 );
                 Clicker.Boxes[ Level+1 ] = inside;
                 Level += 1;
+                return true;
             }
+            return false;
         }
 
         // Draws one text item
@@ -452,10 +454,8 @@
                     ClickedBox = -1;
                     HoverBox = GetHoverBox( event );
                 }
-                ChangeLevel(1);
-                if( Level == 1 ){
+                while( ChangeLevel(1) ){
                     HoverBox = GetHoverBox( event );
-                    ChangeLevel(1);
                 }
                 if( HoverBox >= 0 ){
                     Target = Gui.Boxes[ Level][HoverBox][4];
