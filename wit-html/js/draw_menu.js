@@ -32,8 +32,10 @@ var menuSelected = 2;
 var menuChevron  = 1;
 var menuCheckbox = 1;
 
-function DrawItem( x,y, text, accel, flags ){
-  if( (flags & menuSelected )){
+function DrawItem( i, x,y, text, accel, flags ){
+  var isSpacer = text.indexOf( '---' ) == 0;
+
+  if( (flags & menuSelected) && !isSpacer){
     Gui.Ctx.beginPath();
     Gui.Ctx.strokeStyle = '#90c8f6';
     Gui.Ctx.fillStyle = '#90c8f6';
@@ -60,7 +62,7 @@ function DrawItem( x,y, text, accel, flags ){
     // tick
     Gui.Ctx.fillText("\u2713", x +10, y+17);
   }
-  if( text.indexOf( '---' ) == 0 ){
+  if( isSpacer ){
     Gui.Ctx.strokeStyle = '#cccccc';
     Gui.Ctx.lineWidth = 0.5;
     Gui.Ctx.beginPath();
@@ -75,12 +77,13 @@ function DrawItem( x,y, text, accel, flags ){
     var w = Gui.Ctx.measureText(accel).width;
     Gui.Ctx.fillText(text,  x + 31 + 4, y+17);
     Gui.Ctx.fillText(accel, x + Menu.width -20-w, y+17);
+    Gui.Boxes[1].push( [x+3,y, x+Menu.width-3, y+22, text, i]);
     y+=22;
   }
   return {x:x,y:y};
 }
 
-function SizeItem( x, y, text, accel, flags ){
+function SizeItem( i, x, y, text, accel, flags ){
   Gui.Ctx.font = "300 12px Helvetica";
   var w1 = Gui.Ctx.measureText(text).width;
   var w2 = Gui.Ctx.measureText(accel).width;

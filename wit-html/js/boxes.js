@@ -270,7 +270,7 @@ var AudacityMenus =
     [  1,  0, "Paste", "Ctrl+V" ],
     [  1,  0, "Duplicate", "Ctrl+D" ],
     [  1,  0, "----", "" ],
-    [  1,  3, "Remove Special", "" ],
+    [  1,  1, "Remove Special", "" ],
     [  2,  0, "Split Cut", "Ctrl+Alt+X" ],
     [  2,  0, "Split Delete", "Ctrl+Alt+K" ],
     [  2,  0, "----", "" ],

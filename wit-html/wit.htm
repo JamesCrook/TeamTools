@@ -21,6 +21,7 @@
         var Clicker = {};
         var Gui = {};
         var Level = 0;
+        var MenuMode = false;
         var Scroller;
         var ClickedBox = -1;
         var HoverBox = -1;
@@ -210,11 +211,13 @@
             for(i=from;i<AudacityMenus.length;i++){
                 if( AudacityMenus[i][0] < Level )
                     return;
+                var Option = ( Gui.Boxes[1].length == HoverBox) ?
+                        menuSelected : 0;
                 if( AudacityMenus[i][0] == Level ){
-                    Res = DrawItem( Res.x,Res.y,
+                    Res = DrawItem( i, Res.x,Res.y,
                             AudacityMenus[i][2],
                             AudacityMenus[i][3],
-                            AudacityMenus[i][1] );
+                            AudacityMenus[i][1] | Option );
                 }
             }
         }
@@ -229,7 +232,7 @@
                 if( AudacityMenus[i][0] < Level )
                     break;
                 if( AudacityMenus[i][0] == Level ){
-                    Res = SizeItem(Res.x, Res.y, AudacityMenus[i][2],
+                    Res = SizeItem( i, Res.x, Res.y, AudacityMenus[i][2],
                             AudacityMenus[i][3], AudacityMenus[i][1]);
                 }
             }
@@ -240,8 +243,22 @@
         function RefreshImage(Gui){
             var backfade = (Level > 0) && Gui.DoesFade;
 
+            if( MenuMode ){
+                if( !Gui.DoesFade ){
+                    Gui.BackDraw();
+                    return;
+                }
+                Gui.Boxes[1] = [];
+                DrawFadedBack( Gui );
+                SizeMenu( 37 );
+                DrawMenu( 37 );
+                return;
+            }
+
             if( backfade ){
                 DrawFadedBack( Gui );
+
+
                 var box = Gui.Boxes[Level - 1][ClickedBox];
                 var x = box[0];
                 var y = box[1];
@@ -249,10 +266,9 @@
                 var h = box[3] - box[1];
                 Gui.FrontDraw( x, y, w, h );
                 DrawRedSurround(Gui, x, y, w, h);
-                SizeMenu( 37 );
-                DrawMenu( 37 );
-            } else {
+            }
 
+            if( !backfade) {
                 Gui.BackDraw();
                 Gui.FrontDraw();
                 // Connect parent box...
@@ -399,6 +415,14 @@
             return box;
         }
 
+        function UpdateMenuSelection(){
+            MenuMode = false;
+            LastHover = -2;
+            Level = 0;
+            UpdateSelection();
+        }
+
+
         function UpdateSelection(){
             // Try bottom rows.
             HoverBox = GetHoverLowTextBox( event );
@@ -429,6 +453,7 @@
                 }
                 if( Level < 1 )
                     EmptyLevel();
+                MenuMode = (Level <= 1) && (ClickedBox == 0);
                 return;
             }
 
@@ -448,16 +473,19 @@
                 }
                 if( Level < 1 )
                     EmptyLevel();
+                MenuMode = (Level <= 1) && (ClickedBox == 0);
                 return;
             }
-
-
         }
 
         function ImageClick(event, isclick){
             var Target;
             if( isclick){
-                UpdateSelection();
+                if( MenuMode )
+                    UpdateMenuSelection();
+                else
+                    UpdateSelection();
+
                 if( HoverBox >= 0 ){
                     Target = Gui.Boxes[ Level][HoverBox][4];
                     ScrollTo( Target );
