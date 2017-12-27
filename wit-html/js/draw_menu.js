@@ -2,7 +2,7 @@
  * Created by James Crook on 12/27/2017.
  */
 
-var Menu = {width:220,height:320};
+var Menu = {width:220,height:320,tWidth:0,aWidth:0};
 
 
 function DrawMenuBack( x,y ){
@@ -78,6 +78,21 @@ function DrawItem( x,y, text, accel, flags ){
     y+=22;
   }
   return {x:x,y:y};
+}
+
+function SizeItem( x, y, text, accel, flags ){
+  Gui.Ctx.font = "300 12px Helvetica";
+  var w1 = Gui.Ctx.measureText(text).width;
+  var w2 = Gui.Ctx.measureText(accel).width;
+  if( w1 > Menu.tWidth )
+    Menu.tWidth = w1;
+  if( w2 > Menu.aWidth )
+    Menu.aWidth = w2;
+  if( text.indexOf( '---' ) == 0 )
+    y+=7;
+  else
+    y+=22;
+  return {X:x,y:y};
 }
 
 

@@ -219,6 +219,24 @@
             }
         }
 
+        function SizeMenu( from ){
+            var Level = AudacityMenus[from][0];
+            Menu.tWidth = 0;
+            Menu.aWidth = 0;
+            var Res = { x:0, y:0};
+            var i;
+            for(i=from;i<AudacityMenus.length;i++){
+                if( AudacityMenus[i][0] < Level )
+                    break;
+                if( AudacityMenus[i][0] == Level ){
+                    Res = SizeItem(Res.x, Res.y, AudacityMenus[i][2],
+                            AudacityMenus[i][3], AudacityMenus[i][1]);
+                }
+            }
+            Menu.width = Menu.tWidth + Menu.aWidth + 70;
+            Menu.height = Res.y +7;
+        }
+
         function RefreshImage(Gui){
             var backfade = (Level > 0) && Gui.DoesFade;
 
@@ -231,6 +249,7 @@
                 var h = box[3] - box[1];
                 Gui.FrontDraw( x, y, w, h );
                 DrawRedSurround(Gui, x, y, w, h);
+                SizeMenu( 37 );
                 DrawMenu( 37 );
             } else {
 
