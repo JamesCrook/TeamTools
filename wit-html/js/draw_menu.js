@@ -2,13 +2,14 @@
  * Created by James Crook on 12/27/2017.
  */
 
-var Menu = {width:150,height:250};
+var Menu = {width:220,height:320};
 
 
 function DrawMenuBack( x,y ){
 
   Gui.Ctx.save();
   Gui.Ctx.fillStyle = '#f2f2f2';
+  Gui.Ctx.strokeStyle = '#cccccc';
   Gui.Ctx.shadowColor = '#777777';
   Gui.Ctx.shadowBlur = 2;
   Gui.Ctx.shadowOffsetX = 2;
@@ -22,36 +23,58 @@ function DrawMenuBack( x,y ){
   Gui.Ctx.beginPath();
   Gui.Ctx.strokeStyle = '#cccccc';
   Gui.Ctx.lineWidth = 1;
-  Gui.Ctx.rect(x, y, Menu.width, Menu.height);
+  Gui.Ctx.rect(x+0.5, y+0.5, Menu.width, Menu.height);
   Gui.Ctx.stroke();
 
 }
 
-var menuSelected = 1;
-var menuChevron  = 2;
-var menuCheckbox = 4;
+var menuSelected = 2;
+var menuChevron  = 1;
+var menuCheckbox = 1;
 
 function DrawItem( x,y, text, accel, flags ){
   if( (flags & menuSelected )){
+    Gui.Ctx.beginPath();
+    Gui.Ctx.strokeStyle = '#90c8f6';
+    Gui.Ctx.fillStyle = '#90c8f6';
+    Gui.Ctx.lineWidth = 1;
+    Gui.Ctx.rect(x+3, y+2, Menu.width-6, 22);
+    Gui.Ctx.fill();
+    //Gui.Ctx.stroke();
   }
   if( (flags & menuChevron )){
+    Gui.Ctx.beginPath();
+    Gui.Ctx.fillStyle = ( flags & menuSelected ) ? '#56b0fa' : '#90c8f6' ;
+    Gui.Ctx.strokeStyle = Gui.Ctx.fillStyle;
+    Gui.Ctx.lineWidth = 1;
+    Gui.Ctx.rect(x+3, y+2, 25, 22);
+    Gui.Ctx.fill();
+    Gui.Ctx.font = "16px Verdana";
+    Gui.Ctx.fillStyle = 'black';
+    // rasquo
+    Gui.Ctx.fillText("\u203A", x + Menu.width-19, y+17);
   }
   if( flags & menuCheckbox ){
+    Gui.Ctx.font = "700 12px Verdana";
+    Gui.Ctx.fillStyle = 'black';
+    // tick
+    Gui.Ctx.fillText("\u2713", x +10, y+17);
   }
   if( text.indexOf( '---' ) == 0 ){
-    Gui.Ctx.fillStyle = '#cccccc';
-    Gui.Ctx.lineWidth = 1;
-    Gui.Ctx.moveTo( x+31,y+5 );
-    Gui.Ctx.lineTo( x+Menu.width -5, y+5 );
+    Gui.Ctx.strokeStyle = '#cccccc';
+    Gui.Ctx.lineWidth = 0.5;
+    Gui.Ctx.beginPath();
+    Gui.Ctx.moveTo( x+31,y+5.5 );
+    Gui.Ctx.lineTo( x+Menu.width -5, y+5.5 );
     Gui.Ctx.stroke();
     y+= 7;
   }
   else {
-    Gui.Ctx.font = "12px Arial";
+    Gui.Ctx.font = "300 12px Helvetica";
     Gui.Ctx.fillStyle = 'black';
     var w = Gui.Ctx.measureText(accel).width;
-    Gui.Ctx.fillText(text,  x + 31 + 4, y+18);
-    Gui.Ctx.fillText(accel, x + Menu.width -20-w, y+18);
+    Gui.Ctx.fillText(text,  x + 31 + 4, y+17);
+    Gui.Ctx.fillText(accel, x + Menu.width -20-w, y+17);
     y+=22;
   }
   return {x:x,y:y};

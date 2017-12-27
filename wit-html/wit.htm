@@ -202,6 +202,23 @@
             MayRefresh();
         }
 
+        function DrawMenu( from ){
+            Level = AudacityMenus[from][0];
+            DrawMenuBack( 40,52 );
+            var Res = { x:40, y:52};
+            var i;
+            for(i=from;i<AudacityMenus.length;i++){
+                if( AudacityMenus[i][0] < Level )
+                    return;
+                if( AudacityMenus[i][0] == Level ){
+                    Res = DrawItem( Res.x,Res.y,
+                            AudacityMenus[i][2],
+                            AudacityMenus[i][3],
+                            AudacityMenus[i][1] );
+                }
+            }
+        }
+
         function RefreshImage(Gui){
             var backfade = (Level > 0) && Gui.DoesFade;
 
@@ -214,12 +231,7 @@
                 var h = box[3] - box[1];
                 Gui.FrontDraw( x, y, w, h );
                 DrawRedSurround(Gui, x, y, w, h);
-                DrawMenuBack( 40,52 );
-                var Res = { x:40, y:52};
-                Res = DrawItem( Res.x,Res.y, "Oh My1", "Ctrl+X", 0 );
-                Res = DrawItem( Res.x,Res.y, "Oh My2", "Ctrl+X", 0 );
-                Res = DrawItem( Res.x,Res.y, "----", "Ctrl+X", 0 );
-                Res = DrawItem( Res.x,Res.y, "Oh My3", "Ctrl+X", 0 );
+                DrawMenu( 37 );
             } else {
 
                 Gui.BackDraw();
