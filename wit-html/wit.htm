@@ -142,11 +142,11 @@
         // Draws one text item
         function DrawClicky( G, Where, Box ){
             var str = Box[4];
-            var w = G.Ctx.measureText(str).width + 30;
             var XX = Where[0];
             var YY = Where[1];
 
             G.Ctx.font = "900 14px Helvetica";// heavier than bold.
+            var w = Math.ceil(G.Ctx.measureText(str).width) + 30;
             G.Ctx.fillStyle = 'rgb(0,43,184)';
             G.Ctx.fillText(str, XX + 15, YY + 22);
             Box[0] = XX;
@@ -203,7 +203,7 @@
         }
 
         function DrawMenu( from ){
-            Level = AudacityMenus[from][0];
+            var Level = AudacityMenus[from][0];
             DrawMenuBack( 40,52 );
             var Res = { x:40, y:52};
             var i;
