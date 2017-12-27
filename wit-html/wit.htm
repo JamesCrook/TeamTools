@@ -215,6 +215,11 @@
                 Gui.FrontDraw( x, y, w, h );
                 DrawRedSurround(Gui, x, y, w, h);
                 DrawMenuBack( 40,52 );
+                var Res = { x:40, y:52};
+                Res = DrawItem( Res.x,Res.y, "Oh My1", "Ctrl+X", 0 );
+                Res = DrawItem( Res.x,Res.y, "Oh My2", "Ctrl+X", 0 );
+                Res = DrawItem( Res.x,Res.y, "----", "Ctrl+X", 0 );
+                Res = DrawItem( Res.x,Res.y, "Oh My3", "Ctrl+X", 0 );
             } else {
 
                 Gui.BackDraw();
