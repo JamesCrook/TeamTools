@@ -422,42 +422,31 @@
 
         /** @return  int  */
         function GetHoverBoxInner( event, Gui, l ){
-            if( l < 1 )
+            if( l < 0 )
                 return -1;
             var XX = event.offsetX;
             var YY = event.offsetY;
             return FindBox(Gui, XX, YY, l);
         }
 
+        /** @return  int  */
         function GetHoverBox( event ){
-            var XX = event.offsetX;
-            var YY = event.offsetY;
-            var box;
-            box = FindBox(Gui, XX, YY, Level);
-            return box;
+            return GetHoverBoxInner( event, Gui, Level );
         }
-
+        /** @return  int  */
         function GetHoverAnnoTextBox( event ){
-            var XX = event.offsetX;
-            var YY = event.offsetY;
-            var box;
-            box = FindBox(Clicker, XX, YY, Level);
-            return box;
+            return GetHoverBoxInner( event, Clicker, Level );
         }
-
+        /** @return  int  */
         function GetHoverLowTextBox( event ){
-            var XX = event.offsetX;
-            var YY = event.offsetY;
-            var box =-1;
             if( Level < 1 )
-                return box;
-            box = FindBox(Clicker, XX, YY, Level-1);
-            return box;
+                return -1;
+            return GetHoverBoxInner( event, Clicker, Level-1 );
         }
 
         function UpdateMenuSelection(){
             var l;
-            for( l=0;l<=Level;l++){
+            for( l=1;l<=Level;l++){
                 HoverBox = GetHoverBoxInner( event, Gui, l );
                 LastHover = -2;
                 if( HoverBox >= 0 ){
