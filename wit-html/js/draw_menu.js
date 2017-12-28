@@ -28,9 +28,9 @@ function DrawMenuBack( x,y ){
 
 }
 
-var menuSelected = 2;
 var menuChevron  = 1;
-var menuCheckbox = 1;
+var menuCheckbox = 2;
+var menuSelected = 4;
 
 function DrawItem( i, x,y, text, accel, flags ){
   var isSpacer = text.indexOf( '---' ) == 0;
@@ -45,18 +45,19 @@ function DrawItem( i, x,y, text, accel, flags ){
     //Gui.Ctx.stroke();
   }
   if( (flags & menuChevron )){
-    Gui.Ctx.beginPath();
-    Gui.Ctx.fillStyle = ( flags & menuSelected ) ? '#56b0fa' : '#90c8f6' ;
-    Gui.Ctx.strokeStyle = Gui.Ctx.fillStyle;
-    Gui.Ctx.lineWidth = 1;
-    Gui.Ctx.rect(x+3, y+2, 25, 22);
-    Gui.Ctx.fill();
+
     Gui.Ctx.font = "16px Verdana";
     Gui.Ctx.fillStyle = 'black';
     // rasquo
     Gui.Ctx.fillText("\u203A", x + Menu.width-19, y+17);
   }
   if( flags & menuCheckbox ){
+    Gui.Ctx.beginPath();
+    Gui.Ctx.fillStyle = ( flags & menuSelected ) ? '#56b0fa' : '#90c8f6' ;
+    Gui.Ctx.strokeStyle = Gui.Ctx.fillStyle;
+    Gui.Ctx.lineWidth = 1;
+    Gui.Ctx.rect(x+3, y+2, 25, 22);
+    Gui.Ctx.fill();
     Gui.Ctx.font = "700 12px Verdana";
     Gui.Ctx.fillStyle = 'black';
     // tick

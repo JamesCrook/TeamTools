@@ -213,6 +213,8 @@
                     return;
                 var Option = ( Gui.Boxes[Level].length == HoverBox) ?
                         menuSelected : 0;
+                if( Gui.Boxes[Menu.Level].length == Menu.iSel )
+                        Option = menuSelected;
                 if( AudacityMenus[i][0] == MenuLevel ){
                     Res = (Menu.bar ? DrawBarItem : DrawItem)( i, Res.x,Res.y,
                             AudacityMenus[i][2],
@@ -418,6 +420,15 @@
             }
         }
 
+        /** @return  int  */
+        function GetHoverBoxInner( event, Gui, l ){
+            if( l < 1 )
+                return -1;
+            var XX = event.offsetX;
+            var YY = event.offsetY;
+            return FindBox(Gui, XX, YY, l);
+        }
+
         function GetHoverBox( event ){
             var XX = event.offsetX;
             var YY = event.offsetY;
@@ -445,21 +456,27 @@
         }
 
         function UpdateMenuSelection(){
-            HoverBox = GetHoverBox( event );
-            LastHover = -2;
-            if( HoverBox >= 0 ){
-                var StartAt = Gui.Boxes[Level][HoverBox][5];
-                // if it has descendants...
-                if( AudacityMenus[StartAt][0] ==
-                                (AudacityMenus[StartAt+1][0]-1)){
-                    // Descend for menus...
-                    Level +=1;
-                    ClickedBox = HoverBox;
-                    Menus[Level].item = StartAt + 1;
-                    Menus[Level].iHover = HoverBox;
-                    HoverBox = -1;
+            var l;
+            for( l=0;l<=Level;l++){
+                HoverBox = GetHoverBoxInner( event, Gui, l );
+                LastHover = -2;
+                if( HoverBox >= 0 ){
+                    Level = l;
+                    var StartAt = Gui.Boxes[l][HoverBox][5];
+                    // if it has descendants...
+                    if( AudacityMenus[StartAt][0] ==
+                            (AudacityMenus[StartAt + 1][0] - 1) ){
+                        // Descend for menus...
+                        Level = l+1;
+                        ClickedBox = HoverBox;
+                        Menus[Level].item = StartAt + 1;
+                        Menus[Level].iHover = HoverBox;
+                        Menus[Level-1].iSel = HoverBox;
+                        Menus[Level].iSel = -1;
+                        HoverBox = -1;
+                    }
+                    return;
                 }
-                return;
             }
             MenuMode = false;
             Level = 0;
@@ -526,6 +543,7 @@
             var Target;
             if( isclick){
                 Menus[0].item = 0;
+                Menus[0].iSel = 0;
                 Menus[1].item = 0;
                 Menus[1].iHover = 0;
                 if( MenuMode )
