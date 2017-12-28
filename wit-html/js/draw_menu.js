@@ -2,8 +2,8 @@
  * Created by James Crook on 12/27/2017.
  */
 
-var Menu = {width:220,height:320,tWidth:0,aWidth:0};
-
+var Menu = {width:220,height:320,tWidth:0,aWidth:0,bar:true};
+var Menus = [[],[],[],[]];
 
 function DrawMenuBack( x,y ){
 
@@ -77,7 +77,7 @@ function DrawItem( i, x,y, text, accel, flags ){
     var w = Gui.Ctx.measureText(accel).width;
     Gui.Ctx.fillText(text,  x + 31 + 4, y+17);
     Gui.Ctx.fillText(accel, x + Menu.width -20-w, y+17);
-    Gui.Boxes[1].push( [x+3,y, x+Menu.width-3, y+22, text, i]);
+    Gui.Boxes[Menu.Level].push( [x+3,y, x+Menu.width-3, y+22, text, i]);
     y+=22;
   }
   return {x:x,y:y};
@@ -95,8 +95,38 @@ function SizeItem( i, x, y, text, accel, flags ){
     y+=7;
   else
     y+=22;
-  return {X:x,y:y};
+  return {x:x,y:y};
 }
+
+
+function DrawBarItem( i, x,y, text, accel, flags ){
+  var isSpacer = text.indexOf( '---' ) == 0;
+
+  Gui.Ctx.font = "300 12px Helvetica";
+  var w = Math.floor(Gui.Ctx.measureText(text).width) + 13;
+  if( (flags & menuSelected) && !isSpacer){
+    Gui.Ctx.beginPath();
+    Gui.Ctx.strokeStyle = '#90c8f6';
+    Gui.Ctx.fillStyle = '#90c8f6';
+    Gui.Ctx.lineWidth = 1;
+    Gui.Ctx.rect(x+3, y+2, w-3, 22);
+    Gui.Ctx.fill();
+    //Gui.Ctx.stroke();
+  }
+  Gui.Ctx.fillStyle = 'black';
+  Gui.Ctx.fillText(text,  x + 7, y+17);
+  Gui.Boxes[Menu.Level].push( [x+2,y, x+2+w, y+22, text, i]);
+  x += w;
+  return {x:x,y:y};
+}
+
+function SizeBarItem( i, x, y, text, accel, flags ){
+  Gui.Ctx.font = "300 12px Helvetica";
+  var w = Math.floor(Gui.Ctx.measureText(text).width) + 13;
+  x += w;
+  return {x:x,y:y};
+}
+
 
 
 /*

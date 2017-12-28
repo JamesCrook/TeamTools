@@ -204,17 +204,17 @@
         }
 
         function DrawMenu( from ){
-            var Level = AudacityMenus[from][0];
-            DrawMenuBack( 40,52 );
-            var Res = { x:40, y:52};
+            var MenuLevel = AudacityMenus[from][0];
+            DrawMenuBack( 2,52 );
+            var Res = { x:2, y:52};
             var i;
             for(i=from;i<AudacityMenus.length;i++){
-                if( AudacityMenus[i][0] < Level )
+                if( AudacityMenus[i][0] < MenuLevel )
                     return;
-                var Option = ( Gui.Boxes[1].length == HoverBox) ?
+                var Option = ( Gui.Boxes[Level].length == HoverBox) ?
                         menuSelected : 0;
-                if( AudacityMenus[i][0] == Level ){
-                    Res = DrawItem( i, Res.x,Res.y,
+                if( AudacityMenus[i][0] == MenuLevel ){
+                    Res = (Menu.bar ? DrawBarItem : DrawItem)( i, Res.x,Res.y,
                             AudacityMenus[i][2],
                             AudacityMenus[i][3],
                             AudacityMenus[i][1] | Option );
@@ -223,22 +223,31 @@
         }
 
         function SizeMenu( from ){
-            var Level = AudacityMenus[from][0];
+            var MenuLevel = AudacityMenus[from][0];
             Menu.tWidth = 0;
             Menu.aWidth = 0;
             var Res = { x:0, y:0};
             var i;
             for(i=from;i<AudacityMenus.length;i++){
-                if( AudacityMenus[i][0] < Level )
+                if( AudacityMenus[i][0] < MenuLevel )
                     break;
-                if( AudacityMenus[i][0] == Level ){
-                    Res = SizeItem( i, Res.x, Res.y, AudacityMenus[i][2],
-                            AudacityMenus[i][3], AudacityMenus[i][1]);
+                if( AudacityMenus[i][0] == MenuLevel ){
+                    Res = (Menu.bar ? SizeBarItem : SizeItem)
+                        ( i, Res.x, Res.y, AudacityMenus[i][2],
+                        AudacityMenus[i][3], AudacityMenus[i][1]);
                 }
             }
-            Menu.width = Menu.tWidth + Menu.aWidth + 70;
-            Menu.height = Res.y +7;
+            if( Menu.bar ){
+                Menu.width = Res.x;
+                Menu.height = 22;
+            }
+            else {
+                Menu.width = Menu.tWidth + Menu.aWidth + 70;
+                Menu.height = Res.y + 7;
+            }
         }
+
+
 
         function RefreshImage(Gui){
             var backfade = (Level > 0) && Gui.DoesFade;
@@ -248,10 +257,18 @@
                     Gui.BackDraw();
                     return;
                 }
-                Gui.Boxes[1] = [];
                 DrawFadedBack( Gui );
-                SizeMenu( 37 );
-                DrawMenu( 37 );
+                var i;
+                for( i=1;i<=Math.min( 2,Level);i++){
+                    Gui.Boxes[i] = [];
+                    Menu = Menus[i];
+                    Menu.bar = (i==1);
+                    Menu.Level = i;
+                    SizeMenu( Menu.item );
+                    DrawMenu( Menu.item );
+                }
+//                SizeMenu( 37 );
+//                DrawMenu( 37 );
                 return;
             }
 
@@ -416,8 +433,16 @@
         }
 
         function UpdateMenuSelection(){
-            MenuMode = false;
+            HoverBox = GetHoverBox( event );
             LastHover = -2;
+            if( HoverBox >= 0 ){
+                Level = 2;
+                var StartAt = Gui.Boxes[Level-1][HoverBox][5];
+                Menus[2].item = StartAt+1;
+                HoverBox = -1;
+                return;
+            }
+            MenuMode = false;
             Level = 0;
             UpdateSelection();
         }
@@ -481,6 +506,8 @@
         function ImageClick(event, isclick){
             var Target;
             if( isclick){
+                Menus[0].item = 0;
+                Menus[1].item = 0;
                 if( MenuMode )
                     UpdateMenuSelection();
                 else
