@@ -26,6 +26,7 @@
         var ClickedBox = -1;
         var HoverBox = -1;
         var LastHover = -2;
+        var TargetName = "";
 
 
         // @return var
@@ -198,6 +199,22 @@
         window.onload = function(){
             Message = document.getElementById("message");
             Scroller = document.getElementById("scroller");
+            var i;
+            for(i=0;i<Redirects.length;i++){
+                var str = Redirects[i][0].toLowerCase();
+                str = str.replace(":","");
+                str = str.replace("/","");
+                str = str.replace(/ /g,"_");
+                console.log("-->"+str);
+                Redirects[i][0] = str;
+                str = Redirects[i][1].toLowerCase();
+                str = str.replace(":","");
+                str = str.replace("/","");
+                str = str.replace(/ /g,"_");
+                console.log("<--"+str);
+                Redirects[i][1] = str;
+            }
+
             GuiInit();
             ClickerInit();
             MayRefresh();
@@ -334,9 +351,27 @@
                 if( urls[i][0] == Target){
                     var src = urls[i][1];
                     Scroller.src = "./scroller-contents/" + src;
+                    console.log("Scroll to: "+Target + " : " + src );
                     return;
                 }
             }
+            console.log("Scroll to: "+Target + " -no match-");
+        }
+
+        function ScrollToUrl( Target ){
+/*
+            var i;
+            for(i=0;i<urls.length;i++){
+                if( urls[i][0] == Target){
+                    var src = urls[i][1];
+                    Scroller.src = "./scroller-contents/" + src;
+                    console.log("Scroll to: "+Target + " : " + src );
+                    return;
+                }
+            }
+*/
+            Scroller.src = "./scroller-contents/" + Target;
+            console.log("Scroll to: "+Target + " -URL-");
         }
 
         function ConnectBoxes(level, boxIx, style){
@@ -444,8 +479,34 @@
             return GetHoverBoxInner( event, Clicker, Level-1 );
         }
 
+        function GetMenuNameByIndex( ix ){
+            var name = AudacityMenus[ ix ][2];
+            name = name.replace( " ", "_" );
+            return name;
+        }
+
+        function GetMenuNameByLevel( level ){
+            return GetMenuNameByIndex( Menus[level].item -1 );
+        }
+
+        /**
+         *
+         * @param inp
+         * @returns {string}
+         */
+        function GetReplacementUrl( inp ){
+            var i;
+            for(i=0;i<Redirects.length;i++){
+                if(Redirects[i][0] == inp ){
+                    return Redirects[i][1].toLowerCase();
+                }
+            }
+            return inp;
+        }
+
         function UpdateMenuSelection(){
             var l;
+            TargetName = "";
             for( l=1;l<=Level;l++){
                 HoverBox = GetHoverBoxInner( event, Gui, l );
                 LastHover = -2;
@@ -464,6 +525,29 @@
                         Menus[Level].iSel = -1;
                         HoverBox = -1;
                     }
+                    TargetName = GetMenuNameByLevel( 2 )+"_Menu";
+                    if( l > 2 ){
+                        TargetName = TargetName + "_" + GetMenuNameByLevel(3);
+                        TargetName = TargetName + "#" + GetMenuNameByIndex(
+                                        StartAt
+                                );
+                    }
+                    else if (l > 1 )
+                        TargetName = TargetName + "#" + GetMenuNameByIndex(StartAt);
+
+                    TargetName = TargetName.toLowerCase();
+                    TargetName = TargetName.replace( "...", "" );
+                    TargetName = TargetName.replace(/ /g,"_");
+                    TargetName = TargetName.replace(/\//g,"");
+                    TargetName = TargetName.replace(/\(/g,"");
+                    TargetName = TargetName.replace(/\)/g,"");
+                    TargetName = GetReplacementUrl( TargetName );
+                    if( TargetName.indexOf("#") >= 0 ){
+                        TargetName = TargetName.replace("#",".html#");
+                    }
+                    if( TargetName.indexOf(".html") < 0 ){
+                        TargetName += ".html";
+                    }
                     return;
                 }
             }
@@ -474,6 +558,7 @@
 
 
         function UpdateSelection(){
+            TargetName = "";
             // Try bottom rows.
             HoverBox = GetHoverLowTextBox( event );
             if( HoverBox >= 0 ){
@@ -540,7 +625,10 @@
                 else
                     UpdateSelection();
 
-                if( HoverBox >= 0 ){
+                if( TargetName != "" ){
+                    ScrollToUrl( TargetName );
+                    TargetName = "";
+                } else if( HoverBox >= 0 ){
                     Target = Gui.Boxes[ Level][HoverBox][4];
                     ScrollTo( Target );
                 } else if( ClickedBox >= 0 ){
