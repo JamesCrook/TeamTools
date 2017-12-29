@@ -480,9 +480,7 @@
         }
 
         function GetMenuNameByIndex( ix ){
-            var name = AudacityMenus[ ix ][2];
-            name = name.replace( " ", "_" );
-            return name;
+            return AudacityMenus[ ix ][2];
         }
 
         function GetMenuNameByLevel( level ){
@@ -507,6 +505,7 @@
         function UpdateMenuSelection(){
             var l;
             TargetName = "";
+            ClickedBox = -1;
             for( l=1;l<=Level;l++){
                 HoverBox = GetHoverBoxInner( event, Gui, l );
                 LastHover = -2;
@@ -514,7 +513,8 @@
                     Level = l;
                     var StartAt = Gui.Boxes[l][HoverBox][5];
                     // if it has descendants...
-                    if( AudacityMenus[StartAt][0] ==
+                    if( (StartAt+1) < AudacityMenus.length &&
+                            AudacityMenus[StartAt][0] ==
                             (AudacityMenus[StartAt + 1][0] - 1) ){
                         // Descend for menus...
                         Level = l+1;
@@ -522,32 +522,40 @@
                         Menus[Level].item = StartAt + 1;
                         Menus[Level].iHover = HoverBox;
                         Menus[Level-1].iSel = HoverBox;
-                        Menus[Level].iSel = -1;
                         HoverBox = -1;
                     }
+                    Menus[Level].iSel = -1;
                     TargetName = GetMenuNameByLevel( 2 )+"_Menu";
+                    var PostFix = "";
                     if( l > 2 ){
                         TargetName = TargetName + "_" + GetMenuNameByLevel(3);
-                        TargetName = TargetName + "#" + GetMenuNameByIndex(
-                                        StartAt
-                                );
+                        TargetName = TargetName + "#";
+                        PostFix = GetMenuNameByIndex( StartAt );
                     }
-                    else if (l > 1 )
-                        TargetName = TargetName + "#" + GetMenuNameByIndex(StartAt);
-
+                    else if (l > 1 ){
+                        TargetName = TargetName + "#";
+                        PostFix = GetMenuNameByIndex(StartAt);
+                    }
+                    TargetName += PostFix;
+                    //PostFix = PostFix.replace(/ /g,"_");
                     TargetName = TargetName.toLowerCase();
                     TargetName = TargetName.replace( "...", "" );
                     TargetName = TargetName.replace(/ /g,"_");
                     TargetName = TargetName.replace(/\//g,"");
                     TargetName = TargetName.replace(/\(/g,"");
                     TargetName = TargetName.replace(/\)/g,"");
+                    //var OldTargetName = TargetName;
                     TargetName = GetReplacementUrl( TargetName );
                     if( TargetName.indexOf("#") >= 0 ){
+                        //if( TargetName == OldTargetName ){
+                        //    TargetName = TargetName.split("#")[0] + "#" + PostFix;
+                        //}
                         TargetName = TargetName.replace("#",".html#");
                     }
                     if( TargetName.indexOf(".html") < 0 ){
                         TargetName += ".html";
                     }
+                    TargetName = TargetName.replace(/\,/g,"");
                     return;
                 }
             }
