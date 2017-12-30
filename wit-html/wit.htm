@@ -17,6 +17,7 @@
     <script src="./js/draw_menu.js"></script>
     <script>
 
+        var App = Audacity;
         var Message = null;
         var Clicker = {};
         var Gui = {};
@@ -69,7 +70,7 @@
 
         function GuiInit(){
             //Gui.Boxes = [ image_boxes, [], [] ];
-            Gui.Boxes = [ Extract( AudacityBoxes, 0,1),[],[],[],[],[],[]];
+            Gui.Boxes = [ Extract( App.Boxes, 0,1),[],[],[],[],[],[]];
             Gui.Img = document.getElementById("Gui");
             Gui.Canvas = document.getElementById("GuiCanvas");
             Gui.Ctx = Gui.Canvas.getContext("2d");
@@ -83,7 +84,7 @@
 
         function ClickerInit(){
             //Clicker.Boxes = [ clicker_boxes, [],[]];
-            Clicker.Boxes = [ Extract( AudacityBoxes, 0,1),[],[],[],[],[],[]];
+            Clicker.Boxes = [ Extract( App.Boxes, 0,1),[],[],[],[],[],[]];
             Clicker.Img = document.getElementById("Gui");
             Clicker.Canvas = document.getElementById("GuiCanvas");
             Clicker.Ctx = Gui.Canvas.getContext("2d");
@@ -121,7 +122,7 @@
                 return false;
             if( delta == 1){
                 var index = Gui.Boxes[ Level ][HoverBox][5]+1;
-                var inside = Extract( AudacityBoxes,index, Level+2 );
+                var inside = Extract( App.Boxes,index, Level+2 );
                 if( inside.length < 1 )
                     return false;
 
@@ -133,7 +134,7 @@
                 Gui.Boxes[ Level+1 ] = inside;
                 // Rather than deep copy the extracted items,
                 // we just extract them a second time.
-                inside = Extract( AudacityBoxes,index, Level+2 );
+                inside = Extract( App.Boxes,index, Level+2 );
                 Clicker.Boxes[ Level+1 ] = inside;
                 Level += 1;
                 return true;
@@ -199,61 +200,45 @@
         window.onload = function(){
             Message = document.getElementById("message");
             Scroller = document.getElementById("scroller");
-            var i;
-            for(i=0;i<Redirects.length;i++){
-                var str = Redirects[i][0].toLowerCase();
-                str = str.replace(":","");
-                str = str.replace("/","");
-                str = str.replace(/ /g,"_");
-                console.log("-->"+str);
-                Redirects[i][0] = str;
-                str = Redirects[i][1].toLowerCase();
-                str = str.replace(":","");
-                str = str.replace("/","");
-                str = str.replace(/ /g,"_");
-                console.log("<--"+str);
-                Redirects[i][1] = str;
-            }
-
             GuiInit();
             ClickerInit();
             MayRefresh();
         }
 
         function DrawMenu( from ){
-            var MenuLevel = AudacityMenus[from][0];
+            var MenuLevel = App.Menus[from][0];
             DrawMenuBack( Menu.x,Menu.y );
             var Res = { x:Menu.x, y:Menu.y};
             var i;
-            for(i=from;i<AudacityMenus.length;i++){
-                if( AudacityMenus[i][0] < MenuLevel )
+            for(i=from;i<App.Menus.length;i++){
+                if( App.Menus[i][0] < MenuLevel )
                     return;
                 var Option = ( Gui.Boxes[Level].length == HoverBox) ?
                         menuSelected : 0;
                 if( Gui.Boxes[Menu.Level].length == Menu.iSel )
                         Option = menuSelected;
-                if( AudacityMenus[i][0] == MenuLevel ){
+                if( App.Menus[i][0] == MenuLevel ){
                     Res = (Menu.bar ? DrawBarItem : DrawItem)( i, Res.x,Res.y,
-                            AudacityMenus[i][2],
-                            AudacityMenus[i][3],
-                            AudacityMenus[i][1] | Option );
+                            App.Menus[i][2],
+                            App.Menus[i][3],
+                            App.Menus[i][1] | Option );
                 }
             }
         }
 
         function SizeMenu( from ){
-            var MenuLevel = AudacityMenus[from][0];
+            var MenuLevel = App.Menus[from][0];
             Menu.tWidth = 0;
             Menu.aWidth = 0;
             var Res = { x:0, y:0};
             var i;
-            for(i=from;i<AudacityMenus.length;i++){
-                if( AudacityMenus[i][0] < MenuLevel )
+            for(i=from;i<App.Menus.length;i++){
+                if( App.Menus[i][0] < MenuLevel )
                     break;
-                if( AudacityMenus[i][0] == MenuLevel ){
+                if( App.Menus[i][0] == MenuLevel ){
                     Res = (Menu.bar ? SizeBarItem : SizeItem)
-                        ( i, Res.x, Res.y, AudacityMenus[i][2],
-                        AudacityMenus[i][3], AudacityMenus[i][1]);
+                        ( i, Res.x, Res.y, App.Menus[i][2],
+                        App.Menus[i][3], App.Menus[i][1]);
                 }
             }
             Menu.x =2;
@@ -298,8 +283,6 @@
                     SizeMenu( Menu.item );
                     DrawMenu( Menu.item );
                 }
-//                SizeMenu( 37 );
-//                DrawMenu( 37 );
                 return;
             }
 
@@ -347,9 +330,9 @@
 
         function ScrollTo( Target ){
             var i;
-            for(i=0;i<urls.length;i++){
-                if( urls[i][0] == Target){
-                    var src = urls[i][1];
+            for(i=0;i<App.BoxUrls.length;i++){
+                if( App.BoxUrls[i][0] == Target){
+                    var src = App.BoxUrls[i][1];
                     Scroller.src = "./scroller-contents/" + src;
                     console.log("Scroll to: "+Target + " : " + src );
                     return;
@@ -359,17 +342,6 @@
         }
 
         function ScrollToUrl( Target ){
-/*
-            var i;
-            for(i=0;i<urls.length;i++){
-                if( urls[i][0] == Target){
-                    var src = urls[i][1];
-                    Scroller.src = "./scroller-contents/" + src;
-                    console.log("Scroll to: "+Target + " : " + src );
-                    return;
-                }
-            }
-*/
             Scroller.src = "./scroller-contents/" + Target;
             console.log("Scroll to: "+Target + " -URL-");
         }
@@ -480,7 +452,7 @@
         }
 
         function GetMenuNameByIndex( ix ){
-            return AudacityMenus[ ix ][2];
+            return App.Menus[ ix ][2];
         }
 
         function GetMenuNameByLevel( level ){
@@ -494,12 +466,46 @@
          */
         function GetReplacementUrl( inp ){
             var i;
-            for(i=0;i<Redirects.length;i++){
-                if(Redirects[i][0] == inp ){
-                    return Redirects[i][1].toLowerCase();
+            for(i=0;i<App.MenuUrls.length;i++){
+                if(App.MenuUrls[i][0] == inp ){
+                    return App.MenuUrls[i][1];
                 }
             }
             return inp;
+        }
+        
+        function CustomUrlFromGeneric( Url ){
+            Url = Url.toLowerCase();
+            Url = Url.replace( "...", "" );
+            Url = Url.replace(/ /g,"_");
+            Url = Url.replace(/\//g,"");
+            Url = Url.replace(/\(/g,"");
+            Url = Url.replace(/\)/g,"");
+            //var OldUrl = Url;
+            Url = GetReplacementUrl( Url );
+            if( Url.indexOf("#") >= 0 ){
+                Url = Url.replace("#",".html#");
+            }
+            if( Url.indexOf(".html") < 0 ){
+                Url += ".html";
+            }
+            Url = Url.replace(/\,/g,"");
+            return Url;
+        }
+        /**
+         *
+         * @param name
+         * @returns {string}
+         */
+        function UrlFromBoxName( name ){
+            var i;
+            for(i=0;i<App.BoxUrls.length;i++){
+                if( App.BoxUrls[i][0] == name){
+                    return App.BoxUrls[i][1];
+                }
+            }
+            console.log( "BoxName "+name+" not found" );
+            return "";
         }
 
         function UpdateMenuSelection(){
@@ -513,9 +519,9 @@
                     Level = l;
                     var StartAt = Gui.Boxes[l][HoverBox][5];
                     // if it has descendants...
-                    if( (StartAt+1) < AudacityMenus.length &&
-                            AudacityMenus[StartAt][0] ==
-                            (AudacityMenus[StartAt + 1][0] - 1) ){
+                    if( (StartAt+1) < App.Menus.length &&
+                            App.Menus[StartAt][0] ==
+                            (App.Menus[StartAt + 1][0] - 1) ){
                         // Descend for menus...
                         Level = l+1;
                         ClickedBox = HoverBox;
@@ -538,24 +544,7 @@
                     }
                     TargetName += PostFix;
                     //PostFix = PostFix.replace(/ /g,"_");
-                    TargetName = TargetName.toLowerCase();
-                    TargetName = TargetName.replace( "...", "" );
-                    TargetName = TargetName.replace(/ /g,"_");
-                    TargetName = TargetName.replace(/\//g,"");
-                    TargetName = TargetName.replace(/\(/g,"");
-                    TargetName = TargetName.replace(/\)/g,"");
-                    //var OldTargetName = TargetName;
-                    TargetName = GetReplacementUrl( TargetName );
-                    if( TargetName.indexOf("#") >= 0 ){
-                        //if( TargetName == OldTargetName ){
-                        //    TargetName = TargetName.split("#")[0] + "#" + PostFix;
-                        //}
-                        TargetName = TargetName.replace("#",".html#");
-                    }
-                    if( TargetName.indexOf(".html") < 0 ){
-                        TargetName += ".html";
-                    }
-                    TargetName = TargetName.replace(/\,/g,"");
+                    TargetName = CustomUrlFromGeneric( TargetName );
                     return;
                 }
             }
@@ -573,24 +562,33 @@
                 Level -=1;
                 LastHover = -2;
                 ClickedBox = HoverBox;
+                TargetName =
+                        UrlFromBoxName( Gui.Boxes[ Level][ClickedBox][4]);
                 if( !ChangeLevel(1) ){
                     EmptyLevel();
                 }
                 return;
             }
             // Try items in on-screen annotation
+            // (if at Level 0, the low text IS annotation)
             HoverBox = GetHoverAnnoTextBox( event );
             if( HoverBox >= 0 ){
-                ChangeLevel(1)
-                //LastHover = -2;
-                //MayRefresh();
+                TargetName =
+                        UrlFromBoxName( Gui.Boxes[ Level][HoverBox][4]);
+                ChangeLevel(1);
                 return;
             }
             // Try items on screen
             HoverBox = GetHoverBox( event );
             if( HoverBox >= 0 ){
+                TargetName =
+                        UrlFromBoxName( Gui.Boxes[ Level][HoverBox][4]);
+                // Keep descending whilst we can...
                 while ( ChangeLevel(1) ){
                     HoverBox = GetHoverBox( event );
+                    if( HoverBox >=0 )
+                        TargetName =
+                            UrlFromBoxName( Gui.Boxes[ Level][HoverBox][4]);
                     LastHover = -2;
                     MayRefresh();
                 }
@@ -609,8 +607,13 @@
             // Try items on screen again.
             HoverBox = GetHoverBox( event );
             if( HoverBox >= 0 ){
+                TargetName =
+                        UrlFromBoxName( Gui.Boxes[ Level][HoverBox][4]);
                 while ( ChangeLevel(1) ){
                     HoverBox = GetHoverBox( event );
+                    if( HoverBox >=0 )
+                        TargetName =
+                            UrlFromBoxName( Gui.Boxes[ Level][HoverBox][4]);
                     LastHover = -2;
                     MayRefresh();
                 }
@@ -622,7 +625,6 @@
         }
 
         function ImageClick(event, isclick){
-            var Target;
             if( isclick){
                 Menus[0].item = 0;
                 Menus[0].iSel = 0;
@@ -636,12 +638,6 @@
                 if( TargetName != "" ){
                     ScrollToUrl( TargetName );
                     TargetName = "";
-                } else if( HoverBox >= 0 ){
-                    Target = Gui.Boxes[ Level][HoverBox][4];
-                    ScrollTo( Target );
-                } else if( ClickedBox >= 0 ){
-                    Target = Gui.Boxes[ Level-1][ClickedBox][4];
-                    ScrollTo( Target );
                 }
             }  else {
                 HoverBox = GetHoverBox( event );
