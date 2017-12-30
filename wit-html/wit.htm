@@ -28,6 +28,8 @@
         var HoverBox = -1;
         var LastHover = -2;
         var TargetName = "";
+        var emptyOK = true;
+        var notIfEmpty = false;
 
 
         // @return var
@@ -99,6 +101,9 @@
             Clicker.FrontDraw = RedrawClicker;
         }
 
+        /**
+         *
+         */
         function EmptyLevel(){
             ClickedBox = HoverBox;
             HoverBox = -1;
@@ -111,7 +116,8 @@
 
         }
 
-        function ChangeLevel( delta ){
+
+        function ChangeLevel( delta, emptyOK ){
             if( Level + delta > 4 ){
                 return false;
             }
@@ -123,7 +129,7 @@
             if( delta == 1){
                 var index = Gui.Boxes[ Level ][HoverBox][5]+1;
                 var inside = Extract( App.Boxes,index, Level+2 );
-                if( inside.length < 1 )
+                if( !emptyOK && inside.length < 1)
                     return false;
 
                 console.log( "Descending: ", inside );
@@ -137,7 +143,7 @@
                 inside = Extract( App.Boxes,index, Level+2 );
                 Clicker.Boxes[ Level+1 ] = inside;
                 Level += 1;
-                return true;
+                return inside.length >= 1;
             }
             return false;
         }
@@ -435,20 +441,30 @@
             var YY = event.offsetY;
             return FindBox(Gui, XX, YY, l);
         }
+        /**
+         * @return int
+         */
+        function GetHoverBoxAndUrl( event, Gui, l ){
+            var box = GetHoverBoxInner( event, Gui, l );
+            if( box < 0 )
+                return box;
+            TargetName = Gui.Boxes[ l ][box][4];
+            return box;
+        }
 
         /** @return  int  */
         function GetHoverBox( event ){
-            return GetHoverBoxInner( event, Gui, Level );
+            return GetHoverBoxAndUrl( event, Gui, Level );
         }
         /** @return  int  */
         function GetHoverAnnoTextBox( event ){
-            return GetHoverBoxInner( event, Clicker, Level );
+            return GetHoverBoxAndUrl( event, Clicker, Level );
         }
         /** @return  int  */
         function GetHoverLowTextBox( event ){
             if( Level < 1 )
                 return -1;
-            return GetHoverBoxInner( event, Clicker, Level-1 );
+            return GetHoverBoxAndUrl( event, Clicker, Level-1 );
         }
 
         function GetMenuNameByIndex( ix ){
@@ -473,8 +489,8 @@
             }
             return inp;
         }
-        
-        function CustomUrlFromGeneric( Url ){
+
+        function UrlFromMenuItemName( Url ){
             Url = Url.toLowerCase();
             Url = Url.replace( "...", "" );
             Url = Url.replace(/ /g,"_");
@@ -507,7 +523,9 @@
             console.log( "BoxName "+name+" not found" );
             return "";
         }
-
+        /**
+         *
+         */
         function UpdateMenuSelection(){
             var l;
             TargetName = "";
@@ -544,7 +562,6 @@
                     }
                     TargetName += PostFix;
                     //PostFix = PostFix.replace(/ /g,"_");
-                    TargetName = CustomUrlFromGeneric( TargetName );
                     return;
                 }
             }
@@ -553,75 +570,66 @@
             UpdateSelection();
         }
 
+        /**
+         * Moves focus lower in the boxing hierarchy.
+         * @param options
+         * @returns {boolean}
+         */
+        function Descend( options ){
+            // if nothing was hovered over, nothing to do.
+            if( HoverBox < 0 )
+                    return false;
 
-        function UpdateSelection(){
-            TargetName = "";
-            // Try bottom rows.
-            HoverBox = GetHoverLowTextBox( event );
-            if( HoverBox >= 0 ){
-                Level -=1;
-                LastHover = -2;
-                ClickedBox = HoverBox;
-                TargetName =
-                        UrlFromBoxName( Gui.Boxes[ Level][ClickedBox][4]);
-                if( !ChangeLevel(1) ){
-                    EmptyLevel();
-                }
-                return;
-            }
-            // Try items in on-screen annotation
-            // (if at Level 0, the low text IS annotation)
-            HoverBox = GetHoverAnnoTextBox( event );
-            if( HoverBox >= 0 ){
-                TargetName =
-                        UrlFromBoxName( Gui.Boxes[ Level][HoverBox][4]);
-                ChangeLevel(1);
-                return;
-            }
-            // Try items on screen
-            HoverBox = GetHoverBox( event );
-            if( HoverBox >= 0 ){
-                TargetName =
-                        UrlFromBoxName( Gui.Boxes[ Level][HoverBox][4]);
+            if( options.recursive ){
                 // Keep descending whilst we can...
-                while ( ChangeLevel(1) ){
-                    HoverBox = GetHoverBox( event );
-                    if( HoverBox >=0 )
-                        TargetName =
-                            UrlFromBoxName( Gui.Boxes[ Level][HoverBox][4]);
+                while( ChangeLevel(1, notIfEmpty) ){
+                    HoverBox = GetHoverBox(event);
                     LastHover = -2;
                     MayRefresh();
                 }
-                if( Level < 1 )
-                    EmptyLevel();
-                MenuMode = (Level <= 1) && (ClickedBox == 0);
-                return;
+            } else if( options.single ){
+                Level -=1;
+                //ClickedBox = HoverBox;
+                ChangeLevel(1,emptyOK);
+                return true;
+            } else {
+                ChangeLevel(1,notIfEmpty);
             }
+
+            if( Level < 1 )
+                EmptyLevel();
+            MenuMode = (Level <= 1) && (ClickedBox == 0);
+            return true;
+        }
+
+        function UpdateSelection(){
+            TargetName = "";
+            LastHover = -2;
+            // Try bottom rows.
+            HoverBox = GetHoverLowTextBox( event );
+            if( Descend( {recursive:false, single:true} ) )
+                return;
+
+            // Try items in on-screen annotation
+            // (if at Level 0, the low text IS annotation)
+            HoverBox = GetHoverAnnoTextBox( event );
+            if( Descend( {recursive:false, single:false} ) )
+                return;
+
+            // Try items on screen
+            HoverBox = GetHoverBox( event );
+            if( Descend( {recursive:true, single:false} ) )
+                return;
 
             // Nothing found.  Reset to 0.
             Level = 0;
             ClickedBox = -1;
-            HoverBox = -1;//GetHoverBox( event );
             LastHover = -2;
 
             // Try items on screen again.
             HoverBox = GetHoverBox( event );
-            if( HoverBox >= 0 ){
-                TargetName =
-                        UrlFromBoxName( Gui.Boxes[ Level][HoverBox][4]);
-                while ( ChangeLevel(1) ){
-                    HoverBox = GetHoverBox( event );
-                    if( HoverBox >=0 )
-                        TargetName =
-                            UrlFromBoxName( Gui.Boxes[ Level][HoverBox][4]);
-                    LastHover = -2;
-                    MayRefresh();
-                }
-                if( Level < 1 )
-                    EmptyLevel();
-                MenuMode = (Level <= 1) && (ClickedBox == 0);
+            if( Descend( {recursive:true, single:false} ) )
                 return;
-            }
         }
 
         function ImageClick(event, isclick){
@@ -632,12 +640,16 @@
                 Menus[1].iHover = 0;
                 if( MenuMode )
                     UpdateMenuSelection();
-                else
+                else {
                     UpdateSelection();
+                }
 
                 if( TargetName != "" ){
+                    if( MenuMode )
+                        TargetName = UrlFromMenuItemName( TargetName );
+                    else
+                        TargetName = UrlFromBoxName( TargetName );
                     ScrollToUrl( TargetName );
-                    TargetName = "";
                 }
             }  else {
                 HoverBox = GetHoverBox( event );
