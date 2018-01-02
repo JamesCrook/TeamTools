@@ -599,6 +599,9 @@
             if( Level < 1 )
                 EmptyLevel();
             MenuMode = (Level <= 1) && (ClickedBox == 0);
+            if( MenuMode ){
+                Menus[1].iSel = -1;
+            }
             return true;
         }
 
