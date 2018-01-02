@@ -568,6 +568,7 @@ Audacity.BoxUrls = [
 // not need to translate.
 Audacity.MenuUrls =
   [
+    [ "menu_bar" , "top_menu#Menu_Bar" ],
     ["edit_menu_clip_boundaries#detach_at_silences", "edit_menu_clip_boundaries#disjoin"],
     ["file_menu_import#raw_data", "file_menu_import#raw"],
     ["edit_menu_labels#add_label_at_selection", "edit_menu_labels#addlabelatselection"],
