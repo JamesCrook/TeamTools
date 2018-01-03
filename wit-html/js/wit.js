@@ -516,7 +516,7 @@ function UrlFromBoxName( name ){
 /**
  *
  */
-function UpdateMenuSelection(){
+function UpdateMenuSelection( event ){
   var l;
   TargetName = "";
   ClickedBox = -1;
@@ -557,7 +557,7 @@ function UpdateMenuSelection(){
   }
   MenuMode = false;
   Level = 0;
-  UpdateSelection();
+  UpdateSelection(event );
 }
 
 /**
@@ -595,7 +595,7 @@ function Descend( options ){
   return true;
 }
 
-function UpdateSelection(){
+function UpdateSelection( event ){
   TargetName = "";
   LastHover = -2;
   // Try bottom rows.
@@ -640,9 +640,9 @@ function ImageClick(event, isclick){
     Menus[1].item = 0;
     Menus[1].iHover = 0;
     if( MenuMode )
-      UpdateMenuSelection();
+      UpdateMenuSelection( event );
     else {
-      UpdateSelection();
+      UpdateSelection( event );
     }
 
     if( TargetName != "" ){
