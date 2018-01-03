@@ -63,7 +63,7 @@ Audacity.Boxes = [
   [  2, 664, 109, 673, 135, "Grabber" ],
   [  2, 675, 109, 701, 135, "Play-at-Speed" ],
   [  2, 702, 110, 801, 134, "Playback Speed" ],
-  [  1,   3, 137, 597, 163, "Device Toolbar" ],
+  [  1,   3, 137, 617, 163, "Device Toolbar" ],
   [  2,   3, 137,  12, 163, "Grabber" ],
   [  2,  14, 139, 117, 161, "Audio Host" ],
   [  2, 143, 139, 309, 161, "Recording Device" ],
