@@ -562,10 +562,11 @@ function UpdateMenuSelection( event ){
 
 /**
  * Moves focus lower in the boxing hierarchy.
+ * @param event
  * @param options
  * @returns {boolean}
  */
-function Descend( options ){
+function Descend( event, options ){
   // if nothing was hovered over, nothing to do.
   if( HoverBox < 0 )
     return false;
@@ -600,18 +601,18 @@ function UpdateSelection( event ){
   LastHover = -2;
   // Try bottom rows.
   HoverBox = GetHoverLowTextBox( event );
-  if( Descend( {recursive:false, single:true} ) )
+  if( Descend( event, {recursive:false, single:true} ) )
     return;
 
   // Try items in on-screen annotation
   // (if at Level 0, the low text IS annotation)
   HoverBox = GetHoverAnnoTextBox( event );
-  if( Descend( {recursive:false, single:false} ) )
+  if( Descend( event, {recursive:false, single:false} ) )
     return;
 
   // Try items on screen
   HoverBox = GetHoverBox( event );
-  if( Descend( {recursive:true, single:false} ) )
+  if( Descend( event, {recursive:true, single:false} ) )
     return;
 
   // Nothing found.  Reset to 0.
@@ -621,7 +622,7 @@ function UpdateSelection( event ){
 
   // Try items on screen again.
   HoverBox = GetHoverBox( event );
-  if( Descend( {recursive:true, single:false} ) )
+  if( Descend( event, {recursive:true, single:false} ) )
     return;
 }
 
