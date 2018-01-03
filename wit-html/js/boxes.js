@@ -457,6 +457,7 @@ Audacity.Menus =
 //    Url to go to, e.g. timeline.html#pinned
 Audacity.BoxUrls = [
   [ "Menu Bar" , "top_menu.html#Menu_Bar" ],
+  [ "Menu Bar" , "top_menu.html#Menu_Bar" ],
   [ "Transport Toolbar" , "top_menu.html#Transport_Toolbar" ],
   [ "Grabber" , "transport_toolbar.html#" ],
   [ "Pause" , "transport_toolbar.html#pause" ],
@@ -479,6 +480,8 @@ Audacity.BoxUrls = [
   [ "Playback Meter Toolbar" , "top_menu.html#Playback_Meter_Toolbar" ],
   [ "Grabber" , "meter_toolbar.html#" ],
   [ "Play Meter" , "meter_toolbar.html#" ],
+  [ "Record Options" , "meter_toolbar.html#" ],
+  [ "Playback Options" , "meter_toolbar.html#" ],
   [ "Mixer Toolbar" , "top_menu.html#Mixer_Toolbar" ],
   [ "Grabber" , "mixer_toolbar.html#" ],
   [ "Slider Recording" , "mixer_toolbar.html#Recording_Slider" ],
