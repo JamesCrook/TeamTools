@@ -670,6 +670,8 @@ function OnReset(){
   ScrollToUrl( "top_menu.html" );
 }
 function OnManual(){
+  alert( "When this button is working, it will take you to the equivalent" +
+    " page in the manual, full window size.");
 }
 function OnSpecial(){
   alert( "At some point this button will do clever stuff");
