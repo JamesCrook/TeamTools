@@ -655,7 +655,7 @@ function ImageClick(event, isclick){
     }
   }  else {
     HoverBox = GetHoverBox( event );
-    if( HoverBox < 0 )
+    if( !MenuMode && ( HoverBox < 0 ))
       HoverBox = GetHoverAnnoTextBox( event );
   }
   MayRefresh();
