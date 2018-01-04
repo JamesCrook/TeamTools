@@ -58,7 +58,36 @@ function Extract( List, from, level ){
   return result;
 }
 
+function CapitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+/**
+ *
+ * @param string
+ * @returns {string}
+ */
+function CapitaliseFirstLetters( string ){
+  var pieces = string.split("_");
+  var newPieces = pieces.map( CapitalizeFirstLetter );
+  return newPieces.join( "_" );
+}
+
 function GuiInit(){
+
+  var i;
+  var Arr = App.BoxUrls;
+  for(i=0;i<Arr.length;i++){
+    var str1 = Arr[i][0];
+    var str = Arr[i][1];
+    var pieces = str.split( '#');
+    pieces[0] = CapitaliseFirstLetters( pieces[0] );
+    str = pieces.join( '#');
+    console.log("  [\""+str1 + "\",\""+str +"\"],");
+    Arr[i][1] = str;
+  }
+
+
   //Gui.Boxes = [ image_boxes, [], [] ];
   Gui.Boxes = [ Extract( App.Boxes, 0,1),[],[],[],[],[],[]];
   Gui.Img = document.getElementById("Gui");
@@ -490,6 +519,59 @@ function GetReplacementUrl( inp ){
   }
   return inp;
 }
+/**
+ *
+ * @param Url
+ * @returns {string}
+ */
+function AlphaManualLink( Url ){
+  var str = Url;
+  str = str.replace("Top_Menu.html#Menu_Bar", "Menu_Reference");
+  str = str.replace("Top_Menu", "Main_Page");
+  str = str.replace( '.html', '');
+  str = str.replace( '_Menu_', '_Menu:_');
+  var pieces = str.split('#');
+  if( pieces.length > 1 )
+    pieces[1]=pieces[1].toLowerCase();
+  str = pieces.join('#');
+  return str;
+}
+
+/**
+ *
+ * @param Url
+ * @returns {string}
+ */
+function LocalManualLink( Url ){
+  var pieces = Url.split( ".html" );
+  var str = pieces[0].toLowerCase();
+  str = str.replace( '-_', '' );
+  pieces[0] = str;
+  //pieces[1] = pieces[1].replace( /\_/g,'');
+  str = pieces.join( ".html").toLowerCase();
+  return str;
+}
+
+/**
+ *
+ * @param Url
+ * @returns {string}
+ */
+function CraftAlphaLink( Url ){
+  return "<a target=blank href=\"https://alphamanual.audacityteam.org/man/" + Url + "\">" +
+    Url + "</a>";
+}
+/**
+ *
+ * @param Url
+ * @returns {string}
+ */
+function CraftLocalLink( Url ){
+  return "<a target=blank href=\"./scroller-contents/" + Url + "\">" +
+    Url + "</a>";
+}
+
+
 
 /**
  * Tweaks a URL for use locally with lower case file names.
@@ -498,10 +580,11 @@ function GetReplacementUrl( inp ){
  * @returns {string} the url + anchor with URL in lower case.
  */
 function LowUrl( Url ){
-  UrlHolder.innerHTML = Url ;
-  var pieces = Url.split( ".html" );
-  pieces[0] = pieces[0].toLowerCase();
-  return pieces.join( ".html" );
+  var AlphaLink = AlphaManualLink( Url );
+  var LocalLink = LocalManualLink( Url );
+  UrlHolder.innerHTML = "~~ Alpha Manual: " + CraftAlphaLink( AlphaLink ) +
+    " ~~ WIT Manual: " + CraftLocalLink( LocalLink) +" ~~";
+  return LocalLink;
 }
 
 /**
