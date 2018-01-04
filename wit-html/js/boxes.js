@@ -465,7 +465,7 @@ Audacity.BoxUrls = [
   [ "Stop" , "transport_toolbar.html#stop" ],
   [ "Skip to Start" , "transport_toolbar.html#start" ],
   [ "Skip to End" , "transport_toolbar.html#end" ],
-  [ "Record" , "transport_toolbar.html#record" ],
+  [ "Record" , "Transport_Toolbar.html#record" ],
   [ "Tools Toolbar" , "top_menu.html#Tools_Toolbar" ],
   [ "Grabber" , "tools_toolbar.html#" ],
   [ "Zoom" , "tools_toolbar.html#zoom" ],

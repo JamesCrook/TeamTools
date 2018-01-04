@@ -4,12 +4,13 @@
 
 
 var App = Audacity;
+var Scroller;
+var UrlHolder;
 var Message = null;
 var Clicker = {};
 var Gui = {};
 var Level = 0;
 var MenuMode = false;
-var Scroller;
 var ClickedBox = -1;
 var HoverBox = -1;
 var LastHover = -2;
@@ -193,25 +194,34 @@ function RedrawClicker(){
 window.onload = function(){
   Message = document.getElementById("message");
   Scroller = document.getElementById("scroller");
+  UrlHolder = document.getElementById("url-holder");
   GuiInit();
   ClickerInit();
   MayRefresh();
   isAppReady = true;
 }
 
+/**
+ * Draws one level of a menu.
+ * @param from - item in list of menus to start from.
+ */
 function DrawMenu( from ){
-  var MenuLevel = App.Menus[from][0];
+  var MenuIndent = App.Menus[from][0];
   DrawMenuBack( Menu.x,Menu.y );
   var Res = { x:Menu.x, y:Menu.y};
   var i;
+  // iterate through the menu items.
   for(i=from;i<App.Menus.length;i++){
-    if( App.Menus[i][0] < MenuLevel )
+    // stop iterating when the indent drops back.
+    if( App.Menus[i][0] < MenuIndent )
       return;
+    // Highlight the hovered item.
     var Option = ( Gui.Boxes[Level].length == HoverBox) ?
       menuSelected : 0;
+    // Also highlight any selected (i.e. clicked by user) item.
     if( Gui.Boxes[Menu.Level].length == Menu.iSel )
       Option = menuSelected;
-    if( App.Menus[i][0] == MenuLevel ){
+    if( App.Menus[i][0] == MenuIndent ){
       Res = (Menu.bar ? DrawBarItem : DrawItem)( i, Res.x,Res.y,
         App.Menus[i][2],
         App.Menus[i][3],
@@ -412,14 +422,14 @@ function MayRefresh(){
     RefreshImage(Gui);
     RefreshImage(Clicker);
     LastHover = HoverBox;
-/*
+
     if( HoverBox >= 0 ){
       var B = Gui.Boxes[Level][HoverBox];
       Message.innerHTML = B[4] + "<br>:"+B[0]+":"+B[1]+":"+B[2]+":"+B[3];
     }
     else
       Message.innerHTML = 'None '+Level;
-*/
+
   }
 }
 
@@ -472,16 +482,34 @@ function GetMenuNameByLevel( level ){
  */
 function GetReplacementUrl( inp ){
   var i;
+  var SearchString = inp.toLowerCase();
   for(i=0;i<App.MenuUrls.length;i++){
-    if(App.MenuUrls[i][0] == inp ){
+    if(App.MenuUrls[i][0] == SearchString ){
       return App.MenuUrls[i][1];
     }
   }
   return inp;
 }
 
+/**
+ * Tweaks a URL for use locally with lower case file names.
+ * Also keeps a copy of the untweaked url.
+ * @param Url
+ * @returns {string} the url + anchor with URL in lower case.
+ */
+function LowUrl( Url ){
+  UrlHolder.innerHTML = Url ;
+  var pieces = Url.split( ".html" );
+  pieces[0] = pieces[0].toLowerCase();
+  return pieces.join( ".html" );
+}
+
+/**
+ * Converts automatic URL name to the location we actually will want.
+ * @param Url
+ * @returns {string}
+ */
 function UrlFromMenuItemName( Url ){
-  Url = Url.toLowerCase();
   Url = Url.replace( "...", "" );
   Url = Url.replace(/ /g,"_");
   Url = Url.replace(/\//g,"");
@@ -496,7 +524,7 @@ function UrlFromMenuItemName( Url ){
     Url += ".html";
   }
   Url = Url.replace(/\,/g,"");
-  return Url;
+  return LowUrl( Url );
 }
 /**
  *
@@ -507,7 +535,7 @@ function UrlFromBoxName( name ){
   var i;
   for(i=0;i<App.BoxUrls.length;i++){
     if( App.BoxUrls[i][0] == name){
-      return App.BoxUrls[i][1];
+      return LowUrl( App.BoxUrls[i][1] );
     }
   }
   console.log( "BoxName "+name+" not found" );
@@ -655,8 +683,15 @@ function ImageClick(event, isclick){
     }
   }  else {
     HoverBox = GetHoverBox( event );
-    if( !MenuMode && ( HoverBox < 0 ))
-      HoverBox = GetHoverAnnoTextBox( event );
+    if ( HoverBox < 0 ){
+      if( MenuMode ){
+        //if( Level > 2 ){
+        //  HoverBox = GetHoverBoxAndUrl( event, Clicker, Level );
+        //}
+      }
+      else
+        HoverBox = GetHoverAnnoTextBox(event);
+    }
   }
   MayRefresh();
 }
