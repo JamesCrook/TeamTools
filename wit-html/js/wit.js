@@ -6,6 +6,7 @@
 var App = Audacity;
 var Scroller;
 var UrlHolder;
+var RemoteUrl = "";
 var Message = null;
 var Clicker = {};
 var Gui = {};
@@ -452,13 +453,14 @@ function MayRefresh(){
     RefreshImage(Clicker);
     LastHover = HoverBox;
 
+/*
     if( HoverBox >= 0 ){
       var B = Gui.Boxes[Level][HoverBox];
       Message.innerHTML = B[4] + "<br>:"+B[0]+":"+B[1]+":"+B[2]+":"+B[3];
     }
     else
       Message.innerHTML = 'None '+Level;
-
+*/
   }
 }
 
@@ -558,6 +560,7 @@ function LocalManualLink( Url ){
  * @returns {string}
  */
 function CraftAlphaLink( Url ){
+  RemoteUrl = "https://alphamanual.audacityteam.org/man/" + Url;
   return "<a target=blank href=\"https://alphamanual.audacityteam.org/man/" + Url + "\">" +
     Url + "</a>";
 }
@@ -789,8 +792,9 @@ function OnReset(){
   ScrollToUrl( "top_menu.html" );
 }
 function OnManual(){
-  alert( "When this button is working, it will take you to the equivalent" +
-    " page in the manual, full window size.");
+  window.open( RemoteUrl, "_blank" );
+//  alert( "When this button is working, it will take you to the equivalent" +
+//    " page in the manual, full window size.");
 }
 function OnSpecial(){
   alert( "At some point this button will do clever stuff");
