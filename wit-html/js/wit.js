@@ -21,6 +21,8 @@ var emptyOK = true;
 var notIfEmpty = false;
 var isAppReady = false;
 
+var Async = [];
+
 
 // @return var
 function FindBox(Source, x, y, Level){
@@ -810,6 +812,27 @@ function ImageClick(event, isclick){
     }
   }
   MayRefresh();
+  if( Async.length > 0 ){
+
+  }
+}
+
+/**
+ * Loads one source file into an item in an array.
+ * @param data
+ * @param action
+ * @param url
+ */
+function fileActionLoader(data, action, url ){
+  var txtFile = new XMLHttpRequest();
+  txtFile.onreadystatechange = function(){
+    if( this.readyState === 4 && this.status == 200 ){
+      data.push({ action: action, value: this.responseText});
+    }
+  };
+
+  txtFile.open("GET", url , true);
+  txtFile.send();
 }
 
 
@@ -823,7 +846,7 @@ function OnReset(){
   ScrollToUrl( "top_menu.html" );
 }
 function OnManual(){
-  window.open( RemoteUrl, "_blank" );
+  window.open( RemoteUrl, "manual" );
 //  alert( "When this button is working, it will take you to the equivalent" +
 //    " page in the manual, full window size.");
 }
