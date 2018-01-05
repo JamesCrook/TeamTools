@@ -572,7 +572,8 @@ function LocalManualLink( Url ){
  */
 function CraftAlphaLink( Url ){
   RemoteUrl = "https://alphamanual.audacityteam.org/man/" + Url;
-  return "<a target=blank href=\"https://alphamanual.audacityteam.org/man/" + Url + "\">" +
+  return "<a target=\"manual\"" +
+    " href=\"https://alphamanual.audacityteam.org/man/" + Url + "\">" +
     Url + "</a>";
 }
 /**
@@ -581,7 +582,7 @@ function CraftAlphaLink( Url ){
  * @returns {string}
  */
 function CraftLocalLink( Url ){
-  return "<a target=blank href=\"./scroller-contents/" + Url + "\">" +
+  return "<a target=\"sidebar\" href=\"./scroller-contents/" + Url + "\">" +
     Url + "</a>";
 }
 
@@ -591,7 +592,8 @@ function CraftLocalLink( Url ){
  * @returns {string}
  */
 function CraftDoxyLink( UrlPair ){
-  return "<a target=blank href=\"http://doxy.audacityteam.org/class_audacity_project.html#" + UrlPair[0]  + "\">" +
+  return "<a target=\"doxy\"" +
+    " href=\"https://doxy.audacityteam.org/class_audacity_project.html#" + UrlPair[0]  + "\">" +
     UrlPair[1] + "</a>";
 }
 
