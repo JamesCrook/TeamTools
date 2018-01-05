@@ -569,6 +569,7 @@ function LocalManualLink( Url ){
   pieces[0] = str;
   //pieces[1] = pieces[1].replace( /\_/g,'');
   str = pieces.join( ".html").toLowerCase();
+  str = str.replace(/\,/g,"");
   return str;
 }
 
@@ -645,7 +646,7 @@ function UrlFromMenuItemName( Url ){
   if( Url.indexOf(".html") < 0 ){
     Url += ".html";
   }
-  Url = Url.replace(/\,/g,"");
+  //Url = Url.replace(/\,/g,"");
   return LowUrl( Url );
 }
 /**
