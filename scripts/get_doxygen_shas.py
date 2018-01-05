@@ -4,10 +4,10 @@ import re
 
 def getDoxAnchors():
   dict = {};
-  with open('..\\dox\\html\\class_audacity_project-members.html') as f:
+  with open('..\\src\\plunder\\class_audacity_project-members.html') as f:
     for line in f:
         #print( line );
-        result = re.search(r".*#(.*)\">(.*)</a>\(\).*", line)
+        result = re.search(r".*#([^\"]*)\">([^<]*)</a>\(.*", line)
         if( result ):
             #print( line )
             dict[ result.group(2) ] = result.group(1);
