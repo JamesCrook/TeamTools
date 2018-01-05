@@ -7,6 +7,7 @@ var App = Audacity;
 var Scroller;
 var UrlHolder;
 var RemoteUrl = "";
+var MenuComponent = "";
 var Message = null;
 var Clicker = {};
 var Gui = {};
@@ -77,6 +78,7 @@ function CapitaliseFirstLetters( string ){
 function GuiInit(){
 
   var i;
+/*
   var Arr = App.BoxUrls;
   for(i=0;i<Arr.length;i++){
     var str1 = Arr[i][0];
@@ -87,7 +89,16 @@ function GuiInit(){
     console.log("  [\""+str1 + "\",\""+str +"\"],");
     Arr[i][1] = str;
   }
-
+*/
+  App.Doxy = [];
+  var Arr = App.DoxyLinks;
+  for(i=0;i<Arr.length;i++){
+    if( Arr[i][0] != "" ){
+      var str = Arr[i][2].replace( '&','');
+      App.Doxy[ str ] = [ Arr[i][0], Arr[i][1] ];
+    }
+  }
+  console.log( App.Doxy );
 
   //Gui.Boxes = [ image_boxes, [], [] ];
   Gui.Boxes = [ Extract( App.Boxes, 0,1),[],[],[],[],[],[]];
@@ -574,6 +585,15 @@ function CraftLocalLink( Url ){
     Url + "</a>";
 }
 
+/**
+ *
+ * @param UrlPair
+ * @returns {string}
+ */
+function CraftDoxyLink( UrlPair ){
+  return "<a target=blank href=\"http://doxy.audacityteam.org/class_audacity_project.html#" + UrlPair[0]  + "\">" +
+    UrlPair[1] + "</a>";
+}
 
 
 /**
@@ -585,8 +605,15 @@ function CraftLocalLink( Url ){
 function LowUrl( Url ){
   var AlphaLink = AlphaManualLink( Url );
   var LocalLink = LocalManualLink( Url );
-  UrlHolder.innerHTML = "~~ Alpha Manual: " + CraftAlphaLink( AlphaLink ) +
-    " ~~ WIT Manual: " + CraftLocalLink( LocalLink) +" ~~";
+  var str = "";
+  str += " ~~ Alpha Manual: " + CraftAlphaLink( AlphaLink );
+  str += " ~~ WIT Manual: " + CraftLocalLink( LocalLink);
+  if( MenuComponent ){
+    if( App.Doxy[ MenuComponent] )
+      str+= " ~~ Doxygen: " + CraftDoxyLink( App.Doxy[ MenuComponent] );
+    MenuComponent = '';
+  }
+  UrlHolder.innerHTML = str + ' ~~~';
   return LocalLink;
 }
 
@@ -664,6 +691,7 @@ function UpdateMenuSelection( event ){
         TargetName = TargetName + "#";
         PostFix = GetMenuNameByIndex(StartAt);
       }
+      MenuComponent = PostFix;
       TargetName += PostFix;
       //PostFix = PostFix.replace(/ /g,"_");
       return;
@@ -788,6 +816,7 @@ function OnReset(){
   ClickedBox = -1;
   LastHover = -2;
   HoverBox = -1;
+  MenuMode = false;
   MayRefresh();
   ScrollToUrl( "top_menu.html" );
 }
