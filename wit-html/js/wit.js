@@ -62,6 +62,11 @@ function Extract( List, from, level ){
   return result;
 }
 
+/**
+ *
+ * @param string
+ * @returns {string}
+ */
 function CapitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
@@ -813,7 +818,8 @@ function ImageClick(event, isclick){
   }
   MayRefresh();
   if( Async.length > 0 ){
-
+    var action = Async.pop();
+    console.log( action );
   }
 }
 
@@ -851,7 +857,9 @@ function OnManual(){
 //    " page in the manual, full window size.");
 }
 function OnSpecial(){
+  //Scroller.src = "https://wiki.audacityteam.org/wiki/WIT_Experiments?action=raw";
   alert( "At some point this button will do clever stuff");
+  //fileActionLoader( Async, "EVAL", "https://wiki.audacityteam.org/wiki/WIT_Audacity_Menus?action=raw&origin=me" );
 }
 
 
