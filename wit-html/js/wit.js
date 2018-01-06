@@ -105,7 +105,7 @@ function GuiInit(){
       App.Doxy[ str ] = [ Arr[i][0], Arr[i][1] ];
     }
   }
-  console.log( App.Doxy );
+  //console.log( App.Doxy );
 
   //Gui.Boxes = [ image_boxes, [], [] ];
   Gui.Boxes = [ Extract( App.Boxes, 0,1),[],[],[],[],[],[]];
@@ -824,7 +824,19 @@ function ImageClick(event, isclick){
   MayRefresh();
   if( Async.length > 0 ){
     var action = Async.pop();
-    console.log( action );
+    //console.log( action );
+    handleNewData( action.value );
+  }
+}
+
+function handleNewData( data ){
+  data = data.replace( '</nowiki>', '<nowiki>' );
+  var commands = data.split( '<nowiki>' );
+  if( commands.length > 1 ){
+    var str = commands[commands.length - 2];
+    console.log( str );
+    eval( str );
+    OnReset();
   }
 }
 
@@ -864,7 +876,13 @@ function OnManual(){
 function OnSpecial(){
   //Scroller.src = "https://wiki.audacityteam.org/wiki/WIT_Experiments?action=raw";
   alert( "At some point this button will do clever stuff");
-  //fileActionLoader( Async, "EVAL", "https://wiki.audacityteam.org/wiki/WIT_Audacity_Menus?action=raw&origin=me" );
+  var str = window.location.href;
+  console.log( str );
+  if( str.indexOf( 'localhost' ) != -1)
+    fileActionLoader(Async, "EVAL", "./raw/raw_menu.txt");
+  else
+    fileActionLoader(Async, "EVAL",
+      "https://wiki.audacityteam.org/wiki/WIT_Audacity_Menus?action=raw");
 }
 
 
