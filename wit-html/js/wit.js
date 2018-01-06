@@ -550,10 +550,10 @@ function AlphaManualLink( Url ){
   str = str.replace("Top_Menu", "Main_Page");
   str = str.replace( '.html', '');
   str = str.replace( '_Menu_', '_Menu:_');
-  var pieces = str.split('#');
-  if( pieces.length > 1 )
-    pieces[1]=pieces[1].toLowerCase();
-  str = pieces.join('#');
+  //var pieces = str.split('#');
+  //if( pieces.length > 1 )
+  //  pieces[1]=pieces[1].toLowerCase();
+  //str = pieces.join('#');
   return str;
 }
 
@@ -568,7 +568,7 @@ function LocalManualLink( Url ){
   str = str.replace( '-_', '' );
   pieces[0] = str;
   //pieces[1] = pieces[1].replace( /\_/g,'');
-  str = pieces.join( ".html").toLowerCase();
+  str = pieces.join( ".html");//.toLowerCase();
   str = str.replace(/\,/g,"");
   return str;
 }
@@ -638,7 +638,10 @@ function UrlFromMenuItemName( Url ){
   Url = Url.replace(/\//g,"");
   Url = Url.replace(/\(/g,"");
   Url = Url.replace(/\)/g,"");
-  //var OldUrl = Url;
+  var pieces = Url.split('#');
+  if( pieces.length > 1 )
+    pieces[1]=pieces[1].toLowerCase();
+  Url = pieces.join('#');  //var OldUrl = Url;
   Url = GetReplacementUrl( Url );
   if( Url.indexOf("#") >= 0 ){
     Url = Url.replace("#",".html#");
@@ -646,6 +649,7 @@ function UrlFromMenuItemName( Url ){
   if( Url.indexOf(".html") < 0 ){
     Url += ".html";
   }
+
   //Url = Url.replace(/\,/g,"");
   return LowUrl( Url );
 }
