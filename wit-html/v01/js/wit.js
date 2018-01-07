@@ -833,10 +833,11 @@ function handleNewData( data ){
   data = data.replace( '</nowiki>', '<nowiki>' );
   var commands = data.split( '<nowiki>' );
   if( commands.length > 1 ){
+    OnReset();
     var str = commands[commands.length - 2];
     console.log( str );
     eval( str );
-    OnReset();
+
   }
 }
 
@@ -850,7 +851,8 @@ function fileActionLoader(data, action, url ){
   var txtFile = new XMLHttpRequest();
   txtFile.onreadystatechange = function(){
     if( this.readyState === 4 && this.status == 200 ){
-      data.push({ action: action, value: this.responseText});
+      // data.push({ action: action, value: this.responseText});
+      handleNewData( this.responseText);
     }
   };
 

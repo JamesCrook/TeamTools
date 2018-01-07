@@ -427,4 +427,8 @@ Audacity.Menus =
   [  2,  0, "Move focused track to bottom", "" ],
   [  1,  0, "Full screen (on/off)", "F11" ],
   ];
+
+
+Scroller.src = "https://wiki.audacityteam.org/wiki/WIT_Special?action=render";
+
 </nowiki>
