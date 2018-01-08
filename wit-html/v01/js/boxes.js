@@ -4,6 +4,8 @@
 
 var Audacity = {};
 
+Audacity.AnnotationMode = true;
+
 
 // These are the boxes on the main image map.
 // Fields are:
@@ -46,7 +48,7 @@ Audacity.Boxes = [
   [  2,   3, 109,  12, 135, "Grabber" ],
   [  2,  39, 110, 168, 134, "Slider Recording" ],
   [  2, 194, 110, 323, 134, "Slider Playback" ],
-  [  1, 327, 109, 662, 135, "Edit Toolbar" ],
+  [  1, 327, 109, 689, 135, "Edit Toolbar" ],
   [  2, 327, 109, 336, 135, "Grabber" ],
   [  2, 338, 109, 364, 135, "Cut" ],
   [  2, 365, 109, 391, 135, "Copy" ],
@@ -59,10 +61,11 @@ Audacity.Boxes = [
   [  2, 582, 109, 608, 135, "Zoom Out" ],
   [  2, 609, 109, 635, 135, "Fit selection" ],
   [  2, 636, 109, 662, 135, "Fit project" ],
-  [  1, 664, 109, 803, 135, "Transcription Toolbar" ],
-  [  2, 664, 109, 673, 135, "Grabber" ],
-  [  2, 675, 109, 701, 135, "Play-at-Speed" ],
-  [  2, 702, 110, 801, 134, "Playback Speed" ],
+  [  2, 663, 109, 689, 135, "Zoom Toggle" ],
+  [  1, 691, 109, 830, 135, "Transcription Toolbar" ],
+  [  2, 691, 109, 700, 135, "Grabber" ],
+  [  2, 702, 109, 728, 135, "Play-at-Speed" ],
+  [  2, 729, 110, 828, 134, "Playback Speed" ],
   [  1,   3, 137, 617, 163, "Device Toolbar" ],
   [  2,   3, 137,  12, 163, "Grabber" ],
   [  2,  14, 139, 117, 161, "Audio Host" ],
