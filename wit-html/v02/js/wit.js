@@ -925,7 +925,7 @@ function fileActionLoader(data, action, url ){
   };
 
   txtFile.open("GET", url , true);
-  txtFile.setRequestHeader( "Cache-Control", "s-maxage=0" );
+  //txtFile.setRequestHeader( "Cache-Control", "s-maxage=0" );
   txtFile.send();
 }
 
