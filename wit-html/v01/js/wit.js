@@ -168,6 +168,8 @@ function ClickerInit(){
 
 /**
  *
+ * @returns {boolean}
+ * @constructor
  */
 function EmptyLevel(){
   ClickedBox = HoverBox;
@@ -181,7 +183,13 @@ function EmptyLevel(){
 
 }
 
-
+/**
+ *
+ * @param delta
+ * @param emptyOK
+ * @returns {boolean}
+ * @constructor
+ */
 function ChangeLevel( delta, emptyOK ){
   if( Level + delta > 4 ){
     return false;
@@ -424,6 +432,8 @@ function ScrollTo( Target ){
 }
 
 function ScrollToUrl( Target ){
+  if( Target == "" )
+    return;
   Scroller.src = "./scroller-contents/" + Target;
   console.log("Scroll to: "+Target + " -URL-");
 }
