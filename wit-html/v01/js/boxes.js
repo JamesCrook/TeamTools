@@ -5,6 +5,9 @@
 var Audacity = {};
 
 Audacity.AnnotationMode = false;
+Audacity.KeepPanel = false;
+Audacity.NumbersOnScreen = false;
+Audacity.ShowUrls = true;
 
 
 // These are the boxes on the main image map.

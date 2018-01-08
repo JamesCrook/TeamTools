@@ -26,38 +26,36 @@
             <a id="top"></a>
             <div class="mw-indicators"></div>
             <h1 class="firstHeading" id="firstHeading" lang="en">
-            Special Menu</h1>
+            Options Panel</h1>
                 <div class="mw-content-ltr" dir="ltr" id="mw-content-text"
                      lang="en"><p>
                 </p>
                     <p><br/>
                     </p>
-                    <div class="intro">The Audacity "What is That?" web page
-                        shows the main components of the
-                        Audacity User Interface. You can find out more about
-                        these components.
-                        <ul>
-                            <li> Hover over an item to find out what it is called.
-                            </li>
-                            <li> Click on an item to dive down into more detail.
-                            </li>
-
-                        </ul><br>
-                        The menus work too.<br><br>
-                        The 'Reset' button gets you back
-                        to the starting screen.
+                    <div class="intro"><br>This panel provides additional options
+                        that extend the functionality of WIT.  Most of these are very experimental.<br><br>
+                        If you can see this message, you have already successfully updated the menus
+                        using data from our wiki.  For example there is now an Ext menu, when you click on the menu bar.<br><br>
 
                     </div>
 
 
                     <ul>
-                        <li> Enable annotation-capture mode.  Background fades
-                            completely to white and only the arrows from the
-                            labels immediately around the object are shown.
-                            Useful for capturing annotated screenshots of
-                            toolbars.
+                        <li><input type="checkbox" OnClick="parent.OnKeepPanel( this );" checked="checked">
+                            Keep this options panel open.</li>
+                        <li><input type="checkbox" OnClick="parent.OnAnnotationMode( this );">
+                            Enable annotation-capture mode.<br>
                         </li>
-                        <li> Click to download the image map.
+                        <li><input type="checkbox" OnClick="parent.OnShowUrls( this );" checked="checked">
+                            Show URLs above the image of Audacity.</li>
+                        <li> <button onclick="parent.OnGetImage( this );">Download</button>
+                            the current image.
+                        </li>
+                        <li> <button onclick="parent.OnGetMenuImageMaps( this );">Download</button>
+                            the complete menu image map.
+                        </li>
+                        <li> <button onclick="parent.OnGetToolbarImageMaps( this );">Download</button>
+                            the complete toolbar image map.
                         </li>
 
                     </ul><br>

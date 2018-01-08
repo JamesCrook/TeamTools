@@ -428,6 +428,4 @@ Audacity.Menus =
   [  1,  0, "Full screen (on/off)", "F11" ],
   ];
 
-    ScrollToUrl( "special_menu.html" );
-
 </nowiki>

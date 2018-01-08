@@ -432,6 +432,8 @@ function ScrollTo( Target ){
 }
 
 function ScrollToUrl( Target ){
+  if( App.KeepPanel )
+    return;
   if( Target == "" )
     return;
   Scroller.src = "./scroller-contents/" + Target;
@@ -725,8 +727,11 @@ function UrlFromBoxName( name ){
   console.log( "BoxName "+name+" not found" );
   return "";
 }
+
 /**
  *
+ * @param event
+ * @constructor
  */
 function UpdateMenuSelection( event ){
   var l;
@@ -809,6 +814,11 @@ function Descend( event, options ){
   return true;
 }
 
+/**
+ *
+ * @param event
+ * @constructor
+ */
 function UpdateSelection( event ){
   TargetName = "";
   LastHover = -2;
@@ -936,9 +946,15 @@ function OnManual(){
 }
 function OnSpecial(){
   //Scroller.src = "https://wiki.audacityteam.org/wiki/WIT_Experiments?action=raw";
-  alert( "At some point this button will do clever stuff");
+  //alert( "At some point this button will do clever stuff");
   var str = window.location.href;
-  console.log( str );
+
+  App.KeepPanel = false;
+  ScrollToUrl( "special_menu.html" );
+  App.KeepPanel = true;
+  App.NumbersOnScreen = false;
+  App.AnnotationMode = false;
+
   if( str.indexOf( 'localhost' ) != -1)
     fileActionLoader(Async, "EVAL", "./raw/raw_menu.txt");
   else
@@ -946,4 +962,30 @@ function OnSpecial(){
       "https://wiki.audacityteam.org/wiki/WIT_Audacity_Menus?action=raw");
 }
 
+function OnAnnotationMode(arg){
+  App.AnnotationMode =  arg.checked;
+  LastHover = -2;
+  MayRefresh();
+}
+
+function OnShowUrls(arg){
+  App.ShowUrls = arg.checked;
+  LastHover = -2;
+  MayRefresh();
+}
+
+function OnKeepPanel(arg){
+  App.KeepPanel = arg.checked;
+}
+
+
+function OnGetImage(arg){
+  alert( "Current Image" );
+}
+function OnGetToolbarImageMaps(arg){
+  alert( "Complete Toolbar Image Map" );
+}
+function OnGetMenuImageMaps(arg){
+  alert( "Complete Menu Image Map" );
+}
 
