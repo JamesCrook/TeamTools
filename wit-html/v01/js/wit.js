@@ -253,13 +253,14 @@ function RedrawClicker(){
   // Clicker superimposed on image...
   LL=Level;
   var BoxRow = Gui.Boxes[LL-1][ClickedBox];
-  var Start = Math.max( 2, BoxRow[0] - 72);
+  var Start = Math.max( 2, BoxRow[0] - 122);
 
   Channels =[];
   // Spread potentially increases vertical spread between the two
   // rows of annotations.
   var Spread = Math.min( Math.max( BoxRow[1]-70, 10 ), 30);
   Channels.push( [Start, BoxRow[1]-40-Spread, 0, 30] );
+  // If there is vertical space, then a second row.
   if( (Gui.Rect[2]-BoxRow[3]-320 ) > 80 )
     Channels.push( [Start, BoxRow[3]+10+Spread, 0, 30] );
 
@@ -895,6 +896,7 @@ function handleNewData( data ){
  */
 function fileActionLoader(data, action, url ){
   var txtFile = new XMLHttpRequest();
+  // CDNs and Varnish should give us the very latest.
   txtFile.onreadystatechange = function(){
     if( this.readyState === 4 && this.status == 200 ){
       // data.push({ action: action, value: this.responseText});
@@ -903,6 +905,7 @@ function fileActionLoader(data, action, url ){
   };
 
   txtFile.open("GET", url , true);
+  txtFile.setRequestHeader( "Cache-Control", "no-cache" );
   txtFile.send();
 }
 

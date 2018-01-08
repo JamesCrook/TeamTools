@@ -428,7 +428,6 @@ Audacity.Menus =
   [  1,  0, "Full screen (on/off)", "F11" ],
   ];
 
-
-Scroller.src = "https://wiki.audacityteam.org/wiki/WIT_Special?action=render";
+    ScrollToUrl( "special_menu.html" );
 
 </nowiki>

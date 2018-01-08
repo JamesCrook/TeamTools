@@ -4,7 +4,7 @@
 
 var Audacity = {};
 
-Audacity.AnnotationMode = true;
+Audacity.AnnotationMode = false;
 
 
 // These are the boxes on the main image map.
