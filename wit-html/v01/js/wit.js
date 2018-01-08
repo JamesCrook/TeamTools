@@ -8,6 +8,7 @@ var Scroller;
 var UrlHolder;
 var RemoteUrl = "";
 var MenuComponent = "";
+var BoxComponent = "";
 var Message = null;
 var Clicker = {};
 var Gui = {};
@@ -106,6 +107,34 @@ function GuiInit(){
     }
   }
   //console.log( App.Doxy );
+  App.Doxy2 = [];
+  Arr = App.DoxyBoxes;
+  for(i=0;i<Arr.length;i++){
+    if( Arr[i].length > 1){
+      var str = Arr[i][1];
+      var name = Arr[i][0];
+      if( name.indexOf( ".html" ) >= 0 ){
+        name = name.replace(".html", "");
+        App.Doxy2[str] = [Arr[i][0], name];
+      }
+      else if( App.Doxy[ name ] ){
+        var pair = App.Doxy[name];
+        App.Doxy2[ str ] = [
+          "class_audacity_project.html#" + pair[0], pair[1] ];
+      }
+    }
+    else {
+      var search = Arr[i][0];
+      var search2 = search.replace( /_/g, ' ' );
+      if( App.Doxy[ search2 ] ){
+        var pair = App.Doxy[search2];
+        App.Doxy2[ search2 ] = [
+          "class_audacity_project.html#" + pair[0], pair[1] ];
+      }
+    }
+  }
+  console.log( App.Doxy2 );
+
 
   //Gui.Boxes = [ image_boxes, [], [] ];
   Gui.Boxes = [ Extract( App.Boxes, 0,1),[],[],[],[],[],[]];
@@ -605,6 +634,17 @@ function CraftDoxyLink( UrlPair ){
     UrlPair[1] + "</a>";
 }
 
+/**
+ *
+ * @param UrlPair
+ * @returns {string}
+ */
+function CraftOtherDoxyLink( UrlPair ){
+  return "<a target=\"doxy\"" +
+    " href=\"https://doxy.audacityteam.org/" + UrlPair[0]  + "\">" +
+    UrlPair[1] + "</a>";
+}
+
 
 /**
  * Tweaks a URL for use locally with lower case file names.
@@ -622,6 +662,11 @@ function LowUrl( Url ){
     if( App.Doxy[ MenuComponent] )
       str+= " ~~ Doxygen: " + CraftDoxyLink( App.Doxy[ MenuComponent] );
     MenuComponent = '';
+  }
+  else if( BoxComponent ){
+    if( App.Doxy2[ BoxComponent] )
+      str+= " ~~ Doxygen: " + CraftOtherDoxyLink( App.Doxy2[ BoxComponent] );
+    BoxComponent = '';
   }
   UrlHolder.innerHTML = str + ' ~~~';
   return LocalLink;
@@ -659,6 +704,7 @@ function UrlFromMenuItemName( Url ){
  * @returns {string}
  */
 function UrlFromBoxName( name ){
+  BoxComponent = name;
   var i;
   for(i=0;i<App.BoxUrls.length;i++){
     if( App.BoxUrls[i][0] == name){
