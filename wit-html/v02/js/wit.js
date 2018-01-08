@@ -951,6 +951,7 @@ function OnSpecial(){
 
   App.KeepPanel = false;
   ScrollToUrl( "special_menu.html" );
+  SetUrlVisibility( true );
   App.KeepPanel = true;
   App.NumbersOnScreen = false;
   App.AnnotationMode = false;
@@ -968,10 +969,15 @@ function OnAnnotationMode(arg){
   MayRefresh();
 }
 
+function SetUrlVisibility( value ){
+  UrlHolder.style.display = value ? 'inline': 'none';
+}
+
 function OnShowUrls(arg){
   App.ShowUrls = arg.checked;
-  LastHover = -2;
-  MayRefresh();
+  SetUrlVisibility( App.ShowUrls );
+//  LastHover = -2;
+//  MayRefresh();
 }
 
 function OnKeepPanel(arg){
@@ -980,12 +986,14 @@ function OnKeepPanel(arg){
 
 
 function OnGetImage(arg){
-  alert( "Current Image" );
+  alert( "Current Image - No Downloads Yet" );
 }
 function OnGetToolbarImageMaps(arg){
-  alert( "Complete Toolbar Image Map" );
+  alert( "Complete Toolbar Image Map - No Downloads Yet" );
 }
 function OnGetMenuImageMaps(arg){
-  alert( "Complete Menu Image Map" );
+  alert( "Complete Menu Image Map - No Downloads Yet" );
 }
+
+
 
