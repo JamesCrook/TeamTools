@@ -10,6 +10,7 @@ var RemoteUrl = "";
 var MenuComponent = "";
 var BoxComponent = "";
 var Message = null;
+var Annotated = {available:false};
 var Clicker = {};
 var Gui = {};
 var Level = 0;
@@ -133,7 +134,7 @@ function GuiInit(){
       }
     }
   }
-  console.log( App.Doxy2 );
+  //console.log( App.Doxy2 );
 
 
   //Gui.Boxes = [ image_boxes, [], [] ];
@@ -142,7 +143,7 @@ function GuiInit(){
   Gui.Canvas = document.getElementById("GuiCanvas");
   Gui.Ctx = Gui.Canvas.getContext("2d");
   Gui.DoesFade = true;
-  Gui.Rect = [0,0,865,583];
+  Gui.Rect = [0,0,865,587];
   Gui.BackDraw = function() { Gui.Ctx.drawImage(Gui.Img, 0, 0);}
   Gui.FrontDraw = function( x,y,w,h ){
     Gui.Ctx.drawImage(Gui.Img, x, y, w, h, x, y, w, h);
@@ -205,7 +206,7 @@ function ChangeLevel( delta, emptyOK ){
     if( !emptyOK && inside.length < 1)
       return false;
 
-    console.log( "Descending: ", inside );
+    //console.log( "Descending: ", inside );
     ClickedBox = HoverBox;
     HoverBox = -1;
     LastHover = -2;
@@ -242,6 +243,31 @@ function DrawClicky( G, Where, Box ){
 
 }
 
+function DrawAnnotationBox( name, x1,y1,x2,y2 )
+{
+  var BorderLeft = Math.min(5, x1);
+  var BorderTop = Math.min(5, y1);
+  x1 -= BorderLeft;
+  y1 -= BorderTop;
+  x2 +=5;
+  y2 +=5;
+
+  Annotated.x = x1+1;
+  Annotated.y = y1+1;
+  Annotated.width = x2 - x1 -2;
+  Annotated.height = y2 - y1 -2;
+
+  Annotated.name = name.replace(/ /g, '');
+  Annotated.available = true;
+
+  if( !App.AnnotationMode )
+    return;
+
+  DrawDottedSurround(Clicker, x1, y1, x2 - x1, y2 - y1);
+}
+
+
+
 function RedrawClicker(){
   var G = Clicker;
   var i;
@@ -272,24 +298,23 @@ function RedrawClicker(){
   if( (Gui.Rect[2]-BoxRow[3]-320 ) > 80 )
     Channels.push( [Start, BoxRow[3]+10+Spread, 0, 30] );
 
-  var TopLeft = { x:Channels[0][0], y:Channels[0][1] };
+  var x1 = Channels[0][0];
+  var y1 = Channels[0][1];
   for( i = 0; i < G.Boxes[LL].length; i++ ){
     DrawClicky( G, Channels[i%Channels.length], G.Boxes[LL][i] )
   }
-  if( !App.AnnotationMode )
-    return;
 
-  var x = BoxRow[2];
-  var y = BoxRow[3];
-  x = Math.max( x, Channels[0][0]);
-  y = Math.max( y, Channels[0][1]+30);
+  var x2 = BoxRow[2];
+  var y2 = BoxRow[3];
+  x2 = Math.max( x2, Channels[0][0]);
+  y2 = Math.max( y2, Channels[0][1]+30);
   if( Channels.length > 1 ){
-    x = Math.max(x, Channels[1][0]);
-    y = Math.max(y, Channels[1][1] + 30);
+    x2 = Math.max(x2, Channels[1][0]);
+    y2 = Math.max(y2, Channels[1][1] + 30);
   }
-  DrawDottedSurround( G, TopLeft.x, TopLeft.y,
-    x - TopLeft.x, y-TopLeft.y);
 
+  var box = BoxRow[5];
+  DrawAnnotationBox(App.Boxes[box][5], x1, y1, x2, y2 );
 }
 
 window.onload = function(){
@@ -409,13 +434,36 @@ function RefreshImage(Gui){
     Gui.FrontDraw();
     // Connect parent box...
     ConnectBoxes(Level - 1, ClickedBox, 0);
+    var i;
     if( Level > 0 ){
-      var i;
       for( i=0;i<Gui.Boxes[Level].length; i++){
         ConnectBoxes( Level, i, 1 );
       }
+    } else if( App.AnnotationMode ) {
+      var dx = Gui.DoesFade ? 3 :-10;
+      var dy = Gui.DoesFade ? 20 : 25;
+      Gui.Ctx.font = "900 24px Helvetica";// heavier than bold.
+      Gui.Ctx.fillStyle = 'rgb(0,43,184)';
+      for( i=0;i<Gui.Boxes[0].length; i++){
+        x = Gui.Boxes[0][i][0]+dx;
+        y = Gui.Boxes[0][i][1]+dy;
+        var text = Gui.Boxes[0][i][4];
+        Gui.Ctx.fillText( "" +(i+1), x, y);
+        //console.log( text, i+1, x, y );
+      }
+      var G = window.Gui;
+      Annotated.x = G.Rect[0];
+      Annotated.y = G.Rect[1];
+      Annotated.width = G.Rect[2]-G.Rect[0];
+      Annotated.height = G.Rect[3]-G.Rect[1];
+
+      Annotated.name = "AmazingImageMap";
+      Annotated.available = true;
+
     }
   }
+
+
 
   // The highlighted box...
   if( HoverBox < 0 )
@@ -439,7 +487,7 @@ function ScrollTo( Target ){
     if( App.BoxUrls[i][0] == Target){
       var src = App.BoxUrls[i][1];
       Scroller.src = "./scroller-contents/" + src;
-      console.log("Scroll to: "+Target + " : " + src );
+      //console.log("Scroll to: "+Target + " : " + src );
       return;
     }
   }
@@ -452,7 +500,7 @@ function ScrollToUrl( Target ){
   if( Target == "" )
     return;
   Scroller.src = "./scroller-contents/" + Target;
-  console.log("Scroll to: "+Target + " -URL-");
+  //console.log("Scroll to: "+Target + " -URL-");
 }
 
 function ConnectBoxes(level, boxIx, style){
@@ -739,7 +787,7 @@ function UrlFromBoxName( name ){
       return LowUrl( App.BoxUrls[i][1] );
     }
   }
-  console.log( "BoxName "+name+" not found" );
+  //console.log( "BoxName "+name+" not found" );
   return "";
 }
 
@@ -917,7 +965,7 @@ function handleNewData( data ){
   if( commands.length > 1 ){
     OnReset();
     var str = commands[commands.length - 2];
-    console.log( str );
+    //console.log( str );
     eval( str );
 
   }
@@ -1002,9 +1050,16 @@ function OnKeepPanel(arg){
   App.KeepPanel = arg.checked;
 }
 
-
+/**
+ *
+ * @param arg
+ * @returns {boolean}
+ * @constructor
+ */
 function OnGetImage(arg){
-  alert( "Current Image - No Downloads Yet" );
+  //alert( "Current Image - No Downloads Yet" );
+  OnDownloadImage(this);
+  return true;// so that we process the click.
 }
 function OnGetToolbarImageMaps(arg){
   alert( "Complete Toolbar Image Map - No Downloads Yet" );
@@ -1013,5 +1068,26 @@ function OnGetMenuImageMaps(arg){
   alert( "Complete Menu Image Map - No Downloads Yet" );
 }
 
+function OnDownloadImage(){
+  if( !Annotated.available )
+    return;
+  var new_canvas = document.createElement('canvas');
+  new_canvas.width = Annotated.width;
+  new_canvas.height = Annotated.height;
+  var ctx = new_canvas.getContext('2d');
+  ctx.fillStyle = 'blue';
+  ctx.fillRect( 5, 5, 70, 70 );
+  ctx.drawImage(Gui.Ctx.canvas, Annotated.x, Annotated.y, Annotated.width, Annotated.height, 0,0, Annotated.width,Annotated.height );
+  var data = ctx.canvas.toDataURL("image/png");
 
+  //var data = Gui.Ctx.canvas.toDataURL('image/png');
+  /* Change MIME type to trick the browser to downlaod the file instead of displaying it */
+  data = data.replace(/^data:image\/[^;]*/, 'data:application/octet-stream');
+
+  var link = document.createElement('a');
+  link.download = Annotated.name + ".png";
+  link.href = data;
+  link.click();
+
+}
 
