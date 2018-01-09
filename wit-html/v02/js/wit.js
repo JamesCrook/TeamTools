@@ -956,11 +956,14 @@ function OnSpecial(){
   App.NumbersOnScreen = false;
   App.AnnotationMode = false;
 
+  var date = new Date();
+  var nMillis = date.getTime();
+
   if( str.indexOf( 'localhost' ) != -1)
     fileActionLoader(Async, "EVAL", "./raw/raw_menu.txt");
   else
     fileActionLoader(Async, "EVAL",
-      "https://wiki.audacityteam.org/wiki/WIT_Audacity_Menus?action=raw");
+      "https://wiki.audacityteam.org/wiki/WIT_Audacity_Menus?action=raw&time=" + nMillis);
 }
 
 function OnAnnotationMode(arg){
