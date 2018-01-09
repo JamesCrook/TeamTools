@@ -31,6 +31,20 @@ function DrawBlueSurround( Gui, x, y, w, h ){
   Gui.Ctx.stroke();
 }
 
+function DrawDottedSurround( Gui, x, y, w, h ){
+  Gui.Ctx.save();
+  Gui.Ctx.strokeStyle =  'blue';
+  Gui.Ctx.lineWidth = 1;
+  Gui.Ctx.setLineDash( [3,1] );
+  Gui.Ctx.beginPath();
+  var BorderLeft =  Math.min( 5, x);
+  var BorderTop  =  Math.min( 5, y);
+  Gui.Ctx.rect( x-BorderLeft, y-BorderTop, w+5+BorderLeft, h+5+BorderTop);
+  Gui.Ctx.stroke();
+  Gui.Ctx.restore();
+}
+
+
 function DrawRedSurround( Gui, x, y, w, h ){
   Gui.Ctx.strokeStyle = 'rgb(0,43,184)';
   Gui.Ctx.lineWidth = 4;

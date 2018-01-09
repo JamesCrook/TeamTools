@@ -272,9 +272,24 @@ function RedrawClicker(){
   if( (Gui.Rect[2]-BoxRow[3]-320 ) > 80 )
     Channels.push( [Start, BoxRow[3]+10+Spread, 0, 30] );
 
+  var TopLeft = { x:Channels[0][0], y:Channels[0][1] };
   for( i = 0; i < G.Boxes[LL].length; i++ ){
     DrawClicky( G, Channels[i%Channels.length], G.Boxes[LL][i] )
   }
+  if( !App.AnnotationMode )
+    return;
+
+  var x = BoxRow[2];
+  var y = BoxRow[3];
+  x = Math.max( x, Channels[0][0]);
+  y = Math.max( y, Channels[0][1]+30);
+  if( Channels.length > 1 ){
+    x = Math.max(x, Channels[1][0]);
+    y = Math.max(y, Channels[1][1] + 30);
+  }
+  DrawDottedSurround( G, TopLeft.x, TopLeft.y,
+    x - TopLeft.x, y-TopLeft.y);
+
 }
 
 window.onload = function(){
