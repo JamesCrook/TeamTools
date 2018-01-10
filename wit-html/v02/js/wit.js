@@ -257,7 +257,7 @@ function DrawAnnotationBox( name, x1,y1,x2,y2 )
   Annotated.width = x2 - x1 -2;
   Annotated.height = y2 - y1 -2;
 
-  Annotated.name = name.replace(/ /g, '');
+  Annotated.name = name;
   Annotated.available = true;
 
   if( !App.AnnotationMode )
@@ -302,6 +302,14 @@ function RedrawClicker(){
   var y1 = Channels[0][1];
   for( i = 0; i < G.Boxes[LL].length; i++ ){
     DrawClicky( G, Channels[i%Channels.length], G.Boxes[LL][i] )
+    var x = G.Boxes[LL][i][5];
+    var BX = App.Boxes[ x ];
+    //console.log( BX );
+    var BC =  G.Boxes[LL][i];
+    BX[6] = BC[0];
+    BX[7] = BC[1];
+    BX[8] = BC[2];
+    BX[9] = BC[3];
   }
 
   var x2 = BoxRow[2];
@@ -314,7 +322,7 @@ function RedrawClicker(){
   }
 
   var box = BoxRow[5];
-  DrawAnnotationBox(App.Boxes[box][5], x1, y1, x2, y2 );
+  DrawAnnotationBox( App.Boxes[box][5].replace(/ /g,'') + "Annotated", x1, y1, x2, y2 );
 }
 
 window.onload = function(){
@@ -948,6 +956,9 @@ function UpdateSelection( event ){
 function ImageClick(event, isclick){
   if( !isAppReady )
     return;
+  // let's us highlight something and move away...
+  if( event.shiftKey )
+    return;
   if( isclick){
     Menus[0].item = 0;
     Menus[0].iSel = 0;
@@ -1078,43 +1089,66 @@ function OnKeepPanel(arg){
 }
 
 /**
- *
- * @param arg
- * @returns {boolean}
+ * A Durl is a Data URL.  For example, an image represented as a Base64 URL
+ * string.
+ */
+
+/**
+ * Converts a string to a durl
+ * @returns {string}
  * @constructor
  */
-function OnGetImage(arg){
-  //alert( "Current Image - No Downloads Yet" );
-  OnDownloadImage(this);
-  return true;// so that we process the click.
-}
-function OnGetToolbarImageMaps(arg){
-  alert( "Complete Toolbar Image Map - No Downloads Yet" );
-}
-function OnGetMenuImageMaps(arg){
-  alert( "Complete Menu Image Map - No Downloads Yet" );
+function DurlOfText( text ){
+  return "data:application/txt," + encodeURIComponent(text);
 }
 
-function OnDownloadImage(){
-  if( !Annotated.available )
-    return;
+/**
+ * Converts the current annotated image region into a Durl.
+ * @returns {string}
+ */
+function DurlOfAnnotatedImage(){
   var new_canvas = document.createElement('canvas');
   new_canvas.width = Annotated.width;
   new_canvas.height = Annotated.height;
   var ctx = new_canvas.getContext('2d');
   ctx.fillStyle = 'blue';
-  ctx.fillRect( 5, 5, 70, 70 );
-  ctx.drawImage(Gui.Ctx.canvas, Annotated.x, Annotated.y, Annotated.width, Annotated.height, 0,0, Annotated.width,Annotated.height );
+  ctx.fillRect(5, 5, 70, 70);
+  ctx.drawImage(Gui.Ctx.canvas, Annotated.x, Annotated.y, Annotated.width,
+    Annotated.height, 0, 0, Annotated.width, Annotated.height);
   var data = ctx.canvas.toDataURL("image/png");
 
   //var data = Gui.Ctx.canvas.toDataURL('image/png');
   /* Change MIME type to trick the browser to downlaod the file instead of displaying it */
   data = data.replace(/^data:image\/[^;]*/, 'data:application/octet-stream');
+  return data;
+}
 
+function DownloadDurl( name, durl ){
   var link = document.createElement('a');
-  link.download = Annotated.name + ".png";
-  link.href = data;
+  link.download = name;
+  link.href =  durl;
   link.click();
+}
 
+
+function OnGetImage(){
+  if( !Annotated.available )
+    return;
+
+  DownloadDurl( Annotated.name + ".png", DurlOfAnnotatedImage());
+}
+
+function OnGetToolbarImageMaps(arg){
+  if( !Annotated.available )
+    return;
+
+  DownloadDurl( "Toolbars.txt", DurlOfText(App.ToolsImap()) );
+}
+
+function OnGetMenuImageMaps(arg){
+  if( !Annotated.available )
+    return;
+
+  DownloadDurl( "Menus.txt", DurlOfText("Menu Image Map") );
 }
 

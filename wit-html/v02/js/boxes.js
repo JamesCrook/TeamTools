@@ -937,8 +937,117 @@ bitmap_boxes = [
 
 
 
+function rectString( x1,y1,x2,y2, name, tip ){
+  var str = "rect ";
+  str += ("    "+x1).slice(-4)+ " ";
+  str += ("    "+y1).slice(-4)+ " ";
+  str += ("    "+x2).slice(-4)+ " ";
+  str += ("    "+y2).slice(-4)+ " ";
+  str += "[[" + name + "|" + tip + "]]\r\n";
+  return str;
+}
+
+/**
+ *
+ * @returns {string}
+ * @constructor
+ */
+function ToolMap(){
+  var i;
+  var BoxEnd = null;
+  var FB = null;
+  var str = "";
+  for(i=0;i< App.Boxes.length;i++){
+    var Box = App.Boxes[i];
+    if( Box[0] == 1 ){
+      var name = Box[5].replace(/ /g, '');
+      str += "|" + name + "=:<imagemap>\n";
+      str += "Image:" + name + "Annotated.png\r\n";
+      str += "desc none\r\n";
+      BoxEnd = Box;
+    }
+    if( Box[0] == 2 ){
+      // offset boxes by first actual location...
+      if( FB )
+        ;
+      else if( Box.length > 6 )
+        FB = [ Box[6]-3,Box[7]-3 ];
+      else
+        FB = [ 0,0 ];
+      str += rectString( Box[1]-FB[0], Box[2]-FB[1], Box[3]-FB[0], Box[4]-FB[1],
+        Box[5],
+        Box[5] + " for...");
+      if( Box.length > 6 ){
+        str += rectString(  Box[6]-FB[0],Box[7]-FB[1], Box[8]-FB[0], Box[9]-FB[1],
+          Box[5],
+          "For...");
+      }
+    }
+    if( BoxEnd && ( (i == App.Boxes.length -1 ) || App.Boxes[i+1][0]==1)){
+      str += rectString(BoxEnd[1], BoxEnd[2], BoxEnd[3], BoxEnd[4],
+        "Toolbars Overview#upper_tooldock",
+        BoxEnd[5] + " - click on the image to see this toolbar displayed" +
+        " in the default context of the upper tooldock layout");
+      str += "</imagemap>\n";
+      str += "{{ClickTip|x=" + (BoxEnd[3] - (FB?FB[0]:0) - 50) + "|y=-5}}\r\n\r\n\r\n";
+      str += "&nbsp;\r\n\r\n";
+      BoxEnd = null;
+      FB = null;
+    }
+  }
+  return str;
+}
 
 
+
+
+/**
+ * Template 'here doc'
+ * @returns {string}
+ * @constructor
+ */
+Audacity.ToolsImap = function ToolTemplate(){
+
+/*HEREDOC
+</noinclude><includeonly>{{#switch: {{{1|EditToolbar}}}
+|Dock1=:<imagemap>
+Image:Dock1Annotated.png
+desc none
+rect 2 2 121 16 [[Transport Toolbar|Transport Toolbar has buttons for controlling playback and recording and for moving to the project start or end]]
+rect 0 42 298 95 [[Transport Toolbar|Transport Toolbar has buttons for controlling playback and recording and for moving to the project start or end]]
+rect 181 2 271 16 [[Tools Toolbar|Tools Toolbar lets you choose various tools for selection, volume adjustment, zooming and time-shifting of audio]]
+rect 299 42 384 95 [[Tools Toolbar|Tools Toolbar lets you choose various tools for selection, volume adjustment, zooming and time-shifting of audio]]
+rect 359 2 523 16 [[Meter Toolbar|Recording Meter Toolbar lets you see if audio being recorded is clipped, which results in distortion]]
+rect 385 42 806 68 [[Meter Toolbar|Recording Meter Toolbar lets you see if audio being recorded is clipped, which results in distortion]]
+rect 650 2 806 16 [[Meter Toolbar|Playback Meter Toolbar lets you see if audio being edited is clipped, which results in distortion]]
+rect 385 69 806 95 [[Meter Toolbar|Playback Meter Toolbar lets you see if audio being edited is clipped, which results in distortion]]
+rect 4 178 94 191 [[Mixer Toolbar|Mixer Toolbar lets you adjust Recording Volume (the amplitude at which recordings will be made) and Playback Volume (how loud the project's audio sounds, not affecting the volume of exported audio]]
+rect 0 96 294 121 [[Mixer Toolbar|Mixer Toolbar lets you adjust Recording Volume (the amplitude at which recordings will be made) and Playback Volume (how loud the project's audio sounds, not affecting the volume of exported audio]]
+rect 155 178 235 191 [[Edit Toolbar|Edit Toolbar has buttons for editing and zooming which are an alternative to using menu items or keyboard shortcuts for these tasks]]
+rect 295 96 598 121 [[Edit Toolbar|Edit Toolbar has buttons for editing and zooming which are an alternative to using menu items or keyboard shortcuts for these tasks]]
+rect 269 178 368 191 [[Device Toolbar|Device Toolbar selects Audio Host, recording device, recording channels and playback device, avoiding the need to open Devices Preferences to make these settings]]
+rect 0 122 565 148 [[Device Toolbar|Device Toolbar selects Audio Host, recording device, recording channels and playback device, avoiding the need to open Devices Preferences to make these settings]]
+rect 439 178 580 191 [[Transcription Toolbar|Transcription Toolbar|Transcription Toolbar lets you play audio at a slower or faster speed than normal, also affecting pitch]]
+rect 599 96 806 121 [[Transcription Toolbar|Transcription Toolbar|Transcription Toolbar lets you play audio at a slower or faster speed than normal, also affecting pitch]]
+</imagemap>
+{{ClickTip|y=5}}
+
+
+&nbsp;
+HEREDOC*/
+
+  var pieces;
+
+/*HEREDOC
+|#default=
+{{ednote|This ednote will automagically be replaced by the Annotated
+ image {{{1}}}Annotated.png, when it is ready}}}}</includeonly>
+HEREDOC*/
+
+  pieces = Audacity.ToolsImap.toString().split( "HEREDOC" );
+
+  return pieces[1] + ToolMap() + pieces[3];
+};
 
 
 
