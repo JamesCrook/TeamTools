@@ -143,7 +143,7 @@ function GuiInit(){
   Gui.Canvas = document.getElementById("GuiCanvas");
   Gui.Ctx = Gui.Canvas.getContext("2d");
   Gui.DoesFade = true;
-  Gui.Rect = [0,0,865,587];
+  Gui.Rect = [0,0,1225,587];
   Gui.BackDraw = function() { Gui.Ctx.drawImage(Gui.Img, 0, 0);}
   Gui.FrontDraw = function( x,y,w,h ){
     Gui.Ctx.drawImage(Gui.Img, x, y, w, h, x, y, w, h);
@@ -333,6 +333,9 @@ window.onload = function(){
  */
 function DrawMenu( from ){
   var MenuIndent = App.Menus[from][0];
+  // A fixup, only for drawing.
+  if( Menu.bar )
+    Menu.width = 865;
   DrawMenuBack( Menu.x,Menu.y );
   var Res = { x:Menu.x, y:Menu.y};
   var i;
@@ -411,8 +414,32 @@ function RefreshImage(Gui){
       Menu.bar = (i==1);
       Menu.Level = i;
       SizeMenu( Menu.item );
+
+      // This calculation may move a second menu up relative to
+      // its usual position to use less vertical space in the manual.
+      if( App.AnnotationMode && (i==3) ){
+        var extraY = Menu.height - Menus[2].height;
+        extraY += Menu.y - Menus[2].y;
+        Menu.y -= Math.max( 0, extraY);
+        Menu.y = Math.max( Menu.y, Menus[2].y );
+      }
       DrawMenu( Menu.item );
     }
+
+    // Compute bounding box.
+    var iStart =(Level<2) ? 1:2;
+    var x1 = Menus[iStart].x;
+    var y1 = Menus[1].y;
+    var x2 = x1;
+    var y2 = y1;
+    x1 = x1 - 22;
+    for( i=iStart;i<=Math.min( 3,Level);i++){
+      Menu = Menus[i];
+      x2 = Math.max( x2, Menu.x + Menu.width);
+      y2 = Math.max( y2, Menu.y + Menu.height);
+    }
+    DrawAnnotationBox("Menu", x1, y1, x2, y2 );
+
     return;
   }
 
