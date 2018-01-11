@@ -257,7 +257,7 @@ function DrawAnnotationBox( name, x1,y1,x2,y2 )
   Annotated.width = x2 - x1 -2;
   Annotated.height = y2 - y1 -2;
 
-  Annotated.name = name;
+  Annotated.name = name + (App.AnnotationMode ? "" :"A");
   Annotated.available = true;
 
   if( !App.AnnotationMode )
@@ -446,7 +446,22 @@ function RefreshImage(Gui){
       x2 = Math.max( x2, Menu.x + Menu.width);
       y2 = Math.max( y2, Menu.y + Menu.height);
     }
-    DrawAnnotationBox("Menu", x1, y1, x2, y2 );
+    var name = "MenuBar";
+    var ix;
+
+    if( Level >= 2 ){
+      ix = Menus[2].item-1;
+      name = App.Menus[ix][2];
+    }
+
+    if( Level > 2 ){
+      ix = Menus[3].item-1;
+      name = name + "-"+App.Menus[ix][2];
+    }
+    name = name.replace( / /g, '_' );
+    if( Level >= 2 )
+      name = name + "Menu";
+    DrawAnnotationBox(name, x1, y1, x2, y2 );
 
     return;
   }
