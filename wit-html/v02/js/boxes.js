@@ -1051,7 +1051,93 @@ HEREDOC*/
 
 
 
+//[  1,  0, "Close", "Ctrl+W" ],
 
+/**
+ *
+ * @param anchor
+ * @returns {string}
+ * @constructor
+ */
+function CleanAnchor( anchor ){
+  var str = anchor.replace("...", "");
+  str = str.replace("/","_");
+  str = str.replace(/ /g,"_");
+  str = str.replace(/__/g,"_");
+  return str.toLowerCase();
+}
+
+
+/**
+ *
+ * @returns {string}
+ * @constructor
+ */
+function MenuMap(){
+  var i;
+  var BoxEnd = null;
+  var MenuName = "None";
+  var str = "";
+  var x=0;
+  var y=0;
+  for(i=0;i< App.Menus.length;i++){
+    var Box = App.Menus[i];
+    if( Box[0] == 0 ){
+      var name = Box[2].replace(/ /g, '_');
+      MenuName = name + "Menu#";
+      str += "|" + name + "=:<imagemap>\n";
+      str += "Image:" + name + "Menu.png\r\n";
+      str += "desc none\r\n";
+      x=50;
+      y=22;
+      BoxEnd = [0,0,0,0];
+    }
+    if( Box[0] == 1 ){
+      if( Box[2].indexOf("---") >= 0 ){
+        y += 12;
+      } else {
+        str += rectString(x, y, x + 300, y + 22, MenuName + CleanAnchor(Box[2]), "tip about " + Box[2] );
+        y += 22;
+      }
+      BoxEnd[ 2 ] = x+300;
+      BoxEnd[ 3 ] = y;
+
+    }
+    if( BoxEnd && ( (i == App.Menus.length -1 ) || App.Menus[i+1][0]==0)){
+      str += "</imagemap>\n";
+      str += "{{ClickTip|x=" + (BoxEnd[2] - 50) + "|y=15}}\r\n\r\n\r\n";
+      str += "&nbsp;\r\n\r\n";
+      BoxEnd = null;
+    }
+  }
+  return str;
+}
+
+
+
+/**
+ * Template 'here doc'
+ * @returns {string}
+ * @constructor
+ */
+Audacity.MenuImap = function MenuTemplate(){
+
+/*HEREDOC
+</noinclude><includeonly>{{#switch: {{{menu}}}
+HEREDOC*/
+
+  var pieces;
+
+/*HEREDOC
+|#default=
+{{ednote|This ednote will automagically be replaced by the Annotated
+menu {{{menu}}}.png, when it is ready}}}}</includeonly>
+HEREDOC*/
+
+  pieces = Audacity.MenuImap.toString().split( "HEREDOC" );
+
+  return pieces[1] + MenuMap() + pieces[3];
+};
 
 
 

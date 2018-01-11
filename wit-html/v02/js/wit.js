@@ -1164,6 +1164,6 @@ function OnGetMenuImageMaps(arg){
   if( !Annotated.available )
     return;
 
-  DownloadDurl( "Menus.txt", DurlOfText("Menu Image Map") );
+  DownloadDurl( "all-menus.txt", DurlOfText(App.MenuImap()) );
 }
 
