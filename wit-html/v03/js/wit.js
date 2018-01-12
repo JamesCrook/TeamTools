@@ -6,6 +6,7 @@
 var App = Audacity;
 var Scroller;
 var UrlHolder;
+var DoxyUrlHolder;
 var RemoteUrl = "";
 var MenuComponent = "";
 var BoxComponent = "";
@@ -329,6 +330,7 @@ window.onload = function(){
   Message = document.getElementById("message");
   Scroller = document.getElementById("scroller");
   UrlHolder = document.getElementById("url-holder");
+  DoxyUrlHolder = document.getElementById("doxy-url-holder");
   GuiInit();
   ClickerInit();
   MayRefresh();
@@ -782,8 +784,10 @@ function LowUrl( Url ){
   var AlphaLink = AlphaManualLink( Url );
   var LocalLink = LocalManualLink( Url );
   var str = "";
-  str += " ~~ Alpha Manual: " + CraftAlphaLink( AlphaLink );
-  str += " ~~ WIT Manual: " + CraftLocalLink( LocalLink);
+  str += " ~~ Alpha Manual: " + CraftAlphaLink(AlphaLink);
+  str += " ~~ WIT Manual: " + CraftLocalLink(LocalLink);
+  UrlHolder.innerHTML = str;
+  str = "";
   if( MenuComponent ){
     if( App.Doxy[ MenuComponent] )
       str+= " ~~ Doxygen: " + CraftDoxyLink( App.Doxy[ MenuComponent] );
@@ -794,7 +798,7 @@ function LowUrl( Url ){
       str+= " ~~ Doxygen: " + CraftOtherDoxyLink( App.Doxy2[ BoxComponent] );
     BoxComponent = '';
   }
-  UrlHolder.innerHTML = str + ' ~~~';
+  DoxyUrlHolder.innerHTML = str + ' ~~';
   return LocalLink;
 }
 
@@ -1067,10 +1071,13 @@ function OnSpecial(){
 
   App.KeepPanel = false;
   ScrollToUrl( "special_menu.html" );
-  SetUrlVisibility( true );
+  SetUrlVisibility( false );
+  SetDoxyUrlVisibility( true );
   App.KeepPanel = true;
   App.NumbersOnScreen = false;
   App.AnnotationMode = false;
+  App.ShowUrls = false;
+  App.ShowDoxygen = true;
 
   var date = new Date();
   var nMillis = date.getTime();
@@ -1099,12 +1106,19 @@ function OnAnnotationMode(arg){
 function SetUrlVisibility( value ){
   UrlHolder.style.display = value ? 'inline': 'none';
 }
+function SetDoxyUrlVisibility( value ){
+  DoxyUrlHolder.style.display = value ? 'inline': 'none';
+}
+
+function OnShowDoxygenUrls(arg){
+  App.ShowDoxygen = arg.checked;
+  SetDoxyUrlVisibility( App.ShowUrls || App.ShowDoxygen );
+}
 
 function OnShowUrls(arg){
   App.ShowUrls = arg.checked;
   SetUrlVisibility( App.ShowUrls );
-//  LastHover = -2;
-//  MayRefresh();
+  SetDoxyUrlVisibility( App.ShowUrls || App.ShowDoxygen );
 }
 
 function OnKeepPanel(arg){

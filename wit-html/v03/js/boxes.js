@@ -7,7 +7,8 @@ var Audacity = {};
 Audacity.AnnotationMode = false;
 Audacity.KeepPanel = false;
 Audacity.NumbersOnScreen = false;
-Audacity.ShowUrls = true;
+Audacity.ShowUrls = false;
+Audacity.ShowDoxygen = true;
 
 
 // These are the boxes on the main image map.
