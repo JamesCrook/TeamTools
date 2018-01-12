@@ -1085,6 +1085,7 @@ function MenuMap(from, prefix, priorRects){
   var indent = -1;
   var SubItems = [];
   var name;
+  var subsAllowed = false;
   //console.log( "Map from:"+from+" prefix:"+prefix );
   for(i=from;i< App.Menus.length;i++){
     var Box = App.Menus[i];
@@ -1105,6 +1106,7 @@ function MenuMap(from, prefix, priorRects){
       x=50+(indent *200);
       y=27;
       BoxEnd = [0,0,0,0];
+      subsAllowed = true;
     }
     else if( Box[0] == (indent+1) ){
       if( Box[2].indexOf("---") >= 0 ){
@@ -1112,12 +1114,21 @@ function MenuMap(from, prefix, priorRects){
       } else {
         innerRects += rectString(x, y, x + 200, y + 22, MenuName + CleanAnchor(Box[2]), "tip about " + Box[2] );
         y += 22;
-        SubItems.push( i );
+//      SubItems.push( i );
       }
       BoxEnd[ 2 ] = x+200;
       BoxEnd[ 3 ] = y;
     }
-    if( BoxEnd && ( (i == App.Menus.length -1 ) || App.Menus[i+1][0]<=indent)){
+
+    var nextIndent = -1;
+    if( i < App.Menus.length -1 )
+      nextIndent = App.Menus[i+1][0];
+    if( (nextIndent > Box[0]) && (Box[0] >indent) && subsAllowed ){
+      SubItems.push(i);
+      subsAllowed = false;
+    }
+
+    if( BoxEnd && (nextIndent <= indent)){
       str += innerRects;
       str += "</imagemap>\n";
       str += "{{ClickTip|x=" + (BoxEnd[2] - 50) + "|y=15}}\r\n\r\n\r\n";
@@ -1164,21 +1175,113 @@ HEREDOC*/
   pieces = Audacity.MenuImap.toString().split( "HEREDOC" );
 
   var mappy = MenuMap(0, "", "");
-  console.log( mappy );
+  //console.log( mappy );
 
   return pieces[1] + mappy  + pieces[3];
 };
 
 
+/**
+ * returns all menus starting at item from, or the empty string.
+ * @returns {string}
+ * @constructor
+ */
+function MakeKeyboardReference(from, prefix){
+  var i;
+  var str = "";
+  var Name ="";
+  var lowName="";
+  var Prefix = "";
+  var indent = -1;
+  var SubItems = [];
+  var results = "";
+  var subsAllowed = false;
+  var TopName = "";
+  var bEmpty =true;
+
+  //console.log( "Keyboard from:"+from+" prefix:"+prefix );
+  for(i=from;i< App.Menus.length;i++){
+    var Box = App.Menus[i];
+    if( Box[0] < indent )
+      return results;
+    if( i== from ){
+      indent = Box[0];
+    }
+    Name = Box[2];
+    lowName = CleanAnchor( Name );
+    var boxIndent = Box[0];
+    if( Name.indexOf("---") >=0 )
+      ;
+    else if( boxIndent == indent ){
+      str += "<div id=\""+lowName+"\"></div>\r\n";
+      if( Box[0] == 0 )
+        str += "==[["+Name+"_Menu|"+Name+" Menu]]==\r\n";
+      if( Box[0] == 1 )
+        str += "===[["+prefix +"_Menu:" + Name+"|"+prefix + ": " +Name+"]]===\r\n";
+      str += "{{note|{{hoverfull|hover=File menu|full=File}} }}\r\n";
+      str += "{| class=\"prettytablerows\" rules = \"rows\" border = \"2\"" +
+        " width=\"100%\"\r\n";
+      str += "!width=\"15%\"|Action\r\n";
+      str += "!width=\"10%\"|Shortcut\r\n";
+      str += "!width=\"75%\"|Description\r\n";
+      Prefix = Name;
+      subsAllowed = true;
+      bEmpty = true;
+      TopName = Name;
+    }
+    else if( boxIndent == (indent+1) ){
+      str += "|-\r\n";
+      if( boxIndent == 1 )
+        str += "|[["+TopName+ "_Menu#" + lowName + "|" + Name + "]]\r\n";
+      else
+        str += "|[["+prefix + "_Menu:" + TopName+ "#" + lowName + "|" + Name + "]]\r\n";
+      if( Box[3] == "" )
+        str += "|{{unassigned}}\r\n";
+      else
+        str += "|{{shortcut|"+Box[3]+"}}\r\n";
+      str += "|{{hoverext|hover=Creates a new and empty project window to" +
+        " start working on new or imported Tracks|ext=.}}\r\n";
+      bEmpty = false;
+    }
+
+    var nextIndent = -1;
+    if( i < App.Menus.length -1 )
+      nextIndent = App.Menus[i+1][0];
+    if( (nextIndent > Box[0]) && (Box[0] >indent) && subsAllowed ){
+      SubItems.push(i);
+      subsAllowed = false;
+    }
+
+    if( nextIndent <= indent ){
+      if( !bEmpty ){
+        str += "|}\r\n";
+        str += "{{hoverext|hover=|ext=}}\r\n";
+        results += str;
+        bEmpty = true;
+      }
+      str = "";
+      if( SubItems.length > 0  ){
+        for(j=0;j<SubItems.length ;j++){
+          results += MakeKeyboardReference(SubItems[j], TopName );
+        }
+        SubItems=[];
+      }
+    }
+
+  }
+  return results;
+}
 
 
 
-
-
-
-
-
-
+/**
+ * Template 'here doc'
+ * @returns {string}
+ * @constructor
+ */
+Audacity.KeyboardReference = function KeyboardReferenceTemplate(){
+  return MakeKeyboardReference(0,"");
+};
 
 
 

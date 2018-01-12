@@ -1154,16 +1154,13 @@ function OnGetImage(){
 }
 
 function OnGetToolbarImageMaps(arg){
-  if( !Annotated.available )
-    return;
-
   DownloadDurl( "Toolbars.txt", DurlOfText(App.ToolsImap()) );
 }
 
 function OnGetMenuImageMaps(arg){
-  if( !Annotated.available )
-    return;
-
   DownloadDurl( "all-menus.txt", DurlOfText(App.MenuImap()) );
 }
 
+function OnGetKeyboardReference(arg){
+  DownloadDurl( "KeyboardReference.txt", DurlOfText(App.KeyboardReference()) );
+}
