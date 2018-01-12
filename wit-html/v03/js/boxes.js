@@ -1217,7 +1217,7 @@ function MakeKeyboardReference(from, prefix){
       if( Box[0] == 0 )
         str += "==[["+Name+"_Menu|"+Name+" Menu]]==\r\n";
       if( Box[0] == 1 )
-        str += "===[["+prefix +"_Menu:" + Name+"|"+prefix + ": " +Name+"]]===\r\n";
+        str += "===[["+prefix +"_Menu:_" + Name+"|"+prefix + ": " +Name+"]]===\r\n";
       str += "{{note|{{hoverfull|hover=File menu|full=File}} }}\r\n";
       str += "{| class=\"prettytablerows\" rules = \"rows\" border = \"2\"" +
         " width=\"100%\"\r\n";
@@ -1234,7 +1234,7 @@ function MakeKeyboardReference(from, prefix){
       if( boxIndent == 1 )
         str += "|[["+TopName+ "_Menu#" + lowName + "|" + Name + "]]\r\n";
       else
-        str += "|[["+prefix + "_Menu:" + TopName+ "#" + lowName + "|" + Name + "]]\r\n";
+        str += "|[["+prefix + "_Menu:_" + TopName+ "#" + lowName + "|" + Name + "]]\r\n";
       if( Box[3] == "" )
         str += "|{{unassigned}}\r\n";
       else
