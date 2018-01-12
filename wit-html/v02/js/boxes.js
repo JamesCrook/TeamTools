@@ -1069,48 +1069,75 @@ function CleanAnchor( anchor ){
 
 
 /**
- *
+ * returns all menus starting at item from, or the empty string.
  * @returns {string}
  * @constructor
  */
-function MenuMap(){
+function MenuMap(from, prefix, priorRects){
   var i;
   var BoxEnd = null;
   var MenuName = "None";
   var str = "";
+  var results = "";
+  var innerRects = "";
   var x=0;
   var y=0;
-  for(i=0;i< App.Menus.length;i++){
+  var indent = -1;
+  var SubItems = [];
+  var name;
+  //console.log( "Map from:"+from+" prefix:"+prefix );
+  for(i=from;i< App.Menus.length;i++){
     var Box = App.Menus[i];
-    if( Box[0] == 0 ){
-      var name = Box[2].replace(/ /g, '_');
-      MenuName = name + "Menu#";
-      str += "|" + name + "=:<imagemap>\n";
-      str += "Image:" + name + "Menu.png\r\n";
+    if( Box[0] < indent )
+      return results;
+    if( i== from ){
+      indent = Box[0];
+    }
+    if( Box[0] == indent ){
+      innerRects = "";
+      str = "";
+      name = Box[2].replace(/ /g, '_');
+      MenuName = prefix + name + "Menu#";
+      str += "|" + prefix + name + "=:<imagemap>\n";
+      str += "Image:" + prefix + name + "Menu.png\r\n";
       str += "desc none\r\n";
-      x=50;
-      y=22;
+      str += priorRects;
+      x=50+(indent *200);
+      y=27;
       BoxEnd = [0,0,0,0];
     }
-    if( Box[0] == 1 ){
+    else if( Box[0] == (indent+1) ){
       if( Box[2].indexOf("---") >= 0 ){
-        y += 12;
+        y += 7;
       } else {
-        str += rectString(x, y, x + 300, y + 22, MenuName + CleanAnchor(Box[2]), "tip about " + Box[2] );
+        innerRects += rectString(x, y, x + 200, y + 22, MenuName + CleanAnchor(Box[2]), "tip about " + Box[2] );
         y += 22;
+        SubItems.push( i );
       }
-      BoxEnd[ 2 ] = x+300;
+      BoxEnd[ 2 ] = x+200;
       BoxEnd[ 3 ] = y;
-
     }
-    if( BoxEnd && ( (i == App.Menus.length -1 ) || App.Menus[i+1][0]==0)){
+    if( BoxEnd && ( (i == App.Menus.length -1 ) || App.Menus[i+1][0]<=indent)){
+      str += innerRects;
       str += "</imagemap>\n";
       str += "{{ClickTip|x=" + (BoxEnd[2] - 50) + "|y=15}}\r\n\r\n\r\n";
       str += "&nbsp;\r\n\r\n";
+      if( innerRects )
+        results += str;
       BoxEnd = null;
+      //console.log( str );
+      str = "";
+
+      var j;
+      for(j=0;j<SubItems.length;j++){
+        results += MenuMap( SubItems[j], prefix + name +"-", priorRects +
+          innerRects );
+      }
+      SubItems = [];
+
     }
   }
-  return str;
+  return results;
 }
 
 
@@ -1136,7 +1163,10 @@ HEREDOC*/
 
   pieces = Audacity.MenuImap.toString().split( "HEREDOC" );
 
-  return pieces[1] + MenuMap() + pieces[3];
+  var mappy = MenuMap(0, "", "");
+  console.log( mappy );
+
+  return pieces[1] + mappy  + pieces[3];
 };
 
 
