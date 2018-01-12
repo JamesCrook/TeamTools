@@ -1077,9 +1077,17 @@ function OnSpecial(){
 
   if( str.indexOf( 'localhost' ) != -1)
     fileActionLoader(Async, "EVAL", "./raw/raw_menu.txt");
-  else
+  else {
     fileActionLoader(Async, "EVAL",
-      "https://wiki.audacityteam.org/wiki/WIT_Audacity_Menus?action=raw&time=" + nMillis);
+      "https://wiki.audacityteam.org/wiki/WIT_Audacity_Menus?action=raw&time=" +
+      nMillis);
+    fileActionLoader(Async, "EVAL",
+      "https://wiki.audacityteam.org/wiki/WIT_Audacity_Tooltips?action=raw&time=" +
+      nMillis);
+    fileActionLoader(Async, "EVAL",
+      "https://wiki.audacityteam.org/wiki/WIT_Audacity_Extra_Shortcuts?action=raw&time=" +
+      nMillis);
+  }
 }
 
 function OnAnnotationMode(arg){
