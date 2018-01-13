@@ -432,7 +432,7 @@ Audacity.Menus =
     [  1,  0, "Find Clipping...", "" ],
     [  1,  0, "----", "" ],
     [  1,  0, "Beat Finder...", "" ],
-    [  1,  0, "Regular Interval Labels0..", "" ],
+    [  1,  0, "Regular Interval Labels...", "" ],
     [  1,  0, "Sample Data Export...", "" ],
     [  1,  0, "Silence Finder...", "" ],
     [  1,  0, "Sound Finder...", "" ],
@@ -454,6 +454,107 @@ Audacity.Menus =
     [  1,  0, "Check for Updates...", "" ],
     [  1,  0, "About Audacity...", "" ],
 
+    [  0,  0, "Extra", "" ],
+    [  1,  1, "A Cool New Command", "" ],
+    [  1,  1, "Transport", "" ],
+    [  2,  0, "Play", "" ],
+    [  2,  0, "Stop", "" ],
+    [  2,  0, "Play One Second", " 1" ],
+    [  2,  0, "Play To Selection", "B" ],
+    [  2,  0, "Play Before Selection Start", "Shift+F5" ],
+    [  2,  0, "Play After Selection Start", "Shift+F6" ],
+    [  2,  0, "Play Before Selection End", "Shift+F7" ],
+    [  2,  0, "Play After Selection End", "Shift+F8" ],
+    [  2,  0, "Play Before and After Selection Start", "Ctrl+Shift+F5" ],
+    [  2,  0, "Play Before and After Selection End", "Ctrl+Shift+F7" ],
+    [  2,  0, "Play Cut Preview", "C" ],
+    [  1,  1, "Tools", "" ],
+    [  2,  0, "Selection Tool", "F1" ],
+    [  2,  0, "Envelope Tool", "F2" ],
+    [  2,  0, "Draw Tool", "F3" ],
+    [  2,  0, "Zoom Tool", "F4" ],
+    [  2,  0, "Time Shift Tool", "F5" ],
+    [  2,  0, "Multi Tool", "F6" ],
+    [  2,  0, "Previous Tool", "A" ],
+    [  2,  0, "Next Tool", "D" ],
+    [  1,  1, "Mixer", "" ],
+    [  2,  0, "Adjust playback volume", "" ],
+    [  2,  0, "Increase playback volume", "" ],
+    [  2,  0, "Decrease playback volume", "" ],
+    [  2,  0, "Adjust recording volume", "" ],
+    [  2,  0, "Increase recording volume", "" ],
+    [  2,  0, "Decrease recording volume", "" ],
+    [  1,  1, "Edit", "" ],
+    [  2,  0, "DeleteKey", " Backspace" ],
+    [  2,  0, "DeleteKey2", " Delete" ],
+    [  1,  1, "Transcription", "" ],
+    [  2,  0, "Play-at-Speed", "" ],
+    [  2,  0, "Loop Play-at-Speed", "" ],
+    [  2,  0, "Play Cut Preview-at-Speed", "" ],
+    [  2,  0, "Adjust playback speed", "" ],
+    [  2,  0, "Increase playback speed", "" ],
+    [  2,  0, "Decrease playback speed", "" ],
+    [  2,  0, "Move to Previous Label", "Alt+Left" ],
+    [  2,  0, "Move to Next Label", "Alt+Right" ],
+    [  1,  1, "Seek", "" ],
+    [  2,  0, "Short seek left during playback", " Left" ],
+    [  2,  0, "Short seek right during playback", " Right" ],
+    [  2,  0, "Long seek left during playback", "Shift+Left" ],
+    [  2,  0, "Long Seek right during playback", "Shift+Right" ],
+    [  1,  1, "Device", "" ],
+    [  2,  0, "Change recording device", "Shift+I" ],
+    [  2,  0, "Change playback device", "Shift+O" ],
+    [  2,  0, "Change audio host", "Shift+H" ],
+    [  2,  0, "Change recording channels", "Shift+N" ],
+    [  1,  1, "Selection", "" ],
+    [  2,  0, "Snap To Off", "" ],
+    [  2,  0, "Snap To Nearest", "" ],
+    [  2,  0, "Snap To Prior", "" ],
+    [  2,  0, "Selection to Start", "Shift+Home" ],
+    [  2,  0, "Selection to End", "Shift+End" ],
+    [  2,  0, "Selection Extend Left", "Shift+Left" ],
+    [  2,  0, "Selection Extend Right", "Shift+Right" ],
+    [  2,  0, "Set (or Extend) Left Selection", "" ],
+    [  2,  0, "Set (or Extend) Right Selection", "" ],
+    [  2,  0, "Selection Contract Left", "Ctrl+Shift+Right" ],
+    [  2,  0, "Selection Contract Right", "Ctrl+Shift+Left" ],
+    [  1,  0, "----", "" ],
+    [  1,  1, "Focus", "" ],
+    [  2,  0, "Move backward from toolbars to tracks", "Ctrl+Shift+F6" ],
+    [  2,  0, "Move forward from toolbars to tracks", "Ctrl+F6" ],
+    [  2,  0, "Move Focus to Previous Track", " Up" ],
+    [  2,  0, "Move Focus to Next Track", " Down" ],
+    [  2,  0, "Move Focus to First Track", "Ctrl+Home" ],
+    [  2,  0, "Move Focus to Last Track", "Ctrl+End" ],
+    [  2,  0, "Move Focus to Previous and Select", "Shift+Up" ],
+    [  2,  0, "Move Focus to Next and Select", "Shift+Down" ],
+    [  2,  0, "Toggle Focused Track", " Return" ],
+    [  2,  0, "Toggle Focused Track", " NUMPAD_ENTER" ],
+    [  1,  1, "Cursor", "" ],
+    [  2,  0, "Cursor Left", " Left" ],
+    [  2,  0, "Cursor Right", " Right" ],
+    [  2,  0, "Cursor Short Jump Left", "," ],
+    [  2,  0, "Cursor Short Jump Right", "." ],
+    [  2,  0, "Cursor Long Jump Left", "Shift+," ],
+    [  2,  0, "Cursor Long Jump Right", "Shift+." ],
+    [  2,  0, "Clip Left", "" ],
+    [  2,  0, "Clip Right", "" ],
+    [  1,  1, "Track", "" ],
+    [  2,  0, "Change pan on focused track", "Shift+P" ],
+    [  2,  0, "Pan left on focused track", "Alt+Shift+Left" ],
+    [  2,  0, "Pan right on focused track", "Alt+Shift+Right" ],
+    [  2,  0, "Change gain on focused track", "Shift+G" ],
+    [  2,  0, "Increase gain on focused track", "Alt+Shift+Up" ],
+    [  2,  0, "Decrease gain on focused track", "Alt+Shift+Down" ],
+    [  2,  0, "Open menu on focused track", "Shift+M" ],
+    [  2,  0, "Mute/Unmute focused track", "Shift+U" ],
+    [  2,  0, "Solo/Unsolo focused track", "Shift+S" ],
+    [  2,  0, "Close focused track", "Shift+C" ],
+    [  2,  0, "Move focused track up", "" ],
+    [  2,  0, "Move focused track down", "" ],
+    [  2,  0, "Move focused track to top", "" ],
+    [  2,  0, "Move focused track to bottom", "" ],
+    [  1,  0, "Full screen (on/off)", "F11" ],
   ];
 
 
@@ -1025,12 +1126,9 @@ Audacity.Tips =
 { key:   "Help",
   short: "Help",
   long:  "Help"},
-{ key:   "Ext-Bar",
-  short: "Ext-Bar",
-  long:  "Ext-Bar"},
-{ key:   "Ext-Command",
-  short: "Ext-Command",
-  long:  "Ext-Command"},
+{ key:   "Extra",
+  short: "Extra optional commands",
+  long:  "+."},
 { key:   "New",
   short: "Creates a new and empty project window to start working on new or imported Tracks",
   long:  "Creates a new and empty project window to start working on new or imported Tracks."},
@@ -1049,7 +1147,7 @@ Audacity.Tips =
 { key:   "Save Project As...",
   short: "Same as \"Save Project\" above, but allows you to save a copy of an open project to a different name or location",
   long:  "Same as \"Save Project\" above, but allows you to save a copy of an open project to a different name or location"},
-{ key:   "Save Other",
+{ key:   "Export",
   short: "For exporting audio files",
   long:  "For exporting audio files"},
 { key:   "Import",
@@ -1841,9 +1939,9 @@ Audacity.Tips =
 { key:   "Transcription",
   short: "Extra commands related to play at speed",
   long:  "Extra commands related to play at speed"},
-{ key:   "Scrub",
-  short: "Extra commands related to scrubbing",
-  long:  "Extra commands related to scrubbing"},
+{ key:   "Seek",
+  short: "Extra commands related to seeking",
+  long:  "Extra commands related to seeking"},
 { key:   "Selection",
   short: "Extra commands related to selecting",
   long:  "Extra commands related to selecting."},
@@ -2117,7 +2215,6 @@ Audacity.Tips =
 { key:   "Move focused track to bottom",
   short: "Moves the focused track down to the bottom of the track table and moves the focus there",
   long:  "Moves the focused track down to the bottom of the track table and moves the focus there."},
-
 
 ];
 
@@ -2477,12 +2574,16 @@ function ZipTheTips( ){
   var j;
   var Unused = [];
   var str = "";
+  var key;
   for(i=0;i<App.Tips.length;i++){
     var Tip = App.Tips[i];
+    key = Tip.key;
+    key = key.replace( /Invoke the (.*) effect dialog/, "$1..." );
+    if( key != Tip.key ){
+      //console.log(" Replaced "+ key);
+      Tip.key = key;
+    }
     Unused.push( Tip  );
-    //str += "{ key:   \""+SafeQuote(Tip.key) + "\",\r\n";
-    //str += "  short: \""+SafeQuote(Tip.short)+ "\",\r\n";
-    //str += "  long:  \""+SafeQuote(Tip.long) + "\"},\r\n";
   }
 
   //console.log( str );
@@ -2490,16 +2591,32 @@ function ZipTheTips( ){
     var Menu = App.Menus[j];
     var Name = Menu[2];
     if( Name.indexOf("---") < 0 ){
+      if( Menu[0]==0 )
+        str+="\r\n// "+Name +"\r\n";
       for(i=0;i<Unused.length;i++){
         if( Unused[i].key == Name ){
-          Menu[ 'short' ] = Unused[i].short;
-          Menu[ 'long' ] = Unused[i].long;
+          Tip = Unused[i];
+          if( Tip.long.indexOf( '+' ) == 0 )
+            Tip.long = Tip.long.replace( '+', Tip.short );
+          Menu[ 'short' ] = Tip.short;
+          Menu[ 'long' ] = Tip.long;
+          if( Tip.long.indexOf( Tip.short) == 0 )
+            Tip.long = Tip.long.replace( Tip.short, '+' );
+          str += "{ key:   \""+SafeQuote(Tip.key) + "\",\r\n";
+          str += "  short: \""+SafeQuote(Tip.short)+ "\",\r\n";
+          str += "  long:  \""+SafeQuote(Tip.long) + "\"},\r\n";
           Unused.splice(i,1);
           break;
         }
       }
+      if( !Menu.short ){
+          console.log( "Unmatched: "+ Name );
+      }
     }
   }
+  //console.log( str );
+  console.log("Leftovers: ");
+  console.log( Unused );
 }
 
 /**

@@ -305,7 +305,7 @@ Audacity.Menus =
     [  1,  0, "Find Clipping...", "" ],
     [  1,  0, "----", "" ],
     [  1,  0, "Beat Finder...", "" ],
-    [  1,  0, "Regular Interval Labels0..", "" ],
+    [  1,  0, "Regular Interval Labels...", "" ],
     [  1,  0, "Sample Data Export...", "" ],
     [  1,  0, "Silence Finder...", "" ],
     [  1,  0, "Sound Finder...", "" ],
