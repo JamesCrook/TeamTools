@@ -11,6 +11,14 @@
         }
 
     </style>
+    <script>
+        console.log( "Protocol is "+window.location.protocol);
+        if (window.location.protocol == "http:"){
+            console.log("Http: detected");
+            if( window.location.href.indexOf("localhost") < 0 )
+                window.location.href = "https:" + window.location.href.slice(5);
+        }
+    </script>
     <!--<script data-cfasync="false" src="./js/download.js"></script>-->
     <script data-cfasync="false" src="./js/boxes.js"></script>
     <script data-cfasync="false" src="./js/doxy.js"></script>
