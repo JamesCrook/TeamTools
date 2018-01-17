@@ -1,197 +1,200 @@
 <!DOCTYPE html>
-<html class="client-nojs" dir="ltr" lang="en"><head>
-<meta charset="utf-8"/>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
 <title>Select Menu: Clip Boundaries - Audacity Development Manual</title>
 
 
 
 
+<!--[if IE 6]><link rel="stylesheet" href="../m/skins/monobook/ie60fixes.css/303.css" media="screen"/><![endif]--><!--[if IE 7]><link rel="stylesheet" href="../m/skins/monobook/ie70fixes.css/303.css" media="screen"/><![endif]-->
+<meta name="ResourceLoaderDynamicStyles" content=""/>
 
-<meta content="" name="ResourceLoaderDynamicStyles"/>
+<meta name="generator" content="MediaWiki 1.28.2"/>
+<link rel="shortcut icon" href="../favicon.ico"/>
+<link rel="search" type="application/opensearchdescription+xml" target="manual" href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" title="Audacity Development Manual (en)"/>
+<link rel="EditURI" type="application/rsd+xml" target="manual" href="http://alphamanual.audacityteam.org/m/api.php?action=rsd"/>
+<link rel="copyright" href="https://creativecommons.org/licenses/by/3.0/" />
 
-<meta content="MediaWiki 1.28.2" name="generator"/>
-<link href="../favicon.ico" rel="shortcut icon"/>
-<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
-<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
-<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
-
-<link href="303.css" media="screen" rel="stylesheet"/>
+<link rel="stylesheet" href="../m/skins/monobook/main.css/303.css" media="screen" />
 </head>
 <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Select_Menu_Clip_Boundaries rootpage-Select_Menu_Clip_Boundaries skin-monobook action-view"><div id="globalWrapper">
 		<div id="column-content">
-			<div class="mw-body" id="content" role="main">
+			<div id="content" class="mw-body" role="main">
 				<a id="top"></a>
 				
 				<div class="mw-indicators">
 </div>
-				<!--
-\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Select Menu: Clip Boundaries</h1><!--}
-\par\vspace{1mm}\hrule
---><!--latex \begin{multicols}{2}--><!--latex \label{select:menu:clip:boundaries:}-->
+				<h1 id="firstHeading" class="firstHeading" lang="en">Select Menu: Clip Boundaries</h1>
 				
-				<div class="mw-body-content" id="bodyContent">
-					
-					
-										
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Audacity Development Manual</div>
+					<div id="contentSub"></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a target="manual" href="http://alphamanual.audacityteam.org/man/Select_Menu:_Clip_Boundaries#searchInput">search</a></div>
 
-					
-					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p><br/>
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><p><br />
 </p>
-<div class="intro">A set of commands to enable you to make selections based on any <!--latex 
-\hyperref[\foo{audacity:tracks:and:clips:}]{--><a href="audacity_tracks_and_clips.html" title="Audacity Tracks and Clips">Clips</a><!--latex }
---> that you may have in the project. </div>
-<dl><dd><!--\textit{--><i>Click, or hover, on any menu item in the image to read about that command.  &nbsp;<span style="font-size:0.8em"><!--latex 
-\hyperref[\foo{select:menu:clip:boundaries::skiptheimage}]{--><a href="#skiptheimage">Skip the image</a><!--latex }
---></span></i><!--}--></dd>
-<dd><div class="noresize"><map name="ImageMap_1_891131623"><area alt="Edit Menu" coords="2,3,26,19" href="edit_menu.html" shape="rect" title="Edit Menu"/><area alt="Select Menu" coords="33,3,70,19" href="select_menu.html" shape="rect" title="Select Menu"/><area alt="View Menu" coords="77,3,106,19" href="view_menu.html" shape="rect" title="View Menu"/><area alt="Transport Menu" coords="113,3,169,19" href="transport_menu.html" shape="rect" title="Transport Menu"/><area alt="Tracks Menu" coords="176,3,216,19" href="tracks_menu.html" shape="rect" title="Tracks Menu"/><area alt="Generate Menu" coords="223,3,277,19" href="generate_menu.html" shape="rect" title="Generate Menu"/><area alt="Effect Menu" coords="284,3,317,19" href="effect_menu.html" shape="rect" title="Effect Menu"/><area alt="Analyze Menu" coords="324,3,368,19" href="analyze_menu.html" shape="rect" title="Analyze Menu"/><area alt="Help Menu" coords="375,3,404,19" href="help_menu.html" shape="rect" title="Help Menu"/><area alt="Ext-Bar Menu" coords="411,3,453,19" href="ext_bar_menu.html" shape="rect" title="Ext-Bar Menu"/><area alt="Ext-Command Menu" coords="460,3,542,19" href="ext_command_menu.html" shape="rect" title="Ext-Command Menu"/><area alt="Menu Bar" coords="0,0,600,22" href="menu_reference.html" shape="rect" title="Menu Bar"/><area alt="Selects all of the audio in all of the tracks" coords="39,23,298,45" href="select_menu.html#all" shape="rect" title="Selects all of the audio in all of the tracks"/><area alt="Deselects all of the audio in all of the tracks" coords="39,45,298,67" href="select_menu.html#none" shape="rect" title="Deselects all of the audio in all of the tracks"/><area alt="For extending a selection to more tracks" coords="39,67,298,89" href="select_menu_tracks.html" shape="rect" title="For extending a selection to more tracks"/><area alt="For modifying, saving and restoring a selection" coords="39,89,298,111" href="select_menu_region.html" shape="rect" title="For modifying, saving and restoring a selection"/><area alt="For making a selection of a frequency range" coords="39,111,298,133" href="select_menu_spectral.html" shape="rect" title="For making a selection of a frequency range"/><area alt="For modifying a selection, taking account of clips" coords="39,133,298,155" href="#" shape="rect" title="For modifying a selection, taking account of clips"/><area alt="Selects from the position of the cursor to the previously stored cursor position" coords="39,162,298,184" href="select_menu.html#cursor_to_stored_cursor_position" shape="rect" title="Selects from the position of the cursor to the previously stored cursor position"/><area alt="Stores the current cursor position for use in a later selection" coords="39,184,298,206" href="select_menu.html#store_cursor_position" shape="rect" title="Stores the current cursor position for use in a later selection"/><area alt="Moves the edges of a selection region (or the cursor position) slightly so they are at a rising zero crossing point" coords="39,213,298,235" href="select_menu_at_zero_crossings.html" shape="rect" title="Moves the edges of a selection region (or the cursor position) slightly so they are at a rising zero crossing point"/><area alt="Selects from the current cursor position back to the right-hand edge of the previous clip" coords="310,136,571,158" href="#previous_clip_boundary_to_cursor" shape="rect" title="Selects from the current cursor position back to the right-hand edge of the previous clip"/><area alt="Selects from the current cursor position forward to the left-hand edge of the next clip" coords="310,158,571,180" href="#cursor_to_next_clip_boundary" shape="rect" title="Selects from the current cursor position forward to the left-hand edge of the next clip"/><area alt="Moves the selection to the previous clip" coords="310,180,571,202" href="#previous_clip" shape="rect" title="Moves the selection to the previous clip"/><area alt="Moves the selection to the next clip" coords="310,202,571,224" href="#next_clip" shape="rect" title="Moves the selection to the next clip"/></map><!--
-
-\par\Needspace{127.2pt}\begin{picture}(233.60000000000002,97.2)
---><!--   \put(0,0){\includegraphics[scale=0.4]{--><img alt="Select-Clip BoundariesMenu.png" height="243" src="../m/images/5/52/select_clip_boundariesmenu.png" usemap="#ImageMap_1_891131623" width="584"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/5/52/select_clip_boundariesmenu.png--></img><!--}}
---><!--   \put(0.8,89.60000000000001){\hyperref[\foo{edit:menu:}]{\makebox(9.6,6.3999999999999915){}}}
-   \put(13.200000000000001,89.60000000000001){\hyperref[\foo{select:menu:}]{\makebox(14.799999999999999,6.3999999999999915){}}}
-   \put(30.8,89.60000000000001){\hyperref[\foo{view:menu:}]{\makebox(11.600000000000005,6.3999999999999915){}}}
-   \put(45.2,89.60000000000001){\hyperref[\foo{transport:menu:}]{\makebox(22.400000000000006,6.3999999999999915){}}}
-   \put(70.4,89.60000000000001){\hyperref[\foo{tracks:menu:}]{\makebox(16.0,6.3999999999999915){}}}
-   \put(89.2,89.60000000000001){\hyperref[\foo{generate:menu:}]{\makebox(21.60000000000001,6.3999999999999915){}}}
-   \put(113.60000000000001,89.60000000000001){\hyperref[\foo{effect:menu:}]{\makebox(13.200000000000003,6.3999999999999915){}}}
-   \put(129.6,89.60000000000001){\hyperref[\foo{analyze:menu:}]{\makebox(17.600000000000023,6.3999999999999915){}}}
-   \put(150.0,89.60000000000001){\hyperref[\foo{help:menu:}]{\makebox(11.600000000000023,6.3999999999999915){}}}
-   \put(164.4,89.60000000000001){\hyperref[\foo{ext:bar:menu:}]{\makebox(16.80000000000001,6.3999999999999915){}}}
-   \put(184.0,89.60000000000001){\hyperref[\foo{ext:command:menu:}]{\makebox(32.80000000000001,6.3999999999999915){}}}
-   \put(15.600000000000001,79.2){\hyperref[\foo{select:menu:all}]{\makebox(103.6,8.799999999999997){}}}
-   \put(15.600000000000001,70.4){\hyperref[\foo{select:menu:none}]{\makebox(103.6,8.799999999999997){}}}
-   \put(15.600000000000001,61.6){\hyperref[\foo{select:menu:tracks:}]{\makebox(103.6,8.800000000000004){}}}
-   \put(15.600000000000001,52.8){\hyperref[\foo{select:menu:region:}]{\makebox(103.6,8.800000000000004){}}}
-   \put(15.600000000000001,44.0){\hyperref[\foo{select:menu:spectral:}]{\makebox(103.6,8.799999999999997){}}}
-   \put(15.600000000000001,35.2){\hyperref[\foo{select:menu:clip:boundaries::}]{\makebox(103.6,8.799999999999997){}}}
-   \put(15.600000000000001,23.599999999999994){\hyperref[\foo{select:menu:cursor:to:stored:cursor:position}]{\makebox(103.6,8.800000000000011){}}}
-   \put(15.600000000000001,14.799999999999997){\hyperref[\foo{select:menu:store:cursor:position}]{\makebox(103.6,8.799999999999997){}}}
-   \put(15.600000000000001,3.200000000000003){\hyperref[\foo{select:menu:at:zero:crossings:}]{\makebox(103.6,8.799999999999997){}}}
-   \put(124.0,34.0){\hyperref[\foo{select:menu:clip:boundaries::previous:clip:boundary:to:cursor}]{\makebox(104.4,8.799999999999997){}}}
-   \put(124.0,25.200000000000003){\hyperref[\foo{select:menu:clip:boundaries::cursor:to:next:clip:boundary}]{\makebox(104.4,8.799999999999997){}}}
-   \put(124.0,16.39999999999999){\hyperref[\foo{select:menu:clip:boundaries::previous:clip}]{\makebox(104.4,8.800000000000011){}}}
-   \put(124.0,7.599999999999994){\hyperref[\foo{select:menu:clip:boundaries::next:clip}]{\makebox(104.4,8.799999999999997){}}}
-\end{picture}
-
---></div></dd></dl>
-<div id="skiptheimage"></div>
-
+<div class="intro">A set of commands to enable you to make selections based on any <a href="audacity_tracks_and_clips.html" title="Audacity Tracks and Clips">Clips</a> that you may have in the project. </div>
+<dl><dd><i>Click, or hover, on any menu item in the image to read about that command.  &#160;<span style="font-size:0.8em"><a href="#skiptheimage">Skip the image</a></span></i></dd>
+<dd><div class="noresize"><map name="ImageMap_1_814064207"><area href="edit_menu.html" shape="rect" coords="2,3,26,19" alt="Edit Menu" title="Edit Menu"/><area href="select_menu.html" shape="rect" coords="33,3,70,19" alt="Select Menu" title="Select Menu"/><area href="view_menu.html" shape="rect" coords="77,3,106,19" alt="View Menu" title="View Menu"/><area href="transport_menu.html" shape="rect" coords="113,3,169,19" alt="Transport Menu" title="Transport Menu"/><area href="tracks_menu.html" shape="rect" coords="176,3,216,19" alt="Tracks Menu" title="Tracks Menu"/><area href="generate_menu.html" shape="rect" coords="223,3,277,19" alt="Generate Menu" title="Generate Menu"/><area href="effect_menu.html" shape="rect" coords="284,3,317,19" alt="Effect Menu" title="Effect Menu"/><area href="analyze_menu.html" shape="rect" coords="324,3,368,19" alt="Analyze Menu" title="Analyze Menu"/><area href="help_menu.html" shape="rect" coords="375,3,404,19" alt="Help Menu" title="Help Menu"/><area href="extra_menu.html" shape="rect" coords="411,3,453,19" alt="Extra Menu" title="Extra Menu"/><area href="extra_menu.html" shape="rect" coords="460,3,542,19" alt="Extra Menu" title="Extra Menu"/><area href="menu_reference.html" shape="rect" coords="0,0,600,22" alt="Menu Bar" title="Menu Bar"/><area href="select_menu.html#all" shape="rect" coords="39,23,298,45" alt="Selects all of the audio in all of the tracks" title="Selects all of the audio in all of the tracks"/><area href="select_menu.html#none" shape="rect" coords="39,45,298,67" alt="Deselects all of the audio in all of the tracks" title="Deselects all of the audio in all of the tracks"/><area href="select_menu_tracks.html" shape="rect" coords="39,67,298,89" alt="For extending a selection to more tracks" title="For extending a selection to more tracks"/><area href="select_menu_region.html" shape="rect" coords="39,89,298,111" alt="For modifying, saving and restoring a selection" title="For modifying, saving and restoring a selection"/><area href="select_menu_spectral.html" shape="rect" coords="39,111,298,133" alt="For making a selection of a frequency range" title="For making a selection of a frequency range"/><area href="#" shape="rect" coords="39,133,298,155" alt="For modifying a selection, taking account of clips" title="For modifying a selection, taking account of clips"/><area href="select_menu.html#cursor_to_stored_cursor_position" shape="rect" coords="39,162,298,184" alt="Selects from the position of the cursor to the previously stored cursor position" title="Selects from the position of the cursor to the previously stored cursor position"/><area href="select_menu.html#store_cursor_position" shape="rect" coords="39,184,298,206" alt="Stores the current cursor position for use in a later selection" title="Stores the current cursor position for use in a later selection"/><area href="select_menu_at_zero_crossings.html" shape="rect" coords="39,213,298,235" alt="Moves the edges of a selection region (or the cursor position) slightly so they are at a rising zero crossing point" title="Moves the edges of a selection region (or the cursor position) slightly so they are at a rising zero crossing point"/><area href="#previous_clip_boundary_to_cursor" shape="rect" coords="310,136,571,158" alt="Selects from the current cursor position back to the right-hand edge of the previous clip" title="Selects from the current cursor position back to the right-hand edge of the previous clip"/><area href="#cursor_to_next_clip_boundary" shape="rect" coords="310,158,571,180" alt="Selects from the current cursor position forward to the left-hand edge of the next clip" title="Selects from the current cursor position forward to the left-hand edge of the next clip"/><area href="#previous_clip" shape="rect" coords="310,180,571,202" alt="Moves the selection to the previous clip" title="Moves the selection to the previous clip"/><area href="#next_clip" shape="rect" coords="310,202,571,224" alt="Moves the selection to the next clip" title="Moves the selection to the next clip"/></map><img alt="Select-Clip BoundariesMenu.png" src="../m/images/5/52/select_clip_boundariesmenu.png" width="584" height="243" usemap="#ImageMap_1_814064207"/></div></dd></dl>
+<div id="skiptheimage"></div><div style="position:relative;">
+<div class="note" style="width:150px;position:absolute;left:100px;top:-30px;"><div class="floatleft"><a href="click_tips.html" title="Click for details"><img alt="Click for details" src="../m/images/6/63/bigpointercursor.png" width="20" height="33" /></a></div><b>Click on the image to learn more</b><br /></div>
+</div>
+<p><br />
+</p>
+</li></ul>
 <div id="previous_clip_boundary_to_cursor"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Previous_Clip_Boundary_to_Cursor_.C2.A0">Previous Clip Boundary to Cursor &nbsp;<font size="-1"></font></span></h2><!--}--><!--latex 
-\label{select:menu:clip:boundaries:previous:clip:boundary:to:cursor}--><!--latex 
-\label{select:menu:clip:boundaries:skiptheimage}-->
-<div class="note"><!--\textbf{--><b>Previous Clip Boundary to Cursor</b><!--}--> and the three related commands below <!--\textbf{--><b>Cursor to Next Clip Boundary</b><!--}-->, <!--\textbf{--><b>Previous Clip</b><!--}--> and <!--\textbf{--><b>Next Clip</b><!--}--> use the clips in the <!--latex 
-\hyperref[\foo{audacity:selection:}]{--><a href="audacity_selection.html" title="Audacity Selection">selected</a><!--latex }
---> track or tracks. If no tracks are selected, the clips in all tracks are used.</div>
-<p>Selects from the current position of the editing cursor or selection backwards to the previous <!--latex 
-\hyperref[\foo{audacity:tracks:and:clips:}]{--><a href="audacity_tracks_and_clips.html" title="Audacity Tracks and Clips">clip</a><!--latex }
---> boundary, so extending the selection with each use to include further clips (or blank space) until the start of the track is reached. 
+<h2><span class="mw-headline" id="Previous_Clip_Boundary_to_Cursor_.C2.A0">Previous Clip Boundary to Cursor &#160;<font size="-1"></font></span></h2>
+<div class="note"><b>Previous Clip Boundary to Cursor</b> and the three related commands below <b>Cursor to Next Clip Boundary</b>, <b>Previous Clip</b> and <b>Next Clip</b> use the clips in the <a href="audacity_selection.html" title="Audacity Selection">selected</a> track or tracks. If no tracks are selected, the clips in all tracks are used.</div>
+<p>Selects from the current position of the editing cursor or selection backwards to the previous <a href="audacity_tracks_and_clips.html" title="Audacity Tracks and Clips">clip</a> boundary, so extending the selection with each use to include further clips (or blank space) until the start of the track is reached. 
 </p>
-<div class="example"><!--\textbf{--><b>Example:</b><!--}-->
+<div class="example"><b>Example:</b>
 <dl><dd>Starting with this selection ... </dd>
-<dd><span title="Initial Selection"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="SelectMenuClipBoundaries InitialSelection.png" height="117" src="../m/images/8/89/selectmenuclipboundaries_initialselection.png" width="587"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/8/89/selectmenuclipboundaries_initialselection.png--></img><!--}\par
---></span></dd>
+<dd><span title="Initial Selection"><img alt="SelectMenuClipBoundaries InitialSelection.png" src="../m/images/8/89/selectmenuclipboundaries_initialselection.png" width="587" height="117" /></span></dd>
 <dd>after the first command the selection is extended from the editing cursor position to the start of the clip:</dd>
-<dd><span title="Initial Selection"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="SelectMenuClipBoundaries PrevToCursor 1.png" height="117" src="../m/images/b/b7/selectmenuclipboundaries_prevtocursor_1.png" width="587"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/b7/selectmenuclipboundaries_prevtocursor_1.png--></img><!--}\par
---></span></dd>
+<dd><span title="Initial Selection"><img alt="SelectMenuClipBoundaries PrevToCursor 1.png" src="../m/images/b/b7/selectmenuclipboundaries_prevtocursor_1.png" width="587" height="117" /></span></dd>
 <dd>after the second command the selection is extended to the end of the previous clip:</dd>
-<dd><span title="Initial Selection"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="SelectMenuClipBoundaries PrevToCursor 2.png" height="117" src="../m/images/0/0e/selectmenuclipboundaries_prevtocursor_2.png" width="587"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/0/0e/selectmenuclipboundaries_prevtocursor_2.png--></img><!--}\par
---></span></dd>
+<dd><span title="Initial Selection"><img alt="SelectMenuClipBoundaries PrevToCursor 2.png" src="../m/images/0/0e/selectmenuclipboundaries_prevtocursor_2.png" width="587" height="117" /></span></dd>
 <dd>and after the third command the selection is extended to the start of the previous clip:</dd>
-<dd><span title="Initial Selection"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="SelectMenuClipBoundaries PrevToCursor 3.png" height="117" src="../m/images/c/cf/selectmenuclipboundaries_prevtocursor_3.png" width="587"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/c/cf/selectmenuclipboundaries_prevtocursor_3.png--></img><!--}\par
---></span></dd></dl></div>
+<dd><span title="Initial Selection"><img alt="SelectMenuClipBoundaries PrevToCursor 3.png" src="../m/images/c/cf/selectmenuclipboundaries_prevtocursor_3.png" width="587" height="117" /></span></div></dd></dl>
 <div id="cursor_to_next_clip_boundary"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Cursor_to_Next_Clip_Boundary_.C2.A0">Cursor to Next Clip Boundary &nbsp;<font size="-1"></font></span></h2><!--}--><!--latex 
-\label{select:menu:clip:boundaries:cursor:to:next:clip:boundary}-->
+<h2><span class="mw-headline" id="Cursor_to_Next_Clip_Boundary_.C2.A0">Cursor to Next Clip Boundary &#160;<font size="-1"></font></span></h2>
 <p>Selects from the current position of the editing cursor or selection forwards to the next next clip boundary, so extending the selection with each use to include further clips (or blank space) until the final clip is reached.  
 </p>
-<div class="example"><!--\textbf{--><b>Example:</b><!--}-->
+<div class="example"><b>Example:</b>
 <dl><dd>Starting with this selection ... </dd>
-<dd><span title="Initial Selection"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="SelectMenuClipBoundaries InitialSelection.png" height="117" src="../m/images/8/89/selectmenuclipboundaries_initialselection.png" width="587"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/8/89/selectmenuclipboundaries_initialselection.png--></img><!--}\par
---></span></dd>
+<dd><span title="Initial Selection"><img alt="SelectMenuClipBoundaries InitialSelection.png" src="../m/images/8/89/selectmenuclipboundaries_initialselection.png" width="587" height="117" /></span></dd>
 <dd>after the first command the selection is extended from the editing cursor position to the end of the clip:</dd>
-<dd><span title="Initial Selection"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="SelectMenuClipBoundaries CursorToNext 1.png" height="117" src="../m/images/3/38/selectmenuclipboundaries_cursortonext_1.png" width="587"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/3/38/selectmenuclipboundaries_cursortonext_1.png--></img><!--}\par
---></span></dd>
+<dd><span title="Initial Selection"><img alt="SelectMenuClipBoundaries CursorToNext 1.png" src="../m/images/3/38/selectmenuclipboundaries_cursortonext_1.png" width="587" height="117" /></span></dd>
 <dd>after the second command the selection is extended to the start of the next clip:</dd>
-<dd><span title="Initial Selection"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="SelectMenuClipBoundaries CursorToNext 2.png" height="118" src="../m/images/c/c7/selectmenuclipboundaries_cursortonext_2.png" width="587"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/c/c7/selectmenuclipboundaries_cursortonext_2.png--></img><!--}\par
---></span></dd>
+<dd><span title="Initial Selection"><img alt="SelectMenuClipBoundaries CursorToNext 2.png" src="../m/images/c/c7/selectmenuclipboundaries_cursortonext_2.png" width="587" height="118" /></span></dd>
 <dd>and after the third command the selection is extended to the end of the next clip:</dd>
-<dd><span title="Initial Selection"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="SelectMenuClipBoundaries CursorToNext 3.png" height="117" src="../m/images/c/c9/selectmenuclipboundaries_cursortonext_3.png" width="587"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/c/c9/selectmenuclipboundaries_cursortonext_3.png--></img><!--}\par
---></span></dd></dl></div>
+<dd><span title="Initial Selection"><img alt="SelectMenuClipBoundaries CursorToNext 3.png" src="../m/images/c/c9/selectmenuclipboundaries_cursortonext_3.png" width="587" height="117" /></span></div></dd></dl>
 <div id="previous_clip"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Previous_Clip_.C2.A0Alt_.2B_P">Previous Clip &nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">Alt + P</span></font></span></h2><!--}--><!--latex 
-\label{select:menu:clip:boundaries:previous:clip}-->
+<h2><span class="mw-headline" id="Previous_Clip_.C2.A0Alt_.2B_P">Previous Clip &#160;<font size="-1"><span class="kbrd" style="background-color: #d0d0f8">Alt + P</span></font></span></h2>
 
 <p>Moves or creates a selection so as to fully select in the current clip where the editing cursor or selection is. However if that cursor is already exactly at the start of the current clip or if the current clip is already fully selected, this command will fully select in the previous clip. Further use of Previous Clip then fully selects in the previous clip until the first clip is reached.  
 </p>
-<div class="example"><!--\textbf{--><b>Example:</b><!--}-->
+<div class="example"><b>Example:</b>
 <dl><dd>Starting with this selection ... </dd>
-<dd><span title="Initial Selection"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="SelectMenuClipBoundaries InitialSelection.png" height="117" src="../m/images/8/89/selectmenuclipboundaries_initialselection.png" width="587"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/8/89/selectmenuclipboundaries_initialselection.png--></img><!--}\par
---></span></dd>
+<dd><span title="Initial Selection"><img alt="SelectMenuClipBoundaries InitialSelection.png" src="../m/images/8/89/selectmenuclipboundaries_initialselection.png" width="587" height="117" /></span></dd>
 <dd>after the first command the clip containing the cursor is selected:</dd>
-<dd><span title="Initial Selection"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="SelectMenuClipBoundaries Previous 1.png" height="117" src="../m/images/0/02/selectmenuclipboundaries_previous_1.png" width="587"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/0/02/selectmenuclipboundaries_previous_1.png--></img><!--}\par
---></span></dd>
+<dd><span title="Initial Selection"><img alt="SelectMenuClipBoundaries Previous 1.png" src="../m/images/0/02/selectmenuclipboundaries_previous_1.png" width="587" height="117" /></span></dd>
 <dd>after the second command the previous clip is selected:</dd>
-<dd><span title="Initial Selection"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="SelectMenuClipBoundaries Previous 2.png" height="118" src="../m/images/f/f4/selectmenuclipboundaries_previous_2.png" width="587"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/f/f4/selectmenuclipboundaries_previous_2.png--></img><!--}\par
---></span></dd>
-<dd>Subsequent commands will do nothing since the first clip in the track is selected.</dd></dl></div>
+<dd><span title="Initial Selection"><img alt="SelectMenuClipBoundaries Previous 2.png" src="../m/images/f/f4/selectmenuclipboundaries_previous_2.png" width="587" height="118" /></span></dd>
+<dd>Subsequent commands will do nothing since the first clip in the track is selected.</div></dd></dl>
 <div id="next_clip"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Next_Clip_.C2.A0Alt_.2B_N">Next Clip &nbsp;<font size="-1"><span class="kbrd" style="background-color: #e0e0f0">Alt + N</span></font></span></h2><!--}--><!--latex 
-\label{select:menu:clip:boundaries:next:clip}-->
+<h2><span class="mw-headline" id="Next_Clip_.C2.A0Alt_.2B_N">Next Clip &#160;<font size="-1"><span class="kbrd" style="background-color: #d0d0f8">Alt + N</span></font></span></h2>
 <p>Moves or creates a selection so as to fully select in the next clip. If the editing cursor is exactly at the start of a clip, this command selects all of that current clip.
 </p>
-<div class="example"><!--\textbf{--><b>Example:</b><!--}-->
+<div class="example"><b>Example:</b>
 <dl><dd>Starting with this selection ... </dd>
-<dd><span title="Initial Selection"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="SelectMenuClipBoundaries InitialSelection.png" height="117" src="../m/images/8/89/selectmenuclipboundaries_initialselection.png" width="587"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/8/89/selectmenuclipboundaries_initialselection.png--></img><!--}\par
---></span></dd>
+<dd><span title="Initial Selection"><img alt="SelectMenuClipBoundaries InitialSelection.png" src="../m/images/8/89/selectmenuclipboundaries_initialselection.png" width="587" height="117" /></span></dd>
 <dd>after the first command the next clip is selected:</dd>
-<dd><span title="Initial Selection"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="SelectMenuClipBoundaries Next 1.png" height="117" src="../m/images/5/5b/selectmenuclipboundaries_next_1.png" width="587"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/5/5b/selectmenuclipboundaries_next_1.png--></img><!--}\par
---></span></dd>
+<dd><span title="Initial Selection"><img alt="SelectMenuClipBoundaries Next 1.png" src="../m/images/5/5b/selectmenuclipboundaries_next_1.png" width="587" height="117" /></span></dd>
 <dd>after the second command the next clip is selected:</dd>
-<dd><span title="Initial Selection"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="SelectMenuClipBoundaries Next 2.png" height="117" src="../m/images/4/4d/selectmenuclipboundaries_next_2.png" width="587"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/4/4d/selectmenuclipboundaries_next_2.png--></img><!--}\par
---></span></dd>
-<dd>Subsequent commands will do nothing since the last clip in the track is selected.</dd></dl></div>
-<p><br/>
+<dd><span title="Initial Selection"><img alt="SelectMenuClipBoundaries Next 2.png" src="../m/images/4/4d/selectmenuclipboundaries_next_2.png" width="587" height="117" /></span></dd>
+<dd>Subsequent commands will do nothing since the last clip in the track is selected.</div></dd></dl>
+<p><br />
 </p>
-<div class="note">To move the editing cursor to the start of the next or previous clip without selecting its audio, see the <span class="menu">Transport &gt; <!--latex 
-\hyperref[\foo{transport:menu:cursor:to:previous:clip:boundary}]{--><a href="transport_menu_cursor_to.html#previous_clip_boundary" title="Transport Menu: Cursor to">Cursor to</a><!--latex }
---></span> commands for Previous Clip Boundary and Next Clip Boundary.</div>
-<p><!--latex 
-\hyperref[\foo{select:menu:}]{--><a href="select_menu.html" title="Select Menu"><!--\textbf{--><b>&lt;</b><!--}-->&nbsp; Back to: Select Menu</a><!--latex }
+<div class="note">To move the editing cursor to the start of the next or previous clip without selecting its audio, see the <span class="menu">Transport &gt; <a href="transport_menu_cursor_to.html#previous_clip_boundary" title="Transport Menu: Cursor to">Cursor to</a></span> commands for Previous Clip Boundary and Next Clip Boundary.</div>
+<p><a href="select_menu.html" title="Select Menu"><b>&lt;</b>&#160; Back to: Select Menu</a>
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20180117112908
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.121 seconds
+Real time usage: 0.128 seconds
+Preprocessor visited node count: 210/1000000
+Preprocessor generated node count: 6518/1000000
+Post‐expand include size: 6157/2097152 bytes
+Template argument size: 4454/2097152 bytes
+Highest expansion depth: 5/40
+Expensive parser function count: 0/100
 -->
-</p>
 
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   72.933      1 - -total
+ 79.08%   57.675      1 - Template:Menus
+ 72.97%   53.220      1 - Template:All-menus
+  4.96%    3.620      4 - Template:Shortcut
+  4.15%    3.024      2 - Template:Note
+  3.25%    2.367      1 - Template:ClickTip
+  3.01%    2.192      4 - Template:Example
+  2.40%    1.748      1 - Template:Intro
+  2.39%    1.741      2 - Template:Ednote
+  1.53%    1.115      1 - Template:Menu
+-->
 
-
-
-
+<!-- Saved in parser cache with key helpmediawiki:pcache:idhash:5622-0!*!0!!*!5!* and timestamp 20180117112908 and revision id 54758
+ -->
 </div>
-										
+										<!-- end content -->
 										<div class="visualClear"></div>
 				</div>
 			</div>
 		</div>
-		
-		<div class="visualClear"></div>
+		<div id="column-one">
+			
 					
-		</div><!--latex \end{multicols}-->
+				
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="../index.html" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+					
+		<div class="generated-sidebar portlet" id="p-Navigation" role="navigation">
+		<h3>Navigation</h3>
+		<div class='pBody'>
+			<ul><li> <a href="../index.html" title="Main Page">Manual Home Page</a></li>
+<li> <a href="../index.html#using" title="Main Page">Using Audacity</a>
+<ul><li> <a href="audacity_tour_guide.html" title="Audacity Tour Guide">Tour Guide</a></li>
+<li> <a href="new_features_in_this_release.html" title="New features in this release">New Features</a></li>
+<li> <a href="../quick_help.html" title="Quick Help">Getting Started</a></li>
+<li> <a href="preferences.html" title="Preferences">Preferences</a></li>
+<li> <a href="menu_reference.html" title="Menu Reference">Menu Bar</a></li>
+<li> <a href="toolbars_overview.html" title="Toolbars Overview">Toolbars</a></li>
+<li> <a href="keyboard_shortcut_reference.html" title="Keyboard Shortcut Reference">Commands / Shortcuts</a></li>
+<li> <a href="index_of_effects_generators_and_analyzers.html" title="Index of Effects, Generators and Analyzers">Effects</a></li>
+<li> <a href="tutorials.html" title="Tutorials">Tutorials</a></li>
+<li> <a href="tips.html" title="Tips">Tips</a></li></ul></li></ul>
+		</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-Reference" role="navigation">
+		<h3>Reference</h3>
+		<div class='pBody'>
+			<ul><li> <a href="../index.html#reference" title="Main Page">Reference</a>
+<ul><li> <a href="digital_audio.html" title="Digital Audio">Digital Audio</a></li>
+<li> <a href="glossary.html" title="Glossary">Glossary</a></li>
+<li> <a href="subject_index.html" title="Subject Index">Subject Index</a></li></ul></li>
+<li> <span title="Frequently Asked Questions"><a rel="nofollow" target="manual" class="external text" href="faq.html">FAQ</a></span></li></ul>
+		</div>
+		</div>
 		
-</body></html>
+		<div class="generated-sidebar portlet" id="p-Useful_Links" role="navigation">
+		<h3>Useful Links</h3>
+		<div class='pBody'>
+			<ul><li> <a rel="nofollow" target="manual" class="external text" href="https://forum.audacityteam.org/index.php">Forum</a></li>
+<li> <a rel="nofollow" target="manual" class="external text" href="https://wiki.audacityteam.org/wiki/Audacity_Wiki_Home_Page">Wiki</a></li>
+<li> <a rel="nofollow" target="manual" class="external text" href="https://www.audacityteam.org/download/">Latest Release</a></li></ul>
+		</div>
+		</div>
+		
+			
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-copyrightico">
+									
+							</div>
+					<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="../m/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/m/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /m/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31"/></a>
+							</div>
+					
+		<div align="center"><ul id="f_list"><li>Offline version created on 2018-01-17 - <a target="manual" href="http://alphamanual.audacityteam.org/man/Select_Menu:_Clip_Boundaries">Check current version of this page (development Manual)</a></li></ul></div>
+</div>
+		</div>
+		</body></html>

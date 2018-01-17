@@ -1,247 +1,219 @@
 <!DOCTYPE html>
-<html class="client-nojs" dir="ltr" lang="en"><head>
-<meta charset="utf-8"/>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
 <title>Export Audio - Audacity Development Manual</title>
 
 
 
 
+<!--[if IE 6]><link rel="stylesheet" href="../m/skins/monobook/ie60fixes.css/303.css" media="screen"/><![endif]--><!--[if IE 7]><link rel="stylesheet" href="../m/skins/monobook/ie70fixes.css/303.css" media="screen"/><![endif]-->
+<meta name="ResourceLoaderDynamicStyles" content=""/>
 
-<meta content="" name="ResourceLoaderDynamicStyles"/>
+<meta name="generator" content="MediaWiki 1.28.2"/>
+<link rel="shortcut icon" href="../favicon.ico"/>
+<link rel="search" type="application/opensearchdescription+xml" target="manual" href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" title="Audacity Development Manual (en)"/>
+<link rel="EditURI" type="application/rsd+xml" target="manual" href="http://alphamanual.audacityteam.org/m/api.php?action=rsd"/>
+<link rel="copyright" href="https://creativecommons.org/licenses/by/3.0/" />
 
-<meta content="MediaWiki 1.28.2" name="generator"/>
-<link href="../favicon.ico" rel="shortcut icon"/>
-<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
-<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
-<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
-
-<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+<link rel="stylesheet" href="../m/skins/monobook/main.css/303.css" media="screen" />
 </head>
 <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-File_Export_Dialog rootpage-File_Export_Dialog skin-monobook action-view"><div id="globalWrapper">
 		<div id="column-content">
-			<div class="mw-body" id="content" role="main">
+			<div id="content" class="mw-body" role="main">
 				<a id="top"></a>
 				
 				<div class="mw-indicators">
 </div>
-				<!--
-\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Export Audio</h1><!--}
-\par\vspace{1mm}\hrule
---><!--latex \begin{multicols}{2}--><!--latex \label{file:export:dialog:}-->
+				<h1 id="firstHeading" class="firstHeading" lang="en">Export Audio</h1>
 				
-				<div class="mw-body-content" id="bodyContent">
-					
-					
-										
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Audacity Development Manual</div>
+					<div id="contentSub"></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a target="manual" href="http://alphamanual.audacityteam.org/man/File_Export_Dialog#searchInput">search</a></div>
 
-					
-					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en">
-<p><br/>
-
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"></li></ul>
+<p><br />
 </p>
+
 <div class="intro">
-<p>The <!--\textit{--><i><!--\textbf{--><b>Export Audio</b><!--}--></i><!--}--> dialog (for export of a single audio file from the whole project)  is accessed from <span class="menu">File &gt; Save Other &gt; <!--latex 
-\hyperref[\foo{file:menu:save:other:exportaudio}]{--><a href="file_menu_save_other.html#exportaudio" title="File Menu: Save Other">Export Audio...</a><!--latex }
---></span>. When you use <span class="menu">File &gt; Save Other &gt; <!--latex 
-\hyperref[\foo{file:menu:save:other:exportselectedaudio}]{--><a href="file_menu_save_other.html#exportselectedaudio" title="File Menu: Save Other">Export Selected Audio...</a><!--latex }
---></span> to export a single audio file from a <!--latex 
-\hyperref[\foo{audacity:selection:}]{--><a href="audacity_selection.html" title="Audacity Selection">selection</a><!--latex }
--->, the <!--\textit{--><i><!--\textbf{--><b>Export Selected Audio</b><!--}--></i><!--}--> dialog appears. Both these dialogs are identical and let you specify folder location, file name, format and encoding options for your exported file.
+<p>The <i><b>Export Audio</b></i> dialog (for export of a single audio file from the whole project)  is accessed from <span class="menu">File &gt; Export &gt; <a href="file_menu_export.html#exportaudio" title="File Menu: Export">Export Audio...</a></span>. When you use <span class="menu">File &gt; Export &gt; <a href="file_menu_export.html#exportselectedaudio" title="File Menu: Export">Export Selected Audio...</a></span> to export a single audio file from a <a href="audacity_selection.html" title="Audacity Selection">selection</a>, the <i><b>Export Selected Audio</b></i> dialog appears. Both these dialogs are identical and let you specify folder location, file name, format and encoding options for your exported file.
 </p>
 </div>
-<div class="note">You can use <span class="menu">File &gt; Save Other &gt; <!--latex 
-\hyperref[\foo{file:menu:save:other:exportmultiple}]{--><a href="file_menu_save_other.html#exportmultiple" title="File Menu: Save Other">Export Multiple...</a><!--latex }
---></span> to export multiple audio files (based on <!--latex 
-\hyperref[\foo{label:tracks:}]{--><a href="label_tracks.html" title="Label Tracks">labels</a><!--latex }
---> or multiple <!--latex 
-\hyperref[\foo{audio:tracks:}]{--><a href="audio_tracks.html" title="Audio Tracks">audio tracks</a><!--latex }
--->) in one process. When you use the the <!--latex 
-\hyperref[\foo{export:multiple:}]{--><a href="export_multiple.html" title="Export Multiple">Export Multiple</a><!--latex }
---> dialog appears.</div>
-<dl><dd><span title="Export Audio dialog"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="Export Audio dialog W10.png" height="570" src="../m/images/b/b0/export_audio_dialog_w10.png" width="557"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/b0/export_audio_dialog_w10.png--></img><!--}\par
---></span></dd></dl>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Export_Audio_or_Export_Selected_Audio_dialog">Export Audio or Export Selected Audio dialog</span></h2><!--}-->
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%" align="center">
+
+<tr>
+<td width="30px" valign="top" align="center"><a target="manual" href="http://alphamanual.audacityteam.org/man/File:Bulbicon.png" class="image" title="Bulb icon"><img alt="Bulb icon" src="../m/images/d/d7/bulbicon.png" width="32" height="32" /></a>
+</td>
+<td align="left" valign="top">You can use <span class="menu">File &gt; Export &gt; <a href="export_multiple.html" title="Export Multiple">Export Multiple...</a></span> to export multiple audio files (based on <a href="label_tracks.html" title="Label Tracks">labels</a> or multiple <a href="audio_tracks.html" title="Audio Tracks">audio tracks</a>) in one process.
+</td></tr></table>
+</div>
+<h2><span class="mw-headline" id="Export_Audio_or_Export_Selected_Audio_dialog">Export Audio or Export Selected Audio dialog</span></h2>
+<dl><dd><span title="Export Audio dialog"><img alt="Export Audio dialog W10.png" src="../m/images/b/b0/export_audio_dialog_w10.png" width="557" height="570" /></span></dd></dl>
 <p>In summary, there are five steps to follow when exporting.  
 </p>
-<!--
-\begin{itemize}--><ul><!--
-\item --><li>Choose the folder to export to in <!--\textbf{--><b>Save in:</b><!--}--> then type the file name you want.</li>
-<!--
-\item --><li>Select the type of audio file to export to. </li>
-<!--
-\item --><li>Set the <!--latex 
-\hyperref[\foo{file:export:dialog::options}]{--><a href="#options">Format Options</a><!--latex }
---> <!--\textit{--><i>(if those are available for your selected format)</i><!--}--> if you want to change the size, quality or other encoding choices for that selected file format.</li>
-<!--
-\item --><li>Press <span class="button">Save</span>.</li>
-<!--
-\item --><li>The <!--latex 
-\hyperref[\foo{metadata:editor:}]{--><a href="metadata_editor.html" title="Metadata Editor">Metadata Editor</a><!--latex }
---> dialog will then appear (unless you have disabled it for the export step in the <!--latex 
-\hyperref[\foo{import:export:preferences:export}]{--><a href="import_export_preferences.html#export" title="Import - Export Preferences">Import/Export Preferences</a><!--latex }
--->). Edit Metadata lets you enter embedded information in the file such as artist, year or genre. Either leave the metadata blank or complete the fields you require, then press <span class="button">OK</span> (<!--\textit{--><i><!--\textbf{--><b>not</b><!--}--></i><!--}--> "Save...").</li></ul><!--
-\end{itemize}
--->
+<ul><li>Choose the folder to export to in <b>Save in:</b> then type the file name you want.</li>
+<li>Select the type of audio file to export to. </li>
+<li>Set the <a href="#options">Format Options</a> <i>(if those are available for your selected format)</i> if you want to change the size, quality or other encoding choices for that selected file format.</li>
+<li>Press <span class="button">Save</span>.</li>
+<li>The <a href="metadata_editor.html" title="Metadata Editor">Metadata Editor</a> dialog will then appear (unless you have disabled it for the export step in the <a href="import_export_preferences.html#export" title="Import - Export Preferences">Import/Export Preferences</a>). Edit Metadata lets you enter embedded information in the file such as artist, year or genre. Either leave the metadata blank or complete the fields you require, then press <span class="button">OK</span> (<i><b>not</b></i> "Save...").</li></ul>
 <div id="name"></div>
-<!--
-\subsubsection{--><h3><span class="mw-headline" id="File_name">File name</span></h3><!--}--><!--latex 
-\label{file:export:dialog:name}-->
-Type the required file name. The correct file <!--\textit{--><i><!--\textbf{--><b><!--latex 
-\hyperref[\foo{glossary:extension}]{--><a href="glossary.html#extension" title="Glossary">extension</a><!--latex }
---></b><!--}--></i><!--}--> - preceded by a period (dot) - will be added automatically to the end of the file name, according to the format selected in the "Save as type" list (see below). For example, typing "08 Voodoo Chile" (without quotes) will produce a file "08 Voodoo Chile.wav". For M4A and WMA formats (for which the optional <!--latex 
-\hyperref[\foo{faq:installation:and:plug:ins:installffmpeg}]{--><a href="faq_installation_and_plug_ins.html#installffmpeg" title="FAQ:Installation and Plug-Ins">FFmpeg library</a><!--latex }
---> is required), you can add alternative extensions as specified in "FFmpeg formats" below.<p>Any other extensions can be added after a file name as required, but Audacity will display a warning that this is not the normal extension for this file type, and that some applications might not play files with non-standard extensions.</p>
+<h3><span class="mw-headline" id="File_name">File name</span></h3>
+Type the required file name. The correct file <i><b><a href="glossary.html#extension" title="Glossary">extension</a></b></i> - preceded by a period (dot) - will be added automatically to the end of the file name, according to the format selected in the "Save as type" list (see below). For example, typing "08 Voodoo Chile" (without quotes) will produce a file "08 Voodoo Chile.wav". For M4A and WMA formats (for which the optional <a href="faq_installation_and_plug_ins.html#installffmpeg" title="FAQ:Installation and Plug-Ins">FFmpeg library</a> is required), you can add alternative extensions as specified in "FFmpeg formats" below.<p>Any other extensions can be added after a file name as required, but Audacity will display a warning that this is not the normal extension for this file type, and that some applications might not play files with non-standard extensions.</p>
 <div id="type"></div>
-<!--
-\subsubsection{--><h3><span class="mw-headline" id="Save_as_type">Save as type</span></h3><!--}--><!--latex 
-\label{file:export:dialog:type}-->
+<h3><span class="mw-headline" id="Save_as_type">Save as type</span></h3>
+</li></ul>
 <p>Clicking in the input box opens a dropdown menu enabling you to chose the file format you wish to export to:
-</p><p><!--\textit{--><i>Hover over each row in "Save as type:" in the image to learn more.</i><!--}-->&nbsp;<span style="font-size:0.8em"><!--latex 
-\hyperref[\foo{file:export:dialog::skip}]{--><a href="#skip">Skip the image</a><!--latex }
---></span>
+</p><p><i>Hover over each row in "Save as type:" in the image to see the tooltip and click in that row to learn more.</i>&#160;<span style="font-size:0.8em"><a href="#skip">Skip the image</a></span>
 </p>
-<dl><dd><div class="noresize"><map name="ImageMap_1_1126276574"><area alt="Dropdown menu for selecting the required file format" coords="105,36,350,55" href="#type" shape="rect" title="Dropdown menu for selecting the required file format"/><area alt="AIFF is a lossless format that can both be played on Mac and Windows computers, though it is far more likely to be selected by Mac users. AIFF 16-bit PCM is suitable whenever you want to burn your exported file to an audio CD. There are no options for this format." coords="105,56,350,70" href="export_formats_supported_by_audacity.html#uncompressed" shape="rect" title="AIFF is a lossless format that can both be played on Mac and Windows computers, though it is far more likely to be selected by Mac users. AIFF 16-bit PCM is suitable whenever you want to burn your exported file to an audio CD. There are no options for this format."/><area alt="WAV is a lossless format that can both be played on Windows or Mac computers. WAV 16-bit PCM is eminently suitable whenever you want to burn your exported file to an audio CD. There are no options for this format." coords="105,71,350,83" href="export_formats_supported_by_audacity.html#uncompressed" shape="rect" title="WAV is a lossless format that can both be played on Windows or Mac computers. WAV 16-bit PCM is eminently suitable whenever you want to burn your exported file to an audio CD. There are no options for this format."/><area alt='32-bit float WAV is a lossless format, a maximum quality "raw capture" file. 32-bit float resolution gives the highest quality of the three uncompressed choices, but takes twice the storage space on disk compared to 16-bit resolution. It will not play on many players or player apps. It is mostly useful as a backup archive of raw captured recordings or finished projects. There are no options for this format.' coords="105,84,350,95" href="export_formats_supported_by_audacity.html#uncompressed" shape="rect" title='32-bit float WAV is a lossless format, a maximum quality "raw capture" file. 32-bit float resolution gives the highest quality of the three uncompressed choices, but takes twice the storage space on disk compared to 16-bit resolution. It will not play on many players or player apps. It is mostly useful as a backup archive of raw captured recordings or finished projects. There are no options for this format.'/><area alt="Other uncompressed files includes all the uncompressed audio formats that Audacity can export, including 4-bit (A)DPCM, 8-bit U-Law/A-Law, 24-bit, 32-bit and 64-bit options. Also GSM 6.10 WAV (mobile) which produces a mono WAV file encoded with the compressed, lossy GSM 6.10 codec as used in mobile telephones. This menu item defaults to WAV (Microsoft) signed 16-bit PCM on Windows and Linux and to AIFF (Apple/SGI) signed 16-bit PCM on Mac." coords="105,96,350,108" href="other_uncompressed_files_export_options.html" shape="rect" title="Other uncompressed files includes all the uncompressed audio formats that Audacity can export, including 4-bit (A)DPCM, 8-bit U-Law/A-Law, 24-bit, 32-bit and 64-bit options. Also GSM 6.10 WAV (mobile) which produces a mono WAV file encoded with the compressed, lossy GSM 6.10 codec as used in mobile telephones. This menu item defaults to WAV (Microsoft) signed 16-bit PCM on Windows and Linux and to AIFF (Apple/SGI) signed 16-bit PCM on Mac."/><area alt="MP3 is a popular compressed, lossy format producing much smaller files than WAV or AIFF, at the expense of some loss of quality. You must download the optional LAME encoder to export to MP3." coords="105,109,350,121" href="mp3_export_options.html" shape="rect" title="MP3 is a popular compressed, lossy format producing much smaller files than WAV or AIFF, at the expense of some loss of quality. You must download the optional LAME encoder to export to MP3."/><area alt="Ogg Vorbis is the compressed, lossy Vorbis codec in an OGG container. Vorbis offers higher quality than MP3 for the same file size, and is useful for good quality small-sized mono files, but fewer applications can play the OGG format." coords="105,122,350,134" href="ogg_vorbis_export_options.html" shape="rect" title="Ogg Vorbis is the compressed, lossy Vorbis codec in an OGG container. Vorbis offers higher quality than MP3 for the same file size, and is useful for good quality small-sized mono files, but fewer applications can play the OGG format."/><area alt="FLAC is a compressed but lossless format, giving much larger file sizes than MP3 and OGG but only about half the size of WAV." coords="105,135,350,147" href="flac_export_options.html" shape="rect" title="FLAC is a compressed but lossless format, giving much larger file sizes than MP3 and OGG but only about half the size of WAV."/><area alt="MP2 is a compressed, lossy format similar to MP3, producing slightly larger files than MP3 for the same quality." coords="105,148,350,160" href="mp2_export_options.html" shape="rect" title="MP2 is a compressed, lossy format similar to MP3, producing slightly larger files than MP3 for the same quality."/><area alt="(external program) sends audio via the command-line to any executable binary application either for processing or for encoding as a file. This is a method to export using an alternative compressed or uncompressed encoder or to a format not otherwise supported by Audacity." coords="105,161,350,173" href="exporting_to_an_external_program.html" shape="rect" title="(external program) sends audio via the command-line to any executable binary application either for processing or for encoding as a file. This is a method to export using an alternative compressed or uncompressed encoder or to a format not otherwise supported by Audacity."/><area alt='AAC: Advanced Audio Coding is a compressed, lossy format used in Apple applications, generally achieving slightly better quality than MP3 for the same file size. By default, the exported file will be given an "m4a" extension. Optional permitted extensions: .mp4, .m4r (ringtone) and .3gp (mobile).' coords="105,174,350,186" href="aac_export_options.html" shape="rect" title='AAC: Advanced Audio Coding is a compressed, lossy format used in Apple applications, generally achieving slightly better quality than MP3 for the same file size. By default, the exported file will be given an "m4a" extension. Optional permitted extensions: .mp4, .m4r (ringtone) and .3gp (mobile).'/><area alt="AC3 is the common name used for the compressed, lossy format used in Dolby Digital." coords="105,187,350,199" href="ac3_export_options.html" shape="rect" title="AC3 is the common name used for the compressed, lossy format used in Dolby Digital."/><area alt="AMR: Adaptive Multi-Rate codec is a patented compression scheme optimized for speech, but also used for mobile telephone ringtones. The wide band variant uses higher bandwidth for higher quality." coords="105,200,350,212" href="amr_export_options.html" shape="rect" title="AMR: Adaptive Multi-Rate codec is a patented compression scheme optimized for speech, but also used for mobile telephone ringtones. The wide band variant uses higher bandwidth for higher quality."/><area alt="WMA: Windows Media Audio v2 is a compressed, lossy format developed by Microsoft. Optional permitted extensions: .asf or .wmv." coords="105,213,350,225" href="wma_export_options.html" shape="rect" title="WMA: Windows Media Audio v2 is a compressed, lossy format developed by Microsoft. Optional permitted extensions: .asf or .wmv."/><area alt="Custom FFmpeg Export allows interface-based export of some additional compressed or uncompressed formats not listed above, and options for exporting formats containing alternative codecs (for example, WAV format containing MP3 or OGG format containing FLAC). Note: not all formats and codecs are compatible, and some exports might result in zero-byte or invalid files if FFmpeg does not support the combination chosen." coords="105,226,350,238" href="custom_ffmpeg_export_options.html" shape="rect" title="Custom FFmpeg Export allows interface-based export of some additional compressed or uncompressed formats not listed above, and options for exporting formats containing alternative codecs (for example, WAV format containing MP3 or OGG format containing FLAC). Note: not all formats and codecs are compatible, and some exports might result in zero-byte or invalid files if FFmpeg does not support the combination chosen."/></map><!--
-
-\par\Needspace{153.5pt}\begin{picture}(176.0,123.5)
---><!--   \put(0,0){\includegraphics[scale=0.5]{--><img alt="File types for Export W10.png" height="247" src="../m/images/a/a0/file_types_for_export_w10.png" usemap="#ImageMap_1_1126276574" width="352"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/a/a0/file_types_for_export_w10.png--></img><!--}}
---><!--   \put(52.5,96.0){\hyperref[\foo{file:export:dialog::type}]{\makebox(122.5,9.5){}}}
-   \put(52.5,88.5){\hyperref[\foo{export:formats:supported:by:audacity:uncompressed}]{\makebox(122.5,7.0){}}}
-   \put(52.5,82.0){\hyperref[\foo{export:formats:supported:by:audacity:uncompressed}]{\makebox(122.5,6.0){}}}
-   \put(52.5,76.0){\hyperref[\foo{export:formats:supported:by:audacity:uncompressed}]{\makebox(122.5,5.5){}}}
-   \put(52.5,69.5){\hyperref[\foo{other:uncompressed:files:export:options:}]{\makebox(122.5,6.0){}}}
-   \put(52.5,63.0){\hyperref[\foo{mp3:export:options:}]{\makebox(122.5,6.0){}}}
-   \put(52.5,56.5){\hyperref[\foo{ogg:vorbis:export:options:}]{\makebox(122.5,6.0){}}}
-   \put(52.5,50.0){\hyperref[\foo{flac:export:options:}]{\makebox(122.5,6.0){}}}
-   \put(52.5,43.5){\hyperref[\foo{mp2:export:options:}]{\makebox(122.5,6.0){}}}
-   \put(52.5,37.0){\hyperref[\foo{exporting:to:an:external:program:}]{\makebox(122.5,6.0){}}}
-   \put(52.5,30.5){\hyperref[\foo{aac:export:options:}]{\makebox(122.5,6.0){}}}
-   \put(52.5,24.0){\hyperref[\foo{ac3:export:options:}]{\makebox(122.5,6.0){}}}
-   \put(52.5,17.5){\hyperref[\foo{amr:export:options:}]{\makebox(122.5,6.0){}}}
-   \put(52.5,11.0){\hyperref[\foo{wma:export:options:}]{\makebox(122.5,6.0){}}}
-   \put(52.5,4.5){\hyperref[\foo{custom:ffmpeg:export:options:}]{\makebox(122.5,6.0){}}}
-\end{picture}
-
---></div></dd></dl>
+<dl><dd><div class="noresize"><map name="ImageMap_1_1909504037"><area href="#type" shape="rect" coords="105,36,350,55" alt="Dropdown menu for selecting the required file format. Click to learn more." title="Dropdown menu for selecting the required file format. Click to learn more."/><area href="export_formats_supported_by_audacity.html#uncompressed" shape="rect" coords="105,56,350,70" alt="AIFF is a lossless format that can both be played on Mac and Windows computers, though it is far more likely to be selected by Mac users. AIFF 16-bit PCM is suitable whenever you want to burn your exported file to an audio CD. There are no options for this format. Click to learn more." title="AIFF is a lossless format that can both be played on Mac and Windows computers, though it is far more likely to be selected by Mac users. AIFF 16-bit PCM is suitable whenever you want to burn your exported file to an audio CD. There are no options for this format. Click to learn more."/><area href="export_formats_supported_by_audacity.html#uncompressed" shape="rect" coords="105,71,350,83" alt="WAV is a lossless format that can both be played on Windows or Mac computers. WAV 16-bit PCM is eminently suitable whenever you want to burn your exported file to an audio CD. There are no options for this format. Click to learn more." title="WAV is a lossless format that can both be played on Windows or Mac computers. WAV 16-bit PCM is eminently suitable whenever you want to burn your exported file to an audio CD. There are no options for this format. Click to learn more."/><area href="export_formats_supported_by_audacity.html#uncompressed" shape="rect" coords="105,84,350,95" alt="32-bit float WAV is a lossless format, a maximum quality &quot;raw capture&quot; file. 32-bit float resolution gives the highest quality of the three uncompressed choices, but takes twice the storage space on disk compared to 16-bit resolution. It will not play on many players or player apps. It is mostly useful as a backup archive of raw captured recordings or finished projects. There are no options for this format. Click to learn more." title="32-bit float WAV is a lossless format, a maximum quality &quot;raw capture&quot; file. 32-bit float resolution gives the highest quality of the three uncompressed choices, but takes twice the storage space on disk compared to 16-bit resolution. It will not play on many players or player apps. It is mostly useful as a backup archive of raw captured recordings or finished projects. There are no options for this format. Click to learn more."/><area href="other_uncompressed_files_export_options.html" shape="rect" coords="105,96,350,108" alt="Other uncompressed files includes all the uncompressed audio formats that Audacity can export, including 4-bit (A)DPCM, 8-bit U-Law/A-Law, 24-bit, 32-bit and 64-bit options. Also GSM 6.10 WAV (mobile) which produces a mono WAV file encoded with the compressed, lossy GSM 6.10 codec as used in mobile telephones. This menu item defaults to WAV (Microsoft) signed 16-bit PCM on Windows and Linux and to AIFF (Apple/SGI) signed 16-bit PCM on Mac. Click to learn more." title="Other uncompressed files includes all the uncompressed audio formats that Audacity can export, including 4-bit (A)DPCM, 8-bit U-Law/A-Law, 24-bit, 32-bit and 64-bit options. Also GSM 6.10 WAV (mobile) which produces a mono WAV file encoded with the compressed, lossy GSM 6.10 codec as used in mobile telephones. This menu item defaults to WAV (Microsoft) signed 16-bit PCM on Windows and Linux and to AIFF (Apple/SGI) signed 16-bit PCM on Mac. Click to learn more."/><area href="mp3_export_options.html" shape="rect" coords="105,109,350,121" alt="MP3 is a popular compressed, lossy format producing much smaller files than WAV or AIFF, at the expense of some loss of quality. You must download the optional LAME encoder to export to MP3. Click to learn more." title="MP3 is a popular compressed, lossy format producing much smaller files than WAV or AIFF, at the expense of some loss of quality. You must download the optional LAME encoder to export to MP3. Click to learn more."/><area href="ogg_vorbis_export_options.html" shape="rect" coords="105,122,350,134" alt="Ogg Vorbis is the compressed, lossy Vorbis codec in an OGG container. Vorbis offers higher quality than MP3 for the same file size, and is useful for good quality small-sized mono files, but fewer applications can play the OGG format.  Click to learn more." title="Ogg Vorbis is the compressed, lossy Vorbis codec in an OGG container. Vorbis offers higher quality than MP3 for the same file size, and is useful for good quality small-sized mono files, but fewer applications can play the OGG format.  Click to learn more."/><area href="flac_export_options.html" shape="rect" coords="105,135,350,147" alt="FLAC is a compressed but lossless format, giving much larger file sizes than MP3 and OGG but only about half the size of WAV. Click to learn more." title="FLAC is a compressed but lossless format, giving much larger file sizes than MP3 and OGG but only about half the size of WAV. Click to learn more."/><area href="mp2_export_options.html" shape="rect" coords="105,148,350,160" alt="MP2 is a compressed, lossy format similar to MP3, producing slightly larger files than MP3 for the same quality.  Click to learn more." title="MP2 is a compressed, lossy format similar to MP3, producing slightly larger files than MP3 for the same quality.  Click to learn more."/><area href="exporting_to_an_external_program.html" shape="rect" coords="105,161,350,173" alt="(external program) sends audio via the command-line to any executable binary application either for processing or for encoding as a file. This is a method to export using an alternative compressed or uncompressed encoder or to a format not otherwise supported by Audacity. Click to learn more." title="(external program) sends audio via the command-line to any executable binary application either for processing or for encoding as a file. This is a method to export using an alternative compressed or uncompressed encoder or to a format not otherwise supported by Audacity. Click to learn more."/><area href="aac_export_options.html" shape="rect" coords="105,174,350,186" alt="AAC: Advanced Audio Coding is a compressed, lossy format used in Apple applications, generally achieving slightly better quality than MP3 for the same file size. By default, the exported file will be given an &quot;m4a&quot; extension. Optional permitted extensions: .mp4, .m4r (ringtone) and .3gp (mobile).  Click to learn more." title="AAC: Advanced Audio Coding is a compressed, lossy format used in Apple applications, generally achieving slightly better quality than MP3 for the same file size. By default, the exported file will be given an &quot;m4a&quot; extension. Optional permitted extensions: .mp4, .m4r (ringtone) and .3gp (mobile).  Click to learn more."/><area href="ac3_export_options.html" shape="rect" coords="105,187,350,199" alt="AC3 is the common name used for the compressed, lossy format used in Dolby Digital. Click to learn more." title="AC3 is the common name used for the compressed, lossy format used in Dolby Digital. Click to learn more."/><area href="amr_export_options.html" shape="rect" coords="105,200,350,212" alt="AMR: Adaptive Multi-Rate codec is a patented compression scheme optimized for speech, but also used for mobile telephone ringtones. The wide band variant uses higher bandwidth for higher quality. Click to learn more." title="AMR: Adaptive Multi-Rate codec is a patented compression scheme optimized for speech, but also used for mobile telephone ringtones. The wide band variant uses higher bandwidth for higher quality. Click to learn more."/><area href="wma_export_options.html" shape="rect" coords="105,213,350,225" alt="WMA: Windows Media Audio v2 is a compressed, lossy format developed by Microsoft. Optional permitted extensions: .asf or .wmv.  Click to learn more." title="WMA: Windows Media Audio v2 is a compressed, lossy format developed by Microsoft. Optional permitted extensions: .asf or .wmv.  Click to learn more."/><area href="custom_ffmpeg_export_options.html" shape="rect" coords="105,226,350,238" alt="Custom FFmpeg Export allows interface-based export of some additional compressed or uncompressed formats not listed above, and options for exporting formats containing alternative codecs (for example, WAV format containing MP3 or OGG format containing FLAC). Note: not all formats and codecs are compatible, and some exports might result in zero-byte or invalid files if FFmpeg does not support the combination chosen. Click to learn more." title="Custom FFmpeg Export allows interface-based export of some additional compressed or uncompressed formats not listed above, and options for exporting formats containing alternative codecs (for example, WAV format containing MP3 or OGG format containing FLAC). Note: not all formats and codecs are compatible, and some exports might result in zero-byte or invalid files if FFmpeg does not support the combination chosen. Click to learn more."/></map><img alt="File types for Export W10.png" src="../m/images/a/a0/file_types_for_export_w10.png" width="352" height="247" usemap="#ImageMap_1_1909504037"/></div></dd></dl>
+<div style="position:relative;">
+<div class="note" style="width:150px;position:absolute;left:150px;top:-25px;"><div class="floatleft"><a href="click_tips.html" title="Click for details"><img alt="Click for details" src="../m/images/6/63/bigpointercursor.png" width="20" height="33" /></a></div><b>Click on the image to learn more</b><br /></div>
+</div>
+<p><br />
+</p>
 <div id="skip"></div>
 <div class="note">See: 
-<!--
-\begin{itemize}--><ul><!--
-\item --><li><!--latex 
-\hyperref[\foo{export:formats:supported:by:audacity:}]{--><a href="export_formats_supported_by_audacity.html" title="Export Formats supported by Audacity">Export Formats supported by Audacity</a><!--latex }
---> for more details on the various format types that Audacity supports for export</li>
-<!--
-\item --><li><!--latex 
-\hyperref[\foo{exporting:to:an:external:program:}]{--><a href="exporting_to_an_external_program.html" title="Exporting to an External Program">Exporting to an External Program</a><!--latex }
---> for details of how to export audio for use in an external program</li>
-<!--
-\item --><li><!--latex 
-\hyperref[\foo{custom:ffmpeg:export:options:}]{--><a href="custom_ffmpeg_export_options.html" title="Custom FFmpeg Export Options">Custom FFmpeg Export Options</a><!--latex }
---> for details on how you can export a specific codec in a specific format container</li></ul><!--
-\end{itemize}
--->
+<ul><li><a href="export_formats_supported_by_audacity.html" title="Export Formats supported by Audacity">Export Formats supported by Audacity</a> for more details on the various format types that Audacity supports for export</li>
+<li><a href="exporting_to_an_external_program.html" title="Exporting to an External Program">Exporting to an External Program</a> for details of how to export audio for use in an external program</li>
+<li><a href="custom_ffmpeg_export_options.html" title="Custom FFmpeg Export Options">Custom FFmpeg Export Options</a> for details on how you can export a specific codec in a specific format container</li></ul>
 </div>
 <div id="options"></div>
-<!--
-\subsubsection{--><h3><span class="mw-headline" id="Format_Options">Format Options</span></h3><!--}--><!--latex 
-\label{file:export:dialog:options}--><!--latex 
-\label{file:export:dialog:skip}-->
-<p>Notice with the image at the top of this page, for the default export to <!--\textbf{--><b>WAV</b><!--}--> format there are no export options. However some formats do offer options for making settings like <!--\textit{--><i>quality</i><!--}--> or <!--\textit{--><i>encoding</i><!--}-->. 
-</p><p><!--latex 
-\hyperref[\foo{export:options:}]{--><a href="export_options.html" title="Export Options">Export options</a><!--latex }
---> vary from one audio format to another:
+<h3><span class="mw-headline" id="Format_Options">Format Options</span></h3>
+<p>Notice with the image at the top of this page, for the default export to <b>WAV</b> format there are no export options. However some formats do offer options for making settings like <i>quality</i> or <i>encoding</i>. 
+</p><p><a href="export_options.html" title="Export Options">Export options</a> vary from one audio format to another:
 </p>
-<!--
-\begin{itemize}--><ul><!--
-\item --><li> <!--latex 
-\hyperref[\foo{mp3:export:options:}]{--><a href="mp3_export_options.html" title="MP3 Export Options">MP3 Export Options</a><!--latex }
---></li>
-<!--
-\item --><li> <!--latex 
-\hyperref[\foo{aac:export:options:}]{--><a href="aac_export_options.html" title="AAC Export Options">AAC Export Options</a><!--latex }
---></li>
-<!--
-\item --><li> <!--latex 
-\hyperref[\foo{ac3:export:options:}]{--><a href="ac3_export_options.html" title="AC3 Export Options">AC3 Export Options</a><!--latex }
---> </li>
-<!--
-\item --><li> <!--latex 
-\hyperref[\foo{amr:export:options:}]{--><a href="amr_export_options.html" title="AMR Export Options">AMR Export Options</a><!--latex }
---> </li>
-<!--
-\item --><li> <!--latex 
-\hyperref[\foo{custom:ffmpeg:export:options:}]{--><a href="custom_ffmpeg_export_options.html" title="Custom FFmpeg Export Options">Custom FFmpeg Export Options</a><!--latex }
---> </li>
-<!--
-\item --><li> <!--latex 
-\hyperref[\foo{flac:export:options:}]{--><a href="flac_export_options.html" title="FLAC Export Options">FLAC Export Options</a><!--latex }
---></li>
-<!--
-\item --><li> <!--latex 
-\hyperref[\foo{mp2:export:options:}]{--><a href="mp2_export_options.html" title="MP2 Export Options">MP2 Export Options</a><!--latex }
---> </li>
-<!--
-\item --><li> <!--latex 
-\hyperref[\foo{ogg:vorbis:export:options:}]{--><a href="ogg_vorbis_export_options.html" title="Ogg Vorbis Export Options">Ogg Vorbis Export Options</a><!--latex }
---> </li>
-<!--
-\item --><li> <!--latex 
-\hyperref[\foo{other:uncompressed:files:export:options:}]{--><a href="other_uncompressed_files_export_options.html" title="Other uncompressed files Export Options">Other uncompressed files Export Options</a><!--latex }
---> </li>
-<!--
-\item --><li> <!--latex 
-\hyperref[\foo{wma:export:options:}]{--><a href="wma_export_options.html" title="WMA Export Options">WMA Export Options</a><!--latex }
---> </li></ul><!--
-\end{itemize}
--->
-<p><br/>
+<ul><li> <a href="mp3_export_options.html" title="MP3 Export Options">MP3 Export Options</a></li>
+<li> <a href="aac_export_options.html" title="AAC Export Options">AAC Export Options</a></li>
+<li> <a href="ac3_export_options.html" title="AC3 Export Options">AC3 Export Options</a> </li>
+<li> <a href="amr_export_options.html" title="AMR Export Options">AMR Export Options</a> </li>
+<li> <a href="custom_ffmpeg_export_options.html" title="Custom FFmpeg Export Options">Custom FFmpeg Export Options</a> </li>
+<li> <a href="flac_export_options.html" title="FLAC Export Options">FLAC Export Options</a></li>
+<li> <a href="mp2_export_options.html" title="MP2 Export Options">MP2 Export Options</a> </li>
+<li> <a href="ogg_vorbis_export_options.html" title="Ogg Vorbis Export Options">Ogg Vorbis Export Options</a> </li>
+<li> <a href="other_uncompressed_files_export_options.html" title="Other uncompressed files Export Options">Other uncompressed files Export Options</a> </li>
+<li> <a href="wma_export_options.html" title="WMA Export Options">WMA Export Options</a> </li></ul>
+<p><br />
 </p>
-<!--
-\begin{itemize}--><ul><!--
-\item --><li> <!--latex 
-\hyperref[\foo{advanced:mixing:options:}]{--><a href="advanced_mixing_options.html" title="Advanced Mixing Options">Advanced Mixing Options</a><!--latex }
---></li></ul><!--
-\end{itemize}
--->
-<!--
-\subsection{--><h2><span class="mw-headline" id="Exporting_multiple_tracks_as_a_single_file">Exporting multiple tracks as a single file</span></h2><!--}-->
-<p>If you use Export Audio or Export Selected Audio to export multiple tracks as a mono or stereo <!--latex 
-\hyperref[\foo{mixing:}]{--><a href="mixing.html" title="Mixing">mixdown</a><!--latex }
--->, or as a multi-channel audio file by enabling <!--latex 
-\hyperref[\foo{advanced:mixing:options:}]{--><a href="advanced_mixing_options.html" title="Advanced Mixing Options">Advanced Mixing Options</a><!--latex }
--->, please be aware that <!--latex 
-\hyperref[\foo{audio:tracks:mute}]{--><a href="audio_tracks.html#mute" title="Audio Tracks">muted</a><!--latex }
---> tracks are not exported.  
+<ul><li> <a href="advanced_mixing_options.html" title="Advanced Mixing Options">Advanced Mixing Options</a></li></ul>
+<h2><span class="mw-headline" id="Exporting_multiple_tracks_as_a_single_file">Exporting multiple tracks as a single file</span></h2>
+<p>If you use Export Audio or Export Selected Audio to export multiple tracks as a mono or stereo <a href="mixing.html" title="Mixing">mixdown</a>, or as a multi-channel audio file by enabling <a href="advanced_mixing_options.html" title="Advanced Mixing Options">Advanced Mixing Options</a>.
 </p>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Cancelling_the_export_process">Cancelling the export process</span></h2><!--}-->
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%" align="center">
+
+<tr>
+<td width="30px" valign="top" align="center"><a target="manual" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" class="image" title="Warning icon"><img alt="Warning icon" src="../m/images/b/ba/warningicon.png" width="24" height="24" /></a>
+</td>
+<td align="left" valign="top">Please be aware that <a href="audio_tracks.html#mute" title="Audio Tracks">muted</a> tracks are not exported.
+</td></tr></table>
+</div>
+<h2><span class="mw-headline" id="Cancelling_the_export_process">Cancelling the export process</span></h2>
 <p>You may abort the export process without writing the file by pressing <span class="button">Cancel</span> in the Export Audio / Export Selected Audio dialog, or in the Advanced Mixing Options or Metadata Editor dialogs (if those dialogs appear). If you Cancel in any dialog, any changes you made to the "Save in:" directory or file type will not be preserved for next time you export.
 </p>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Export_progress_dialog">Export progress dialog</span></h2><!--}-->
+<h2><span class="mw-headline" id="Export_progress_dialog">Export progress dialog</span></h2>
 <p>Once you have clicked the <span class="button">Save</span> button in the export dialog and <span class="button">OK</span> in Edit Metadata, Audacity will display a dialog displaying progress of writing the exported file:
 </p>
-<dl><dd><span title="Export Audio progress dialog, partially complete"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="Export Audio progress dialog W10.png" height="186" src="../m/images/7/78/export_audio_progress_dialog_w10.png" width="280"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/7/78/export_audio_progress_dialog_w10.png--></img><!--}\par
---></span></dd></dl>
+<dl><dd><span title="Export Audio progress dialog, partially complete"><img alt="Export Audio progress dialog partial completion.png" src="../m/images/2/24/export_audio_progress_dialog_partial_completion.png" width="241" height="186" /></span></dd></dl>
 <p>The colored bar is a visual indicator of how much of the file has been written.  The Elapsed Time and Remaining Time are estimates and may change as the export progresses.
 </p><p>Clicking either the <span class="button">Stop</span> or <span class="button">Cancel</span> button will halt the export where it is now, leaving the partially exported file in place.
 </p>
+<!-- 
+NewPP limit report
+Cached time: 20180116224951
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.143 seconds
+Real time usage: 0.155 seconds
+Preprocessor visited node count: 349/1000000
+Preprocessor generated node count: 1427/1000000
+Post‐expand include size: 6373/2097152 bytes
+Template argument size: 2814/2097152 bytes
+Highest expansion depth: 12/40
+Expensive parser function count: 11/100
+-->
 
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   90.583      1 - -total
+ 23.80%   21.560      1 - Template:I18n
+ 22.06%   19.983      1 - Template:I18n_box
+ 18.32%   16.597      1 - Template:I18n_list
+  8.24%    7.467      3 - Template:I18n_link
+  6.84%    6.200      7 - Template:Button
+  5.04%    4.561      1 - Template:Export_Option_Links
+  4.80%    4.351      3 - Template:Autoglossonym
+  3.28%    2.972      1 - Template:Intro
+  2.92%    2.646      1 - Template:Advice
+-->
 
-
-
-
+<!-- Saved in parser cache with key helpmediawiki:pcache:idhash:2400-0!*!0!!*!5!* and timestamp 20180116224950 and revision id 58552
+ -->
 </div>
-										
+										<!-- end content -->
 										<div class="visualClear"></div>
 				</div>
 			</div>
 		</div>
-		
-		<div class="visualClear"></div>
+		<div id="column-one">
+			
 					
-		</div><!--latex \end{multicols}-->
+				
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="../index.html" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+					
+		<div class="generated-sidebar portlet" id="p-Navigation" role="navigation">
+		<h3>Navigation</h3>
+		<div class='pBody'>
+			<ul><li> <a href="../index.html" title="Main Page">Manual Home Page</a></li>
+<li> <a href="../index.html#using" title="Main Page">Using Audacity</a>
+<ul><li> <a href="audacity_tour_guide.html" title="Audacity Tour Guide">Tour Guide</a></li>
+<li> <a href="new_features_in_this_release.html" title="New features in this release">New Features</a></li>
+<li> <a href="../quick_help.html" title="Quick Help">Getting Started</a></li>
+<li> <a href="preferences.html" title="Preferences">Preferences</a></li>
+<li> <a href="menu_reference.html" title="Menu Reference">Menu Bar</a></li>
+<li> <a href="toolbars_overview.html" title="Toolbars Overview">Toolbars</a></li>
+<li> <a href="keyboard_shortcut_reference.html" title="Keyboard Shortcut Reference">Commands / Shortcuts</a></li>
+<li> <a href="index_of_effects_generators_and_analyzers.html" title="Index of Effects, Generators and Analyzers">Effects</a></li>
+<li> <a href="tutorials.html" title="Tutorials">Tutorials</a></li>
+<li> <a href="tips.html" title="Tips">Tips</a></li></ul></li></ul>
+		</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-Reference" role="navigation">
+		<h3>Reference</h3>
+		<div class='pBody'>
+			<ul><li> <a href="../index.html#reference" title="Main Page">Reference</a>
+<ul><li> <a href="digital_audio.html" title="Digital Audio">Digital Audio</a></li>
+<li> <a href="glossary.html" title="Glossary">Glossary</a></li>
+<li> <a href="subject_index.html" title="Subject Index">Subject Index</a></li></ul></li>
+<li> <span title="Frequently Asked Questions"><a rel="nofollow" target="manual" class="external text" href="faq.html">FAQ</a></span></li></ul>
+		</div>
+		</div>
 		
-</body></html>
+		<div class="generated-sidebar portlet" id="p-Useful_Links" role="navigation">
+		<h3>Useful Links</h3>
+		<div class='pBody'>
+			<ul><li> <a rel="nofollow" target="manual" class="external text" href="https://forum.audacityteam.org/index.php">Forum</a></li>
+<li> <a rel="nofollow" target="manual" class="external text" href="https://wiki.audacityteam.org/wiki/Audacity_Wiki_Home_Page">Wiki</a></li>
+<li> <a rel="nofollow" target="manual" class="external text" href="https://www.audacityteam.org/download/">Latest Release</a></li></ul>
+		</div>
+		</div>
+		
+			
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-copyrightico">
+									
+							</div>
+					<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="../m/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/m/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /m/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31"/></a>
+							</div>
+					
+		<div align="center"><ul id="f_list"><li>Offline version created on 2018-01-17 - <a target="manual" href="http://alphamanual.audacityteam.org/man/File_Export_Dialog">Check current version of this page (development Manual)</a></li></ul></div>
+</div>
+		</div>
+		</body></html>

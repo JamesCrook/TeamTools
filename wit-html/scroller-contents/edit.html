@@ -1,149 +1,167 @@
 <!DOCTYPE html>
-<html class="client-nojs" dir="ltr" lang="en"><head>
-<meta charset="utf-8"/>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
 <title>Edit - Audacity Development Manual</title>
 
 
 
 
+<!--[if IE 6]><link rel="stylesheet" href="../m/skins/monobook/ie60fixes.css/303.css" media="screen"/><![endif]--><!--[if IE 7]><link rel="stylesheet" href="../m/skins/monobook/ie70fixes.css/303.css" media="screen"/><![endif]-->
+<meta name="ResourceLoaderDynamicStyles" content=""/>
 
-<meta content="" name="ResourceLoaderDynamicStyles"/>
+<meta name="generator" content="MediaWiki 1.28.2"/>
+<link rel="shortcut icon" href="../favicon.ico"/>
+<link rel="search" type="application/opensearchdescription+xml" target="manual" href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" title="Audacity Development Manual (en)"/>
+<link rel="EditURI" type="application/rsd+xml" target="manual" href="http://alphamanual.audacityteam.org/m/api.php?action=rsd"/>
+<link rel="copyright" href="https://creativecommons.org/licenses/by/3.0/" />
 
-<meta content="MediaWiki 1.28.2" name="generator"/>
-<link href="../favicon.ico" rel="shortcut icon"/>
-<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
-<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
-<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
-
-<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+<link rel="stylesheet" href="../m/skins/monobook/main.css/303.css" media="screen" />
 </head>
 <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Edit rootpage-Edit skin-monobook action-view"><div id="globalWrapper">
 		<div id="column-content">
-			<div class="mw-body" id="content" role="main">
+			<div id="content" class="mw-body" role="main">
 				<a id="top"></a>
 				
 				<div class="mw-indicators">
 </div>
-				<!--
-\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Edit</h1><!--}
-\par\vspace{1mm}\hrule
---><!--latex \begin{multicols}{2}--><!--latex \label{edit:}-->
+				<h1 id="firstHeading" class="firstHeading" lang="en">Edit</h1>
 				
-				<div class="mw-body-content" id="bodyContent">
-					
-					
-										
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Audacity Development Manual</div>
+					<div id="contentSub"></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a target="manual" href="http://alphamanual.audacityteam.org/man/Edit#searchInput">search</a></div>
 
-					
-					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
-
-
-
-</p><p>The main commands for editing audio are under the <!--latex 
-\hyperref[\foo{edit:menu:}]{--><a href="edit_menu.html" title="Edit Menu">Edit Menu</a><!--latex }
---> and the <!--latex 
-\hyperref[\foo{effect:menu:}]{--><a href="effect_menu.html" title="Effect Menu">Effect Menu</a><!--latex }
--->.
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr">
+<p>The main commands for editing audio are under the <a href="edit_menu.html" title="Edit Menu">Edit Menu</a> and the <a href="effect_menu.html" title="Effect Menu">Effect Menu</a>.
 </p>
 <div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
-<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+<table style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%" align="center">
 
-<tbody><!--\par --><tr>
-<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+<tr>
+<td width="30px" valign="top" align="center"><a target="manual" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" class="image" title="Warning icon"><img alt="Warning icon" src="../m/images/b/ba/warningicon.png" width="24" height="24" /></a>
 </td>
-<td align="left" valign="top">Effects and edits cannot be applied while playing, recording or paused. If you are paused, Stop will happen automatically when you click on most menu items. If you are playing, <!--latex 
-\hyperref[\foo{real:time:preview:of:effects:}]{--><a href="real_time_preview_of_effects.html" title="Real-time preview of effects">real-time preview effects</a><!--latex }
---> can be opened and playback will continue.
-</td></tr></tbody></table>
+<td align="left" valign="top">Effects and edits cannot be applied while playing, recording or paused. If you are paused, Stop will happen automatically when you click on most menu items. If you are playing, <a href="real_time_preview_of_effects.html" title="Real-time preview of effects">real-time preview effects</a> can be opened and playback will continue.
+</td></tr></table>
 </div> 
-<div class="note">If you are having problems editing, have a look at the <!--latex 
-\hyperref[\foo{faq:editing:}]{--><a href="faq_editing.html" title="FAQ:Editing">FAQ on editing</a><!--latex }
---> which answers some frequently asked questions.</div>
-<p>The most common editing actions such as <!--latex 
-\hyperref[\foo{edit:menu:cut}]{--><a href="edit_menu.html#cut" title="Edit Menu">Cut</a><!--latex }
--->, <!--latex 
-\hyperref[\foo{edit:menu:copy:paste:and:duplicate:copy}]{--><a href="edit_menu_copy_paste_and_duplicate.html#copy" title="Edit Menu: Copy, Paste and Duplicate">Copy</a><!--latex }
--->, <!--latex 
-\hyperref[\foo{edit:menu:copy:paste:and:duplicate:paste}]{--><a href="edit_menu_copy_paste_and_duplicate.html#paste" title="Edit Menu: Copy, Paste and Duplicate">Paste</a><!--latex }
---> and <!--latex 
-\hyperref[\foo{edit:menu:delete}]{--><a href="edit_menu.html#delete" title="Edit Menu">Delete</a><!--latex }
---> also have buttons in <!--latex 
-\hyperref[\foo{edit:toolbar:}]{--><a href="edit_toolbar.html" title="Edit Toolbar">Edit Toolbar</a><!--latex }
--->. Effects let you do things like boost the bass, change pitch or tempo, or remove noise in various ways. Find the correct effect to do what you want on the <!--latex 
-\hyperref[\foo{index:of:effects:generators:and:analyzers:}]{--><a href="index_of_effects_generators_and_analyzers.html" title="Index of Effects, Generators and Analyzers">Index of Effects, Generators and Analyzers</a><!--latex }
---> page.
+<div class="note">If you are having problems editing, have a look at the <a href="faq_editing.html" title="FAQ:Editing">FAQ on editing</a> which answers some frequently asked questions.</div>
+<p>The most common editing actions such as <a href="edit_menu.html#cut" title="Edit Menu">Cut</a>, <a href="edit_menu_copy_paste_and_duplicate.html#copy" title="Edit Menu: Copy, Paste and Duplicate">Copy</a>, <a href="edit_menu_copy_paste_and_duplicate.html#paste" title="Edit Menu: Copy, Paste and Duplicate">Paste</a> and <a href="edit_menu.html#delete" title="Edit Menu">Delete</a> also have buttons in <a href="edit_toolbar.html" title="Edit Toolbar">Edit Toolbar</a>. Effects let you do things like boost the bass, change pitch or tempo, or remove noise in various ways. Find the correct effect to do what you want on the <a href="index_of_effects_generators_and_analyzers.html" title="Index of Effects, Generators and Analyzers">Index of Effects, Generators and Analyzers</a> page.
 </p>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Edits">Edits</span></h2><!--}-->
-<p>Audacity applies each edit to a <!--latex 
-\hyperref[\foo{selecting:audio:the:basics:}]{--><a href="selecting_audio_the_basics.html" title="Selecting Audio - the basics">selected region</a><!--latex }
---> of the audio track or tracks. To select a particular region, click in the track and drag the shaded area with the mouse. If no audio is selected, Audacity by default <!--latex 
-\hyperref[\foo{selecting:audio:the:basics:all}]{--><a href="selecting_audio_the_basics.html#all" title="Selecting Audio - the basics">selects all</a><!--latex }
---> the audio in the project window.
-</p><p>The Tutorial <!--latex 
-\hyperref[\foo{tutorial:editing:an:existing:file:}]{--><a href="tutorial_editing_an_existing_file.html" title="Tutorial - Editing an Existing File">Editing an Existing Audio File</a><!--latex }
---> has more detailed information on how to edit audio.
+<h2><span class="mw-headline" id="Edits">Edits</span></h2>
+<p>Audacity applies each edit to a <a href="selecting_audio_the_basics.html" title="Selecting Audio - the basics">selected region</a> of the audio track or tracks. To select a particular region, click in the track and drag the shaded area with the mouse. If no audio is selected, Audacity by default <a href="selecting_audio_the_basics.html#all" title="Selecting Audio - the basics">selects all</a> the audio in the project window.
+</p><p>The Tutorial <a href="tutorial_editing_an_existing_file.html" title="Tutorial - Editing an Existing File">Editing an Existing Audio File</a> has more detailed information on how to edit audio.
 </p>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Effects">Effects</span></h2><!--}-->
-<p>To apply an effect you need to first select some audio, then click on the effect you require from the <!--latex 
-\hyperref[\foo{effect:menu:}]{--><a href="effect_menu.html" title="Effect Menu">Effect Menu</a><!--latex }
--->, then make any parameter settings in the dialog box that you want and then press the <span class="button">OK</span> button to apply the effect.  Note that a few effects have no parameters that can be set and these are applied as soon as you click on them in the <!--latex 
-\hyperref[\foo{effect:menu:}]{--><a href="effect_menu.html" title="Effect Menu">Effect Menu</a><!--latex }
--->; An example is: <!--latex 
-\hyperref[\foo{crossfade:tracks:}]{--><a href="crossfade_tracks.html" title="Crossfade Tracks">Crossfade Tracks</a><!--latex }
--->.
+<h2><span class="mw-headline" id="Effects">Effects</span></h2>
+<p>To apply an effect you need to first select some audio, then click on the effect you require from the <a href="effect_menu.html" title="Effect Menu">Effect Menu</a>, then make any parameter settings in the dialog box that you want and then press the <span class="button">OK</span> button to apply the effect.  Note that a few effects have no parameters that can be set and these are applied as soon as you click on them in the <a href="effect_menu.html" title="Effect Menu">Effect Menu</a>; An example is: <a href="crossfade_tracks.html" title="Crossfade Tracks">Crossfade Tracks</a>.
 </p><p>For the effects that have settable parameters the dialog box contains a <span class="button">Preview</span> button which enables you to hear a short sample of the audio with the effect temporarily applied so that you can audition the result prior to accepting the settings you have made.
 </p>
 <div class="note">Some effects have special requirements
-<!--
-\begin{itemize}--><ul><!--
-\item --><li><!--latex 
-\hyperref[\foo{auto:duck:}]{--><a href="auto_duck.html" title="Auto Duck">Auto Duck</a><!--latex }
---> requires two tracks to be selected to operate on</li>
-<!--
-\item --><li><!--latex 
-\hyperref[\foo{vocal:remover:}]{--><a href="vocal_remover.html" title="Vocal Remover">Vocal Remover</a><!--latex }
---> requires a stereo track</li></ul><!--
-\end{itemize}
--->
+<ul><li><a href="auto_duck.html" title="Auto Duck">Auto Duck</a> requires two tracks to be selected to operate on</li>
+<li><a href="vocal_remover.html" title="Vocal Remover">Vocal Remover</a> requires a stereo track</li></ul>
 </div>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Reverting_an_edit_or_effect">Reverting an edit or effect</span></h2><!--}-->
-<p>If you are unhappy with the result of your edit or effect you can simple use the Audacity <!--latex 
-\hyperref[\foo{edit::undo}]{--><a href="#undo" title="Edit">Undo</a><!--latex }
---> command or use the <span class="kbrd" style="background-color: #e0e0f0">Ctrl + Z</span> keyboard shortcut.  A good tip for effects is to try them out on a short section of audio first to try it out on a longer section than preview allows and then use the <!--latex 
-\hyperref[\foo{edit::undo}]{--><a href="#undo" title="Edit">Undo</a><!--latex }
--->.
+<h2><span class="mw-headline" id="Reverting_an_edit_or_effect">Reverting an edit or effect</span></h2>
+<p>If you are unhappy with the result of your edit or effect you can simple use the Audacity <a href="edit_menu.html#undo" title="Edit Menu">Undo</a> command or use the <span class="kbrd" style="background-color: #d0d0f8">Ctrl + Z</span> keyboard shortcut.  A good tip for effects is to try them out on a short section of audio first to try it out on a longer section than preview allows and then use the <a href="edit_menu.html#undo" title="Edit Menu">Undo</a>.
 </p>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Marking_edit_points">Marking edit points</span></h2><!--}-->
-<p>You can mark edit points or regions in your audio with <!--latex 
-\hyperref[\foo{label:tracks:}]{--><a href="label_tracks.html" title="Label Tracks">labels</a><!--latex }
--->. These can be useful for recalling the edits when <!--latex 
-\hyperref[\foo{saving:}]{--><a href="saving.html" title="Saving">saving and reopening a project</a><!--latex }
--->. They can also be useful to mark splits in a long audio track that is to be <!--latex 
-\hyperref[\foo{export:}]{--><a href="export.html" title="Export">exported</a><!--latex }
---> as multiple files.  
-</p><p><br/>
-<!--latex 
-\hyperref[\foo{quick:help:}]{--><a href="../quick_help.html" title="Quick Help"><!--\textbf{--><b>|&lt;</b><!--}--> Back to: Getting Started</a><!--latex }
+<h2><span class="mw-headline" id="Marking_edit_points">Marking edit points</span></h2>
+<p>You can mark edit points or regions in your audio with <a href="label_tracks.html" title="Label Tracks">labels</a>. These can be useful for recalling the edits when <a href="saving.html" title="Saving">saving and reopening a project</a>. They can also be useful to mark splits in a long audio track that is to be <a href="export.html" title="Export">exported</a> as multiple files.  
+</p><p><br />
+<a href="../quick_help.html" title="Quick Help"><b>|&lt;</b> Back to: Getting Started</a>
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20180117040634
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.090 seconds
+Real time usage: 0.095 seconds
+Preprocessor visited node count: 316/1000000
+Preprocessor generated node count: 1106/1000000
+Post‐expand include size: 4484/2097152 bytes
+Template argument size: 1252/2097152 bytes
+Highest expansion depth: 12/40
+Expensive parser function count: 11/100
 -->
-</p>
 
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   43.616      1 - -total
+ 77.50%   33.802      1 - Template:I18n
+ 73.76%   32.171      1 - Template:I18n_box
+ 64.92%   28.314      1 - Template:I18n_list
+ 34.15%   14.896      6 - Template:I18n_link
+ 19.78%    8.628      6 - Template:Autoglossonym
+  5.35%    2.332      2 - Template:Button
+  4.88%    2.130      1 - Template:Shortcut
+  4.86%    2.120      2 - Template:Note
+  3.80%    1.656      1 - Template:Advice
+-->
 
-
-
-
+<!-- Saved in parser cache with key helpmediawiki:pcache:idhash:2645-0!*!0!!*!5!* and timestamp 20180117040634 and revision id 57004
+ -->
 </div>
-										
+										<!-- end content -->
 										<div class="visualClear"></div>
 				</div>
 			</div>
 		</div>
-		
-		<div class="visualClear"></div>
+		<div id="column-one">
+			
 					
-		</div><!--latex \end{multicols}-->
+				
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="../index.html" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+					
+		<div class="generated-sidebar portlet" id="p-Navigation" role="navigation">
+		<h3>Navigation</h3>
+		<div class='pBody'>
+			<ul><li> <a href="../index.html" title="Main Page">Manual Home Page</a></li>
+<li> <a href="../index.html#using" title="Main Page">Using Audacity</a>
+<ul><li> <a href="audacity_tour_guide.html" title="Audacity Tour Guide">Tour Guide</a></li>
+<li> <a href="new_features_in_this_release.html" title="New features in this release">New Features</a></li>
+<li> <a href="../quick_help.html" title="Quick Help">Getting Started</a></li>
+<li> <a href="preferences.html" title="Preferences">Preferences</a></li>
+<li> <a href="menu_reference.html" title="Menu Reference">Menu Bar</a></li>
+<li> <a href="toolbars_overview.html" title="Toolbars Overview">Toolbars</a></li>
+<li> <a href="keyboard_shortcut_reference.html" title="Keyboard Shortcut Reference">Commands / Shortcuts</a></li>
+<li> <a href="index_of_effects_generators_and_analyzers.html" title="Index of Effects, Generators and Analyzers">Effects</a></li>
+<li> <a href="tutorials.html" title="Tutorials">Tutorials</a></li>
+<li> <a href="tips.html" title="Tips">Tips</a></li></ul></li></ul>
+		</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-Reference" role="navigation">
+		<h3>Reference</h3>
+		<div class='pBody'>
+			<ul><li> <a href="../index.html#reference" title="Main Page">Reference</a>
+<ul><li> <a href="digital_audio.html" title="Digital Audio">Digital Audio</a></li>
+<li> <a href="glossary.html" title="Glossary">Glossary</a></li>
+<li> <a href="subject_index.html" title="Subject Index">Subject Index</a></li></ul></li>
+<li> <span title="Frequently Asked Questions"><a rel="nofollow" target="manual" class="external text" href="faq.html">FAQ</a></span></li></ul>
+		</div>
+		</div>
 		
-</body></html>
+		<div class="generated-sidebar portlet" id="p-Useful_Links" role="navigation">
+		<h3>Useful Links</h3>
+		<div class='pBody'>
+			<ul><li> <a rel="nofollow" target="manual" class="external text" href="https://forum.audacityteam.org/index.php">Forum</a></li>
+<li> <a rel="nofollow" target="manual" class="external text" href="https://wiki.audacityteam.org/wiki/Audacity_Wiki_Home_Page">Wiki</a></li>
+<li> <a rel="nofollow" target="manual" class="external text" href="https://www.audacityteam.org/download/">Latest Release</a></li></ul>
+		</div>
+		</div>
+		
+			
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-copyrightico">
+									
+							</div>
+					<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="../m/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/m/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /m/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31"/></a>
+							</div>
+					
+		<div align="center"><ul id="f_list"><li>Offline version created on 2018-01-17 - <a target="manual" href="http://alphamanual.audacityteam.org/man/Edit">Check current version of this page (development Manual)</a></li></ul></div>
+</div>
+		</div>
+		</body></html>

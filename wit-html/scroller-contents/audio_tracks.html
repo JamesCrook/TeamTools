@@ -1,509 +1,335 @@
 <!DOCTYPE html>
-<html class="client-nojs" dir="ltr" lang="en"><head>
-<meta charset="utf-8"/>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
 <title>Audio Tracks - Audacity Development Manual</title>
 
 
 
 
+<!--[if IE 6]><link rel="stylesheet" href="../m/skins/monobook/ie60fixes.css/303.css" media="screen"/><![endif]--><!--[if IE 7]><link rel="stylesheet" href="../m/skins/monobook/ie70fixes.css/303.css" media="screen"/><![endif]-->
+<meta name="ResourceLoaderDynamicStyles" content=""/>
 
-<meta content="" name="ResourceLoaderDynamicStyles"/>
+<meta name="generator" content="MediaWiki 1.28.2"/>
+<link rel="shortcut icon" href="../favicon.ico"/>
+<link rel="search" type="application/opensearchdescription+xml" target="manual" href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" title="Audacity Development Manual (en)"/>
+<link rel="EditURI" type="application/rsd+xml" target="manual" href="http://alphamanual.audacityteam.org/m/api.php?action=rsd"/>
+<link rel="copyright" href="https://creativecommons.org/licenses/by/3.0/" />
 
-<meta content="MediaWiki 1.28.2" name="generator"/>
-<link href="../favicon.ico" rel="shortcut icon"/>
-<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
-<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
-<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
-
-<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+<link rel="stylesheet" href="../m/skins/monobook/main.css/303.css" media="screen" />
 </head>
 <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Audio_Tracks rootpage-Audio_Tracks skin-monobook action-view"><div id="globalWrapper">
 		<div id="column-content">
-			<div class="mw-body" id="content" role="main">
+			<div id="content" class="mw-body" role="main">
 				<a id="top"></a>
 				
 				<div class="mw-indicators">
 </div>
-				<!--
-\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Audio Tracks</h1><!--}
-\par\vspace{1mm}\hrule
---><!--latex \begin{multicols}{2}--><!--latex \label{audio:tracks:}-->
+				<h1 id="firstHeading" class="firstHeading" lang="en">Audio Tracks</h1>
 				
-				<div class="mw-body-content" id="bodyContent">
-					
-					
-										
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Audacity Development Manual</div>
+					<div id="contentSub"></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a target="manual" href="http://alphamanual.audacityteam.org/man/Audio_Tracks#searchInput">search</a></div>
 
-					
-					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
-
-
-</p><p><br/>
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr">
+<p><br />
 </p>
-<div class="intro">Each <!--\textit{--><i><!--\textbf{--><b>audio track</b><!--}--></i><!--}--> containing digital audio contains from left to right:
-<!--
-\begin{itemize}--><ul><!--
-\item --><li> a <!--latex 
-\hyperref[\foo{audio:tracks::panel}]{--><a href="#panel">Track Control Panel</a><!--latex }
---> with <!--latex 
-\hyperref[\foo{audio:track:dropdown:menu:}]{--><a href="audio_track_dropdown_menu.html" title="Audio Track Dropdown Menu">Audio Track Dropdown Menu</a><!--latex }
---> for changing View Mode and audio properties of that individual track </li>
-<!--
-\item --><li> a <!--latex 
-\hyperref[\foo{audio:tracks::scale}]{--><a href="#scale">Vertical Scale</a><!--latex }
---> with units </li>
-<!--
-\item --><li> a visual representation of the audio <!--latex 
-\hyperref[\foo{audacity:waveform:}]{--><a href="audacity_waveform.html" title="Audacity Waveform">waveform</a><!--latex }
--->. </li></ul><!--
-\end{itemize}
--->
-New tracks are created whenever you <!--latex 
-\hyperref[\foo{file:menu:Import:Audio}]{--><a href="file_menu.html#Import_Audio" title="File Menu">import</a><!--latex }
---> an audio file,  <!--latex 
-\hyperref[\foo{record:}]{--><a href="record.html" title="Record">record</a><!--latex }
---> (except for <!--latex 
-\hyperref[\foo{generate:menu:}]{--><a href="generate_menu.html" title="Generate Menu">generate</a><!--latex }
---> audio when there is no <!--latex 
-\hyperref[\foo{audacity:selection:}]{--><a href="audacity_selection.html" title="Audacity Selection">selection</a><!--latex }
--->. <span class="menu">Tracks &gt; <!--latex 
-\hyperref[\foo{tracks:menu:add:new}]{--><a href="tracks_menu.html#add_new" title="Tracks Menu">Add New</a><!--latex }
---></span> lets you explicitly add a new, empty mono or stereo audio track.</div>
-
+<div class="intro">Each <i><b>audio track</b></i> containing digital audio contains from left to right:
+<ul><li> a <a href="#panel">Track Control Panel</a> with <a href="audio_track_dropdown_menu.html" title="Audio Track Dropdown Menu">Audio Track Dropdown Menu</a> for changing View Mode and audio properties of that individual track </li>
+<li> a <a href="#scale">Vertical Scale</a> with units </li>
+<li> a visual representation of the audio <a href="audacity_waveform.html" title="Audacity Waveform">waveform</a>. </li></ul>
+New tracks are created whenever you <a href="file_menu.html#Import_Audio" title="File Menu">import</a> an audio file,  <a href="record.html" title="Record">record</a> (except for <a href="generate_menu.html" title="Generate Menu">generate</a> audio when there is no <a href="audacity_selection.html" title="Audacity Selection">selection</a>. <span class="menu">Tracks &gt; <a href="tracks_menu.html#add_new" title="Tracks Menu">Add New</a></span> lets you explicitly add a new, empty mono or stereo audio track.</div>
+<h2><span class="mw-headline" id="Contents">Contents</span></h2>
+<ol><li><a href="#about">About Tracks</a></li>
+<li><a href="#stereo">Stereo Audio Track</a></li>
+<li><a href="#single">Single Audio Track (Mono, Left or Right)</a></li>
+<li><a href="#panel">Track Control Panel</a></li>
+<li><a href="#scale">Vertical Scale</a></li>
+<li><a href="#name">Show audio track name as overlay</a></li>
+<li><a href="#colors">Waveform colorways</a></li>
+<li><a href="#split">Splitting and Joining Tracks</a></li>
+<li><a href="#display">Changing the track display</a></li>
+<li><a href="#focus">Track focus</a></li>
+<li><a href="#working">Working with Audio Tracks</a></li></ol>
 <div id="about"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id="About_Tracks">About Tracks</span></h2><!--}--><!--latex 
-\label{audio:tracks:about}-->
-<p>A track is like one instrument in your symphony, or one voice in your podcast. You can add more tracks, and all of them will be <!--latex 
-\hyperref[\foo{mixing:}]{--><a href="mixing.html" title="Mixing">mixed</a><!--latex }
---> together to create your final output, but during editing you can manipulate each track independently. If you have an interview recorded with two microphones, each one can go in a separate track. If you have background music, that could go in a third track. You can move the whole track along the <!--latex 
-\hyperref[\foo{timeline:}]{--><a href="timeline.html" title="Timeline">Timeline</a><!--latex }
---> so that it plays at a different point in time in the mix, but until it is <!--latex 
-\hyperref[\foo{audacity:tracks:and:clips:}]{--><a href="audacity_tracks_and_clips.html" title="Audacity Tracks and Clips">split into clips</a><!--latex }
---> you cannot move individual parts of it around. 
+<h2><span class="mw-headline" id="About_Tracks">About Tracks</span></h2>
+<p>A track is like one instrument in your symphony, or one voice in your podcast. You can add more tracks, and all of them will be <a href="mixing.html" title="Mixing">mixed</a> together to create your final output, but during editing you can manipulate each track independently. If you have an interview recorded with two microphones, each one can go in a separate track. If you have background music, that could go in a third track. You can move the whole track along the <a href="timeline.html" title="Timeline">Timeline</a> so that it plays at a different point in time in the mix, but until it is <a href="audacity_tracks_and_clips.html" title="Audacity Tracks and Clips">split into clips</a> you cannot move individual parts of it around. 
+</p><p><br />
 </p>
 <div id="stereo"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Stereo_Audio_Track">Stereo Audio Track</span></h2><!--}--><!--latex 
-\label{audio:tracks:stereo}-->
-<p>The image below shows the separate components of an Audacity stereo track: the Track Control Panel with <!--latex 
-\hyperref[\foo{audio:track:dropdown:menu:}]{--><a href="audio_track_dropdown_menu.html" title="Audio Track Dropdown Menu">Audio Track Dropdown Menu</a><!--latex }
--->, the Vertical Scale and the Waveform Display itself, typical of a finally edited recording. As per convention, the upper waveform and vertical scale represent the left channel and the lower waveform and vertical scale represent the right channel. The dark blue part of the waveform displays the tallest peak and the light blue part of the waveform displays the average <!--\textit{--><i><!--\textbf{--><b><!--latex 
-\hyperref[\foo{glossary:rms}]{--><a href="glossary.html#rms" title="Glossary">RMS</a><!--latex }
---></b><!--}--></i><!--}--> (Root Mean Square) value of the audio, see <!--latex 
-\hyperref[\foo{audacity:waveform:colors}]{--><a href="audacity_waveform.html#colors" title="Audacity Waveform">The waveform colors</a><!--latex }
---> for more detail.
+<h2><span class="mw-headline" id="Stereo_Audio_Track">Stereo Audio Track</span></h2>
+<p>The image below shows the separate components of an Audacity stereo track: the Track Control Panel with <a href="audio_track_dropdown_menu.html" title="Audio Track Dropdown Menu">Audio Track Dropdown Menu</a>, the Vertical Scale and the Waveform Display itself, typical of a finally edited recording. As per convention, the upper waveform and vertical scale represent the left channel and the lower waveform and vertical scale represent the right channel. The dark blue part of the waveform displays the tallest peak and the light blue part of the waveform displays the average <i><b><a href="glossary.html#rms" title="Glossary">RMS</a></b></i> (Root Mean Square) value of the audio, see <a href="audacity_waveform.html#colors" title="Audacity Waveform">The waveform colors</a> for more detail.
 </p>
-<dl><dd><span title="Stereo track with Track Control Panel, vertical scale and left channel above right channel"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="Stereo waveform annotated.png" height="311" src="../m/images/c/c1/stereo_waveform_annotated.png" width="600"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/c/c1/stereo_waveform_annotated.png--></img><!--}\par
---></span></dd></dl>
-<div class="note">See <!--latex 
-\hyperref[\foo{audacity:waveform:}]{--><a href="audacity_waveform.html" title="Audacity Waveform">Audacity Waveform</a><!--latex }
---> for further details of the Waveform and alternative <!--latex 
-\hyperref[\foo{audacity:waveform:db}]{--><a href="audacity_waveform.html#db" title="Audacity Waveform">Waveform (dB)</a><!--latex }
---> View Mode (chosen using the Track Dropdown Menu). <!--latex 
-\hyperref[\foo{audio:track:dropdown:menu:spgram}]{--><a href="audio_track_dropdown_menu.html#spgram" title="Audio Track Dropdown Menu">Spectrogram</a><!--latex }
---> views can be chosen from the same menu.
-<!--
-\begin{itemize}--><ul><!--
-\item --><li> To change the default View Mode that all tracks show when created, use <!--latex 
-\hyperref[\foo{tracks:preferences:}]{--><a href="tracks_preferences.html" title="Tracks Preferences">Tracks Preferences</a><!--latex }
--->.</li></ul><!--
-\end{itemize}
---></div> 
-<p>In a stereo track, all editing actions on the track are applied identically to both channels, though some <!--latex 
-\hyperref[\foo{index:of:effects:generators:and:analyzers:}]{--><a href="index_of_effects_generators_and_analyzers.html" title="Index of Effects, Generators and Analyzers">effects</a><!--latex }
---> may treat each channel differently. For exaample, <span class="menu">Effect &gt; <!--latex 
-\hyperref[\foo{effect:menu:amplify}]{--><a href="effect_menu.html#amplify" title="Effect Menu">Amplify...</a><!--latex }
---></span> and by default <span class="menu">Effect&nbsp;&gt;&nbsp;<!--latex 
-\hyperref[\foo{effect:menu:normalize}]{--><a href="effect_menu.html#normalize" title="Effect Menu">Normalize...</a><!--latex }
---></span> set the peak <!--\textit{--><i><!--\textbf{--><b><!--latex 
-\hyperref[\foo{glossary:amplitude}]{--><a href="glossary.html#amplitude" title="Glossary">amplitude</a><!--latex }
---></b><!--}--></i><!--}--> of only the loudest channel then apply the same <!--\textit{--><i>change</i><!--}--> in amplitude to the other channel, preserving the balance between channels. Normalize has an option to normalize left and right channels independently to the same amplitude if this is required. See <!--latex 
-\hyperref[\foo{amplify:and:normalize:}]{--><a href="amplify_and_normalize.html" title="Amplify and Normalize">Amplify and Normalize</a><!--latex }
---> for more details.
+<dl><dd><span title="Stereo track with Track Control Panel, vertical scale and left channel above right channel"><img alt="Stereo waveform annotated.png" src="../m/images/c/c1/stereo_waveform_annotated.png" width="600" height="311" /></span></dd></dl>
+<div class="note">See <a href="audacity_waveform.html" title="Audacity Waveform">Audacity Waveform</a> for further details of the Waveform and alternative <a href="audacity_waveform.html#db" title="Audacity Waveform">Waveform (dB)</a> View Mode (chosen using the Track Dropdown Menu). <a href="audio_track_dropdown_menu.html#spgram" title="Audio Track Dropdown Menu">Spectrogram</a> views can be chosen from the same menu.
+<ul><li> To change the default View Mode that all tracks show when created, use <a href="tracks_preferences.html" title="Tracks Preferences">Tracks Preferences</a>.</div> </li></ul>
+<p>In a stereo track, all editing actions on the track are applied identically to both channels, though some <a href="index_of_effects_generators_and_analyzers.html" title="Index of Effects, Generators and Analyzers">effects</a> may treat each channel differently. For exaample, <span class="menu">Effect &gt; <a href="effect_menu.html#amplify" title="Effect Menu">Amplify...</a></span> and by default <span class="menu">Effect&#160;&gt;&#160;<a href="effect_menu.html#normalize" title="Effect Menu">Normalize...</a></span> set the peak <i><b><a href="glossary.html#amplitude" title="Glossary">amplitude</a></b></i> of only the loudest channel then apply the same <i>change</i> in amplitude to the other channel, preserving the balance between channels. Normalize has an option to normalize left and right channels independently to the same amplitude if this is required. See <a href="amplify_and_normalize.html" title="Amplify and Normalize">Amplify and Normalize</a> for more details.
+</p><p><br />
 </p>
 <div id="single"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Single_Audio_Track_.28Mono.2C_Left_or_Right.29">Single Audio Track (Mono, Left or Right)</span></h2><!--}--><!--latex 
-\label{audio:tracks:single}-->
-<p>A single audio track has the same components as a stereo track with a single waveform and one vertical scale rather than two. This can be easily seen if using "Split Stereo Track" in the Track Dropdown Menu to split the stereo track into two single tracks. The same menu can make single tracks mono, left or right. Each single track can be separately <!--latex 
-\hyperref[\foo{audacity:selection:}]{--><a href="audacity_selection.html" title="Audacity Selection">selected</a><!--latex }
---> and thus edited independently from other tracks.
+<h2><span class="mw-headline" id="Single_Audio_Track_.28Mono.2C_Left_or_Right.29">Single Audio Track (Mono, Left or Right)</span></h2>
+<p>A single audio track has the same components as a stereo track with a single waveform and one vertical scale rather than two. This can be easily seen if using "Split Stereo Track" in the Track Dropdown Menu to split the stereo track into two single tracks. The same menu can make single tracks mono, left or right. Each single track can be separately <a href="audacity_selection.html" title="Audacity Selection">selected</a> and thus edited independently from other tracks.
 </p>
-<dl><dd><span title="Mono Track"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="Mono track example.png" height="189" src="../m/images/f/f9/mono_track_example.png" width="698"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/f/f9/mono_track_example.png--></img><!--}\par
---></span></dd></dl>
+<dl><dd><span title="Mono Track"><img alt="Mono track example.png" src="../m/images/f/f9/mono_track_example.png" width="698" height="189" /></span></dd></dl>
+<p><br />
+</p>
 <div id="panel"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Track_Control_Panel">Track Control Panel</span></h2><!--}--><!--latex 
-\label{audio:tracks:panel}-->
+<h2><span class="mw-headline" id="Track_Control_Panel">Track Control Panel</span></h2>
 <dl><dd><table>
 
-<tbody><!--\par --><tr valign="top">
-<td> <span title="Track Control Panel"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="TrackPanelNew.png" height="145" src="../m/images/d/dd/trackpanelnew.png" width="97"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/dd/trackpanelnew.png--></img><!--}\par
---></span>
+<tr valign="top">
+<td> <span title="Track Control Panel"><img alt="TrackPanelNew.png" src="../m/images/d/dd/trackpanelnew.png" width="97" height="145" /></span>
 </td>
-<td><div class="note" style="position:relative;top:-0.9em">The <!--\textbf{--><b>Track Control Panel</b><!--}--> at the left of the audio track has controls and status indicators for this track. Left-clicking other than on a control performs track selection and move as follows.
-<!--
-\begin{itemize}--><ul><!--
-\item --><li> Clicking <!--latex 
-\hyperref[\foo{audacity:selection:}]{--><a href="audacity_selection.html" title="Audacity Selection">selects</a><!--latex }
---> all this track's audio, <!--\textit{--><i>deselecting all other tracks</i><!--}-->. </li>
-<!--
-\item --><li> Holding <span class="kbrd" style="background-color: #e0e0f0">Shift</span> while clicking selects all this track's audio, <!--\textit{--><i>keeping already selected tracks selected</i><!--}-->.
-<!--
-\begin{itemize}--><ul><!--
-\item --><li> (<!--\textbf{--><b>keyboard:</b><!--}--> use <span class="kbrd" style="background-color: #e0e0f0">Up</span> or <span class="kbrd" style="background-color: #e0e0f0">Down</span> to give the track <!--latex 
-\hyperref[\foo{audio:tracks::focus}]{--><a href="#focus">focus</a><!--latex }
--->, then <span class="kbrd" style="background-color: #e0e0f0">Enter</span> to select it; hold <span class="kbrd" style="background-color: #e0e0f0">Shift</span> then use <span class="kbrd" style="background-color: #e0e0f0">Up</span> or <span class="kbrd" style="background-color: #e0e0f0">Down</span> to extend selection into another track. Read <!--latex 
-\hyperref[\foo{audacity:selection:keyboard}]{--><a href="audacity_selection.html#keyboard" title="Audacity Selection">keyboard selection</a><!--latex }
---> for more).    </li></ul><!--
-\end{itemize}
---></li>
-<!--
-\item --><li> Click-and-drag moves this track up or down when there are other tracks (<!--\textbf{--><b>keyboard:</b><!--}--> choose one of the "Move Track" commands in <!--latex 
-\hyperref[\foo{audio:track:dropdown:menu:}]{--><a href="audio_track_dropdown_menu.html" title="Audio Track Dropdown Menu">Audio Track Dropdown Menu</a><!--latex }
--->, opened by <span class="kbrd" style="background-color: #e0e0f0">Shift + M</span> on the currently focused track ).</li></ul><!--
-\end{itemize}
---></div>
-</td></tr></tbody></table></dd></dl>
+<td><div class="note" style="position:relative;top:-0.9em">The <b>Track Control Panel</b> at the left of the audio track has controls and status indicators for this track. Left-clicking other than on a control performs track selection and move as follows.
+<ul><li> Clicking <a href="audacity_selection.html" title="Audacity Selection">selects</a> all this track's audio, <i>deselecting all other tracks</i>. </li>
+<li> Holding <span class="kbrd" style="background-color: #e0e0f0">Shift</span> while clicking selects all this track's audio, <i>keeping already selected tracks selected</i>.
+<ul><li> (<b>keyboard:</b> use <span class="kbrd" style="background-color: #e0e0f0">Up</span> or <span class="kbrd" style="background-color: #e0e0f0">Down</span> to give the track <a href="#focus">focus</a>, then <span class="kbrd" style="background-color: #e0e0f0">Enter</span> to select it; hold <span class="kbrd" style="background-color: #e0e0f0">Shift</span> then use <span class="kbrd" style="background-color: #e0e0f0">Up</span> or <span class="kbrd" style="background-color: #e0e0f0">Down</span> to extend selection into another track. Read <a href="audacity_selection.html#keyboard" title="Audacity Selection">keyboard selection</a> for more).    </li></ul></li>
+<li> Click-and-drag moves this track up or down when there are other tracks (<b>keyboard:</b> choose one of the "Move Track" commands in <a href="audio_track_dropdown_menu.html" title="Audio Track Dropdown Menu">Audio Track Dropdown Menu</a>, opened by <span class="kbrd" style="background-color: #e0e0f0">Shift + M</span> on the currently focused track ).</div></li></ul>
+</td></tr></table></dd></dl>
 <div id="controls"></div>
-<!--
-\subsubsection{--><h3><span class="mw-headline" id="Controls">Controls</span></h3><!--}--><!--latex 
-\label{audio:tracks:controls}-->
+<h3><span class="mw-headline" id="Controls">Controls</span></h3>
 <div id="close"></div>
 <p><span style="font-weight: bold; font-size:118%">Close Button:</span>
 </p>
-<dl><dd> <span title="Track Close Button"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Track Close button.png" height="19" src="../m/images/0/05/track_close_button.png" width="19"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/0/05/track_close_button.png--></img><!--}}{}--></span> Clicking this button will close the track, removing it from the project.</dd></dl>
+<dl><dd> <span title="Track Close Button"><img alt="Track Close button.png" src="../m/images/0/05/track_close_button.png" width="19" height="19" /></span> Clicking this button will close the track, removing it from the project.</dd></dl>
 <div id="track_menu"></div>
 <p><span style="font-weight: bold; font-size:118%">Audio Track Dropdown Menu:</span>
 </p>
-<dl><dd><span title="Track Name"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="Track dropdown.png" height="18" src="../m/images/2/2e/track_dropdown.png" width="77"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/2/2e/track_dropdown.png--></img><!--}\par
---></span> Clicking the track name or using <span class="kbrd" style="background-color: #e0e0f0">Shift + M</span> on the currently <!--latex 
-\hyperref[\foo{audio:tracks::focus}]{--><a href="#focus">focused track</a><!--latex }
---> opens the <!--latex 
-\hyperref[\foo{audio:track:dropdown:menu:}]{--><a href="audio_track_dropdown_menu.html" title="Audio Track Dropdown Menu">Audio Track Dropdown Menu</a><!--latex }
---> giving options that affect this track only.  Newly created tracks are named "Audio Track".  Options in the dropdown menu include changing the name or <!--\textit{--><i><!--\textbf{--><b><!--latex 
-\hyperref[\foo{glossary:sample:rate}]{--><a href="glossary.html#sample_rate" title="Glossary">sample rate</a><!--latex }
---></b><!--}--></i><!--}-->, how the track is displayed, splitting a stereo track to single left, right or mono tracks and swapping stereo channels.</dd></dl>
+<dl><dd><span title="Track Name"><img alt="Track dropdown.png" src="../m/images/2/2e/track_dropdown.png" width="77" height="18" /></span> Clicking the track name or using <span class="kbrd" style="background-color: #e0e0f0">Shift + M</span> on the currently <a href="#focus">focused track</a> opens the <b><a href="audio_track_dropdown_menu.html" title="Audio Track Dropdown Menu">Audio Track Dropdown Menu</a></b> giving options that affect this track only.  Newly created tracks are named "Audio Track".  Options in the dropdown menu include changing the name or <i><b><a href="glossary.html#sample_rate" title="Glossary">sample rate</a></b></i>, how the track is displayed, splitting a stereo track to single left, right or mono tracks and swapping stereo channels.</dd></dl>
 <div id="mute"></div>
 <p><span style="font-weight: bold; font-size:118%">Mute Button:</span>
 </p>
-<dl><dd><span title="Track Mute Button"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Track Mute button.png" height="18" src="../m/images/d/d9/track_mute_button.png" width="48"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d9/track_mute_button.png--></img><!--}}{}--></span> Click to silence this track when playing. By default, the track will only be silenced if no Solo buttons are depressed. Click again to unsilence. Tracks on which the Mute button is pressed are never <!--latex 
-\hyperref[\foo{file:menu:export}]{--><a href="file_menu.html#export" title="File Menu">exported</a><!--latex }
--->.</dd></dl>
+<dl><dd><span title="Track Mute Button"><img alt="Track Mute button.png" src="../m/images/d/d9/track_mute_button.png" width="48" height="18" /></span> Click to silence this track when playing. By default, the track will only be silenced if no Solo buttons are depressed. Click again to unsilence. </dd></dl>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%" align="center">
+
+<tr>
+<td width="30px" valign="top" align="center"><a target="manual" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" class="image" title="Warning icon"><img alt="Warning icon" src="../m/images/b/ba/warningicon.png" width="24" height="24" /></a>
+</td>
+<td align="left" valign="top">Tracks on which the Mute button is pressed are never <a href="file_menu.html#export" title="File Menu">exported</a>.
+</td></tr></table>
+</div>
 <div id="solo"></div>
 <p><span style="font-weight: bold; font-size:118%">Solo Button:</span>
 </p>
-<dl><dd><span title="Track Solo Button"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Track Solo button.png" height="18" src="../m/images/a/a3/track_solo_button.png" width="48"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/a/a3/track_solo_button.png--></img><!--}}{}--></span> Click to play just this track.  Click again to release the button.  Whenever playing audio, Solo takes precedence over Mute by default - the Mute buttons have no effect whilst any Solo button is down.  There are two other options for Solo button behavior in the <!--latex 
-\hyperref[\foo{tracks:preferences:}]{--><a href="tracks_preferences.html" title="Tracks Preferences">Tracks Preferences</a><!--latex }
--->.  One of these is to remove the Solo button, leaving only a Mute button. </dd></dl>
+<dl><dd><span title="Track Solo Button"><img alt="Track Solo button.png" src="../m/images/a/a3/track_solo_button.png" width="48" height="18" /></span> Click to play just this track.  Click again to release the button.  Whenever playing audio, Solo takes precedence over Mute by default - the Mute buttons have no effect whilst any Solo button is down.  There are two other options for Solo button behavior in the <a href="tracks_preferences.html" title="Tracks Preferences">Tracks Preferences</a>.  One of these is to remove the Solo button, leaving only a Mute button. </dd></dl>
 <div id="gain"></div>
 <p><span style="font-weight: bold; font-size:118%">Gain Slider:</span>
 </p>
-<dl><dd><span title="Track Gain Slider"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="Track Gain slider.png" height="24" src="../m/images/f/f9/track_gain_slider.png" width="98"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/f/f9/track_gain_slider.png--></img><!--}\par
---></span> Set the gain for this track. Hold down the shift key while dragging to adjust the slider in finer increments. Double-click the slider to bring up a window where you can make precise adjustments or enter a gain value.</dd></dl>
+<dl><dd><span title="Track Gain Slider"><img alt="Track Gain slider.png" src="../m/images/f/f9/track_gain_slider.png" width="98" height="24" /></span> Set the gain for this track. Hold down the shift key while dragging to adjust the slider in finer increments. Double-click the slider to bring up a window where you can make precise adjustments or enter a gain value.</dd></dl>
 <div id="pan"></div>
 <p><span style="font-weight: bold; font-size:118%">Pan Slider:</span>
 </p>
-<dl><dd><span title="Track Pan Slider"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="Track Pan slider.png" height="27" src="../m/images/6/66/track_pan_slider.png" width="96"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/6/66/track_pan_slider.png--></img><!--}\par
---></span> To make signal stronger on left or right speaker/earphone. Hold down the shift key while dragging to adjust the slider in finer increments. Double-click the slider to bring up a window where you can make precise adjustments or enter a pan value.</dd></dl>
+<dl><dd><span title="Track Pan Slider"><img alt="Track Pan slider.png" src="../m/images/6/66/track_pan_slider.png" width="96" height="27" /></span> To make signal stronger on left or right speaker/earphone. Hold down the shift key while dragging to adjust the slider in finer increments. Double-click the slider to bring up a window where you can make precise adjustments or enter a pan value.</dd></dl>
 <div id="collapse"></div>
 <p><span style="font-weight: bold; font-size:118%">Track Collapse Button:</span>
 </p>
-<dl><dd><span title="Track Collapse Button"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="Track Collapse button.png" height="18" src="../m/images/a/a7/track_collapse_button.png" width="77"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/a/a7/track_collapse_button.png--></img><!--}\par
---></span> Click on this to make the track 'fold up' into a smaller size.  Click again, or drag the lower edge of the track to restore the size.</dd></dl>
-<!--
-\subsubsection{--><h3><span class="mw-headline" id="Status_Indicators">Status Indicators</span></h3><!--}--><!--latex 
-\label{audio:tracks:collapse}--><!--latex 
-\label{audio:tracks:pan}--><!--latex 
-\label{audio:tracks:gain}--><!--latex 
-\label{audio:tracks:solo}--><!--latex 
-\label{audio:tracks:mute}--><!--latex 
-\label{audio:tracks:track:menu}--><!--latex 
-\label{audio:tracks:close}-->
+<dl><dd><span title="Track Collapse Button"><img alt="Track Collapse button.png" src="../m/images/a/a7/track_collapse_button.png" width="77" height="18" /></span> Click on this to make the track 'fold up' into a smaller size.  Click again, or drag the lower edge of the track to restore the size.</dd></dl>
+<h3><span class="mw-headline" id="Status_Indicators">Status Indicators</span></h3>
 <div id="info"></div>
-<!--
-\begin{itemize}--><ul><!--
-\item --><li><!--\textbf{--><b>Track Information Area:</b><!--}--><br/></li></ul><!--
-\end{itemize}
--->
-<dl><dd> <span title="Track Information Area"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="TrackInfo.png" height="32" src="../m/images/c/c5/trackinfo.png" width="99"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/c/c5/trackinfo.png--></img><!--}\par
---></span> Gives the following information for each track:
-<!--
-\begin{itemize}--><ul><!--
-\item --><li> Stereo or Mono</li>
-<!--
-\item --><li> The <!--\textit{--><i><!--\textbf{--><b><!--latex 
-\hyperref[\foo{glossary:sample:rate}]{--><a href="glossary.html#sample_rate" title="Glossary">sample rate</a><!--latex }
---></b><!--}--> in </i><!--}--><!--\textbf{--><b><!--latex 
-\hyperref[\foo{glossary:hz}]{--><a href="glossary.html#hz" title="Glossary">Hz</a><!--latex }
---></b><!--}--><!--\textit{--><i> </i><!--}--></li>
-<!--
-\item --><li> The <!--\textit{--><i><!--\textbf{--><b><!--latex 
-\hyperref[\foo{glossary:sample:format}]{--><a href="glossary.html#sample_format" title="Glossary">sample format</a><!--latex }
---></b><!--}--></i><!--}--> or bit depth. An imported file will show the bit depth at which the file was imported (as per your choice in <!--latex 
-\hyperref[\foo{quality:preferences:}]{--><a href="quality_preferences.html" title="Quality Preferences">Quality Preferences</a><!--latex }
--->), not the actual bit depth of the file.   </li></ul><!--
-\end{itemize}
---></dd></dl>
+<ul><li><b>Track Information Area:</b><br /></li></ul>
+<dl><dd> <span title="Track Information Area"><img alt="TrackInfo.png" src="../m/images/c/c5/trackinfo.png" width="99" height="32" /></span> Gives the following information for each track:
+<ul><li> Stereo or Mono</li>
+<li> The <i><b><a href="glossary.html#sample_rate" title="Glossary">sample rate</a></b> in </i><b><a href="glossary.html#hz" title="Glossary">Hz</a></b><i> </i></li>
+<li> The <i><b><a href="glossary.html#sample_format" title="Glossary">sample format</a></b></i> or bit depth. An imported file will show the bit depth at which the file was imported (as per your choice in <a href="quality_preferences.html" title="Quality Preferences">Quality Preferences</a>), not the actual bit depth of the file.   </li></ul></dd></dl>
 <div id="sync"></div>
-<!--
-\begin{itemize}--><ul><!--
-\item --><li><!--\textbf{--><b>Sync-Lock Indicator:</b><!--}--><br/></li></ul><!--
-\end{itemize}
--->
-<dl><dd><span title="Track Sync-Lock Indicator"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="TrackSync.png" height="20" src="../m/images/8/89/tracksync.png" width="16"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/8/89/tracksync.png--></img><!--}}{}--></span> When present <!--\textit{--><i>(at bottom-right of the Track Control Panel, adjacent to the Track Collapse button)</i><!--}-->, indicates that this track is part of a <!--latex 
-\hyperref[\foo{sync:locked:track:groups:}]{--><a href="sync_locked_track_groups.html" title="Sync-Locked Track Groups">Sync-Locked Track Group</a><!--latex }
--->.</dd></dl>
+<ul><li><b>Sync-Lock Indicator:</b><br /></li></ul>
+<dl><dd><span title="Track Sync-Lock Indicator"><img alt="TrackSync.png" src="../m/images/8/89/tracksync.png" width="16" height="20" /></span> When present <i>(at bottom-right of the Track Control Panel, adjacent to the Track Collapse button)</i>, indicates that this track is part of a <a href="sync_locked_track_groups.html" title="Sync-Locked Track Groups">Sync-Locked Track Group</a>.</dd></dl>
+<p><br />
+</p>
 <div id="scale"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Vertical_Scale">Vertical Scale</span></h2><!--}--><!--latex 
-\label{audio:tracks:scale}--><!--latex 
-\label{audio:tracks:sync}--><!--latex 
-\label{audio:tracks:info}-->
+<h2><span class="mw-headline" id="Vertical_Scale">Vertical Scale</span></h2>
+</li></ul>
 <dl><dd><table>
 
-<tbody><!--\par --><tr>
-<td valign="top"><span title="Vertical Scale (default linear)"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="TrackVertRuler.png" height="247" src="../m/images/5/50/trackvertruler.png" width="34"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/5/50/trackvertruler.png--></img><!--}\par
---></span>
+<tr>
+<td valign="top"><span title="Vertical Scale (default linear)"><img alt="Vertical Scale ruler.png" src="../m/images/0/0a/vertical_scale_ruler.png" width="40" height="192" /></span>
 </td>
-<td style="padding-left:10px" valign="top">The vertical scale displays <!--\textit{--><i><!--\textbf{--><b><!--latex 
-\hyperref[\foo{glossary:amplitude}]{--><a href="glossary.html#amplitude" title="Glossary">amplitude</a><!--latex }
---></b><!--}--></i><!--}--> when showing the  <!--\textit{--><i><!--\textbf{--><b><!--latex 
-\hyperref[\foo{glossary:waveform}]{--><a href="glossary.html#waveform" title="Glossary">waveform</a><!--latex }
---></b><!--}--></i><!--}-->, or <!--\textit{--><i><!--\textbf{--><b><!--latex 
-\hyperref[\foo{glossary:frequency}]{--><a href="glossary.html#frequency" title="Glossary">frequency</a><!--latex }
---></b><!--}--></i><!--}--> when showing the <!--\textit{--><i><!--\textbf{--><b><!--latex 
-\hyperref[\foo{glossary:spectrum}]{--><a href="glossary.html#spectrum" title="Glossary">spectrum</a><!--latex }
---></b><!--}--></i><!--}-->  or <!--\textit{--><i><!--\textbf{--><b><!--latex 
-\hyperref[\foo{glossary:pitch}]{--><a href="glossary.html#pitch" title="Glossary">pitch</a><!--latex }
---></b><!--}--></i><!--}-->.  The amplitude scale shown to left is the default <!--\textit{--><i><!--\textbf{--><b><!--latex 
-\hyperref[\foo{glossary:linear}]{--><a href="glossary.html#linear" title="Glossary">linear</a><!--latex }
---></b><!--}--></i><!--}--> scale, with 1.0 being the maximum value of positive signals and -1.0 the maximum of negative signals. If the display is changed to <!--latex 
-\hyperref[\foo{audio:track:dropdown:menu:wavedb}]{--><a href="audio_track_dropdown_menu.html#wavedb" title="Audio Track Dropdown Menu">Waveform dB</a><!--latex }
---> in the <!--latex 
-\hyperref[\foo{audio:track:dropdown:menu:}]{--><a href="audio_track_dropdown_menu.html" title="Audio Track Dropdown Menu">Audio Track Dropdown Menu</a><!--latex }
--->, the scale shows <!--\textit{--><i><!--\textbf{--><b><!--latex 
-\hyperref[\foo{glossary:decibel}]{--><a href="glossary.html#decibel" title="Glossary">dB</a><!--latex }
---></b><!--}--></i><!--}--> values for positive signals only, ranging from maximum 0 dB to the minimum dB level set in <!--latex 
-\hyperref[\foo{interface:preferences:}]{--><a href="interface_preferences.html" title="Interface Preferences">Interface Preferences</a><!--latex }
--->, or as varied using the mouse wheel (see below).
-<p>When the mouse pointer is over the scale it changes to a magnify icon <!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="MagnifyPointer.png" height="17" src="../m/images/2/2f/magnifypointer.png" width="17"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/2/2f/magnifypointer.png--></img><!--}}{}-->. 
-</p>
-<!--
-\begin{itemize}--><ul><!--
-\item --><li> Left-click in the Vertical Scale for any Waveform or Spectrogram view to zoom in. The range displayed on the scale will be centered at the value you clicked at. Left-click and drag a region up or down then release to zoom into that region. You can press <span class="kbrd" style="background-color: #e0e0f0">Esc</span> to cancel the zoom operation if you commence a drag by mistake. </li>
-<!--
-\item --><li> Hold <span class="kbrd" style="background-color: #e0e0f0">Shift</span> and left-click (or use unmodified right-click) to zoom out progressively. When the <span class="kbrd" style="background-color: #e0e0f0">Shift</span> key is held down the plus sign on the magnify icon changes to a minus icon. Using either of these methods you can zoom out in the final step from a range of 1.0 to -1.0 to 2.0 to -2.0 on the linear waveform scale (or to +6 dB when in Waveform (dB) view). This allows you when in 32-bit float <!--\textit{--><i><!--\textbf{--><b><!--latex 
-\hyperref[\foo{glossary:sample:format}]{--><a href="glossary.html#sample_format" title="Glossary">sample format</a><!--latex }
---></b><!--}--></i><!--}--> to see any samples that are above the 0 dB <!--\textit{--><i><!--\textbf{--><b><!--latex 
-\hyperref[\foo{glossary:clipping}]{--><a href="glossary.html#clipping" title="Glossary">clipping</a><!--latex }
---></b><!--}--></i><!--}--> level.</li>
-<!--
-\item --><li> Hold <span class="kbrd" style="background-color: #e0e0f0">Shift</span> and right-click to zoom out in one step to 1.0 to -1.0 linear (maximum 0 dB) or when in Spectrogram view, to a range of 0 Hz to the maximum for the sample rate (so 0 Hz to 22050 Hz for 44100 Hz rate). </li>
-<!--
-\item --><li> Hold <span class="kbrd" style="background-color: #e0e0f0">Shift</span> and rotate the mouse wheel to scroll up and down at the same zoom level, using the same visible range of amplitude or frequency. </li>
-<!--
-\item --><li> Hold <span class="kbrd" style="background-color: #e0e0f0">Ctrl</span> and rotate the mouse wheel to zoom in or out at the mouse pointer's position.    </li></ul><!--
-\end{itemize}
--->
-<p>In <!--latex 
-\hyperref[\foo{audacity:waveform:db}]{--><a href="audacity_waveform.html#db" title="Audacity Waveform">Waveform (dB) view</a><!--latex }
---> view only: 
-</p>
-<!--
-\begin{itemize}--><ul><!--
-\item --><li> Hold <span class="kbrd" style="background-color: #e0e0f0">Ctrl</span> and <span class="kbrd" style="background-color: #e0e0f0">Shift</span> and rotate the mouse wheel to vary the lower dB limit of the scale at the same zoom level, irrespective of the limit set at "Meter dB range" in <!--latex 
-\hyperref[\foo{tracks:preferences:}]{--><a href="tracks_preferences.html" title="Tracks Preferences">Tracks Preferences</a><!--latex }
--->. This only takes effect if the horizontal midline between positive and negative samples is visible, so has no effect if you are zoomed in on a portion of the vertical range that does not include the midline.</li></ul><!--
-\end{itemize}
--->
-<div class="note">All the above zooms are in the <!--\textit{--><i>vertical</i><!--}--> direction, as opposed to a <!--\textit{--><i>horizontal</i><!--}--> zoom on the <!--latex 
-\hyperref[\foo{timeline:}]{--><a href="timeline.html" title="Timeline">Timeline</a><!--latex }
--->. See <!--latex 
-\hyperref[\foo{zooming:}]{--><a href="zooming.html" title="Zooming">Zooming</a><!--latex }
---> for more details of vertical and horizontal zooming.</div>
+<td valign="top" style="padding-left:10px">
+<ul><li>The vertical scale displays <i><b><a href="glossary.html#amplitude" title="Glossary">amplitude</a></b></i> when showing the  <i><b><a href="glossary.html#waveform" title="Glossary">waveform</a></b></i>, or <i><b><a href="glossary.html#frequency" title="Glossary">frequency</a></b></i> when showing the <i><b><a href="glossary.html#spectrum" title="Glossary">spectrum</a></b></i>  or <i><b><a href="glossary.html#pitch" title="Glossary">pitch</a></b></i>.  </li></ul>
+<ul><li>The amplitude scale shown to left is the default <i><b><a href="glossary.html#linear" title="Glossary">linear</a></b></i> scale
+<ul><li> 1.0 being the maximum value of positive signals and -1.0 the maximum of negative signals. </li></ul></li></ul>
+<ul><li>If the display is changed to <a href="audio_track_dropdown_menu.html#wavedb" title="Audio Track Dropdown Menu">Waveform dB</a> in the <a href="audio_track_dropdown_menu.html" title="Audio Track Dropdown Menu">Audio Track Dropdown Menu</a>, the scale shows <i><b><a href="glossary.html#decibel" title="Glossary">dB</a></b></i> values for positive signals only 
+<ul><li> These dB values range from maximum 0 dB to the minimum dB level set in <a href="interface_preferences.html" title="Interface Preferences">Interface Preferences</a>, or can be varied using the <a href="zooming.html#vscale" title="Zooming">mouse wheel</a>.</li></ul></li></ul>
+<ul><li>Right-click in the Vertical Scale will bring up a dropdown context menu enabling <a href="vertical_zooming.html" title="Vertical Zooming">Vertical Zooming</a>.</li></ul>
 </td></tr>
-</tbody></table></dd></dl>
+</table></dd></dl>
+<p><br />
+</p>
 <div id="name"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Show_audio_track_name_as_overlay">Show audio track name as overlay</span></h2><!--}--><!--latex 
-\label{audio:tracks:name}-->
-<p>This is not on by default but if you go to <!--latex 
-\hyperref[\foo{tracks:preferences:display}]{--><a href="tracks_preferences.html#display" title="Tracks Preferences">Tracks Preferences</a><!--latex }
---> you can enable this option.
-</p><p>When this is enabled the audio track name is displayed superimposed at top left of all audio tracks. Note that the track name is always shown in the <!--latex 
-\hyperref[\foo{audio:tracks::panel}]{--><a href="#panel" title="Audio Tracks">Track Control Panel</a><!--latex }
---> but will be truncated if the name is too long to fit. 
+<h2><span class="mw-headline" id="Show_audio_track_name_as_overlay">Show audio track name as overlay</span></h2>
+<p>This is not on by default but if you go to <a href="tracks_preferences.html#display" title="Tracks Preferences">Tracks Preferences</a> you can enable this option.
+</p><p>When this is enabled the audio track name is displayed superimposed at top left of all audio tracks. Note that the track name is always shown in the <a href="#panel" title="Audio Tracks">Track Control Panel</a> but will be truncated if the name is too long to fit. 
 </p>
-<dl><dd><dl><dd><span title="Waveform with superimposed track name"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="Audio Track with track name superimposed.png" height="155" src="../m/images/d/dc/audio_track_with_track_name_superimposed.png" width="679"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/dc/audio_track_with_track_name_superimposed.png--></img><!--}\par
---></span></dd></dl></dd></dl>
+<dl><dd><span title="Waveform with superimposed track name"><img alt="Audio Track with track name superimposed.png" src="../m/images/d/dc/audio_track_with_track_name_superimposed.png" width="679" height="155" /></span></dd></dl>
+<p><br />
+</p>
+<div id="colors"></div>
+<h2><span class="mw-headline" id="Waveform_colorways">Waveform colorways</span></h2>
+<p>You can optionally change the colorway of the waveforms displayed in your project.  The setting is per track and not per project so you can have multiple colorways in the same project as in the image below. 
+</p><p>Four colorways are available with the color selection made from the <a href="audio_track_dropdown_menu.html" title="Audio Track Dropdown Menu">dropdown menu</a> in the track's <a href="track_control_panel_and_vertical_scale.html" title="Track Control Panel and Vertical Scale">Track Control Panel</a>.
+</p>
+<dl><dd><span title="The four colorways available for Waveform displays"><img alt="Waveform colorways.png" src="../m/images/3/3f/waveform_colorways.png" width="664" height="368" /></span></dd></dl>
+<p><br />
+</p>
 <div id="split"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Splitting_and_Joining_Tracks">Splitting and Joining Tracks</span></h2><!--}--><!--latex 
-\label{audio:tracks:split}-->
-<p>Using the <!--latex 
-\hyperref[\foo{audio:track:dropdown:menu:}]{--><a href="audio_track_dropdown_menu.html" title="Audio Track Dropdown Menu">Audio Track Dropdown Menu</a><!--latex }
---> you can:
+<h2><span class="mw-headline" id="Splitting_and_Joining_Tracks">Splitting and Joining Tracks</span></h2>
+<p>Using the <a href="audio_track_dropdown_menu.html" title="Audio Track Dropdown Menu">Audio Track Dropdown Menu</a> you can:
 </p>
-<!--
-\begin{itemize}--><ul><!--
-\item --><li> split a stereo track into separate tracks for left and right channels</li>
-<!--
-\item --><li> split a stereo track into two separate mono tracks</li>
-<!--
-\item --><li> swap the channels in a stereo track </li>
-<!--
-\item --><li> join two mono, left or right tracks into one stereo track.</li></ul><!--
-\end{itemize}
--->
+<ul><li> split a stereo track into separate tracks for left and right channels</li>
+<li> split a stereo track into two separate mono tracks</li>
+<li> swap the channels in a stereo track </li>
+<li> join two mono, left or right tracks into one stereo track.</li></ul>
 <p>For example, here is a project with two mono tracks:
 </p>
-<dl><dd><span title="Project with two mono tracks"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="PreJoinSmall.png" height="179" src="../m/images/b/b8/prejoinsmall.png" width="640"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/b8/prejoinsmall.png--></img><!--}\par
---></span></dd></dl>
-<p>After selecting <!--\textbf{--><b>"Make Stereo Track"</b><!--}--> from the Track Dropdown Menu on the upper track we get one stereo track:
+<dl><dd><span title="Project with two mono tracks"><img alt="PreJoinSmall.png" src="../m/images/b/b8/prejoinsmall.png" width="640" height="179" /></span></dd></dl>
+<p>After selecting <b>"Make Stereo Track"</b> from the Track Dropdown Menu on the upper track we get one stereo track:
 </p>
-<dl><dd><span title="Stereo track after splitting into left and right tracks"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="PostJoinStereoSmall.png" height="181" src="../m/images/6/62/postjoinstereosmall.png" width="639"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/6/62/postjoinstereosmall.png--></img><!--}\par
---></span></dd></dl>
-<p>For more information please see <!--\textbf{--><b><!--latex 
-\hyperref[\foo{splitting:and:joining:stereo:tracks:}]{--><a href="splitting_and_joining_stereo_tracks.html" title="Splitting and Joining Stereo Tracks">Splitting and Joining Stereo Tracks</a><!--latex }
---></b><!--}-->.
+<dl><dd><span title="Stereo track after splitting into left and right tracks"><img alt="PostJoinStereoSmall.png" src="../m/images/6/62/postjoinstereosmall.png" width="639" height="181" /></span></dd></dl>
+<p>For more information please see <b><a href="splitting_and_joining_stereo_tracks.html" title="Splitting and Joining Stereo Tracks">Splitting and Joining Stereo Tracks</a></b>.
+</p><p><br />
 </p>
 <div id="display"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Changing_the_track_display">Changing the track display</span></h2><!--}--><!--latex 
-\label{audio:tracks:display}-->
+<h2><span class="mw-headline" id="Changing_the_track_display">Changing the track display</span></h2>
 <div class="note">Click and drag between the two waveforms to change their relative height (<span class="kbrd" style="background-color: #e0e0f0">Esc</span> key can abort that drag). </div>
-<!--
-\subsubsection{--><h3><span class="mw-headline" id="Changing_the_height_of_the_channels_in_a_stereo_track">Changing the height of the channels in a stereo track</span></h3><!--}-->
+<h3><span class="mw-headline" id="Changing_the_height_of_the_channels_in_a_stereo_track">Changing the height of the channels in a stereo track</span></h3>
 <p>Click and drag between the channels.
 </p>
-<dl><dd><span title="Example of resizing the channels of a stereo track"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="DragBetweenTracksStereo.png" height="162" src="../m/images/9/98/dragbetweentracksstereo.png" width="520"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/9/98/dragbetweentracksstereo.png--></img><!--}\par
---></span></dd></dl>
-<!--
-\subsubsection{--><h3><span class="mw-headline" id="Changing_the_height_of_a_track">Changing the height of a track</span></h3><!--}-->
+<dl><dd><span title="Example of resizing the channels of a stereo track"><img alt="DragBetweenTracksStereo.png" src="../m/images/9/98/dragbetweentracksstereo.png" width="520" height="162" /></span></dd></dl>
+<h3><span class="mw-headline" id="Changing_the_height_of_a_track">Changing the height of a track</span></h3>
 <p>Click and drag between the tracks (<span class="kbrd" style="background-color: #e0e0f0">Esc</span> key can abort that drag).
 </p>
-<dl><dd><span title="Example of resizing a mono track"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="DragBetweenTracksMono.png" height="365" src="../m/images/c/cf/dragbetweentracksmono.png" width="521"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/c/cf/dragbetweentracksmono.png--></img><!--}\par
---></span></dd></dl>
-<!--
-\subsubsection{--><h3><span class="mw-headline" id="Arrows_at_the_start_of_the_track">Arrows at the start of the track</span></h3><!--}-->
+<dl><dd><span title="Example of resizing a mono track"><img alt="DragBetweenTracksMono.png" src="../m/images/c/cf/dragbetweentracksmono.png" width="521" height="365" /></span></dd></dl>
+<h3><span class="mw-headline" id="Arrows_at_the_start_of_the_track">Arrows at the start of the track</span></h3>
 <p>This indicates that there is audio data in the track before the track start.
 </p>
-<dl><dd><span title="Arrows indicate there is audio before time=0.0"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="Track audio before zero.png" height="159" src="../m/images/4/47/track_audio_before_zero.png" width="462"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/4/47/track_audio_before_zero.png--></img><!--}\par
---></span></dd></dl>
-<!--
-\subsubsection{--><h3><span class="mw-headline" id="Display_options">Display options</span></h3><!--}-->
-<p>The track display can be changed from the default waveform view, to <!--latex 
-\hyperref[\foo{audio:track:dropdown:menu:wavedb}]{--><a href="audio_track_dropdown_menu.html#wavedb" title="Audio Track Dropdown Menu">Waveform (dB)</a><!--latex }
---> or <!--latex 
-\hyperref[\foo{audio:track:dropdown:menu:spgram}]{--><a href="audio_track_dropdown_menu.html#spgram" title="Audio Track Dropdown Menu">Spectrogram</a><!--latex }
--->.  To do this open the <!--latex 
-\hyperref[\foo{audio:track:dropdown:menu:}]{--><a href="audio_track_dropdown_menu.html" title="Audio Track Dropdown Menu">Audio Track Dropdown Menu</a><!--latex }
---> accessed by clicking in the Track Name, by the downward-pointing triangle <span style="position:relative;bottom:-4px"><span title="Track Name"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="Track dropdown.png" height="18" src="../m/images/2/2e/track_dropdown.png" width="77"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/2/2e/track_dropdown.png--></img><!--}\par
---></span></span>  in the <!--latex 
-\hyperref[\foo{audio:tracks::panel}]{--><a href="#panel" title="Audio Tracks">Track Control Panel</a><!--latex }
--->.  This will affect this track only
+<dl><dd><span title="Arrows indicate there is audio before time=0.0"><img alt="Track audio before zero.png" src="../m/images/4/47/track_audio_before_zero.png" width="462" height="159" /></span></dd></dl>
+<h3><span class="mw-headline" id="Display_options">Display options</span></h3>
+<p>The track display can be changed from the default waveform view, to <a href="audio_track_dropdown_menu.html#wavedb" title="Audio Track Dropdown Menu">Waveform (dB)</a> or <a href="audio_track_dropdown_menu.html#spgram" title="Audio Track Dropdown Menu">Spectrogram</a>.  To do this open the <a href="audio_track_dropdown_menu.html" title="Audio Track Dropdown Menu">Audio Track Dropdown Menu</a> accessed by clicking in the Track Name, by the downward-pointing triangle <span style="position:relative;bottom:-4px"><span title="Track Name"><img alt="Track dropdown.png" src="../m/images/2/2e/track_dropdown.png" width="77" height="18" /></span></span>  in the <a href="#panel" title="Audio Tracks">Track Control Panel</a>.  This will affect this track only
 </p>
-<dl><dd><span title="Audio Track Dropdown Menu truncated, showing Waveform (dB) and Spectrogram choices"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="Audio Track Dropdown Menu trimmed.png" height="246" src="../m/images/b/b4/audio_track_dropdown_menu_trimmed.png" width="273"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/b4/audio_track_dropdown_menu_trimmed.png--></img><!--}\par
---></span></dd></dl>
-<!--
-\subsubsection{--><h3><span class="mw-headline" id="Stem_Plots">Stem Plots</span></h3><!--}-->
-<p>There is an entry in the <!--latex 
-\hyperref[\foo{tracks:preferences:}]{--><a href="tracks_preferences.html" title="Tracks Preferences">Tracks Preferences</a><!--latex }
---> for <!--\textbf{--><b>Display samples</b><!--}-->.  This setting changes how <!--latex 
-\hyperref[\foo{audacity:waveform:}]{--><a href="audacity_waveform.html" title="Audacity Waveform">Waveform</a><!--latex }
---> and <!--latex 
-\hyperref[\foo{audacity:waveform:db}]{--><a href="audacity_waveform.html#db" title="Audacity Waveform">Waveform dB</a><!--latex }
---> views are displayed.  It only affects the appearance of the waveform when you are so far zoomed in that you can see the individual sample dots.  At lower zoom levels it makes no difference.  
+<dl><dd><span title="Audio Track Dropdown Menu truncated, showing Waveform (dB) and Spectrogram choices"><img alt="Audio Track Dropdown Menu trimmed.png" src="../m/images/b/b4/audio_track_dropdown_menu_trimmed.png" width="273" height="246" /></span></dd></dl>
+<h3><span class="mw-headline" id="Stem_Plots">Stem Plots</span></h3>
+<p>There is an entry in the <a href="tracks_preferences.html" title="Tracks Preferences">Tracks Preferences</a> for <b>Display samples</b>.  This setting changes how <a href="audacity_waveform.html" title="Audacity Waveform">Waveform</a> and <a href="audacity_waveform.html#db" title="Audacity Waveform">Waveform dB</a> views are displayed.  It only affects the appearance of the waveform when you are so far zoomed in that you can see the individual sample dots.  At lower zoom levels it makes no difference.  
 </p>
-<!--
-\begin{itemize}--><ul><!--
-\item --><li><!--\textbf{--><b>Stem plot:</b><!--}--> This is the default setting which draws a vertical line from the track center line to the sample dot, giving a clearer impression of the relative amplitude of the samples. As seen in the images below, when zoomed out close to the minimum for a stem plot, the horizontal distance between sample dots may be more uneven than seen with the connect dots default.    </li>
-<!--
-\item --><li><!--\textbf{--><b>Connect dots:</b><!--}--> This is alternative setting yields a waveform where each sample dot is connected to the next sample by a line drawn between them.   default. </li></ul><!--
-\end{itemize}
--->
-<dl><dd><dl><dd><span title="Examples of zoomed in Waveform view showing 'Connect dots' and 'Stem Plot"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="Connect dots &amp; Stem plot examples.png" height="228" src="../m/images/e/ef/connect_dots_stem_plot_examples.png" width="530"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/e/ef/connect_dots_stem_plot_examples.png--></img><!--}\par
---></span></dd></dl></dd></dl>
+<ul><li><b>Stem plot:</b> This is the default setting which draws a vertical line from the track center line to the sample dot, giving a clearer impression of the relative amplitude of the samples. As seen in the images below, when zoomed out close to the minimum for a stem plot, the horizontal distance between sample dots may be more uneven than seen with the connect dots default.    </li>
+<li><b>Connect dots:</b> This is alternative setting yields a waveform where each sample dot is connected to the next sample by a line drawn between them.   default. </li></ul>
+<dl><dd><dl><dd><span title="Examples of zoomed in Waveform view showing &#39;Connect dots&#39; and &#39;Stem Plot"><img alt="Connect dots &amp; Stem plot examples.png" src="../m/images/e/ef/connect_dots_stem_plot_examples.png" width="530" height="228" /></span></dd></dl></dd></dl>
 <div class="note">Uneven spacing is due to "aliasing", but zooming in further will equalize the spacing whether choosing Connect dots or Stem plot.</div>
+<p><br />
+</p>
 <div id="focus"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Track_focus">Track focus</span></h2><!--}--><!--latex 
-\label{audio:tracks:focus}-->
-<p>You may have noticed in the images on this page that the tracks have a yellow border around them. This border indicates that this  track has <!--\textit{--><i>focus</i><!--}-->.
-</p><p>The track that has focus is the track that accepts any command whose name includes "focused track". These commands include commands such as "Close focused track" (<span class="kbrd" style="background-color: #e0e0f0">Shift + C</span>), "Mute/Unmute focused track" (<span class="kbrd" style="background-color: #e0e0f0">Shift + U</span>) and "Toggle focused track" (<span class="kbrd" style="background-color: #e0e0f0">RETURN</span> or <span class="kbrd" style="background-color: #e0e0f0">Enter</span>, which toggles whether the focused track is <!--latex 
-\hyperref[\foo{audacity:selection:}]{--><a href="audacity_selection.html" title="Audacity Selection">selected</a><!--latex }
---> or not).
-</p><p>The complete list of "focused track" commands can be seen by searching for "focused track" (without quotes) in <!--latex 
-\hyperref[\foo{keyboard:preferences:}]{--><a href="keyboard_preferences.html" title="Keyboard Preferences">Keyboard Preferences</a><!--latex }
---> or by viewing the description of these commands in <!--latex 
-\hyperref[\foo{keyboard:shortcut:reference:}]{--><a href="keyboard_shortcut_reference.html" title="Keyboard Shortcut Reference">Keyboard Shortcut Reference</a><!--latex }
--->. 
-</p><p>Track focus is used to <!--latex 
-\hyperref[\foo{faq:editing:select}]{--><a href="faq_editing.html#select" title="FAQ:Editing">select audio</a><!--latex }
---> and to <!--latex 
-\hyperref[\foo{faq:editing:selcopy}]{--><a href="faq_editing.html#selcopy" title="FAQ:Editing">extend or move the selection region into other tracks</a><!--latex }
---> using the keyboard.
+<h2><span class="mw-headline" id="Track_focus">Track focus</span></h2>
+<p>You may have noticed in the images on this page that the tracks have a yellow border around them. This border indicates that this  track has <i>focus</i>.
+</p><p>The track that has focus is the track that accepts any command whose name includes "focused track". These commands include commands such as "Close focused track" (<span class="kbrd" style="background-color: #e0e0f0">Shift + C</span>), "Mute/Unmute focused track" (<span class="kbrd" style="background-color: #e0e0f0">Shift + U</span>) and "Toggle focused track" (<span class="kbrd" style="background-color: #e0e0f0">RETURN</span> or <span class="kbrd" style="background-color: #e0e0f0">Enter</span>, which toggles whether the focused track is <a href="audacity_selection.html" title="Audacity Selection">selected</a> or not).
+</p><p>The complete list of "focused track" commands can be seen by searching for "focused track" (without quotes) in <a href="keyboard_preferences.html" title="Keyboard Preferences">Keyboard Preferences</a> or by viewing the description of these commands in <a href="keyboard_shortcut_reference.html" title="Keyboard Shortcut Reference">Keyboard Shortcut Reference</a>. 
+</p><p>Track focus is used to <a href="faq_editing.html#select" title="FAQ:Editing">select audio</a> and to <a href="faq_editing.html#selcopy" title="FAQ:Editing">extend or move the selection region into other tracks</a> using the keyboard.
+</p><p><br />
 </p>
 <div id="working"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Working_with_Audio_Tracks">Working with Audio Tracks</span></h2><!--}--><!--latex 
-\label{audio:tracks:working}-->
+<h2><span class="mw-headline" id="Working_with_Audio_Tracks">Working with Audio Tracks</span></h2>
 <p>For more information on working with audio tracks, see:
 </p>
-<!--
-\begin{itemize}--><ul><!--
-\item --><li> <!--latex 
-\hyperref[\foo{audacity:selection:}]{--><a href="audacity_selection.html" title="Audacity Selection">Selecting Audio</a><!--latex }
--->: the special characteristics of audio selection and the tools Audacity provides to help you make exactly the selection you need</li>
-<!--
-\item --><li> <!--latex 
-\hyperref[\foo{audacity:tracks:and:clips:}]{--><a href="audacity_tracks_and_clips.html" title="Audacity Tracks and Clips">Audacity Tracks and Clips</a><!--latex }
--->: all about <!--\textbf{--><b>clips</b><!--}--> - separate, movable regions of audio within a track</li>
-<!--
-\item --><li> <!--latex 
-\hyperref[\foo{sync:locked:track:groups:}]{--><a href="sync_locked_track_groups.html" title="Sync-Locked Track Groups">Sync-Locked Track Groups</a><!--latex }
--->: keeping a group of tracks in sync</li>
-<!--
-\item --><li> <!--latex 
-\hyperref[\foo{zooming:}]{--><a href="zooming.html" title="Zooming">Zooming</a><!--latex }
--->: seeing what you need to see</li></ul><!--
-\end{itemize}
+<ul><li> <a href="audacity_selection.html" title="Audacity Selection">Selecting Audio</a>: the special characteristics of audio selection and the tools Audacity provides to help you make exactly the selection you need</li>
+<li> <a href="audacity_tracks_and_clips.html" title="Audacity Tracks and Clips">Audacity Tracks and Clips</a>: all about <b>clips</b> - separate, movable regions of audio within a track</li>
+<li> <a href="sync_locked_track_groups.html" title="Sync-Locked Track Groups">Sync-Locked Track Groups</a>: keeping a group of tracks in sync</li>
+<li> <a href="zooming.html" title="Zooming">Zooming</a>: seeing what you need to see</li></ul>
+
+<!-- 
+NewPP limit report
+Cached time: 20180116145303
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.214 seconds
+Real time usage: 0.228 seconds
+Preprocessor visited node count: 622/1000000
+Preprocessor generated node count: 1746/1000000
+Post‐expand include size: 7245/2097152 bytes
+Template argument size: 2945/2097152 bytes
+Highest expansion depth: 12/40
+Expensive parser function count: 11/100
 -->
 
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   50.196      1 - -total
+ 54.57%   27.392      1 - Template:I18n
+ 50.54%   25.370      1 - Template:I18n_box
+ 43.09%   21.630      1 - Template:I18n_list
+ 23.03%   11.562      5 - Template:I18n_link
+ 15.11%    7.583     15 - Template:Key
+ 13.59%    6.822      5 - Template:Autoglossonym
+  5.36%    2.693      1 - Template:Intro
+  4.43%    2.222      3 - Template:Note
+  4.27%    2.145      7 - Template:Bh
+-->
 
-
-
-
-
+<!-- Saved in parser cache with key helpmediawiki:pcache:idhash:2481-0!*!0!!*!5!* and timestamp 20180116145303 and revision id 58586
+ -->
 </div>
-										
+										<!-- end content -->
 										<div class="visualClear"></div>
 				</div>
 			</div>
 		</div>
-		
-		<div class="visualClear"></div>
+		<div id="column-one">
+			
 					
-		</div><!--latex \end{multicols}-->
+				
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="../index.html" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+					
+		<div class="generated-sidebar portlet" id="p-Navigation" role="navigation">
+		<h3>Navigation</h3>
+		<div class='pBody'>
+			<ul><li> <a href="../index.html" title="Main Page">Manual Home Page</a></li>
+<li> <a href="../index.html#using" title="Main Page">Using Audacity</a>
+<ul><li> <a href="audacity_tour_guide.html" title="Audacity Tour Guide">Tour Guide</a></li>
+<li> <a href="new_features_in_this_release.html" title="New features in this release">New Features</a></li>
+<li> <a href="../quick_help.html" title="Quick Help">Getting Started</a></li>
+<li> <a href="preferences.html" title="Preferences">Preferences</a></li>
+<li> <a href="menu_reference.html" title="Menu Reference">Menu Bar</a></li>
+<li> <a href="toolbars_overview.html" title="Toolbars Overview">Toolbars</a></li>
+<li> <a href="keyboard_shortcut_reference.html" title="Keyboard Shortcut Reference">Commands / Shortcuts</a></li>
+<li> <a href="index_of_effects_generators_and_analyzers.html" title="Index of Effects, Generators and Analyzers">Effects</a></li>
+<li> <a href="tutorials.html" title="Tutorials">Tutorials</a></li>
+<li> <a href="tips.html" title="Tips">Tips</a></li></ul></li></ul>
+		</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-Reference" role="navigation">
+		<h3>Reference</h3>
+		<div class='pBody'>
+			<ul><li> <a href="../index.html#reference" title="Main Page">Reference</a>
+<ul><li> <a href="digital_audio.html" title="Digital Audio">Digital Audio</a></li>
+<li> <a href="glossary.html" title="Glossary">Glossary</a></li>
+<li> <a href="subject_index.html" title="Subject Index">Subject Index</a></li></ul></li>
+<li> <span title="Frequently Asked Questions"><a rel="nofollow" target="manual" class="external text" href="faq.html">FAQ</a></span></li></ul>
+		</div>
+		</div>
 		
-</body></html>
+		<div class="generated-sidebar portlet" id="p-Useful_Links" role="navigation">
+		<h3>Useful Links</h3>
+		<div class='pBody'>
+			<ul><li> <a rel="nofollow" target="manual" class="external text" href="https://forum.audacityteam.org/index.php">Forum</a></li>
+<li> <a rel="nofollow" target="manual" class="external text" href="https://wiki.audacityteam.org/wiki/Audacity_Wiki_Home_Page">Wiki</a></li>
+<li> <a rel="nofollow" target="manual" class="external text" href="https://www.audacityteam.org/download/">Latest Release</a></li></ul>
+		</div>
+		</div>
+		
+			
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-copyrightico">
+									
+							</div>
+					<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="../m/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/m/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /m/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31"/></a>
+							</div>
+					
+		<div align="center"><ul id="f_list"><li>Offline version created on 2018-01-17 - <a target="manual" href="http://alphamanual.audacityteam.org/man/Audio_Tracks">Check current version of this page (development Manual)</a></li></ul></div>
+</div>
+		</div>
+		</body></html>

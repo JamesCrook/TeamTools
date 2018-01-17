@@ -606,6 +606,7 @@ Audacity.BoxUrls = [
    ["Zoom Out","Edit_Toolbar.html#zoom_out"],
    ["Fit selection","Edit_Toolbar.html#zoom_to_selection"],
    ["Fit project","Edit_Toolbar.html#fit_to_width"],
+   ["Zoom Toggle","Edit_Toolbar.html#zoom_toggle"],
    ["Transcription Toolbar","Top_Menu.html#Transcription_Toolbar"],
    ["Grabber","Transcription_Toolbar.html#"],
    ["Play-at-Speed","Transcription_Toolbar.html#"],

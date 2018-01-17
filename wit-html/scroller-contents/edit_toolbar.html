@@ -1,183 +1,191 @@
 <!DOCTYPE html>
-<html class="client-nojs" dir="ltr" lang="en"><head>
-<meta charset="utf-8"/>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
 <title>Edit Toolbar - Audacity Development Manual</title>
 
 
 
 
+<!--[if IE 6]><link rel="stylesheet" href="../m/skins/monobook/ie60fixes.css/303.css" media="screen"/><![endif]--><!--[if IE 7]><link rel="stylesheet" href="../m/skins/monobook/ie70fixes.css/303.css" media="screen"/><![endif]-->
+<meta name="ResourceLoaderDynamicStyles" content=""/>
 
-<meta content="" name="ResourceLoaderDynamicStyles"/>
+<meta name="generator" content="MediaWiki 1.28.2"/>
+<link rel="shortcut icon" href="../favicon.ico"/>
+<link rel="search" type="application/opensearchdescription+xml" target="manual" href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" title="Audacity Development Manual (en)"/>
+<link rel="EditURI" type="application/rsd+xml" target="manual" href="http://alphamanual.audacityteam.org/m/api.php?action=rsd"/>
+<link rel="copyright" href="https://creativecommons.org/licenses/by/3.0/" />
 
-<meta content="MediaWiki 1.28.2" name="generator"/>
-<link href="../favicon.ico" rel="shortcut icon"/>
-<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
-<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
-<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
-
-<link href="303.css" media="screen" rel="stylesheet"/>
+<link rel="stylesheet" href="../m/skins/monobook/main.css/303.css" media="screen" />
 </head>
 <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Edit_Toolbar rootpage-Edit_Toolbar skin-monobook action-view"><div id="globalWrapper">
 		<div id="column-content">
-			<div class="mw-body" id="content" role="main">
+			<div id="content" class="mw-body" role="main">
 				<a id="top"></a>
 				
 				<div class="mw-indicators">
 </div>
-				<!--
-\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Edit Toolbar</h1><!--}
-\par\vspace{1mm}\hrule
---><!--latex \begin{multicols}{2}--><!--latex \label{edit:toolbar:}-->
+				<h1 id="firstHeading" class="firstHeading" lang="en">Edit Toolbar</h1>
 				
-				<div class="mw-body-content" id="bodyContent">
-					
-					
-										
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Audacity Development Manual</div>
+					<div id="contentSub"></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a target="manual" href="http://alphamanual.audacityteam.org/man/Edit_Toolbar#searchInput">search</a></div>
 
-					
-					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr">
 
-
-
-
-
-
-</p><p><br/>
+<p><br />
 </p>
-<div class="intro">These tools perform the same functions as those accessible through the <!--latex 
-\hyperref[\foo{edit:menu:}]{--><a href="edit_menu.html" title="Edit Menu">Edit Menu</a><!--latex }
--->, <!--latex 
-\hyperref[\foo{view:menu:}]{--><a href="view_menu.html" title="View Menu">View Menu</a><!--latex }
--->, <!--latex 
-\hyperref[\foo{tracks:menu:}]{--><a href="tracks_menu.html" title="Tracks Menu">Tracks Menu</a><!--latex }
---> and <!--latex 
-\hyperref[\foo{keyboard:shortcut:reference:}]{--><a href="keyboard_shortcut_reference.html" title="Keyboard Shortcut Reference">keyboard shortcuts</a><!--latex }
--->.
-<dl><dd>Click on the toolbar image below to see this toolbar displayed in context of the default upper tooldock layout.</dd></dl></div>
+<div class="intro">These tools perform the same functions as those accessible through the <a href="edit_menu.html" title="Edit Menu">Edit Menu</a>, <a href="view_menu.html" title="View Menu">View Menu</a>, <a href="tracks_menu.html" title="Tracks Menu">Tracks Menu</a> and <a href="keyboard_shortcut_reference.html" title="Keyboard Shortcut Reference">keyboard shortcuts</a>.
+<dl><dd>Click on the toolbar image below to see this toolbar displayed in context of the default upper tooldock layout.</div></dd>
 <dd></dd>
-<dd><a href="toolbars_overview.html#upper_tooldock" title="EditToolbar - click on the image to see this toolbar displayed in the default context of the upper tooldock layout"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="EditToolbar - click on the image to see this toolbar displayed in the default context of the upper tooldock layout" height="82" src="../m/images/a/aa/edittoolbarannotated.png" width="348"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/a/aa/edittoolbarannotated.png--></img><!--}\par
---></a></dd>
+<dd><a href="toolbars_overview.html#upper_tooldock" title="EditToolbar - click on the image to see this toolbar displayed in the default context of the upper tooldock layout"><img alt="EditToolbar - click on the image to see this toolbar displayed in the default context of the upper tooldock layout" src="../m/images/a/aa/edittoolbarannotated.png" width="348" height="82" /></a></dd></dl>
 
 <p>The above image shows most of the buttons active in order to display them more clearly. However in a new project with no audio present or selected more of the buttons would be grayed indicating inactive. 
 </p>
 <div id="cut"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Cut"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="The Cut tool" height="24" src="../m/images/8/8f/cut.png" title="The Cut tool" width="26"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/8/8f/cut.png--></img><!--}}{}-->&nbsp; Cut &nbsp;<font size="-1"><span class="menu">Edit &gt; Cut</span> or <span class="kbrd" style="background-color: #e0e0f0">Ctrl + X</span></font></span></h2><!--}--><!--latex
-\label{edit:toolbar:cut}-->
+<h2><span class="mw-headline" id=".C2.A0_Cut_.C2.A0Edit_.3E_Cut_or_Ctrl_.2B_X"><img alt="The Cut tool" src="../m/images/8/8f/cut.png" title="The Cut tool" width="26" height="24" />&#160; Cut &#160;<font size="-1"><span class="menu">Edit &gt; Cut</span> or <span class="kbrd" style="background-color: #d0d0f8">Ctrl + X</span></font></span></h2>
 <p>Removes the selected audio data and/or labels and places these on the clipboard. By default, any audio or labels to right of the selection are shifted to the left.
 </p>
 <div id="copy"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Copy"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="The Copy tool" height="24" src="../m/images/8/8c/copy.png" title="The Copy tool" width="26"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/8/8c/copy.png--></img><!--}}{}-->&nbsp;Copy&nbsp;<font size="-1"><span class="menu">Edit &gt; Copy</span> or <span class="kbrd" style="background-color: #e0e0f0">Ctrl + C</span></font></span></h2><!--}--><!--latex
-\label{edit:toolbar:copy}-->
+<h2><span class="mw-headline" id=".C2.A0Copy.C2.A0Edit_.3E_Copy_or_Ctrl_.2B_C"><img alt="The Copy tool" src="../m/images/8/8c/copy.png" title="The Copy tool" width="26" height="24" />&#160;Copy&#160;<font size="-1"><span class="menu">Edit &gt; Copy</span> or <span class="kbrd" style="background-color: #d0d0f8">Ctrl + C</span></font></span></h2>
 <p>Copies the selected audio data and/or labels to the clipboard without removing these from the project.
 </p>
 <div id="paste"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Paste"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="The Paste tool" height="24" src="../m/images/9/9e/paste.png" title="The Paste tool" width="26"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/9/9e/paste.png--></img><!--}}{}-->&nbsp;Paste &nbsp;<font size="-1"><span class="menu">Edit &gt; Paste</span> or <span class="kbrd" style="background-color: #e0e0f0">Ctrl + V</span></font></span></h2><!--}--><!--latex
-\label{edit:toolbar:paste}-->
-<p><!--latex 
-\hyperref[\foo{edit:menu:copy:paste:and:duplicate:paste}]{--><a href="edit_menu_copy_paste_and_duplicate.html#paste" title="Edit Menu: Copy, Paste and Duplicate">Paste</a><!--latex }
---> either inserts the clipboard contents at the position of the selection cursor, or replaces a selected area with the clipboard contents.
+<h2><span class="mw-headline" id=".C2.A0Paste_.C2.A0Edit_.3E_Paste_or_Ctrl_.2B_V"><img alt="The Paste tool" src="../m/images/9/9e/paste.png" title="The Paste tool" width="26" height="24" />&#160;Paste &#160;<font size="-1"><span class="menu">Edit &gt; Paste</span> or <span class="kbrd" style="background-color: #d0d0f8">Ctrl + V</span></font></span></h2>
+<p><a href="edit_menu_copy_paste_and_duplicate.html#paste" title="Edit Menu: Copy, Paste and Duplicate">Paste</a> either inserts the clipboard contents at the position of the selection cursor, or replaces a selected area with the clipboard contents.
 </p>
-<div class="note"> The clipboard can only contain one item at a time, so cutting or copying to it always replaces any previous content. However that content may contain multiple <!--latex 
-\hyperref[\foo{audio:tracks:}]{--><a href="audio_tracks.html" title="Audio Tracks">audio tracks</a><!--latex }
---> and/or <!--latex 
-\hyperref[\foo{label:tracks:}]{--><a href="label_tracks.html" title="Label Tracks">label tracks</a><!--latex }
---> of indefinite length, or multiple audio <!--latex 
-\hyperref[\foo{audacity:tracks:and:clips:}]{--><a href="audacity_tracks_and_clips.html" title="Audacity Tracks and Clips">clips</a><!--latex }
--->.</div>
+<div class="note"> The clipboard can only contain one item at a time, so cutting or copying to it always replaces any previous content. However that content may contain multiple <a href="audio_tracks.html" title="Audio Tracks">audio tracks</a> and/or <a href="label_tracks.html" title="Label Tracks">label tracks</a> of indefinite length, or multiple audio <a href="audacity_tracks_and_clips.html" title="Audacity Tracks and Clips">clips</a>.</div>
 <div id="trim"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id=".C2.A0Trim_Audio_.C2.A0Edit_.3E_Remove_Special_.3E_Trim_Audio_or_Ctrl_.2B_T"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="The Trim tool" height="24" src="../m/images/c/c9/trim.png" title="The Trim tool" width="26"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/c/c9/trim.png--></img><!--}}{}-->&nbsp;Trim Audio &nbsp;<font size="-1"><span class="menu">Edit &gt; Remove Special &gt; <!--latex 
-\hyperref[\foo{edit:menu:remove:special:trim}]{--><a href="edit_menu_remove_special.html#trim" title="Edit Menu: Remove Special">Trim Audio</a><!--latex }
---></span> or <span class="kbrd" style="background-color: #e0e0f0">Ctrl + T</span></font></span></h2><!--}--><!--latex 
-\label{edit:toolbar:trim}-->
-<p><!--latex 
-\hyperref[\foo{edit:menu:remove:special:trim}]{--><a href="edit_menu_remove_special.html#trim" title="Edit Menu: Remove Special">Trim Audio</a><!--latex }
---> deletes all audio but the selection.  If there are other separate <!--latex 
-\hyperref[\foo{audacity:tracks:and:clips:}]{--><a href="audacity_tracks_and_clips.html" title="Audacity Tracks and Clips">clips</a><!--latex }
---> in the same track these are not removed or shifted unless trimming the entire length of a clip or clips. Does not affect label tracks. 
+<h2><span class="mw-headline" id=".C2.A0Trim_Audio_.C2.A0Edit_.3E_Remove_Special_.3E_Trim_Audio_or_Ctrl_.2B_T"><img alt="The Trim tool" src="../m/images/c/c9/trim.png" title="The Trim tool" width="26" height="24" />&#160;Trim Audio &#160;<font size="-1"><span class="menu">Edit &gt; Remove Special &gt; <a href="edit_menu_remove_special.html#trim" title="Edit Menu: Remove Special">Trim Audio</a></span> or <span class="kbrd" style="background-color: #d0d0f8">Ctrl + T</span></font></span></h2>
+<p><a href="edit_menu_remove_special.html#trim" title="Edit Menu: Remove Special">Trim Audio</a> deletes all audio but the selection.  If there are other separate <a href="audacity_tracks_and_clips.html" title="Audacity Tracks and Clips">clips</a> in the same track these are not removed or shifted unless trimming the entire length of a clip or clips. Does not affect label tracks. 
 </p>
 <div id="silence"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id=".C2.A0Silence_Audio_.C2.A0Edit_.3E_Remove_Special_.3E_Silence_Audio_or_Ctrl_.2B_L"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="The Silence tool" height="24" src="../m/images/7/76/silence.png" title="The Silence tool" width="26"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/7/76/silence.png--></img><!--}}{}-->&nbsp;Silence Audio &nbsp;<font size="-1"><span class="menu">Edit &gt; Remove Special &gt; <!--latex 
-\hyperref[\foo{edit:menu:remove:special:silence}]{--><a href="edit_menu_remove_special.html#silence" title="Edit Menu: Remove Special">Silence Audio</a><!--latex }
---></span> or <span class="kbrd" style="background-color: #e0e0f0">Ctrl + L</span></font></span></h2><!--}--><!--latex 
-\label{edit:toolbar:silence}-->
-<p><!--latex 
-\hyperref[\foo{edit:menu:remove:special:silence}]{--><a href="edit_menu_remove_special.html#silence" title="Edit Menu: Remove Special">Silence Audio</a><!--latex }
---> replaces the currently selected audio with absolute silence. Does not affect label tracks.
+<h2><span class="mw-headline" id=".C2.A0Silence_Audio_.C2.A0Edit_.3E_Remove_Special_.3E_Silence_Audio_or_Ctrl_.2B_L"><img alt="The Silence tool" src="../m/images/7/76/silence.png" title="The Silence tool" width="26" height="24" />&#160;Silence Audio &#160;<font size="-1"><span class="menu">Edit &gt; Remove Special &gt; <a href="edit_menu_remove_special.html#silence" title="Edit Menu: Remove Special">Silence Audio</a></span> or <span class="kbrd" style="background-color: #d0d0f8">Ctrl + L</span></font></span></h2>
+<p><a href="edit_menu_remove_special.html#silence" title="Edit Menu: Remove Special">Silence Audio</a> replaces the currently selected audio with absolute silence. Does not affect label tracks.
 </p>
 <div id="undo"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id=".C2.A0Undo_.C2.A0Edit_.3E_Undo_and_Ctrl_.2B_Z"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="The Undo tool" height="24" src="../m/images/8/8b/undo.png" title="The Undo tool" width="26"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/8/8b/undo.png--></img><!--}}{}-->&nbsp;Undo &nbsp;<font size="-1"><span class="menu">Edit &gt; Undo</span> and <span class="kbrd" style="background-color: #e0e0f0">Ctrl + Z</span></font></span></h2><!--}--><!--latex 
-\label{edit:toolbar:undo}-->
-<p>Reverts the last editing operation. Audacity supports unlimited "stepwise" undo. This means you can undo every editing operation back to the last time the project was opened, but you cannot undo one particular edit without also undoing any changes made after that edit. You can review your editing history and jump straight back to any particular edit point at <span class="menu">View &gt; <!--latex 
-\hyperref[\foo{view:menu:History...}]{--><a href="view_menu.html#History..." title="View Menu">History...</a><!--latex }
---></span>. 
+<h2><span class="mw-headline" id=".C2.A0Undo_.C2.A0Edit_.3E_Undo_and_Ctrl_.2B_Z"><img alt="The Undo tool" src="../m/images/8/8b/undo.png" title="The Undo tool" width="26" height="24" />&#160;Undo &#160;<font size="-1"><span class="menu">Edit &gt; Undo</span> and <span class="kbrd" style="background-color: #d0d0f8">Ctrl + Z</span></font></span></h2>
+<p>Reverts the last editing operation. Audacity supports unlimited "stepwise" undo. This means you can undo every editing operation back to the last time the project was opened, but you cannot undo one particular edit without also undoing any changes made after that edit. You can review your editing history and jump straight back to any particular edit point at <span class="menu">View &gt; <a href="view_menu.html#History..." title="View Menu">History...</a></span>. 
 </p>
 <div id="redo"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id=".C2.A0Redo_.C2.A0Edit_.3E_Redo_or_Ctrl_.2B_Y_.28on_Mac_Shift_.2B_Ctrl_.2B_Z"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="The Redo tool" height="24" src="../m/images/0/09/redo.png" title="The Redo tool" width="26"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/0/09/redo.png--></img><!--}}{}-->&nbsp;Redo &nbsp;<font size="-1"><span class="menu">Edit &gt; Redo</span> or <span class="kbrd" style="background-color: #e0e0f0">Ctrl + Y</span> (on Mac <span class="kbrd" style="background-color: #e0e0f0">Shift + Ctrl + Z</span></font></span></h2><!--}--><!--latex 
-\label{edit:toolbar:redo}-->
-<p>Restores the previous editing operation that was just undone. <!--\textbf{--><b>Note:</b><!--}--> If you undo an operation then perform any new one that appears in the Undo <!--latex 
-\hyperref[\foo{view:menu:History...}]{--><a href="view_menu.html#History..." title="View Menu">History</a><!--latex }
--->, you can no longer redo that undone operation.
+<h2><span class="mw-headline" id=".C2.A0Redo_.C2.A0Edit_.3E_Redo_or_Ctrl_.2B_Y_.28on_Mac_Shift_.2B_Ctrl_.2B_Z"><img alt="The Redo tool" src="../m/images/0/09/redo.png" title="The Redo tool" width="26" height="24" />&#160;Redo &#160;<font size="-1"><span class="menu">Edit &gt; Redo</span> or <span class="kbrd" style="background-color: #d0d0f8">Ctrl + Y</span> (on Mac <span class="kbrd" style="background-color: #d0d0f8">Shift + Ctrl + Z</span></font></span></h2>
+<p>Restores the previous editing operation that was just undone. <b>Note:</b> If you undo an operation then perform any new one that appears in the Undo <a href="view_menu.html#History..." title="View Menu">History</a>, you can no longer redo that undone operation.
 </p>
 <div id="zoom_in"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id=".C2.A0Zoom_In_.C2.A0View_.3E_Zoom_.3E_Zoom_In_or_Ctrl_.2B_1"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="The Zoom In tool" height="27" src="../m/images/f/fa/zoomin.png" title="The Zoom In tool" width="27"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/f/fa/zoomin.png--></img><!--}}{}-->&nbsp;Zoom In &nbsp;<font size="-1"><span class="menu">View &gt; Zoom &gt; <!--latex 
-\hyperref[\foo{view:menu:zoom:zoom:in}]{--><a href="view_menu_zoom.html#zoom_in" title="View Menu: Zoom">Zoom In</a><!--latex }
---></span> or <span class="kbrd" style="background-color: #e0e0f0">Ctrl + 1</span></font></span></h2><!--}--><!--latex 
-\label{edit:toolbar:zoom:in}-->
-<p>Zooms in to a higher magnification level. You can continue to zoom in until you reach the level of displaying individual audio <!--latex 
-\hyperref[\foo{digital:audio:Digital:Sampling}]{--><a href="digital_audio.html#Digital_Sampling" title="Digital Audio">samples</a><!--latex }
--->.    
+<h2><span class="mw-headline" id=".C2.A0Zoom_In_.C2.A0View_.3E_Zoom_.3E_Zoom_In_or_Ctrl_.2B_1"><img alt="The Zoom In tool" src="../m/images/f/fa/zoomin.png" title="The Zoom In tool" width="27" height="27" />&#160;Zoom In &#160;<font size="-1"><span class="menu">View &gt; Zoom &gt; <a href="view_menu_zoom.html#zoom_in" title="View Menu: Zoom">Zoom In</a></span> or <span class="kbrd" style="background-color: #d0d0f8">Ctrl + 1</span></font></span></h2>
+<p>Zooms in to a higher magnification level. You can continue to zoom in until you reach the level of displaying individual audio <a href="digital_audio.html#Digital_Sampling" title="Digital Audio">samples</a>.    
 </p>
 <div id="zoom_out"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id=".C2.A0Zoom_Out_.C2.A0View_.3E_Zoom_.3E_Zoom_Out_or_Ctrl_.2B_3"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="The Zoom Out tool" height="27" src="../m/images/c/c9/zoomout.png" title="The Zoom Out tool" width="27"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/c/c9/zoomout.png--></img><!--}}{}-->&nbsp;Zoom Out &nbsp;<font size="-1"><span class="menu">View &gt; Zoom &gt; <!--latex 
-\hyperref[\foo{view:menu:zoom:zoom:out}]{--><a href="view_menu_zoom.html#zoom_out" title="View Menu: Zoom">Zoom Out</a><!--latex }
---></span> or <span class="kbrd" style="background-color: #e0e0f0">Ctrl + 3</span></font></span></h2><!--}--><!--latex 
-\label{edit:toolbar:zoom:out}-->
+<h2><span class="mw-headline" id=".C2.A0Zoom_Out_.C2.A0View_.3E_Zoom_.3E_Zoom_Out_or_Ctrl_.2B_3"><img alt="The Zoom Out tool" src="../m/images/c/c9/zoomout.png" title="The Zoom Out tool" width="27" height="27" />&#160;Zoom Out &#160;<font size="-1"><span class="menu">View &gt; Zoom &gt; <a href="view_menu_zoom.html#zoom_out" title="View Menu: Zoom">Zoom Out</a></span> or <span class="kbrd" style="background-color: #d0d0f8">Ctrl + 3</span></font></span></h2>
 <p>Zooms out to a lower magnification level. You can zoom out so far as to fit 228 hours of audio on the screen.
 </p>
 <div id="zoom_to_selection"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id=".C2.A0Zoom_Selection_.C2.A0View_.3E_Zoom_.3E_Zoom_to_Selection_or_Ctrl_.2B_E"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="The Fit Selection tool" height="27" src="../m/images/c/ca/zoomsel.png" title="The Fit Selection tool" width="27"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/c/ca/zoomsel.png--></img><!--}}{}-->&nbsp;Zoom Selection &nbsp;<font size="-1"><span class="menu">View &gt; Zoom &gt; <!--latex 
-\hyperref[\foo{view:menu:zoom:zoom:to:selection}]{--><a href="view_menu_zoom.html#zoom_to_selection" title="View Menu: Zoom">Zoom to Selection</a><!--latex }
---></span> or <span class="kbrd" style="background-color: #e0e0f0">Ctrl + E</span></font></span></h2><!--}--><!--latex 
-\label{edit:toolbar:zoom:to:selection}-->
+<h2><span class="mw-headline" id=".C2.A0Zoom_to_Selection_.C2.A0View_.3E_Zoom_.3E_Zoom_to_Selection_or_Ctrl_.2B_E"><img alt="The Fit Selection tool" src="../m/images/c/ca/zoomsel.png" title="The Fit Selection tool" width="27" height="27" />&#160;Zoom to Selection &#160;<font size="-1"><span class="menu">View &gt; Zoom &gt; <a href="view_menu_zoom.html#zoom_to_selection" title="View Menu: Zoom">Zoom to Selection</a></span> or <span class="kbrd" style="background-color: #d0d0f8">Ctrl + E</span></font></span></h2>
 <p>Zooms a selection region in or out so that it fits in the available horizontal window area. The button is therefore grayed out unless a selection region is made. 
 </p>
 <div id="fit_to_width"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id=".C2.A0Fit_Project_.C2.A0View_.3E_Track_Size_.3E_Fit_to_Width_or_Ctrl_.2B_F"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="The Fit Project tool" height="27" src="../m/images/4/4a/zoomfit.png" title="The Fit Project tool" width="27"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/4/4a/zoomfit.png--></img><!--}}{}-->&nbsp;Fit Project &nbsp;<font size="-1"><span class="menu">View &gt; Track Size &gt; <!--latex 
-\hyperref[\foo{view:menu:track:size:fit:to:width}]{--><a href="view_menu_track_size.html#fit_to_width" title="View Menu: Track Size">Fit to Width</a><!--latex }
---></span> or <span class="kbrd" style="background-color: #e0e0f0">Ctrl + F</span></font></span></h2><!--}--><!--latex 
-\label{edit:toolbar:fit:to:width}-->
+<h2><span class="mw-headline" id=".C2.A0Fit_to_Width_.C2.A0View_.3E_Track_Size_.3E_Fit_to_Width_or_Ctrl_.2B_F"><img alt="The Fit to Width tool" src="../m/images/4/4a/zoomfit.png" title="The Fit to Width tool" width="27" height="27" />&#160;Fit to Width &#160;<font size="-1"><span class="menu">View &gt; Track Size &gt; <a href="view_menu_track_size.html#fit_to_width" title="View Menu: Track Size">Fit to Width</a></span> or <span class="kbrd" style="background-color: #d0d0f8">Ctrl + F</span></font></span></h2>
 <p>Zooms in or out so that the entire audio of the project fits in the available horizontal track area.
 </p>
-<!--latex 
-\label{edit:toolbar:effectsrack}--><div id="effectsrack"></div>
+<div id="effectsrack"></div>
 
 
+<!-- 
+NewPP limit report
+Cached time: 20180117112806
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.146 seconds
+Real time usage: 0.156 seconds
+Preprocessor visited node count: 669/1000000
+Preprocessor generated node count: 1817/1000000
+Post‐expand include size: 8670/2097152 bytes
+Template argument size: 2649/2097152 bytes
+Highest expansion depth: 12/40
+Expensive parser function count: 11/100
+-->
 
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   52.815      1 - -total
+ 59.78%   31.574      1 - Template:I18n
+ 56.90%   30.051      1 - Template:I18n_box
+ 51.09%   26.983      1 - Template:I18n_list
+ 32.07%   16.936      9 - Template:I18n_link
+ 19.27%   10.180      9 - Template:Autoglossonym
+ 15.00%    7.920     12 - Template:Shortcut
+  5.39%    2.846     12 - Template:Menu
+  5.03%    2.658      1 - Template:Annotated
+  2.89%    1.524      3 - Template:Ednote
+-->
 
-
-
-
+<!-- Saved in parser cache with key helpmediawiki:pcache:idhash:1976-0!*!0!!*!5!* and timestamp 20180117112806 and revision id 58756
+ -->
 </div>
-										
+										<!-- end content -->
 										<div class="visualClear"></div>
 				</div>
 			</div>
 		</div>
-		
-		<div class="visualClear"></div>
+		<div id="column-one">
+			
 					
-		</div><!--latex \end{multicols}-->
+				
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="../index.html" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+					
+		<div class="generated-sidebar portlet" id="p-Navigation" role="navigation">
+		<h3>Navigation</h3>
+		<div class='pBody'>
+			<ul><li> <a href="../index.html" title="Main Page">Manual Home Page</a></li>
+<li> <a href="../index.html#using" title="Main Page">Using Audacity</a>
+<ul><li> <a href="audacity_tour_guide.html" title="Audacity Tour Guide">Tour Guide</a></li>
+<li> <a href="new_features_in_this_release.html" title="New features in this release">New Features</a></li>
+<li> <a href="../quick_help.html" title="Quick Help">Getting Started</a></li>
+<li> <a href="preferences.html" title="Preferences">Preferences</a></li>
+<li> <a href="menu_reference.html" title="Menu Reference">Menu Bar</a></li>
+<li> <a href="toolbars_overview.html" title="Toolbars Overview">Toolbars</a></li>
+<li> <a href="keyboard_shortcut_reference.html" title="Keyboard Shortcut Reference">Commands / Shortcuts</a></li>
+<li> <a href="index_of_effects_generators_and_analyzers.html" title="Index of Effects, Generators and Analyzers">Effects</a></li>
+<li> <a href="tutorials.html" title="Tutorials">Tutorials</a></li>
+<li> <a href="tips.html" title="Tips">Tips</a></li></ul></li></ul>
+		</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-Reference" role="navigation">
+		<h3>Reference</h3>
+		<div class='pBody'>
+			<ul><li> <a href="../index.html#reference" title="Main Page">Reference</a>
+<ul><li> <a href="digital_audio.html" title="Digital Audio">Digital Audio</a></li>
+<li> <a href="glossary.html" title="Glossary">Glossary</a></li>
+<li> <a href="subject_index.html" title="Subject Index">Subject Index</a></li></ul></li>
+<li> <span title="Frequently Asked Questions"><a rel="nofollow" target="manual" class="external text" href="faq.html">FAQ</a></span></li></ul>
+		</div>
+		</div>
 		
-</body></html>
+		<div class="generated-sidebar portlet" id="p-Useful_Links" role="navigation">
+		<h3>Useful Links</h3>
+		<div class='pBody'>
+			<ul><li> <a rel="nofollow" target="manual" class="external text" href="https://forum.audacityteam.org/index.php">Forum</a></li>
+<li> <a rel="nofollow" target="manual" class="external text" href="https://wiki.audacityteam.org/wiki/Audacity_Wiki_Home_Page">Wiki</a></li>
+<li> <a rel="nofollow" target="manual" class="external text" href="https://www.audacityteam.org/download/">Latest Release</a></li></ul>
+		</div>
+		</div>
+		
+			
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-copyrightico">
+									
+							</div>
+					<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="../m/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/m/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /m/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31"/></a>
+							</div>
+					
+		<div align="center"><ul id="f_list"><li>Offline version created on 2018-01-17 - <a target="manual" href="http://alphamanual.audacityteam.org/man/Edit_Toolbar">Check current version of this page (development Manual)</a></li></ul></div>
+</div>
+		</div>
+		</body></html>

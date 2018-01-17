@@ -1,115 +1,152 @@
 <!DOCTYPE html>
-<html class="client-nojs" dir="ltr" lang="en"><head>
-<meta charset="utf-8"/>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
 <title>Tracks Menu: Pan - Audacity Development Manual</title>
 
 
 
 
+<!--[if IE 6]><link rel="stylesheet" href="../m/skins/monobook/ie60fixes.css/303.css" media="screen"/><![endif]--><!--[if IE 7]><link rel="stylesheet" href="../m/skins/monobook/ie70fixes.css/303.css" media="screen"/><![endif]-->
+<meta name="ResourceLoaderDynamicStyles" content=""/>
 
-<meta content="" name="ResourceLoaderDynamicStyles"/>
+<meta name="generator" content="MediaWiki 1.28.2"/>
+<link rel="shortcut icon" href="../favicon.ico"/>
+<link rel="search" type="application/opensearchdescription+xml" target="manual" href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" title="Audacity Development Manual (en)"/>
+<link rel="EditURI" type="application/rsd+xml" target="manual" href="http://alphamanual.audacityteam.org/m/api.php?action=rsd"/>
+<link rel="copyright" href="https://creativecommons.org/licenses/by/3.0/" />
 
-<meta content="MediaWiki 1.28.2" name="generator"/>
-<link href="../favicon.ico" rel="shortcut icon"/>
-<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
-<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
-<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
-
-<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+<link rel="stylesheet" href="../m/skins/monobook/main.css/303.css" media="screen" />
 </head>
 <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Tracks_Menu_Pan rootpage-Tracks_Menu_Pan skin-monobook action-view"><div id="globalWrapper">
 		<div id="column-content">
-			<div class="mw-body" id="content" role="main">
+			<div id="content" class="mw-body" role="main">
 				<a id="top"></a>
 				
 				<div class="mw-indicators">
 </div>
-				<!--
-\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Tracks Menu: Pan</h1><!--}
-\par\vspace{1mm}\hrule
---><!--latex \begin{multicols}{2}--><!--latex \label{tracks:menu:pan:}-->
+				<h1 id="firstHeading" class="firstHeading" lang="en">Tracks Menu: Pan</h1>
 				
-				<div class="mw-body-content" id="bodyContent">
-					
-					
-										
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Audacity Development Manual</div>
+					<div id="contentSub"></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a target="manual" href="http://alphamanual.audacityteam.org/man/Tracks_Menu:_Pan#searchInput">search</a></div>
 
-					
-					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p><br/>
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><p><br />
 </p>
-<div class="intro">The <!--\textit{--><i><!--\textbf{--><b>Pan</b><!--}--></i><!--}--> submenu enables you to change the panning of all the tracks you have <!--latex 
-\hyperref[\foo{audacity:selection:}]{--><a href="audacity_selection.html" title="Audacity Selection">selected</a><!--latex }
---> or partially selected, in one go, without having to use the Pan sliders in each track's <!--latex 
-\hyperref[\foo{audio:tracks:pan}]{--><a href="audio_tracks.html#pan" title="Audio Tracks">Track Control Panel</a><!--latex }
--->.  The panning choices are extreme <!--\textbf{--><b>Left</b><!--}--> or <!--\textbf{--><b>Right</b><!--}--> pan or <!--\textbf{--><b>Center</b><!--}--> pan.<p>If no tracks are selected, pan is changed in all tracks.</p></div>
-<dl><dd><!--\textit{--><i>Click, or hover, on any menu item in the image to read about that command.  &nbsp;<span style="font-size:0.8em"><!--latex 
-\hyperref[\foo{tracks:menu:pan::skiptheimage}]{--><a href="#skiptheimage">Skip the image</a><!--latex }
---></span></i><!--}--></dd>
-<dd><div class="noresize"><map name="ImageMap_1_781217494"><area alt="Transport Menu" coords="0,3,26,19" href="transport_menu.html" shape="rect" title="Transport Menu"/><area alt="Tracks Menu" coords="33,3,73,19" href="tracks_menu.html" shape="rect" title="Tracks Menu"/><area alt="Generate Menu" coords="80,3,134,19" href="generate_menu.html" shape="rect" title="Generate Menu"/><area alt="Effect Menu" coords="141,3,174,19" href="effect_menu.html" shape="rect" title="Effect Menu"/><area alt="Analyze Menu" coords="181,3,225,19" href="analyze_menu.html" shape="rect" title="Analyze Menu"/><area alt="Help Menu" coords="232,3,261,19" href="help_menu.html" shape="rect" title="Help Menu"/><area alt="Ext-Bar Menu" coords="268,3,310,19" href="ext_bar_menu.html" shape="rect" title="Ext-Bar Menu"/><area alt="Ext-Command Menu" coords="317,3,399,19" href="ext_command_menu.html" shape="rect" title="Ext-Command Menu"/><area alt="Menu Bar" coords="0,0,600,22" href="menu_reference.html" shape="rect" title="Menu Bar"/><area alt="Adds a new track" coords="39,23,230,45" href="tracks_menu_add_new.html" shape="rect" title="Adds a new track"/><area alt="Mixes down selected tracks to mono or stereo tracks" coords="39,52,230,74" href="tracks_menu_mix.html" shape="rect" title="Mixes down selected tracks to mono or stereo tracks"/><area alt="Allows you to resample the selected track(s) to a new sample rate for use in the project" coords="39,74,230,96" href="tracks_menu.html#resample" shape="rect" title="Allows you to resample the selected track(s) to a new sample rate for use in the project"/><area alt="Removes the selected track(s) from the project" coords="39,103,230,125" href="tracks_menu.html#remove_tracks" shape="rect" title="Removes the selected track(s) from the project"/><area alt="Mutes or unmutes audio tracks in the project" coords="39,132,230,154" href="tracks_menu_mute/unmute.html" shape="rect" title="Mutes or unmutes audio tracks in the project"/><area alt="Pans left right or center audio tracks in the project" coords="39,154,230,176" href="#" shape="rect" title="Pans left right or center audio tracks in the project"/><area alt="Commands that provide an automatic way of aligning selected tracks with the cursor, the selection, or with the start of the project" coords="39,183,230,205" href="tracks_menu_align_tracks.html" shape="rect" title="Commands that provide an automatic way of aligning selected tracks with the cursor, the selection, or with the start of the project"/><area alt="Sorts all tracks in the project from top to bottom in the project window, by Start Time or by Name" coords="39,205,230,227" href="tracks_menu_sort_tracks.html" shape="rect" title="Sorts all tracks in the project from top to bottom in the project window, by Start Time or by Name"/><area alt="Ensures that length changes occurring anywhere in a defined group of tracks also take place in all audio or label tracks in that group" coords="39,234,230,256" href="sync_locked_track_groups.html" shape="rect" title="Ensures that length changes occurring anywhere in a defined group of tracks also take place in all audio or label tracks in that group"/><area alt="Pan selected audio to left speaker" coords="242,157,331,179" href="#left" shape="rect" title="Pan selected audio to left speaker"/><area alt="Pan selected audio centrally" coords="242,179,331,201" href="#right" shape="rect" title="Pan selected audio centrally"/><area alt="Pan selected audio to right speaker" coords="242,201,331,223" href="#center" shape="rect" title="Pan selected audio to right speaker"/></map><!--
-
-\par\Needspace{162.0pt}\begin{picture}(172.0,132.0)
---><!--   \put(0,0){\includegraphics[scale=0.5]{--><img alt="Tracks-PanMenu.png" height="264" src="../m/images/a/a9/tracks_panmenu.png" usemap="#ImageMap_1_781217494" width="344"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/a/a9/tracks_panmenu.png--></img><!--}}
---><!--   \put(0.0,122.5){\hyperref[\foo{transport:menu:}]{\makebox(13.0,8.0){}}}
-   \put(16.5,122.5){\hyperref[\foo{tracks:menu:}]{\makebox(20.0,8.0){}}}
-   \put(40.0,122.5){\hyperref[\foo{generate:menu:}]{\makebox(27.0,8.0){}}}
-   \put(70.5,122.5){\hyperref[\foo{effect:menu:}]{\makebox(16.5,8.0){}}}
-   \put(90.5,122.5){\hyperref[\foo{analyze:menu:}]{\makebox(22.0,8.0){}}}
-   \put(116.0,122.5){\hyperref[\foo{help:menu:}]{\makebox(14.5,8.0){}}}
-   \put(134.0,122.5){\hyperref[\foo{ext:bar:menu:}]{\makebox(21.0,8.0){}}}
-   \put(158.5,122.5){\hyperref[\foo{ext:command:menu:}]{\makebox(41.0,8.0){}}}
-   \put(19.5,109.5){\hyperref[\foo{tracks:menu:add:new:}]{\makebox(95.5,11.0){}}}
-   \put(19.5,95.0){\hyperref[\foo{tracks:menu:mix:}]{\makebox(95.5,11.0){}}}
-   \put(19.5,84.0){\hyperref[\foo{tracks:menu:resample}]{\makebox(95.5,11.0){}}}
-   \put(19.5,69.5){\hyperref[\foo{tracks:menu:remove:tracks}]{\makebox(95.5,11.0){}}}
-   \put(19.5,55.0){\hyperref[\foo{tracks:menu:mute:unmute:}]{\makebox(95.5,11.0){}}}
-   \put(19.5,44.0){\hyperref[\foo{tracks:menu:pan::}]{\makebox(95.5,11.0){}}}
-   \put(19.5,29.5){\hyperref[\foo{tracks:menu:align:tracks:}]{\makebox(95.5,11.0){}}}
-   \put(19.5,18.5){\hyperref[\foo{tracks:menu:sort:tracks:}]{\makebox(95.5,11.0){}}}
-   \put(19.5,4.0){\hyperref[\foo{sync:locked:track:groups:}]{\makebox(95.5,11.0){}}}
-   \put(121.0,42.5){\hyperref[\foo{tracks:menu:pan::left}]{\makebox(44.5,11.0){}}}
-   \put(121.0,31.5){\hyperref[\foo{tracks:menu:pan::right}]{\makebox(44.5,11.0){}}}
-   \put(121.0,20.5){\hyperref[\foo{tracks:menu:pan::center}]{\makebox(44.5,11.0){}}}
-\end{picture}
-
---></div></dd></dl>
-<div id="skiptheimage"></div>
+<div class="intro">The <i><b>Pan</b></i> submenu enables you to change the panning of all the tracks you have <a href="audacity_selection.html" title="Audacity Selection">selected</a> or partially selected, in one go, without having to use the Pan sliders in each track's <a href="audio_tracks.html#pan" title="Audio Tracks">Track Control Panel</a>.  The panning choices are extreme <b>Left</b> or <b>Right</b> pan or <b>Center</b> pan.<p>If no tracks are selected, pan is changed in all tracks.</p></div>
+<dl><dd><i>Click, or hover, on any menu item in the image to read about that command.  &#160;<span style="font-size:0.8em"><a href="#skiptheimage">Skip the image</a></span></i></dd>
+<dd><div class="noresize"><map name="ImageMap_1_712984182"><area href="transport_menu.html" shape="rect" coords="0,3,26,19" alt="Transport Menu" title="Transport Menu"/><area href="tracks_menu.html" shape="rect" coords="33,3,73,19" alt="Tracks Menu" title="Tracks Menu"/><area href="generate_menu.html" shape="rect" coords="80,3,134,19" alt="Generate Menu" title="Generate Menu"/><area href="effect_menu.html" shape="rect" coords="141,3,174,19" alt="Effect Menu" title="Effect Menu"/><area href="analyze_menu.html" shape="rect" coords="181,3,225,19" alt="Analyze Menu" title="Analyze Menu"/><area href="help_menu.html" shape="rect" coords="232,3,261,19" alt="Help Menu" title="Help Menu"/><area href="extra_menu.html" shape="rect" coords="268,3,310,19" alt="Extra Menu" title="Extra Menu"/><area href="extra_menu.html" shape="rect" coords="317,3,399,19" alt="Extra Menu" title="Extra Menu"/><area href="menu_reference.html" shape="rect" coords="0,0,600,22" alt="Menu Bar" title="Menu Bar"/><area href="tracks_menu_add_new.html" shape="rect" coords="39,23,230,45" alt="Adds a new track" title="Adds a new track"/><area href="tracks_menu_mix.html" shape="rect" coords="39,52,230,74" alt="Mixes down selected tracks to mono or stereo tracks" title="Mixes down selected tracks to mono or stereo tracks"/><area href="tracks_menu.html#resample" shape="rect" coords="39,74,230,96" alt="Allows you to resample the selected track(s) to a new sample rate for use in the project" title="Allows you to resample the selected track(s) to a new sample rate for use in the project"/><area href="tracks_menu.html#remove_tracks" shape="rect" coords="39,103,230,125" alt="Removes the selected track(s) from the project" title="Removes the selected track(s) from the project"/><area href="tracks_menu_mute/unmute.html" shape="rect" coords="39,132,230,154" alt="Mutes or unmutes audio tracks in the project" title="Mutes or unmutes audio tracks in the project"/><area href="#" shape="rect" coords="39,154,230,176" alt="Pans left right or center audio tracks in the project" title="Pans left right or center audio tracks in the project"/><area href="tracks_menu_align_tracks.html" shape="rect" coords="39,183,230,205" alt="Commands that provide an automatic way of aligning selected tracks with the cursor, the selection, or with the start of the project" title="Commands that provide an automatic way of aligning selected tracks with the cursor, the selection, or with the start of the project"/><area href="tracks_menu_sort_tracks.html" shape="rect" coords="39,205,230,227" alt="Sorts all tracks in the project from top to bottom in the project window, by Start Time or by Name" title="Sorts all tracks in the project from top to bottom in the project window, by Start Time or by Name"/><area href="sync_locked_track_groups.html" shape="rect" coords="39,234,230,256" alt="Ensures that length changes occurring anywhere in a defined group of tracks also take place in all audio or label tracks in that group" title="Ensures that length changes occurring anywhere in a defined group of tracks also take place in all audio or label tracks in that group"/><area href="#left" shape="rect" coords="242,157,331,179" alt="Pan selected audio to left speaker" title="Pan selected audio to left speaker"/><area href="#right" shape="rect" coords="242,179,331,201" alt="Pan selected audio centrally" title="Pan selected audio centrally"/><area href="#center" shape="rect" coords="242,201,331,223" alt="Pan selected audio to right speaker" title="Pan selected audio to right speaker"/></map><img alt="Tracks-PanMenu.png" src="../m/images/a/a9/tracks_panmenu.png" width="344" height="264" usemap="#ImageMap_1_712984182"/></div></dd></dl>
+<div id="skiptheimage"></div><div style="position:relative;">
+<div class="note" style="width:150px;position:absolute;left:100px;top:-30px;"><div class="floatleft"><a href="click_tips.html" title="Click for details"><img alt="Click for details" src="../m/images/6/63/bigpointercursor.png" width="20" height="33" /></a></div><b>Click on the image to learn more</b><br /></div>
+</div>
+<p><br />
+</p>
 <div id="left"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Left_.C2.A0">Left &nbsp;<font size="-1"></font></span></h2><!--}--><!--latex 
-\label{tracks:menu:pan:left}--><!--latex 
-\label{tracks:menu:pan:skiptheimage}-->
-<p>Pans the selected audio tracks <!--\textit{--><i>(or all tracks if none is selected)</i><!--}--> to the extreme left.
+<h2><span class="mw-headline" id="Left_.C2.A0">Left &#160;<font size="-1"></font></span></h2>
+<p>Pans the selected audio tracks <i>(or all tracks if none is selected)</i> to the extreme left.
 </p>
 <div id="right"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Right_.C2.A0">Right &nbsp;<font size="-1"></font></span></h2><!--}--><!--latex 
-\label{tracks:menu:pan:right}-->
-<p>Pans the selected audio tracks <!--\textit{--><i>(or all tracks if none is selected)</i><!--}--> to the extreme right.
+<h2><span class="mw-headline" id="Right_.C2.A0">Right &#160;<font size="-1"></font></span></h2>
+<p>Pans the selected audio tracks <i>(or all tracks if none is selected)</i> to the extreme right.
 </p>
 <div id="center"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Center_.C2.A0">Center &nbsp;<font size="-1"></font></span></h2><!--}--><!--latex 
-\label{tracks:menu:pan:center}-->
-<p>Pans the selected audio tracks <!--\textit{--><i>(or all tracks if none is selected)</i><!--}--> to the center.
-</p><p><br/>
-</p><p><!--latex 
-\hyperref[\foo{tracks:menu:}]{--><a href="tracks_menu.html" title="Tracks Menu"><!--\textbf{--><b>&lt;</b><!--}-->&nbsp; Back to: Tracks Menu</a><!--latex }
--->
+<h2><span class="mw-headline" id="Center_.C2.A0">Center &#160;<font size="-1"></font></span></h2>
+<p>Pans the selected audio tracks <i>(or all tracks if none is selected)</i> to the center.
+</p><p><br />
+</p><p><a href="tracks_menu.html" title="Tracks Menu"><b>&lt;</b>&#160; Back to: Tracks Menu</a>
 </p>
+<!-- 
+NewPP limit report
+Cached time: 20180117113248
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.062 seconds
+Real time usage: 0.064 seconds
+Preprocessor visited node count: 124/1000000
+Preprocessor generated node count: 6224/1000000
+Post‐expand include size: 1637/2097152 bytes
+Template argument size: 418/2097152 bytes
+Highest expansion depth: 5/40
+Expensive parser function count: 0/100
+-->
 
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   47.842      1 - -total
+ 91.58%   43.815      1 - Template:Menus
+ 85.29%   40.804      1 - Template:All-menus
+  3.76%    1.800      3 - Template:Shortcut
+  3.06%    1.466      1 - Template:Intro
+  3.02%    1.446      1 - Template:ClickTip
+-->
 
-
-
-
+<!-- Saved in parser cache with key helpmediawiki:pcache:idhash:5643-0!*!0!!*!5!* and timestamp 20180117113248 and revision id 53201
+ -->
 </div>
-										
+										<!-- end content -->
 										<div class="visualClear"></div>
 				</div>
 			</div>
 		</div>
-		
-		<div class="visualClear"></div>
+		<div id="column-one">
+			
 					
-		</div><!--latex \end{multicols}-->
+				
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="../index.html" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+					
+		<div class="generated-sidebar portlet" id="p-Navigation" role="navigation">
+		<h3>Navigation</h3>
+		<div class='pBody'>
+			<ul><li> <a href="../index.html" title="Main Page">Manual Home Page</a></li>
+<li> <a href="../index.html#using" title="Main Page">Using Audacity</a>
+<ul><li> <a href="audacity_tour_guide.html" title="Audacity Tour Guide">Tour Guide</a></li>
+<li> <a href="new_features_in_this_release.html" title="New features in this release">New Features</a></li>
+<li> <a href="../quick_help.html" title="Quick Help">Getting Started</a></li>
+<li> <a href="preferences.html" title="Preferences">Preferences</a></li>
+<li> <a href="menu_reference.html" title="Menu Reference">Menu Bar</a></li>
+<li> <a href="toolbars_overview.html" title="Toolbars Overview">Toolbars</a></li>
+<li> <a href="keyboard_shortcut_reference.html" title="Keyboard Shortcut Reference">Commands / Shortcuts</a></li>
+<li> <a href="index_of_effects_generators_and_analyzers.html" title="Index of Effects, Generators and Analyzers">Effects</a></li>
+<li> <a href="tutorials.html" title="Tutorials">Tutorials</a></li>
+<li> <a href="tips.html" title="Tips">Tips</a></li></ul></li></ul>
+		</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-Reference" role="navigation">
+		<h3>Reference</h3>
+		<div class='pBody'>
+			<ul><li> <a href="../index.html#reference" title="Main Page">Reference</a>
+<ul><li> <a href="digital_audio.html" title="Digital Audio">Digital Audio</a></li>
+<li> <a href="glossary.html" title="Glossary">Glossary</a></li>
+<li> <a href="subject_index.html" title="Subject Index">Subject Index</a></li></ul></li>
+<li> <span title="Frequently Asked Questions"><a rel="nofollow" target="manual" class="external text" href="faq.html">FAQ</a></span></li></ul>
+		</div>
+		</div>
 		
-</body></html>
+		<div class="generated-sidebar portlet" id="p-Useful_Links" role="navigation">
+		<h3>Useful Links</h3>
+		<div class='pBody'>
+			<ul><li> <a rel="nofollow" target="manual" class="external text" href="https://forum.audacityteam.org/index.php">Forum</a></li>
+<li> <a rel="nofollow" target="manual" class="external text" href="https://wiki.audacityteam.org/wiki/Audacity_Wiki_Home_Page">Wiki</a></li>
+<li> <a rel="nofollow" target="manual" class="external text" href="https://www.audacityteam.org/download/">Latest Release</a></li></ul>
+		</div>
+		</div>
+		
+			
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-copyrightico">
+									
+							</div>
+					<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="../m/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/m/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /m/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31"/></a>
+							</div>
+					
+		<div align="center"><ul id="f_list"><li>Offline version created on 2018-01-17 - <a target="manual" href="http://alphamanual.audacityteam.org/man/Tracks_Menu:_Pan">Check current version of this page (development Manual)</a></li></ul></div>
+</div>
+		</div>
+		</body></html>

@@ -1,128 +1,160 @@
 <!DOCTYPE html>
-<html class="client-nojs" dir="ltr" lang="en"><head>
-<meta charset="utf-8"/>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
 <title>Repair - Audacity Development Manual</title>
 
 
 
 
+<!--[if IE 6]><link rel="stylesheet" href="../m/skins/monobook/ie60fixes.css/303.css" media="screen"/><![endif]--><!--[if IE 7]><link rel="stylesheet" href="../m/skins/monobook/ie70fixes.css/303.css" media="screen"/><![endif]-->
+<meta name="ResourceLoaderDynamicStyles" content=""/>
 
-<meta content="" name="ResourceLoaderDynamicStyles"/>
+<meta name="generator" content="MediaWiki 1.28.2"/>
+<link rel="shortcut icon" href="../favicon.ico"/>
+<link rel="search" type="application/opensearchdescription+xml" target="manual" href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" title="Audacity Development Manual (en)"/>
+<link rel="EditURI" type="application/rsd+xml" target="manual" href="http://alphamanual.audacityteam.org/m/api.php?action=rsd"/>
+<link rel="copyright" href="https://creativecommons.org/licenses/by/3.0/" />
 
-<meta content="MediaWiki 1.28.2" name="generator"/>
-<link href="../favicon.ico" rel="shortcut icon"/>
-<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
-<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
-<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
-
-<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+<link rel="stylesheet" href="../m/skins/monobook/main.css/303.css" media="screen" />
 </head>
 <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Repair rootpage-Repair skin-monobook action-view"><div id="globalWrapper">
 		<div id="column-content">
-			<div class="mw-body" id="content" role="main">
+			<div id="content" class="mw-body" role="main">
 				<a id="top"></a>
 				
 				<div class="mw-indicators">
 </div>
-				<!--
-\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Repair</h1><!--}
-\par\vspace{1mm}\hrule
---><!--latex \begin{multicols}{2}--><!--latex \label{repair:}-->
+				<h1 id="firstHeading" class="firstHeading" lang="en">Repair</h1>
 				
-				<div class="mw-body-content" id="bodyContent">
-					
-					
-										
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Audacity Development Manual</div>
+					<div id="contentSub"></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a target="manual" href="http://alphamanual.audacityteam.org/man/Repair#searchInput">search</a></div>
 
-					
-					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
-
-
-</p>
-<div class="intro"><!--\textbf{--><b>Repair</b><!--}--> removes a very short region of damaged or destroyed audio, replacing it with an estimated region of audio based on what is happening either side of the region. It may be used for example to repair a click on a vinyl record, or a tape dropout.</div>
-<dl><dd><!--\textbf{--><b>Accessed by:</b><!--}--> <span class="menu">Effect &gt; Repair</span></dd></dl>
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr">
+<div class="intro"><b>Repair</b> removes a very short region of damaged or destroyed audio, replacing it with an estimated region of audio based on what is happening either side of the region. It may be used for example to repair a click on a vinyl record, or a tape dropout.</div>
+<dl><dd><b>Accessed by:</b> <span class="menu">Effect &gt; Repair</span></dd></dl>
 <div id="requirements"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Requirements">Requirements</span></h2><!--}--><!--latex 
-\label{repair:requirements}-->
-<p>The Repair effect can only be used on selection regions <!--\textbf{--><b>up to 128 <!--\textit{--><i><!--latex 
-\hyperref[\foo{glossary:sample}]{--><a href="glossary.html#sample" title="Glossary">samples</a><!--latex }
---></i><!--}--> long</b><!--}--> (for most audio, only a few thousandths of a second). Above this length, it becomes too hard to guess what should be going on in the section under repair. You will get an error message if you select too much audio to try and repair. In general, the shorter the section of audio you select to repair, the better the results will be.
-</p><p>The Repair effect is unusual because it <!--\textit{--><i><!--\textbf{--><b>requires</b><!--}--></i><!--}--> there to be audio <!--\textit{--><i>outside</i><!--}--> the selection region on at least one side of the section to be repaired. Examining this audio lets Audacity <!--\textit{--><i><!--\textbf{--><b><!--latex 
-\hyperref[\foo{glossary:interpolate}]{--><a href="glossary.html#interpolate" title="Glossary">interpolate</a><!--latex }
---></b><!--}--></i><!--}--> (make an informed guess about) the bad section. If the surrounding audio in the track is very short or non-existent there may not be enough information to make the interpolation, and an error message will be shown. For example, it is not possible to select a region up to 128 samples long in one track, paste or duplicate it into a new empty track and then repair it, because there will then be no audio either side of the region to examine.     
+<h2><span class="mw-headline" id="Requirements">Requirements</span></h2>
+<p>The Repair effect can only be used on selection regions <b>up to 128 <i><a href="glossary.html#sample" title="Glossary">samples</a></i> long</b> (for most audio, only a few thousandths of a second). Above this length, it becomes too hard to guess what should be going on in the section under repair. You will get an error message if you select too much audio to try and repair. In general, the shorter the section of audio you select to repair, the better the results will be.
+</p><p>The Repair effect is unusual because it <i><b>requires</b></i> there to be audio <i>outside</i> the selection region on at least one side of the section to be repaired. Examining this audio lets Audacity <i><b><a href="glossary.html#interpolate" title="Glossary">interpolate</a></b></i> (make an informed guess about) the bad section. If the surrounding audio in the track is very short or non-existent there may not be enough information to make the interpolation, and an error message will be shown. For example, it is not possible to select a region up to 128 samples long in one track, paste or duplicate it into a new empty track and then repair it, because there will then be no audio either side of the region to examine.     
 </p>
-<div class="note">When using Repair it is often convenient to set <!--latex 
-\hyperref[\foo{selection:toolbar:}]{--><a href="selection_toolbar.html" title="Selection Toolbar">Selection Toolbar</a><!--latex }
---> bar to show <!--\textbf{--><b>hh:mm:ss + samples</b><!--}-->, then click the <!--\textbf{--><b>Length</b><!--}--> radio button to ensure you are only selecting up to 128 samples.</div>
+<div class="note">When using Repair it is often convenient to set <a href="selection_toolbar.html" title="Selection Toolbar">Selection Toolbar</a> bar to show <b>hh:mm:ss + samples</b>, then click the <b>Length</b> radio button to ensure you are only selecting up to 128 samples.</div>
 <div id="usage"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Usage">Usage</span></h2><!--}--><!--latex 
-\label{repair:usage}-->
-<!--
-\begin{enumerate}--><ol><!--
-\item --><li> Select the approximate region of audio. <!--latex 
-\hyperref[\foo{zooming:}]{--><a href="zooming.html" title="Zooming">Zoom</a><!--latex }
---> in until you can start to see the individual dots (samples) in the <!--latex 
-\hyperref[\foo{audacity:waveform:}]{--><a href="audacity_waveform.html" title="Audacity Waveform">waveform</a><!--latex }
--->, and then reselect the shortest possible piece of audio for replacement.</li>
-<!--
-\item --><li> Click <span class="menu">Effect &gt; Repair</span> to replace the selected audio with the repaired audio.</li>
-<!--
-\item --><li> Zoom back out (or grab the handle on the horizontal scrollbar at the bottom of the screen and drag leftwards), click a few seconds before the region you were repairing, and play from there to hear if the repair sounds OK. If not, click <span class="menu">Edit &gt; <!--latex 
-\hyperref[\foo{edit:menu:Undo}]{--><a href="edit_menu.html#Undo" title="Edit Menu">Undo</a><!--latex }
---></span> and try a different region to repair. Include a little more on either side of the problem if the original damage was still obvious, or less if the repaired region sounded different, but incorrect.</li></ol><!--
-\end{enumerate}
--->
+<h2><span class="mw-headline" id="Usage">Usage</span></h2>
+<ol><li> Select the approximate region of audio. <a href="zooming.html" title="Zooming">Zoom</a> in until you can start to see the individual dots (samples) in the <a href="audacity_waveform.html" title="Audacity Waveform">waveform</a>, and then reselect the shortest possible piece of audio for replacement.</li>
+<li> Click <span class="menu">Effect &gt; Repair</span> to replace the selected audio with the repaired audio.</li>
+<li> Zoom back out (or grab the handle on the horizontal scrollbar at the bottom of the screen and drag leftwards), click a few seconds before the region you were repairing, and play from there to hear if the repair sounds OK. If not, click <span class="menu">Edit &gt; <a href="edit_menu.html#Undo" title="Edit Menu">Undo</a></span> and try a different region to repair. Include a little more on either side of the problem if the original damage was still obvious, or less if the repaired region sounded different, but incorrect.</li></ol>
 <div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
-<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+<table style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%" align="center">
 
-<tbody><!--\par --><tr>
-<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Bulbicon.png" title="Bulb icon"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="Bulb icon" height="32" src="../m/images/d/d7/bulbicon.png" width="32"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d7/bulbicon.png--></img><!--}\par
---></a>
+<tr>
+<td width="30px" valign="top" align="center"><a target="manual" href="http://alphamanual.audacityteam.org/man/File:Bulbicon.png" class="image" title="Bulb icon"><img alt="Bulb icon" src="../m/images/d/d7/bulbicon.png" width="32" height="32" /></a>
 </td>
 <td align="left" valign="top"><span style="font-weight: bold; font-size:118%">Tips:</span>
-<!--
-\begin{itemize}--><ul><!--
-\item --><li> When trying to repair a section of audio that has been <!--\textit{--><i><!--\textbf{--><b><!--latex 
-\hyperref[\foo{glossary:clipping}]{--><a href="glossary.html#clipping" title="Glossary">clipped</a><!--latex }
---></b><!--}--></i><!--}-->, click first in the <!--latex 
-\hyperref[\foo{audio:tracks:Track:Control:Panel}]{--><a href="audio_tracks.html#Track_Control_Panel" title="Audio Tracks">Track Control Panel</a><!--latex }
---> to select all the track, then <span class="menu">Effect &gt; <!--latex 
-\hyperref[\foo{amplify:}]{--><a href="amplify.html" title="Amplify">Amplify</a><!--latex }
---></span> to make it quieter. This gives some headroom for Repair to work in. You can click <span class="menu">View &gt; Show Clipping</span> to indicate clipped samples. If there is still clipped audio after Repair, <span class="menu">Edit &gt; Undo</span>, extend the region a little further either side of the clipping, then Repair again.     </li>
-<!--
-\item --><li> If only one channel of a stereo track is damaged, you can repair only the relevant channel by clicking on the <!--latex 
-\hyperref[\foo{audio:track:dropdown:menu:}]{--><a href="audio_track_dropdown_menu.html" title="Audio Track Dropdown Menu">Audio Track Dropdown Menu</a><!--latex }
---> and selecting <!--\textbf{--><b>"Split Stereo Track"</b><!--}-->. After repairing the single channel, you can rejoin the channels by using <!--\textbf{--><b>"Make Stereo Track"</b><!--}--> in the same menu in the upper track. </li></ul><!--
-\end{itemize}
--->
-</td></tr></tbody></table>
+<ul><li> When trying to repair a section of audio that has been <i><b><a href="glossary.html#clipping" title="Glossary">clipped</a></b></i>, click first in the <a href="audio_tracks.html#Track_Control_Panel" title="Audio Tracks">Track Control Panel</a> to select all the track, then <span class="menu">Effect &gt; <a href="amplify.html" title="Amplify">Amplify</a></span> to make it quieter. This gives some headroom for Repair to work in. You can click <span class="menu">View &gt; Show Clipping</span> to indicate clipped samples. If there is still clipped audio after Repair, <span class="menu">Edit &gt; Undo</span>, extend the region a little further either side of the clipping, then Repair again.     </li>
+<li> If only one channel of a stereo track is damaged, you can repair only the relevant channel by clicking on the <a href="audio_track_dropdown_menu.html" title="Audio Track Dropdown Menu">Audio Track Dropdown Menu</a> and selecting <b>"Split Stereo Track"</b>. After repairing the single channel, you can rejoin the channels by using <b>"Make Stereo Track"</b> in the same menu in the upper track. </li></ul>
+</td></tr></table>
 </div>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Links">Links</span></h2><!--}-->
-<p><!--latex 
-\hyperref[\foo{index:of:effects:generators:and:analyzers:}]{--><a href="index_of_effects_generators_and_analyzers.html" title="Index of Effects, Generators and Analyzers"><!--\textbf{--><b>|&lt;</b><!--}--> Index of Effects, Generators and Analyzers</a><!--latex }
---> <br/>
-</p><p><!--latex 
-\hyperref[\foo{effect:menu:}]{--><a href="effect_menu.html" title="Effect Menu"><!--\textbf{--><b>|&lt;</b><!--}--> Effect Menu</a><!--latex }
--->
+<h2><span class="mw-headline" id="Links">Links</span></h2>
+<p><a href="index_of_effects_generators_and_analyzers.html" title="Index of Effects, Generators and Analyzers"><b>|&lt;</b> Index of Effects, Generators and Analyzers</a> <br />
+</p><p><a href="effect_menu.html" title="Effect Menu"><b>|&lt;</b> Effect Menu</a>
 </p>
+<!-- 
+NewPP limit report
+Cached time: 20180117040645
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.085 seconds
+Real time usage: 0.091 seconds
+Preprocessor visited node count: 281/1000000
+Preprocessor generated node count: 1065/1000000
+Post‐expand include size: 4548/2097152 bytes
+Template argument size: 1678/2097152 bytes
+Highest expansion depth: 12/40
+Expensive parser function count: 11/100
+-->
 
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   39.490      1 - -total
+ 80.84%   31.925      1 - Template:I18n
+ 75.05%   29.639      1 - Template:I18n_box
+ 65.32%   25.795      1 - Template:I18n_list
+ 33.09%   13.067      5 - Template:I18n_link
+ 19.40%    7.660      5 - Template:Autoglossonym
+ 11.70%    4.619      1 - Template:Tip
+  6.86%    2.709      6 - Template:Menu
+  4.33%    1.708      1 - Template:Bh
+-->
 
-
-
-
+<!-- Saved in parser cache with key helpmediawiki:pcache:idhash:2755-0!*!0!!*!5!* and timestamp 20180117040644 and revision id 58201
+ -->
 </div>
-										
+										<!-- end content -->
 										<div class="visualClear"></div>
 				</div>
 			</div>
 		</div>
-		
-		<div class="visualClear"></div>
+		<div id="column-one">
+			
 					
-		</div><!--latex \end{multicols}-->
+				
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="../index.html" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+					
+		<div class="generated-sidebar portlet" id="p-Navigation" role="navigation">
+		<h3>Navigation</h3>
+		<div class='pBody'>
+			<ul><li> <a href="../index.html" title="Main Page">Manual Home Page</a></li>
+<li> <a href="../index.html#using" title="Main Page">Using Audacity</a>
+<ul><li> <a href="audacity_tour_guide.html" title="Audacity Tour Guide">Tour Guide</a></li>
+<li> <a href="new_features_in_this_release.html" title="New features in this release">New Features</a></li>
+<li> <a href="../quick_help.html" title="Quick Help">Getting Started</a></li>
+<li> <a href="preferences.html" title="Preferences">Preferences</a></li>
+<li> <a href="menu_reference.html" title="Menu Reference">Menu Bar</a></li>
+<li> <a href="toolbars_overview.html" title="Toolbars Overview">Toolbars</a></li>
+<li> <a href="keyboard_shortcut_reference.html" title="Keyboard Shortcut Reference">Commands / Shortcuts</a></li>
+<li> <a href="index_of_effects_generators_and_analyzers.html" title="Index of Effects, Generators and Analyzers">Effects</a></li>
+<li> <a href="tutorials.html" title="Tutorials">Tutorials</a></li>
+<li> <a href="tips.html" title="Tips">Tips</a></li></ul></li></ul>
+		</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-Reference" role="navigation">
+		<h3>Reference</h3>
+		<div class='pBody'>
+			<ul><li> <a href="../index.html#reference" title="Main Page">Reference</a>
+<ul><li> <a href="digital_audio.html" title="Digital Audio">Digital Audio</a></li>
+<li> <a href="glossary.html" title="Glossary">Glossary</a></li>
+<li> <a href="subject_index.html" title="Subject Index">Subject Index</a></li></ul></li>
+<li> <span title="Frequently Asked Questions"><a rel="nofollow" target="manual" class="external text" href="faq.html">FAQ</a></span></li></ul>
+		</div>
+		</div>
 		
-</body></html>
+		<div class="generated-sidebar portlet" id="p-Useful_Links" role="navigation">
+		<h3>Useful Links</h3>
+		<div class='pBody'>
+			<ul><li> <a rel="nofollow" target="manual" class="external text" href="https://forum.audacityteam.org/index.php">Forum</a></li>
+<li> <a rel="nofollow" target="manual" class="external text" href="https://wiki.audacityteam.org/wiki/Audacity_Wiki_Home_Page">Wiki</a></li>
+<li> <a rel="nofollow" target="manual" class="external text" href="https://www.audacityteam.org/download/">Latest Release</a></li></ul>
+		</div>
+		</div>
+		
+			
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-copyrightico">
+									
+							</div>
+					<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="../m/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/m/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /m/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31"/></a>
+							</div>
+					
+		<div align="center"><ul id="f_list"><li>Offline version created on 2018-01-17 - <a target="manual" href="http://alphamanual.audacityteam.org/man/Repair">Check current version of this page (development Manual)</a></li></ul></div>
+</div>
+		</div>
+		</body></html>

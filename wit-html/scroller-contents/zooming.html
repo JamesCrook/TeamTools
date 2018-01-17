@@ -1,289 +1,284 @@
 <!DOCTYPE html>
-<html class="client-nojs" dir="ltr" lang="en"><head>
-<meta charset="utf-8"/>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
 <title>Zooming Overview - Audacity Development Manual</title>
 
 
 
 
+<!--[if IE 6]><link rel="stylesheet" href="../m/skins/monobook/ie60fixes.css/303.css" media="screen"/><![endif]--><!--[if IE 7]><link rel="stylesheet" href="../m/skins/monobook/ie70fixes.css/303.css" media="screen"/><![endif]-->
+<meta name="ResourceLoaderDynamicStyles" content=""/>
 
-<meta content="" name="ResourceLoaderDynamicStyles"/>
+<meta name="generator" content="MediaWiki 1.28.2"/>
+<link rel="shortcut icon" href="../favicon.ico"/>
+<link rel="search" type="application/opensearchdescription+xml" target="manual" href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" title="Audacity Development Manual (en)"/>
+<link rel="EditURI" type="application/rsd+xml" target="manual" href="http://alphamanual.audacityteam.org/m/api.php?action=rsd"/>
+<link rel="copyright" href="https://creativecommons.org/licenses/by/3.0/" />
 
-<meta content="MediaWiki 1.28.2" name="generator"/>
-<link href="../favicon.ico" rel="shortcut icon"/>
-<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
-<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
-<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
-
-<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+<link rel="stylesheet" href="../m/skins/monobook/main.css/303.css" media="screen" />
 </head>
 <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Zooming rootpage-Zooming skin-monobook action-view"><div id="globalWrapper">
 		<div id="column-content">
-			<div class="mw-body" id="content" role="main">
+			<div id="content" class="mw-body" role="main">
 				<a id="top"></a>
 				
 				<div class="mw-indicators">
 </div>
-				<!--
-\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Zooming Overview</h1><!--}
-\par\vspace{1mm}\hrule
---><!--latex \begin{multicols}{2}--><!--latex \label{zooming:}-->
+				<h1 id="firstHeading" class="firstHeading" lang="en">Zooming Overview</h1>
 				
-				<div class="mw-body-content" id="bodyContent">
-					
-					
-										
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Audacity Development Manual</div>
+					<div id="contentSub"></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a target="manual" href="http://alphamanual.audacityteam.org/man/Zooming#searchInput">search</a></div>
 
-					
-					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"> 
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr">
+ </li></ul>
 
-<p>
- 
- 
- 
 
-</p><p><br/>
+<p><br />
 </p>
-<div class="intro">If you want to carefully inspect a small portion of your audio, or have an overview of your project, you will want to use one of these <!--\textbf{--><b>Zoom</b><!--}--> methods. </div>
-<dl><dd><span title="A five-minute song, zoomed all the way out"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="Zoom0.png" height="162" src="../m/images/5/5c/zoom0.png" width="564"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/5/5c/zoom0.png--></img><!--}\par
---></span></dd></dl>
+<div class="intro">If you want to carefully inspect a small portion of your audio, or have an overview of your project, you will want to use one of these <b>Zoom</b> methods. </div>
+<h2><span class="mw-headline" id="Contents">Contents</span></h2>
+<ol><li><a href="#levels">Zoom levels</a></li>
+<li><a href="#horizontal">Time Scale Zooming (Horizontally) </a>
+<ul><li><a href="#menu">Menu Commands</a></li>
+<li><a href="#edit">Edit Toolbar</a></li>
+<li><a href="#keyboard">Keyboard shortcuts</a></li>
+<li><a href="#zoom">Zoom Tool</a></li>
+<li><a href="#wheel">Using the mouse wheel</a></li></ul></li>
+<li><a href="#vertical">Vertical Zooming</a>
+<ul><li><a href="#vscale">Vertical Scale</a></li></ul></li></ol>
+<p><br />
+</p>
+<div id="levels"></div>
+<h2><span class="mw-headline" id="Zoom_levels">Zoom levels</span></h2>
+<dl><dd><span title="A five-minute song, zoomed all the way out"><img alt="Zoom0.png" src="../m/images/5/5c/zoom0.png" width="564" height="162" /></span></dd></dl>
 <p>The figure above shows Audacity's view of an entire song, zoomed all the way out.  It's really useful to get an idea of the whole piece from start to finish, but it's hard to see much detail - like a forest with no individual trees.
 </p><p>Zooming the time scale, or zooming "horizontally", is something you'll do all the time.  It lets you focus on the first 15 seconds, for example:
 </p>
-<dl><dd><span title="The first 15 seconds of the same song"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="Zoom1.png" height="162" src="../m/images/c/c3/zoom1.png" width="565"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/c/c3/zoom1.png--></img><!--}\par
---></span></dd></dl>
-<p><br/>
+<dl><dd><span title="The first 15 seconds of the same song"><img alt="Zoom1.png" src="../m/images/c/c3/zoom1.png" width="565" height="162" /></span></dd></dl>
+<p><br />
 or the last 15 seconds:
 </p>
-<dl><dd><span title="The last 15 seconds of the same song"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="Zoom2.png" height="162" src="../m/images/a/ab/zoom2.png" width="565"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/a/ab/zoom2.png--></img><!--}\par
---></span></dd></dl>
-<p><br/>
+<dl><dd><span title="The last 15 seconds of the same song"><img alt="Zoom2.png" src="../m/images/a/ab/zoom2.png" width="565" height="162" /></span></dd></dl>
+<p><br />
 </p>
 <div id="samples"></div>
 <p>or even a tiny fraction of a second, where you can see the individual audio samples as small dots:
 </p>
-<dl><dd><span title="A fraction of a second, zoomed all the way in"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="Zoom3.png" height="162" src="../m/images/8/8f/zoom3.png" width="565"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/8/8f/zoom3.png--></img><!--}\par
---></span></dd></dl>
-<p><br/>
-Occasionally you may want to zoom "vertically", so that you see only a portion of the <!--\textit{--><i><!--latex 
-\hyperref[\foo{audacity:waveform:}]{--><a href="audacity_waveform.html" title="Audacity Waveform">waveform</a><!--latex }
---></i><!--}--> from top to bottom, but in greater detail:
-</p>
-<dl><dd><span title="Vertical zoom shows the individual samples with greater clarity"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="Zoom4.png" height="162" src="../m/images/3/3d/zoom4.png" width="565"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/3/3d/zoom4.png--></img><!--}\par
---></span></dd></dl>
-<div class="note">If you get lost, refer to the <!--latex 
-\hyperref[\foo{timeline:}]{--><a href="timeline.html" title="Timeline">Timeline</a><!--latex }
---> at the top of the window.  It always shows you exactly where you are in time, in hours:minutes:seconds.</div>
-<p><br/>
+<dl><dd><span title="A fraction of a second, zoomed all the way in"><img alt="Zoom3.png" src="../m/images/8/8f/zoom3.png" width="565" height="162" /></span></dd></dl>
+<div class="note">If you get lost, refer to the <a href="timeline.html" title="Timeline">Timeline</a> at the top of the window.  It always shows you exactly where you are in time, in hours:minutes:seconds. </div>
+<p><br />
 </p>
 <div id="horizontal"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Time_Scale_Zooming_.28Horizontally.29">Time Scale Zooming (Horizontally)</span></h2><!--}--><!--latex 
-\label{zooming:horizontal}--><!--latex 
-\label{zooming:samples}-->
- 
-<div class="note">See the <!--latex 
-\hyperref[\foo{view:menu:zoom:}]{--><a href="view_menu_zoom.html" title="View Menu: Zoom">View &gt; Zoom</a><!--latex }
---> page for limitations of the zoom commands when zooming in or out near the beginning or end of a track. </div>
+<h2><span class="mw-headline" id="Time_Scale_Zooming_.28Horizontally.29">Time Scale Zooming (Horizontally)</span></h2>
+ </li></ul></li></ul></li></ul>
+<div class="note">See the <a href="view_menu_zoom.html" title="View Menu: Zoom">View &gt; Zoom</a> page for limitations of the zoom commands when zooming in or out near the beginning or end of a track. </div>
 <p>There are five ways to zoom horizontally:
 </p>
 <div id="menu"></div>
-<!--
-\subsubsection{--><h3><span class="mw-headline" id="Menu_Commands"><!--latex 
-\hyperref[\foo{view:menu:zoom:}]{--><a href="view_menu_zoom.html" title="View Menu: Zoom">Menu Commands</a><!--latex }
---></span></h3><!--}--><!--latex 
-\label{zooming:menu}-->
-<p><!--\textbf{--><b><span class="menu"><!--latex 
-\hyperref[\foo{view:menu:zoom:}]{--><a href="view_menu_zoom.html" title="View Menu: Zoom">View &gt; Zoom</a><!--latex }
---></span></b><!--}--> submenu: use the four commands in this submenu to;
+<h3><span class="mw-headline" id="Menu_Commands"><a href="view_menu_zoom.html" title="View Menu: Zoom">Menu Commands</a></span></h3>
+
+<p><b><span class="menu"><a href="view_menu_zoom.html" title="View Menu: Zoom">View &gt; Zoom</a></span></b> submenu: use the four commands in this submenu to:
 </p>
-<!--
-\begin{itemize}--><ul><!--
-\item --><li> <span class="menu">View &gt; Zoom &gt; Zoom In</span>: double the current zoom level.</li>
-<!--
-\item --><li> <span class="menu">View &gt; Zoom &gt; Zoom Normal</span>: reverts back to Audacity's default zoom, where you can see 5 - 10 seconds at a time.</li>
-<!--
-\item --><li> <span class="menu">View &gt; Zoom &gt; Zoom Out</span>: cuts the current zoom level in half</li>
-<!--
-\item --><li> <span class="menu">View &gt; Zoom &gt; Zoom to Selection</span>: zooms and scroll so that the selection just fits in the window.</li></ul><!--
-\end{itemize}
--->
-<p><!--\textbf{--><b><span class="menu"><!--latex 
-\hyperref[\foo{view:menu:track:size:}]{--><a href="view_menu_track_size.html" title="View Menu: Track Size">View &gt; Track Size</a><!--latex }
---></span></b><!--}--> submenu: use the first two commands in this submenu to;
-</p>
-<!--
-\begin{itemize}--><ul><!--
-\item --><li> <span class="menu">View &gt; Track Size &gt; Fit to Width</span>: zoom out just enough so that you can see the entire project</li>
-<!--
-\item --><li> <span class="menu">View &gt; Track Size &gt; Fit to Height</span>: resize all the tracks so they fit in the window vertically without scrolling. If you have more than about ten tracks, some scrolling up and down will still be needed, because there is a minimum track height beyond which reduction is impossible.</li></ul><!--
-\end{itemize}
--->
+<ul><li> <span class="menu">View &gt; Zoom &gt; Zoom In</span>: double the current zoom level.</li>
+<li> <span class="menu">View &gt; Zoom &gt; Zoom Normal</span>: reverts back to Audacity's default zoom, where you can see 5 - 10 seconds at a time</li>
+<li> <span class="menu">View &gt; Zoom &gt; Zoom Out</span>: cuts the current zoom level in half</li>
+<li> <span class="menu">View &gt; Zoom &gt; Zoom to Selection</span>: zooms and scroll so that the selection just fits in the window</li>
+<li> <span class="menu">View &gt; Zoom &gt; Zoom Toggle</span>: toggles between two pre-defined zoom levels, these are user selectable in <a href="tracks_preferences.html#toggle" title="Tracks Preferences">Tracks Preferences</a>.  Defaults are normal <b>Default Zoom</b> level and <b>4 Pixels per Sample</b> <i>(which shows a fraction of a second of audio as samples)</i></li>
+<li><b><span class="menu"><a href="view_menu_track_size.html" title="View Menu: Track Size">View &gt; Track Size</a></span></b> submenu: use the first two commands in this submenu to;</li>
+<li> <span class="menu">View &gt; Track Size &gt; Fit to Width</span>: zoom out just enough so that you can see the entire project</li>
+<li> <span class="menu">View &gt; Track Size &gt; Fit to Height</span>: resize all the tracks so they fit in the window vertically without scrolling. If you have more than about ten tracks, some scrolling up and down will still be needed, because there is a minimum track height beyond which reduction is impossible.</li></ul>
 <div id="edit"></div>
-<!--
-\subsubsection{--><h3><span class="mw-headline" id="Edit_Toolbar"><!--latex 
-\hyperref[\foo{edit:toolbar:}]{--><a href="edit_toolbar.html" title="Edit Toolbar">Edit Toolbar</a><!--latex }
---></span></h3><!--}--><!--latex 
-\label{zooming:edit}-->
-<p>Four of the view commands have equivalent buttons on the right of the <!--latex 
-\hyperref[\foo{edit:toolbar:}]{--><a href="edit_toolbar.html" title="Edit Toolbar">Edit Toolbar</a><!--latex }
--->: 
-</p>
-<dl><dd><a href="toolbars_overview.html#upper_tooldock" title="ZoomToolbar - click on the image to see this toolbar displayed in the default context of the upper tooldock layout"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="ZoomToolbar - click on the image to see this toolbar displayed in the default context of the upper tooldock layout" height="82" src="../m/images/7/76/zoomtoolbarannotated.png" width="348"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/7/76/zoomtoolbarannotated.png--></img><!--}\par
---></a></dd></dl>
+<h3><span class="mw-headline" id="Edit_Toolbar"><a href="edit_toolbar.html" title="Edit Toolbar">Edit Toolbar</a></span></h3>
 
-<!--
-\begin{itemize}--><ul><!--
-\item --><li> <!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="ZoomIn.png" height="27" src="../m/images/f/fa/zoomin.png" width="27"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/f/fa/zoomin.png--></img><!--}}{}--> Zoom In</li>
-<!--
-\item --><li> <!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="ZoomOut.png" height="27" src="../m/images/c/c9/zoomout.png" width="27"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/c/c9/zoomout.png--></img><!--}}{}--> Zoom Out</li>
-<!--
-\item --><li> <!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="ZoomSel.png" height="27" src="../m/images/c/ca/zoomsel.png" width="27"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/c/ca/zoomsel.png--></img><!--}}{}--> Zoom to Selection</li>
-<!--
-\item --><li> <!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="ZoomFit.png" height="27" src="../m/images/4/4a/zoomfit.png" width="27"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/4/4a/zoomfit.png--></img><!--}}{}--> Fit Project in Window</li></ul><!--
-\end{itemize}
--->
+<p>Four of the view commands have equivalent buttons on the right of the <a href="edit_toolbar.html" title="Edit Toolbar">Edit Toolbar</a>: 
+</p>
+<dl><dd><a href="toolbars_overview.html#upper_tooldock" title="ZoomToolbar - click on the image to see this toolbar displayed in the default context of the upper tooldock layout"><img alt="ZoomToolbar - click on the image to see this toolbar displayed in the default context of the upper tooldock layout" src="../m/images/7/76/zoomtoolbarannotated.png" width="348" height="82" /></a></dd></dl>
+
+<ul><li> <img alt="ZoomIn.png" src="../m/images/f/fa/zoomin.png" width="27" height="27" /> Zoom In</li>
+<li> <img alt="ZoomOut.png" src="../m/images/c/c9/zoomout.png" width="27" height="27" /> Zoom Out</li>
+<li> <img alt="ZoomSel.png" src="../m/images/c/ca/zoomsel.png" width="27" height="27" /> Zoom to Selection</li>
+<li> <img alt="ZoomFit.png" src="../m/images/4/4a/zoomfit.png" width="27" height="27" /> Fit Project to Width in window</li></ul>
+
 <div id="keyboard"></div>
-<!--
-\subsubsection{--><h3><span class="mw-headline" id="Keyboard_shortcuts"><!--latex 
-\hyperref[\foo{keyboard:shortcut:reference:view:menu}]{--><a href="keyboard_shortcut_reference.html#view_menu" title="Keyboard Shortcut Reference">Keyboard shortcuts</a><!--latex }
---></span></h3><!--}--><!--latex 
-\label{zooming:keyboard}-->
-<p>All six zoom commands have keyboard shortcut equivalents:
+<h3><span class="mw-headline" id="Keyboard_shortcuts"><a href="keyboard_shortcut_reference.html#view_menu" title="Keyboard Shortcut Reference">Keyboard shortcuts</a></span></h3>
+<p>All zoom commands have keyboard shortcut equivalents:
 </p>
+<table class="prettytable" style="margin-left:25px" width="30%" id="keyboard_commands">
 
-<table class="prettytable" id="keyboard_commands" style="margin-left:25px" width="40%">
-
-<tbody><!--\par --><tr>
+<tr>
 <th> Zoom action </th>
 <th> Keyboard shortcut
 </th></tr>
-<!--\par --><tr>
-<td> <!--\textbf{--><b>Zoom In</b><!--}--> </td>
+<tr>
+<td> <b>Zoom In</b> </td>
 <td> <span class="kbrd" style="background-color: #e0e0f0">Ctrl + 1</span>
 </td></tr>
-<!--\par --><tr>
-<td> <!--\textbf{--><b>Zoom Normal</b><!--}--> </td>
+<tr>
+<td> <b>Zoom Normal</b> </td>
 <td> <span class="kbrd" style="background-color: #e0e0f0">Ctrl + 2</span>
 </td></tr>
-<!--\par --><tr>
-<td> <!--\textbf{--><b>Zoom Out</b><!--}--> </td>
+<tr>
+<td> <b>Zoom Out</b> </td>
 <td> <span class="kbrd" style="background-color: #e0e0f0">Ctrl + 3</span>
 </td></tr>
-<!--\par --><tr>
-<td> <!--\textbf{--><b>Fit to Width</b><!--}--> </td>
+<tr>
+<td> <b>Zoom Toggle</b> </td>
+<td> <span class="kbrd" style="background-color: #e0e0f0">Shift + Z</span>
+</td></tr>
+<tr>
+<td> <b>Fit to Width</b> </td>
 <td> <span class="kbrd" style="background-color: #e0e0f0">Ctrl + F</span>
 </td></tr>
-<!--\par --><tr>
-<td> <!--\textbf{--><b>Fit To Height</b><!--}--> </td>
+<tr>
+<td> <b>Fit To Height</b> </td>
 <td> <span class="kbrd" style="background-color: #e0e0f0">Ctrl + Shift + F</span>
 </td></tr>
-<!--\par --><tr>
-<td> <!--\textbf{--><b>Zoom to Selection</b><!--}--> </td>
+<tr>
+<td> <b>Zoom to Selection</b> </td>
 <td> <span class="kbrd" style="background-color: #e0e0f0">Ctrl + E</span>
-</td></tr></tbody></table>
+</td></tr></table>
 <div class="note">
-<p>Mac users: Use <span class="kbrd" style="background-color: #e0e0f0">⌘</span> instead of  <span class="kbrd" style="background-color: #e0e0f0">Ctrl</span>.
+<p>Mac users: Use <span class="kbrd" style="background-color: #e0e0f0">&#8984;</span> instead of  <span class="kbrd" style="background-color: #e0e0f0">Ctrl</span>.
 </p>
 </div>
 <div id="zoom"></div>
-<!--
-\subsubsection{--><h3><span class="mw-headline" id="Zoom_Tool"><!--latex 
-\hyperref[\foo{zoom:tool:}]{--><a href="zoom_tool.html" title="Zoom Tool">Zoom Tool</a><!--latex }
---></span></h3><!--}--><!--latex 
-\label{zooming:zoom}-->
-<p>You can also zoom in and out using the <a href="zoom_tool.html" title="zoom tool"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="zoom tool" height="27" src="../m/images/9/96/zoom.png" width="27"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/9/96/zoom.png--></img><!--}}{}--></a> <!--latex 
-\hyperref[\foo{zoom:tool:}]{--><a href="zoom_tool.html" title="Zoom Tool">Zoom Tool</a><!--latex }
--->.  
+<h3><span class="mw-headline" id="Zoom_Tool"><a href="zoom_tool.html" title="Zoom Tool">Zoom Tool</a></span></h3>
+<p>You can also zoom in and out using the <a href="zoom_tool.html" title="zoom tool"><img alt="zoom tool" src="../m/images/9/96/zoom.png" width="27" height="27" /></a> <a href="zoom_tool.html" title="Zoom Tool">Zoom Tool</a>.  
 </p>
 <div id="wheel"></div>
-<!--
-\subsubsection{--><h3><span class="mw-headline" id="Zoom_In_or_Out_on_the_Mouse_Pointer_using_the_Scroll_Wheel">Zoom In or Out on the Mouse Pointer using the Scroll Wheel</span></h3><!--}--><!--latex 
-\label{zooming:wheel}-->
-<p>If your mouse has a scroll wheel or ball, you can zoom in or out centered on the position of the mouse pointer, instead of centered on the selection or editing cursor. 
-</p><p>When extremely zoomed out, or when zooming in or out near the beginning or end of the track, it may not be possible to keep the audio centered on the mouse pointer position.
-</p><p>Hold down the <span class="kbrd" style="background-color: #e0e0f0">Ctrl</span> key on your keyboard then scroll up to zoom in, or scroll down to zoom out. For example. you can zoom in at or near the start or end of a selection by placing the pointer there.
+<h3><span class="mw-headline" id="Zoom_In_or_Out_using_the_mouse_wheel">Zoom In or Out using the mouse wheel</span></h3>
+
+<p>If your mouse has a scroll wheel or ball, you can zoom in or out focused on the selection's left edge or the editing cursor position. If there is no selection or editing cursor the the zoom will focus on time=0.
+</p><p>Hold down the <span class="kbrd" style="background-color: #e0e0f0">Ctrl</span> key on your keyboard then scroll up to zoom in, or scroll down to zoom out. For example. you can zoom in at or near the start or end of a selection by placing your cursor position there.
+</p><p>When <a href="scrubbing_and_seeking.html" title="Scrubbing and Seeking">Scrubbing or Seeking</a>, the zoom buttons in Edit Toolbar and the zoom items in View Menu (or their shortcuts) zoom at the mouse pointer and not at the selection or editing cursor.
 </p>
-<div class="note">Mac users: Hold down both <span class="kbrd" style="background-color: #e0e0f0">⌘</span> and <span class="kbrd" style="background-color: #e0e0f0">Ctrl</span> while using the scroll wheel. <br/>To zoom the waveform in Audacity without using the <span class="kbrd" style="background-color: #e0e0f0">Ctrl</span> key, look in these places, depending on which version of macOS/Mac OS X you are using:
-<!--
-\begin{itemize}--><ul><!--
-\item --><li> in the System "Mouse" Preferences (in older versions of Mac OS X before the Magic Mouse), disable "Zoom using scroll ball while holding Command" (or similar). </li>
-<!--
-\item --><li> in the System "Universal Access" Preferences, the "Seeing" tab, then in the "Zoom" section click the "Options" button - uncheck "Use scroll wheel with modifier keys to zoom"</li>
-<!--
-\item --><li> in the System "Accessibility" Preferences, click on "Zoom" in the left panel, then uncheck "Use scroll gesture with modifier keys to zoom". </li></ul><!--
-\end{itemize}
---></div>
-<p><!--\textbf{--><b>Note:</b><!--}--> When <!--latex 
-\hyperref[\foo{scrubbing:and:seeking:}]{--><a href="scrubbing_and_seeking.html" title="Scrubbing and Seeking">Scrubbing or Seeking</a><!--latex }
--->, the zoom buttons in Edit Toolbar and the zoom items in View Menu (or their shortcuts) also zoom at the mouse pointer and not at the selection or editing cursor.
+<div class="note">Mac users: Hold down both <span class="kbrd" style="background-color: #e0e0f0">&#8984;</span> and <span class="kbrd" style="background-color: #e0e0f0">Ctrl</span> while using the scroll wheel. <br />To zoom the waveform in Audacity without using the <span class="kbrd" style="background-color: #e0e0f0">Ctrl</span> key, look in these places, depending on which version of macOS/Mac OS X you are using:
+<ul><li> in the System "Mouse" Preferences (in older versions of Mac OS X before the Magic Mouse), disable "Zoom using scroll ball while holding Command" (or similar). </li>
+<li> in the System "Universal Access" Preferences, the "Seeing" tab, then in the "Zoom" section click the "Options" button - uncheck "Use scroll wheel with modifier keys to zoom"</li>
+<li> in the System "Accessibility" Preferences, click on "Zoom" in the left panel, then uncheck "Use scroll gesture with modifier keys to zoom". </div></li></ul>
+<p><br />
 </p>
 <div id="vertical"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Vertical_zooming">Vertical zooming</span></h2><!--}--><!--latex 
-\label{zooming:vertical}-->
-<p>Vertical zooming can be useful on occasions. You can zoom vertically whichever of the tools in <!--latex 
-\hyperref[\foo{tools:toolbar:}]{--><a href="tools_toolbar.html" title="Tools Toolbar">Tools Toolbar</a><!--latex }
---> are selected. Hover the mouse over the <!--latex 
-\hyperref[\foo{audio:tracks:Vertical:Scale}]{--><a href="audio_tracks.html#Vertical_Scale" title="Audio Tracks">vertical scale</a><!--latex }
---> of a track, and the pointer changes to a magnifying glass, indicating you can zoom vertically:
+<h2><span class="mw-headline" id="Vertical_Zooming"><a href="vertical_zooming.html" title="Vertical Zooming">Vertical Zooming</a></span></h2>
+<p>Occasionally you may want to zoom vertically, so that you see only a portion of the <i><a href="audacity_waveform.html" title="Audacity Waveform">waveform</a></i> from top to bottom, but in greater detail.
 </p>
-<dl><dd><span title="The pointer changed to a magnifying glass, indicating you can zoom vertically."><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="Zoom5.png" height="162" src="../m/images/8/83/zoom5.png" width="565"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/8/83/zoom5.png--></img><!--}\par
---></span></dd></dl>
-<!--
-\begin{itemize}--><ul><!--
-\item --><li> <!--\textbf{--><b>Left-click once to zoom in</b><!--}--> at the position on the vertical scale you are interested in. This point will then be centered on the vertical scale.</li>
-<!--
-\item --><li> <!--\textbf{--><b>Hold <span class="kbrd" style="background-color: #e0e0f0">Shift</span> then left-click (or just right-click) to zoom out incrementally</b><!--}-->. </li>
-<!--
-\item --><li> <!--\textbf{--><b>Hold <span class="kbrd" style="background-color: #e0e0f0">Shift</span> then right-click to zoom out immediately to normal zoom level</b><!--}-->.
-<!--
-\begin{itemize}--><ul><!--
-\item --><li> <span class="kbrd" style="background-color: #e0e0f0">Ctrl</span> + <span class="kbrd" style="background-color: #e0e0f0">Shift</span> with left-click can also be used to zoom out to normal on Mac. </li></ul><!--
-\end{itemize}
---></li></ul><!--
-\end{itemize}
+<div id="vscale"></div>
+<h3><span class="mw-headline" id="Vertical_Scale"><a href="audio_tracks.html#scale" title="Audio Tracks">Vertical Scale</a></span></h3>
+<p>Right-click in the <a href="audio_tracks.html#scale" title="Audio Tracks">Vertical Scale</a> will bring up the dropdown context menu.
+All the zooms here in the context menu are in the <i>vertical</i> direction, as opposed to a <i>horizontal</i> zoom on the <a href="timeline.html" title="Timeline">Timeline</a>.
+</p>
+<dl><dd><table>
+
+<tr>
+<td valign="top"><span title="Vertical Scale (default linear) with context menu"><img alt="VS context menu waveform view - simple mode.png" src="../m/images/a/a3/vs_context_menu_waveform_view_simple_mode.png" width="186" height="269" /></span>
+</td>
+<td valign="top" style="padding-left:10px">All the zooms here are in the <i>vertical</i> direction, as opposed to a <i>horizontal</i> zoom on the <a href="timeline.html" title="Timeline">Timeline</a>
+<ul><li>For details of using the context menu <i>(Simple mode)</i> to control vertical zooming see <a href="vertical_zooming.html#simple" title="Vertical Zooming">this section of the Vertical Zooming page</a>.</li>
+<li>For advanced details of vertical zooming using the <a href="audio_tracks.html#scale" title="Audio Tracks">Vertical Scale</a> magnifiers please see <a href="vertical_zooming.html#advanced" title="Vertical Zooming">this section of the Vertical Zooming page</a>. </li></ul>
+</td></tr>
+</table></dd></dl>
+<dl><dd>After 3 repetitions of zooming in with  <b><a href="vertical_zooming.html" title="Vertical Zooming">Vertical Zooming</a></b> this waveform shows good vertical detail</dd>
+<dd><span title="After zooming vertically three times"><img alt="Vertical zoom x3.png" src="../m/images/1/1f/vertical_zoom_x3.png" width="597" height="185" /></span></dd></dl>
+
+
+<!-- 
+NewPP limit report
+Cached time: 20180117040515
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.180 seconds
+Real time usage: 0.192 seconds
+Preprocessor visited node count: 666/1000000
+Preprocessor generated node count: 1967/1000000
+Post‐expand include size: 11025/2097152 bytes
+Template argument size: 6034/2097152 bytes
+Highest expansion depth: 12/40
+Expensive parser function count: 11/100
 -->
-<p>Alternatively, click once and hold down the mouse button, then drag to select a vertical region:
-</p>
-<dl><dd><span title="Clicking and dragging to zoom into a vertical region."><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="Zoom6.png" height="162" src="../m/images/d/d7/zoom6.png" width="565"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d7/zoom6.png--></img><!--}\par
---></span></dd></dl>
-<p>When you release the mouse button, exactly the range you selected will be zoomed in so as to fit vertically inside the track height:
-</p>
-<dl><dd><span title="After zooming vertically"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="Zoom7.png" height="162" src="../m/images/1/17/zoom7.png" width="565"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/1/17/zoom7.png--></img><!--}\par
---></span></dd></dl>
-<p>If you commence a drag to zoom in by mistake, you can press <span class="kbrd" style="background-color: #e0e0f0">Esc</span> before releasing the mouse to cancel the zoom operation.
-</p><p>In default <!--latex 
-\hyperref[\foo{audio:track:dropdown:menu:wave}]{--><a href="audio_track_dropdown_menu.html#wave" title="Audio Track Dropdown Menu">Waveform view</a><!--latex }
---> set in the <!--latex 
-\hyperref[\foo{audio:track:dropdown:menu:}]{--><a href="audio_track_dropdown_menu.html" title="Audio Track Dropdown Menu">Track Dropdown Menu</a><!--latex }
---> you can zoom in to a minimum display range of 0.001 <!--\textit{--><i><!--\textbf{--><b><!--latex 
-\hyperref[\foo{glossary:linear}]{--><a href="glossary.html#linear" title="Glossary">linear</a><!--latex }
---></b><!--}--></i><!--}--> extending from top to bottom of the scale.
-</p>
 
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   66.527      1 - -total
+ 55.06%   36.631      1 - Template:I18n
+ 52.16%   34.699      1 - Template:I18n_box
+ 46.21%   30.741      1 - Template:I18n_list
+ 26.12%   17.380      7 - Template:I18n_link
+ 15.39%   10.241      7 - Template:Autoglossonym
+ 11.57%    7.696     14 - Template:Key
+  6.01%    3.999      3 - Template:Note
+  5.83%    3.876     10 - Template:Ednote
+  4.84%    3.222      1 - Template:Annotated
+-->
 
-
-
-
+<!-- Saved in parser cache with key helpmediawiki:pcache:idhash:2117-0!*!0!!*!5!* and timestamp 20180117040514 and revision id 58870
+ -->
 </div>
-										
+										<!-- end content -->
 										<div class="visualClear"></div>
 				</div>
 			</div>
 		</div>
-		
-		<div class="visualClear"></div>
+		<div id="column-one">
+			
 					
-		</div><!--latex \end{multicols}-->
+				
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="../index.html" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+					
+		<div class="generated-sidebar portlet" id="p-Navigation" role="navigation">
+		<h3>Navigation</h3>
+		<div class='pBody'>
+			<ul><li> <a href="../index.html" title="Main Page">Manual Home Page</a></li>
+<li> <a href="../index.html#using" title="Main Page">Using Audacity</a>
+<ul><li> <a href="audacity_tour_guide.html" title="Audacity Tour Guide">Tour Guide</a></li>
+<li> <a href="new_features_in_this_release.html" title="New features in this release">New Features</a></li>
+<li> <a href="../quick_help.html" title="Quick Help">Getting Started</a></li>
+<li> <a href="preferences.html" title="Preferences">Preferences</a></li>
+<li> <a href="menu_reference.html" title="Menu Reference">Menu Bar</a></li>
+<li> <a href="toolbars_overview.html" title="Toolbars Overview">Toolbars</a></li>
+<li> <a href="keyboard_shortcut_reference.html" title="Keyboard Shortcut Reference">Commands / Shortcuts</a></li>
+<li> <a href="index_of_effects_generators_and_analyzers.html" title="Index of Effects, Generators and Analyzers">Effects</a></li>
+<li> <a href="tutorials.html" title="Tutorials">Tutorials</a></li>
+<li> <a href="tips.html" title="Tips">Tips</a></li></ul></li></ul>
+		</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-Reference" role="navigation">
+		<h3>Reference</h3>
+		<div class='pBody'>
+			<ul><li> <a href="../index.html#reference" title="Main Page">Reference</a>
+<ul><li> <a href="digital_audio.html" title="Digital Audio">Digital Audio</a></li>
+<li> <a href="glossary.html" title="Glossary">Glossary</a></li>
+<li> <a href="subject_index.html" title="Subject Index">Subject Index</a></li></ul></li>
+<li> <span title="Frequently Asked Questions"><a rel="nofollow" target="manual" class="external text" href="faq.html">FAQ</a></span></li></ul>
+		</div>
+		</div>
 		
-</body></html>
+		<div class="generated-sidebar portlet" id="p-Useful_Links" role="navigation">
+		<h3>Useful Links</h3>
+		<div class='pBody'>
+			<ul><li> <a rel="nofollow" target="manual" class="external text" href="https://forum.audacityteam.org/index.php">Forum</a></li>
+<li> <a rel="nofollow" target="manual" class="external text" href="https://wiki.audacityteam.org/wiki/Audacity_Wiki_Home_Page">Wiki</a></li>
+<li> <a rel="nofollow" target="manual" class="external text" href="https://www.audacityteam.org/download/">Latest Release</a></li></ul>
+		</div>
+		</div>
+		
+			
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-copyrightico">
+									
+							</div>
+					<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="../m/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/m/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /m/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31"/></a>
+							</div>
+					
+		<div align="center"><ul id="f_list"><li>Offline version created on 2018-01-17 - <a target="manual" href="http://alphamanual.audacityteam.org/man/Zooming">Check current version of this page (development Manual)</a></li></ul></div>
+</div>
+		</div>
+		</body></html>

@@ -1,295 +1,240 @@
 <!DOCTYPE html>
-<html class="client-nojs" dir="ltr" lang="en"><head>
-<meta charset="utf-8"/>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
 <title>Mixing Audio Tracks - Audacity Development Manual</title>
 
 
 
 
+<!--[if IE 6]><link rel="stylesheet" href="../m/skins/monobook/ie60fixes.css/303.css" media="screen"/><![endif]--><!--[if IE 7]><link rel="stylesheet" href="../m/skins/monobook/ie70fixes.css/303.css" media="screen"/><![endif]-->
+<meta name="ResourceLoaderDynamicStyles" content=""/>
 
-<meta content="" name="ResourceLoaderDynamicStyles"/>
+<meta name="generator" content="MediaWiki 1.28.2"/>
+<link rel="shortcut icon" href="../favicon.ico"/>
+<link rel="search" type="application/opensearchdescription+xml" target="manual" href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" title="Audacity Development Manual (en)"/>
+<link rel="EditURI" type="application/rsd+xml" target="manual" href="http://alphamanual.audacityteam.org/m/api.php?action=rsd"/>
+<link rel="copyright" href="https://creativecommons.org/licenses/by/3.0/" />
 
-<meta content="MediaWiki 1.28.2" name="generator"/>
-<link href="../favicon.ico" rel="shortcut icon"/>
-<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
-<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
-<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
-
-<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+<link rel="stylesheet" href="../m/skins/monobook/main.css/303.css" media="screen" />
 </head>
 <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Mixing rootpage-Mixing skin-monobook action-view"><div id="globalWrapper">
 		<div id="column-content">
-			<div class="mw-body" id="content" role="main">
+			<div id="content" class="mw-body" role="main">
 				<a id="top"></a>
 				
 				<div class="mw-indicators">
 </div>
-				<!--
-\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Mixing Audio Tracks</h1><!--}
-\par\vspace{1mm}\hrule
---><!--latex \begin{multicols}{2}--><!--latex \label{mixing:}-->
+				<h1 id="firstHeading" class="firstHeading" lang="en">Mixing Audio Tracks</h1>
 				
-				<div class="mw-body-content" id="bodyContent">
-					
-					
-										
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Audacity Development Manual</div>
+					<div id="contentSub"></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a target="manual" href="http://alphamanual.audacityteam.org/man/Mixing#searchInput">search</a></div>
 
-					
-					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"> 
-<p>
-</p><p><br/>
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"> 
+
+<p><br />
 </p>
-<div class="intro"><!--\textit{--><i><!--\textbf{--><b>Mixing</b><!--}--></i><!--}--> refers to the process of combining multiple Audacity <!--latex 
-\hyperref[\foo{audacity:tracks:and:clips:}]{--><a href="audacity_tracks_and_clips.html" title="Audacity Tracks and Clips">tracks</a><!--latex }
---> which play simultaneously into a single track.
-<p>Audacity mixes automatically when playing or exporting, but it can also physically mix <!--latex 
-\hyperref[\foo{audacity:selection:}]{--><a href="audacity_selection.html" title="Audacity Selection">selected</a><!--latex }
---> multiple tracks together into one within the project. All selected tracks are mixed, regardless if the <span class="button">Mute</span> or <span class="button">Solo</span> buttons on any tracks are set to silence their playback. 
+<div class="intro"><i><b>Mixing</b></i> refers to the process of combining multiple Audacity <a href="audacity_tracks_and_clips.html" title="Audacity Tracks and Clips">tracks</a> which play simultaneously into a single track.
+<p>Audacity mixes automatically when playing or exporting, but it can also physically mix <a href="audacity_selection.html" title="Audacity Selection">selected</a> multiple tracks together into one within the project. All selected tracks are mixed, regardless if the <span class="button">Mute</span> or <span class="button">Solo</span> buttons on any tracks are set to silence their playback. 
 </p><p>The channel of a track being mixed affects whether it will be mixed into the left channel of the resulting track(s), the right channel, or both (mono).  For example, if you have four tracks:
 </p>
-<dl><dd><!--
-\begin{itemize}--><ul><!--
-\item --><li> Track 1: left channel</li>
-<!--
-\item --><li> Track 2: left channel</li>
-<!--
-\item --><li> Track 3: right channel</li>
-<!--
-\item --><li> Track 4: mono channel</li></ul><!--
-\end{itemize}
---></dd></dl>
+<dl><dd><ul><li> Track 1: left channel</li>
+<li> Track 2: left channel</li>
+<li> Track 3: right channel</li>
+<li> Track 4: mono channel</li></ul></dd></dl>
 and you select them all and perform a Mix and Render, you will end up with one stereo track: the left channel will contain a mix of tracks 1, 2, and 4 and the right channel will contain a mix of tracks 3 and 4.</div>
-<p>Mixing can be done for a number of reasons, for example <!--latex 
-\hyperref[\foo{tutorial:mixing:a:narration:with:background:music:}]{--><a href="tutorial_mixing_a_narration_with_background_music.html" title="Tutorial - Mixing a Narration With Background Music">mixing speech with background music</a><!--latex }
---> to make a podcast, or adding different instruments into the same song.  Concatenating songs (for example, playing three songs one after the other) does not necessarily involve mixing, but if you wanted the songs to fade into each other it would involve mixing. 
-</p><p>Within an Audacity project, you can physically mix selected multiple selected tracks into a single mono or stereo track using either of two <!--latex 
-\hyperref[\foo{mixing::mix}]{--><a href="#mix">explicit&nbsp;mix&nbsp;commands</a><!--latex }
--->:
+<p>Mixing can be done for a number of reasons, for example <a href="tutorial_mixing_a_narration_with_background_music.html" title="Tutorial - Mixing a Narration With Background Music">mixing speech with background music</a> to make a podcast, or adding different instruments into the same song.  Concatenating songs (for example, playing three songs one after the other) does not necessarily involve mixing, but if you wanted the songs to fade into each other it would involve mixing. 
+</p><p>Within an Audacity project, you can physically mix selected multiple selected tracks into a single mono or stereo track using either of two <a href="#mix">explicit&#160;mix&#160;commands</a>:
 </p>
-<!--
-\begin{itemize}--><ul><!--
-\item --><li><span class="menu">Tracks &gt; Mix &gt; <!--latex 
-\hyperref[\foo{tracks:menu:mix:mix:and:render}]{--><a href="tracks_menu_mix.html#mix_and_render" title="Tracks Menu: Mix">Mix and Render</a><!--latex }
---></span> - which replaces the original track(s) with the mixed track, or,</li>
-<!--
-\item --><li> <span class="menu">Tracks &gt; Mix &gt; <!--latex 
-\hyperref[\foo{tracks:menu:mix:mix:and:render:to:new:track}]{--><a href="tracks_menu_mix.html#mix_and_render_to_new_track" title="Tracks Menu: Mix">Mix and Render to New Track</a><!--latex }
---></span> - which adds the mixed track to the project, preserving the original tracks.</li></ul><!--
-\end{itemize}
--->
-<p>However in Audacity, <!--\textbf{--><b>mixing is automatic</b><!--}-->. You could just put audio into two different tracks, <!--latex 
-\hyperref[\foo{transport:toolbar:}]{--><a href="transport_toolbar.html" title="Transport Toolbar">play</a><!--latex }
---> to listen to the result then <!--latex 
-\hyperref[\foo{file:export:dialog:}]{--><a href="file_export_dialog.html" title="File Export Dialog">export</a><!--latex }
---> it as an audio file like <!--\textit{--><i><!--\textbf{--><b><!--latex 
-\hyperref[\foo{glossary:mp3}]{--><a href="glossary.html#mp3" title="Glossary">MP3</a><!--latex }
---></b><!--}--></i><!--}--> or <!--\textit{--><i><!--\textbf{--><b><!--latex 
-\hyperref[\foo{glossary:wav}]{--><a href="glossary.html#wav" title="Glossary">WAV</a><!--latex }
---></b><!--}--></i><!--}--> or burn the WAV to <!--\textit{--><i><!--\textbf{--><b><!--latex 
-\hyperref[\foo{glossary:audio:cd}]{--><a href="glossary.html#audio_cd" title="Glossary">Audio CD</a><!--latex }
---></b><!--}--></i><!--}-->.  
-</p><p>However once audio has been finally mixed <!--\textit{--><i>(as in an audio file you might <!--latex 
-\hyperref[\foo{importing:audio:}]{--><a href="importing_audio.html" title="Importing Audio">import</a><!--latex }
---> into Audacity)</i><!--}--> it is essentially impossible to separate out all the original parts again; it's like trying to take the banana out of a banana milkshake after you've already put it through the blender.  There are a few occasions when it actually is possible to separate sounds a bit - you can sometimes isolate the bass, or <a class="external text" href="https://wiki.audacityteam.org/wiki/Vocal_Removal" rel="nofollow">remove the lead vocals</a>.  But these processes do not always work well and usually cause some quality loss. So remember, as long as the multiple tracks are inside an Audacity project, you can manipulate them independently, but once you export as a mixed down file you cannot expect to separate the different parts again. So keep your Audacity project around if you plan to continue editing!
+<ul><li><span class="menu">Tracks &gt; Mix &gt; <a href="tracks_menu_mix.html#mix_and_render" title="Tracks Menu: Mix">Mix and Render</a></span> - which replaces the original track(s) with the mixed track, or,</li>
+<li> <span class="menu">Tracks &gt; Mix &gt; <a href="tracks_menu_mix.html#mix_and_render_to_new_track" title="Tracks Menu: Mix">Mix and Render to New Track</a></span> - which adds the mixed track to the project, preserving the original tracks.</li></ul>
+<p>However in Audacity, <b>mixing is automatic</b>. You could just put audio into two different tracks, <a href="transport_toolbar.html" title="Transport Toolbar">play</a> to listen to the result then <a href="file_export_dialog.html" title="File Export Dialog">export</a> it as an audio file like <i><b><a href="glossary.html#mp3" title="Glossary">MP3</a></b></i> or <i><b><a href="glossary.html#wav" title="Glossary">WAV</a></b></i> or burn the WAV to <i><b><a href="glossary.html#audio_cd" title="Glossary">Audio CD</a></b></i>.  
+</p><p>However once audio has been finally mixed <i>(as in an audio file you might <a href="importing_audio.html" title="Importing Audio">import</a> into Audacity)</i> it is essentially impossible to separate out all the original parts again; it's like trying to take the banana out of a banana milkshake after you've already put it through the blender.  There are a few occasions when it actually is possible to separate sounds a bit - you can sometimes isolate the bass, or <a rel="nofollow" target="manual" class="external text" href="https://wiki.audacityteam.org/wiki/Vocal_Removal">remove the lead vocals</a>.  But these processes do not always work well and usually cause some quality loss. So remember, as long as the multiple tracks are inside an Audacity project, you can manipulate them independently, but once you export as a mixed down file you cannot expect to separate the different parts again. So keep your Audacity project around if you plan to continue editing!
 </p>
-<div class="note">Although Audacity by default exports files as either two channel stereo or single channel mono (if exporting unpanned mono tracks), you can also export multi-channel files having more than two channels, such as a 5:1 file. To enable this, choose "Use custom mix" in the <!--latex 
-\hyperref[\foo{import:export:preferences:}]{--><a href="import_export_preferences.html" title="Import - Export Preferences">Import / Export Preferences</a><!--latex }
--->.</div>     
+<div class="note">Although Audacity by default exports files as either two channel stereo or single channel mono (if exporting unpanned mono tracks), you can also export multi-channel files having more than two channels, such as a 5:1 file. To enable this, choose "Use custom mix" in the <a href="import_export_preferences.html" title="Import - Export Preferences">Import / Export Preferences</a>.</div>     
 <p>The controls used for mixing are the <span class="button">Mute</span> and <span class="button">Solo</span> buttons and the Gain (-.....+) and Pan (L.....R) sliders.
 </p>
-<dl><dd><span title="Controls box with the Mute/Solo buttons, and the Gain/Pan sliders"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="Tracks for mixing.png" height="306" src="../m/images/f/fb/tracks_for_mixing.png" width="686"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/f/fb/tracks_for_mixing.png--></img><!--}\par
---></span></dd></dl>
+<dl><dd><span title="Controls box with the Mute/Solo buttons, and the Gain/Pan sliders"><img alt="Tracks for mixing.png" src="../m/images/f/fb/tracks_for_mixing.png" width="686" height="306" /></span></dd></dl>
 <p>In the above example, mixing the mono (upper) and stereo (lower) track means that the audio of the mono track will be heard equally in both left and right channels of the resulting stereo mix.  
 </p>
 <div id="mute"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Muting_and_Soloing">Muting and Soloing</span></h2><!--}--><!--latex 
-\label{mixing:mute}-->
+<h2><span class="mw-headline" id="Muting_and_Soloing">Muting and Soloing</span></h2>
 <p>When working with multiple tracks, it's often important to be able to hear just one at a time.  Each track has a Mute and a Solo button, allowing you to temporarily hear just some of your tracks.
 </p>
-<!--
-\begin{itemize}--><ul><!--
-\item --><li> <span class="button">Mute</span> causes a track to be silenced.  More than one track can be muted.</li>
-<!--
-\item --><li> <span class="button">Solo</span> can behave in two different ways depending on the setting made in <!--latex 
-\hyperref[\foo{tracks:preferences:}]{--><a href="tracks_preferences.html" title="Tracks Preferences">Tracks Preferences</a><!--latex }
--->. 
-<!--
-\begin{itemize}--><ul><!--
-\item --><li> Default behavior, the "<!--\textbf{--><b>Simple</b><!--}-->" setting, is that clicking Solo on any track mutes all the other tracks.  To solo more than one track, hold <span class="kbrd">Shift</span> down while clicking the <span class="button">Solo</span> button on the additional tracks to be soloed. On the additional tracks that are soloed, the Solo button overrides the Mute button.</li>
-<!--
-\item --><li> Selecting "<!--\textbf{--><b>Multi-track</b><!--}-->" setting will suit those used to mixing desks and other professional audio software. Any number of tracks can be made solo so that they <strong class="selflink">mix</strong> together. If any Solo button is down this overrides the Mute button. If on any occasion you want the Solo button to play only one track at a time (so that clicking it releases any other Solo buttons), hold down <span class="kbrd">Shift</span> when clicking Solo. </li></ul><!--
-\end{itemize}
---></li></ul><!--
-\end{itemize}
--->
-<p>A third option in Tracks Preferences, the "<!--\textbf{--><b>None</b><!--}-->" setting, removes the Solo button from all tracks, leaving just a Mute button which silences whichever track or tracks it is applied to.  If on any occasion you want the Mute button to silence only one track at a time (so that clicking it releases any other Mute buttons), hold down <span class="kbrd">Shift</span> while clicking Mute.
+<ul><li> <span class="button">Mute</span> causes a track to be silenced.  More than one track can be muted.</li>
+<li> <span class="button">Solo</span> can behave in two different ways depending on the setting made in <a href="tracks_preferences.html" title="Tracks Preferences">Tracks Preferences</a>. 
+<ul><li> Default behavior, the "<b>Simple</b>" setting, is that clicking Solo on any track mutes all the other tracks.  To solo more than one track, hold <span class="kbrd">Shift</span> down while clicking the <span class="button">Solo</span> button on the additional tracks to be soloed. On the additional tracks that are soloed, the Solo button overrides the Mute button.</li>
+<li> Selecting "<b>Multi-track</b>" setting will suit those used to mixing desks and other professional audio software. Any number of tracks can be made solo so that they <strong class="selflink">mix</strong> together. If any Solo button is down this overrides the Mute button. If on any occasion you want the Solo button to play only one track at a time (so that clicking it releases any other Solo buttons), hold down <span class="kbrd">Shift</span> when clicking Solo. </li></ul></li></ul>
+<p>A third option in Tracks Preferences, the "<b>None</b>" setting, removes the Solo button from all tracks, leaving just a Mute button which silences whichever track or tracks it is applied to.  If on any occasion you want the Mute button to silence only one track at a time (so that clicking it releases any other Mute buttons), hold down <span class="kbrd">Shift</span> while clicking Mute.
 </p><p>You can press the Mute and Solo buttons while tracks are playing.
 </p><p>If you're using the keyboard, <span class="kbrd" style="background-color: #e0e0f0">Shift+U</span> toggles muting on the currently focused track which has the yellow border, and <span class="kbrd" style="background-color: #e0e0f0">Shift + S</span> toggles soloing. The solo shortcut works even if you hide the Solo button. 
 </p>
 <div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
-<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+<table style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%" align="center">
 
-<tbody><!--\par --><tr>
-<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Bulbicon.png" title="Bulb icon"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="Bulb icon" height="32" src="../m/images/d/d7/bulbicon.png" width="32"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d7/bulbicon.png--></img><!--}\par
---></a>
+<tr>
+<td width="30px" valign="top" align="center"><a target="manual" href="http://alphamanual.audacityteam.org/man/File:Bulbicon.png" class="image" title="Bulb icon"><img alt="Bulb icon" src="../m/images/d/d7/bulbicon.png" width="32" height="32" /></a>
 </td>
 <td align="left" valign="top">Sometimes it can be handy to export a preliminary mix with one or more of the tracks left out. Exporting will automatically ignore any tracks on which the <span class="button">Mute</span> button is pressed.
-</td></tr></tbody></table>
+</td></tr></table>
 </div>
 <div id="gain"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Gain_and_panning">Gain and panning</span></h2><!--}--><!--latex 
-\label{mixing:gain}-->
-<p>Above the Mute / Solo buttons, each track has a - / + <!--\textit{--><i><!--\textbf{--><b><!--latex 
-\hyperref[\foo{glossary:gain}]{--><a href="glossary.html#gain" title="Glossary">gain</a><!--latex }
---></b><!--}--></i><!--}--> slider which adjusts the track's volume, and an L / R pan slider which adjusts the track's stereo position in the overall mix - whether it comes from the left speaker, right speaker or in-between. To change the value, just click on the slider and drag. For finer control when dragging, hold <span class="kbrd" style="background-color: #e0e0f0">Shift</span> while dragging or double-click on the slider or slider scale to enter a precise value as text. 
-</p><p>The normal range of gain is from -36 <!--\textit{--><i><!--\textbf{--><b><!--latex 
-\hyperref[\foo{glossary:decibel}]{--><a href="glossary.html#decibel" title="Glossary">dB</a><!--latex }
---></b><!--}--></i><!--}--> to 36 dB.  If you need more, choose <span class="menu">Effect &gt; <!--latex 
-\hyperref[\foo{amplify:}]{--><a href="amplify.html" title="Amplify">Amplify</a><!--latex }
---></span>.  
+<h2><span class="mw-headline" id="Gain_and_panning">Gain and panning</span></h2>
+<p>Above the Mute / Solo buttons, each track has a - / + <i><b><a href="glossary.html#gain" title="Glossary">gain</a></b></i> slider which adjusts the track's volume, and an L / R pan slider which adjusts the track's stereo position in the overall mix - whether it comes from the left speaker, right speaker or in-between. To change the value, just click on the slider and drag. For finer control when dragging, hold <span class="kbrd" style="background-color: #e0e0f0">Shift</span> while dragging or double-click on the slider or slider scale to enter a precise value as text. 
+</p><p>The normal range of gain is from -36 <i><b><a href="glossary.html#decibel" title="Glossary">dB</a></b></i> to 36 dB.  If you need more, choose <span class="menu">Effect &gt; <a href="amplify.html" title="Amplify">Amplify</a></span>.  
 </p><p>If you're using the keyboard, use:
 </p>
-<!--
-\begin{itemize}--><ul><!--
-\item --><li> <span class="kbrd" style="background-color: #e0e0f0">Alt + Shift + Up</span> to increase the gain on the focused track or <span class="kbrd" style="background-color: #e0e0f0">Alt + Shift + Down</span> to reduce it</li>
-<!--
-\item --><li> Use <span class="kbrd" style="background-color: #e0e0f0">Alt + Shift + Left</span> to pan left on the focused track or <span class="kbrd" style="background-color: #e0e0f0">Alt + Shift + Right</span> to pan right. </li></ul><!--
-\end{itemize}
--->
+<ul><li> <span class="kbrd" style="background-color: #e0e0f0">Alt + Shift + Up</span> to increase the gain on the focused track or <span class="kbrd" style="background-color: #e0e0f0">Alt + Shift + Down</span> to reduce it</li>
+<li> Use <span class="kbrd" style="background-color: #e0e0f0">Alt + Shift + Left</span> to pan left on the focused track or <span class="kbrd" style="background-color: #e0e0f0">Alt + Shift + Right</span> to pan right. </li></ul>
 <p>Or press <span class="kbrd" style="background-color: #e0e0f0">Shift + G</span> to adjust the gain in a dialog box or <span class="kbrd" style="background-color: #e0e0f0">Shift + P</span> to adjust the pan.
 </p>
-<div class="note">If you do not see the gain or pan slider for a track, you may need to make it taller.  Position the mouse on the bottom edge of the <!--latex 
-\hyperref[\foo{audacity:waveform:}]{--><a href="audacity_waveform.html" title="Audacity Waveform">waveform</a><!--latex }
---> and drag  downwards. You can use the button with the upward pointing arrow (below the pan slider) to collapse the track upwards to a minimal height. </div> 
+<div class="note">If you do not see the gain or pan slider for a track, you may need to make it taller.  Position the mouse on the bottom edge of the <a href="audacity_waveform.html" title="Audacity Waveform">waveform</a> and drag  downwards. You can use the button with the upward pointing arrow (below the pan slider) to collapse the track upwards to a minimal height. </div> 
 <div id="mix"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Explicit_Mixing_and_Rendering">Explicit Mixing and Rendering</span></h2><!--}--><!--latex 
-\label{mixing:mix}-->
+<h2><span class="mw-headline" id="Explicit_Mixing_and_Rendering">Explicit Mixing and Rendering</span></h2>
 <p>While mixing is automatic, there are times when you may want to explicitly tell Audacity to mix several tracks.  This is useful in several ways:
 </p>
-<!--
-\begin{itemize}--><ul><!--
-\item --><li> You can consolidate tracks which you have finished working on, making it easier to see the other tracks without scrolling up and down</li>
-<!--
-\item --><li> Playback may respond more quickly with fewer tracks </li>
-<!--
-\item --><li> You can see what the final mix will look like as a waveform so as to check the overall <!--latex 
-\hyperref[\foo{mixing::levels}]{--><a href="#levels">level</a><!--latex }
---> of the final mix before exporting it.</li></ul><!--
-\end{itemize}
--->
-<p>To mix explicitly, <!--latex 
-\hyperref[\foo{audacity:selection:}]{--><a href="audacity_selection.html" title="Audacity Selection">select</a><!--latex }
---> all the tracks you want to mix together then choose either <span class="menu">Tracks &gt; Mix &gt; <!--latex 
-\hyperref[\foo{tracks:menu:mix:mix:and:render}]{--><a href="tracks_menu_mix.html#mix_and_render" title="Tracks Menu: Mix">Mix and Render</a><!--latex }
---></span> or  <span class="menu">Tracks &gt; Mix &gt; <!--latex 
-\hyperref[\foo{tracks:menu:mix:mix:and:render:to:new:track}]{--><a href="tracks_menu_mix.html#mix_and_render_to_new_track" title="Tracks Menu: Mix">Mix and Render to New Track</a><!--latex }
---></span> (shortcut <span class="kbrd" style="background-color: #e0e0f0">Ctrl + Shift + M</span>). 
+<ul><li> You can consolidate tracks which you have finished working on, making it easier to see the other tracks without scrolling up and down</li>
+<li> Playback may respond more quickly with fewer tracks </li>
+<li> You can see what the final mix will look like as a waveform so as to check the overall <a href="#levels">level</a> of the final mix before exporting it.</li></ul>
+<p>To mix explicitly, <a href="audacity_selection.html" title="Audacity Selection">select</a> all the tracks you want to mix together then choose either <span class="menu">Tracks &gt; Mix &gt; <a href="tracks_menu_mix.html#mix_and_render" title="Tracks Menu: Mix">Mix and Render</a></span> or  <span class="menu">Tracks &gt; Mix &gt; <a href="tracks_menu_mix.html#mix_and_render_to_new_track" title="Tracks Menu: Mix">Mix and Render to New Track</a></span> (shortcut <span class="kbrd" style="background-color: #e0e0f0">Ctrl + Shift + M</span>). 
 </p>
 <div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
-<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+<table style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%" align="center">
 
-<tbody><!--\par --><tr>
-<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Bulbicon.png" title="Bulb icon"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="Bulb icon" height="32" src="../m/images/d/d7/bulbicon.png" width="32"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d7/bulbicon.png--></img><!--}\par
---></a>
+<tr>
+<td width="30px" valign="top" align="center"><a target="manual" href="http://alphamanual.audacityteam.org/man/File:Bulbicon.png" class="image" title="Bulb icon"><img alt="Bulb icon" src="../m/images/d/d7/bulbicon.png" width="32" height="32" /></a>
 </td>
-<td align="left" valign="top">For mouse users, a quick way to select multiple tracks is to select the first track by clicking on its <!--latex 
-\hyperref[\foo{audio:tracks:panel}]{--><a href="audio_tracks.html#panel" title="Audio Tracks">Track Control Panel</a><!--latex }
--->, then hold <span class="kbrd" style="background-color: #e0e0f0">Shift</span> while clicking on the Track Control Panels of the other tracks you want to select.
-</td></tr></tbody></table>
+<td align="left" valign="top">For mouse users, a quick way to select multiple tracks is to select the first track by clicking on its <a href="audio_tracks.html#panel" title="Audio Tracks">Track Control Panel</a>, then hold <span class="kbrd" style="background-color: #e0e0f0">Shift</span> while clicking on the Track Control Panels of the other tracks you want to select.
+</td></tr></table>
 </div>
 <p>Several things happen when you choose either Mix and Render command. 
 </p>
-<!--
-\begin{itemize}--><ul><!--
-\item --><li> All selected tracks are mixed down to a single track called "Mix". </li>
-<!--
-\item --><li> If you choose "Mix and Render", the resulting "Mix" track replaces the selected original tracks. </li>
-<!--
-\item --><li> If you choose "Mix and Render to New Track", the original tracks are preserved so that the resulting "Mix" track becomes an additional track in the project.  </li>
-<!--
-\item --><li> The "Mix" track is always placed underneath any non-selected or remaining tracks.  </li>
-<!--
-\item --><li> The new mixed track will be stereo unless the tracks you mixed were mono tracks panned to center.     </li>
-<!--
-\item --><li> If any of the original tracks did not match the <!--\textit{--><i><!--\textbf{--><b><!--latex 
-\hyperref[\foo{glossary:sample:rate}]{--><a href="glossary.html#sample_rate" title="Glossary">sample rate</a><!--latex }
---></b><!--}--></i><!--}--> of the project (set at bottom left of the project window in <!--latex 
-\hyperref[\foo{selection:toolbar:}]{--><a href="selection_toolbar.html" title="Selection Toolbar">Selection Toolbar</a><!--latex }
--->), they will be <!--\textit{--><i><!--\textbf{--><b><!--latex 
-\hyperref[\foo{glossary:resampling}]{--><a href="glossary.html#resampling" title="Glossary">resampled</a><!--latex }
---></b><!--}--></i><!--}--> to match the project rate.</li>
-<!--
-\item --><li> Any <!--latex 
-\hyperref[\foo{envelope:tool:}]{--><a href="envelope_tool.html" title="Envelope Tool">envelope points</a><!--latex }
---> defining <!--\textit{--><i><!--\textbf{--><b><!--latex 
-\hyperref[\foo{glossary:amplitude}]{--><a href="glossary.html#amplitude" title="Glossary">amplitude</a><!--latex }
---></b><!--}--></i><!--}--> modifications will be applied and the previous envelope points removed.</li>
-<!--
-\item --><li> Gain and panning changes will be applied and the sliders reset to normal in the mixed track.</li>
-<!--
-\item --><li> Mute and Solo button states will be released. </li></ul><!--
-\end{itemize}
--->
-<p>You can always <span class="menu">Edit &gt; <!--latex 
-\hyperref[\foo{edit:menu:undo}]{--><a href="edit_menu.html#undo" title="Edit Menu">Undo</a><!--latex }
---></span> if you're not happy with the results of Mix and Render, then make changes and try it again.
+<ul><li> All selected tracks are mixed down to a single track called "Mix". </li>
+<li> If you choose "Mix and Render", the resulting "Mix" track replaces the selected original tracks. </li>
+<li> If you choose "Mix and Render to New Track", the original tracks are preserved so that the resulting "Mix" track becomes an additional track in the project.  </li>
+<li> The "Mix" track is always placed underneath any non-selected or remaining tracks.  </li>
+<li> The new mixed track will be stereo unless the tracks you mixed were mono tracks panned to center.     </li>
+<li> If any of the original tracks did not match the <i><b><a href="glossary.html#sample_rate" title="Glossary">sample rate</a></b></i> of the project (set at bottom left of the project window in <a href="selection_toolbar.html" title="Selection Toolbar">Selection Toolbar</a>), they will be <i><b><a href="glossary.html#resampling" title="Glossary">resampled</a></b></i> to match the project rate.</li>
+<li> Any <a href="envelope_tool.html" title="Envelope Tool">envelope points</a> defining <i><b><a href="glossary.html#amplitude" title="Glossary">amplitude</a></b></i> modifications will be applied and the previous envelope points removed.</li>
+<li> Gain and panning changes will be applied and the sliders reset to normal in the mixed track.</li>
+<li> Mute and Solo button states will be released. </li></ul>
+<p>You can always <span class="menu">Edit &gt; <a href="edit_menu.html#undo" title="Edit Menu">Undo</a></span> if you're not happy with the results of Mix and Render, then make changes and try it again.
 </p>
 <div id="levels"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Mixing_Levels">Mixing Levels</span></h2><!--}--><!--latex 
-\label{mixing:levels}-->
-<p>The act of mixing multiple tracks <!--\textit{--><i>adds</i><!--}--> the waveforms together. In most cases this will cause the mixed track to have a higher peak and <!--\textit{--><i><!--\textbf{--><b><!--latex 
-\hyperref[\foo{glossary:rms}]{--><a href="glossary.html#rms" title="Glossary">RMS</a><!--latex }
---></b><!--}--></i><!--}--> (average) level than the individual pre-mixed tracks, though this is not <!--\textit{--><i>always</i><!--}--> true by definition. How much (or whether) the peak level increases and how much louder it actually sounds depends on how related the waveforms of the mixed tracks are.
+<h2><span class="mw-headline" id="Mixing_Levels">Mixing Levels</span></h2>
+<p>The act of mixing multiple tracks <i>adds</i> the waveforms together. In most cases this will cause the mixed track to have a higher peak and <i><b><a href="glossary.html#rms" title="Glossary">RMS</a></b></i> (average) level than the individual pre-mixed tracks, though this is not <i>always</i> true by definition. How much (or whether) the peak level increases and how much louder it actually sounds depends on how related the waveforms of the mixed tracks are.
 </p><p>When peaks or troughs in the waveform coincide, the waveforms will reinforce each other, leading to an increased signal level. In fact if you combined two identical tracks, the signal level would exactly double, leading to an increase in peak level of 6 dB. But when a peak in one track coincides with a trough in another track the waveforms will tend to cancel each other out, leading to a lower level in the mix at that point.
-</p><p>Also the more tracks that have audio at the same point on the <!--latex 
-\hyperref[\foo{timeline:}]{--><a href="timeline.html" title="Timeline">Timeline</a><!--latex }
--->, the higher the mix level is likely to be. 
-</p><p>The overall mix level is indicated on the <!--latex 
-\hyperref[\foo{meter:toolbar:playback}]{--><a href="meter_toolbar.html#playback" title="Meter Toolbar">Playback Meter</a><!--latex }
---> when the project is playing. You can see individual meters for each track (showing the levels as modified by the track's gain/pan sliders and mute/solo buttons) if you enable <span class="menu">View &gt; <!--latex 
-\hyperref[\foo{mixer:board:}]{--><a href="mixer_board.html" title="Mixer Board">Mixer Board</a><!--latex }
---></span>.
+</p><p>Also the more tracks that have audio at the same point on the <a href="timeline.html" title="Timeline">Timeline</a>, the higher the mix level is likely to be. 
+</p><p>The overall mix level is indicated on the <a href="meter_toolbar.html#playback" title="Meter Toolbar">Playback Meter</a> when the project is playing. You can see individual meters for each track (showing the levels as modified by the track's gain/pan sliders and mute/solo buttons) if you enable <span class="menu">View &gt; <a href="mixer_board.html" title="Mixer Board">Mixer Board</a></span>.
 </p>
 <div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
-<table align="center" style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%">
+<table style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%" align="center">
 
-<tbody><!--\par --><tr>
-<td align="center" valign="top" width="30px"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" title="Warning icon"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Warning icon" height="24" src="../m/images/b/ba/warningicon.png" width="24"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/ba/warningicon.png--></img><!--}}{}--></a>
+<tr>
+<td width="30px" valign="top" align="center"><a target="manual" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" class="image" title="Warning icon"><img alt="Warning icon" src="../m/images/b/ba/warningicon.png" width="24" height="24" /></a>
 </td>
-<td align="left" valign="top">Because mixing tracks is additive, the combined level may show <!--\textit{--><i><!--\textbf{--><b><!--latex 
-\hyperref[\foo{glossary:clipping}]{--><a href="glossary.html#clipping" title="Glossary">clipping</a><!--latex }
---></b><!--}--></i><!--}--> distortion in the Meter Toolbar. In that case, you should use the gain sliders on one or more tracks to reduce the overall level.
-<!--
-\begin{itemize}--><ul><!--
-\item --><li> If you already have the <!--\textit{--><i>balance</i><!--}--> of the mix (the levels of the tracks relative to each other) exactly as you want it, select all the tracks using <span class="kbrd" style="background-color: #e0e0f0">Ctrl + A</span> then choose <span class="menu">Effect &gt; <!--latex 
-\hyperref[\foo{amplify:}]{--><a href="amplify.html" title="Amplify">Amplify</a><!--latex }
---></span>. Enter a negative value in the "Amplification (dB)" box which will reduce the level of all the tracks by the specified value.</li></ul><!--
-\end{itemize}
+<td align="left" valign="top">Because mixing tracks is additive, the combined level may show <i><b><a href="glossary.html#clipping" title="Glossary">clipping</a></b></i> distortion in the Meter Toolbar. In that case, you should use the gain sliders on one or more tracks to reduce the overall level.
+<ul><li> If you already have the <i>balance</i> of the mix (the levels of the tracks relative to each other) exactly as you want it, select all the tracks using <span class="kbrd" style="background-color: #e0e0f0">Ctrl + A</span> then choose <span class="menu">Effect &gt; <a href="amplify.html" title="Amplify">Amplify</a></span>. Enter a negative value in the "Amplification (dB)" box which will reduce the level of all the tracks by the specified value.</li></ul>
+</td></tr></table>
+</div>
+
+<!-- 
+NewPP limit report
+Cached time: 20180117040518
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.122 seconds
+Real time usage: 0.128 seconds
+Preprocessor visited node count: 481/1000000
+Preprocessor generated node count: 1784/1000000
+Post‐expand include size: 8475/2097152 bytes
+Template argument size: 4257/2097152 bytes
+Highest expansion depth: 12/40
+Expensive parser function count: 11/100
 -->
-</td></tr></tbody></table>
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   47.207      1 - -total
+ 41.12%   19.413      1 - Template:I18n
+ 37.83%   17.860      1 - Template:I18n_box
+ 31.18%   14.719      1 - Template:I18n_list
+ 12.55%    5.923     12 - Template:Key
+ 11.79%    5.566      2 - Template:I18n_link
+  8.98%    4.240      8 - Template:Button
+  7.60%    3.586      1 - Template:Intro
+  6.86%    3.237      2 - Template:Autoglossonym
+  5.03%    2.377      2 - Template:Tip
+-->
+
+<!-- Saved in parser cache with key helpmediawiki:pcache:idhash:2279-0!*!0!!*!5!* and timestamp 20180117040518 and revision id 57466
+ -->
 </div>
-
-
-
-
-
-
-</div>
-										
+										<!-- end content -->
 										<div class="visualClear"></div>
 				</div>
 			</div>
 		</div>
-		
-		<div class="visualClear"></div>
+		<div id="column-one">
+			
 					
-		</div><!--latex \end{multicols}-->
+				
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="../index.html" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+					
+		<div class="generated-sidebar portlet" id="p-Navigation" role="navigation">
+		<h3>Navigation</h3>
+		<div class='pBody'>
+			<ul><li> <a href="../index.html" title="Main Page">Manual Home Page</a></li>
+<li> <a href="../index.html#using" title="Main Page">Using Audacity</a>
+<ul><li> <a href="audacity_tour_guide.html" title="Audacity Tour Guide">Tour Guide</a></li>
+<li> <a href="new_features_in_this_release.html" title="New features in this release">New Features</a></li>
+<li> <a href="../quick_help.html" title="Quick Help">Getting Started</a></li>
+<li> <a href="preferences.html" title="Preferences">Preferences</a></li>
+<li> <a href="menu_reference.html" title="Menu Reference">Menu Bar</a></li>
+<li> <a href="toolbars_overview.html" title="Toolbars Overview">Toolbars</a></li>
+<li> <a href="keyboard_shortcut_reference.html" title="Keyboard Shortcut Reference">Commands / Shortcuts</a></li>
+<li> <a href="index_of_effects_generators_and_analyzers.html" title="Index of Effects, Generators and Analyzers">Effects</a></li>
+<li> <a href="tutorials.html" title="Tutorials">Tutorials</a></li>
+<li> <a href="tips.html" title="Tips">Tips</a></li></ul></li></ul>
+		</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-Reference" role="navigation">
+		<h3>Reference</h3>
+		<div class='pBody'>
+			<ul><li> <a href="../index.html#reference" title="Main Page">Reference</a>
+<ul><li> <a href="digital_audio.html" title="Digital Audio">Digital Audio</a></li>
+<li> <a href="glossary.html" title="Glossary">Glossary</a></li>
+<li> <a href="subject_index.html" title="Subject Index">Subject Index</a></li></ul></li>
+<li> <span title="Frequently Asked Questions"><a rel="nofollow" target="manual" class="external text" href="faq.html">FAQ</a></span></li></ul>
+		</div>
+		</div>
 		
-</body></html>
+		<div class="generated-sidebar portlet" id="p-Useful_Links" role="navigation">
+		<h3>Useful Links</h3>
+		<div class='pBody'>
+			<ul><li> <a rel="nofollow" target="manual" class="external text" href="https://forum.audacityteam.org/index.php">Forum</a></li>
+<li> <a rel="nofollow" target="manual" class="external text" href="https://wiki.audacityteam.org/wiki/Audacity_Wiki_Home_Page">Wiki</a></li>
+<li> <a rel="nofollow" target="manual" class="external text" href="https://www.audacityteam.org/download/">Latest Release</a></li></ul>
+		</div>
+		</div>
+		
+			
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-copyrightico">
+									
+							</div>
+					<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="../m/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/m/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /m/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31"/></a>
+							</div>
+					
+		<div align="center"><ul id="f_list"><li>Offline version created on 2018-01-17 - <a target="manual" href="http://alphamanual.audacityteam.org/man/Mixing">Check current version of this page (development Manual)</a></li></ul></div>
+</div>
+		</div>
+		</body></html>

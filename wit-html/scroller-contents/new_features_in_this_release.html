@@ -1,423 +1,266 @@
 <!DOCTYPE html>
-<html class="client-nojs" dir="ltr" lang="en"><head>
-<meta charset="utf-8"/>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
 <title>New features in this release - Audacity Development Manual</title>
 
 
 
 
+<!--[if IE 6]><link rel="stylesheet" href="../m/skins/monobook/ie60fixes.css/303.css" media="screen"/><![endif]--><!--[if IE 7]><link rel="stylesheet" href="../m/skins/monobook/ie70fixes.css/303.css" media="screen"/><![endif]-->
+<meta name="ResourceLoaderDynamicStyles" content=""/>
 
-<meta content="" name="ResourceLoaderDynamicStyles"/>
+<meta name="generator" content="MediaWiki 1.28.2"/>
+<link rel="shortcut icon" href="../favicon.ico"/>
+<link rel="search" type="application/opensearchdescription+xml" target="manual" href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" title="Audacity Development Manual (en)"/>
+<link rel="EditURI" type="application/rsd+xml" target="manual" href="http://alphamanual.audacityteam.org/m/api.php?action=rsd"/>
+<link rel="copyright" href="https://creativecommons.org/licenses/by/3.0/" />
 
-<meta content="MediaWiki 1.28.2" name="generator"/>
-<link href="../favicon.ico" rel="shortcut icon"/>
-<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
-<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
-<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
-
-<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+<link rel="stylesheet" href="../m/skins/monobook/main.css/303.css" media="screen" />
 </head>
 <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-New_features_in_this_release rootpage-New_features_in_this_release skin-monobook action-view"><div id="globalWrapper">
 		<div id="column-content">
-			<div class="mw-body" id="content" role="main">
+			<div id="content" class="mw-body" role="main">
 				<a id="top"></a>
 				
 				<div class="mw-indicators">
 </div>
-				<!--
-\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">New features in this release</h1><!--}
-\par\vspace{1mm}\hrule
---><!--latex \begin{multicols}{2}--><!--latex \label{new:features:in:this:release:}-->
+				<h1 id="firstHeading" class="firstHeading" lang="en">New features in this release</h1>
 				
-				<div class="mw-body-content" id="bodyContent">
-					
-					
-										
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Audacity Development Manual</div>
+					<div id="contentSub"></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a target="manual" href="http://alphamanual.audacityteam.org/man/New_features_in_this_release#searchInput">search</a></div>
 
-					
-					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p><br/>
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><p><br />
 </p>
-<center><a href="http://audacityteam.org/" rel="nofollow" title="size=50%"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="size=50%" height="138" src="../m/images/8/88/audacity_logo_signika_512_transparent.png" width="512"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/8/88/audacity_logo_signika_512_transparent.png--></img><!--}\par
---></a></center>
-<div class="intro"><span style="font-size:120%"><!--\textbf{--><b>This page is an overview of the key new functionality that has been introduced in Audacity 2.2.0</b><!--}--></span>
-<!--
-\begin{itemize}--><ul><!--
-\item --><li> <span style="font-size:110%">Details of all the major changes since 2.1.3 can be found in <a class="external text" href="https://wiki.audacityteam.org/wiki/Release_Notes_2.2.0" rel="nofollow">Release Notes 2.2.0</a>.</span></li></ul><!--
-\end{itemize}
---></div>
+<center><a href="http://audacityteam.org/" title="size=50%" rel="nofollow"><img alt="size=50%" src="../m/images/8/88/audacity_logo_signika_512_transparent.png" width="512" height="138" /></a></center>
+<div class="intro"><span style="font-size:120%"><b>This page is an overview of the key new functionality that has been introduced in Audacity 2.2.2</b></span>
+<ul><li> <span style="font-size:110%">Details of all the major changes since 2.2.1 can be found in <a rel="nofollow" target="manual" class="external text" href="https://wiki.audacityteam.org/wiki/Release_Notes_2.2.2">Release Notes 2.2.2</a>.</span></div></li></ul>
+<h2><span class="mw-headline" id="Contents">Contents</span></h2>
+<ol><li><a href="#zoom">Improved zooming</a>
+<ol><li><a href="#mouse">Zooming with the mouse wheel</a></li>
+<li><a href="#ztoggle">Zoom Toggle</a></li></ol></li>
+<li><a href="#vzoom">Vertical Zooming changes</a></li>
+<li><a href="#extra">Extra menu</a></li>
+<li><a href="#theme_tweaks">Theme tweaks</a></li>
+<li><a href="#dropouts">Dropout detection</a></li>
+<li><a href="#bindings">Easier access to changing key bindings for shortcuts</a></li>
+<li><a href="#language">Language selection in Preferences</a></li>
+<li><a href="#bugs">Bug Fixes</a></li>
+<li><a href="#appendix">Additional new features</a></li></ol>
+<p><br />
+</p>
+<div id="zoom"></div>
+<h2><span class="mw-headline" id="Improved_Zooming">Improved Zooming</span></h2>
+<p>For this release we have improved the way zooming using your mouse wheel works and provided a new Zoom Toggle function.
+</p>
+<ul><li> This is particularly for users who zoom in and out a lot, e.g. when using the <a href="repair.html" title="Repair">Repair</a> effect to do detailed work removing clicks in the audio.</li></ul>
+<div id="mouse"></div>
+<h3><span class="mw-headline" id="Zooming_with_the_mouse_wheel">Zooming with the mouse wheel</span></h3>
+<p>We have changed mouse wheel zooming so that the focus for the zoom is:
+</p>
+<ul><li> The leftmost or rightmost edge of the current selection, or the editing cursor position <i>(if any of these exist)</i>.  </li>
+<li> Otherwise zoom focus is as it was before, and is taken as the mouse pointer position.  </li>
+<li> Mouse position will also be used as the zoom focus if the mouse position  is inside the current selection.</li></ul>
+<p>See <a href="zooming.html#wheel" title="Zooming">Zooming using the mouse wheel</a>.
+</p><p><br />
+</p>
+<div id="ztoggle"></div>
+<h3><span class="mw-headline" id="Zoom_Toggle">Zoom Toggle</span></h3>
 
-<p><br/>
-</p><p><br/>
+<p>We have introduced a new command, <b>Zoom Toggle</b>, accessed by a new button or by <span class="menu">View &gt; Zoom &gt; <a href="view_menu_zoom.html#toggle" title="View Menu: Zoom">Zoom Toggle</a></span> (shortcut <span class="kbrd" style="background-color: #d0d0f8">Shift + Z</span>).
 </p>
-<div id="logo"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id="New_Logo">New Logo</span></h2><!--}--><!--latex 
-\label{new:features:in:this:release:logo}-->
-<p>The logo has been given a refresh, and now uses a sans-serif font and a flatter style.
-</p><p><a href="http://audacityteam.org/" rel="nofollow" title="Click to visit the Audacity main website for  the latest news and Audacity downloads"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="Click to visit the Audacity main website for  the latest news and Audacity downloads" height="178" src="../m/images/8/8c/audacity_logo_whitebg.png" width="607"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/8/8c/audacity_logo_whitebg.png--></img><!--}\par
---></a>
-</p><p><br/>
+<dl><dd><span title="Edit Toolbar with new Zoom Toggle"><img alt="Edit Toolbar with new Zoom Toggle blue-squared.png" src="../m/images/4/42/edit_toolbar_with_new_zoom_toggle_blue_squared.png" width="659" height="182" /></span></dd>
+<dd><b><a href="edit_toolbar.html" title="Edit Toolbar">Edit toolbar</a> with Zoom Toggle button at the far right of the Toolbar</b></dd></dl>
+<dl><dd><span title="Zoom Toggle menu entry in the View menu"><img alt="ZoomToggleMenuItem.png" src="../m/images/e/ea/zoomtogglemenuitem.png" width="419" height="256" /></span></dd>
+<dd><b>Zoom Toggle menu entry in the View menu</b></dd></dl>
+<p>Zoom Toggle toggles between two pre-defined zoom levels. These presets are user selectable in <a href="tracks_preferences.html#toggle" title="Tracks Preferences">Tracks Preferences</a>.  
 </p>
-<div id="themes"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Themes"><!--latex 
-\hyperref[\foo{themes:}]{--><a href="themes.html" title="Themes">Themes</a><!--latex }
---></span></h2><!--}--><!--latex 
-\label{new:features:in:this:release:themes}-->
+<ul><li>Defaults are normal <b>Default Zoom</b> level and <b>4 Pixels per Sample</b> <i>(which shows a fraction of a second of audio as samples)</i></li>
+<li>Either of the two presets can be changed in <b><a href="tracks_preferences.html" title="Tracks Preferences">Tracks Preferences</a></b> using the dropdown menus.</li></ul>
+<dl><dd><span title="Tracks Preferences show Zoom Toggle selection"><img alt="Zoom-Toggle prefs - with dropdown.png" src="../m/images/4/41/zoom_toggle_prefs_with_dropdown.png" width="623" height="512" /></span></dd>
+<dd><b>Tracks Preferences showing Zoom Toggle selection dropdown for Preset 2</b></dd></dl>
+<p><br />
+</p>
+<div id="vzoom"></div>
+<h2><span class="mw-headline" id="Vertical_Zooming_changes">Vertical Zooming changes</span></h2>
+<p>We have made some changes to <a href="vertical_zooming.html" title="Vertical Zooming">Vertical Zooming</a>.
+</p>
+<h3><span class="mw-headline" id="Simple_Vertical_Scrolling">Simple Vertical Scrolling</span></h3>
+<ul><li> We have introduced a context menu for the <a href="audio_tracks.html#scale" title="Audio Tracks">Vertical Scale</a>. This is activated by right-clicking in the Vertical Scale  - see <a href="vertical_zooming.html#simple" title="Vertical Zooming">Simple mode vertical zooming</a> for details.</li></ul>
+<dl><dd><span title="Vertical Scale (default linear) with context menu"><img alt="VS context menu waveform view - simple mode.png" src="../m/images/a/a3/vs_context_menu_waveform_view_simple_mode.png" width="186" height="269" /></span></dd></dl>
+<h3><span class="mw-headline" id="Advanced_Vertical_Zooming">Advanced Vertical Zooming</span></h3>
+<ul><li> Left-click, and click&amp;drag, in the <a href="audio_tracks.html#scale" title="Audio Tracks">Vertical Scale</a> remain available as a user-selectable option - see <a href="vertical_zooming.html#advanced" title="Vertical Zooming">Advanced mode vertical zooming</a> for details. </li>
+<li>You can turn on advanced mode for vertical zooming from <span class="menu">Edit &gt; Preferences &gt; <a href="tracks_behaviors_preferences.html" title="Tracks Behaviors Preferences">Tracks Behaviors</a></span> and selecting <b>Advanced Vertical Zooming</b>.  </li></ul>
+<p><br />
+</p>
+<div id="extra"></div>
+<h2><span class="mw-headline" id="Extra_Menu">Extra Menu</span></h2>
+<p>The <span class="menu">Extra</span> menu, created from consolidating <span class="menu">Ext-Bar</span> and <span class="menu">Ext-Command</span> menus that were introduced in the previous 2.2.1 release.
+</p>
+<dl><dd><span title="Consolidated Extra menu"><img alt="Extra Menu - for What&#39;s New.png" src="../m/images/0/09/extra_menu_for_what_s_new.png" width="484" height="348" /></span></dd></dl>
+<p><br />
+</p>
+<div id="theme_tweaks"></div>
+<h2><span class="mw-headline" id="Theme_Tweaks">Theme Tweaks</span></h2>
+<div id="hover"></div>
+<h3><span class="mw-headline" id="Hover_Appearance">Hover Appearance</span></h3>
+<ul><li> In dark theme, the change in appearance of sliders when you hover over them is greater than before.  </li>
+<li> In light and dark themes, buttons such as 'pause' and 'pin' now highlight when you hover over them and they are down.  Previously there was no visible change.
+<ul><li> The hover effect for buttons when they are up has been changed to work better in conjunction with this change.</li></ul></li></ul>
+<div id="icon_appearance"></div>
+<h3><span class="mw-headline" id="Icon_Appearance">Icon Appearance</span></h3>
+<ul><li> In dark theme the microphone and speaker icons are now brighter and not dulled as they were before.</li></ul>
+<p><br />
+</p>
+<div id="dropouts"></div>
+<h2><span class="mw-headline" id="Dropout_detection">Dropout detection</span></h2>
+<p>We have added dropout detection for this release.  This is controlled from a setting in <a href="recording_preferences.html" title="Recording Preferences">Recording Preferences</a> "<b>Detect dropouts</b>".  
+</p>
+<ul><li>When this setting is "<b>on</b>" <i>(default setting)</i> Audacity will detect dropouts (brief gaps in the recording) and will insert zeroes into the recording to keep the other good parts synchronized.
+<ul><li> Dropouts may be caused by a disk drive that cannot keep up with the recording.  This can happen, for example, with a slow USB or network drive, or if antivirus software is slowing writing to disk, or if other activity on the computer is slowing the computer down.</li></ul></li>
+<li>When recording stops, a message box alerts the user and a label track is added showing the lost parts, labeled with consecutive numbers.</li></ul>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%" align="center">
 
-<p>Audacity now comes supplied with four pre-configured, user-selectable, themes.  This enables you to choose the look and feel you prefer for Audacity's interface. see the <!--latex 
-\hyperref[\foo{themes:}]{--><a href="themes.html" title="Themes">Themes</a><!--latex }
---> page for details.
-</p>
-<!--
-\begin{itemize}--><ul><!--
-\item --><li><!--\textbf{--><b>Light</b><!--}--> theme: this is a light theme loosely based on the look and feel of earlier Audacity versions, but given a contemporary twist with more modern-looking buttons and icons. </li>
-<!--
-\item --><li><!--\textbf{--><b>Dark</b><!--}--> theme: created by the <a class="external text" href="http://www.darkaudacity.com/" rel="nofollow">Dark Audacity project.</a> This is similar to the Light theme, with the same buttons and icons, but given a dark twist.</li>
-<!--
-\item --><li><!--\textbf{--><b>Classic</b><!--}--> theme: The one you know and loved. This theme is a re-creation of the look and feel of earlier Audacity versions. </li>
-<!--
-\item --><li><!--\textbf{--><b>High Contrast</b><!--}--> theme: some users with poor eyesight benefit from a high contrast that is 'eye-popping' for most people.</li></ul><!--
-\end{itemize}
--->
-<p><br/>
-</p>
-<dl><dd><table>
-<tbody><!--\par --><tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;
+<tr>
+<td width="30px" valign="top" align="center"><a target="manual" href="http://alphamanual.audacityteam.org/man/File:Bulbicon.png" class="image" title="Bulb icon"><img alt="Bulb icon" src="../m/images/d/d7/bulbicon.png" width="32" height="32" /></a>
 </td>
-<td title="An example of Light theme"><a href="themes.html#light" title="Themes#light"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="Theme Light.png" height="256" src="../m/images/5/51/theme_light.png" width="400"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/5/51/theme_light.png--></img><!--}\par
---></a>
-</td>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;
-</td>
-<td title="An example of Dark theme"><a href="themes.html#dark" title="Themes#dark"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="Theme Dark.png" height="256" src="../m/images/e/e3/theme_dark.png" width="400"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/e/e3/theme_dark.png--></img><!--}\par
---></a>
-</td></tr>
-<!--\par --><tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;
-</td>
-<td align="center" valign="top"><!--\textbf{--><b>Light</b><!--}--> theme
-</td>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;
-</td>
-<td align="center" valign="top"><!--\textbf{--><b>Dark</b><!--}--> theme
-</td></tr></tbody></table></dd></dl>
-<dl><dd><table>
-<tbody><!--\par --><tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;
-</td>
-<td title="An example of Classic theme"><a href="themes.html#classic" title="Themes#classic"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="Theme Classic.png" height="256" src="../m/images/b/bc/theme_classic.png" width="400"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/b/bc/theme_classic.png--></img><!--}\par
---></a>
-</td>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;
-</td>
-<td title="An example of High Contrast theme"><a href="themes.html#hicontrast" title="Themes#hicontrast"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="Theme Hi Contrast.png" height="256" src="../m/images/c/c3/theme_hi_contrast.png" width="400"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/c/c3/theme_hi_contrast.png--></img><!--}\par
---></a>
-</td></tr>
-<!--\par --><tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;
-</td>
-<td align="center" valign="top"><!--\textbf{--><b>Classic</b><!--}--> theme
-</td>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;
-</td>
-<td align="center" valign="top"><!--\textbf{--><b>High Contrast</b><!--}--> theme
-</td></tr></tbody></table></dd></dl>
-<p><br/>
-</p>
-<div class="note">The theme to use can be chosen at <span class="menu">Edit &gt; Preferences &gt; <!--latex 
-\hyperref[\foo{interface:preferences:}]{--><a href="interface_preferences.html" title="Interface Preferences">Interface</a><!--latex }
---></span>.  
-<!--
-\begin{itemize}--><ul><!--
-\item --><li> In addition to the four pre-configured themes there is also a Custom theme.  </li></ul><!--
-\end{itemize}
--->
-<dl><dd> By default the custom theme looks the same as Classic theme - but, if you have the right programming skills and tools, you can use this template to create your own theme.  Instructions for how to do this may be found in the <a class="external text" href="https://wiki.audacityteam.org/wiki/Theming_HowTo" rel="nofollow">Audacity Wiki</a>.</dd></dl></div>
-
-<p><br/>
-</p>
-<div id="midi"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id="MIDI_.28and_Allegro.29_Playback">MIDI (and Allegro) Playback</span></h2><!--}--><!--latex 
-\label{new:features:in:this:release:midi}-->
-<p>Playback of MIDI (and Allegro) files imported into <!--latex 
-\hyperref[\foo{note:tracks:}]{--><a href="note_tracks.html" title="Note Tracks">Note Tracks</a><!--latex }
---> is now available.  Please see the <!--latex 
-\hyperref[\foo{note:tracks:}]{--><a href="note_tracks.html" title="Note Tracks">Note Tracks</a><!--latex }
---> page for more details.
-</p><p>This should just work on Windows but for playback on Mac and Linux additional software may be required, see <!--latex 
-\hyperref[\foo{playing:and:recording:midi}]{--><a href="playing_and_recording.html#midi" title="Playing and Recording">this section</a><!--latex }
---> on the <!--latex 
-\hyperref[\foo{playing:and:recording:}]{--><a href="playing_and_recording.html" title="Playing and Recording">Playing and Recording</a><!--latex }
---> page.
-</p><p>But note that there will no use of the <!--latex 
-\hyperref[\foo{meter:toolbar:playback}]{--><a href="meter_toolbar.html#playback" title="Meter Toolbar">Playback meter</a><!--latex }
---> while Note tracks are played. 
-</p><p><br/>
-</p>
-<div id="stemplots"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Stem_Plots">Stem Plots</span></h2><!--}--><!--latex 
-\label{new:features:in:this:release:stemplots}-->
-<p>There is a new entry in the <!--latex 
-\hyperref[\foo{tracks:preferences:}]{--><a href="tracks_preferences.html" title="Tracks Preferences">Tracks Preferences</a><!--latex }
---> for <!--\textbf{--><b>Display samples</b><!--}-->.  This setting changes how <!--latex 
-\hyperref[\foo{audacity:waveform:}]{--><a href="audacity_waveform.html" title="Audacity Waveform">Waveform</a><!--latex }
---> and <!--latex 
-\hyperref[\foo{audacity:waveform:db}]{--><a href="audacity_waveform.html#db" title="Audacity Waveform">Waveform dB</a><!--latex }
---> views are displayed.  It only affects the appearance of the waveform when you are so far zoomed in that you can see the individual sample dots.  At lower zoom levels it makes no difference.  
-</p>
-<!--
-\begin{itemize}--><ul><!--
-\item --><li><!--\textbf{--><b>Stem plot:</b><!--}--> This is the default setting which draws a vertical line from the track center line to the sample dot, giving a clearer impression of the relative amplitude of the samples. As seen in the images below, when zoomed out close to the minimum for a stem plot, the horizontal distance between sample dots may be more uneven than seen with the connect dots default.   </li>
-<!--
-\item --><li><!--\textbf{--><b>Connect dots:</b><!--}--> This is alternative setting yields a waveform where each sample dot is connected to the next sample by a line drawn between them.  </li></ul><!--
-\end{itemize}
--->
-<dl><dd><dl><dd><span title="Examples of zoomed in Waveform view showing 'Connect dots' and 'Stem Plot"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="Connect dots &amp; Stem plot examples.png" height="228" src="../m/images/e/ef/connect_dots_stem_plot_examples.png" width="530"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/e/ef/connect_dots_stem_plot_examples.png--></img><!--}\par
---></span></dd></dl></dd></dl>
-<div class="note">Uneven spacing is due to "aliasing", but zooming in further will equalize the spacing whether choosing Connect dots or Stem plot.</div>
-<p><br/>
-</p>
-<div id="menus"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Menu_reorganization">Menu reorganization</span></h2><!--}--><!--latex 
-\label{new:features:in:this:release:menus}-->
-<p>We have made the Menus shorter and clearer than in previous Audacity versions. The menus have been simplified without losing functionality. The most commonly used functions are found in the top levels of the menus. The functions moved down into lower submenus are better organized.
-</p><p>This is not just a rearrangement.  We also added new menu items to make the layout more logical.  There are new menu items for exporting as MP3 or WAV. Previously you had to export audio, and then choose the format. You still can do that, but these new items are there for convenience.
-</p>
-<div class="note">One of the long standing bug-bears with Audacity is the distinction between &lsquo;Save&rsquo; and &lsquo;Export&rsquo;. People expect to be able to open a WAV audio file, edit it in Audacity and then click save. That is not how Audacity works. Audacity needs audio in its own unique format to work on it. So Audacity converts when you 'Open' a WAV file and converts back when you 'Save'. In an attempt to make this clearer Audacity uses the word 'Import' for opening a file like WAV and 'Export' for converting and saving in a format like WAV. Open and Save are reserved for Audacity's own project format.<p>Now the &lsquo;Export&rsquo; options are under the &lsquo;Save Other&rsquo; menu item, where people trying to save audio as an MP3 or WAV file are more likely to find them.</p> </div>
-<p><br/>
-</p>
-<div id="extendedmenubar"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id="The_Extended_Menu_bar">The Extended Menu bar</span></h2><!--}--><!--latex 
-\label{new:features:in:this:release:extendedmenubar}-->
-<p>There are two new additional menus that are hidden by default.  They can be turned on at <span class="menu">View &gt; <!--latex 
-\hyperref[\foo{view:menu:extra:menus:onoff}]{--><a href="view_menu.html#extra_menus_onoff" title="View Menu">Extra Menus (on/off)</a><!--latex }
---></span> or the Interface pane of <span class="menu">Edit &gt; <!--latex 
-\hyperref[\foo{interface:preferences:}]{--><a href="interface_preferences.html" title="Interface Preferences">Preferences</a><!--latex }
---></span>.
-</p><p>These extra menus have many extra less frequently used commands.  They are particularly useful to VI users, but normally-sighted users may find them useful too.
-</p>
-<dl><dd><!--\textit{--><i><!--\textbf{--><b>Image of the Extended Menu bar as it appears on Windows</b><!--}--></i><!--}--></dd>
-<dd><div class="noresize"><map name="ImageMap_1_1607367289"><area alt="The Ext-Bar Menu provides access to Toolbar operations that are not available in the default Audacity menus" coords="461,32,508,50" href="ext_bar_menu.html" shape="rect" title="The Ext-Bar Menu provides access to Toolbar operations that are not available in the default Audacity menus"/><area alt="The Ext-Command Menu provides access to commands for track focus and cursor movement that are not available in the default Audacity menus" coords="515,32,600,50" href="ext_command_menu.html" shape="rect" title="The Ext-Command Menu provides access to commands for track focus and cursor movement that are not available in the default Audacity menus"/></map><!--
-
-\par\Needspace{52.0pt}\begin{picture}(242.0,22.0)
---><!--   \put(0,0){\includegraphics[scale=0.4]{--><img alt="Menu Toolbar Extra.png" height="55" src="../m/images/0/0d/menu_toolbar_extra.png" usemap="#ImageMap_1_1607367289" width="605"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/0/0d/menu_toolbar_extra.png--></img><!--}}
---><!--   \put(184.4,2.0){\hyperref[\foo{ext:bar:menu:}]{\makebox(18.80000000000001,7.199999999999999){}}}
-   \put(206.0,2.0){\hyperref[\foo{ext:command:menu:}]{\makebox(34.0,7.199999999999999){}}}
-\end{picture}
-
---></div></dd>
-<dd><!--\textit{--><i>Click, or hover, on either of the <!--\textbf{--><b>Ext-</b><!--}--> items at the end of the image to read about those menu entries.</i><!--}--></dd></dl>
-<table class="prettytablerows">
-<tbody><!--\par --><tr>
-<th width="20%">Menu
-</th>
-<th>What you'll find there
-</th></tr>
-<!--\par --><tr>
-<td style="padding-left:10px"><!--latex 
-\hyperref[\foo{ext:bar:menu:}]{--><a href="ext_bar_menu.html" title="Ext-Bar Menu">Ext-Bar</a><!--latex }
---></td>
-<td>The Ext-Bar menu provides access to <!--latex 
-\hyperref[\foo{toolbars:overview:}]{--><a href="toolbars_overview.html" title="Toolbars Overview">Toolbar</a><!--latex }
---> operations that are not available in the default Audacity menus. These will be of most interest to visually impaired users or those who have difficulty using the mouse.<p><!--latex 
-\hyperref[\foo{keyboard:preferences:}]{--><a href="keyboard_preferences.html" title="Keyboard Preferences">Shortcuts</a><!--latex }
---> can be assigned to these commands if required.</p>
-</td></tr>
-<!--\par --><tr>
-<td style="padding-left:10px"><!--latex 
-\hyperref[\foo{ext:command:menu:}]{--><a href="ext_command_menu.html" title="Ext-Command Menu">Ext-Command</a><!--latex }
---></td>
-<td>The Ext-Command menu provides access to extra commands for <!--latex 
-\hyperref[\foo{audio:tracks:focus}]{--><a href="audio_tracks.html#focus" title="Audio Tracks">track focus</a><!--latex }
---> and movement of the editing or playback cursor that are not available in the default Audacity menus. These will be of most interest to visually impaired users or those who have difficulty using the mouse.<p><!--latex 
-\hyperref[\foo{keyboard:preferences:}]{--><a href="keyboard_preferences.html" title="Keyboard Preferences">Shortcuts</a><!--latex }
---> can be assigned to these commands if required.</p>
-</td></tr></tbody></table>
-<div class="note">If you only require regular access to a small set of these commands you can set shortcuts for them and leave the extra menus hidden.</div>
-<p><br/>
-</p>
-<div id="append"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Appended_recording_on_the_same_track_in_now_the_default">Appended recording on the same track in now the default</span></h2><!--}--><!--latex 
-\label{new:features:in:this:release:append}-->
-<p>From Audacity 2.2.0 onward the default recording mode has changed so that when you click the Record button <!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="The Record button" height="16" src="../m/images/e/e8/record.png" title="The Record button" width="16"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/e/e8/record.png--></img><!--}}{}--> on <!--latex 
-\hyperref[\foo{transport:toolbar:}]{--><a href="transport_toolbar.html" title="Transport Toolbar">Transport Toolbar</a><!--latex }
--->, or use the <span class="kbrd" style="background-color: #e0e0f0">R</span>, Audacity will record at the end of the currently selected (or only) track.
-</p>
-<!--
-\subsubsection{--><h3><span class="mw-headline" id="To_record_on_a_new_track">To record on a new track</span></h3><!--}-->
-<p>If you hold the <span class="button">Shift</span> button down the Record button in <!--latex 
-\hyperref[\foo{transport:toolbar:}]{--><a href="transport_toolbar.html" title="Transport Toolbar">Transport Toolbar</a><!--latex }
---> will temporarily change to <!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="The Record New Track button" height="16" src="../m/images/7/72/record_new_track.png" title="The Record New Track button" width="16"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/7/72/record_new_track.png--></img><!--}}{}-->. Then clicking on this modified Record button, or using the shortcut <span class="kbrd" style="background-color: #e0e0f0">Shift + R</span> will cause Audacity to create a new track and begin recording on that track from the current cursor position (or from the left edge of a region on the <!--latex 
-\hyperref[\foo{timeline:}]{--><a href="timeline.html" title="Timeline">Timeline</a><!--latex }
--->). 
-</p><p><br/>
-</p>
-<div id="help-buttons"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Help_buttons">Help buttons</span></h2><!--}--><!--latex 
-\label{new:features:in:this:release:help-buttons}-->
-<p>Many places in the user interface have had a help button <a href="help_button.html" title="Help Button"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Help Button" height="27" src="../m/images/d/d6/help_button.png" width="27"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d6/help_button.png--></img><!--}}{}--></a> added. Examples are all the Preferences dialog panes, all the Effects, Generators and Analyzers and some error messages.
-</p><p>Clicking on that button in the dialog will link you to the appropriate page in the Manual.
-</p><p><span style="font-weight: bold; font-size:118%">Example:</span> the Amplify effect.  Try clicking on the "<!--\textbf{--><b>?</b><!--}-->" at the bottom right of this image.
-</p>
-<dl><dd><div class="noresize"><map name="ImageMap_2_1126231509"><area alt="Help for Amplify effect" coords="433,177,461,204" href="amplify.html" shape="rect" title="Help for Amplify effect"/></map><!--
-
-\par\Needspace{138.5pt}\begin{picture}(237.0,108.5)
---><!--   \put(0,0){\includegraphics[scale=0.5]{--><img alt="Amplify.png" height="217" src="../m/images/6/6d/amplify.png" usemap="#ImageMap_2_1126231509" width="474"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/6/6d/amplify.png--></img><!--}}
---><!--   \put(216.5,6.5){\hyperref[\foo{amplify:}]{\makebox(14.0,13.5){}}}
-\end{picture}
-
---></div></dd></dl>
-<p><br/>
-</p>
-<div id="shortcuts"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Standard_and_Full_shortcut_sets">Standard and Full shortcut sets</span></h2><!--}--><!--latex 
-\label{new:features:in:this:release:shortcuts}-->
-<p>For Audacity 2.2.0 we have reduced the number of preset shortcuts in the application to a "<!--\textbf{--><b><!--latex 
-\hyperref[\foo{keyboard:shortcut:reference:}]{--><a href="keyboard_shortcut_reference.html" title="Keyboard Shortcut Reference">Standard</a><!--latex }
---></b><!--}-->" set.  We did this to simplify the set of shortcuts somewhat and to provide greater flexibility for users who want to set their own custom shortcuts.
-</p><p>You can choose to revert to the full set of shortcuts that were in 2.1.3 and earlier by selecting "<!--\textbf{--><b>Full</b><!--}-->" from the dropdown menu accessed from the <span class="button">Defaults</span> button in the <!--latex 
-\hyperref[\foo{keyboard:preferences:}]{--><a href="keyboard_preferences.html" title="Keyboard Preferences">Keyboard Preferences</a><!--latex }
---> dialog.
-</p><p>You can use the <span class="button">Defaults</span> button to switch between the two provided default sets of shortcuts at any time.
-</p>
-<dl><dd><div class="noresize"><map name="ImageMap_3_615501973"><area alt="Standard shortcuts" coords="435,136,491,150" href="keyboard_shortcut_reference.html" shape="rect" title="Standard shortcuts"/><area alt="Full set of shortcuts" coords="435,156,491,176" href="keyboard_shortcut_reference.html" shape="rect" title="Full set of shortcuts"/></map><!--
-
-\par\Needspace{108.4pt}\begin{picture}(247.60000000000002,78.4)
---><!--   \put(0,0){\includegraphics[scale=0.4]{--><img alt="Preferences Keyboard with Default dropdown menu - trimmed.png" height="196" src="../m/images/f/f8/preferences_keyboard_with_default_dropdown_menu_trimmed.png" usemap="#ImageMap_3_615501973" width="619"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/f/f8/preferences_keyboard_with_default_dropdown_menu_trimmed.png--></img><!--}}
---><!--   \put(174.0,18.400000000000006){\hyperref[\foo{keyboard:shortcut:reference:}]{\makebox(22.400000000000006,5.599999999999994){}}}
-   \put(174.0,8.0){\hyperref[\foo{keyboard:shortcut:reference:}]{\makebox(22.400000000000006,8.0){}}}
-\end{picture}
-
---></div></dd></dl>
-<p>See <!--latex 
-\hyperref[\foo{keyboard:shortcut:reference:}]{--><a href="keyboard_shortcut_reference.html" title="Keyboard Shortcut Reference">Commands and Keyboard Shortcut Reference</a><!--latex }
---> for more details.
-</p><p><br/>
-</p>
-<div id="selection"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Selection_Toolbar_improvements">Selection Toolbar improvements</span></h2><!--}--><!--latex 
-\label{new:features:in:this:release:selection}-->
-<p>There are now four available settings in the Selection and Audio Position Boxes in <!--latex 
-\hyperref[\foo{selection:toolbar:}]{--><a href="selection_toolbar.html" title="Selection Toolbar">Selection Toolbar</a><!--latex }
---> for the  manner in which the details of your selection are displayed:
-</p>
-<!--
-\begin{itemize}--><ul><!--
-\item --><li><!--\textbf{--><b>Start and End of selection</b><!--}-->: the start time and the end time of your selection <!--\textit{--><i>(default setting)</i><!--}--></li>
-<!--
-\item --><li><!--\textbf{--><b>Start and Length of selection</b><!--}-->: the start time and the length of your selection</li>
-<!--
-\item --><li><!--\textbf{--><b>Length and End of selection</b><!--}-->: the length and the end time of your selection</li>
-<!--
-\item --><li><!--\textbf{--><b>Length and Center of selection</b><!--}-->: the length and the time at the center of your selection</li></ul><!--
-\end{itemize}
--->
-<dl><dd><span title="Selection Toolbar with dropdown menu for display type selection"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="Selection Toolbar display modes.png" height="130" src="../m/images/c/c6/selection_toolbar_display_modes.png" width="713"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/c/c6/selection_toolbar_display_modes.png--></img><!--}\par
---></span></dd></dl>
-<p><br/>
-</p>
-<div id="clips"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id="New_commands_for_using_clips_via_the_keyboard">New commands for using clips via the keyboard</span></h2><!--}--><!--latex 
-\label{new:features:in:this:release:clips}-->
-<p>New commands, all of which interact with the clips on the focused track. As yet, there are no default shortcuts:
-</p>
-<!--
-\begin{enumerate}--><ol><!--
-\item --><li><span class="menu">Transport &gt; Cursor to &gt; <!--latex 
-\hyperref[\foo{transport:menu:cursor:to:previous:clip:boundary}]{--><a href="transport_menu_cursor_to.html#previous_clip_boundary" title="Transport Menu: Cursor to">Previous clip boundary</a><!--latex }
---></span></li>
-<!--
-\item --><li><span class="menu">Transport Cursor to &gt; <!--latex 
-\hyperref[\foo{transport:menu:cursor:to:next:clip:boundary}]{--><a href="transport_menu_cursor_to.html#next_clip_boundary" title="Transport Menu: Cursor to">Next clip boundary</a><!--latex }
---></span></li>
-<!--
-\item --><li><span class="menu">Select &gt; Clip Boundaries &gt; <!--latex 
-\hyperref[\foo{select:menu:clip:boundaries:previous:clip:boundary:to:cursor}]{--><a href="select_menu_clip_boundaries.html#previous_clip_boundary_to_cursor" title="Select Menu: Clip Boundaries">Previous clip boundary to cursor</a><!--latex }
---> </span></li>
-<!--
-\item --><li><span class="menu">Select &gt; Clip Boundaries &gt; <!--latex 
-\hyperref[\foo{select:menu:clip:boundaries:cursor:to:next:clip:boundary}]{--><a href="select_menu_clip_boundaries.html#cursor_to_next_clip_boundary" title="Select Menu: Clip Boundaries">Cursor to next clip boundary</a><!--latex }
---> </span></li>
-<!--
-\item --><li><span class="menu">Select &gt; Clip Boundaries &gt; <!--latex 
-\hyperref[\foo{select:menu:clip:boundaries:previous:clip}]{--><a href="select_menu_clip_boundaries.html#previous_clip" title="Select Menu: Clip Boundaries">Previous clip</a><!--latex }
---> </span></li>
-<!--
-\item --><li><span class="menu">Select &gt; Clip Boundaries &gt; <!--latex 
-\hyperref[\foo{select:menu:clip:boundaries:next:clip}]{--><a href="select_menu_clip_boundaries.html#next_clip" title="Select Menu: Clip Boundaries">Next clip</a><!--latex }
---> </span></li></ol><!--
-\end{enumerate}
--->
-<div class="note">There are also two new commands (<!--latex 
-\hyperref[\foo{ext:command:menu:cursor:clip:left}]{--><a href="ext_command_menu_cursor.html#clip_left" title="Ext-Command Menu: Cursor">Clip Left</a><!--latex }
---> and <!--latex 
-\hyperref[\foo{ext:command:menu:cursor:clip:right}]{--><a href="ext_command_menu_cursor.html#clip_right" title="Ext-Command Menu: Cursor">Clip Right</a><!--latex }
--->) for moving clips, which are available in the <!--latex 
-\hyperref[\foo{new:features:in:this:release::extendedmenubar}]{--><a href="#extendedmenubar">extended menus</a><!--latex }
---> added in this release.<p>Note that these extended menus are <!--\textit{--><i><!--\textbf{--><b>not</b><!--}--></i><!--}--> turned on by default, to turn them on please see <!--latex 
-\hyperref[\foo{menu:reference:the:extended:menu:bar}]{--><a href="menu_reference.html#the_extended_menu_bar" title="Menu Reference">Menu Reference</a><!--latex }
---> for how to reveal the extended menus.</p>
+<td align="left" valign="top">If you are certain that your recordings do not suffer from dropouts you may wish to turn this option "<b>off</b>".
+</td></tr></table>
 </div>
-<p><br/>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%" align="center">
+
+<tr>
+<td width="30px" valign="top" align="center"><a target="manual" href="http://alphamanual.audacityteam.org/man/File:Warningicon.png" class="image" title="Warning icon"><img alt="Warning icon" src="../m/images/b/ba/warningicon.png" width="24" height="24" /></a>
+</td>
+<td align="left" valign="top">Many users may have been experiencing dropouts and not noticing, <i>they are not discernible while recording only on playback</i>.  So Audacity 2.2.2 vould appear much worse than previous releases to such users, when in actual fact Audacity is just alerting them to a problem that they previously would not have been aware of - or might have put down to a bad microphone or poor recording technique.
+</td></tr></table>
+</div>
+<p><br />
 </p>
-<div id="safety"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Running_out_of_disk_space">Running out of disk space</span></h2><!--}--><!--latex 
-\label{new:features:in:this:release:safety}-->
-<p>We have now provided an error trap for situations where you are running out of available disk space.
-</p><p>You will now see the error message:
-"<!--\textbf{--><b>Audacity failed to write to a file in &lt;device&gt;</b><!--}-->"
-</p><p>This is particularly useful when recording as Audacity will stop recording when the error is trapped, preserving your recording up to that point.
-</p><p><br/>
+<div id="bindings"></div>
+<h2><span class="mw-headline" id="Easier_access_to_changing_key_bindings_for_shortcuts">Easier access to changing key bindings for shortcuts</span></h2>
+<p>For menu commands that are enabled <i>(not grayed-out)</i> if you hold the <span class="kbrd" style="background-color: #e0e0f0">Shift</span>  key and click on the sub-menu item, instead of executing the command the <b>Keyboard Preferences</b> pop open at the chosen command.  You can then change that <i>(or any other)</i> shortcut binding.
+</p><p><br />
+</p><p><br />
+</p>
+<div id="language"></div>
+<h2><span class="mw-headline" id="Language_selection_in_Preferences">Language selection in Preferences</span></h2>
+<p><a href="interface_preferences.html" title="Interface Preferences">Interface Preferences</a> has been upgraded so when selecting languages the proper spelling of these languages is shown with accented and special characters.
+</p>
+<dl><dd><span title="Language selection using accented and special characters"><img alt="LanguageSelection.png" src="../m/images/9/91/languageselection.png" width="623" height="535" /></span></dd></dl>
+<p><br />
+</p>
+<div id="bugs"></div>
+<h2><span class="mw-headline" id="Bug_Fixes">Bug Fixes</span></h2>
+<ul><li>There will undoubtedly be some ...</li>
+<li> Unicode page encodings fixed ( ͡° ͜ʖ ͡°) .</li></ul>
+<p><br />
 </p>
 <div id="appendix"></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Additional_new_features"><!--latex 
-\hyperref[\foo{new:features:in:this:release:appendix:}]{--><a href="new_features_in_this_release_appendix.html" title="New features in this release - appendix">Additional new features</a><!--latex }
---></span></h2><!--}--><!--latex 
-\label{new:features:in:this:release:appendix}-->
-<p>This page <!--\textbf{--><b><!--latex 
-\hyperref[\foo{new:features:in:this:release:appendix:}]{--><a href="new_features_in_this_release_appendix.html" title="New features in this release - appendix">New features in this release - appendix</a><!--latex }
---></b><!--}--> gives an overview of further new functionality that has been introduced in this release of Audacity.
-</p><p><br/>
+<h2><span class="mw-headline" id="Additional_new_features"><a href="new_features_in_this_release_appendix.html" title="New features in this release - appendix">Additional new features</a></span></h2>
+<p>This page <b><a href="new_features_in_this_release_appendix.html" title="New features in this release - appendix">New features in this release - appendix</a></b> gives an overview of further new functionality that has been introduced in this release of Audacity.
+</p><p><br />
 </p>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Links">Links</span></h2><!--}-->
-<p><a class="external text" href="https://wiki.audacityteam.org/wiki/Release_Notes_2.2.0" rel="nofollow"><!--\textbf{--><b>&gt;</b><!--}--> Audacity Release Notes 2.2.0</a> <!--\textit{--><i>- detailed release notes for this release of Audacity</i><!--}-->
+<h2><span class="mw-headline" id="Links">Links</span></h2>
+<p><a rel="nofollow" target="manual" class="external text" href="https://wiki.audacityteam.org/wiki/Release_Notes_2.2.2"><b>&gt;</b> Audacity Release Notes 2.2.2</a> <i>- detailed release notes for this release of Audacity</i>
 </p>
+<!-- 
+NewPP limit report
+Cached time: 20180117112538
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.091 seconds
+Real time usage: 0.093 seconds
+Preprocessor visited node count: 179/1000000
+Preprocessor generated node count: 482/1000000
+Post‐expand include size: 2157/2097152 bytes
+Template argument size: 1100/2097152 bytes
+Highest expansion depth: 4/40
+Expensive parser function count: 0/100
+-->
 
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   12.645      1 - -total
+ 21.14%    2.673      1 - Template:Shortcut
+ 13.53%    1.711      5 - Template:Menu
+ 11.51%    1.455      1 - Template:Intro
+ 10.41%    1.316      1 - Template:Key
+  8.71%    1.101      1 - Template:Ednote
+  8.68%    1.097      1 - Template:Advice
+  8.16%    1.032      1 - Template:Tip
+-->
 
-
-
-
+<!-- Saved in parser cache with key helpmediawiki:pcache:idhash:5555-0!*!0!!*!5!* and timestamp 20180117112551 and revision id 58914
+ -->
 </div>
-										
+										<!-- end content -->
 										<div class="visualClear"></div>
 				</div>
 			</div>
 		</div>
-		
-		<div class="visualClear"></div>
+		<div id="column-one">
+			
 					
-		</div><!--latex \end{multicols}-->
+				
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="../index.html" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+					
+		<div class="generated-sidebar portlet" id="p-Navigation" role="navigation">
+		<h3>Navigation</h3>
+		<div class='pBody'>
+			<ul><li> <a href="../index.html" title="Main Page">Manual Home Page</a></li>
+<li> <a href="../index.html#using" title="Main Page">Using Audacity</a>
+<ul><li> <a href="audacity_tour_guide.html" title="Audacity Tour Guide">Tour Guide</a></li>
+<li> <a href="#" title="New features in this release">New Features</a></li>
+<li> <a href="../quick_help.html" title="Quick Help">Getting Started</a></li>
+<li> <a href="preferences.html" title="Preferences">Preferences</a></li>
+<li> <a href="menu_reference.html" title="Menu Reference">Menu Bar</a></li>
+<li> <a href="toolbars_overview.html" title="Toolbars Overview">Toolbars</a></li>
+<li> <a href="keyboard_shortcut_reference.html" title="Keyboard Shortcut Reference">Commands / Shortcuts</a></li>
+<li> <a href="index_of_effects_generators_and_analyzers.html" title="Index of Effects, Generators and Analyzers">Effects</a></li>
+<li> <a href="tutorials.html" title="Tutorials">Tutorials</a></li>
+<li> <a href="tips.html" title="Tips">Tips</a></li></ul></li></ul>
+		</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-Reference" role="navigation">
+		<h3>Reference</h3>
+		<div class='pBody'>
+			<ul><li> <a href="../index.html#reference" title="Main Page">Reference</a>
+<ul><li> <a href="digital_audio.html" title="Digital Audio">Digital Audio</a></li>
+<li> <a href="glossary.html" title="Glossary">Glossary</a></li>
+<li> <a href="subject_index.html" title="Subject Index">Subject Index</a></li></ul></li>
+<li> <span title="Frequently Asked Questions"><a rel="nofollow" target="manual" class="external text" href="faq.html">FAQ</a></span></li></ul>
+		</div>
+		</div>
 		
-</body></html>
+		<div class="generated-sidebar portlet" id="p-Useful_Links" role="navigation">
+		<h3>Useful Links</h3>
+		<div class='pBody'>
+			<ul><li> <a rel="nofollow" target="manual" class="external text" href="https://forum.audacityteam.org/index.php">Forum</a></li>
+<li> <a rel="nofollow" target="manual" class="external text" href="https://wiki.audacityteam.org/wiki/Audacity_Wiki_Home_Page">Wiki</a></li>
+<li> <a rel="nofollow" target="manual" class="external text" href="https://www.audacityteam.org/download/">Latest Release</a></li></ul>
+		</div>
+		</div>
+		
+			
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-copyrightico">
+									
+							</div>
+					<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="../m/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/m/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /m/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31"/></a>
+							</div>
+					
+		<div align="center"><ul id="f_list"><li>Offline version created on 2018-01-17 - <a target="manual" href="http://alphamanual.audacityteam.org/man/New_features_in_this_release">Check current version of this page (development Manual)</a></li></ul></div>
+</div>
+		</div>
+		</body></html>

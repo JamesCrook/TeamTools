@@ -1,100 +1,153 @@
 <!DOCTYPE html>
-<html class="client-nojs" dir="ltr" lang="en"><head>
-<meta charset="utf-8"/>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
 <title>USB Recording - Audacity Development Manual</title>
 
 
 
 
+<!--[if IE 6]><link rel="stylesheet" href="../m/skins/monobook/ie60fixes.css/303.css" media="screen"/><![endif]--><!--[if IE 7]><link rel="stylesheet" href="../m/skins/monobook/ie70fixes.css/303.css" media="screen"/><![endif]-->
+<meta name="ResourceLoaderDynamicStyles" content=""/>
 
-<meta content="" name="ResourceLoaderDynamicStyles"/>
+<meta name="generator" content="MediaWiki 1.28.2"/>
+<link rel="shortcut icon" href="../favicon.ico"/>
+<link rel="search" type="application/opensearchdescription+xml" target="manual" href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" title="Audacity Development Manual (en)"/>
+<link rel="EditURI" type="application/rsd+xml" target="manual" href="http://alphamanual.audacityteam.org/m/api.php?action=rsd"/>
+<link rel="copyright" href="https://creativecommons.org/licenses/by/3.0/" />
 
-<meta content="MediaWiki 1.28.2" name="generator"/>
-<link href="../favicon.ico" rel="shortcut icon"/>
-<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
-<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
-<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
-
-<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+<link rel="stylesheet" href="../m/skins/monobook/main.css/303.css" media="screen" />
 </head>
 <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-USB_Recording rootpage-USB_Recording skin-monobook action-view"><div id="globalWrapper">
 		<div id="column-content">
-			<div class="mw-body" id="content" role="main">
+			<div id="content" class="mw-body" role="main">
 				<a id="top"></a>
 				
 				<div class="mw-indicators">
 </div>
-				<!--
-\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">USB Recording</h1><!--}
-\par\vspace{1mm}\hrule
---><!--latex \begin{multicols}{2}--><!--latex \label{usb:recording:}-->
+				<h1 id="firstHeading" class="firstHeading" lang="en">USB Recording</h1>
 				
-				<div class="mw-body-content" id="bodyContent">
-					
-					
-										
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Audacity Development Manual</div>
+					<div id="contentSub"></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a target="manual" href="http://alphamanual.audacityteam.org/man/USB_Recording#searchInput">search</a></div>
 
-					
-					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p>
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr">
+
+<div class="intro"> This is a very basic guide to recording with USB devices.  More detailed information (and Mac instructions) can be found at <a href="recording_with_usb_turntables.html" title="Recording with USB turntables">Recording with USB turntables or USB cassette decks</a>. </div>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%" align="center">
+
+<tr>
+<td width="30px" valign="top" align="center"><a target="manual" href="http://alphamanual.audacityteam.org/man/File:Bulbicon.png" class="image" title="Bulb icon"><img alt="Bulb icon" src="../m/images/d/d7/bulbicon.png" width="32" height="32" /></a>
+</td>
+<td align="left" valign="top">If you have just made a <a href="record.html" title="Record">recording</a> it is strongly recommended that you immediately export your audio using <span class="menu">File &gt; Export &gt; <a href="file_export_dialog.html" title="File Export Dialog">Export Audio...</a></span> to <i><b><a href="glossary.html#wav" title="Glossary">WAV</a></b></i> or <i><b><a href="glossary.html#aiff" title="Glossary">AIFF</a></b></i> (ideally to an external drive) as a safety copy before you start editing the project.
+</td></tr></table>
+</div> 
+<ul><li>Connect the USB cable of the turntable, or tapedeck, to the computer, then launch Audacity. If Audacity was already running when you connected the cable, restart Audacity or choose <span class="menu">Transport &gt; <a href="transport_menu.html#rescan_audio_devices" title="Transport Menu">Rescan Audio Devices</a></span>. </li></ul>
+<ul><li>Use the <a href="device_toolbar.html" title="Device Toolbar">Device Toolbar</a> to set the recording and playback devices and set the channels to "2(stereo) Recording Channels":</li></ul>
+<dl><dd><dl><dd><span title="Device Toolbar showing USB turntable selected for recording"><img alt="Device Toolbar - USB recording.PNG" src="../m/images/a/a6/device_toolbar_usb_recording.png" width="740" height="27" /></span> </dd></dl></dd></dl>
+<ul style="list-style-image: none; list-style-type: none">In this example on Windows, the output is set to the named speakers of the built-in computer sound device,  the input is set to the USB turntable (usually called or including the phrase "USB Audio CODEC") and recording channels are set to stereo. Windows 10/8/7 calls most USB external devices "microphones". Some higher-end USB recording interfaces may appear as their explicit manufacturer's name.</ul> 
+<ul><li>From the <a href="transport_menu.html" title="Transport Menu">Transport Menu</a> check <b>"Software Playthrough"</b> to be "on" to hear the turntable through the computer speakers; this setting can be toggled on/off easily from the Transport Menu.  </li></ul>
+<ul><li>Then, <i>ignoring any instructions in the manufacturer's guide to select "stereo mix"</i>, simply press the Record button <img alt="The Record button" src="../m/images/e/e8/record.png" title="The Record button" width="16" height="16" /> on <a href="transport_toolbar.html" title="Transport Toolbar">Transport Toolbar</a>.</li></ul>
+<p><br />
+</p><p><a href="../quick_help.html" title="Quick Help"><b>|&lt;</b> Back to: Getting Started</a>
 </p>
-
-<div class="intro"> This is a very basic guide to recording with USB devices.  More detailed information (and Mac instructions) can be found at <!--latex 
-\hyperref[\foo{recording:with:usb:turntables:}]{--><a href="recording_with_usb_turntables.html" title="Recording with USB turntables">Recording with USB turntables or USB cassette decks</a><!--latex }
--->. </div>
-<!--
-\begin{itemize}--><ul><!--
-\item --><li>Connect the USB cable of the turntable, or tapedeck, to the computer, then launch Audacity. If Audacity was already running when you connected the cable, restart Audacity or choose <span class="menu">Transport &gt; <!--latex 
-\hyperref[\foo{transport:menu:rescan:audio:devices}]{--><a href="transport_menu.html#rescan_audio_devices" title="Transport Menu">Rescan Audio Devices</a><!--latex }
---></span>. </li></ul><!--
-\end{itemize}
+<!-- 
+NewPP limit report
+Cached time: 20180117113234
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.076 seconds
+Real time usage: 0.081 seconds
+Preprocessor visited node count: 154/1000000
+Preprocessor generated node count: 991/1000000
+Post‐expand include size: 3275/2097152 bytes
+Template argument size: 1359/2097152 bytes
+Highest expansion depth: 12/40
+Expensive parser function count: 11/100
 -->
-<!--
-\begin{itemize}--><ul><!--
-\item --><li>Use the <!--latex 
-\hyperref[\foo{device:toolbar:}]{--><a href="device_toolbar.html" title="Device Toolbar">Device Toolbar</a><!--latex }
---> to set the recording and playback devices and set the channels to "2(stereo) Recording Channels":</li></ul><!--
-\end{itemize}
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   32.540      1 - -total
+ 74.73%   24.316      1 - Template:I18n
+ 68.76%   22.373      1 - Template:I18n_box
+ 56.75%   18.467      1 - Template:I18n_list
+ 20.98%    6.828      2 - Template:I18n_link
+ 12.39%    4.033      2 - Template:Autoglossonym
+ 10.26%    3.338      1 - Template:Tip
+  6.09%    1.983      1 - Template:Intro
+  5.97%    1.944      2 - Template:Menu
+  5.21%    1.695      1 - Template:Ednote
 -->
-<dl><dd><dl><dd><span title="Device Toolbar showing USB turntable selected for recording"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="Device Toolbar - USB recording.PNG" height="27" src="../m/images/a/a6/device_toolbar_usb_recording.png" width="740"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/a/a6/device_toolbar_usb_recording.png--></img><!--}\par
---></span> </dd></dl></dd></dl>
-<!--
-\begin{itemize}--><ul style="list-style-image: none; list-style-type: none"><!--\item -->In this example on Windows, the output is set to the named speakers of the built-in computer sound device,  the input is set to the USB turntable (usually called or including the phrase "USB Audio CODEC") and recording channels are set to stereo. Windows 10/8/7 calls most USB external devices "microphones". Some higher-end USB recording interfaces may appear as their explicit manufacturer's name.</ul><!--
-\end{itemize}
---> 
-<!--
-\begin{itemize}--><ul><!--
-\item --><li>From the <!--latex 
-\hyperref[\foo{transport:menu:}]{--><a href="transport_menu.html" title="Transport Menu">Transport Menu</a><!--latex }
---> check <!--\textbf{--><b>"Software Playthrough"</b><!--}--> to be "on" to hear the turntable through the computer speakers; this setting can be toggled on/off easily from the Transport Menu.  </li></ul><!--
-\end{itemize}
--->
-<!--
-\begin{itemize}--><ul><!--
-\item --><li>Then, <!--\textit{--><i>ignoring any instructions in the manufacturer's guide to select "stereo mix"</i><!--}-->, simply press the Record button <!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="The Record button" height="16" src="../m/images/e/e8/record.png" title="The Record button" width="16"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/e/e8/record.png--></img><!--}}{}--> on <!--latex 
-\hyperref[\foo{transport:toolbar:}]{--><a href="transport_toolbar.html" title="Transport Toolbar">Transport Toolbar</a><!--latex }
--->.</li></ul><!--
-\end{itemize}
--->
-<p><br/>
-</p><p><!--latex 
-\hyperref[\foo{quick:help:}]{--><a href="../quick_help.html" title="Quick Help"><!--\textbf{--><b>|&lt;</b><!--}--> Back to: Getting Started</a><!--latex }
--->
-</p>
 
-
-
-
-
+<!-- Saved in parser cache with key helpmediawiki:pcache:idhash:4231-0!*!0!*!*!5!* and timestamp 20180117113234 and revision id 58601
+ -->
 </div>
-										
+										<!-- end content -->
 										<div class="visualClear"></div>
 				</div>
 			</div>
 		</div>
-		
-		<div class="visualClear"></div>
+		<div id="column-one">
+			
 					
-		</div><!--latex \end{multicols}-->
+				
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="../index.html" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+					
+		<div class="generated-sidebar portlet" id="p-Navigation" role="navigation">
+		<h3>Navigation</h3>
+		<div class='pBody'>
+			<ul><li> <a href="../index.html" title="Main Page">Manual Home Page</a></li>
+<li> <a href="../index.html#using" title="Main Page">Using Audacity</a>
+<ul><li> <a href="audacity_tour_guide.html" title="Audacity Tour Guide">Tour Guide</a></li>
+<li> <a href="new_features_in_this_release.html" title="New features in this release">New Features</a></li>
+<li> <a href="../quick_help.html" title="Quick Help">Getting Started</a></li>
+<li> <a href="preferences.html" title="Preferences">Preferences</a></li>
+<li> <a href="menu_reference.html" title="Menu Reference">Menu Bar</a></li>
+<li> <a href="toolbars_overview.html" title="Toolbars Overview">Toolbars</a></li>
+<li> <a href="keyboard_shortcut_reference.html" title="Keyboard Shortcut Reference">Commands / Shortcuts</a></li>
+<li> <a href="index_of_effects_generators_and_analyzers.html" title="Index of Effects, Generators and Analyzers">Effects</a></li>
+<li> <a href="tutorials.html" title="Tutorials">Tutorials</a></li>
+<li> <a href="tips.html" title="Tips">Tips</a></li></ul></li></ul>
+		</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-Reference" role="navigation">
+		<h3>Reference</h3>
+		<div class='pBody'>
+			<ul><li> <a href="../index.html#reference" title="Main Page">Reference</a>
+<ul><li> <a href="digital_audio.html" title="Digital Audio">Digital Audio</a></li>
+<li> <a href="glossary.html" title="Glossary">Glossary</a></li>
+<li> <a href="subject_index.html" title="Subject Index">Subject Index</a></li></ul></li>
+<li> <span title="Frequently Asked Questions"><a rel="nofollow" target="manual" class="external text" href="faq.html">FAQ</a></span></li></ul>
+		</div>
+		</div>
 		
-</body></html>
+		<div class="generated-sidebar portlet" id="p-Useful_Links" role="navigation">
+		<h3>Useful Links</h3>
+		<div class='pBody'>
+			<ul><li> <a rel="nofollow" target="manual" class="external text" href="https://forum.audacityteam.org/index.php">Forum</a></li>
+<li> <a rel="nofollow" target="manual" class="external text" href="https://wiki.audacityteam.org/wiki/Audacity_Wiki_Home_Page">Wiki</a></li>
+<li> <a rel="nofollow" target="manual" class="external text" href="https://www.audacityteam.org/download/">Latest Release</a></li></ul>
+		</div>
+		</div>
+		
+			
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-copyrightico">
+									
+							</div>
+					<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="../m/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/m/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /m/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31"/></a>
+							</div>
+					
+		<div align="center"><ul id="f_list"><li>Offline version created on 2018-01-17 - <a target="manual" href="http://alphamanual.audacityteam.org/man/USB_Recording">Check current version of this page (development Manual)</a></li></ul></div>
+</div>
+		</div>
+		</body></html>

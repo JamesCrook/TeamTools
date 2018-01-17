@@ -1,125 +1,168 @@
 <!DOCTYPE html>
-<html class="client-nojs" dir="ltr" lang="en"><head>
-<meta charset="utf-8"/>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
 <title>Repeat - Audacity Development Manual</title>
 
 
 
 
+<!--[if IE 6]><link rel="stylesheet" href="../m/skins/monobook/ie60fixes.css/303.css" media="screen"/><![endif]--><!--[if IE 7]><link rel="stylesheet" href="../m/skins/monobook/ie70fixes.css/303.css" media="screen"/><![endif]-->
+<meta name="ResourceLoaderDynamicStyles" content=""/>
 
-<meta content="" name="ResourceLoaderDynamicStyles"/>
+<meta name="generator" content="MediaWiki 1.28.2"/>
+<link rel="shortcut icon" href="../favicon.ico"/>
+<link rel="search" type="application/opensearchdescription+xml" target="manual" href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" title="Audacity Development Manual (en)"/>
+<link rel="EditURI" type="application/rsd+xml" target="manual" href="http://alphamanual.audacityteam.org/m/api.php?action=rsd"/>
+<link rel="copyright" href="https://creativecommons.org/licenses/by/3.0/" />
 
-<meta content="MediaWiki 1.28.2" name="generator"/>
-<link href="../favicon.ico" rel="shortcut icon"/>
-<link href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" rel="search" title="Audacity Development Manual (en)" type="application/opensearchdescription+xml"/>
-<link href="http://alphamanual.audacityteam.org/m/api.php?action=rsd" rel="EditURI" type="application/rsd+xml"/>
-<link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
-
-<link href="../m/skins/monobook/main.css/303.css" media="screen" rel="stylesheet"/>
+<link rel="stylesheet" href="../m/skins/monobook/main.css/303.css" media="screen" />
 </head>
 <body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Repeat rootpage-Repeat skin-monobook action-view"><div id="globalWrapper">
 		<div id="column-content">
-			<div class="mw-body" id="content" role="main">
+			<div id="content" class="mw-body" role="main">
 				<a id="top"></a>
 				
 				<div class="mw-indicators">
 </div>
-				<!--
-\ensurespace\section{--><h1 class="firstHeading" id="firstHeading" lang="en">Repeat</h1><!--}
-\par\vspace{1mm}\hrule
---><!--latex \begin{multicols}{2}--><!--latex \label{repeat:}-->
+				<h1 id="firstHeading" class="firstHeading" lang="en">Repeat</h1>
 				
-				<div class="mw-body-content" id="bodyContent">
-					
-					
-										
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Audacity Development Manual</div>
+					<div id="contentSub"></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a target="manual" href="http://alphamanual.audacityteam.org/man/Repeat#searchInput">search</a></div>
 
-					
-					<div class="mw-content-ltr" dir="ltr" id="mw-content-text" lang="en"><p><br/>
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><p><br />
 </p>
 
-<p>
-</p><p><br/>
+
+<p><br />
 </p>
-<div class="intro"><!--\textit{--><i><!--\textbf{--><b>Repeat</b><!--}--></i><!--}--> repeats the selection the specified number of times. </div>
-<dl><dd><!--\textbf{--><b>Accessed by:</b><!--}--> <span class="menu">Effect &gt; Repeat</span></dd>
-<dd><span title="Repeat effect dialog"><a class="image" href="http://alphamanual.audacityteam.org/man/File:Repeat.png"><!--
-\par\includegraphics[max width=\linewidth]{--><img alt="Repeat.png" height="178" src="../m/images/7/71/repeat.png" width="474"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/7/71/repeat.png--></img><!--}\par
---></a></span></dd></dl>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Number_of_repeats_to_add">Number of repeats to add</span></h2><!--}-->
-<p>Specifies the number of times the selected audio will be repeated. The default setting is 1 repeat <!--\textit{--><i>(that is you will than have two copies of the selected audio)</i><!--}-->.
+<div class="intro"><i><b>Repeat</b></i> repeats the selection the specified number of times. </div>
+<dl><dd><b>Accessed by:</b> <span class="menu">Effect &gt; Repeat</span></dd>
+<dd><span title="Repeat effect dialog"><a target="manual" href="http://alphamanual.audacityteam.org/man/File:Repeat.png" class="image"><img alt="Repeat.png" src="../m/images/7/71/repeat.png" width="474" height="178" /></a></span></dd></dl>
+<h2><span class="mw-headline" id="Number_of_repeats_to_add">Number of repeats to add</span></h2>
+<p>Specifies the number of times the selected audio will be repeated. The default setting is 1 repeat <i>(that is you will than have two copies of the selected audio)</i>.
 </p>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Current_selection_length">Current selection length</span></h2><!--}-->
+<h2><span class="mw-headline" id="Current_selection_length">Current selection length</span></h2>
 <p>Shows what the resultant selection length of the currently selected aufio is prior to the repeat.
 </p>
-<!--
-\subsection{--><h2><span class="mw-headline" id="New_selection_length">New selection length</span></h2><!--}-->
+<h2><span class="mw-headline" id="New_selection_length">New selection length</span></h2>
 <p>Shows what the resultant selection length will be, depending on the specified number of repeats. The resultant selection includes both the originally selected audio and the inserted audio that has been repeated.
 </p>
 <div class="note">
-<!--
-\begin{itemize}--><ul><!--
-\item --><li>If the selection to be repeated borders the right edge of an audio <!--latex 
-\hyperref[\foo{audacity:tracks:and:clips:}]{--><a href="audacity_tracks_and_clips.html" title="Audacity Tracks and Clips">clip</a><!--latex }
--->, each repeat becomes a separate clip bordered by black vertical <!--latex 
-\hyperref[\foo{edit:menu:clip:boundaries:split}]{--><a href="edit_menu_clip_boundaries.html#split" title="Edit Menu: Clip Boundaries">split lines</a><!--latex }
--->.</li>
-<!--
-\item --><li>Any audio to right of the inserted repeats is moved to right, and so not overwritten. However the repeat will not be allowed if it would move other clips and "Editing a clip can move other clips" in <!--latex 
-\hyperref[\foo{tracks:preferences:}]{--><a href="tracks_preferences.html" title="Tracks Preferences">Tracks Preferences</a><!--latex }
---> is unchecked. </li>
-<!--
-\item --><li>Repeat does not copy the original or resultant selection to the Audacity clipboard.</li></ul><!--
-\end{itemize}
---></div>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Buttons">Buttons</span></h2><!--}-->
+<ul><li>If the selection to be repeated borders the right edge of an audio <a href="audacity_tracks_and_clips.html" title="Audacity Tracks and Clips">clip</a>, each repeat becomes a separate clip bordered by black vertical <a href="edit_menu_clip_boundaries.html#split" title="Edit Menu: Clip Boundaries">split lines</a>.</li>
+<li>Any audio to right of the inserted repeats is moved to right, and so not overwritten. However the repeat will not be allowed if it would move other clips and "Editing a clip can move other clips" in <a href="tracks_preferences.html" title="Tracks Preferences">Tracks Preferences</a> is unchecked. </li>
+<li>Repeat does not copy the original or resultant selection to the Audacity clipboard.</div></li></ul>
+<h2><span class="mw-headline" id="Buttons">Buttons</span></h2>
 <p>Clicking on the command buttons give the following results:
 </p>
-<!--
-\begin{itemize}--><ul><!--
-\item --><li><span class="button">Manage</span> gives a dropdown menu enabling you to manage presets for the tool and to see some detail about the tool. For details see <!--latex 
-\hyperref[\foo{manage:presets:}]{--><a href="manage_presets.html" title="Manage presets">Manage presets</a><!--latex }
--->.</li>
-<!--
-\item --><li><span class="button">Preview</span> plays a short preview of what the audio would sound like if the effect is applied with the current settings, without making actual changes to the audio.  The length of preview is determined by your setting in <span class="menu">Edit &gt; Preferences &gt; <!--latex 
-\hyperref[\foo{playback:preferences:}]{--><a href="playback_preferences.html" title="Playback Preferences">Playback</a><!--latex }
---></span>, the default setting is 6 seconds.</li>
-<!--
-\item --><li><span class="button">OK</span> applies the effect to the selected audio with the current effect settings.</li>
-<!--
-\item --><li><span class="button">Cancel</span> aborts the effect and leaves the audio unchanged.</li>
-<!--
-\item --><li><a href="help_button.html" title="Help Button"><!--\texorpdfstring{\protect\includegraphics[max width=\linewidth]{--><img alt="Help Button" height="27" src="../m/images/d/d6/help_button.png" width="27"><!--C:/OpenSourceGit/AudacityTeamTools/test/m/images/d/d6/help_button.png--></img><!--}}{}--></a> brings you to the appropriate page in the Manual, this page.</li></ul><!--
-\end{itemize}
--->
-<p><br/>
+<ul><li><span class="button">Manage</span> gives a dropdown menu enabling you to manage presets for the tool and to see some detail about the tool. For details see <a href="manage_presets.html" title="Manage presets">Manage presets</a>.</li>
+<li><span class="button">Preview</span> plays a short preview of what the audio would sound like if the effect is applied with the current settings, without making actual changes to the audio.  The length of preview is determined by your setting in <span class="menu">Edit &gt; Preferences &gt; <a href="playback_preferences.html" title="Playback Preferences">Playback</a></span>, the default setting is 6 seconds.</li>
+<li><span class="button">OK</span> applies the effect to the selected audio with the current effect settings.</li>
+<li><span class="button">Cancel</span> aborts the effect and leaves the audio unchanged.</li>
+<li><a href="help_button.html" title="Help Button"><img alt="Help Button" src="../m/images/d/d6/help_button.png" width="27" height="27" /></a> brings you to the appropriate page in the Manual, this page.</li></ul>
+<p><br />
 </p>
-<!--
-\subsection{--><h2><span class="mw-headline" id="Links">Links</span></h2><!--}-->
-<p><!--latex 
-\hyperref[\foo{index:of:effects:generators:and:analyzers:}]{--><a href="index_of_effects_generators_and_analyzers.html" title="Index of Effects, Generators and Analyzers"><!--\textbf{--><b>|&lt;</b><!--}--> Index of Effects, Generators and Analyzers</a><!--latex }
---> <br/>
-</p><p><!--latex 
-\hyperref[\foo{effect:menu:}]{--><a href="effect_menu.html" title="Effect Menu"><!--\textbf{--><b>|&lt;</b><!--}--> Effect Menu</a><!--latex }
--->
+<h2><span class="mw-headline" id="Links">Links</span></h2>
+<p><a href="index_of_effects_generators_and_analyzers.html" title="Index of Effects, Generators and Analyzers"><b>|&lt;</b> Index of Effects, Generators and Analyzers</a> <br />
+</p><p><a href="effect_menu.html" title="Effect Menu"><b>|&lt;</b> Effect Menu</a>
 </p>
+<!-- 
+NewPP limit report
+Cached time: 20180117041135
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.098 seconds
+Real time usage: 0.103 seconds
+Preprocessor visited node count: 313/1000000
+Preprocessor generated node count: 1533/1000000
+Post‐expand include size: 11684/2097152 bytes
+Template argument size: 2159/2097152 bytes
+Highest expansion depth: 12/40
+Expensive parser function count: 11/100
+-->
 
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   42.488      1 - -total
+ 45.58%   19.368      1 - Template:I18n
+ 41.36%   17.572      1 - Template:I18n_box
+ 35.62%   15.134      1 - Template:I18n_list
+ 22.67%    9.632      1 - Template:Effectbuttons
+ 17.11%    7.269      1 - Template:No-rename
+ 16.90%    7.181      1 - Template:Buttonlist
+ 14.13%    6.005      2 - Template:I18n_link
+ 13.62%    5.789      1 - Template:Ednote
+ 13.49%    5.732      8 - Template:Button
+-->
 
-
-
-
+<!-- Saved in parser cache with key helpmediawiki:pcache:idhash:4171-0!*!0!!*!5!* and timestamp 20180117041135 and revision id 57623
+ -->
 </div>
-										
+										<!-- end content -->
 										<div class="visualClear"></div>
 				</div>
 			</div>
 		</div>
-		
-		<div class="visualClear"></div>
+		<div id="column-one">
+			
 					
-		</div><!--latex \end{multicols}-->
+				
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="../index.html" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+					
+		<div class="generated-sidebar portlet" id="p-Navigation" role="navigation">
+		<h3>Navigation</h3>
+		<div class='pBody'>
+			<ul><li> <a href="../index.html" title="Main Page">Manual Home Page</a></li>
+<li> <a href="../index.html#using" title="Main Page">Using Audacity</a>
+<ul><li> <a href="audacity_tour_guide.html" title="Audacity Tour Guide">Tour Guide</a></li>
+<li> <a href="new_features_in_this_release.html" title="New features in this release">New Features</a></li>
+<li> <a href="../quick_help.html" title="Quick Help">Getting Started</a></li>
+<li> <a href="preferences.html" title="Preferences">Preferences</a></li>
+<li> <a href="menu_reference.html" title="Menu Reference">Menu Bar</a></li>
+<li> <a href="toolbars_overview.html" title="Toolbars Overview">Toolbars</a></li>
+<li> <a href="keyboard_shortcut_reference.html" title="Keyboard Shortcut Reference">Commands / Shortcuts</a></li>
+<li> <a href="index_of_effects_generators_and_analyzers.html" title="Index of Effects, Generators and Analyzers">Effects</a></li>
+<li> <a href="tutorials.html" title="Tutorials">Tutorials</a></li>
+<li> <a href="tips.html" title="Tips">Tips</a></li></ul></li></ul>
+		</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-Reference" role="navigation">
+		<h3>Reference</h3>
+		<div class='pBody'>
+			<ul><li> <a href="../index.html#reference" title="Main Page">Reference</a>
+<ul><li> <a href="digital_audio.html" title="Digital Audio">Digital Audio</a></li>
+<li> <a href="glossary.html" title="Glossary">Glossary</a></li>
+<li> <a href="subject_index.html" title="Subject Index">Subject Index</a></li></ul></li>
+<li> <span title="Frequently Asked Questions"><a rel="nofollow" target="manual" class="external text" href="faq.html">FAQ</a></span></li></ul>
+		</div>
+		</div>
 		
-</body></html>
+		<div class="generated-sidebar portlet" id="p-Useful_Links" role="navigation">
+		<h3>Useful Links</h3>
+		<div class='pBody'>
+			<ul><li> <a rel="nofollow" target="manual" class="external text" href="https://forum.audacityteam.org/index.php">Forum</a></li>
+<li> <a rel="nofollow" target="manual" class="external text" href="https://wiki.audacityteam.org/wiki/Audacity_Wiki_Home_Page">Wiki</a></li>
+<li> <a rel="nofollow" target="manual" class="external text" href="https://www.audacityteam.org/download/">Latest Release</a></li></ul>
+		</div>
+		</div>
+		
+			
+			</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-copyrightico">
+									
+							</div>
+					<div id="f-poweredbyico">
+									<a href="http://www.mediawiki.org/"><img src="../m/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/m/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /m/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31"/></a>
+							</div>
+					
+		<div align="center"><ul id="f_list"><li>Offline version created on 2018-01-17 - <a target="manual" href="http://alphamanual.audacityteam.org/man/Repeat">Check current version of this page (development Manual)</a></li></ul></div>
+</div>
+		</div>
+		</body></html>
