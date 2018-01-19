@@ -2473,7 +2473,7 @@ HEREDOC*/
  * @returns {string}
  * @constructor
  */
-function MakeKeyboardReference(from, prefix){
+function MakeKeyboardReference(from, prefix, type){
   var i;
   var str = "";
   var Name ="";
@@ -2485,6 +2485,7 @@ function MakeKeyboardReference(from, prefix){
   var subsAllowed = false;
   var TopName = "";
   var bEmpty =true;
+  var bIsAutomation = type == "automation";
 
   //console.log( "Keyboard from:"+from+" prefix:"+prefix );
   for(i=from;i< App.Menus.length;i++){
@@ -2511,31 +2512,54 @@ function MakeKeyboardReference(from, prefix){
         str += "{{note| No special notes for "+Name+" }}\r\n";
       str += "{| class=\"prettytablerows\" rules = \"rows\" border = \"2\"" +
         " width=\"100%\"\r\n";
+      if( bIsAutomation )
+          str += "!width=\"15%\"|Automation Id\r\n";
       str += "!width=\"15%\"|Action\r\n";
-      str += "!width=\"10%\"|Shortcut\r\n";
-      str += "!width=\"75%\"|Description\r\n";
+      if( !bIsAutomation ){
+        str += "!width=\"10%\"|Shortcut\r\n";
+        str += "!width=\"75%\"|Description\r\n";
+      }
+      else {
+        str += "!width=\"30%\"|Parameters\r\n";
+        str += "!width=\"55%\"|Description\r\n";
+      }
       Prefix = Name;
       subsAllowed = true;
       bEmpty = true;
       TopName = Name;
     }
     else if( boxIndent == (indent+1) ){
-      str += "|-\r\n";
-      if( boxIndent == 1 )
-        str += "|[["+TopName+ "_Menu#" + lowName + "|" + Name + "]]\r\n";
-      else
-        str += "|[["+prefix + "_Menu:_" + TopName+ "#" + lowName + "|" + Name + "]]\r\n";
-      if( Box[3] == "" )
-        str += "|{{unassigned}}\r\n";
-      else if( App.ExtraShortcuts.indexOf( Box[3] ) >= 0 )
-        str += "|{{fullshortcut|"+Box[3]+"}}\r\n";
-      else
-        str += "|{{shortcut|"+Box[3]+"}}\r\n";
-      if( Box.long )
-        str += "|"+Box.long + "\r\n";
-      else
-        str += "| no tip string.\r\n";
-      bEmpty = false;
+      if( !bIsAutomation || (Box.id != undefined ) ){
+        str += "|-\r\n";
+        if( bIsAutomation ){
+          str += "|" + Box.id + "\r\n";
+        }
+        if( boxIndent == 1 )
+          str +=
+            "|[[" + TopName + "_Menu#" + lowName + "|" + Name + "]]\r\n"; else
+          str +=
+            "|[[" + prefix + "_Menu:_" + TopName + "#" + lowName + "|" + Name +
+            "]]\r\n";
+        if( bIsAutomation ){
+          if( Box.params != undefined ){
+            str += "|" + Box.params + "\r\n";
+          } else {
+            str += "|''none''\r\n";
+          }
+
+        } else {
+          if( Box[3] == "" )
+            str += "|{{unassigned}}\r\n";
+          else if( App.ExtraShortcuts.indexOf(Box[3]) >= 0 )
+            str += "|{{fullshortcut|" + Box[3] + "}}\r\n";
+          else
+            str += "|{{shortcut|" + Box[3] + "}}\r\n";
+        }
+        if( Box.long )
+          str += "|" + Box.long + "\r\n"; else
+          str += "| no tip string.\r\n";
+        bEmpty = false;
+      }
     }
 
     var nextIndent = -1;
@@ -2556,7 +2580,7 @@ function MakeKeyboardReference(from, prefix){
       str = "";
       if( SubItems.length > 0  ){
         for(j=0;j<SubItems.length ;j++){
-          results += MakeKeyboardReference(SubItems[j], TopName );
+          results += MakeKeyboardReference(SubItems[j], TopName, type );
         }
         SubItems=[];
       }
@@ -2601,6 +2625,10 @@ function ZipTheTips( ){
             Tip.long = Tip.long.replace( '+', Tip.short );
           Menu[ 'short' ] = Tip.short;
           Menu[ 'long' ] = Tip.long;
+          if( Tip.id != undefined )
+            Menu[ 'id' ] = Tip.id;
+          if( Tip.params != undefined )
+            Menu[ 'params' ] = Tip.params;
           if( Tip.long.indexOf( Tip.short) == 0 )
             Tip.long = Tip.long.replace( Tip.short, '+' );
           str += "{ key:   \""+SafeQuote(Tip.key) + "\",\r\n";
@@ -2627,7 +2655,17 @@ function ZipTheTips( ){
  */
 Audacity.KeyboardReference = function KeyboardReferenceTemplate(){
   ZipTheTips();
-  return MakeKeyboardReference(0,"");
+  return MakeKeyboardReference(0,"", "keyboard");
+};
+
+/**
+ * Template 'here doc'
+ * @returns {string}
+ * @constructor
+ */
+Audacity.AutomationReference = function AutomationReferenceTemplate(){
+    ZipTheTips();
+    return MakeKeyboardReference(0,"", "automation");
 };
 
 

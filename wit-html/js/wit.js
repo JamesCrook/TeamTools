@@ -1082,8 +1082,10 @@ function OnSpecial(){
   var date = new Date();
   var nMillis = date.getTime();
 
-  if( str.indexOf( 'localhost' ) != -1)
+  if( str.indexOf( 'localhost' ) != -1){
     fileActionLoader(Async, "EVAL", "./raw/raw_menu.txt");
+    fileActionLoader(Async, "EVAL", "./raw/raw_tooltips.txt");
+  }
   else {
     fileActionLoader(Async, "EVAL",
       "https://wiki.audacityteam.org/wiki/WIT_Audacity_Menus?action=raw&time=" +
@@ -1185,4 +1187,8 @@ function OnGetMenuImageMaps(arg){
 
 function OnGetKeyboardReference(arg){
   DownloadDurl( "KeyboardReference.txt", DurlOfText(App.KeyboardReference()) );
+}
+
+function OnGetAutomationReference(arg){
+  DownloadDurl( "AutomationReference.txt", DurlOfText(App.AutomationReference()) );
 }
