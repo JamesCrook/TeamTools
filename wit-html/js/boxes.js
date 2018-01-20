@@ -2220,6 +2220,189 @@ Audacity.Tips =
 ];
 
 
+
+Audacity.Commands = [
+    { id: "Amplify", name: "Amplify", params: [
+        { key: "Ratio", type: "float", default: "0.900000"},
+    ]},
+    { id: "AutoDuck", name: "Auto Duck", params: [
+        { key: "DuckAmountDb", type: "double", default: "-12.000000"},
+        { key: "InnerFadeDownLen", type: "double", default: "0.000000"},
+        { key: "InnerFadeUpLen", type: "double", default: "0.000000"},
+        { key: "OuterFadeDownLen", type: "double", default: "0.500000"},
+        { key: "OuterFadeUpLen", type: "double", default: "0.500000"},
+        { key: "ThresholdDb", type: "double", default: "-30.000000"},
+        { key: "MaximumPause", type: "double", default: "1.000000"},
+    ]},
+    { id: "BassAndTreble", name: "Bass and Treble", params: [
+        { key: "Bass", type: "double", default: "0.000000"},
+        { key: "Treble", type: "double", default: "0.000000"},
+        { key: "Gain", type: "double", default: "0.000000"},
+        { key: "Link Sliders", type: "bool", default: "False"},
+    ]},
+    { id: "ChangePitch", name: "Change Pitch", params: [
+        { key: "Percentage", type: "double", default: "0.000000"},
+        { key: "SBSMS", type: "bool", default: "False"},
+    ]},
+    { id: "ChangeSpeed", name: "Change Speed", params: [
+        { key: "Percentage", type: "double", default: "0.000000"},
+    ]},
+    { id: "ChangeTempo", name: "Change Tempo", params: [
+        { key: "Percentage", type: "double", default: "0.000000"},
+        { key: "SBSMS", type: "bool", default: "False"},
+    ]},
+    { id: "Chirp", name: "Chirp", params: [
+        { key: "StartFreq", type: "double", default: "440.000000"},
+        { key: "EndFreq", type: "double", default: "1320.000000"},
+        { key: "StartAmp", type: "double", default: "0.800000"},
+        { key: "EndAmp", type: "double", default: "0.100000"},
+        { key: "Waveform", type: "enum", default: "0",
+            enum : ["Sine", "Square", "Sawtooth", "Square, no alias", ]
+        },
+        { key: "Interpolation", type: "enum", default: "0",
+            enum : ["Linear", "Logarithmic", ]
+        },
+    ]},
+    { id: "ClickRemoval", name: "Click Removal", params: [
+        { key: "Threshold", type: "int", default: "200"},
+        { key: "Width", type: "int", default: "20"},
+    ]},
+    { id: "Compressor", name: "Compressor", params: [
+        { key: "Threshold", type: "double", default: "-12.000000"},
+        { key: "NoiseFloor", type: "double", default: "-40.000000"},
+        { key: "Ratio", type: "double", default: "2.000000"},
+        { key: "AttackTime", type: "double", default: "0.200000"},
+        { key: "ReleaseTime", type: "double", default: "1.000000"},
+        { key: "Normalize", type: "bool", default: "True"},
+        { key: "UsePeak", type: "bool", default: "False"},
+    ]},
+    { id: "DtmfTones", name: "DTMF Tones", params: [
+        { key: "Sequence", type: "string", default: "audacity"},
+        { key: "Duty Cycle", type: "double", default: "55.000000"},
+        { key: "Amplitude", type: "double", default: "0.800000"},
+    ]},
+    { id: "DemoCommand", name: "Demo Command", params: [
+        { key: "Delay", type: "float", default: "1.000000"},
+        { key: "Decay", type: "float", default: "0.500000"},
+    ]},
+    { id: "Distortion", name: "Distortion", params: [
+        { key: "Type", type: "enum", default: "0",
+            enum : ["Hard Clipping", "Soft Clipping", "Soft Overdrive", "Medium Overdrive", "Hard Overdrive", "Cubic Curve (odd harmonics)", "Even Harmonics", "Expand and Compress", "Leveller", "Rectifier Distortion", "Hard Limiter 1413", ]
+        },
+        { key: "DC Block", type: "bool", default: "False"},
+        { key: "Threshold dB", type: "double", default: "-6.000000"},
+        { key: "Noise Floor", type: "double", default: "-70.000000"},
+        { key: "Parameter 1", type: "double", default: "50.000000"},
+        { key: "Parameter 2", type: "double", default: "50.000000"},
+        { key: "Repeats", type: "int", default: "1"},
+    ]},
+    { id: "Echo", name: "Echo", params: [
+        { key: "Delay", type: "float", default: "1.000000"},
+        { key: "Decay", type: "float", default: "0.500000"},
+    ]},
+    { id: "Equalization", name: "Equalization", params: [
+        { key: "FilterLength", type: "size_t", default: "4001"},
+        { key: "CurveName", type: "string", default: "unnamed"},
+        { key: "InterpolateLin", type: "bool", default: "False"},
+        { key: "InterpolationMethod", type: "enum", default: "0",
+            enum : ["B-spline", "Cosine", "Cubic", ]
+        },
+    ]},
+    { id: "FindClipping", name: "Find Clipping", params: [
+        { key: "Duty Cycle Start", type: "int", default: "3"},
+        { key: "Duty Cycle End", type: "int", default: "3"},
+    ]},
+    { id: "Noise", name: "Noise", params: [
+        { key: "Type", type: "enum", default: "0",
+            enum : ["White", "Pink", "Brownian", ]
+        },
+        { key: "Amplitude", type: "double", default: "0.800000"},
+    ]},
+    { id: "Normalize", name: "Normalize", params: [
+        { key: "Level", type: "double", default: "-1.000000"},
+        { key: "ApplyGain", type: "bool", default: "True"},
+        { key: "RemoveDcOffset", type: "bool", default: "True"},
+        { key: "StereoIndependent", type: "bool", default: "False"},
+    ]},
+    { id: "Paulstretch", name: "Paulstretch", params: [
+        { key: "Stretch Factor", type: "float", default: "10.000000"},
+        { key: "Time Resolution", type: "float", default: "0.250000"},
+    ]},
+    { id: "Phaser", name: "Phaser", params: [
+        { key: "Stages", type: "int", default: "2"},
+        { key: "DryWet", type: "int", default: "128"},
+        { key: "Freq", type: "double", default: "0.400000"},
+        { key: "Phase", type: "double", default: "0.000000"},
+        { key: "Depth", type: "int", default: "100"},
+        { key: "Feedback", type: "int", default: "0"},
+        { key: "Gain", type: "double", default: "-6.000000"},
+    ]},
+    { id: "Repeat", name: "Repeat", params: [
+        { key: "Count", type: "int", default: "1"},
+    ]},
+    { id: "Reverb", name: "Reverb", params: [
+        { key: "RoomSize", type: "double", default: "75.000000"},
+        { key: "Delay", type: "double", default: "10.000000"},
+        { key: "Reverberance", type: "double", default: "50.000000"},
+        { key: "HfDamping", type: "double", default: "50.000000"},
+        { key: "ToneLow", type: "double", default: "100.000000"},
+        { key: "ToneHigh", type: "double", default: "100.000000"},
+        { key: "WetGain", type: "double", default: "-1.000000"},
+        { key: "DryGain", type: "double", default: "-1.000000"},
+        { key: "StereoWidth", type: "double", default: "100.000000"},
+        { key: "WetOnly", type: "bool", default: "False"},
+    ]},
+    { id: "ScreenshotCommand", name: "Screenshot", params: [
+        { key: "Path", type: "string", default: ""},
+        { key: "CaptureWhat", type: "enum", default: "window",
+            enum : ["window", "fullwindow", "windowplus", "fullscreen", "toolbars", "menus", "effects", "preferences", "selectionbar", "spectralselection", "tools", "transport", "mixer", "meter", "playmeter", "recordmeter", "edit", "device", "scrub", "transcription", "trackpanel", "ruler", "tracks", "firsttrack", "secondtrack", ]
+        },
+        { key: "Background", type: "enum", default: "None",
+            enum : ["Blue", "White", "None", ]
+        },
+    ]},
+    { id: "TimeScale", name: "Sliding Time Scale/Pitch Shift", params: [
+        { key: "RatePercentChangeStart", type: "double", default: "0.000000"},
+        { key: "RatePercentChangeEnd", type: "double", default: "0.000000"},
+        { key: "PitchHalfStepsStart", type: "double", default: "0.000000"},
+        { key: "PitchHalfStepsEnd", type: "double", default: "0.000000"},
+        { key: "PitchPercentChangeStart", type: "double", default: "0.000000"},
+        { key: "PitchPercentChangeEnd", type: "double", default: "0.000000"},
+    ]},
+    { id: "Tone", name: "Tone", params: [
+        { key: "Frequency", type: "double", default: "440.000000"},
+        { key: "Amplitude", type: "double", default: "0.800000"},
+        { key: "Waveform", type: "enum", default: "0",
+            enum : ["Sine", "Square", "Sawtooth", "Square, no alias", ]
+        },
+        { key: "Interpolation", type: "enum", default: "0",
+            enum : ["Linear", "Logarithmic", ]
+        },
+    ]},
+    { id: "TruncateSilence", name: "Truncate Silence", params: [
+        { key: "Db", type: "enum", default: "0",
+            enum : ["-20 dB", "-25 dB", "-30 dB", "-35 dB", "-40 dB", "-45 dB", "-50 dB", "-55 dB", "-60 dB", "-65 dB", "-70 dB", "-75 dB", "-80 dB", ]
+        },
+        { key: "Action", type: "enum", default: "0",
+            enum : ["Truncate Detected Silence", "Compress Excess Silence", ]
+        },
+        { key: "Minimum", type: "double", default: "0.500000"},
+        { key: "Truncate", type: "double", default: "0.500000"},
+        { key: "Compress", type: "double", default: "50.000000"},
+        { key: "Independent", type: "bool", default: "False"},
+    ]},
+    { id: "Wahwah", name: "Wahwah", params: [
+        { key: "Freq", type: "double", default: "1.500000"},
+        { key: "Phase", type: "double", default: "0.000000"},
+        { key: "Depth", type: "int", default: "70"},
+        { key: "Resonance", type: "double", default: "2.500000"},
+        { key: "Offset", type: "int", default: "30"},
+        { key: "Gain", type: "double", default: "-6.000000"},
+    ]},
+];
+
+
+
 function rectString( x1,y1,x2,y2, name, tip ){
   var str = "rect ";
   str += ("    "+x1).slice(-4)+ " ";
@@ -2532,7 +2715,7 @@ function MakeKeyboardReference(from, prefix, type){
       if( !bIsAutomation || (Box.id != undefined ) ){
         str += "|-\r\n";
         if( bIsAutomation ){
-          str += "|" + Box.id + "\r\n";
+          str += "|'''" + Box.id + ":'''\r\n";
         }
         if( boxIndent == 1 )
           str +=
@@ -2644,9 +2827,87 @@ function ZipTheTips( ){
     }
   }
   //console.log( str );
-  console.log("Leftovers: ");
+  console.log("Tip Leftovers: ");
   console.log( Unused );
 }
+
+/*
+
+{ id: "ScreenshotCommand", name: "Screenshot", params: [
+    { key: "Path", type: "string", default: ""},
+    { key: "CaptureWhat", type: "enum", default: "window",
+        enum : ["window", "fullwindow", "windowplus", "fullscreen", "toolbars", "menus", "effects", "preferences", "selectionbar", "spectralselection", "tools", "transport", "mixer", "meter", "playmeter", "recordmeter", "edit", "device", "scrub", "transcription", "trackpanel", "ruler", "tracks", "firsttrack", "secondtrack", ]
+    },
+    { key: "Background", type: "enum", default: "None",
+        enum : ["Blue", "White", "None", ]
+    },
+]},
+*/
+
+/**
+ *
+ * @param params
+ * @returns {string}
+ * @constructor
+ */
+function PrintableOfParams( params ){
+    var str = "";
+    var i;
+    var j;
+    for( i=0;i<params.length;i++){
+        var item = params[i];
+        str += "''"+item.type + "'' '''" + item.key + "''', (default:"+item.default + ")<br>\r\n";
+        if( item.type == "enum" ){
+            for( j=0;j< item.enum.length ;j++){
+                var eItem = item.enum[ j ];
+                str += "* " + eItem + "\r\n";
+            }
+        }
+    }
+    return str;
+}
+
+function ZipTheCommands( ){
+    var i;
+    var j;
+    var Unused = [];
+    var str = "";
+    var key;
+    var Com = {};
+    for(i=0;i<App.Commands.length;i++){
+        Com = App.Commands[i];
+        Unused.push( Com  );
+    }
+
+    //console.log( str );
+    for( j=0;j<App.Menus.length; j++){
+        var Menu = App.Menus[j];
+        var Name = Menu[2];
+        Name = Name.replace("...", "" );
+        if( Name.indexOf("---") < 0 ){
+            if( Menu[0]==0 )
+                str+="\r\n// "+Name +"\r\n";
+            for(i=0;i<Unused.length;i++){
+                if( Unused[i].name == Name ){
+                    Com= Unused[i];
+                    if( Com.id != undefined )
+                        Menu[ 'id' ] = Com.id;
+                    if( Com.params != undefined )
+                        Menu[ 'params' ] = PrintableOfParams( Com.params);
+                    Unused.splice(i,1);
+                    break;
+                }
+            }
+//            if( !Menu.short ){
+//                console.log( "Unmatched: "+ Name );
+//            }
+        }
+    }
+    //console.log( str );
+    console.log("Command Leftovers: ");
+    console.log( Unused );
+}
+
 
 /**
  * Template 'here doc'
@@ -2665,6 +2926,7 @@ Audacity.KeyboardReference = function KeyboardReferenceTemplate(){
  */
 Audacity.AutomationReference = function AutomationReferenceTemplate(){
     ZipTheTips();
+    ZipTheCommands();
     return MakeKeyboardReference(0,"", "automation");
 };
 
