@@ -347,3 +347,6 @@ Audacity.DoxyBoxes = [
     [  "Status" ],
     [ "Grab Handle"],
 ];
+
+AudacityDoxed.DoxyLinks = Audacity.DoxyLinks;
+AudacityDoxed.DoxyBoxes = Audacity.DoxyBoxes;

@@ -4,11 +4,51 @@
 
 var Audacity = {};
 
+Audacity.Name = "Audacity";
 Audacity.AnnotationMode = false;
 Audacity.KeepPanel = false;
 Audacity.NumbersOnScreen = false;
 Audacity.ShowUrls = false;
 Audacity.ShowDoxygen = true;
+Audacity.Image = "./images/blank-links.png";
+Audacity.Menu = 0;
+
+
+var AudacityDoxed = {};
+AudacityDoxed.Name = "AudacityDoxed";
+AudacityDoxed.AnnotationMode = false;
+AudacityDoxed.KeepPanel = false;
+AudacityDoxed.NumbersOnScreen = false;
+AudacityDoxed.ShowUrls = false;
+AudacityDoxed.ShowDoxygen = true;
+AudacityDoxed.Image = "./images/audacity-blocks.png";
+AudacityDoxed.Menu = -1;
+
+AudacityDoxed.Boxes = [
+  [ 1,1,12,665,274, "Audacity" ],
+  [ 2,4,87,143,274, "AudioIo" ],
+  [ 2,157,87,284,274, "Blockfiles" ],
+  [ 2,281,87,427,274, "ShuttleGui" ],
+  [ 2,485,87,663,180, "Built-In Effects" ],
+  [ 2,427,87,663,274, "Commands" ],
+  [ 2,1,12,665,274, "Rest of Audacity" ],
+  [ 1,2,305,666,573, "Support" ],
+  [ 2,5,317,147,438, "PortAudio" ],
+  [ 2,8,440,547,483, "Platform-specific Implementation Layer" ],
+  [ 2,148,306,546,440, "wxWidgets" ],
+  [ 3,304,304,405,379, "wxWindow" ],
+  [ 3,170,305,271,382, "wxFile" ],
+  [ 3,433,305,534,381, "wxMenu" ],
+  [ 3,148,326,546,440, "Rest of wxWidgets" ],
+  [ 2,548,319,660,569, "Other Supporting Libraries" ],
+  [ 2,7,480,546,570, "OS" ],
+  [ 1,666,13,860,572, "Plugins" ],
+  [ 2,688,18,856,120, "Script Languages" ],
+  [ 2,756,118,828,170, "Pipe" ],
+  [ 2,668,170,860,270, "Scripting" ],
+  [ 2,666,313,866,418, "Plugin Effects" ],
+  [ 2,667,468,860,572, "Plugin Converters" ],
+];
 
 
 // These are the boxes on the main image map.
@@ -2400,6 +2440,17 @@ Audacity.Commands = [
         { key: "Gain", type: "double", default: "-6.000000"},
     ]},
 ];
+
+
+//AudacityDoxed.Boxes = Audacity.Boxes;
+AudacityDoxed.Menus = Audacity.Menus;
+AudacityDoxed.BoxUrls = Audacity.BoxUrls;
+AudacityDoxed.MenuUrls = Audacity.MenuUrls;
+AudacityDoxed.ExtraShortcuts = Audacity.ExtraShortcuts;
+AudacityDoxed.Tips = Audacity.Tips;
+AudacityDoxed.Commands = Audacity.Commands;
+
+
 
 
 

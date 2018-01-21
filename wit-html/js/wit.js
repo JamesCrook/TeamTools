@@ -145,7 +145,7 @@ function GuiInit(){
   Gui.Ctx = Gui.Canvas.getContext("2d");
   Gui.DoesFade = true;
   Gui.Rect = [0,0,1225,587];
-  Gui.BackDraw = function() { Gui.Ctx.drawImage(Gui.Img, 0, 0);}
+  Gui.BackDraw = function() { Gui.Ctx.drawImage(Gui.Img, 0, 0);};
   Gui.FrontDraw = function( x,y,w,h ){
     Gui.Ctx.drawImage(Gui.Img, x, y, w, h, x, y, w, h);
   }
@@ -848,7 +848,6 @@ function UrlFromBoxName( name ){
 /**
  *
  * @param event
- * @constructor
  */
 function UpdateMenuSelection( event ){
   var l;
@@ -924,7 +923,7 @@ function Descend( event, options ){
 
   if( Level < 1 )
     EmptyLevel();
-  MenuMode = (Level <= 1) && (ClickedBox == 0);
+  MenuMode = (Level <= 1) && (ClickedBox == App.Menu);
   if( MenuMode ){
     Menus[1].iSel = -1;
   }
@@ -934,7 +933,6 @@ function Descend( event, options ){
 /**
  *
  * @param event
- * @constructor
  */
 function UpdateSelection( event ){
   TargetName = "";
@@ -1191,4 +1189,20 @@ function OnGetKeyboardReference(arg){
 
 function OnGetAutomationReference(arg){
   DownloadDurl( "AutomationReference.txt", DurlOfText(App.AutomationReference()) );
+}
+
+function OnGetNextApp(arg){
+  if( App.Name == "Audacity" )
+    App = AudacityDoxed;
+  else
+    App = Audacity;
+
+  Gui.Img.onload = function(){
+    LastHover = HoverBox-1;
+    GuiInit();
+    ClickerInit();
+    MayRefresh();
+  };
+  Gui.Img.src =  App.Image;
+  //Gui.BackDraw = function() { Gui.Ctx.drawImage(Gui.Img, 0, 0);};
 }
