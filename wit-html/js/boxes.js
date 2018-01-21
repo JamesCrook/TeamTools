@@ -21,16 +21,16 @@ AudacityDoxed.KeepPanel = false;
 AudacityDoxed.NumbersOnScreen = false;
 AudacityDoxed.ShowUrls = false;
 AudacityDoxed.ShowDoxygen = true;
-AudacityDoxed.Image = "./images/audacity-blocks.png";
+AudacityDoxed.Image = "./images/audacity-blocks2.png";
 AudacityDoxed.Menu = -1;
 
 AudacityDoxed.Boxes = [
   [ 1,1,12,665,274, "Audacity" ],
   [ 2,4,87,143,274, "AudioIo" ],
-  [ 2,157,87,284,274, "Blockfiles" ],
   [ 2,281,87,427,274, "ShuttleGui" ],
-  [ 2,485,87,663,180, "Built-In Effects" ],
+  [ 2,157,87,284,274, "Blockfiles" ],
   [ 2,427,87,663,274, "Commands" ],
+  [ 3,485,87,663,180, "Built-In Effects" ],
   [ 2,1,12,665,274, "Rest of Audacity" ],
   [ 1,2,305,666,573, "Support" ],
   [ 2,5,317,147,438, "PortAudio" ],
@@ -40,14 +40,41 @@ AudacityDoxed.Boxes = [
   [ 3,170,305,271,382, "wxFile" ],
   [ 3,433,305,534,381, "wxMenu" ],
   [ 3,148,326,546,440, "Rest of wxWidgets" ],
-  [ 2,548,319,660,569, "Other Supporting Libraries" ],
   [ 2,7,480,546,570, "OS" ],
+  [ 2,548,319,660,569, "Other Supporting Libraries" ],
   [ 1,666,13,860,572, "Plugins" ],
   [ 2,688,18,856,120, "Script Languages" ],
-  [ 2,756,118,828,170, "Pipe" ],
-  [ 2,668,170,860,270, "Scripting" ],
-  [ 2,666,313,866,418, "Plugin Effects" ],
   [ 2,667,468,860,572, "Plugin Converters" ],
+  [ 2,756,118,828,170, "Pipe" ],
+  [ 2,666,313,866,418, "Plugin Effects" ],
+  [ 2,668,170,860,270, "Scripting" ],
+];
+
+AudacityDoxed.BoxUrls = [
+  [ "Audacity", "Doxygenated_Help.html#Audacity" ],
+  [ "AudioIo", "Doxygenated_Help.html#AudioIo" ],
+  [ "ShuttleGui", "Doxygenated_Help.html#ShuttleGui" ],
+  [ "Blockfiles", "Doxygenated_Help.html#Blockfiles" ],
+  [ "Commands", "Doxygenated_Help.html#Commands" ],
+  [ "Built-In Effects", "Doxygenated_Help.html#Built-In Effects" ],
+  [ "Rest of Audacity", "Doxygenated_Help.html#Rest of Audacity" ],
+  [ "Support", "Doxygenated_Help.html#Support" ],
+  [ "PortAudio", "Doxygenated_Help.html#PortAudio" ],
+  [ "Platform-specific Implementation Layer", "Doxygenated_Help.html#Platform-specific Implementation Layer" ],
+  [ "wxWidgets", "Doxygenated_Help.html#wxWidgets" ],
+  [ "wxWindow", "Doxygenated_Help.html#wxWindow" ],
+  [ "wxFile", "Doxygenated_Help.html#wxFile" ],
+  [ "wxMenu", "Doxygenated_Help.html#wxMenu" ],
+  [ "Rest of wxWidgets", "Doxygenated_Help.html#Rest of wxWidgets" ],
+  [ "OS", "Doxygenated_Help.html#OS" ],
+  [ "Other Supporting Libraries", "Doxygenated_Help.html#Other Supporting" +
+  " Libraries" ],
+  [ "Plugins", "Doxygenated_Help.html#Plugins" ],
+  [ "Script Languages", "Doxygenated_Help.html#Script Languages" ],
+  [ "Plugin Converters", "Doxygenated_Help.html#Plugin Converters" ],
+  [ "Pipe", "Doxygenated_Help.html#Pipe" ],
+  [ "Plugin Effects", "Doxygenated_Help.html#Plugin Effects" ],
+  [ "Scripting", "Doxygenated_Help.html#Scripting" ],
 ];
 
 
@@ -2444,7 +2471,7 @@ Audacity.Commands = [
 
 //AudacityDoxed.Boxes = Audacity.Boxes;
 AudacityDoxed.Menus = Audacity.Menus;
-AudacityDoxed.BoxUrls = Audacity.BoxUrls;
+//AudacityDoxed.BoxUrls = Audacity.BoxUrls;
 AudacityDoxed.MenuUrls = Audacity.MenuUrls;
 AudacityDoxed.ExtraShortcuts = Audacity.ExtraShortcuts;
 AudacityDoxed.Tips = Audacity.Tips;

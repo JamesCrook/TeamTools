@@ -326,11 +326,25 @@ function RedrawClicker(){
   DrawAnnotationBox( App.Boxes[box][5].replace(/ /g,'') + "Annotated", x1, y1, x2, y2 );
 }
 
+function AffineBoxes(){
+  var i;
+  for(i=0;i<AudacityDoxed.Boxes.length;i++){
+    var Box = AudacityDoxed.Boxes[i];
+    Box[1] = Box[1] * 600/868 + 132;
+    Box[2] = Box[2] * 600/868 + 90;
+    Box[3] = Box[3] * 600/868 + 132;
+    Box[4] = Box[4] * 600/868 + 90;
+  }
+
+}
+
+
 window.onload = function(){
   Message = document.getElementById("message");
   Scroller = document.getElementById("scroller");
   UrlHolder = document.getElementById("url-holder");
   DoxyUrlHolder = document.getElementById("doxy-url-holder");
+  AffineBoxes();
   GuiInit();
   ClickerInit();
   MayRefresh();
