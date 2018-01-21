@@ -8,7 +8,7 @@
 function DrawFadedBack( Gui ){
   Gui.BackDraw();
   Gui.Ctx.globalAlpha =
-    Audacity.AnnotationMode ? 1.0 : 0.85;
+    App.Sys.AnnotationMode ? 1.0 : 0.85;
   Gui.Ctx.fillStyle = 'white';
   var R = Gui.Rect;
   Gui.Ctx.fillRect(R[0],R[1], R[2]-R[0], R[3]-R[1]);
@@ -53,7 +53,7 @@ function DrawRedSurround( Gui, x, y, w, h ){
 }
 
 function DrawArrow( v1,v2, style ){
-  if( Audacity.AnnotationMode && (style == 0) )
+  if( App.Sys.AnnotationMode && (style == 0) )
     return;
 
   var Head = 'black';

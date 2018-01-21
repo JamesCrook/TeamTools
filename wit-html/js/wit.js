@@ -258,10 +258,10 @@ function DrawAnnotationBox( name, x1,y1,x2,y2 )
   Annotated.width = x2 - x1 -2;
   Annotated.height = y2 - y1 -2;
 
-  Annotated.name = name + (App.AnnotationMode ? "" :"A");
+  Annotated.name = name + (App.Sys.AnnotationMode ? "" :"A");
   Annotated.available = true;
 
-  if( !App.AnnotationMode )
+  if( !App.Sys.AnnotationMode )
     return;
 
   DrawDottedSurround(Clicker, x1, y1, x2 - x1, y2 - y1);
@@ -330,10 +330,10 @@ function AffineBoxes(){
   var i;
   for(i=0;i<AudacityDoxed.Boxes.length;i++){
     var Box = AudacityDoxed.Boxes[i];
-    Box[1] = Box[1] * 600/868 + 132;
-    Box[2] = Box[2] * 600/868 + 90;
-    Box[3] = Box[3] * 600/868 + 132;
-    Box[4] = Box[4] * 600/868 + 90;
+    Box[1] = Box[1] * 600/868 + 135;
+    Box[2] = Box[2] * 600/868 + 92;
+    Box[3] = Box[3] * 600/868 + 135;
+    Box[4] = Box[4] * 600/868 + 92;
   }
 
 }
@@ -441,7 +441,7 @@ function RefreshImage(Gui){
 
       // This calculation may move a second menu up relative to
       // its usual position to use less vertical space in the manual.
-      if( App.AnnotationMode && (i==3) ){
+      if( App.Sys.AnnotationMode && (i==3) ){
         var extraY = Menu.height - Menus[2].height;
         extraY += Menu.y - Menus[2].y;
         Menu.y -= Math.max( 0, extraY);
@@ -505,7 +505,7 @@ function RefreshImage(Gui){
       for( i=0;i<Gui.Boxes[Level].length; i++){
         ConnectBoxes( Level, i, 1 );
       }
-    } else if( App.AnnotationMode ) {
+    } else if( App.Sys.AnnotationMode ) {
       var dx = Gui.DoesFade ? 3 :-10;
       var dy = Gui.DoesFade ? 20 : 25;
       Gui.Ctx.font = "900 24px Helvetica";// heavier than bold.
@@ -561,7 +561,7 @@ function ScrollTo( Target ){
 }
 
 function ScrollToUrl( Target ){
-  if( App.KeepPanel )
+  if( App.Sys.KeepPanel )
     return;
   if( Target == "" )
     return;
@@ -1081,15 +1081,15 @@ function OnSpecial(){
   //alert( "At some point this button will do clever stuff");
   var str = window.location.href;
 
-  App.KeepPanel = false;
+  App.Sys.KeepPanel = false;
   ScrollToUrl( "special_menu.html" );
   SetUrlVisibility( false );
   SetDoxyUrlVisibility( true );
-  App.KeepPanel = true;
-  App.NumbersOnScreen = false;
-  App.AnnotationMode = false;
-  App.ShowUrls = false;
-  App.ShowDoxygen = true;
+  App.Sys.KeepPanel = true;
+  App.Sys.NumbersOnScreen = false;
+  App.Sys.AnnotationMode = false;
+  App.Sys.ShowUrls = false;
+  App.Sys.ShowDoxygen = true;
 
   var date = new Date();
   var nMillis = date.getTime();
@@ -1112,7 +1112,7 @@ function OnSpecial(){
 }
 
 function OnAnnotationMode(arg){
-  App.AnnotationMode =  arg.checked;
+  App.Sys.AnnotationMode =  arg.checked;
   LastHover = -2;
   MayRefresh();
 }
@@ -1125,18 +1125,18 @@ function SetDoxyUrlVisibility( value ){
 }
 
 function OnShowDoxygenUrls(arg){
-  App.ShowDoxygen = arg.checked;
-  SetDoxyUrlVisibility( App.ShowUrls || App.ShowDoxygen );
+  App.Sys.ShowDoxygen = arg.checked;
+  SetDoxyUrlVisibility( App.Sys.ShowUrls || App.Sys.ShowDoxygen );
 }
 
 function OnShowUrls(arg){
-  App.ShowUrls = arg.checked;
-  SetUrlVisibility( App.ShowUrls );
-  SetDoxyUrlVisibility( App.ShowUrls || App.ShowDoxygen );
+  App.Sys.ShowUrls = arg.checked;
+  SetUrlVisibility( App.Sys.ShowUrls );
+  SetDoxyUrlVisibility( App.Sys.ShowUrls || App.Sys.ShowDoxygen );
 }
 
 function OnKeepPanel(arg){
-  App.KeepPanel = arg.checked;
+  App.Sys.KeepPanel = arg.checked;
 }
 
 /**
@@ -1211,8 +1211,13 @@ function OnGetNextApp(arg){
   else
     App = Audacity;
 
+  HoverBox = -1;
+  LastHover = HoverBox;
+  Level = 0;
+
   Gui.Img.onload = function(){
     LastHover = HoverBox-1;
+    Level = 0;
     GuiInit();
     ClickerInit();
     MayRefresh();

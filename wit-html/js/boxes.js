@@ -2,25 +2,29 @@
  * Created by James Crook on 5/6/2017.
  */
 
+
+// Written so that each App can maintain its own Sys variables.
+  // Currently they all share the same one.
+var Sys = {};
+
+Sys.KeepPanel = true;
+Sys.NumbersOnScreen = false;
+Sys.AnnotationMode = false;
+Sys.ShowUrls = false;
+Sys.ShowDoxygen = true;
+
+
 var Audacity = {};
 
 Audacity.Name = "Audacity";
-Audacity.AnnotationMode = false;
-Audacity.KeepPanel = false;
-Audacity.NumbersOnScreen = false;
-Audacity.ShowUrls = false;
-Audacity.ShowDoxygen = true;
+Audacity.Sys = Sys;
 Audacity.Image = "./images/blank-links.png";
 Audacity.Menu = 0;
 
 
 var AudacityDoxed = {};
 AudacityDoxed.Name = "AudacityDoxed";
-AudacityDoxed.AnnotationMode = false;
-AudacityDoxed.KeepPanel = false;
-AudacityDoxed.NumbersOnScreen = false;
-AudacityDoxed.ShowUrls = false;
-AudacityDoxed.ShowDoxygen = true;
+AudacityDoxed.Sys = Sys;
 AudacityDoxed.Image = "./images/audacity-blocks2.png";
 AudacityDoxed.Menu = -1;
 
@@ -56,24 +60,24 @@ AudacityDoxed.BoxUrls = [
   [ "ShuttleGui", "Doxygenated_Help.html#ShuttleGui" ],
   [ "Blockfiles", "Doxygenated_Help.html#Blockfiles" ],
   [ "Commands", "Doxygenated_Help.html#Commands" ],
-  [ "Built-In Effects", "Doxygenated_Help.html#Built-In Effects" ],
-  [ "Rest of Audacity", "Doxygenated_Help.html#Rest of Audacity" ],
+  [ "Built-In Effects", "Doxygenated_Help.html#Built-In_Effects" ],
+  [ "Rest of Audacity", "Doxygenated_Help.html#Rest_of_Audacity" ],
   [ "Support", "Doxygenated_Help.html#Support" ],
   [ "PortAudio", "Doxygenated_Help.html#PortAudio" ],
-  [ "Platform-specific Implementation Layer", "Doxygenated_Help.html#Platform-specific Implementation Layer" ],
+  [ "Platform-specific Implementation Layer", "Doxygenated_Help.html#Platform-specific_Implementation_Layer" ],
   [ "wxWidgets", "Doxygenated_Help.html#wxWidgets" ],
   [ "wxWindow", "Doxygenated_Help.html#wxWindow" ],
   [ "wxFile", "Doxygenated_Help.html#wxFile" ],
   [ "wxMenu", "Doxygenated_Help.html#wxMenu" ],
-  [ "Rest of wxWidgets", "Doxygenated_Help.html#Rest of wxWidgets" ],
+  [ "Rest of wxWidgets", "Doxygenated_Help.html#Rest_of_wxWidgets" ],
   [ "OS", "Doxygenated_Help.html#OS" ],
-  [ "Other Supporting Libraries", "Doxygenated_Help.html#Other Supporting" +
-  " Libraries" ],
+  [ "Other Supporting Libraries", "Doxygenated_Help.html#Other_Supporting" +
+  "_Libraries" ],
   [ "Plugins", "Doxygenated_Help.html#Plugins" ],
-  [ "Script Languages", "Doxygenated_Help.html#Script Languages" ],
-  [ "Plugin Converters", "Doxygenated_Help.html#Plugin Converters" ],
+  [ "Script Languages", "Doxygenated_Help.html#Script_Languages" ],
+  [ "Plugin Converters", "Doxygenated_Help.html#Plugin_Converters" ],
   [ "Pipe", "Doxygenated_Help.html#Pipe" ],
-  [ "Plugin Effects", "Doxygenated_Help.html#Plugin Effects" ],
+  [ "Plugin Effects", "Doxygenated_Help.html#Plugin_Effects" ],
   [ "Scripting", "Doxygenated_Help.html#Scripting" ],
 ];
 
