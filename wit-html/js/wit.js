@@ -158,7 +158,7 @@ function ClickerInit(){
   Clicker.Canvas = document.getElementById("GuiCanvas");
   Clicker.Ctx = Gui.Canvas.getContext("2d");
   Clicker.DoesFade = false;
-  Clicker.Rect = [0,583,1225,740];
+  Clicker.Rect = [0,583,1225,665];
   Clicker.BackDraw = function(){
     var G = Clicker;
     var YY = Gui.Img.height;
@@ -797,11 +797,11 @@ function CraftOtherDoxyLink( UrlPair ){
 function LowUrl( Url ){
   var AlphaLink = AlphaManualLink( Url );
   var LocalLink = LocalManualLink( Url );
-  var str = "";
+  var str = "&nbsp;";
   str += " ~~ Alpha Manual: " + CraftAlphaLink(AlphaLink);
   str += " ~~ WIT Manual: " + CraftLocalLink(LocalLink);
-  UrlHolder.innerHTML = str;
-  str = "";
+  UrlHolder.innerHTML = str + " &nbsp;";
+  str = "&nbsp;";
   if( MenuComponent ){
     if( App.Doxy[ MenuComponent] )
       str+= " ~~ Doxygen: " + CraftDoxyLink( App.Doxy[ MenuComponent] );
@@ -812,7 +812,7 @@ function LowUrl( Url ){
       str+= " ~~ Doxygen: " + CraftOtherDoxyLink( App.Doxy2[ BoxComponent] );
     BoxComponent = '';
   }
-  DoxyUrlHolder.innerHTML = str + ' ~~';
+  DoxyUrlHolder.innerHTML = str + ' ~~ &nbsp;';
   return LocalLink;
 }
 
@@ -1118,10 +1118,10 @@ function OnAnnotationMode(arg){
 }
 
 function SetUrlVisibility( value ){
-  UrlHolder.style.display = value ? 'inline': 'none';
+  UrlHolder.style.display = value ? 'inline-block': 'none';
 }
 function SetDoxyUrlVisibility( value ){
-  DoxyUrlHolder.style.display = value ? 'inline': 'none';
+  DoxyUrlHolder.style.display = value ? 'inline-block': 'none';
 }
 
 function OnShowDoxygenUrls(arg){

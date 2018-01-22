@@ -28,21 +28,30 @@
     <script data-cfasync="false" src="./js/wit.js"></script>
 
 </head>
-<body>
-
-<div style="width:100%; text-align:center">
-    <h1>The Audacity "What is That?" Help Page</h1>
-    <h2>~~ Click on the diagram to find out more ~~</h2>
-    <span id="url-holder" style="display:none"></span><span id="doxy-url-holder" style="display:none"></span><br>
-    <div style="width:1225px;position:relative;display:inline-block;margin-left:auto;margin-right:auto;">
+<body style="color:white;background-image:url(images/header-home-bg.jpg);margin:0px;">
+<div style="width:100%; text-align:center;background:#1d2134;margin: 0px;">
+    <h1 style="margin:0px;padding-top:21px;">The Audacity "What is That?" Help Page</h1>
+    <div style="width:100%; text-align:center;background:#303b70">
+    <h2 style="color:#dcdcdc;">~~ Click on the diagram to find out more ~~</h2>
+    </div>
+</div>
+<div style="position:absolute;top:20px;left:15px;width:92px;height:92px;background-color:white;color:black;box-sizing:border-box;line-height:92px;border-radius:46px;">&nbsp;</div>
+<img style="width:70px;height:70px;position:absolute;top:30px;left:26px;" src="images/audacity-logo.png">
+<div style="text-align:center;">
+<div style="display:inline-block;text-align:center;">
+    <div id="url-holder" style="display:none;background-color:#f4f4f4;color:black;height:30px;line-height:30px;box-sizing:border-box;border-radius:15px;">
+&nbsp; Main URLs, here &nbsp;</div> &nbsp;
+    <div id="doxy-url-holder" style="display:none;background-color:#f4f4f4;color:black;height:30px;line-height:30px;box-sizing:border-box;border-radius:15px;">&nbsp; Doxygen URL, here &nbsp;</div>
+</div><br>
+        <div style="width:1225px;position:relative;display:inline-block;margin-left:auto;margin-right:auto;">
         <canvas id="GuiCanvas"
                 style="position:absolute;left:0px;top:0px;"
-                height="740px"
-                width="1225px"
+                height="665px"
+                width="1220px"
                 OnClick="ImageClick(event,true);"
                 OnMouseMove="ImageClick(event,false)"
                 alt="Clickable Canvas"></canvas>
-        <div id="buttons" style="position:absolute;left:865px;top:0px;width:348px;height:30px;background-color:#f4f4f4;border-color:#a5a5a5;border-style:solid;">
+        <div id="buttons" style="position:absolute;left:865px;top:0px;width:349px;height:30px;background-color:#f4f4f4;border-color:#f3f3f3;border-style:solid;">
             </div>
         <div id="buttons" style="position:absolute;left:935px;top:6px;">
                 <div style="position:relative;">
@@ -52,9 +61,9 @@
                 </div>
         </div>
 
-        <iframe id="scroller" style="position:absolute;left:865px;top:32px;"
-                height="551px"
-                width="350px"
+        <iframe id="scroller" style="position:absolute;left:865px;top:32px;border:0"
+                height="554px"
+                width="355px"
                 src="./scroller-contents/top_menu.html"
                 seamless></iframe>
     </div>
