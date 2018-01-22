@@ -30,18 +30,15 @@
                 <div class="mw-content-ltr" dir="ltr" id="mw-content-text"
                      lang="en"><p>
                 </p>
-                    <p><br/>
-                    </p>
                     <div class="intro"><br>This panel provides additional options
-                        that extend the functionality of WIT.  Most of these are very experimental.<br><br>
+                        that extend the functionality of WIT.<br><br>
                         If you can see this message, you have already successfully updated the menus
-                        using data from our wiki.  For example there is now an Ext menu, when you click on the menu bar.<br><br>
+                        using data from our wiki.  For example there is now an Extra menu, when you click on the menu bar.<br><br>
 
                     </div>
 
-
                     <ul>
-                        <li><input type="checkbox" OnClick="parent.OnKeepPanel( this );" checked="checked">
+                        <li><input type="checkbox" id="keep-open" OnClick="parent.OnKeepPanel( this );" checked="checked">
                             Keep this options panel open.</li>
                         <li><input type="checkbox" OnClick="parent.OnAnnotationMode( this );">
                             Enable annotation-capture mode.<br>
@@ -68,7 +65,7 @@
                         <li> <button onclick="parent.OnGetAutomationReference( this );">Download</button>
                             the automation reference.
                         </li>
-                        <li> <button onclick="parent.OnGetNextApp( this );">Next</button>
+                        <li> <button onclick="document.getElementById('keep-open').checked=false;parent.OnGetNextApp( this );">Next</button>
                             annotated image.
                         </li>
 

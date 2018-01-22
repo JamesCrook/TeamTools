@@ -5,8 +5,10 @@
 
 var App = Audacity;
 var Scroller;
-var UrlHolder;
+var ManualUrlHolder;
+var WitUrlHolder;
 var DoxyUrlHolder;
+var ClickTip;
 var RemoteUrl = "";
 var MenuComponent = "";
 var BoxComponent = "";
@@ -342,8 +344,10 @@ function AffineBoxes(){
 window.onload = function(){
   Message = document.getElementById("message");
   Scroller = document.getElementById("scroller");
-  UrlHolder = document.getElementById("url-holder");
+  ManualUrlHolder = document.getElementById("manual-url-holder");
+  WitUrlHolder = document.getElementById("wit-url-holder");
   DoxyUrlHolder = document.getElementById("doxy-url-holder");
+  ClickTip = document.getElementById("click-tip");
   AffineBoxes();
   GuiInit();
   ClickerInit();
@@ -797,22 +801,25 @@ function CraftOtherDoxyLink( UrlPair ){
 function LowUrl( Url ){
   var AlphaLink = AlphaManualLink( Url );
   var LocalLink = LocalManualLink( Url );
-  var str = "&nbsp;";
-  str += " ~~ Alpha Manual: " + CraftAlphaLink(AlphaLink);
-  str += " ~~ WIT Manual: " + CraftLocalLink(LocalLink);
-  UrlHolder.innerHTML = str + " &nbsp;";
-  str = "&nbsp;";
+  var str;
+  str = " &nbsp; &nbsp; ALPHA MANUAL: " + CraftAlphaLink(AlphaLink) +" &nbsp;" +
+    " &nbsp; ";
+  ManualUrlHolder.innerHTML = str;
+  str = " &nbsp; &nbsp; WIT MANUAL: " + CraftLocalLink(LocalLink) + " &nbsp;" +
+    " &nbsp; ";
+  WitUrlHolder.innerHTML = str;
+  str = " &nbsp; &nbsp;";
   if( MenuComponent ){
     if( App.Doxy[ MenuComponent] )
-      str+= " ~~ Doxygen: " + CraftDoxyLink( App.Doxy[ MenuComponent] );
+      str+= " DOXYGEN: " + CraftDoxyLink( App.Doxy[ MenuComponent] );
     MenuComponent = '';
   }
   else if( BoxComponent ){
     if( App.Doxy2[ BoxComponent] )
-      str+= " ~~ Doxygen: " + CraftOtherDoxyLink( App.Doxy2[ BoxComponent] );
+      str+= " DOXYGEN: " + CraftOtherDoxyLink( App.Doxy2[ BoxComponent] );
     BoxComponent = '';
   }
-  DoxyUrlHolder.innerHTML = str + ' ~~ &nbsp;';
+  DoxyUrlHolder.innerHTML = str + ' &nbsp; &nbsp; ';
   return LocalLink;
 }
 
@@ -1069,7 +1076,7 @@ function OnReset(){
   HoverBox = -1;
   MenuMode = false;
   MayRefresh();
-  ScrollToUrl( "top_menu.html" );
+  ScrollToUrl( App.TopUrl );
 }
 function OnManual(){
   window.open( RemoteUrl, "manual" );
@@ -1118,10 +1125,12 @@ function OnAnnotationMode(arg){
 }
 
 function SetUrlVisibility( value ){
-  UrlHolder.style.display = value ? 'inline-block': 'none';
+  ManualUrlHolder.style.display = value ? 'inline-block': 'none';
+  WitUrlHolder.style.display = value ? 'inline-block': 'none';
 }
 function SetDoxyUrlVisibility( value ){
   DoxyUrlHolder.style.display = value ? 'inline-block': 'none';
+  ClickTip.style.display = value ? 'none': 'block';
 }
 
 function OnShowDoxygenUrls(arg){
@@ -1214,6 +1223,7 @@ function OnGetNextApp(arg){
   HoverBox = -1;
   LastHover = HoverBox;
   Level = 0;
+  App.Sys.KeepPanel = false;
 
   Gui.Img.onload = function(){
     LastHover = HoverBox-1;

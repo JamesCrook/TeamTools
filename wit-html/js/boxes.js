@@ -7,11 +7,11 @@
   // Currently they all share the same one.
 var Sys = {};
 
-Sys.KeepPanel = true;
+Sys.KeepPanel = false;
 Sys.NumbersOnScreen = false;
 Sys.AnnotationMode = false;
 Sys.ShowUrls = false;
-Sys.ShowDoxygen = true;
+Sys.ShowDoxygen = false;
 
 
 var Audacity = {};
@@ -19,6 +19,7 @@ var Audacity = {};
 Audacity.Name = "Audacity";
 Audacity.Sys = Sys;
 Audacity.Image = "./images/blank-links.png";
+Audacity.TopUrl = "./top_menu.html";
 Audacity.Menu = 0;
 
 
@@ -26,6 +27,7 @@ var AudacityDoxed = {};
 AudacityDoxed.Name = "AudacityDoxed";
 AudacityDoxed.Sys = Sys;
 AudacityDoxed.Image = "./images/audacity-blocks2.png";
+AudacityDoxed.TopUrl = "./doxygenated_help.html";
 AudacityDoxed.Menu = -1;
 
 AudacityDoxed.Boxes = [
