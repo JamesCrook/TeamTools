@@ -97,7 +97,16 @@ S.EndStatic();
                             href="commands.html">Commands</a></span>
                     </h2>
                     <p>Commands are handled through a central registration system called PlugInManager.  The registration system can register commands, dlls, scripts, format converters, and potentially other kinds of thing too.  These have meta data associated with them such as the name and type, and origin.
-                        <p>The CommandManager is a subclass of PlugInManager.  Commands are a special kind of plug-in can be added into a menu, and they can be called from scripting.  Some commands have parameters.  Those that do will typically invoke a dialog to request those parameters, if invoked via a menu item.
+                        <p>The CommandManager is a subclass of PlugInManager.  Commands are a special kind of plug-in can be added into a menu, and they can be called from scripting.  Some commands have parameters.  Those that do will typically invoke a dialog to request those parameters, if invoked via a menu item.  Commands declare their parameters in a function.  This example is for the DTMF generator:
+<pre>
+bool EffectDtmf::DefineParams( ShuttleParams & S ){
+    S.Param( dtmfSequence,  Sequence );
+    S.Param( dtmfDutyCycle, DutyCycle );
+    S.Param( dtmfAmplitude, Amplitude );
+    return true;
+}
+</pre>
+                    <p>Our code used to have GetAutomationParameters() and SetAutomationParameters() functions.  Those are no longer needed per command, as DefineParams can do either.  DefineParams can also set defaults, validate inputs and provide help info about the command.  DefineParams cuts out a lot of repetitive code.
                     </p>
                     <h2><span class="mw-headline" id="Built-In_Effects"><a
                             href="builtin-effects.html">Built-in Effects</a></span>
