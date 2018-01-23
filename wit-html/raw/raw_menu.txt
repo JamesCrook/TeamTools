@@ -9,6 +9,8 @@
 
 
  <nowiki>
+
+
 Audacity.Menus =
   [
     [  0,  0, "File", "" ],

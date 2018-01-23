@@ -10,6 +10,7 @@ var WitUrlHolder;
 var DoxyUrlHolder;
 var ClickTip;
 var RemoteUrl = "";
+var SpecialUrl = "special_menu.html";
 var MenuComponent = "";
 var BoxComponent = "";
 var Message = null;
@@ -569,7 +570,10 @@ function ScrollToUrl( Target ){
     return;
   if( Target == "" )
     return;
-  Scroller.src = "./scroller-contents/" + Target;
+  if( Target.indexOf( "http" ) == 0 )
+    Scroller.src = Target;
+  else
+    Scroller.src = "./scroller-contents/" + Target;
   //console.log("Scroll to: "+Target + " -URL-");
 }
 
@@ -1089,7 +1093,7 @@ function OnSpecial(){
   var str = window.location.href;
 
   App.Sys.KeepPanel = false;
-  ScrollToUrl( "special_menu.html" );
+  ScrollToUrl( SpecialUrl );
   SetUrlVisibility( false );
   SetDoxyUrlVisibility( true );
   App.Sys.KeepPanel = true;
