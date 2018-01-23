@@ -10,7 +10,7 @@ var WitUrlHolder;
 var DoxyUrlHolder;
 var ClickTip;
 var RemoteUrl = "";
-var SpecialUrl = "special_menu.html";
+var SpecialUrl = "short_special_menu.html";
 var MenuComponent = "";
 var BoxComponent = "";
 var Message = null;
