@@ -36,38 +36,36 @@
                         using data from our wiki.  For example there is now an Extra menu, when you click on the menu bar.<br><br>
 
                     </div>
+                    <div style="margin:20px;">
 
-                    <ul>
-                        <li><input type="checkbox" id="keep-open" OnClick="parent.OnKeepPanel( this );" checked="checked">
-                            Keep this options panel open.</li>
-                        <li><input type="checkbox" OnClick="parent.OnAnnotationMode( this );">
+                        <input type="checkbox" id="keep-open" OnClick="parent.OnKeepPanel( this );" checked="checked">
+                            Keep this options panel open.<br>
+                        <input type="checkbox" OnClick="parent.OnAnnotationMode( this );">
                             Enable annotation-capture mode.<br>
-                        </li>
-                        <li><input type="checkbox" OnClick="parent.OnShowDoxygenUrls( this );" checked="checked">
-                            Show Doxygen URL (when available).</li>
-                    </ul><br>
-                    <em>The following buttons work in <b>Chrome browser only</b></em>
-                    <ul>
-                        <li> <button onclick="parent.OnGetImage( this );">Download</button>
-                            the current image.
-                        </li>
-                        <li> <button onclick="parent.OnGetMenuImageMaps( this );">Download</button>
-                            the all-menus image map.
-                        </li>
-                        <li> <button onclick="parent.OnGetToolbarImageMaps( this );">Download</button>
-                            the all-toolbars image map.
-                        </li>
-                        <li> <button onclick="parent.OnGetKeyboardReference( this );">Download</button>
-                            the keyboard reference.
-                        </li>
-                        <li> <button onclick="parent.OnGetAutomationReference( this );">Download</button>
-                            the automation reference.
-                        </li>
-                        <li> <button onclick="document.getElementById('keep-open').checked=false;parent.OnGetNextApp( this );">Next</button>
-                            annotated image.
-                        </li>
 
-                    </ul><br>
+                        <input type="checkbox" OnClick="parent.OnShowDoxygenUrls( this );" checked="checked">
+                            Show Doxygen URL (when available).<br><br>
+                        <button onclick="document.getElementById('keep-open').checked=false;parent.OnGetNextApp( this );">Next</button>
+                            annotated image.<br>
+                        </div>
+                    <em>The following buttons work in <b>Chrome browser only</b></em>
+                    <div style="margin-left:20px;margin-top:10px;line-height:2;">
+                        <button onclick="parent.OnGetImage( this );">Download</button>
+                            the current image.<br>
+
+                        <button onclick="parent.OnGetMenuImageMaps( this );">Download</button>
+                            the all-menus image map.<br>
+
+                        <button onclick="parent.OnGetToolbarImageMaps( this );">Download</button>
+                            the all-toolbars image map.<br>
+
+                        <button onclick="parent.OnGetKeyboardReference( this );">Download</button>
+                            the keyboard reference.<br>
+
+                        <button onclick="parent.OnGetAutomationReference( this );">Download</button>
+                            the automation reference.<br>
+
+                        </div>
 
 
                 </div>
