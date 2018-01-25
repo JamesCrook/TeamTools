@@ -11,6 +11,7 @@ var DoxyUrlHolder;
 var ClickTip;
 var RemoteUrl = "";
 var SpecialUrl = "short_special_menu.html";
+var ShiftSpecialUrl = "special_menu.html";
 var MenuComponent = "";
 var BoxComponent = "";
 var Message = null;
@@ -147,7 +148,7 @@ function GuiInit(){
   Gui.Canvas = document.getElementById("GuiCanvas");
   Gui.Ctx = Gui.Canvas.getContext("2d");
   Gui.DoesFade = true;
-  Gui.Rect = [0,0,1225,587];
+  Gui.Rect = [0,0,866,587];
   Gui.BackDraw = function() { Gui.Ctx.drawImage(Gui.Img, 0, 0);};
   Gui.FrontDraw = function( x,y,w,h ){
     Gui.Ctx.drawImage(Gui.Img, x, y, w, h, x, y, w, h);
@@ -805,24 +806,22 @@ function LowUrl( Url ){
   var AlphaLink = AlphaManualLink( Url );
   var LocalLink = LocalManualLink( Url );
   var str;
-  str = " &nbsp; &nbsp; ALPHA MANUAL: " + CraftAlphaLink(AlphaLink) +" &nbsp;" +
-    " &nbsp; ";
+  str = "ALPHA MANUAL: " + CraftAlphaLink(AlphaLink);
   ManualUrlHolder.innerHTML = str;
-  str = " &nbsp; &nbsp; WIT MANUAL: " + CraftLocalLink(LocalLink) + " &nbsp;" +
-    " &nbsp; ";
+  str = "WIT MANUAL: " + CraftLocalLink(LocalLink);
   WitUrlHolder.innerHTML = str;
-  str = " &nbsp; &nbsp;";
+  str = "";
   if( MenuComponent ){
     if( App.Doxy[ MenuComponent] )
-      str+= " DOXYGEN: " + CraftDoxyLink( App.Doxy[ MenuComponent] );
+      str+= "DOXYGEN: " + CraftDoxyLink( App.Doxy[ MenuComponent] );
     MenuComponent = '';
   }
   else if( BoxComponent ){
     if( App.Doxy2[ BoxComponent] )
-      str+= " DOXYGEN: " + CraftOtherDoxyLink( App.Doxy2[ BoxComponent] );
+      str+= "DOXYGEN: " + CraftOtherDoxyLink( App.Doxy2[ BoxComponent] );
     BoxComponent = '';
   }
-  DoxyUrlHolder.innerHTML = str + ' &nbsp; &nbsp; ';
+  DoxyUrlHolder.innerHTML = str;
   return LocalLink;
 }
 
@@ -1096,13 +1095,14 @@ function OnManual(){
 //  alert( "When this button is working, it will take you to the equivalent" +
 //    " page in the manual, full window size.");
 }
-function OnSpecial(){
+function OnSpecial( event ){
   //Scroller.src = "https://wiki.audacityteam.org/wiki/WIT_Experiments?action=raw";
   //alert( "At some point this button will do clever stuff");
   var str = window.location.href;
 
   App.Sys.KeepPanel = false;
-  ScrollToUrl( SpecialUrl );
+  ScrollToUrl(
+    event.shiftKey ? ShiftSpecialUrl : SpecialUrl );
   SetUrlVisibility( false );
   SetDoxyUrlVisibility( true );
   App.Sys.KeepPanel = true;

@@ -10,7 +10,6 @@
 
  <nowiki>
 
-SpecialUrl = "special_menu.html";
 
 Audacity.Menus =
   [
