@@ -52,6 +52,34 @@ function DrawRedSurround( Gui, x, y, w, h ){
   Gui.Ctx.stroke();
 }
 
+function ClearWhiteAbsoluteBox( Gui, Box ){
+  Gui.Ctx.clearRect( Box[0], Box[1], Box[2]-Box[0],Box[3]-Box[1]);
+  Gui.Ctx.globalAlpha = 0.5;
+  Gui.Ctx.fillStyle = 'white';
+  Gui.Ctx.fillRect( Box[0], Box[1], Box[2]-Box[0],Box[3]-Box[1]);
+  Gui.Ctx.globalAlpha = 1.0;
+}
+
+function ClearAbsoluteBox( Gui, Box ){
+  Gui.Ctx.clearRect( Box[0], Box[1], Box[2]-Box[0],Box[3]-Box[1]);
+  Gui.Ctx.globalAlpha = 0.2;
+  Gui.Ctx.fillStyle = 'black';
+  Gui.Ctx.fillRect( Box[0], Box[1], Box[2]-Box[0],Box[3]-Box[1]);
+  Gui.Ctx.globalAlpha = 1.0;
+}
+
+function ClearOutside( Gui, InnerBox ){
+  var OuterBox = Gui.Rect;
+  // AAB
+  // D.B
+  // DCC
+  ClearAbsoluteBox( Gui, [ OuterBox[0], OuterBox[1], InnerBox[2], InnerBox[1]]); // AA
+  ClearAbsoluteBox( Gui, [ InnerBox[2], OuterBox[1], OuterBox[2], InnerBox[3]]); // BB
+  ClearAbsoluteBox( Gui, [ InnerBox[0], InnerBox[3], OuterBox[2], OuterBox[3]]); // CC
+  ClearAbsoluteBox( Gui, [ OuterBox[0], InnerBox[1], InnerBox[0], OuterBox[3]]); // DD
+}
+
+
 function DrawArrow( v1,v2, style ){
   if( App.Sys.AnnotationMode && (style == 0) )
     return;

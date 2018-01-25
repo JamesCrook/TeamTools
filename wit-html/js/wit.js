@@ -161,12 +161,10 @@ function ClickerInit(){
   Clicker.Canvas = document.getElementById("GuiCanvas");
   Clicker.Ctx = Gui.Canvas.getContext("2d");
   Clicker.DoesFade = false;
-  Clicker.Rect = [0,583,1225,665];
+  Clicker.Rect = [0,586,1225,665];
   Clicker.BackDraw = function(){
     var G = Clicker;
-    var YY = Gui.Img.height;
-    G.Ctx.fillStyle = 'white';
-    G.Ctx.fillRect(0, YY, G.Canvas.width, G.Canvas.height-YY);
+    ClearWhiteAbsoluteBox( G, G.Rect);
   };
   Clicker.FrontDraw = RedrawClicker;
 }
@@ -268,6 +266,7 @@ function DrawAnnotationBox( name, x1,y1,x2,y2 )
     return;
 
   DrawDottedSurround(Clicker, x1, y1, x2 - x1, y2 - y1);
+  ClearOutside( Gui, [x1-2,y1-2,x2+2,y2+2] );
 }
 
 
