@@ -12,6 +12,7 @@ Sys.NumbersOnScreen = false;
 Sys.AnnotationMode = false;
 Sys.ShowUrls = false;
 Sys.ShowDoxygen = false;
+Sys.Clicks = -3;
 
 
 var Audacity = {};

@@ -988,6 +988,15 @@ function UpdateSelection( event ){
     return;
 }
 
+function UpdateClickCount(count){
+  if( count == 0 ){
+    ClickTip.style.opacity = '0.3';
+  } else if ( count < Sys.Clicks ){
+    ClickTip.style.opacity = '1.0';
+  }
+  Sys.Clicks = count;
+}
+
 /**
  * Also handles mouse movement.
  *
@@ -1001,6 +1010,7 @@ function ImageClick(event, isclick){
   if( event.shiftKey )
     return;
   if( isclick){
+    UpdateClickCount( Sys.Clicks + 1);
     Menus[0].item = 0;
     Menus[0].iSel = 0;
     Menus[1].item = 0;
@@ -1133,7 +1143,8 @@ function SetUrlVisibility( value ){
 }
 function SetDoxyUrlVisibility( value ){
   DoxyUrlHolder.style.display = value ? 'inline-block': 'none';
-  ClickTip.style.display = value ? 'none': 'block';
+  Sys.Clicks =  value ? 0 : -1;
+  ClickTip.style.opacity = value ? 0 : 1;
 }
 
 function OnShowDoxygenUrls(arg){
