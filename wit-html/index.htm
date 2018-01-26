@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <title>What is That?</title>
     <style type="text/css">
+        h1 { font-size: 2em; }
+        h2 { font-size: 1.5em; }
+        h3 { font-size: 1.17em; }
+        h4 { font-size: 1.12em; }
+        h5 { font-size: .83em; }
+        h6 { font-size: .67em; }
 
         html *
         {
@@ -16,15 +22,15 @@
             border: 2px solid;
             border-color: #edebfc;
             position:absolute;
-            top:20px;
-            left:15px;
-            width:92px;
-            height:92px;
+            top:1.25em;
+            left:0.9375em;
+            width:5.75em;
+            height:5.75em;
             color:black;
             box-sizing:border-box;
-            line-height:92px;
-            border-radius:46px;
-            box-shadow:0px 0px 20px 1px #000080;"
+            line-height:5.75em;
+            border-radius:2.875em;
+            box-shadow:0px 0px 1.25em 1px #000080;"
 
         }
         #logoback:hover {
@@ -34,11 +40,11 @@
         #logo
         {
             position:relative;
-            top:8px;
-            left:9px;
+            top:0.5em;
+            left:0.5625em;
             transition: all 0.1s;
-            width:70px;
-            height:70px;
+            width:4.375em;
+            height:4.375em;
 
         }
         #logo:hover
@@ -47,10 +53,10 @@
             /*transform: rotate(10deg);*/
         }
         #logo:hover:active {
-            width:80px;
-            height:80px;
-            left:4px;
-            top:1px;
+            width:5em;
+            height:5em;
+            left:0.25em;
+            top:0.0625em;
         }
 
         div.bt {
@@ -88,12 +94,12 @@
             border: 2px solid;
             border-color: #c5d4fc;
             /*border-color: #8696b2;*/
-            padding:0px 20px 0px 20px;
+            padding:0px 1.25em 0px 1.25em;
             color:black;
-            height:36px;
-            line-height:36px;
+            height:2.25em;
+            line-height:2.25em;
             box-sizing:border-box;
-            border-radius:18px;
+            border-radius:1.25em;
             margin:0 auto;
             box-shadow:0 0 20px 1px #000080;
             cursor: pointer;
@@ -131,16 +137,14 @@
 
 </head>
 <body style="color:white;background-image:url(images/header-home-bg.jpg);margin:0px;background-attachment:fixed;">
-<div style="width:100%; text-align:center;background:#1d2134;margin: 0px;">
-    <h1 style="margin:0px;padding-top:21px;padding-bottom:0px;">The Audacity
+<div style="width:100%; text-align:center;background:#1d2134;height:5em;margin: 0px;">
+    <h1 style="margin:0px;padding-top:0.65em;padding-bottom:0.9em;">The Audacity
         <em>"What is That?"</em> Help Page</h1>
-    <div style="width:100%; text-align:center;background:#303b70;position:relative;box-shadow: inset 0 0px 4px 0px #000080, 0 -2px 7px -2px #618ef4;">
-        <h2>&nbsp;</h2>
-    </div>
+    <div style="width:100%; text-align:center;background:#303b70;position:relative;height:1.8em;top:-0.6em;box-shadow: inset 0 0px 4px 0px #000080, 0 -2px 7px -2px #618ef4;"></div>
 </div>
-<div style="width:100%;position:relative;top:-65px;left:0;display:inline-block;margin:0 auto;">
+<div style="width:100%;position:relative;top:-0.50em;left:0;display:inline-block;margin:0 auto;height:3em;">
     <div class='pos-resetter'>
-        <h2 id="click-tip" style="color:#bfbfbf;display:block;position:relative;top:-16px;transition:opacity 4s;opacity:1;"><em>Click</em>
+        <h2 id="click-tip" style="color:#bfbfbf;display:block;position:relative;top:-0.55em;transition:opacity 4s;opacity:1;"><em>Click</em>
             on the
             diagram to find out more</h2>
     </div>
@@ -155,13 +159,12 @@
         </div>
     </div>
 </div>
-
 <a  href="https://www.audacityteam.org">
     <div id="logoback" >
         <img id='logo' src="images/audacity-logo.png">
     </div>
-    &nbsp;
 </a>
+<div style="height:1.9em;"></div>
 <div style="text-align:center;">
     <div style="width:1225px;position:relative;display:inline-block;margin-left:auto;margin-right:auto;">
         <canvas id="GuiCanvas"
@@ -176,7 +179,7 @@
         </div>
         <div id="buttons"
              style="position:absolute;left:920px;top:6px;color:#6d86e4;">
-            <div style="position:relative;">
+            <div style="position:relative;font-size:13px;">
                 <div class='bt' OnClick="OnReset();">Reset</div>
                 |
                 <div class='bt' OnClick="OnManual();">Manual</div>
