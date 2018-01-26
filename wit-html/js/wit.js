@@ -822,6 +822,8 @@ function LowUrl( Url ){
     BoxComponent = '';
   }
   DoxyUrlHolder.innerHTML = str;
+  DoxyUrlHolder.style.display = ((str!="") && App.Sys.ShowDoxyUrl)  ? 'inline-block' : 'none';
+
   return LocalLink;
 }
 
@@ -1103,8 +1105,11 @@ function OnSpecial( event ){
   App.Sys.KeepPanel = false;
   ScrollToUrl(
     event.shiftKey ? ShiftSpecialUrl : SpecialUrl );
-  SetUrlVisibility( false );
-  SetDoxyUrlVisibility( true );
+  App.Sys.ShowManlyUrl = false;
+  App.Sys.ShowWittyUrl = false;
+  App.Sys.ShowDoxyUrl = true;
+  SetUrlVisibility( );
+
   App.Sys.KeepPanel = true;
   App.Sys.NumbersOnScreen = false;
   App.Sys.AnnotationMode = false;
@@ -1138,24 +1143,28 @@ function OnAnnotationMode(arg){
 }
 
 function SetUrlVisibility( value ){
-  ManualUrlHolder.style.display = value ? 'inline-block': 'none';
-  WitUrlHolder.style.display = value ? 'inline-block': 'none';
-}
-function SetDoxyUrlVisibility( value ){
-  DoxyUrlHolder.style.display = value ? 'inline-block': 'none';
-  Sys.Clicks =  value ? 0 : -1;
-  ClickTip.style.opacity = value ? 0 : 1;
+  var m = App.Sys.ShowManlyUrl;
+  var w = App.Sys.ShowWittyUrl;
+  var d = App.Sys.ShowDoxyUrl;
+  ManualUrlHolder.style.display = m? 'inline-block': 'none';
+  WitUrlHolder.style.display = w ? 'inline-block': 'none';
+  DoxyUrlHolder.style.display = d ? 'inline-block': 'none';
+  Sys.Clicks = (m||w||d) ? 0 : -1;
+  ClickTip.style.opacity = (m||w||d) ? 0 : 1;
 }
 
 function OnShowDoxygenUrls(arg){
-  App.Sys.ShowDoxygen = arg.checked;
-  SetDoxyUrlVisibility( App.Sys.ShowUrls || App.Sys.ShowDoxygen );
+  App.Sys.ShowDoxyUrl = !!arg.checked;
+  SetUrlVisibility(  );
 }
 
-function OnShowUrls(arg){
-  App.Sys.ShowUrls = arg.checked;
-  SetUrlVisibility( App.Sys.ShowUrls );
-  SetDoxyUrlVisibility( App.Sys.ShowUrls || App.Sys.ShowDoxygen );
+function OnShowWitUrls(arg){
+  App.Sys.ShowWittyUrl = !!arg.checked;
+  SetUrlVisibility(  );
+}
+function OnShowManualUrls(arg){
+  App.Sys.ShowManlyUrl = !!arg.checked;
+  SetUrlVisibility(  );
 }
 
 function OnKeepPanel(arg){

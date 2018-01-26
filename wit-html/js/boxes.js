@@ -10,8 +10,9 @@ var Sys = {};
 Sys.KeepPanel = false;
 Sys.NumbersOnScreen = false;
 Sys.AnnotationMode = false;
-Sys.ShowUrls = false;
-Sys.ShowDoxygen = false;
+Sys.ShowManlyUrl = false;
+Sys.ShowWittyUrl = false;
+Sys.ShowDoxyUrl = false;
 Sys.Clicks = -3;
 
 

@@ -10,24 +10,47 @@
             font-family: Arial;
         }
 
+        #logoback {
+            transition: all 0.15s;
+            background-color: #edebfc;
+            border: 2px solid;
+            border-color: #edebfc;
+            position:absolute;
+            top:20px;
+            left:15px;
+            width:92px;
+            height:92px;
+            color:black;
+            box-sizing:border-box;
+            line-height:92px;
+            border-radius:46px;
+            box-shadow:0px 0px 20px 1px #000080;"
+
+        }
+        #logoback:hover {
+            /*background-color: #c7cfff;*/
+            border-color: #848ff8;
+        }
         #logo
         {
-            position:absolute;
-            top:30px;
+            position:relative;
+            top:8px;
+            left:9px;
             transition: all 0.1s;
             width:70px;
             height:70px;
-            left:26px;"
+
         }
         #logo:hover
         {
-            top:28px;
+            /*top:6px;*/
             /*transform: rotate(10deg);*/
         }
         #logo:hover:active {
             width:80px;
             height:80px;
-            left:21px;"
+            left:4px;
+            top:1px;
         }
 
         div.bt {
@@ -44,22 +67,27 @@
             font-size:13px;
             border: 1px solid;
             padding:2px 15px 2px 15px;
-            border-color: #4782c1;
-            background-color: #90b0df;
-            box-shadow: inset 0 -5px 15px 0 #8da8cd;
+            border-color: #8696b2;
+            background-color: #c5d4fc;
+            box-shadow: inset 0 -5px 5px 0 #a6c1e7;
         }
         div.bt:hover {
             cursor: pointer;
-            box-shadow: inset 0 -5px 15px 0 #7c94b7;
-            background-color: #a5c3ee;
+            /*box-shadow: inset 0 -5px 15px 0 #7c94b7;*/
+            background-color: #a9bdff;
             border-color: #2130ba;
         }
         div.bt:hover:active {
+            background-color: #a5c3ee;
             box-shadow: inset 0 2px 5px 0 #7c94b7;
         }
         div.linky {
+            transition: all 0.15s;
             display:none;
-            background-color:#9fb3e7;
+            background-color: #c5d4fc;
+            border: 2px solid;
+            border-color: #c5d4fc;
+            /*border-color: #8696b2;*/
             padding:0px 20px 0px 20px;
             color:black;
             height:36px;
@@ -68,7 +96,15 @@
             border-radius:18px;
             margin:0 auto;
             box-shadow:0 0 20px 1px #000080;
+            cursor: pointer;
+
         }
+        div.linky:hover {
+           /* background-color: #a5c3ee;*/
+            border-color: #848ff8;
+
+        }
+
         div.pos-resetter {
             width:100%;
             display:inline-block;
@@ -120,11 +156,14 @@
     </div>
 </div>
 
-<div style="position:absolute;top:20px;left:15px;width:92px;height:92px;background-color:white;color:black;box-sizing:border-box;line-height:92px;border-radius:46px;box-shadow:0px 0px 20px 1px #000080;">&nbsp;</div><a  href="https://www.audacityteam.org">
-<img id='logo' src="images/audacity-logo.png"></a>
+<a  href="https://www.audacityteam.org">
+    <div id="logoback" >
+        <img id='logo' src="images/audacity-logo.png">
+    </div>
+    &nbsp;
+</a>
 <div style="text-align:center;">
-<br>
-        <div style="width:1225px;position:relative;display:inline-block;margin-left:auto;margin-right:auto;">
+    <div style="width:1225px;position:relative;display:inline-block;margin-left:auto;margin-right:auto;">
         <canvas id="GuiCanvas"
                 style="position:absolute;left:0px;top:0px;box-shadow:0px 0px 20px 1px #000080;"
                 height="665px"
@@ -132,17 +171,22 @@
                 OnClick="ImageClick(event,true);"
                 OnMouseMove="ImageClick(event,false)"
                 alt="Clickable Canvas"></canvas>
-        <div id="buttons" style="position:absolute;left:865px;top:0px;width:349px;height:30px;background-color:#f4f4f4;opacity:0.5;border-color:#f3f3f3;border-style:solid;">
+        <div id="buttons"
+             style="position:absolute;left:865px;top:0px;width:349px;height:30px;background-color:#f4f4f4;opacity:0.5;border-color:#f3f3f3;border-style:solid;">
+        </div>
+        <div id="buttons"
+             style="position:absolute;left:920px;top:6px;color:#6d86e4;">
+            <div style="position:relative;">
+                <div class='bt' OnClick="OnReset();">Reset</div>
+                |
+                <div class='bt' OnClick="OnManual();">Manual</div>
+                |
+                <div class='bt' OnClick="OnSpecial(event);">Special</div>
             </div>
-        <div id="buttons" style="position:absolute;left:920px;top:6px;color:#6d86e4;">
-                <div style="position:relative;">
-                    <div class='bt' OnClick="OnReset();">Reset</div> |
-                    <div class='bt' OnClick="OnManual();">Manual</div> |
-                    <div class='bt' OnClick="OnSpecial(event);">Special</div>
-                </div>
         </div>
 
-        <iframe id="scroller" style="position:absolute;left:865px;top:32px;border:0"
+        <iframe id="scroller"
+                style="position:absolute;left:865px;top:32px;border:0"
                 height="553px"
                 width="355px"
                 src="./scroller-contents/top_menu.html"

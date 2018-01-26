@@ -43,8 +43,12 @@
                         <input type="checkbox" OnClick="parent.OnAnnotationMode( this );">
                             Enable annotation-capture mode.<br>
 
+                        <input type="checkbox" OnClick="parent.OnShowManualUrls( this );">
+                            Show Manual URL (when available).<br>
+                        <input type="checkbox" OnClick="parent.OnShowWitUrls( this );">
+                        Show WIT URL (when available).<br>
                         <input type="checkbox" OnClick="parent.OnShowDoxygenUrls( this );" checked="checked">
-                            Show Doxygen URL (when available).<br><br>
+                        Show Doxygen URL (when available).<br><br>
                         <button onclick="document.getElementById('keep-open').checked=false;parent.OnGetNextApp( this );">Next</button>
                             annotated image.<br>
                         </div>
