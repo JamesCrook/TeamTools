@@ -821,7 +821,7 @@ function LowUrl( Url ){
       str+= "DOXYGEN: " + CraftOtherDoxyLink( App.Doxy2[ BoxComponent] );
     BoxComponent = '';
   }
-  DoxyUrlHolder.innerHTML = str;
+  DoxyUrlHolder.innerHTML = str ? str : "Doxygen's URL, here";
   DoxyUrlHolder.style.display = ((str!="") && App.Sys.ShowDoxyUrl)  ? 'inline-block' : 'none';
 
   return LocalLink;
