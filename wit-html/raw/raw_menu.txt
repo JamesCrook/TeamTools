@@ -427,9 +427,23 @@ Audacity.Menus =
   [  2,  0, "Move focused track down", "" ],
   [  2,  0, "Move focused track to top", "" ],
   [  2,  0, "Move focused track to bottom", "" ],
-  [  1,  0, "Full screen (on/off)", "F11" ],
-  [  1,  0, "Demo Command", "F11" ],
-  [  1,  0, "Screenshot", "F11" ],
+
+    [ 1, 1, "Automation", "" ],
+    [ 2, 0, "Just a Demo...", "" ],
+    [ 2, 0, "Screenshot (Vanilla)...", "" ],
+    [ 2, 0, "Compare Audio...", "" ],
+    [ 2, 0, "Get Preference...", "" ],
+    [ 2, 0, "Get Info...", "" ],
+    [ 2, 0, "Select Time...", "" ],
+    [ 2, 0, "Select Tracks...", "" ],
+    [ 2, 0, "Select...", "" ],
+    [ 2, 0, "Set Preference...", "" ],
+    [ 2, 0, "Set Clip...", "" ],
+    [ 2, 0, "Set Label...", "" ],
+    [ 2, 0, "Set Project...", "" ],
+    [ 2, 0, "Set Track...", "" ],
+    [ 1, 0, "Full screen (on/off)", "F11" ]
+
   ];
 
 </nowiki>
