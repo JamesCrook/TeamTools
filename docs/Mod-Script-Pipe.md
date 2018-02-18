@@ -30,7 +30,7 @@ The chains feature in Audacity has its own GUI for directly building the command
 
 ### Command Set
 
-The full set of commands and their parameters are listed at https://lphamanual.audacityteam.org/Automation_Reference
+The full set of commands and their parameters are listed at https://alphamanual.audacityteam.org/Automation_Reference
 
 You can also get a JSON version of the command parameter syntax by using "GetInfo: Type=Commands". 
 

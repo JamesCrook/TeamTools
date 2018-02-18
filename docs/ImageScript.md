@@ -7,7 +7,7 @@ It has largely been superseded by the combination of WIT with the built in enhan
 * Toolbars, EAGs and Preferences can be captured manually from within Audacity using the screenshot dialog.
   * It does the work of launching and capturing each in turn.
   * This can also be driven from an external script.
-* Menus, annotated toolbar images and their imagemaps are now captured from WIT
+* Menus, annotated toolbar images and their imagemaps are now captured from [WIT](../WIT.md)
   * Use the **Special** button, holding shift down when you click on it, and follow instructions from there.
   * The configuration files live in the wiki.
 * Track images showing clips, envelopes etc, are now captured with the python test script.
@@ -18,10 +18,14 @@ It has largely been superseded by the combination of WIT with the built in enhan
 
 The main issue is visual effects that require focus / mouse-hover disappearing when taking a screenshot.
 
+### Results
+
+* Results at https://wit.audacityteam.org/images.htm
+
 
 ### Python Scripts
 
-The scripts live in scripts -> piped-work
+The scripts live in [scripts -> piped-work](https://github.com/audacity/audacity/tree/master/scripts/piped-work)
 
 A master script, docimages_all.py, calls all the component scripts, and they in turn call docimages_core.py
 
