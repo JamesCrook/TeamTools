@@ -23,7 +23,7 @@ I did it by search and replace.  It can't be done by css.
 
 ### Using WIT to update "Bill's Amazing Image Map" 
 
-For the front page of [our manual]([https:alphamanual.audacityteam.org): 
+For the front page of https://alphamanual.audacityteam.org: 
 
 * Open WIT in Chrome
 * Shift+Click on special to get the secret extra special editors options.  

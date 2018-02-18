@@ -7,6 +7,7 @@ The pdf version of the manual is generated from the local copy of the manual.
 * Uses MiTeX LaTeX package to convert LaTeX to pdf.
 
 Features include:
+
 * Translation of image maps into pdf format
 * Creating all internal hyper links
 * Reformatting in more readbale two column layout.
@@ -15,3 +16,16 @@ Most of the relevant files are in the test subdirectory.
 
 * DraftAudacityManual.tex coordinates the component documents.  It was created by hand.
 * custom_first_page.tex is a hand crafted version of the front page.
+
+
+### Limitations
+
+There is a comprehensive list of limitations with the current implementation: https://wiki.audacityteam.org/wiki/ToDo:_Automated_Pdf
+ 
+### Screenshots
+
+Screenshots at https://wiki.audacityteam.org/wiki/ToDo:_Pdf_of_Manual
+
+### Download
+
+Download from https://www.fosshub.com/DarkAudacity.html
