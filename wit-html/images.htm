@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Automation Images</title>
+    <style type="text/css">
+        h1 { font-size: 2em; }
+        h2 { font-size: 1.5em; }
+        h3 { font-size: 1.17em; }
+        h4 { font-size: 1.12em; }
+        h5 { font-size: .83em; }
+        h6 { font-size: .67em; }
+
+        html *
+        {
+            font-family: Arial;
+        }
+
+        #logoback {
+            transition: all 0.15s;
+            background-color: #edebfc;
+            border: 2px solid;
+            border-color: #edebfc;
+            position:absolute;
+            top:1.25em;
+            left:0.9375em;
+            width:5.75em;
+            height:5.75em;
+            color:black;
+            box-sizing:border-box;
+            line-height:5.75em;
+            border-radius:2.875em;
+            box-shadow:0px 0px 1.25em 1px #000080;"
+
+        }
+        #logoback:hover {
+            /*background-color: #c7cfff;*/
+            border-color: #848ff8;
+        }
+        #logo
+        {
+            position:relative;
+            top:0.5em;
+            left:0.5625em;
+            transition: all 0.1s;
+            width:4.375em;
+            height:4.375em;
+
+        }
+        #logo:hover
+        {
+            /*top:6px;*/
+            /*transform: rotate(10deg);*/
+        }
+        #logo:hover:active {
+            width:5em;
+            height:5em;
+            left:0.25em;
+            top:0.0625em;
+        }
+
+        div.bt {
+
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+
+            display:inline-block;
+            color:black;
+            font-size:13px;
+            border: 1px solid;
+            padding:2px 15px 2px 15px;
+            border-color: #8696b2;
+            background-color: #c5d4fc;
+            box-shadow: inset 0 -5px 5px 0 #a6c1e7;
+        }
+        div.bt:hover {
+            cursor: pointer;
+            /*box-shadow: inset 0 -5px 15px 0 #7c94b7;*/
+            background-color: #a9bdff;
+            border-color: #2130ba;
+        }
+        div.bt:hover:active {
+            background-color: #a5c3ee;
+            box-shadow: inset 0 2px 5px 0 #7c94b7;
+        }
+        div.linky {
+            transition: all 0.15s;
+            display:none;
+            background-color: #c5d4fc;
+            border: 2px solid;
+            border-color: #c5d4fc;
+            /*border-color: #8696b2;*/
+            padding:0px 1.25em 0px 1.25em;
+            color:black;
+            height:2.25em;
+            line-height:2.25em;
+            box-sizing:border-box;
+            border-radius:1.25em;
+            margin:0 auto;
+            box-shadow:0 0 20px 1px #000080;
+            cursor: pointer;
+
+        }
+        div.linky:hover {
+           /* background-color: #a5c3ee;*/
+            border-color: #848ff8;
+
+        }
+
+        div.pos-resetter {
+            width:100%;
+            display:inline-block;
+            text-align:center;
+            position:absolute;
+            margin:0 auto;
+        }
+    </style>
+    <script>
+        console.log( "Protocol is "+window.location.protocol);
+        if (window.location.protocol == "http:"){
+            console.log("Http: detected");
+            if( window.location.href.indexOf("localhost") < 0 )
+                window.location.href = "https:" + window.location.href.slice(5);
+        }
+    </script>
+    <!--<script data-cfasync="false" src="./js/download.js"></script>-->
+    <script data-cfasync="false" src="./js/boxes.js"></script>
+    <script data-cfasync="false" src="./js/doxy.js"></script>
+    <script data-cfasync="false" src="./js/vec2.js"></script>
+    <script data-cfasync="false" src="./js/draw.js"></script>
+    <script data-cfasync="false" src="./js/draw_menu.js"></script>
+    <script data-cfasync="false" src="./js/wit.js"></script>
+
+</head>
+<body style="color:white;background-image:url(images/header-home-bg.jpg);margin:0px;background-attachment:fixed;">
+<div style="width:100%; text-align:center;background:#1d2134;height:5em;margin: 0px;">
+    <h1 style="margin:0px;padding-top:0.65em;padding-bottom:0.9em;">Audacity Automation Images</h1>
+    <div style="width:100%; text-align:center;background:#303b70;position:relative;height:1.8em;top:-0.6em;box-shadow: inset 0 0px 4px 0px #000080, 0 -2px 7px -2px #618ef4;"></div>
+</div>
+<div style="width:100%;position:relative;top:-0.50em;left:0;display:inline-block;margin:0 auto;height:3em;">
+    <div class='pos-resetter'>
+        <h2 id="click-tip" style="color:#bfbfbf;display:block;position:relative;top:-0.55em;transition:opacity 4s;opacity:1;"><em>18-Feb-2018</em></h2>
+    </div>
+    <div class='pos-resetter'>
+        <div style="display:inline-block;">
+            <div class='linky' id="manual-url-holder">
+                Manual's URL, here</div> &nbsp;
+            <div class='linky' id="wit-url-holder">
+                WIT's URL, here</div> &nbsp;
+            <div class='linky' id="doxy-url-holder">
+                Doxygen's URL, here</div>
+        </div>
+    </div>
+</div>
+<a  href="https://www.audacityteam.org">
+    <div id="logoback" >
+        <img id='logo' src="images/audacity-logo.png">
+    </div>
+</a>
+<div style="height:1.9em;"></div>
+<div style="text-align:center;">
+    <div style="width:1225px;position:relative;display:inline-block;margin-left:auto;margin-right:auto;">
+
+        <img src='./auto_images/AutoTracks001.png'><br><em>AutoTracks001.png</em><br>
+        <img src='./auto_images/AutoTracks008.png'><br><em>AutoTracks008.png</em><br>
+        <img src='./auto_images/AutoTracks002.png'><br><em>AutoTracks002.png</em><br>
+        <img src='./auto_images/AutoTracks006.png'><br><em>AutoTracks006.png</em><br>
+        <img src='./auto_images/AutoTracks003.png'><br><em>AutoTracks003.png</em><br>
+        <img src='./auto_images/AutoTracks007.png'><br><em>AutoTracks007.png</em><br>
+        <img src='./auto_images/AutoTracks004.png'><br><em>AutoTracks004.png</em><br>
+        <img src='./auto_images/AutoTracks005.png'><br><em>AutoTracks005.png</em><br>
+        <img src='./auto_images/AutoTracks009.png'><br><em>AutoTracks009.png</em><br>
+        <img src='./auto_images/AutoTracks010.png'><br><em>AutoTracks010.png</em><br>
+        <img src='./auto_images/AutoLabels001.png'><br><em>AutoLabels001.png</em><br>
+        <img src='./auto_images/AutoLabels002.png'><br><em>AutoLabels002.png</em><br>
+        <img src='./auto_images/AutoLabels003.png'><br><em>AutoLabels003.png</em><br>
+        <img src='./auto_images/AutoLabels004.png'><br><em>AutoLabels004.png</em><br>
+        <img src='./auto_images/AutoLabels005.png'><br><em>AutoLabels005.png</em><br>
+        <img src='./auto_images/AutoLabels006.png'><br><em>AutoLabels006.png</em><br>
+        <img src='./auto_images/AutoLabels007.png'><br><em>AutoLabels007.png</em><br>
+        <img src='./auto_images/AutoLabels008.png'><br><em>AutoLabels008.png</em><br>
+        <img src='./auto_images/AutoLabels009.png'><br><em>AutoLabels009.png</em><br>
+        <img src='./auto_images/AutoLabels010.png'><br><em>AutoLabels010.png</em><br>
+        <img src='./auto_images/Spectral001.png'><br><em>Spectral001.png</em><br>
+        <img src='./auto_images/Spectral002.png'><br><em>Spectral002.png</em><br>
+        <img src='./auto_images/MixedMode.png'><br><em>MixedMode.png</em><br>
+        <img src='./auto_images/Spectral003.png'><br><em>Spectral003.png</em><br>
+        <img src='./auto_images/Spectral004.png'><br><em>Spectral004.png</em><br>
+        <img src='./auto_images/AfterCut1.png'><br><em>AfterCut1.png</em><br>
+        <img src='./auto_images/AfterCut2.png'><br><em>AfterCut2.png</em><br>
+        <img src='./auto_images/AfterSplit1.png'><br><em>AfterSplit1.png</em><br>
+        <img src='./auto_images/AfterSplit2.png'><br><em>AfterSplit2.png</em><br>
+        <img src='./auto_images/AfterSplitCut1.png'><br><em>AfterSplitCut1.png</em><br>
+        <img src='./auto_images/AfterSplitCut2.png'><br><em>AfterSplitCut2.png</em><br>
+        <img src='./auto_images/AfterSilence1.png'><br><em>AfterSilence1.png</em><br>
+        <img src='./auto_images/AfterSilence2.png'><br><em>AfterSilence2.png</em><br>
+        <img src='./auto_images/AfterTrim1.png'><br><em>AfterTrim1.png</em><br>
+        <img src='./auto_images/AfterTrim2.png'><br><em>AfterTrim2.png</em><br>
+        <img src='./auto_images/AfterSplitNew1.png'><br><em>AfterSplitNew1.png</em><br>
+        <img src='./auto_images/AfterSplitNew2.png'><br><em>AfterSplitNew2.png</em><br>
+        <img src='./auto_images/AfterDuplicate1.png'><br><em>AfterDuplicate1.png</em><br>
+        <img src='./auto_images/AfterDuplicate2.png'><br><em>AfterDuplicate2.png</em><br>
+        <img src='./auto_images/AfterZoomIn1.png'><br><em>AfterZoomIn1.png</em><br>
+        <img src='./auto_images/AfterZoomIn2.png'><br><em>AfterZoomIn2.png</em><br>
+        <img src='./auto_images/AfterZoomOut1.png'><br><em>AfterZoomOut1.png</em><br>
+        <img src='./auto_images/AfterZoomOut2.png'><br><em>AfterZoomOut2.png</em><br>
+        <img src='./auto_images/AfterZoomNormal1.png'><br><em>AfterZoomNormal1.png</em><br>
+        <img src='./auto_images/AfterZoomNormal2.png'><br><em>AfterZoomNormal2.png</em><br>
+        <img src='./auto_images/AfterZoomSel1.png'><br><em>AfterZoomSel1.png</em><br>
+        <img src='./auto_images/AfterZoomSel2.png'><br><em>AfterZoomSel2.png</em><br>
+        <img src='./auto_images/AfterFitInWindow1.png'><br><em>AfterFitInWindow1.png</em><br>
+        <img src='./auto_images/AfterFitInWindow2.png'><br><em>AfterFitInWindow2.png</em><br>
+        <img src='./auto_images/AfterFitV1.png'><br><em>AfterFitV1.png</em><br>
+        <img src='./auto_images/AfterFitV2.png'><br><em>AfterFitV2.png</em><br>
+        <img src='./auto_images/AfterReverse1.png'><br><em>AfterReverse1.png</em><br>
+        <img src='./auto_images/AfterReverse2.png'><br><em>AfterReverse2.png</em><br>
+        <img src='./auto_images/AfterFadeIn1.png'><br><em>AfterFadeIn1.png</em><br>
+        <img src='./auto_images/AfterFadeIn2.png'><br><em>AfterFadeIn2.png</em><br>
+        <img src='./auto_images/AfterFadeOut1.png'><br><em>AfterFadeOut1.png</em><br>
+        <img src='./auto_images/AfterFadeOut2.png'><br><em>AfterFadeOut2.png</em><br>
+        <img src='./auto_images/AfterInvert1.png'><br><em>AfterInvert1.png</em><br>
+        <img src='./auto_images/AfterInvert2.png'><br><em>AfterInvert2.png</em><br>
+        <img src='./auto_images/AfterAmplify1.png'><br><em>AfterAmplify1.png</em><br>
+        <img src='./auto_images/AfterAmplify2.png'><br><em>AfterAmplify2.png</em><br>
+        <img src='./auto_images/AfterBassAndTreble1.png'><br><em>AfterBassAndTreble1.png</em><br>
+        <img src='./auto_images/AfterBassAndTreble2.png'><br><em>AfterBassAndTreble2.png</em><br>
+        <img src='./auto_images/AfterCompressor1.png'><br><em>AfterCompressor1.png</em><br>
+        <img src='./auto_images/AfterCompressor2.png'><br><em>AfterCompressor2.png</em><br>
+        <img src='./auto_images/AfterDistortion1.png'><br><em>AfterDistortion1.png</em><br>
+        <img src='./auto_images/AfterDistortion2.png'><br><em>AfterDistortion2.png</em><br>
+        <img src='./auto_images/AfterEcho1.png'><br><em>AfterEcho1.png</em><br>
+        <img src='./auto_images/AfterEcho2.png'><br><em>AfterEcho2.png</em><br>
+        <img src='./auto_images/AfterEqualization1.png'><br><em>AfterEqualization1.png</em><br>
+        <img src='./auto_images/AfterEqualization2.png'><br><em>AfterEqualization2.png</em><br>
+        <img src='./auto_images/AfterNormalize1.png'><br><em>AfterNormalize1.png</em><br>
+        <img src='./auto_images/AfterNormalize2.png'><br><em>AfterNormalize2.png</em><br>
+        <img src='./auto_images/AfterPhaser1.png'><br><em>AfterPhaser1.png</em><br>
+        <img src='./auto_images/AfterPhaser2.png'><br><em>AfterPhaser2.png</em><br>
+        <img src='./auto_images/AfterRepeat1.png'><br><em>AfterRepeat1.png</em><br>
+        <img src='./auto_images/AfterRepeat2.png'><br><em>AfterRepeat2.png</em><br>
+        <img src='./auto_images/AfterReverb1.png'><br><em>AfterReverb1.png</em><br>
+        <img src='./auto_images/AfterReverb2.png'><br><em>AfterReverb2.png</em><br>
+        <img src='./auto_images/AfterWahwah1.png'><br><em>AfterWahwah1.png</em><br>
+        <img src='./auto_images/AfterWahwah2.png'><br><em>AfterWahwah2.png</em><br>
+        <img src='./auto_images/AfterHighPassFilter1.png'><br><em>AfterHighPassFilter1.png</em><br>
+        <img src='./auto_images/AfterHighPassFilter2.png'><br><em>AfterHighPassFilter2.png</em><br>
+        <img src='./auto_images/AfterLowPassFilter1.png'><br><em>AfterLowPassFilter1.png</em><br>
+        <img src='./auto_images/AfterLowPassFilter2.png'><br><em>AfterLowPassFilter2.png</em><br>
+        <img src='./auto_images/AfterNotchFilter1.png'><br><em>AfterNotchFilter1.png</em><br>
+        <img src='./auto_images/AfterNotchFilter2.png'><br><em>AfterNotchFilter2.png</em><br>
+        <img src='./auto_images/AfterAdjustableFade1.png'><br><em>AfterAdjustableFade1.png</em><br>
+        <img src='./auto_images/AfterAdjustableFade2.png'><br><em>AfterAdjustableFade2.png</em><br>
+        <img src='./auto_images/AfterDelay1.png'><br><em>AfterDelay1.png</em><br>
+        <img src='./auto_images/AfterDelay2.png'><br><em>AfterDelay2.png</em><br>
+        <img src='./auto_images/AfterLimiter1.png'><br><em>AfterLimiter1.png</em><br>
+        <img src='./auto_images/AfterLimiter2.png'><br><em>AfterLimiter2.png</em><br>
+        <img src='./auto_images/BeforeEffect.png'><br><em>BeforeEffect.png</em><br>
+        <img src='./auto_images/AfterChangePitch1.png'><br><em>AfterChangePitch1.png</em><br>
+        <img src='./auto_images/AfterChangePitch2.png'><br><em>AfterChangePitch2.png</em><br>
+        <img src='./auto_images/AfterChangeSpeed1.png'><br><em>AfterChangeSpeed1.png</em><br>
+        <img src='./auto_images/AfterChangeSpeed2.png'><br><em>AfterChangeSpeed2.png</em><br>
+        <img src='./auto_images/AfterChangeTempo1.png'><br><em>AfterChangeTempo1.png</em><br>
+        <img src='./auto_images/AfterChangeTempo2.png'><br><em>AfterChangeTempo2.png</em><br>
+        <img src='./auto_images/AfterPaulstretch1.png'><br><em>AfterPaulstretch1.png</em><br>
+        <img src='./auto_images/AfterPaulstretch2.png'><br><em>AfterPaulstretch2.png</em><br>
+        <img src='./auto_images/AfterTimeScale1.png'><br><em>AfterTimeScale1.png</em><br>
+        <img src='./auto_images/AfterTimeScale2.png'><br><em>AfterTimeScale2.png</em><br>
+        <img src='./auto_images/AfterChirp.png'><br><em>AfterChirp.png</em><br>
+        <img src='./auto_images/AfterDtmfTones.png'><br><em>AfterDtmfTones.png</em><br>
+        <img src='./auto_images/AfterNoise.png'><br><em>AfterNoise.png</em><br>
+        <img src='./auto_images/AfterTone.png'><br><em>AfterTone.png</em><br>
+        <img src='./auto_images/AfterPluck.png'><br><em>AfterPluck.png</em><br>
+        <img src='./auto_images/BeforeTruncateSilence.png'><br><em>BeforeTruncateSilence.png</em><br>
+        <img src='./auto_images/SpaceyTrack.png'><br><em>SpaceyTrack.png</em><br>
+        <img src='./auto_images/AfterTruncateSilence1.png'><br><em>AfterTruncateSilence1.png</em><br>
+        <img src='./auto_images/AfterTruncateSilence2.png'><br><em>AfterTruncateSilence2.png</em><br>
+        <img src='./auto_images/AfterDisjoin1.png'><br><em>AfterDisjoin1.png</em><br>
+        <img src='./auto_images/AfterDisjoin2.png'><br><em>AfterDisjoin2.png</em><br>
+        <img src='./auto_images/DcBias.png'><br><em>DcBias.png</em><br>
+        <img src='./auto_images/Envelope001.png'><br><em>Envelope001.png</em><br>
+        <img src='./auto_images/Envelope002.png'><br><em>Envelope002.png</em><br>
+        <img src='./auto_images/Envelope003.png'><br><em>Envelope003.png</em><br>
+        <img src='./auto_images/Envelope004.png'><br><em>Envelope004.png</em><br>
+        <img src='./auto_images/Envelope005.png'><br><em>Envelope005.png</em><br>
+        <img src='./auto_images/Envelope006.png'><br><em>Envelope006.png</em><br>
+        <img src='./auto_images/Envelope007.png'><br><em>Envelope007.png</em><br>
+        <img src='./auto_images/Envelope008.png'><br><em>Envelope008.png</em><br>
+        <img src='./auto_images/Envelope009.png'><br><em>Envelope009.png</em><br>
+        <img src='./auto_images/Envelope010.png'><br><em>Envelope010.png</em><br>
+        <img src='./auto_images/Envelope011.png'><br><em>Envelope011.png</em><br>
+        <img src='./auto_images/Envelope012.png'><br><em>Envelope012.png</em><br>
+        <img src='./auto_images/CutAndPaste001.png'><br><em>CutAndPaste001.png</em><br>
+        <img src='./auto_images/CutAndPaste002.png'><br><em>CutAndPaste002.png</em><br>
+        <img src='./auto_images/CutAndPaste003.png'><br><em>CutAndPaste003.png</em><br>
+        <img src='./auto_images/CutAndPaste004.png'><br><em>CutAndPaste004.png</em><br>
+        <img src='./auto_images/CutAndPaste005.png'><br><em>CutAndPaste005.png</em><br>
+        <img src='./auto_images/CutAndPaste006.png'><br><em>CutAndPaste006.png</em><br>
+        <img src='./auto_images/CutAndPaste007.png'><br><em>CutAndPaste007.png</em><br>
+        <img src='./auto_images/CutAndPaste008.png'><br><em>CutAndPaste008.png</em><br>
+        <img src='./auto_images/CutAndPaste009.png'><br><em>CutAndPaste009.png</em><br>
+        <img src='./auto_images/CutAndPaste010.png'><br><em>CutAndPaste010.png</em><br>
+        <img src='./auto_images/CutAndPaste011.png'><br><em>CutAndPaste011.png</em><br>
+        <img src='./auto_images/CutAndPaste012.png'><br><em>CutAndPaste012.png</em><br>
+        <img src='./auto_images/CutAndPaste013.png'><br><em>CutAndPaste013.png</em><br>
+        <img src='./auto_images/CutAndPaste014.png'><br><em>CutAndPaste014.png</em><br>
+        <img src='./auto_images/CutAndPaste015.png'><br><em>CutAndPaste015.png</em><br>
+        <img src='./auto_images/CutAndPaste016.png'><br><em>CutAndPaste016.png</em><br>
+        <img src='./auto_images/CutAndPaste017.png'><br><em>CutAndPaste017.png</em><br>
+        <img src='./auto_images/CutAndPaste018.png'><br><em>CutAndPaste018.png</em><br>
+        <img src='./auto_images/CutAndPaste019.png'><br><em>CutAndPaste019.png</em><br>
+        <img src='./auto_images/CutAndPaste030.png'><br><em>CutAndPaste030.png</em><br>
+        <img src='./auto_images/CutAndPaste031.png'><br><em>CutAndPaste031.png</em><br>
+        <img src='./auto_images/CutAndPaste032.png'><br><em>CutAndPaste032.png</em><br>
+        <img src='./auto_images/CutAndPaste033.png'><br><em>CutAndPaste033.png</em><br>
+        <img src='./auto_images/CutAndPaste034.png'><br><em>CutAndPaste034.png</em><br>
+        <img src='./auto_images/CutAndPaste035.png'><br><em>CutAndPaste035.png</em><br>
+        <img src='./auto_images/ClipBounds001.png'><br><em>ClipBounds001.png</em><br>
+        <img src='./auto_images/ClipBounds002.png'><br><em>ClipBounds002.png</em><br>
+        <img src='./auto_images/ClipBounds003.png'><br><em>ClipBounds003.png</em><br>
+        <img src='./auto_images/ClipBounds004.png'><br><em>ClipBounds004.png</em><br>
+        <img src='./auto_images/ClipBounds005.png'><br><em>ClipBounds005.png</em><br>
+        <img src='./auto_images/ClipBounds006.png'><br><em>ClipBounds006.png</em><br>
+        <img src='./auto_images/ClipBounds007.png'><br><em>ClipBounds007.png</em><br>
+        <img src='./auto_images/ClipBounds008.png'><br><em>ClipBounds008.png</em><br>
+        <img src='./auto_images/ClipBounds009.png'><br><em>ClipBounds009.png</em><br>
+        <img src='./auto_images/ClipBounds010.png'><br><em>ClipBounds010.png</em><br>
+        <img src='./auto_images/ClipBounds011.png'><br><em>ClipBounds011.png</em><br>
+        <img src='./auto_images/ClipBounds012.png'><br><em>ClipBounds012.png</em><br>
+        <img src='./auto_images/ClipBounds013.png'><br><em>ClipBounds013.png</em><br>
+        <img src='./auto_images/ClipBounds014.png'><br><em>ClipBounds014.png</em><br>
+        <img src='./auto_images/ClipBounds015.png'><br><em>ClipBounds015.png</em><br>
+        <img src='./auto_images/ClipBounds016.png'><br><em>ClipBounds016.png</em><br>
+        <img src='./auto_images/ClipBounds017.png'><br><em>ClipBounds017.png</em><br>
+        <img src='./auto_images/ClipBounds018.png'><br><em>ClipBounds018.png</em><br>
+        <img src='./auto_images/SelectTool.png'><br><em>SelectTool.png</em><br>
+        <img src='./auto_images/EnvelopeTool.png'><br><em>EnvelopeTool.png</em><br>
+        <img src='./auto_images/DrawTool.png'><br><em>DrawTool.png</em><br>
+        <img src='./auto_images/ZoomTool.png'><br><em>ZoomTool.png</em><br>
+        <img src='./auto_images/TimeShiftTool.png'><br><em>TimeShiftTool.png</em><br>
+        <img src='./auto_images/MultiTool.png'><br><em>MultiTool.png</em><br>
+        <img src='./auto_images/Button11000Hover.png'><br><em>Button11000Hover.png</em><br>
+        <img src='./auto_images/Button11001Hover.png'><br><em>Button11001Hover.png</em><br>
+        <img src='./auto_images/Button11002Hover.png'><br><em>Button11002Hover.png</em><br>
+        <img src='./auto_images/Button11003Hover.png'><br><em>Button11003Hover.png</em><br>
+        <img src='./auto_images/Button11004Hover.png'><br><em>Button11004Hover.png</em><br>
+        <img src='./auto_images/Button11005Hover.png'><br><em>Button11005Hover.png</em><br>
+        <img src='./auto_images/Button11200Hover.png'><br><em>Button11200Hover.png</em><br>
+        <img src='./auto_images/Button11201Hover.png'><br><em>Button11201Hover.png</em><br>
+        <img src='./auto_images/Button11202Hover.png'><br><em>Button11202Hover.png</em><br>
+        <img src='./auto_images/Button11203Hover.png'><br><em>Button11203Hover.png</em><br>
+        <img src='./auto_images/Button11204Hover.png'><br><em>Button11204Hover.png</em><br>
+        <img src='./auto_images/Button11205Hover.png'><br><em>Button11205Hover.png</em><br>
+        <img src='./auto_images/Button11300Hover.png'><br><em>Button11300Hover.png</em><br>
+        <img src='./auto_images/Button11301Hover.png'><br><em>Button11301Hover.png</em><br>
+        <img src='./auto_images/Button11302Hover.png'><br><em>Button11302Hover.png</em><br>
+        <img src='./auto_images/Button11303Hover.png'><br><em>Button11303Hover.png</em><br>
+        <img src='./auto_images/Button11304Hover.png'><br><em>Button11304Hover.png</em><br>
+        <img src='./auto_images/Button11305Hover.png'><br><em>Button11305Hover.png</em><br>
+        <img src='./auto_images/Button11306Hover.png'><br><em>Button11306Hover.png</em><br>
+        <img src='./auto_images/Button11307Hover.png'><br><em>Button11307Hover.png</em><br>
+        <img src='./auto_images/Button11308Hover.png'><br><em>Button11308Hover.png</em><br>
+        <img src='./auto_images/Button11309Hover.png'><br><em>Button11309Hover.png</em><br>
+        <img src='./auto_images/Button11310Hover.png'><br><em>Button11310Hover.png</em><br>
+        <img src='./auto_images/Button11311Hover.png'><br><em>Button11311Hover.png</em><br>
+        <img src='./auto_images/Dummy.png'><br><em>Dummy.png</em><br>
+        <img src='./auto_images/QuikPlay001.png'><br><em>QuikPlay001.png</em><br>
+        <img src='./auto_images/BlockMoves001.png'><br><em>BlockMoves001.png</em><br>
+        <img src='./auto_images/BlockMoves002.png'><br><em>BlockMoves002.png</em><br>
+        <img src='./auto_images/BlockMoves003.png'><br><em>BlockMoves003.png</em><br>
+        <img src='./auto_images/BlockMoves004.png'><br><em>BlockMoves004.png</em><br>
+        <img src='./auto_images/BlockMoves005.png'><br><em>BlockMoves005.png</em><br>
+        <img src='./auto_images/BlockMoves006.png'><br><em>BlockMoves006.png</em><br>
+        <img src='./auto_images/BlockAndCursorMoves001.png'><br><em>BlockAndCursorMoves001.png</em><br>
+        <img src='./auto_images/BlockAndCursorMoves002.png'><br><em>BlockAndCursorMoves002.png</em><br>
+        <img src='./auto_images/BlockAndCursorMoves003.png'><br><em>BlockAndCursorMoves003.png</em><br>
+        <img src='./auto_images/BlockAndCursorMoves004.png'><br><em>BlockAndCursorMoves004.png</em><br>
+        <img src='./auto_images/BlockAndCursorMoves005.png'><br><em>BlockAndCursorMoves005.png</em><br>
+        <img src='./auto_images/BlockAndCursorMoves006.png'><br><em>BlockAndCursorMoves006.png</em><br>
+        <img src='./auto_images/TrackOrder001.png'><br><em>TrackOrder001.png</em><br>
+        <img src='./auto_images/TrackOrder002.png'><br><em>TrackOrder002.png</em><br>
+        <img src='./auto_images/TrackUp.png'><br><em>TrackUp.png</em><br>
+        <img src='./auto_images/TrackDown.png'><br><em>TrackDown.png</em><br>
+        <img src='./auto_images/TrackTop.png'><br><em>TrackTop.png</em><br>
+        <img src='./auto_images/TrackBottom.png'><br><em>TrackBottom.png</em><br>
+        <img src='./auto_images/TrackOrder003.png'><br><em>TrackOrder003.png</em><br>
+        <img src='./auto_images/TrackOrder004.png'><br><em>TrackOrder004.png</em><br>
+        <img src='./auto_images/TrackAlign001.png'><br><em>TrackAlign001.png</em><br>
+        <img src='./auto_images/TrackAlign002.png'><br><em>TrackAlign002.png</em><br>
+
+    </div>
+</div>
+<div id="message"></div>
+<img id="Gui" src="./images/blank-links.png"
+     style="display:none;"
+     alt="Audacity">
+</body>
+</html>
