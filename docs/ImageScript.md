@@ -7,7 +7,7 @@ It has largely been superseded by the combination of WIT with the built in enhan
 * Toolbars, EAGs and Preferences can be captured manually from within Audacity using the screenshot dialog.
   * It does the work of launching and capturing each in turn.
   * This can also be driven from an external script.
-* Menus, annotated toolbar images and their imagemaps are now captured from [WIT](../WIT.md)
+* Menus, annotated toolbar images and their imagemaps are now captured from [WIT](https://github.com/JamesCrook/TeamTools/blob/master/docs/WIT.md)
   * Use the **Special** button, holding shift down when you click on it, and follow instructions from there.
   * The configuration files live in the wiki.
 * Track images showing clips, envelopes etc, are now captured with the python test script.
