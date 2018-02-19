@@ -2312,7 +2312,6 @@ Audacity.Tips =
 
 Audacity.Commands =
 
-
   [
     { id:"Amplify", name:"Amplify", params:
       [
@@ -2327,8 +2326,7 @@ Audacity.Commands =
         { key:"OuterFadeUpLen", type:"double", default:0.5 },
         { key:"ThresholdDb", type:"double", default:-30 },
         { key:"MaximumPause", type:"double", default:1 } ], url:"Auto_Duck",
-      tip:"Reduces (ducks) the volume of one or more tracks whenever the" +
-      " volume of a specified \"control\" track reaches a particular level" },
+      tip:"Reduces (ducks) the volume of one or more tracks whenever the volume of a specified \"control\" track reaches a particular level" },
     { id:"BassAndTreble",
       name:"Bass and Treble", params:
       [
@@ -2436,8 +2434,7 @@ Audacity.Commands =
       [
         { key:"Stretch Factor", type:"float", default:10 },
         { key:"Time Resolution", type:"float", default:0.25 } ], url:"Paulstretch",
-      tip:"Use Paulstretch only for an extreme time-stretch or \"stasis\"" +
-      " effect" },
+      tip:"Use Paulstretch only for an extreme time-stretch or \"stasis\" effect" },
     { id:"Phaser", name:"Phaser", params:
       [
         { key:"Stages", type:"int", default:2 },
@@ -2779,6 +2776,18 @@ Audacity.Commands =
         { key:"Delay", type:"float", default:1 },
         { key:"Decay", type:"float", default:0.5 } ], url:"Demo",
       tip:"Does the demo action." },
+    { id:"Drag", name:"Drag", params:
+      [
+        { key:"Id", type:"int", default:"unchanged" },
+        { key:"Window", type:"string", default:"unchanged" },
+        { key:"FromX", type:"double", default:"unchanged" },
+        { key:"FromY", type:"double", default:"unchanged" },
+        { key:"ToX", type:"double", default:"unchanged" },
+        { key:"ToY", type:"double", default:"unchanged" },
+        { key:"RelativeTo", type:"enum", default:"unchanged", enum:
+          [ "Panel", "App", "Track0", "Track1" ] } ],
+      url:"Extra_Menu:_Automation#drag",
+      tip:"Drags mouse from one place to another." },
     { id:"Export2", name:"Export2", params:
       [
         { key:"Filename", type:"string", default:"exported.wav" },
@@ -2787,7 +2796,7 @@ Audacity.Commands =
     { id:"GetInfo", name:"Get Info", params:
       [
         { key:"Type", type:"enum", default:0, enum:
-          [ "Commands", "Commands+", "Menus", "Tracks", "Clips", "Labels", "Boxes" ] },
+          [ "Commands", "Commands+", "Menus", "Tracks", "Clips", "Envelopes", "Labels", "Boxes" ] },
         { key:"Format", type:"enum", default:0, enum:
           [ "JSON", "LISP", "Brief" ] } ], url:"Automation",
       tip:"Gets information in JSON format." },
@@ -2803,16 +2812,20 @@ Audacity.Commands =
       [
         { key:"Filename", type:"string", default:"" } ], url:"Import",
       tip:"Imports from a file." },
+    { id:"Message", name:"Message", params:
+      [
+        { key:"Text", type:"string", default:"Some message" } ], url:"Message",
+      tip:"Echos a message." },
     { id:"OpenProject", name:"Open Project", params:
       [
         { key:"Filename", type:"string", default:"test.aup" },
-        { key:"AddToHistory", type:"bool", default:"False" } ], url:"Open",
+        { key:"AddToHistory", type:"bool", default:"unchanged" } ], url:"Open",
       tip:"Open a project." },
     { id:"SaveProject", name:"Save Project", params:
       [
         { key:"Filename", type:"string", default:"name.aup" },
-        { key:"AddToHistory", type:"bool", default:"False" },
-        { key:"Compress", type:"bool", default:"False" } ], url:"Save",
+        { key:"AddToHistory", type:"bool", default:"unchanged" },
+        { key:"Compress", type:"bool", default:"unchanged" } ], url:"Save",
       tip:"Saves a project." },
     { id:"Screenshot", name:"Screenshot", params:
       [
@@ -2823,29 +2836,44 @@ Audacity.Commands =
             "First_Two_Tracks",
             "First_Three_Tracks",
             "First_Four_Tracks", "Second_Track", "Tracks_Plus",
-            "First_Track_Plus" ] },
-        { key:"Background", type:"enum", default:"None", enum:
-          [ "Blue", "White", "None" ] } ],
+            "First_Track_Plus", "All_Tracks",
+            "All_Tracks_Plus" ] },
+        { key:"Background", type:"enum", default:"unchanged", enum:
+          [ "Blue", "White", "None" ] },
+        { key:"ToTop", type:"bool", default:"unchanged" } ],
       url:"Help_Menu:_Tools#screenshot_tools",
       tip:"Takes screenshots." },
     { id:"Select", name:"Select", params:
       [
         { key:"Start", type:"double", default:"unchanged" },
         { key:"End", type:"double", default:"unchanged" },
-        { key:"FromEnd", type:"bool", default:"False" },
+        { key:"FromEnd", type:"bool", default:"unchanged" },
+        { key:"High", type:"double", default:"unchanged" },
+        { key:"Low", type:"double", default:"unchanged" },
         { key:"First", type:"int", default:"unchanged" },
         { key:"Last", type:"int", default:"unchanged" },
-        { key:"Mode", type:"enum", default:0, enum:
+        { key:"Mode", type:"enum", default:"unchanged", enum:
           [ "Set", "Add", "Remove" ] } ],
       url:"Audio_Selection", tip:"Selects Audio." },
     { id:"SetClip", name:"Set Clip", params:
       [
-        { key:"Clip", type:"int", default:0 },
+        { key:"Track", type:"int", default:"unchanged" },
+        { key:"Channel", type:"int", default:"unchanged" },
+        { key:"At", type:"double", default:"unchanged" },
         { key:"Color", type:"enum", default:"unchanged", enum:
           [ "Color0", "Color1", "Color2", "Color3" ] },
         { key:"Start", type:"double", default:"unchanged" } ],
       url:"Extra_Menu:_Tools#set_clip",
       tip:"Sets various values for a clip." },
+    { id:"SetEnvelope", name:"Set Envelope", params:
+      [
+        { key:"Track", type:"int", default:"unchanged" },
+        { key:"Channel", type:"int", default:"unchanged" },
+        { key:"Time", type:"double", default:"unchanged" },
+        { key:"Value", type:"double", default:"unchanged" },
+        { key:"Delete", type:"bool", default:"unchanged" } ],
+      url:"Extra_Menu:_Tools#set_label",
+      tip:"Sets an envelope point position." },
     { id:"SetLabel", name:"Set Label", params:
       [
         { key:"Label", type:"int", default:0 },
@@ -2859,7 +2887,7 @@ Audacity.Commands =
       [
         { key:"Name", type:"string", default:"" },
         { key:"Value", type:"string", default:"" },
-        { key:"Reload", type:"bool", default:"False" } ], url:"Preferences",
+        { key:"Reload", type:"bool", default:"unchanged" } ], url:"Preferences",
       tip:"Sets the value of a single preference." },
     { id:"SetProject", name:"Set Project", params:
       [
@@ -2872,13 +2900,23 @@ Audacity.Commands =
       tip:"Sets various values for a project." },
     { id:"SetTrack", name:"Set Track", params:
       [
-        { key:"Track", type:"int", default:0 },
+        { key:"Track", type:"int", default:"unchanged" },
+        { key:"Channel", type:"int", default:"unchanged" },
         { key:"Name", type:"string", default:"unchanged" },
         { key:"Pan", type:"double", default:"unchanged" },
         { key:"Gain", type:"double", default:"unchanged" },
         { key:"Height", type:"int", default:"unchanged" },
+        { key:"Display", type:"enum", default:"unchanged", enum:
+          [ "Waveform", "Spectrogram" ] },
+        { key:"Scale", type:"enum", default:"unchanged", enum:
+          [ "Linear", "dB" ] },
         { key:"Color", type:"enum", default:"unchanged", enum:
           [ "Color0", "Color1", "Color2", "Color3" ] },
+        { key:"VZoom", type:"enum", default:"unchanged", enum:
+          [ "Reset", "Times2", "HalfWave" ] },
+        { key:"SpecPrefs", type:"bool", default:"unchanged" },
+        { key:"SpectralSel", type:"bool", default:"unchanged" },
+        { key:"GrayScale", type:"bool", default:"unchanged" },
         { key:"Selected", type:"bool", default:"unchanged" },
         { key:"Focused", type:"bool", default:"unchanged" },
         { key:"Solo", type:"bool", default:"unchanged" },
@@ -3318,7 +3356,7 @@ function ZipTheTips( ){
             Tip.long = Tip.long.replace( '+', Tip.short );
           Menu[ 'short' ] = Tip.short;
           Menu[ 'long' ] = Tip.long;
-          if( Tip.id != undefined )
+          if( Menu.id == undefined && Tip.id != undefined )
             Menu[ 'id' ] = Tip.id;
           if( Tip.params != undefined )
             Menu[ 'params' ] = Tip.params;
@@ -3416,7 +3454,7 @@ function ZipTheCommands( ){
                         Menu[ 'id' ] = Com.id;
                     if( Com.params != undefined )
                         Menu[ 'params' ] = PrintableOfParams( Com.params);
-                    if( Com.tip != undefined )
+                    if( Menu.long == undefined && Com.tip != undefined )
                         Menu[ 'long' ] = Com.tip;
                     Unused.splice(i,1);
                     break;
