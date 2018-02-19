@@ -51,3 +51,10 @@ the menu (in JSON) there, to update the menu in WIT.
 That menu can be retrieved from Audacity using the scripting command 
 GetMenusPlus.
 
+### Highlight one button
+
+Annotated toolbar images with one item highlighted can be obtained by 
+choosing the toolbar (click), hover over the item to highlight, then 
+hold shift down as you move the mouse away.  The highlight will stay 
+and can be captured from the special panel.
+
