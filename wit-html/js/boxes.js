@@ -2926,7 +2926,161 @@ Audacity.Commands =
 
 ;
 
+AudacityDoxed.Prefs = [];
 
+Audacity.Prefs =
+
+  [
+    { key:"/AudioIO/Host", type:"enum", default:"", enum:
+      [ "MME",
+        "Windows DirectSound", "Windows WASAPI" ] },
+    { key:"/AudioIO/LatencyDuration",
+      prompt:"&Buffer length:", type:"number", default:100 },
+    { key:"/AudioIO/LatencyCorrection",
+      prompt:"Track &shift after record:", type:"number", default:-130 },
+    { key:"/AudioIO/EffectsPreviewLen", prompt:"&Length:", type:"number", default:6 },
+    { key:"/AudioIO/CutPreviewBeforeLen",
+      prompt:"&Before cut region:", type:"number", default:2 },
+    { key:"/AudioIO/CutPreviewAfterLen",
+      prompt:"&After cut region:", type:"number", default:1 },
+    { key:"/AudioIO/SeekShortPeriod", prompt:"&Short period:", type:"number", default:1 },
+    { key:"/AudioIO/SeekLongPeriod", prompt:"Lo&ng period:", type:"number", default:15 },
+    { key:"/AudioIO/Duplex",
+      prompt:"&Other tracks while recording (overdub)", type:"bool", default:"True" },
+    { key:"/AudioIO/SWPlaythrough",
+      prompt:"&Software Playthrough of input", type:"bool", default:"False" },
+    { key:"/AudioIO/SoundActivatedRecord", prompt:"&Enable", type:"bool", default:"False" },
+    { key:"/AudioIO/SilenceLevel", prompt:"Le&vel (dB):", type:"number", default:-50 },
+    { key:"/GUI/TrackNames/RecordingNameCustom",
+      prompt:"Custom Track &Name", type:"bool", default:"False" },
+    { key:"/GUI/TrackNames/RecodingTrackName", prompt:"", type:"string", default:"Recorded_Audio" },
+    { key:"/GUI/TrackNames/TrackNumber", prompt:"&Track Number", type:"bool", default:"False" },
+    { key:"/GUI/TrackNames/DateStamp", prompt:"System &Date", type:"bool", default:"False" },
+    { key:"/GUI/TrackNames/TimeStamp", prompt:"System T&ime", type:"bool", default:"False" },
+    { key:"/GUI/PreferNewTrackRecord",
+      prompt:"Always record on a new track", type:"bool", default:"False" },
+    { key:"/Warnings/DropoutDetected",
+      prompt:"Detect dropouts", type:"bool", default:"True" },
+    { key:"/MidiIO/Host", type:"enum", default:"", enum:
+      [ "MMSystem" ] },
+    { key:"/MidiIO/SynthLatency",
+      prompt:"MIDI Synth L&atency (ms):", type:"number", default:5 },
+    { key:"/SamplingRate/DefaultProjectSampleRate", type:"enum", default:44100, enum:
+      [ "8000 Hz", "11025 Hz", "16000 Hz", "22050 Hz", "32000 Hz", "44100 Hz", "48000 Hz", "88200 Hz", "96000 Hz", "176400 Hz", "192000 Hz", "352800 Hz", "384000 Hz", "Other..." ] },
+    { key:"/SamplingRate/DefaultProjectSampleFormat", type:"enum", default:262159, enum:
+      [ "16-bit", "24-bit", "32-bit float" ] },
+    { key:"/Quality/LibsoxrSampleRateConverter", type:"enum", default:1, enum:
+      [ "Low Quality (Fastest)", "Medium Quality", "High Quality",
+        "Best Quality (Slowest)" ] },
+    { key:"/Quality/DitherAlgorithm", type:"enum", default:0, enum:
+      [ "None", "Rectangle", "Triangle", "Shaped" ] },
+    { key:"/Quality/LibsoxrHQSampleRateConverter", type:"enum", default:3, enum:
+      [ "Low Quality (Fastest)", "Medium Quality", "High Quality",
+        "Best Quality (Slowest)" ] },
+    { key:"/Quality/HQDitherAlgorithm", type:"enum", default:3, enum:
+      [ "None", "Rectangle", "Triangle", "Shaped" ] },
+    { key:"/Locale/Language", type:"enum", default:"", enum:
+      [ "System", "Afrikaans",
+        "Bahasa Indonesia", "Bosanski", "Català", "Cymraeg", "Dansk", "Deutsch", "English", "Español", "Euskara", "Français", "Gaeilge", "Galego", "Hrvatski", "Italiano", "Lietuvių", "Magyar", "Nederlands", "Norsk", "Occitan", "Polski", "Português",
+        "Português (Brasil)", "Română", "Slovenčina", "Slovenščina", "Srpski", "Suomi", "Svenska", "Tiếng Việt", "Türkçe", "Valencià", "Čeština", "Ελληνικά", "Беларуская", "Български", "Македонски", "Русский", "Српски", "Тоҷикӣ", "Українська", "Հայերեն", "עברית", "العربية", "فارسی", "हिन्दी", "বাংলা", "தமிழ்", "မြန်မာစာ", "ქართული", "ខេមរភាសា", "中文（简体）", "中文（繁體）", "日本語", "한국어" ] },
+    { key:"/GUI/Help", type:"enum", default:"Local", enum:
+      [ "Local", "From Internet" ] },
+    { key:"/GUI/Theme", type:"enum", default:"light", enum:
+      [ "Classic", "Light", "Dark", "High Contrast", "Custom" ] },
+    { key:"/GUI/EnvdBRange", type:"enum", default:"60", enum:
+      [ "-36 dB (shallow range for high-amplitude editing)",
+        "-48 dB (PCM range of 8 bit samples)",
+        "-60 dB (PCM range of 10 bit samples)",
+        "-72 dB (PCM range of 12 bit samples)",
+        "-84 dB (PCM range of 14 bit samples)",
+        "-96 dB (PCM range of 16 bit samples)",
+        "-120 dB (approximate limit of human hearing)",
+        "-145 dB (PCM range of 24 bit samples)" ] },
+    { key:"/GUI/ShowSplashScreen",
+      prompt:"'How to Get &Help' at launch", type:"bool", default:"True" },
+    { key:"/GUI/ShowExtraMenus", prompt:"E&xtra menus", type:"bool", default:"False" },
+    { key:"/GUI/BeepOnCompletion",
+      prompt:"&Beep on completion of longer activities", type:"bool", default:"False" },
+    { key:"/GUI/RetainLabels",
+      prompt:"Re&tain labels if selection snaps to a label", type:"bool", default:"False" },
+    { key:"/GUI/BlendThemes",
+      prompt:"B&lend system and Audacity theme", type:"bool", default:"True" },
+    { key:"/AudioIO/PinnedHead",
+      prompt:"&Pinned Recording/Playback head", type:"bool", default:"False" },
+    { key:"/GUI/AutoScroll",
+      prompt:"A&uto-scroll if head unpinned", type:"bool", default:"True" },
+    { key:"/GUI/TracksFitVerticallyZoomed",
+      prompt:"Auto-&fit track height", type:"bool", default:"False" },
+    { key:"/GUI/DefaultViewModeNew", type:"enum", default:0, enum:
+      [ "Waveform", "Waveform (dB)", "Spectrogram" ] },
+    { key:"/GUI/SampleView", type:"enum", default:1, enum:
+      [ "Connect dots", "Stem plot" ] },
+    { key:"/GUI/TrackNames/DefaultTrackName",
+      prompt:"Default audio track &name:", type:"string", default:"Audio Track" },
+    { key:"/GUI/ShowTrackNameInWaveform",
+      prompt:"Sho&w audio track name as overlay", type:"bool", default:"False" },
+    { key:"/GUI/ZoomPreset1", type:"enum", default:2, enum:
+      [ "Fit to Width",
+        "Zoom to Selection", "Zoom Default", "Minutes", "Seconds", "MilliSeconds", "Samples",
+        "4 Pixels per Sample", "Max Zoom" ] },
+    { key:"/GUI/ZoomPreset2", type:"enum", default:7, enum:
+      [ "Fit to Width",
+        "Zoom to Selection", "Zoom Default", "Minutes", "Seconds", "MilliSeconds", "Samples",
+        "4 Pixels per Sample", "Max Zoom" ] },
+    { key:"/GUI/SelectAllOnNone",
+      prompt:"A&uto-select, if selection required", type:"bool", default:"False" },
+    { key:"/GUI/EnableCutLines",
+      prompt:"Enable cut &lines", type:"bool", default:"False" },
+    { key:"/GUI/AdjustSelectionEdges",
+      prompt:"Enable &dragging selection edges", type:"bool", default:"True" },
+    { key:"/GUI/EditClipCanMove",
+      prompt:"Editing a clip can &move other clips", type:"bool", default:"True" },
+    { key:"/GUI/CircularTrackNavigation",
+      prompt:"\"Move track focus\" c&ycles repeatedly through tracks", type:"bool", default:"False" },
+    { key:"/GUI/TypeToCreateLabel",
+      prompt:"&Type to create a label", type:"bool", default:"True" },
+    { key:"/GUI/ScrollBeyondZero",
+      prompt:"Enable scrolling left of &zero", type:"bool", default:"False" },
+    { key:"/GUI/VerticalZooming",
+      prompt:"Advanced &vertical zooming", type:"bool", default:"False" },
+    { key:"/GUI/Solo", type:"enum", default:"Standard", enum:
+      [ "Simple", "Multi-track", "None" ] },
+    { key:"/AudioFiles/NormalizeOnLoad",
+      prompt:"&Normalize all tracks in project", type:"bool", default:"False" },
+    { key:"/AudioFiles/ShowId3Dialog",
+      prompt:"S&how Metadata Tags editor before export", type:"bool", default:"True" },
+    { key:"/ExtendedImport/OverrideExtendedImportByOpenFileDialogChoice",
+      prompt:"A&ttempt to use filter in OpenFile dialog first", type:"bool", default:"True" },
+    { key:"/Directories/TempDir", prompt:"&Location:", type:"string", default:"" },
+    { key:"/Warnings/FirstProjectSave",
+      prompt:"Saving &projects", type:"bool", default:"True" },
+    { key:"/GUI/EmptyCanBeDirty",
+      prompt:"Saving &empty project", type:"bool", default:"True" },
+    { key:"/Warnings/DiskSpaceWarning",
+      prompt:"&Low disk space at launch or new project", type:"bool", default:"True" },
+    { key:"/Warnings/MixMono",
+      prompt:"Mixing down to &mono during export", type:"bool", default:"True" },
+    { key:"/Warnings/MixStereo",
+      prompt:"Mixing down to &stereo during export", type:"bool", default:"True" },
+    { key:"/Warnings/MixUnknownChannels",
+      prompt:"Mixing down on export (&Custom FFmpeg or external program)", type:"bool", default:"True" },
+    { key:"/Warnings/CopyOrEditUncompressedDataAsk",
+      prompt:"&Importing uncompressed audio files", type:"bool", default:"True" },
+    { key:"/Ladspa/Enable", prompt:"&LADSPA", type:"bool", default:"True" },
+    { key:"/LV2/Enable", prompt:"LV&2", type:"bool", default:"True" },
+    { key:"/Nyquist/Enable", prompt:"N&yquist", type:"bool", default:"True" },
+    { key:"/VAMP/Enable", prompt:"&Vamp", type:"bool", default:"True" },
+    { key:"/VST/Enable", prompt:"V&ST", type:"bool", default:"True" },
+    { key:"/Effects/GroupBy", type:"enum", default:"name", enum:
+      [ "Sorted by Effect Name",
+        "Sorted by Publisher and Effect Name",
+        "Sorted by Type and Effect Name",
+        "Grouped by Publisher",
+        "Grouped by Type" ] },
+    { key:"/Effects/MaxPerGroup",
+      prompt:"&Maximum effects per group (0 to disable):", type:"number", default:0 } ]
+
+;
 
 
 
@@ -3313,6 +3467,103 @@ function MakeKeyboardReference(from, prefix, type){
   return results;
 }
 
+
+
+/**
+ *
+ * @param params
+ * @returns {string}
+ * @constructor
+ */
+function PrintableOfParams( params ){
+  var str = "";
+  var i;
+  var j;
+  for( i=0;i<params.length;i++){
+    var item = params[i];
+    str += "''"+item.type + "'' '''" + item.key + "''', (default:"+item.default + ")<br>\r\n";
+    if( item.type == "enum" ){
+      for( j=0;j< item.enum.length ;j++){
+        var eItem = item.enum[ j ];
+        str += "* " + eItem + "\r\n";
+      }
+    }
+  }
+  return str;
+}
+
+/////////////////////////////
+/**
+ * returns all preferences starting at item from, or the empty string.
+ * @returns {string}
+ * @constructor
+ */
+function MakePreferencesReference(from, prefix, type){
+  var i;
+  var str = "";
+  var Name ="";
+  var lowName="preferences";
+  var Prefix = "";
+  var indent = -1;
+  var SubItems = [];
+  var results = "";
+  var subsAllowed = false;
+  var TopName = "";
+  var bEmpty =true;
+  var bIsAutomation = type == "automation";
+
+  //console.log( "Keyboard from:"+from+" prefix:"+prefix );
+  for(i=from;i< App.Prefs.length;i++){
+
+    var X = [
+      {
+        key: "/AudioIO/Host", type: "enum", default: "", enum: [
+        "MME", "Windows DirectSound", "Windows WASAPI"
+      ]
+      }, {
+        key: "/AudioIO/LatencyDuration",
+        prompt: "&Buffer length:",
+        type: "number",
+        default: 100
+      },
+    ];
+
+    var Item = App.Prefs[i];
+    if( i == 0 ){
+      Name = "Preferences";
+      str += "<div id=\"" + lowName + "\"></div>\r\n";
+      str += "==[[Preferences]]==\r\n";
+      str += "{{note| No special notes for " + Name + " }}\r\n";
+      str += "{| class=\"prettytablerows\" rules = \"rows\" border = \"2\"" +
+        " width=\"100%\"\r\n";
+      str += "!width=\"30%\"|Automation Id\r\n";
+      str += "!width=\"30%\"|Parameters\r\n";
+      str += "!width=\"55%\"|Description\r\n";
+
+      Prefix = Name;
+      subsAllowed = true;
+      bEmpty = true;
+      TopName = Name;
+    }
+
+    var Params = PrintableOfParams( [ Item ] );
+    var Prompt = Item.prompt || "";
+    Prompt = Prompt.replace( '\&', '' );
+
+    str += "|-\r\n";
+    str += "|'''" + Prompt  + "'''\r\n";
+    str += "|" + Params + "\r\n";
+    str += "| no tip string.\r\n";
+    bEmpty = false;
+  }
+  str += "|}\r\n";
+  str += "{{hoverext|hover=|ext=}}\r\n";
+  results += str;
+  bEmpty = true;
+  return results;
+}
+
+
 function SafeQuote( str ){
   return str.replace( /\"/g, "\\\"" );
 }
@@ -3392,28 +3643,6 @@ function ZipTheTips( ){
 ]},
 */
 
-/**
- *
- * @param params
- * @returns {string}
- * @constructor
- */
-function PrintableOfParams( params ){
-    var str = "";
-    var i;
-    var j;
-    for( i=0;i<params.length;i++){
-        var item = params[i];
-        str += "''"+item.type + "'' '''" + item.key + "''', (default:"+item.default + ")<br>\r\n";
-        if( item.type == "enum" ){
-            for( j=0;j< item.enum.length ;j++){
-                var eItem = item.enum[ j ];
-                str += "* " + eItem + "\r\n";
-            }
-        }
-    }
-    return str;
-}
 
 /***
  * Update the menu array to have the commands in it, as fields
@@ -3492,5 +3721,15 @@ Audacity.AutomationReference = function AutomationReferenceTemplate(){
     return MakeKeyboardReference(0,"", "automation");
 };
 
+/**
+ * Template 'here doc'
+ * @returns {string}
+ * @constructor
+ */
+Audacity.PreferencesReference = function AutomationReferenceTemplate(){
+  ZipTheTips();
+  ZipTheCommands();
+  return MakePreferencesReference(0,"", "");
+};
 
 

@@ -1237,6 +1237,10 @@ function OnGetAutomationReference(arg){
   DownloadDurl( "AutomationReference.txt", DurlOfText(App.AutomationReference()) );
 }
 
+function OnGetPreferencesReference(arg){
+  DownloadDurl( "PreferencesReference.txt", DurlOfText(App.PreferencesReference()) );
+}
+
 function OnGetNextApp(arg){
   if( App.Name == "Audacity" )
     App = AudacityDoxed;
