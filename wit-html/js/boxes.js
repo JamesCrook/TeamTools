@@ -3614,7 +3614,7 @@ function ZipTheTips( ){
       if( Menu[0]==0 )
         str+="\r\n// "+Name +"\r\n";
       for(i=0;i<Unused.length;i++){
-        if( Unused[i].key == Name ){
+        if( Unused[i].key.toLowerCase() == Name.toLowerCase() ){
           Tip = Unused[i];
           if( Tip.long.indexOf( '+' ) == 0 )
             Tip.long = Tip.long.replace( '+', Tip.short );
@@ -3626,7 +3626,9 @@ function ZipTheTips( ){
             Menu[ 'params' ] = Tip.params;
           if( Tip.long.indexOf( Tip.short) == 0 )
             Tip.long = Tip.long.replace( Tip.short, '+' );
-          str += "{ key:   \""+SafeQuote(Tip.key) + "\",\r\n";
+          str += "{ key:   \""+SafeQuote(Name) + "\",\r\n";
+          if( Menu.id )
+            str += "  id:    \""+SafeQuote(Menu.id )+ "\",\r\n";
           str += "  short: \""+SafeQuote(Tip.short)+ "\",\r\n";
           str += "  long:  \""+SafeQuote(Tip.long) + "\"},\r\n";
           Unused.splice(i,1);
