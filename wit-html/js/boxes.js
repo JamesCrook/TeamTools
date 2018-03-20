@@ -3591,9 +3591,14 @@ function MenuMap(from, prefix, priorRects){
       innerRects = "";
       str = "";
       name = Box[2].replace(/ /g, '_');
-      MenuName = prefix + name + " Menu";
-      str += "|" + prefix + name + "=:<imagemap>\n";
-      str += "Image:" + prefix + name + "Menu.png\r\n";
+      if( indent == 0 )
+        MenuName = prefix + name + " Menu";
+      else
+        MenuName = prefix + " " + name;
+      var safeName= prefix + name;
+      safeName = safeName.replace( / Menu:/g, "-" );
+      str += "|" + safeName + "=:<imagemap>\n";
+      str += "Image:" + safeName + "Menu.png\r\n";
       str += "desc none\r\n";
       str += priorRects;
       x=50+(indent *200);
@@ -3608,9 +3613,12 @@ function MenuMap(from, prefix, priorRects){
         var Tip = "tip about " + Box[2];
         if( Box.short )
           Tip = Box.short;
-        // The # will be ': ' in some cases.
-        innerRects += rectString(x, y, x + 200, y + 22, MenuName + "#" +
-          CleanAnchor(Box[2]), CleanTip(Tip) );
+        if( Box[1] == 1 )
+          innerRects += rectString(x, y, x + 200, y + 22, MenuName + ': ' +
+            Box[2], CleanTip(Tip) );
+        else
+          innerRects += rectString(x, y, x + 200, y + 22, MenuName + '#' +
+            CleanAnchor(Box[2]), CleanTip(Tip) );
         y += 22;
 //      SubItems.push( i );
       }
@@ -3639,8 +3647,8 @@ function MenuMap(from, prefix, priorRects){
 
       var j;
       for(j=0;j<SubItems.length;j++){
-        results += MenuMap( SubItems[j], prefix + name +"-", priorRects +
-          innerRects );
+        results += MenuMap( SubItems[j], MenuName + ((indent==0)?":" : ""),
+          priorRects + innerRects );
       }
       SubItems = [];
 
