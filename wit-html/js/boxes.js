@@ -3554,6 +3554,12 @@ function CleanAnchor( anchor ){
   return str.toLowerCase();
 }
 
+function CleanTip( tip ){
+  var str = tip.replace( /'''/g, "" );
+  str = str.replace( /''/g, "" );
+  str = str.replace( /\[\[(.*?)\|(.*?)\]\]/g, "$2" );
+  return str;
+}
 
 /**
  * returns all menus starting at item from, or the empty string.
@@ -3585,7 +3591,7 @@ function MenuMap(from, prefix, priorRects){
       innerRects = "";
       str = "";
       name = Box[2].replace(/ /g, '_');
-      MenuName = prefix + name + "Menu#";
+      MenuName = prefix + name + " Menu";
       str += "|" + prefix + name + "=:<imagemap>\n";
       str += "Image:" + prefix + name + "Menu.png\r\n";
       str += "desc none\r\n";
@@ -3602,7 +3608,9 @@ function MenuMap(from, prefix, priorRects){
         var Tip = "tip about " + Box[2];
         if( Box.short )
           Tip = Box.short;
-        innerRects += rectString(x, y, x + 200, y + 22, MenuName + CleanAnchor(Box[2]), Tip );
+        // The # will be ': ' in some cases.
+        innerRects += rectString(x, y, x + 200, y + 22, MenuName + "#" +
+          CleanAnchor(Box[2]), CleanTip(Tip) );
         y += 22;
 //      SubItems.push( i );
       }
