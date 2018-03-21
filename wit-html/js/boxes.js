@@ -2632,6 +2632,7 @@ Audacity.Tips =
 
 Audacity.Commands =
 
+
   [
     { id:"Amplify", name:"Amplify", params:
       [
@@ -2660,16 +2661,16 @@ Audacity.Commands =
       [
         { key:"Percentage", type:"double", default:0 },
         { key:"SBSMS", type:"bool", default:"False" } ], url:"Change_Pitch",
-      tip:"Change the pitch of a track without changing its tempo" },
+      tip:"Changes the pitch of a track without changing its tempo" },
     { id:"ChangeSpeed", name:"Change Speed", params:
       [
         { key:"Percentage", type:"double", default:0 } ], url:"Change_Speed",
-      tip:"Change the speed of a track, also changing its pitch" },
+      tip:"Changes the speed of a track, also changing its pitch" },
     { id:"ChangeTempo", name:"Change Tempo", params:
       [
         { key:"Percentage", type:"double", default:0 },
         { key:"SBSMS", type:"bool", default:"False" } ], url:"Change_Tempo",
-      tip:"Change the tempo of a selection without changing its pitch" },
+      tip:"Changes the tempo of a selection without changing its pitch" },
     { id:"Chirp", name:"Chirp", params:
       [
         { key:"StartFreq", type:"double", default:440 },
@@ -2754,7 +2755,7 @@ Audacity.Commands =
       [
         { key:"Stretch Factor", type:"float", default:10 },
         { key:"Time Resolution", type:"float", default:0.25 } ], url:"Paulstretch",
-      tip:"Use Paulstretch only for an extreme time-stretch or \"stasis\" effect" },
+      tip:"Paulstretch is only for an extreme time-stretch or \"stasis\" effect" },
     { id:"Phaser", name:"Phaser", params:
       [
         { key:"Stages", type:"int", default:2 },
@@ -2837,6 +2838,11 @@ Audacity.Commands =
         { key:"thresval", type:"int", default:0 } ], url:"Beat_Finder",
       tip:"Released under terms of the GNU General Public License version 2" },
     { id:"NyquistPrompt", name:"Nyquist Prompt", params:
+      [
+        { key:"Command", type:"string", default:"" },
+        { key:"Version", type:"int", default:3 } ], url:"Nyquist_Prompt", tip:"n/a" },
+    { id:"NyquistToolsPrompt",
+      name:"Nyquist Tools Prompt", params:
       [
         { key:"Command", type:"string", default:"" },
         { key:"Version", type:"int", default:3 } ], url:"Nyquist_Prompt", tip:"n/a" },
@@ -3031,7 +3037,6 @@ Audacity.Commands =
             "Web Page (html)" ] },
         { key:"header", type:"enum", default:0, enum:
           [ "None", "Minimal", "Standard", "All" ] },
-        { key:"optext", type:"string", default:"" },
         { key:"chan", type:"enum", default:0, enum:
           [ "L-R on Same Line",
             "Alternate Lines",
@@ -3106,7 +3111,7 @@ Audacity.Commands =
         { key:"ToY", type:"double", default:"unchanged" },
         { key:"RelativeTo", type:"enum", default:"unchanged", enum:
           [ "Panel", "App", "Track0", "Track1" ] } ],
-      url:"Extra_Menu:_Automation#drag",
+      url:"Extra_Menu:_Scriptables#drag",
       tip:"Drags mouse from one place to another." },
     { id:"Export2", name:"Export2", params:
       [
@@ -3116,9 +3121,9 @@ Audacity.Commands =
     { id:"GetInfo", name:"Get Info", params:
       [
         { key:"Type", type:"enum", default:0, enum:
-          [ "Commands", "Commands+", "Menus", "Tracks", "Clips", "Envelopes", "Labels", "Boxes" ] },
+          [ "Commands", "Commands+", "Menus", "Preferences", "Tracks", "Clips", "Envelopes", "Labels", "Boxes" ] },
         { key:"Format", type:"enum", default:0, enum:
-          [ "JSON", "LISP", "Brief" ] } ], url:"Automation",
+          [ "JSON", "LISP", "Brief" ] } ], url:"Scriptables",
       tip:"Gets information in JSON format." },
     { id:"GetPreference", name:"Get Preference", params:
       [
@@ -3136,12 +3141,12 @@ Audacity.Commands =
       [
         { key:"Text", type:"string", default:"Some message" } ], url:"Message",
       tip:"Echos a message." },
-    { id:"OpenProject", name:"Open Project", params:
+    { id:"OpenProject2", name:"Open Project2", params:
       [
         { key:"Filename", type:"string", default:"test.aup" },
         { key:"AddToHistory", type:"bool", default:"unchanged" } ], url:"Open",
-      tip:"Open a project." },
-    { id:"SaveProject", name:"Save Project", params:
+      tip:"Opens a project." },
+    { id:"SaveProject2", name:"Save Project2", params:
       [
         { key:"Filename", type:"string", default:"name.aup" },
         { key:"AddToHistory", type:"bool", default:"unchanged" },
@@ -3151,7 +3156,7 @@ Audacity.Commands =
       [
         { key:"Path", type:"string", default:"" },
         { key:"CaptureWhat", type:"enum", default:"Window", enum:
-          [ "Window", "Full_Window", "Window_Plus", "Fullscreen", "Toolbars", "Menus", "Effects", "Preferences", "Selectionbar",
+          [ "Window", "Full_Window", "Window_Plus", "Fullscreen", "Toolbars", "Effects", "Scriptables", "Preferences", "Selectionbar",
             "Spectral_Selection", "Tools", "Transport", "Mixer", "Meter", "Play_Meter", "Record_Meter", "Edit", "Device", "Scrub", "Transcription", "Trackpanel", "Ruler", "Tracks", "First_Track",
             "First_Two_Tracks",
             "First_Three_Tracks",
@@ -3163,22 +3168,46 @@ Audacity.Commands =
         { key:"ToTop", type:"bool", default:"unchanged" } ],
       url:"Help_Menu:_Tools#screenshot_tools",
       tip:"Takes screenshots." },
+    { id:"SelectFrequencies",
+      name:"Select Frequencies", params:
+      [
+        { key:"High", type:"double", default:"unchanged" },
+        { key:"Low", type:"double", default:"unchanged" } ],
+      url:"Spectral_Selection",
+      tip:"Selects a frequency range." },
+    { id:"SelectTime", name:"Select Time", params:
+      [
+        { key:"Start", type:"double", default:"unchanged" },
+        { key:"End", type:"double", default:"unchanged" },
+        { key:"RelativeTo", type:"enum", default:"unchanged", enum:
+          [ "Project Start", "Project", "Project End",
+            "Selection Start", "Selection", "Selection End" ] } ],
+      url:"Audio_Selection",
+      tip:"Selects a time range." },
+    { id:"SelectTracks", name:"Select Tracks", params:
+      [
+        { key:"Track", type:"double", default:"unchanged" },
+        { key:"TrackCount", type:"double", default:"unchanged" },
+        { key:"Mode", type:"enum", default:"unchanged", enum:
+          [ "Set", "Add", "Remove" ] } ],
+      url:"Audio_Selection",
+      tip:"Selects a range of tracks." },
     { id:"Select", name:"Select", params:
       [
         { key:"Start", type:"double", default:"unchanged" },
         { key:"End", type:"double", default:"unchanged" },
-        { key:"FromEnd", type:"bool", default:"unchanged" },
+        { key:"RelativeTo", type:"enum", default:"unchanged", enum:
+          [ "Project Start", "Project", "Project End",
+            "Selection Start", "Selection", "Selection End" ] },
         { key:"High", type:"double", default:"unchanged" },
         { key:"Low", type:"double", default:"unchanged" },
-        { key:"First", type:"int", default:"unchanged" },
-        { key:"Last", type:"int", default:"unchanged" },
+        { key:"Track", type:"double", default:"unchanged" },
+        { key:"TrackCount", type:"double", default:"unchanged" },
         { key:"Mode", type:"enum", default:"unchanged", enum:
           [ "Set", "Add", "Remove" ] } ],
       url:"Audio_Selection", tip:"Selects Audio." },
     { id:"SetClip", name:"Set Clip", params:
       [
-        { key:"Track", type:"int", default:"unchanged" },
-        { key:"Channel", type:"int", default:"unchanged" },
         { key:"At", type:"double", default:"unchanged" },
         { key:"Color", type:"enum", default:"unchanged", enum:
           [ "Color0", "Color1", "Color2", "Color3" ] },
@@ -3187,8 +3216,6 @@ Audacity.Commands =
       tip:"Sets various values for a clip." },
     { id:"SetEnvelope", name:"Set Envelope", params:
       [
-        { key:"Track", type:"int", default:"unchanged" },
-        { key:"Channel", type:"int", default:"unchanged" },
         { key:"Time", type:"double", default:"unchanged" },
         { key:"Value", type:"double", default:"unchanged" },
         { key:"Delete", type:"bool", default:"unchanged" } ],
@@ -3218,11 +3245,47 @@ Audacity.Commands =
         { key:"Height", type:"int", default:"unchanged" } ],
       url:"Extra_Menu:_Tools#set_project",
       tip:"Sets various values for a project." },
+    { id:"SetTrackAudio",
+      name:"Set Track Audio", params:
+      [
+        { key:"Mute", type:"bool", default:"unchanged" },
+        { key:"Solo", type:"bool", default:"unchanged" },
+        { key:"Pan", type:"double", default:"unchanged" },
+        { key:"Gain", type:"double", default:"unchanged" } ],
+      url:"Extra_Menu:_Tools#set_track",
+      tip:"Sets various values for a track." },
+    { id:"SetTrackStatus",
+      name:"Set Track Status", params:
+      [
+        { key:"Name", type:"string", default:"unchanged" },
+        { key:"Selected", type:"bool", default:"unchanged" },
+        { key:"Focused", type:"bool", default:"unchanged" } ],
+      url:"Extra_Menu:_Tools#set_track_status",
+      tip:"Sets various values for a track." },
+    { id:"SetTrackVisuals",
+      name:"Set Track Visuals", params:
+      [
+        { key:"Height", type:"int", default:"unchanged" },
+        { key:"Display", type:"enum", default:"unchanged", enum:
+          [ "Waveform", "Spectrogram" ] },
+        { key:"Scale", type:"enum", default:"unchanged", enum:
+          [ "Linear", "dB" ] },
+        { key:"Color", type:"enum", default:"unchanged", enum:
+          [ "Color0", "Color1", "Color2", "Color3" ] },
+        { key:"VZoom", type:"enum", default:"unchanged", enum:
+          [ "Reset", "Times2", "HalfWave" ] },
+        { key:"SpecPrefs", type:"bool", default:"unchanged" },
+        { key:"SpectralSel", type:"bool", default:"unchanged" },
+        { key:"GrayScale", type:"bool", default:"unchanged" } ],
+      url:"Extra_Menu:_Tools#set_track",
+      tip:"Sets various values for a track." },
     { id:"SetTrack", name:"Set Track", params:
       [
-        { key:"Track", type:"int", default:"unchanged" },
-        { key:"Channel", type:"int", default:"unchanged" },
         { key:"Name", type:"string", default:"unchanged" },
+        { key:"Selected", type:"bool", default:"unchanged" },
+        { key:"Focused", type:"bool", default:"unchanged" },
+        { key:"Mute", type:"bool", default:"unchanged" },
+        { key:"Solo", type:"bool", default:"unchanged" },
         { key:"Pan", type:"double", default:"unchanged" },
         { key:"Gain", type:"double", default:"unchanged" },
         { key:"Height", type:"int", default:"unchanged" },
@@ -3236,11 +3299,7 @@ Audacity.Commands =
           [ "Reset", "Times2", "HalfWave" ] },
         { key:"SpecPrefs", type:"bool", default:"unchanged" },
         { key:"SpectralSel", type:"bool", default:"unchanged" },
-        { key:"GrayScale", type:"bool", default:"unchanged" },
-        { key:"Selected", type:"bool", default:"unchanged" },
-        { key:"Focused", type:"bool", default:"unchanged" },
-        { key:"Solo", type:"bool", default:"unchanged" },
-        { key:"Mute", type:"bool", default:"unchanged" } ],
+        { key:"GrayScale", type:"bool", default:"unchanged" } ],
       url:"Extra_Menu:_Tools#set_track",
       tip:"Sets various values for a track." } ]
 
@@ -3685,6 +3744,39 @@ HEREDOC*/
   //console.log( mappy );
 
   return pieces[1] + mappy  + pieces[3];
+};
+
+/**
+ *
+ * @param id
+ * @returns {string}
+ */
+function MungedId( id ){
+  return id.charAt(0).toLowerCase() + id.slice(1);
+};
+
+/**
+ *
+ * @returns {string}
+ */
+Audacity.NyquistWrappers = function NyquistWrappersTemplate(){
+  var Coms = Audacity.Commands;
+  var Str = "";
+  for(var i=0;i<Coms.length; i++){
+    var Command = Coms[i];
+    var keyArgs = "";
+    var callArgs = "";
+    for( var j=0;j< Command.params.length; j++){
+      var param = Command.params[j];
+      keyArgs += " " + param.key.toLowerCase();
+      callArgs += " \"" + param.key +"\" " + param.key.toLowerCase();
+
+    }
+    Str += "(defun aud:" + MungedId( Command.id ) + " (&key" + keyArgs + ")\r\n" +
+        "   (aud-do \"" + Command.id + "\"" + callArgs + "))\r\n\r\n";
+
+  }
+  return Str;
 };
 
 

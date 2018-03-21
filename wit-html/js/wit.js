@@ -1229,6 +1229,10 @@ function OnGetMenuImageMaps(arg){
   DownloadDurl( "all-menus.txt", DurlOfText(App.MenuImap()) );
 }
 
+function OnGetNyquist(arg){
+  DownloadDurl( "nyquist-wrappers.txt", DurlOfText(App.NyquistWrappers()) );
+}
+
 function OnGetKeyboardReference(arg){
   DownloadDurl( "KeyboardReference.txt", DurlOfText(App.KeyboardReference()) );
 }
