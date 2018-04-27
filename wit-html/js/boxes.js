@@ -33,29 +33,29 @@ AudacityDoxed.TopUrl = "./doxygenated_help.html";
 AudacityDoxed.Menu = -1;
 
 AudacityDoxed.Boxes = [
-  [ 1,1,12,665,274, "Audacity" ],
-  [ 2,4,87,143,274, "AudioIo" ],
-  [ 2,281,87,427,274, "ShuttleGui" ],
-  [ 2,157,87,284,274, "Blockfiles" ],
-  [ 2,427,87,663,274, "Commands" ],
-  [ 3,485,87,663,180, "Built-In Effects" ],
-  [ 2,1,12,665,274, "Rest of Audacity" ],
-  [ 1,2,305,666,573, "Support" ],
-  [ 2,5,317,147,438, "PortAudio" ],
-  [ 2,8,440,547,483, "Platform-specific Implementation Layer" ],
-  [ 2,148,306,546,440, "wxWidgets" ],
-  [ 3,304,304,405,379, "wxWindow" ],
-  [ 3,170,305,271,382, "wxFile" ],
-  [ 3,433,305,534,381, "wxMenu" ],
-  [ 3,148,326,546,440, "Rest of wxWidgets" ],
-  [ 2,7,480,546,570, "OS" ],
-  [ 2,548,319,660,569, "Other Supporting Libraries" ],
-  [ 1,666,13,860,572, "Plugins" ],
-  [ 2,688,18,856,120, "Script Languages" ],
-  [ 2,667,468,860,572, "Plugin Converters" ],
-  [ 2,756,118,828,170, "Pipe" ],
-  [ 2,666,313,866,418, "Plugin Effects" ],
-  [ 2,668,170,860,270, "Scripting" ],
+  { "depth":1, "box":[1,12,665,274], "label":"Audacity" },
+  { "depth":2, "box":[4,87,143,274], "label":"AudioIo" },
+  { "depth":2, "box":[281,87,427,274], "label":"ShuttleGui" },
+  { "depth":2, "box":[157,87,284,274], "label":"Blockfiles" },
+  { "depth":2, "box":[427,87,663,274], "label":"Commands" },
+  { "depth":3, "box":[485,87,663,180], "label":"Built-In Effects" },
+  { "depth":2, "box":[1,12,665,274], "label":"Rest of Audacity" },
+  { "depth":1, "box":[2,305,666,573], "label":"Support" },
+  { "depth":2, "box":[5,317,147,438], "label":"PortAudio" },
+  { "depth":2, "box":[8,440,547,483], "label":"Platform-specific Implementation Layer" },
+  { "depth":2, "box":[148,306,546,440], "label":"wxWidgets" },
+  { "depth":3, "box":[304,304,405,379], "label":"wxWindow" },
+  { "depth":3, "box":[170,305,271,382], "label":"wxFile" },
+  { "depth":3, "box":[433,305,534,381], "label":"wxMenu" },
+  { "depth":3, "box":[148,326,546,440], "label":"Rest of wxWidgets" },
+  { "depth":2, "box":[7,480,546,570], "label":"OS" },
+  { "depth":2, "box":[548,319,660,569], "label":"Other Supporting Libraries" },
+  { "depth":1, "box":[666,13,860,572], "label":"Plugins" },
+  { "depth":2, "box":[688,18,856,120], "label":"Script Languages" },
+  { "depth":2, "box":[667,468,860,572], "label":"Plugin Converters" },
+  { "depth":2, "box":[756,118,828,170], "label":"Pipe" },
+  { "depth":2, "box":[666,313,866,418], "label":"Plugin Effects" },
+  { "depth":2, "box":[668,170,860,270], "label":"Scripting" },
 ];
 
 AudacityDoxed.BoxUrls = [
@@ -95,113 +95,114 @@ AudacityDoxed.BoxUrls = [
 //   y2
 //   Name of what's in the box.
 Audacity.Boxes = [
-//  [  0, 371, 333, 1250, 927, "Audacity Window" ],
-  [  1,   2,  32, 865,  53, "Menu Bar" ],
-//  [  1,   2,  52, 865, 207, "Top Panel" ],
-//  [  2,   2,  52, 865, 164, "ToolDock" ],
-  [  1,   3,  53, 329, 107, "Transport Toolbar" ],
-  [  2,   3,  53,  12, 107, "Grabber" ],
-  [  2,  19,  56,  66, 103, "Pause" ],
-  [  2,  69,  56, 116, 103, "Play" ],
-  [  2, 119,  56, 166, 103, "Stop" ],
-  [  2, 169,  56, 216, 103, "Skip to Start" ],
-  [  2, 219,  56, 266, 103, "Skip to End" ],
-  [  2, 277,  56, 324, 103, "Record" ],
-  [  1, 331,  53, 424, 107, "Tools Toolbar" ],
-  [  2, 331,  53, 340, 107, "Grabber" ],
-  [  2, 342,  81, 368, 107, "Zoom" ],
-  [  2, 342,  53, 368,  79, "Selection" ],
-  [  2, 370,  81, 396, 107, "Time Shift" ],
-  [  2, 370,  53, 396,  79, "Envelope" ],
-  [  2, 398,  81, 424, 107, "Multi Tool" ],
-  [  2, 398,  53, 424,  79, "Draw" ],
-  [  1, 426,  53, 857,  79, "Recording Meter Toolbar" ],
-  [  2, 426,  53, 435,  79, "Grabber" ],
-  [  2, 435,  53, 462,  79, "Record Options" ],
-  [  2, 462,  53, 852,  79, "Record Meter" ],
-  [  1, 426,  81, 857, 107, "Playback Meter Toolbar" ],
-  [  2, 426,  81, 435, 107, "Grabber" ],
-  [  2, 435,  81, 462, 107, "Playback Options" ],
-  [  2, 462,  81, 852, 107, "Play Meter" ],
-  [  1,   3, 109, 325, 135, "Mixer Toolbar" ],
-  [  2,   3, 109,  12, 135, "Grabber" ],
-  [  2,  39, 110, 168, 134, "Slider Recording" ],
-  [  2, 194, 110, 323, 134, "Slider Playback" ],
-  [  1, 327, 109, 689, 135, "Edit Toolbar" ],
-  [  2, 327, 109, 336, 135, "Grabber" ],
-  [  2, 338, 109, 364, 135, "Cut" ],
-  [  2, 365, 109, 391, 135, "Copy" ],
-  [  2, 392, 109, 418, 135, "Paste" ],
-  [  2, 419, 109, 445, 135, "Trim" ],
-  [  2, 446, 109, 472, 135, "Silence" ],
-  [  2, 487, 109, 513, 135, "Undo" ],
-  [  2, 514, 109, 540, 135, "Redo" ],
-  [  2, 555, 109, 581, 135, "Zoom In" ],
-  [  2, 582, 109, 608, 135, "Zoom Out" ],
-  [  2, 609, 109, 635, 135, "Fit selection" ],
-  [  2, 636, 109, 662, 135, "Fit project" ],
-  [  2, 663, 109, 689, 135, "Zoom Toggle" ],
-  [  1, 691, 109, 830, 135, "Transcription Toolbar" ],
-  [  2, 691, 109, 700, 135, "Grabber" ],
-  [  2, 702, 109, 728, 135, "Play-at-Speed" ],
-  [  2, 729, 110, 828, 134, "Playback Speed" ],
-  [  1,   3, 137, 617, 163, "Device Toolbar" ],
-  [  2,   3, 137,  12, 163, "Grabber" ],
-  [  2,  14, 139, 117, 161, "Audio Host" ],
-  [  2, 143, 139, 309, 161, "Recording Device" ],
-  [  2, 309, 139, 415, 161, "Recording Channels" ],
-  [  2, 442, 139, 597, 161, "Playback Device" ],
-  [  1,   2, 165, 865, 207, "Timeline" ],
-//  [  2,   3, 165,  13, 193, "Grabber" ], // It's a fake grabber!
-  [  2,  14, 165,  40, 193, "Pin" ],
-  [  2,   2, 193, 865, 207, "Scrubbing Bar" ],
-  [  2,  40, 165, 865, 193, "Timeline Ruler" ],
+//  { "depth": 0,"box":[ 371, 333, 1250, 927], "label":"Audacity Window" },
+  { "depth": 1,"box":[   2,  32, 865,  53], "label":"Menu Bar" },
+//  { "depth": 1,"box":[   2,  52, 865, 207], "label":"Top Panel" },
+//  { "depth": 2,"box":[   2,  52, 865, 164], "label":"ToolDock" },
+  { "depth": 1,"box":[   3,  53, 329, 107], "label":"Transport Toolbar" },
+  { "depth": 2,"box":[   3,  53,  12, 107], "label":"Grabber" },
+  { "depth": 2,"box":[  19,  56,  66, 103], "label":"Pause" },
+  { "depth": 2,"box":[  69,  56, 116, 103], "label":"Play" },
+  { "depth": 2,"box":[ 119,  56, 166, 103], "label":"Stop" },
+  { "depth": 2,"box":[ 169,  56, 216, 103], "label":"Skip to Start" },
+  { "depth": 2,"box":[ 219,  56, 266, 103], "label":"Skip to End" },
+  { "depth": 2,"box":[ 277,  56, 324, 103], "label":"Record" },
+  { "depth": 1,"box":[ 331,  53, 424, 107], "label":"Tools Toolbar" },
+  { "depth": 2,"box":[ 331,  53, 340, 107], "label":"Grabber" },
+  { "depth": 2,"box":[ 342,  81, 368, 107], "label":"Zoom" },
+  { "depth": 2,"box":[ 342,  53, 368,  79], "label":"Selection" },
+  { "depth": 2,"box":[ 370,  81, 396, 107], "label":"Time Shift" },
+  { "depth": 2,"box":[ 370,  53, 396,  79], "label":"Envelope" },
+  { "depth": 2,"box":[ 398,  81, 424, 107], "label":"Multi Tool" },
+  { "depth": 2,"box":[ 398,  53, 424,  79], "label":"Draw" },
+  { "depth": 1,"box":[ 426,  53, 857,  79], "label":"Recording Meter Toolbar" },
+  { "depth": 2,"box":[ 426,  53, 435,  79], "label":"Grabber" },
+  { "depth": 2,"box":[ 435,  53, 462,  79], "label":"Record Options" },
+  { "depth": 2,"box":[ 462,  53, 852,  79], "label":"Record Meter" },
+  { "depth": 1,"box":[ 426,  81, 857, 107], "label":"Playback Meter Toolbar" },
+  { "depth": 2,"box":[ 426,  81, 435, 107], "label":"Grabber" },
+  { "depth": 2,"box":[ 435,  81, 462, 107], "label":"Playback Options" },
+  { "depth": 2,"box":[ 462,  81, 852, 107], "label":"Play Meter" },
+  { "depth": 1,"box":[   3, 109, 325, 135], "label":"Mixer Toolbar" },
+  { "depth": 2,"box":[   3, 109,  12, 135], "label":"Grabber" },
+  { "depth": 2,"box":[  39, 110, 168, 134], "label":"Slider Recording" },
+  { "depth": 2,"box":[ 194, 110, 323, 134], "label":"Slider Playback" },
+  { "depth": 1,"box":[ 327, 109, 689, 135], "label":"Edit Toolbar" },
+  { "depth": 2,"box":[ 327, 109, 336, 135], "label":"Grabber" },
+  { "depth": 2,"box":[ 338, 109, 364, 135], "label":"Cut" },
+  { "depth": 2,"box":[ 365, 109, 391, 135], "label":"Copy" },
+  { "depth": 2,"box":[ 392, 109, 418, 135], "label":"Paste" },
+  { "depth": 2,"box":[ 419, 109, 445, 135], "label":"Trim" },
+  { "depth": 2,"box":[ 446, 109, 472, 135], "label":"Silence" },
+  { "depth": 2,"box":[ 487, 109, 513, 135], "label":"Undo" },
+  { "depth": 2,"box":[ 514, 109, 540, 135], "label":"Redo" },
+  { "depth": 2,"box":[ 555, 109, 581, 135], "label":"Zoom In" },
+  { "depth": 2,"box":[ 582, 109, 608, 135], "label":"Zoom Out" },
+  { "depth": 2,"box":[ 609, 109, 635, 135], "label":"Fit selection" },
+  { "depth": 2,"box":[ 636, 109, 662, 135], "label":"Fit project" },
+  { "depth": 2,"box":[ 663, 109, 689, 135], "label":"Zoom Toggle" },
+  { "depth": 1,"box":[ 691, 109, 830, 135], "label":"Transcription Toolbar" },
+  { "depth": 2,"box":[ 691, 109, 700, 135], "label":"Grabber" },
+  { "depth": 2,"box":[ 702, 109, 728, 135], "label":"Play-at-Speed" },
+  { "depth": 2,"box":[ 729, 110, 828, 134], "label":"Playback Speed" },
+  { "depth": 1,"box":[   3, 137, 617, 163], "label":"Device Toolbar" },
+  { "depth": 2,"box":[   3, 137,  12, 163], "label":"Grabber" },
+  { "depth": 2,"box":[  14, 139, 117, 161], "label":"Audio Host" },
+  { "depth": 2,"box":[ 143, 139, 309, 161], "label":"Recording Device" },
+  { "depth": 2,"box":[ 309, 139, 415, 161], "label":"Recording Channels" },
+  { "depth": 2,"box":[ 442, 139, 597, 161], "label":"Playback Device" },
+  { "depth": 1,"box":[   2, 165, 865, 207], "label":"Timeline" },
+//  { "depth": 2,"box":[   3, 165,  13, 193], "label":"Grabber" }, // It's a
+// fake grabber!
+  { "depth": 2,"box":[  14, 165,  40, 193], "label":"Pin" },
+  { "depth": 2,"box":[   2, 193, 865, 207], "label":"Scrubbing Bar" },
+  { "depth": 2,"box":[  40, 165, 865, 193], "label":"Timeline Ruler" },
 
 
-  [  1,   2, 208, 865, 504, "Track Panel" ],
-//  [  1,   2, 208, 848, 487, "Track Panel" ],
+  { "depth": 1,"box":[   2, 208, 865, 504], "label":"Track Panel" },
+//  { "depth": 1,"box":[   2, 208, 848, 487], "label":"Track Panel" },
 
 
-  [ 2, 5,213,842,416, "Audio Track" ],
+  { "depth":2,"box":[ 5,213,842,416], "label": "Audio Track" },
 
-  [ 3, 5,214,102,416, "Track Control Panel" ],
-  [ 4, 5,214,26,232, "Close" ],
-  [ 4, 5,397,86,415, "Collapse" ],
-  [ 4, 7,230,53,249, "Mute" ],
-  [ 4, 5,310,100,341, "Track Data" ],
-  [ 4, 26,214,103,232, "Track Menu" ],
-  [ 4, 5,281,100,310, "Pan Slider" ],
-  [ 4, 52,230,103,249, "Solo" ],
-  [ 4, 5,249,100,280, "Gain Slider" ],
-  [ 3, 102, 214, 137, 416, "Vertical Scale" ],
-  [ 3, 140,213,842,312, "Left Channel" ],
-  [ 3, 140,318,842,416, "Right Channel" ],
+  { "depth":3,"box":[ 5,214,102,416], "label": "Track Control Panel"},
+  { "depth":4,"box":[ 5,214,26,232], "label": "Close"},
+  { "depth":4,"box":[ 5,397,86,415], "label": "Collapse"},
+  { "depth":4,"box":[ 7,230,53,249], "label": "Mute"},
+  { "depth":4,"box":[ 5,310,100,341], "label": "Track Data"},
+  { "depth":4,"box":[ 26,214,103,232], "label": "Track Menu"},
+  { "depth":4,"box":[ 5,281,100,310], "label": "Pan Slider"},
+  { "depth":4,"box":[ 52,230,103,249], "label": "Solo"},
+  { "depth":4,"box":[ 5,249,100,280], "label": "Gain Slider"},
+  { "depth":3,"box":[ 102, 214, 137, 416], "label":"Vertical Ruler"},
+  { "depth":3,"box":[ 140,213,842,312], "label": "Left Channel"},
+  { "depth":3,"box":[ 140,318,842,416], "label": "Right Channel"},
+  { "depth":2,"box":[ 5,423,842,460], "label": "Label Track"},
+  { "depth":3,"box":[ 5,423,103,459], "label": "Track Control Panel"},
+  { "depth":4,"box":[ 8,423,25,441], "label": "Close"},
+  { "depth":4,"box":[ 5,441,86,461], "label": "Collapse"},
+  { "depth":4,"box":[ 25,423,102,441], "label": "Track Menu"},
+//  { "depth":3,"box":[ 102, 423, 137, 460], "label":"VRuler" }, // DNGN - Does
+// nothing, Goes nowhere.
+  { "depth":3,"box":[ 188,424,301,458], "label": "Point Label" },
+  { "depth":3,"box":[ 324,424,828,458], "label": "Region Label"},
 
-  [ 2, 5,423,842,460, "Label Track" ],
-  [ 3, 5,423,103,459, "Track Control Panel" ],
-  [ 4, 8,423,25,441, "Close" ],
-  [ 4, 5,441,86,461, "Collapse" ],
-  [ 4, 25,423,102,441, "Track Menu" ],
-//  [ 3, 102, 423, 137, 460, "VRuler" ], // DNGN - Does nothing, Goes Nowhere.
-  [ 3, 188,424,301,458, "Point Label" ],
-  [ 3, 324,424,828,458, "Region Label" ],
 
 
-
-  [  2, 138, 488, 848, 504, "Horizontal Scrollbar" ],
-  [  2, 849, 208, 865, 487, "Vertical Scrollbar" ],
-//  [  1,   2, 505, 865, 561, "ToolDock" ],
-  [  1,   3, 506, 679, 560, "Selection Toolbar" ],
-  [  2,   3, 506,  12, 560, "Grabber" ],
-  [  2,  19, 511, 113, 557, "Project Rate" ],
-  [  2, 127, 511, 199, 557, "Snap To" ],
-  [  2, 213, 511, 362, 558, "Audio Position" ],
-  [  2, 376, 537, 523, 558, "Start" ],
-  [  2, 529, 537, 676, 558, "End" ],
-  [  2, 374, 511, 673, 533, "Selection Type Chooser" ],
-  [  1,   2, 562, 865, 584, "Status Bar" ],
-  [  2,  10, 562, 150, 584, "Status" ],
-  [  2, 842, 562, 865, 584, "Grab Handle"],
+  { "depth": 2,"box":[ 138, 488, 848, 504], "label":"Horizontal Scrollbar" },
+  { "depth": 2,"box":[ 849, 208, 865, 487], "label":"Vertical Scrollbar" },
+//  { "depth": 1,"box":[   2, 505, 865, 561], "label":"ToolDock" },
+  { "depth": 1,"box":[   3, 506, 679, 560], "label":"Selection Toolbar" },
+  { "depth": 2,"box":[   3, 506,  12, 560], "label":"Grabber" },
+  { "depth": 2,"box":[  19, 511, 113, 557], "label":"Project Rate" },
+  { "depth": 2,"box":[ 127, 511, 199, 557], "label":"Snap To" },
+  { "depth": 2,"box":[ 213, 511, 362, 558], "label":"Audio Position" },
+  { "depth": 2,"box":[ 376, 537, 523, 558], "label":"Start" },
+  { "depth": 2,"box":[ 529, 537, 676, 558], "label":"End" },
+  { "depth": 2,"box":[ 374, 511, 673, 533], "label":"Selection Type Chooser" },
+  { "depth": 1,"box":[   2, 562, 865, 584], "label":"Status Bar" },
+  { "depth": 2,"box":[  10, 562, 150, 584], "label":"Status" },
+  { "depth": 2,"box":[ 842, 562, 865, 584], "label":"Grab Handle"},
 
 ];
 
@@ -213,758 +214,758 @@ Audacity.Boxes = [
 //   Accelerator
 Audacity.Menus =
   [
-    [ 0, 0, "File", "" ],
-    { 0:1, 1:0, 2:"New", 3:"Ctrl+N", id:"New" },
-    { 0:1, 1:0, 2:"Open...", 3:"Ctrl+O", id:"Open" },
-    { 0:1, 1:1, 2:"Recent Files", 3:"" },
-    { 0:2, 1:0, 2:"Clear", 3:"" },
-    { 0:1, 1:0, 2:"----", 3:"" },
-    { 0:1, 1:0, 2:"Close", 3:"Ctrl+W", id:"Close" },
-    { 0:1, 1:0, 2:"Save Project", 3:"Ctrl+S", id:"Save" },
-    { 0:1, 1:0,
-      2:"Save Project As...", 3:"", id:"SaveAs" },
-    { 0:1, 1:1, 2:"Export", 3:"" },
-    { 0:2, 1:0, 2:"Export as MP3", 3:"", id:"ExportMp3" },
-    { 0:2, 1:0, 2:"Export as WAV", 3:"", id:"ExportWav" },
-    { 0:2, 1:0, 2:"Export as OGG", 3:"", id:"ExportOgg" },
-    { 0:2, 1:0,
-      2:"Export Audio...", 3:"Ctrl+Shift+E", id:"Export" },
-    { 0:2, 1:0,
-      2:"Export Selected Audio...", 3:"", id:"ExportSel" },
-    { 0:2, 1:0,
-      2:"Export Labels...", 3:"", id:"ExportLabels" },
-    { 0:2, 1:0,
-      2:"Export Multiple...", 3:"Ctrl+Shift+L", id:"ExportMultiple" },
-    { 0:2, 1:0, 2:"Export MIDI...", 3:"", id:"ExportMIDI" },
-    { 0:2, 1:0, 2:"----", 3:"" },
-    { 0:2, 1:0,
-      2:"Save Compressed Copy of Project...", 3:"", id:"SaveCompressed" },
-    { 0:1, 1:0, 2:"----", 3:"" },
-    { 0:1, 1:1, 2:"Import", 3:"" },
-    { 0:2, 1:0, 2:"Audio...", 3:"Ctrl+Shift+I", id:"ImportAudio" },
-    { 0:2, 1:0, 2:"Labels...", 3:"", id:"ImportLabels" },
-    { 0:2, 1:0, 2:"MIDI...", 3:"", id:"ImportMIDI" },
-    { 0:2, 1:0, 2:"Raw Data...", 3:"", id:"ImportRaw" },
-    { 0:1, 1:0, 2:"----", 3:"" },
-    { 0:1, 1:0, 2:"Page Setup...", 3:"", id:"PageSetup" },
-    { 0:1, 1:0, 2:"Print...", 3:"", id:"Print" },
-    { 0:1, 1:0, 2:"----", 3:"" },
-    { 0:1, 1:0, 2:"Exit", 3:"Ctrl+Q", id:"Exit" },
-    [ 0, 0, "Edit", "" ],
-    { 0:1, 1:0, 2:"Undo", 3:"Ctrl+Z", id:"Undo" },
-    { 0:1, 1:0, 2:"Redo", 3:"Ctrl+Y", id:"Redo" },
-    { 0:1, 1:0, 2:"----", 3:"" },
-    { 0:1, 1:0, 2:"Cut", 3:"Ctrl+X", id:"Cut" },
-    { 0:1, 1:0, 2:"Delete", 3:"Ctrl+K", id:"Delete" },
-    { 0:1, 1:0, 2:"Copy", 3:"Ctrl+C", id:"Copy" },
-    { 0:1, 1:0, 2:"Paste", 3:"Ctrl+V", id:"Paste" },
-    { 0:1, 1:0, 2:"Duplicate", 3:"Ctrl+D", id:"Duplicate" },
-    { 0:1, 1:0, 2:"----", 3:"" },
-    { 0:1, 1:1, 2:"Remove Special", 3:"" },
-    { 0:2, 1:0, 2:"Split Cut", 3:"Ctrl+Alt+X", id:"SplitCut" },
-    { 0:2, 1:0, 2:"Split Delete", 3:"Ctrl+Alt+K", id:"SplitDelete" },
-    { 0:2, 1:0, 2:"----", 3:"" },
-    { 0:2, 1:0, 2:"Silence Audio", 3:"Ctrl+L", id:"Silence" },
-    { 0:2, 1:0, 2:"Trim Audio", 3:"Ctrl+T", id:"Trim" },
-    { 0:1, 1:0, 2:"----", 3:"" },
-    { 0:1, 1:1,
-      2:"Clip Boundaries", 3:"" },
-    { 0:2, 1:0, 2:"Split", 3:"Ctrl+I", id:"Split" },
-    { 0:2, 1:0, 2:"Split New", 3:"Ctrl+Alt+I", id:"SplitNew" },
-    { 0:2, 1:0, 2:"----", 3:"" },
-    { 0:2, 1:0, 2:"Join", 3:"Ctrl+J", id:"Join" },
-    { 0:2, 1:0,
-      2:"Detach at Silences", 3:"Ctrl+Alt+J", id:"Disjoin" },
-    { 0:1, 1:1, 2:"Labels", 3:"" },
-    { 0:2, 1:0, 2:"Edit Labels...", 3:"", id:"EditLabels" },
-    { 0:2, 1:0, 2:"----", 3:"" },
-    { 0:2, 1:0,
-      2:"Add Label at Selection", 3:"Ctrl+B", id:"AddLabel" },
-    { 0:2, 1:0,
-      2:"Add Label at Playback Position", 3:"Ctrl+M",
-      id:"AddLabelPlaying" },
-    { 0:2, 1:0,
-      2:"Paste Text to New Label", 3:"Ctrl+Alt+V", id:"PasteNewLabel" },
-    { 0:2, 1:0, 2:"----", 3:"" },
-    { 0:2, 1:2,
-      2:"Type to Create a Label (on/off)", 3:"",
-      id:"TypeToCreateLabel" },
-    { 0:1, 1:1, 2:"Labeled Audio", 3:"" },
-    { 0:2, 1:0, 2:"Cut", 3:"Alt+X", id:"CutLabels" },
-    { 0:2, 1:0, 2:"Delete", 3:"Alt+K", id:"DeleteLabels" },
-    { 0:2, 1:0, 2:"----", 3:"" },
-    { 0:2, 1:0, 2:"Split Cut", 3:"Alt+Shift+X", id:"SplitCutLabels" },
-    { 0:2, 1:0, 2:"Split Delete", 3:"Alt+Shift+K",
-      id:"SplitDeleteLabels" },
-    { 0:2, 1:0, 2:"----", 3:"" },
-    { 0:2, 1:0, 2:"Silence Audio", 3:"Alt+L", id:"SilenceLabels" },
-    { 0:2, 1:0, 2:"Copy", 3:"Alt+Shift+C", id:"CopyLabels" },
-    { 0:2, 1:0, 2:"----", 3:"" },
-    { 0:2, 1:0, 2:"Split", 3:"Alt+I", id:"SplitLabels" },
-    { 0:2, 1:0, 2:"Join", 3:"Alt+J", id:"JoinLabels" },
-    { 0:2, 1:0,
-      2:"Detach at Silences", 3:"Alt+Shift+J", id:"DisjoinLabels" },
-    { 0:1, 1:0, 2:"Metadata...", 3:"", id:"EditMetaData" },
-    { 0:1, 1:0, 2:"----", 3:"" },
-    { 0:1, 1:0, 2:"Preferences...", 3:"Ctrl+P", id:"Preferences" },
-    [ 0, 0, "Select", "" ],
-    { 0:1, 1:0, 2:"All", 3:"Ctrl+A", id:"SelectAll" },
-    { 0:1, 1:0, 2:"None", 3:"Ctrl+Shift+A", id:"SelectNone" },
-    { 0:1, 1:1, 2:"Tracks", 3:"" },
-    { 0:2, 1:0, 2:"In All Tracks", 3:"Ctrl+Shift+K", id:"SelAllTracks" },
-    { 0:2, 1:0,
-      2:"In All Sync-Locked Tracks", 3:"Ctrl+Shift+Y",
-      id:"SelSyncLockTracks" },
-    { 0:1, 1:1, 2:"Region", 3:"" },
-    { 0:2, 1:0,
-      2:"Left at Playback Position", 3:"[",
-      id:"SetLeftSelection" },
-    { 0:2, 1:0,
-      2:"Right at Playback Position", 3:"]",
-      id:"SetRightSelection" },
-    { 0:2, 1:0,
-      2:"Track Start to Cursor", 3:"Shift+J", id:"SelStartCursor" },
-    { 0:2, 1:0,
-      2:"Cursor to Track End", 3:"Shift+K", id:"SelCursorEnd" },
-    { 0:2, 1:0, 2:"----", 3:"" },
-    { 0:2, 1:0,
-      2:"Store Selection", 3:"", id:"SelSave" },
-    { 0:2, 1:0,
-      2:"Retrieve Selection", 3:"", id:"SelRestore" },
-    { 0:1, 1:1, 2:"Spectral", 3:"" },
-    { 0:2, 1:0,
-      2:"Toggle Spectral Selection", 3:"Q",
-      id:"ToggleSpectralSelection" },
-    { 0:2, 1:0,
-      2:"Next Higher Peak Frequency", 3:"",
-      id:"NextHigherPeakFrequency" },
-    { 0:2, 1:0,
-      2:"Next Lower Peak Frequency", 3:"",
-      id:"NextLowerPeakFrequency" },
-    { 0:1, 1:1,
-      2:"Clip Boundaries", 3:"" },
-    { 0:2, 1:0,
-      2:"Previous Clip Boundary to Cursor", 3:"",
-      id:"SelPrevClipBoundaryToCursor" },
-    { 0:2, 1:0,
-      2:"Cursor to Next Clip Boundary", 3:"",
-      id:"SelCursorToNextClipBoundary" },
-    { 0:2, 1:0, 2:"Previous Clip", 3:"Alt+P", id:"SelPrevClip" },
-    { 0:2, 1:0, 2:"Next Clip", 3:"Alt+N", id:"SelNextClip" },
-    { 0:1, 1:0, 2:"----", 3:"" },
-    { 0:1, 1:0,
-      2:"Cursor to Stored Cursor Position", 3:"",
-      id:"SelCursorStoredCursor" },
-    { 0:1, 1:0,
-      2:"Store Cursor Position", 3:"",
-      id:"StoreCursorPosition" },
-    { 0:1, 1:0, 2:"----", 3:"" },
-    { 0:1, 1:0,
-      2:"At Zero Crossings", 3:"Z", id:"ZeroCross" },
-    [ 0, 0, "View", "" ],
-    { 0:1, 1:1, 2:"Zoom", 3:"" },
-    { 0:2, 1:0, 2:"Zoom In", 3:"Ctrl+1", id:"ZoomIn" },
-    { 0:2, 1:0, 2:"Zoom Normal", 3:"Ctrl+2", id:"ZoomNormal" },
-    { 0:2, 1:0, 2:"Zoom Out", 3:"Ctrl+3", id:"ZoomOut" },
-    { 0:2, 1:0,
-      2:"Zoom to Selection", 3:"Ctrl+E", id:"ZoomSel" },
-    { 0:2, 1:0, 2:"Zoom Toggle", 3:"Shift+Z", id:"ZoomToggle" },
-    { 0:1, 1:1, 2:"Track Size", 3:"" },
-    { 0:2, 1:0, 2:"Fit to Width", 3:"Ctrl+F", id:"FitInWindow" },
-    { 0:2, 1:0, 2:"Fit to Height", 3:"Ctrl+Shift+F", id:"FitV" },
-    { 0:2, 1:0,
-      2:"Collapse All Tracks", 3:"Ctrl+Shift+C",
-      id:"CollapseAllTracks" },
-    { 0:2, 1:0,
-      2:"Expand Collapsed Tracks", 3:"Ctrl+Shift+X",
-      id:"ExpandAllTracks" },
-    { 0:1, 1:1, 2:"Skip to", 3:"" },
-    { 0:2, 1:0,
-      2:"Selection Start", 3:"Ctrl+[", id:"SkipSelStart" },
-    { 0:2, 1:0, 2:"Selection End", 3:"Ctrl+]", id:"SkipSelEnd" },
-    { 0:1, 1:0, 2:"----", 3:"" },
-    { 0:1, 1:0, 2:"History...", 3:"", id:"UndoHistory" },
-    { 0:1, 1:0, 2:"Karaoke...", 3:"", id:"Karaoke" },
-    { 0:1, 1:0, 2:"Mixer Board...", 3:"", id:"MixerBoard" },
-    { 0:1, 1:0, 2:"----", 3:"" },
-    { 0:1, 1:1, 2:"Toolbars", 3:"" },
-    { 0:2, 1:0, 2:"Reset Toolbars", 3:"", id:"ResetToolbars" },
-    { 0:2, 1:0, 2:"----", 3:"" },
-    { 0:2, 1:2,
-      2:"Transport Toolbar", 3:"",
-      id:"ShowTransportTB" },
-    { 0:2, 1:2, 2:"Tools Toolbar", 3:"", id:"ShowToolsTB" },
-    { 0:2, 1:2,
-      2:"Recording Meter Toolbar", 3:"",
-      id:"ShowRecordMeterTB" },
-    { 0:2, 1:2,
-      2:"Playback Meter Toolbar", 3:"",
-      id:"ShowPlayMeterTB" },
-    { 0:2, 1:2, 2:"Mixer Toolbar", 3:"", id:"ShowMixerTB" },
-    { 0:2, 1:2, 2:"Edit Toolbar", 3:"", id:"ShowEditTB" },
-    { 0:2, 1:2,
-      2:"Transcription Toolbar", 3:"",
-      id:"ShowTranscriptionTB" },
-    { 0:2, 1:0, 2:"Scrub Toolbar", 3:"",
-      id:"ShowScrubbingTB" },
-    { 0:2, 1:2, 2:"Device Toolbar", 3:"", id:"ShowDeviceTB" },
-    { 0:2, 1:2,
-      2:"Selection Toolbar", 3:"",
-      id:"ShowSelectionTB" },
-    { 0:2, 1:0,
-      2:"Spectral Selection Toolbar", 3:"",
-      id:"ShowSpectralSelectionTB" },
-    { 0:1, 1:0, 2:"----", 3:"" },
-    { 0:1, 1:2,
-      2:"Extra Menus (on/off)", 3:"", id:"ShowExtraMenus" },
-    { 0:1, 1:0,
-      2:"Show Clipping (on/off)", 3:"", id:"ShowClipping" },
-    [ 0, 0, "Transport", "" ],
-    { 0:1, 1:1, 2:"Play", 3:"" },
-    { 0:2, 1:0, 2:"Play/Stop", 3:"Space", id:"PlayStop" },
-    { 0:2, 1:0,
-      2:"Play/Stop and Set Cursor", 3:"X", id:"PlayStopSelect" },
-    { 0:2, 1:0, 2:"Loop Play", 3:"Shift+Space", id:"PlayLooped" },
-    { 0:2, 1:0, 2:"Pause", 3:"P", id:"Pause" },
-    { 0:1, 1:1, 2:"Record", 3:"" },
-    { 0:2, 1:0, 2:"Record", 3:"R",
-      id:"Record1stChoice" },
-    { 0:2, 1:0,
-      2:"Record New Track", 3:"Shift+R",
-      id:"Record2ndChoice" },
-    { 0:2, 1:0,
-      2:"Timer Record...", 3:"Shift+T", id:"TimerRecord" },
-    { 0:2, 1:0, 2:"Pause", 3:"P", id:"Pause" },
-    { 0:1, 1:1, 2:"Scrubbing", 3:"" },
-    { 0:2, 1:0, 2:"Scrub", 3:"", id:"Scrub" },
-    { 0:2, 1:0, 2:"Seek", 3:"", id:"Seek" },
-    { 0:2, 1:0, 2:"Scrub Ruler", 3:"",
-      id:"ToggleScrubRuler" },
-    { 0:1, 1:1, 2:"Cursor to", 3:"" },
-    { 0:2, 1:0,
-      2:"Selection Start", 3:"", id:"CursSelStart" },
-    { 0:2, 1:0, 2:"Selection End", 3:"", id:"CursSelEnd" },
-    { 0:2, 1:0, 2:"Track Start", 3:"J", id:"CursTrackStart" },
-    { 0:2, 1:0, 2:"Track End", 3:"K", id:"CursTrackEnd" },
-    { 0:2, 1:0,
-      2:"Previous Clip Boundary", 3:"",
-      id:"CursPrevClipBoundary" },
-    { 0:2, 1:0,
-      2:"Next Clip Boundary", 3:"",
-      id:"CursNextClipBoundary" },
-    { 0:2, 1:0, 2:"Project Start", 3:"Home",
-      id:"CursProjectStart" },
-    { 0:2, 1:0, 2:"Project End", 3:"End", id:"CursProjectEnd" },
-    { 0:1, 1:0, 2:"----", 3:"" },
-    { 0:1, 1:1, 2:"Play Region", 3:"" },
-    { 0:2, 1:0, 2:"Lock", 3:"", id:"LockPlayRegion" },
-    { 0:2, 1:0, 2:"Unlock", 3:"",
-      id:"UnlockPlayRegion" },
-    { 0:1, 1:0, 2:"----", 3:"" },
-    { 0:1, 1:0,
-      2:"Rescan Audio Devices", 3:"", id:"RescanDevices" },
-    { 0:1, 1:1,
-      2:"Transport Options", 3:"" },
-    { 0:2, 1:0,
-      2:"Sound Activation Level...", 3:"",
-      id:"SoundActivationLevel" },
-    { 0:2, 1:0,
-      2:"Sound Activated Recording (on/off)", 3:"",
-      id:"SoundActivation" },
-    { 0:2, 1:0, 2:"----", 3:"" },
-    { 0:2, 1:0,
-      2:"Pinned Play/Record Head (on/off)", 3:"", id:"PinnedHead" },
-    { 0:2, 1:2,
-      2:"Overdub (on/off)", 3:"", id:"Duplex" },
-    { 0:2, 1:0,
-      2:"Software Playthrough (on/off)", 3:"", id:"SWPlaythrough" },
-    [ 0, 0, "Tracks", "" ],
-    { 0:1, 1:1, 2:"Add New", 3:"" },
-    { 0:2, 1:0, 2:"Mono Track", 3:"Ctrl+Shift+N", id:"NewMonoTrack" },
-    { 0:2, 1:0, 2:"Stereo Track", 3:"", id:"NewStereoTrack" },
-    { 0:2, 1:0, 2:"Label Track", 3:"", id:"NewLabelTrack" },
-    { 0:2, 1:0, 2:"Time Track", 3:"", id:"NewTimeTrack" },
-    { 0:1, 1:0, 2:"----", 3:"" },
-    { 0:1, 1:1, 2:"Mix", 3:"" },
-    { 0:2, 1:0,
-      2:"Mix Stereo Down to Mono", 3:"", id:"Stereo to Mono" },
-    { 0:2, 1:0, 2:"Mix and Render", 3:"", id:"MixAndRender" },
-    { 0:2, 1:0,
-      2:"Mix and Render to New Track", 3:"Ctrl+Shift+M",
-      id:"MixAndRenderToNewTrack" },
-    { 0:1, 1:0, 2:"Resample...", 3:"", id:"Resample" },
-    { 0:1, 1:0, 2:"----", 3:"" },
-    { 0:1, 1:0, 2:"Remove Tracks", 3:"", id:"RemoveTracks" },
-    { 0:1, 1:0, 2:"----", 3:"" },
-    { 0:1, 1:1, 2:"Mute/Unmute", 3:"" },
-    { 0:2, 1:0,
-      2:"Mute All Tracks", 3:"Ctrl+U", id:"MuteAllTracks" },
-    { 0:2, 1:0,
-      2:"Unmute All Tracks", 3:"Ctrl+Shift+U",
-      id:"UnmuteAllTracks" },
-    { 0:1, 1:1, 2:"Pan", 3:"" },
-    { 0:2, 1:0, 2:"Left", 3:"", id:"PanLeft" },
-    { 0:2, 1:0, 2:"Right", 3:"", id:"PanRight" },
-    { 0:2, 1:0, 2:"Center", 3:"", id:"PanCenter" },
-    { 0:1, 1:0, 2:"----", 3:"" },
-    { 0:1, 1:1, 2:"Align Tracks", 3:"" },
-    { 0:2, 1:0,
-      2:"Align End to End", 3:"", id:"Align_EndToEnd" },
-    { 0:2, 1:0, 2:"Align Together", 3:"", id:"Align_Together" },
-    { 0:2, 1:0, 2:"----", 3:"" },
-    { 0:2, 1:0, 2:"Start to Zero", 3:"",
-      id:"Align_StartToZero" },
-    { 0:2, 1:0,
-      2:"Start to Cursor/Selection Start", 3:"",
-      id:"Align_StartToSelStart" },
-    { 0:2, 1:0,
-      2:"Start to Selection End", 3:"",
-      id:"Align_StartToSelEnd" },
-    { 0:2, 1:0,
-      2:"End to Cursor/Selection Start", 3:"",
-      id:"Align_EndToSelStart" },
-    { 0:2, 1:0,
-      2:"End to Selection End", 3:"",
-      id:"Align_EndToSelEnd" },
-    { 0:2, 1:0, 2:"----", 3:"" },
-    { 0:2, 1:0,
-      2:"Move Selection with Tracks (on/off)", 3:"",
-      id:"MoveSelectionWithTracks" },
-    { 0:1, 1:1, 2:"Sort Tracks", 3:"" },
-    { 0:2, 1:0, 2:"By Start time", 3:"", id:"SortByTime" },
-    { 0:2, 1:0, 2:"By Name", 3:"", id:"SortByName" },
-    { 0:1, 1:0, 2:"----", 3:"" },
-    { 0:1, 1:0,
-      2:"Sync-Lock Tracks (on/off)", 3:"", id:"SyncLock" },
-    [ 0, 0, "Generate", "" ],
-    { 0:1, 1:0,
-      2:"Add / Remove Plug-ins...", 3:"",
-      id:"ManageGenerators" },
-    { 0:1, 1:0, 2:"----", 3:"" },
-    { 0:1, 1:0, 2:"Chirp...", 3:"", id:"Chirp..." },
-    { 0:1, 1:0, 2:"DTMF Tones...", 3:"", id:"DTMF Tones..." },
-    { 0:1, 1:0, 2:"Noise...", 3:"", id:"Noise..." },
-    { 0:1, 1:0, 2:"Silence...", 3:"", id:"Silence..." },
-    { 0:1, 1:0, 2:"Tone...", 3:"", id:"Tone..." },
-    { 0:1, 1:0, 2:"----", 3:"" },
-    { 0:1, 1:0, 2:"Pluck...", 3:"", id:"Pluck..." },
-    { 0:1, 1:0,
-      2:"Rhythm Track...", 3:"",
-      id:"Rhythm Track..." },
-    { 0:1, 1:0, 2:"Risset Drum...", 3:"", id:"Risset Drum..." },
-    [ 0, 0, "Effect", "" ],
-    { 0:1, 1:0,
-      2:"Add / Remove Plug-ins...", 3:"", id:"ManageEffects" },
-    { 0:1, 1:0, 2:"----", 3:"" },
-    { 0:1, 1:0,
-      2:"Repeat Last Effect", 3:"Ctrl+R",
-      id:"RepeatLastEffect" },
-    { 0:1, 1:0, 2:"----", 3:"" },
-    { 0:1, 1:0, 2:"Amplify...", 3:"", id:"Amplify..." },
-    { 0:1, 1:0, 2:"Auto Duck...", 3:"", id:"Auto Duck..." },
-    { 0:1, 1:0,
-      2:"Bass and Treble...", 3:"",
-      id:"Bass and Treble..." },
-    { 0:1, 1:0,
-      2:"Change Pitch...", 3:"",
-      id:"Change Pitch..." },
-    { 0:1, 1:0,
-      2:"Change Speed...", 3:"",
-      id:"Change Speed..." },
-    { 0:1, 1:0,
-      2:"Change Tempo...", 3:"",
-      id:"Change Tempo..." },
-    { 0:1, 1:0,
-      2:"Click Removal...", 3:"",
-      id:"Click Removal..." },
-    { 0:1, 1:0, 2:"Compressor...", 3:"", id:"Compressor..." },
-    { 0:1, 1:0, 2:"Distortion...", 3:"", id:"Distortion..." },
-    { 0:1, 1:0, 2:"Echo...", 3:"", id:"Echo..." },
-    { 0:1, 1:0,
-      2:"Equalization...", 3:"",
-      id:"Equalization..." },
-    { 0:1, 1:0, 2:"Fade In", 3:"", id:"Fade In" },
-    { 0:1, 1:0, 2:"Fade Out", 3:"", id:"Fade Out" },
-    { 0:1, 1:0, 2:"Invert", 3:"", id:"Invert" },
-    { 0:1, 1:0,
-      2:"Noise Reduction...", 3:"",
-      id:"Noise Reduction..." },
-    { 0:1, 1:0, 2:"Normalize...", 3:"", id:"Normalize..." },
-    { 0:1, 1:0,
-      2:"Nyquist Prompt...", 3:"",
-      id:"Nyquist Prompt..." },
-    { 0:1, 1:0, 2:"Paulstretch...", 3:"", id:"Paulstretch..." },
-    { 0:1, 1:0, 2:"Phaser...", 3:"", id:"Phaser..." },
-    { 0:1, 1:0, 2:"Repair", 3:"", id:"Repair" },
-    { 0:1, 1:0, 2:"Repeat...", 3:"", id:"Repeat..." },
-    { 0:1, 1:0, 2:"Reverb...", 3:"", id:"Reverb..." },
-    { 0:1, 1:0, 2:"Reverse", 3:"", id:"Reverse" },
-    { 0:1, 1:0,
-      2:"Sliding Time Scale/Pitch Shift...", 3:"",
-      id:"Sliding Time Scale/Pitch Shift..." },
-    { 0:1, 1:0,
-      2:"Truncate Silence...", 3:"",
-      id:"Truncate Silence..." },
-    { 0:1, 1:0, 2:"Wahwah...", 3:"", id:"Wahwah..." },
-    { 0:1, 1:0, 2:"----", 3:"" },
-    { 0:1, 1:0,
-      2:"Adjustable Fade...", 3:"",
-      id:"Adjustable Fade..." },
-    { 0:1, 1:0, 2:"Clip Fix...", 3:"", id:"Clip Fix..." },
-    { 0:1, 1:0,
-      2:"Crossfade Clips", 3:"",
-      id:"Crossfade Clips" },
-    { 0:1, 1:0,
-      2:"Crossfade Tracks...", 3:"",
-      id:"Crossfade Tracks..." },
-    { 0:1, 1:0, 2:"Delay...", 3:"", id:"Delay..." },
-    { 0:1, 1:0,
-      2:"High Pass Filter...", 3:"",
-      id:"High Pass Filter..." },
-    { 0:1, 1:0, 2:"Limiter...", 3:"", id:"Limiter..." },
-    { 0:1, 1:0,
-      2:"Low Pass Filter...", 3:"",
-      id:"Low Pass Filter..." },
-    { 0:1, 1:0,
-      2:"Notch Filter...", 3:"",
-      id:"Notch Filter..." },
-    { 0:1, 1:0, 2:"SC4...", 3:"", id:"SC4..." },
-    { 0:1, 1:0,
-      2:"Spectral edit multi tool", 3:"",
-      id:"Spectral edit multi tool" },
-    { 0:1, 1:0,
-      2:"Spectral edit parametric EQ...", 3:"",
-      id:"Spectral edit parametric EQ..." },
-    { 0:1, 1:0,
-      2:"Spectral edit shelves...", 3:"",
-      id:"Spectral edit shelves..." },
-    { 0:1, 1:0,
-      2:"Studio Fade Out", 3:"",
-      id:"Studio Fade Out" },
-    { 0:1, 1:0, 2:"Tremolo...", 3:"", id:"Tremolo..." },
-    { 0:1, 1:0,
-      2:"Vocal Reduction and Isolation...", 3:"",
-      id:"Vocal Reduction and Isolation..." },
-    { 0:1, 1:0,
-      2:"Vocal Remover...", 3:"",
-      id:"Vocal Remover..." },
-    { 0:1, 1:0, 2:"Vocoder...", 3:"", id:"Vocoder..." },
-    [ 0, 0, "Analyze", "" ],
-    { 0:1, 1:0,
-      2:"Add / Remove Plug-ins...", 3:"",
-      id:"ManageAnalyzers" },
-    { 0:1, 1:0, 2:"----", 3:"" },
-    { 0:1, 1:0, 2:"Contrast...", 3:"Ctrl+Shift+T",
-      id:"ContrastAnalyser" },
-    { 0:1, 1:0,
-      2:"Plot Spectrum...", 3:"", id:"PlotSpectrum" },
-    { 0:1, 1:0,
-      2:"Find Clipping...", 3:"",
-      id:"Find Clipping..." },
-    { 0:1, 1:0, 2:"----", 3:"" },
-    { 0:1, 1:0, 2:"Beat Finder...", 3:"", id:"Beat Finder..." },
-    { 0:1, 1:0,
-      2:"Silence Finder...", 3:"",
-      id:"Silence Finder..." },
-    { 0:1, 1:0,
-      2:"Sound Finder...", 3:"",
-      id:"Sound Finder..." },
-    [ 0, 0, "Tools", "" ],
-    { 0:1, 1:0,
-      2:"Add / Remove Plug-ins...", 3:"", id:"ManageTools" },
-    { 0:1, 1:0, 2:"Macros...", 3:"", id:"ManageMacros" },
-    { 0:1, 1:1, 2:"Apply Macro", 3:"" },
-    { 0:2, 1:0, 2:"Palette...", 3:"",
-      id:"ApplyMacrosPalette" },
-    { 0:2, 1:0, 2:"----", 3:"" },
-    { 0:2, 1:0, 2:"Applause", 3:"", id:"Macro_Applause" },
-    { 0:2, 1:0,
-      2:"Background Chatter", 3:"",
-      id:"Macro_BackgroundChatter" },
-    { 0:2, 1:0,
-      2:"Background Hiss", 3:"",
-      id:"Macro_BackgroundHiss" },
-    { 0:2, 1:0, 2:"Bleep Out", 3:"", id:"Macro_BleepOut" },
-    { 0:2, 1:0, 2:"Bogosity", 3:"", id:"Macro_Bogosity" },
-    { 0:2, 1:0, 2:"Cross Fade", 3:"",
-      id:"Macro_CrossFade" },
-    { 0:2, 1:0, 2:"Fade Ends", 3:"", id:"Macro_FadeEnds" },
-    { 0:2, 1:0, 2:"MP3 Conversion", 3:"",
-      id:"Macro_MP3Conversion" },
-    { 0:2, 1:0, 2:"Normalize -1dB", 3:"",
-      id:"Macro_Normalize-1dB" },
-    { 0:2, 1:0, 2:"Normalize -6dB", 3:"",
-      id:"Macro_Normalize-6dB" },
-    { 0:2, 1:0, 2:"Select to Ends", 3:"",
-      id:"Macro_SelecttoEnds" },
-    { 0:1, 1:0, 2:"----", 3:"" },
-    { 0:1, 1:0, 2:"Screenshot...", 3:"",
-      id:"FancyScreenshot" },
-    { 0:1, 1:0,
-      2:"Run Benchmark...", 3:"", id:"Benchmark" },
-    { 0:1, 1:0,
-      2:"Simulate Recording Errors", 3:"",
-      id:"SimulateRecordingErrors" },
-    { 0:1, 1:2,
-      2:"Detect Upstream Dropouts", 3:"",
-      id:"DetectUpstreamDropouts" },
-    { 0:1, 1:0, 2:"----", 3:"" },
-    { 0:1, 1:0,
-      2:"Nyquist Tools Prompt...", 3:"",
-      id:"Nyquist Tools Prompt..." },
-    { 0:1, 1:0, 2:"----", 3:"" },
-    { 0:1, 1:0,
-      2:"Regular Interval Labels...", 3:"",
-      id:"Regular Interval Labels..." },
-    { 0:1, 1:0,
-      2:"Sample Data Export...", 3:"",
-      id:"Sample Data Export..." },
-    { 0:1, 1:0,
-      2:"Sample Data Import...", 3:"",
-      id:"Sample Data Import..." },
-    [ 0, 0, "Help", "" ],
-    { 0:1, 1:0, 2:"Quick Help...", 3:"", id:"QuickHelp" },
-    { 0:1, 1:0, 2:"Manual...", 3:"", id:"Manual" },
-    { 0:1, 1:0, 2:"----", 3:"" },
-    { 0:1, 1:1, 2:"Diagnostics", 3:"" },
-    { 0:2, 1:0,
-      2:"Audio Device Info...", 3:"", id:"DeviceInfo" },
-    { 0:2, 1:0,
-      2:"MIDI Device Info...", 3:"", id:"MidiDeviceInfo" },
-    { 0:2, 1:0, 2:"Show Log...", 3:"", id:"Log" },
-    { 0:2, 1:0,
-      2:"Generate Support Data...", 3:"", id:"CrashReport" },
-    { 0:2, 1:0,
-      2:"Check Dependencies...", 3:"", id:"CheckDeps" },
-    { 0:1, 1:0, 2:"----", 3:"" },
-    { 0:1, 1:0,
-      2:"Check for Updates...", 3:"", id:"Updates" },
-    { 0:1, 1:0,
-      2:"About Audacity...", 3:"", id:"About" },
-    [ 0, 0, "Extra", "" ],
-    { 0:1, 1:1, 2:"Transport", 3:"" },
-    { 0:2, 1:0, 2:"Play", 3:"", id:"Play" },
-    { 0:2, 1:0, 2:"Stop", 3:"", id:"Stop" },
-    { 0:2, 1:0,
-      2:"Play One Second", 3:" 1", id:"PlayOneSec" },
-    { 0:2, 1:0,
-      2:"Play to Selection", 3:"B",
-      id:"PlayToSelection" },
-    { 0:2, 1:0,
-      2:"Play Before Selection Start", 3:"Shift+F5",
-      id:"PlayBeforeSelectionStart" },
-    { 0:2, 1:0,
-      2:"Play After Selection Start", 3:"Shift+F6",
-      id:"PlayAfterSelectionStart" },
-    { 0:2, 1:0,
-      2:"Play Before Selection End", 3:"Shift+F7",
-      id:"PlayBeforeSelectionEnd" },
-    { 0:2, 1:0,
-      2:"Play After Selection End", 3:"Shift+F8",
-      id:"PlayAfterSelectionEnd" },
-    { 0:2, 1:0,
-      2:"Play Before and After Selection Start", 3:"Ctrl+Shift+F5",
-      id:"PlayBeforeAndAfterSelectionStart" },
-    { 0:2, 1:0,
-      2:"Play Before and After Selection End", 3:"Ctrl+Shift+F7",
-      id:"PlayBeforeAndAfterSelectionEnd" },
-    { 0:2, 1:0,
-      2:"Play Cut Preview", 3:"C", id:"PlayCutPreview" },
-    { 0:1, 1:1, 2:"Tools", 3:"" },
-    { 0:2, 1:0, 2:"Selection Tool", 3:"F1", id:"SelectTool" },
-    { 0:2, 1:0, 2:"Envelope Tool", 3:"F2", id:"EnvelopeTool" },
-    { 0:2, 1:0, 2:"Draw Tool", 3:"F3", id:"DrawTool" },
-    { 0:2, 1:0, 2:"Zoom Tool", 3:"F4", id:"ZoomTool" },
-    { 0:2, 1:0,
-      2:"Time Shift Tool", 3:"F5", id:"TimeShiftTool" },
-    { 0:2, 1:0, 2:"Multi Tool", 3:"F6", id:"MultiTool" },
-    { 0:2, 1:0, 2:"Previous Tool", 3:"A", id:"PrevTool" },
-    { 0:2, 1:0, 2:"Next Tool", 3:"D", id:"NextTool" },
-    { 0:1, 1:1, 2:"Mixer", 3:"" },
-    { 0:2, 1:0,
-      2:"Adjust Playback Volume...", 3:"", id:"OutputGain" },
-    { 0:2, 1:0,
-      2:"Increase Playback Volume", 3:"", id:"OutputGainInc" },
-    { 0:2, 1:0,
-      2:"Decrease Playback Volume", 3:"", id:"OutputGainDec" },
-    { 0:2, 1:0,
-      2:"Adjust Recording Volume...", 3:"", id:"InputGain" },
-    { 0:2, 1:0,
-      2:"Increase Recording Volume", 3:"", id:"InputGainInc" },
-    { 0:2, 1:0,
-      2:"Decrease Recording Volume", 3:"", id:"InputGainDec" },
-    { 0:1, 1:1, 2:"Edit", 3:"" },
-    { 0:2, 1:0, 2:"Delete Key", 3:" Backspace", id:"DeleteKey" },
-    { 0:2, 1:0, 2:"Delete Key2", 3:" Delete", id:"DeleteKey2" },
-    { 0:1, 1:1, 2:"Transcription", 3:"" },
-    { 0:2, 1:0, 2:"Play-at-Speed", 3:"", id:"PlayAtSpeed" },
-    { 0:2, 1:0,
-      2:"Loop Play-at-Speed", 3:"",
-      id:"PlayAtSpeedLooped" },
-    { 0:2, 1:0,
-      2:"Play Cut Preview-at-Speed", 3:"",
-      id:"PlayAtSpeedCutPreview" },
-    { 0:2, 1:0,
-      2:"Adjust Playback Speed...", 3:"", id:"SetPlaySpeed" },
-    { 0:2, 1:0,
-      2:"Increase Playback Speed", 3:"", id:"PlaySpeedInc" },
-    { 0:2, 1:0,
-      2:"Decrease Playback Speed", 3:"", id:"PlaySpeedDec" },
-    { 0:2, 1:0,
-      2:"Move to Previous Label", 3:"Alt+Left",
-      id:"MoveToPrevLabel" },
-    { 0:2, 1:0,
-      2:"Move to Next Label", 3:"Alt+Right",
-      id:"MoveToNextLabel" },
-    { 0:1, 1:1, 2:"Seek", 3:"" },
-    { 0:2, 1:0,
-      2:"Short Seek Left During Playback", 3:" Left", id:"SeekLeftShort" },
-    { 0:2, 1:0,
-      2:"Short Seek Right During Playback", 3:" Right", id:"SeekRightShort" },
-    { 0:2, 1:0,
-      2:"Long Seek Left During Playback", 3:"Shift+Left", id:"SeekLeftLong" },
-    { 0:2, 1:0,
-      2:"Long Seek Right During Playback", 3:"Shift+Right", id:"SeekRightLong" },
-    { 0:1, 1:1, 2:"Device", 3:"" },
-    { 0:2, 1:0,
-      2:"Change Recording Device...", 3:"Shift+I", id:"InputDevice" },
-    { 0:2, 1:0,
-      2:"Change Playback Device...", 3:"Shift+O", id:"OutputDevice" },
-    { 0:2, 1:0,
-      2:"Change Audio Host...", 3:"Shift+H", id:"AudioHost" },
-    { 0:2, 1:0,
-      2:"Change Recording Channels...", 3:"Shift+N", id:"InputChannels" },
-    { 0:1, 1:1, 2:"Selection", 3:"" },
-    { 0:2, 1:0, 2:"Snap-To Off", 3:"", id:"SnapToOff" },
-    { 0:2, 1:0,
-      2:"Snap-To Nearest", 3:"", id:"SnapToNearest" },
-    { 0:2, 1:0, 2:"Snap-To Prior", 3:"", id:"SnapToPrior" },
-    { 0:2, 1:0,
-      2:"Selection to Start", 3:"Shift+Home", id:"SelStart" },
-    { 0:2, 1:0,
-      2:"Selection to End", 3:"Shift+End", id:"SelEnd" },
-    { 0:2, 1:0,
-      2:"Selection Extend Left", 3:"Shift+Left", id:"SelExtLeft" },
-    { 0:2, 1:0,
-      2:"Selection Extend Right", 3:"Shift+Right", id:"SelExtRight" },
-    { 0:2, 1:0,
-      2:"Set (or Extend) Left Selection", 3:"", id:"SelSetExtLeft" },
-    { 0:2, 1:0,
-      2:"Set (or Extend) Right Selection", 3:"", id:"SelSetExtRight" },
-    { 0:2, 1:0,
-      2:"Selection Contract Left",
-      3:"Ctrl+Shift+Right", id:"SelCntrLeft" },
-    { 0:2, 1:0,
-      2:"Selection Contract Right",
-      3:"Ctrl+Shift+Left", id:"SelCntrRight" },
-    { 0:1, 1:0, 2:"----", 3:"" },
-    { 0:1, 1:1, 2:"Focus", 3:"" },
-    { 0:2, 1:0,
-      2:"Move Backward from Toolbars to Tracks", 3:"Ctrl+Shift+F6", id:"PrevFrame" },
-    { 0:2, 1:0,
-      2:"Move Forward from Toolbars to Tracks", 3:"Ctrl+F6", id:"NextFrame" },
-    { 0:2, 1:0,
-      2:"Move Focus to Previous Track", 3:" Up", id:"PrevTrack" },
-    { 0:2, 1:0,
-      2:"Move Focus to Next Track", 3:" Down", id:"NextTrack" },
-    { 0:2, 1:0,
-      2:"Move Focus to First Track", 3:"Ctrl+Home", id:"FirstTrack" },
-    { 0:2, 1:0,
-      2:"Move Focus to Last Track", 3:"Ctrl+End", id:"LastTrack" },
-    { 0:2, 1:0,
-      2:"Move Focus to Previous and Select", 3:"Shift+Up", id:"ShiftUp" },
-    { 0:2, 1:0,
-      2:"Move Focus to Next and Select", 3:"Shift+Down", id:"ShiftDown" },
-    { 0:2, 1:0,
-      2:"Toggle Focused Track", 3:" Return", id:"Toggle" },
-    { 0:2, 1:0,
-      2:"Toggle Focused Track", 3:" NUMPAD_ENTER", id:"ToggleAlt" },
-    { 0:1, 1:1, 2:"Cursor", 3:"" },
-    { 0:2, 1:0, 2:"Cursor Left", 3:" Left", id:"CursorLeft" },
-    { 0:2, 1:0, 2:"Cursor Right", 3:" Right", id:"CursorRight" },
-    { 0:2, 1:0,
-      2:"Cursor Short Jump Left", 3:",",
-      id:"CursorShortJumpLeft" },
-    { 0:2, 1:0,
-      2:"Cursor Short Jump Right", 3:".",
-      id:"CursorShortJumpRight" },
-    { 0:2, 1:0,
-      2:"Cursor Long Jump Left", 3:"Shift+,",
-      id:"CursorLongJumpLeft" },
-    { 0:2, 1:0,
-      2:"Cursor Long Jump Right", 3:"Shift+.",
-      id:"CursorLongJumpRight" },
-    { 0:2, 1:0, 2:"Clip Left", 3:"", id:"ClipLeft" },
-    { 0:2, 1:0, 2:"Clip Right", 3:"", id:"ClipRight" },
-    { 0:1, 1:1, 2:"Track", 3:"" },
-    { 0:2, 1:0,
-      2:"Change Pan on Focused Track...", 3:"Shift+P", id:"TrackPan" },
-    { 0:2, 1:0,
-      2:"Pan Left on Focused Track", 3:"Alt+Shift+Left", id:"TrackPanLeft" },
-    { 0:2, 1:0,
-      2:"Pan Right on Focused Track",
-      3:"Alt+Shift+Right", id:"TrackPanRight" },
-    { 0:2, 1:0,
-      2:"Change Gain on Focused Track...", 3:"Shift+G", id:"TrackGain" },
-    { 0:2, 1:0,
-      2:"Increase Gain on Focused Track", 3:"Alt+Shift+Up", id:"TrackGainInc" },
-    { 0:2, 1:0,
-      2:"Decrease Gain on Focused Track", 3:"Alt+Shift+Down", id:"TrackGainDec" },
-    { 0:2, 1:0,
-      2:"Open Menu on Focused Track...", 3:"Shift+M", id:"TrackMenu" },
-    { 0:2, 1:0,
-      2:"Mute/Unmute Focused Track", 3:"Shift+U", id:"TrackMute" },
-    { 0:2, 1:0,
-      2:"Solo/Unsolo Focused Track", 3:"Shift+S", id:"TrackSolo" },
-    { 0:2, 1:0,
-      2:"Close Focused Track", 3:"Shift+C", id:"TrackClose" },
-    { 0:2, 1:0,
-      2:"Move Focused Track Up", 3:"", id:"TrackMoveUp" },
-    { 0:2, 1:0,
-      2:"Move Focused Track Down", 3:"", id:"TrackMoveDown" },
-    { 0:2, 1:0,
-      2:"Move Focused Track to Top", 3:"", id:"TrackMoveTop" },
-    { 0:2, 1:0,
-      2:"Move Focused Track to Bottom", 3:"",
-      id:"TrackMoveBottom" },
-
-    { 0:1, 1:1, 2:"Scriptables I", 3:"" },
-    { 0:2, 1:0, 2:"Select Time...", 3:"", id:"SelectTime" },
-    { 0:2, 1:0, 2:"Select Frequencies...", 3:"", id:"SelectFrequencies" },
-    { 0:2, 1:0, 2:"Select Tracks...", 3:"", id:"SelectTracks" },
-    { 0:2, 1:0,
-      2:"Get Preference...", 3:"", id:"GetPreference" },
-    { 0:2, 1:0,
-      2:"Set Preference...", 3:"", id:"SetPreference" },
-    { 0:2, 1:0, 2:"Set Clip...", 3:"", id:"SetClip" },
-    { 0:2, 1:0,
-      2:"Set Envelope...", 3:"", id:"SetEnvelope" },
-    { 0:2, 1:0, 2:"Set Label...", 3:"", id:"SetLabel" },
-    { 0:2, 1:0, 2:"Set Project...", 3:"", id:"SetProject" },
-    { 0:2, 1:0, 2:"Set Track Status...", 3:"", id:"SetTrackStatus" },
-    { 0:2, 1:0, 2:"Set Track Audio...", 3:"", id:"SetTrackAudio" },
-    { 0:2, 1:0, 2:"Set Track Visual...", 3:"", id:"SetTrackVisual" },
-
-    { 0:1, 1:1, 2:"Scriptables II", 3:"" },
-    { 0:2, 1:0, 2:"Select...", 3:"", id:"Select" },
-    { 0:2, 1:0, 2:"Get Info...", 3:"", id:"GetInfo" },
-    { 0:2, 1:0, 2:"Help...", 3:"", id:"Help" },
-    { 0:2, 1:0, 2:"Import...", 3:"", id:"Import2" },
-    { 0:2, 1:0, 2:"Export...", 3:"", id:"Export2" },
-    { 0:2, 1:0,
-      2:"Open Project...", 3:"", id:"OpenProject2" },
-    { 0:2, 1:0,
-      2:"Save Project...", 3:"", id:"SaveProject2" },
-    { 0:2, 1:0, 2:"Message...", 3:"", id:"Message" },
-    { 0:2, 1:0,
-      2:"Screenshot (short format)...", 3:"", id:"Screenshot" },
-    { 0:2, 1:0, 2:"Move Mouse...", 3:"", id:"Drag" },
-    { 0:2, 1:0,
-      2:"Compare Audio...", 3:"", id:"CompareAudio" },
-    { 0:2, 1:0, 2:"Set Track...", 3:"", id:"SetTrack" },
-    { 0:1, 1:0,
-      2:"Full Screen (on/off)", 3:"F11",
-      id:"FullScreenOnOff" } ];
+    { "depth":0, "flags":0, "label":"File", "accel":"" },
+    { "depth":1, "flags":0, "label":"New", "accel":"Ctrl+N", "id":"New" },
+    { "depth":1, "flags":0, "label":"Open...", "accel":"Ctrl+O", "id":"Open" },
+    { "depth":1, "flags":0, "label":"Recent Files", "accel":"" },
+    { "depth":2, "flags":0, "label":"----", "accel":"" },
+    { "depth":2, "flags":0, "label":"Clear", "accel":"" },
+    { "depth":1, "flags":0, "label":"----", "accel":"" },
+    { "depth":1, "flags":0, "label":"Close", "accel":"Ctrl+W", "id":"Close" },
+    { "depth":1, "flags":0, "label":"Save Project", "accel":"Ctrl+S", "id":"Save" },
+    { "depth":1, "flags":0,
+      "label":"Save Project As...", "accel":"", "id":"SaveAs" },
+    { "depth":1, "flags":1, "label":"Export", "accel":"" },
+    { "depth":2, "flags":0, "label":"Export as MP3", "accel":"", "id":"ExportMp3" },
+    { "depth":2, "flags":0, "label":"Export as WAV", "accel":"", "id":"ExportWav" },
+    { "depth":2, "flags":0, "label":"Export as OGG", "accel":"", "id":"ExportOgg" },
+    { "depth":2, "flags":0,
+      "label":"Export Audio...", "accel":"Ctrl+Shift+E", "id":"Export" },
+    { "depth":2, "flags":0,
+      "label":"Export Selected Audio...", "accel":"", "id":"ExportSel" },
+    { "depth":2, "flags":0,
+      "label":"Export Labels...", "accel":"", "id":"ExportLabels" },
+    { "depth":2, "flags":0,
+      "label":"Export Multiple...", "accel":"Ctrl+Shift+L", "id":"ExportMultiple" },
+    { "depth":2, "flags":0, "label":"Export MIDI...", "accel":"", "id":"ExportMIDI" },
+    { "depth":2, "flags":0, "label":"----", "accel":"" },
+    { "depth":2, "flags":0,
+      "label":"Save Compressed Copy of Project...", "accel":"", "id":"SaveCompressed" },
+    { "depth":1, "flags":0, "label":"----", "accel":"" },
+    { "depth":1, "flags":1, "label":"Import", "accel":"" },
+    { "depth":2, "flags":0, "label":"Audio...", "accel":"Ctrl+Shift+I", "id":"ImportAudio" },
+    { "depth":2, "flags":0, "label":"Labels...", "accel":"", "id":"ImportLabels" },
+    { "depth":2, "flags":0, "label":"MIDI...", "accel":"", "id":"ImportMIDI" },
+    { "depth":2, "flags":0, "label":"Raw Data...", "accel":"", "id":"ImportRaw" },
+    { "depth":1, "flags":0, "label":"----", "accel":"" },
+    { "depth":1, "flags":0, "label":"Page Setup...", "accel":"", "id":"PageSetup" },
+    { "depth":1, "flags":0, "label":"Print...", "accel":"", "id":"Print" },
+    { "depth":1, "flags":0, "label":"----", "accel":"" },
+    { "depth":1, "flags":0, "label":"Exit", "accel":"Ctrl+Q", "id":"Exit" },
+    { "depth":0, "flags":0, "label":"Edit", "accel":"" },
+    { "depth":1, "flags":0, "label":"Undo", "accel":"Ctrl+Z", "id":"Undo" },
+    { "depth":1, "flags":0, "label":"Redo", "accel":"Ctrl+Y", "id":"Redo" },
+    { "depth":1, "flags":0, "label":"----", "accel":"" },
+    { "depth":1, "flags":0, "label":"Cut", "accel":"Ctrl+X", "id":"Cut" },
+    { "depth":1, "flags":0, "label":"Delete", "accel":"Ctrl+K", "id":"Delete" },
+    { "depth":1, "flags":0, "label":"Copy", "accel":"Ctrl+C", "id":"Copy" },
+    { "depth":1, "flags":0, "label":"Paste", "accel":"Ctrl+V", "id":"Paste" },
+    { "depth":1, "flags":0, "label":"Duplicate", "accel":"Ctrl+D", "id":"Duplicate" },
+    { "depth":1, "flags":0, "label":"----", "accel":"" },
+    { "depth":1, "flags":1, "label":"Remove Special", "accel":"" },
+    { "depth":2, "flags":0, "label":"Split Cut", "accel":"Ctrl+Alt+X", "id":"SplitCut" },
+    { "depth":2, "flags":0, "label":"Split Delete", "accel":"Ctrl+Alt+K", "id":"SplitDelete" },
+    { "depth":2, "flags":0, "label":"----", "accel":"" },
+    { "depth":2, "flags":0, "label":"Silence Audio", "accel":"Ctrl+L", "id":"Silence" },
+    { "depth":2, "flags":0, "label":"Trim Audio", "accel":"Ctrl+T", "id":"Trim" },
+    { "depth":1, "flags":0, "label":"----", "accel":"" },
+    { "depth":1, "flags":1,
+      "label":"Clip Boundaries", "accel":"" },
+    { "depth":2, "flags":0, "label":"Split", "accel":"", "id":"Split" },
+    { "depth":2, "flags":0, "label":"Split New", "accel":"Ctrl+Alt+I", "id":"SplitNew" },
+    { "depth":2, "flags":0, "label":"----", "accel":"" },
+    { "depth":2, "flags":0, "label":"Join", "accel":"Ctrl+J", "id":"Join" },
+    { "depth":2, "flags":0,
+      "label":"Detach at Silences", "accel":"Ctrl+Alt+J", "id":"Disjoin" },
+    { "depth":1, "flags":1, "label":"Labels", "accel":"" },
+    { "depth":2, "flags":0, "label":"Edit Labels...", "accel":"", "id":"EditLabels" },
+    { "depth":2, "flags":0, "label":"----", "accel":"" },
+    { "depth":2, "flags":0,
+      "label":"Add Label at Selection", "accel":"Ctrl+B", "id":"AddLabel" },
+    { "depth":2, "flags":0,
+      "label":"Add Label at Playback Position", "accel":"Ctrl+M",
+      "id":"AddLabelPlaying" },
+    { "depth":2, "flags":0,
+      "label":"Paste Text to New Label", "accel":"Ctrl+Alt+V", "id":"PasteNewLabel" },
+    { "depth":2, "flags":0, "label":"----", "accel":"" },
+    { "depth":2, "flags":2,
+      "label":"Type to Create a Label (on/off)", "accel":"",
+      "id":"TypeToCreateLabel" },
+    { "depth":1, "flags":1, "label":"Labeled Audio", "accel":"" },
+    { "depth":2, "flags":0, "label":"Cut", "accel":"Alt+X", "id":"CutLabels" },
+    { "depth":2, "flags":0, "label":"Delete", "accel":"Alt+K", "id":"DeleteLabels" },
+    { "depth":2, "flags":0, "label":"----", "accel":"" },
+    { "depth":2, "flags":0, "label":"Split Cut", "accel":"Alt+Shift+X", "id":"SplitCutLabels" },
+    { "depth":2, "flags":0, "label":"Split Delete", "accel":"Alt+Shift+K",
+      "id":"SplitDeleteLabels" },
+    { "depth":2, "flags":0, "label":"----", "accel":"" },
+    { "depth":2, "flags":0, "label":"Silence Audio", "accel":"Alt+L", "id":"SilenceLabels" },
+    { "depth":2, "flags":0, "label":"Copy", "accel":"Alt+Shift+C", "id":"CopyLabels" },
+    { "depth":2, "flags":0, "label":"----", "accel":"" },
+    { "depth":2, "flags":0, "label":"Split", "accel":"Alt+I", "id":"SplitLabels" },
+    { "depth":2, "flags":0, "label":"Join", "accel":"Alt+J", "id":"JoinLabels" },
+    { "depth":2, "flags":0,
+      "label":"Detach at Silences", "accel":"Alt+Shift+J", "id":"DisjoinLabels" },
+    { "depth":1, "flags":0, "label":"Metadata...", "accel":"", "id":"EditMetaData" },
+    { "depth":1, "flags":0, "label":"----", "accel":"" },
+    { "depth":1, "flags":0, "label":"Preferences...", "accel":"Ctrl+P", "id":"Preferences" },
+    { "depth":0, "flags":0, "label":"Select", "accel":"" },
+    { "depth":1, "flags":0, "label":"All", "accel":"Ctrl+A", "id":"SelectAll" },
+    { "depth":1, "flags":0, "label":"None", "accel":"Ctrl+Shift+A", "id":"SelectNone" },
+    { "depth":1, "flags":1, "label":"Tracks", "accel":"" },
+    { "depth":2, "flags":0, "label":"In All Tracks", "accel":"Ctrl+Shift+K", "id":"SelAllTracks" },
+    { "depth":2, "flags":0,
+      "label":"In All Sync-Locked Tracks", "accel":"Ctrl+Shift+Y",
+      "id":"SelSyncLockTracks" },
+    { "depth":1, "flags":1, "label":"Region", "accel":"" },
+    { "depth":2, "flags":0,
+      "label":"Left at Playback Position", "accel":"[",
+      "id":"SetLeftSelection" },
+    { "depth":2, "flags":0,
+      "label":"Right at Playback Position", "accel":"]",
+      "id":"SetRightSelection" },
+    { "depth":2, "flags":0,
+      "label":"Track Start to Cursor", "accel":"Shift+J",
+      "id":"SelTrackStartToCursor" },
+    { "depth":2, "flags":0,
+      "label":"Cursor to Track End", "accel":"Shift+K",
+      "id":"SelCursorToTrackEnd" },
+    { "depth":2, "flags":0,
+      "label":"Track Start to End", "accel":"",
+      "id":"SelTrackStartToEnd" },
+    { "depth":2, "flags":0, "label":"----", "accel":"" },
+    { "depth":2, "flags":0,
+      "label":"Store Selection", "accel":"", "id":"SelSave" },
+    { "depth":2, "flags":0,
+      "label":"Retrieve Selection", "accel":"", "id":"SelRestore" },
+    { "depth":1, "flags":1, "label":"Spectral", "accel":"" },
+    { "depth":2, "flags":0,
+      "label":"Toggle Spectral Selection", "accel":"Q",
+      "id":"ToggleSpectralSelection" },
+    { "depth":2, "flags":0,
+      "label":"Next Higher Peak Frequency", "accel":"",
+      "id":"NextHigherPeakFrequency" },
+    { "depth":2, "flags":0,
+      "label":"Next Lower Peak Frequency", "accel":"",
+      "id":"NextLowerPeakFrequency" },
+    { "depth":1, "flags":1,
+      "label":"Clip Boundaries", "accel":"" },
+    { "depth":2, "flags":0,
+      "label":"Previous Clip Boundary to Cursor", "accel":"",
+      "id":"SelPrevClipBoundaryToCursor" },
+    { "depth":2, "flags":0,
+      "label":"Cursor to Next Clip Boundary", "accel":"",
+      "id":"SelCursorToNextClipBoundary" },
+    { "depth":2, "flags":0, "label":"Previous Clip", "accel":"Ctrl+Alt+P", "id":"SelPrevClip" },
+    { "depth":2, "flags":0, "label":"Next Clip", "accel":"Ctrl+Alt+N", "id":"SelNextClip" },
+    { "depth":1, "flags":0, "label":"----", "accel":"" },
+    { "depth":1, "flags":0,
+      "label":"Cursor to Stored Cursor Position", "accel":"",
+      "id":"SelCursorStoredCursor" },
+    { "depth":1, "flags":0,
+      "label":"Store Cursor Position", "accel":"",
+      "id":"StoreCursorPosition" },
+    { "depth":1, "flags":0, "label":"----", "accel":"" },
+    { "depth":1, "flags":0,
+      "label":"At Zero Crossings", "accel":"Z", "id":"ZeroCross" },
+    { "depth":0, "flags":0, "label":"View", "accel":"" },
+    { "depth":1, "flags":1, "label":"Zoom", "accel":"" },
+    { "depth":2, "flags":0, "label":"Zoom In", "accel":"Ctrl+1", "id":"ZoomIn" },
+    { "depth":2, "flags":0, "label":"Zoom Normal", "accel":"Ctrl+2", "id":"ZoomNormal" },
+    { "depth":2, "flags":0, "label":"Zoom Out", "accel":"Ctrl+3", "id":"ZoomOut" },
+    { "depth":2, "flags":0,
+      "label":"Zoom to Selection", "accel":"Ctrl+E", "id":"ZoomSel" },
+    { "depth":2, "flags":0, "label":"Zoom Toggle", "accel":"Shift+Z", "id":"ZoomToggle" },
+    { "depth":1, "flags":1, "label":"Track Size", "accel":"" },
+    { "depth":2, "flags":0, "label":"Fit to Width", "accel":"Ctrl+F", "id":"FitInWindow" },
+    { "depth":2, "flags":0, "label":"Fit to Height", "accel":"Ctrl+Shift+F", "id":"FitV" },
+    { "depth":2, "flags":0,
+      "label":"Collapse All Tracks", "accel":"Ctrl+Shift+C",
+      "id":"CollapseAllTracks" },
+    { "depth":2, "flags":0,
+      "label":"Expand Collapsed Tracks", "accel":"Ctrl+Shift+X",
+      "id":"ExpandAllTracks" },
+    { "depth":1, "flags":1, "label":"Skip to", "accel":"" },
+    { "depth":2, "flags":0,
+      "label":"Selection Start", "accel":"Ctrl+[", "id":"SkipSelStart" },
+    { "depth":2, "flags":0, "label":"Selection End", "accel":"Ctrl+]", "id":"SkipSelEnd" },
+    { "depth":1, "flags":0, "label":"----", "accel":"" },
+    { "depth":1, "flags":0, "label":"History...", "accel":"", "id":"UndoHistory" },
+    { "depth":1, "flags":0, "label":"Karaoke...", "accel":"", "id":"Karaoke" },
+    { "depth":1, "flags":0, "label":"Mixer Board...", "accel":"", "id":"MixerBoard" },
+    { "depth":1, "flags":0, "label":"----", "accel":"" },
+    { "depth":1, "flags":1, "label":"Toolbars", "accel":"" },
+    { "depth":2, "flags":0, "label":"Reset Toolbars", "accel":"", "id":"ResetToolbars" },
+    { "depth":2, "flags":0, "label":"----", "accel":"" },
+    { "depth":2, "flags":2,
+      "label":"Transport Toolbar", "accel":"",
+      "id":"ShowTransportTB" },
+    { "depth":2, "flags":2, "label":"Tools Toolbar", "accel":"", "id":"ShowToolsTB" },
+    { "depth":2, "flags":2,
+      "label":"Recording Meter Toolbar", "accel":"",
+      "id":"ShowRecordMeterTB" },
+    { "depth":2, "flags":2,
+      "label":"Playback Meter Toolbar", "accel":"",
+      "id":"ShowPlayMeterTB" },
+    { "depth":2, "flags":2, "label":"Mixer Toolbar", "accel":"", "id":"ShowMixerTB" },
+    { "depth":2, "flags":2, "label":"Edit Toolbar", "accel":"", "id":"ShowEditTB" },
+    { "depth":2, "flags":2,
+      "label":"Transcription Toolbar", "accel":"",
+      "id":"ShowTranscriptionTB" },
+    { "depth":2, "flags":0, "label":"Scrub Toolbar", "accel":"",
+      "id":"ShowScrubbingTB" },
+    { "depth":2, "flags":2, "label":"Device Toolbar", "accel":"", "id":"ShowDeviceTB" },
+    { "depth":2, "flags":2,
+      "label":"Selection Toolbar", "accel":"",
+      "id":"ShowSelectionTB" },
+    { "depth":2, "flags":0,
+      "label":"Spectral Selection Toolbar", "accel":"",
+      "id":"ShowSpectralSelectionTB" },
+    { "depth":1, "flags":0, "label":"----", "accel":"" },
+    { "depth":1, "flags":2,
+      "label":"Extra Menus (on/off)", "accel":"", "id":"ShowExtraMenus" },
+    { "depth":1, "flags":0,
+      "label":"Show Clipping (on/off)", "accel":"", "id":"ShowClipping" },
+    { "depth":0, "flags":0, "label":"Transport", "accel":"" },
+    { "depth":1, "flags":1, "label":"Play", "accel":"" },
+    { "depth":2, "flags":0, "label":"Play/Stop", "accel":"Space", "id":"PlayStop" },
+    { "depth":2, "flags":0,
+      "label":"Play/Stop and Set Cursor", "accel":"X", "id":"PlayStopSelect" },
+    { "depth":2, "flags":0, "label":"Loop Play", "accel":"Shift+Space", "id":"PlayLooped" },
+    { "depth":2, "flags":0, "label":"Pause", "accel":"P", "id":"Pause" },
+    { "depth":1, "flags":1, "label":"Record", "accel":"" },
+    { "depth":2, "flags":0, "label":"Record", "accel":"R",
+      "id":"Record1stChoice" },
+    { "depth":2, "flags":0,
+      "label":"Record New Track", "accel":"Shift+R",
+      "id":"Record2ndChoice" },
+    { "depth":2, "flags":0,
+      "label":"Timer Record...", "accel":"Shift+T", "id":"TimerRecord" },
+    { "depth":2, "flags":0, "label":"Pause", "accel":"P", "id":"Pause" },
+    { "depth":1, "flags":1, "label":"Scrubbing", "accel":"" },
+    { "depth":2, "flags":0, "label":"Scrub", "accel":"", "id":"Scrub" },
+    { "depth":2, "flags":0, "label":"Seek", "accel":"", "id":"Seek" },
+    { "depth":2, "flags":0, "label":"Scrub Ruler", "accel":"",
+      "id":"ToggleScrubRuler" },
+    { "depth":1, "flags":1, "label":"Cursor to", "accel":"" },
+    { "depth":2, "flags":0,
+      "label":"Selection Start", "accel":"", "id":"CursSelStart" },
+    { "depth":2, "flags":0, "label":"Selection End", "accel":"", "id":"CursSelEnd" },
+    { "depth":2, "flags":0, "label":"Track Start", "accel":"J", "id":"CursTrackStart" },
+    { "depth":2, "flags":0, "label":"Track End", "accel":"K", "id":"CursTrackEnd" },
+    { "depth":2, "flags":0,
+      "label":"Previous Clip Boundary", "accel":"",
+      "id":"CursPrevClipBoundary" },
+    { "depth":2, "flags":0,
+      "label":"Next Clip Boundary", "accel":"",
+      "id":"CursNextClipBoundary" },
+    { "depth":2, "flags":0, "label":"Project Start", "accel":"Home",
+      "id":"CursProjectStart" },
+    { "depth":2, "flags":0, "label":"Project End", "accel":"End", "id":"CursProjectEnd" },
+    { "depth":1, "flags":0, "label":"----", "accel":"" },
+    { "depth":1, "flags":1, "label":"Play Region", "accel":"" },
+    { "depth":2, "flags":0, "label":"Lock", "accel":"", "id":"LockPlayRegion" },
+    { "depth":2, "flags":0, "label":"Unlock", "accel":"",
+      "id":"UnlockPlayRegion" },
+    { "depth":1, "flags":0, "label":"----", "accel":"" },
+    { "depth":1, "flags":0,
+      "label":"Rescan Audio Devices", "accel":"", "id":"RescanDevices" },
+    { "depth":1, "flags":1,
+      "label":"Transport Options", "accel":"" },
+    { "depth":2, "flags":0,
+      "label":"Sound Activation Level...", "accel":"",
+      "id":"SoundActivationLevel" },
+    { "depth":2, "flags":2,
+      "label":"Sound Activated Recording (on/off)", "accel":"",
+      "id":"SoundActivation" },
+    { "depth":2, "flags":0, "label":"----", "accel":"" },
+    { "depth":2, "flags":0,
+      "label":"Pinned Play/Record Head (on/off)", "accel":"", "id":"PinnedHead" },
+    { "depth":2, "flags":0,
+      "label":"Overdub (on/off)", "accel":"", "id":"Duplex" },
+    { "depth":2, "flags":0,
+      "label":"Software Playthrough (on/off)", "accel":"", "id":"SWPlaythrough" },
+    { "depth":0, "flags":0, "label":"Tracks", "accel":"" },
+    { "depth":1, "flags":1, "label":"Add New", "accel":"" },
+    { "depth":2, "flags":0, "label":"Mono Track", "accel":"Ctrl+Shift+N", "id":"NewMonoTrack" },
+    { "depth":2, "flags":0, "label":"Stereo Track", "accel":"", "id":"NewStereoTrack" },
+    { "depth":2, "flags":0, "label":"Label Track", "accel":"", "id":"NewLabelTrack" },
+    { "depth":2, "flags":0, "label":"Time Track", "accel":"", "id":"NewTimeTrack" },
+    { "depth":1, "flags":0, "label":"----", "accel":"" },
+    { "depth":1, "flags":1, "label":"Mix", "accel":"" },
+    { "depth":2, "flags":0,
+      "label":"Mix Stereo Down to Mono", "accel":"", "id":"Stereo to Mono" },
+    { "depth":2, "flags":0, "label":"Mix and Render", "accel":"", "id":"MixAndRender" },
+    { "depth":2, "flags":0,
+      "label":"Mix and Render to New Track", "accel":"Ctrl+Shift+M",
+      "id":"MixAndRenderToNewTrack" },
+    { "depth":1, "flags":0, "label":"Resample...", "accel":"", "id":"Resample" },
+    { "depth":1, "flags":0, "label":"----", "accel":"" },
+    { "depth":1, "flags":0, "label":"Remove Tracks", "accel":"", "id":"RemoveTracks" },
+    { "depth":1, "flags":0, "label":"----", "accel":"" },
+    { "depth":1, "flags":1, "label":"Mute/Unmute", "accel":"" },
+    { "depth":2, "flags":0,
+      "label":"Mute All Tracks", "accel":"Ctrl+U", "id":"MuteAllTracks" },
+    { "depth":2, "flags":0,
+      "label":"Unmute All Tracks", "accel":"Ctrl+Shift+U",
+      "id":"UnmuteAllTracks" },
+    { "depth":1, "flags":1, "label":"Pan", "accel":"" },
+    { "depth":2, "flags":0, "label":"Left", "accel":"", "id":"PanLeft" },
+    { "depth":2, "flags":0, "label":"Right", "accel":"", "id":"PanRight" },
+    { "depth":2, "flags":0, "label":"Center", "accel":"", "id":"PanCenter" },
+    { "depth":1, "flags":0, "label":"----", "accel":"" },
+    { "depth":1, "flags":1, "label":"Align Tracks", "accel":"" },
+    { "depth":2, "flags":0,
+      "label":"Align End to End", "accel":"", "id":"Align_EndToEnd" },
+    { "depth":2, "flags":0, "label":"Align Together", "accel":"", "id":"Align_Together" },
+    { "depth":2, "flags":0, "label":"----", "accel":"" },
+    { "depth":2, "flags":0, "label":"Start to Zero", "accel":"",
+      "id":"Align_StartToZero" },
+    { "depth":2, "flags":0,
+      "label":"Start to Cursor/Selection Start", "accel":"",
+      "id":"Align_StartToSelStart" },
+    { "depth":2, "flags":0,
+      "label":"Start to Selection End", "accel":"",
+      "id":"Align_StartToSelEnd" },
+    { "depth":2, "flags":0,
+      "label":"End to Cursor/Selection Start", "accel":"",
+      "id":"Align_EndToSelStart" },
+    { "depth":2, "flags":0,
+      "label":"End to Selection End", "accel":"",
+      "id":"Align_EndToSelEnd" },
+    { "depth":2, "flags":0, "label":"----", "accel":"" },
+    { "depth":2, "flags":0,
+      "label":"Move Selection with Tracks (on/off)", "accel":"",
+      "id":"MoveSelectionWithTracks" },
+    { "depth":1, "flags":1, "label":"Sort Tracks", "accel":"" },
+    { "depth":2, "flags":0, "label":"By Start Time", "accel":"", "id":"SortByTime" },
+    { "depth":2, "flags":0, "label":"By Name", "accel":"", "id":"SortByName" },
+    { "depth":1, "flags":0, "label":"----", "accel":"" },
+    { "depth":1, "flags":0,
+      "label":"Sync-Lock Tracks (on/off)", "accel":"", "id":"SyncLock" },
+    { "depth":0, "flags":0, "label":"Generate", "accel":"" },
+    { "depth":1, "flags":0,
+      "label":"Add / Remove Plug-ins...", "accel":"",
+      "id":"ManageGenerators" },
+    { "depth":1, "flags":0, "label":"----", "accel":"" },
+    { "depth":1, "flags":0, "label":"Chirp...", "accel":"", "id":"Chirp..." },
+    { "depth":1, "flags":0, "label":"DTMF Tones...", "accel":"", "id":"DTMF Tones..." },
+    { "depth":1, "flags":0, "label":"Noise...", "accel":"", "id":"Noise..." },
+    { "depth":1, "flags":0, "label":"Silence...", "accel":"", "id":"Silence..." },
+    { "depth":1, "flags":0, "label":"Tone...", "accel":"", "id":"Tone..." },
+    { "depth":1, "flags":0, "label":"----", "accel":"" },
+    { "depth":1, "flags":1, "label":"Pluck...", "accel":"" },
+    { "depth":1, "flags":1,
+      "label":"Rhythm Track...", "accel":"" },
+    { "depth":1, "flags":1, "label":"Risset Drum...", "accel":"" },
+    { "depth":1, "flags":0,
+      "label":"Sample Data Import...", "accel":"",
+      "id":"Sample Data Import..." },
+    { "depth":0, "flags":0, "label":"Effect", "accel":"" },
+    { "depth":1, "flags":0,
+      "label":"Add / Remove Plug-ins...", "accel":"", "id":"ManageEffects" },
+    { "depth":1, "flags":0, "label":"----", "accel":"" },
+    { "depth":1, "flags":0,
+      "label":"Repeat Last Effect", "accel":"Ctrl+R",
+      "id":"RepeatLastEffect" },
+    { "depth":1, "flags":0, "label":"----", "accel":"" },
+    { "depth":1, "flags":0, "label":"Amplify...", "accel":"", "id":"Amplify..." },
+    { "depth":1, "flags":0, "label":"Auto Duck...", "accel":"", "id":"Auto Duck..." },
+    { "depth":1, "flags":0,
+      "label":"Bass and Treble...", "accel":"",
+      "id":"Bass and Treble..." },
+    { "depth":1, "flags":0,
+      "label":"Change Pitch...", "accel":"",
+      "id":"Change Pitch..." },
+    { "depth":1, "flags":0,
+      "label":"Change Speed...", "accel":"",
+      "id":"Change Speed..." },
+    { "depth":1, "flags":0,
+      "label":"Change Tempo...", "accel":"",
+      "id":"Change Tempo..." },
+    { "depth":1, "flags":0,
+      "label":"Click Removal...", "accel":"",
+      "id":"Click Removal..." },
+    { "depth":1, "flags":0, "label":"Compressor...", "accel":"", "id":"Compressor..." },
+    { "depth":1, "flags":0, "label":"Distortion...", "accel":"", "id":"Distortion..." },
+    { "depth":1, "flags":0, "label":"Echo...", "accel":"", "id":"Echo..." },
+    { "depth":1, "flags":0,
+      "label":"Equalization...", "accel":"",
+      "id":"Equalization..." },
+    { "depth":1, "flags":0, "label":"Fade In", "accel":"", "id":"Fade In" },
+    { "depth":1, "flags":0, "label":"Fade Out", "accel":"", "id":"Fade Out" },
+    { "depth":1, "flags":0, "label":"Invert", "accel":"", "id":"Invert" },
+    { "depth":1, "flags":0,
+      "label":"Noise Reduction...", "accel":"",
+      "id":"Noise Reduction..." },
+    { "depth":1, "flags":0, "label":"Normalize...", "accel":"", "id":"Normalize..." },
+    { "depth":1, "flags":0,
+      "label":"Nyquist Prompt...", "accel":"",
+      "id":"Nyquist Prompt..." },
+    { "depth":1, "flags":0, "label":"Paulstretch...", "accel":"", "id":"Paulstretch..." },
+    { "depth":1, "flags":0, "label":"Phaser...", "accel":"", "id":"Phaser..." },
+    { "depth":1, "flags":0, "label":"Repair", "accel":"", "id":"Repair" },
+    { "depth":1, "flags":0, "label":"Repeat...", "accel":"", "id":"Repeat..." },
+    { "depth":1, "flags":0, "label":"Reverb...", "accel":"", "id":"Reverb..." },
+    { "depth":1, "flags":0, "label":"Reverse", "accel":"", "id":"Reverse" },
+    { "depth":1, "flags":0, "label":"Time Scale...", "accel":"", "id":"Time Scale..." },
+    { "depth":1, "flags":0,
+      "label":"Truncate Silence...", "accel":"",
+      "id":"Truncate Silence..." },
+    { "depth":1, "flags":0, "label":"Wahwah...", "accel":"", "id":"Wahwah..." },
+    { "depth":1, "flags":0, "label":"----", "accel":"" },
+    { "depth":1, "flags":1,
+      "label":"Adjustable Fade...", "accel":"" },
+    { "depth":1, "flags":1, "label":"Clip Fix...", "accel":"" },
+    { "depth":1, "flags":1,
+      "label":"Crossfade Clips", "accel":"" },
+    { "depth":1, "flags":1,
+      "label":"Crossfade Tracks...", "accel":"" },
+    { "depth":1, "flags":1, "label":"Delay...", "accel":"" },
+    { "depth":1, "flags":1,
+      "label":"High Pass Filter...", "accel":"" },
+    { "depth":1, "flags":1, "label":"Limiter...", "accel":"" },
+    { "depth":1, "flags":1,
+      "label":"Low Pass Filter...", "accel":"" },
+    { "depth":1, "flags":1,
+      "label":"Notch Filter...", "accel":"" },
+    { "depth":1, "flags":1, "label":"SC4...", "accel":"" },
+    { "depth":1, "flags":1,
+      "label":"Spectral edit multi tool", "accel":"" },
+    { "depth":1, "flags":1,
+      "label":"Spectral edit parametric EQ...", "accel":"" },
+    { "depth":1, "flags":1,
+      "label":"Spectral edit shelves...", "accel":"" },
+    { "depth":1, "flags":1,
+      "label":"Studio Fade Out", "accel":"" },
+    { "depth":1, "flags":1, "label":"Tremolo...", "accel":"" },
+    { "depth":1, "flags":1,
+      "label":"Vocal Reduction and Isolation...", "accel":"" },
+    { "depth":1, "flags":1,
+      "label":"Vocal Remover...", "accel":"" },
+    { "depth":1, "flags":1, "label":"Vocoder...", "accel":"" },
+    { "depth":0, "flags":0, "label":"Analyze", "accel":"" },
+    { "depth":1, "flags":0,
+      "label":"Add / Remove Plug-ins...", "accel":"",
+      "id":"ManageAnalyzers" },
+    { "depth":1, "flags":0, "label":"----", "accel":"" },
+    { "depth":1, "flags":0, "label":"Contrast...", "accel":"Ctrl+Shift+T",
+      "id":"ContrastAnalyser" },
+    { "depth":1, "flags":0,
+      "label":"Plot Spectrum...", "accel":"", "id":"PlotSpectrum" },
+    { "depth":1, "flags":0,
+      "label":"Find Clipping...", "accel":"",
+      "id":"Find Clipping..." },
+    { "depth":1, "flags":0, "label":"----", "accel":"" },
+    { "depth":1, "flags":1, "label":"Beat Finder...", "accel":"" },
+    { "depth":1, "flags":0,
+      "label":"Regular Interval Labels...", "accel":"",
+      "id":"Regular Interval Labels..." },
+    { "depth":1, "flags":0,
+      "label":"Sample Data Export...", "accel":"",
+      "id":"Sample Data Export..." },
+    { "depth":1, "flags":1,
+      "label":"Silence Finder...", "accel":"" },
+    { "depth":1, "flags":1,
+      "label":"Sound Finder...", "accel":"" },
+    { "depth":0, "flags":0, "label":"Tools", "accel":"" },
+    { "depth":1, "flags":0,
+      "label":"Add / Remove Plug-ins...", "accel":"", "id":"ManageTools" },
+    { "depth":1, "flags":0, "label":"Macros...", "accel":"", "id":"ManageMacros" },
+    { "depth":1, "flags":1, "label":"Apply Macro", "accel":"" },
+    { "depth":2, "flags":0, "label":"Palette...", "accel":"",
+      "id":"ApplyMacrosPalette" },
+    { "depth":2, "flags":0, "label":"----", "accel":"" },
+    { "depth":2, "flags":0, "label":"Applause", "accel":"", "id":"Macro_Applause" },
+    { "depth":2, "flags":0,
+      "label":"Background Chatter", "accel":"",
+      "id":"Macro_BackgroundChatter" },
+    { "depth":2, "flags":0,
+      "label":"Background Hiss", "accel":"",
+      "id":"Macro_BackgroundHiss" },
+    { "depth":2, "flags":0, "label":"Bleep Out", "accel":"", "id":"Macro_BleepOut" },
+    { "depth":2, "flags":0, "label":"Cross Fade", "accel":"",
+      "id":"Macro_CrossFade" },
+    { "depth":2, "flags":0, "label":"Fade Ends", "accel":"", "id":"Macro_FadeEnds" },
+    { "depth":2, "flags":0, "label":"MP3 Conversion", "accel":"",
+      "id":"Macro_MP3Conversion" },
+    { "depth":2, "flags":0, "label":"Normalize -1dB", "accel":"",
+      "id":"Macro_Normalize-1dB" },
+    { "depth":2, "flags":0, "label":"Normalize -6dB", "accel":"",
+      "id":"Macro_Normalize-6dB" },
+    { "depth":2, "flags":0, "label":"Reparation", "accel":"",
+      "id":"Macro_Reparation" },
+    { "depth":2, "flags":0, "label":"Spectool", "accel":"",
+      "id":"Macro_Spectrool" },
+    { "depth":2, "flags":0, "label":"Splitter", "accel":"", "id":"Macro_Splitter" },
+    { "depth":1, "flags":0, "label":"----", "accel":"" },
+    { "depth":1, "flags":0, "label":"Screenshot...", "accel":"",
+      "id":"FancyScreenshot" },
+    { "depth":1, "flags":0,
+      "label":"Run Benchmark...", "accel":"", "id":"Benchmark" },
+    { "depth":1, "flags":0,
+      "label":"Simulate Recording Errors", "accel":"",
+      "id":"SimulateRecordingErrors" },
+    { "depth":1, "flags":2,
+      "label":"Detect Upstream Dropouts", "accel":"",
+      "id":"DetectUpstreamDropouts" },
+    { "depth":1, "flags":0, "label":"----", "accel":"" },
+    { "depth":1, "flags":0,
+      "label":"Nyquist Tools Prompt...", "accel":"",
+      "id":"Nyquist Tools Prompt..." },
+    { "depth":1, "flags":0, "label":"----", "accel":"" },
+    { "depth":1, "flags":0,
+      "label":"Regular Interval Labels", "accel":"" },
+    { "depth":1, "flags":0,
+      "label":"Sample Data Import", "accel":"" },
+    { "depth":0, "flags":0, "label":"Help", "accel":"" },
+    { "depth":1, "flags":0, "label":"Quick Help...", "accel":"", "id":"QuickHelp" },
+    { "depth":1, "flags":0, "label":"Manual...", "accel":"", "id":"Manual" },
+    { "depth":1, "flags":0, "label":"----", "accel":"" },
+    { "depth":1, "flags":1, "label":"Diagnostics", "accel":"" },
+    { "depth":2, "flags":0,
+      "label":"Audio Device Info...", "accel":"", "id":"DeviceInfo" },
+    { "depth":2, "flags":0,
+      "label":"MIDI Device Info...", "accel":"", "id":"MidiDeviceInfo" },
+    { "depth":2, "flags":0, "label":"Show Log...", "accel":"", "id":"Log" },
+    { "depth":2, "flags":0,
+      "label":"Generate Support Data...", "accel":"", "id":"CrashReport" },
+    { "depth":2, "flags":0,
+      "label":"Check Dependencies...", "accel":"", "id":"CheckDeps" },
+    { "depth":1, "flags":0, "label":"----", "accel":"" },
+    { "depth":1, "flags":0,
+      "label":"Check for Updates...", "accel":"", "id":"Updates" },
+    { "depth":1, "flags":0,
+      "label":"About Audacity...", "accel":"", "id":"About" },
+    { "depth":0, "flags":0, "label":"Extra", "accel":"" },
+    { "depth":1, "flags":1, "label":"Transport", "accel":"" },
+    { "depth":2, "flags":0, "label":"Play", "accel":"", "id":"Play" },
+    { "depth":2, "flags":0, "label":"Stop", "accel":"", "id":"Stop" },
+    { "depth":2, "flags":0,
+      "label":"Play One Second", "accel":" 1", "id":"PlayOneSec" },
+    { "depth":2, "flags":0,
+      "label":"Play to Selection", "accel":"B",
+      "id":"PlayToSelection" },
+    { "depth":2, "flags":0,
+      "label":"Play Before Selection Start", "accel":"Shift+F5",
+      "id":"PlayBeforeSelectionStart" },
+    { "depth":2, "flags":0,
+      "label":"Play After Selection Start", "accel":"Shift+F6",
+      "id":"PlayAfterSelectionStart" },
+    { "depth":2, "flags":0,
+      "label":"Play Before Selection End", "accel":"Shift+F7",
+      "id":"PlayBeforeSelectionEnd" },
+    { "depth":2, "flags":0,
+      "label":"Play After Selection End", "accel":"Shift+F8",
+      "id":"PlayAfterSelectionEnd" },
+    { "depth":2, "flags":0,
+      "label":"Play Before and After Selection Start", "accel":"Ctrl+Shift+F5",
+      "id":"PlayBeforeAndAfterSelectionStart" },
+    { "depth":2, "flags":0,
+      "label":"Play Before and After Selection End", "accel":"Ctrl+Shift+F7",
+      "id":"PlayBeforeAndAfterSelectionEnd" },
+    { "depth":2, "flags":0,
+      "label":"Play Cut Preview", "accel":"C", "id":"PlayCutPreview" },
+    { "depth":1, "flags":1, "label":"Tools", "accel":"" },
+    { "depth":2, "flags":0, "label":"Selection Tool", "accel":"F1", "id":"SelectTool" },
+    { "depth":2, "flags":0, "label":"Envelope Tool", "accel":"F2", "id":"EnvelopeTool" },
+    { "depth":2, "flags":0, "label":"Draw Tool", "accel":"F3", "id":"DrawTool" },
+    { "depth":2, "flags":0, "label":"Zoom Tool", "accel":"F4", "id":"ZoomTool" },
+    { "depth":2, "flags":0,
+      "label":"Time Shift Tool", "accel":"F5", "id":"TimeShiftTool" },
+    { "depth":2, "flags":0, "label":"Multi Tool", "accel":"F6", "id":"MultiTool" },
+    { "depth":2, "flags":0, "label":"Previous Tool", "accel":"A", "id":"PrevTool" },
+    { "depth":2, "flags":0, "label":"Next Tool", "accel":"D", "id":"NextTool" },
+    { "depth":1, "flags":1, "label":"Mixer", "accel":"" },
+    { "depth":2, "flags":0,
+      "label":"Adjust Playback Volume...", "accel":"", "id":"OutputGain" },
+    { "depth":2, "flags":0,
+      "label":"Increase Playback Volume", "accel":"", "id":"OutputGainInc" },
+    { "depth":2, "flags":0,
+      "label":"Decrease Playback Volume", "accel":"", "id":"OutputGainDec" },
+    { "depth":2, "flags":0,
+      "label":"Adjust Recording Volume...", "accel":"", "id":"InputGain" },
+    { "depth":2, "flags":0,
+      "label":"Increase Recording Volume", "accel":"", "id":"InputGainInc" },
+    { "depth":2, "flags":0,
+      "label":"Decrease Recording Volume", "accel":"", "id":"InputGainDec" },
+    { "depth":1, "flags":1, "label":"Edit", "accel":"" },
+    { "depth":2, "flags":0, "label":"Delete Key", "accel":" Backspace", "id":"DeleteKey" },
+    { "depth":2, "flags":0, "label":"Delete Key2", "accel":" Delete", "id":"DeleteKey2" },
+    { "depth":1, "flags":1, "label":"Transcription", "accel":"" },
+    { "depth":2, "flags":0, "label":"Play-at-Speed", "accel":"", "id":"PlayAtSpeed" },
+    { "depth":2, "flags":0,
+      "label":"Loop Play-at-Speed", "accel":"",
+      "id":"PlayAtSpeedLooped" },
+    { "depth":2, "flags":0,
+      "label":"Play Cut Preview-at-Speed", "accel":"",
+      "id":"PlayAtSpeedCutPreview" },
+    { "depth":2, "flags":0,
+      "label":"Adjust Playback Speed...", "accel":"", "id":"SetPlaySpeed" },
+    { "depth":2, "flags":0,
+      "label":"Increase Playback Speed", "accel":"", "id":"PlaySpeedInc" },
+    { "depth":2, "flags":0,
+      "label":"Decrease Playback Speed", "accel":"", "id":"PlaySpeedDec" },
+    { "depth":2, "flags":0,
+      "label":"Move to Previous Label", "accel":"Alt+Left",
+      "id":"MoveToPrevLabel" },
+    { "depth":2, "flags":0,
+      "label":"Move to Next Label", "accel":"Alt+Right",
+      "id":"MoveToNextLabel" },
+    { "depth":1, "flags":1, "label":"Seek", "accel":"" },
+    { "depth":2, "flags":0,
+      "label":"Short Seek Left During Playback", "accel":" Left", "id":"SeekLeftShort" },
+    { "depth":2, "flags":0,
+      "label":"Short Seek Right During Playback", "accel":" Right", "id":"SeekRightShort" },
+    { "depth":2, "flags":0,
+      "label":"Long Seek Left During Playback", "accel":"Shift+Left", "id":"SeekLeftLong" },
+    { "depth":2, "flags":0,
+      "label":"Long Seek Right During Playback", "accel":"Shift+Right", "id":"SeekRightLong" },
+    { "depth":1, "flags":1, "label":"Device", "accel":"" },
+    { "depth":2, "flags":0,
+      "label":"Change Recording Device...", "accel":"Shift+I", "id":"InputDevice" },
+    { "depth":2, "flags":0,
+      "label":"Change Playback Device...", "accel":"Shift+O", "id":"OutputDevice" },
+    { "depth":2, "flags":0,
+      "label":"Change Audio Host...", "accel":"Shift+H", "id":"AudioHost" },
+    { "depth":2, "flags":0,
+      "label":"Change Recording Channels...", "accel":"Shift+N", "id":"InputChannels" },
+    { "depth":1, "flags":1, "label":"Selection", "accel":"" },
+    { "depth":2, "flags":0, "label":"Snap-To Off", "accel":"", "id":"SnapToOff" },
+    { "depth":2, "flags":0,
+      "label":"Snap-To Nearest", "accel":"", "id":"SnapToNearest" },
+    { "depth":2, "flags":0, "label":"Snap-To Prior", "accel":"", "id":"SnapToPrior" },
+    { "depth":2, "flags":0,
+      "label":"Selection to Start", "accel":"Shift+Home", "id":"SelStart" },
+    { "depth":2, "flags":0,
+      "label":"Selection to End", "accel":"Shift+End", "id":"SelEnd" },
+    { "depth":2, "flags":0,
+      "label":"Selection Extend Left", "accel":"Shift+Left", "id":"SelExtLeft" },
+    { "depth":2, "flags":0,
+      "label":"Selection Extend Right", "accel":"Shift+Right", "id":"SelExtRight" },
+    { "depth":2, "flags":0,
+      "label":"Set (or Extend) Left Selection", "accel":"", "id":"SelSetExtLeft" },
+    { "depth":2, "flags":0,
+      "label":"Set (or Extend) Right Selection", "accel":"", "id":"SelSetExtRight" },
+    { "depth":2, "flags":0,
+      "label":"Selection Contract Left",
+      "accel":"Ctrl+Shift+Right", "id":"SelCntrLeft" },
+    { "depth":2, "flags":0,
+      "label":"Selection Contract Right",
+      "accel":"Ctrl+Shift+Left", "id":"SelCntrRight" },
+    { "depth":1, "flags":0, "label":"----", "accel":"" },
+    { "depth":1, "flags":1, "label":"Focus", "accel":"" },
+    { "depth":2, "flags":0,
+      "label":"Move Backward from Toolbars to Tracks", "accel":"Ctrl+Shift+F6", "id":"PrevFrame" },
+    { "depth":2, "flags":0,
+      "label":"Move Forward from Toolbars to Tracks", "accel":"Ctrl+F6", "id":"NextFrame" },
+    { "depth":2, "flags":0,
+      "label":"Move Focus to Previous Track", "accel":" Up", "id":"PrevTrack" },
+    { "depth":2, "flags":0,
+      "label":"Move Focus to Next Track", "accel":" Down", "id":"NextTrack" },
+    { "depth":2, "flags":0,
+      "label":"Move Focus to First Track", "accel":"Ctrl+Home", "id":"FirstTrack" },
+    { "depth":2, "flags":0,
+      "label":"Move Focus to Last Track", "accel":"Ctrl+End", "id":"LastTrack" },
+    { "depth":2, "flags":0,
+      "label":"Move Focus to Previous and Select", "accel":"Shift+Up", "id":"ShiftUp" },
+    { "depth":2, "flags":0,
+      "label":"Move Focus to Next and Select", "accel":"Shift+Down", "id":"ShiftDown" },
+    { "depth":2, "flags":0,
+      "label":"Toggle Focused Track", "accel":" Return", "id":"Toggle" },
+    { "depth":2, "flags":0,
+      "label":"Toggle Focused Track", "accel":" NUMPAD_ENTER", "id":"ToggleAlt" },
+    { "depth":1, "flags":1, "label":"Cursor", "accel":"" },
+    { "depth":2, "flags":0, "label":"Cursor Left", "accel":" Left", "id":"CursorLeft" },
+    { "depth":2, "flags":0, "label":"Cursor Right", "accel":" Right", "id":"CursorRight" },
+    { "depth":2, "flags":0,
+      "label":"Cursor Short Jump Left", "accel":",",
+      "id":"CursorShortJumpLeft" },
+    { "depth":2, "flags":0,
+      "label":"Cursor Short Jump Right", "accel":".",
+      "id":"CursorShortJumpRight" },
+    { "depth":2, "flags":0,
+      "label":"Cursor Long Jump Left", "accel":"Shift+,",
+      "id":"CursorLongJumpLeft" },
+    { "depth":2, "flags":0,
+      "label":"Cursor Long Jump Right", "accel":"Shift+.",
+      "id":"CursorLongJumpRight" },
+    { "depth":2, "flags":0, "label":"Clip Left", "accel":"", "id":"ClipLeft" },
+    { "depth":2, "flags":0, "label":"Clip Right", "accel":"", "id":"ClipRight" },
+    { "depth":1, "flags":1, "label":"Track", "accel":"" },
+    { "depth":2, "flags":0,
+      "label":"Change Pan on Focused Track...", "accel":"Shift+P", "id":"TrackPan" },
+    { "depth":2, "flags":0,
+      "label":"Pan Left on Focused Track", "accel":"Alt+Shift+Left", "id":"TrackPanLeft" },
+    { "depth":2, "flags":0,
+      "label":"Pan Right on Focused Track",
+      "accel":"Alt+Shift+Right", "id":"TrackPanRight" },
+    { "depth":2, "flags":0,
+      "label":"Change Gain on Focused Track...", "accel":"Shift+G", "id":"TrackGain" },
+    { "depth":2, "flags":0,
+      "label":"Increase Gain on Focused Track", "accel":"Alt+Shift+Up", "id":"TrackGainInc" },
+    { "depth":2, "flags":0,
+      "label":"Decrease Gain on Focused Track", "accel":"Alt+Shift+Down", "id":"TrackGainDec" },
+    { "depth":2, "flags":0,
+      "label":"Open Menu on Focused Track...", "accel":"Shift+M", "id":"TrackMenu" },
+    { "depth":2, "flags":0,
+      "label":"Mute/Unmute Focused Track", "accel":"Shift+U", "id":"TrackMute" },
+    { "depth":2, "flags":0,
+      "label":"Solo/Unsolo Focused Track", "accel":"Shift+S", "id":"TrackSolo" },
+    { "depth":2, "flags":0,
+      "label":"Close Focused Track", "accel":"Shift+C", "id":"TrackClose" },
+    { "depth":2, "flags":0,
+      "label":"Move Focused Track Up", "accel":"", "id":"TrackMoveUp" },
+    { "depth":2, "flags":0,
+      "label":"Move Focused Track Down", "accel":"", "id":"TrackMoveDown" },
+    { "depth":2, "flags":0,
+      "label":"Move Focused Track to Top", "accel":"", "id":"TrackMoveTop" },
+    { "depth":2, "flags":0,
+      "label":"Move Focused Track to Bottom", "accel":"",
+      "id":"TrackMoveBottom" },
+    { "depth":1, "flags":1, "label":"Scriptables I", "accel":"" },
+    { "depth":2, "flags":0, "label":"Select Time...", "accel":"", "id":"SelectTime" },
+    { "depth":2, "flags":0,
+      "label":"Select Frequencies...", "accel":"",
+      "id":"SelectFrequencies" },
+    { "depth":2, "flags":0,
+      "label":"Select Tracks...", "accel":"", "id":"SelectTracks" },
+    { "depth":2, "flags":0,
+      "label":"Set Track Status...", "accel":"", "id":"SetTrackStatus" },
+    { "depth":2, "flags":0,
+      "label":"Set Track Audio...", "accel":"", "id":"SetTrackAudio" },
+    { "depth":2, "flags":0,
+      "label":"Set Track Visuals...", "accel":"",
+      "id":"SetTrackVisuals" },
+    { "depth":2, "flags":0,
+      "label":"Get Preference...", "accel":"", "id":"GetPreference" },
+    { "depth":2, "flags":0,
+      "label":"Set Preference...", "accel":"", "id":"SetPreference" },
+    { "depth":2, "flags":0, "label":"Set Clip...", "accel":"", "id":"SetClip" },
+    { "depth":2, "flags":0,
+      "label":"Set Envelope...", "accel":"", "id":"SetEnvelope" },
+    { "depth":2, "flags":0, "label":"Set Label...", "accel":"", "id":"SetLabel" },
+    { "depth":2, "flags":0, "label":"Set Project...", "accel":"", "id":"SetProject" },
+    { "depth":1, "flags":1, "label":"Scriptables II", "accel":"" },
+    { "depth":2, "flags":0, "label":"Select...", "accel":"", "id":"Select" },
+    { "depth":2, "flags":0, "label":"Set Track...", "accel":"", "id":"SetTrack" },
+    { "depth":2, "flags":0, "label":"Get Info...", "accel":"", "id":"GetInfo" },
+    { "depth":2, "flags":0, "label":"Message...", "accel":"", "id":"Message" },
+    { "depth":2, "flags":0, "label":"Help...", "accel":"", "id":"Help" },
+    { "depth":2, "flags":0, "label":"Import...", "accel":"", "id":"Import2" },
+    { "depth":2, "flags":0, "label":"Export...", "accel":"", "id":"Export2" },
+    { "depth":2, "flags":0,
+      "label":"Open Project...", "accel":"", "id":"OpenProject2" },
+    { "depth":2, "flags":0,
+      "label":"Save Project...", "accel":"", "id":"SaveProject2" },
+    { "depth":2, "flags":0, "label":"Move Mouse...", "accel":"", "id":"Drag" },
+    { "depth":2, "flags":0,
+      "label":"Compare Audio...", "accel":"", "id":"CompareAudio" },
+    { "depth":2, "flags":0,
+      "label":"Screenshot (short format)...", "accel":"", "id":"Screenshot" },
+    { "depth":1, "flags":0,
+      "label":"Full Screen (on/off)", "accel":"F11",
+      "id":"FullScreenOnOff" } ];
 
 
 
@@ -1182,9 +1183,6 @@ Audacity.MenuUrls =
 
 
 ];
-
-
-
 
 bitmap_boxes = [
   [1, 1, 16, 16, "Pause"],
@@ -1447,8 +1445,6 @@ bitmap_boxes = [
   [0, 0, 0, 0, "Not in Theme"],
 ];
 
-
-
 Audacity.ExtraShortcuts = 
 [
    "Ctrl+Alt+I",
@@ -1496,13 +1492,7 @@ Audacity.ExtraShortcuts =
    "Alt+F6"
 ];
 
-function MENUSTUFF( a,b,c ){
-  if( a.indexOf( "Opens the ") == 0 ){
-    a = a.replace( "Opens the ","" );
-    a = a.replace( " dialog","..." );
-  }
-  return { key:a, short:b, long: c};
-}
+
 
 Audacity.Tips = 
 [
@@ -2628,11 +2618,7 @@ Audacity.Tips =
 
 ];
 
-
-
 Audacity.Commands =
-
-
   [
     { id:"Amplify", name:"Amplify", params:
       [
@@ -3302,13 +3288,11 @@ Audacity.Commands =
         { key:"GrayScale", type:"bool", default:"unchanged" } ],
       url:"Extra_Menu:_Tools#set_track",
       tip:"Sets various values for a track." } ]
-
 ;
 
 AudacityDoxed.Prefs = [];
 
 Audacity.Prefs =
-
 
   [
     { id:"/AudioIO/Host", prompt:"&Host:", type:"enum", default:"", enum:
@@ -3469,8 +3453,6 @@ Audacity.Prefs =
       prompt:"&Maximum effects per group (0 to disable):", type:"number", default:0 } ]
 ;
 
-
-
 //AudacityDoxed.Boxes = Audacity.Boxes;
 AudacityDoxed.Menus = Audacity.Menus;
 //AudacityDoxed.BoxUrls = Audacity.BoxUrls;
@@ -3480,699 +3462,5 @@ AudacityDoxed.Tips = Audacity.Tips;
 AudacityDoxed.Commands = Audacity.Commands;
 
 
-
-
-
-function rectString( x1,y1,x2,y2, name, tip ){
-  var str = "rect ";
-  str += ("    "+x1).slice(-4)+ " ";
-  str += ("    "+y1).slice(-4)+ " ";
-  str += ("    "+x2).slice(-4)+ " ";
-  str += ("    "+y2).slice(-4)+ " ";
-  str += "[[" + name + "|" + tip + "]]\r\n";
-  return str;
-}
-
-/**
- *
- * @returns {string}
- * @constructor
- */
-function ToolMap(){
-  var i;
-  var BoxEnd = null;
-  var FB = null;
-  var str = "";
-  for(i=0;i< App.Boxes.length;i++){
-    var Box = App.Boxes[i];
-    if( Box[0] == 1 ){
-      var name = Box[5].replace(/ /g, '');
-      str += "|" + name + "=:<imagemap>\n";
-      str += "Image:" + name + "Annotated.png\r\n";
-      str += "desc none\r\n";
-      BoxEnd = Box;
-    }
-    if( Box[0] == 2 ){
-      // offset boxes by first actual location...
-      if( FB )
-        ;
-      else if( Box.length > 6 )
-        FB = [ Box[6]-3,Box[7]-3 ];
-      else
-        FB = [ 0,0 ];
-      str += rectString( Box[1]-FB[0], Box[2]-FB[1], Box[3]-FB[0], Box[4]-FB[1],
-        Box[5],
-        Box[5] + " for...");
-      if( Box.length > 6 ){
-        str += rectString(  Box[6]-FB[0],Box[7]-FB[1], Box[8]-FB[0], Box[9]-FB[1],
-          Box[5],
-          "For...");
-      }
-    }
-    if( BoxEnd && ( (i == App.Boxes.length -1 ) || App.Boxes[i+1][0]==1)){
-      str += rectString(BoxEnd[1], BoxEnd[2], BoxEnd[3], BoxEnd[4],
-        "Toolbars Overview#upper_tooldock",
-        BoxEnd[5] + " - click on the image to see this toolbar displayed" +
-        " in the default context of the upper tooldock layout");
-      str += "</imagemap>\n";
-      str += "{{ClickTip|x=" + (BoxEnd[3] - (FB?FB[0]:0) - 50) + "|y=-5}}\r\n\r\n\r\n";
-      str += "&nbsp;\r\n\r\n";
-      BoxEnd = null;
-      FB = null;
-    }
-  }
-  return str;
-}
-
-
-
-
-/**
- * Template 'here doc'
- * @returns {string}
- * @constructor
- */
-Audacity.ToolsImap = function ToolTemplate(){
-
-/*HEREDOC
-</noinclude><includeonly>{{#switch: {{{1|EditToolbar}}}
-|Dock1=:<imagemap>
-Image:Dock1Annotated.png
-desc none
-rect 2 2 121 16 [[Transport Toolbar|Transport Toolbar has buttons for controlling playback and recording and for moving to the project start or end]]
-rect 0 42 298 95 [[Transport Toolbar|Transport Toolbar has buttons for controlling playback and recording and for moving to the project start or end]]
-rect 181 2 271 16 [[Tools Toolbar|Tools Toolbar lets you choose various tools for selection, volume adjustment, zooming and time-shifting of audio]]
-rect 299 42 384 95 [[Tools Toolbar|Tools Toolbar lets you choose various tools for selection, volume adjustment, zooming and time-shifting of audio]]
-rect 359 2 523 16 [[Meter Toolbar|Recording Meter Toolbar lets you see if audio being recorded is clipped, which results in distortion]]
-rect 385 42 806 68 [[Meter Toolbar|Recording Meter Toolbar lets you see if audio being recorded is clipped, which results in distortion]]
-rect 650 2 806 16 [[Meter Toolbar|Playback Meter Toolbar lets you see if audio being edited is clipped, which results in distortion]]
-rect 385 69 806 95 [[Meter Toolbar|Playback Meter Toolbar lets you see if audio being edited is clipped, which results in distortion]]
-rect 4 178 94 191 [[Mixer Toolbar|Mixer Toolbar lets you adjust Recording Volume (the amplitude at which recordings will be made) and Playback Volume (how loud the project's audio sounds, not affecting the volume of exported audio]]
-rect 0 96 294 121 [[Mixer Toolbar|Mixer Toolbar lets you adjust Recording Volume (the amplitude at which recordings will be made) and Playback Volume (how loud the project's audio sounds, not affecting the volume of exported audio]]
-rect 155 178 235 191 [[Edit Toolbar|Edit Toolbar has buttons for editing and zooming which are an alternative to using menu items or keyboard shortcuts for these tasks]]
-rect 295 96 598 121 [[Edit Toolbar|Edit Toolbar has buttons for editing and zooming which are an alternative to using menu items or keyboard shortcuts for these tasks]]
-rect 269 178 368 191 [[Device Toolbar|Device Toolbar selects Audio Host, recording device, recording channels and playback device, avoiding the need to open Devices Preferences to make these settings]]
-rect 0 122 565 148 [[Device Toolbar|Device Toolbar selects Audio Host, recording device, recording channels and playback device, avoiding the need to open Devices Preferences to make these settings]]
-rect 439 178 580 191 [[Transcription Toolbar|Transcription Toolbar|Transcription Toolbar lets you play audio at a slower or faster speed than normal, also affecting pitch]]
-rect 599 96 806 121 [[Transcription Toolbar|Transcription Toolbar|Transcription Toolbar lets you play audio at a slower or faster speed than normal, also affecting pitch]]
-</imagemap>
-{{ClickTip|y=5}}
-
-
-&nbsp;
-HEREDOC*/
-
-  var pieces;
-
-/*HEREDOC
-|#default=
-{{ednote|This ednote will automagically be replaced by the Annotated
- image {{{1}}}Annotated.png, when it is ready}}}}</includeonly>
-HEREDOC*/
-
-  pieces = Audacity.ToolsImap.toString().split( "HEREDOC" );
-
-  return pieces[1] + ToolMap() + pieces[3];
-};
-
-
-
-//[  1,  0, "Close", "Ctrl+W" ],
-
-/**
- *
- * @param anchor
- * @returns {string}
- * @constructor
- */
-function CleanAnchor( anchor ){
-  var str = anchor.replace("...", "");
-  str = str.replace("/","_");
-  str = str.replace(/ /g,"_");
-  str = str.replace(/__/g,"_");
-  return str.toLowerCase();
-}
-
-function CleanTip( tip ){
-  var str = tip.replace( /'''/g, "" );
-  str = str.replace( /''/g, "" );
-  str = str.replace( /\[\[(.*?)\|(.*?)\]\]/g, "$2" );
-  return str;
-}
-
-/**
- * returns all menus starting at item from, or the empty string.
- * @returns {string}
- * @constructor
- */
-function MenuMap(from, prefix, priorRects){
-  var i;
-  var BoxEnd = null;
-  var MenuName = "None";
-  var str = "";
-  var results = "";
-  var innerRects = "";
-  var x=0;
-  var y=0;
-  var indent = -1;
-  var SubItems = [];
-  var name;
-  var subsAllowed = false;
-  //console.log( "Map from:"+from+" prefix:"+prefix );
-  for(i=from;i< App.Menus.length;i++){
-    var Box = App.Menus[i];
-    if( Box[0] < indent )
-      return results;
-    if( i== from ){
-      indent = Box[0];
-    }
-    if( Box[0] == indent ){
-      innerRects = "";
-      str = "";
-      name = Box[2].replace(/ /g, '_');
-      if( indent == 0 )
-        MenuName = prefix + name + " Menu";
-      else
-        MenuName = prefix + " " + name;
-      var safeName= prefix + name;
-      safeName = safeName.replace( / Menu:/g, "-" );
-      str += "|" + safeName + "=:<imagemap>\n";
-      str += "Image:" + safeName + "Menu.png\r\n";
-      str += "desc none\r\n";
-      str += priorRects;
-      x=50+(indent *200);
-      y=27;
-      BoxEnd = [0,0,0,0];
-      subsAllowed = true;
-    }
-    else if( Box[0] == (indent+1) ){
-      if( Box[2].indexOf("---") >= 0 ){
-        y += 7;
-      } else {
-        var Tip = "tip about " + Box[2];
-        if( Box.short )
-          Tip = Box.short;
-        if( Box[1] == 1 )
-          innerRects += rectString(x, y, x + 200, y + 22, MenuName + ': ' +
-            Box[2], CleanTip(Tip) );
-        else
-          innerRects += rectString(x, y, x + 200, y + 22, MenuName + '#' +
-            CleanAnchor(Box[2]), CleanTip(Tip) );
-        y += 22;
-//      SubItems.push( i );
-      }
-      BoxEnd[ 2 ] = x+200;
-      BoxEnd[ 3 ] = y;
-    }
-
-    var nextIndent = -1;
-    if( i < App.Menus.length -1 )
-      nextIndent = App.Menus[i+1][0];
-    if( (nextIndent > Box[0]) && (Box[0] >indent) && subsAllowed ){
-      SubItems.push(i);
-      subsAllowed = false;
-    }
-
-    if( BoxEnd && (nextIndent <= indent)){
-      str += innerRects;
-      str += "</imagemap>\n";
-      str += "{{ClickTip|x=" + (BoxEnd[2] - 50) + "|y=15}}\r\n\r\n\r\n";
-      str += "&nbsp;\r\n\r\n";
-      if( innerRects )
-        results += str;
-      BoxEnd = null;
-      //console.log( str );
-      str = "";
-
-      var j;
-      for(j=0;j<SubItems.length;j++){
-        results += MenuMap( SubItems[j], MenuName + ((indent==0)?":" : ""),
-          priorRects + innerRects );
-      }
-      SubItems = [];
-
-    }
-  }
-  return results;
-}
-
-
-
-/**
- * Template 'here doc'
- * @returns {string}
- * @constructor
- */
-Audacity.MenuImap = function MenuTemplate(){
-
-/*HEREDOC
-</noinclude><includeonly>{{#switch: {{{menu}}}
-HEREDOC*/
-
-  var pieces;
-
-/*HEREDOC
-|#default=
-{{ednote|This ednote will automagically be replaced by the Annotated
-menu {{{menu}}}.png, when it is ready}}}}</includeonly>
-HEREDOC*/
-
-  pieces = Audacity.MenuImap.toString().split( "HEREDOC" );
-  ZipTheTips();
-
-  var mappy = MenuMap(0, "", "");
-  //console.log( mappy );
-
-  return pieces[1] + mappy  + pieces[3];
-};
-
-/**
- *
- * @param id
- * @returns {string}
- */
-function MungedId( id ){
-  return id.charAt(0).toLowerCase() + id.slice(1);
-};
-
-/**
- *
- * @returns {string}
- */
-Audacity.NyquistWrappers = function NyquistWrappersTemplate(){
-  var Coms = Audacity.Commands;
-  var Str = "";
-  for(var i=0;i<Coms.length; i++){
-    var Command = Coms[i];
-    var keyArgs = "";
-    var callArgs = "";
-    for( var j=0;j< Command.params.length; j++){
-      var param = Command.params[j];
-      keyArgs += " " + param.key.toLowerCase();
-      callArgs += " \"" + param.key +"\" " + param.key.toLowerCase();
-
-    }
-    Str += "(defun aud:" + MungedId( Command.id ) + " (&key" + keyArgs + ")\r\n" +
-        "   (aud-do \"" + Command.id + "\"" + callArgs + "))\r\n\r\n";
-
-  }
-  return Str;
-};
-
-
-/**
- * returns all menus starting at item from, or the empty string.
- * If in automation mode, only the menu items with an id are used.
- * @returns {string}
- * @constructor
- */
-function MakeKeyboardReference(from, prefix, type){
-  var i;
-  var str = "";
-  var Name ="";
-  var lowName="";
-  var Prefix = "";
-  var indent = -1;
-  var SubItems = [];
-  var results = "";
-  var subsAllowed = false;
-  var TopName = "";
-  var bEmpty =true;
-  var bIsAutomation = type == "automation";
-
-  //console.log( "Keyboard from:"+from+" prefix:"+prefix );
-  for(i=from;i< App.Menus.length;i++){
-    var Box = App.Menus[i];
-    if( Box[0] < indent )
-      return results;
-    if( i== from ){
-      indent = Box[0];
-    }
-    Name = Box[2];
-    lowName = CleanAnchor( Name );
-    var boxIndent = Box[0];
-    if( Name.indexOf("---") >=0 )
-      ;
-    else if( boxIndent == indent ){
-      str += "<div id=\""+lowName+"\"></div>\r\n";
-      if( Box[0] == 0 )
-        str += "==[["+Name+"_Menu|"+Name+" Menu]]==\r\n";
-      if( Box[0] == 1 )
-        str += "===[["+prefix +"_Menu:_" + Name+"|"+prefix + ": " +Name+"]]===\r\n";
-      if( Box.long )
-        str += "{{note|" + Box.long + " }}\r\n";
-      else
-        str += "{{note| No special notes for "+Name+" }}\r\n";
-      str += "{| class=\"prettytablerows\" rules = \"rows\" border = \"2\"" +
-        " width=\"100%\"\r\n";
-      if( bIsAutomation )
-          str += "!width=\"15%\"|Automation Id\r\n";
-      str += "!width=\"15%\"|Action\r\n";
-      if( !bIsAutomation ){
-        str += "!width=\"10%\"|Shortcut\r\n";
-        str += "!width=\"75%\"|Description\r\n";
-      }
-      else {
-        str += "!width=\"30%\"|Parameters\r\n";
-        str += "!width=\"55%\"|Description\r\n";
-      }
-      Prefix = Name;
-      subsAllowed = true;
-      bEmpty = true;
-      TopName = Name;
-    }
-    else if( boxIndent == (indent+1) ){
-      if( !bIsAutomation || (Box.id != undefined ) ){
-        str += "|-\r\n";
-        if( bIsAutomation ){
-          str += "|'''" + Box.id + ":'''\r\n";
-        }
-        if( boxIndent == 1 )
-          str +=
-            "|[[" + TopName + "_Menu#" + lowName + "|" + Name + "]]\r\n"; else
-          str +=
-            "|[[" + prefix + "_Menu:_" + TopName + "#" + lowName + "|" + Name +
-            "]]\r\n";
-        if( bIsAutomation ){
-          if( Box.params != undefined ){
-            str += "|" + Box.params + "\r\n";
-          } else {
-            str += "|''none''\r\n";
-          }
-
-        } else {
-          if( Box[3] == "" )
-            str += "|{{unassigned}}\r\n";
-          else if( App.ExtraShortcuts.indexOf(Box[3]) >= 0 )
-            str += "|{{fullshortcut|" + Box[3] + "}}\r\n";
-          else
-            str += "|{{shortcut|" + Box[3] + "}}\r\n";
-        }
-        if( Box.long )
-          str += "|" + Box.long + "\r\n"; else
-          str += "| no tip string.\r\n";
-        bEmpty = false;
-      }
-    }
-
-    var nextIndent = -1;
-    if( i < App.Menus.length -1 )
-      nextIndent = App.Menus[i+1][0];
-    if( (nextIndent > Box[0]) && (Box[0] >indent) && subsAllowed ){
-      SubItems.push(i);
-      subsAllowed = false;
-    }
-
-    if( nextIndent <= indent ){
-      if( !bEmpty ){
-        str += "|}\r\n";
-        str += "{{hoverext|hover=|ext=}}\r\n";
-        results += str;
-        bEmpty = true;
-      }
-      str = "";
-      if( SubItems.length > 0  ){
-        for(j=0;j<SubItems.length ;j++){
-          results += MakeKeyboardReference(SubItems[j], TopName, type );
-        }
-        SubItems=[];
-      }
-    }
-
-  }
-  return results;
-}
-
-
-
-/**
- *
- * @param params
- * @returns {string}
- * @constructor
- */
-function PrintableOfParams( params ){
-  var str = "";
-  var i;
-  var j;
-  for( i=0;i<params.length;i++){
-    var item = params[i];
-    var key = "";
-    if( item.key )
-      key = " '''" + item.key + "'''";
-    str += "''"+item.type + key+", (default:"+item.default + ")<br>\r\n";
-    if( item.type == "enum" ){
-      for( j=0;j< item.enum.length ;j++){
-        var eItem = item.enum[ j ];
-        str += "* " + eItem + "\r\n";
-      }
-    }
-  }
-  return str;
-}
-
-/////////////////////////////
-/**
- * returns all preferences starting at item from, or the empty string.
- * @returns {string}
- * @constructor
- */
-function MakePreferencesReference(from, prefix, type){
-  var i;
-  var str = "";
-  var Name ="";
-  var lowName="preferences";
-  var Prefix = "";
-  var indent = -1;
-  var SubItems = [];
-  var results = "";
-  var subsAllowed = false;
-  var TopName = "";
-  var bEmpty =true;
-  var bIsAutomation = type == "automation";
-
-  //console.log( "Keyboard from:"+from+" prefix:"+prefix );
-  for(i=from;i< App.Prefs.length;i++){
-
-    var X = [
-      {
-        key: "/AudioIO/Host", type: "enum", default: "", enum: [
-        "MME", "Windows DirectSound", "Windows WASAPI"
-      ]
-      }, {
-        key: "/AudioIO/LatencyDuration",
-        prompt: "&Buffer length:",
-        type: "number",
-        default: 100
-      },
-    ];
-
-    var Item = App.Prefs[i];
-    if( i == 0 ){
-      Name = "Preferences";
-      str += "<div id=\"" + lowName + "\"></div>\r\n";
-      str += "==[[Preferences]]==\r\n";
-      str += "{{note| No special notes for " + Name + " }}\r\n";
-      str += "{| class=\"prettytablerows\" rules = \"rows\" border = \"2\"" +
-        " width=\"100%\"\r\n";
-      str += "!width=\"10%\"|Automation Id\r\n";
-      str += "!width=\"20%\"|Prompt\r\n";
-      str += "!width=\"30%\"|Parameters\r\n";
-      str += "!width=\"55%\"|Description\r\n";
-
-      Prefix = Name;
-      subsAllowed = true;
-      bEmpty = true;
-      TopName = Name;
-    }
-
-    var Params = PrintableOfParams( [ Item ] );
-    var Prompt = Item.prompt || "";
-    Prompt = Prompt.replace( '\&', '' );
-
-    str += "|-\r\n";
-    str += "|'''" + Item.id  + "'''\r\n";
-    str += "|" + Prompt  + "\r\n";
-    str += "|" + Params + "\r\n";
-    str += "| no tip string.\r\n";
-    bEmpty = false;
-  }
-  str += "|}\r\n";
-  str += "{{hoverext|hover=|ext=}}\r\n";
-  results += str;
-  bEmpty = true;
-  return results;
-}
-
-
-function SafeQuote( str ){
-  return str.replace( /\"/g, "\\\"" );
-}
-
-/***
- * Update the menu array to have the tips in it, as fields
- * The menu items with a name that matches the tip key have these fields added:
- *   id
- *   params
- *   short
- *   long
- */
-function ZipTheTips( ){
-  var i;
-  var j;
-  var Unused = [];
-  var str = "";
-  var key;
-  for(i=0;i<App.Tips.length;i++){
-    var Tip = App.Tips[i];
-    key = Tip.key;
-    key = key.replace( /Invoke the (.*) effect dialog/, "$1..." );
-    if( key != Tip.key ){
-      //console.log(" Replaced "+ key);
-      Tip.key = key;
-    }
-    Unused.push( Tip  );
-  }
-
-  //console.log( str );
-  for( j=0;j<App.Menus.length; j++){
-    var Menu = App.Menus[j];
-    var Name = Menu[2];
-    if( Name.indexOf("---") < 0 ){
-      if( Menu[0]==0 )
-        str+="\r\n// "+Name +"\r\n";
-      for(i=0;i<Unused.length;i++){
-        if( Unused[i].key.toLowerCase() == Name.toLowerCase() ){
-          Tip = Unused[i];
-          if( Tip.long.indexOf( '+' ) == 0 )
-            Tip.long = Tip.long.replace( '+', Tip.short );
-          Menu[ 'short' ] = Tip.short;
-          Menu[ 'long' ] = Tip.long;
-          if( Menu.id == undefined && Tip.id != undefined )
-            Menu[ 'id' ] = Tip.id;
-          if( Tip.params != undefined )
-            Menu[ 'params' ] = Tip.params;
-          if( Tip.long.indexOf( Tip.short) == 0 )
-            Tip.long = Tip.long.replace( Tip.short, '+' );
-          str += "{ key:   \""+SafeQuote(Name) + "\",\r\n";
-          if( Menu.id )
-            str += "  id:    \""+SafeQuote(Menu.id )+ "\",\r\n";
-          str += "  short: \""+SafeQuote(Tip.short)+ "\",\r\n";
-          str += "  long:  \""+SafeQuote(Tip.long) + "\"},\r\n";
-          Unused.splice(i,1);
-          break;
-        }
-      }
-      if( !Menu.short ){
-          console.log( "No tip with key for: "+ Name );
-      }
-    }
-  }
-  //console.log( str );
-  console.log("Tip Leftovers: ");
-  console.log( Unused );
-}
-
-/*
-
-{ id: "ScreenshotCommand", name: "Screenshot", params: [
-    { key: "Path", type: "string", default: ""},
-    { key: "CaptureWhat", type: "enum", default: "window",
-        enum : ["window", "fullwindow", "windowplus", "fullscreen", "toolbars", "menus", "effects", "preferences", "selectionbar", "spectralselection", "tools", "transport", "mixer", "meter", "playmeter", "recordmeter", "edit", "device", "scrub", "transcription", "trackpanel", "ruler", "tracks", "firsttrack", "secondtrack", ]
-    },
-    { key: "Background", type: "enum", default: "None",
-        enum : ["Blue", "White", "None", ]
-    },
-]},
-*/
-
-
-/***
- * Update the menu array to have the commands in it, as fields
- *   id
- *   params
- *   short (not supplied)
- *   long (not supplied)
- *
- */
-
-function ZipTheCommands( ){
-    var i;
-    var j;
-    var Unused = [];
-    var str = "";
-    var key;
-    var Com = {};
-    for(i=0;i<App.Commands.length;i++){
-        Com = App.Commands[i];
-        Unused.push( Com  );
-    }
-
-    //console.log( str );
-    for( j=0;j<App.Menus.length; j++){
-        var Menu = App.Menus[j];
-        var Depth = Menu[0];
-        var Name = Menu[2];
-        var Flags = Menu[1];
-        var id = Menu.id || "";
-        Name = Name.replace("...", "" );
-        if( (Name.indexOf("---") < 0 ) && (Flags !=1 )){
-            if( Depth==0 )
-                str+="\r\n// "+Name +"\r\n";
-            else for(i=0;i<Unused.length;i++){
-                if( Unused[i].name == Name || Unused[i].id == id){
-                    Com= Unused[i];
-                    if( Com.id != undefined )
-                        Menu[ 'id' ] = Com.id;
-                    if( Com.params != undefined )
-                        Menu[ 'params' ] = PrintableOfParams( Com.params);
-                    if( Menu.long == undefined && Com.tip != undefined )
-                        Menu[ 'long' ] = Com.tip;
-                    Unused.splice(i,1);
-                    break;
-                }
-            }
-//            if( !Menu.short ){
-//                console.log( "Unmatched: "+ Name );
-//            }
-        }
-    }
-    //console.log( str );
-    console.log("Command Leftovers: ");
-    console.log( Unused );
-}
-
-
-/**
- * Template 'here doc'
- * @returns {string}
- * @constructor
- */
-Audacity.KeyboardReference = function KeyboardReferenceTemplate(){
-  ZipTheTips();
-  return MakeKeyboardReference(0,"", "keyboard");
-};
-
-/**
- * Template 'here doc'
- * @returns {string}
- * @constructor
- */
-Audacity.AutomationReference = function AutomationReferenceTemplate(){
-    ZipTheTips();
-    ZipTheCommands();
-    return MakeKeyboardReference(0,"", "automation");
-};
-
-/**
- * Template 'here doc'
- * @returns {string}
- * @constructor
- */
-Audacity.PreferencesReference = function AutomationReferenceTemplate(){
-  ZipTheTips();
-  ZipTheCommands();
-  return MakePreferencesReference(0,"", "");
-};
 
 

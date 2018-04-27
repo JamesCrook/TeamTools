@@ -55,14 +55,14 @@ function Extract( List, from, level ){
   var result = [];
   var i;
   for( i=from;i<List.length;i++){
-    var lev = List[i][0];
+    var lev = List[i].depth;
     if( lev < level ){
       return result;
     }
     if( lev ==level ){
       var Item = List[i];
       var Entry =
-        [ Item[1], Item[2], Item[3], Item[4], Item[5],i];
+        [ Item.box[0], Item.box[1], Item.box[2], Item.box[3], Item.label,i];
       result.push( Entry );
     }
   }
@@ -173,7 +173,6 @@ function ClickerInit(){
 /**
  *
  * @returns {boolean}
- * @constructor
  */
 function EmptyLevel(){
   ClickedBox = HoverBox;
@@ -192,7 +191,6 @@ function EmptyLevel(){
  * @param delta
  * @param emptyOK
  * @returns {boolean}
- * @constructor
  */
 function ChangeLevel( delta, emptyOK ){
   if( Level + delta > 4 ){
@@ -270,8 +268,6 @@ function DrawAnnotationBox( name, x1,y1,x2,y2 )
   ClearOutside( Gui, [x1-2,y1-2,x2+2,y2+2] );
 }
 
-
-
 function RedrawClicker(){
   var G = Clicker;
   var i;
@@ -310,10 +306,7 @@ function RedrawClicker(){
     var BX = App.Boxes[ x ];
     //console.log( BX );
     var BC =  G.Boxes[LL][i];
-    BX[6] = BC[0];
-    BX[7] = BC[1];
-    BX[8] = BC[2];
-    BX[9] = BC[3];
+    BX.leabelBox = [ BC[0], BC[1], BC[2], BC[3] ];
   }
 
   var x2 = BoxRow[2];
@@ -326,7 +319,7 @@ function RedrawClicker(){
   }
 
   var box = BoxRow[5];
-  DrawAnnotationBox( App.Boxes[box][5].replace(/ /g,'') + "Annotated", x1, y1, x2, y2 );
+  DrawAnnotationBox( App.Boxes[box].label.replace(/ /g,'') + "Annotated", x1, y1, x2, y2 );
 }
 
 function AffineBoxes(){
@@ -339,6 +332,320 @@ function AffineBoxes(){
     Box[4] = Box[4] * 600/868 + 92;
   }
 
+}
+
+function rectString( x1,y1,x2,y2, name, tip ){
+  var str = "rect ";
+  str += ("    "+x1).slice(-4)+ " ";
+  str += ("    "+y1).slice(-4)+ " ";
+  str += ("    "+x2).slice(-4)+ " ";
+  str += ("    "+y2).slice(-4)+ " ";
+  str += "[[" + name + "|" + tip + "]]\r\n";
+  return str;
+}
+
+/**
+ *
+ * @returns {string}
+ */
+function ToolMap(){
+  var i;
+  var BoxEnd = null;
+  var FB = null;
+  var str = "";
+  for(i=0;i< App.Boxes.length;i++){
+    var Box = App.Boxes[i];
+    if( Box.depth == 1 ){
+      var name = Box.label.replace(/ /g, '');
+      str += "|" + name + "=:<imagemap>\n";
+      str += "Image:" + name + "Annotated.png\r\n";
+      str += "desc none\r\n";
+      BoxEnd = Box;
+    }
+    if( Box.depth == 2 ){
+      var mainBox = Box.box;
+      var labelBox = Box.labelBox;
+      // offset boxes by first actual location...
+      if( FB )
+        ;
+      else if( labelBox )
+        FB = [ labelBox[0]-3, labelBox[1]-3 ];
+      else
+        FB = [ 0,0 ];
+      str += rectString( mainBox[0]-FB[0], mainBox[1]-FB[1], mainBox[2]-FB[0], mainBox[3]-FB[1],
+        Box.label,
+        Box.label + " for...");
+      if( labelBox ){
+        str += rectString(  labelBox[0]-FB[0],labelBox[1]-FB[1], labelBox[2]-FB[0], labelBox[3]-FB[1],
+          Box.label,
+          "For...");
+      }
+    }
+    if( BoxEnd && ( (i == App.Boxes.length -1 ) || App.Boxes[i+1].depth==1)){
+      str += rectString(BoxEnd.box[0], BoxEnd.box[1], BoxEnd.box[2], BoxEnd.box[3],
+        "Toolbars Overview#upper_tooldock",
+        BoxEnd.label + " - click on the image to see this toolbar displayed" +
+        " in the default context of the upper tooldock layout");
+      str += "</imagemap>\n";
+      str += "{{ClickTip|x=" + (BoxEnd.box[2] - (FB?FB[0]:0) - 50) + "|y=-5}}\r\n\r\n\r\n";
+      str += "&nbsp;\r\n\r\n";
+      BoxEnd = null;
+      FB = null;
+    }
+  }
+  return str;
+}
+/**
+ *
+ * @param id
+ * @returns {string}
+ */
+function MungedId( id ){
+  return id.charAt(0).toLowerCase() + id.slice(1);
+};
+
+
+//[  1,  0, "Close", "Ctrl+W" ],
+
+/**
+ *
+ * @param anchor
+ * @returns {string}
+ */
+function CleanAnchor( anchor ){
+  var str = anchor.replace("...", "");
+  str = str.replace("/","_");
+  str = str.replace(/ /g,"_");
+  str = str.replace(/__/g,"_");
+  return str.toLowerCase();
+}
+
+function CleanTip( tip ){
+  var str = tip.replace( /'''/g, "" );
+  str = str.replace( /''/g, "" );
+  str = str.replace( /\[\[(.*?)\|(.*?)\]\]/g, "$2" );
+  return str;
+}
+
+/**
+ * returns all menus starting at item from, or the empty string.
+ * @returns {string}
+ */
+function MenuMap(from, prefix, priorRects){
+  var i;
+  var BoxEnd = null;
+  var MenuName = "None";
+  var str = "";
+  var results = "";
+  var innerRects = "";
+  var x=0;
+  var y=0;
+  var indent = -1;
+  var SubItems = [];
+  var name;
+  var subsAllowed = false;
+  //console.log( "Map from:"+from+" prefix:"+prefix );
+  for(i=from;i< App.Menus.length;i++){
+    var Box = App.Menus[i];
+    if( Box.depth < indent )
+      return results;
+    if( i== from ){
+      indent = Box.depth;
+    }
+    if( Box.depth == indent ){
+      innerRects = "";
+      str = "";
+      name = Box.label.replace(/ /g, '_');
+      if( indent == 0 )
+        MenuName = prefix + name + " Menu";
+      else
+        MenuName = prefix + " " + name;
+      var safeName= prefix + name;
+      safeName = safeName.replace( / Menu:/g, "-" );
+      str += "|" + safeName + "=:<imagemap>\n";
+      str += "Image:" + safeName + "Menu.png\r\n";
+      str += "desc none\r\n";
+      str += priorRects;
+      x=50+(indent *200);
+      y=27;
+      BoxEnd = [0,0,0,0];
+      subsAllowed = true;
+    }
+    else if( Box.depth == (indent+1) ){
+      if( Box.label.indexOf("---") >= 0 ){
+        y += 7;
+      } else {
+        var Tip = "tip about " + Box.label;
+        if( Box.short )
+          Tip = Box.short;
+        if( Box.flags == 1 )
+          innerRects += rectString(x, y, x + 200, y + 22, MenuName + ': ' +
+            Box.label, CleanTip(Tip) );
+        else
+          innerRects += rectString(x, y, x + 200, y + 22, MenuName + '#' +
+            CleanAnchor(Box.label), CleanTip(Tip) );
+        y += 22;
+//      SubItems.push( i );
+      }
+      BoxEnd[ 2 ] = x+200;
+      BoxEnd[ 3 ] = y;
+    }
+
+    var nextIndent = -1;
+    if( i < App.Menus.length -1 )
+      nextIndent = App.Menus[i+1].depth;
+    if( (nextIndent > Box.depth) && (Box.depth >indent) && subsAllowed ){
+      SubItems.push(i);
+      subsAllowed = false;
+    }
+
+    if( BoxEnd && (nextIndent <= indent)){
+      str += innerRects;
+      str += "</imagemap>\n";
+      str += "{{ClickTip|x=" + (BoxEnd[2] - 50) + "|y=15}}\r\n\r\n\r\n";
+      str += "&nbsp;\r\n\r\n";
+      if( innerRects )
+        results += str;
+      BoxEnd = null;
+      //console.log( str );
+      str = "";
+
+      var j;
+      for(j=0;j<SubItems.length;j++){
+        results += MenuMap( SubItems[j], MenuName + ((indent==0)?":" : ""),
+          priorRects + innerRects );
+      }
+      SubItems = [];
+
+    }
+  }
+  return results;
+}
+
+
+/**
+ *
+ * @param params
+ * @returns {string}
+ */
+function PrintableOfParams( params ){
+  var str = "";
+  var i;
+  var j;
+  for( i=0;i<params.length;i++){
+    var item = params[i];
+    var key = "";
+    if( item.key )
+      key = " '''" + item.key + "'''";
+    str += "''"+item.type + key+", (default:"+item.default + ")<br>\r\n";
+    if( item.type == "enum" ){
+      for( j=0;j< item.enum.length ;j++){
+        var eItem = item.enum[ j ];
+        str += "* " + eItem + "\r\n";
+      }
+    }
+  }
+  return str;
+}
+
+/////////////////////////////
+
+
+
+
+function SafeQuote( str ){
+  return str.replace( /\"/g, "\\\"" );
+}
+
+/** Transfer information into a menu item from a tip
+ *
+ * @param Menu
+ * @param Tip
+ */
+function SetMenuFromTip(Menu, Tip){
+  Menu['short'] = Tip.short;
+  Menu['long'] = Tip.long;
+  if( Menu.id == undefined && Tip.id != undefined )
+    Menu['id'] = Tip.id;
+  if( Tip.params != undefined )
+    Menu['params'] = Tip.params;
+}
+
+/** Get the tip info from one Menu item
+ *
+ * @param Menu
+ * @returns {string}
+ */
+function TipInfoOfMenuItem(Menu){
+  var str="";
+  str += "{ key:   \"" + SafeQuote(Menu.label) + "\",\r\n";
+  if( Menu.id )
+    str += "  id:    \"" + SafeQuote(Menu.id) + "\",\r\n";
+  str += "  short: \"" + SafeQuote(Menu.short) + "\",\r\n";
+  str += "  long:  \"" + SafeQuote(Menu.long) + "\"},\r\n";
+  return str;
+}
+
+/** Cleaned up tips replace some formulaic strings
+ * and expand the + at the start of the long description.
+ * @returns {Array}
+ */
+function GetCleanedUpTips(){
+  var i;
+  var j;
+  var Tips = [];
+  var key;
+  for( i = 0; i < App.Tips.length; i++ ){
+    var Tip = App.Tips[i];
+    key = Tip.key;
+    key = key.replace(/Invoke the (.*) effect dialog/, "$1...");
+    if( key != Tip.key ){
+      //console.log(" Replaced "+ key);
+      Tip.key = key;
+    }
+    if( Tip.long.indexOf('+') == 0 )
+      Tip.long = Tip.long.replace('+', Tip.short);
+    Tips.push(Tip);
+  }
+  return Tips;
+}
+
+/*
+
+ { id: "ScreenshotCommand", name: "Screenshot", params: [
+ { key: "Path", type: "string", default: ""},
+ { key: "CaptureWhat", type: "enum", default: "window",
+ enum : ["window", "fullwindow", "windowplus", "fullscreen", "toolbars", "menus", "effects", "preferences", "selectionbar", "spectralselection", "tools", "transport", "mixer", "meter", "playmeter", "recordmeter", "edit", "device", "scrub", "transcription", "trackpanel", "ruler", "tracks", "firsttrack", "secondtrack", ]
+ },
+ { key: "Background", type: "enum", default: "None",
+ enum : ["Blue", "White", "None", ]
+ },
+ ]},
+ */
+
+/** Transfers information into a menu item
+ * from a command item.
+ * @param Menu
+ * @param Command
+ */
+function SetMenuFromCommand(Menu, Command){
+  if( Command.id != undefined )
+    Menu['id'] = Command.id;
+  if( Command.params != undefined )
+    Menu['params'] = PrintableOfParams(Command.params);
+  if( Menu.long == undefined && Command.tip != undefined )
+    Menu['long'] = Command.tip;
+}
+
+function GetCleanedUpCommands(){
+  var Commands = [];
+  var Command = {};
+  var i;
+  for( i = 0; i < App.Commands.length; i++ ){
+    Command = App.Commands[i];
+    Commands.push(Command);
+  }
+  return Commands;
 }
 
 
@@ -361,7 +668,7 @@ window.onload = function(){
  * @param from - item in list of menus to start from.
  */
 function DrawMenu( from ){
-  var MenuIndent = App.Menus[from][0];
+  var MenuIndent = App.Menus[from].depth;
   // A fixup, only for drawing.
   if( Menu.bar )
     Menu.width = 865;
@@ -371,7 +678,7 @@ function DrawMenu( from ){
   // iterate through the menu items.
   for(i=from;i<App.Menus.length;i++){
     // stop iterating when the indent drops back.
-    if( App.Menus[i][0] < MenuIndent )
+    if( App.Menus[i].depth < MenuIndent )
       return;
     // Highlight the hovered item.
     var Option = ( Gui.Boxes[Level].length == HoverBox) ?
@@ -379,28 +686,28 @@ function DrawMenu( from ){
     // Also highlight any selected (i.e. clicked by user) item.
     if( Gui.Boxes[Menu.Level].length == Menu.iSel )
       Option = menuSelected;
-    if( App.Menus[i][0] == MenuIndent ){
+    if( App.Menus[i].depth == MenuIndent ){
       Res = (Menu.bar ? DrawBarItem : DrawItem)( i, Res.x,Res.y,
-        App.Menus[i][2],
-        App.Menus[i][3],
-        App.Menus[i][1] | Option );
+        App.Menus[i].label,
+        App.Menus[i].accel,
+        App.Menus[i].flags | Option );
     }
   }
 }
 
 function SizeMenu( from ){
-  var MenuLevel = App.Menus[from][0];
+  var MenuLevel = App.Menus[from].depth;
   Menu.tWidth = 0;
   Menu.aWidth = 0;
   var Res = { x:0, y:0};
   var i;
   for(i=from;i<App.Menus.length;i++){
-    if( App.Menus[i][0] < MenuLevel )
+    if( App.Menus[i].depth < MenuLevel )
       break;
-    if( App.Menus[i][0] == MenuLevel ){
+    if( App.Menus[i].depth == MenuLevel ){
       Res = (Menu.bar ? SizeBarItem : SizeItem)
-      ( i, Res.x, Res.y, App.Menus[i][2],
-        App.Menus[i][3], App.Menus[i][1]);
+      ( i, Res.x, Res.y, App.Menus[i].label,
+        App.Menus[i].accel, App.Menus[i].flags);
     }
   }
   Menu.x =2;
@@ -472,12 +779,12 @@ function RefreshImage(Gui){
 
     if( Level >= 2 ){
       ix = Menus[2].item-1;
-      name = App.Menus[ix][2];
+      name = App.Menus[ix].label;
     }
 
     if( Level > 2 ){
       ix = Menus[3].item-1;
-      name = name + "-"+App.Menus[ix][2];
+      name = name + "-"+App.Menus[ix].label;
     }
     name = name.replace( / /g, '_' );
     if( Level >= 2 )
@@ -696,7 +1003,7 @@ function GetHoverLowTextBox( event ){
 }
 
 function GetMenuNameByIndex( ix ){
-  return App.Menus[ ix ][2];
+  return App.Menus[ ix].label;
 }
 
 function GetMenuNameByLevel( level ){
@@ -886,8 +1193,8 @@ function UpdateMenuSelection( event ){
       var StartAt = Gui.Boxes[l][HoverBox][5];
       // if it has descendants...
       if( (StartAt+1) < App.Menus.length &&
-        App.Menus[StartAt][0] ==
-        (App.Menus[StartAt + 1][0] - 1) ){
+        App.Menus[StartAt].depth ==
+        (App.Menus[StartAt + 1].depth - 1) ){
         // Descend for menus...
         Level = l+1;
         ClickedBox = HoverBox;
@@ -1179,7 +1486,6 @@ function OnKeepPanel(arg){
 /**
  * Converts a string to a durl
  * @returns {string}
- * @constructor
  */
 function DurlOfText( text ){
   return "data:application/txt," + encodeURIComponent(text);
@@ -1220,6 +1526,12 @@ function OnGetImage(){
 
   DownloadDurl( Annotated.name + ".png", DurlOfAnnotatedImage());
 }
+
+
+
+
+///////////////// Some Button Handlers ///////////////////////////////
+
 
 function OnGetToolbarImageMaps(arg){
   DownloadDurl( "Toolbars.txt", DurlOfText(App.ToolsImap()) );
@@ -1266,3 +1578,411 @@ function OnGetNextApp(arg){
   Gui.Img.src =  App.Image;
   //Gui.BackDraw = function() { Gui.Ctx.drawImage(Gui.Img, 0, 0);};
 }
+
+
+
+
+/***
+ * Update the menu array to have the tips in it, as fields
+ * The menu items with a name that matches the tip key have these fields added:
+ *   id
+ *   params
+ *   short
+ *   long
+ */
+function JoinTipsIntoMenus( ){
+  var str = "";
+  var Tips = GetCleanedUpTips();
+
+  //console.log( str );
+  var i;
+  var j;
+  var Tip;
+  for( j=0;j<App.Menus.length; j++){
+    var Menu = App.Menus[j];
+    var Name = Menu.label;
+    if( Name.indexOf("---") < 0 ){
+      if( Menu.depth==0 )
+        str+="\r\n// "+Name +"\r\n";
+      for(i=0;i<Tips.length;i++){
+        Tip = Tips[i];
+        if( Tip.key.toLowerCase() == Name.toLowerCase() ){
+          SetMenuFromTip(Menu, Tip);
+          str+=TipInfoOfMenuItem(Menu);
+          Tips.splice(i,1);
+          break;
+        }
+      }
+      if( !Menu.short ){
+        console.log( "No tip with key for: "+ Name );
+      }
+    }
+  }
+  //console.log( str );
+  console.log("Tip Leftovers: ");
+  console.log( Tips );
+}
+
+/***
+ * Update the menu array to have the commands in it, as fields
+ * We add the command in, if either the id or the name matches.
+ * We should end up with
+ *   id
+ *   params
+ *   short (i.e. short description)
+ *   long (i.e. long description)
+ */
+function JoinCommandsIntoMenus(){
+  var i;
+  var j;
+  var str = "";
+  var Command = {};
+  var Commands = GetCleanedUpCommands();
+
+  //console.log( str );
+  for( j = 0; j < App.Menus.length; j++ ){
+    var Menu = App.Menus[j];
+    var Depth = Menu.depth;
+    var Name = Menu.label;
+    var Flags = Menu.flags;
+    var id = Menu.id || "";
+    Name = Name.replace("...", "");
+    if( (Name.indexOf("---") < 0 ) && (Flags != 1 ) ){
+      if( Depth == 0 )
+        str += "\r\n// " + Name + "\r\n";
+      else for( i = 0; i < Commands.length; i++ ){
+        Command = Commands[i];
+        if( Command.name == Name || Command.id == id ){
+          SetMenuFromCommand(Menu, Command);
+          Commands.splice(i, 1);
+          break;
+        }
+      }
+//    if( !Menu.short ){
+//      console.log( "Unmatched: "+ Name );
+//    }
+    }
+  }
+  //console.log( str );
+  console.log("Command Leftovers: ");
+  console.log(Commands);
+}
+
+
+
+/**
+ * returns all menus starting at item from, or the empty string.
+ * If in automation mode, only the menu items with an id are used.
+ * @returns {string}
+ */
+function MakeKeyboardReference(from, prefix, type){
+  var i;
+  var str = "";
+  var Name ="";
+  var lowName="";
+  var Prefix = "";
+  var indent = -1;
+  var SubItems = [];
+  var results = "";
+  var subsAllowed = false;
+  var TopName = "";
+  var bEmpty =true;
+  var bIsAutomation = type == "automation";
+
+  //console.log( "Keyboard from:"+from+" prefix:"+prefix );
+  for(i=from;i< App.Menus.length;i++){
+    var Box = App.Menus[i];
+    if( Box.depth < indent )
+      return results;
+    if( i== from ){
+      indent = Box.depth;
+    }
+    Name = Box.label;
+    lowName = CleanAnchor( Name );
+    var boxIndent = Box.depth;
+    if( Name.indexOf("---") >=0 )
+      ;
+    else if( boxIndent == indent ){
+      str += "<div id=\""+lowName+"\"></div>\r\n";
+      if( Box.depth == 0 )
+        str += "==[["+Name+"_Menu|"+Name+" Menu]]==\r\n";
+      if( Box.depth == 1 )
+        str += "===[["+prefix +"_Menu:_" + Name+"|"+prefix + ": " +Name+"]]===\r\n";
+      if( Box.long )
+        str += "{{note|" + Box.long + " }}\r\n";
+      else
+        str += "{{note| No special notes for "+Name+" }}\r\n";
+      str += "{| class=\"prettytablerows\" rules = \"rows\" border = \"2\"" +
+        " width=\"100%\"\r\n";
+      if( bIsAutomation )
+        str += "!width=\"15%\"|Automation Id\r\n";
+      str += "!width=\"15%\"|Action\r\n";
+      if( !bIsAutomation ){
+        str += "!width=\"10%\"|Shortcut\r\n";
+        str += "!width=\"75%\"|Description\r\n";
+      }
+      else {
+        str += "!width=\"30%\"|Parameters\r\n";
+        str += "!width=\"55%\"|Description\r\n";
+      }
+      Prefix = Name;
+      subsAllowed = true;
+      bEmpty = true;
+      TopName = Name;
+    }
+    else if( boxIndent == (indent+1) ){
+      if( !bIsAutomation || (Box.id != undefined ) ){
+        str += "|-\r\n";
+        if( bIsAutomation ){
+          str += "|'''" + Box.id + ":'''\r\n";
+        }
+        if( boxIndent == 1 )
+          str +=
+            "|[[" + TopName + "_Menu#" + lowName + "|" + Name + "]]\r\n"; else
+          str +=
+            "|[[" + prefix + "_Menu:_" + TopName + "#" + lowName + "|" + Name +
+            "]]\r\n";
+        if( bIsAutomation ){
+          if( Box.params != undefined ){
+            str += "|" + Box.params + "\r\n";
+          } else {
+            str += "|''none''\r\n";
+          }
+
+        } else {
+          if( Box.accel == "" )
+            str += "|{{unassigned}}\r\n";
+          else if( App.ExtraShortcuts.indexOf(Box.accel) >= 0 )
+            str += "|{{fullshortcut|" + Box.accel + "}}\r\n";
+          else
+            str += "|{{shortcut|" + Box.accel + "}}\r\n";
+        }
+        if( Box.long )
+          str += "|" + Box.long + "\r\n"; else
+          str += "| no tip string.\r\n";
+        bEmpty = false;
+      }
+    }
+
+    var nextIndent = -1;
+    if( i < App.Menus.length -1 )
+      nextIndent = App.Menus[i+1].depth;
+    if( (nextIndent > Box.depth) && (Box.depth >indent) && subsAllowed ){
+      SubItems.push(i);
+      subsAllowed = false;
+    }
+
+    if( nextIndent <= indent ){
+      if( !bEmpty ){
+        str += "|}\r\n";
+        str += "{{hoverext|hover=|ext=}}\r\n";
+        results += str;
+        bEmpty = true;
+      }
+      str = "";
+      if( SubItems.length > 0  ){
+        for(j=0;j<SubItems.length ;j++){
+          results += MakeKeyboardReference(SubItems[j], TopName, type );
+        }
+        SubItems=[];
+      }
+    }
+
+  }
+  return results;
+}
+
+/**
+ * returns all preferences starting at item from, or the empty string.
+ * @returns {string}
+ */
+function MakePreferencesReference(from, prefix, type){
+  var i;
+  var str = "";
+  var Name ="";
+  var lowName="preferences";
+  var Prefix = "";
+  var results = "";
+  var subsAllowed = false;
+  var TopName = "";
+
+  //console.log( "Keyboard from:"+from+" prefix:"+prefix );
+  for(i=from;i< App.Prefs.length;i++){
+
+    var X = [
+      {
+        key: "/AudioIO/Host", type: "enum", default: "", enum: [
+        "MME", "Windows DirectSound", "Windows WASAPI"
+      ]
+      }, {
+        key: "/AudioIO/LatencyDuration",
+        prompt: "&Buffer length:",
+        type: "number",
+        default: 100
+      },
+    ];
+
+    var Item = App.Prefs[i];
+    if( i == 0 ){
+      Name = "Preferences";
+      str += "<div id=\"" + lowName + "\"></div>\r\n";
+      str += "==[[Preferences]]==\r\n";
+      str += "{{note| No special notes for " + Name + " }}\r\n";
+      str += "{| class=\"prettytablerows\" rules = \"rows\" border = \"2\"" +
+        " width=\"100%\"\r\n";
+      str += "!width=\"10%\"|Automation Id\r\n";
+      str += "!width=\"20%\"|Prompt\r\n";
+      str += "!width=\"30%\"|Parameters\r\n";
+      str += "!width=\"55%\"|Description\r\n";
+
+      Prefix = Name;
+      subsAllowed = true;
+      TopName = Name;
+    }
+
+    var Params = PrintableOfParams( [ Item ] );
+    var Prompt = Item.prompt || "";
+    Prompt = Prompt.replace( '\&', '' );
+
+    str += "|-\r\n";
+    str += "|'''" + Item.id  + "'''\r\n";
+    str += "|" + Prompt  + "\r\n";
+    str += "|" + Params + "\r\n";
+    str += "| no tip string.\r\n";
+  }
+  str += "|}\r\n";
+  str += "{{hoverext|hover=|ext=}}\r\n";
+  results += str;
+  return results;
+}
+
+
+
+
+/**
+ * Wiki template for tools image map 'here doc'
+ * @returns {string}
+ */
+Audacity.ToolsImap = function ToolTemplate(){
+
+  /*HEREDOC
+   </noinclude><includeonly>{{#switch: {{{1|EditToolbar}}}
+   |Dock1=:<imagemap>
+   Image:Dock1Annotated.png
+   desc none
+   rect 2 2 121 16 [[Transport Toolbar|Transport Toolbar has buttons for controlling playback and recording and for moving to the project start or end]]
+   rect 0 42 298 95 [[Transport Toolbar|Transport Toolbar has buttons for controlling playback and recording and for moving to the project start or end]]
+   rect 181 2 271 16 [[Tools Toolbar|Tools Toolbar lets you choose various tools for selection, volume adjustment, zooming and time-shifting of audio]]
+   rect 299 42 384 95 [[Tools Toolbar|Tools Toolbar lets you choose various tools for selection, volume adjustment, zooming and time-shifting of audio]]
+   rect 359 2 523 16 [[Meter Toolbar|Recording Meter Toolbar lets you see if audio being recorded is clipped, which results in distortion]]
+   rect 385 42 806 68 [[Meter Toolbar|Recording Meter Toolbar lets you see if audio being recorded is clipped, which results in distortion]]
+   rect 650 2 806 16 [[Meter Toolbar|Playback Meter Toolbar lets you see if audio being edited is clipped, which results in distortion]]
+   rect 385 69 806 95 [[Meter Toolbar|Playback Meter Toolbar lets you see if audio being edited is clipped, which results in distortion]]
+   rect 4 178 94 191 [[Mixer Toolbar|Mixer Toolbar lets you adjust Recording Volume (the amplitude at which recordings will be made) and Playback Volume (how loud the project's audio sounds, not affecting the volume of exported audio]]
+   rect 0 96 294 121 [[Mixer Toolbar|Mixer Toolbar lets you adjust Recording Volume (the amplitude at which recordings will be made) and Playback Volume (how loud the project's audio sounds, not affecting the volume of exported audio]]
+   rect 155 178 235 191 [[Edit Toolbar|Edit Toolbar has buttons for editing and zooming which are an alternative to using menu items or keyboard shortcuts for these tasks]]
+   rect 295 96 598 121 [[Edit Toolbar|Edit Toolbar has buttons for editing and zooming which are an alternative to using menu items or keyboard shortcuts for these tasks]]
+   rect 269 178 368 191 [[Device Toolbar|Device Toolbar selects Audio Host, recording device, recording channels and playback device, avoiding the need to open Devices Preferences to make these settings]]
+   rect 0 122 565 148 [[Device Toolbar|Device Toolbar selects Audio Host, recording device, recording channels and playback device, avoiding the need to open Devices Preferences to make these settings]]
+   rect 439 178 580 191 [[Transcription Toolbar|Transcription Toolbar|Transcription Toolbar lets you play audio at a slower or faster speed than normal, also affecting pitch]]
+   rect 599 96 806 121 [[Transcription Toolbar|Transcription Toolbar|Transcription Toolbar lets you play audio at a slower or faster speed than normal, also affecting pitch]]
+   </imagemap>
+   {{ClickTip|y=5}}
+
+
+   &nbsp;
+   HEREDOC*/
+
+  var pieces;
+
+  /*HEREDOC
+   |#default=
+   {{ednote|This ednote will automagically be replaced by the Annotated
+   image {{{1}}}Annotated.png, when it is ready}}}}</includeonly>
+   HEREDOC*/
+
+  pieces = Audacity.ToolsImap.toString().split( "HEREDOC" );
+
+  return pieces[1] + ToolMap() + pieces[3];
+};
+
+/**
+ * Wiki template for menus image map 'here doc'
+ * @returns {string}
+ */
+Audacity.MenuImap = function MenuTemplate(){
+
+  /*HEREDOC
+   </noinclude><includeonly>{{#switch: {{{menu}}}
+   HEREDOC*/
+
+  var pieces;
+
+  /*HEREDOC
+   |#default=
+   {{ednote|This ednote will automagically be replaced by the Annotated
+   menu {{{menu}}}.png, when it is ready}}}}</includeonly>
+   HEREDOC*/
+
+  pieces = Audacity.MenuImap.toString().split( "HEREDOC" );
+  JoinTipsIntoMenus();
+
+  var mappy = MenuMap(0, "", "");
+  //console.log( mappy );
+
+  return pieces[1] + mappy  + pieces[3];
+};
+
+/**
+ * Nyquist wrappers for aud-do functions.
+ * @returns {string}
+ */
+Audacity.NyquistWrappers = function NyquistWrappersTemplate(){
+  var Coms = Audacity.Commands;
+  var Str = "";
+  for(var i=0;i<Coms.length; i++){
+    var Command = Coms[i];
+    var keyArgs = "";
+    var callArgs = "";
+    for( var j=0;j< Command.params.length; j++){
+      var param = Command.params[j];
+      keyArgs += " " + param.key.toLowerCase();
+      callArgs += " \"" + param.key +"\" " + param.key.toLowerCase();
+
+    }
+    Str += "(defun aud:" + MungedId( Command.id ) + " (&key" + keyArgs + ")\r\n" +
+      "   (aud-do \"" + Command.id + "\"" + callArgs + "))\r\n\r\n";
+
+  }
+  return Str;
+};
+
+/**
+ * Make the keyboard reference
+ * @returns {string}
+ */
+Audacity.KeyboardReference = function(){
+  JoinTipsIntoMenus();
+  return MakeKeyboardReference(0,"", "keyboard");
+};
+
+/**
+ * Make the Automation (commands) reference
+ * @returns {string}
+ */
+Audacity.AutomationReference = function(){
+  JoinTipsIntoMenus();
+  JoinCommandsIntoMenus();
+  return MakeKeyboardReference(0,"", "automation");
+};
+
+/**
+ * Make the preferences reference
+ * @returns {string}
+ */
+Audacity.PreferencesReference = function(){
+  JoinTipsIntoMenus();
+  JoinCommandsIntoMenus();
+  return MakePreferencesReference(0,"", "");
+};
+
