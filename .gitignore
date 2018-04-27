@@ -125,3 +125,4 @@ src/RevisionIdent.h
 *~
 win/xaudacity.ico
 /.idea/workspace.xml
+*.sublime-workspace
