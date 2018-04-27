@@ -334,67 +334,6 @@ function AffineBoxes(){
 
 }
 
-function rectString( x1,y1,x2,y2, name, tip ){
-  var str = "rect ";
-  str += ("    "+x1).slice(-4)+ " ";
-  str += ("    "+y1).slice(-4)+ " ";
-  str += ("    "+x2).slice(-4)+ " ";
-  str += ("    "+y2).slice(-4)+ " ";
-  str += "[[" + name + "|" + tip + "]]\r\n";
-  return str;
-}
-
-/**
- *
- * @returns {string}
- */
-function ToolMap(){
-  var i;
-  var BoxEnd = null;
-  var FB = null;
-  var str = "";
-  for(i=0;i< App.Boxes.length;i++){
-    var Box = App.Boxes[i];
-    if( Box.depth == 1 ){
-      var name = Box.label.replace(/ /g, '');
-      str += "|" + name + "=:<imagemap>\n";
-      str += "Image:" + name + "Annotated.png\r\n";
-      str += "desc none\r\n";
-      BoxEnd = Box;
-    }
-    if( Box.depth == 2 ){
-      var mainBox = Box.box;
-      var labelBox = Box.labelBox;
-      // offset boxes by first actual location...
-      if( FB )
-        ;
-      else if( labelBox )
-        FB = [ labelBox[0]-3, labelBox[1]-3 ];
-      else
-        FB = [ 0,0 ];
-      str += rectString( mainBox[0]-FB[0], mainBox[1]-FB[1], mainBox[2]-FB[0], mainBox[3]-FB[1],
-        Box.label,
-        Box.label + " for...");
-      if( labelBox ){
-        str += rectString(  labelBox[0]-FB[0],labelBox[1]-FB[1], labelBox[2]-FB[0], labelBox[3]-FB[1],
-          Box.label,
-          "For...");
-      }
-    }
-    if( BoxEnd && ( (i == App.Boxes.length -1 ) || App.Boxes[i+1].depth==1)){
-      str += rectString(BoxEnd.box[0], BoxEnd.box[1], BoxEnd.box[2], BoxEnd.box[3],
-        "Toolbars Overview#upper_tooldock",
-        BoxEnd.label + " - click on the image to see this toolbar displayed" +
-        " in the default context of the upper tooldock layout");
-      str += "</imagemap>\n";
-      str += "{{ClickTip|x=" + (BoxEnd.box[2] - (FB?FB[0]:0) - 50) + "|y=-5}}\r\n\r\n\r\n";
-      str += "&nbsp;\r\n\r\n";
-      BoxEnd = null;
-      FB = null;
-    }
-  }
-  return str;
-}
 /**
  *
  * @param id
@@ -427,100 +366,6 @@ function CleanTip( tip ){
   return str;
 }
 
-/**
- * returns all menus starting at item from, or the empty string.
- * @returns {string}
- */
-function MenuMap(from, prefix, priorRects){
-  var i;
-  var BoxEnd = null;
-  var MenuName = "None";
-  var str = "";
-  var results = "";
-  var innerRects = "";
-  var x=0;
-  var y=0;
-  var indent = -1;
-  var SubItems = [];
-  var name;
-  var subsAllowed = false;
-  //console.log( "Map from:"+from+" prefix:"+prefix );
-  for(i=from;i< App.Menus.length;i++){
-    var Box = App.Menus[i];
-    if( Box.depth < indent )
-      return results;
-    if( i== from ){
-      indent = Box.depth;
-    }
-    if( Box.depth == indent ){
-      innerRects = "";
-      str = "";
-      name = Box.label.replace(/ /g, '_');
-      if( indent == 0 )
-        MenuName = prefix + name + " Menu";
-      else
-        MenuName = prefix + " " + name;
-      var safeName= prefix + name;
-      safeName = safeName.replace( / Menu:/g, "-" );
-      str += "|" + safeName + "=:<imagemap>\n";
-      str += "Image:" + safeName + "Menu.png\r\n";
-      str += "desc none\r\n";
-      str += priorRects;
-      x=50+(indent *200);
-      y=27;
-      BoxEnd = [0,0,0,0];
-      subsAllowed = true;
-    }
-    else if( Box.depth == (indent+1) ){
-      if( Box.label.indexOf("---") >= 0 ){
-        y += 7;
-      } else {
-        var Tip = "tip about " + Box.label;
-        if( Box.short )
-          Tip = Box.short;
-        if( Box.flags == 1 )
-          innerRects += rectString(x, y, x + 200, y + 22, MenuName + ': ' +
-            Box.label, CleanTip(Tip) );
-        else
-          innerRects += rectString(x, y, x + 200, y + 22, MenuName + '#' +
-            CleanAnchor(Box.label), CleanTip(Tip) );
-        y += 22;
-//      SubItems.push( i );
-      }
-      BoxEnd[ 2 ] = x+200;
-      BoxEnd[ 3 ] = y;
-    }
-
-    var nextIndent = -1;
-    if( i < App.Menus.length -1 )
-      nextIndent = App.Menus[i+1].depth;
-    if( (nextIndent > Box.depth) && (Box.depth >indent) && subsAllowed ){
-      SubItems.push(i);
-      subsAllowed = false;
-    }
-
-    if( BoxEnd && (nextIndent <= indent)){
-      str += innerRects;
-      str += "</imagemap>\n";
-      str += "{{ClickTip|x=" + (BoxEnd[2] - 50) + "|y=15}}\r\n\r\n\r\n";
-      str += "&nbsp;\r\n\r\n";
-      if( innerRects )
-        results += str;
-      BoxEnd = null;
-      //console.log( str );
-      str = "";
-
-      var j;
-      for(j=0;j<SubItems.length;j++){
-        results += MenuMap( SubItems[j], MenuName + ((indent==0)?":" : ""),
-          priorRects + innerRects );
-      }
-      SubItems = [];
-
-    }
-  }
-  return results;
-}
 
 
 /**
@@ -557,26 +402,14 @@ function SafeQuote( str ){
   return str.replace( /\"/g, "\\\"" );
 }
 
-/** Transfer information into a menu item from a tip
- *
- * @param Menu
- * @param Tip
- */
-function SetMenuFromTip(Menu, Tip){
-  Menu['short'] = Tip.short;
-  Menu['long'] = Tip.long;
-  if( Menu.id == undefined && Tip.id != undefined )
-    Menu['id'] = Tip.id;
-  if( Tip.params != undefined )
-    Menu['params'] = Tip.params;
-}
+
 
 /** Get the tip info from one Menu item
  *
  * @param Menu
  * @returns {string}
  */
-function TipInfoOfMenuItem(Menu){
+function PrinatbleTipInfoOfMenuItem(Menu){
   var str="";
   str += "{ key:   \"" + SafeQuote(Menu.label) + "\",\r\n";
   if( Menu.id )
@@ -586,29 +419,6 @@ function TipInfoOfMenuItem(Menu){
   return str;
 }
 
-/** Cleaned up tips replace some formulaic strings
- * and expand the + at the start of the long description.
- * @returns {Array}
- */
-function GetCleanedUpTips(){
-  var i;
-  var j;
-  var Tips = [];
-  var key;
-  for( i = 0; i < App.Tips.length; i++ ){
-    var Tip = App.Tips[i];
-    key = Tip.key;
-    key = key.replace(/Invoke the (.*) effect dialog/, "$1...");
-    if( key != Tip.key ){
-      //console.log(" Replaced "+ key);
-      Tip.key = key;
-    }
-    if( Tip.long.indexOf('+') == 0 )
-      Tip.long = Tip.long.replace('+', Tip.short);
-    Tips.push(Tip);
-  }
-  return Tips;
-}
 
 /*
 
@@ -623,45 +433,9 @@ function GetCleanedUpTips(){
  ]},
  */
 
-/** Transfers information into a menu item
- * from a command item.
- * @param Menu
- * @param Command
- */
-function SetMenuFromCommand(Menu, Command){
-  if( Command.id != undefined )
-    Menu['id'] = Command.id;
-  if( Command.params != undefined )
-    Menu['params'] = PrintableOfParams(Command.params);
-  if( Menu.long == undefined && Command.tip != undefined )
-    Menu['long'] = Command.tip;
-}
-
-function GetCleanedUpCommands(){
-  var Commands = [];
-  var Command = {};
-  var i;
-  for( i = 0; i < App.Commands.length; i++ ){
-    Command = App.Commands[i];
-    Commands.push(Command);
-  }
-  return Commands;
-}
 
 
-window.onload = function(){
-  Message = document.getElementById("message");
-  Scroller = document.getElementById("scroller");
-  ManualUrlHolder = document.getElementById("manual-url-holder");
-  WitUrlHolder = document.getElementById("wit-url-holder");
-  DoxyUrlHolder = document.getElementById("doxy-url-holder");
-  ClickTip = document.getElementById("click-tip");
-  AffineBoxes();
-  GuiInit();
-  ClickerInit();
-  MayRefresh();
-  isAppReady = true;
-}
+
 
 /**
  * Draws one level of a menu.
@@ -694,7 +468,6 @@ function DrawMenu( from ){
     }
   }
 }
-
 function SizeMenu( from ){
   var MenuLevel = App.Menus[from].depth;
   Menu.tWidth = 0;
@@ -731,8 +504,6 @@ function SizeMenu( from ){
 
   }
 }
-
-
 
 function RefreshImage(Gui){
   var backfade = (Level > 0) && Gui.DoesFade;
@@ -1581,6 +1352,82 @@ function OnGetNextApp(arg){
 
 
 
+///////////////////////////////////////////////////////////////////
+
+
+/** Transfer information into a menu item from a tip
+ *
+ * @param Menu
+ * @param Tip
+ */
+function SetMenuFromTip(Menu, Tip){
+  Menu['short'] = Tip.short;
+  Menu['long'] = Tip.long;
+  if( Menu.id == undefined && Tip.id != undefined )
+    Menu['id'] = Tip.id;
+  if( Tip.params != undefined )
+    Menu['params'] = Tip.params;
+}
+/** Transfers information into a menu item
+ * from a command item.
+ * @param Menu
+ * @param Command
+ */
+function SetMenuFromCommand(Menu, Command){
+  if( Command.id != undefined )
+    Menu['id'] = Command.id;
+  if( Command.params != undefined )
+    Menu['params'] = PrintableOfParams(Command.params);
+  if( Menu.long == undefined && Command.tip != undefined )
+    Menu['long'] = Command.tip;
+}
+/** Cleaned up tips replace some formulaic strings
+ * and expand the + at the start of the long description.
+ * @returns {Array}
+ */
+function GetCleanedUpTips(){
+  var i;
+  var j;
+  var Tips = [];
+  var key;
+  for( i = 0; i < App.Tips.length; i++ ){
+    var Tip = App.Tips[i];
+    key = Tip.key;
+    key = key.replace(/Invoke the (.*) effect dialog/, "$1...");
+    if( key != Tip.key ){
+      //console.log(" Replaced "+ key);
+      Tip.key = key;
+    }
+    if( Tip.long.indexOf('+') == 0 )
+      Tip.long = Tip.long.replace('+', Tip.short);
+    Tips.push(Tip);
+  }
+  return Tips;
+}
+function GetCleanedUpCommands(){
+  var Commands = [];
+  var Command = {};
+  var i;
+  for( i = 0; i < App.Commands.length; i++ ){
+    Command = App.Commands[i];
+    Commands.push(Command);
+  }
+  return Commands;
+}
+
+function rectString( x1,y1,x2,y2, name, tip ){
+  var str = "rect ";
+  str += ("    "+x1).slice(-4)+ " ";
+  str += ("    "+y1).slice(-4)+ " ";
+  str += ("    "+x2).slice(-4)+ " ";
+  str += ("    "+y2).slice(-4)+ " ";
+  str += "[[" + name + "|" + tip + "]]\r\n";
+  return str;
+}
+
+
+
+
 
 /***
  * Update the menu array to have the tips in it, as fields
@@ -1608,7 +1455,7 @@ function JoinTipsIntoMenus( ){
         Tip = Tips[i];
         if( Tip.key.toLowerCase() == Name.toLowerCase() ){
           SetMenuFromTip(Menu, Tip);
-          str+=TipInfoOfMenuItem(Menu);
+          str+=PrinatbleTipInfoOfMenuItem(Menu);
           Tips.splice(i,1);
           break;
         }
@@ -1669,6 +1516,152 @@ function JoinCommandsIntoMenus(){
 }
 
 
+
+/**
+ *
+ * @returns {string}
+ */
+function MakeToolMap(){
+  var i;
+  var BoxEnd = null;
+  var FB = null;
+  var str = "";
+  for(i=0;i< App.Boxes.length;i++){
+    var Box = App.Boxes[i];
+    if( Box.depth == 1 ){
+      var name = Box.label.replace(/ /g, '');
+      str += "|" + name + "=:<imagemap>\n";
+      str += "Image:" + name + "Annotated.png\r\n";
+      str += "desc none\r\n";
+      BoxEnd = Box;
+    }
+    if( Box.depth == 2 ){
+      var mainBox = Box.box;
+      var labelBox = Box.labelBox;
+      // offset boxes by first actual location...
+      if( FB )
+        ;
+      else if( labelBox )
+        FB = [ labelBox[0]-3, labelBox[1]-3 ];
+      else
+        FB = [ 0,0 ];
+      str += rectString( mainBox[0]-FB[0], mainBox[1]-FB[1], mainBox[2]-FB[0], mainBox[3]-FB[1],
+        Box.label,
+        Box.label + " for...");
+      if( labelBox ){
+        str += rectString(  labelBox[0]-FB[0],labelBox[1]-FB[1], labelBox[2]-FB[0], labelBox[3]-FB[1],
+          Box.label,
+          "For...");
+      }
+    }
+    if( BoxEnd && ( (i == App.Boxes.length -1 ) || App.Boxes[i+1].depth==1)){
+      str += rectString(BoxEnd.box[0], BoxEnd.box[1], BoxEnd.box[2], BoxEnd.box[3],
+        "Toolbars Overview#upper_tooldock",
+        BoxEnd.label + " - click on the image to see this toolbar displayed" +
+        " in the default context of the upper tooldock layout");
+      str += "</imagemap>\n";
+      str += "{{ClickTip|x=" + (BoxEnd.box[2] - (FB?FB[0]:0) - 50) + "|y=-5}}\r\n\r\n\r\n";
+      str += "&nbsp;\r\n\r\n";
+      BoxEnd = null;
+      FB = null;
+    }
+  }
+  return str;
+}
+/**
+ * returns all menus starting at item from, or the empty string.
+ * @returns {string}
+ */
+function MakeMenuMap(from, prefix, priorRects){
+  var i;
+  var BoxEnd = null;
+  var MenuName = "None";
+  var str = "";
+  var results = "";
+  var innerRects = "";
+  var x=0;
+  var y=0;
+  var indent = -1;
+  var SubItems = [];
+  var name;
+  var subsAllowed = false;
+  //console.log( "Map from:"+from+" prefix:"+prefix );
+  for(i=from;i< App.Menus.length;i++){
+    var Box = App.Menus[i];
+    if( Box.depth < indent )
+      return results;
+    if( i== from ){
+      indent = Box.depth;
+    }
+    if( Box.depth == indent ){
+      innerRects = "";
+      str = "";
+      name = Box.label.replace(/ /g, '_');
+      if( indent == 0 )
+        MenuName = prefix + name + " Menu";
+      else
+        MenuName = prefix + " " + name;
+      var safeName= prefix + name;
+      safeName = safeName.replace( / Menu:/g, "-" );
+      str += "|" + safeName + "=:<imagemap>\n";
+      str += "Image:" + safeName + "Menu.png\r\n";
+      str += "desc none\r\n";
+      str += priorRects;
+      x=50+(indent *200);
+      y=27;
+      BoxEnd = [0,0,0,0];
+      subsAllowed = true;
+    }
+    else if( Box.depth == (indent+1) ){
+      if( Box.label.indexOf("---") >= 0 ){
+        y += 7;
+      } else {
+        var Tip = "tip about " + Box.label;
+        if( Box.short )
+          Tip = Box.short;
+        if( Box.flags == 1 )
+          innerRects += rectString(x, y, x + 200, y + 22, MenuName + ': ' +
+            Box.label, CleanTip(Tip) );
+        else
+          innerRects += rectString(x, y, x + 200, y + 22, MenuName + '#' +
+            CleanAnchor(Box.label), CleanTip(Tip) );
+        y += 22;
+//      SubItems.push( i );
+      }
+      BoxEnd[ 2 ] = x+200;
+      BoxEnd[ 3 ] = y;
+    }
+
+    var nextIndent = -1;
+    if( i < App.Menus.length -1 )
+      nextIndent = App.Menus[i+1].depth;
+    if( (nextIndent > Box.depth) && (Box.depth >indent) && subsAllowed ){
+      SubItems.push(i);
+      subsAllowed = false;
+    }
+
+    if( BoxEnd && (nextIndent <= indent)){
+      str += innerRects;
+      str += "</imagemap>\n";
+      str += "{{ClickTip|x=" + (BoxEnd[2] - 50) + "|y=15}}\r\n\r\n\r\n";
+      str += "&nbsp;\r\n\r\n";
+      if( innerRects )
+        results += str;
+      BoxEnd = null;
+      //console.log( str );
+      str = "";
+
+      var j;
+      for(j=0;j<SubItems.length;j++){
+        results += MakeMenuMap( SubItems[j], MenuName + ((indent==0)?":" : ""),
+          priorRects + innerRects );
+      }
+      SubItems = [];
+
+    }
+  }
+  return results;
+}
 
 /**
  * returns all menus starting at item from, or the empty string.
@@ -1863,7 +1856,7 @@ function MakePreferencesReference(from, prefix, type){
  * Wiki template for tools image map 'here doc'
  * @returns {string}
  */
-Audacity.ToolsImap = function ToolTemplate(){
+Audacity.ToolsImap = function(){
 
   /*HEREDOC
    </noinclude><includeonly>{{#switch: {{{1|EditToolbar}}}
@@ -1903,14 +1896,14 @@ Audacity.ToolsImap = function ToolTemplate(){
 
   pieces = Audacity.ToolsImap.toString().split( "HEREDOC" );
 
-  return pieces[1] + ToolMap() + pieces[3];
+  return pieces[1] + MakeToolMap() + pieces[3];
 };
 
 /**
  * Wiki template for menus image map 'here doc'
  * @returns {string}
  */
-Audacity.MenuImap = function MenuTemplate(){
+Audacity.MenuImap = function(){
 
   /*HEREDOC
    </noinclude><includeonly>{{#switch: {{{menu}}}
@@ -1927,7 +1920,7 @@ Audacity.MenuImap = function MenuTemplate(){
   pieces = Audacity.MenuImap.toString().split( "HEREDOC" );
   JoinTipsIntoMenus();
 
-  var mappy = MenuMap(0, "", "");
+  var mappy = MakeMenuMap(0, "", "");
   //console.log( mappy );
 
   return pieces[1] + mappy  + pieces[3];
@@ -1937,7 +1930,7 @@ Audacity.MenuImap = function MenuTemplate(){
  * Nyquist wrappers for aud-do functions.
  * @returns {string}
  */
-Audacity.NyquistWrappers = function NyquistWrappersTemplate(){
+Audacity.NyquistWrappers = function(){
   var Coms = Audacity.Commands;
   var Str = "";
   for(var i=0;i<Coms.length; i++){
@@ -1985,4 +1978,20 @@ Audacity.PreferencesReference = function(){
   JoinCommandsIntoMenus();
   return MakePreferencesReference(0,"", "");
 };
+
+
+
+window.onload = function(){
+  Message = document.getElementById("message");
+  Scroller = document.getElementById("scroller");
+  ManualUrlHolder = document.getElementById("manual-url-holder");
+  WitUrlHolder = document.getElementById("wit-url-holder");
+  DoxyUrlHolder = document.getElementById("doxy-url-holder");
+  ClickTip = document.getElementById("click-tip");
+  AffineBoxes();
+  GuiInit();
+  ClickerInit();
+  MayRefresh();
+  isAppReady = true;
+}
 
