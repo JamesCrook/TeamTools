@@ -5,6 +5,11 @@
 var Menu = {width:220,height:320,tWidth:0,aWidth:0,bar:true};
 var Menus = [[],[],[],[]];
 
+var menuChevron  = 1;
+var menuCheckbox = 2;
+var menuSelected = 4;
+
+
 function DrawMenuBack( x,y ){
 
   Gui.Ctx.save();
@@ -27,10 +32,6 @@ function DrawMenuBack( x,y ){
   Gui.Ctx.stroke();
 
 }
-
-var menuChevron  = 1;
-var menuCheckbox = 2;
-var menuSelected = 4;
 
 function DrawItem( i, x,y, text, accel, flags ){
   var isSpacer = text.indexOf( '---' ) == 0;
@@ -83,7 +84,6 @@ function DrawItem( i, x,y, text, accel, flags ){
   }
   return {x:x,y:y};
 }
-
 function SizeItem( i, x, y, text, accel, flags ){
   Gui.Ctx.font = "300 12px Helvetica";
   var w1 = Gui.Ctx.measureText(text).width;
@@ -98,8 +98,6 @@ function SizeItem( i, x, y, text, accel, flags ){
     y+=22;
   return {x:x,y:y};
 }
-
-
 function DrawBarItem( i, x,y, text, accel, flags ){
   var isSpacer = text.indexOf( '---' ) == 0;
 
@@ -120,7 +118,6 @@ function DrawBarItem( i, x,y, text, accel, flags ){
   x += w;
   return {x:x,y:y};
 }
-
 function SizeBarItem( i, x, y, text, accel, flags ){
   Gui.Ctx.font = "300 12px Helvetica";
   var w = Math.floor(Gui.Ctx.measureText(text).width) + 13;

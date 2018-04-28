@@ -14,14 +14,12 @@ function DrawFadedBack( Gui ){
   Gui.Ctx.fillRect(R[0],R[1], R[2]-R[0], R[3]-R[1]);
   Gui.Ctx.globalAlpha = 1.0;
 }
-
 function DrawBlueFade( Gui, x, y, w, h ){
   Gui.Ctx.globalAlpha = 0.1;
   Gui.Ctx.fillStyle = 'blue';
   Gui.Ctx.fillRect(x, y, w, h);
   Gui.Ctx.globalAlpha = 1.0;
 }
-
 function DrawBlueSurround( Gui, x, y, w, h ){
 
   Gui.Ctx.strokeStyle =  'blue';
@@ -30,7 +28,6 @@ function DrawBlueSurround( Gui, x, y, w, h ){
   Gui.Ctx.rect(x, y, w, h);
   Gui.Ctx.stroke();
 }
-
 function DrawDottedSurround( Gui, x, y, w, h ){
   Gui.Ctx.save();
   Gui.Ctx.strokeStyle =  'blue';
@@ -42,8 +39,6 @@ function DrawDottedSurround( Gui, x, y, w, h ){
   Gui.Ctx.stroke();
   Gui.Ctx.restore();
 }
-
-
 function DrawRedSurround( Gui, x, y, w, h ){
   Gui.Ctx.strokeStyle = 'rgb(0,43,184)';
   Gui.Ctx.lineWidth = 4;
@@ -59,7 +54,6 @@ function ClearWhiteAbsoluteBox( Gui, Box ){
   Gui.Ctx.fillRect( Box[0], Box[1], Box[2]-Box[0],Box[3]-Box[1]);
   Gui.Ctx.globalAlpha = 1.0;
 }
-
 function ClearAbsoluteBox( Gui, Box ){
   Gui.Ctx.clearRect( Box[0], Box[1], Box[2]-Box[0],Box[3]-Box[1]);
   Gui.Ctx.globalAlpha = 0.2;
@@ -67,7 +61,6 @@ function ClearAbsoluteBox( Gui, Box ){
   Gui.Ctx.fillRect( Box[0], Box[1], Box[2]-Box[0],Box[3]-Box[1]);
   Gui.Ctx.globalAlpha = 1.0;
 }
-
 function ClearOutside( Gui, InnerBox ){
   var OuterBox = Gui.Rect;
   // AAB
@@ -78,7 +71,6 @@ function ClearOutside( Gui, InnerBox ){
   ClearAbsoluteBox( Gui, [ InnerBox[0], InnerBox[3], OuterBox[2], OuterBox[3]]); // CC
   ClearAbsoluteBox( Gui, [ OuterBox[0], InnerBox[1], InnerBox[0], OuterBox[3]]); // DD
 }
-
 
 function DrawArrow( v1,v2, style ){
   if( App.Sys.AnnotationMode && (style == 0) )
@@ -122,11 +114,8 @@ function DrawArrow( v1,v2, style ){
   //console.log( "from "+v1.asText()+" to "+v2.asText());
 
 }
-
-
 // Some unused functions to find best arrows
 // between boxes.
-
 function Corner( Box, index ){
   if( index == 0)
     return Vec2( Box[0], Box[1] );
@@ -136,7 +125,6 @@ function Corner( Box, index ){
     return Vec2( Box[0], Box[3] );
   return Vec2( Box[2], Box[3] );
 }
-
 function MinMax( Box, direction ){
   var i;
   var result = {};
@@ -149,7 +137,6 @@ function MinMax( Box, direction ){
   }
   return result;
 }
-
 function SomeArrow( Box1, Box2, direction ){
   var result = { quality:0, p1: Vec2(0,0), p2: Vec2(0,0)};
   var Limits1, Limits2;

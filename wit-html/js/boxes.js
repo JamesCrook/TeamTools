@@ -15,7 +15,6 @@ Sys.ShowWittyUrl = false;
 Sys.ShowDoxyUrl = false;
 Sys.Clicks = -3;
 
-
 var Audacity = {};
 
 Audacity.Name = "Audacity";
@@ -84,7 +83,6 @@ AudacityDoxed.BoxUrls = [
   [ "Plugin Effects", "Doxygenated_Help.html#Plugin_Effects" ],
   [ "Scripting", "Doxygenated_Help.html#Scripting" ],
 ];
-
 
 // These are the boxes on the main image map.
 // Fields are:
@@ -967,8 +965,6 @@ Audacity.Menus =
       "label":"Full Screen (on/off)", "accel":"F11",
       "id":"FullScreenOnOff" } ];
 
-
-
 // These are URL translations for image map boxes.
 // Fields:
 //    Name as on image map, e.g. Pin
@@ -1492,9 +1488,7 @@ Audacity.ExtraShortcuts =
    "Alt+F6"
 ];
 
-
-
-Audacity.Tips = 
+Audacity.Tips =
 [
 { key:   "File",
   short: "File",
@@ -3460,7 +3454,4 @@ AudacityDoxed.MenuUrls = Audacity.MenuUrls;
 AudacityDoxed.ExtraShortcuts = Audacity.ExtraShortcuts;
 AudacityDoxed.Tips = Audacity.Tips;
 AudacityDoxed.Commands = Audacity.Commands;
-
-
-
 

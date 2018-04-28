@@ -49,7 +49,6 @@ function FindBox(Source, x, y, Level){
   }
   return Source.ThisIx;
 }
-
 // Finds subitems from the main list at the chosen level.
 function Extract( List, from, level ){
   var result = [];
@@ -68,18 +67,14 @@ function Extract( List, from, level ){
   }
   return result;
 }
-
 /**
- *
  * @param string
  * @returns {string}
  */
 function CapitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
-
 /**
- *
  * @param string
  * @returns {string}
  */
@@ -87,6 +82,13 @@ function CapitaliseFirstLetters( string ){
   var pieces = string.split("_");
   var newPieces = pieces.map( CapitalizeFirstLetter );
   return newPieces.join( "_" );
+}
+/**
+ * @param id
+ * @returns {string}
+ */
+function MungedId( id ){
+  return id.charAt(0).toLowerCase() + id.slice(1);
 }
 
 function GuiInit(){
@@ -154,7 +156,6 @@ function GuiInit(){
     Gui.Ctx.drawImage(Gui.Img, x, y, w, h, x, y, w, h);
   }
 }
-
 function ClickerInit(){
   //Clicker.Boxes = [ clicker_boxes, [],[]];
   Clicker.Boxes = [ Extract( App.Boxes, 0,1),[],[],[],[],[],[]];
@@ -169,7 +170,6 @@ function ClickerInit(){
   };
   Clicker.FrontDraw = RedrawClicker;
 }
-
 /**
  *
  * @returns {boolean}
@@ -185,7 +185,6 @@ function EmptyLevel(){
   return true;
 
 }
-
 /**
  *
  * @param delta
@@ -243,7 +242,6 @@ function DrawClicky( G, Where, Box ){
   Where[1]=YY;
 
 }
-
 function DrawAnnotationBox( name, x1,y1,x2,y2 )
 {
   var BorderLeft = Math.min(5, x1);
@@ -267,7 +265,6 @@ function DrawAnnotationBox( name, x1,y1,x2,y2 )
   DrawDottedSurround(Clicker, x1, y1, x2 - x1, y2 - y1);
   ClearOutside( Gui, [x1-2,y1-2,x2+2,y2+2] );
 }
-
 function RedrawClicker(){
   var G = Clicker;
   var i;
@@ -334,18 +331,7 @@ function AffineBoxes(){
 
 }
 
-/**
- *
- * @param id
- * @returns {string}
- */
-function MungedId( id ){
-  return id.charAt(0).toLowerCase() + id.slice(1);
-};
-
-
 //[  1,  0, "Close", "Ctrl+W" ],
-
 /**
  *
  * @param anchor
@@ -358,15 +344,12 @@ function CleanAnchor( anchor ){
   str = str.replace(/__/g,"_");
   return str.toLowerCase();
 }
-
 function CleanTip( tip ){
   var str = tip.replace( /'''/g, "" );
   str = str.replace( /''/g, "" );
   str = str.replace( /\[\[(.*?)\|(.*?)\]\]/g, "$2" );
   return str;
 }
-
-
 
 /**
  *
@@ -394,16 +377,9 @@ function PrintableOfParams( params ){
 }
 
 /////////////////////////////
-
-
-
-
 function SafeQuote( str ){
   return str.replace( /\"/g, "\\\"" );
 }
-
-
-
 /** Get the tip info from one Menu item
  *
  * @param Menu
@@ -419,7 +395,6 @@ function PrinatbleTipInfoOfMenuItem(Menu){
   return str;
 }
 
-
 /*
 
  { id: "ScreenshotCommand", name: "Screenshot", params: [
@@ -432,10 +407,6 @@ function PrinatbleTipInfoOfMenuItem(Menu){
  },
  ]},
  */
-
-
-
-
 
 /**
  * Draws one level of a menu.
@@ -504,7 +475,6 @@ function SizeMenu( from ){
 
   }
 }
-
 function RefreshImage(Gui){
   var backfade = (Level > 0) && Gui.DoesFade;
 
@@ -628,8 +598,6 @@ function RefreshImage(Gui){
 
 }
 
-
-
 function ScrollTo( Target ){
   var i;
   for(i=0;i<App.BoxUrls.length;i++){
@@ -642,7 +610,6 @@ function ScrollTo( Target ){
   }
   console.log("Scroll to: "+Target + " -no match-");
 }
-
 function ScrollToUrl( Target ){
   if( App.Sys.KeepPanel )
     return;
@@ -654,7 +621,6 @@ function ScrollToUrl( Target ){
     Scroller.src = "./scroller-contents/" + Target;
   //console.log("Scroll to: "+Target + " -URL-");
 }
-
 function ConnectBoxes(level, boxIx, style){
   if( level < 0 )
     return;
@@ -721,21 +687,11 @@ function ConnectBoxes(level, boxIx, style){
 
   DrawArrow( Vec2(x2,y2), Vec2( x1,y1), style  );
 }
-
 function MayRefresh(){
   if( LastHover != HoverBox ){
     RefreshImage(Gui);
     RefreshImage(Clicker);
     LastHover = HoverBox;
-
-/*
-    if( HoverBox >= 0 ){
-      var B = Gui.Boxes[Level][HoverBox];
-      Message.innerHTML = B[4] + "<br>:"+B[0]+":"+B[1]+":"+B[2]+":"+B[3];
-    }
-    else
-      Message.innerHTML = 'None '+Level;
-*/
   }
 }
 
@@ -772,11 +728,9 @@ function GetHoverLowTextBox( event ){
     return -1;
   return GetHoverBoxAndUrl( event, Clicker, Level-1 );
 }
-
 function GetMenuNameByIndex( ix ){
   return App.Menus[ ix].label;
 }
-
 function GetMenuNameByLevel( level ){
   return GetMenuNameByIndex( Menus[level].item -1 );
 }
@@ -807,13 +761,8 @@ function AlphaManualLink( Url ){
   str = str.replace("Top_Menu", "Main_Page");
   str = str.replace( '.html', '');
   str = str.replace( '_Menu_', '_Menu:_');
-  //var pieces = str.split('#');
-  //if( pieces.length > 1 )
-  //  pieces[1]=pieces[1].toLowerCase();
-  //str = pieces.join('#');
   return str;
 }
-
 /**
  *
  * @param Url
@@ -824,55 +773,61 @@ function LocalManualLink( Url ){
   var str = pieces[0].toLowerCase();
   str = str.replace( '-_', '' );
   pieces[0] = str;
-  //pieces[1] = pieces[1].replace( /\_/g,'');
   str = pieces.join( ".html");//.toLowerCase();
   str = str.replace(/\,/g,"");
   return str;
 }
 
 /**
- *
- * @param Url
- * @returns {string}
+ * @param prefix - appears before the link
+ * @param args - target and main url of the link.
  */
-function CraftAlphaLink( Url ){
-  RemoteUrl = "https://alphamanual.audacityteam.org/man/" + Url;
-  return "<a target=\"manual\"" +
-    " href=\"https://alphamanual.audacityteam.org/man/" + Url + "\">" +
-    Url + "</a>";
-}
-/**
- *
- * @param Url
- * @returns {string}
- */
-function CraftLocalLink( Url ){
-  return "<a target=\"sidebar\" href=\"./scroller-contents/" + Url + "\">" +
-    Url + "</a>";
-}
-
-/**
- *
- * @param UrlPair
- * @returns {string}
- */
-function CraftDoxyLink( UrlPair ){
-  return "<a target=\"doxy\"" +
-    " href=\"https://doxy.audacityteam.org/class_audacity_project.html#" + UrlPair[0]  + "\">" +
-    UrlPair[1] + "</a>";
+function LinkMaker(prefix, args ){
+  /**
+   * @param input - the gist of a url.
+   * @returns {string} - fully formatted link.
+   */
+  this.Make = function( input )
+  {
+    if( !input )
+      return "";
+    if( typeof( input) == "string" )
+      return prefix + " <a "+args + input + "\">" + input + "</a>";
+    return prefix + " <a "+args + input[0] + "\">" + input[1] + "</a>";
+  };
+  return this;
 }
 
-/**
- *
- * @param UrlPair
- * @returns {string}
- */
-function CraftOtherDoxyLink( UrlPair ){
-  return "<a target=\"doxy\"" +
-    " href=\"https://doxy.audacityteam.org/" + UrlPair[0]  + "\">" +
-    UrlPair[1] + "</a>";
-}
 
+var AlphaLink = new LinkMaker( "ALPHA MANUAL:", "target=\"manual\"" +
+  " href=\"https://alphamanual.audacityteam.org/man/" );
+var LocalLink = new LinkMaker( "WIT MANUAL:", "target=\"sidebar\"" +
+  " href=\"./scroller-contents/" );
+var DoxyLink = new LinkMaker( "DOXYGEN:", "target=\"doxy\"" +
+  " href=\"https://doxy.audacityteam.org/class_audacity_project.html#");
+var OtherDoxyLink = new LinkMaker( "DOXYGEN:", "target=\"doxy\"" +
+  " href=\"https://doxy.audacityteam.org/");
+
+/**
+ * This is like the other 'LinkMaker' variables.
+ */
+var EitherDoxyLink = {
+  /**
+   *
+   * @returns {string}
+   */
+  Make : function(){
+    var str = "";
+    if( MenuComponent ){
+      str = DoxyLink.Make(App.Doxy[MenuComponent]);
+      MenuComponent = '';
+    } else if( BoxComponent ){
+      str = OtherDoxyLink.Make(App.Doxy2[BoxComponent]);
+      BoxComponent = '';
+    }
+    return str;
+  }
+};
 
 /**
  * Tweaks a URL for use locally with lower case file names.
@@ -881,30 +836,17 @@ function CraftOtherDoxyLink( UrlPair ){
  * @returns {string} the url + anchor with URL in lower case.
  */
 function LowUrl( Url ){
-  var AlphaLink = AlphaManualLink( Url );
-  var LocalLink = LocalManualLink( Url );
-  var str;
-  str = "ALPHA MANUAL: " + CraftAlphaLink(AlphaLink);
-  ManualUrlHolder.innerHTML = str;
-  str = "WIT MANUAL: " + CraftLocalLink(LocalLink);
-  WitUrlHolder.innerHTML = str;
-  str = "";
-  if( MenuComponent ){
-    if( App.Doxy[ MenuComponent] )
-      str+= "DOXYGEN: " + CraftDoxyLink( App.Doxy[ MenuComponent] );
-    MenuComponent = '';
-  }
-  else if( BoxComponent ){
-    if( App.Doxy2[ BoxComponent] )
-      str+= "DOXYGEN: " + CraftOtherDoxyLink( App.Doxy2[ BoxComponent] );
-    BoxComponent = '';
-  }
+  var BareAlphaLink = AlphaManualLink( Url );
+  var BareLocalLink = LocalManualLink( Url );
+  RemoteUrl = "https://alphamanual.audacityteam.org/man/" + BareAlphaLink;
+  ManualUrlHolder.innerHTML = AlphaLink.Make(BareAlphaLink);
+  WitUrlHolder.innerHTML = LocalLink.Make(BareLocalLink);
+  var str = EitherDoxyLink.Make();
   DoxyUrlHolder.innerHTML = str ? str : "Doxygen's URL, here";
   DoxyUrlHolder.style.display = ((str!="") && App.Sys.ShowDoxyUrl)  ? 'inline-block' : 'none';
 
-  return LocalLink;
+  return BareLocalLink;
 }
-
 /**
  * Converts automatic URL name to the location we actually will want.
  * @param Url
@@ -921,14 +863,11 @@ function UrlFromMenuItemName( Url ){
     pieces[1]=pieces[1].toLowerCase();
   Url = pieces.join('#');  //var OldUrl = Url;
   Url = GetReplacementUrl( Url );
-  if( Url.indexOf("#") >= 0 ){
-    Url = Url.replace("#",".html#");
-  }
+  Url = Url.replace("#",".html#");
   if( Url.indexOf(".html") < 0 ){
     Url += ".html";
   }
 
-  //Url = Url.replace(/\,/g,"");
   return LowUrl( Url );
 }
 /**
@@ -947,7 +886,6 @@ function UrlFromBoxName( name ){
   //console.log( "BoxName "+name+" not found" );
   return "";
 }
-
 /**
  *
  * @param event
@@ -1066,7 +1004,6 @@ function UpdateSelection( event ){
   if( Descend( event, {recursive:true, single:false} ) )
     return;
 }
-
 function UpdateClickCount(count){
   if( count == 0 ){
     ClickTip.style.opacity = '0.3';
@@ -1126,7 +1063,6 @@ function ImageClick(event, isclick){
     handleNewData( action.value );
   }
 }
-
 function handleNewData( data ){
   data = data.replace( '</nowiki>', '<nowiki>' );
   var commands = data.split( '<nowiki>' );
@@ -1159,8 +1095,59 @@ function fileActionLoader(data, action, url ){
   //txtFile.setRequestHeader( "Cache-Control", "s-maxage=0" );
   txtFile.send();
 }
+function SetUrlVisibility( value ){
+  var m = App.Sys.ShowManlyUrl;
+  var w = App.Sys.ShowWittyUrl;
+  var d = App.Sys.ShowDoxyUrl;
+  ManualUrlHolder.style.display = m? 'inline-block': 'none';
+  WitUrlHolder.style.display = w ? 'inline-block': 'none';
+  DoxyUrlHolder.style.display = d ? 'inline-block': 'none';
+  Sys.Clicks = (m||w||d) ? 0 : -1;
+  ClickTip.style.opacity = (m||w||d) ? 0 : 1;
+}
+
+/**
+ * A Durl is a Data URL.  For example, an image represented as a Base64 URL
+ * string.
+ */
+
+/**
+ * Converts a string to a durl
+ * @returns {string}
+ */
+function DurlOfText( text ){
+  return "data:application/txt," + encodeURIComponent(text);
+}
+/**
+ * Converts the current annotated image region into a Durl.
+ * @returns {string}
+ */
+function DurlOfAnnotatedImage(){
+  var new_canvas = document.createElement('canvas');
+  new_canvas.width = Annotated.width;
+  new_canvas.height = Annotated.height;
+  var ctx = new_canvas.getContext('2d');
+  ctx.fillStyle = 'blue';
+  ctx.fillRect(5, 5, 70, 70);
+  ctx.drawImage(Gui.Ctx.canvas, Annotated.x, Annotated.y, Annotated.width,
+    Annotated.height, 0, 0, Annotated.width, Annotated.height);
+  var data = ctx.canvas.toDataURL("image/png");
+  /* Change MIME type to trick the browser to download the file instead of
+   displaying it */
+  data = data.replace(/^data:image\/[^;]*/, 'data:application/octet-stream');
+  return data;
+}
+function DownloadDurl( name, durl ){
+  var link = document.createElement('a');
+  link.download = name;
+  link.href =  durl;
+  link.click();
+}
 
 
+///// Button handlers in same order as in Options Panel. ////////////////////
+
+// Three buttons above the wiki page.
 function OnReset(){
   Level = 0;
   ClickedBox = -1;
@@ -1172,8 +1159,6 @@ function OnReset(){
 }
 function OnManual(){
   window.open( RemoteUrl, "manual" );
-//  alert( "When this button is working, it will take you to the equivalent" +
-//    " page in the manual, full window size.");
 }
 function OnSpecial( event ){
   //Scroller.src = "https://wiki.audacityteam.org/wiki/WIT_Experiments?action=raw";
@@ -1214,120 +1199,29 @@ function OnSpecial( event ){
   }
 }
 
+// Five checkboxes
+function OnKeepPanel(arg){
+  App.Sys.KeepPanel = arg.checked;
+}
 function OnAnnotationMode(arg){
   App.Sys.AnnotationMode =  arg.checked;
   LastHover = -2;
   MayRefresh();
 }
-
-function SetUrlVisibility( value ){
-  var m = App.Sys.ShowManlyUrl;
-  var w = App.Sys.ShowWittyUrl;
-  var d = App.Sys.ShowDoxyUrl;
-  ManualUrlHolder.style.display = m? 'inline-block': 'none';
-  WitUrlHolder.style.display = w ? 'inline-block': 'none';
-  DoxyUrlHolder.style.display = d ? 'inline-block': 'none';
-  Sys.Clicks = (m||w||d) ? 0 : -1;
-  ClickTip.style.opacity = (m||w||d) ? 0 : 1;
+function OnShowManualUrls(arg){
+  App.Sys.ShowManlyUrl = !!arg.checked;
+  SetUrlVisibility(  );
 }
-
+function OnShowWitUrls(arg){
+  App.Sys.ShowWittyUrl = !!arg.checked;
+  SetUrlVisibility(  );
+}
 function OnShowDoxygenUrls(arg){
   App.Sys.ShowDoxyUrl = !!arg.checked;
   SetUrlVisibility(  );
 }
 
-function OnShowWitUrls(arg){
-  App.Sys.ShowWittyUrl = !!arg.checked;
-  SetUrlVisibility(  );
-}
-function OnShowManualUrls(arg){
-  App.Sys.ShowManlyUrl = !!arg.checked;
-  SetUrlVisibility(  );
-}
-
-function OnKeepPanel(arg){
-  App.Sys.KeepPanel = arg.checked;
-}
-
-/**
- * A Durl is a Data URL.  For example, an image represented as a Base64 URL
- * string.
- */
-
-/**
- * Converts a string to a durl
- * @returns {string}
- */
-function DurlOfText( text ){
-  return "data:application/txt," + encodeURIComponent(text);
-}
-
-/**
- * Converts the current annotated image region into a Durl.
- * @returns {string}
- */
-function DurlOfAnnotatedImage(){
-  var new_canvas = document.createElement('canvas');
-  new_canvas.width = Annotated.width;
-  new_canvas.height = Annotated.height;
-  var ctx = new_canvas.getContext('2d');
-  ctx.fillStyle = 'blue';
-  ctx.fillRect(5, 5, 70, 70);
-  ctx.drawImage(Gui.Ctx.canvas, Annotated.x, Annotated.y, Annotated.width,
-    Annotated.height, 0, 0, Annotated.width, Annotated.height);
-  var data = ctx.canvas.toDataURL("image/png");
-
-  //var data = Gui.Ctx.canvas.toDataURL('image/png');
-  /* Change MIME type to trick the browser to downlaod the file instead of displaying it */
-  data = data.replace(/^data:image\/[^;]*/, 'data:application/octet-stream');
-  return data;
-}
-
-function DownloadDurl( name, durl ){
-  var link = document.createElement('a');
-  link.download = name;
-  link.href =  durl;
-  link.click();
-}
-
-
-function OnGetImage(){
-  if( !Annotated.available )
-    return;
-
-  DownloadDurl( Annotated.name + ".png", DurlOfAnnotatedImage());
-}
-
-
-
-
-///////////////// Some Button Handlers ///////////////////////////////
-
-
-function OnGetToolbarImageMaps(arg){
-  DownloadDurl( "Toolbars.txt", DurlOfText(App.ToolsImap()) );
-}
-
-function OnGetMenuImageMaps(arg){
-  DownloadDurl( "all-menus.txt", DurlOfText(App.MenuImap()) );
-}
-
-function OnGetNyquist(arg){
-  DownloadDurl( "nyquist-wrappers.txt", DurlOfText(App.NyquistWrappers()) );
-}
-
-function OnGetKeyboardReference(arg){
-  DownloadDurl( "KeyboardReference.txt", DurlOfText(App.KeyboardReference()) );
-}
-
-function OnGetAutomationReference(arg){
-  DownloadDurl( "AutomationReference.txt", DurlOfText(App.AutomationReference()) );
-}
-
-function OnGetPreferencesReference(arg){
-  DownloadDurl( "PreferencesReference.txt", DurlOfText(App.PreferencesReference()) );
-}
-
+// Eight buttons
 function OnGetNextApp(arg){
   if( App.Name == "Audacity" )
     App = AudacityDoxed;
@@ -1349,8 +1243,31 @@ function OnGetNextApp(arg){
   Gui.Img.src =  App.Image;
   //Gui.BackDraw = function() { Gui.Ctx.drawImage(Gui.Img, 0, 0);};
 }
+// These are chrome browser only.
+function OnGetImage(){
+  if( !Annotated.available )
+    return;
 
-
+  DownloadDurl( Annotated.name + ".png", DurlOfAnnotatedImage());
+}
+function OnGetMenuImageMaps(arg){
+  DownloadDurl( "all-menus.txt", DurlOfText(App.MenuImap()) );
+}
+function OnGetNyquist(arg){
+  DownloadDurl( "nyquist-wrappers.txt", DurlOfText(App.NyquistWrappers()) );
+}
+function OnGetToolbarImageMaps(arg){
+  DownloadDurl( "Toolbars.txt", DurlOfText(App.ToolsImap()) );
+}
+function OnGetKeyboardReference(arg){
+  DownloadDurl( "KeyboardReference.txt", DurlOfText(App.KeyboardReference()) );
+}
+function OnGetAutomationReference(arg){
+  DownloadDurl( "AutomationReference.txt", DurlOfText(App.AutomationReference()) );
+}
+function OnGetPreferencesReference(arg){
+  DownloadDurl( "PreferencesReference.txt", DurlOfText(App.PreferencesReference()) );
+}
 
 ///////////////////////////////////////////////////////////////////
 
@@ -1414,7 +1331,6 @@ function GetCleanedUpCommands(){
   }
   return Commands;
 }
-
 function rectString( x1,y1,x2,y2, name, tip ){
   var str = "rect ";
   str += ("    "+x1).slice(-4)+ " ";
@@ -1424,10 +1340,6 @@ function rectString( x1,y1,x2,y2, name, tip ){
   str += "[[" + name + "|" + tip + "]]\r\n";
   return str;
 }
-
-
-
-
 
 /***
  * Update the menu array to have the tips in it, as fields
@@ -1469,7 +1381,6 @@ function JoinTipsIntoMenus( ){
   console.log("Tip Leftovers: ");
   console.log( Tips );
 }
-
 /***
  * Update the menu array to have the commands in it, as fields
  * We add the command in, if either the id or the name matches.
@@ -1514,8 +1425,6 @@ function JoinCommandsIntoMenus(){
   console.log("Command Leftovers: ");
   console.log(Commands);
 }
-
-
 
 /**
  *
@@ -1662,7 +1571,6 @@ function MakeMenuMap(from, prefix, priorRects){
   }
   return results;
 }
-
 /**
  * returns all menus starting at item from, or the empty string.
  * If in automation mode, only the menu items with an id are used.
@@ -1784,7 +1692,6 @@ function MakeKeyboardReference(from, prefix, type){
   }
   return results;
 }
-
 /**
  * returns all preferences starting at item from, or the empty string.
  * @returns {string}
@@ -1849,9 +1756,6 @@ function MakePreferencesReference(from, prefix, type){
   return results;
 }
 
-
-
-
 /**
  * Wiki template for tools image map 'here doc'
  * @returns {string}
@@ -1898,7 +1802,6 @@ Audacity.ToolsImap = function(){
 
   return pieces[1] + MakeToolMap() + pieces[3];
 };
-
 /**
  * Wiki template for menus image map 'here doc'
  * @returns {string}
@@ -1925,7 +1828,6 @@ Audacity.MenuImap = function(){
 
   return pieces[1] + mappy  + pieces[3];
 };
-
 /**
  * Nyquist wrappers for aud-do functions.
  * @returns {string}
@@ -1949,7 +1851,6 @@ Audacity.NyquistWrappers = function(){
   }
   return Str;
 };
-
 /**
  * Make the keyboard reference
  * @returns {string}
@@ -1958,7 +1859,6 @@ Audacity.KeyboardReference = function(){
   JoinTipsIntoMenus();
   return MakeKeyboardReference(0,"", "keyboard");
 };
-
 /**
  * Make the Automation (commands) reference
  * @returns {string}
@@ -1968,7 +1868,6 @@ Audacity.AutomationReference = function(){
   JoinCommandsIntoMenus();
   return MakeKeyboardReference(0,"", "automation");
 };
-
 /**
  * Make the preferences reference
  * @returns {string}
@@ -1978,8 +1877,6 @@ Audacity.PreferencesReference = function(){
   JoinCommandsIntoMenus();
   return MakePreferencesReference(0,"", "");
 };
-
-
 
 window.onload = function(){
   Message = document.getElementById("message");
