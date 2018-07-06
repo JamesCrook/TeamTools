@@ -299,11 +299,11 @@ function RedrawClicker(){
   var y1 = Channels[0][1];
   for( i = 0; i < G.Boxes[LL].length; i++ ){
     DrawClicky( G, Channels[i%Channels.length], G.Boxes[LL][i] )
-    var x = G.Boxes[LL][i][5];
-    var BX = App.Boxes[ x ];
+//    var x = G.Boxes[LL][i][5];
+//    var BX = App.Boxes[ x ];
     //console.log( BX );
-    var BC =  G.Boxes[LL][i];
-    BX.leabelBox = [ BC[0], BC[1], BC[2], BC[3] ];
+//    var BC =  G.Boxes[LL][i];
+//    BX.labelBox = [ BC[0], BC[1], BC[2], BC[3] ];
   }
 
   var x2 = BoxRow[2];
@@ -322,11 +322,11 @@ function RedrawClicker(){
 function AffineBoxes(){
   var i;
   for(i=0;i<AudacityDoxed.Boxes.length;i++){
-    var Box = AudacityDoxed.Boxes[i];
-    Box[1] = Box[1] * 600/868 + 135;
-    Box[2] = Box[2] * 600/868 + 92;
-    Box[3] = Box[3] * 600/868 + 135;
-    Box[4] = Box[4] * 600/868 + 92;
+    var Box = AudacityDoxed.Boxes[i].box;
+    Box[0] = Box[0] * 600/868 + 135;
+    Box[1] = Box[1] * 600/868 + 92;
+    Box[2] = Box[2] * 600/868 + 135;
+    Box[3] = Box[3] * 600/868 + 92;
   }
 
 }
