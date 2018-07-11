@@ -319,6 +319,10 @@ function RedrawClicker(){
   DrawAnnotationBox( App.Boxes[box].label.replace(/ /g,'') + "Annotated", x1, y1, x2, y2 );
 }
 
+/***
+ * For the doxygened image, change all the box sizes and positions with an
+ * affine transformation (shrink and shift).
+ */
 function AffineBoxes(){
   var i;
   for(i=0;i<AudacityDoxed.Boxes.length;i++){
@@ -333,7 +337,7 @@ function AffineBoxes(){
 
 //[  1,  0, "Close", "Ctrl+W" ],
 /**
- *
+ * Anchor name modified to be valid (no spaces, for example).
  * @param anchor
  * @returns {string}
  */
@@ -344,6 +348,13 @@ function CleanAnchor( anchor ){
   str = str.replace(/__/g,"_");
   return str.toLowerCase();
 }
+
+/***
+ * Tip modified to be valid by removing wiki links, for example.
+ * @param tip
+ * @returns {XML|string|void}
+ * @constructor
+ */
 function CleanTip( tip ){
   var str = tip.replace( /'''/g, "" );
   str = str.replace( /''/g, "" );
@@ -439,42 +450,61 @@ function DrawMenu( from ){
     }
   }
 }
-function SizeMenu( from ){
+
+function GetMenuSizing( from ){
+  // Compute the x and y dimensions of chosen menu.
+  var Res = { x:0, y:0};
+  var i;
+
   var MenuLevel = App.Menus[from].depth;
   Menu.tWidth = 0;
   Menu.aWidth = 0;
-  var Res = { x:0, y:0};
-  var i;
+
+
   for(i=from;i<App.Menus.length;i++){
     if( App.Menus[i].depth < MenuLevel )
       break;
     if( App.Menus[i].depth == MenuLevel ){
-      Res = (Menu.bar ? SizeBarItem : SizeItem)
+      // Chooses between functions to apply to
+      // the x and y values.
+      Res = ((MenuLevel < 1) ? SizeBarItem : SizeItem)
       ( i, Res.x, Res.y, App.Menus[i].label,
         App.Menus[i].accel, App.Menus[i].flags);
     }
   }
-  Menu.x =2;
-  Menu.y = 30;
-  if( Menu.bar ){
+  if( MenuLevel < 1 ){
     Menu.width = Res.x;
     Menu.height = 22;
   }
   else {
     Menu.width = Menu.tWidth + Menu.aWidth + 70;
     Menu.height = Res.y + 7;
-    if( MenuLevel == 1){
-      var Box =Gui.Boxes[1][Menu.iHover];
-      Menu.x = Box[0];
-      Menu.y = Box[3];
-    } else {
-      var Box =Gui.Boxes[MenuLevel][Menu.iHover];
-      Menu.x = Box[2];
-      Menu.y = Box[1];
-    }
+  }
 
+}
+
+function GetMenuPosition( from ){
+  var MenuLevel = App.Menus[from].depth;
+  if( MenuLevel == 0){
+    Menu.x =2;
+    Menu.y = 30;
+  } else if( MenuLevel == 1){
+    var Box =Gui.Boxes[1][Menu.iHover];
+    Menu.x = Box[0];
+    Menu.y = Box[3];
+  } else {
+    var Box =Gui.Boxes[MenuLevel][Menu.iHover];
+    Menu.x = Box[2];
+    Menu.y = Box[1];
   }
 }
+
+function SizeMenu( from ){
+  GetMenuSizing( from );
+  GetMenuPosition( from );
+}
+
+
 function RefreshImage(Gui){
   var backfade = (Level > 0) && Gui.DoesFade;
 
@@ -1331,6 +1361,18 @@ function GetCleanedUpCommands(){
   }
   return Commands;
 }
+
+/***
+ * Formatted string for an HTML rectangle, with each number being given 4
+ * digits and a space.
+ * @param x1
+ * @param y1
+ * @param x2
+ * @param y2
+ * @param name
+ * @param tip
+ * @returns {string}
+ */
 function rectString( x1,y1,x2,y2, name, tip ){
   var str = "rect ";
   str += ("    "+x1).slice(-4)+ " ";
@@ -1495,6 +1537,11 @@ function MakeMenuMap(from, prefix, priorRects){
   var name;
   var subsAllowed = false;
   //console.log( "Map from:"+from+" prefix:"+prefix );
+
+  GetMenuSizing( from );
+  var width = Math.floor( Menu.width );
+  results += "Width = "+width;
+
   for(i=from;i< App.Menus.length;i++){
     var Box = App.Menus[i];
     if( Box.depth < indent )
@@ -1528,11 +1575,12 @@ function MakeMenuMap(from, prefix, priorRects){
         var Tip = "tip about " + Box.label;
         if( Box.short )
           Tip = Box.short;
+        // if has submenu...
         if( Box.flags == 1 )
-          innerRects += rectString(x, y, x + 200, y + 22, MenuName + ': ' +
+          innerRects += rectString(x, y, x + width, y + 22, MenuName + ': ' +
             Box.label, CleanTip(Tip) );
         else
-          innerRects += rectString(x, y, x + 200, y + 22, MenuName + '#' +
+          innerRects += rectString(x, y, x + width, y + 22, MenuName + '#' +
             CleanAnchor(Box.label), CleanTip(Tip) );
         y += 22;
 //      SubItems.push( i );
