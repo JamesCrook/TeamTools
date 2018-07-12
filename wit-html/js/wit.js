@@ -1523,7 +1523,7 @@ function MakeToolMap(){
  * returns all menus starting at item from, or the empty string.
  * @returns {string}
  */
-function MakeMenuMap(from, prefix, priorRects){
+function MakeMenuMap(from, prefix, priorRects, xIn){
   var i;
   var BoxEnd = null;
   var MenuName = "None";
@@ -1537,10 +1537,7 @@ function MakeMenuMap(from, prefix, priorRects){
   var name;
   var subsAllowed = false;
   //console.log( "Map from:"+from+" prefix:"+prefix );
-
-  GetMenuSizing( from );
-  var width = Math.floor( Menu.width );
-  results += "Width = "+width;
+  var width;
 
   for(i=from;i< App.Menus.length;i++){
     var Box = App.Menus[i];
@@ -1558,12 +1555,19 @@ function MakeMenuMap(from, prefix, priorRects){
       else
         MenuName = prefix + " " + name;
       var safeName= prefix + name;
+
+      if( i < App.Menus.length -1 ){
+        GetMenuSizing(i + 1);
+        width = Math.floor(Menu.width);
+        results += "At " + App.Menus[i].label + " Width = " + width + "\r\n";
+      }
+
       safeName = safeName.replace( / Menu:/g, "-" );
       str += "|" + safeName + "=:<imagemap>\n";
       str += "Image:" + safeName + "Menu.png\r\n";
       str += "desc none\r\n";
       str += priorRects;
-      x=50+(indent *200);
+      x=xIn;
       y=27;
       BoxEnd = [0,0,0,0];
       subsAllowed = true;
@@ -1585,7 +1589,7 @@ function MakeMenuMap(from, prefix, priorRects){
         y += 22;
 //      SubItems.push( i );
       }
-      BoxEnd[ 2 ] = x+200;
+      BoxEnd[ 2 ] = x+width;
       BoxEnd[ 3 ] = y;
     }
 
@@ -1611,7 +1615,7 @@ function MakeMenuMap(from, prefix, priorRects){
       var j;
       for(j=0;j<SubItems.length;j++){
         results += MakeMenuMap( SubItems[j], MenuName + ((indent==0)?":" : ""),
-          priorRects + innerRects );
+          priorRects + innerRects, x+width );
       }
       SubItems = [];
 
@@ -1871,7 +1875,7 @@ Audacity.MenuImap = function(){
   pieces = Audacity.MenuImap.toString().split( "HEREDOC" );
   JoinTipsIntoMenus();
 
-  var mappy = MakeMenuMap(0, "", "");
+  var mappy = MakeMenuMap(0, "", "", 50);
   //console.log( mappy );
 
   return pieces[1] + mappy  + pieces[3];
