@@ -451,6 +451,15 @@ function DrawMenu( from ){
   }
 }
 
+function AddItemSize( Res, item ){
+  var MenuLevel = App.Menus[item].depth;
+  Res = ((MenuLevel < 1) ? SizeBarItem : SizeItem)
+  ( item, Res.x, Res.y, App.Menus[item].label,
+    App.Menus[item].accel, App.Menus[item].flags);
+  return Res;
+}
+
+
 function GetMenuSizing( from ){
   // Compute the x and y dimensions of chosen menu.
   var Res = { x:0, y:0};
@@ -467,9 +476,7 @@ function GetMenuSizing( from ){
     if( App.Menus[i].depth == MenuLevel ){
       // Chooses between functions to apply to
       // the x and y values.
-      Res = ((MenuLevel < 1) ? SizeBarItem : SizeItem)
-      ( i, Res.x, Res.y, App.Menus[i].label,
-        App.Menus[i].accel, App.Menus[i].flags);
+      Res = AddItemSize( Res, i );
     }
   }
   if( MenuLevel < 1 ){
@@ -1525,60 +1532,68 @@ function MakeToolMap(){
  */
 function MakeMenuMap(from, prefix, priorRects, xIn){
   var i;
-  var BoxEnd = null;
   var MenuName = "None";
   var str = "";
   var results = "";
   var innerRects = "";
-  var x=0;
-  var y=0;
-  var indent = -1;
+  var x=xIn;
+  var y=27;
   var SubItems = [];
   var name;
-  var subsAllowed = false;
   //console.log( "Map from:"+from+" prefix:"+prefix );
   var width;
+  var descend =  (xIn ==0) ? 0 : 1;
+
+  if( from >= App.Menus.length )
+    return "";
+
+  var Box = App.Menus[from];
+  var indent = Box.depth+descend;
+
+  name = Box.label.replace(/ /g, '_');
+  if( indent == 0 )
+    MenuName = "";
+  else if( indent == 1 )
+    MenuName = prefix + name + " Menu";
+  else
+    MenuName = prefix + " " + name;
+  var safeName= prefix + name;
+
+  if( indent == 0 )
+    safeName = "MenuBar";
+
+  // Size of menu starting at from.
+  GetMenuSizing(from);
+  width = Math.floor(Menu.width);
+  //results += "At " + App.Menus[from].label + " Width = " + width + "\r\n";
+
+  safeName = safeName.replace( / Menu:/g, "-" );
+  str += "|" + safeName + "=:<imagemap>\n";
+  str += "Image:" + safeName + "Menu.png\r\n";
+  str += "desc none\r\n";
+  str += priorRects;
+
 
   for(i=from;i< App.Menus.length;i++){
-    var Box = App.Menus[i];
-    if( Box.depth < indent )
-      return results;
-    if( i== from ){
-      indent = Box.depth;
-    }
+    Box = App.Menus[i];
+
+    // This is an item in the menu...
     if( Box.depth == indent ){
-      innerRects = "";
-      str = "";
-      name = Box.label.replace(/ /g, '_');
-      if( indent == 0 )
-        MenuName = prefix + name + " Menu";
-      else
-        MenuName = prefix + " " + name;
-      var safeName= prefix + name;
-
-      if( i < App.Menus.length -1 ){
-        GetMenuSizing(i + 1);
-        width = Math.floor(Menu.width);
-        results += "At " + App.Menus[i].label + " Width = " + width + "\r\n";
-      }
-
-      safeName = safeName.replace( / Menu:/g, "-" );
-      str += "|" + safeName + "=:<imagemap>\n";
-      str += "Image:" + safeName + "Menu.png\r\n";
-      str += "desc none\r\n";
-      str += priorRects;
-      x=xIn;
-      y=27;
-      BoxEnd = [0,0,0,0];
-      subsAllowed = true;
-    }
-    else if( Box.depth == (indent+1) ){
       if( Box.label.indexOf("---") >= 0 ){
         y += 7;
       } else {
         var Tip = "tip about " + Box.label;
         if( Box.short )
           Tip = Box.short;
+        var dx = 0;
+        var dy = 22;
+        if( indent == 0 ){
+          width = 50;
+          dx = 50;
+          dy = 0;
+
+        }
+
         // if has submenu...
         if( Box.flags == 1 )
           innerRects += rectString(x, y, x + width, y + 22, MenuName + ': ' +
@@ -1586,29 +1601,29 @@ function MakeMenuMap(from, prefix, priorRects, xIn){
         else
           innerRects += rectString(x, y, x + width, y + 22, MenuName + '#' +
             CleanAnchor(Box.label), CleanTip(Tip) );
-        y += 22;
-//      SubItems.push( i );
+        y += dy;
+        x += dx;
       }
-      BoxEnd[ 2 ] = x+width;
-      BoxEnd[ 3 ] = y;
     }
 
+    // if nextindent is greater than current, push the next item.
     var nextIndent = -1;
     if( i < App.Menus.length -1 )
       nextIndent = App.Menus[i+1].depth;
-    if( (nextIndent > Box.depth) && (Box.depth >indent) && subsAllowed ){
+    if( nextIndent == (indent+1)){
       SubItems.push(i);
-      subsAllowed = false;
+      //console.log("Push "+Box.label);
+      //results += "Push "+Box.label+"\r\n";
     }
 
-    if( BoxEnd && (nextIndent <= indent)){
+    // if nextindent < indent (or -1 for at end), then we are done.
+    if( nextIndent < indent){
       str += innerRects;
       str += "</imagemap>\n";
-      str += "{{ClickTip|x=" + (BoxEnd[2] - 50) + "|y=15}}\r\n\r\n\r\n";
+      str += "{{ClickTip|x=" + (x+width - 50) + "|y=15}}\r\n\r\n\r\n";
       str += "&nbsp;\r\n\r\n";
       if( innerRects )
         results += str;
-      BoxEnd = null;
       //console.log( str );
       str = "";
 
@@ -1618,6 +1633,7 @@ function MakeMenuMap(from, prefix, priorRects, xIn){
           priorRects + innerRects, x+width );
       }
       SubItems = [];
+      return results;
 
     }
   }
@@ -1875,7 +1891,7 @@ Audacity.MenuImap = function(){
   pieces = Audacity.MenuImap.toString().split( "HEREDOC" );
   JoinTipsIntoMenus();
 
-  var mappy = MakeMenuMap(0, "", "", 50);
+  var mappy = MakeMenuMap(0, "", "", 0);
   //console.log( mappy );
 
   return pieces[1] + mappy  + pieces[3];
