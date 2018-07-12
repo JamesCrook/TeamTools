@@ -1552,7 +1552,7 @@ function MakeMenuMap(from, prefix, priorRects, xIn){
 
   name = Box.label.replace(/ /g, '_');
   if( indent == 0 )
-    MenuName = "";
+    MenuName = "Menu Reference";
   else if( indent == 1 )
     MenuName = prefix + name + " Menu";
   else
@@ -1628,8 +1628,10 @@ function MakeMenuMap(from, prefix, priorRects, xIn){
       str = "";
 
       var j;
+      if( indent == 0 )
+        MenuName = "";
       for(j=0;j<SubItems.length;j++){
-        results += MakeMenuMap( SubItems[j], MenuName + ((indent==0)?":" : ""),
+        results += MakeMenuMap( SubItems[j], MenuName + ((indent==1)?":" : ""),
           priorRects + innerRects, x+width );
       }
       SubItems = [];
