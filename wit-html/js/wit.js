@@ -1530,19 +1530,19 @@ function MakeToolMap(){
  * returns all menus starting at item from, or the empty string.
  * @returns {string}
  */
-function MakeMenuMap(from, prefix, priorRects, xIn){
+function MakeMenuMap(from, prefix, priorRects, xIn, yIn){
   var i;
   var MenuName = "None";
   var str = "";
   var results = "";
   var innerRects = "";
   var x=xIn;
-  var y=27;
+  var y=yIn;
   var SubItems = [];
   var name;
   //console.log( "Map from:"+from+" prefix:"+prefix );
   var width;
-  var descend =  (xIn ==0) ? 0 : 1;
+  var descend =  (priorRects=="") ? 0 : 1;
 
   if( from >= App.Menus.length )
     return "";
@@ -1562,8 +1562,8 @@ function MakeMenuMap(from, prefix, priorRects, xIn){
   if( indent == 0 )
     safeName = "MenuBar";
 
-  // Size of menu starting at from.
-  GetMenuSizing(from);
+  // Size of menu descended from from.
+  GetMenuSizing(from+1);
   width = Math.floor(Menu.width);
   //results += "At " + App.Menus[from].label + " Width = " + width + "\r\n";
 
@@ -1574,24 +1574,30 @@ function MakeMenuMap(from, prefix, priorRects, xIn){
   str += priorRects;
 
 
+  var dx=0;
+  var dy=0;
+
   for(i=from;i< App.Menus.length;i++){
     Box = App.Menus[i];
 
     // This is an item in the menu...
     if( Box.depth == indent ){
+      x+=dx;
+      y+=dy;
       if( Box.label.indexOf("---") >= 0 ){
-        y += 7;
+        dx=0;
+        dy=7;
       } else {
         var Tip = "tip about " + Box.label;
         if( Box.short )
           Tip = Box.short;
-        var dx = 0;
-        var dy = 22;
-        if( indent == 0 ){
-          width = 50;
-          dx = 50;
-          dy = 0;
 
+        dx = 0;
+        dy = 22;
+        if( indent == 0 ){
+          width = SizeBarItem( 0, 0, 0, Box.label, "", 0).x;
+          dx = width;
+          dy = 0;
         }
 
         // if has submenu...
@@ -1601,8 +1607,6 @@ function MakeMenuMap(from, prefix, priorRects, xIn){
         else
           innerRects += rectString(x, y, x + width, y + 22, MenuName + '#' +
             CleanAnchor(Box.label), CleanTip(Tip) );
-        y += dy;
-        x += dx;
       }
     }
 
@@ -1611,7 +1615,15 @@ function MakeMenuMap(from, prefix, priorRects, xIn){
     if( i < App.Menus.length -1 )
       nextIndent = App.Menus[i+1].depth;
     if( nextIndent == (indent+1)){
-      SubItems.push(i);
+      var dx1=0;
+      var dy1=0;
+      if( nextIndent == 1 )
+        dy1=22;
+      else
+        dx1=width;
+
+
+      SubItems.push({'i':i,'x':x+dx1,'y':y+dy1});
       //console.log("Push "+Box.label);
       //results += "Push "+Box.label+"\r\n";
     }
@@ -1631,8 +1643,9 @@ function MakeMenuMap(from, prefix, priorRects, xIn){
       if( indent == 0 )
         MenuName = "";
       for(j=0;j<SubItems.length;j++){
-        results += MakeMenuMap( SubItems[j], MenuName + ((indent==1)?":" : ""),
-          priorRects + innerRects, x+width );
+        var S = SubItems[j];
+        results += MakeMenuMap( S.i, MenuName + ((indent==1)?":" : ""),
+          priorRects + innerRects, S.x, S.y );
       }
       SubItems = [];
       return results;
@@ -1893,7 +1906,7 @@ Audacity.MenuImap = function(){
   pieces = Audacity.MenuImap.toString().split( "HEREDOC" );
   JoinTipsIntoMenus();
 
-  var mappy = MakeMenuMap(0, "", "", 0);
+  var mappy = MakeMenuMap(0, "", "", 0, 27);
   //console.log( mappy );
 
   return pieces[1] + mappy  + pieces[3];
