@@ -353,7 +353,6 @@ function CleanAnchor( anchor ){
  * Tip modified to be valid by removing wiki links, for example.
  * @param tip
  * @returns {XML|string|void}
- * @constructor
  */
 function CleanTip( tip ){
   var str = tip.replace( /'''/g, "" );
@@ -1198,8 +1197,9 @@ function OnManual(){
   window.open( RemoteUrl, "manual" );
 }
 function OnSpecial( event ){
-  //Scroller.src = "https://wiki.audacityteam.org/wiki/WIT_Experiments?action=raw";
-  //alert( "At some point this button will do clever stuff");
+  //Scroller.src =
+  // "https://wiki.audacityteam.org/wiki/WIT_Experiments?action=raw"; alert(
+  // "At some point this button will do clever stuff");
   var str = window.location.href;
 
   App.Sys.KeepPanel = false;
@@ -1381,6 +1381,8 @@ function GetCleanedUpCommands(){
  * @returns {string}
  */
 function rectString( x1,y1,x2,y2, name, tip ){
+  if( x2 < 0 )
+    return "";
   var str = "rect ";
   str += ("    "+x1).slice(-4)+ " ";
   str += ("    "+y1).slice(-4)+ " ";
@@ -1536,57 +1538,59 @@ function MakeMenuMap(from, prefix, priorRects, xIn, yIn){
   var str = "";
   var results = "";
   var innerRects = "";
-  var x=xIn;
-  var y=yIn;
+  var x = xIn;
+  var y = yIn;
   var SubItems = [];
   var name;
   //console.log( "Map from:"+from+" prefix:"+prefix );
-  var width;
-  var descend =  (priorRects=="") ? 0 : 1;
+  var descend = (priorRects == "") ? 0 : 1;
 
   if( from >= App.Menus.length )
     return "";
 
   var Box = App.Menus[from];
-  var indent = Box.depth+descend;
+  var indent = Box.depth + descend;
 
   name = Box.label.replace(/ /g, '_');
   if( indent == 0 )
-    MenuName = "Menu Reference";
-  else if( indent == 1 )
-    MenuName = prefix + name + " Menu";
-  else
+    MenuName = "Menu Reference"; else if( indent == 1 )
+    MenuName = prefix + name + " Menu"; else
     MenuName = prefix + " " + name;
-  var safeName= prefix + name;
+  var safeName = prefix + name;
 
   if( indent == 0 )
     safeName = "MenuBar";
 
   // Size of menu descended from from.
-  GetMenuSizing(from+1);
-  width = Math.floor(Menu.width);
+  GetMenuSizing(from + 1);
+  var width = Math.floor(Menu.width);
+  var height = Math.floor(Menu.height);
   //results += "At " + App.Menus[from].label + " Width = " + width + "\r\n";
 
-  safeName = safeName.replace( / Menu:/g, "-" );
+  safeName = safeName.replace(/ Menu:/g, "-");
   str += "|" + safeName + "=:<imagemap>\n";
   str += "Image:" + safeName + "Menu.png\r\n";
   str += "desc none\r\n";
   str += priorRects;
 
+  var dx = 0;
+  var dy = 0;
 
-  var dx=0;
-  var dy=0;
-
-  for(i=from;i< App.Menus.length;i++){
+  for( i = from; i < App.Menus.length; i++ ){
     Box = App.Menus[i];
+
+    // if nextindent is greater than current, push the next item.
+    var nextIndent = -1;
+    if( i < App.Menus.length - 1 )
+      nextIndent = App.Menus[i + 1].depth;
 
     // This is an item in the menu...
     if( Box.depth == indent ){
-      x+=dx;
-      y+=dy;
+      x += dx;
+      y += dy;
       if( Box.label.indexOf("---") >= 0 ){
-        dx=0;
-        dy=7;
+        dx = 0;
+        dy = 7;
       } else {
         var Tip = "tip about " + Box.label;
         if( Box.short )
@@ -1595,44 +1599,54 @@ function MakeMenuMap(from, prefix, priorRects, xIn, yIn){
         dx = 0;
         dy = 22;
         if( indent == 0 ){
-          width = SizeBarItem( 0, 0, 0, Box.label, "", 0).x;
-          dx = width;
+          width = SizeBarItem(0, 0, 0, Box.label, "", 0).x;
+          dx = width + 13;
           dy = 0;
         }
 
         // if has submenu...
         if( Box.flags == 1 )
-          innerRects += rectString(x, y, x + width, y + 22, MenuName + ': ' +
-            Box.label, CleanTip(Tip) );
-        else
-          innerRects += rectString(x, y, x + width, y + 22, MenuName + '#' +
-            CleanAnchor(Box.label), CleanTip(Tip) );
+          innerRects +=
+            rectString(x, y, x + width, y + 22, MenuName + ': ' + Box.label,
+              CleanTip(Tip)); else
+          innerRects += rectString(x, y, x + width, y + 22,
+            MenuName + '#' + CleanAnchor(Box.label), CleanTip(Tip));
+      }
+
+      if( nextIndent == (indent + 1) ){
+        var dx1 = 0;
+        var dy1 = 0;
+        // If off menu bar, next row.
+        // If off submenu, shift by previous menu width.
+        if( nextIndent == 1 ){
+          dy1 = 22;
+          dx1 = 48 - x;
+        } else
+          dx1 = width;
+
+        if( nextIndent == 2 ){
+          GetMenuSizing(i + 1);
+          // extraY is how much we will project over the end.
+          var extraY = Menu.height - height;
+          extraY += y - yIn;
+          // dy = -extraY would align bottom to bottom.
+
+          // dy1 is at most 0.  (place adjacent).
+          // dy1 is at least 49-y (place at start)
+          dy1 = Math.max(49 - y, Math.min(0, -extraY));
+        }
+
+        SubItems.push({ 'i': i, 'x': x + dx1, 'y': y + dy1 });
+        //console.log("Push "+Box.label);
+        //results += "Push "+Box.label+"\r\n";
       }
     }
 
-    // if nextindent is greater than current, push the next item.
-    var nextIndent = -1;
-    if( i < App.Menus.length -1 )
-      nextIndent = App.Menus[i+1].depth;
-    if( nextIndent == (indent+1)){
-      var dx1=0;
-      var dy1=0;
-      if( nextIndent == 1 )
-        dy1=22;
-      else
-        dx1=width;
-
-
-      SubItems.push({'i':i,'x':x+dx1,'y':y+dy1});
-      //console.log("Push "+Box.label);
-      //results += "Push "+Box.label+"\r\n";
-    }
-
     // if nextindent < indent (or -1 for at end), then we are done.
-    if( nextIndent < indent){
+    if( nextIndent < indent ){
       str += innerRects;
       str += "</imagemap>\n";
-      str += "{{ClickTip|x=" + (x+width - 50) + "|y=15}}\r\n\r\n\r\n";
+      str += "{{ClickTip|x=" + (x + width - 50) + "|y=15}}\r\n\r\n\r\n";
       str += "&nbsp;\r\n\r\n";
       if( innerRects )
         results += str;
@@ -1642,10 +1656,16 @@ function MakeMenuMap(from, prefix, priorRects, xIn, yIn){
       var j;
       if( indent == 0 )
         MenuName = "";
-      for(j=0;j<SubItems.length;j++){
+      for( j = 0; j < SubItems.length; j++ ){
         var S = SubItems[j];
-        results += MakeMenuMap( S.i, MenuName + ((indent==1)?":" : ""),
-          priorRects + innerRects, S.x, S.y );
+        //if( (descend == 0) && (S.i != from) ){
+        //  innerRects = "";
+        //  j = 1000;
+        //  console.log("NewMenu");
+        //}
+        console.log("MakeMenu: " + App.Menus[S.i].label);
+        results += MakeMenuMap(S.i, MenuName + ((indent == 1) ? ":" : ""),
+          priorRects + innerRects, S.x, S.y);
       }
       SubItems = [];
       return results;
@@ -1906,7 +1926,7 @@ Audacity.MenuImap = function(){
   pieces = Audacity.MenuImap.toString().split( "HEREDOC" );
   JoinTipsIntoMenus();
 
-  var mappy = MakeMenuMap(0, "", "", 0, 27);
+  var mappy = MakeMenuMap(0, "", "", 0, 0 );
   //console.log( mappy );
 
   return pieces[1] + mappy  + pieces[3];
