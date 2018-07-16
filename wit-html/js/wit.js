@@ -1620,7 +1620,7 @@ function MakeMenuMap(from, prefix, priorRects, xIn, yIn){
         // If off submenu, shift by previous menu width.
         if( nextIndent == 1 ){
           dy1 = 22;
-          dx1 = 48 - x;
+          dx1 = (x==0)?0:25 - x;
         } else
           dx1 = width;
 
@@ -1648,7 +1648,9 @@ function MakeMenuMap(from, prefix, priorRects, xIn, yIn){
       str += "</imagemap>\n";
       str += "{{ClickTip|x=" + (x + width - 50) + "|y=15}}\r\n\r\n\r\n";
       str += "&nbsp;\r\n\r\n";
-      if( innerRects )
+      var bOkToAdd = innerRects != "";
+      bOkToAdd = bOkToAdd && ((indent!=0) || (from==0));
+      if( bOkToAdd )
         results += str;
       //console.log( str );
       str = "";
@@ -1658,11 +1660,13 @@ function MakeMenuMap(from, prefix, priorRects, xIn, yIn){
         MenuName = "";
       for( j = 0; j < SubItems.length; j++ ){
         var S = SubItems[j];
-        //if( (descend == 0) && (S.i != from) ){
-        //  innerRects = "";
-        //  j = 1000;
-        //  console.log("NewMenu");
-        //}
+        if( (descend == 0) && (S.i != from) ){
+          innerRects = "";
+          j = 1000;
+          S.x = 25;
+          S.y = 5;
+          console.log("NewMenu");
+        }
         console.log("MakeMenu: " + App.Menus[S.i].label);
         results += MakeMenuMap(S.i, MenuName + ((indent == 1) ? ":" : ""),
           priorRects + innerRects, S.x, S.y);
@@ -1926,7 +1930,7 @@ Audacity.MenuImap = function(){
   pieces = Audacity.MenuImap.toString().split( "HEREDOC" );
   JoinTipsIntoMenus();
 
-  var mappy = MakeMenuMap(0, "", "", 0, 0 );
+  var mappy = MakeMenuMap(0, "", "", 0, 5 );
   //console.log( mappy );
 
   return pieces[1] + mappy  + pieces[3];
