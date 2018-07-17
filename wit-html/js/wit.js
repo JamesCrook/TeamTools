@@ -954,6 +954,40 @@ function SetMenuTo( l, item ){
   }
 }
 
+/**
+ *
+ * @param from
+ * @returns {number}
+ */
+
+function NextMenus(from){
+  var Levels = [-1,-1,-1,-1];
+  var i;
+  var ll;
+  var lPrev =-1;
+  for( i = 0; i < App.Menus.length; i++ ){
+    var Box = App.Menus[i];
+    ll = Box.depth;
+    if( Box.label == "----" )
+      continue;
+    lPrev = ll;
+    Levels[ll] = Levels[ll]+1;
+    Levels[ll+1]=-1;
+    if( i > from ){
+      if( ll == 0 ){
+        SetMenuTo(0, Levels[0]);
+        return i;
+      }
+      if( (ll==2) && (App.Menus[i-1].depth == 1 )){
+        SetMenuTo(0, Levels[0]);
+        SetMenuTo(1, Levels[1]);
+        return i;
+      }
+    }
+  }
+  return -1;
+}
+
 function SetToHoverBox(l){
   console.log("Level: "+l+" HoverBox: "+HoverBox);
   Level = l;
@@ -1344,8 +1378,12 @@ function OnGetPreferencesReference(arg){
   DownloadDurl( "PreferencesReference.txt", DurlOfText(App.PreferencesReference()) );
 }
 function OnGetMenuImages(arg){
-  DownloadDurl( "PreferencesReference.txt", DurlOfText(App.PreferencesReference()) );
-  DownloadDurl( "AutomationReference.txt", DurlOfText(App.AutomationReference()) );
+  var menu = -1;
+  while( (menu = NextMenus( menu)) >= 0 ){
+    if( !Annotated.available )
+      return;
+    DownloadDurl( Annotated.name + ".png", DurlOfAnnotatedImage());
+  }
 }
 
 var mmi = 0;
@@ -1354,10 +1392,9 @@ function OnNextMenuItem(arg){
   mmi = (mmi+1)%12;
 }
 
-var smmi = 0;
+var smmi = -1;
 function OnNextSubMenuItem(arg){
-  SetMenuTo( 1, smmi );
-  smmi = (smmi+1)%4;
+  smmi = NextMenus( smmi );
 }
 
 
