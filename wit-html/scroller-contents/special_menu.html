@@ -32,9 +32,6 @@
                 </p>
                     <div class="intro"><br>This panel provides additional experimental options
                         that extend the functionality of WIT.<br><br>
-                        If you can see this message, you have already successfully updated the menus
-                        using data from our wiki.  For example there is now an Extra menu, when you click on the menu bar.<br><br>
-
                     </div>
                     <div style="margin:20px;">
 
@@ -52,39 +49,18 @@
                         <button onclick="document.getElementById('keep-open').checked=false;parent.OnGetNextApp( this );">Next</button>
                             annotated image.<br>
                         </div>
-                    <em>The following buttons work in <b>Chrome browser only</b></em>
+                    <em>The following buttons work in <b>Chrome browser only</b> and download files for use in our manual wiki</em>
                     <div style="margin-left:20px;margin-top:10px;line-height:2;">
-                        <button onclick="parent.OnGetImage( this );">Download</button>
-                            the current image.<br>
+                        Menu images: <button onclick="parent.OnGetImage( this );">Current</button> <button onclick="parent.OnGetMenuImages( this );">All</button><br>
 
-                        <button onclick="parent.OnGetMenuImages( this );">Download</button>
-                        all menu images.<br>
+                        Image maps: <button onclick="parent.OnGetMenuImageMaps( this );">Menus</button> <button onclick="parent.OnGetToolbarImageMaps( this );">Toolbars</button><br>
 
-                        <button onclick="parent.OnGetMenuImageMaps( this );">Download</button>
-                            the all-menus image map.<br>
+                        References: <button onclick="parent.OnGetKeyboardReference( this );">Keyboard</button> <button onclick="parent.OnGetAutomationReference( this );">Automation</button>
+                        <button onclick="parent.OnGetPreferencesReference( this );">Prefs</button><br>
 
-                        <button onclick="parent.OnNextMenuItem( this );">Next</button>
-                        menu item.
-                        <button onclick="parent.OnNextSubMenuItem( this );">Next</button>
-                        submenu item.
+                        Nyquist: <button onclick="parent.OnGetNyquist( this );">Wrappers</button><br>
 
-                        <br>
-
-                        <button onclick="parent.OnGetNyquist( this );">Download</button>
-                        the Nyquist wrappers.<br>
-
-                        <button onclick="parent.OnGetToolbarImageMaps( this );">Download</button>
-                            the all-toolbars image map.<br>
-
-                        <button onclick="parent.OnGetKeyboardReference( this );">Download</button>
-                            the keyboard reference.<br>
-
-                        <button onclick="parent.OnGetAutomationReference( this );">Download</button>
-                            the automation reference.<br>
-
-                        <button onclick="parent.OnGetPreferencesReference( this );">Download</button>
-                        the preferences reference.<br>
-                        </div>
+                    </div>
 
 
                 </div>
