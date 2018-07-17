@@ -1692,7 +1692,7 @@ function MakeMenuMap(from, prefix, priorRects, xIn, yIn){
         dy = 22;
         if( indent == 0 ){
           width = SizeBarItem(0, 0, 0, Box.label, "", 0).x;
-          dx = width + 13;
+          dx = width;
           dy = 0;
         }
 
