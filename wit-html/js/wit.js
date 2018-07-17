@@ -922,8 +922,71 @@ function UrlFromBoxName( name ){
   //console.log( "BoxName "+name+" not found" );
   return "";
 }
+
+function SetMenuTo( l, item ){
+  if( l== 0 ){
+    Menus[0].item = 0;
+    Menus[0].iSel = 0;
+    Menus[1].item = 0;
+    Menus[1].iSel = -1;
+    Menus[1].iHover = 0;
+    MenuMode = true;
+    HoverBox = 0;
+    Level = 0;
+    ChangeLevel(1, false);
+    EmptyLevel();
+    ClickedBox = 0;
+    LastHover = -2;// force refresh.
+    MayRefresh();
+
+    Gui.ThisIx = item;
+    HoverBox = item;
+    SetToHoverBox(1);
+    LastHover = -2;// force refresh.
+    MayRefresh();
+  }
+  else {
+    Gui.ThisIx = item;
+    HoverBox = item;
+    SetToHoverBox(2);
+    LastHover = -2;// force refresh.
+    MayRefresh();
+  }
+}
+
+function SetToHoverBox(l){
+  console.log("Level: "+l+" HoverBox: "+HoverBox);
+  Level = l;
+  var StartAt = Gui.Boxes[l][HoverBox][5];
+  // if it has descendants...
+  if( (StartAt + 1) < App.Menus.length &&
+    App.Menus[StartAt].depth == (App.Menus[StartAt + 1].depth - 1) ){
+    // Descend for menus...
+    Level = l + 1;
+    ClickedBox = HoverBox;
+    Menus[Level].item = StartAt + 1;
+    Menus[Level].iHover = HoverBox;
+    Menus[Level - 1].iSel = HoverBox;
+    HoverBox = -1;
+  }
+  Menus[Level].iSel = -1;
+  TargetName = GetMenuNameByLevel(2) + "_Menu";
+  var PostFix = "";
+  if( l > 2 ){
+    TargetName = TargetName + "_" + GetMenuNameByLevel(3);
+    TargetName = TargetName + "#";
+    PostFix = GetMenuNameByIndex(StartAt);
+  } else if( l > 1 ){
+    TargetName = TargetName + "#";
+    PostFix = GetMenuNameByIndex(StartAt);
+  }
+  MenuComponent = PostFix;
+  TargetName += PostFix;
+  //PostFix = PostFix.replace(/ /g,"_");
+}
+
 /**
- *
+ * Receive a mouse click on a menu item.
  * @param event
  */
 function UpdateMenuSelection( event ){
@@ -934,38 +997,11 @@ function UpdateMenuSelection( event ){
     HoverBox = GetHoverBoxInner( event, Gui, l );
     LastHover = -2;
     if( HoverBox >= 0 ){
-      Level = l;
-      var StartAt = Gui.Boxes[l][HoverBox][5];
-      // if it has descendants...
-      if( (StartAt+1) < App.Menus.length &&
-        App.Menus[StartAt].depth ==
-        (App.Menus[StartAt + 1].depth - 1) ){
-        // Descend for menus...
-        Level = l+1;
-        ClickedBox = HoverBox;
-        Menus[Level].item = StartAt + 1;
-        Menus[Level].iHover = HoverBox;
-        Menus[Level-1].iSel = HoverBox;
-        HoverBox = -1;
-      }
-      Menus[Level].iSel = -1;
-      TargetName = GetMenuNameByLevel( 2 )+"_Menu";
-      var PostFix = "";
-      if( l > 2 ){
-        TargetName = TargetName + "_" + GetMenuNameByLevel(3);
-        TargetName = TargetName + "#";
-        PostFix = GetMenuNameByIndex( StartAt );
-      }
-      else if (l > 1 ){
-        TargetName = TargetName + "#";
-        PostFix = GetMenuNameByIndex(StartAt);
-      }
-      MenuComponent = PostFix;
-      TargetName += PostFix;
-      //PostFix = PostFix.replace(/ /g,"_");
+      SetToHoverBox( l );
       return;
     }
   }
+  // was not in a menu, go look for a click on a label.
   MenuMode = false;
   Level = 0;
   UpdateSelection(event );
@@ -1224,6 +1260,8 @@ function OnSpecial( event ){
     fileActionLoader(Async, "EVAL", "./raw/raw_tooltips.txt");
   }
   else {
+    // action=raw to get unprocessed file from wiki.
+    // time=nMillis to avoid issues with cached content.
     fileActionLoader(Async, "EVAL",
       "https://wiki.audacityteam.org/wiki/WIT_Audacity_Menus?action=raw&time=" +
       nMillis);
@@ -1305,6 +1343,23 @@ function OnGetAutomationReference(arg){
 function OnGetPreferencesReference(arg){
   DownloadDurl( "PreferencesReference.txt", DurlOfText(App.PreferencesReference()) );
 }
+function OnGetMenuImages(arg){
+  DownloadDurl( "PreferencesReference.txt", DurlOfText(App.PreferencesReference()) );
+  DownloadDurl( "AutomationReference.txt", DurlOfText(App.AutomationReference()) );
+}
+
+var mmi = 0;
+function OnNextMenuItem(arg){
+  SetMenuTo( 0, mmi );
+  mmi = (mmi+1)%12;
+}
+
+var smmi = 0;
+function OnNextSubMenuItem(arg){
+  SetMenuTo( 1, smmi );
+  smmi = (smmi+1)%4;
+}
+
 
 ///////////////////////////////////////////////////////////////////
 
