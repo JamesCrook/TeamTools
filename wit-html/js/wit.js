@@ -358,6 +358,13 @@ function CleanTip( tip ){
   var str = tip.replace( /'''/g, "" );
   str = str.replace( /''/g, "" );
   str = str.replace( /\[\[(.*?)\|(.*?)\]\]/g, "$2" );
+  str = str.replace( /\[\[(.*?)\]\]/g, "$1" );
+  return str;
+}
+
+
+function CleanPageName( name ){
+  var str = name.replace( /\//g, "_" );
   return str;
 }
 
@@ -1644,6 +1651,7 @@ function MakeMenuMap(from, prefix, priorRects, xIn, yIn){
   var indent = Box.depth + descend;
 
   name = Box.label.replace(/ /g, '_');
+  name = name.replace(/\//g, '_');
   if( indent == 0 )
     MenuName = "Menu Reference"; else if( indent == 1 )
     MenuName = prefix + name + " Menu"; else
@@ -1697,10 +1705,14 @@ function MakeMenuMap(from, prefix, priorRects, xIn, yIn){
         }
 
         // if has submenu...
-        if( Box.flags == 1 )
+        if( indent == 0 )
+          innerRects += rectString(x, y, x + width, y + 22,
+            Box.label + " Menu", CleanTip(Tip));
+        else if( Box.flags == 1 )
           innerRects +=
-            rectString(x, y, x + width, y + 22, MenuName + ': ' + Box.label,
-              CleanTip(Tip)); else
+            rectString(x, y, x + width, y + 22, MenuName + ': ' +
+              CleanPageName(Box.label), CleanTip(Tip));
+        else
           innerRects += rectString(x, y, x + width, y + 22,
             MenuName + '#' + CleanAnchor(Box.label), CleanTip(Tip));
       }
@@ -2007,17 +2019,17 @@ Audacity.ToolsImap = function(){
  */
 Audacity.MenuImap = function(){
 
-  /*HEREDOC
-   </noinclude><includeonly>{{#switch: {{{menu}}}
-   HEREDOC*/
+/*HEREDOC
+</noinclude><includeonly>{{#switch: {{{menu}}}
+HEREDOC*/
 
   var pieces;
 
-  /*HEREDOC
-   |#default=
-   {{ednote|This ednote will automagically be replaced by the Annotated
-   menu {{{menu}}}.png, when it is ready}}}}</includeonly>
-   HEREDOC*/
+/*HEREDOC
+|#default=
+{{ednote|This ednote will automagically be replaced by the Annotated
+menu {{{menu}}}.png, when it is ready}}}}</includeonly>
+HEREDOC*/
 
   pieces = Audacity.MenuImap.toString().split( "HEREDOC" );
   JoinTipsIntoMenus();
