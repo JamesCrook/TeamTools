@@ -1578,6 +1578,31 @@ function JoinCommandsIntoMenus(){
 
 /**
  *
+ * @param strings
+ * @param cols
+ * @returns {string}
+ */
+function BlueTable( strings, cols ){
+  var str = "\r\n";
+  str += '::<table width="95%" style="border-color:#B7CEEC; border-style:' +
+    ' solid" cellpadding=10px>\r\n';
+  var rows = Math.ceil(strings.length / cols);
+  for(i=0;i<rows;i++){
+    str += (i%2==0) ? '<tr style="background-color:#ddeeff" valign="top">\r\n'
+      : '<tr valign="top">\r\n';
+    for(j=0;j<cols;j++){
+      var k = i + (rows)*j;
+      str += '<td width="25%">' + (( k >= strings.length ) ?
+          "" : strings[k])+ '</td>\r\n'
+    }
+    str += '</tr>\r\n';
+  }
+  str += '</table>\r\n';
+  return str;
+}
+
+/**
+ *
  * @returns {string}
  */
 function MakeToolMap(){
@@ -1782,6 +1807,31 @@ function MakeMenuMap(from, prefix, priorRects, xIn, yIn){
   }
   return results;
 }
+
+/**
+ *
+ * @returns {string}
+ */
+function MakeLittleTable(){
+  var strs = [];
+  var str = '';
+  var name = '';
+  for(i=0;i< App.Menus.length;i++){
+    var Box = App.Menus[i];
+    if( Box.depth ==0  ){
+      if( i!= 0 )
+        strs.push(str);
+      name = Box.label;
+      str = "'''[[#"+ CleanAnchor(Box.label) + "_menu|" + Box.label + " Menu:]]'''<br>";
+    }
+    else if( Box.flags == 1 )
+      str += "[[#"+CleanAnchor(name+"_"+Box.label+"_submenu")+"|"+Box.label+"]], ";
+  }
+  strs.push(str+"\r\n");
+  return BlueTable( strs, 4 );;
+
+}
+
 /**
  * returns all menus starting at item from, or the empty string.
  * If in automation mode, only the menu items with an id are used.
@@ -1815,7 +1865,10 @@ function MakeKeyboardReference(from, prefix, type){
     if( Name.indexOf("---") >=0 )
       ;
     else if( boxIndent == indent ){
-      str += "<div id=\""+lowName+"\"></div>\r\n";
+      if( indent < 1 )
+        str += "<div id=\""+lowName+"_menu\"></div>\r\n";
+      else
+        str += "<div id=\""+CleanAnchor( prefix ) + "_" + lowName+"_submenu\"></div>\r\n";
       if( Box.depth == 0 )
         str += "==[["+Name+"_Menu|"+Name+" Menu]]==\r\n";
       if( Box.depth == 1 )
@@ -2068,7 +2121,8 @@ Audacity.NyquistWrappers = function(){
  */
 Audacity.KeyboardReference = function(){
   JoinTipsIntoMenus();
-  return MakeKeyboardReference(0,"", "keyboard");
+  return MakeLittleTable() + "\r\n\r\n" +
+     MakeKeyboardReference(0,"", "keyboard");
 };
 /**
  * Make the Automation (commands) reference
