@@ -299,11 +299,11 @@ function RedrawClicker(){
   var y1 = Channels[0][1];
   for( i = 0; i < G.Boxes[LL].length; i++ ){
     DrawClicky( G, Channels[i%Channels.length], G.Boxes[LL][i] )
-//    var x = G.Boxes[LL][i][5];
-//    var BX = App.Boxes[ x ];
+    var x = G.Boxes[LL][i][5];
+    var BX = App.Boxes[ x ];
     //console.log( BX );
-//    var BC =  G.Boxes[LL][i];
-//    BX.labelBox = [ BC[0], BC[1], BC[2], BC[3] ];
+    var BC =  G.Boxes[LL][i];
+    BX.labelBox = [ BC[0], BC[1], BC[2], BC[3] ];
   }
 
   var x2 = BoxRow[2];
@@ -677,7 +677,14 @@ function ConnectBoxes(level, boxIx, style){
   if( y1 > y2 ){
     y2 = b2[3];
     y1 = b1[1];
+    y1+=10;
+    y2-=5;
   }
+  else {
+    y1 -= 10;
+    y2 += 5;
+  }
+
   var xmin;
   var xmax;
   var h;
@@ -725,7 +732,7 @@ function ConnectBoxes(level, boxIx, style){
   }
   // negative style shows a grey head.
   if( !bImproved ){
-    style = -style;
+    //style = -style;
   }
 
   DrawArrow( Vec2(x2,y2), Vec2( x1,y1), style  );
