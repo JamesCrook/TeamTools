@@ -109,12 +109,19 @@ Audacity.Boxes = [
   { "depth": 3,"box":[ 219,  56, 266, 103], "label":"Skip to End" },
   { "depth": 3,"box":[ 277,  56, 324, 103], "label":"Record" },
 
-  { "depth": 2,"box":[   3, 137, 617, 163], "label":"Device Toolbar" },
-  { "depth": 3,"box":[   3, 137,  12, 163], "label":"Grabber" },
-  { "depth": 3,"box":[  14, 139, 117, 161], "label":"Audio Host" },
-  { "depth": 3,"box":[ 143, 139, 309, 161], "label":"Recording Device" },
-  { "depth": 3,"box":[ 309, 139, 415, 161], "label":"Recording Channels" },
-  { "depth": 3,"box":[ 442, 139, 597, 161], "label":"Playback Device" },
+//  { "depth": 2,"box":[   3, 137, 617, 163], "label":"Device Toolbar" },
+//  { "depth": 3,"box":[   3, 137,  12, 163], "label":"Grabber" },
+//  { "depth": 3,"box":[  14, 139, 117, 161], "label":"Audio Host" },
+//  { "depth": 3,"box":[ 143, 139, 309, 161], "label":"Recording Device" },
+//  { "depth": 3,"box":[ 309, 139, 415, 161], "label":"Recording Channels" },
+//  { "depth": 3,"box":[ 442, 139, 597, 161], "label":"Playback Device" },
+
+  { "depth":2, "label":"Device Toolbar", "id":9, "box":  [ 3, 137, 857, 163 ] },
+  { "depth":3, "label":"Grabber", "id":9, "box": [ 3, 137, 12, 163 ] },
+  { "depth":3, "label":"Audio Host", "id":-31976, "box":  [ 14, 139, 161, 161 ] },
+  { "depth":3, "label":"Recording Device", "id":-31974, "box":  [ 187, 139, 432, 161 ] },
+  { "depth":3, "label":"Recording Channels", "id":-31973, "box":  [ 433, 139, 584, 161 ] },
+  { "depth":3, "label":"Playback Device", "id":-31971, "box": [ 610, 139, 852, 161 ] },
 
   { "depth": 2,"box":[ 331,  53, 424, 107], "label":"Tools Toolbar" },
   { "depth": 3,"box":[ 331,  53, 340, 107], "label":"Grabber" },
@@ -136,20 +143,37 @@ Audacity.Boxes = [
   { "depth": 3,"box":[ 435,  53, 462,  79], "label":"Record Options" },
   { "depth": 3,"box":[ 462,  53, 852,  79], "label":"Record Meter" },
 
-  { "depth": 2,"box":[ 327, 109, 689, 135], "label":"Edit Toolbar" },
-  { "depth": 3,"box":[ 327, 109, 336, 135], "label":"Grabber" },
-  { "depth": 3,"box":[ 338, 109, 364, 135], "label":"Cut" },
-  { "depth": 3,"box":[ 365, 109, 391, 135], "label":"Copy" },
-  { "depth": 3,"box":[ 392, 109, 418, 135], "label":"Paste" },
-  { "depth": 3,"box":[ 419, 109, 445, 135], "label":"Trim" },
-  { "depth": 3,"box":[ 446, 109, 472, 135], "label":"Silence" },
-  { "depth": 3,"box":[ 487, 109, 513, 135], "label":"Undo" },
-  { "depth": 3,"box":[ 514, 109, 540, 135], "label":"Redo" },
-  { "depth": 3,"box":[ 555, 109, 581, 135], "label":"Zoom In" },
-  { "depth": 3,"box":[ 582, 109, 608, 135], "label":"Zoom Out" },
-  { "depth": 3,"box":[ 609, 109, 635, 135], "label":"Fit selection" },
-  { "depth": 3,"box":[ 636, 109, 662, 135], "label":"Fit project" },
-  { "depth": 3,"box":[ 663, 109, 689, 135], "label":"Zoom Toggle" },
+//  { "depth": 2,"box":[ 327, 109, 689, 135], "label":"Edit Toolbar" },
+//  { "depth": 3,"box":[ 327, 109, 336, 135], "label":"Grabber" },
+//  { "depth": 3,"box":[ 338, 109, 364, 135], "label":"Cut" },
+//  { "depth": 3,"box":[ 365, 109, 391, 135], "label":"Copy" },
+//  { "depth": 3,"box":[ 392, 109, 418, 135], "label":"Paste" },
+//  { "depth": 3,"box":[ 419, 109, 445, 135], "label":"Trim" },
+//  { "depth": 3,"box":[ 446, 109, 472, 135], "label":"Silence" },
+//  { "depth": 3,"box":[ 487, 109, 513, 135], "label":"Undo" },
+//  { "depth": 3,"box":[ 514, 109, 540, 135], "label":"Redo" },
+//  { "depth": 3,"box":[ 555, 109, 581, 135], "label":"Zoom In" },
+//  { "depth": 3,"box":[ 582, 109, 608, 135], "label":"Zoom Out" },
+//  { "depth": 3,"box":[ 609, 109, 635, 135], "label":"Fit selection" },
+//  { "depth": 3,"box":[ 636, 109, 662, 135], "label":"Fit project" },
+//  { "depth": 3,"box":[ 663, 109, 689, 135], "label":"Zoom Toggle" },
+
+
+  { "depth":2, "label":"Edit Toolbar", "id":6, "box":  [ 331, 109, 693, 135 ] },
+  { "depth":3, "label":"Grabber", "id":6, "box":  [ 331, 109, 340, 135 ] },
+  { "depth":3, "label":"Cut", "id":11300, "box":  [ 342, 109, 368, 135 ] },
+  { "depth":3, "label":"Copy", "id":11301, "box":  [ 369, 109, 395, 135 ] },
+  { "depth":3, "label":"Paste", "id":11302, "box":  [ 396, 109, 422, 135 ] },
+  { "depth":3, "label":"Trim", "id":11303, "box": [ 423, 109, 449, 135 ] },
+  { "depth":3, "label":"Silence", "id":11304, "box": [ 450, 109, 476, 135 ] },
+  { "depth":3, "label":"Undo", "id":11305, "box": [ 491, 109, 517, 135 ] },
+  { "depth":3, "label":"Redo", "id":11306, "box": [ 518, 109, 544, 135 ] },
+  { "depth":3, "label":"Zoom In", "id":11307, "box": [ 559, 109, 585, 135 ] },
+  { "depth":3, "label":"Zoom Out", "id":11308, "box": [ 586, 109, 612, 135 ] },
+  { "depth":3, "label":"Fit selection", "id":11310, "box": [ 613, 109, 639, 135 ] },
+  { "depth":3, "label":"Fit project", "id":11311, "box": [ 640, 109, 666, 135 ] },
+  { "depth":3, "label":"Zoom Toggle", "id":11309, "box": [ 667, 109, 693, 135 ] },
+
 
 
   { "depth": 2,"box":[ 426,  81, 857, 107], "label":"Playback Meter Toolbar" },
@@ -158,10 +182,18 @@ Audacity.Boxes = [
   { "depth": 3,"box":[ 462,  81, 852, 107], "label":"Play Meter" },
 
 
-  { "depth": 2,"box":[ 691, 109, 830, 135], "label":"Play-at-Speed Toolbar" },
-  { "depth": 3,"box":[ 691, 109, 700, 135], "label":"Grabber" },
-  { "depth": 3,"box":[ 702, 109, 728, 135], "label":"Play-at-Speed" },
-  { "depth": 3,"box":[ 729, 110, 828, 134], "label":"Playback Speed" },
+//  { "depth": 2,"box":[ 691, 109, 830, 135], "label":"Play-at-Speed Toolbar" },
+//  { "depth": 3,"box":[ 691, 109, 700, 135], "label":"Grabber" },
+//  { "depth": 3,"box":[ 702, 109, 728, 135], "label":"Play-at-Speed" },
+//  { "depth": 3,"box":[ 729, 110, 828, 134], "label":"Playback Speed" },
+
+
+  { "depth":2, "label":"Play-at-Speed Toolbar", "id":7, "box": [ 695, 109, 857, 135 ] },
+  { "depth":3, "label":"Grabber", "id":7, "box":  [ 695, 109, 704, 135 ] },
+  { "depth":3, "label":"Play-at-Speed", "id":0, "box": [ 706, 109, 732, 135 ] },
+  { "depth":3, "label":"Playback Speed", "id":1, "box":  [ 733, 110, 850, 134 ] },
+
+
 
   { "depth": 1,"box":[   2, 165, 865, 207], "label":"Timeline" },
 //  { "depth": 2,"box":[   3, 165,  13, 193], "label":"Grabber" }, // It's a
@@ -216,6 +248,162 @@ Audacity.Boxes = [
   { "depth": 2,"box":[  10, 562, 150, 584], "label":"Status" },
   { "depth": 2,"box":[ 842, 562, 865, 584], "label":"Grab Handle"},
 
+
+
+/*
+  [
+    { "depth":0,
+      "name":"Audacity Window", "box":
+      [ 2233, 317, 3111, 1031 ] },
+    { "depth":1, "label":"MenuBar", "box":
+      [ 2, 32, 864, 53 ] },
+    { "depth":1, "label":"status_line", "id":0, "box":
+      [ 2, 685, 864, 707 ] },
+    { "depth":1, "label":"Panel", "id":-31950, "box":
+      [ 2, 208, 864, 627 ] },
+    { "depth":2, "label":"Track Panel", "id":1003, "box":
+      [ 2, 208, 847, 610 ] },
+    { "depth":3, "label":"VRuler", "box":
+      [ 102, 213, 132, 355 ] },
+    { "depth":2,
+      "label":"Horizontal Scrollbar", "id":1001, "box":
+      [ 138, 611, 847, 627 ] },
+    { "depth":2,
+      "label":"Vertical Scrollbar", "id":1002, "box":
+      [ 848, 208, 864, 610 ] },
+    { "depth":1, "label":"Panel", "id":-31991, "box":
+      [ 2, 52, 864, 207 ] },
+    { "depth":2, "label":"ToolDock", "id":1, "box":
+      [ 2, 52, 864, 164 ] },
+    { "depth":3,
+      "label":"Audacity Transport Toolbar", "id":0, "box":
+      [ 3, 53, 329, 107 ] },
+    { "depth":4, "label":"Grabber", "id":0, "box":
+      [ 3, 53, 12, 107 ] },
+    { "depth":4, "label":"*", "id":11000, "box":
+      [ 19, 56, 66, 103 ] },
+    { "depth":4,
+      "label":"*Play (Space) / Loop Play (Shift+Space)", "id":11001, "box":
+      [ 69, 56, 116, 103 ] },
+    { "depth":4, "label":"*Stop", "id":11002, "box":
+      [ 119, 56, 166, 103 ] },
+    { "depth":4,
+      "label":"*Skip to Start (Home) / Select to Start (Shift+Home)", "id":11004, "box":
+      [ 169, 56, 216, 103 ] },
+    { "depth":4,
+      "label":"*Skip to End (End) / Select to End (Shift+End)", "id":11003, "box":
+      [ 219, 56, 266, 103 ] },
+    { "depth":4,
+      "label":"*Record (R) / Record New Track (Shift+R)", "id":11005, "box":
+      [ 277, 56, 324, 103 ] },
+    { "depth":3,
+      "label":"Audacity Tools Toolbar", "id":1, "box":
+      [ 331, 53, 424, 107 ] },
+    { "depth":4, "label":"Grabber", "id":1, "box":
+      [ 331, 53, 340, 107 ] },
+    { "depth":4,
+      "label":"*Selection Tool (F1)", "id":11200, "box":
+      [ 342, 53, 368, 79 ] },
+    { "depth":4,
+      "label":"*Envelope Tool (F2)", "id":11201, "box":
+      [ 370, 53, 396, 79 ] },
+    { "depth":4,
+      "label":"*Draw Tool (F3)", "id":11202, "box":
+      [ 398, 53, 424, 79 ] },
+    { "depth":4,
+      "label":"*Zoom Tool (F4)", "id":11203, "box":
+      [ 342, 81, 368, 107 ] },
+    { "depth":4,
+      "label":"*Time Shift Tool (F5)", "id":11204, "box":
+      [ 370, 81, 396, 107 ] },
+    { "depth":4,
+      "label":"*Multi Tool (F6)", "id":11205, "box":
+      [ 398, 81, 424, 107 ] },
+    { "depth":3,
+      "label":"Audacity Recording Meter Toolbar", "id":3, "box":
+      [ 426, 53, 857, 79 ] },
+    { "depth":4, "label":"Grabber", "id":3, "box":
+      [ 426, 53, 435, 79 ] },
+    { "depth":4, "label":"Record Meter", "id":-31986, "box":
+      [ 437, 53, 852, 79 ] },
+    { "depth":3,
+      "label":"Audacity Playback Meter Toolbar", "id":4, "box":
+      [ 426, 81, 857, 107 ] },
+    { "depth":4, "label":"Grabber", "id":4, "box":
+      [ 426, 81, 435, 107 ] },
+    { "depth":4, "label":"Play Meter", "id":-31984, "box":
+      [ 437, 81, 852, 107 ] },
+    { "depth":3,
+      "label":"Audacity Mixer Toolbar", "id":5, "box":
+      [ 3, 109, 329, 135 ] },
+    { "depth":4, "label":"Grabber", "id":5, "box":
+      [ 3, 109, 12, 135 ] },
+    { "depth":4,
+      "label":"Recording Volume", "id":-31981, "box":
+      [ 39, 110, 167, 134 ] },
+    { "depth":4,
+      "label":"Playback Volume", "id":-31979, "box":
+      [ 193, 110, 322, 134 ] },
+
+
+    { "depth":2, "label":"Timeline", "id":-31951, "box":
+      [ 2, 165, 864, 207 ] },
+    { "depth":3, "label":"Grabber", "id":-31951, "box":
+      [ 3, 165, 13, 191 ] },
+    { "depth":3, "label":"*Click to pin", "id":7006, "box":
+      [ 14, 165, 40, 191 ] },
+    { "depth":1, "label":"ToolDock", "id":2, "box":
+      [ 2, 628, 864, 684 ] },
+    { "depth":2,
+      "label":"Audacity Selection Toolbar", "id":10, "box":
+      [ 3, 629, 676, 683 ] },
+    { "depth":3, "label":"Grabber", "id":10, "box":
+      [ 3, 629, 12, 683 ] },
+    { "depth":3,
+      "label":"Project Rate (Hz)", "id":-31960, "box":
+      [ 19, 638, 110, 652 ] },
+    { "depth":3, "label":"Snap-To", "id":-31958, "box":
+      [ 124, 638, 170, 652 ] },
+    { "depth":3, "label":"Audio Position", "id":-31956, "box":
+      [ 210, 638, 288, 652 ] },
+    { "depth":3,
+      "label":"Project Rate (Hz)", "id":2701, "box":
+      [ 19, 658, 98, 680 ] },
+    { "depth":3, "label":"Snap To", "id":2702, "box":
+      [ 124, 658, 196, 680 ] },
+    { "depth":3, "label":"Audio Position", "id":2709, "box":
+      [ 212, 660, 359, 681 ] },
+    { "depth":3, "label":"Show", "id":2704, "box":
+      [ 371, 634, 670, 656 ] },
+    { "depth":3, "label":"Start", "id":2705, "box":
+      [ 373, 660, 520, 681 ] },
+    { "depth":3, "label":"End", "id":2708, "box":
+      [ 526, 660, 673, 681 ] },
+    { "depth":1, "label":"Get Info", "id":-31926, "box":
+      [ 322, 259, 544, 456 ] },
+    { "depth":2,
+      "label":"Applying Get Info...", "id":-31925, "box":
+      [ 345, 305, 521, 320 ] },
+    { "depth":2, "label":"gauge", "id":-31924, "box":
+      [ 340, 336, 526, 350 ] },
+    { "depth":2, "label":"Elapsed Time:", "id":-31923, "box":
+      [ 379, 361, 451, 376 ] },
+    { "depth":2, "label":"00:00:00", "id":-31922, "box":
+      [ 462, 361, 503, 376 ] },
+    { "depth":2,
+      "label":"Remaining Time:", "id":-31921, "box":
+      [ 362, 387, 451, 402 ] },
+    { "depth":2, "label":"00:00:00", "id":-31920, "box":
+      [ 462, 387, 503, 402 ] },
+    { "depth":2, "label":"button", "id":5101, "box":
+      [ 429, 413, 516, 438 ] },
+    { "depth":1, "label":"Long Message", "id":-31919, "box":
+      [ 300, 289, 899, 988 ] },
+    { "depth":2, "label":"text", "id":3000, "box":
+      [ 315, 327, 888, 934 ] },
+    { "depth":2, "label":"button", "id":5100, "box":
+      [ 793, 945, 880, 970 ] } ]
+*/
 ];
 
 // These are the menu items.
