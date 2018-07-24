@@ -150,7 +150,7 @@ function GuiInit(){
   Gui.Canvas = document.getElementById("GuiCanvas");
   Gui.Ctx = Gui.Canvas.getContext("2d");
   Gui.DoesFade = true;
-  Gui.Rect = [0,0,866,587];
+  Gui.Rect = [0,0,1225,787];
   Gui.BackDraw = function() { Gui.Ctx.drawImage(Gui.Img, 0, 0);};
   Gui.FrontDraw = function( x,y,w,h ){
     Gui.Ctx.drawImage(Gui.Img, x, y, w, h, x, y, w, h);
@@ -168,6 +168,7 @@ function ClickerInit(){
     var G = Clicker;
     ClearWhiteAbsoluteBox( G, G.Rect);
   };
+  // RedrawClicker draws the actual Labels
   Clicker.FrontDraw = RedrawClicker;
 }
 /**
@@ -739,8 +740,14 @@ function ConnectBoxes(level, boxIx, style){
 }
 function MayRefresh(){
   if( LastHover != HoverBox ){
-    RefreshImage(Gui);
-    RefreshImage(Clicker);
+    if( MenuMode ){
+      RefreshImage(Clicker);
+      RefreshImage(Gui);
+    } else{
+      RefreshImage(Gui);
+      RefreshImage(Clicker);
+    }
+
     LastHover = HoverBox;
   }
 }
