@@ -1619,21 +1619,21 @@ function BlueTable( strings, cols ){
  *
  * @returns {string}
  */
-function MakeToolMap(){
+function MakeToolMap( lll ){
   var i;
   var BoxEnd = null;
   var FB = null;
   var str = "";
   for(i=0;i< App.Boxes.length;i++){
     var Box = App.Boxes[i];
-    if( Box.depth == 1 ){
+    if( Box.depth == lll ){
       var name = Box.label.replace(/ /g, '');
       str += "|" + name + "=:<imagemap>\n";
       str += "Image:" + name + "Annotated.png\r\n";
       str += "desc none\r\n";
       BoxEnd = Box;
     }
-    if( Box.depth == 2 ){
+    if( Box.depth == lll+1 ){
       var mainBox = Box.box;
       var labelBox = Box.labelBox;
       // offset boxes by first actual location...
@@ -1652,7 +1652,7 @@ function MakeToolMap(){
           "For...");
       }
     }
-    if( BoxEnd && ( (i == App.Boxes.length -1 ) || App.Boxes[i+1].depth==1)){
+    if( BoxEnd && ( (i == App.Boxes.length -1 ) || App.Boxes[i+1].depth==lll)){
       str += rectString(BoxEnd.box[0], BoxEnd.box[1], BoxEnd.box[2], BoxEnd.box[3],
         "Toolbars Overview#upper_tooldock",
         BoxEnd.label + " - click on the image to see this toolbar displayed" +
@@ -2078,7 +2078,7 @@ Audacity.ToolsImap = function(){
 
   pieces = Audacity.ToolsImap.toString().split( "HEREDOC" );
 
-  return pieces[1] + MakeToolMap() + pieces[3];
+  return pieces[1] + MakeToolMap(0) +MakeToolMap(1) + MakeToolMap(2) + MakeToolMap(3) +pieces[3];
 };
 /**
  * Wiki template for menus image map 'here doc'
