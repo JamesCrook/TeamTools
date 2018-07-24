@@ -293,7 +293,7 @@ function RedrawClicker(){
   var Spread = Math.min( Math.max( BoxRow[1]-70, 10 ), 30);
   Channels.push( [Start, BoxRow[1]-40-Spread, 0, 30] );
   // If there is vertical space, then a second row.
-  if( Gui.Rect[3]-BoxRow[3] > 83 )
+  if( Gui.Rect[3]-BoxRow[3] > 283 )
     Channels.push( [Start, BoxRow[3]+10+Spread, 0, 30] );
 
   var x1 = Channels[0][0];
