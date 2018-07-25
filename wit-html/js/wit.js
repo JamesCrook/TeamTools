@@ -1775,8 +1775,8 @@ function MakeMenuMap(from, prefix, priorRects, xIn, yIn){
           // dy = -extraY would align bottom to bottom.
 
           // dy1 is at most 0.  (place adjacent).
-          // dy1 is at least 49-y (place at start)
-          dy1 = Math.max(49 - y, Math.min(0, -extraY));
+          // dy1 is at least 27-y (place at start)
+          dy1 = Math.max(27 - y, Math.min(0, -extraY));
         }
 
         SubItems.push({ 'i': i, 'x': x + dx1, 'y': y + dy1 });
