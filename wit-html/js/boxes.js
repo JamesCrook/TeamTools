@@ -239,7 +239,7 @@ Audacity.Boxes = [
   { "depth": 1,"box":[   3, 506, 679, 560], "label":"Selection Toolbar" },
   { "depth": 2,"box":[   3, 506,  12, 560], "label":"Grabber" },
   { "depth": 2,"box":[  19, 511, 113, 557], "label":"Project Rate" },
-  { "depth": 2,"box":[ 127, 511, 199, 557], "label":"Snap To" },
+  { "depth": 2,"box":[ 127, 511, 199, 557], "label":"Snap-To" },
   { "depth": 2,"box":[ 213, 511, 362, 558], "label":"Audio Position" },
   { "depth": 2,"box":[ 376, 537, 523, 558], "label":"Start" },
   { "depth": 2,"box":[ 529, 537, 676, 558], "label":"End" },
