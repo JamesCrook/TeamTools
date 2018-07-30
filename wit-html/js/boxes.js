@@ -116,12 +116,13 @@ Audacity.Boxes = [
 //  { "depth": 3,"box":[ 309, 139, 415, 161], "label":"Recording Channels" },
 //  { "depth": 3,"box":[ 442, 139, 597, 161], "label":"Playback Device" },
 
-  { "depth":2, "label":"Device Toolbar", "id":9, "box":  [ 3, 137, 857, 163 ] },
+  { "depth":2, "label":"Device Toolbar", "id":9, "box":  [ 3, 137, 860, 163 ] },
   { "depth":3, "label":"Grabber", "id":9, "box": [ 3, 137, 12, 163 ] },
   { "depth":3, "label":"Audio Host", "id":-31976, "box":  [ 14, 139, 161, 161 ] },
   { "depth":3, "label":"Recording Device", "id":-31974, "box":  [ 187, 139, 432, 161 ] },
   { "depth":3, "label":"Recording Channels", "id":-31973, "box":  [ 433, 139, 584, 161 ] },
-  { "depth":3, "label":"Playback Device", "id":-31971, "box": [ 610, 139, 852, 161 ] },
+  { "depth":3, "label":"Playback Device", "id":-31971, "box": [ 610, 139, 850, 161 ] },
+  { "depth":3, "label":"Resizer", "id":-31971, "box": [ 850, 139, 860, 161 ] },
 
   { "depth": 2,"box":[ 331,  53, 424, 107], "label":"Tools Toolbar" },
   { "depth": 3,"box":[ 331,  53, 340, 107], "label":"Grabber" },
@@ -132,16 +133,18 @@ Audacity.Boxes = [
   { "depth": 3,"box":[ 398,  81, 424, 107], "label":"Multi Tool" },
   { "depth": 3,"box":[ 398,  53, 424,  79], "label":"Draw" },
 
-  { "depth": 2,"box":[   3, 109, 325, 135], "label":"Mixer Toolbar" },
+  { "depth": 2,"box":[   3, 109, 332, 135], "label":"Mixer Toolbar" },
   { "depth": 3,"box":[   3, 109,  12, 135], "label":"Grabber" },
   { "depth": 3,"box":[  39, 110, 168, 134], "label":"Slider Recording" },
   { "depth": 3,"box":[ 194, 110, 323, 134], "label":"Slider Playback" },
+  { "depth": 3,"box":[ 322, 110, 332, 134], "label":"Resizer" },
 
 
-  { "depth": 2,"box":[ 426,  53, 857,  79], "label":"Recording Meter Toolbar" },
+  { "depth": 2,"box":[ 426,  53, 860,  79], "label":"Recording Meter Toolbar" },
   { "depth": 3,"box":[ 426,  53, 435,  79], "label":"Grabber" },
   { "depth": 3,"box":[ 435,  53, 462,  79], "label":"Record Options" },
-  { "depth": 3,"box":[ 462,  53, 852,  79], "label":"Record Meter" },
+  { "depth": 3,"box":[ 462,  53, 850,  79], "label":"Record Meter" },
+  { "depth": 3,"box":[ 850,  53, 860,  79], "label":"Resizer" },
 
 //  { "depth": 2,"box":[ 327, 109, 689, 135], "label":"Edit Toolbar" },
 //  { "depth": 3,"box":[ 327, 109, 336, 135], "label":"Grabber" },
@@ -176,10 +179,11 @@ Audacity.Boxes = [
 
 
 
-  { "depth": 2,"box":[ 426,  81, 857, 107], "label":"Playback Meter Toolbar" },
+  { "depth": 2,"box":[ 426,  81, 860, 107], "label":"Playback Meter Toolbar" },
   { "depth": 3,"box":[ 426,  81, 435, 107], "label":"Grabber" },
   { "depth": 3,"box":[ 435,  81, 462, 107], "label":"Playback Options" },
-  { "depth": 3,"box":[ 462,  81, 852, 107], "label":"Play Meter" },
+  { "depth": 3,"box":[ 462,  81, 850, 107], "label":"Play Meter" },
+  { "depth": 3,"box":[ 850,  81, 860, 107], "label":"Resizer" },
 
 
 //  { "depth": 2,"box":[ 691, 109, 830, 135], "label":"Play-at-Speed Toolbar" },
@@ -188,10 +192,11 @@ Audacity.Boxes = [
 //  { "depth": 3,"box":[ 729, 110, 828, 134], "label":"Playback Speed" },
 
 
-  { "depth":2, "label":"Play-at-Speed Toolbar", "id":7, "box": [ 695, 109, 857, 135 ] },
+  { "depth":2, "label":"Play-at-Speed Toolbar", "id":7, "box": [ 695, 109, 860, 135 ] },
   { "depth":3, "label":"Grabber", "id":7, "box":  [ 695, 109, 704, 135 ] },
   { "depth":3, "label":"Play-at-Speed", "id":0, "box": [ 706, 109, 732, 135 ] },
-  { "depth":3, "label":"Playback Speed", "id":1, "box":  [ 733, 110, 850, 134 ] },
+  { "depth":3, "label":"Playback Speed", "id":1, "box":  [ 733, 110, 850, 135 ] },
+  { "depth":3, "label":"Resizer", "id":1, "box":  [ 850, 110, 860, 135 ] },
 
 
 
