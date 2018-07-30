@@ -1792,9 +1792,9 @@ function MakeMenuMap(from, prefix, priorRects, xIn, yIn){
 
     // if nextindent < indent (or -1 for at end), then we are done.
     if( nextIndent < indent ){
-      innerRects += rectString(0, 0,1000,1000, "Menu_Reference",
-        "The Menus");
       str += innerRects;
+      str += rectString(0, 0,1000,1000, "Menu_Reference",
+        "The Menus");
       str += "</imagemap>\n";
       str += "{{ClickTip|x=" + (x + width - 50) + "|y=15}}\r\n\r\n\r\n";
       str += "&nbsp;\r\n\r\n";
