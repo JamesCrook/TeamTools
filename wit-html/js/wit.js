@@ -1891,9 +1891,9 @@ function MakeKeyboardReference(from, prefix, type){
       else
         str += "<div id=\""+CleanAnchor( prefix ) + "_" + lowName+"_submenu\"></div>\r\n";
       if( Box.depth == 0 )
-        str += "==[["+Name+"_Menu|"+Name+" Menu]]==\r\n";
+        str += "==[["+CleanPageName(Name+"_Menu")+"|"+Name+" Menu]]==\r\n";
       if( Box.depth == 1 )
-        str += "===[["+prefix +"_Menu:_" + Name+"|"+prefix + ": " +Name+"]]===\r\n";
+        str += "===[["+CleanPageName(prefix +"_Menu:_" +Name)+"|"+prefix + ": " +Name+"]]===\r\n";
       if( Box.long )
         str += "{{note|" + Box.long + " }}\r\n";
       else
