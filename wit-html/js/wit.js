@@ -1403,12 +1403,19 @@ function OnGetAutomationReference(arg){
 function OnGetPreferencesReference(arg){
   DownloadDurl( "PreferencesReference.txt", DurlOfText(App.PreferencesReference()) );
 }
-function OnGetMenuImages(arg){
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+
+async function OnGetMenuImages(arg){
   var menu = -1;
   while( (menu = NextMenus( menu)) >= 0 ){
     if( !Annotated.available )
       return;
     DownloadDurl( Annotated.name + ".png", DurlOfAnnotatedImage());
+    await sleep(300);
   }
 }
 
