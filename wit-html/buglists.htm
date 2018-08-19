@@ -147,6 +147,15 @@
   }
 ];
 
+        function fixedThisRelease ( value ){
+            if( value["Resolution"] == "---" )
+                return false;
+            if( value["Bug ID"] > 1841 ) // was QUICKFIXED.
+                return false;
+            return value["Changed"] > "2018-02-00";
+
+        }
+
         function isMac(value ){
             if( value["Severity"] == "RepeatableAll" )
                     return true;
@@ -210,7 +219,7 @@
         var adviceFields = ["Bug ID", "OS",  "Priority", "Summary", "Workaround","Bug ID"];
         var someFields = ["Bug ID", "Priority", "Resolution","Summary","Bug ID"];
         var manyFields = ["Bug ID", "Priority", "Resolution","Summary", "Workaround","Bug ID"];
-        var allFields = ["Bug ID", "OS", "Priority", "Resolution","Summary", "Workaround","Bug ID"];
+        var allFields = ["Bug ID", "OS", "Priority", "Resolution","Summary", "Workaround","Group","Bug ID"];
 
         function tableFromArray( values, cols ){
             var result = "<table>\n";
@@ -230,6 +239,9 @@
         function arrayFromIssues( issues, fields ){
             var results = [];
             for( i=0;i<issues.length;i++){
+                // Fixup Other -> All
+                if( issues[i]["OS"] == "Other" )
+                    issues[i]["OS"] = "All";
                 for(j=0;j<fields.length;j++){
                     var temp = issues[i][fields[j]];
                     if( fields[j] == "Bug ID" ){
@@ -300,6 +312,7 @@
     <li><button onclick = "updateTable( andFunc( [isOpen, isMac,     isNotAccessibility]), allFields);">View</button> Other Live Issues on Mac.</li>
     <li><button onclick = "updateTable( andFunc( [isOpen, isLinux,   isNotAccessibility]), allFields);">View</button> Other Live Issues on Linux.</li>
     <li><button onclick = "updateTable( andFunc( [isOpen, isWindows, isNotAccessibility]), allFields);">View</button> Other Live Issues on Windows.</li>
+    <li><button onclick = "updateTable( fixedThisRelease,                                  allFields);">View</button> Fixed This Release.</li>
 </ul>
 <div id="tableDiv"></div>
 </body>
