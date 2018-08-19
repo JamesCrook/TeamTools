@@ -147,13 +147,53 @@
   }
 ];
 
+        function isMac(value ){
+            if( value["Severity"] == "RepeatableAll" )
+                    return true;
+            return value["OS"].indexOf( "OS X")!==-1;
+        }
+        function isLinux(value ){
+            if( value["Severity"] == "RepeatableAll" )
+                return true;
+            return value["OS"].indexOf( "Linux")!==-1;
+        }
+        function isWindows(value ){
+            if( value["Severity"] == "RepeatableAll" )
+                return true;
+            return value["OS"].indexOf( "Windows")!==-1;
+        }
+
+        function isClosed( value ){
+            return value["Resolution"] != "---";
+        }
+        function isOpen( value ){
+            return value["Resolution"] == "---";
+        }
+        function isAccessibility( value ){
+            return value["Group"] == "Accessibility";
+        }
+        function isNotAccessibility( value ){
+            return value["Group"] != "Accessibility";
+        }
 
         function bigIssues( value ){
+            if( isClosed( value ) )
+               return false;
             return value["Bug ID"] > 1930;
         }
 
         function bug33Issues( value ){
+            if( isClosed( value ) )
+                return false;
             return value["Severity"] == "Accessibility";
+        }
+        function configuredFilter( value ){
+            return false;
+        }
+        function configuredFields(){
+            var results=["Bug ID"];
+            results = ["Bug ID", "Priority","Summary"];
+            return results;
         }
 
         function filterIssues( filterFunction ){
@@ -166,7 +206,11 @@
         }
 
         var fewFields = ["Bug ID", "Summary"];
-        var adviceFields = ["Bug ID", "Priority", "Summary", "Workaround"];
+        var platformFields = ["Bug ID", "Priority", "Summary", "Workaround","Bug ID"];
+        var adviceFields = ["Bug ID", "OS",  "Priority", "Summary", "Workaround","Bug ID"];
+        var someFields = ["Bug ID", "Priority", "Resolution","Summary","Bug ID"];
+        var manyFields = ["Bug ID", "Priority", "Resolution","Summary", "Workaround","Bug ID"];
+        var allFields = ["Bug ID", "OS", "Priority", "Resolution","Summary", "Workaround","Bug ID"];
 
         function tableFromArray( values, cols ){
             var result = "<table>\n";
@@ -186,8 +230,15 @@
         function arrayFromIssues( issues, fields ){
             var results = [];
             for( i=0;i<issues.length;i++){
-                for(j=0;j<fields.length;j++)
-                    results.push( issues[i][fields[j]] );
+                for(j=0;j<fields.length;j++){
+                    var temp = issues[i][fields[j]];
+                    if( fields[j] == "Bug ID" ){
+                        // Include hyperlink to issue.
+                        temp = '<a href="https://bugzilla.audacityteam.org/show_bug.cgi?id=' +
+                        temp + '">' + temp + '</a>';
+                    }
+                    results.push(temp);
+                }
             }
             return results;
         }
@@ -197,7 +248,8 @@
             var array  = arrayFromIssues( issues, fields );
             var table  = tableFromArray( array, fields.length );
             var tableDiv = document.getElementById("tableDiv");
-            tableDiv.innerHTML = table;
+            var preamble = " "+issues.length + " issues<br><br>";
+            tableDiv.innerHTML = preamble + table;
         }
 
         function OnClick1(){
@@ -206,16 +258,49 @@
         function OnClick2(){
             updateTable( bug33Issues, adviceFields);
         }
+        function OnClick3(){
+            updateTable( isClosed, manyFields);
+        }
+        function OnClick4(){
+            updateTable( configuredFilter, configuredFields());
+        }
+
+        function orFunc( funcs ){
+            return function( issue ){
+                var i;
+                for(i=0;i<funcs.length;i++){
+                    if( funcs[i]( issue ) )
+                       return true;
+                }
+                return false;
+            };
+        }
+        function andFunc( funcs ){
+            return function( issue ){
+                var i;
+                for(i=0;i<funcs.length;i++){
+                    if( !funcs[i]( issue ) )
+                        return false;
+                }
+                return true;
+            };
+        }
     </script>
     <script data-cfasync="false" src="./js/issues.js"></script>
     <!--<script data-cfasync="false" src="./js/download.js"></script>-->
 
 </head>
-<body style="color:white;background-image:url(images/header-home-bg.jpg);margin:0px;background-attachment:fixed;">
-<div id="tableDiv"></div>
+<body>
 <ul>
-    <li><button onclick = "OnClick1();">Update</button> table.  Big issues, few fields.</li>
-    <li><button onclick = "OnClick2();">Update</button> table.  Accessibility, Workarounds.</li>
+    <li><button onclick = "updateTable( andFunc( [isOpen,            isAccessibility]), allFields);">View</button> All Accessibility Issues.</li>
+    <li><button onclick = "updateTable( andFunc( [isOpen, isMac,     isAccessibility]), allFields);">View</button> Accessibility Issues on Mac.</li>
+    <li><button onclick = "updateTable( andFunc( [isOpen, isLinux,   isAccessibility]), allFields);">View</button> Accessibility Issues on Linux.</li>
+    <li><button onclick = "updateTable( andFunc( [isOpen, isWindows, isAccessibility]), allFields);">View</button> Accessibility Issues on Windows.</li>
+    <li><button onclick = "updateTable( andFunc( [isOpen,            isNotAccessibility]), allFields);">View</button> All other Live Issues.</li>
+    <li><button onclick = "updateTable( andFunc( [isOpen, isMac,     isNotAccessibility]), allFields);">View</button> Other Live Issues on Mac.</li>
+    <li><button onclick = "updateTable( andFunc( [isOpen, isLinux,   isNotAccessibility]), allFields);">View</button> Other Live Issues on Linux.</li>
+    <li><button onclick = "updateTable( andFunc( [isOpen, isWindows, isNotAccessibility]), allFields);">View</button> Other Live Issues on Windows.</li>
 </ul>
+<div id="tableDiv"></div>
 </body>
 </html>
