@@ -388,25 +388,27 @@
 
 
             var interestingFields = ["Bug ID"];
+            if( show != "Accessibility" && show != "Translation" )
+                interestingFields.push( "Group" );
+            interestingFields.push( "Summary" );
             if( bugs == "Open" || bugs == "Fixed" || bugs == "Closed")
                 interestingFields.push( "OS" );
             if( priority != "P3" )
                 interestingFields.push( "Priority" );
             if( bugs == "Closed" )
                 interestingFields.push( "Resolution" );
-            interestingFields.push( "Summary" );
             if( show != "Any" )
                 interestingFields.push( "Workaround" );
-            if( show != "Accessibility" && show != "Translation" )
-                interestingFields.push( "Group" );
             interestingFields.push( "Bug ID" );
 
-            var otherFields = ["Bug ID", "OS", "Priority"];
+            var otherFields = ["Bug ID"];
+            otherFields.push( "Group");
+            otherFields.push( "Summary");
+            otherFields.push( "OS");
+            otherFields.push( "Priority");
             if( bugs == "Closed" )
                 otherFields.push( "Resolution" );
-            otherFields.push( "Summary");
             otherFields.push( "Workaround");
-            otherFields.push( "Group");
             otherFields.push( "Bug ID");
 
             updateCount( filter1, "bugsCount" );
