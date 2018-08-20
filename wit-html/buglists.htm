@@ -321,6 +321,16 @@
         function updateTable( filter, fields, tableName ){
             tableName = tableName || "tableDiv";
             var issues = filterIssues( filter );
+            issues.sort(function(a, b) {
+                v = (b["Group"]).localeCompare( a["Group"]);
+                if( v!= 0 )
+                   return v;
+                v = (a["Summary"]).localeCompare( b["Summary"]);
+                return v;
+                //if( v!= 0 )
+                //    return v;
+                //return b["Bug ID"]-a["Bug ID"];
+            });
             var array  = arrayFromIssues( issues, fields );
             var table  = tableFromArray( array, fields );
             var tableDiv = document.getElementById(tableName);
