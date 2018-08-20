@@ -147,26 +147,45 @@
   }
 ];
 
-        function fixedThisRelease ( value ){
+        function closedThisRelease ( value ){
             if( value["Resolution"] == "---" )
                 return false;
             if( value["Bug ID"] > 1841 ) // was QUICKFIXED.
+                return false;
+            if( value["Resolution"] == "QUICKFIXED" )
                 return false;
             return value["Changed"] > "2018-02-00";
 
         }
 
+        function fixedThisRelease ( value ){
+            if( value["Resolution"] != "FIXED" )
+                return false;
+            return value["Changed"] > "2018-02-00";
+
+        }
+
+        function isAny( value ){
+            return true;
+        }
+
         function isMac(value ){
+            if( isClosed( value ) )
+               return false;
             if( value["Severity"] == "RepeatableAll" )
                     return true;
             return value["OS"].indexOf( "OS X")!==-1;
         }
         function isLinux(value ){
+            if( isClosed( value ) )
+                return false;
             if( value["Severity"] == "RepeatableAll" )
                 return true;
             return value["OS"].indexOf( "Linux")!==-1;
         }
         function isWindows(value ){
+            if( isClosed( value ) )
+                return false;
             if( value["Severity"] == "RepeatableAll" )
                 return true;
             return value["OS"].indexOf( "Windows")!==-1;
@@ -184,6 +203,28 @@
         function isNotAccessibility( value ){
             return value["Group"] != "Accessibility";
         }
+
+        function isEnhancement( value ){
+            return value["Severity"] == "Enhancement";
+        }
+        function isLocale( value ){
+            return value["Severity"] == "Locale";
+        }
+        function isWorkaround( value ){
+            return (value["Workaround"] != "") && (value["Workaround"] != "None");
+        }
+        function isOther( value ){
+            return !isLocale( value ) && !isAccessibility( value );
+        }
+
+        function isAtLeastP3( value ){
+            return value["Priority"] <= "P3";
+        }
+        function isAtLeastP5( value ){
+            return value["Priority"] <= "P5";
+        }
+
+
 
         function bigIssues( value ){
             if( isClosed( value ) )
@@ -220,11 +261,23 @@
         var someFields = ["Bug ID", "Priority", "Resolution","Summary","Bug ID"];
         var manyFields = ["Bug ID", "Priority", "Resolution","Summary", "Workaround","Bug ID"];
         var allFields = ["Bug ID", "OS", "Priority", "Resolution","Summary", "Workaround","Group","Bug ID"];
+        var mostFields = ["Bug ID", "OS", "Priority", "Resolution","Summary", "Group","Bug ID"];
 
-        function tableFromArray( values, cols ){
+        function tableFromArray( values, fields ){
+            if( values.length == 0 )
+                    return "";
+            var cols = fields.length;
             var result = "<table>\n";
             var row;
             var col;
+            result += "  <tr>\n";
+            for( col=0;col<cols;col++){
+                result += "    <th>" + fields[col]+ "</th>\n";
+            }
+            result += "  </tr>\n";
+
+
+
             for( row=0;row<(values.length/ cols);row++){
                 result += "  <tr>\n";
                 for( col=0;col<cols;col++){
@@ -255,11 +308,12 @@
             return results;
         }
 
-        function updateTable( filter, fields ){
+        function updateTable( filter, fields, tableName ){
+            tableName = tableName || "tableDiv";
             var issues = filterIssues( filter );
             var array  = arrayFromIssues( issues, fields );
-            var table  = tableFromArray( array, fields.length );
-            var tableDiv = document.getElementById("tableDiv");
+            var table  = tableFromArray( array, fields );
+            var tableDiv = document.getElementById(tableName);
             var preamble = " "+issues.length + " issues<br><br>";
             tableDiv.innerHTML = preamble + table;
         }
@@ -275,6 +329,63 @@
         }
         function OnClick4(){
             updateTable( configuredFilter, configuredFields());
+        }
+
+
+        function OnFilter(){
+
+            var bugs     = document.getElementById("bugs").value;
+            var show     = document.getElementById("show").value;
+            var priority = document.getElementById("priority").value;
+
+            var filter1 = {
+                "Open" : isOpen,
+                "Mac" : isMac,
+                "Windows": isWindows,
+                "Linux" : isLinux,
+                "Fixed" : fixedThisRelease,
+                "Closed" : closedThisRelease
+
+            }[ bugs ];
+            var filter2 = {
+                "Accessibility" : isAccessibility,
+                "Translation" : isLocale,
+                "Enhancements" : isEnhancement,
+                "Workarounds" : isWorkaround,
+                "Any" : isAny }[show];
+
+            var filter3 = {
+                "P?" : isAtLeastP5,
+                "P3" : isAtLeastP3,
+                "P5" : isAny }[priority];
+
+            var interestingFields = mostFields;
+            if( show != "Other" )
+               interestingFields = allFields;
+
+
+            var interestingFields = ["Bug ID"];
+            if( bugs == "Open" || bugs == "Fixed" || bugs == "Closed")
+                interestingFields.push( "OS" );
+            if( priority != "P3" )
+                interestingFields.push( "Priority" );
+            if( bugs == "Closed" )
+                interestingFields.push( "Resolution" );
+            interestingFields.push( "Summary" );
+            if( show != "Any" )
+                interestingFields.push( "Workaround" );
+            if( show != "Accessibility" && show != "Translation" )
+                interestingFields.push( "Group" );
+            interestingFields.push( "Bug ID" );
+
+            updateTable( andFunc( [ filter1, filter2, filter3] ), interestingFields);
+            updateTable( andFunc( [ filter1, notFunc( andFunc([filter2, filter3]))] ), allFields, "tableDiv2");
+        }
+
+        function notFunc( func ){
+            return function( issue ){
+                return !func( issue );
+            };
         }
 
         function orFunc( funcs ){
@@ -303,17 +414,52 @@
 
 </head>
 <body>
-<ul>
-    <li><button onclick = "updateTable( andFunc( [isOpen,            isAccessibility]), allFields);">View</button> All Accessibility Issues.</li>
-    <li><button onclick = "updateTable( andFunc( [isOpen, isMac,     isAccessibility]), allFields);">View</button> Accessibility Issues on Mac.</li>
-    <li><button onclick = "updateTable( andFunc( [isOpen, isLinux,   isAccessibility]), allFields);">View</button> Accessibility Issues on Linux.</li>
-    <li><button onclick = "updateTable( andFunc( [isOpen, isWindows, isAccessibility]), allFields);">View</button> Accessibility Issues on Windows.</li>
-    <li><button onclick = "updateTable( andFunc( [isOpen,            isNotAccessibility]), allFields);">View</button> All other Live Issues.</li>
-    <li><button onclick = "updateTable( andFunc( [isOpen, isMac,     isNotAccessibility]), allFields);">View</button> Other Live Issues on Mac.</li>
-    <li><button onclick = "updateTable( andFunc( [isOpen, isLinux,   isNotAccessibility]), allFields);">View</button> Other Live Issues on Linux.</li>
-    <li><button onclick = "updateTable( andFunc( [isOpen, isWindows, isNotAccessibility]), allFields);">View</button> Other Live Issues on Windows.</li>
-    <li><button onclick = "updateTable( fixedThisRelease,                                  allFields);">View</button> Fixed This Release.</li>
-</ul>
+<table>
+    <tr>
+        <td><label for="bugs">Select bugs that are:</label></td>
+        <td><select id="bugs" onchange="OnFilter();">
+            <option value="Windows">Windows</option>
+            <option value="Mac">Mac</option>
+            <option value="Linux">Linux</option>
+            <option value="Open">Open</option>
+            <option value="Fixed">Fixed</option>
+            <option value="Closed">Closed</option>
+            </select>
+            </td>
+        </tr>
+    <tr>
+        <td><label for="show">I'm interested in:</label></td>
+        <td><select id="show" onchange="OnFilter();">
+            <option value="Workarounds">Workarounds</option>
+            <option value="Accessibility">Accessibility</option>
+            <option value="Translation">Translation</option>
+            <option value="Enhancements">Enhancements</option>
+            <option value="Any">Any</option>
+        </select>
+        </td>
+    </tr>
+    <tr>
+        <td><label for="priority">I'm interested in low priority bugs:</label></td>
+        <td><select id="priority" onchange="OnFilter();">
+            <option value="P3">No</option>
+            <option value="P?">Maybe</option>
+            <option value="P5">Yes</option>
+        </select>
+        </td>
+    </tr>
+    </table>
+&nbsp;
+&nbsp;
+<script>
+    window.onload = function(){
+        OnFilter();
+    }
+</script>
+
+<h2>Issues you may be interested in</h2>
 <div id="tableDiv"></div>
+
+<h2>The rest of the selected bugs</h2>
+<div id="tableDiv2"></div>
 </body>
 </html>
