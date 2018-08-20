@@ -118,6 +118,16 @@
             position:absolute;
             margin:0 auto;
         }
+
+        tr:hover {
+            background-color: #e6e6e6;
+        }
+
+        th {
+            background-color: #31a8f4;
+            color: #1e1a56;
+        }
+
     </style>
     <script>
         console.log( "Protocol is "+window.location.protocol);
@@ -267,7 +277,7 @@
             if( values.length == 0 )
                     return "";
             var cols = fields.length;
-            var result = "<table>\n";
+            var result = '<table style="border:1px solid #090cb9">\n';
             var row;
             var col;
             result += "  <tr>\n";
@@ -314,8 +324,15 @@
             var array  = arrayFromIssues( issues, fields );
             var table  = tableFromArray( array, fields );
             var tableDiv = document.getElementById(tableName);
-            var preamble = " "+issues.length + " issues<br><br>";
+            var preamble = " <em> "+issues.length + " issues</em><br><br>";
             tableDiv.innerHTML = preamble + table;
+        }
+
+        function updateCount( filter, countName ){
+            var issues = filterIssues( filter );
+            var count = issues.length;
+            var countDiv = document.getElementById(countName);
+            countDiv.innerHTML = " " + count + " issues";
         }
 
         function OnClick1(){
@@ -359,10 +376,6 @@
                 "P3" : isAtLeastP3,
                 "P5" : isAny }[priority];
 
-            var interestingFields = mostFields;
-            if( show != "Other" )
-               interestingFields = allFields;
-
 
             var interestingFields = ["Bug ID"];
             if( bugs == "Open" || bugs == "Fixed" || bugs == "Closed")
@@ -378,8 +391,22 @@
                 interestingFields.push( "Group" );
             interestingFields.push( "Bug ID" );
 
-            updateTable( andFunc( [ filter1, filter2, filter3] ), interestingFields);
-            updateTable( andFunc( [ filter1, notFunc( andFunc([filter2, filter3]))] ), allFields, "tableDiv2");
+            var otherFields = ["Bug ID", "OS", "Priority"];
+            if( bugs == "Closed" )
+                otherFields.push( "Resolution" );
+            otherFields.push( "Summary");
+            otherFields.push( "Workaround");
+            otherFields.push( "Group");
+            otherFields.push( "Bug ID");
+
+            updateCount( filter1, "bugsCount" );
+            updateCount( andFunc( [filter1,filter2]), "showCount" );
+            updateCount( andFunc( [filter1,filter2,filter3]), "priorityCount" );
+
+            updateTable( andFunc( [ filter1, filter2, filter3] ),
+                    interestingFields);
+            updateTable( andFunc( [ filter1, notFunc( andFunc([filter2, filter3]))] ),
+                    otherFields, "tableDiv2");
         }
 
         function notFunc( func ){
@@ -414,7 +441,7 @@
 
 </head>
 <body>
-<table>
+<table style="border:1px solid black;border-spacing:15px;">
     <tr>
         <td><label for="bugs">Select bugs that are:</label></td>
         <td><select id="bugs" onchange="OnFilter();">
@@ -425,6 +452,8 @@
             <option value="Fixed">Fixed</option>
             <option value="Closed">Closed</option>
             </select>
+            </td>
+        <td><div id="bugsCount">0</div>
             </td>
         </tr>
     <tr>
@@ -437,6 +466,8 @@
             <option value="Any">Any</option>
         </select>
         </td>
+        <td><div id="showCount">0</div>
+        </td>
     </tr>
     <tr>
         <td><label for="priority">I'm interested in low priority bugs:</label></td>
@@ -445,6 +476,8 @@
             <option value="P?">Maybe</option>
             <option value="P5">Yes</option>
         </select>
+        </td>
+        <td><div id="priorityCount">0</div>
         </td>
     </tr>
     </table>
@@ -456,10 +489,12 @@
     }
 </script>
 
-<h2>Issues you may be interested in</h2>
+<h2>Issues you may be interested in:</h2>
 <div id="tableDiv"></div>
 
-<h2>The rest of the selected bugs</h2>
+&nbsp;
+
+<h2>The rest of the selected bugs:</h2>
 <div id="tableDiv2"></div>
 </body>
 </html>
