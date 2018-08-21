@@ -119,11 +119,11 @@
             margin:0 auto;
         }
 
-        tr:hover {
+        table.tabby tr:hover {
             background-color: #e6e6e6;
         }
 
-        th {
+        table.tabby th {
             background-color: #31a8f4;
             color: #1e1a56;
         }
@@ -179,24 +179,36 @@
             return true;
         }
 
+        function isAll( value ){
+            if( value["Severity"] == "RepeatableAll" )
+                return true;
+            if( value["OS"] == "All" )
+                return true;
+            if( value["OS"] == "All except Vista/7" )
+                return true;
+            if( value["OS"] == "Other" )
+                return true;
+            return false;
+        }
+
         function isMac(value ){
             if( isClosed( value ) )
                return false;
-            if( value["Severity"] == "RepeatableAll" )
-                    return true;
+            if( isAll( value ) )
+               return true;
             return value["OS"].indexOf( "OS X")!==-1;
         }
         function isLinux(value ){
             if( isClosed( value ) )
                 return false;
-            if( value["Severity"] == "RepeatableAll" )
+            if( isAll( value ) )
                 return true;
             return value["OS"].indexOf( "Linux")!==-1;
         }
         function isWindows(value ){
             if( isClosed( value ) )
                 return false;
-            if( value["Severity"] == "RepeatableAll" )
+            if( isAll( value ) )
                 return true;
             return value["OS"].indexOf( "Windows")!==-1;
         }
@@ -277,7 +289,7 @@
             if( values.length == 0 )
                     return "";
             var cols = fields.length;
-            var result = '<table style="border:1px solid #090cb9">\n';
+            var result = '<table class="tabby" style="border:1px solid #090cb9">\n';
             var row;
             var col;
             result += "  <tr>\n";
