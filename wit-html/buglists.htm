@@ -254,6 +254,19 @@
             return value["Bug ID"] > 1930;
         }
 
+        function mainIssues( value ){
+            if( isClosed( value ) )
+                return false;
+            var id = value["Bug ID"];
+            return [1913,276,1585,1657].indexOf( id ) !== -1;
+        }
+
+        function newIssues( value ){
+            if( isClosed( value ) )
+                return false;
+            return value["Bug ID"] > 1810;
+        }
+
         function bug33Issues( value ){
             if( isClosed( value ) )
                 return false;
@@ -330,7 +343,7 @@
             return results;
         }
 
-        function updateTable( filter, fields, tableName ){
+        function updateTable( filter, fields, tableName, short ){
             tableName = tableName || "tableDiv";
             var issues = filterIssues( filter );
             issues.sort(function(a, b) {
@@ -346,8 +359,11 @@
             var array  = arrayFromIssues( issues, fields );
             var table  = tableFromArray( array, fields );
             var tableDiv = document.getElementById(tableName);
-            var preamble = " <em> "+issues.length + " issues</em><br><br>";
-            tableDiv.innerHTML = preamble + table;
+            var result = " <em> "+issues.length + " issues</em><br><br>";
+            if( !short )
+                result = result + table;
+            tableDiv.innerHTML = result;
+            return issues.length;
         }
 
         function updateCount( filter, countName ){
@@ -370,6 +386,17 @@
             updateTable( configuredFilter, configuredFields());
         }
 
+        /**
+         *
+         * @param option
+         * @returns {*}
+         */
+        function InnerFor( option ){
+            var div = document.getElementById(option + "Div");
+            if( div )
+                return div.innerHTML;
+            return "";
+        }
 
         function OnFilter(){
 
@@ -387,14 +414,17 @@
 
             }[ bugs ];
             var filter2 = {
+                "Main" : mainIssues,
                 "Accessibility" : isAccessibility,
                 "Translation" : isLocale,
                 "Enhancements" : isEnhancement,
                 "Workarounds" : isWorkaround,
+                "New" : newIssues,
                 "Any" : isAny }[show];
 
             var filter3 = {
-                "P?" : isAtLeastP5,
+                "P3m" : isAtLeastP3,
+                "P5m" : isAny,
                 "P3" : isAtLeastP3,
                 "P5" : isAny }[priority];
 
@@ -427,10 +457,15 @@
             updateCount( andFunc( [filter1,filter2]), "showCount" );
             updateCount( andFunc( [filter1,filter2,filter3]), "priorityCount" );
 
-            updateTable( andFunc( [ filter1, filter2, filter3] ),
+            var n = updateTable( andFunc( [ filter1, filter2, filter3] ),
                     interestingFields);
+            var short = ( priority.indexOf( "m" ) == -1 ) && (n>0 );
             updateTable( andFunc( [ filter1, notFunc( andFunc([filter2, filter3]))] ),
-                    otherFields, "tableDiv2");
+               otherFields, "tableDiv2", short);
+
+            var message = InnerFor( bugs ) + InnerFor( show ) + InnerFor( priority );
+            document.getElementById("messageDiv").innerHTML = message;
+
         }
 
         function notFunc( func ){
@@ -465,6 +500,7 @@
 
 </head>
 <body>
+
 <table style="border:1px solid black;border-spacing:15px;">
     <tr>
         <td><label for="bugs">Select bugs that are:</label></td>
@@ -483,9 +519,11 @@
     <tr>
         <td><label for="show">I'm interested in:</label></td>
         <td><select id="show" onchange="OnFilter();">
+            <option value="Main">Main Issues</option>
             <option value="Workarounds">Workarounds</option>
             <option value="Accessibility">Accessibility</option>
             <option value="Translation">Translation</option>
+            <option value="New">New Issues</option>
             <option value="Enhancements">Enhancements</option>
             <option value="Any">Any</option>
         </select>
@@ -497,8 +535,9 @@
         <td><label for="priority">I'm interested in low priority bugs:</label></td>
         <td><select id="priority" onchange="OnFilter();">
             <option value="P3">No</option>
-            <option value="P?">Maybe</option>
             <option value="P5">Yes</option>
+            <option value="P5m">Maybe Yes</option>
+            <option value="P3m">Maybe No</option>
         </select>
         </td>
         <td><div id="priorityCount">0</div>
@@ -507,6 +546,8 @@
     </table>
 &nbsp;
 &nbsp;
+<div id="messageDiv"></div>
+
 <script>
     window.onload = function(){
         OnFilter();
