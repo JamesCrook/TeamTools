@@ -538,6 +538,10 @@ Audacity.Tips =
   id: "TimerRecord",
   short: "Brings up the Timer Record dialog",
   long:  "+."},
+{ key:   "Punch and Roll Record",
+  id: "PunchAndRoll",
+  short: "Re-record over audio, with a pre-roll of audio that comes before",
+  long:  "+."},
 { key:   "Pause",
   id: "Pause",
   short: "Temporarily pauses playing or recording without losing your place",
@@ -775,7 +779,7 @@ Audacity.Tips =
   short: "Generates 'white', 'pink' or 'brown' noise",
   long:  "+."},
 { key:   "Silence...",
-  id: "Silence...",
+  id: "Silence",
   short: "Creates audio of zero amplitude, the only configurable setting being duration",
   long:  "+."},
 { key:   "Tone...",
@@ -931,16 +935,16 @@ Audacity.Tips =
   id: "Delay...",
   short: "A configurable delay effect with variable delay time and pitch shifting of the delays",
   long:  "+."},
-{ key:   "High Pass Filter...",
-  id: "High Pass Filter...",
+{ key:   "High-Pass Filter...",
+  id: "High-passFilter",
   short: "Passes frequencies above its cutoff frequency and attenuates frequencies below its cutoff frequency",
   long:  "+."},
 { key:   "Limiter...",
   id: "Limiter...",
   short: "Limiter passes signals below a specified input level unaffected or gently reduced, while preventing the peaks of stronger signals from exceeding this threshold",
   long:  "+.  Mastering engineers often use this type of dynamic range compression combined with make-up gain to increase the perceived loudness of an audio recording during the audio mastering process."},
-{ key:   "Low Pass Filter...",
-  id: "Low Pass Filter...",
+{ key:   "Low-Pass Filter...",
+  id: "Low-passFilter",
   short: "Passes frequencies below its cutoff frequency and attenuates frequencies above its cutoff frequency",
   long:  "+."},
 { key:   "Notch Filter...",
@@ -1646,5 +1650,4 @@ Audacity.Tips =
 
 
 ];
-
 </nowiki>
