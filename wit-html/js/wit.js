@@ -1908,7 +1908,7 @@ function MakeKeyboardReference(from, prefix, type){
       str += "{| class=\"prettytablerows\" rules = \"rows\" border = \"2\"" +
         " width=\"100%\"\r\n";
       if( bIsAutomation )
-        str += "!width=\"15%\"|Automation Id\r\n";
+        str += "!width=\"15%\"|Scripting Id\r\n";
       str += "!width=\"15%\"|Action\r\n";
       if( !bIsAutomation ){
         str += "!width=\"10%\"|Shortcut\r\n";
@@ -2022,7 +2022,7 @@ function MakePreferencesReference(from, prefix, type){
       str += "{{note| No special notes for " + Name + " }}\r\n";
       str += "{| class=\"prettytablerows\" rules = \"rows\" border = \"2\"" +
         " width=\"100%\"\r\n";
-      str += "!width=\"10%\"|Automation Id\r\n";
+      str += "!width=\"10%\"|Scripting Id\r\n";
       str += "!width=\"20%\"|Prompt\r\n";
       str += "!width=\"30%\"|Parameters\r\n";
       str += "!width=\"55%\"|Description\r\n";
