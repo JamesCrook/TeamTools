@@ -6,6 +6,11 @@
  * @returns {string}
  */
 
+App = Audacity;
+
+function OnReset(){
+}
+
 SomeTables = function(){
 
   /*HEREDOC

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <style type="text/css">
+
+        body {
+            font: sans-serif;
+            font-style: normal;
+            font-variant-ligatures: normal;
+            font-variant-caps: normal;
+            font-variant-numeric: normal;
+            font-variant-east-asian: normal;
+            font-weight: normal;
+            font-stretch: normal;
+            line-height: normal;
+            font-family: sans-serif;
+            color: black;
+            margin: 0;
+            padding: 0;
+            direction: ltr;
+            unicode-bidi: embed;
+        }
+
+        .note {
+            border: 1px solid black;
+            padding-left: 12px;
+            padding-right: 12px;
+            margin-top: 12px;
+            margin-bottom: 12px;
+            margin-left: 24px;
+            margin-right: 24px;
+            background: #DDFFEE;
+        }
+
+
+    table.prettytablerows {
+    margin: 1em 1em 1em 0;
+    background: #f9f9f9;
+    border: 1;
+    border-collapse: collapse;
+    border-style: solid;
+    border-color: #add8e6 #add8e6;
+    }
+
+    table.prettytablerows th {
+        background: #add8e6;
+        text-align: center;
+    }
+
+    table {
+        font-size: 100%;
+
+        border-collapse: collapse;
+        border-top-width: 2px;
+        border-right-width: 2px;
+        border-bottom-width: 2px;
+        border-left-width: 2px;
+        width: 100%;
+    }
+
+
+</style>
+
+
+    <meta charset="UTF-8">
+    <title>Test of tables</title>
+</head>
+<body>
+
+<script data-cfasync="false" src="./js/boxes.js"></script>
+<script data-cfasync="false" src="./js/tabular.js"></script>
+<script data-cfasync="false" src="./js/transfers.js"></script>
+<script>
+    XSomeTables = function(){
+
+        /*HEREDOC
+         <div id="file_menu"></div>
+         <h2><span class="mw-headline" id="File_Menu"><a href="/man/File_Menu" title="File Menu">File Menu</a></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/m/index.php?title=Scripting_Reference&amp;action=edit&amp;section=1" title="Edit section: File Menu">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+         <div class="note">The FileMenu provides commands for creating, opening and saving Audacity projects and importing and exporting audio files </div>
+
+         <table class="prettytablerows" rules="rows" border="2" width="100%">
+         <tr>
+         <th width="15%">Scripting Id
+         </th>
+         <th width="15%">Action
+         </th>
+         <th width="30%">Parameters
+         </th>
+         <th width="55%">Description
+         </th></tr>
+         <tr>
+         <td><b>New:</b>
+         </td>
+         <td><a href="/man/File_Menu#new" title="File Menu">New</a>
+         </td>
+         <td><i>none</i>
+         </td>
+         <td>Creates a new empty project window, to start working on new or imported Tracks.
+         </td></tr>
+         <tr>
+         <td><b>Open:</b>
+         </td>
+         <td><a href="/man/File_Menu#open" title="File Menu">Open...</a>
+         </td>
+         <td><i>none</i>
+         </td>
+         <td>Presents you with a standard dialog box where you can select either audio files, a list of files (.LOF) or an Audacity Project file to open.
+         </td></tr>
+         <tr>
+         <td><b>Close:</b>
+         </td>
+         <td><a href="/man/File_Menu#close" title="File Menu">Close</a>
+         </td>
+         <td><i>none</i>
+         </td>
+         <td>Closes the current project window, prompting you to save your work if you have not saved.
+         </td></tr>
+         <tr>
+         <td><b>SaveProject:</b>
+         </td>
+         <td><a href="/man/File_Menu#save_project" title="File Menu">Save Project</a>
+         </td>
+         <td><i>none</i>
+         </td>
+         <td>Various ways to save a project.
+         </td></tr>
+         <tr>
+         <td><b>PageSetup:</b>
+         </td>
+         <td><a href="/man/File_Menu#page_setup" title="File Menu">Page Setup...</a>
+         </td>
+         <td><i>none</i>
+         </td>
+         <td>Opens the standard Page Setup dialog box prior to printing
+         </td></tr>
+         <tr>
+         <td><b>Print:</b>
+         </td>
+         <td><a href="/man/File_Menu#print" title="File Menu">Print...</a>
+         </td>
+         <td><i>none</i>
+         </td>
+         <td>Prints all the waveforms in the current project window (and the contents of Label Tracks or other tracks), with the Timeline above. Everything is printed to one page.
+         </td></tr>
+         <tr>
+         <td><b>Exit:</b>
+         </td>
+         <td><a href="/man/File_Menu#exit" title="File Menu">Exit</a>
+         </td>
+         <td><i>none</i>
+         </td>
+         <td>Closes all project windows and exits Audacity. If there are any unsaved changes to your project, Audacity will ask if you want to save them.
+         </td></tr></table>
+
+         And here is some more text....
+         HEREDOC*/
+
+        var pieces;
+
+        /*HEREDOC
+         Some more text here...
+         HEREDOC*/
+
+        pieces = XSomeTables.toString().split( "HEREDOC" );
+
+        return pieces;
+    };
+
+
+    function OnTabular(){
+        LoadSpecialFiles();
+        var tabular  = document.getElementById("tabularDiv");
+        var contents = XSomeTables()[1];
+        tabular.innerHTML = contents;
+        contents += Audacity.AutomationReference2();
+        tabular.innerHTML = contents;
+
+    }
+
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', OnTabular, false);
+</script>
+
+<h2>The Table:</h2>
+<div id="tabularDiv">No Contents.</div>
+
+</body>
+</html>
