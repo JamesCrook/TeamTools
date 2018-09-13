@@ -58,7 +58,7 @@ function PrintableOfParams( params ){
     var key = "";
     if( item.key )
       key = " '''" + item.key + "'''";
-    str += "''"+item.type + key+", (default:"+item.default + ")<br>\r\n";
+    str += "''"+item.type + key+", (default:"+item.default + ")''<br>\r\n";
     if( item.type == "enum" ){
       for( j=0;j< item.enum.length ;j++){
         var eItem = item.enum[ j ];
@@ -636,6 +636,14 @@ function WikiRow( text ){
   return '<tr>'+text + '</tr>\r\n';
 }
 
+function WikiToHtm( text ){
+  str = text.replace(/'''(.*)'''/g, "<b>$1</b>");
+  str = str.replace(/''(.*)''/g, "<em>$1</em>");
+  return str;
+
+
+}
+
 /**
  * returns all menus starting at item from, or the empty string.
  * If in automation mode, only the menu items with an id are used.
@@ -707,7 +715,7 @@ function MakeKeyboardReference2(from, prefix, type){
       if( !bIsAutomation || (Box.id != undefined ) ){
         var sstr ="";
         if( bIsAutomation ){
-          sstr += WikiCell( "<em>" +  Box.id + ":</em>");
+          sstr += WikiCell( "<b>" +  Box.id + ":</b>");
         }
         if( boxIndent == 1 )
           sstr += WikiCell( WikiLink(  TopName + "_Menu#" + lowName,  Name ));
@@ -716,9 +724,9 @@ function MakeKeyboardReference2(from, prefix, type){
             Name));
         if( bIsAutomation ){
           if( Box.params != undefined ){
-            sstr += WikiCell(  Box.params );
+            sstr += WikiCell(  WikiToHtm(Box.params) );
           } else {
-            sstr += WikiCell( "''none''");
+            sstr += WikiCell( "<em>none</em>");
           }
 
         } else {
@@ -727,7 +735,7 @@ function MakeKeyboardReference2(from, prefix, type){
           else if( App.ExtraShortcuts.indexOf(Box.accel) >= 0 )
             sstr += WikiCell( "{{fullshortcut|" + Box.accel + "}}" );
           else
-            sstr += WikiCell( "{shortcut|" + Box.accel + "}}" );
+            sstr += WikiCell( "{{shortcut|" + Box.accel + "}}" );
         }
         if( Box.long )
           sstr += WikiCell( Box.long );
@@ -749,7 +757,7 @@ function MakeKeyboardReference2(from, prefix, type){
     if( nextIndent <= indent ){
       if( !bEmpty ){
         str += "</table>\r\n";
-        str += "{{hoverext|hover=|ext=}}\r\n";
+        //str += "{{hoverext|hover=|ext=}}\r\n";
         results += str;
         bEmpty = true;
       }
