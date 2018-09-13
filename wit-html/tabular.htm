@@ -193,9 +193,13 @@
         var tabular  = document.getElementById("tabularDiv");
         //var contents = XSomeTables()[1];
         //tabular.innerHTML = contents;
-        var contents = Audacity.AutomationReference2();
+        var contents = "";
+        contents += Audacity.Reference("shortcuts");
         tabular.innerHTML = contents;
-
+        contents += Audacity.Reference("automation");
+        tabular.innerHTML = contents;
+        contents += Audacity.Reference( "prefs");
+        tabular.innerHTML = contents;
     }
 
 </script>

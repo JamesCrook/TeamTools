@@ -4031,7 +4031,7 @@ Audacity.Prefs =
     { "id":"Quality/HQDitherAlgorithmChoice", "prompt":"Dit&her:", "type":"enum", "default":"Shaped", "enum":
       [ "None", "Rectangle", "Triangle", "Shaped" ] },
     { "id":"/Locale/Language", "prompt":"&Language:", "type":"enum", "default":"", "enum":
-      [ "", "af", "id", "bs", "ca", "cy", "da", "de", "en", "es", "eu", "eu_ES", "fr", "ga", "gl", "hr", "it", "lt", "hu", "nl", "nb", "oc", "pl", "pt_PT", "pt_BR", "ro", "sk", "sl", "sr_RS@latin", "fi", "sv", "vi", "tr", "ca_ES@valencia", "cs", "el", "be", "bg", "mk", "ru", "sr_RS", "tg", "uk", "hy", "he", "ar", "fa", "hi", "bn", "ta", "my", "ka", "km", "zh_CN", "zh_TW", "ja", "ko" ] },
+      [ "af", "id", "bs", "ca", "cy", "da", "de", "en", "es", "eu", "eu_ES", "fr", "ga", "gl", "hr", "it", "lt", "hu", "nl", "nb", "oc", "pl", "pt_PT", "pt_BR", "ro", "sk", "sl", "sr_RS@latin", "fi", "sv", "vi", "tr", "ca_ES@valencia", "cs", "el", "be", "bg", "mk", "ru", "sr_RS", "tg", "uk", "hy", "he", "ar", "fa", "hi", "bn", "ta", "my", "ka", "km", "zh_CN", "zh_TW", "ja", "ko" ] },
     { "id":"/GUI/Help",
       "prompt":"Location of &Manual:", "type":"enum", "default":"Local", "enum":
       [ "Local", "FromInternet" ] },

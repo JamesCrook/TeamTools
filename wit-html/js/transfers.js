@@ -944,6 +944,78 @@ function MakeKeyboardReference(from, prefix, type){
  * returns all preferences starting at item from, or the empty string.
  * @returns {string}
  */
+function MakePreferencesReference2(from, prefix, type){
+  var i;
+  var str = "";
+  var Name ="";
+  var lowName="preferences";
+  var Prefix = "";
+  var results = "";
+  var subsAllowed = false;
+  var TopName = "";
+
+  //console.log( "Keyboard from:"+from+" prefix:"+prefix );
+  for(i=from;i< App.Prefs.length;i++){
+
+    var X = [
+      {
+        key: "/AudioIO/Host", type: "enum", default: "", enum: [
+        "MME", "Windows DirectSound", "Windows WASAPI"
+      ]
+      }, {
+        key: "/AudioIO/LatencyDuration",
+        prompt: "&Buffer length:",
+        type: "number",
+        default: 100
+      },
+    ];
+
+
+//--------------------
+
+
+
+
+    var Item = App.Prefs[i];
+    if( i == 0 ){
+      Name = "Preferences";
+      str += "<div id=\"" + lowName + "\"></div>\r\n";
+      str += WikiHead2( WikiLink( "Preferences", "Preferences" ));
+      str += WikiNote( "No special notes for " + Name );
+      str += "<table class=\"prettytablerows\" rules = \"rows\" border =" +
+        " \"2\"" +
+        " width=\"100%\">\r\n";
+      var astr="";
+      astr += WikiTitleCell("Scripting Id", "10%");
+      astr += WikiTitleCell("Prompt","20%");
+      astr += WikiTitleCell("Parameters","30%");
+      astr += WikiTitleCell("Description","55%");
+      str += WikiRow( astr );
+      Prefix = Name;
+      subsAllowed = true;
+      TopName = Name;
+    }
+
+    var Params = PrintableOfParams( [ Item ] );
+    var Prompt = Item.prompt || "";
+    Prompt = Prompt.replace( '\&', '' );
+
+    var rstr="";
+    rstr += WikiCell( "<b>" + Item.id  + "</b>" );
+    rstr += WikiCell( WikiToHtm( Prompt) );
+    rstr += WikiCell( WikiToHtm( Params) );
+    rstr += WikiCell( "no tip string.");
+    str += WikiRow( rstr );
+  }
+  str += "</table>\r\n";
+  results += str;
+  return results;
+}
+
+/**
+ * returns all preferences starting at item from, or the empty string.
+ * @returns {string}
+ */
 function MakePreferencesReference(from, prefix, type){
   var i;
   var str = "";
@@ -999,10 +1071,11 @@ function MakePreferencesReference(from, prefix, type){
     str += "| no tip string.\r\n";
   }
   str += "|}\r\n";
-  str += "{{hoverext|hover=|ext=}}\r\n";
   results += str;
   return results;
 }
+
+
 
 /**
  * Wiki template for tools image map 'here doc'
@@ -1121,10 +1194,12 @@ Audacity.AutomationReference = function(){
 * Make the Automation (commands) reference
 * @returns {string}
 */
-Audacity.AutomationReference2 = function(){
+Audacity.Reference = function( type ){
   JoinTipsIntoMenus();
   JoinCommandsIntoMenus();
-  return MakeKeyboardReference2(0,"", "automation");
+  if( type == "prefs")
+    return MakePreferencesReference2( 0 );
+  return MakeKeyboardReference2(0,"", type);
 };
 /**
  * Make the preferences reference
