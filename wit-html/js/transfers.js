@@ -659,6 +659,15 @@ function WikiFullShortcut( text ){
 
 }
 
+/**
+ *
+ * @param text
+ * @returns {string}
+ */
+function WikiMenu( text ){
+  return '<span class="menu">' + text + '</span>';
+}
+
 
 
 function WikiToHtm( text ){
@@ -669,7 +678,10 @@ function WikiToHtm( text ){
   str = str.replace(/\r\n\* /g, "\r\n<li>");
   str = str.replace(/<!--ul-->/g, "<ul>");
   str = str.replace(/<!--\/ul-->/g, "</ul>");
+  str = str.replace(/\{\{shortcut\|(.*?)\}\}/g, '<span class="kbrd"' +
+   ' style="background-color:#d0d0f8">$1</span>');
 
+  str = str.replace(/\{\{menu\|(.*?)\}\}/g,'<span class="menu">$1</span>' );
   return str;
 }
 
