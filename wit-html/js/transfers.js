@@ -60,10 +60,12 @@ function PrintableOfParams( params ){
       key = " '''" + item.key + "'''";
     str += "''"+item.type + key+", (default:"+item.default + ")''<br>\r\n";
     if( item.type == "enum" ){
+      str+="<!--ul-->\r\n";
       for( j=0;j< item.enum.length ;j++){
         var eItem = item.enum[ j ];
         str += "* " + eItem + "\r\n";
       }
+      str+="<!--/ul-->\r\n";
     }
   }
   return str;
@@ -636,15 +638,39 @@ function WikiRow( text ){
   return '<tr>'+text + '</tr>\r\n';
 }
 
+/**
+ *
+ * @param text
+ * @returns {string}
+ */
+function WikiShortcut( text ){
+  return '<span class="kbrd" style="background-color:#d0d0f8">' + text + '</span>';
+}
+
+/**
+ *
+ * @param text
+ * @returns {string}
+ */
+function WikiFullShortcut( text ){
+  return '<span class="kbrd" style="background-color: #eaeafa">' + text +'</span> &nbsp;' +
+    ' <i><sup><a href="/man/Only_in_full_set" title="Only in full' +
+    ' set">Extra</a></sup></i>';
+
+}
+
+
+
 function WikiToHtm( text ){
   str = text.replace(/'''(.*?)'''/g, "<b>$1</b>");
   str = str.replace(/''(.*?)''/g, "<em>$1</em>");
   str = str.replace(/\[\[(.*?)\|(.*?)\]\]/g, '<a href="$1">$2</a>');
   str = str.replace(/\[\[(.*?)\]\]/g, '<a href="$1">$1</a>');
+  str = str.replace(/\r\n\* /g, "\r\n<li>");
+  str = str.replace(/<!--ul-->/g, "<ul>");
+  str = str.replace(/<!--\/ul-->/g, "</ul>");
 
   return str;
-
-
 }
 
 /**
@@ -734,11 +760,11 @@ function MakeKeyboardReference2(from, prefix, type){
 
         } else {
           if( Box.accel == "" )
-            sstr += WikiCell( "{{unassigned}}" );
+            sstr += WikiCell( "<em>unassigned</em>" );
           else if( App.ExtraShortcuts.indexOf(Box.accel) >= 0 )
-            sstr += WikiCell( "{{fullshortcut|" + Box.accel + "}}" );
+            sstr += WikiCell( WikiFullShortcut( Box.accel ) );
           else
-            sstr += WikiCell( "{{shortcut|" + Box.accel + "}}" );
+            sstr += WikiCell( WikiShortcut( Box.accel ) );
         }
         if( Box.long )
           sstr += WikiCell( WikiToHtm(Box.long) );
