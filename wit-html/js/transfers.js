@@ -611,6 +611,30 @@ function WikiNote( text ){
   return '<div class="note">'+text + '</div>\r\n';
 }
 
+/**
+ *
+ * @param text
+ * @returns {string}
+ */
+function WikiCell( text ){
+  return '<td>'+text + '</td>\r\n';
+}
+/**
+ *
+ * @param text
+ * @returns {string}
+ */
+function WikiTitleCell( text, width ){
+  return '<th width="'+width+'">'+text + '</th>\r\n';
+}
+/**
+ *
+ * @param text
+ * @returns {string}
+ */
+function WikiRow( text ){
+  return '<tr>'+text + '</tr>\r\n';
+}
 
 /**
  * returns all menus starting at item from, or the empty string.
@@ -657,19 +681,23 @@ function MakeKeyboardReference2(from, prefix, type){
         str += WikiNote( Box.long );
       else
         str += WikiNote( "No special notes for "+Name );
-      str += "{| class=\"prettytablerows\" rules = \"rows\" border = \"2\"" +
-        " width=\"100%\"\r\n";
+      str += "<table class=\"prettytablerows\" rules = \"rows\" border =" +
+        " \"2\"" +
+        " width=\"100%\">\r\n";
+
+      var rstr = "";
       if( bIsAutomation )
-        str += "!width=\"15%\"|Scripting Id\r\n";
-      str += "!width=\"15%\"|Action\r\n";
+        rstr += WikiTitleCell( "Scripting Id", "15%" );
+      rstr += WikiTitleCell( "Action", "15%" );
       if( !bIsAutomation ){
-        str += "!width=\"10%\"|Shortcut\r\n";
-        str += "!width=\"75%\"|Description\r\n";
+        rstr += WikiTitleCell( "Shortcut", "10%" );
+        rstr += WikiTitleCell( "Description", "75%" );
       }
       else {
-        str += "!width=\"30%\"|Parameters\r\n";
-        str += "!width=\"55%\"|Description\r\n";
+        rstr += WikiTitleCell( "Parameters", "30%" );
+        rstr += WikiTitleCell( "Description", "55%" );
       }
+      str+= WikiRow( rstr);
       Prefix = Name;
       subsAllowed = true;
       bEmpty = true;
@@ -677,35 +705,36 @@ function MakeKeyboardReference2(from, prefix, type){
     }
     else if( boxIndent == (indent+1) ){
       if( !bIsAutomation || (Box.id != undefined ) ){
-        str += "|-\r\n";
+        var sstr ="";
         if( bIsAutomation ){
-          str += "|'''" + Box.id + ":'''\r\n";
+          sstr += WikiCell( "<em>" +  Box.id + ":</em>");
         }
         if( boxIndent == 1 )
-          str +=
-            "|[[" + TopName + "_Menu#" + lowName + "|" + Name + "]]\r\n"; else
-          str +=
-            "|[[" + prefix + "_Menu:_" + TopName + "#" + lowName + "|" + Name +
-            "]]\r\n";
+          sstr += WikiCell( WikiLink(  TopName + "_Menu#" + lowName,  Name ));
+        else
+          sstr += WikiCell( WikiLink(  prefix + "_Menu:_" + TopName + "#" + lowName,
+            Name));
         if( bIsAutomation ){
           if( Box.params != undefined ){
-            str += "|" + Box.params + "\r\n";
+            sstr += WikiCell(  Box.params );
           } else {
-            str += "|''none''\r\n";
+            sstr += WikiCell( "''none''");
           }
 
         } else {
           if( Box.accel == "" )
-            str += "|{{unassigned}}\r\n";
+            sstr += WikiCell( "{{unassigned}}" );
           else if( App.ExtraShortcuts.indexOf(Box.accel) >= 0 )
-            str += "|{{fullshortcut|" + Box.accel + "}}\r\n";
+            sstr += WikiCell( "{{fullshortcut|" + Box.accel + "}}" );
           else
-            str += "|{{shortcut|" + Box.accel + "}}\r\n";
+            sstr += WikiCell( "{shortcut|" + Box.accel + "}}" );
         }
         if( Box.long )
-          str += "|" + Box.long + "\r\n"; else
-          str += "| no tip string.\r\n";
+          sstr += WikiCell( Box.long );
+        else
+          sstr += WikiCell( "no tip string.");
         bEmpty = false;
+        str += WikiRow( sstr );
       }
     }
 
@@ -719,7 +748,7 @@ function MakeKeyboardReference2(from, prefix, type){
 
     if( nextIndent <= indent ){
       if( !bEmpty ){
-        str += "|}\r\n";
+        str += "</table>\r\n";
         str += "{{hoverext|hover=|ext=}}\r\n";
         results += str;
         bEmpty = true;
