@@ -637,8 +637,11 @@ function WikiRow( text ){
 }
 
 function WikiToHtm( text ){
-  str = text.replace(/'''(.*)'''/g, "<b>$1</b>");
-  str = str.replace(/''(.*)''/g, "<em>$1</em>");
+  str = text.replace(/'''(.*?)'''/g, "<b>$1</b>");
+  str = str.replace(/''(.*?)''/g, "<em>$1</em>");
+  str = str.replace(/\[\[(.*?)\|(.*?)\]\]/g, '<a href="$1">$2</a>');
+  str = str.replace(/\[\[(.*?)\]\]/g, '<a href="$1">$1</a>');
+
   return str;
 
 
@@ -738,7 +741,7 @@ function MakeKeyboardReference2(from, prefix, type){
             sstr += WikiCell( "{{shortcut|" + Box.accel + "}}" );
         }
         if( Box.long )
-          sstr += WikiCell( Box.long );
+          sstr += WikiCell( WikiToHtm(Box.long) );
         else
           sstr += WikiCell( "no tip string.");
         bEmpty = false;
