@@ -97,6 +97,7 @@ function LoadSpecialFiles(){
   var nMillis = date.getTime();
 
   var str = window.location.href;
+  console.log( "Location is: " + str );
   if( str.indexOf( 'localhost' ) != -1){
     fileActionLoader(Async, "EVAL", "./raw/raw_menu.txt");
     fileActionLoader(Async, "EVAL", "./raw/raw_tooltips.txt");

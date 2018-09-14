@@ -95,17 +95,16 @@
 <script>
 
 
-    function OnImap(){
-        LoadSpecialFiles();
-        var text  = document.getElementById("textDiv");
-        var div  = document.getElementById("imapDiv");
-        //var contents = XSomeTables()[1];
-        //tabular.innerHTML = contents;
-        var contents = "";
-       contents += Audacity.Reference("menu");//.split("<br><br>")[7];
-       text.innerHTML = contents;
-       div.innerHTML = contents;
-    }
+function OnImap(){
+   LoadSpecialFiles();
+   var text  = document.getElementById("textDiv");
+   var div  = document.getElementById("imapDiv");
+
+   var contents = "";
+   contents += Audacity.Reference("menu");//.split("<br><br>")[7];
+   text.innerHTML = contents;
+   div.innerHTML = contents;
+}
 
 </script>
 
