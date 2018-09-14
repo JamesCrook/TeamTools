@@ -96,7 +96,10 @@
 
 
 function OnImap(){
-   LoadSpecialFiles();
+    LoadSpecialFiles(ImapContinue);
+}
+
+function ImapContinue(){
    var text  = document.getElementById("textDiv");
    var div  = document.getElementById("imapDiv");
 
@@ -106,10 +109,8 @@ function OnImap(){
    div.innerHTML = contents;
 }
 
-</script>
+document.addEventListener('DOMContentLoaded', OnImap, false);
 
-<script>
-    document.addEventListener('DOMContentLoaded', OnImap, false);
 </script>
 
 
