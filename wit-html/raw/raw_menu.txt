@@ -429,10 +429,10 @@ Audacity.Menus =
     "label":"Crossfade Tracks...", "accel":"" },
   { "depth":2, "flags":0, "label":"Delay...", "accel":"" },
   { "depth":2, "flags":0,
-    "label":"High Pass Filter...", "accel":"", "id":"High-passFilter" },
+    "label":"High-Pass Filter...", "accel":"", "id":"High-passFilter" },
   { "depth":2, "flags":0, "label":"Limiter...", "accel":"" },
   { "depth":2, "flags":0,
-    "label":"Low Pass Filter...", "accel":"", "id":"Low-passFilter" },
+    "label":"Low-Pass Filter...", "accel":"", "id":"Low-passFilter" },
   { "depth":2, "flags":0,
     "label":"Notch Filter...", "accel":"" },
   { "depth":2, "flags":0,
@@ -746,6 +746,5 @@ Audacity.Menus =
  ]
 
   ;
-
 
 </nowiki>
