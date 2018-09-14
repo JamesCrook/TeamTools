@@ -12,8 +12,8 @@
 
 <meta name="generator" content="MediaWiki 1.28.2"/>
 <link rel="shortcut icon" href="../favicon.ico"/>
-<link rel="search" type="application/opensearchdescription+xml" target="manual" href="http://alphamanual.audacityteam.org/m/opensearch_desc.php" title="Audacity Development Manual (en)"/>
-<link rel="EditURI" type="application/rsd+xml" target="manual" href="http://alphamanual.audacityteam.org/m/api.php?action=rsd"/>
+<link rel="search" type="application/opensearchdescription+xml" href="https://alphamanual.audacityteam.org/m/opensearch_desc.php" title="Audacity Development Manual (en)"/>
+<link rel="EditURI" type="application/rsd+xml" href="https://alphamanual.audacityteam.org/m/api.php?action=rsd"/>
 <link rel="copyright" href="https://creativecommons.org/licenses/by/3.0/" />
 
 <link rel="stylesheet" href="../m/skins/monobook/main.css/303.css" media="screen" />
@@ -30,7 +30,7 @@
 				<div id="bodyContent" class="mw-body-content">
 					<div id="siteSub">From Audacity Development Manual</div>
 					<div id="contentSub"></div>
-										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a target="manual" href="http://alphamanual.audacityteam.org/man/Basic_Recording,_Editing_and_Exporting#searchInput">search</a></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="https://alphamanual.audacityteam.org/man/Basic_Recording,_Editing_and_Exporting#searchInput">search</a></div>
 
 					<!-- start content -->
 					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr">
@@ -45,7 +45,7 @@
 <table style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%" align="center">
 
 <tr>
-<td width="30px" valign="top" align="center"><a target="manual" href="http://alphamanual.audacityteam.org/man/File:Bulbicon.png" class="image" title="Bulb icon"><img alt="Bulb icon" src="../m/images/d/d7/bulbicon.png" width="32" height="32" /></a>
+<td width="30px" valign="top" align="center"><a href="https://alphamanual.audacityteam.org/man/File:Bulbicon.png" class="image" title="Bulb icon"><img alt="Bulb icon" src="../m/images/d/d7/bulbicon.png" width="32" height="32" /></a>
 </td>
 <td align="left" valign="top">When making recordings, particular critical recordings, you should consider shutting down all other applications giving Audacity sole use of the computer.  This can help to avoid skips, small dropouts, and ticks in your recordings.
 <div class="note">And on Mac that means fully Quitting them not just closing them, as otherwise Mac will leave them open consuming computer resources.</div> 
@@ -53,34 +53,42 @@
 </div>
 <div id="record"></div>
 <h2><span class="mw-headline" id="Step_1:_Recording">Step 1: Recording</span></h2>
-<p>Create a new Project by clicking <span class="menu">File &gt; <a href="file_menu.html#save_project_as" title="File Menu">Save Project As...</a></span>. 
+<p>Create a new Project by clicking <span class="menu">File &gt; Save Project &gt; <a href="file_menu_save_project.html#save_project" title="File Menu: Save Project">Save Project</a></span> or <span class="menu">File &gt; Save Project &gt; <a href="file_menu_save_project.html#save_project_as" title="File Menu: Save Project">Save Project As...</a></span>. 
 </p><p>Adjust the input signal level as explained in the previous tutorial under <a href="how_to_set_up_audacity.html#monitor" title="How to set up Audacity"> Monitoring</a>. Remember that it is good to aim for a maximum peak of around –6.0 dB (or 0.5 if you have your meters set to linear rather than dB). 
 </p><p>Start your recording by pressing the <a href="transport_toolbar.html#record" title="Transport Toolbar"> Record</a> button <img alt="The Record button" src="../m/images/e/e8/record.png" title="The Record button" width="16" height="16" /> from the <a href="transport_toolbar.html" title="Transport Toolbar">Transport Toolbar</a>, then starting the player. You can pause and restart the recording between tracks or sides with the blue Pause button <img alt="The Pause button" src="../m/images/4/47/pause.png" title="The Pause button" width="16" height="16" />. This is the easiest way to record into Audacity, because having just one track on screen allows you to split the recording up into the different songs or sections using "labels". See the tutorial:  <b><a href="splitting_a_recording_into_separate_tracks.html" title="Splitting a recording into separate tracks">Splitting a recording into separate tracks</a></b> for more on this. 
 </p><p>If you record at the end of an existing recording like thid, Audacity will place a <b><a href="audacity_tracks_and_clips.html" title="Audacity Tracks and Clips">Clip</a></b> line at the junction between the two recordings to aid you in separating them later if required.  See the <a href="recording.html#append" title="Recording">Recording</a> page for details.
-</p><p>An alternative to using the Pause button is to Stop the recording, with the Stop button <img alt="The Stop button" src="../m/images/f/f9/stop.png" title="The Stop button" width="16" height="16" />, at the end of the first side, then use <span class="menu">Transport &gt; <a href="transport_menu.html#record" title="Transport Menu">Record</a></span> (or click on the Record button <img alt="The Record button" src="../m/images/e/e8/record.png" title="The Record button" width="16" height="16" /> or its keyboard shortcut <span class="kbrd" style="background-color: #d0d0f8">R</span>) to continue recording on the existing track.
+</p><p>An alternative to using the Pause button is to Stop the recording, with the Stop button <img alt="The Stop button" src="../m/images/f/f9/stop.png" title="The Stop button" width="16" height="16" />, at the end of the first side, then use <span class="menu">Transport &gt; Recording &gt; <a href="transport_menu.html#record" title="Transport Menu">Record</a></span> (or click on the Record button <img alt="The Record button" src="../m/images/e/e8/record.png" title="The Record button" width="16" height="16" /> or its keyboard shortcut <span class="kbrd" style="background-color: #d0d0f8">R</span>) to continue recording on the existing track.
 </p>
-<div class="note">If you do want to start new tracks for different sides of the tape or LP on a new track in Audacity, then press the Stop button <img alt="The Stop button" src="../m/images/f/f9/stop.png" title="The Stop button" width="16" height="16" /> to stop recording, get the LP or tape to where you want to go to, then hold the <span class="button">Shift</span> button and press the Record button <img alt="The Record button" src="../m/images/e/e8/record.png" title="The Record button" width="16" height="16" /> which will have changed to the Record New Track button <img alt="The Record New Track button" src="../m/images/7/72/record_new_track.png" title="The Record New Track button" width="15" height="15" />  in Audacity and start the player. </div>
+<div class="note">If you do want to start new tracks for different sides of the tape or LP on a new track in Audacity, then press the Stop button <img alt="The Stop button" src="../m/images/f/f9/stop.png" title="The Stop button" width="16" height="16" /> to stop recording, get the LP or tape to where you want to go to, then hold the <span class="button">Shift</span> button and press the Record button <img alt="The Record button" src="../m/images/e/e8/record.png" title="The Record button" width="16" height="16" /> which will have changed to the Record New Track button <img alt="The Record New Track button" src="../m/images/7/72/record_new_track.png" title="The Record New Track button" width="15" height="15" />  in Audacity and start the player.</div>
 <div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
 <table style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%" align="center">
 
 <tr>
-<td width="30px" valign="top" align="center"><a target="manual" href="http://alphamanual.audacityteam.org/man/File:Bulbicon.png" class="image" title="Bulb icon"><img alt="Bulb icon" src="../m/images/d/d7/bulbicon.png" width="32" height="32" /></a>
+<td width="30px" valign="top" align="center"><a href="https://alphamanual.audacityteam.org/man/File:Bulbicon.png" class="image" title="Bulb icon"><img alt="Bulb icon" src="../m/images/d/d7/bulbicon.png" width="32" height="32" /></a>
 </td>
 <td align="left" valign="top">If you have just made a <a href="record.html" title="Record">recording</a> it is strongly recommended to Export it it immediately with <span class="menu">File &gt; Export &gt; <a href="file_menu_export.html#exportaudio" title="File Menu: Export">Export Audio...</a></span>  to <i><b><a href="glossary.html#wav" title="Glossary">WAV</a></b></i> or <i><b><a href="glossary.html#aiff" title="Glossary">AIFF</a></b></i> (ideally to an external drive) as a safety copy before you start editing the project.
 </td></tr></table>
 </div> 
 <div id="DC"></div>
 <h2><span class="mw-headline" id="Step_2:_Removing_any_DC_offset_.28if_present.29">Step 2: Removing any DC offset (if present)</span></h2>
-<p>DC offset can occur at the recording stage so that the recorded waveform is not centered on the horizontal line at 0.0 <i><b><a href="glossary.html#amplitude" title="Glossary">amplitude</a></b></i>. This can be caused by a faulty soundcard.  If this is the case with your recordings, see the <a href="normalize.html" title="Normalize">Normalize</a> page for how to use Normalize to remove <a href="glossary.html#dc_offset" title="Glossary">DC offset</a> and how to check if your Windows sound device can perform this correction automatically.
+<p>DC offset can occur at the recording stage so that the recorded waveform is not centered on the horizontal line at 0.0 <i><b><a href="glossary.html#amplitude" title="Glossary">amplitude</a></b></i>. This can be caused by a faulty audio interface.  If this is the case with your recordings, see the <a href="normalize.html" title="Normalize">Normalize</a> page for how to use Normalize to remove <a href="glossary.html#dc_offset" title="Glossary">DC offset</a> and how to check if your Windows sound device can perform this correction automatically.
 </p>
+<div style="margin-top:12px; margin-bottom:12px; margin-left:24px; margin-right:24px">
+<table style="background:#FEFFD0; color:black; border:1px solid #999999; padding-left:12px; padding-right:12px" width="100%" align="center">
 
+<tr>
+<td width="30px" valign="top" align="center"><a href="https://alphamanual.audacityteam.org/man/File:Warningicon.png" class="image" title="Warning icon"><img alt="Warning icon" src="../m/images/b/ba/warningicon.png" width="24" height="24" /></a>
+</td>
+<td align="left" valign="top">If you have DC offset showing in your recording then you have a hardware fault that you should repair before continuing.
+</td></tr></table></div>
+</li></ul>
 <div id="edit"></div>
 <h2><span class="mw-headline" id="Step_3:_Editing.2C_Noise_Reduction_and_Click_Removal">Step 3: Editing, Noise Reduction and Click Removal</span></h2>
-<p>When you have finished recording, press the Stop button <img alt="The Stop button" src="../m/images/f/f9/stop.png" title="The Stop button" width="16" height="16" /> and save your recording into the Project you started by using <span class="menu">File &gt; <a href="file_menu.html#save_project" title="File Menu">Save Project</a></span>.  Now the data is safe, you can edit it in Audacity if you want to (for example, cut redundant pieces out), or come back to it later by re-opening the saved Project file with the <span class="menu">File &gt; <a href="file_menu.html#open" title="File Menu">Open...</a></span> command. See <a href="edit_menu.html" title="Edit Menu">Edit Menu</a> for help with editing.  
+<p>When you have finished recording, press the Stop button <img alt="The Stop button" src="../m/images/f/f9/stop.png" title="The Stop button" width="16" height="16" /> and save your recording into the Project you started by using <span class="menu">File &gt; Save Project &gt; <a href="file_menu_save_project.html#save_project" title="File Menu: Save Project">Save Project</a></span>.  Now the data is safe, you can edit it in Audacity if you want to (for example, cut redundant pieces out), or come back to it later by re-opening the saved Project file with the <span class="menu">File &gt; <a href="file_menu.html#open" title="File Menu">Open...</a></span> command. See <a href="edit_menu.html" title="Edit Menu">Edit Menu</a> for help with editing.  
 </p><p>You may also want to remove clicks from records using <a href="click_removal.html" title="Click Removal">Click Removal</a>, then after that you can optionally use <a href="noise_reduction.html" title="Noise Reduction">Noise Reduction</a> to try to reduce steady noise such as vinyl "roar" or analog master tape hiss. Noise Reduction is especially useful for reducing hiss when recording cassettes. 
 </p><p>Removing clicks and pops is recommended when recording vinyl, as any loud click will interfere with maximizing the volume of the recording - the Amplify effect cannot tell the difference between music and clicks. Select the entire track by clicking on the Track Control Panel or choosing <span class="menu">Select &gt; <a href="select_menu.html#all" title="Select Menu">All</a></span> then choose <span class="menu">Effect &gt;  <a href="effect_menu.html#click" title="Effect Menu">Click Removal</a></span>. The default parameters in the Click Removal dialog will detect and remove most clicks, so try this first. If you find that it did not remove certain clicks or pops, select those regions in turn and apply the Click Removal effect, adjusting the parameters until it is successful. See <a href="click_removal.html" title="Click Removal">this page</a> for more details on using the Click Removal effect. See <a href="tutorial_click_and_pop_removal_techniques.html" title="Tutorial - Click and pop removal techniques">Click and pop removal techniques</a> for further help with click removal.
-</p><p>Linux users may be interested in trying <a rel="nofollow" target="manual" class="external text" href="http://gwc.sourceforge.net/">Gnome Wave Cleaner</a> which is free and open source.
-</p><p>Mac and Windows users may be interested in trying Brian Davies' <a rel="nofollow" target="manual" class="external text" href="http://www.clickrepair.net/">Click Repair</a> software. It is not free and requires Java, but has a 21-day free trial period so you can try it out and see if it is worth it to you. There are other non-free alternatives, such the Pop/Click and Smoother tools in <a rel="nofollow" target="manual" class="external text" href="http://www.goldwave.com/">Goldwave</a>.
+</p><p>Linux users may be interested in trying <a rel="nofollow" class="external text" href="http://gwc.sourceforge.net/">Gnome Wave Cleaner</a> which is free and open source.
+</p><p>Mac and Windows users may be interested in trying Brian Davies' <a rel="nofollow" class="external text" href="http://www.clickrepair.net/">Click Repair</a> software. It is not free and requires Java, but has a 21-day free trial period so you can try it out and see if it is worth it to you. There are other non-free alternatives, such the Pop/Click and Smoother tools in <a rel="nofollow" class="external text" href="http://www.goldwave.com/">Goldwave</a>.  
 </p><p><a href="noise_reduction.html" title="Noise Reduction">Noise Reduction</a> is tricky to get right. You need to be prepared to experiment with the effect so that it discards as much noise as possible without damaging the sound you want to keep. It is more effective at removing cassette hiss than "vinyl roar". 
 </p>
 <div id="amplitude"></div>
@@ -94,7 +102,7 @@
 <li>The volume is normalized to -1 dB, so leaving a little <i><b><a href="glossary.html#headroom" title="Glossary">headroom</a></b></i> below the maximum possible 0 dB level. </li></ul></li></ul>
 <p>Note that Normalize defaults to retaining the existing balance between stereo channels. However basic consumer-level equipment can often record with channels unbalanced. To correct unwanted volume differences between left and right, uncheck "Normalize stereo channels independently".    
 </p>
-<div class="note"> Extraneous noises in the recording can cause Normalize to create unwanted changes in the stereo balance, or prevent recordings being made as loud as they can be. Extraneous noises should be edited with <a href="click_removal.html" title="Click Removal">Click Removal</a>, <a href="repair.html" title="Repair">Repair</a> or <a href="amplify.html" title="Amplify">Amplify</a> before the Normalize step. Also see our tips for <a rel="nofollow" target="manual" class="external text" href="https://wiki.audacityteam.org/wiki/Reducing_noise">reducing noise</a> in the recording chain.</div>
+<div class="note"> Extraneous noises in the recording can cause Normalize to create unwanted changes in the stereo balance, or prevent recordings being made as loud as they can be. Extraneous noises should be edited with <a href="click_removal.html" title="Click Removal">Click Removal</a>, <a href="repair.html" title="Repair">Repair</a> or <a href="amplify.html" title="Amplify">Amplify</a> before the Normalize step. Also see our tips for <a rel="nofollow" class="external text" href="https://wiki.audacityteam.org/wiki/Reducing_noise">reducing noise</a> in the recording chain.</div>
 <div id="export"></div>
 <h2><span class="mw-headline" id="Step_5:_Exporting">Step 5: Exporting</span></h2>
 <p>When you are happy with your editing, you need to export the recording as an audio file such as <i><b><a href="glossary.html#wav" title="Glossary">WAV</a></b></i> or MP3 that you can either play on your computer media player (for example on iTunes or Windows Media Player), or which you can burn to an audio or <i><b><a href="glossary.html#mp3_cd" title="Glossary">MP3 CD</a></b></i>. See the <b>About WAV, AIFF, MP3, Audio CDs and MP3 CDs&lt;</b> below about the difference between audio and MP3 CDs. To export a single audio file, use the <span class="menu">File &gt; Export &gt; <a href="file_menu_export.html#exportaudio" title="File Menu: Export">Export Audio...</a></span> command. If your recording contains multiple tracks or songs, you may want to export these from your Project as separate audio files. This would be necessary if you wanted to burn a CD with separate CD tracks corresponding to each track in your recording. To prepare your recording for export as separate audio files, see the tutorial <a href="splitting_a_recording_into_separate_tracks.html" title="Splitting a recording into separate tracks">Splitting a recording into separate tracks</a>.  
@@ -119,34 +127,34 @@ If you are exporting your file to a media application which has its own "Library
 </p>
 <!-- 
 NewPP limit report
-Cached time: 20180117040846
+Cached time: 20180914182904
 Cache expiry: 86400
 Dynamic content: false
-CPU time usage: 0.118 seconds
-Real time usage: 0.123 seconds
-Preprocessor visited node count: 301/1000000
-Preprocessor generated node count: 1394/1000000
-Post‐expand include size: 5537/2097152 bytes
-Template argument size: 2946/2097152 bytes
+CPU time usage: 0.138 seconds
+Real time usage: 0.143 seconds
+Preprocessor visited node count: 315/1000000
+Preprocessor generated node count: 1446/1000000
+Post‐expand include size: 6181/2097152 bytes
+Template argument size: 3224/2097152 bytes
 Highest expansion depth: 12/40
 Expensive parser function count: 11/100
 -->
 
 <!-- 
 Transclusion expansion time report (%,ms,calls,template)
-100.00%   34.440      1 - -total
- 61.09%   21.040      1 - Template:I18n
- 56.00%   19.285      1 - Template:I18n_box
- 45.71%   15.744      1 - Template:I18n_list
- 18.40%    6.336      2 - Template:I18n_link
- 10.74%    3.699      2 - Template:Autoglossonym
-  9.36%    3.222      2 - Template:Tip
-  8.65%    2.978      2 - Template:Note
-  7.60%    2.618     10 - Template:Menu
-  5.16%    1.776      2 - Template:Button
+100.00%   41.853      1 - -total
+ 53.75%   22.496      1 - Template:I18n
+ 49.26%   20.617      1 - Template:I18n_box
+ 40.60%   16.991      1 - Template:I18n_list
+ 15.09%    6.317      2 - Template:I18n_link
+  9.98%    4.178      2 - Template:Tip
+  9.80%    4.100      2 - Template:Note
+  8.90%    3.723      2 - Template:Autoglossonym
+  8.21%    3.435     11 - Template:Menu
+  5.59%    2.341      2 - Template:Button
 -->
 
-<!-- Saved in parser cache with key helpmediawiki:pcache:idhash:3101-0!*!0!!*!5!* and timestamp 20180117040846 and revision id 57208
+<!-- Saved in parser cache with key helpmediawiki:pcache:idhash:3101-0!*!0!!*!5!* and timestamp 20180914182904 and revision id 60974
  -->
 </div>
 										<!-- end content -->
@@ -165,37 +173,43 @@ Transclusion expansion time report (%,ms,calls,template)
 		<div class="generated-sidebar portlet" id="p-Navigation" role="navigation">
 		<h3>Navigation</h3>
 		<div class='pBody'>
-			<ul><li> <a href="../index.html" title="Main Page">Manual Home Page</a></li>
-<li> <a href="../index.html#using" title="Main Page">Using Audacity</a>
-<ul><li> <a href="audacity_tour_guide.html" title="Audacity Tour Guide">Tour Guide</a></li>
-<li> <a href="new_features_in_this_release.html" title="New features in this release">New Features</a></li>
-<li> <a href="../quick_help.html" title="Quick Help">Getting Started</a></li>
-<li> <a href="preferences.html" title="Preferences">Preferences</a></li>
-<li> <a href="menu_reference.html" title="Menu Reference">Menu Bar</a></li>
-<li> <a href="toolbars_overview.html" title="Toolbars Overview">Toolbars</a></li>
-<li> <a href="keyboard_shortcut_reference.html" title="Keyboard Shortcut Reference">Commands / Shortcuts</a></li>
-<li> <a href="index_of_effects_generators_and_analyzers.html" title="Index of Effects, Generators and Analyzers">Effects</a></li>
-<li> <a href="tutorials.html" title="Tutorials">Tutorials</a></li>
-<li> <a href="tips.html" title="Tips">Tips</a></li></ul></li></ul>
+			<ul><li> <a href="../index.html" title="Main Page"><span title="Front page, complete with clickable image of Audacity screen.">Manual Home Page</span></a></li>
+<li> <a href="../index.html#using" title="Main Page"><span title="Quick Help, Audacity Foundations, Editing with Audacity, Help with Advanced Topics">Using Audacity</span></a>
+<ul><li> <a href="audacity_tour_guide.html" title="Audacity Tour Guide"><span title="A quick tour of selected features of Audacity. It doesn’t tell you how to use features it would be much too long if it did. Rather it tells you about some of the features that exist in Audacity and will help you learn a little about those.">Tour Guide</span></a></li>
+<li> <a href="new_features_in_this_release.html" title="New features in this release"><span title="An overview of the key new functionality that has been introduced in this release">New Features</span></a></li>
+<li> <a href="../quick_help.html" title="Quick Help"><span title="A brief guide to help you get started with Audacity">Getting Started</span></a></li>
+<li> <a href="tutorials.html" title="Tutorials"><span title="A guide to the tutorials that provide step-by-step instructions for performing common tasks in Audacity">Tutorials</span></a></li>
+<li> <a href="tips.html" title="Tips"><span title="A guide to particular aspects of working with Audacity: Navigation. Playback, Audio Alignment">Tips</span></a></li></ul></li>
+<li> <a href="../index.html#reference" title="Main Page"><span title="The components of the Audacity Graphical User Interface">Audacity GUI</span></a>
+<ul><li> <a href="menu_reference.html" title="Menu Reference"><span title="A guide to the menus and submenus in Audacity">Menu Bar</span></a></li>
+<li> <a href="toolbars_overview.html" title="Toolbars Overview"><span title="A guide to the various Toolbars used in Audacity">Toolbars</span></a></li>
+<li> <a href="tracks_menu_add_new.html" title="Tracks Menu: Add New"><span title="A guide to the various types of track">Tracks</span></a></li>
+<li> <a href="index_of_effects_generators_and_analyzers.html" title="Index of Effects, Generators and Analyzers"><span title="A quick index to the Effects, Generators and Analyzers that are shipped with Audacity">Effects</span></a></li></ul></li>
+<li> <a href="customization.html" title="Customization"><span title="Adjust settings, change key-bindings, add plug-ins">Customizing Audacity</span></a>
+<ul><li> <a href="preferences.html" title="Preferences"><span title="A guide to Preferences, which let you change most of the default behaviors of Audacity">Preferences</span></a></li>
+<li> <a href="keyboard_shortcut_reference.html" title="Keyboard Shortcut Reference"><span title="A list of all the commands in the Audacity menus and all pre-defined keyboard shortcuts">Key-bindings</span></a></li>
+<li> <a href="installing_effect_generator_and_analyzer_plug_ins.html" title="Installing Effect, Generator and Analyzer plug-ins"><span title="You can download and install plug-ins to add extra functionality to Audacity. Plug-ins can give you extra effects, or more audio generation and analysis capability.">Plug-ins</span></a></li></ul></li></ul>
 		</div>
 		</div>
 		<div class="generated-sidebar portlet" id="p-Reference" role="navigation">
 		<h3>Reference</h3>
 		<div class='pBody'>
-			<ul><li> <a href="../index.html#reference" title="Main Page">Reference</a>
-<ul><li> <a href="digital_audio.html" title="Digital Audio">Digital Audio</a></li>
-<li> <a href="glossary.html" title="Glossary">Glossary</a></li>
-<li> <a href="subject_index.html" title="Subject Index">Subject Index</a></li></ul></li>
-<li> <span title="Frequently Asked Questions"><a rel="nofollow" target="manual" class="external text" href="faq.html">FAQ</a></span></li></ul>
+			<ul><li> <a href="../index.html#reference" title="Main Page"><span title="Reference guide to the Audacity project window - you can hover over and click on the image to learn more">Reference</span></a>
+<ul><li> <a href="digital_audio.html" title="Digital Audio"><span title="A beginner&#39;s guide to digital audio">Digital Audio</span></a></li>
+<li> <a href="glossary.html" title="Glossary"><span title="Brief explanations of technical terms related to digital audio, with some links to Wikipedia for much more comprehensive explanations">Glossary</span></a></li>
+<li> <a href="scripting_reference.html" title="Scripting Reference"><span title="Audacity Commands that are in menus, that can be used from Macros, Nyquist and Python">All Commands</span></a></li>
+<li> <a href="subject_index.html" title="Subject Index"><span title="A short, limited, index of the Manual">Index</span></a></li></ul></li>
+<li> <a href="faq.html" title="FAQ"><span title="Frequently Asked Questions - most common questions are answered in the FAQ">FAQ</span></a></li></ul>
 		</div>
 		</div>
 		
 		<div class="generated-sidebar portlet" id="p-Useful_Links" role="navigation">
 		<h3>Useful Links</h3>
 		<div class='pBody'>
-			<ul><li> <a rel="nofollow" target="manual" class="external text" href="https://forum.audacityteam.org/index.php">Forum</a></li>
-<li> <a rel="nofollow" target="manual" class="external text" href="https://wiki.audacityteam.org/wiki/Audacity_Wiki_Home_Page">Wiki</a></li>
-<li> <a rel="nofollow" target="manual" class="external text" href="https://www.audacityteam.org/download/">Latest Release</a></li></ul>
+			<ul><li> <span title="Audacity Forum (best place for support requests)"><a rel="nofollow" class="external text" href="https://forum.audacityteam.org/index.php">Forum</a></span></li>
+<li> <span title="Audacity Wiki Home Page"><a rel="nofollow" class="external text" href="https://wiki.audacityteam.org/wiki/Audacity_Wiki_Home_Page">Wiki</a></span></li>
+<li> <span title="Audacity Latest Release"><a rel="nofollow" class="external text" href="https://www.audacityteam.org/download/">Latest Release</a></span></li>
+<li> <span title="Visual &#39;What Is That?&#39; guide to Audacity"><a rel="nofollow" class="external text" href="https://wit.audacityteam.org//">WIT</a></span></li></ul>
 		</div>
 		</div>
 		
@@ -207,10 +221,10 @@ Transclusion expansion time report (%,ms,calls,template)
 									
 							</div>
 					<div id="f-poweredbyico">
-									<a target="manual" href="http://www.mediawiki.org/"><img src="../m/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/m/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /m/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31"/></a>
+									<a href="https://www.mediawiki.org/"><img src="../m/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/m/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /m/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31"/></a>
 							</div>
 					
-		<div align="center"><ul id="f_list"><li>Offline version created on 2018-01-17 - <a target="manual" href="http://alphamanual.audacityteam.org/man/Basic_Recording,_Editing_and_Exporting">Check current version of this page (development Manual)</a></li></ul></div>
+		<div align="center"><ul id="f_list"><li>Offline version created on 2018-09-14 - <a href="https://alphamanual.audacityteam.org/man/Basic_Recording,_Editing_and_Exporting">Check current version of this page (development Manual)</a></li></ul></div>
 </div>
 		</div>
 		</body></html>
