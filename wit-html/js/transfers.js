@@ -612,7 +612,7 @@ function MakeMenuMap2(from, prefix, priorRects, xIn, yIn){
   //str += "id:\"" + safeName + "\"\n";
   //str += "str:\'";
   mapCounter += 1;
-  str += "<h3>Map number "+mapCounter + " " + safeName + "</h3>";
+  str += "<h3>Map number "+mapCounter + ": " + safeName + "</h3>";
   str += "<img src=\"https://wit.audacityteam.org/auto_images/" + safeName + "Menu.png\" usemap=\"xmap" + mapCounter+"\"></img>\r\n";
   str += "<map name=\"xmap"+mapCounter+"\">\r\n";
   str += priorRects;
