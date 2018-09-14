@@ -627,8 +627,7 @@ function MakeMenuMap2(from, prefix, priorRects, xIn, yIn){
   //str += "id:\"" + safeName + "\"\n";
   //str += "str:\'";
   mapCounter += 1;
-  str += "<h3>Map number "+mapCounter + ": " + safeName + "</h3>";
-  str += "<img src=\"https://wit.audacityteam.org/auto_images/" + safeName + "Menu.png\" usemap=\"xmap" + mapCounter+"\"></img>\r\n";
+  str += "<h3>Map number "+mapCounter + ": " + safeName + "</h3>\r\n";
   str += "<map name=\"xmap"+mapCounter+"\">\r\n";
   str += priorRects;
 
@@ -711,6 +710,8 @@ function MakeMenuMap2(from, prefix, priorRects, xIn, yIn){
       str += rectString2(0, 0,1000,1000, "Menu_Reference",
         "The Menus");
       str += "</map>\r\n";
+      str += "<img src=\"https://wit.audacityteam.org/auto_images/" + safeName + "Menu.png\" usemap=\"#xmap" + mapCounter+"\"></img>\r\n";
+
       //str += "{{ClickTip|x=" + (x + width - 50) + "|y=15}}\r\n\r\n\r\n";
       str += "<br><br><br>\r\n"
       str += "&nbsp;\r\n\r\n";
