@@ -92,17 +92,25 @@ function PrinatbleTipInfoOfMenuItem(Menu){
 }
 
 
-function LoadSpecialFiles(){
+function LoadSpecialFiles( fn ){
   var date = new Date();
   var nMillis = date.getTime();
 
   var str = window.location.href;
   console.log( "Location is: " + str );
   if( str.indexOf( 'localhost' ) != -1){
+    if( fn ){
+      continuationCounter = 2;
+      DoContinuation = fn;
+    }
     fileActionLoader(Async, "EVAL", "./raw/raw_menu.txt");
     fileActionLoader(Async, "EVAL", "./raw/raw_tooltips.txt");
   }
   else {
+    if( fn ){
+      continuationCounter = 3;
+      DoContinuation = fn;
+    }
     // action=raw to get unprocessed file from wiki.
     // time=nMillis to avoid issues with cached content.
     fileActionLoader(Async, "EVAL",
@@ -118,6 +126,9 @@ function LoadSpecialFiles(){
 }
 
 
+var continuationCounter=0;
+DoContinuation = function(){};
+
 function handleNewData( data ){
   data = data.replace( '</nowiki>', '<nowiki>' );
   var commands = data.split( '<nowiki>' );
@@ -126,6 +137,9 @@ function handleNewData( data ){
     var str = commands[commands.length - 2];
     //console.log( str );
     eval( str );
+    continuationCounter -=1;
+    if( continuationCounter == 0 )
+      DoContinuation();
 
   }
 }
@@ -1375,13 +1389,18 @@ Audacity.AutomationReference = function(){
   JoinCommandsIntoMenus();
   return MakeKeyboardReference(0,"", "automation");
 };
+
+var DoRefPrep = true;
 /**
 * Make the Automation (commands) reference
 * @returns {string}
 */
 Audacity.Reference = function( type ){
-  JoinTipsIntoMenus();
-  JoinCommandsIntoMenus();
+  if( DoRefPrep ){
+    JoinTipsIntoMenus();
+    JoinCommandsIntoMenus();
+    DoRefPrep = false;
+  }
   mapCounter=0;
   if( type == "menu" )
     return MakeMenuMap2( 0, "", "", 0, 5 );
