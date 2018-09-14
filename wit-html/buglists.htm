@@ -141,8 +141,9 @@
 </head>
 <body>
 <div id="WindowsDiv">This is some extra text that appears if Windows was selected</div>
-<script>
-        var SampleIssues = [
+<script data-cfasync="false">
+
+var SampleIssues = [
   {
     "Bug ID": 1941,
     "Priority": "P4",
@@ -490,7 +491,7 @@
     &nbsp;
     &nbsp;
 
-    <script>
+    <script data-cfasync="false">
         document.addEventListener('DOMContentLoaded', OnFilter, false);
     </script>
 

@@ -92,7 +92,7 @@
 <script data-cfasync="false" src="./js/boxes.js"></script>
 <script data-cfasync="false" src="./js/tabular.js"></script>
 <script data-cfasync="false" src="./js/transfers.js"></script>
-<script>
+<script data-cfasync="false">
 
 function OnTabular(){
     LoadSpecialFiles( TabularContinue );
@@ -114,10 +114,7 @@ function TabularContinue(){
     text.innerHTML = contents;
 }
 
-</script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', OnTabular, false);
+document.addEventListener('DOMContentLoaded', OnTabular, false);
 </script>
 
 <div id="tabularDiv">No Contents.</div>

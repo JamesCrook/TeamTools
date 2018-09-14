@@ -257,7 +257,7 @@ function rectString2( x1,y1,x2,y2, name, tip ){
   str += ("    "+y1).slice(-4)+ ",";
   str += ("    "+x2).slice(-4)+ ",";
   str += ("    "+y2).slice(-4);
-  str += "\" href=\"" + name + "\" title=\"" + tip + "\">\r\n";
+  str += "\" href=\"" + name + "\" title=\"" + tip + "\" alt=\"" + tip + "\">\r\n";
   return str;
 }
 
