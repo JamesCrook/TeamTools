@@ -381,44 +381,7 @@ function DrawMenu( from ){
   }
 }
 
-function AddItemSize( Res, item ){
-  var MenuLevel = App.Menus[item].depth;
-  Res = ((MenuLevel < 1) ? SizeBarItem : SizeItem)
-  ( item, Res.x, Res.y, App.Menus[item].label,
-    App.Menus[item].accel, App.Menus[item].flags);
-  return Res;
-}
 
-
-function GetMenuSizing( from ){
-  // Compute the x and y dimensions of chosen menu.
-  var Res = { x:0, y:0};
-  var i;
-
-  var MenuLevel = App.Menus[from].depth;
-  Menu.tWidth = 0;
-  Menu.aWidth = 0;
-
-
-  for(i=from;i<App.Menus.length;i++){
-    if( App.Menus[i].depth < MenuLevel )
-      break;
-    if( App.Menus[i].depth == MenuLevel ){
-      // Chooses between functions to apply to
-      // the x and y values.
-      Res = AddItemSize( Res, i );
-    }
-  }
-  if( MenuLevel < 1 ){
-    Menu.width = Res.x;
-    Menu.height = 22;
-  }
-  else {
-    Menu.width = Menu.tWidth + Menu.aWidth + 70;
-    Menu.height = Res.y + 7;
-  }
-
-}
 
 function GetMenuPosition( from ){
   var MenuLevel = App.Menus[from].depth;

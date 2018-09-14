@@ -4,7 +4,7 @@
 ///////////////////////////////////////////////////////////////////
 
 var Async = [];
-
+var mapCounter;
 
 //[  1,  0, "Close", "Ctrl+W" ],
 /**
@@ -230,6 +230,19 @@ function rectString( x1,y1,x2,y2, name, tip ){
   str += ("    "+x2).slice(-4)+ " ";
   str += ("    "+y2).slice(-4)+ " ";
   str += "[[" + name + "|" + tip + "]]\r\n";
+  return str;
+}
+
+
+function rectString2( x1,y1,x2,y2, name, tip ){
+  if( x2 < 0 )
+    return "";
+  var str = "   <area shape=\"rect\" coords=\"";
+  str += ("    "+x1).slice(-4)+ ",";
+  str += ("    "+y1).slice(-4)+ ",";
+  str += ("    "+x2).slice(-4)+ ",";
+  str += ("    "+y2).slice(-4);
+  str += "\" href=\"" + name + "\" title=\"" + tip + "\">\r\n";
   return str;
 }
 
@@ -551,6 +564,177 @@ function MakeMenuMap(from, prefix, priorRects, xIn, yIn){
   }
   return results;
 }
+
+
+
+
+/**
+ * returns all menus starting at item from, or the empty string.
+ * @returns {string}
+ */
+function MakeMenuMap2(from, prefix, priorRects, xIn, yIn){
+  var i;
+  var MenuName = "None";
+  var str = "";
+  var results = "";
+  var innerRects = "";
+  var x = xIn;
+  var y = yIn;
+  var SubItems = [];
+  var name;
+  //console.log( "Map from:"+from+" prefix:"+prefix );
+  var descend = (priorRects == "") ? 0 : 1;
+
+  if( from >= App.Menus.length )
+    return "";
+
+  var Box = App.Menus[from];
+  var indent = Box.depth + descend;
+
+  name = Box.label.replace(/ /g, '_');
+  name = name.replace(/\//g, '_');
+  if( indent == 0 )
+    MenuName = "Menu Reference"; else if( indent == 1 )
+    MenuName = prefix + name + " Menu"; else
+    MenuName = prefix + " " + name;
+  var safeName = prefix + name;
+
+  if( indent == 0 )
+    safeName = "MenuBar";
+
+  // Size of menu descended from from.
+  GetMenuSizing(from + 1);
+  var width = Math.floor(Menu.width);
+  var height = Math.floor(Menu.height);
+  //results += "At " + App.Menus[from].label + " Width = " + width + "\r\n";
+
+  safeName = safeName.replace(/ Menu:/g, "-");
+  //str += "id:\"" + safeName + "\"\n";
+  //str += "str:\'";
+  mapCounter += 1;
+  str += "<h3>Map number "+mapCounter + " " + safeName + "</h3>";
+  str += "<img src=\"https://wit.audacityteam.org/auto_images/" + safeName + "Menu.png\" usemap=\"xmap" + mapCounter+"\"></img>\r\n";
+  str += "<map name=\"xmap"+mapCounter+"\">\r\n";
+  str += priorRects;
+
+  var dx = 0;
+  var dy = 0;
+
+  for( i = from; i < App.Menus.length; i++ ){
+    Box = App.Menus[i];
+
+    // if nextindent is greater than current, push the next item.
+    var nextIndent = -1;
+    if( i < App.Menus.length - 1 )
+      nextIndent = App.Menus[i + 1].depth;
+
+    // This is an item in the menu...
+    if( Box.depth == indent ){
+      x += dx;
+      y += dy;
+      if( Box.label.indexOf("---") >= 0 ){
+        dx = 0;
+        dy = 7;
+      } else {
+        var Tip = "tip about " + Box.label;
+        if( Box.short )
+          Tip = Box.short;
+
+        dx = 0;
+        dy = 22;
+        if( indent == 0 ){
+          width = SizeBarItem(0, 0, 0, Box.label, "", 0).x;
+          dx = width;
+          dy = 0;
+        }
+
+        // if has submenu...
+        if( indent == 0 )
+          innerRects += rectString2(x, y, x + width, y + 22,
+            Box.label + " Menu", CleanTip(Tip));
+        else if( Box.flags == 1 )
+          innerRects +=
+            rectString2(x, y, x + width, y + 22, MenuName + ': ' +
+              CleanPageName(Box.label), CleanTip(Tip));
+        else
+          innerRects += rectString2(x, y, x + width, y + 22,
+            MenuName + '#' + CleanAnchor(Box.label), CleanTip(Tip));
+      }
+
+      if( nextIndent == (indent + 1) ){
+        var dx1 = 0;
+        var dy1 = 0;
+        // If off menu bar, next row.
+        // If off submenu, shift by previous menu width.
+        if( nextIndent == 1 ){
+          dy1 = 22;
+          dx1 = (x==0)?0:25 - x;
+        } else
+          dx1 = width;
+
+        if( nextIndent == 2 ){
+          GetMenuSizing(i + 1);
+          // extraY is how much we will project over the end.
+          var extraY = Menu.height - height;
+          extraY += y - yIn;
+          // dy = -extraY would align bottom to bottom.
+
+          // dy1 is at most 0.  (place adjacent).
+          // dy1 is at least 27-y (place at start)
+          dy1 = Math.max(27 - y, Math.min(0, -extraY));
+        }
+
+        SubItems.push({ 'i': i, 'x': x + dx1, 'y': y + dy1 });
+        //console.log("Push "+Box.label);
+        //results += "Push "+Box.label+"\r\n";
+      }
+    }
+
+    // if nextindent < indent (or -1 for at end), then we are done.
+    if( nextIndent < indent ){
+      str += innerRects;
+      str += rectString2(0, 0,1000,1000, "Menu_Reference",
+        "The Menus");
+      str += "</map>\r\n";
+      //str += "{{ClickTip|x=" + (x + width - 50) + "|y=15}}\r\n\r\n\r\n";
+      str += "<br><br><br>\r\n"
+      str += "&nbsp;\r\n\r\n";
+      //str = str.replace( /\r\n/g, "'+\r\n" );
+      //str += "\"\"";
+      var bOkToAdd = innerRects != "";
+      bOkToAdd = bOkToAdd && ((indent!=0) || (from==0));
+      if( bOkToAdd )
+        results += str;
+      //console.log( str );
+      str = "";
+
+      var j;
+      if( indent == 0 )
+        MenuName = "";
+      for( j = 0; j < SubItems.length; j++ ){
+        var S = SubItems[j];
+        if( (descend == 0) && (S.i != from) ){
+          innerRects = "";
+          j = 1000;
+          S.x = 25;
+          S.y = 5;
+          console.log("NewMenu");
+        }
+        console.log("MakeMenu: " + App.Menus[S.i].label);
+        results += MakeMenuMap2(S.i, MenuName + ((indent == 1) ? ":" : ""),
+          priorRects + innerRects, S.x, S.y);
+      }
+      SubItems = [];
+      return results;
+
+    }
+  }
+  return results;
+}
+
+
+
+
 
 /**
  *
@@ -1197,6 +1381,9 @@ Audacity.AutomationReference = function(){
 Audacity.Reference = function( type ){
   JoinTipsIntoMenus();
   JoinCommandsIntoMenus();
+  mapCounter=0;
+  if( type == "menu" )
+    return MakeMenuMap2( 0, "", "", 0, 5 );
   if( type == "prefs")
     return MakePreferencesReference2( 0 );
   return MakeKeyboardReference2(0,"", type);
