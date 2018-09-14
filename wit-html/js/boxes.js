@@ -3755,12 +3755,6 @@ Audacity.Commands =
         { "key":"Threshold", "type":"float", "default":0 } ],
       "url":"Extra_Menu:_Scriptables_II#compare_Audio",
       "tip":"Compares a range on two tracks." },
-    { "id":"Demo", "name":"Demo", "params":
-      [
-        { "key":"Delay", "type":"float", "default":1 },
-        { "key":"Decay", "type":"float", "default":0.5 } ],
-      "url":"Extra_Menu:_Scriptables_I",
-      "tip":"Does the demo action." },
     { "id":"Drag", "name":"Drag", "params":
       [
         { "key":"Id", "type":"int", "default":"unchanged" },
