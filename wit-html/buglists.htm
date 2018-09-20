@@ -164,13 +164,25 @@ var SampleIssues = [
 
 function showClosed(){
     for( i=0;i<Issues.length;i++){
-        if( Issues[i]['Resolution'] == "---" ){
+        if( Issues[i]['Resolution'] != "---" ){
             console.log( "Closed[ "+Issues[i]['Bug ID']+" ]=\""+Issues[i]['Changed']+"\";");
         }
     }
 }
 
 function fixupClosed(){
+    console.log( "Issue count: " + Issues.length );
+    for( i=0;i<Issues.length;i++){
+        if( Issues[i]['Closed'] == "2018-08-20 00:00:00" ){
+            //console.log( Issues[i] );
+            var id = Issues[i]['Bug ID'];
+
+            if( Closed[id] != undefined ){
+                Issues[i]['Closed'] = Closed[id];
+                //console.log( Issues[i] );
+            }
+        }
+    }
 }
 
 fixupClosed();
@@ -178,21 +190,25 @@ fixupClosed();
         function closedThisRelease ( value ){
             if( value["Resolution"] == "---" )
                 return false;
-            if( value["Bug ID"] > 1841 ) // was QUICKFIXED.
-                return false;
+            //if( value["Bug ID"] > 1841 ) // was QUICKFIXED.
+            //    return false;
             if( value["Resolution"] == "QUICKFIXED" )
                 return false;
-            return value["Changed"] > "2018-02-00";
+            return value["Closed"] > "2018-02-00";
 
         }
 
         function fixedThisRelease ( value ){
             if( value["Resolution"] != "FIXED" )
                 return false;
-            return value["Changed"] > "2018-02-00";
+            return value["Closed"] > "2018-02-00";
+        }
+        function quickFixedThisRelease ( value ){
+            if( value["Resolution"] != "QUICKFIXED" )
+                return false;
+            return value["Closed"] > "2018-02-00";
 
         }
-
         function isAny( value ){
             return true;
         }
@@ -373,7 +389,8 @@ fixupClosed();
                 "Windows": isWindows,
                 "Linux" : isLinux,
                 "Fixed" : fixedThisRelease,
-                "Closed" : closedThisRelease
+                "Closed" : closedThisRelease,
+                "QuickFixed" : quickFixedThisRelease
 
             }[ bugs ];
             var filter2 = {
@@ -468,6 +485,7 @@ fixupClosed();
                 <option value="Open">Open</option>
                 <option value="Fixed">Fixed</option>
                 <option value="Closed">Closed</option>
+                <option value="QuickFixed">QuickFixed</option>
             </select>
             </td>
             <td><div id="bugsCount">0</div>
