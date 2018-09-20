@@ -162,6 +162,19 @@ var SampleIssues = [
   }
 ];
 
+function showClosed(){
+    for( i=0;i<Issues.length;i++){
+        if( Issues[i]['Resolution'] == "---" ){
+            console.log( "Closed[ "+Issues[i]['Bug ID']+" ]=\""+Issues[i]['Changed']+"\";");
+        }
+    }
+}
+
+function fixupClosed(){
+}
+
+fixupClosed();
+
         function closedThisRelease ( value ){
             if( value["Resolution"] == "---" )
                 return false;
