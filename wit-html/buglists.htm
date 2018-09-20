@@ -164,7 +164,7 @@ var SampleIssues = [
 
 function showClosed(){
     for( i=0;i<Issues.length;i++){
-        if( Issues[i]['Resolution'] != "---" ){
+        if( (Issues[i]['Resolution'] != "---" ) && (Issues[i]['Closed'] == "" )){
             console.log( "Closed[ "+Issues[i]['Bug ID']+" ]=\""+Issues[i]['Changed']+"\";");
         }
     }
@@ -173,7 +173,8 @@ function showClosed(){
 function fixupClosed(){
     console.log( "Issue count: " + Issues.length );
     for( i=0;i<Issues.length;i++){
-        if( Issues[i]['Closed'] == "2018-08-20 00:00:00" ){
+        var when = Issues[i]['Closed'];
+        if( (when == "2018-08-20 00:00:00" ) || (when =="")){
             //console.log( Issues[i] );
             var id = Issues[i]['Bug ID'];
 
@@ -186,6 +187,7 @@ function fixupClosed(){
 }
 
 fixupClosed();
+showClosed();
 
         function closedThisRelease ( value ){
             if( value["Resolution"] == "---" )
