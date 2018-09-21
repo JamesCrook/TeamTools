@@ -189,27 +189,30 @@ function fixupClosed(){
 fixupClosed();
 showClosed();
 
+        function inDateRange( value ){
+            var when = value['Closed'];
+            if( when == "" )
+                return true;
+            return when > "2018-02-00";
+        }
+
         function closedThisRelease ( value ){
             if( value["Resolution"] == "---" )
                 return false;
-            //if( value["Bug ID"] > 1841 ) // was QUICKFIXED.
-            //    return false;
             if( value["Resolution"] == "QUICKFIXED" )
                 return false;
-            return value["Closed"] > "2018-02-00";
-
+            return inDateRange( value );
         }
 
         function fixedThisRelease ( value ){
             if( value["Resolution"] != "FIXED" )
                 return false;
-            return value["Closed"] > "2018-02-00";
+            return inDateRange( value );
         }
         function quickFixedThisRelease ( value ){
             if( value["Resolution"] != "QUICKFIXED" )
                 return false;
-            return value["Closed"] > "2018-02-00";
-
+            return inDateRange( value );
         }
         function isAny( value ){
             return true;
@@ -392,9 +395,8 @@ showClosed();
                 "Linux" : isLinux,
                 "Fixed" : fixedThisRelease,
                 "Closed" : closedThisRelease,
-                "QuickFixed" : quickFixedThisRelease
-
-            }[ bugs ];
+                "QuickFixed" : quickFixedThisRelease,
+                "Any" : isAny }[ bugs ];
             var filter2 = {
                 "Main" : mainIssues,
                 "Accessibility" : isAccessibility,
@@ -419,7 +421,7 @@ showClosed();
                 interestingFields.push( "OS" );
             if( priority != "P3" )
                 interestingFields.push( "Priority" );
-            if( bugs == "Closed" )
+            if( (bugs == "Closed" ) || (bugs == "Any"))
                 interestingFields.push( "Resolution" );
             if( show != "Any" )
                 interestingFields.push( "Workaround" );
@@ -488,6 +490,7 @@ showClosed();
                 <option value="Fixed">Fixed</option>
                 <option value="Closed">Closed</option>
                 <option value="QuickFixed">QuickFixed</option>
+                <option value="Any">Any</option>
             </select>
             </td>
             <td><div id="bugsCount">0</div>
