@@ -1262,7 +1262,8 @@ function OnNextSubMenuItem(arg){
 }
 
 
-
+// fix problem caused by CloudFlare Rocket engine.
+var __cfRLUnblockHandlers = 1;
 
 window.onload = function(){
   Message = document.getElementById("message");
