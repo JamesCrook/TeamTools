@@ -193,7 +193,7 @@ showClosed();
             var when = value['Closed'];
             if( when == "" )
                 return true;
-            return when > "2018-02-00";
+            return when > "2018-10-00"; // 2.3.1 started
         }
 
         function closedThisRelease ( value ){
@@ -281,13 +281,13 @@ showClosed();
             if( isClosed( value ) )
                 return false;
             var id = value["Bug ID"];
-            return [1913,276,1585,1657].indexOf( id ) !== -1;
+            return [276,1585,1657].indexOf( id ) !== -1;
         }
 
         function newIssues( value ){
             if( isClosed( value ) )
                 return false;
-            return value["Bug ID"] > 1810;
+            return value["Bug ID"] > 1983; // 2.3.1 started
         }
 
         function filterIssues( filterFunction ){
