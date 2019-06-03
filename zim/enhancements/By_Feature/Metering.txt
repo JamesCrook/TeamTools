@@ -1,0 +1,23 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-03T18:49:11+01:00
+
+====== Metering ======
+Created Monday 03 June 2019
+
+==== Metering ====
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=565|565]] Enh: Easier way to avoid clipping on multiple tracks (P3, with 5 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=951|951]] ENH: Option for Find Clipping to operate on mix of all selected tracks (P4, with 2 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1581|1581]] Enh: Clip indicators in Mixer Board cannot be cleared without restarting playback (P4, with 1 comments)
+
+One point raised is that finding the actual clipping for a mix would be time consuming. However, high risk of clipping can be computed rapidly.  It will get a false positive for mixing sound and anti-sound, but in nearly all real world use it will be correct.  We could also have three ratings:
+
+* No risk of clipping (maxes add to less than 1)
+* Definitely clips (clipping likely, and confirmed in one block)
+* Risk of clipping (clipping likely, but of 10 risky blocks tested, none did, due to anti-sound)
+
+I think it is worthwhile having a display of the mix - which can be used for navigation - and is shown whenever exporting.  This will also sometimes help with muted tracks:
+
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1334|1334]] Enh: No warning is provided that if some tracks are muted they are not exported. (P4, with 8 comments)
+
+It will help where the tracks are two speakers, because it will be clear from the mix that there are periods of silence, if one speaker is muted.

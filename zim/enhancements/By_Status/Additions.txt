@@ -1,0 +1,25 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-03T18:50:17+01:00
+
+====== Additions ======
+Created Monday 03 June 2019
+
+Featurey enhancement requests are nice-to-haves, and arguably never belonged in Bugzilla.  
+
+=== Compressor ===
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=153|153]] Enh: Compressor usability enhancements (P4, with 4 comments)
+
+* Stereo processing makes sense when channels differ.  We are doing dual mono.
+* Grid lines perhaps should be done at same time as grid lines on waveform.
+* Positioning is 'a tweak'.
+
+==== Optimisation / Other Windows ====
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=492|492]] Add mixed-radix-fft implementation with menu item to adjust spectrogram window (P4, with 6 comments)
+
+This is a geek-driven enh request and P4 is a bit high.
+
+==== Straight Feature Request ====
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1987|1987]] Enh: Export button on History Dialog (P4, with 2 comments)
+
+Sure, this is a nice-to-have.  

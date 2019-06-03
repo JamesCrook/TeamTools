@@ -1,0 +1,24 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-03T12:57:15+01:00
+
+====== Warnings and Errors ======
+Created Monday 03 June 2019
+
+==== Warnings ====
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1462|1462]] Timer Record does not check that there is sufficient space for Export (P3, with 7 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1334|1334]] Enh: No warning is provided that if some tracks are muted they are not exported. (P4, with 8 comments)
+
+Rather than standard pop up dialog warnings, which are intrusive, we should consider instead an info panel, that shows 'space available' and likely space required; also '4 tracks (of 8) are being exported'.  A help button could give more information.
+
+The idea is to avoid interrupting workflow with a dialog.
+
+==== Errors ====
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=2049|2049]] Noise Reduction error message for no selection is unhelpful (P4, with 4 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=2048|2048]] ENH: Slicker Noise Reduction GUI (P4, with 4 comments)
+I've put these two issues together, because they are mostly the same point.
+
+The error message is because the effect has a clunky two step design.  Instead it should offer a default noise reduction frequency profile.  Certainly it could spot mains hum and such easily.  Or it could just offer a built-in profile, such as mains-hum.  There should be a button for 'refine profile' which will allow you to select some 'silence'.
+
+Noise reduction effect needs a lot of attention.  We ought to be able to remove crackle and some 'wind noise' from mics with a better effect than this one.
+

@@ -1,0 +1,64 @@
+Bug ID,Priority,Group,Summary,Number of Comments
+1686,P4,Envelope,Enh: Use Envelope in Equalization,1
+1462,P3,Export,Timer Record does not check that there is sufficient space for Export,7
+549,P3,Export,Enh: Add missing export formats to Macros,2
+548,P3,Export,Enh: Add export format options and export sample rate to Chain parameters,1
+1833,P4,Export,Stop in Export Multiple does not actually stop the exports,1
+1334,P4,Export,Enh: No warning is provided that if some tracks are muted they are not exported.,8
+984,P4,Export,"Export filetype dropdown:  ""Other uncompressed..."" has a  ""lot"" of compressed encoding",3
+744,P5,Accessibility,Enh: Keyboard preferences hotkey search - unwanted results,13
+98,P5,Accessibility,ENH: Debug Log window and Screenshot tools don't close on ESC,6
+551,P3,Metadata,Export Multiple: Pass through common metadata to next window,15
+1295,P4,Metadata,"Enh: Export Multiple ""Track Number"" metadata should increment if changed, and file numbering should respect modified Track Number.",1
+1341,P3,Needs Discussion,Vocal Remover effect should be removed - misleading and duplicated effectively,7
+901,P3,Needs Discussion,Enh: Chains: Noise Reduction and Noise Removal do not store parameters in a Chain.,9
+865,P3,Needs Discussion,Nyquist effects render white-space as silence,2
+565,P3,Needs Discussion,Enh: Easier way to avoid clipping on multiple tracks,5
+1973,P4,Needs Discussion,Enh: Support WDM/KS,1
+1638,P4,Needs Discussion,Enh: Some Ext- menu items depend on mouse position,2
+1598,P4,Needs Discussion,Enh: Improve GUI for Screenshot Tools,1
+1363,P4,Needs Discussion,"Enh: Tatsuki Makino proposed configure and makefile patches for autoreconf, system library and header files issues.",3
+1095,P4,Needs Discussion,Enh: Waveform views to show temporal selection as in time ruler.,36
+951,P4,Needs Discussion,ENH: Option for Find Clipping to operate on mix of all selected tracks,2
+815,P4,Needs Discussion,Enh: Clicking Play-at-Speed Toolbar Play button pushes down Transport Play button,19
+168,P4,Needs Discussion,Enh: Linux: Invoke update-mime-database in install: and uninstall:,2
+153,P4,Needs Discussion,Enh: Compressor usability enhancements,4
+619,P5,Needs Discussion,"TwoPassSimpleMono converts to track bit format between passes, losing quality.",5
+917,P3,Spectrogram,Enh: Spectral Selection only enabled for spectral edit effects.,11
+492,P4,Spectrogram,Add mixed-radix-fft implementation with menu item to adjust spectrogram window,6
+1350,P3,LabelTrack,"Enh: Show frequency range for labels, on tabbing, and allow graphical modification.",7
+1785,P4,LabelTrack,"Enh: Ability for File>Open to ""open"" a Label file",2
+1384,P4,LabelTrack,Enh: Truncate Silence: Modify labels when independent truncation and one selected audio track.,1
+1106,P5,LabelTrack,Enh: Font selection in label track dropdown menu acts globally,1
+159,P5,LabelTrack,Linux: Support X11 second clipboard in Label Tracks.,6
+1070,P4,TimeTrack,ENH: Time-shift tool not implemented for time tracks,3
+1285,P3,Slow,Enh: Make Nyquist effects more memory efficient.,4
+344,P2,FFmpeg,FFmpeg: M4A Quality slider has no control bitrate setting or AAC quality,9
+1294,P4,FFmpeg,Sample format preference ignored on import for some file formats,4
+1181,P4,FFmpeg,Enh: FFmpeg Custom Export: Show what export format/codec is in force.,2
+2063,P3,---,Enh: Impossible to use Macros to Export 24-bit or 32-bit WAV files,3
+2089,P4,---,Graphic EQ ( and Filter Curve): sliders for Length of Filter and vertical scale have no dialog for accurate setting,1
+2055,P4,---,Export2 does not export by default,2
+2052,P4,---,Linux/Mac: Lock file location,1
+2049,P4,---,Noise Reduction error message for no selection is unhelpful,4
+2048,P4,---,ENH: Slicker Noise Reduction GUI,4
+2047,P4,---,Play at Speed does not respond to slider when looping,4
+1987,P4,---,Enh: Export button on History Dialog,2
+1985,P4,---,Enh: in dark themes EGA dialogs and error messages remain light-themed,2
+1984,P4,---,Enh: Themed sliders look odd on unthemed dialogs,2
+1955,P4,---,Enh: Clicks loop-playing audio.,4
+1936,P4,---,Enh: Nyquist Generators ignore selection,3
+1911,P4,---,Windows: no input stream for WASAPI loopback freezes recording without warning,1
+1724,P4,---,Enh: Nyquist sliders widgets may increase/decrease by unexpected amount on arrow key press,1
+1581,P4,---,Enh: Clip indicators in Mixer Board cannot be cleared without restarting playback,1
+1265,P4,---,"ENH: Select All in Plug-in Manager should display selected unfocused rows in more prominent colour, or same as fully selected.",13
+1212,P4,---,"""Automatically fit"" preference not honored during recording",5
+1145,P4,---,Enh: Can't set default Waveform dB range unless first setting the default view to Logarithmic,4
+1098,P4,---,Enh: Frequency selection is not visible in white space,1
+1068,P4,---,Enh: 24-bit WAV files import as 32-bit float when preferences set to 24-bit,4
+711,P4,---,Enh: Play-at-Speed speed setting should be saved in audacity.cfg and project.,2
+660,P4,---,Incorrect frequency in Equalization and Classic Filters when tracks have different sample rates,15
+498,P4,---,Enh: Yellow snap guidelines lost after saving in high resolution selection format,4
+393,P4,---,Enh: Vertical drag does not scroll the project,5
+91,P4,---,Enh: Mac/Linux: Random bits of silence recording (with Jack) and differing sample rates.,6
+326,P5,---,ENH: Recovery does not retain project name from import,5

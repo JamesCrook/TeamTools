@@ -1,0 +1,25 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-03T16:16:26+01:00
+
+====== Refinement ======
+Created Monday 03 June 2019
+
+==== Refinement ====
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1145|1145]] Enh: Can't set default Waveform dB range unless first setting the default view to Logarithmic (P4, with 4 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=2089|2089]] Graphic EQ ( and Filter Curve): sliders for Length of Filter and vertical scale have no dialog for accurate setting (P4, with 1 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=498|498]] Enh: Yellow snap guidelines lost after saving in high resolution selection format (P4, with 4 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1686|1686]] Enh: Use Envelope in Equalization (P4, with 1 comments)
+
+These all seem sensible refinements.
+
+
+==== Audio ====
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1955|1955]] Enh: Clicks loop-playing audio. (P4, with 4 comments)
+
+This isn't yet being fixed because the code is not nice to work with.
+
+==== Plug-in Manager ====
+[x] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1265|1265]] ENH: Select All in Plug-in Manager should display selected unfocused rows in more prominent colour, or same as fully selected. (P4, with 13 comments)
+
+No.  Plug-in manager should be redesigned.

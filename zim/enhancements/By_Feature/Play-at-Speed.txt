@@ -1,0 +1,19 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-03T18:49:28+01:00
+
+====== Play-at-Speed ======
+Created Monday 03 June 2019
+
+==== Oversights ====
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=2047|2047]] Play at Speed does not respond to slider when looping (P4, with 4 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=711|711]] Enh: Play-at-Speed speed setting should be saved in audacity.cfg and project. (P4, with 2 comments)
+
+These should be fixed.
+
+==== Buttons ====
+[x] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=815|815]] Enh: Clicking Play-at-Speed Toolbar Play button pushes down Transport Play button (P4, with 19 comments)
+
+I think this is correct behaviour, as play button down indicates that pause and stop will work.
+
+What perhaps is incorrect is having a separate button for play-at-speed.  This is where the multi-buttons porposal comes in.

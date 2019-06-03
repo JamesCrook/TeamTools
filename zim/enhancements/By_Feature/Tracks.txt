@@ -1,0 +1,15 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-03T16:17:03+01:00
+
+====== Tracks ======
+Created Monday 03 June 2019
+
+==== Tracks ====
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1098|1098]] Enh: Frequency selection is not visible in white space (P4, with 1 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=865|865]] Nyquist effects render white-space as silence (P3, with 2 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1095|1095]] Enh: Waveform views to show temporal selection as in time ruler. (P4, with 36 comments)
+
+1095 is an important detail.  A lot of display code needs adjusting, but it would then give us consistency and a more explainable policy on where we draw and select relative to samples.
+
+The way we treat silence and white space could/should change.  We could perhaps detect pure silence and replace it.

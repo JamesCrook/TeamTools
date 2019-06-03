@@ -1,0 +1,40 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-03T12:00:37+01:00
+
+====== Exports ======
+Created Monday 03 June 2019
+
+==== Format Selection ====
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=549|549]] Enh: Add missing export formats to Macros (P3, with 2 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=548|548]] Enh: Add export format options and export sample rate to Chain parameters (P3, with 1 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=984|984]] Export filetype dropdown:  "Other uncompressed..." has a  "lot" of compressed encoding (P4, with 3 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=2063|2063]] Enh: Impossible to use Macros to Export 24-bit or 32-bit WAV files (P3, with 3 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=2055|2055]] Export2 does not export by default (P4, with 2 comments) @tweak
+
+Export multiple is much more complete than export as a scriptable command is.  We'd like to add flexibility to select the format and sample rate in the scriptable command.  We want to be able to do Export-Multiple as a macro with a number of steps.  Why?  So we can add additional steps like noise removal and compression into an exporting macro.
+
+//There is actually already a proposal for a more capable export command.//
+
+Format selection GUI is messy.  This is especially so for the catch alls like 'other uncompressed formats' which has many compressed formats in it.  
+
+As a short term measure we could change the wording to be more accurate.
+	[ ] Use 'more formats' as the text for 'other uncompressed formats' @tweak
+
+The scriptable export command will be using the same format specification 'panels' as export and export multiple do.  Note also that these are rather similar to settings for effects.  Most likely any big improvement to export setings GUI will follow from improvements to effects GUIs. 
+
+==== Stop! ====
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1833|1833]] Stop in Export Multiple does not actually stop the exports (P4, with 1 comments)
+
+[ ] Stop in export multiple should stop the export, not just skip over the current export.  @inconsistency @tweak
+
+==== Export Multiple ====
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=551|551]] Export Multiple: Pass through common metadata to next window (P3, with 15 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1295|1295]] Enh: Export Multiple "Track Number" metadata should increment if changed, and file numbering should respect modified Track Number. (P4, with 1 comments)
+
+This actually connects with the intended extensions to the Export2 command.  Ideally we will be able to rebuild the ExportMultiple command as a macro.  Auto-incrementing fields need to be general enough to use in metadata.  We need to watch scope, so as not to invent a new language.  Perhaps we work through Nyquist functions for building naming, but packaged 'nicely', so it is more like substitution in a template.
+
+
+
+
+

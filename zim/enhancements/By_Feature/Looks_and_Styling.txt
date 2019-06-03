@@ -1,0 +1,12 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-03T16:19:28+01:00
+
+====== Looks and Styling ======
+Created Monday 03 June 2019
+
+==== Looks and Styling ====
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1985|1985]] Enh: in dark themes EGA dialogs and error messages remain light-themed (P4, with 2 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1984|1984]] Enh: Themed sliders look odd on unthemed dialogs (P4, with 2 comments)
+
+There are probably quite a lot of other improvements that are worthwhile here, e.g. the theming of scrollbars.

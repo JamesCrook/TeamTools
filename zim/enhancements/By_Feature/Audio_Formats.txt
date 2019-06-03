@@ -1,0 +1,16 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-03T16:14:59+01:00
+
+====== Audio Formats ======
+Created Monday 03 June 2019
+
+
+
+==== Audio Formats ====
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1294|1294]] Sample format preference ignored on import for some file formats (P4, with 4 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=619|619]] TwoPassSimpleMono converts to track bit format between passes, losing quality. (P5, with 5 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1068|1068]] 'Enh: 24-bit WAV files import as 32-bit float when preferences set to 24-bit' (P4, with 4 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1181|1181]] Enh: FFmpeg Custom Export: Show what export format/codec is in force. (P4, with 2 comments) @tweak
+
+These all sound like good things that are non-critical.  We can live without them, but they are worth improving some time.

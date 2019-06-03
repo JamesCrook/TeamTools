@@ -1,0 +1,121 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-03T10:53:17+01:00
+
+====== About ======
+Created Monday 03 June 2019
+
+Enhancement Requests are now curated.  They are grouped, with comments about the groups.
+
+* [[By Feature]] - Requests organised by what feature they correspond to.
+* [[By Status]] - Requests organised by their status, e.g. requests we have little idea what to do about.
+
+--------------------
+
+==== Key ====
+[ ] For a standard enhancement
+[*] For a done enhancement
+[x] For an enhancement that should be done a very different way.
+
+--------------------
+
+63 Enhancements imported using format_enh.py
+
+See subsections for details.
+
+==== Warnings and Errors ====
+[[By Feature:Warnings and Errors|(link)]]
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1462|1462]] Timer Record does not check that there is sufficient space for Export (P3, with 7 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1334|1334]] Enh: No warning is provided that if some tracks are muted they are not exported. (P4, with 8 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=2049|2049]] Noise Reduction error message for no selection is unhelpful (P4, with 4 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=2048|2048]] ENH: Slicker Noise Reduction GUI (P4, with 4 comments)
+
+==== Audio Formats ====
+[[By Feature:Audio Formats|(link)]]
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1294|1294]] Sample format preference ignored on import for some file formats (P4, with 4 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=619|619]] TwoPassSimpleMono converts to track bit format between passes, losing quality. (P5, with 5 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1068|1068]] 'Enh: 24-bit WAV files import as 32-bit float when preferences set to 24-bit' (P4, with 4 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1181|1181]] Enh: FFmpeg Custom Export: Show what export format/codec is in force. (P4, with 2 comments) @tweak
+
+==== Inconsistencies ====
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=901|901]] Enh: Chains: Noise Reduction and Noise Removal do not store parameters in a Chain. (P3, with 9 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1598|1598]] Enh: Improve GUI for Screenshot Tools (P4, with 1 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=326|326]] ENH: Recovery does not retain project name from import (P5, with 5 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1936|1936]] Enh: Nyquist Generators ignore selection (P4, with 3 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=98|98]] ENH: Debug Log window and Screenshot tools don't close on ESC (P5, with 6 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=393|393]] Enh: Vertical drag does not scroll the project (P4, with 5 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=917|917]] Enh: Spectral Selection only enabled for spectral edit effects. (P3, with 11 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1212|1212]] "Automatically fit" preference not honored during recording (P4, with 5 comments)
+
+==== Refinement ====
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1265|1265]] ENH: Select All in Plug-in Manager should display selected unfocused rows in more prominent colour, or same as fully selected. (P4, with 13 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1145|1145]] Enh: Can't set default Waveform dB range unless first setting the default view to Logarithmic (P4, with 4 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=2089|2089]] Graphic EQ ( and Filter Curve): sliders for Length of Filter and vertical scale have no dialog for accurate setting (P4, with 1 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1955|1955]] Enh: Clicks loop-playing audio. (P4, with 4 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=498|498]] Enh: Yellow snap guidelines lost after saving in high resolution selection format (P4, with 4 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1686|1686]] Enh: Use Envelope in Equalization (P4, with 1 comments)
+
+==== Exports ====
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=549|549]] Enh: Add missing export formats to Macros (P3, with 2 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=548|548]] Enh: Add export format options and export sample rate to Chain parameters (P3, with 1 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1833|1833]] Stop in Export Multiple does not actually stop the exports (P4, with 1 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=984|984]] Export filetype dropdown:  "Other uncompressed..." has a  "lot" of compressed encoding (P4, with 3 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=551|551]] Export Multiple: Pass through common metadata to next window (P3, with 15 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1295|1295]] Enh: Export Multiple "Track Number" metadata should increment if changed, and file numbering should respect modified Track Number. (P4, with 1 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=2063|2063]] Enh: Impossible to use Macros to Export 24-bit or 32-bit WAV files (P3, with 3 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=2055|2055]] Export2 does not export by default (P4, with 2 comments)
+
+==== Tracks ====
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1098|1098]] Enh: Frequency selection is not visible in white space (P4, with 1 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=865|865]] Nyquist effects render white-space as silence (P3, with 2 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1095|1095]] Enh: Waveform views to show temporal selection as in time ruler. (P4, with 36 comments)
+
+==== Time Tracks ====
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1070|1070]] ENH: Time-shift tool not implemented for time tracks (P4, with 3 comments)
+
+==== Label Tracks ====
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1350|1350]] Enh: Show frequency range for labels, on tabbing, and allow graphical modification. (P3, with 7 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1785|1785]] Enh: Ability for File>Open to "open" a Label file (P4, with 2 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1384|1384]] Enh: Truncate Silence: Modify labels when independent truncation and one selected audio track. (P4, with 1 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1106|1106]] Enh: Font selection in label track dropdown menu acts globally (P5, with 1 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=159|159]] Linux: Support X11 second clipboard in Label Tracks. (P5, with 6 comments)
+
+==== Looks and Styling ====
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1985|1985]] Enh: in dark themes EGA dialogs and error messages remain light-themed (P4, with 2 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1984|1984]] Enh: Themed sliders look odd on unthemed dialogs (P4, with 2 comments)
+
+==== Metering ====
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=565|565]] Enh: Easier way to avoid clipping on multiple tracks (P3, with 5 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=951|951]] ENH: Option for Find Clipping to operate on mix of all selected tracks (P4, with 2 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1581|1581]] Enh: Clip indicators in Mixer Board cannot be cleared without restarting playback (P4, with 1 comments)
+
+==== Play-at-Speed ====
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=2047|2047]] Play at Speed does not respond to slider when looping (P4, with 4 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=711|711]] Enh: Play-at-Speed speed setting should be saved in audacity.cfg and project. (P4, with 2 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=815|815]] Enh: Clicking Play-at-Speed Toolbar Play button pushes down Transport Play button (P4, with 19 comments)
+
+==== Obsolete ====
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1341|1341]] Vocal Remover effect should be removed - misleading and duplicated effectively (P3, with 7 comments)
+
+=== What to Do? ===
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1638|1638]] Enh: Some Ext- menu items depend on mouse position (P4, with 2 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=744|744]] Enh: Keyboard preferences hotkey search - unwanted results (P5, with 13 comments)
+
+==== Who Cares? ====
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1973|1973]] Enh: Support WDM/KS (P4, with 1 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1363|1363]] Enh: Tatsuki Makino proposed configure and makefile patches for autoreconf, system library and header files issues. (P4, with 3 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=168|168]] Enh: Linux: Invoke update-mime-database in install: and uninstall: (P4, with 2 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=2052|2052]] Linux/Mac: Lock file location (P4, with 1 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1285|1285]] Enh: Make Nyquist effects more memory efficient. (P3, with 4 comments)
+
+=== Additions ===
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=153|153]] Enh: Compressor usability enhancements (P4, with 4 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=492|492]] Add mixed-radix-fft implementation with menu item to adjust spectrogram window (P4, with 6 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1987|1987]] Enh: Export button on History Dialog (P4, with 2 comments)
+
+=== Bugs ===
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=91|91]] Enh: Mac/Linux: Random bits of silence recording (with Jack) and differing sample rates. (P4, with 6 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1911|1911]] Windows: no input stream for WASAPI loopback freezes recording without warning (P4, with 1 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=660|660]] Incorrect frequency in Equalization and Classic Filters when tracks have different sample rates (P4, with 15 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1724|1724]] Enh: Nyquist sliders widgets may increase/decrease by unexpected amount on arrow key press (P4, with 1 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=344|344]] FFmpeg: M4A Quality slider has no control bitrate setting or AAC quality (P2, with 9 comments)

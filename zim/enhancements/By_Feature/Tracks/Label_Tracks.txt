@@ -1,0 +1,24 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-03T16:19:13+01:00
+
+====== Label Tracks ======
+Created Monday 03 June 2019
+
+==== Tweaks ====
+[ ] Label Track @tweaks
+	[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1785|1785]] Enh: Ability for File>Open to "open" a Label file (P4, with 2 comments)
+	[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1106|1106]] Enh: Font selection in label track dropdown menu acts globally (P5, with 1 comments)
+	[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=159|159]] Linux: Support X11 second clipboard in Label Tracks. (P5, with 6 comments)
+
+159 is questionable.  It seems less useful if it is Linux only.
+
+==== Frequencies ====
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1350|1350]] Enh: Show frequency range for labels, on tabbing, and allow graphical modification. (P3, with 7 comments)
+
+Currently labels 'are' selections.  But in future they could be used cleverly for an effects stack that also shows the temporal location...  Also selections could become discontinuous, and have fuzzy edges (for cross fading).  One option I like is to have settings for a Label Track that set details of what the labels are for on that track.  So an analysis plug-in could create a special Label Track with labels that have a lot of meta data with them.  On that track Labels would be styled differently.  We would keep frequency selecting labels distinguished from temporal (only) labels, distinguished from cross-fade labels possibly by keeping them on a different track.  
+
+==== Sync-Lock ====
+[x] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1384|1384]] Enh: Truncate Silence: Modify labels when independent truncation and one selected audio track. (P4, with 1 comments)
+
+The proposed fix/behaviour is the wrong fix.  Essentially what is wrong here is Sync-Lock.  Sync-Lock should be rethought using a Track Tree.  If you foolishly don't associate your labels with the audio, then having labels go out of sync is expected.  You might, for example, have put regular labels at the times you want beats to be.

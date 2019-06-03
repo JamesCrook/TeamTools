@@ -1,0 +1,11 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-03T18:49:41+01:00
+
+====== Obsolete ======
+Created Monday 03 June 2019
+
+This page is for features that should be retired.  This could need a discussion to agree to, as developers are wary of removing something and being told they should not have.
+
+==== Obsolete ====
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1341|1341]] Vocal Remover effect should be removed - misleading and duplicated effectively (P3, with 7 comments)

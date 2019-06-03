@@ -1,0 +1,17 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-03T16:17:21+01:00
+
+====== Time Tracks ======
+Created Monday 03 June 2019
+
+==== Time Tracks ====
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1070|1070]] ENH: Time-shift tool not implemented for time tracks (P4, with 3 comments)
+
+I see this as an aspect of an interface for audio diff and 'squashy' clips.  Time Tracks need a rethink.  They need a view that is in terms of the result, what will end up where, rather than (or at the same time as) in terms of the source, how 'fast' we go in different sections.  Squashy and stretchy audio will work better for most real use cases.
+
+One way to do this would be to show the resulting waveform, and the envelope in it shows the speed relative to the source waveform.  Then time-shift makes sense again.
+
+We should also move away from having multiple tools, and instead make it so that what you drag on is the way to choose our action.
+
+1070 is fixing the wrong design.

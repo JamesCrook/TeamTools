@@ -1,0 +1,15 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-03T18:50:29+01:00
+
+====== Bugs ======
+Created Monday 03 June 2019
+
+These all sound like bugs where what we want is clear.
+
+=== Bugs ===
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=91|91]] Enh: Mac/Linux: Random bits of silence recording (with Jack) and differing sample rates. (P4, with 6 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1911|1911]] Windows: no input stream for WASAPI loopback freezes recording without warning (P4, with 1 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=660|660]] Incorrect frequency in Equalization and Classic Filters when tracks have different sample rates (P4, with 15 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1724|1724]] Enh: Nyquist sliders widgets may increase/decrease by unexpected amount on arrow key press (P4, with 1 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=344|344]] FFmpeg: M4A Quality slider has no control bitrate setting or AAC quality (P2, with 9 comments)

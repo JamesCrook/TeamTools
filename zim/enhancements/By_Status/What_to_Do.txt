@@ -1,0 +1,19 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-03T18:49:51+01:00
+
+====== What to Do ======
+Created Monday 03 June 2019
+
+It is not clear what to do for these.
+
+==== Mouse-following menu items ====
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1638|1638]] Enh: Some Ext- menu items depend on mouse position (P4, with 2 comments)
+
+It is not clear how they should be handled.  Just drop thm from the menu?
+
+
+==== HOME key versus H-O-M-E ====
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=744|744]] Enh: Keyboard preferences hotkey search - unwanted results (P5, with 13 comments)
+
+It isn't clear how to handle the user who types the name of a key in full, rather than pressing the key.
