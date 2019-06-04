@@ -33,7 +33,7 @@ See subsections for details.
 ==== Audio Formats ====
 [[By Feature:Audio Formats|(link)]]
 [ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1294|1294]] Sample format preference ignored on import for some file formats (P4, with 4 comments)
-[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=619|619]] TwoPassSimpleMono converts to track bit format between passes, losing quality. (P5, with 5 comments)
+[ ] ~~619 TwoPassSimpleMono converts to track bit format between passes, losing quality. (P5, with 5 comments)~~
 [ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1068|1068]] 'Enh: 24-bit WAV files import as 32-bit float when preferences set to 24-bit' (P4, with 4 comments)
 [ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1181|1181]] Enh: FFmpeg Custom Export: Show what export format/codec is in force. (P4, with 2 comments) @tweak
 
@@ -105,8 +105,11 @@ See subsections for details.
 [ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1973|1973]] Enh: Support WDM/KS (P4, with 1 comments)
 [ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1363|1363]] Enh: Tatsuki Makino proposed configure and makefile patches for autoreconf, system library and header files issues. (P4, with 3 comments)
 [ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=168|168]] Enh: Linux: Invoke update-mime-database in install: and uninstall: (P4, with 2 comments)
-[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=2052|2052]] Linux/Mac: Lock file location (P4, with 1 comments)
 [ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1285|1285]] Enh: Make Nyquist effects more memory efficient. (P3, with 4 comments)
+
+==== Elf Help ====
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=2052|2052]] Linux/Mac: Lock file location (P4, with 1 comments)
+
 
 === Additions ===
 [ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=153|153]] Enh: Compressor usability enhancements (P4, with 4 comments)

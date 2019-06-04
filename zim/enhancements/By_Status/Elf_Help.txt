@@ -1,0 +1,10 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-04T19:04:36+01:00
+
+====== Elf Help ======
+Created Tuesday 04 June 2019
+
+For issues that disproportionately cost forum elves time.  These are improvements that have merit (or a plan of attack) that yield big for the elves.
+
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=2052|2052]] Linux/Mac: Lock file location (P4, with 1 comments)
