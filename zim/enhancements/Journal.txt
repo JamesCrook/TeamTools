@@ -1,0 +1,9 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-04T19:20:52+01:00
+
+====== Journal ======
+Created Tuesday 04 June 2019
+
+2019-06-03 Created
+2019-06-04 Bugs 2052 (to Elf Help) and 619 (pukkha bug, not an Enh)

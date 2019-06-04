@@ -1,0 +1,15 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-04T19:21:03+01:00
+
+====== ToDo ======
+Created Tuesday 04 June 2019
+
+[ ] Add links for references to proposals
+[ ] Add Master list of all Enh bugs, linking to the relevant page.
+[ ] Provide a ? option so we have:
+	[ ] For a standard enhancement
+	[*] For a done enhancement
+	[x] For an enhancement that should be done a very different way.
+	[>] For needs more discussion
+
