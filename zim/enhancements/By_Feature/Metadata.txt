@@ -1,0 +1,13 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-04T19:29:47+01:00
+
+====== Metadata ======
+Created Tuesday 04 June 2019
+
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=551|551]] Export Multiple: Pass through common metadata to next window (P3, with 15 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1295|1295]] Enh: Export Multiple "Track Number" metadata should increment if changed, and file numbering should respect modified Track Number. (P4, with 1 comments)
+
+This actually connects with the intended extensions to the Export2 command.  Ideally we will be able to rebuild the ExportMultiple command as a macro.  Auto-incrementing fields need to be general enough to use in metadata.  We need to watch scope, so as not to invent a new language.  Perhaps we work through Nyquist functions for building naming, but packaged 'nicely', so it is more like substitution in a template.
+
+See also [[Exports]]

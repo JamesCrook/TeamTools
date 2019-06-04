@@ -60,8 +60,6 @@ See subsections for details.
 [ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=548|548]] Enh: Add export format options and export sample rate to Chain parameters (P3, with 1 comments)
 [ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1833|1833]] Stop in Export Multiple does not actually stop the exports (P4, with 1 comments)
 [ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=984|984]] Export filetype dropdown:  "Other uncompressed..." has a  "lot" of compressed encoding (P4, with 3 comments)
-[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=551|551]] Export Multiple: Pass through common metadata to next window (P3, with 15 comments)
-[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1295|1295]] Enh: Export Multiple "Track Number" metadata should increment if changed, and file numbering should respect modified Track Number. (P4, with 1 comments)
 [ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=2063|2063]] Enh: Impossible to use Macros to Export 24-bit or 32-bit WAV files (P3, with 3 comments)
 [ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=2055|2055]] Export2 does not export by default (P4, with 2 comments)
 
@@ -79,6 +77,10 @@ See subsections for details.
 [ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1384|1384]] Enh: Truncate Silence: Modify labels when independent truncation and one selected audio track. (P4, with 1 comments)
 [ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1106|1106]] Enh: Font selection in label track dropdown menu acts globally (P5, with 1 comments)
 [ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=159|159]] Linux: Support X11 second clipboard in Label Tracks. (P5, with 6 comments)
+
+==== Metadata ====
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=551|551]] Export Multiple: Pass through common metadata to next window (P3, with 15 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1295|1295]] Enh: Export Multiple "Track Number" metadata should increment if changed, and file numbering should respect modified Track Number. (P4, with 1 comments)
 
 ==== Looks and Styling ====
 [ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1985|1985]] Enh: in dark themes EGA dialogs and error messages remain light-themed (P4, with 2 comments)
