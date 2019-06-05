@@ -2,16 +2,18 @@ Content-Type: text/x-zim-wiki
 Wiki-Format: zim 0.4
 Creation-Date: 2019-06-03T16:15:54+01:00
 
-====== Inconsitencies ======
+====== Inconsistencies ======
 Created Monday 03 June 2019
 
 Inconsistencies are generally behaviours we'd expect based on what else Audacity does, and be surprised by.
+
+Inconsistent features may sometimes be easier fixes.  There should already be code in Audacity that 'does what we want' and the inconsistency is that we don't use it in this case.
 
 ==== Inconsistencies ====
 [ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=901|901]] Enh: Chains: Noise Reduction and Noise Removal do not store parameters in a Chain. (P3, with 9 comments)
 [ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=326|326]] ENH: Recovery does not retain project name from import (P5, with 5 comments)
 [ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1936|1936]] Enh: Nyquist Generators ignore selection (P4, with 3 comments)
-[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=98|98]] ENH: Debug Log window and Screenshot tools don't close on ESC (P5, with 6 comments)
+[ ] ~~98 ENH: Debug Log window and Screenshot tools don't close on ESC (P5, with 6 comments)~~
 [ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=393|393]] Enh: Vertical drag does not scroll the project (P4, with 5 comments)
 [ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1212|1212]] "Automatically fit" preference not honored during recording (P4, with 5 comments)
 

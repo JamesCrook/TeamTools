@@ -42,7 +42,7 @@ See subsections for details.
 [ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1598|1598]] Enh: Improve GUI for Screenshot Tools (P4, with 1 comments)
 [ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=326|326]] ENH: Recovery does not retain project name from import (P5, with 5 comments)
 [ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1936|1936]] Enh: Nyquist Generators ignore selection (P4, with 3 comments)
-[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=98|98]] ENH: Debug Log window and Screenshot tools don't close on ESC (P5, with 6 comments)
+[ ] ~~98 ENH: Debug Log window and Screenshot tools don't close on ESC (P5, with 6 comments)~~
 [ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=393|393]] Enh: Vertical drag does not scroll the project (P4, with 5 comments)
 [ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=917|917]] Enh: Spectral Selection only enabled for spectral edit effects. (P3, with 11 comments)
 [ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1212|1212]] "Automatically fit" preference not honored during recording (P4, with 5 comments)
