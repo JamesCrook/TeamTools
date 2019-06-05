@@ -7,4 +7,5 @@ Created Tuesday 04 June 2019
 
 For issues that disproportionately cost forum elves time.  These are improvements that have merit (or a plan of attack) that yield big for the elves.
 
-[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=2052|2052]] Linux/Mac: Lock file location (P4, with 1 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=2052|2052]] Linux/Mac: Lock file location (P2, with 1 comments)
+[ ] [[https://bugzilla.audacityteam.org/show_bug.cgi?id=1911|1911]] Windows: no input stream for WASAPI loopback freezes recording without warning (P4, with 1 comments)

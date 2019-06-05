@@ -11,3 +11,4 @@ Records significant changes, e.g. not typos.
 2019-06-04 Bugs 2052 (to Elf Help) and 619 (pukkha bug, not an Enh)
 2019-06-04 Add Metadata category
 2019-06-04 Bug 98 not an Enh
+2019-06-04 Bug 344 not an Enh. Bug 1911 to Elf-Help
