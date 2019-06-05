@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Metering</title>
+	<title>Metadata</title>
 	<meta name='Generator' content='Zim 0.68'>
 	<style type='text/css'>
 		a          { text-decoration: none      }
@@ -51,11 +51,11 @@
 
 <!-- Header -->
 <div class='header'>
-	[ <a href='./Metadata.html'>Prev</a> ]
+	[ <a href='./Looks_and_Styling.html'>Prev</a> ]
 
 	[ <a href='../index.html'>Index</a> ]
 
-	[ <a href='./Play-at-Speed.html'>Next</a> ]
+	[ <a href='./Metering.html'>Next</a> ]
 </div>
 
 <hr />
@@ -68,8 +68,8 @@
 <li><a href="./Audio_Formats.html" title="Audio Formats" class="page">Audio Formats</a></li>
 <li><a href="./Exports.html" title="Exports" class="page">Exports</a></li>
 <li><a href="./Looks_and_Styling.html" title="Looks and Styling" class="page">Looks and Styling</a></li>
-<li><a href="./Metadata.html" title="Metadata" class="page">Metadata</a></li>
-<li><b>Metering</b></li>
+<li><b>Metadata</b></li>
+<li><a href="./Metering.html" title="Metering" class="page">Metering</a></li>
 <li><a href="./Play-at-Speed.html" title="Play-at-Speed" class="page">Play-at-Speed</a></li>
 <li><a href="./Tracks.html" title="Tracks" class="page">Tracks</a></li>
 <li><a href="./Warnings_and_Errors.html" title="Warnings and Errors" class="page">Warnings and Errors</a></li>
@@ -87,48 +87,27 @@
 
 <div class='pages'>
 	<div class='heading'>
-	<h1>Metering <a name='By Feature:Metering'></a></h1>
+	<h1>Metadata <a name='By Feature:Metadata'></a></h1>
 	</div>
 
 	<div class='content'>
 	<p>
-Created Monday 03 June 2019
-</p>
-
-<h3>Metering</h3>
-
-<p>
-<ul>
-<li class="unchecked-box"><a href="https://bugzilla.audacityteam.org/show_bug.cgi?id=565" title="565" class="https">565</a> Enh: Easier way to avoid clipping on multiple tracks (P3, with 5 comments)</li>
-<li class="unchecked-box"><a href="https://bugzilla.audacityteam.org/show_bug.cgi?id=951" title="951" class="https">951</a> ENH: Option for Find Clipping to operate on mix of all selected tracks (P4, with 2 comments)</li>
-<li class="unchecked-box"><a href="https://bugzilla.audacityteam.org/show_bug.cgi?id=1581" title="1581" class="https">1581</a> Enh: Clip indicators in Mixer Board cannot be cleared without restarting playback (P4, with 1 comments)</li>
-</ul>
-</p>
-
-<p>
-One point raised is that finding the actual clipping for a mix would be time consuming. However, high risk of clipping can be computed rapidly.  It will get a false positive for mixing sound and anti-sound, but in nearly all real world use it will be correct.  We could also have three ratings:
+Created Tuesday 04 June 2019
 </p>
 
 <p>
 <ul>
-<li>No risk of clipping (maxes add to less than 1)</li>
-<li>Definitely clips (clipping likely, and confirmed in one block)</li>
-<li>Risk of clipping (clipping likely, but of 10 risky blocks tested, none did, due to anti-sound)</li>
+<li class="unchecked-box"><a href="https://bugzilla.audacityteam.org/show_bug.cgi?id=551" title="551" class="https">551</a> Export Multiple: Pass through common metadata to next window (P3, with 15 comments)</li>
+<li class="unchecked-box"><a href="https://bugzilla.audacityteam.org/show_bug.cgi?id=1295" title="1295" class="https">1295</a> Enh: Export Multiple "Track Number" metadata should increment if changed, and file numbering should respect modified Track Number. (P4, with 1 comments)</li>
 </ul>
 </p>
 
 <p>
-I think it is worthwhile having a display of the mix - which can be used for navigation - and is shown whenever exporting.  This will also sometimes help with muted tracks:
+This actually connects with the intended extensions to the Export2 command.  Ideally we will be able to rebuild the ExportMultiple command as a macro.  Auto-incrementing fields need to be general enough to use in metadata.  We need to watch scope, so as not to invent a new language.  Perhaps we work through Nyquist functions for building naming, but packaged 'nicely', so it is more like substitution in a template.
 </p>
 
 <p>
-<ul>
-<li class="unchecked-box"><a href="https://bugzilla.audacityteam.org/show_bug.cgi?id=1334" title="1334" class="https">1334</a> Enh: No warning is provided that if some tracks are muted they are not exported. (P4, with 8 comments)</li>
-</ul>
-</p>
-
-<p>
-It will help where the tracks are two speakers, because it will be clear from the mix that there are periods of silence, if one speaker is muted.
+See also <a href="./Exports.html" title="Exports" class="page">Exports</a>
 </p>
 
 	</div>
@@ -136,6 +115,11 @@ It will help where the tracks are two speakers, because it will be clear from th
 	<br />
 
 	<div class='page-footer'>
+		<b>Backlinks:</b>
+
+		<a href='./Exports.html'>By Feature:Exports</a>
+
+		<br /><br />
 
 	</div>
 

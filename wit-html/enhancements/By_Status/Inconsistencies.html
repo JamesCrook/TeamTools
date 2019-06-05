@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Metering</title>
+	<title>Inconsistencies</title>
 	<meta name='Generator' content='Zim 0.68'>
 	<style type='text/css'>
 		a          { text-decoration: none      }
@@ -51,11 +51,11 @@
 
 <!-- Header -->
 <div class='header'>
-	[ <a href='./Metadata.html'>Prev</a> ]
+	[ <a href='./Elf_Help.html'>Prev</a> ]
 
 	[ <a href='../index.html'>Index</a> ]
 
-	[ <a href='./Play-at-Speed.html'>Next</a> ]
+	[ <a href='./Obsolete.html'>Next</a> ]
 </div>
 
 <hr />
@@ -63,19 +63,19 @@
 <div class="menu">
 <ul>
 <li><a href="../About.html" title="About" class="page">About</a></li>
-<li><a href="../By_Feature.html" title="By Feature" class="page">By Feature</a>
+<li><a href="../By_Feature.html" title="By Feature" class="page">By Feature</a></li>
+<li><a href="../By_Status.html" title="By Status" class="page">By Status</a>
 <ul>
-<li><a href="./Audio_Formats.html" title="Audio Formats" class="page">Audio Formats</a></li>
-<li><a href="./Exports.html" title="Exports" class="page">Exports</a></li>
-<li><a href="./Looks_and_Styling.html" title="Looks and Styling" class="page">Looks and Styling</a></li>
-<li><a href="./Metadata.html" title="Metadata" class="page">Metadata</a></li>
-<li><b>Metering</b></li>
-<li><a href="./Play-at-Speed.html" title="Play-at-Speed" class="page">Play-at-Speed</a></li>
-<li><a href="./Tracks.html" title="Tracks" class="page">Tracks</a></li>
-<li><a href="./Warnings_and_Errors.html" title="Warnings and Errors" class="page">Warnings and Errors</a></li>
+<li><a href="./Additions.html" title="Additions" class="page">Additions</a></li>
+<li><a href="./Bugs.html" title="Bugs" class="page">Bugs</a></li>
+<li><a href="./Elf_Help.html" title="Elf Help" class="page">Elf Help</a></li>
+<li><b>Inconsistencies</b></li>
+<li><a href="./Obsolete.html" title="Obsolete" class="page">Obsolete</a></li>
+<li><a href="./Refinement.html" title="Refinement" class="page">Refinement</a></li>
+<li><a href="./What_to_Do.html" title="What to Do" class="page">What to Do</a></li>
+<li><a href="./Who_Cares.html" title="Who Cares" class="page">Who Cares</a></li>
 </ul>
 </li>
-<li><a href="../By_Status.html" title="By Status" class="page">By Status</a></li>
 <li><a href="../Journal.html" title="Journal" class="page">Journal</a></li>
 <li><a href="../Master_List.html" title="Master List" class="page">Master List</a></li>
 <li><a href="../ToDo.html" title="ToDo" class="page">ToDo</a></li>
@@ -87,7 +87,7 @@
 
 <div class='pages'>
 	<div class='heading'>
-	<h1>Metering <a name='By Feature:Metering'></a></h1>
+	<h1>Inconsistencies <a name='By Status:Inconsistencies'></a></h1>
 	</div>
 
 	<div class='content'>
@@ -95,40 +95,53 @@
 Created Monday 03 June 2019
 </p>
 
-<h3>Metering</h3>
+<p>
+Inconsistencies are generally behaviours we'd expect based on what else Audacity does, and be surprised by.
+</p>
+
+<p>
+Inconsistent features may sometimes be easier fixes.  There should already be code in Audacity that 'does what we want' and the inconsistency is that we don't use it in this case.
+</p>
+
+<h3>Inconsistencies</h3>
 
 <p>
 <ul>
-<li class="unchecked-box"><a href="https://bugzilla.audacityteam.org/show_bug.cgi?id=565" title="565" class="https">565</a> Enh: Easier way to avoid clipping on multiple tracks (P3, with 5 comments)</li>
-<li class="unchecked-box"><a href="https://bugzilla.audacityteam.org/show_bug.cgi?id=951" title="951" class="https">951</a> ENH: Option for Find Clipping to operate on mix of all selected tracks (P4, with 2 comments)</li>
-<li class="unchecked-box"><a href="https://bugzilla.audacityteam.org/show_bug.cgi?id=1581" title="1581" class="https">1581</a> Enh: Clip indicators in Mixer Board cannot be cleared without restarting playback (P4, with 1 comments)</li>
+<li class="unchecked-box"><a href="https://bugzilla.audacityteam.org/show_bug.cgi?id=901" title="901" class="https">901</a> Enh: Chains: Noise Reduction and Noise Removal do not store parameters in a Chain. (P3, with 9 comments)</li>
+<li class="unchecked-box"><a href="https://bugzilla.audacityteam.org/show_bug.cgi?id=326" title="326" class="https">326</a> ENH: Recovery does not retain project name from import (P5, with 5 comments)</li>
+<li class="unchecked-box"><a href="https://bugzilla.audacityteam.org/show_bug.cgi?id=1936" title="1936" class="https">1936</a> Enh: Nyquist Generators ignore selection (P4, with 3 comments)</li>
+<li class="unchecked-box"><s>98 ENH: Debug Log window and Screenshot tools don't close on ESC (P5, with 6 comments)</s></li>
+<li class="unchecked-box"><a href="https://bugzilla.audacityteam.org/show_bug.cgi?id=393" title="393" class="https">393</a> Enh: Vertical drag does not scroll the project (P4, with 5 comments)</li>
+<li class="unchecked-box"><a href="https://bugzilla.audacityteam.org/show_bug.cgi?id=1212" title="1212" class="https">1212</a> "Automatically fit" preference not honored during recording (P4, with 5 comments)</li>
+</ul>
+</p>
+
+<h3>Spectral Selection</h3>
+
+<p>
+<ul>
+<li class="unchecked-box"><a href="https://bugzilla.audacityteam.org/show_bug.cgi?id=917" title="917" class="https">917</a> Enh: Spectral Selection only enabled for spectral edit effects. (P3, with 11 comments)</li>
 </ul>
 </p>
 
 <p>
-One point raised is that finding the actual clipping for a mix would be time consuming. However, high risk of clipping can be computed rapidly.  It will get a false positive for mixing sound and anti-sound, but in nearly all real world use it will be correct.  We could also have three ratings:
+If you have a spectral selection, you ought to be able to apply an effect - such as amplify - to it.  Like, if I pick out a phone trill in the spectrogram, I want to be able to amplify it, echo it etc without affecting the other sounds.  I dislike greying out.  Users easily get bewildered as to why items are greyed out, and if there is a lot of greying out it means a lot of inactive and therefore space wasting UI.
 </p>
 
 <p>
+Since we do have spectral only effects in Audacity, a good way to "fix" the problem would be to provide a GUI with ordinary slider controls for low-high frequencies, if the effect is called without a spectral selection.
+</p>
+
+<h3>GUI Improvement</h3>
+
+<p>
 <ul>
-<li>No risk of clipping (maxes add to less than 1)</li>
-<li>Definitely clips (clipping likely, and confirmed in one block)</li>
-<li>Risk of clipping (clipping likely, but of 10 risky blocks tested, none did, due to anti-sound)</li>
+<li class="unchecked-box"><a href="https://bugzilla.audacityteam.org/show_bug.cgi?id=1598" title="1598" class="https">1598</a> Enh: Improve GUI for Screenshot Tools (P4, with 1 comments)</li>
 </ul>
 </p>
 
 <p>
-I think it is worthwhile having a display of the mix - which can be used for navigation - and is shown whenever exporting.  This will also sometimes help with muted tracks:
-</p>
-
-<p>
-<ul>
-<li class="unchecked-box"><a href="https://bugzilla.audacityteam.org/show_bug.cgi?id=1334" title="1334" class="https">1334</a> Enh: No warning is provided that if some tracks are muted they are not exported. (P4, with 8 comments)</li>
-</ul>
-</p>
-
-<p>
-It will help where the tracks are two speakers, because it will be clear from the mix that there are periods of silence, if one speaker is muted.
+Note that the Scriptables menu has a compact version already.  We should embed that as a 'panel' in this GUI.
 </p>
 
 	</div>
