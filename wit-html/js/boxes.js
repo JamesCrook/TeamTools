@@ -3899,6 +3899,7 @@ Audacity.Commands =
     { "id":"SetProject", "name":"Set Project", "params":
       [
         { "key":"Name", "type":"string", "default":"unchanged" },
+        { "key":"Rate", "type":"int", "default":"unchanged" },
         { "key":"X", "type":"int", "default":"unchanged" },
         { "key":"Y", "type":"int", "default":"unchanged" },
         { "key":"Width", "type":"int", "default":"unchanged" },
