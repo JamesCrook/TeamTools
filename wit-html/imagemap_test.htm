@@ -148,7 +148,7 @@
 
         var A=Annotator;
         A.Porthole = {};
-        A.Porthole.width = 1000;
+        A.Porthole.width = 1024;
         A.Porthole.height = 683;
         A.Porthole.margin = 5;
         A.Image = {};
@@ -298,7 +298,9 @@
             ctx.fill();
         }
 
-        function removeAdornments(){
+        function removeAdornments(e){
+            if( e.shiftKey )
+               return;
             var A = Annotator;
             var ctx= GuiCanvas.ctx;
             ctx.globalCompositeOperation = 'source-over';
@@ -378,13 +380,15 @@
 </a>
 <div style="height:1.9em;"></div>
 <div style="text-align:center;">
-    <div id="maindiv" style="width:1000px;height:700px;position:relative;display:inline-block;margin-left:auto;margin-right:auto;overflow:hidden" onmousemove="mousemoveOnMap(event)" onmouseout="removeAdornments()">
+    <div id="maindiv" style="width:1000px;height:700px;position:relative;display:inline-block;margin-left:auto;margin-right:auto;overflow:hidden">
 
        <img class="centred" src='./images/Obama_and_Biden_await_updates_on_bin_Laden.jpg' >
         <canvas id="guicanvas"
                 style="position:absolute;left:0px;top:0px;"
                 width="500px"
-                height="300px"></canvas>
+                height="300px"
+                onmousemove="mousemoveOnMap(event)"
+                onmouseout="removeAdornments(event)"></canvas>
         <div id="detaildiv"
                 style="
                 background-color:rgba(0,0,0,0.6);position:absolute;left:0px;top:0px;height:300px;width:400px;display:none"><h1>Some Text</h1></div>
