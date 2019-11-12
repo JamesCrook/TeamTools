@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Automation Images</title>
+    <style type="text/css">
+        h1 { font-size: 2em; }
+        h2 { font-size: 1.5em; }
+        h3 { font-size: 1.17em; }
+        h4 { font-size: 1.12em; }
+        h5 { font-size: .83em; }
+        h6 { font-size: .67em; }
+
+        html *
+        {
+            font-family: Arial;
+        }
+
+        #logoback {
+            transition: all 0.15s;
+            background-color: #edebfc;
+            border: 2px solid;
+            border-color: #edebfc;
+            position:absolute;
+            top:1.25em;
+            left:0.9375em;
+            width:5.75em;
+            height:5.75em;
+            color:black;
+            box-sizing:border-box;
+            line-height:5.75em;
+            border-radius:2.875em;
+            box-shadow:0px 0px 1.25em 1px #000080;"
+
+        }
+        #logoback:hover {
+            /*background-color: #c7cfff;*/
+            border-color: #848ff8;
+        }
+        #logo
+        {
+            position:relative;
+            top:0.5em;
+            left:0.5625em;
+            transition: all 0.1s;
+            width:4.375em;
+            height:4.375em;
+
+        }
+        #logo:hover
+        {
+            /*top:6px;*/
+            /*transform: rotate(10deg);*/
+        }
+        #logo:hover:active {
+            width:5em;
+            height:5em;
+            left:0.25em;
+            top:0.0625em;
+        }
+
+        div.bt {
+
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+
+            display:inline-block;
+            color:black;
+            font-size:13px;
+            border: 1px solid;
+            padding:2px 15px 2px 15px;
+            border-color: #8696b2;
+            background-color: #c5d4fc;
+            box-shadow: inset 0 -5px 5px 0 #a6c1e7;
+        }
+        div.bt:hover {
+            cursor: pointer;
+            /*box-shadow: inset 0 -5px 15px 0 #7c94b7;*/
+            background-color: #a9bdff;
+            border-color: #2130ba;
+        }
+        div.bt:hover:active {
+            background-color: #a5c3ee;
+            box-shadow: inset 0 2px 5px 0 #7c94b7;
+        }
+        div.linky {
+            transition: all 0.15s;
+            display:none;
+            background-color: #c5d4fc;
+            border: 2px solid;
+            border-color: #c5d4fc;
+            /*border-color: #8696b2;*/
+            padding:0px 1.25em 0px 1.25em;
+            color:black;
+            height:2.25em;
+            line-height:2.25em;
+            box-sizing:border-box;
+            border-radius:1.25em;
+            margin:0 auto;
+            box-shadow:0 0 20px 1px #000080;
+            cursor: pointer;
+
+        }
+        div.linky:hover {
+           /* background-color: #a5c3ee;*/
+            border-color: #848ff8;
+
+        }
+
+        div.pos-resetter {
+            width:100%;
+            display:inline-block;
+            text-align:center;
+            position:absolute;
+            margin:0 auto;
+        }
+
+        div#detaildiv
+        {
+            padding: 10px;
+            border: 1px solid #000;
+            border-radius: 5px;
+            -moz-border-radius: 5px;
+        }
+
+        img.centred {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+            bottom: -9999px;
+            right: -9999px;
+            margin:auto;
+        }
+    </style>
+    <script>
+        console.log( "Protocol is "+window.location.protocol);
+        if (window.location.protocol == "http:"){
+            console.log("Http: detected");
+            if( window.location.href.indexOf("localhost") < 0 )
+                window.location.href = "https:" + window.location.href.slice(5);
+        }
+
+        var Annotator = {};
+
+        var A=Annotator;
+        A.Porthole = {};
+        A.Porthole.width = 1000;
+        A.Porthole.height = 683;
+        A.Porthole.margin = 5;
+        A.Image = {};
+        A.Image.width = 1024;
+        A.Image.height = 683;
+        A.Hotspots = {};
+        A.Hotspots.imageSrc = './images/Obama_and_Biden_await_updates_on_bin_LadenHS.png';
+        A.Focus = {};
+        A.Focus.radius = 150;
+        A.Detail = {};
+        A.Detail.width = 400;
+        A.Detail.height = 300;
+
+        A.Hotspots.Colours = [];
+        A.Hotspots.numKeys = 0;
+
+
+        A.AddHot = function (r,g,b,a){
+            var index = "("+r+","+g+","+b+","+a+")";
+            A.Hotspots.Colours[ index ] = 1+A.Hotspots.numKeys++;
+        };
+        // seated
+        A.AddHot(229,136,173,255);
+        A.AddHot(175,136,229,255);
+        A.AddHot( 97,159, 89,255);
+        A.AddHot(232,221,183,255);
+        A.AddHot(149,176,227,255);
+        A.AddHot(194,243,167,255);
+        // standing
+        A.AddHot( 53, 97,179,255);
+        A.AddHot(146, 55,176,255);
+        A.AddHot(209,141,219,255);
+        A.AddHot( 64,135, 69,255);
+        A.AddHot(136,228,234,255);
+        A.AddHot(234,226,136,255);
+        A.AddHot(227,119, 14,255);
+        A.AddHot(227, 14, 54,255);
+
+        A.Hotspots.WhoIsWho = [
+            "Joe Biden","Vice President",
+            "Barack Obama", "President",
+                "Marshall B. \"Brad\" Webb", "Brigadier General; Assistant Commanding General, Joint Special Operations Command",
+                "Denis McDonough","Deputy National Security Adviser",
+                "Hillary Rodham Clinton", "Secretary of State",
+                "Robert Gates", "Secretary of Defense",
+
+                "Mike Mullan", "Admiral; Chairman of the Joint Chief of Staffs",
+                "Tom Donilon", "National Security Advisor",
+                "Bill Daley", "Chief of Staff",
+                "Tony Blinken", "National Security Advisor to the Vice President",
+                "Audrey Tomason","Director of Counterterrorism",
+                "John Brennan", "Assistant to the President for Homeland Security and Counterterrorism",
+                "James Clapper", "Director of National Intelligence",
+                "Someone", "...in a black suit and white tie"
+
+        ];
+
+
+
+        var Status = {};
+        Status.OldHit = -1;
+
+        var Message;
+        var Message2;
+        var Overlay;
+        var MainDiv;
+        var DetailDiv;
+        var GuiCanvas;
+
+        function ResizeDivs(){
+            var A = Annotator;
+            MainDiv.style.width = A.Porthole.width+'px';
+            MainDiv.style.height = A.Porthole.height+'px';
+            GuiCanvas.width = A.Porthole.width;
+            GuiCanvas.height = A.Porthole.height;
+        }
+
+        function onHotspotImage(){
+            var A = Annotator;
+            A.Hotspots.canvas.width = A.Hotspots.img.width;
+            A.Hotspots.canvas.height = A.Hotspots.img.height;
+            A.Hotspots.ctx = A.Hotspots.canvas.getContext('2d');
+            var img = A.Hotspots.img;
+            A.Hotspots.ctx.drawImage(img, 0, 0, img.width, img.height);
+        }
+
+        function onFailedImage(){
+            alert("Image failed to load");
+        }
+
+        function getDivs(){
+            var A = Annotator;
+            if( !Message ){
+                Message= document.getElementById("message");
+                Message2= document.getElementById("message2");
+                MainDiv= document.getElementById("maindiv");
+                DetailDiv= document.getElementById("detaildiv");
+                GuiCanvas = document.getElementById("guicanvas");
+                ResizeDivs();
+
+                GuiCanvas.ctx = GuiCanvas.getContext('2d');
+                drawFocusSpot( 800,200 );
+                A.Hotspots.img = document.createElement('img');
+                A.Hotspots.canvas = document.createElement('canvas');
+                A.Hotspots.img.onload = onHotspotImage;
+                A.Hotspots.img.onerror = onFailedImage;
+                A.Hotspots.img.src = A.Hotspots.imageSrc;
+
+            }
+            //if( !Overlay ){
+            //    Overlay= document.getElementById("overlay");
+            // }
+
+        }
+
+        function detailPosFromCursorPos( x,y ){
+            var A = Annotator;
+            var pt = {};
+            // get position as somewhere in range -1..+1
+            var vx = 2.0*x/A.Porthole.width-1;
+            var vy = 2.0*y/A.Porthole.height -1;
+
+            // Detail panel will be hard right or hard left.
+            vx = (vx>0) ? -1:1;
+
+            // Message2.innerHTML = "Vec: ("+vx+","+vy+")";
+            pt.x = (vx+1) * (A.Porthole.width - A.Detail.width) * 0.5;
+            pt.y = (vy+1) * (A.Porthole.height - A.Detail.height) * 0.5;
+
+            return pt;
+        }
+
+        function drawFocusSpot( x, y ){
+            var A = Annotator;
+            var ctx= GuiCanvas.ctx;
+            ctx.globalCompositeOperation = 'source-over';
+            ctx.clearRect(0,0, A.Porthole.width, A.Porthole.height);
+            ctx.fillStyle = "rgba( 255,255,255,0.5)";
+            var m = A.Porthole.margin;
+            ctx.fillRect(m,m, A.Porthole.width-2*m, A.Porthole.height-2*m);
+
+            ctx.fillStyle = "rgba(0,255,255,1.0)";
+            ctx.globalCompositeOperation = 'destination-out';
+            ctx.beginPath();
+            ctx.arc( x, y, A.Focus.radius, 0, Math.PI * 2.0, true );
+            ctx.closePath();
+            ctx.fill();
+        }
+
+        function removeAdornments(){
+            var A = Annotator;
+            var ctx= GuiCanvas.ctx;
+            ctx.globalCompositeOperation = 'source-over';
+            ctx.clearRect(0,0, A.Porthole.width, A.Porthole.height);
+            DetailDiv.style.display = "none";
+            Status.OldHit = -1;
+        }
+
+        function hitFromCursorPos( x, y ){
+            var A=Annotator;
+            if( !A.Hotspots.ctx )
+                return -1;
+            var pixel = A.Hotspots.ctx.getImageData(x,y,1,1).data;
+            var result= "("+pixel[0]+","+pixel[1]+","+pixel[2]+","+pixel[3]+")";
+            var value = A.Hotspots.Colours[result] || 0;
+            Message2.innerHTML = "Rgba" + result + " Location:"+value;
+            return value-1;
+        }
+
+        function mousemoveOnMap(e){
+            var A=Annotator;
+            getDivs();
+
+            if( !Message )
+                    return;
+            if( e.shiftKey )
+                    return;
+                var x = e.clientX -MainDiv.offsetLeft;
+            var y = e.clientY -MainDiv.offsetTop;
+            var coordinates = "Coordinates: (" + x + "," + y + ")";
+
+            var pt = detailPosFromCursorPos( x, y);
+
+            drawFocusSpot( x,y );
+            var hit = hitFromCursorPos(x,y);
+            Message.innerHTML = coordinates;
+            DetailDiv.style.left = pt.x+"px";
+            DetailDiv.style.top = pt.y+"px";
+            if( Status.OldHit != hit ){
+                Status.OldHit = hit;
+                DetailDiv.style.display = (hit+1)?"block":"none";
+                if( hit >= 0 ){
+                    DetailDiv.innerHTML =
+                    "<h1>"+(hit+1)+": " + A.Hotspots.WhoIsWho[ hit*2 ]+"</h1>" +
+                            "<p><em>"+A.Hotspots.WhoIsWho[ hit*2+1]+"</em></p>";
+
+                }
+            }
+
+        }
+    </script>
+</head>
+<body style="color:white;background-image:url(images/header-home-bg.jpg);margin:0px;background-attachment:fixed;">
+<div style="width:100%; text-align:center;background:#1d2134;height:5em;margin: 0px;">
+    <h1 style="margin:0px;padding-top:0.65em;padding-bottom:0.9em;"><em>Audacity Toolbox</em>: Focus-Detail ImageMap Test</h1>
+    <div style="width:100%; text-align:center;background:#303b70;position:relative;height:1.8em;top:-0.6em;box-shadow: inset 0 0px 4px 0px #000080, 0 -2px 7px -2px #618ef4;"></div>
+</div>
+<div style="width:100%;position:relative;top:-0.50em;left:0;display:inline-block;margin:0 auto;height:3em;">
+    <div class='pos-resetter'>
+        <h2 id="click-tip" style="color:#bfbfbf;display:block;position:relative;top:-0.55em;transition:opacity 4s;opacity:1;"><em>12-Nov-2019</em></h2>
+    </div>
+    <div class='pos-resetter'>
+        <div style="display:inline-block;">
+            <div class='linky' id="manual-url-holder">
+                Manual's URL, here</div> &nbsp;
+            <div class='linky' id="wit-url-holder">
+                WIT's URL, here</div> &nbsp;
+            <div class='linky' id="doxy-url-holder">
+                Doxygen's URL, here</div>
+        </div>
+    </div>
+</div>
+<a  href="https://www.audacityteam.org">
+    <div id="logoback" >
+        <img id='logo' src="images/audacity-logo.png">
+    </div>
+</a>
+<div style="height:1.9em;"></div>
+<div style="text-align:center;">
+    <div id="maindiv" style="width:1000px;height:700px;position:relative;display:inline-block;margin-left:auto;margin-right:auto;overflow:hidden" onmousemove="mousemoveOnMap(event)" onmouseout="removeAdornments()">
+
+       <img class="centred" src='./images/Obama_and_Biden_await_updates_on_bin_Laden.jpg' >
+        <canvas id="guicanvas"
+                style="position:absolute;left:0px;top:0px;"
+                width="500px"
+                height="300px"></canvas>
+        <div id="detaildiv"
+                style="
+                background-color:rgba(0,0,0,0.6);position:absolute;left:0px;top:0px;height:300px;width:400px;display:none"><h1>Some Text</h1></div>
+
+
+    </div>
+    <br><em><a href="https://commons.wikimedia.org/wiki/File:Obama_and_Biden_await_updates_on_bin_Laden.jpg">The Situation Room</a></em><br>
+</div>
+<div style="margin-left:10px">
+    <div id="message"></div>
+<div id="message2"></div>
+<img id="Gui" src="./images/blank-links.png"
+     style="display:none;"
+     alt="Audacity">
+</div>
+<div style="margin-left:50px">
+<p> This is a test of the annotation component of the Audacity Toolbox.
+<ul>
+    <li>Lighter focus spot follows the cursor around</li>
+    <li>Darker detail panel moves out the way of the cursor.
+    </li></ul>
+Uses a false-colour image to identify different regions.</p>
+</div>
+</body>
+</html>
