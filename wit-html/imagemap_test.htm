@@ -119,7 +119,7 @@
             margin:0 auto;
         }
 
-        div#detaildiv
+        div.detaildiv
         {
             padding: 10px;
             border: 1px solid #000;
@@ -154,6 +154,7 @@
         A.Image = {};
         A.Image.width = 1024;
         A.Image.height = 683;
+        A.Image.imageSrc = './images/Obama_and_Biden_await_updates_on_bin_Laden.jpg';
         A.Hotspots = {};
         A.Hotspots.imageSrc = './images/Obama_and_Biden_await_updates_on_bin_LadenHS.png';
         A.Focus = {};
@@ -210,6 +211,7 @@
 
         var Status = {};
         Status.OldHit = -1;
+        Status.imagesToCome = 2;
 
         var Message;
         var Message2;
@@ -217,6 +219,7 @@
         var MainDiv;
         var DetailDiv;
         var GuiCanvas;
+        var ContentHere;
 
         function ResizeDivs(){
             var A = Annotator;
@@ -224,6 +227,15 @@
             MainDiv.style.height = A.Porthole.height+'px';
             GuiCanvas.width = A.Porthole.width;
             GuiCanvas.height = A.Porthole.height;
+            DetailDiv.style.width = A.Detail.width+'px';
+            DetailDiv.style.height = A.Detail.height+'px';
+        }
+
+        function anotherImageReady(){
+            Status.imagesToCome--;
+            if( Status.imagesToCome > 0 )
+                return;
+            Status.isAppReady = true;
         }
 
         function onHotspotImage(){
@@ -233,35 +245,14 @@
             A.Hotspots.ctx = A.Hotspots.canvas.getContext('2d');
             var img = A.Hotspots.img;
             A.Hotspots.ctx.drawImage(img, 0, 0, img.width, img.height);
+            anotherImageReady();
         }
+
+
+
 
         function onFailedImage(){
             alert("Image failed to load");
-        }
-
-        function getDivs(){
-            var A = Annotator;
-            if( !Message ){
-                Message= document.getElementById("message");
-                Message2= document.getElementById("message2");
-                MainDiv= document.getElementById("maindiv");
-                DetailDiv= document.getElementById("detaildiv");
-                GuiCanvas = document.getElementById("guicanvas");
-                ResizeDivs();
-
-                GuiCanvas.ctx = GuiCanvas.getContext('2d');
-                drawFocusSpot( 800,200 );
-                A.Hotspots.img = document.createElement('img');
-                A.Hotspots.canvas = document.createElement('canvas');
-                A.Hotspots.img.onload = onHotspotImage;
-                A.Hotspots.img.onerror = onFailedImage;
-                A.Hotspots.img.src = A.Hotspots.imageSrc;
-
-            }
-            //if( !Overlay ){
-            //    Overlay= document.getElementById("overlay");
-            // }
-
         }
 
         function detailPosFromCursorPos( x,y ){
@@ -299,6 +290,8 @@
         }
 
         function removeAdornments(e){
+            if( !Status.isAppReady )
+                return;
             if( e.shiftKey )
                return;
             var A = Annotator;
@@ -321,11 +314,10 @@
         }
 
         function mousemoveOnMap(e){
-            var A=Annotator;
-            getDivs();
+            if( !Status.isAppReady )
+                return;
 
-            if( !Message )
-                    return;
+            var A=Annotator;
             if( e.shiftKey )
                     return;
                 var x = e.clientX -MainDiv.offsetLeft;
@@ -351,6 +343,58 @@
             }
 
         }
+
+        window.onload = function(){
+            var A=Annotator;
+            ContentHere= document.getElementById("content_here");
+            Message= document.getElementById("message");
+            Message2= document.getElementById("message2");
+
+            MainDiv = document.createElement( "div");
+            var img =  document.createElement( "img");
+            GuiCanvas = document.createElement( "canvas" );
+            DetailDiv = document.createElement( "div" );
+
+            ContentHere.appendChild( MainDiv );
+            MainDiv.appendChild( img );
+            MainDiv.appendChild( GuiCanvas );
+            MainDiv.appendChild( DetailDiv );
+
+            MainDiv.style.position="relative";
+            MainDiv.style.display="inline-block";
+            MainDiv.style.marginLeft="auto";
+            MainDiv.style.marginRight="auto";
+            MainDiv.style.overflow="hidden";
+
+            GuiCanvas.ctx = GuiCanvas.getContext('2d');
+            GuiCanvas.onmousemove=mousemoveOnMap;
+            GuiCanvas.onmouseout=removeAdornments;
+            GuiCanvas.style.position = "absolute";
+            GuiCanvas.style.left = "0px";
+            GuiCanvas.style.top = "0px";
+            GuiCanvas.ctx = GuiCanvas.getContext('2d');
+            DetailDiv.innerHTML="Some Text";
+            DetailDiv.style.backgroundColor = "rgba(0,0,0,0.6)";
+            DetailDiv.style.position = "absolute";
+            DetailDiv.style.left = "0px";
+            DetailDiv.style.top = "0px";
+            DetailDiv.style.display = "none";
+            DetailDiv.className = "detaildiv";
+            ResizeDivs();
+
+            A.Hotspots.img = document.createElement('img');
+            A.Hotspots.canvas = document.createElement('canvas');
+            A.Hotspots.img.onload = onHotspotImage;
+            A.Hotspots.img.onerror = onFailedImage;
+            A.Hotspots.img.src = A.Hotspots.imageSrc;
+
+            img.onload = anotherImageReady;
+            img.onerror = onFailedImage;
+            img.className="centred";
+            img.src = A.Image.imageSrc;
+            //Status.isAppReady = true;
+        }
+
     </script>
 </head>
 <body style="color:white;background-image:url(images/header-home-bg.jpg);margin:0px;background-attachment:fixed;">
@@ -379,30 +423,17 @@
     </div>
 </a>
 <div style="height:1.9em;"></div>
+
+<div id="content_here" style="text-align:center;">
+</div>
+
 <div style="text-align:center;">
-    <div id="maindiv" style="width:1000px;height:700px;position:relative;display:inline-block;margin-left:auto;margin-right:auto;overflow:hidden">
-
-       <img class="centred" src='./images/Obama_and_Biden_await_updates_on_bin_Laden.jpg' >
-        <canvas id="guicanvas"
-                style="position:absolute;left:0px;top:0px;"
-                width="500px"
-                height="300px"
-                onmousemove="mousemoveOnMap(event)"
-                onmouseout="removeAdornments(event)"></canvas>
-        <div id="detaildiv"
-                style="
-                background-color:rgba(0,0,0,0.6);position:absolute;left:0px;top:0px;height:300px;width:400px;display:none"><h1>Some Text</h1></div>
-
-
-    </div>
     <br><em><a href="https://commons.wikimedia.org/wiki/File:Obama_and_Biden_await_updates_on_bin_Laden.jpg">The Situation Room</a></em><br>
 </div>
+
 <div style="margin-left:10px">
     <div id="message"></div>
 <div id="message2"></div>
-<img id="Gui" src="./images/blank-links.png"
-     style="display:none;"
-     alt="Audacity">
 </div>
 <div style="margin-left:50px">
 <p> This is a test of the annotation component of the Audacity Toolbox.
