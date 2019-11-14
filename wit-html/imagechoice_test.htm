@@ -156,8 +156,9 @@
 
         var A=Annotator;
         A.Porthole = {};
+        A.Porthole.topExtra = 24;
         A.Porthole.width = 877;
-        A.Porthole.height = 403;
+        A.Porthole.height = 403+A.Porthole.topExtra;
         A.Porthole.margin = 5;
         A.Image = {};
         A.Image.width = 877;
@@ -172,25 +173,49 @@
         A.Detail.height = 300;
 
         A.Hotspots.Colours = [];
-        A.Hotspots.Actions = [];
+        A.Hotspots.HoverActions = [];
+        A.Hotspots.ClickActions = [];
         A.Hotspots.numKeys = 0;
 
         A.Buttons = {};
         A.Buttons.Names = [];
-        A.Buttons.Links = [];
         A.Buttons.numButtons = 0;
+        A.Buttons.chosen = 0;
 
 
-        A.AddHot = function (r,g,b,a){
+        A.AddHot = function (r,g,b,a,click){
             var index = "("+r+","+g+","+b+","+a+")";
             A.Hotspots.Colours[ index ] = 1+A.Hotspots.numKeys++;
+            A.Hotspots.ClickActions.push( click );
         };
 
         A.AddDetail = function ( title, text ){
-            A.Hotspots.Actions.push(
+            A.Hotspots.HoverActions.push(
                 "DETAIL:<h1>" + title + "</h1><p><em>"+text+"</em></p>"
                 );
         };
+
+        A.AddButton = function( text, src ){
+            A.Buttons.Names.push( text );
+            //A.Buttons.Links.push( src );
+            A.Buttons.numButtons++;
+            A.AddHot(0,0,A.Buttons.numButtons,255,src);
+        };
+
+        A.AddButton(  "256", './auto_images/SpectralVocalDark256Dark.png');
+        A.AddButton(  "512", './auto_images/SpectralVocalDark512Dark.png');
+        A.AddButton( "1024", './auto_images/SpectralVocalDark1024Dark.png');
+        A.AddButton( "2048", './auto_images/SpectralVocalDark2048Dark.png');
+        A.AddButton( "4096", './auto_images/SpectralVocalDark4096Dark.png');
+        A.AddButton( "8192", './auto_images/SpectralVocalDark8192Dark.png');
+
+        A.AddDetail(  "256: Most Narrow Band","This window size gives the spectrogram the best temporal resolution, but the worst frequency resolution.");
+        A.AddDetail(  "Window size 512","Frequencies are not as clear as at window size of 2048 and above");
+        A.AddDetail(  "Window size 1024","A good compromise.");
+        A.AddDetail(  "Window size 2048","The duration of the silences before the 'd' and 't' in 'Audacity' are a lot less clear than for smaller window sizes.");
+        A.AddDetail(  "Window size 4096","All sounds are shown as having longer duration than they really do");
+        A.AddDetail(  "8192: Most Wide Band","This window size gives the spectrogram the worst temporal resolution and the best frequency resolution.");
+
 
         // Widgets
         A.AddHot(170,136,221,255); // tcp
@@ -205,39 +230,17 @@
         A.AddHot( 68,170, 68,255); // t
         A.AddHot( 85,102,204,255); // y
 
-
-        
         A.AddDetail( "Track Control Panel","The <a href='https://manual.audacityteam.org/man/track_control_panel_and_vertical_scale.html'>Track Control Panel (TCP)</a> in Audacity contains controls used, for example, to adjust the loudness of the track.");
-        A.AddDetail( "Frequency Scale", "Frequency scale, from 0 KHz to 8 KHz. The spectrogram is a plot showing how the frequencies of a sound vary over time. The most intense sounds are shown in white, then red, purple, blue, with black indicating no intensity at that frequency at that time.</p><p>This spectrogram shows a plot for the word 'Audacity'. ");
+        A.AddDetail( "", "<h2>Frequency Scale</h2>The spectrogram is a plot showing how the frequencies of a sound vary over time. The <b>frequency scale</b> runs from 0 KHz to 8 KHz.</p><p>This spectrogram shows a plot for the word 'Audacity'. </p><p>The most intense sounds are shown in white, then red, purple, blue, with black indicating no intensity at that frequency at that time.");
         A.AddDetail( "Window Size", "Small windows sizes measure frequency over a short time range.  This is good when the frequencies change quickly.</p><p>Where the frequencies are sustained over longer time periods, larger window sizes give more precision about what the frequencies are.</p><p>The number for 'window size' is 'the number of audio samples'.");
-        A.AddDetail( "<em style='color: #ffc747'>Aw</em>-dassi-ty","The initial vowel sound in the word 'Audacity'  The sound changes slightly over the duration of the vowel as the lips move closer together and are rounded more towards the end of the vowel sound.");
-        A.AddDetail( "Aw<em style='color: #ffc747'>-d</em>assi-ty", "The 'd' consonant sound in 'Audacity'.  There is a moment of near silence just before the 'd'.");
-        A.AddDetail( "Aw-d<em style='color: #ffc747'>a</em>ssi-ty", "The second vowel sound in 'Audacity'.  The pitch rises slightly towards the end as the mouth closes somewhat for the next sound.");
-        A.AddDetail( "Aw-da<em style='color: #ffc747'>ss</em>i-ty", "The 'sss' sound of the 'c' in 'Audacity'.  The bright region at about 5KHz is showing many frequencies, all quite loud.</p><p>This sound is similar to the sound of <a href='https://manual.audacityteam.org/man/noise.html'>'white noise'</a> which also has many frequencies at once.");
-        A.AddDetail( "Aw-dass<em style='color: #ffc747'>i</em>-ty", "The 'i' vowel sound in 'Audacity'");
-        A.AddDetail( "Aw-dassi<em style='color: #ffc747'>-t</em>y", "The 't' consonant sound in the word 'Audacity'.  There is a moment of near silence just before the 't'.");
-        A.AddDetail( "Aw-dassi-t<em style='color: #ffc747'>y</em>", "The 'y' vowel sound in 'Audacity'.");
+        A.AddDetail( "<em style='color: #ffc747'>Aw</em>-dasssi-tee","The initial vowel sound in the word 'Audacity'  The sound changes slightly over the duration of the vowel as the lips move closer together and are rounded more towards the end of the vowel sound.");
+        A.AddDetail( "Aw<em style='color: #ffc747'>-d</em>asssi-tee", "The 'd' consonant sound in 'Audacity'.  There is a moment of near silence just before the 'd'.");
+        A.AddDetail( "Aw-d<em style='color: #ffc747'>a</em>sssi-tee", "The second vowel sound in 'Audacity' just before the loud 'sss' sound.  The pitch rises slightly towards the end as the mouth closes somewhat for the next sound.");
+        A.AddDetail( "Aw-da<em style='color: #ffc747'>sss</em>i-tee", "The 'sss' sound of the 'c' in 'Audacity'.  The bright region at about 5KHz is showing many frequencies, all quite loud.</p><p>This sound is similar to the sound of <a href='https://manual.audacityteam.org/man/noise.html'>'white noise'</a> which also has many frequencies at once.");
+        A.AddDetail( "Aw-dasss<em style='color: #ffc747'>i</em>-tee", "The 'i' vowel sound in 'Audacity'");
+        A.AddDetail( "Aw-dasssi<em style='color: #ffc747'>-t</em>ee", "The 't' consonant sound in the word 'Audacity'.  There is a moment of near silence just before the 't'.");
+        A.AddDetail( "Aw-dasssi-t<em style='color: #ffc747'>ee</em>", "The 'y' vowel sound in 'Audacity'.");
 
-        A.AddButton = function( text, src ){
-            A.Buttons.Names.push( text );
-            A.Buttons.Links.push( src );
-            A.Buttons.numButtons++;
-            A.AddHot(0,0,A.Buttons.numButtons,255);
-        };
-
-        A.AddButton(  "256", './auto_images/SpectralVocalDark256Dark.png');
-        A.AddButton(  "512", './auto_images/SpectralVocalDark512Dark.png');
-        A.AddButton( "1024", './auto_images/SpectralVocalDark1024Dark.png');
-        A.AddButton( "2048", './auto_images/SpectralVocalDark2048Dark.png');
-        A.AddButton( "4096", './auto_images/SpectralVocalDark4096Dark.png');
-        A.AddButton( "8192", './auto_images/SpectralVocalDark8192Dark.png');
-
-        A.AddDetail(  "256: Most Narrow Band","This window size gives the best temporal resolution, but the worst frequency resolution.");
-        A.AddDetail(  "Window size 512","");
-        A.AddDetail(  "Window size 1024","");
-        A.AddDetail(  "Window size 2048","");
-        A.AddDetail(  "Window size 4096","");
-        A.AddDetail(  "8192: Most Wide Band","This window size gives the worst temporal resolution and the best frequency resolution.");
 
 
 
@@ -263,27 +266,36 @@
 
         function drawButtons(){
             var A = Annotator;
-            var xw = 100;
-            var yh = 30;
+            var xw = 60;
+            var yh = 25;
             var gap = 9;
             var n = A.Buttons.numButtons;
             var m = 1;
             // grid of n by m buttons, with gaps between them.
             var x = (A.Porthole.width  - n *(xw+gap) + gap) *0.5;
-            var y = (A.Porthole.height - m *(yh+gap) + gap) *0.5;
+            var y = 0;//(A.Porthole.height - m *(yh+gap) + gap) *0.5;
             var ctx = A.BackingCanvas.ctx;
             var ctx2 = A.Hotspots.ctx;
             ctx.lineWidth = 3;
-            ctx.fillStyle = "rgba(205,205,205,1.0)";
+            ctx.font="16px Arial";
             ctx.strokeStyle = "rgba( 55, 55,155,1.0)";
             ctx2.lineWidth = 0;
 
             var i;
             for( i=0;i<n;i++){
+                var xx = x + i * (xw + gap);
+                var yy = y + 1;
                 ctx.beginPath();
-                ctx.rect(x + i * (xw + gap), y + 0 * (yh + gap), xw, yh);
+                if( i== A.Buttons.chosen )
+                    ctx.fillStyle = "rgba(255,255,255,1.0)";
+                else
+                    ctx.fillStyle = "rgba(205,205,205,1.0)";
+
+                ctx.rect(xx, yy, xw, yh);
                 ctx.fill();
                 ctx.stroke();
+                ctx.fillStyle = "rgba(0,0,0,1.0)";
+                ctx.fillText(A.Buttons.Names[i], xx+11, yy+18 );
                 ctx2.beginPath();
                 ctx2.fillStyle = "rgba(0,0,"+(i+1)+",1.0)";
                 ctx2.rect( x + i*(xw+gap), y+ 0*(yh+gap), xw, yh);
@@ -304,20 +316,18 @@
         function onBackingImage(){
             var A = Annotator;
             var img = A.Backing.img;
-            var x = (A.Porthole.width - img.width)/2;
-            var y = (A.Porthole.height - img.height)/2;
-            A.BackingCanvas.ctx.drawImage(img, x, y, img.width, img.height);
+            A.BackingCanvas.ctx.drawImage(img, 0, A.Porthole.topExtra, img.width, img.height);
             anotherImageReady();
         }
 
 
         function onHotspotImage(){
             var A = Annotator;
-            A.Hotspots.canvas.width = A.Hotspots.img.width;
-            A.Hotspots.canvas.height = A.Hotspots.img.height;
+            A.Hotspots.canvas.width = A.Porthole.width;
+            A.Hotspots.canvas.height = A.Porthole.height;
             A.Hotspots.ctx = A.Hotspots.canvas.getContext('2d');
             var img = A.Hotspots.img;
-            A.Hotspots.ctx.drawImage(img, 0, 0, img.width, img.height);
+            A.Hotspots.ctx.drawImage(img, 0, A.Porthole.topExtra, img.width, img.height);
             anotherImageReady();
         }
 
@@ -344,14 +354,20 @@
 
         function drawFocusSpot( x, y ){
             var A = Annotator;
+
             var ctx= A.FocusCanvas.ctx;
 
             // Draw the white translucent rectangle
             ctx.globalCompositeOperation = 'source-over';
-            ctx.clearRect(0,0, A.Porthole.width, A.Porthole.height);
+            ctx.clearRect(0, 0, A.Porthole.width, A.Porthole.height);
+            // Don't draw focus spot if in the extra strip at the top.
+            if( y < A.Porthole.topExtra )
+                return;
+
             ctx.fillStyle = "rgba( 255,255,255,0.5)";
-            var m = A.Porthole.margin;
-            ctx.fillRect(m,m, A.Porthole.width-2*m, A.Porthole.height-2*m);
+            var m1 = A.Porthole.margin;
+            var m2 = A.Porthole.topExtra + m1;
+            ctx.fillRect(m1,m2, A.Porthole.width-2*m1, A.Porthole.height-2*m1);
 
             // Cut out the viewing circle
             ctx.fillStyle = "rgba(0,0,0,1.0)";
@@ -386,13 +402,21 @@
             return value-1;
         }
 
-        function mousemoveOnMap(e){
+
+        function setNewImage( url ){
+            var A=Annotator;
+            Status.imagesToCome++;
+            A.Backing.img.src = url;
+        }
+
+        // Happens on mouse move events
+        function onFocusSpotMoved(e){
             if( !Status.isAppReady )
                 return;
 
             var A=Annotator;
             if( e.shiftKey )
-                    return;
+               return;
 
             var x = e.clientX -A.MainDiv.offsetLeft;
             var y = e.clientY -A.MainDiv.offsetTop;
@@ -409,12 +433,33 @@
                 Status.OldHit = hit;
                 A.DetailDiv.style.display = (hit+1)?"block":"none";
                 if( hit >= 0 ){
-                    var action = A.Hotspots.Actions[ hit ];
+                    var action = A.Hotspots.HoverActions[ hit ];
                     A.DetailDiv.innerHTML = action.substr( 7 );
-
+                    action = A.Hotspots.ClickActions[ hit ];
+                    if( action ){
+                        A.Buttons.chosen = hit;
+                        setNewImage(action);
+                    }
                 }
             }
+        }
 
+        function onFocusClicked(e){
+            if( !Status.isAppReady )
+                return;
+
+            var A=Annotator;
+            if( e.shiftKey )
+                return;
+
+            var x = e.clientX -A.MainDiv.offsetLeft;
+            var y = e.clientY -A.MainDiv.offsetTop;
+            var hit = hitFromCursorPos(x,y);
+            if( hit>=0 ){
+                var action = A.Hotspots.ClickActions[ hit ];
+                if( action )
+                    alert( action );
+            }
         }
 
         function createDomElements(){
@@ -450,8 +495,9 @@
             A.BackingCanvas.style.top = "0px";
             A.BackingCanvas.ctx = A.BackingCanvas.getContext('2d');
 
-            A.FocusCanvas.onmousemove=mousemoveOnMap;
+            A.FocusCanvas.onmousemove=onFocusSpotMoved;
             A.FocusCanvas.onmouseout=removeAdornments;
+            A.FocusCanvas.onclick=onFocusClicked;
 
             A.FocusCanvas.style.position = "absolute";
             A.FocusCanvas.style.left = "0px";
