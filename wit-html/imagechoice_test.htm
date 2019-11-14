@@ -119,12 +119,20 @@
             margin:0 auto;
         }
 
-        div.A.detaildiv
+        div.detaildiv
         {
-            padding: 10px;
+            padding: 20px;
+            box-sizing: border-box; /* so the div is exactly the requested size.*/
             border: 1px solid #000;
             border-radius: 5px;
             -moz-border-radius: 5px;
+            text-align:left;
+            margin:0px;
+        }
+
+        div.detaildiv a
+        {
+            color: #f5b40b;
         }
 
         img.centred {
@@ -187,16 +195,16 @@
         A.AddHot( 85,102,204,255); // y
 
         A.Hotspots.WhoIsWho = [
-            "Track Control Panel","This contains controls used by Audacity, for example to adjust the loudness of the track.",
+            "Track Control Panel","The <a href='https://manual.audacityteam.org/man/track_control_panel_and_vertical_scale.html'>Track Control Panel (TCP)</a> in Audacity contains controls used, for example, to adjust the loudness of the track.",
             "Frequency Scale", "Frequency scale, from 0 KHz to 8 KHz. The spectrogram is a plot showing how the frequencies of a sound vary over time. The most intense sounds are shown in white, then red, purple, blue, with black indicating no intensity at that frequency at that time.</p><p>This spectrogram shows a plot for the word 'Audacity'. ",
                 "Window Size", "Small windows sizes measure frequency over a short time range.  This is good when the frequencies change quickly.</p><p>Where the frequencies are sustained over longer time periods, larger window sizes give more precision about what the frequencies are.</p><p>The number for 'window size' is 'the number of audio samples'.",
-                "<em style='color: #ffc747'>Aw</em>-dassi-ty","The initial vowel sound in the word 'Audacity'  The sound changes slightly over the duration of the vowel as the lips are closer together and rounded more towards the end of the vowel sound.",
-                "Aw<em style='color: #ffc747'>-d</em>assi-ty", "The 'd' consonant sound in 'Audacity'.  There is a short moment of near silence just before the 'd'.",
+                "<em style='color: #ffc747'>Aw</em>-dassi-ty","The initial vowel sound in the word 'Audacity'  The sound changes slightly over the duration of the vowel as the lips move closer together and are rounded more towards the end of the vowel sound.",
+                "Aw<em style='color: #ffc747'>-d</em>assi-ty", "The 'd' consonant sound in 'Audacity'.  There is a moment of near silence just before the 'd'.",
                 "Aw-d<em style='color: #ffc747'>a</em>ssi-ty", "The second vowel sound in 'Audacity'.  The pitch rises slightly towards the end as the mouth closes somewhat for the next sound.",
 
-                "Aw-da<em style='color: #ffc747'>ss</em>i-ty", "The 'sss' sound of the 'c' in 'Audacity'.  The bright region at about 5KHz is showing many frequencies, all quite loud.  This sound is similar to the sound of <a href='./white_noise.htm'>'white noise'</a> which also has many frequencies at once.",
+                "Aw-da<em style='color: #ffc747'>ss</em>i-ty", "The 'sss' sound of the 'c' in 'Audacity'.  The bright region at about 5KHz is showing many frequencies, all quite loud.</p><p>This sound is similar to the sound of <a href='https://manual.audacityteam.org/man/noise.html'>'white noise'</a> which also has many frequencies at once.",
                 "Aw-dass<em style='color: #ffc747'>i</em>-ty", "The 'i' vowel sound in 'Audacity'",
-                "Aw-dassi<em style='color: #ffc747'>-t</em>y", "The 't' consonant sound in the word 'Audacity'.  There is a short moment of near silence just before the 't'.",
+                "Aw-dassi<em style='color: #ffc747'>-t</em>y", "The 't' consonant sound in the word 'Audacity'.  There is a moment of near silence just before the 't'.",
                 "Aw-dassi-t<em style='color: #ffc747'>y</em>", "The 'y' vowel sound in 'Audacity'."
 
         ];
@@ -319,7 +327,8 @@
             var A=Annotator;
             if( e.shiftKey )
                     return;
-                var x = e.clientX -A.MainDiv.offsetLeft;
+
+            var x = e.clientX -A.MainDiv.offsetLeft;
             var y = e.clientY -A.MainDiv.offsetTop;
             var coordinates = "Coordinates: (" + x + "," + y + ")";
 
@@ -391,7 +400,7 @@
             A.DetailDiv.style.top = "0px";
 
             A.DetailDiv.style.display = "none";
-            A.DetailDiv.className = "A.detaildiv";
+            A.DetailDiv.className = "detaildiv";
             ResizeDivs();
 
         }
@@ -464,7 +473,7 @@
     <li>Click on choices above image to select which image shows</li>
     <li>This demo shows spectrograms with different window sizes
     </li></ul>
-All the choice images are loaded before any displays.</p>
+All the choice images are loaded before any are displayed.</p>
 </div>
 </body>
 </html>
