@@ -172,7 +172,13 @@
         A.Detail.height = 300;
 
         A.Hotspots.Colours = [];
+        A.Hotspots.Actions = [];
         A.Hotspots.numKeys = 0;
+
+        A.Buttons = {};
+        A.Buttons.Names = [];
+        A.Buttons.Links = [];
+        A.Buttons.numButtons = 0;
 
 
         A.AddHot = function (r,g,b,a){
@@ -180,13 +186,18 @@
             A.Hotspots.Colours[ index ] = 1+A.Hotspots.numKeys++;
         };
 
+        A.AddDetail = function ( title, text ){
+            A.Hotspots.Actions.push(
+                "DETAIL:<h1>" + title + "</h1><p><em>"+text+"</em></p>"
+                );
+        };
+
         // Widgets
         A.AddHot(170,136,221,255); // tcp
         A.AddHot(187,238,170,255); // freq
         A.AddHot(136,221,238,255); // win-size
-        // Spectrogrm
+        // Spectrogram
         A.AddHot(102,153, 85,255); // Au
-        //A.AddHot(232,221,183,255); //
         A.AddHot(238,221,136,255); // -d
         A.AddHot(221,119, 17,255); // a
         A.AddHot(221, 17,221,255); // sss
@@ -194,20 +205,39 @@
         A.AddHot( 68,170, 68,255); // t
         A.AddHot( 85,102,204,255); // y
 
-        A.Hotspots.WhoIsWho = [
-            "Track Control Panel","The <a href='https://manual.audacityteam.org/man/track_control_panel_and_vertical_scale.html'>Track Control Panel (TCP)</a> in Audacity contains controls used, for example, to adjust the loudness of the track.",
-            "Frequency Scale", "Frequency scale, from 0 KHz to 8 KHz. The spectrogram is a plot showing how the frequencies of a sound vary over time. The most intense sounds are shown in white, then red, purple, blue, with black indicating no intensity at that frequency at that time.</p><p>This spectrogram shows a plot for the word 'Audacity'. ",
-                "Window Size", "Small windows sizes measure frequency over a short time range.  This is good when the frequencies change quickly.</p><p>Where the frequencies are sustained over longer time periods, larger window sizes give more precision about what the frequencies are.</p><p>The number for 'window size' is 'the number of audio samples'.",
-                "<em style='color: #ffc747'>Aw</em>-dassi-ty","The initial vowel sound in the word 'Audacity'  The sound changes slightly over the duration of the vowel as the lips move closer together and are rounded more towards the end of the vowel sound.",
-                "Aw<em style='color: #ffc747'>-d</em>assi-ty", "The 'd' consonant sound in 'Audacity'.  There is a moment of near silence just before the 'd'.",
-                "Aw-d<em style='color: #ffc747'>a</em>ssi-ty", "The second vowel sound in 'Audacity'.  The pitch rises slightly towards the end as the mouth closes somewhat for the next sound.",
 
-                "Aw-da<em style='color: #ffc747'>ss</em>i-ty", "The 'sss' sound of the 'c' in 'Audacity'.  The bright region at about 5KHz is showing many frequencies, all quite loud.</p><p>This sound is similar to the sound of <a href='https://manual.audacityteam.org/man/noise.html'>'white noise'</a> which also has many frequencies at once.",
-                "Aw-dass<em style='color: #ffc747'>i</em>-ty", "The 'i' vowel sound in 'Audacity'",
-                "Aw-dassi<em style='color: #ffc747'>-t</em>y", "The 't' consonant sound in the word 'Audacity'.  There is a moment of near silence just before the 't'.",
-                "Aw-dassi-t<em style='color: #ffc747'>y</em>", "The 'y' vowel sound in 'Audacity'."
+        
+        A.AddDetail( "Track Control Panel","The <a href='https://manual.audacityteam.org/man/track_control_panel_and_vertical_scale.html'>Track Control Panel (TCP)</a> in Audacity contains controls used, for example, to adjust the loudness of the track.");
+        A.AddDetail( "Frequency Scale", "Frequency scale, from 0 KHz to 8 KHz. The spectrogram is a plot showing how the frequencies of a sound vary over time. The most intense sounds are shown in white, then red, purple, blue, with black indicating no intensity at that frequency at that time.</p><p>This spectrogram shows a plot for the word 'Audacity'. ");
+        A.AddDetail( "Window Size", "Small windows sizes measure frequency over a short time range.  This is good when the frequencies change quickly.</p><p>Where the frequencies are sustained over longer time periods, larger window sizes give more precision about what the frequencies are.</p><p>The number for 'window size' is 'the number of audio samples'.");
+        A.AddDetail( "<em style='color: #ffc747'>Aw</em>-dassi-ty","The initial vowel sound in the word 'Audacity'  The sound changes slightly over the duration of the vowel as the lips move closer together and are rounded more towards the end of the vowel sound.");
+        A.AddDetail( "Aw<em style='color: #ffc747'>-d</em>assi-ty", "The 'd' consonant sound in 'Audacity'.  There is a moment of near silence just before the 'd'.");
+        A.AddDetail( "Aw-d<em style='color: #ffc747'>a</em>ssi-ty", "The second vowel sound in 'Audacity'.  The pitch rises slightly towards the end as the mouth closes somewhat for the next sound.");
+        A.AddDetail( "Aw-da<em style='color: #ffc747'>ss</em>i-ty", "The 'sss' sound of the 'c' in 'Audacity'.  The bright region at about 5KHz is showing many frequencies, all quite loud.</p><p>This sound is similar to the sound of <a href='https://manual.audacityteam.org/man/noise.html'>'white noise'</a> which also has many frequencies at once.");
+        A.AddDetail( "Aw-dass<em style='color: #ffc747'>i</em>-ty", "The 'i' vowel sound in 'Audacity'");
+        A.AddDetail( "Aw-dassi<em style='color: #ffc747'>-t</em>y", "The 't' consonant sound in the word 'Audacity'.  There is a moment of near silence just before the 't'.");
+        A.AddDetail( "Aw-dassi-t<em style='color: #ffc747'>y</em>", "The 'y' vowel sound in 'Audacity'.");
 
-        ];
+        A.AddButton = function( text, src ){
+            A.Buttons.Names.push( text );
+            A.Buttons.Links.push( src );
+            A.Buttons.numButtons++;
+            A.AddHot(0,0,A.Buttons.numButtons,255);
+        };
+
+        A.AddButton(  "256", './auto_images/SpectralVocalDark256Dark.png');
+        A.AddButton(  "512", './auto_images/SpectralVocalDark512Dark.png');
+        A.AddButton( "1024", './auto_images/SpectralVocalDark1024Dark.png');
+        A.AddButton( "2048", './auto_images/SpectralVocalDark2048Dark.png');
+        A.AddButton( "4096", './auto_images/SpectralVocalDark4096Dark.png');
+        A.AddButton( "8192", './auto_images/SpectralVocalDark8192Dark.png');
+
+        A.AddDetail(  "256: Most Narrow Band","This window size gives the best temporal resolution, but the worst frequency resolution.");
+        A.AddDetail(  "Window size 512","");
+        A.AddDetail(  "Window size 1024","");
+        A.AddDetail(  "Window size 2048","");
+        A.AddDetail(  "Window size 4096","");
+        A.AddDetail(  "8192: Most Wide Band","This window size gives the worst temporal resolution and the best frequency resolution.");
 
 
 
@@ -231,11 +261,44 @@
             A.DetailDiv.style.height = A.Detail.height+'px';
         }
 
+        function drawButtons(){
+            var A = Annotator;
+            var xw = 100;
+            var yh = 30;
+            var gap = 9;
+            var n = A.Buttons.numButtons;
+            var m = 1;
+            // grid of n by m buttons, with gaps between them.
+            var x = (A.Porthole.width  - n *(xw+gap) + gap) *0.5;
+            var y = (A.Porthole.height - m *(yh+gap) + gap) *0.5;
+            var ctx = A.BackingCanvas.ctx;
+            var ctx2 = A.Hotspots.ctx;
+            ctx.lineWidth = 3;
+            ctx.fillStyle = "rgba(205,205,205,1.0)";
+            ctx.strokeStyle = "rgba( 55, 55,155,1.0)";
+            ctx2.lineWidth = 0;
+
+            var i;
+            for( i=0;i<n;i++){
+                ctx.beginPath();
+                ctx.rect(x + i * (xw + gap), y + 0 * (yh + gap), xw, yh);
+                ctx.fill();
+                ctx.stroke();
+                ctx2.beginPath();
+                ctx2.fillStyle = "rgba(0,0,"+(i+1)+",1.0)";
+                ctx2.rect( x + i*(xw+gap), y+ 0*(yh+gap), xw, yh);
+                ctx2.fill();
+            }
+        }
+
+
+
         function anotherImageReady(){
             Status.imagesToCome--;
             if( Status.imagesToCome > 0 )
                 return;
             Status.isAppReady = true;
+            drawButtons();
         }
 
         function onBackingImage(){
@@ -282,13 +345,16 @@
         function drawFocusSpot( x, y ){
             var A = Annotator;
             var ctx= A.FocusCanvas.ctx;
+
+            // Draw the white translucent rectangle
             ctx.globalCompositeOperation = 'source-over';
             ctx.clearRect(0,0, A.Porthole.width, A.Porthole.height);
             ctx.fillStyle = "rgba( 255,255,255,0.5)";
             var m = A.Porthole.margin;
             ctx.fillRect(m,m, A.Porthole.width-2*m, A.Porthole.height-2*m);
 
-            ctx.fillStyle = "rgba(0,255,255,1.0)";
+            // Cut out the viewing circle
+            ctx.fillStyle = "rgba(0,0,0,1.0)";
             ctx.globalCompositeOperation = 'destination-out';
             ctx.beginPath();
             ctx.arc( x, y, A.Focus.radius, 0, Math.PI * 2.0, true );
@@ -343,9 +409,8 @@
                 Status.OldHit = hit;
                 A.DetailDiv.style.display = (hit+1)?"block":"none";
                 if( hit >= 0 ){
-                    A.DetailDiv.innerHTML =
-                    "<h1>"+(hit+1)+": " + A.Hotspots.WhoIsWho[ hit*2 ]+"</h1>" +
-                            "<p><em>"+A.Hotspots.WhoIsWho[ hit*2+1]+"</em></p>";
+                    var action = A.Hotspots.Actions[ hit ];
+                    A.DetailDiv.innerHTML = action.substr( 7 );
 
                 }
             }
