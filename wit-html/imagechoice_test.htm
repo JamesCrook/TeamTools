@@ -148,17 +148,17 @@
 
         var A=Annotator;
         A.Porthole = {};
-        A.Porthole.width = 1024;
-        A.Porthole.height = 683;
+        A.Porthole.width = 877;
+        A.Porthole.height = 403;
         A.Porthole.margin = 5;
         A.Image = {};
-        A.Image.width = 1024;
-        A.Image.height = 683;
-        A.Image.imageSrc = './images/Obama_and_Biden_await_updates_on_bin_Laden.jpg';
+        A.Image.width = 877;
+        A.Image.height = 403;
+        A.Image.imageSrc = './auto_images/SpectralVocalDark256Dark.png';
         A.Hotspots = {};
-        A.Hotspots.imageSrc = './images/Obama_and_Biden_await_updates_on_bin_LadenHS.png';
+        A.Hotspots.imageSrc = './images/SpectralVocalDark256DarkHS.png';
         A.Focus = {};
-        A.Focus.radius = 150;
+        A.Focus.radius = 75;
         A.Detail = {};
         A.Detail.width = 400;
         A.Detail.height = 300;
@@ -171,39 +171,33 @@
             var index = "("+r+","+g+","+b+","+a+")";
             A.Hotspots.Colours[ index ] = 1+A.Hotspots.numKeys++;
         };
-        // seated
-        A.AddHot(229,136,173,255);
-        A.AddHot(175,136,229,255);
-        A.AddHot( 97,159, 89,255);
-        A.AddHot(232,221,183,255);
-        A.AddHot(149,176,227,255);
-        A.AddHot(194,243,167,255);
-        // standing
-        A.AddHot( 53, 97,179,255);
-        A.AddHot(146, 55,176,255);
-        A.AddHot(209,141,219,255);
-        A.AddHot( 64,135, 69,255);
-        A.AddHot(136,228,234,255);
-        A.AddHot(234,226,136,255);
-        A.AddHot(227,119, 14,255);
-        A.AddHot(227, 14, 54,255);
+
+        // Widgets
+        A.AddHot(170,136,221,255); // tcp
+        A.AddHot(187,238,170,255); // freq
+        A.AddHot(136,221,238,255); // win-size
+        // Spectrogrm
+        A.AddHot(102,153, 85,255); // Au
+        //A.AddHot(232,221,183,255); //
+        A.AddHot(238,221,136,255); // -d
+        A.AddHot(221,119, 17,255); // a
+        A.AddHot(221, 17,221,255); // sss
+        A.AddHot(221, 17, 51,255); // i
+        A.AddHot( 68,170, 68,255); // t
+        A.AddHot( 85,102,204,255); // y
 
         A.Hotspots.WhoIsWho = [
-            "Joe Biden","Vice President",
-            "Barack Obama", "President",
-                "Marshall B. \"Brad\" Webb", "Brigadier General; Assistant Commanding General, Joint Special Operations Command",
-                "Denis McDonough","Deputy National Security Adviser",
-                "Hillary Rodham Clinton", "Secretary of State",
-                "Robert Gates", "Secretary of Defense",
+            "Track Control Panel","This contains controls used by Audacity, for example to adjust the loudness of the track.",
+            "Frequency Scale", "Frequency scale, from 0 KHz to 8 KHz. The spectrogram is a plot showing how the frequencies of a sound vary over time. The most intense sounds are shown in white, then red, purple, blue, with black indicating no intensity at that frequency at that time.</p><p>This spectrogram shows a plot for the word 'Audacity'. ",
+                "Window Size", "Small windows sizes measure frequency over a short time range.  This is good when the frequencies change quickly.</p><p>Where the frequencies are sustained over longer time periods, larger window sizes give more precision about what the frequencies are.</p><p>The number for 'window size' is 'the number of audio samples'.",
+                "<em style='color: #ffc747'>Aw</em>-dassi-ty","The initial vowel sound in the word 'Audacity'  The sound changes slightly over the duration of the vowel as the lips are closer together and rounded more towards the end of the vowel sound.",
+                "Aw<em style='color: #ffc747'>-d</em>assi-ty", "The 'd' consonant sound in 'Audacity'.  There is a short moment of near silence just before the 'd'.",
+                "Aw-d<em style='color: #ffc747'>a</em>ssi-ty", "The second vowel sound in 'Audacity'.  The pitch rises slightly towards the end as the mouth closes somewhat for the next sound.",
 
-                "Mike Mullan", "Admiral; Chairman of the Joint Chief of Staffs",
-                "Tom Donilon", "National Security Advisor",
-                "Bill Daley", "Chief of Staff",
-                "Tony Blinken", "National Security Advisor to the Vice President",
-                "Audrey Tomason","Director of Counterterrorism",
-                "John Brennan", "Assistant to the President for Homeland Security and Counterterrorism",
-                "James Clapper", "Director of National Intelligence",
-                "Someone", "...in a black suit and white tie"
+                "Aw-da<em style='color: #ffc747'>ss</em>i-ty", "The 'sss' sound of the 'c' in 'Audacity'.  The bright region at about 5KHz is showing many frequencies, all quite loud.  This sound is similar to the sound of <a href='./white_noise.htm'>'white noise'</a> which also has many frequencies at once.",
+                "Aw-dass<em style='color: #ffc747'>i</em>-ty", "The 'i' vowel sound in 'Audacity'",
+                "Aw-dassi<em style='color: #ffc747'>-t</em>y", "The 't' consonant sound in the word 'Audacity'.  There is a short moment of near silence just before the 't'.",
+                "Aw-dassi-t<em style='color: #ffc747'>y</em>", "The 'y' vowel sound in 'Audacity'."
 
         ];
 
@@ -239,7 +233,9 @@
         function onBackingImage(){
             var A = Annotator;
             var img = A.Backing.img;
-            A.BackingCanvas.ctx.drawImage(img, 0, 0, img.width, img.height);
+            var x = (A.Porthole.width - img.width)/2;
+            var y = (A.Porthole.height - img.height)/2;
+            A.BackingCanvas.ctx.drawImage(img, x, y, img.width, img.height);
             anotherImageReady();
         }
 
@@ -426,12 +422,12 @@
 </head>
 <body style="color:white;background-image:url(images/header-home-bg.jpg);margin:0px;background-attachment:fixed;">
 <div style="width:100%; text-align:center;background:#1d2134;height:5em;margin: 0px;">
-    <h1 style="margin:0px;padding-top:0.65em;padding-bottom:0.9em;"><em>Audacity Toolbox</em>: Focus-Detail ImageMap Test</h1>
+    <h1 style="margin:0px;padding-top:0.65em;padding-bottom:0.9em;"><em>Audacity Toolbox</em>: Image Choice Test</h1>
     <div style="width:100%; text-align:center;background:#303b70;position:relative;height:1.8em;top:-0.6em;box-shadow: inset 0 0px 4px 0px #000080, 0 -2px 7px -2px #618ef4;"></div>
 </div>
 <div style="width:100%;position:relative;top:-0.50em;left:0;display:inline-block;margin:0 auto;height:3em;">
     <div class='pos-resetter'>
-        <h2 id="click-tip" style="color:#bfbfbf;display:block;position:relative;top:-0.55em;transition:opacity 4s;opacity:1;"><em>Version from 12-Nov-2019</em></h2>
+        <h2 id="click-tip" style="color:#bfbfbf;display:block;position:relative;top:-0.55em;transition:opacity 4s;opacity:1;"><em>Version from 14-Nov-2019</em></h2>
     </div>
     <div class='pos-resetter'>
         <div style="display:inline-block;">
@@ -455,7 +451,7 @@
 </div>
 
 <div style="text-align:center;">
-    <br><em><a href="https://commons.wikimedia.org/wiki/File:Obama_and_Biden_await_updates_on_bin_Laden.jpg">The Situation Room</a></em><br>
+    <br><em>Spectrogram of the word 'Audacity'</em><br>
 </div>
 
 <div style="margin-left:10px">
@@ -463,12 +459,12 @@
 <div id="message2"></div>
 </div>
 <div style="margin-left:50px">
-<p>Test of the ImageMap annotation component of the Audacity Toolbox.
+<p>Test of the ImageChoice component of the Audacity Toolbox.
 <ul>
-    <li>Lighter focus spot follows the cursor around</li>
-    <li>Darker detail panel moves out the way of the cursor.
+    <li>Click on choices above image to select which image shows</li>
+    <li>This demo shows spectrograms with different window sizes
     </li></ul>
-Uses a false-colour image to identify different regions.</p>
+All the choice images are loaded before any displays.</p>
 </div>
 </body>
 </html>
