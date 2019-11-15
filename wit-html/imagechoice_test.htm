@@ -405,7 +405,10 @@
 
         function setNewImage( url ){
             var A=Annotator;
-            Status.imagesToCome++;
+            // rather than adding 1, we set the count to 1.
+            // That's because if we ask too quickly, only the
+            // most recent request will be honoured.
+            Status.imagesToCome=1;
             A.Backing.img.src = url;
         }
 
