@@ -1,0 +1,62 @@
+__NOTOC__
+
+Interactive diagrams are programs.  This is the program structure for the interactive diagram which explains window size in spectrograms:
+
+<pre>
+VERTICAL_LAYOUT
+  RGBA_FOCUS_DETAIL Focus=SmallCircle
+</pre>
+
+The specification above builds a display with labels shown in button style, stacked above a focus-detail display which uses a small circle as the focus. The exact details come from the rest of this page, and can be edited pretty much in the normal way.  There are seven buttons for selecting the window size, each of which loads one of the seven spectrogram images.  There is a false-colour hotspot image map (it looks a bit like a TV test card) that defines the hotspot zones, most of which are for explaining the different sounds in the spectrogram.
+
+Swap the order of CHOICE and RGB_FOCUS_DETAIL to have the buttons under the focus-detail panel instead.  Use a HORIZONTAL_LAYOUT to have the buttons on the left.  Use OVERLAY_LAYOUT to have the button painted over (on top of) the spectrogram image.
+
+The detailed data for the regions, buttons and tooltips follows.
+
+<pre>START</pre>
+
+<pre>IMAGE</pre>
+[[File:AudacityAu19.jpg]]
+
+<pre>HOTSPOTS</pre>
+[[File:AudacityAu19HS.png]]
+
+<pre>ZONE:RGBA=(240,135,150,255);TIP=</pre>
+<h1>Leland Lucius</h1>
+<em><p>Vice President</p></em>
+
+<pre>ZONE:RGBA=(225,135,240,255);TIP=</pre>
+<h1>Steve Daulton</h1>
+<em><p>President</p></em>
+
+<pre>ZONE:RGBA=(165,135,240,255);TIP=</pre>
+<h1>Roger Dannenberg</h1>
+<em><p>Brigadier General; Assistant Commanding General, Joint Special Operations Command</p></em>
+
+<pre>ZONE:RGBA=(135,135,240,255);TIP=</pre>
+<h1>James Crook</h1>
+<em><p>Deputy National Security Adviser</p></em>
+
+<pre>ZONE:RGBA=(135,240,165,255);TIP=</pre>
+<h1>Mojca Miklovec</h1>
+<em><p>Secretary of State</p></em>
+
+<pre>ZONE:RGBA=(135,180,240,255);TIP=</pre>
+<h1>Dominic Mazzoni</h1>
+<em><p>Secretary of Defense</p></em>
+
+<pre>ZONE:RGBA=(135,240,195,255);TIP=</pre>
+<h1>Cliff Scott</h1>
+<em><p>Admiral; Chairman of the Joint Chief of Staffs</p></em>
+
+<pre>ZONE:RGBA=(240,210,135,255);TIP=</pre>
+<h1>Arturo 'Buanzo' Busleiman</h1>
+<em><p>National Security Advisor</p></em>
+
+<pre>ZONE:RGBA=(210,240,135,255);TIP=</pre>
+<h1>Paul Licameli</h1>
+<em><p>Chief of Staff</p></em>
+
+<pre>ZONE:RGBA=(240,180,135,255);TIP=</pre>
+<h1>Peter Sampson</h1>
+<em><p>National Security Advisor to the Vice President</p></em>

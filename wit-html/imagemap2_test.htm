@@ -59,6 +59,10 @@
             top:0.0625em;
         }
 
+        pre {
+            background-color: #1d2134;
+            color: yellow;
+        }
         div.bt {
 
             -webkit-touch-callout: none;
@@ -121,10 +125,18 @@
 
         div.detaildiv
         {
-            padding: 10px;
+            padding: 20px;
+            box-sizing: border-box; /* so the div is exactly the requested size.*/
             border: 1px solid #000;
             border-radius: 5px;
             -moz-border-radius: 5px;
+            text-align:left;
+            margin:0px;
+        }
+
+        div.detaildiv a
+        {
+            color: #f5b40b;
         }
 
         img.centred {
@@ -147,6 +159,7 @@
         var Annotator = {};
 
         var A=Annotator;
+        A.Spec ={}; // the unparsed spec from wiki arrives here.
         A.Porthole = {};
         A.Porthole.width = 1024;
         A.Porthole.height = 567;
@@ -163,43 +176,43 @@
         A.Detail.width = 400;
         A.Detail.height = 300;
 
-        A.Hotspots.Colours = [];
-        A.Hotspots.numKeys = 0;
-
-
-        A.AddHot = function (r,g,b,a){
-            var index = "("+r+","+g+","+b+","+a+")";
-            A.Hotspots.Colours[ index ] = 1+A.Hotspots.numKeys++;
+        A.AddHot = function( index ){
+            var actions = new Object();
+            A.Hotspots.Colours[ index ] = actions;
+            A.Hotspots.Current = actions;
+            actions.Zone = A.Hotspots.count++;
         };
-        // seated
-        A.AddHot(240,135,150,255);
-        A.AddHot(225,135,240,255);
-        A.AddHot(165,135,240,255);
-        A.AddHot(135,135,240,255);
-        A.AddHot(135,240,165,255);
-        A.AddHot(135,180,240,255);
-        A.AddHot(135,240,195,255);
-        A.AddHot(240,210,135,255);
-        A.AddHot(210,240,135,255);
-        A.AddHot(240,180,135,255);
-        //A.AddHot(240,180,135,255);
 
-        A.Hotspots.WhoIsWho = [
-            "Leland Lucius","Vice President",
-            "Steve Daulton", "President",
-                "Roger Dannenberg", "Brigadier General; Assistant Commanding General, Joint Special Operations Command",
-                "James Crook","Deputy National Security Adviser",
-                "Mojca Miklovec", "Secretary of State",
-                "Dominic Mazzoni", "Secretary of Defense",
+        var Nozone={};
+        Nozone.Zone = 0;
 
-                "Cliff Scott", "Admiral; Chairman of the Joint Chief of Staffs",
-                "Arturo 'Buanzo' Busleiman", "National Security Advisor",
-                "Paul Licameli", "Chief of Staff",
-                "Peter Sampson", "National Security Advisor to the Vice President",
+        function resetHotspots(){
+            var A = Annotator;
+            A.Hotspots.Colours = [];
+            A.Hotspots.count = 0;
+            // Bogus entry to catch bad tips.
+            A.AddHot( "(1,0,0,0)" );
 
-        ];
+            A.Buttons = {};
+            A.Buttons.Names = [];
+            A.Buttons.chosen = -1;
+        }
+
+        resetHotspots();
 
 
+        A.AddButton = function( text ){
+            A.Buttons.Names.push( text );
+            A.AddHot( "(0,0,"+ A.Buttons.Names.length + ",255)");
+        };
+
+        A.AddDetail = function( text ){
+            A.Hotspots.Current.Tip = text;
+        };
+
+        A.AddHover = function( text ){
+            A.Hotspots.Current.Hover = text;
+        };
 
         var Status = {};
         Status.OldHit = -1;
@@ -297,15 +310,24 @@
             Status.OldHit = -1;
         }
 
-        function hitFromCursorPos( x, y ){
+        function actionsFromCursorPos( x, y ){
             var A=Annotator;
             if( !A.Hotspots.ctx )
                 return -1;
             var pixel = A.Hotspots.ctx.getImageData(x,y,1,1).data;
             var result= "("+pixel[0]+","+pixel[1]+","+pixel[2]+","+pixel[3]+")";
-            var value = A.Hotspots.Colours[result] || 0;
-            Message2.innerHTML = "Rgba" + result + ": Region "+value;
-            return value-1;
+            var actions = A.Hotspots.Colours[result] || Nozone;
+            Message2.innerHTML = "Rgba" + result + ": Region "+actions.Zone;
+            return actions;
+        }
+
+        function setNewImage( url ){
+            var A=Annotator;
+            // rather than adding 1, we set the count to 1.
+            // That's because if we ask too quickly, only the
+            // most recent request will be honoured.
+            Status.imagesToCome=1;
+            A.Backing.img.src = url;
         }
 
         function mousemoveOnMap(e){
@@ -322,21 +344,24 @@
             var pt = detailPosFromCursorPos( x, y);
 
             drawFocusSpot( x,y );
-            var hit = hitFromCursorPos(x,y);
+            var actions = actionsFromCursorPos(x,y);
             Message.innerHTML = coordinates;
             A.DetailDiv.style.left = pt.x+"px";
             A.DetailDiv.style.top = pt.y+"px";
-            if( Status.OldHit != hit ){
-                Status.OldHit = hit;
-                A.DetailDiv.style.display = (hit+1)?"block":"none";
-                if( hit >= 0 ){
-                    A.DetailDiv.innerHTML =
-                    "<h1>"+(hit+1)+": " + A.Hotspots.WhoIsWho[ hit*2 ]+"</h1>" +
-                            "<p><em>"+A.Hotspots.WhoIsWho[ hit*2+1]+"</em></p>";
+            if( Status.OldHit != actions.Zone ){
+                Status.OldHit = actions.Zone;
 
+                // Update the detail div
+                A.DetailDiv.style.display = ( actions.Tip )?"block":"none";
+                if( actions.Tip){
+                    A.DetailDiv.innerHTML = actions.Tip;
+                }
+                // Do any additional hover action
+                if( actions.Hover ){
+                    A.Buttons.chosen = actions.Zone;
+                    setNewImage(actions.Hover);
                 }
             }
-
         }
 
         function createDomElements(){
@@ -392,6 +417,12 @@
 
         }
 
+        function updateImages(){
+            Status.imagesToCome=2;
+            A.Hotspots.img.src = A.Hotspots.imageSrc;
+            A.Backing.img.src = A.Image.imageSrc;
+        }
+
         function requestImages(){
             var A=Annotator;
             //Status.isAppReady = true;
@@ -399,19 +430,119 @@
             A.Hotspots.canvas = document.createElement('canvas');
             A.Hotspots.img.onload = onHotspotImage;
             A.Hotspots.img.onerror = onFailedImage;
-            A.Hotspots.img.src = A.Hotspots.imageSrc;
 
             A.Backing = {};
             A.Backing.img = document.createElement( "img");
             A.Backing.img.onload = onBackingImage;
             A.Backing.img.onerror = onFailedImage;
             A.Backing.img.className="centred";
-            A.Backing.img.src = A.Image.imageSrc;
+            updateImages();
+        }
+
+        function loadNewDetails( data ){
+            var A=Annotator;
+            var lines = data.split("<pre>");
+            for(i=0;i<lines.length;i++)
+            {
+                var item=lines[i];
+                var detail = item.split("TIP=</pre>")[1];
+                var file  = item.split( "[[File:")[1] || "";
+                file = file.split( "]]")[0] || "";
+                file = "./images/"+file;
+
+                if( item.startsWith("ZONE:RGBA=(")){
+                    var index = "("+item.split("(")[1].split(")")[0]+")";
+                    index=index.split(" ").join("");
+                    console.log("color:"+index);
+
+                    A.AddHot( index );
+                }
+                if( item.startsWith("ZONE:LABEL=")){
+                    var label = item.split("ZONE:LABEL=")[1];
+                    label = label.split( "TIP=</pre>")[0];
+                    label = label.split( "</pre>")[0];
+
+                    console.log("label:"+label);
+
+                    A.AddButton( label );
+                    if( !detail )
+                        detail =" ";
+                }
+                if( item.startsWith("IMAGE")){
+                    console.log("image:"+file);
+                    A.Image.imageSrc = file;
+                }
+                if( item.startsWith("HOTSPOTS")){
+                    console.log("hotspots:"+file);
+                    A.Hotspots.imageSrc = file;
+                }
+                if( detail ){
+                    console.log(" <<<" + detail + ">>>");
+                    A.AddDetail(detail);
+                }
+            }
+            updateImages();
+        }
+
+        function handleNewData( data ){
+            var spec = document.getElementById("spec");
+            // for debugging...
+            //spec.innerHTML = data.split("<pre>START</pre>")[1];
+            resetHotspots();
+            loadNewDetails( data );
+        }
+
+        /**
+         * Loads one source file into an item in an array.
+         * @param data
+         * @param action
+         * @param url
+         */
+        function fileActionLoader(data, action, url ){
+            var txtFile = new XMLHttpRequest();
+            // CDNs and Varnish should give us the very latest.
+            txtFile.onreadystatechange = function(){
+                if( this.readyState === 4 && this.status == 200 ){
+                    // data.push({ action: action, value: this.responseText});
+                    handleNewData( this.responseText);
+                }
+            };
+
+            txtFile.open("GET", url , true);
+            //txtFile.setRequestHeader( "Cache-Control", "s-maxage=0" );
+            txtFile.send();
+        }
+
+
+        function requestSpec( source ){
+            var date = new Date();
+            var nMillis = date.getTime();
+
+            var str = window.location.href;
+
+            if( str.indexOf( 'localhost' ) != -1){
+                fileActionLoader("","","./raw/raw_"+source+"_spec.txt");
+            } else {
+                // action=raw to get unprocessed file from wiki.
+                // time=nMillis to avoid issues with cached content.
+                fileActionLoader( "","","https://wiki.audacityteam.org/wiki/Toolbox/"+source+"?action=raw&time=" +
+                        nMillis);
+            }
+
+
+
+        }
+
+        function loadDiagram( source ){
+            var spec = document.getElementById("spec");
+            spec.innerHTML = "";
+            requestSpec( source );
         }
 
         window.onload = function(){
             createDomElements();
             requestImages();
+            //requestSpec();
         }
 
     </script>
@@ -462,5 +593,12 @@
     </li></ul>
 Uses a false-colour image to identify different regions.</p>
 </div>
+<div style="margin-left:10px">
+    <button onclick=loadDiagram('Window_Size')>Load</button> Spectrogram Window Size Explanation<br>
+    <button onclick=loadDiagram('The_Ear')>Load</button> Ear Explanation<br>
+    <button onclick=loadDiagram('The_AU19_Crowd')>Load</button> The AU19 Crowd<br>
+    <button onclick=loadDiagram('The_Situation_Room')>Load</button> The Situation Room<br>
+</div>
+<div id="spec" style="margin-left:10px"></div>
 </body>
 </html>
