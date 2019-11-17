@@ -134,6 +134,11 @@
             margin:0px;
         }
 
+        div a
+        {
+            color: #f5b40b;
+        }
+
         div.detaildiv a
         {
             color: #f5b40b;
@@ -201,7 +206,11 @@
 
         A.AddButton = function( text ){
             A.Buttons.Names.push( text );
-            A.AddHot( "(0,0,"+ A.Buttons.Names.length + ",255)");
+            A.AddHot( "(0,1,"+ A.Buttons.Names.length + ",255)");
+        };
+
+        A.AddInfo = function( ){
+            A.AddHot( "(0,0,1,255)");
         };
 
         A.AddDetail = function( text ){
@@ -333,11 +342,41 @@
                 ctx.fillStyle = "rgba(0,0,0,1.0)";
                 ctx.fillText(A.Buttons.Names[i], xx+11, yy+18 );
                 ctx2.beginPath();
-                ctx2.fillStyle = "rgba(0,0,"+(i+1)+",1.0)";
+                ctx2.fillStyle = "rgba(0,1,"+(i+1)+",1.0)";
                 ctx2.rect( x + i*(xw+gap), y+ 0*(yh+gap), xw, yh);
                 ctx2.fill();
             }
+            drawInfoButton();
         }
+
+        function drawInfoButton(){
+            var A = Annotator;
+            var xw = 25;
+            var yh = 25;
+            var x = 5;
+            var y = 5;
+            var ctx = A.BackingCanvas.ctx;
+            var ctx2 = A.Hotspots.ctx;
+            ctx.lineWidth = 3;
+            ctx.font="20px Times New Roman";
+            ctx.strokeStyle = "rgba( 55, 55,155,1.0)";
+            ctx2.lineWidth = 0;
+
+            ctx.beginPath();
+            ctx.fillStyle = "rgba(255,255,255,1.0)";
+
+            ctx.arc(x+xw/2, y+yh/2, xw/2, 0, Math.PI * 2.0, true);
+            ctx.fill();
+            ctx.stroke();
+            ctx.fillStyle = "rgba(0,0,0,1.0)";
+            ctx.fillText( "i", x+9, y+19 );
+            ctx2.beginPath();
+            ctx2.fillStyle = "rgba(0,0,1,1.0)";
+            ctx2.rect(x, y, xw, yh);
+            ctx2.fill();
+        }
+
+
 
         function drawFocusSpot( x, y ){
             var A = Annotator;
@@ -383,7 +422,7 @@
             var pixel = A.Hotspots.ctx.getImageData(x,y,1,1).data;
             var result= "("+pixel[0]+","+pixel[1]+","+pixel[2]+","+pixel[3]+")";
             var actions = A.Hotspots.Colours[result] || Nozone;
-            Message2.innerHTML = "Rgba" + result + ": Region "+actions.Zone;
+            Message2.innerHTML = "Colour &amp; Zone: rgba" + result + ", Zone "+actions.Zone;
             return actions;
         }
 
@@ -505,9 +544,24 @@
             updateImages();
         }
 
+        function setATitle( caption ){
+            var atitle= document.getElementById("atitle");
+            atitle.innerHTML = "<em>"+caption+"</em>";
+        }
+
+        function fieldValue( field, line ){
+
+            var value = line.split( field+"=" )[1] || "";
+            value = value.split( ";")[0];
+            value = value.split( "</pre>")[0];
+            return value;
+
+        }
+
         function loadNewDetails( data ){
             var A=Annotator;
             var lines = data.split("<pre>");
+            setATitle("Caption was missing");
             for(i=0;i<lines.length;i++)
             {
                 var item=lines[i];
@@ -517,19 +571,15 @@
                 file = "./images/"+file;
 
                 if( item.startsWith("ZONE:RGBA=(")){
-                    var index = "("+item.split("(")[1].split(")")[0]+")";
+                    var index = fieldValue( "RGBA", item );
                     index=index.split(" ").join("");
                     console.log("color:"+index);
 
                     A.AddHot( index );
                 }
                 if( item.startsWith("ZONE:LABEL=")){
-                    var label = item.split("ZONE:LABEL=")[1];
-                    label = label.split( ";TIP=</pre>")[0];
-                    label = label.split( "</pre>")[0];
-
+                    var label = fieldValue( "LABEL",item );
                     console.log("label:"+label);
-
                     A.AddButton( label );
                     if( !detail )
                         detail =" ";
@@ -545,6 +595,12 @@
                 if( item.startsWith("HOTSPOTS")){
                     console.log("hotspots:"+file);
                     A.Hotspots.imageSrc = file;
+                }
+                if( item.startsWith("CREDITS")){
+                    var caption = fieldValue( "CAPTION",item );
+                    console.log("caption:"+caption);
+                    setATitle( caption );
+                    A.AddInfo();
                 }
                 if( detail ){
                     console.log(" <<<" + detail + ">>>");
@@ -585,12 +641,17 @@
 
 
         function requestSpec( source ){
+            var A=Annotator;
+            A.SpecName = source;
             var date = new Date();
             var nMillis = date.getTime();
 
-            var str = window.location.href;
 
-            if( str.indexOf( 'localhost' ) != -1){
+            var str = window.location.href;
+            var bLocal = str.indexOf( 'localhost' ) != -1;
+            bLocal = bLocal || source.startsWith( "Local" );
+
+            if( bLocal ){
                 fileActionLoader("","","./raw/raw_spec_"+source+".txt");
             } else {
                 // action=raw to get unprocessed file from wiki.
@@ -612,6 +673,7 @@
         window.onload = function(){
             createDomElements();
             requestImages();
+            loadDiagram("The_AU19_Crowd");
             //requestSpec();
         }
 
@@ -624,7 +686,7 @@
 </div>
 <div style="width:100%;position:relative;top:-0.50em;left:0;display:inline-block;margin:0 auto;height:3em;">
     <div class='pos-resetter'>
-        <h2 id="click-tip" style="color:#bfbfbf;display:block;position:relative;top:-0.55em;transition:opacity 4s;opacity:1;"><em>Version from 15-Nov-2019</em></h2>
+        <h2 id="click-tip" style="color:#bfbfbf;display:block;position:relative;top:-0.55em;transition:opacity 4s;opacity:1;"><em>Version from 17-Nov-2019</em></h2>
     </div>
     <div class='pos-resetter'>
         <div style="display:inline-block;">
@@ -647,8 +709,8 @@
 <div id="content_here" style="text-align:center;">
 </div>
 
-<div style="text-align:center;">
-    <br><em><a href="https://commons.wikimedia.org/wiki/File:Obama_and_Biden_await_updates_on_bin_Laden.jpg">The Situation Room</a></em><br>
+<div id="atitle" style="text-align:center;">
+    <em>No Hotspot Zones Loaded (Yet)</em>
 </div>
 
 <div style="margin-left:10px">
@@ -661,13 +723,20 @@
     <li>Lighter focus spot follows the cursor around</li>
     <li>Darker detail panel moves out the way of the cursor.
     </li></ul>
-Uses a false-colour image to identify different regions.</p>
+<p> Click on the 'Show' buttons to see some other examples.
 </div>
 <div style="margin-left:10px">
-    <button onclick=loadDiagram('Window_Size')>Load</button> Spectrogram Window Size Explanation<br>
+    <button onclick=loadDiagram('The_AU19_Crowd')>Show</button> The Audacity 2019 Unconference - an annotated image - <a href="https://wiki.audacityteam.org/wiki/Toolbox/The_AU19_Crowd">from wiki</a><br>
+    <button onclick=loadDiagram('LocalThe_Situation_Room')>Show</button> The Situation Room - more annotation of an image.  This is a featured images from Wikipedia<br>
+    <button onclick=loadDiagram('Window_Size')>Show</button> Spectrogram
+    Window-Size Explanation - an interactive diagram about a spectrogram - <a href="https://wiki.audacityteam.org/wiki/Toolbox/Window_Size">from wiki</a><br><br>
+
+    <button onclick=loadDiagram('Hotspots')>Show</button> More about the Focus-Detail tool - <a href="https://wiki.audacityteam.org/wiki/Toolbox/Hotspots">from wiki</a><br>
+
+
+<!---
     <button onclick=loadDiagram('The_Ear')>Load</button> Ear Explanation<br>
-    <button onclick=loadDiagram('The_AU19_Crowd')>Load</button> The AU19 Crowd<br>
-    <button onclick=loadDiagram('The_Situation_Room')>Load</button> The Situation Room<br>
+-->
 </div>
 <div id="spec" style="margin-left:10px"></div>
 </body>

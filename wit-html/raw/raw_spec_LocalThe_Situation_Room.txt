@@ -1,0 +1,86 @@
+__NOTOC__
+
+Interactive diagrams are programs.  This is the program structure for the interactive diagram which explains window size in spectrograms:
+
+<pre>
+VERTICAL_LAYOUT
+  RGBA_FOCUS_DETAIL Focus=SmallCircle
+</pre>
+
+The specification above builds a display with labels shown in button style, stacked above a focus-detail display which uses a small circle as the focus. The exact details come from the rest of this page, and can be edited pretty much in the normal way.  There are seven buttons for selecting the window size, each of which loads one of the seven spectrogram images.  There is a false-colour hotspot image map (it looks a bit like a TV test card) that defines the hotspot zones, most of which are for explaining the different sounds in the spectrogram.
+
+Swap the order of CHOICE and RGB_FOCUS_DETAIL to have the buttons under the focus-detail panel instead.  Use a HORIZONTAL_LAYOUT to have the buttons on the left.  Use OVERLAY_LAYOUT to have the button painted over (on top of) the spectrogram image.
+
+The detailed data for the regions, buttons and tooltips follows.
+
+<pre>START</pre>
+
+<pre>IMAGE</pre>
+[[File:Obama_and_Biden_await_updates_on_bin_Laden.jpg]]
+
+<pre>HOTSPOTS</pre>
+[[File:Obama_and_Biden_await_updates_on_bin_LadenHS.png]]
+
+<pre>ZONE:RGBA=(229,136,173,255);TIP=</pre>
+<h1>Joe Biden</h1>
+<em><p>Vice President</p></em>
+
+<pre>ZONE:RGBA=(175,136,229,255);TIP=</pre>
+<h1>Barack Obama</h1>
+<em><p>President</p></em>
+
+<pre>ZONE:RGBA=( 97,159, 89,255);TIP=</pre>
+<h1>Marshall B. "Brad" Webb</h1>
+<em><p>Brigadier General; Assistant Commanding General, Joint Special Operations Command</p></em>
+
+<pre>ZONE:RGBA=(232,221,183,255);TIP=</pre>
+<h1>Denis McDonough</h1>
+<em><p>Deputy National Security Adviser</p></em>
+
+<pre>ZONE:RGBA=(149,176,227,255);TIP=</pre>
+<h1>Hillary Rodham Clinton</h1>
+<em><p>Secretary of State</p></em>
+
+<pre>ZONE:RGBA=(194,243,167,255);TIP=</pre>
+<h1>Robert Gates</h1>
+<em><p>Secretary of Defense</p></em>
+
+<pre>ZONE:RGBA=( 53, 97,179,255);TIP=</pre>
+<h1>Mike Mullan</h1>
+<em><p>Admiral; Chairman of the Joint Chief of Staffs</p></em>
+
+<pre>ZONE:RGBA=(146, 55,176,255);TIP=</pre>
+<h1>Tom Donilon</h1>
+<em><p>National Security Advisor</p></em>
+
+<pre>ZONE:RGBA=(209,141,219,255);TIP=</pre>
+<h1>Bill Daley</h1>
+<em><p>Chief of Staff</p></em>
+
+<pre>ZONE:RGBA=( 64,135, 69,255);TIP=</pre>
+<h1>Tony Blinken</h1>
+<em><p>National Security Advisor to the Vice President</p></em>
+
+<pre>ZONE:RGBA=(136,228,234,255);TIP=</pre>
+<h1>Audrey Tomason</h1>
+<em><p>Director of Counterterrorism</p></em>
+
+<pre>ZONE:RGBA=(234,226,136,255);TIP=</pre>
+<h1>John Brennan</h1>
+<em><p>Assistant to the President for Homeland Security and Counterterrorism</p></em>
+
+<pre>ZONE:RGBA=(227,119, 14,255);TIP=</pre>
+<h1>James Clapper</h1>
+<em><p>Director of National Intelligence</p></em>
+
+<pre>ZONE:RGBA=(227, 14, 54,255);TIP=</pre>
+<h1>Someone</h1>
+<em><p>...in a black suit and white tie</p></em>
+
+<pre>CREDITS:CAPTION=The Situation Room;TIP=</pre>
+<h3>Instructions:</h3>
+<ul>
+<li>Hover over hotspots in the image for more details.
+<li>Hold shift down when moving mouse to freeze the hotspot - e.g. when taking a screenshot, or to navigate to the hyperlink on this panel.
+</ul><br><br>
+<b>Credits:</b> <em>Pete Souza - <a href="https://commons.wikimedia.org/wiki/File:Obama_and_Biden_await_updates_on_bin_Laden.jpg">see description on Wikipedia</a></em>

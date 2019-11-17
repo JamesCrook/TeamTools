@@ -66,7 +66,7 @@ The detailed data for the regions, buttons and tooltips follows.
 [[File:SpectralVocalDark256DarkHS.png]]
 
 <pre>ZONE:RGBA=(170,136,221,255);COMMENT=tcp;TIP=</pre>
-<h1>Track Control Panel</h1><p><em>The [https://manual.audacityteam.org/man/track_control_panel_and_vertical_scale.html Track Control Panel (TCP)] in Audacity contains controls used, for example, to adjust the loudness of the track.</em></p>
+<h1>Track Control Panel</h1><p><em>The <a href="https://manual.audacityteam.org/man/track_control_panel_and_vertical_scale.html">Track Control Panel (TCP)</a> in Audacity contains controls used, for example, to adjust the loudness of the track.</em></p>
 
 <pre>ZONE:RGBA=(135,240,195,255);COMMENT=freq;TIP=</pre>
 <h2>BOGUS!!</h2><em><p>The spectrogram is a plot showing how the frequencies of a sound vary over time. The <b>frequency scale</b> runs from 0 KHz to 8 KHz.</p><p>This spectrogram shows a plot for the word 'Audacity'. </p><p>The most intense sounds are shown in white, then red, purple, blue, with black indicating no intensity at that frequency at that time.</p></em>
@@ -97,3 +97,12 @@ The detailed data for the regions, buttons and tooltips follows.
 
 <pre>ZONE:RGBA=( 85,102,204,255);COMMENT=ee;TIP=</pre>
 <h1>Aw-dasssi-t<em style='color: #ffc747'>ee</em></h1><p><em>The 'y' vowel sound in 'Audacity'.</em></p>
+
+<pre>CREDITS:CAPTION=Spectrogram Window Sizes;TIP=</pre>
+<h3>Instructions</h3>
+<ul>
+<li>Hover over different parts of the spectrogram to see what sounds they relate to.
+<li>Hover over buttons with numbers on them to change the spectrogram window size.
+<li>Hold shift down to freeze the hotspot.
+</ul><br><br>
+<b>Credits:</b> <em>Screenshots by James Crook, 2019, and placed in the Public Domain</em>
