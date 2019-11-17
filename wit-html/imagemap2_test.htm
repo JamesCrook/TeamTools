@@ -165,8 +165,6 @@
         A.Porthole.height = 567;
         A.Porthole.margin = 5;
         A.Image = {};
-        A.Image.width = 1024;
-        A.Image.height = 567;
         A.Image.imageSrc = './images/AudacityAu19.jpg';
         A.Hotspots = {};
         A.Hotspots.imageSrc = './images/AudacityAu19HS.png';
@@ -221,6 +219,12 @@
         var Message;
         var Message2;
 
+        function recomputePorthole(){
+            var extra = A.Buttons.Names.count ? 25 : 0;
+            A.Porthole.height = A.Backing.img.height+extra;
+            A.Porthole.width = A.Backing.img.width;
+        }
+
 
         function ResizeDivs(){
             var A = Annotator;
@@ -244,6 +248,9 @@
         function onBackingImage(){
             var A = Annotator;
             var img = A.Backing.img;
+            recomputePorthole();
+            ResizeDivs();
+
             A.BackingCanvas.ctx.drawImage(img, 0, 0, img.width, img.height);
             anotherImageReady();
         }
