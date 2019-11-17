@@ -22,11 +22,11 @@ The detailed data for the regions, buttons and tooltips follows.
 [[File:AudacityAu19HS.png]]
 
 <pre>ZONE:RGBA=(240,135,150,255);TIP=</pre>
-<h1>Leland Lucius</h1>
+<h1>Dude 1</h1>
 <em><p>Vice President</p></em>
 
 <pre>ZONE:RGBA=(225,135,240,255);TIP=</pre>
-<h1>Steve Daulton</h1>
+<h1>Dude 2</h1>
 <em><p>President</p></em>
 
 <pre>ZONE:RGBA=(165,135,240,255);TIP=</pre>
@@ -38,7 +38,7 @@ The detailed data for the regions, buttons and tooltips follows.
 <em><p>Deputy National Security Adviser</p></em>
 
 <pre>ZONE:RGBA=(135,240,165,255);TIP=</pre>
-<h1>Mojca Miklovec</h1>
+<h1>Dude 3</h1>
 <em><p>Secretary of State</p></em>
 
 <pre>ZONE:RGBA=(135,180,240,255);TIP=</pre>
@@ -46,7 +46,7 @@ The detailed data for the regions, buttons and tooltips follows.
 <em><p>Secretary of Defense</p></em>
 
 <pre>ZONE:RGBA=(135,240,195,255);TIP=</pre>
-<h1>Cliff Scott</h1>
+<h1>Dude 4</h1>
 <em><p>Admiral; Chairman of the Joint Chief of Staffs</p></em>
 
 <pre>ZONE:RGBA=(240,210,135,255);TIP=</pre>
@@ -54,7 +54,7 @@ The detailed data for the regions, buttons and tooltips follows.
 <em><p>National Security Advisor</p></em>
 
 <pre>ZONE:RGBA=(210,240,135,255);TIP=</pre>
-<h1>Paul Licameli</h1>
+<h1>Dude 5</h1>
 <em><p>Chief of Staff</p></em>
 
 <pre>ZONE:RGBA=(240,180,135,255);TIP=</pre>
