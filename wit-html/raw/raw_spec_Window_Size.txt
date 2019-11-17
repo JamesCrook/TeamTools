@@ -68,9 +68,6 @@ The detailed data for the regions, buttons and tooltips follows.
 <pre>ZONE:RGBA=(170,136,221,255);COMMENT=tcp;TIP=</pre>
 <h1>Track Control Panel</h1><p><em>The <a href="https://manual.audacityteam.org/man/track_control_panel_and_vertical_scale.html">Track Control Panel (TCP)</a> in Audacity contains controls used, for example, to adjust the loudness of the track.</em></p>
 
-<pre>ZONE:RGBA=(135,240,195,255);COMMENT=freq;TIP=</pre>
-<h2>BOGUS!!</h2><em><p>The spectrogram is a plot showing how the frequencies of a sound vary over time. The <b>frequency scale</b> runs from 0 KHz to 8 KHz.</p><p>This spectrogram shows a plot for the word 'Audacity'. </p><p>The most intense sounds are shown in white, then red, purple, blue, with black indicating no intensity at that frequency at that time.</p></em>
-
 <pre>ZONE:RGBA=(187,238,170,255);COMMENT=freq;TIP=</pre>
 <h2>Frequency Scale</h2><em><p>The spectrogram is a plot showing how the frequencies of a sound vary over time. The <b>frequency scale</b> runs from 0 KHz to 8 KHz.</p><p>This spectrogram shows a plot for the word 'Audacity'. </p><p>The most intense sounds are shown in white, then red, purple, blue, with black indicating no intensity at that frequency at that time.</p></em>
 

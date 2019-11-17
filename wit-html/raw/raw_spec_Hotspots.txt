@@ -1,15 +1,13 @@
 __NOTOC__
 
-Interactive diagrams are programs.  This is the program structure for the interactive diagram which explains window size in spectrograms:
+Interactive diagrams are programs.  This is the program structure for the interactive diagram which shows who is who at the AU19 Audacity conference:
 
 <pre>
 VERTICAL_LAYOUT
   RGBA_FOCUS_DETAIL Focus=SmallCircle
 </pre>
 
-The specification above builds a display with labels shown in button style, stacked above a focus-detail display which uses a small circle as the focus. The exact details come from the rest of this page, and can be edited pretty much in the normal way.  There are seven buttons for selecting the window size, each of which loads one of the seven spectrogram images.  There is a false-colour hotspot image map (it looks a bit like a TV test card) that defines the hotspot zones, most of which are for explaining the different sounds in the spectrogram.
-
-Swap the order of CHOICE and RGB_FOCUS_DETAIL to have the buttons under the focus-detail panel instead.  Use a HORIZONTAL_LAYOUT to have the buttons on the left.  Use OVERLAY_LAYOUT to have the button painted over (on top of) the spectrogram image.
+The specification above builds a simple focus-detail display.
 
 The detailed data for the regions, buttons and tooltips follows.
 
@@ -23,7 +21,7 @@ The detailed data for the regions, buttons and tooltips follows.
 
 <pre>ZONE:LABEL=Zones;TIP=</pre>
 
-<h1>Zones</h1>This hover-button puts the hotspot image to the front.</em></p>
+<h1>Zones</h1><p><em>This hover-button puts the hotspot image to the front.</em></p>
 
 <pre>HOVER LOAD IMAGE</pre>
 [[File:AudacityAu19HS.png]]
