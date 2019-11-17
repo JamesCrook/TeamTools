@@ -220,13 +220,13 @@
         var Message2;
 
         function recomputePorthole(){
-            var extra = A.Buttons.Names.count ? 25 : 0;
-            A.Porthole.height = A.Backing.img.height+extra;
+            var extra = A.Buttons.Names.length ? 25 : 0;
             A.Porthole.width = A.Backing.img.width;
+            A.Porthole.height = A.Backing.img.height+extra;
         }
 
 
-        function ResizeDivs(){
+        function resizeDivs(){
             var A = Annotator;
             A.MainDiv.style.width = A.Porthole.width+'px';
             A.MainDiv.style.height = A.Porthole.height+'px';
@@ -246,12 +246,10 @@
         }
 
         function onBackingImage(){
-            var A = Annotator;
-            var img = A.Backing.img;
             recomputePorthole();
-            ResizeDivs();
+            resizeDivs();
 
-            A.BackingCanvas.ctx.drawImage(img, 0, 0, img.width, img.height);
+            drawBacking();
             anotherImageReady();
         }
 
@@ -261,8 +259,7 @@
             A.Hotspots.canvas.width = A.Hotspots.img.width;
             A.Hotspots.canvas.height = A.Hotspots.img.height;
             A.Hotspots.ctx = A.Hotspots.canvas.getContext('2d');
-            var img = A.Hotspots.img;
-            A.Hotspots.ctx.drawImage(img, 0, 0, img.width, img.height);
+            drawHotspots();
             anotherImageReady();
         }
 
@@ -287,17 +284,79 @@
             return pt;
         }
 
+        function drawHotspots(){
+            var extra = A.Buttons.Names.length ? 25 : 0;
+            var img = A.Hotspots.img;
+            A.Hotspots.ctx.drawImage(img, 0, extra, img.width, img.height);
+            drawButtons();
+        }
+
+        function drawBacking(){
+            var A = Annotator;
+            var img = A.Backing.img;
+            var extra = A.Buttons.Names.length ? 25 : 0;
+
+            A.BackingCanvas.ctx.drawImage(img, 0, extra, img.width, img.height);
+            drawButtons();
+        }
+
+        function drawButtons(){
+            var A = Annotator;
+            var xw = 60;
+            var yh = 25;
+            var gap = 9;
+            var n = A.Buttons.Names.length;
+            var m = 1;
+            // grid of n by m buttons, with gaps between them.
+            var x = (A.Porthole.width  - n *(xw+gap) + gap) *0.5;
+            var y = 0;//(A.Porthole.height - m *(yh+gap) + gap) *0.5;
+            var ctx = A.BackingCanvas.ctx;
+            var ctx2 = A.Hotspots.ctx;
+            ctx.lineWidth = 3;
+            ctx.font="16px Arial";
+            ctx.strokeStyle = "rgba( 55, 55,155,1.0)";
+            ctx2.lineWidth = 0;
+
+            var i;
+            for( i=0;i<n;i++){
+                var xx = x + i * (xw + gap);
+                var yy = y + 1;
+                ctx.beginPath();
+                if( (i+1)== A.Buttons.chosen )
+                    ctx.fillStyle = "rgba(255,255,255,1.0)";
+                else
+                    ctx.fillStyle = "rgba(205,205,205,1.0)";
+
+                ctx.rect(xx, yy, xw, yh);
+                ctx.fill();
+                ctx.stroke();
+                ctx.fillStyle = "rgba(0,0,0,1.0)";
+                ctx.fillText(A.Buttons.Names[i], xx+11, yy+18 );
+                ctx2.beginPath();
+                ctx2.fillStyle = "rgba(0,0,"+(i+1)+",1.0)";
+                ctx2.rect( x + i*(xw+gap), y+ 0*(yh+gap), xw, yh);
+                ctx2.fill();
+            }
+        }
+
         function drawFocusSpot( x, y ){
             var A = Annotator;
             var ctx= A.FocusCanvas.ctx;
+            var extra = A.Buttons.Names.length ? 25 : 0;
+
+
             ctx.globalCompositeOperation = 'source-over';
             ctx.clearRect(0,0, A.Porthole.width, A.Porthole.height);
             ctx.fillStyle = "rgba( 255,255,255,0.5)";
             var m = A.Porthole.margin;
-            ctx.fillRect(m,m, A.Porthole.width-2*m, A.Porthole.height-2*m);
+            ctx.fillRect(m,m+extra, A.Porthole.width-2*m, A.Porthole.height-2*m-extra);
 
             ctx.fillStyle = "rgba(0,255,255,1.0)";
             ctx.globalCompositeOperation = 'destination-out';
+            if( y<extra )
+                return;
+
+
             ctx.beginPath();
             ctx.arc( x, y, A.Focus.radius, 0, Math.PI * 2.0, true );
             ctx.closePath();
@@ -420,7 +479,7 @@
 
             A.DetailDiv.style.display = "none";
             A.DetailDiv.className = "detaildiv";
-            ResizeDivs();
+            resizeDivs();
 
         }
 
@@ -466,7 +525,7 @@
                 }
                 if( item.startsWith("ZONE:LABEL=")){
                     var label = item.split("ZONE:LABEL=")[1];
-                    label = label.split( "TIP=</pre>")[0];
+                    label = label.split( ";TIP=</pre>")[0];
                     label = label.split( "</pre>")[0];
 
                     console.log("label:"+label);
@@ -474,6 +533,10 @@
                     A.AddButton( label );
                     if( !detail )
                         detail =" ";
+                }
+                if( item.startsWith("HOVER LOAD IMAGE")){
+                    console.log("hover-load:"+file);
+                    A.Hotspots.Current.Hover = file;
                 }
                 if( item.startsWith("IMAGE")){
                     console.log("image:"+file);
@@ -528,7 +591,7 @@
             var str = window.location.href;
 
             if( str.indexOf( 'localhost' ) != -1){
-                fileActionLoader("","","./raw/raw_"+source+"_spec.txt");
+                fileActionLoader("","","./raw/raw_spec_"+source+".txt");
             } else {
                 // action=raw to get unprocessed file from wiki.
                 // time=nMillis to avoid issues with cached content.
