@@ -251,14 +251,14 @@
             Status.imagesToCome--;
             if( Status.imagesToCome > 0 )
                 return;
+            drawHotspots();
+            drawBacking();
             Status.isAppReady = true;
         }
 
         function onBackingImage(){
             recomputePorthole();
             resizeDivs();
-
-            drawBacking();
             anotherImageReady();
         }
 
@@ -268,7 +268,6 @@
             A.Hotspots.canvas.width = A.Hotspots.img.width;
             A.Hotspots.canvas.height = A.Hotspots.img.height;
             A.Hotspots.ctx = A.Hotspots.canvas.getContext('2d');
-            drawHotspots();
             anotherImageReady();
         }
 
@@ -528,7 +527,7 @@
             A.Backing.img.src = A.Image.imageSrc;
         }
 
-        function requestImages(){
+        function addImagesToDom(){
             var A=Annotator;
             //Status.isAppReady = true;
             A.Hotspots.img = document.createElement('img');
@@ -541,7 +540,7 @@
             A.Backing.img.onload = onBackingImage;
             A.Backing.img.onerror = onFailedImage;
             A.Backing.img.className="centred";
-            updateImages();
+            //updateImages();
         }
 
         function setATitle( caption ){
@@ -672,8 +671,13 @@
 
         window.onload = function(){
             createDomElements();
-            requestImages();
-            loadDiagram("The_AU19_Crowd");
+            addImagesToDom();
+
+            var query = window.location.href;
+            var url = new URL(query);
+            var page = url.searchParams.get("page") || "The_AU19_Crowd";
+            console.log(page);
+            loadDiagram(page);
             //requestSpec();
         }
 
@@ -713,9 +717,9 @@
     <em>No Hotspot Zones Loaded (Yet)</em>
 </div>
 
-<div style="margin-left:10px">
+<div style="margin-left:10px;color:#c2c2c2">
     <div id="message"></div>
-<div id="message2"></div>
+    <div id="message2"></div>
 </div>
 <div style="margin-left:50px">
 <p>Test of the ImageMap annotation component of the Audacity Toolbox.
@@ -723,15 +727,17 @@
     <li>Lighter focus spot follows the cursor around</li>
     <li>Darker detail panel moves out the way of the cursor.
     </li></ul>
-<p> Click on the 'Show' buttons to see some other examples.
+<p> Follow links below to see each of the examples.
 </div>
 <div style="margin-left:10px">
-    <button onclick=loadDiagram('The_AU19_Crowd')>Show</button> The Audacity 2019 Unconference - an annotated image - <a href="https://wiki.audacityteam.org/wiki/Toolbox/The_AU19_Crowd">from wiki</a><br>
-    <button onclick=loadDiagram('LocalThe_Situation_Room')>Show</button> The Situation Room - more annotation of an image.  This is a featured images from Wikipedia<br>
-    <button onclick=loadDiagram('Window_Size')>Show</button> Spectrogram
-    Window-Size Explanation - an interactive diagram about a spectrogram - <a href="https://wiki.audacityteam.org/wiki/Toolbox/Window_Size">from wiki</a><br><br>
+    <ul>
+    <li><a href="./imagemap2_test.htm?page=The_AU19_Crowd">The Audacity 2019 Unconference</a> - an annotated image - <a href="https://wiki.audacityteam.org/wiki/Toolbox/The_AU19_Crowd">from wiki</a><br>
+    <li><a href="./imagemap2_test.htm?page=LocalThe_Situation_Room">The Situation Room</a> - more annotation of an image.  This is a featured images from Wikipedia<br>
+    <li><a href="./imagemap2_test.htm?page=Window_Size"> Spectrogram
+    Window-Size Explanation</a> - an interactive diagram about a spectrogram - <a href="https://wiki.audacityteam.org/wiki/Toolbox/Window_Size">from wiki</a><br><br>
 
-    <button onclick=loadDiagram('Hotspots')>Show</button> More about the Focus-Detail tool - <a href="https://wiki.audacityteam.org/wiki/Toolbox/Hotspots">from wiki</a><br>
+    <li><a href="./imagemap2_test.htm?page=Hotspots"> More about the Focus-Detail tool</a> - <a href="https://wiki.audacityteam.org/wiki/Toolbox/Hotspots">from wiki</a>
+        </ul>
 
 
 <!---
