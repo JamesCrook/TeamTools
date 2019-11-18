@@ -441,8 +441,10 @@
             var A=Annotator;
             if( e.shiftKey )
                     return;
-                var x = e.clientX -A.MainDiv.offsetLeft;
-            var y = e.clientY -A.MainDiv.offsetTop;
+
+            var rect = e.target.getBoundingClientRect();
+            var x = e.clientX -rect.left;
+            var y = e.clientY -rect.top;
             var coordinates = "Coordinates: (" + x + "," + y + ")";
 
             var pt = detailPosFromCursorPos( x, y);
