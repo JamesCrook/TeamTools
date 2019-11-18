@@ -38,7 +38,7 @@ The detailed data for the regions, buttons and tooltips follows.
 
 <pre>HOVER LOAD SPEC=Inner_Ear_Anatomy</pre>
 
-<pre>//<pre>
+<pre>//</pre>
 The three buttons at the top of the page act when you hover on them.  The three corresponding regions defined next act when you click on them.
 
 

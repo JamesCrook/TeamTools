@@ -77,5 +77,5 @@ The detailed data for the regions, buttons and tooltips follows.
 <h1>Peter Sampson</h1>
 <em><p>National Security Advisor to the Vice President</p></em>
 
-<pre>CREDITS:CAPTION=The Ear;TIP=</pre>
+<pre>CREDITS:CAPTION=The Middle Ear;TIP=</pre>
 <b>Credits:</b> <em>[https://en.wikiversity.org/wiki/WikiJournal_of_Medicine/Medical_gallery_of_Blausen_Medical_2014 Images by Blausen Medical ©2014; CC3 BY-SA]</em>
