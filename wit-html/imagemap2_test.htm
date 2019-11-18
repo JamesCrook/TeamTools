@@ -161,6 +161,15 @@
                 window.location.href = "https:" + window.location.href.slice(5);
         }
 
+        // MDN Pollyfill for startsWith
+        if (!String.prototype.startsWith) {
+            String.prototype.startsWith = function(searchString, position){
+                position = position || 0;
+                return this.substr(position, searchString.length) === searchString;
+            };
+        }
+
+
         var Annotator = {};
 
         var A=Annotator;
@@ -180,7 +189,7 @@
         A.Detail.height = 300;
 
         A.AddHot = function( index ){
-            var actions = new Object();
+            var actions = {};
             A.Hotspots.Colours[ index ] = actions;
             A.Hotspots.Current = actions;
             actions.Zone = A.Hotspots.count++;
@@ -683,13 +692,22 @@
             requestSpec( source );
         }
 
+        function getArg( line, arg ){
+            line="&"+line.split('?')[1]||"";
+            line=line.split( '&'+arg+'=' )[1]||"";
+            line=(line+'&').split('&')[0];
+            return line;
+        }
+
         window.onload = function(){
             createDomElements();
             addImagesToDom();
 
             var query = window.location.href;
-            var url = new URL(query);
-            var page = url.searchParams.get("page") || "The_AU19_Crowd";
+            var page = getArg( query, 'page' ) || "The_AU19_Crowd";
+// Can't use the following on IE 11.
+//          var url = new URL(query);
+//          var page = url.searchParams.get("page") || "The_AU19_Crowd";
             console.log(page);
             loadDiagram(page);
             //requestSpec();
