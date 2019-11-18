@@ -345,7 +345,21 @@
                 ctx2.rect( x + i*(xw+gap), y+ 0*(yh+gap), xw, yh);
                 ctx2.fill();
             }
-            drawInfoButton();
+            drawInfoButtonHotspot();
+        }
+
+        function drawInfoButtonHotspot(){
+            var A = Annotator;
+            var xw = 25;
+            var yh = 25;
+            var x = 5;
+            var y = 5;
+            var ctx2 = A.Hotspots.ctx;
+            ctx2.lineWidth = 0;
+            ctx2.beginPath();
+            ctx2.fillStyle = "rgba(0,0,1,1.0)";
+            ctx2.rect(x, y, xw, yh);
+            ctx2.fill();
         }
 
         function drawInfoButton(){
@@ -354,12 +368,11 @@
             var yh = 25;
             var x = 5;
             var y = 5;
-            var ctx = A.BackingCanvas.ctx;
-            var ctx2 = A.Hotspots.ctx;
+            var ctx = A.FocusCanvas.ctx;
             ctx.lineWidth = 3;
             ctx.font="20px Times New Roman";
             ctx.strokeStyle = "rgba( 55, 55,155,1.0)";
-            ctx2.lineWidth = 0;
+            ctx.globalCompositeOperation = 'source-over';
 
             ctx.beginPath();
             ctx.fillStyle = "rgba(255,255,255,1.0)";
@@ -369,12 +382,7 @@
             ctx.stroke();
             ctx.fillStyle = "rgba(0,0,0,1.0)";
             ctx.fillText( "i", x+9, y+19 );
-            ctx2.beginPath();
-            ctx2.fillStyle = "rgba(0,0,1,1.0)";
-            ctx2.rect(x, y, xw, yh);
-            ctx2.fill();
         }
-
 
 
         function drawFocusSpot( x, y ){
@@ -385,14 +393,17 @@
 
             ctx.globalCompositeOperation = 'source-over';
             ctx.clearRect(0,0, A.Porthole.width, A.Porthole.height);
-            ctx.fillStyle = "rgba( 255,255,255,0.5)";
+
+            if( y<extra )
+                return;
+
             var m = A.Porthole.margin;
+            ctx.fillStyle = "rgba( 255,255,255,0.5)";
+
             ctx.fillRect(m,m+extra, A.Porthole.width-2*m, A.Porthole.height-2*m-extra);
 
             ctx.fillStyle = "rgba(0,255,255,1.0)";
             ctx.globalCompositeOperation = 'destination-out';
-            if( y<extra )
-                return;
 
 
             ctx.beginPath();
@@ -450,6 +461,7 @@
             var pt = detailPosFromCursorPos( x, y);
 
             drawFocusSpot( x,y );
+            drawInfoButton();
             var actions = actionsFromCursorPos(x,y);
             Message.innerHTML = coordinates;
             A.DetailDiv.style.left = pt.x+"px";
