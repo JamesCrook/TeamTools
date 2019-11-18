@@ -1,0 +1,81 @@
+__NOTOC__
+
+Interactive diagrams are programs.  This is the program structure for the interactive diagram which shows the structure of the Ear:
+
+<pre>
+VERTICAL_LAYOUT
+  RGBA_FOCUS_DETAIL Focus=SmallCircle
+</pre>
+
+The specification above builds a simple focus-detail display.
+
+The detailed data for the regions, buttons and tooltips follows.
+
+<pre>START</pre>
+
+<pre>IMAGE</pre>
+[[File:1024px-Blausen_0330_EarAnatomy_MiddleEar.png]]
+
+<pre>HOTSPOTS</pre>
+[[File:1024px-Blausen_0330_EarAnatomy_MiddleEar.png]]
+
+<pre>BUTTON:LABEL=Ear;TIP=</pre>
+
+<h1>The Ear</h1><p><em>Sound is transformed from pressure waves in air to vibrations of tiny bones, to movement in cells that generate electrical impulses in the auditary nerve.</em></p>
+
+<pre>HOVER LOAD SPEC=The_Ear</pre>
+
+<pre>BUTTON:LABEL=Middle;TIP=</pre>
+<h1>Middle Ear</h1><p><em>The middle ear has tiny bones that transmit pressure from the outer ear to the inner ear.</em></p>
+
+<pre>HOVER LOAD SPEC=Middle_Ear_Anatomy</pre>
+
+
+<pre>BUTTON:LABEL=Inner;TIP=</pre>
+<h1>Inner Ear</h1><p><em>The cochlear of the inner ear is a spiral shaped organ that has nerve cells that respond to different frequencies of sound.</em></p>
+
+<pre>HOVER LOAD SPEC=Inner_Ear_Anatomy</pre>
+
+
+<pre>ZONE:RGBA=(240,135,150,255);TIP=</pre>
+<h1>Dude 1</h1>
+<em><p>Each person has a different colour</p></em>
+
+<pre>ZONE:RGBA=(225,135,240,255);TIP=</pre>
+<h1>Dude 2</h1>
+<em><p>This person is coloured with colour 225,135,240.  We will see this 'tip' whenever we hover over that colour.</p></em>
+
+<pre>ZONE:RGBA=(165,135,240,255);TIP=</pre>
+<h1>Roger Dannenberg</h1>
+<em><p>Brigadier General; Assistant Commanding General, Joint Special Operations Command</p></em>
+
+<pre>ZONE:RGBA=(135,135,240,255);TIP=</pre>
+<h1>James Crook</h1>
+<em><p>Usually the displayed image is a jpeg image, and different to the 'hotspots' image that shows the zones. This example starts out showing the zones.</p></em>
+
+<pre>ZONE:RGBA=(135,240,165,255);TIP=</pre>
+<h1>Dude 3</h1>
+<em><p>Secretary of State</p></em>
+
+<pre>ZONE:RGBA=(135,180,240,255);TIP=</pre>
+<h1>Dominic Mazzoni</h1>
+<em><p>Secretary of Defense</p></em>
+
+<pre>ZONE:RGBA=(135,240,195,255);TIP=</pre>
+<h1>Dude 4</h1>
+<em><p>Dude 4's image crosses the centre line.  Where this tip is displayed changes as you move across the zone. </p></em>
+
+<pre>ZONE:RGBA=(240,210,135,255);TIP=</pre>
+<h1>Arturo 'Buanzo' Busleiman</h1>
+<em><p>Notice that Buanzo has two regions, one for face and one for hand, either of them will show this tip</p></em>
+
+<pre>ZONE:RGBA=(210,240,135,255);TIP=</pre>
+<h1>Dude 5</h1>
+<em><p>Chief of Staff</p></em>
+
+<pre>ZONE:RGBA=(240,180,135,255);TIP=</pre>
+<h1>Peter Sampson</h1>
+<em><p>National Security Advisor to the Vice President</p></em>
+
+<pre>CREDITS:CAPTION=The Ear;TIP=</pre>
+<b>Credits:</b> <em>[https://en.wikiversity.org/wiki/WikiJournal_of_Medicine/Medical_gallery_of_Blausen_Medical_2014 Images by Blausen Medical ©2014; CC3 BY-SA]</em>

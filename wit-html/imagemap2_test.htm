@@ -454,6 +454,15 @@
             A.Backing.img.src = url;
         }
 
+        function doAction( action ){
+            if( action.Action == "Spec" )
+                requestSpec(action.Name);
+            else if( action.Action == "Image" )
+                setNewImage(action.Name);
+            else if( action.Action == "Goto" )
+                alert(action.Name);
+        }
+
         function mousemoveOnMap(e){
             if( !Status.isAppReady )
                 return;
@@ -486,10 +495,28 @@
                 // Do any additional hover action
                 if( actions.Hover ){
                     A.Buttons.chosen = actions.Zone;
-                    setNewImage(actions.Hover);
+                    doAction( actions.Hover );
                 }
             }
         }
+
+        function onFocusClicked(e){
+            if( !Status.isAppReady )
+                return;
+
+            if( e.shiftKey )
+                return;
+
+            var rect = e.target.getBoundingClientRect();
+            var x = e.clientX -rect.left;
+            var y = e.clientY -rect.top;
+
+            var actions = actionsFromCursorPos(x,y);
+            if( actions.Click ){
+                doAction( actions.Click );
+            }
+        }
+
 
         function createDomElements(){
             var A=Annotator;
@@ -526,6 +553,7 @@
 
             A.FocusCanvas.onmousemove=mousemoveOnMap;
             A.FocusCanvas.onmouseout=removeAdornments;
+            A.FocusCanvas.onclick=onFocusClicked;
 
             A.FocusCanvas.style.position = "absolute";
             A.FocusCanvas.style.left = "0px";
@@ -580,6 +608,37 @@
 
         }
 
+        function setHover( type, location ){
+            var A=Annotator;
+            var h = A.Hotspots.Current.Hover || {};
+            h.Action = type;
+            h.Name = location;
+            A.Hotspots.Current.Hover=h;
+        }
+
+        function setClick( type, location ){
+            var A=Annotator;
+            var h = A.Hotspots.Current.Click || {};
+            h.Action = type;
+            h.Name = location;
+            A.Hotspots.Current.Click=h;
+        }
+
+        function fixHyperlinks( text ){
+            text = text.split( "[http" );
+            var result=text[0];
+            text[0]="";
+            text.forEach( function( item ){
+                if( item ){
+                    item = item.replace(" ", "'>");
+                    item = item.replace("]", "</a>");
+                    result += "<a href='http" + item;
+                }
+
+            });
+            return result;
+        }
+
         function loadNewDetails( data ){
             var A=Annotator;
             var lines = data.split("<pre>");
@@ -599,7 +658,9 @@
 
                     A.AddHot( index );
                 }
-                if( item.startsWith("ZONE:LABEL=")){
+                if( item.startsWith("ZONE:LABEL=") ||
+                    item.startsWith("BUTTON:LABEL=")
+                ){
                     var label = fieldValue( "LABEL",item );
                     console.log("label:"+label);
                     A.AddButton( label );
@@ -607,8 +668,27 @@
                         detail =" ";
                 }
                 if( item.startsWith("HOVER LOAD IMAGE")){
-                    console.log("hover-load:"+file);
-                    A.Hotspots.Current.Hover = file;
+                    console.log("hover-load-image:"+file);
+                    setHover( "Image", file );
+                }
+                if( item.startsWith("HOVER LOAD SPEC")){
+                    file = fieldValue( "SPEC",item );
+                    console.log("hover-load-spec:"+file);
+                    setHover( "Spec", file );
+                }
+                if( item.startsWith("CLICK LOAD IMAGE")){
+                    console.log("click-load-image:"+file);
+                    setClick( "Image", file );
+                }
+                if( item.startsWith("CLICK LOAD SPEC")){
+                    file = fieldValue( "SPEC",item );
+                    console.log("click-load-spec:"+file);
+                    setClick( "Spec", file );
+                }
+                if( item.startsWith("CLICK GOTO")){
+                    file = fieldValue( "GOTO",item );
+                    console.log("click-goto:"+file);
+                    setClick( "Goto", file );
                 }
                 if( item.startsWith("IMAGE")){
                     console.log("image:"+file);
@@ -625,6 +705,7 @@
                     A.AddInfo();
                 }
                 if( detail ){
+                    detail = fixHyperlinks(detail);
                     console.log(" <<<" + detail + ">>>");
                     A.AddDetail(detail);
                 }
@@ -769,6 +850,7 @@
     Window-Size Explanation</a> - an interactive diagram about a spectrogram - <a href="https://wiki.audacityteam.org/wiki/Toolbox/Window_Size">from wiki</a><br><br>
 
     <li><a href="./imagemap2_test.htm?page=Hotspots"> More about the Focus-Detail tool</a> - <a href="https://wiki.audacityteam.org/wiki/Toolbox/Hotspots">from wiki</a>
+        <li><a href="./imagemap2_test.htm?page=The_Ear"> The Ear</a>- <em>(Experimental)</em> using images from Blausen Medical - <a href="https://wiki.audacityteam.org/wiki/Toolbox/The_Ear">from wiki</a>
         </ul>
 
 
