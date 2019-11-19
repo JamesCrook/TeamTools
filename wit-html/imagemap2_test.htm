@@ -325,7 +325,7 @@
             ctx.beginPath();
             ctx.rect(T.margin+x+(ix-1)* T.width, T.yh-(T.margin+y), T.width, y);
             ctx.fillStyle =
-                    (ix==1)?"rgba(105,205,105,1.0)":"rgba(105,105,205,1.0)";
+                    (ix!=1)?"rgba(105,205,105,1.0)":"rgba(105,105,205,1.0)";
             ctx.fill();
             ctx.stroke();
         }
@@ -338,6 +338,7 @@
             ctx.translate(T.margin+x, T.yh-(T.margin+y));
             ctx.rotate(-Math.PI/4);
             ctx.textAlign = "right";
+            ctx.fillStyle = "rgba(15,35,165,1.0)";
             ctx.fillText(values[i][0], 0, 0);
             ctx.restore();
         }
