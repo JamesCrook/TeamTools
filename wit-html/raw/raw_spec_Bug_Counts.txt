@@ -1,0 +1,59 @@
+__NOTOC__
+
+Interactive diagrams are programs.  This is the program structure for the interactive diagram which shows a chart of Audacity bug counts:
+
+<pre>
+VERTICAL_LAYOUT
+  RGBA_FOCUS_DETAIL Focus=SmallCircle
+</pre>
+
+The specification above builds a simple focus-detail display.
+
+The detailed data for the regions, buttons and tooltips follows.
+
+<pre>START</pre>
+
+<pre>CHART:DATA=
+ {
+   "titles":["Date","Live Bugs","Dead Bugs"],
+   "display":["Label","Blue","Green"],
+   "values":[
+   ["Nov 2019",362,1867],
+   ["Oct 2019",360,1860],
+   ["Sep 2019",356,1853],
+   ["Aug 2019",390,1792],
+   ["Jul 2019",404,1740],
+   ["Jun 2019",423,1695],
+   ["May 2019",468,1638],
+   ["Apr 2019",472,1616],
+   ["Mar 2019;",470,1605],
+   ["Feb 2019",468,1592],
+   ["Jan 2019",464,1588],
+   ["Dec 2018",458,1585],
+   ["Nov 2018",450,1571],
+   ["Oct 2018",445,1545],
+   ["Sep 2018",447,1517],
+   ["Aug 2018",501,1410],
+   ["Jul 2018",495,1401],
+   ["Jun 2018",493,1390],
+   ["May 2018",489,1382],
+   ["Apr 2018",518,1345],
+   ["Mar 2018",539,1310],
+   ["Jan 2018",549,1266],
+   ["Dec 2017",542,1255],
+   ["Nov 2017",556,1212],
+   ["Oct 2017",557,1195],
+   ["Sep 2017",543,1192],
+   ["Aug 2017",605,1104]
+
+   ]
+}
+</pre>
+
+
+<pre>CREDITS:CAPTION=Audacity Bugs;TIP=</pre>
+<h3>Instructions</h3>
+<ul>
+<li>Hover over bars in the image for more details.
+</ul><br><br>
+<b>Credits:</b> <em>James Crook ©2019; Data and Image placed in Public Domain</em>

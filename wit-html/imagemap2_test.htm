@@ -208,6 +208,8 @@
             A.Buttons = {};
             A.Buttons.Names = [];
             A.Buttons.chosen = -1;
+
+            A.Chart = {};
         }
 
         resetHotspots();
@@ -280,6 +282,19 @@
             anotherImageReady();
         }
 
+        function onChart(){
+            var A = Annotator;
+            A.Porthole.width = 700;
+            A.Porthole.height = 400;
+            A.Hotspots.canvas.width = A.Porthole.width;
+            A.Hotspots.canvas.height = A.Porthole.height;
+            A.Hotspots.ctx = A.Hotspots.canvas.getContext('2d');
+
+            resizeDivs();
+            drawChart();
+            Status.isAppReady = true;
+        }
+
         function onFailedImage(){
             alert("Image failed to load");
         }
@@ -301,7 +316,73 @@
             return pt;
         }
 
+        function drawBar( T,values,i,ix ){
+            var A = Annotator;
+            var vx = values[i][ix];
+            var x = i * T.xScaler;
+            var y = vx * T.yScaler;
+            var ctx = A.BackingCanvas.ctx;
+            ctx.beginPath();
+            ctx.rect(T.margin+x+(ix-1)* T.width, T.yh-(T.margin+y), T.width, y);
+            ctx.fillStyle =
+                    (ix==1)?"rgba(105,205,105,1.0)":"rgba(105,105,205,1.0)";
+            ctx.fill();
+            ctx.stroke();
+        }
+
+        function drawLabel( T,values,i ){
+            var ctx = A.BackingCanvas.ctx;
+            var x = i * T.xScaler+ T.width;
+            var y = -11;
+            ctx.save();
+            ctx.translate(T.margin+x, T.yh-(T.margin+y));
+            ctx.rotate(-Math.PI/4);
+            ctx.textAlign = "right";
+            ctx.fillText(values[i][0], 0, 0);
+            ctx.restore();
+        }
+
+        function drawChart(){
+            var A = Annotator;
+
+            var xw = A.Porthole.width;
+            var yh = A.Porthole.height;
+            var ctx = A.BackingCanvas.ctx;
+            ctx.beginPath();
+            ctx.fillStyle = "rgba(205,205,205,1.0)";
+            ctx.strokeStyle = "rgba( 55, 55,155,1.0)";
+            ctx.lineWidth = 1;
+
+            ctx.rect(5, 5, xw-10, yh-10);
+            ctx.fill();
+            ctx.stroke();
+
+            var values = A.Chart.data.values;
+            if( values ){
+                var T={};
+                T.xw=xw;
+                T.yh=yh-20;
+                T.count = values.length;
+                T.items = 2;
+                T.margin = 60;
+                T.width = 4;
+                T.spacer = (xw-2*T.margin- T.count* T.width* T.items)/(T.count-1);
+                T.xScaler = (T.width* T.items+ T.spacer);
+                T.yScaler = (yh-2* T.margin)/2000.0;
+                for(i=0;i< T.count;i++){
+                    drawBar( T, values, i, 1 );
+                    drawBar( T, values, i, 2 );
+                    drawLabel( T, values, i );
+                }
+            }
+
+
+
+            drawButtons();
+        }
+
         function drawHotspots(){
+            var A = Annotator;
             var extra = A.Buttons.Names.length ? 25 : 0;
             var img = A.Hotspots.img;
             A.Hotspots.ctx.drawImage(img, 0, extra, img.width, img.height);
@@ -573,6 +654,10 @@
         }
 
         function updateImages(){
+            if( A.Chart.data ){
+                onChart();
+                return;
+            }
             Status.imagesToCome=2;
             A.Hotspots.img.src = A.Hotspots.imageSrc;
             A.Backing.img.src = A.Image.imageSrc;
@@ -599,13 +684,14 @@
             atitle.innerHTML = "<em>"+caption+"</em>";
         }
 
+        // finds field value to first ; or </pre>
         function fieldValue( field, line ){
-
             var value = line.split( field+"=" )[1] || "";
-            value = value.split( ";")[0];
             value = value.split( "</pre>")[0];
-            return value;
+            if( value.indexOf('\n')==-1 )
+                value = value.split( ";")[0];
 
+            return value;
         }
 
         function setHover( type, location ){
@@ -639,9 +725,9 @@
             return result;
         }
 
-        function loadNewDetails( data ){
+        function loadNewDetails( specFileData ){
             var A=Annotator;
-            var lines = data.split("<pre>");
+            var lines = specFileData.split("<pre>");
             setATitle("Caption was missing");
             for(i=0;i<lines.length;i++)
             {
@@ -697,6 +783,14 @@
                 if( item.startsWith("HOTSPOTS")){
                     console.log("hotspots:"+file);
                     A.Hotspots.imageSrc = file;
+                }
+                if( item.startsWith("CHART:")){
+                    var data = fieldValue( "DATA",item );
+                    console.log("data:"+data);
+                    var obj = JSON.parse( data );
+                    console.log(obj);
+                    A.Chart.data = obj;
+
                 }
                 if( item.startsWith("CREDITS")){
                     var caption = fieldValue( "CAPTION",item );
@@ -851,6 +945,7 @@
 
     <li><a href="./imagemap2_test.htm?page=Hotspots"> More about the Focus-Detail tool</a> - <a href="https://wiki.audacityteam.org/wiki/Toolbox/Hotspots">from wiki</a>
         <li><a href="./imagemap2_test.htm?page=The_Ear"> The Ear</a>- <em>(Experimental)</em> using images from Blausen Medical - <a href="https://wiki.audacityteam.org/wiki/Toolbox/The_Ear">from wiki</a>
+        <li><a href="./imagemap2_test.htm?page=Bug_Counts"> Bug Counts</a>- <em>(Experimental)</em> Audacity bug tracking - <a href="https://wiki.audacityteam.org/wiki/Toolbox/Bug_Counts">from wiki</a>
         </ul>
 
 
