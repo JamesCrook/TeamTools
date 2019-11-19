@@ -291,7 +291,8 @@
             A.Hotspots.ctx = A.Hotspots.canvas.getContext('2d');
 
             resizeDivs();
-            drawChart();
+            if( A.Chart.type == "bars" )
+                drawBarChart();
             Status.isAppReady = true;
         }
 
@@ -343,7 +344,7 @@
             ctx.restore();
         }
 
-        function drawChart(){
+        function drawBarChart(){
             var A = Annotator;
 
             var xw = A.Porthole.width;
@@ -744,8 +745,17 @@
                     var index = fieldValue( "RGBA", item );
                     index=index.split(" ").join("");
                     console.log("color:"+index);
-
                     A.AddHot( index );
+                }
+                if( item.startsWith("NEXTZONE:")){
+                    if( A.Hotspots.Colours ){
+                        var n = A.Hotspots.ColourIx;
+                        var c= A.Hotspots.Colours[n];
+                        A.Hotspots.ColourIx = (n+1)% A.Hotspots.Colours.length;
+                        c='('+c[0]+','+c[1]+','+c[2]+','+c[3]+')';
+                        console.log( "next-color:"+ c );
+                        A.AddHot( c );
+                    }
                 }
                 if( item.startsWith("ZONE:LABEL=") ||
                     item.startsWith("BUTTON:LABEL=")
@@ -795,9 +805,27 @@
                     console.log("data:"+data);
                     var obj = JSON.parse( data );
                     console.log(obj);
+                    A.Chart.type = 'bars';
                     A.Chart.data = obj;
 
                 }
+                if( item.startsWith("COLOURSET=")){
+                    var data = fieldValue( "OURSET",item );
+                    console.log("colour-data:"+data);
+                    var obj = JSON.parse( data );
+                    console.log(obj);
+                    A.Hotspots.Colours = obj;
+                    A.Hotspots.ColourIx=0;
+                }
+                if( item.startsWith("FLOWCHART:")){
+                    var data = fieldValue( "DATA",item );
+                    console.log("flow-data:"+data);
+                    var obj = JSON.parse( data );
+                    console.log(obj);
+                    A.Chart.type = 'boxes';
+                    A.Chart.data = obj;
+                }
+
                 if( item.startsWith("CREDITS")){
                     var caption = fieldValue( "CAPTION",item );
                     console.log("caption:"+caption);
@@ -914,7 +942,7 @@
 </div>
 <div style="width:100%;position:relative;top:-0.50em;left:0;display:inline-block;margin:0 auto;height:3em;">
     <div class='pos-resetter'>
-        <h2 id="click-tip" style="color:#bfbfbf;display:block;position:relative;top:-0.55em;transition:opacity 4s;opacity:1;"><em>Version from 18-Nov-2019</em></h2>
+        <h2 id="click-tip" style="color:#bfbfbf;display:block;position:relative;top:-0.55em;transition:opacity 4s;opacity:1;"><em>Version from 19-Nov-2019</em></h2>
     </div>
     <div class='pos-resetter'>
         <div style="display:inline-block;">
@@ -963,6 +991,7 @@
     <li><a href="./imagemap2_test.htm?page=Hotspots"> More about the Focus-Detail tool</a> - <a href="https://wiki.audacityteam.org/wiki/Toolbox/Hotspots">from wiki</a>
         <li><a href="./imagemap2_test.htm?page=The_Ear"> The Ear</a>- <em>(Experimental)</em> using images from Blausen Medical - <a href="https://wiki.audacityteam.org/wiki/Toolbox/The_Ear">from wiki</a>
         <li><a href="./imagemap2_test.htm?page=Bug_Counts&frame=no"> Bug Counts</a>- <em>(Experimental)</em> Audacity bug tracking - <a href="https://wiki.audacityteam.org/wiki/Toolbox/Bug_Counts">from wiki</a>
+        <li><a href="./imagemap2_test.htm?page=Flow_Graph"> Flow Graph</a>- <em>(Experimental)</em> Flowchart of Making the Manual - <a href="https://wiki.audacityteam.org/wiki/Toolbox/Flow_Graph">from wiki</a>
         </ul>
 
 

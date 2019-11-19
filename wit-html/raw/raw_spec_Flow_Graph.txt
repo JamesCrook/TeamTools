@@ -1,0 +1,64 @@
+__NOTOC__
+
+Interactive diagrams are programs.  This is the program structure for the interactive diagram which shows a chart of Audacity bug counts:
+
+<pre>
+VERTICAL_LAYOUT
+  RGBA_FOCUS_DETAIL Focus=SmallCircle
+</pre>
+
+The specification above builds a simple focus-detail display.
+
+The detailed data for the regions, buttons and tooltips follows.
+
+<pre>START</pre>
+
+<pre>FLOWCHART:DATA=
+ [
+ 	{"VStack":[
+	 	{"HStack":[
+		 	{"VStack":[
+		 		{"Rectangle":"WIT Shortcuts"},
+		 		{"Rectangle":"WIT Tooltips"},
+		 		{"Rectangle":"WIT Menus"}
+				]},
+			{"VStack":[
+				{"Circle":"WIT"},
+				{"Rectangle":"Toolbar Images"}
+				]},
+		 	{"VStack":[
+		 		{"Rectangle":"Template to do\nImage maps"},
+		 		{"Rectangle":"Big pages with\nImages on them"},
+		 		{"Rectangle":"Menu images"}
+				]},
+			{"VStack":[
+				{"Circle":"Cut & paste into\nalpha manual always by hand"},
+				{"Rectangle":"Alpha Manual"}
+				]}
+			]},
+
+	 	{"HStack":[
+			{"VStack":[
+				{"Circle":"Audacity"},
+				{"Circle":"Scripting"}
+				]},
+		 	{"VStack":[
+		 		{"Rectangle":"Preferences Images"},
+		 		{"Rectangle":"EGA Images"},
+		 		{"Rectangle":"Track Images"}
+				]},
+			{"VStack":[
+				{"Circle":"File Upload"}
+				]}
+			]}
+		]}
+]
+</pre>
+
+
+<pre>CREDITS:CAPTION=Flowchart of Making the Manual;TIP=</pre>
+<h3>Instructions</h3>
+<ul>
+<li>Hover over bars in the image for more details.
+</ul><br><br>
+<b>Credits:</b> <em>James Crook ©2019; Data and Image placed in Public Domain</em>
