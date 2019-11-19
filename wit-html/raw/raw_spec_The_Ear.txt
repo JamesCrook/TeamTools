@@ -7,7 +7,13 @@ VERTICAL_LAYOUT
   RGBA_FOCUS_DETAIL Focus=SmallCircle
 </pre>
 
-The specification above builds a simple focus-detail display.
+The specification above builds a simple focus-detail display.  There's an [https://wit.audacityteam.org/imagemap2_test.htm?page=The_Ear interactive demo].
+
+This is one of three related pages.  The other two are:
+<ul>
+<li>[https://wit.audacityteam.org/imagemap2_test.htm?page=Middle_Ear_Anatomy Middle Ear]
+<li>[https://wit.audacityteam.org/imagemap2_test.htm?page=Inner_Ear_Anatomy Inner Ear]
+</ul>
 
 The detailed data for the regions, buttons and tooltips follows.
 
@@ -38,8 +44,7 @@ The detailed data for the regions, buttons and tooltips follows.
 
 <pre>HOVER LOAD SPEC=Inner_Ear_Anatomy</pre>
 
-<pre>//</pre>
-The three buttons at the top of the page act when you hover on them.  The three corresponding regions defined next act when you click on them.
+<pre>//The three buttons at the top of the page act when you hover on them.  The three corresponding regions defined next act when you click on them.</pre>
 
 
 <pre>ZONE:RGBA=(0,100,100,255);TIP=</pre>
@@ -48,13 +53,13 @@ The three buttons at the top of the page act when you hover on them.  The three 
 
 <pre>ZONE:RGBA=(193,95,255,255);TIP=</pre>
 
-<h1>[https://en.wikipedia.org/wiki/Middle_ear Middle Ear]</h1><p><em>The middle ear has tiny bones that transmit pressure from the outer ear to the inner ear.</p><p>Click to learn more.</em></p>
+<h1>[https://en.wikipedia.org/wiki/Middle_ear Middle Ear]</h1><em><p>The middle ear has tiny bones that transmit pressure from the outer ear to the inner ear.</p><p>Click to learn more.</p></em>
 
 <pre>CLICK LOAD SPEC=Middle_Ear_Anatomy</pre>
 
 
 <pre>ZONE:RGBA=(255,95,234,255);TIP=</pre>
-<h1>[https://en.wikipedia.org/wiki/Inner_ear Inner Ear]</h1><p><em>The cochlear of the inner ear is a spiral shaped organ that has nerve cells that respond to different frequencies of sound.</p><p>Click to learn more</em></p>
+<h1>[https://en.wikipedia.org/wiki/Inner_ear Inner Ear]</h1><em><p>The cochlear of the inner ear is a spiral shaped organ that has nerve cells that respond to different frequencies of sound.</p><p>Click to learn more.</p></em>
 
 <pre>CLICK LOAD SPEC=Inner_Ear_Anatomy</pre>
 
@@ -67,7 +72,7 @@ The three buttons at the top of the page act when you hover on them.  The three 
 
 <pre>ZONE:RGBA=(0,20,20,255);TIP=</pre>
 <h1>[https://en.wikipedia.org/wiki/Ossicles Auditory Ossicles]</h1>
-<em><p>The ossicles are tiny bones that transmit sound from the tympanic membrane to the oval window.  Muscles can tighten and slacken so as to make this system for transmitting sound more or less sensitive.</p></em>
+<em><p>The ossicles are tiny bones that transmit sound from the tympanic membrane to the oval window.  Muscles can [https://en.wikipedia.org/wiki/Acoustic_reflex tighten and slacken] so as to make this system for transmitting sound more or less sensitive.</p></em>
 
 <pre>ZONE:RGBA=(0,20,30,255);TIP=</pre>
 <h1>[https://en.wikipedia.org/wiki/Semicircular_canal Semicircular Canals]</h1>
@@ -86,13 +91,13 @@ The three buttons at the top of the page act when you hover on them.  The three 
 <em><p>The Cochlea is a spiral shaped organ that has standing waves of sound in it.  The spiral shape is relevant to its ability to sensitively sense different frequencies of sound.</p></em>
 
 <pre>ZONE:RGBA=(0,20,70,255);TIP=</pre>
-<h1>[https://en.wikipedia.org/wiki/Round_Window Round Window]</h1><em><p>The round window helps in equalising the pressure of the fluid in the inner ear.  It moves outwards as the oval window is pushed in, and vice versa.</p></em>
+<h1>[https://en.wikipedia.org/wiki/Round_window Round Window]</h1><em><p>The round window helps in equalising the pressure of the fluid in the inner ear.  It moves outwards as the oval window is pushed in, and vice versa.</p></em>
 
 <pre>ZONE:RGBA=(0,20,80,255);TIP=</pre>
 <h1>[https://en.wikipedia.org/wiki/Eustachian_tube Auditory Tube]</h1><em><p>The Auditory tube equalises pressure between the inside and outside of the ear.  This is related to the sensation of 'ears popping' when flying.</p></em>
 
 <pre>ZONE:RGBA=(0,20,90,255);TIP=</pre>
-<h1>[https://en.wikipedia.org/wiki/Oval_window Oval Window]</h1><em><p>The oval window is a membrane that transmits vibrations in the ossicles to the fluid in the inner ear.  It is oval rather than round, so that it transmits all relevant frequencies.  Were it round there would be characteristic frequencies that it absorbed more than others.</p></em>
+<h1>[https://en.wikipedia.org/wiki/Oval_window Oval Window]</h1><em><p>The oval window is a membrane that transmits vibrations in the ossicles to the fluid in the inner ear.  It is oval rather than round, so that it transmits all relevant frequencies.  Were it round, there would be characteristic frequencies that it absorbed more than others.</p></em>
 
 <pre>ZONE:RGBA=(0,20,100,255);TIP=</pre>
 <h1>[https://en.wikipedia.org/wiki/Tympanic_cavity Tympanic Cavity]</h1><em><p>The Tympanic Cavity is an air filled region of the inner ear</p></em>
@@ -109,8 +114,7 @@ The three buttons at the top of the page act when you hover on them.  The three 
 <pre>ZONE:RGBA=(0,20,140,255);TIP=</pre>
 <h1>[https://en.wikipedia.org/wiki/Ear The Ear]</h1><em><p>Click to go to the wikipedia page on the ear</p></em>
 
-<pre>//<pre>
-There are two zones that 'do the same' as the labels.
+<pre>//There are two zones that 'do the same' as the labels.</pre>
 
 <pre>ZONE:RGBA=(255,95,136,255);TIP=</pre>
 <h1>[https://en.wikipedia.org/wiki/Auricle_(anatomy) Auricle]</h1><em><p>The auricle is the outermost part of the ear</p></em>
@@ -118,6 +122,8 @@ There are two zones that 'do the same' as the labels.
 <pre>ZONE:RGBA=(133,95,255,255);TIP=</pre>
 <h1>[https://en.wikipedia.org/wiki/Ear_canal Ear Canal]</h1><em><p>The ear canal <em>(external acoustic meatus)</em> brings sound to the middle ear.  The inner structures of the ear are housed in a bony compartment, whereas the outer ear is outside the skull and uses cartilage to hold its shape.</p></em>
 
+<pre>CLICK GOTO=</pre>
+[https://en.wikipedia.org/wiki/Ear_canal Ear Canal]
 
 <pre>CREDITS:CAPTION=The Ear;TIP=</pre>
 <b>Credits:</b> <em>[https://en.wikiversity.org/wiki/WikiJournal_of_Medicine/Medical_gallery_of_Blausen_Medical_2014 Images by Blausen Medical ©2014; CC3 BY-SA]</em>

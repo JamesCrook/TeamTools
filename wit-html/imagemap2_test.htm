@@ -772,7 +772,10 @@
                     setClick( "Spec", file );
                 }
                 if( item.startsWith("CLICK GOTO")){
-                    file = fieldValue( "GOTO",item );
+                    file = item.split("GOTO=</pre>")[1]||"";
+                    file = ("X"+file).split("[")[1] || "";
+                    file = file.split(" ")[0] || file.split("]")[0] || "";
+
                     console.log("click-goto:"+file);
                     setClick( "Goto", file );
                 }
@@ -867,6 +870,11 @@
             requestSpec( source );
         }
 
+        function removeFrame(){
+            var doc = document.getElementById("body");
+            doc.innerHTML = '<div id="content_here" style="text-align:center;"></div><div id="atitle" style="text-align:center;"><em>No Hotspot Zones Loaded (Yet)</em></div><div id="spec" style="margin-left:10px"></div>';
+        }
+
         function getArg( line, arg ){
             line="&"+line.split('?')[1]||"";
             line=line.split( '&'+arg+'=' )[1]||"";
@@ -875,14 +883,20 @@
         }
 
         window.onload = function(){
-            createDomElements();
-            addImagesToDom();
 
             var query = window.location.href;
             var page = getArg( query, 'page' ) || "The_AU19_Crowd";
 // Can't use the following on IE 11.
 //          var url = new URL(query);
 //          var page = url.searchParams.get("page") || "The_AU19_Crowd";
+            var frame = getArg( query, 'frame' ) || "yes";
+            if( frame == "no" )
+               removeFrame();
+
+            createDomElements();
+            addImagesToDom();
+
+
             console.log(page);
             loadDiagram(page);
             //requestSpec();
@@ -890,7 +904,7 @@
 
     </script>
 </head>
-<body style="color:white;background-image:url(images/header-home-bg.jpg);margin:0px;background-attachment:fixed;">
+<body id="body" style="color:white;background-image:url(images/header-home-bg.jpg);margin:0px;background-attachment:fixed;">
 <div style="width:100%; text-align:center;background:#1d2134;height:5em;margin: 0px;">
     <h1 style="margin:0px;padding-top:0.65em;padding-bottom:0.9em;"><em>Audacity Toolbox</em>: Focus-Detail ImageMap Test</h1>
     <div style="width:100%; text-align:center;background:#303b70;position:relative;height:1.8em;top:-0.6em;box-shadow: inset 0 0px 4px 0px #000080, 0 -2px 7px -2px #618ef4;"></div>
