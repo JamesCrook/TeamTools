@@ -522,7 +522,8 @@
             var pixel = A.Hotspots.ctx.getImageData(x,y,1,1).data;
             var result= "("+pixel[0]+","+pixel[1]+","+pixel[2]+","+pixel[3]+")";
             var actions = A.Hotspots.Colours[result] || Nozone;
-            Message2.innerHTML = "Colour &amp; Zone: rgba" + result + ", Zone "+actions.Zone;
+            if( Message2 )
+                Message2.innerHTML = "Colour &amp; Zone: rgba" + result + ", Zone "+actions.Zone;
             return actions;
         }
 
@@ -562,7 +563,8 @@
             drawFocusSpot( x,y );
             drawInfoButton();
             var actions = actionsFromCursorPos(x,y);
-            Message.innerHTML = coordinates;
+            if( Message )
+                Message.innerHTML = coordinates;
             A.DetailDiv.style.left = pt.x+"px";
             A.DetailDiv.style.top = pt.y+"px";
             if( Status.OldHit != actions.Zone ){
@@ -959,7 +961,7 @@
 
     <li><a href="./imagemap2_test.htm?page=Hotspots"> More about the Focus-Detail tool</a> - <a href="https://wiki.audacityteam.org/wiki/Toolbox/Hotspots">from wiki</a>
         <li><a href="./imagemap2_test.htm?page=The_Ear"> The Ear</a>- <em>(Experimental)</em> using images from Blausen Medical - <a href="https://wiki.audacityteam.org/wiki/Toolbox/The_Ear">from wiki</a>
-        <li><a href="./imagemap2_test.htm?page=Bug_Counts"> Bug Counts</a>- <em>(Experimental)</em> Audacity bug tracking - <a href="https://wiki.audacityteam.org/wiki/Toolbox/Bug_Counts">from wiki</a>
+        <li><a href="./imagemap2_test.htm?page=Bug_Counts&frame=no"> Bug Counts</a>- <em>(Experimental)</em> Audacity bug tracking - <a href="https://wiki.audacityteam.org/wiki/Toolbox/Bug_Counts">from wiki</a>
         </ul>
 
 
