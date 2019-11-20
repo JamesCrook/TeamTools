@@ -1,17 +1,23 @@
 __NOTOC__
 
-Interactive diagrams are programs.  This is the program structure for the interactive diagram which explains window size in spectrograms:
+Interactive diagrams are programs.  This is the program structure for the interactive diagram which shows climate regions:
 
 <pre>
-VERTICAL_LAYOUT
-  RGBA_FOCUS_DETAIL Focus=SmallCircle
+DISPLAY_FOCUS_DETAIL Focus=SmallCircle
+  IMAGE_WITH_HOTSPOTS
 </pre>
 
-The specification above builds a display with labels shown in button style, stacked above a focus-detail display which uses a small circle as the focus. The exact details come from the rest of this page, and can be edited pretty much in the normal way.  There are seven buttons for selecting the window size, each of which loads one of the seven spectrogram images.  There is a false-colour hotspot image map (it looks a bit like a TV test card) that defines the hotspot zones, most of which are for explaining the different sounds in the spectrogram.
+This interactive diagram uses the same image for both the displayed image and the hotspots - since the chart already is using colour to designate zones.
 
-Swap the order of CHOICE and RGB_FOCUS_DETAIL to have the buttons under the focus-detail panel instead.  Use a HORIZONTAL_LAYOUT to have the buttons on the left.  Use OVERLAY_LAYOUT to have the button painted over (on top of) the spectrogram image.
+The original image has slight variations in colour, so the program rounds colour values to the nearest multiple of 5.  Even so, the 'Humid Continental' region in Iran is in 4 different colours.  The workaround is to create multiple tips.  However, it would be better and simpler to correct the original image source.
 
-The detailed data for the regions, buttons and tooltips follows.
+There's a stand-alone [https://wit.audacityteam.org/imagemap2_test.htm?page=Köppen_Climate_Classification interactive demo] but here is the result in wiki:
+
+-----
+{{#widget:Dynamic|page=Köppen_Climate_Classification|height=620px}}
+-----
+
+The detailed data for the regions follows.
 
 <pre>START</pre>
 
