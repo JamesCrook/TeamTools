@@ -210,6 +210,7 @@
             A.Buttons.chosen = -1;
 
             A.Chart = {};
+            A.Distortion = {};
         }
 
         resetHotspots();
@@ -391,12 +392,70 @@
             drawButtons();
         }
 
+        function drawSphere(){
+            var A = Annotator;
+            var img = A.Backing.img;
+            var extra = A.Buttons.Names.length ? 25 : 0;
+            var ctx = A.BackingCanvas.ctx;
+
+            ctx.drawImage(img, 0, extra, img.width, img.height);
+/*
+            ctx.drawImage(img,
+                    img.width/2,0,img.width/2, img.height,
+                    0, extra, img.width/2, img.height);
+            ctx.drawImage(img,
+                    0,0,img.width/2, img.height,
+                    img.width/2, extra, img.width/2, img.height);
+*/
+            var x0 = img.width/2;
+
+            var srcData = ctx.getImageData( 0, 0, img.width, img.height);
+            var dstData = ctx.createImageData( img.height,img.height) ;
+
+            var h = Math.floor(img.height/2);
+            var w = Math.floor(img.width/2);
+            var offsets=[];
+            for(i=0;i<img.width;i++){
+                d= Math.floor(Math.asin( i/img.width)*img.height/2)*4;
+                offsets.push(d);
+
+            }
+            for( y=0;y<img.height;y++){
+                var yy = y-img.height/2;
+                var dx= Math.floor(Math.sqrt( h*h - yy*yy));
+                var srcIndex = Math.floor(y*img.width+h-dx)*4;
+                var srcBase = (y*img.width+620) *4;
+                var index = Math.floor(y*img.height +h-dx)*4;
+                //console.log( 'row:'+y+' ('+(h-dx)+'..'+(h+dx)+')');
+                for( x = dx; x>0;x--){
+                    srcIndex = srcBase - offsets[ Math.floor(x*img.width/dx) ];
+                    dstData.data[index++]=srcData.data[srcIndex++];
+                    dstData.data[index++]=srcData.data[srcIndex++];
+                    dstData.data[index++]=srcData.data[srcIndex++];
+                    dstData.data[index++]=255;
+                    srcIndex++;
+                }
+                for( x = 0; x<dx;x++){
+                    srcIndex = srcBase + offsets[ Math.floor(x*img.width/dx) ];
+                    dstData.data[index++]=srcData.data[srcIndex++];
+                    dstData.data[index++]=srcData.data[srcIndex++];
+                    dstData.data[index++]=srcData.data[srcIndex++];
+                    dstData.data[index++]=255;
+                    srcIndex++;
+                }
+            }
+            ctx.clearRect(0,0,img.width,img.height);
+            ctx.putImageData( dstData, x0-img.height/2, 0 );
+        }
+
         function drawBacking(){
             var A = Annotator;
             var img = A.Backing.img;
             var extra = A.Buttons.Names.length ? 25 : 0;
-
-            A.BackingCanvas.ctx.drawImage(img, 0, extra, img.width, img.height);
+            if( A.Distortion.Map )
+                drawSphere();
+            else
+                A.BackingCanvas.ctx.drawImage(img, 0, extra, img.width, img.height);
             drawButtons();
         }
 
@@ -695,7 +754,7 @@
 
         function setATitle( caption ){
             var atitle= document.getElementById("atitle");
-            atitle.innerHTML = "<em>"+caption+"</em>";
+            atitle.innerHTML = sanitiseHtml( "<em>"+caption+"</em>" );
         }
 
         // finds field value to first ; or </pre>
@@ -737,6 +796,12 @@
 
             });
             return result;
+        }
+
+        function sanitiseHtml( html ){
+            html = fixHyperlinks( html );
+            // Whitelist all relevant tags.
+            return html;
         }
 
         function loadNewDetails( specFileData ){
@@ -808,6 +873,10 @@
                     console.log("image:"+file);
                     A.Image.imageSrc = file;
                 }
+                if( item.startsWith("DISTORTION")){
+                    console.log("distortion:");
+                    A.Distortion.Map = "spherical";
+                }
                 if( item.startsWith("HOTSPOTS")){
                     console.log("hotspots:"+file);
                     A.Hotspots.imageSrc = file;
@@ -845,7 +914,7 @@
                     A.AddInfo();
                 }
                 if( detail ){
-                    detail = fixHyperlinks(detail);
+                    detail = sanitiseHtml(detail);
                     console.log(" <<<" + detail + ">>>");
                     A.AddDetail(detail);
                 }
@@ -1004,7 +1073,8 @@
         <li><a href="./imagemap2_test.htm?page=Bug_Counts&frame=no"> Bug Counts</a>- <em>(Experimental)</em> Audacity bug tracking - <a href="https://wiki.audacityteam.org/wiki/Toolbox/Bug_Counts">from wiki</a>
         <li><a href="./imagemap2_test.htm?page=Flow_Graph"> Flow Graph</a>- <em>(Experimental)</em> Flowchart of Making the Manual - <a href="https://wiki.audacityteam.org/wiki/Toolbox/Flow_Graph">from wiki</a>
         <li><a href="./imagemap2_test.htm?page=Köppen_Climate_Classification"> Köppen Climate Classification</a>- <em>(Experimental)</em> A demo where the image is already colour coded - <a href="https://wiki.audacityteam.org/wiki/Toolbox/Köppen_Climate_Classification">from wiki</a>
-        </ul>
+        <li><a href="./imagemap2_test.htm?page=Lunar_Sites&fromwiki=no"> Lunar Sites</a>- <em>(Experimental)</em> A demo where the image is wrapped onto a sphere
+    </ul>
 
 
 <!---

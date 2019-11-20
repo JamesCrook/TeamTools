@@ -1,0 +1,90 @@
+__NOTOC__
+
+Interactive diagrams are programs.  This is the program structure for the interactive diagram which shows who is who at the AU19 Audacity conference:
+
+<pre>
+VERTICAL_LAYOUT
+  RGBA_FOCUS_DETAIL Focus=SmallCircle
+</pre>
+
+The specification above builds a simple focus-detail display.  There's a stand-alone [https://wit.audacityteam.org/imagemap2_test.htm?page=The_AU19_Crowd interactive demo] but here is the result in wiki:
+
+-----
+{{#widget:Dynamic|page=The_AU19_Crowd|height=620px}}
+-----
+
+The detailed data for the regions, buttons and tooltips follows.
+
+<pre>START</pre>
+
+<pre>IMAGE</pre>
+[[File:Moonmap_from_clementine_data.png]]
+
+<pre>HOTSPOTS</pre>
+[[File:Moonmap_from_clementine_data.png]]
+
+<pre>COLOURSET=
+[
+	[240,135,150,255],
+	[225,135,240,255],
+	[165,135,240,255],
+	[135,135,240,255],
+	[135,240,165,255],
+	[135,180,240,255],
+	[135,240,195,255],
+	[240,210,135,255],
+	[210,240,135,255],
+	[240,180,135,255]
+]
+</pre>
+
+<pre>DISTORTION:MAP=SPHERICAL</pre>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Dude 1</h1>
+<em><p>Vice President</p>
+<p>(All the supposed titles are of course made up.)  This text comes from the wiki, and could be "Lorem Ipsum Dolors" if we wanted.</p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Dude 2</h1>
+<em><p>President</p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Roger Dannenberg</h1>
+<em><p>Co-founder and developer</p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>James Crook</h1>
+<em><p>Audacity Windows development and releases</p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Mojca Miklavec</h1>
+<em><p>MacPorts</p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Dominic Mazzoni</h1>
+<em><p>Co-founder and developer</p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Cliff Scott</h1>
+<em><p>QA, especially on mac</p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Arturo 'Buanzo' Busleiman</h1>
+<em><p>Sys Ops and National Security Advisor</p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Paul Licameli</h1>
+<em><p>Mac and Windows development, releases, refactoring and new features</p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Peter Sampson</h1>
+<em><p>Audacity forum, documentation and QA</p></em>
+
+<pre>CREDITS:CAPTION=Lunar Sites;TIP=</pre>
+<h3>Instructions</h3>
+<ul>
+<li>Hover over hotspots in the image for more details.
+<li>Hold shift down to freeze the hotspot - e.g. when taking a screenshot.
+</ul><br><br>
+<b>Credits:</b> <em>Photo by Arturo Buanzo Busleiman ©2019; CC3 BY-SA</em>
