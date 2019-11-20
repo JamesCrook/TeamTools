@@ -1,0 +1,212 @@
+__NOTOC__
+
+Interactive diagrams are programs.  This is the program structure for the interactive diagram which explains window size in spectrograms:
+
+<pre>
+VERTICAL_LAYOUT
+  RGBA_FOCUS_DETAIL Focus=SmallCircle
+</pre>
+
+The specification above builds a display with labels shown in button style, stacked above a focus-detail display which uses a small circle as the focus. The exact details come from the rest of this page, and can be edited pretty much in the normal way.  There are seven buttons for selecting the window size, each of which loads one of the seven spectrogram images.  There is a false-colour hotspot image map (it looks a bit like a TV test card) that defines the hotspot zones, most of which are for explaining the different sounds in the spectrogram.
+
+Swap the order of CHOICE and RGB_FOCUS_DETAIL to have the buttons under the focus-detail panel instead.  Use a HORIZONTAL_LAYOUT to have the buttons on the left.  Use OVERLAY_LAYOUT to have the button painted over (on top of) the spectrogram image.
+
+The detailed data for the regions, buttons and tooltips follows.
+
+<pre>START</pre>
+
+<pre>IMAGE</pre>
+[[File:1024px-Köppen-Geiger_Climate_Classification_Map.png]]
+
+<pre>HOTSPOTS</pre>
+[[File:1024px-Köppen-Geiger_Climate_Classification_Map.png]]
+
+<pre>COLOURSET=
+[
+    [0,0,255,255],
+    [0,120,255,255],
+    [70,170,250,255],
+    [255,0,0,255],
+    [255,150,150,255],
+    [245,165,0,255],
+    [255,220,100,255],
+    [255,255,0,255],
+    [200,200,0,255],
+    [150,150,0,255],
+    [150,255,150,255],
+    [100,200,100,255],
+    [50,150,50,255],
+    [200,255,80,255],
+    [100,255,80,255],
+    [50,200,0,255],
+    [255,0,255,255],
+    [200,0,200,255],
+    [150,50,150,255],
+    [150,100,150,255],
+    [170,175,255,255],
+    [90,120,220,255],
+    [75,80,180,255],
+    [50,0,135,255],
+    [0,255,255,255],
+    [50,200,255,255],
+    [0,125,125,255],
+    [0,70,95,255],
+    [180,180,180,255],
+    [100,100,100,255],
+
+
+    [205,0,205,255],
+    [215,15,200,255],
+    [210,0,210,255]
+
+
+]
+</pre>
+
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Tropical rainforest (Af)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Tropical monsoon (Am)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Tropical savanna (Aw/As)</h1>
+<em><p></p></em>
+
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Hot Desert (BWh)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Cold Desert (BWk)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Hot semi-arid (BSh)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Cold semi-arid (BSk)</h1>
+<em><p></p></em>
+
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Hot-summer Mediterranean (Csa)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Warm-summer Mediterranean (Csb)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Mediterranean (Csc)</h1>
+<em><p></p></em>
+
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Humid subtropical (Cwa)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Subtropical highland (Cwb)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Subtropical highland(Cwc)</h1>
+<em><p></p></em>
+
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Humid subtropical (Cfa)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Oceanic (Cfb)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Subpolar oceanic (Cfc)</h1>
+<em><p></p></em>
+
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Humid Continental (Dsa)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Humid Continental (Dsb)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Subarctic (Dsc)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Subarctic (Dsd)</h1>
+<em><p></p></em>
+
+
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Humid Continental (Dwa)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Humid Continental (Dwb)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Subarctic (Dwc)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Subarctic (Dwd)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Humid Continental (Dfa)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Humid Continental (Dfb)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Sub Arctic (Dfc)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Subarctic (Dfd)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Tundra (ET)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Ice cap (EF)</h1>
+<em><p></p></em>
+
+
+
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>2.Humid Continental (Dsb)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>3.Humid Continental (Dsb)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>4.Humid Continental (Dsb)</h1>
+<em><p></p></em>
+
+
+
+<pre>CREDITS:CAPTION=Köppen Climate Classification Map;TIP=</pre>
+<b>Credits:</b> <em>Beck et Al. - <a href="https://commons.wikimedia.org/wiki/File:K%C3%B6ppen-Geiger_Climate_Classification_Map.png">see description on Wikipedia</a></em>

@@ -190,7 +190,7 @@
 
         A.AddHot = function( index ){
             var actions = {};
-            A.Hotspots.Colours[ index ] = actions;
+            A.Hotspots.Colours[ roundColour(index) ] = actions;
             A.Hotspots.Current = actions;
             actions.Zone = A.Hotspots.count++;
         };
@@ -203,7 +203,7 @@
             A.Hotspots.Colours = [];
             A.Hotspots.count = 0;
             // Bogus entry to catch bad tips.
-            A.AddHot( "(1,0,0,0)" );
+            A.AddHot( "[5,0,0,0]" );
 
             A.Buttons = {};
             A.Buttons.Names = [];
@@ -217,11 +217,11 @@
 
         A.AddButton = function( text ){
             A.Buttons.Names.push( text );
-            A.AddHot( "(0,1,"+ A.Buttons.Names.length + ",255)");
+            A.AddHot( "[0,10,"+ A.Buttons.Names.length*5 + ",255]");
         };
 
         A.AddInfo = function( ){
-            A.AddHot( "(0,0,1,255)");
+            A.AddHot( "[0,0,5,255]");
         };
 
         A.AddDetail = function( text ){
@@ -433,7 +433,7 @@
                 ctx.fillStyle = "rgba(0,0,0,1.0)";
                 ctx.fillText(A.Buttons.Names[i], xx+11, yy+18 );
                 ctx2.beginPath();
-                ctx2.fillStyle = "rgba(0,1,"+(i+1)+",1.0)";
+                ctx2.fillStyle = "rgba(0,10,"+(i+1)*5+",1.0)";
                 ctx2.rect( x + i*(xw+gap), y+ 0*(yh+gap), xw, yh);
                 ctx2.fill();
             }
@@ -449,7 +449,7 @@
             var ctx2 = A.Hotspots.ctx;
             ctx2.lineWidth = 0;
             ctx2.beginPath();
-            ctx2.fillStyle = "rgba(0,0,1,1.0)";
+            ctx2.fillStyle = "rgba(0,0,5,1.0)";
             ctx2.rect(x, y, xw, yh);
             ctx2.fill();
         }
@@ -504,6 +504,13 @@
             ctx.fill();
         }
 
+        function roundColour( tuple ){
+            values = JSON.parse( tuple );
+            var result = values.map( function( v ){
+                return Math.floor((v+2.5)/5) *5;});
+            return '['+result.toString() + ']';
+        }
+
         function removeAdornments(e){
             if( !Status.isAppReady )
                 return;
@@ -517,15 +524,18 @@
             Status.OldHit = -1;
         }
 
-        function actionsFromCursorPos( x, y ){
+        function actionsFromCursorPos( x, y, flags ){
             var A=Annotator;
             if( !A.Hotspots.ctx )
                 return -1;
             var pixel = A.Hotspots.ctx.getImageData(x,y,1,1).data;
-            var result= "("+pixel[0]+","+pixel[1]+","+pixel[2]+","+pixel[3]+")";
+            var result= "["+pixel[0]+","+pixel[1]+","+pixel[2]+","+pixel[3]+"]";
+            result = roundColour( result );
             var actions = A.Hotspots.Colours[result] || Nozone;
             if( Message2 )
                 Message2.innerHTML = "Colour &amp; Zone: rgba" + result + ", Zone "+actions.Zone;
+            if( flags == "log" )
+                console.log( roundColour( result ) + "," );
             return actions;
         }
 
@@ -596,7 +606,7 @@
             var x = e.clientX -rect.left;
             var y = e.clientY -rect.top;
 
-            var actions = actionsFromCursorPos(x,y);
+            var actions = actionsFromCursorPos(x,y,"log");
             if( actions.Click ){
                 doAction( actions.Click );
             }
@@ -744,6 +754,8 @@
                 if( item.startsWith("ZONE:RGBA=(")){
                     var index = fieldValue( "RGBA", item );
                     index=index.split(" ").join("");
+                    index=index.replace("(","[");
+                    index=index.replace(")","]");
                     console.log("color:"+index);
                     A.AddHot( index );
                 }
@@ -752,7 +764,7 @@
                         var n = A.Hotspots.ColourIx;
                         var c= A.Hotspots.Colours[n];
                         A.Hotspots.ColourIx = (n+1)% A.Hotspots.Colours.length;
-                        c='('+c[0]+','+c[1]+','+c[2]+','+c[3]+')';
+                        c='['+c[0]+','+c[1]+','+c[2]+','+c[3]+']';
                         console.log( "next-color:"+ c );
                         A.AddHot( c );
                     }
@@ -871,20 +883,15 @@
         }
 
 
-        function requestSpec( source ){
+        function requestSpec( source, fromwiki ){
             var A=Annotator;
             A.SpecName = source;
-            var date = new Date();
-            var nMillis = date.getTime();
 
-
-            var str = window.location.href;
-            var bLocal = str.indexOf( 'localhost' ) != -1;
-            bLocal = bLocal || source.startsWith( "Local" );
-
-            if( bLocal ){
+            if( fromwiki == 'no'){
                 fileActionLoader("","","./raw/raw_spec_"+source+".txt");
             } else {
+                var date = new Date();
+                var nMillis = date.getTime();
                 // action=raw to get unprocessed file from wiki.
                 // time=nMillis to avoid issues with cached content.
                 fileActionLoader( "","","https://wiki.audacityteam.org/wiki/Toolbox/"+source+"?action=raw&time=" +
@@ -895,10 +902,10 @@
 
         }
 
-        function loadDiagram( source ){
+        function loadDiagram( source, fromwiki ){
             var spec = document.getElementById("spec");
             spec.innerHTML = "";
-            requestSpec( source );
+            requestSpec( source, fromwiki );
         }
 
         function removeFrame(){
@@ -921,6 +928,10 @@
 //          var url = new URL(query);
 //          var page = url.searchParams.get("page") || "The_AU19_Crowd";
             var frame = getArg( query, 'frame' ) || "yes";
+
+            var str = window.location.href;
+            var fromwiki = (str.indexOf( 'localhost' ) != -1)?"no":"yes";
+            fromwiki = getArg( query, 'fromwiki' ) || fromwiki;
             if( frame == "no" )
                removeFrame();
 
@@ -929,7 +940,7 @@
 
 
             console.log(page);
-            loadDiagram(page);
+            loadDiagram(page, fromwiki);
             //requestSpec();
         }
 
@@ -984,7 +995,7 @@
 <div style="margin-left:10px">
     <ul>
     <li><a href="./imagemap2_test.htm?page=The_AU19_Crowd">The Audacity 2019 Unconference</a> - an annotated image - <a href="https://wiki.audacityteam.org/wiki/Toolbox/The_AU19_Crowd">from wiki</a><br>
-    <li><a href="./imagemap2_test.htm?page=LocalThe_Situation_Room">The Situation Room</a> - more annotation of an image.  This is a featured image from Wikipedia<br>
+    <li><a href="./imagemap2_test.htm?page=The_Situation_Room&fromwiki=no">The Situation Room</a> - more annotation of an image.  This is a featured image from Wikipedia<br>
     <li><a href="./imagemap2_test.htm?page=Window_Size"> Spectrogram
     Window-Size Explanation</a> - an interactive diagram about a spectrogram - <a href="https://wiki.audacityteam.org/wiki/Toolbox/Window_Size">from wiki</a><br><br>
 
@@ -992,7 +1003,7 @@
         <li><a href="./imagemap2_test.htm?page=The_Ear"> The Ear</a>- <em>(Experimental)</em> using images from Blausen Medical - <a href="https://wiki.audacityteam.org/wiki/Toolbox/The_Ear">from wiki</a>
         <li><a href="./imagemap2_test.htm?page=Bug_Counts&frame=no"> Bug Counts</a>- <em>(Experimental)</em> Audacity bug tracking - <a href="https://wiki.audacityteam.org/wiki/Toolbox/Bug_Counts">from wiki</a>
         <li><a href="./imagemap2_test.htm?page=Flow_Graph"> Flow Graph</a>- <em>(Experimental)</em> Flowchart of Making the Manual - <a href="https://wiki.audacityteam.org/wiki/Toolbox/Flow_Graph">from wiki</a>
-        <li><a href="./imagemap2_test.htm?page=LocalKoppen_Climate"> Köppen Climate Classification</a>- <em>(Experimental)</em> A demo where the image is already colour coded
+        <li><a href="./imagemap2_test.htm?page=Koppen_Climate&fromwiki=no"> Köppen Climate Classification</a>- <em>(Experimental)</em> A demo where the image is already colour coded
         </ul>
 
 
