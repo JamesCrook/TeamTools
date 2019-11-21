@@ -1,16 +1,21 @@
 __NOTOC__
 
-Interactive diagrams are programs.  This is the program structure for the interactive diagram which explains window size in spectrograms:
+
+{{ATK_Header}}
+
+This is the spec for the interactive diagram which explains window size in spectrograms:
 
 <pre>
-VERTICAL_LAYOUT
-  CHOICE Style=Buttons
-  RGBA_FOCUS_DETAIL Focus=SmallCircle
+DISPLAY_FOCUS_DETAIL Focus=SmallCircle
+  BUTTON_ROW
+  IMAGE_WITH_HOTSPOTS
 </pre>
+
+
 
 The specification above builds a display with labels shown in button style, stacked above a focus-detail display which uses a small circle as the focus. The exact details come from the rest of this page, and can be edited pretty much in the normal way.  There are seven buttons for selecting the window size, each of which loads one of the seven spectrogram images.  There is a false-colour hotspot image map (it looks a bit like a TV test card) that defines the hotspot zones, most of which are for explaining the different sounds in the spectrogram.
 
-Swap the order of CHOICE and RGB_FOCUS_DETAIL to have the buttons under the focus-detail panel instead.  Use a HORIZONTAL_LAYOUT to have the buttons on the left.  Use OVERLAY_LAYOUT to have the button painted over (on top of) the spectrogram image.
+Swap the order of BUTTON_ROW and IMAGE_WITH_HOTSPOTS to have the buttons under the focus-detail panel instead.  Use a HORIZONTAL_LAYOUT to have the buttons on the left.  Use OVERLAY_LAYOUT to have the button painted over (on top of) the spectrogram image.  There's an [https://wit.audacityteam.org/imagemap2_test.htm?page=Window_Size interactive demo].
 
 The detailed data for the regions, buttons and tooltips follows.
 
@@ -22,77 +27,88 @@ The detailed data for the regions, buttons and tooltips follows.
 <pre>HOTSPOTS</pre>
 [[File:SpectralVocalDark256DarkHS.png]]
 
-<pre>START CHOICE</pre>
-<pre>ZONE:LABEL=256;TIP=</pre>
+<pre>ZONECOLOURS=
+[
+	[170,136,221,255],
+	[187,238,170,255],
+	[136,221,238,255],
+	[102,153, 85,255],
+	[238,221,136,255],
+	[221,119, 17,255],
+	[221, 17,221,255],
+	[221, 17, 51,255],
+	[ 68,170, 68,255],
+	[ 85,102,204,255]
+]
+</pre>
+
+<pre>START BUTTON_ROW</pre>
+<pre>BUTTON:LABEL=256;TIP=</pre>
 
 <h1>256: Most Wideband</h1><p><em>This window size gives the spectrogram the best temporal resolution, but the worst frequency resolution.</em></p>
 
 <pre>HOVER LOAD IMAGE</pre>
 [[File:SpectralVocalDark256Dark.png]]
 
-<pre>ZONE:LABEL=512;TIP=</pre>
+<pre>BUTTON:LABEL=512;TIP=</pre>
 <h1>Window size 512</h1><p><em>Frequencies are not as clear as at window size of 2048 and above</em></p>
 
 <pre>HOVER LOAD IMAGE</pre>
 [[File:SpectralVocalDark512Dark.png]]
 
 
-<pre>ZONE:LABEL=1024;TIP=</pre>
+<pre>BUTTON:LABEL=1024;TIP=</pre>
 <h1>Window size 1024</h1><p><em>A good compromise.</em></p>
 
 <pre>HOVER LOAD IMAGE</pre>
 [[File:SpectralVocalDark1024Dark.png]]
 
-<pre>ZONE:LABEL=2048;TIP=</pre>
+<pre>BUTTON:LABEL=2048;TIP=</pre>
 <h1>Window size 2048</h1><p><em>The duration of the silences before the 'd' and 't' in 'Audacity' are a lot less clear than for smaller window sizes.</em></p>
 
 <pre>HOVER LOAD IMAGE</pre>
 [[File:SpectralVocalDark2048Dark.png]]
 
-<pre>ZONE:LABEL=4096;TIP=</pre>
+<pre>BUTTON:LABEL=4096;TIP=</pre>
 <h1>Window size 4096</h1><p><em>All sounds are shown as having longer duration than they really do</em></p>
 
 <pre>HOVER LOAD IMAGE</pre>
 [[File:SpectralVocalDark4096Dark.png]]
 
-<pre>ZONE:LABEL=8192;TIP=</pre>
+<pre>BUTTON:LABEL=8192;TIP=</pre>
 <h1>8192: Most Narrowband</h1><p><em>This window size gives the spectrogram the worst temporal resolution and the best frequency resolution.</em></p>
 
 <pre>HOVER LOAD IMAGE</pre>
 [[File:SpectralVocalDark8192Dark.png]]
 
-<pre>START RGBA_FOCUS_DETAIL</pre>
-<pre>HOTSPOTS</pre>
-[[File:SpectralVocalDark256DarkHS.png]]
-
-<pre>ZONE:RGBA=(170,136,221,255);COMMENT=tcp;TIP=</pre>
+<pre>NEXTZONE:COMMENT=tcp;TIP=</pre>
 <h1>Track Control Panel</h1><p><em>The <a href="https://manual.audacityteam.org/man/track_control_panel_and_vertical_scale.html">Track Control Panel (TCP)</a> in Audacity contains controls used, for example, to adjust the loudness of the track.</em></p>
 
-<pre>ZONE:RGBA=(187,238,170,255);COMMENT=freq;TIP=</pre>
+<pre>NEXTZONE:COMMENT=freq;TIP=</pre>
 <h2>Frequency Scale</h2><em><p>The spectrogram is a plot showing how the frequencies of a sound vary over time. The <b>frequency scale</b> runs from 0 KHz to 8 KHz.</p><p>This spectrogram shows a plot for the word 'Audacity'. </p><p>The most intense sounds are shown in white, then red, purple, blue, with black indicating no intensity at that frequency at that time.</p></em>
 
-<pre>ZONE:RGBA=(136,221,238,255);COMMENT=win-size;TIP=</pre>
+<pre>NEXTZONE:COMMENT=win-size;TIP=</pre>
 <h1>Window Size</h1><em><p>Small windows sizes measure frequency over a short time range.  This is good when the frequencies change quickly.</p><p>Where the frequencies are sustained over longer time periods, larger window sizes give more precision about what the frequencies are.</p><p>The number for 'window size' is 'the number of audio samples'.</p></em>
 
-<pre>ZONE:RGBA=(102,153, 85,255);COMMENT=Aw;TIP=</pre>
+<pre>NEXTZONE:COMMENT=Aw;TIP=</pre>
 <h1><em style='color: #ffc747'>Aw</em>-dasssi-tee</h1><p><em>The initial vowel sound in the word 'Audacity'  The sound changes slightly over the duration of the vowel as the lips move closer together and are rounded more towards the end of the vowel sound.</em></p>
 
-<pre>ZONE:RGBA=(238,221,136,255);COMMENT=-d;TIP=</pre>
+<pre>NEXTZONE:COMMENT=-d;TIP=</pre>
 <h1>Aw<em style='color: #ffc747'>-d</em>asssi-tee</h1><p><em>The 'd' consonant sound in 'Audacity'.  There is a moment of near silence just before the 'd'.</em></p>
 
-<pre>ZONE:RGBA=(221,119, 17,255);COMMENT=a;TIP=</pre>
+<pre>NEXTZONE:COMMENT=a;TIP=</pre>
 <h1>Aw-d<em style='color: #ffc747'>a</em>sssi-tee</h1><p><em>The second vowel sound in 'Audacity' just before the loud 'sss' sound.  The pitch rises slightly towards the end as the mouth closes somewhat for the next sound.</em></p>
 
-<pre>ZONE:RGBA=(221, 17,221,255);COMMENT=sss;TIP=</pre>
+<pre>NEXTZONE:COMMENT=sss;TIP=</pre>
 <h1>Aw-da<em style='color: #ffc747'>sss</em>i-tee</h1><p><em>The 'sss' sound of the 'c' in 'Audacity'.  The bright region at about 5KHz is showing many frequencies, all quite loud.</p><p>This sound is similar to the sound of [https://manual.audacityteam.org/man/noise.html 'white noise'] which also has many frequencies at once.</em></p>
 
-<pre>ZONE:RGBA=(221, 17, 51,255);COMMENT=i;TIP=</pre>
+<pre>NEXTZONE:COMMENT=i;TIP=</pre>
 <h1>Aw-dasss<em style='color: #ffc747'>i</em>-tee</h1><p><em>The 'i' vowel sound in 'Audacity'</em></p>
 
-<pre>ZONE:RGBA=( 68,170, 68,255);COMMENT=t;TIP=</pre>
+<pre>NEXTZONE:COMMENT=t;TIP=</pre>
 <h1>Aw-dasssi<em style='color: #ffc747'>-t</em>ee</h1><p><em>The 't' consonant sound in the word 'Audacity'.  There is a moment of near silence just before the 't'.</em></p>
 
-<pre>ZONE:RGBA=( 85,102,204,255);COMMENT=ee;TIP=</pre>
+<pre>NEXTZONE:COMMENT=ee;TIP=</pre>
 <h1>Aw-dasssi-t<em style='color: #ffc747'>ee</em></h1><p><em>The 'y' vowel sound in 'Audacity'.</em></p>
 
 <pre>CREDITS:CAPTION=Spectrogram Window Sizes;TIP=</pre>

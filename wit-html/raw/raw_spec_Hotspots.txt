@@ -1,17 +1,24 @@
 __NOTOC__
 
-Interactive diagrams are programs.  This is the program structure for the interactive diagram which shows who is who at the AU19 Audacity conference:
+{{ATK_Header}} 
+
+This is the spec for the interactive diagram which shows who is who at the AU19 Audacity conference - and also explains how the hotspots work:
 
 <pre>
-VERTICAL_LAYOUT
-  RGBA_FOCUS_DETAIL Focus=SmallCircle
+DISPLAY_FOCUS_DETAIL Focus=SmallCircle
+  BUTTON_ROW
+  IMAGE_WITH_HOTSPOTS
 </pre>
 
-The specification above builds a simple focus-detail display.
+
+
+The specification above builds a simple focus-detail display.  There's an [https://wit.audacityteam.org/imagemap2_test.htm?page=Hotspots interactive demo].
+Based on [[Toolbox/The_AU19_Crowd]]
 
 The detailed data for the regions, buttons and tooltips follows.
 
 <pre>START</pre>
+
 
 <pre>IMAGE</pre>
 [[File:AudacityAu19HS.png]]
@@ -19,58 +26,72 @@ The detailed data for the regions, buttons and tooltips follows.
 <pre>HOTSPOTS</pre>
 [[File:AudacityAu19HS.png]]
 
-<pre>ZONE:LABEL=Zones;TIP=</pre>
+<pre>BUTTON:LABEL=Zones;TIP=</pre>
 
 <h1>Zones</h1><p><em>This hover-button puts the hotspot image to the front.</em></p>
 
 <pre>HOVER LOAD IMAGE</pre>
 [[File:AudacityAu19HS.png]]
 
-<pre>ZONE:LABEL=Image;TIP=</pre>
+<pre>BUTTON:LABEL=Image;TIP=</pre>
 <h1>Image</h1><p><em>This hover-button puts the image of people to the front.</em></p>
 
 <pre>HOVER LOAD IMAGE</pre>
 [[File:AudacityAu19.jpg]]
 
+<pre>ZONECOLOURS=
+[
+	[240,135,150,255],
+	[225,135,240,255],
+	[165,135,240,255],
+	[135,135,240,255],
+	[135,240,165,255],
+	[135,180,240,255],
+	[135,240,195,255],
+	[240,210,135,255],
+	[210,240,135,255],
+	[240,180,135,255]
+]
+</pre>
 
-<pre>ZONE:RGBA=(240,135,150,255);TIP=</pre>
+<pre>NEXTZONE:TIP=</pre>
 <h1>Dude 1</h1>
 <em><p>Each person has a different colour</p></em>
 
-<pre>ZONE:RGBA=(225,135,240,255);TIP=</pre>
+<pre>NEXTZONE:TIP=</pre>
 <h1>Dude 2</h1>
 <em><p>This person is coloured with colour 225,135,240.  We will see this 'tip' whenever we hover over that colour.</p></em>
 
-<pre>ZONE:RGBA=(165,135,240,255);TIP=</pre>
-<h1>Roger Dannenberg</h1>
+<pre>NEXTZONE:TIP=</pre>
+<h1>Dude 3</h1>
 <em><p>Brigadier General; Assistant Commanding General, Joint Special Operations Command</p></em>
 
-<pre>ZONE:RGBA=(135,135,240,255);TIP=</pre>
-<h1>James Crook</h1>
+<pre>NEXTZONE:TIP=</pre>
+<h1>Dude 4</h1>
 <em><p>Usually the displayed image is a jpeg image, and different to the 'hotspots' image that shows the zones. This example starts out showing the zones.</p></em>
 
-<pre>ZONE:RGBA=(135,240,165,255);TIP=</pre>
-<h1>Dude 3</h1>
+<pre>NEXTZONE:TIP=</pre>
+<h1>Dude 5</h1>
 <em><p>Secretary of State</p></em>
 
-<pre>ZONE:RGBA=(135,180,240,255);TIP=</pre>
-<h1>Dominic Mazzoni</h1>
+<pre>NEXTZONE:TIP=</pre>
+<h1>Dude 6</h1>
 <em><p>Secretary of Defense</p></em>
 
-<pre>ZONE:RGBA=(135,240,195,255);TIP=</pre>
-<h1>Dude 4</h1>
-<em><p>Dude 4's image crosses the centre line.  Where this tip is displayed changes as you move across the zone. </p></em>
+<pre>NEXTZONE:TIP=</pre>
+<h1>Dude 7</h1>
+<em><p>Dude 7's image crosses the centre line.  Where this tip is displayed changes as you move across the zone. </p></em>
 
-<pre>ZONE:RGBA=(240,210,135,255);TIP=</pre>
-<h1>Arturo 'Buanzo' Busleiman</h1>
-<em><p>Notice that Buanzo has two regions, one for face and one for hand, either of them will show this tip</p></em>
+<pre>NEXTZONE:TIP=</pre>
+<h1>Dude 8</h1>
+<em><p>Notice that 'Dude 8' has two regions, one for face and one for hand, either of them will show this tip</p></em>
 
-<pre>ZONE:RGBA=(210,240,135,255);TIP=</pre>
-<h1>Dude 5</h1>
+<pre>NEXTZONE:TIP=</pre>
+<h1>Dude 9</h1>
 <em><p>Chief of Staff</p></em>
 
-<pre>ZONE:RGBA=(240,180,135,255);TIP=</pre>
-<h1>Peter Sampson</h1>
+<pre>NEXTZONE:TIP=</pre>
+<h1>Dude 10</h1>
 <em><p>National Security Advisor to the Vice President</p></em>
 
 <pre>CREDITS:CAPTION=Hotspot Zones for an ImageMap;TIP=</pre>
@@ -80,4 +101,4 @@ The detailed data for the regions, buttons and tooltips follows.
 <li>Hover over 'Zones' to see the zones, and 'Image' to see the image.
 <li>Hold shift down to freeze the hotspot - e.g. when taking a screenshot.
 </ul><br><br>
-<b>Credits:</b> <em>Photo by Arturo Buanzo Busleiman ©2019; CC3 BY-SA</em>
+<b>Credits:</b> <em>Photo by Arturo Buanzo Busleiman (Dude 8) ©2019; CC3 BY-SA</em>

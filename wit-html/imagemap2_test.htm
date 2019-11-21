@@ -622,8 +622,10 @@
                 requestSpec(action.Name);
             else if( action.Action == "Image" )
                 setNewImage(action.Name);
-            else if( action.Action == "Goto" )
-                alert(action.Name);
+            else if( action.Action == "Goto" ){
+                window.location.href = action.Name;
+            }
+
         }
 
         function mousemoveOnMap(e){
@@ -835,10 +837,10 @@
                     A.AddHot( index );
                 }
                 if( item.startsWith("NEXTZONE:")){
-                    if( A.Hotspots.Colours ){
-                        var n = A.Hotspots.ColourIx;
-                        var c= A.Hotspots.Colours[n];
-                        A.Hotspots.ColourIx = (n+1)% A.Hotspots.Colours.length;
+                    if( A.Hotspots.ColourZones ){
+                        var n = A.Hotspots.ColourZoneIx;
+                        var c= A.Hotspots.ColourZones[n];
+                        A.Hotspots.ColourZoneIx = (n+1)% A.Hotspots.ColourZones.length;
                         c='['+c[0]+','+c[1]+','+c[2]+','+c[3]+']';
                         console.log( "next-color:"+ c );
                         A.AddHot( c );
@@ -873,6 +875,7 @@
                 }
                 if( item.startsWith("CLICK GOTO")){
                     file = item.split("GOTO=</pre>")[1]||"";
+                    // extract a wiki hyperlink.
                     file = ("X"+file).split("[")[1] || "";
                     file = file.split(" ")[0] || file.split("]")[0] || "";
 
@@ -905,8 +908,16 @@
                     console.log("colour-data:"+data);
                     var obj = JSON.parse( data );
                     console.log(obj);
-                    A.Hotspots.Colours = obj;
-                    A.Hotspots.ColourIx=0;
+                    A.Hotspots.ColourZones = obj;
+                    A.Hotspots.ColourZoneIx=0;
+                }
+                if( item.startsWith("ZONECOLOURS=")){
+                    var data = fieldValue( "COLOURS",item );
+                    console.log("colour-data:"+data);
+                    var obj = JSON.parse( data );
+                    console.log(obj);
+                    A.Hotspots.ColourZones = obj;
+                    A.Hotspots.ColourZoneIx=0;
                 }
                 if( item.startsWith("FLOWCHART:")){
                     var data = fieldValue( "DATA",item );

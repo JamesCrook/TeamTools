@@ -1,10 +1,14 @@
 __NOTOC__
 
-Interactive diagrams are programs.  This is the program structure for the interactive diagram which shows a featured image from Wikipedia:
+
+{{ATK_Header}}
+
+This is the spec for the interactive diagram which shows a featured image from Wikipedia:
+
 
 <pre>
-VERTICAL_LAYOUT
-  RGBA_FOCUS_DETAIL Focus=SmallCircle
+DISPLAY_FOCUS_DETAIL Focus=SmallCircle
+  IMAGE_WITH_HOTSPOTS
 </pre>
 
 The specification above builds a simple focus-detail display.
@@ -19,59 +23,78 @@ The detailed data for the regions, buttons and tooltips follows.
 <pre>HOTSPOTS</pre>
 [[File:Obama_and_Biden_await_updates_on_bin_LadenHS.png]]
 
-<pre>ZONE:RGBA=(229,136,173,255);TIP=</pre>
+<pre>ZONECOLOURS=
+[
+	[229,136,173,255],
+	[175,136,229,255],
+	[ 97,159, 89,255],
+	[232,221,183,255],
+	[149,176,227,255],
+	[194,243,167,255],
+	[ 53, 97,179,255],
+	[146, 55,176,255],
+	[209,141,219,255],
+	[ 64,135, 69,255],
+	[136,228,234,255],
+	[234,226,136,255],
+	[227,119, 14,255],
+	[227, 14, 54,255]
+]
+</pre>
+
+<pre>NEXTZONE:TIP=</pre>
 <h1>Joe Biden</h1>
 <em><p>Vice President</p></em>
 
-<pre>ZONE:RGBA=(175,136,229,255);TIP=</pre>
+<pre>NEXTZONE:TIP=</pre>
 <h1>Barack Obama</h1>
 <em><p>President</p></em>
 
-<pre>ZONE:RGBA=( 97,159, 89,255);TIP=</pre>
+<pre>NEXTZONE:TIP=</pre>
 <h1>Marshall B. "Brad" Webb</h1>
 <em><p>Brigadier General; Assistant Commanding General, Joint Special Operations Command</p></em>
 
-<pre>ZONE:RGBA=(232,221,183,255);TIP=</pre>
+<pre>NEXTZONE:TIP=</pre>
 <h1>Denis McDonough</h1>
 <em><p>Deputy National Security Adviser</p></em>
 
-<pre>ZONE:RGBA=(149,176,227,255);TIP=</pre>
+<pre>NEXTZONE:TIP=</pre>
 <h1>Hillary Rodham Clinton</h1>
 <em><p>Secretary of State</p></em>
 
-<pre>ZONE:RGBA=(194,243,167,255);TIP=</pre>
+<pre>NEXTZONE:TIP=</pre>
 <h1>Robert Gates</h1>
 <em><p>Secretary of Defense</p></em>
 
-<pre>ZONE:RGBA=( 53, 97,179,255);TIP=</pre>
+<pre>NEXTZONE:TIP=</pre>
 <h1>Mike Mullan</h1>
 <em><p>Admiral; Chairman of the Joint Chief of Staffs</p></em>
 
-<pre>ZONE:RGBA=(146, 55,176,255);TIP=</pre>
+<pre>NEXTZONE:TIP=</pre>
 <h1>Tom Donilon</h1>
 <em><p>National Security Advisor</p></em>
 
-<pre>ZONE:RGBA=(209,141,219,255);TIP=</pre>
+<pre>NEXTZONE:TIP=</pre>
 <h1>Bill Daley</h1>
 <em><p>Chief of Staff</p></em>
 
-<pre>ZONE:RGBA=( 64,135, 69,255);TIP=</pre>
+<pre>NEXTZONE:TIP=</pre>
 <h1>Tony Blinken</h1>
 <em><p>National Security Advisor to the Vice President</p></em>
 
-<pre>ZONE:RGBA=(136,228,234,255);TIP=</pre>
+<pre>NEXTZONE:TIP=</pre>
 <h1>Audrey Tomason</h1>
 <em><p>Director of Counterterrorism</p></em>
 
-<pre>ZONE:RGBA=(234,226,136,255);TIP=</pre>
+<pre>NEXTZONE:TIP=</pre>
 <h1>John Brennan</h1>
 <em><p>Assistant to the President for Homeland Security and Counterterrorism</p></em>
 
-<pre>ZONE:RGBA=(227,119, 14,255);TIP=</pre>
+<pre>NEXTZONE:TIP=</pre>
 <h1>James Clapper</h1>
 <em><p>Director of National Intelligence</p></em>
 
-<pre>ZONE:RGBA=(227, 14, 54,255);TIP=</pre>
+<pre>NEXTZONE:TIP=</pre>
 <h1>Someone</h1>
 <em><p>...in a black suit and white tie</p></em>
 
