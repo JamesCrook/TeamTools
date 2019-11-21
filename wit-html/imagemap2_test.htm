@@ -392,6 +392,12 @@
             drawButtons();
         }
 
+        // slice is a number from -1 to +1.
+        // source is a number from 0 to 1.
+        function sourceForSlice( slice ){
+            return Math.acos( -slice )/Math.PI;
+        }
+
         function drawSphere(){
             var A = Annotator;
             var img = A.Backing.img;
@@ -408,6 +414,7 @@
                     img.width/2, extra, img.width/2, img.height);
 */
             var x0 = img.width/2;
+            var rotate = 400;//820;
 
             var srcData = ctx.getImageData( 0, 0, img.width, img.height);
             var dstData = ctx.createImageData( img.height,img.height) ;
@@ -416,32 +423,35 @@
             var w = Math.floor(img.width/2);
             var offsets=[];
             for(i=0;i<img.width;i++){
-                d= Math.floor(Math.asin( i/img.width)*img.height/2)*4;
+                d= Math.floor(Math.asin( i/img.width)*img.width/4)*4;
                 offsets.push(d);
 
             }
-            for( y=0;y<img.height;y++){
-                var yy = y-img.height/2;
-                var dx= Math.floor(Math.sqrt( h*h - yy*yy));
-                var srcIndex = Math.floor(y*img.width+h-dx)*4;
-                var srcBase = (y*img.width+620) *4;
-                var index = Math.floor(y*img.height +h-dx)*4;
+            for( var y=-h;y<h;y++){
+                var dx= Math.floor(Math.sqrt( h*h - y*y));
+                var srcLine = Math.floor(sourceForSlice(y*1.0/h)*img.height);
+                var srcBase = (srcLine*img.width+rotate) *4;
+                var index = Math.floor((y+img.height/2)*img.height +h-dx)*4;
+                var sign;
                 //console.log( 'row:'+y+' ('+(h-dx)+'..'+(h+dx)+')');
-                for( x = dx; x>0;x--){
-                    srcIndex = srcBase - offsets[ Math.floor(x*img.width/dx) ];
-                    dstData.data[index++]=srcData.data[srcIndex++];
-                    dstData.data[index++]=srcData.data[srcIndex++];
-                    dstData.data[index++]=srcData.data[srcIndex++];
-                    dstData.data[index++]=255;
-                    srcIndex++;
-                }
-                for( x = 0; x<dx;x++){
-                    srcIndex = srcBase + offsets[ Math.floor(x*img.width/dx) ];
-                    dstData.data[index++]=srcData.data[srcIndex++];
-                    dstData.data[index++]=srcData.data[srcIndex++];
-                    dstData.data[index++]=srcData.data[srcIndex++];
-                    dstData.data[index++]=255;
-                    srcIndex++;
+                for( var x = -dx; x<dx;x++){
+                    sign = (x<0)?-1:1;
+                    var srcIndex = srcBase + sign * offsets[ Math.floor(
+                                    Math.abs(x)*img.width/dx) ];
+
+                    if( srcData.data[srcIndex+3] < 128 ){
+                        dstData.data[index++] = 20;
+                        dstData.data[index++] = 20;
+                        dstData.data[index++] = 110;
+                        dstData.data[index++] = 100;
+                    }
+                    else
+                    {
+                        dstData.data[index++] = srcData.data[srcIndex++];
+                        dstData.data[index++] = srcData.data[srcIndex++];
+                        dstData.data[index++] = srcData.data[srcIndex++];
+                        dstData.data[index++] = srcData.data[srcIndex++];
+                    }
                 }
             }
             ctx.clearRect(0,0,img.width,img.height);
@@ -1017,12 +1027,12 @@
 </head>
 <body id="body" style="color:white;background-image:url(images/header-home-bg.jpg);margin:0px;background-attachment:fixed;">
 <div style="width:100%; text-align:center;background:#1d2134;height:5em;margin: 0px;">
-    <h1 style="margin:0px;padding-top:0.65em;padding-bottom:0.9em;"><em>Audacity Toolbox</em>: Focus-Detail ImageMap Test</h1>
+    <h1 style="margin:0px;padding-top:0.65em;padding-bottom:0.9em;"><em>Audacity Tool Kit</em>: Demo Page</h1>
     <div style="width:100%; text-align:center;background:#303b70;position:relative;height:1.8em;top:-0.6em;box-shadow: inset 0 0px 4px 0px #000080, 0 -2px 7px -2px #618ef4;"></div>
 </div>
 <div style="width:100%;position:relative;top:-0.50em;left:0;display:inline-block;margin:0 auto;height:3em;">
     <div class='pos-resetter'>
-        <h2 id="click-tip" style="color:#bfbfbf;display:block;position:relative;top:-0.55em;transition:opacity 4s;opacity:1;"><em>Version from 19-Nov-2019</em></h2>
+        <h2 id="click-tip" style="color:#bfbfbf;display:block;position:relative;top:-0.55em;transition:opacity 4s;opacity:1;"><em>Version from 21-Nov-2019</em></h2>
     </div>
     <div class='pos-resetter'>
         <div style="display:inline-block;">
@@ -1054,26 +1064,31 @@
     <div id="message2"></div>
 </div>
 <div style="margin-left:50px">
-<p>Test of the ImageMap annotation component of the Audacity Toolbox.
-<ul>
-    <li>Lighter focus spot follows the cursor around</li>
-    <li>Darker detail panel moves out the way of the cursor.
-    </li></ul>
+<p>Demos from the Audacity Tool Kit.
 <p> Follow links below to see each of the examples.
 </div>
 <div style="margin-left:10px">
-    <ul>
-    <li><a href="./imagemap2_test.htm?page=The_AU19_Crowd">The Audacity 2019 Unconference</a> - an annotated image - <a href="https://wiki.audacityteam.org/wiki/Toolbox/The_AU19_Crowd">from wiki</a><br>
-    <li><a href="./imagemap2_test.htm?page=The_Situation_Room&fromwiki=no">The Situation Room</a> - more annotation of an image.  This is a featured image from Wikipedia<br>
-    <li><a href="./imagemap2_test.htm?page=Window_Size"> Spectrogram
-    Window-Size Explanation</a> - an interactive diagram about a spectrogram - <a href="https://wiki.audacityteam.org/wiki/Toolbox/Window_Size">from wiki</a><br><br>
 
-    <li><a href="./imagemap2_test.htm?page=Hotspots"> More about the Focus-Detail tool</a> - <a href="https://wiki.audacityteam.org/wiki/Toolbox/Hotspots">from wiki</a>
-        <li><a href="./imagemap2_test.htm?page=The_Ear"> The Ear</a>- <em>(Experimental)</em> using images from Blausen Medical - <a href="https://wiki.audacityteam.org/wiki/Toolbox/The_Ear">from wiki</a>
-        <li><a href="./imagemap2_test.htm?page=Bug_Counts&frame=no"> Bug Counts</a>- <em>(Experimental)</em> Audacity bug tracking - <a href="https://wiki.audacityteam.org/wiki/Toolbox/Bug_Counts">from wiki</a>
-        <li><a href="./imagemap2_test.htm?page=Flow_Graph"> Flow Graph</a>- <em>(Experimental)</em> Flowchart of Making the Manual - <a href="https://wiki.audacityteam.org/wiki/Toolbox/Flow_Graph">from wiki</a>
-        <li><a href="./imagemap2_test.htm?page=Köppen_Climate_Classification"> Köppen Climate Classification</a>- <em>(Experimental)</em> A demo where the image is already colour coded - <a href="https://wiki.audacityteam.org/wiki/Toolbox/Köppen_Climate_Classification">from wiki</a>
-        <li><a href="./imagemap2_test.htm?page=Lunar_Sites&fromwiki=no"> Lunar Sites</a>- <em>(Experimental)</em> A demo where the image is wrapped onto a sphere
+    These examples have their specification in an editable wiki page.  Some are 'works in progress' (wip).
+    <ul>
+    <li><a href="./imagemap2_test.htm?page=The_AU19_Crowd">The Audacity 2019 Unconference</a> - an annotated image people-identifier - <a href="https://wiki.audacityteam.org/wiki/Toolbox/The_AU19_Crowd">wiki spec</a><br>
+    <li><a href="./imagemap2_test.htm?page=Window_Size"> Spectrogram
+    Window-Size Explanation</a> - an interactive diagram about a spectrogram - <a href="https://wiki.audacityteam.org/wiki/Toolbox/Window_Size">wiki spec</a>
+
+    <li><a href="./imagemap2_test.htm?page=Hotspots"> More about the Focus-Detail tool</a> - shows the coloured hotspots image - <a href="https://wiki.audacityteam.org/wiki/Toolbox/Hotspots">wiki spec</a>
+        <li><a href="./imagemap2_test.htm?page=The_Ear"> The Ear</a>- <em>(wip)</em> using images from Blausen Medical (hotspots in subsidiary images to do &amp; mystery-meat fix) - <a href="https://wiki.audacityteam.org/wiki/Toolbox/The_Ear">wiki spec</a>
+        <li><a href="./imagemap2_test.htm?page=Bug_Counts"> Bug Counts</a>- <em>(wip)</em> Audacity bug tracking - driven from data in wiki (scales, key and hotspots to do) - <a href="https://wiki.audacityteam.org/wiki/Toolbox/Bug_Counts">wiki spec</a>
+        <!--
+        <li><a href="./imagemap2_test.htm?page=Flow_Graph"> Flow Graph</a>- <em>(Experimental)</em> Flowchart of Making the Manual - <a href="https://wiki.audacityteam.org/wiki/Toolbox/Flow_Graph">from wiki</a><-->
+        <li><a href="./imagemap2_test.htm?page=Köppen_Climate_Classification"> Köppen Climate Classification</a>- <em>(wip)</em> A demo where the image is already colour coded - <a href="https://wiki.audacityteam.org/wiki/Toolbox/Köppen_Climate_Classification">from wiki</a></li></ul>
+
+
+
+        These examples have their specification as an ordinary text file.  They could have an editable wiki page if we wanted (by pasting the text file into wiki).
+<ul>
+        <li><a href="./imagemap2_test.htm?page=The_Situation_Room&fromwiki=no">The Situation Room</a> - more annotation of an image.  This is a featured image from Wikipedia<br>
+        <li><a href="./imagemap2_test.htm?page=Lunar_Sites&fromwiki=no"> Lunar Sites</a>- <em>(Experimental)</em> A demo where the image is wrapped onto a sphere (no hotspots yet, distorted)
+        <li><a href="./imagemap2_test.htm?page=Köppen_Globe&fromwiki=no"> Climate Zone as Globe</a>- <em>(Experimental)</em> Moon trick done for Köppen Image (no hotpsots yet, distorted)
     </ul>
 
 
