@@ -18,10 +18,10 @@ The detailed data for the regions, buttons and tooltips follows.
 <pre>START</pre>
 
 <pre>IMAGE</pre>
-[[File:Moonmap_from_clementine_data.png]]
+[[File:atlantic20100325-640.jpg]]
 
 <pre>HOTSPOTS</pre>
-[[File:Moonmap_from_clementine_data.png]]
+[[File:atlantic20100325-640.jpg]]
 
 <pre>COLOURSET=
 [
@@ -40,10 +40,10 @@ The detailed data for the regions, buttons and tooltips follows.
 
 <pre>DISTORTION:MAP=SPHERICAL</pre>
 
-<pre>CREDITS:CAPTION=Lunar Sites;TIP=</pre>
+<pre>CREDITS:CAPTION=Ocean Currents;TIP=</pre>
 <h3>Instructions</h3>
 <ul>
 <li>Hover over hotspots in the image for more details.
 <li>Hold shift down to freeze the hotspot - e.g. when taking a screenshot.
 </ul><br><br>
-<b>Credits:</b> <em>Photo by Arturo Buanzo Busleiman ©2019; CC3 BY-SA</em>
+<b>Credits:</b> <em>[https://www.jpl.nasa.gov/news/news.php?release=2010-101 NASA/JPL]</em>
