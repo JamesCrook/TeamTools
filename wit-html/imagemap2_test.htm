@@ -618,8 +618,9 @@
         }
 
         function doAction( action ){
+            var A=Annotator;
             if( action.Action == "Spec" )
-                requestSpec(action.Name);
+                requestSpec(action.Name, A.fromWiki);
             else if( action.Action == "Image" )
                 setNewImage(action.Name);
             else if( action.Action == "Goto" ){
@@ -828,6 +829,10 @@
                 file = file.split( "]]")[0] || "";
                 file = "./images/"+file;
 
+                var spec = item.split( "[[")[1] || "";
+                spec = spec.split( "]]")[0] || spec;
+                spec = spec.split( "|")[0] || spec;
+
                 if( item.startsWith("ZONE:RGBA=(")){
                     var index = fieldValue( "RGBA", item );
                     index=index.split(" ").join("");
@@ -860,7 +865,8 @@
                     setHover( "Image", file );
                 }
                 if( item.startsWith("HOVER LOAD SPEC")){
-                    file = fieldValue( "SPEC",item );
+                    file = ("X"+spec).split("Toolbox/")[1] ||
+                        fieldValue( "SPEC",item );
                     console.log("hover-load-spec:"+file);
                     setHover( "Spec", file );
                 }
@@ -869,7 +875,8 @@
                     setClick( "Image", file );
                 }
                 if( item.startsWith("CLICK LOAD SPEC")){
-                    file = fieldValue( "SPEC",item );
+                    file = ("X"+spec).split("Toolbox/")[1] ||
+                            fieldValue( "SPEC",item );
                     console.log("click-load-spec:"+file);
                     setClick( "Spec", file );
                 }
@@ -1010,6 +1017,12 @@
             return line;
         }
 
+        function isFromServer(){
+            var str = window.location.href;
+            return (str.indexOf( 'localhost' ) != -1)?
+                    "no" :"yes";
+        }
+
         window.onload = function(){
 
             var query = window.location.href;
@@ -1019,18 +1032,16 @@
 //          var page = url.searchParams.get("page") || "The_AU19_Crowd";
             var frame = getArg( query, 'frame' ) || "yes";
 
-            var str = window.location.href;
-            var fromwiki = (str.indexOf( 'localhost' ) != -1)?"no":"yes";
-            fromwiki = getArg( query, 'fromwiki' ) || fromwiki;
+            A.fromWiki = isFromServer();
+            A.fromWiki = getArg( query, 'fromwiki' ) || A.fromWiki;
             if( frame == "no" )
                removeFrame();
 
             createDomElements();
             addImagesToDom();
 
-
             console.log(page);
-            loadDiagram(page, fromwiki);
+            loadDiagram(page, A.fromWiki);
             //requestSpec();
         }
 
