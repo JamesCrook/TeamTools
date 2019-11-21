@@ -1,17 +1,18 @@
 __NOTOC__
 
-Interactive diagrams are programs.  This is the program structure for the interactive diagram which explains window size in spectrograms:
+
+{{ATK_Header}}
+
+This is the spec for the interactive diagram which shows the key to the koppen climate map:
+
 
 <pre>
-VERTICAL_LAYOUT
-  RGBA_FOCUS_DETAIL Focus=SmallCircle
+DISPLAY_FOCUS_DETAIL Focus=SmallCircle
+  IMAGE_WITH_HOTSPOTS
 </pre>
 
-The specification above builds a display with labels shown in button style, stacked above a focus-detail display which uses a small circle as the focus. The exact details come from the rest of this page, and can be edited pretty much in the normal way.  There are seven buttons for selecting the window size, each of which loads one of the seven spectrogram images.  There is a false-colour hotspot image map (it looks a bit like a TV test card) that defines the hotspot zones, most of which are for explaining the different sounds in the spectrogram.
 
-Swap the order of CHOICE and RGB_FOCUS_DETAIL to have the buttons under the focus-detail panel instead.  Use a HORIZONTAL_LAYOUT to have the buttons on the left.  Use OVERLAY_LAYOUT to have the button painted over (on top of) the spectrogram image.
-
-The detailed data for the regions, buttons and tooltips follows.
+The specification above builds a simple focus-detail display.  There's a stand-alone [https://wit.audacityteam.org/imagemap2_test.htm?page=Koppen_Key interactive demo] but here is the result in wiki:
 
 <pre>START</pre>
 

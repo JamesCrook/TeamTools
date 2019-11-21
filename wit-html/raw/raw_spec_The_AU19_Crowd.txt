@@ -1,11 +1,14 @@
 __NOTOC__
 
-Interactive diagrams are programs.  This is the program structure for the interactive diagram which shows who is who at the AU19 Audacity conference:
+{{ATK_Header}}
+
+This is the spec for the interactive diagram which shows who is who at the AU19 Audacity conference:
 
 <pre>
-VERTICAL_LAYOUT
-  RGBA_FOCUS_DETAIL Focus=SmallCircle
+DISPLAY_FOCUS_DETAIL Focus=SmallCircle
+  IMAGE_WITH_HOTSPOTS
 </pre>
+
 
 The specification above builds a simple focus-detail display.  There's a stand-alone [https://wit.audacityteam.org/imagemap2_test.htm?page=The_AU19_Crowd interactive demo] but here is the result in wiki:
 
@@ -56,8 +59,8 @@ The detailed data for the regions, buttons and tooltips follows.
 <em><p>Audacity Windows development and releases</p></em>
 
 <pre>NEXTZONE:TIP=</pre>
-<h1>Mojca Miklavek</h1>
-<em><p>Macports</p></em>
+<h1>Mojca Miklavec</h1>
+<em><p>MacPorts</p></em>
 
 <pre>NEXTZONE:TIP=</pre>
 <h1>Dominic Mazzoni</h1>

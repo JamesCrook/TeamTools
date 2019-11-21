@@ -6,8 +6,8 @@ __NOTOC__
 This is the spec for the interactive diagram which shows a chart of Audacity bug counts:
 
 <pre>
-VERTICAL_LAYOUT
-  RGBA_FOCUS_DETAIL Focus=SmallCircle
+DISPLAY_FOCUS_DETAIL Focus=SmallCircle
+  IMAGE_WITH_HOTSPOTS
 </pre>
 
 The specification above builds a simple focus-detail display for the bar chart.  Here's the result:

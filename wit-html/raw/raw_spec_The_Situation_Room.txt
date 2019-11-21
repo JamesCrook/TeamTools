@@ -11,10 +11,8 @@ DISPLAY_FOCUS_DETAIL Focus=SmallCircle
   IMAGE_WITH_HOTSPOTS
 </pre>
 
-The specification above builds a simple focus-detail display.
 
-The detailed data for the regions, buttons and tooltips follows.
-
+The specification above builds a simple focus-detail display.  There's a stand-alone [https://wit.audacityteam.org/imagemap2_test.htm?page=The_Situation_Room interactive demo] but here is the result in wiki:
 <pre>START</pre>
 
 <pre>IMAGE</pre>
