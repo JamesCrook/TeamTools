@@ -14,7 +14,7 @@ The specification above builds a simple focus-detail display.  There's an [https
 
 This is one of three related pages.  The other two are:
 <ul>
-<li>[https://wit.audacityteam.org/imagemap2_test.htm?page=Middle_Ear_Anatomy Middle Ear] [[Toolbox/Middle_Ear_Anatomy|spec]]
+<li>[https://wit.audacityteam.org/imagemap2_test.htm?page=The_Ear The Ear] [[Toolbox/The_Ear|spec]]
 <li>[https://wit.audacityteam.org/imagemap2_test.htm?page=Inner_Ear_Anatomy Inner Ear] [[Toolbox/Inner_Ear_Anatomy|spec]]
 </ul>
 
