@@ -817,6 +817,52 @@
             return html;
         }
 
+        Containers = {};
+        Containers.VStack = true;
+        Containers.HStack = true;
+
+
+        function drawLayout( x0,y0,xw,yh,obj){
+            //console.log("Draw Layout at "+x0+","+y0+" "+xw+" x " + yh);
+            //console.log( obj );
+            var n = obj.content.length;
+            var i;
+            if( obj.type == "VStack" ){
+                for( i=0;i<obj.content.length;i++ )
+                    drawLayout( x0, y0+(i/n)*yh, xw, yh/n, obj.content[i]);
+            }
+            else if( obj.type == "HStack" ){
+                for( i=0;i<obj.content.length; i++ )
+                    drawLayout( x0+(i/n)*xw, y0, xw/n, yh, obj.content[i]);
+            }else{
+                console.log( obj.type + " ("+(x0+5)+","+(y0+5)+","+(xw-10)+","+(yh-10)+") "+obj.content);
+
+            }
+        }
+
+        // converts user friendly format into more
+        // verbose but more uniform format,
+        // with content and type fields.
+        function analyseLayout( indent, layout ){
+            var key;
+            for( key in layout ){
+                if( !layout.hasOwnProperty( key ) )
+                        continue;
+                layout.content = layout[key];
+                layout.type = key;
+                delete layout[ key ];
+                console.log( indent+key );
+                break;
+            }
+            if( Containers[key]){
+                for( var i = 0; i < layout.content.length; i++ ){
+                    console.log( indent+"Arg: "+i);
+                    analyseLayout( indent + "   ",layout.content[i] );
+                }
+            }
+        }
+
+
         function loadNewDetails( specFileData ){
             var A=Annotator;
             var lines = specFileData.split("<pre>");
@@ -933,6 +979,9 @@
                     console.log(obj);
                     A.Chart.type = 'boxes';
                     A.Chart.data = obj;
+                    analyseLayout( "",obj[0] );
+                    console.log(obj);
+                    drawLayout( 0,0,400,400, obj[0] );
                 }
 
                 if( item.startsWith("CREDITS")){
@@ -1109,8 +1158,8 @@
         <li><a href="./demos.htm?page=The_Situation_Room&fromwiki=no">The Situation Room</a> - more annotation of an image.  This is a featured image from Wikipedia<br>
         <li><a href="./demos.htm?page=Lunar_Sites&fromwiki=no"> Lunar Sites</a>- <em>(Experimental)</em> A demo where the image is wrapped onto a sphere (no hotspots yet, distorted)
         <li><a href="./demos.htm?page=Köppen_Globe&fromwiki=no"> Climate Zone as Globe</a>- <em>(Experimental)</em> Moon trick done for Köppen Image (no hotpsots yet, distorted)
-    <li><a href="./demos.htm?page=Ocean_Currents&fromwiki=no"> Ocean Currents as Globe</a>- <em>(Experimental)</em> Moon trick done for Ocean Currents Image (no hotpsots yet, distorted)    <!--
-    <li><a href="./demos.htm?page=Flow_Graph"> Flow Graph</a>- <em>(Experimental)</em> Flowchart of Making the Manual - <a href="https://wiki.audacityteam.org/wiki/Toolbox/Flow_Graph">from wiki</a><-->
+    <li><a href="./demos.htm?page=Ocean_Currents&fromwiki=no"> Ocean Currents as Globe</a>- <em>(Experimental)</em> Moon trick done for Ocean Currents Image (no hotpsots yet, distorted)
+    <li><a href="./demos.htm?page=Flow_Graph"> Flow Graph</a>- <em>(Experimental)</em> Flowchart of Making the Manual - <a href="https://wiki.audacityteam.org/wiki/Toolbox/Flow_Graph">from wiki</a>
     </ul>
 
 
