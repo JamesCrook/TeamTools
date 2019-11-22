@@ -26,7 +26,7 @@ The detailed data for the regions, buttons and tooltips follows.
 [[File:1024px-Blausen_0329_EarAnatomy_InternalEar.png]]
 
 <pre>HOTSPOTS</pre>
-[[File:1024px-Blausen_0329_EarAnatomy_InternalEar.png]]
+[[File:1024px-Blausen_0329_EarAnatomy_InternalEarHS.png]]
 
 
 
@@ -54,63 +54,43 @@ The detailed data for the regions, buttons and tooltips follows.
 
 <pre>ZONECOLOURS=
 [
-	[0,100,100,255],
-	[193,95,255,255],
-	[255,95,234,255],
-	[0,20,10,255],
-	[0,20,20,255],
-	[0,20,30,255],
-	[0,20,40,255],
-	[0,20,50,255],
-	[0,20,60,255],
-	[0,20,70,255],
-	[0,20,80,255],
-	[0,20,90,255],
 	[0,20,100,255],
 	[0,20,110,255],
 	[0,20,120,255],
 	[0,20,130,255],
 	[0,20,140,255],
-	[255,95,136,255],
-	[133,95,255,255]
+	[0,20,150,255],
+	[0,20,160,255],
+	[0,20,170,255],
+	[0,20,180,255],
+	[0,20,190,255],
+	[0,20,200,255],
+	[0,20,210,255],
+	[0,20,220,255],
+	[0,20,230,255],
+	[0,20,240,255],
+	[0,20,250,255]
 ]
 </pre>
 
-
 <pre>NEXTZONE:TIP=</pre>
+<h1>[https://en.wikipedia.org/wiki/Inner_ear Inner Ear]</h1><em><p>The cochlear of the inner ear is a spiral shaped organ that has nerve cells that respond to different frequencies of sound.</p><p>Click for Wikipedia article.</p></em>
 
-<h1>[https://en.wikipedia.org/wiki/Ear The Ear]</h1><p><em>Sound is transformed from pressure waves in air to vibrations of tiny bones, to movement in cells that generate electrical impulses in the auditory nerve.</em></p>
-
-<pre>NEXTZONE:TIP=</pre>
-
-<h1>[https://en.wikipedia.org/wiki/Middle_ear Middle Ear]</h1><em><p>The middle ear has tiny bones that transmit pressure from the outer ear to the inner ear.</p><p>Click to learn more.</p></em>
-
-<pre>CLICK LOAD SPEC=Middle_Ear_Anatomy</pre>
+<pre>CLICK GOTO=</pre>
+[https://en.wikipedia.org/wiki/Inner_ear Inner Ear]
 
 
 <pre>NEXTZONE:TIP=</pre>
-<h1>[https://en.wikipedia.org/wiki/Inner_ear Inner Ear]</h1><em><p>The cochlear of the inner ear is a spiral shaped organ that has nerve cells that respond to different frequencies of sound.</p><p>Click to learn more.</p></em>
-
-<pre>CLICK LOAD SPEC=Inner_Ear_Anatomy</pre>
-
-<pre>NEXTZONE:TIP=</pre>
-<h1>[https://en.wikipedia.org/wiki/Elastic_cartilage Elastic Cartilages]</h1>
-<em><p>Elastic cartilage holds the shape of the outer ear.  The shape of the outer ear is important, as it helps collect sounds and aids in determining direction of sound.  Bone would be brittle and at risk of being broken.</p></em>
-
-<pre>HOVER CLICK=Foo</pre>
-[https://en.wikipedia.org/wiki/Elastic_cartilage Elastic Cartilage]
+<h1>Cristae within ampullae</h1>
+<em><p></p></em>
 
 <pre>NEXTZONE:TIP=</pre>
-<h1>[https://en.wikipedia.org/wiki/Ossicles Auditory Ossicles]</h1>
-<em><p>The ossicles are tiny bones that transmit sound from the tympanic membrane to the oval window.  Muscles can [https://en.wikipedia.org/wiki/Acoustic_reflex tighten and slacken] so as to make this system for transmitting sound more or less sensitive.</p></em>
+<h1>Utricle</h1>
+<em><p></p></em>
 
 <pre>NEXTZONE:TIP=</pre>
-<h1>[https://en.wikipedia.org/wiki/Semicircular_canal Semicircular Canals]</h1>
-<em><p>The semicircular canals are concerned with balance and equilibrium</p></em>
-
-<pre>NEXTZONE:TIP=</pre>
-<h1>[https://en.wikipedia.org/wiki/Vestibule_of_the_ear Vestibule]</h1>
-<em><p>The vestibule of the ear is also concerned with balance and equilibrium.  Like the cochlea, it contains 'hair cells' which are sensitive to motion.</p></em>
+<h1>Saccule</h1>
+<em><p></p></em>
 
 <pre>NEXTZONE:TIP=</pre>
 <h1>[https://en.wikipedia.org/wiki/Auditory_nerve Auditory Nerve]</h1>
@@ -121,39 +101,49 @@ The detailed data for the regions, buttons and tooltips follows.
 <em><p>The Cochlea is a spiral shaped organ that has standing waves of sound in it.  The spiral shape is relevant to its ability to sensitively sense different frequencies of sound.</p></em>
 
 <pre>NEXTZONE:TIP=</pre>
-<h1>[https://en.wikipedia.org/wiki/Round_window Round Window]</h1><em><p>The round window helps in equalising the pressure of the fluid in the inner ear.  It moves outwards as the oval window is pushed in, and vice versa.</p></em>
+<h1>Tympanic duct</h1>
+<em><p></p></em>
 
 <pre>NEXTZONE:TIP=</pre>
-<h1>[https://en.wikipedia.org/wiki/Eustachian_tube Auditory Tube]</h1><em><p>The Auditory tube equalises pressure between the inside and outside of the ear.  This is related to the sensation of 'ears popping' when flying.</p></em>
+<h1>Cochlear duct</h1>
+<em><p></p></em>
 
 <pre>NEXTZONE:TIP=</pre>
-<h1>[https://en.wikipedia.org/wiki/Oval_window Oval Window]</h1><em><p>The oval window is a membrane that transmits vibrations in the ossicles to the fluid in the inner ear.  It is oval rather than round, so that it transmits all relevant frequencies.  Were it round, there would be characteristic frequencies that it absorbed more than others.</p></em>
+<h1>Vestibular duct</h1>
+<em><p></p></em>
 
 <pre>NEXTZONE:TIP=</pre>
-<h1>[https://en.wikipedia.org/wiki/Tympanic_cavity Tympanic Cavity]</h1><em><p>The Tympanic Cavity is an air filled region of the inner ear</p></em>
+<h1>Posterior semicircular duct</h1>
+<em><p></p></em>
 
 <pre>NEXTZONE:TIP=</pre>
-<h1>[https://en.wikipedia.org/wiki/Eardrum Tympanic Membrane]</h1><em><p>The Tympanic membrane or ear drum converts vibrations of sound in air to vibrations of the ossicles</p></em>
+<h1>Lateral semicircular duct</h1>
+<em><p></p></em>
 
 <pre>NEXTZONE:TIP=</pre>
-<h1>[https://en.wikipedia.org/wiki/Ear_canal External Acoustic Meatus]</h1><em><p>The ear canal brings sound to the middle ear.  The inner structures of the ear are housed in a bony compartment, whereas the outer ear is outside the skull and uses cartilage to hold its shape.</p></em>
+<h1>Anterior semicircular duct</h1>
+<em><p></p></em>
+
 
 <pre>NEXTZONE:TIP=</pre>
-<h1>[https://en.wikipedia.org/wiki/Auricle_(anatomy) Auricle]</h1><em><p>The auricle is the outermost part of the ear</p></em>
+<h1>[https://en.wikipedia.org/wiki/Semicircular_canal Semicircular ducts]</h1>
+<em><p>The semicircular canals are concerned with balance and equilibrium</p></em>
+
 
 <pre>NEXTZONE:TIP=</pre>
-<h1>[https://en.wikipedia.org/wiki/Ear The Ear]</h1><em><p>Click to go to the wikipedia page on the ear</p></em>
-
-<pre>CLICK GOTO=</pre>
-[https://en.wikipedia.org/wiki/Ear The Ear]
-
-<pre>//There are two zones that 'do the same' as the labels.</pre>
+<h1>Bony labyrinth</h1>
+<em><p></p></em>
 
 <pre>NEXTZONE:TIP=</pre>
-<h1>[https://en.wikipedia.org/wiki/Auricle_(anatomy) Auricle]</h1><em><p>The auricle is the outermost part of the ear</p></em>
+<h1>Membranous labyrinth</h1>
+<em><p></p></em>
 
 <pre>NEXTZONE:TIP=</pre>
-<h1>[https://en.wikipedia.org/wiki/Ear_canal Ear Canal]</h1><em><p>The ear canal <em>(external acoustic meatus)</em> brings sound to the middle ear.  The inner structures of the ear are housed in a bony compartment, whereas the outer ear is outside the skull and uses cartilage to hold its shape.</p></em>
+
+<h1>[https://en.wikipedia.org/wiki/Ear The Ear]</h1><p><em>Sound is transformed from pressure waves in air to vibrations of tiny bones, to movement in cells that generate electrical impulses in the auditory nerve.</em></p>
+<p>Click to go back to the ear.</p>
+
+<pre>CLICK LOAD SPEC=The_Ear</pre>
 
 
 <pre>CREDITS:CAPTION=The Ear;TIP=</pre>
