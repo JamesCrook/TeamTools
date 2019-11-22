@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Automation Images</title>
+    <style type="text/css">
+        h1 { font-size: 2em; }
+        h2 { font-size: 1.5em; }
+        h3 { font-size: 1.17em; }
+        h4 { font-size: 1.12em; }
+        h5 { font-size: .83em; }
+        h6 { font-size: .67em; }
+
+        html *
+        {
+            font-family: Arial;
+        }
+
+        #logoback {
+            transition: all 0.15s;
+            background-color: #edebfc;
+            border: 2px solid;
+            border-color: #edebfc;
+            position:absolute;
+            top:1.25em;
+            left:0.9375em;
+            width:5.75em;
+            height:5.75em;
+            color:black;
+            box-sizing:border-box;
+            line-height:5.75em;
+            border-radius:2.875em;
+            box-shadow:0px 0px 1.25em 1px #000080;"
+
+        }
+        #logoback:hover {
+            /*background-color: #c7cfff;*/
+            border-color: #848ff8;
+        }
+        #logo
+        {
+            position:relative;
+            top:0.5em;
+            left:0.5625em;
+            transition: all 0.1s;
+            width:4.375em;
+            height:4.375em;
+
+        }
+        #logo:hover
+        {
+            /*top:6px;*/
+            /*transform: rotate(10deg);*/
+        }
+        #logo:hover:active {
+            width:5em;
+            height:5em;
+            left:0.25em;
+            top:0.0625em;
+        }
+
+        pre {
+            background-color: #1d2134;
+            color: yellow;
+        }
+        div.bt {
+
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+
+            display:inline-block;
+            color:black;
+            font-size:13px;
+            border: 1px solid;
+            padding:2px 15px 2px 15px;
+            border-color: #8696b2;
+            background-color: #c5d4fc;
+            box-shadow: inset 0 -5px 5px 0 #a6c1e7;
+        }
+        div.bt:hover {
+            cursor: pointer;
+            /*box-shadow: inset 0 -5px 15px 0 #7c94b7;*/
+            background-color: #a9bdff;
+            border-color: #2130ba;
+        }
+        div.bt:hover:active {
+            background-color: #a5c3ee;
+            box-shadow: inset 0 2px 5px 0 #7c94b7;
+        }
+        div.linky {
+            transition: all 0.15s;
+            display:none;
+            background-color: #c5d4fc;
+            border: 2px solid;
+            border-color: #c5d4fc;
+            /*border-color: #8696b2;*/
+            padding:0px 1.25em 0px 1.25em;
+            color:black;
+            height:2.25em;
+            line-height:2.25em;
+            box-sizing:border-box;
+            border-radius:1.25em;
+            margin:0 auto;
+            box-shadow:0 0 20px 1px #000080;
+            cursor: pointer;
+
+        }
+        div.linky:hover {
+           /* background-color: #a5c3ee;*/
+            border-color: #848ff8;
+
+        }
+
+        div.pos-resetter {
+            width:100%;
+            display:inline-block;
+            text-align:center;
+            position:absolute;
+            margin:0 auto;
+        }
+
+        div.detaildiv
+        {
+            padding: 20px;
+            box-sizing: border-box; /* so the div is exactly the requested size.*/
+            border: 1px solid #000;
+            border-radius: 5px;
+            -moz-border-radius: 5px;
+            text-align:left;
+            margin:0px;
+        }
+
+        div a
+        {
+            color: #f5b40b;
+        }
+
+        div.detaildiv a
+        {
+            color: #f5b40b;
+        }
+
+        img.centred {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+            bottom: -9999px;
+            right: -9999px;
+            margin:auto;
+        }
+    </style>
+    <script>
+        console.log( "Protocol is "+window.location.protocol);
+        if (window.location.protocol == "http:"){
+            console.log("Http: detected");
+            if( window.location.href.indexOf("localhost") < 0 )
+                window.location.href = "https:" + window.location.href.slice(5);
+        }
+
+        // MDN Pollyfill for startsWith
+        if (!String.prototype.startsWith) {
+            String.prototype.startsWith = function(searchString, position){
+                position = position || 0;
+                return this.substr(position, searchString.length) === searchString;
+            };
+        }
+
+
+        var Annotator = {};
+
+        var A=Annotator;
+        A.Spec ={}; // the unparsed spec from wiki arrives here.
+        A.Porthole = {};
+        A.Porthole.width = 1024;
+        A.Porthole.height = 567;
+        A.Porthole.margin = 5;
+        A.Image = {};
+        A.Image.imageSrc = './images/AudacityAu19.jpg';
+        A.Hotspots = {};
+        A.Hotspots.imageSrc = './images/AudacityAu19HS.png';
+        A.Focus = {};
+        A.Focus.radius = 150;
+        A.Detail = {};
+        A.Detail.width = 400;
+        A.Detail.height = 300;
+
+        A.AddHot = function( index ){
+            var actions = {};
+            A.Hotspots.Colours[ roundColour(index) ] = actions;
+            A.Hotspots.Current = actions;
+            actions.Zone = A.Hotspots.count++;
+        };
+
+        var Nozone={};
+        Nozone.Zone = 0;
+
+        function resetHotspots(){
+            var A = Annotator;
+            A.Hotspots.Colours = [];
+            A.Hotspots.count = 0;
+            // Bogus entry to catch bad tips.
+            A.AddHot( "[5,0,0,0]" );
+
+            A.Buttons = {};
+            A.Buttons.Names = [];
+            A.Buttons.chosen = -1;
+
+            A.Chart = {};
+            A.Distortion = {};
+        }
+
+        resetHotspots();
+
+
+        A.AddButton = function( text ){
+            A.Buttons.Names.push( text );
+            A.AddHot( "[0,10,"+ A.Buttons.Names.length*5 + ",255]");
+        };
+
+        A.AddInfo = function( ){
+            A.AddHot( "[0,0,5,255]");
+        };
+
+        A.AddDetail = function( text ){
+            A.Hotspots.Current.Tip = text;
+        };
+
+        A.AddHover = function( text ){
+            A.Hotspots.Current.Hover = text;
+        };
+
+        var Status = {};
+        Status.OldHit = -1;
+        Status.imagesToCome = 2;
+
+        var Message;
+        var Message2;
+
+        function recomputePorthole(){
+            var extra = A.Buttons.Names.length ? 25 : 0;
+            A.Porthole.width = A.Backing.img.width;
+            A.Porthole.height = A.Backing.img.height+extra;
+        }
+
+
+        function resizeDivs(){
+            var A = Annotator;
+            A.MainDiv.style.width = A.Porthole.width+'px';
+            A.MainDiv.style.height = A.Porthole.height+'px';
+            A.BackingCanvas.width = A.Porthole.width;
+            A.BackingCanvas.height = A.Porthole.height;
+            A.FocusCanvas.width = A.Porthole.width;
+            A.FocusCanvas.height = A.Porthole.height;
+            A.DetailDiv.style.width = A.Detail.width+'px';
+            A.DetailDiv.style.height = A.Detail.height+'px';
+        }
+
+        function anotherImageReady(){
+            Status.imagesToCome--;
+            if( Status.imagesToCome > 0 )
+                return;
+            drawHotspots();
+            drawBacking();
+            Status.isAppReady = true;
+        }
+
+        function onBackingImage(){
+            recomputePorthole();
+            resizeDivs();
+            anotherImageReady();
+        }
+
+
+        function onHotspotImage(){
+            var A = Annotator;
+            A.Hotspots.canvas.width = A.Hotspots.img.width;
+            A.Hotspots.canvas.height = A.Hotspots.img.height;
+            A.Hotspots.ctx = A.Hotspots.canvas.getContext('2d');
+            anotherImageReady();
+        }
+
+        function onChart(){
+            var A = Annotator;
+            A.Porthole.width = 700;
+            A.Porthole.height = 400;
+            A.Hotspots.canvas.width = A.Porthole.width;
+            A.Hotspots.canvas.height = A.Porthole.height;
+            A.Hotspots.ctx = A.Hotspots.canvas.getContext('2d');
+
+            resizeDivs();
+            if( A.Chart.type == "bars" )
+                drawBarChart();
+            Status.isAppReady = true;
+        }
+
+        function onFailedImage(){
+            alert("Image failed to load");
+        }
+
+        function detailPosFromCursorPos( x,y ){
+            var A = Annotator;
+            var pt = {};
+            // get position as somewhere in range -1..+1
+            var vx = 2.0*x/A.Porthole.width-1;
+            var vy = 2.0*y/A.Porthole.height -1;
+
+            // Detail panel will be hard right or hard left.
+            vx = (vx>0) ? -1:1;
+
+            // Message2.innerHTML = "Vec: ("+vx+","+vy+")";
+            pt.x = (vx+1) * (A.Porthole.width - A.Detail.width) * 0.5;
+            pt.y = (vy+1) * (A.Porthole.height - A.Detail.height) * 0.5;
+
+            return pt;
+        }
+
+        function drawBar( T,values,i,ix ){
+            var A = Annotator;
+            var vx = values[i][ix];
+            var x = i * T.xScaler;
+            var y = vx * T.yScaler;
+            var ctx = A.BackingCanvas.ctx;
+            ctx.beginPath();
+            ctx.rect(T.margin+x+(ix-1)* T.width, T.yh-(T.margin+y), T.width, y);
+            ctx.fillStyle =
+                    (ix!=1)?"rgba(105,205,105,1.0)":"rgba(105,105,205,1.0)";
+            ctx.fill();
+            ctx.stroke();
+        }
+
+        function drawLabel( T,values,i ){
+            var ctx = A.BackingCanvas.ctx;
+            var x = i * T.xScaler+ T.width;
+            var y = -11;
+            ctx.save();
+            ctx.translate(T.margin+x, T.yh-(T.margin+y));
+            ctx.rotate(-Math.PI/4);
+            ctx.textAlign = "right";
+            ctx.fillStyle = "rgba(15,35,165,1.0)";
+            ctx.fillText(values[i][0], 0, 0);
+            ctx.restore();
+        }
+
+        function drawBarChart(){
+            var A = Annotator;
+
+            var xw = A.Porthole.width;
+            var yh = A.Porthole.height;
+            var ctx = A.BackingCanvas.ctx;
+            ctx.beginPath();
+            ctx.fillStyle = "rgba(205,205,205,1.0)";
+            ctx.strokeStyle = "rgba( 55, 55,155,1.0)";
+            ctx.lineWidth = 1;
+
+            ctx.rect(5, 5, xw-10, yh-10);
+            ctx.fill();
+            ctx.stroke();
+
+            var values = A.Chart.data.values;
+            if( values ){
+                var T={};
+                T.xw=xw;
+                T.yh=yh-20;
+                T.count = values.length;
+                T.items = 2;
+                T.margin = 60;
+                T.width = 4;
+                T.spacer = (xw-2*T.margin- T.count* T.width* T.items)/(T.count-1);
+                T.xScaler = (T.width* T.items+ T.spacer);
+                T.yScaler = (yh-2* T.margin)/2000.0;
+                for(i=0;i< T.count;i++){
+                    drawBar( T, values, i, 1 );
+                    drawBar( T, values, i, 2 );
+                    drawLabel( T, values, i );
+                }
+            }
+
+
+
+            drawButtons();
+        }
+
+        function drawHotspots(){
+            var A = Annotator;
+            var extra = A.Buttons.Names.length ? 25 : 0;
+            var img = A.Hotspots.img;
+            A.Hotspots.ctx.drawImage(img, 0, extra, img.width, img.height);
+            drawButtons();
+        }
+
+        // slice is a number from -1 to +1.
+        // source is a number from 0 to 1.
+        function sourceForSlice( slice ){
+            return Math.acos( -slice )/Math.PI;
+        }
+
+        function drawSphere(){
+            var A = Annotator;
+            var img = A.Backing.img;
+            var extra = A.Buttons.Names.length ? 25 : 0;
+            var ctx = A.BackingCanvas.ctx;
+
+            ctx.drawImage(img, 0, extra, img.width, img.height);
+/*
+            ctx.drawImage(img,
+                    img.width/2,0,img.width/2, img.height,
+                    0, extra, img.width/2, img.height);
+            ctx.drawImage(img,
+                    0,0,img.width/2, img.height,
+                    img.width/2, extra, img.width/2, img.height);
+*/
+            var x0 = img.width/2;
+            var rotate = 400;//820;
+
+            var srcData = ctx.getImageData( 0, 0, img.width, img.height);
+            var dstData = ctx.createImageData( img.height,img.height) ;
+
+            var h = Math.floor(img.height/2);
+            var w = Math.floor(img.width/2);
+            var offsets=[];
+            for(i=0;i<img.width;i++){
+                d= Math.floor(Math.asin( i/img.width)*img.width/4)*4;
+                offsets.push(d);
+
+            }
+            for( var y=-h;y<h;y++){
+                var dx= Math.floor(Math.sqrt( h*h - y*y));
+                var srcLine = Math.floor(sourceForSlice(y*1.0/h)*img.height);
+                var srcBase = (srcLine*img.width+rotate) *4;
+                var index = Math.floor((y+img.height/2)*img.height +h-dx)*4;
+                var sign;
+                //console.log( 'row:'+y+' ('+(h-dx)+'..'+(h+dx)+')');
+                for( var x = -dx; x<dx;x++){
+                    sign = (x<0)?-1:1;
+                    var srcIndex = srcBase + sign * offsets[ Math.floor(
+                                    Math.abs(x)*img.width/dx) ];
+
+                    if( srcData.data[srcIndex+3] < 128 ){
+                        dstData.data[index++] = 20;
+                        dstData.data[index++] = 20;
+                        dstData.data[index++] = 110;
+                        dstData.data[index++] = 100;
+                    }
+                    else
+                    {
+                        dstData.data[index++] = srcData.data[srcIndex++];
+                        dstData.data[index++] = srcData.data[srcIndex++];
+                        dstData.data[index++] = srcData.data[srcIndex++];
+                        dstData.data[index++] = srcData.data[srcIndex++];
+                    }
+                }
+            }
+            ctx.clearRect(0,0,img.width,img.height);
+            ctx.putImageData( dstData, x0-img.height/2, 0 );
+        }
+
+        function drawBacking(){
+            var A = Annotator;
+            var img = A.Backing.img;
+            var extra = A.Buttons.Names.length ? 25 : 0;
+            if( A.Distortion.Map )
+                drawSphere();
+            else
+                A.BackingCanvas.ctx.drawImage(img, 0, extra, img.width, img.height);
+            drawButtons();
+        }
+
+        function drawButtons(){
+            var A = Annotator;
+            var xw = 60;
+            var yh = 25;
+            var gap = 9;
+            var n = A.Buttons.Names.length;
+            var m = 1;
+            // grid of n by m buttons, with gaps between them.
+            var x = (A.Porthole.width  - n *(xw+gap) + gap) *0.5;
+            var y = 0;//(A.Porthole.height - m *(yh+gap) + gap) *0.5;
+            var ctx = A.BackingCanvas.ctx;
+            var ctx2 = A.Hotspots.ctx;
+            ctx.lineWidth = 3;
+            ctx.font="16px Arial";
+            ctx.strokeStyle = "rgba( 55, 55,155,1.0)";
+            ctx2.lineWidth = 0;
+
+            var i;
+            for( i=0;i<n;i++){
+                var xx = x + i * (xw + gap);
+                var yy = y + 1;
+                ctx.beginPath();
+                if( (i+1)== A.Buttons.chosen )
+                    ctx.fillStyle = "rgba(255,255,255,1.0)";
+                else
+                    ctx.fillStyle = "rgba(205,205,205,1.0)";
+
+                ctx.rect(xx, yy, xw, yh);
+                ctx.fill();
+                ctx.stroke();
+                ctx.fillStyle = "rgba(0,0,0,1.0)";
+                ctx.fillText(A.Buttons.Names[i], xx+11, yy+18 );
+                ctx2.beginPath();
+                ctx2.fillStyle = "rgba(0,10,"+(i+1)*5+",1.0)";
+                ctx2.rect( x + i*(xw+gap), y+ 0*(yh+gap), xw, yh);
+                ctx2.fill();
+            }
+            drawInfoButtonHotspot();
+        }
+
+        function drawInfoButtonHotspot(){
+            var A = Annotator;
+            var xw = 25;
+            var yh = 25;
+            var x = 5;
+            var y = 5;
+            var ctx2 = A.Hotspots.ctx;
+            ctx2.lineWidth = 0;
+            ctx2.beginPath();
+            ctx2.fillStyle = "rgba(0,0,5,1.0)";
+            ctx2.rect(x, y, xw, yh);
+            ctx2.fill();
+        }
+
+        function drawInfoButton(){
+            var A = Annotator;
+            var xw = 25;
+            var yh = 25;
+            var x = 5;
+            var y = 5;
+            var ctx = A.FocusCanvas.ctx;
+            ctx.lineWidth = 3;
+            ctx.font="20px Times New Roman";
+            ctx.strokeStyle = "rgba( 55, 55,155,1.0)";
+            ctx.globalCompositeOperation = 'source-over';
+
+            ctx.beginPath();
+            ctx.fillStyle = "rgba(255,255,255,1.0)";
+
+            ctx.arc(x+xw/2, y+yh/2, xw/2, 0, Math.PI * 2.0, true);
+            ctx.fill();
+            ctx.stroke();
+            ctx.fillStyle = "rgba(0,0,0,1.0)";
+            ctx.fillText( "i", x+9, y+19 );
+        }
+
+
+        function drawFocusSpot( x, y ){
+            var A = Annotator;
+            var ctx= A.FocusCanvas.ctx;
+            var extra = A.Buttons.Names.length ? 25 : 0;
+
+
+            ctx.globalCompositeOperation = 'source-over';
+            ctx.clearRect(0,0, A.Porthole.width, A.Porthole.height);
+
+            if( y<extra )
+                return;
+
+            var m = A.Porthole.margin;
+            ctx.fillStyle = "rgba( 255,255,255,0.5)";
+
+            ctx.fillRect(m,m+extra, A.Porthole.width-2*m, A.Porthole.height-2*m-extra);
+
+            ctx.fillStyle = "rgba(0,255,255,1.0)";
+            ctx.globalCompositeOperation = 'destination-out';
+
+
+            ctx.beginPath();
+            ctx.arc( x, y, A.Focus.radius, 0, Math.PI * 2.0, true );
+            ctx.closePath();
+            ctx.fill();
+        }
+
+        function roundColour( tuple ){
+            values = JSON.parse( tuple );
+            var result = values.map( function( v ){
+                return Math.floor((v+2.5)/5) *5;});
+            return '['+result.toString() + ']';
+        }
+
+        function removeAdornments(e){
+            if( !Status.isAppReady )
+                return;
+            if( e.shiftKey )
+               return;
+            var A = Annotator;
+            var ctx= A.FocusCanvas.ctx;
+            ctx.globalCompositeOperation = 'source-over';
+            ctx.clearRect(0,0, A.Porthole.width, A.Porthole.height);
+            A.DetailDiv.style.display = "none";
+            Status.OldHit = -1;
+        }
+
+        function actionsFromCursorPos( x, y, flags ){
+            var A=Annotator;
+            if( !A.Hotspots.ctx )
+                return -1;
+            var pixel = A.Hotspots.ctx.getImageData(x,y,1,1).data;
+            var result= "["+pixel[0]+","+pixel[1]+","+pixel[2]+","+pixel[3]+"]";
+            result = roundColour( result );
+            var actions = A.Hotspots.Colours[result] || Nozone;
+            if( Message2 )
+                Message2.innerHTML = "Colour &amp; Zone: rgba" + result + ", Zone "+actions.Zone;
+            if( flags == "log" )
+                console.log( roundColour( result ) + "," );
+            return actions;
+        }
+
+        function setNewImage( url ){
+            var A=Annotator;
+            // rather than adding 1, we set the count to 1.
+            // That's because if we ask too quickly, only the
+            // most recent request will be honoured.
+            Status.imagesToCome=1;
+            A.Backing.img.src = url;
+        }
+
+        function doAction( action ){
+            var A=Annotator;
+            if( action.Action == "Spec" )
+                requestSpec(action.Name, A.fromWiki);
+            else if( action.Action == "Image" )
+                setNewImage(action.Name);
+            else if( action.Action == "Goto" ){
+                window.location.href = action.Name;
+            }
+
+        }
+
+        function mousemoveOnMap(e){
+            if( !Status.isAppReady )
+                return;
+
+            var A=Annotator;
+            if( e.shiftKey )
+                    return;
+
+            var rect = e.target.getBoundingClientRect();
+            var x = e.clientX -rect.left;
+            var y = e.clientY -rect.top;
+            var coordinates = "Coordinates: (" + x + "," + y + ")";
+
+            var pt = detailPosFromCursorPos( x, y);
+
+            drawFocusSpot( x,y );
+            drawInfoButton();
+            var actions = actionsFromCursorPos(x,y);
+            if( Message )
+                Message.innerHTML = coordinates;
+            A.DetailDiv.style.left = pt.x+"px";
+            A.DetailDiv.style.top = pt.y+"px";
+            if( Status.OldHit != actions.Zone ){
+                Status.OldHit = actions.Zone;
+
+                // Update the detail div
+                A.DetailDiv.style.display = ( actions.Tip )?"block":"none";
+                if( actions.Tip){
+                    A.DetailDiv.innerHTML = actions.Tip;
+                }
+                // Do any additional hover action
+                if( actions.Hover ){
+                    A.Buttons.chosen = actions.Zone;
+                    doAction( actions.Hover );
+                }
+            }
+        }
+
+        function onFocusClicked(e){
+            if( !Status.isAppReady )
+                return;
+
+            if( e.shiftKey )
+                return;
+
+            var rect = e.target.getBoundingClientRect();
+            var x = e.clientX -rect.left;
+            var y = e.clientY -rect.top;
+
+            var actions = actionsFromCursorPos(x,y,"log");
+            if( actions.Click ){
+                doAction( actions.Click );
+            }
+        }
+
+
+        function createDomElements(){
+            var A=Annotator;
+            var contentHere= document.getElementById("content_here");
+
+            // Used for debugging messages
+            Message= document.getElementById("message");
+            Message2= document.getElementById("message2");
+
+            // MainDiv contains all the other divs
+            A.MainDiv = document.createElement( "div");
+            // Backing canvas has the image drawn into it
+            A.BackingCanvas = document.createElement( "canvas" );
+            // Focus canvas has the white-out with focus circle
+            A.FocusCanvas = document.createElement( "canvas" );
+            // Detail div floats above the white-out
+            A.DetailDiv = document.createElement( "div" );
+
+            contentHere.appendChild( A.MainDiv );
+            A.MainDiv.appendChild( A.BackingCanvas );
+            A.MainDiv.appendChild( A.FocusCanvas );
+            A.MainDiv.appendChild( A.DetailDiv );
+
+            A.MainDiv.style.position="relative";
+            A.MainDiv.style.display="inline-block";
+            A.MainDiv.style.marginLeft="auto";
+            A.MainDiv.style.marginRight="auto";
+            A.MainDiv.style.overflow="hidden";
+
+            A.BackingCanvas.style.position = "absolute";
+            A.BackingCanvas.style.left = "0px";
+            A.BackingCanvas.style.top = "0px";
+            A.BackingCanvas.ctx = A.BackingCanvas.getContext('2d');
+
+            A.FocusCanvas.onmousemove=mousemoveOnMap;
+            A.FocusCanvas.onmouseout=removeAdornments;
+            A.FocusCanvas.onclick=onFocusClicked;
+
+            A.FocusCanvas.style.position = "absolute";
+            A.FocusCanvas.style.left = "0px";
+            A.FocusCanvas.style.top = "0px";
+            A.FocusCanvas.ctx = A.FocusCanvas.getContext('2d');
+
+            A.DetailDiv.innerHTML="Some Text";
+            A.DetailDiv.style.backgroundColor = "rgba(0,0,0,0.6)";
+            A.DetailDiv.style.position = "absolute";
+            A.DetailDiv.style.left = "0px";
+            A.DetailDiv.style.top = "0px";
+
+            A.DetailDiv.style.display = "none";
+            A.DetailDiv.className = "detaildiv";
+            resizeDivs();
+
+        }
+
+        function updateImages(){
+            if( A.Chart.data ){
+                onChart();
+                return;
+            }
+            Status.imagesToCome=2;
+            A.Hotspots.img.src = A.Hotspots.imageSrc;
+            A.Backing.img.src = A.Image.imageSrc;
+        }
+
+        function addImagesToDom(){
+            var A=Annotator;
+            //Status.isAppReady = true;
+            A.Hotspots.img = document.createElement('img');
+            A.Hotspots.canvas = document.createElement('canvas');
+            A.Hotspots.img.onload = onHotspotImage;
+            A.Hotspots.img.onerror = onFailedImage;
+
+            A.Backing = {};
+            A.Backing.img = document.createElement( "img");
+            A.Backing.img.onload = onBackingImage;
+            A.Backing.img.onerror = onFailedImage;
+            A.Backing.img.className="centred";
+            //updateImages();
+        }
+
+        function setATitle( caption ){
+            var atitle= document.getElementById("atitle");
+            atitle.innerHTML = sanitiseHtml( "<em>"+caption+"</em>" );
+        }
+
+        // finds field value to first ; or </pre>
+        function fieldValue( field, line ){
+            var value = line.split( field+"=" )[1] || "";
+            value = value.split( "</pre>")[0];
+            if( value.indexOf('\n')==-1 )
+                value = value.split( ";")[0];
+
+            return value;
+        }
+
+        function setHover( type, location ){
+            var A=Annotator;
+            var h = A.Hotspots.Current.Hover || {};
+            h.Action = type;
+            h.Name = location;
+            A.Hotspots.Current.Hover=h;
+        }
+
+        function setClick( type, location ){
+            var A=Annotator;
+            var h = A.Hotspots.Current.Click || {};
+            h.Action = type;
+            h.Name = location;
+            A.Hotspots.Current.Click=h;
+        }
+
+        function fixHyperlinks( text ){
+            text = text.split( "[http" );
+            var result=text[0];
+            text[0]="";
+            text.forEach( function( item ){
+                if( item ){
+                    item = item.replace(" ", "'>");
+                    item = item.replace("]", "</a>");
+                    result += "<a href='http" + item;
+                }
+
+            });
+            return result;
+        }
+
+        function sanitiseHtml( html ){
+            html = fixHyperlinks( html );
+            // Whitelist all relevant tags.
+            return html;
+        }
+
+        function loadNewDetails( specFileData ){
+            var A=Annotator;
+            var lines = specFileData.split("<pre>");
+            setATitle("Caption was missing");
+            for(i=0;i<lines.length;i++)
+            {
+                var item=lines[i];
+                var detail = item.split("TIP=</pre>")[1];
+                var file  = item.split( "[[File:")[1] || "";
+                file = file.split( "]]")[0] || "";
+                file = "./images/"+file;
+
+                var spec = item.split( "[[")[1] || "";
+                spec = spec.split( "]]")[0] || spec;
+                spec = spec.split( "|")[0] || spec;
+
+                if( item.startsWith("ZONE:RGBA=(")){
+                    var index = fieldValue( "RGBA", item );
+                    index=index.split(" ").join("");
+                    index=index.replace("(","[");
+                    index=index.replace(")","]");
+                    console.log("color:"+index);
+                    A.AddHot( index );
+                }
+                if( item.startsWith("NEXTZONE:")){
+                    if( A.Hotspots.ColourZones ){
+                        var n = A.Hotspots.ColourZoneIx;
+                        var c= A.Hotspots.ColourZones[n];
+                        A.Hotspots.ColourZoneIx = (n+1)% A.Hotspots.ColourZones.length;
+                        c='['+c[0]+','+c[1]+','+c[2]+','+c[3]+']';
+                        console.log( "next-color:"+ c );
+                        A.AddHot( c );
+                    }
+                }
+                if( item.startsWith("ZONE:LABEL=") ||
+                    item.startsWith("BUTTON:LABEL=")
+                ){
+                    var label = fieldValue( "LABEL",item );
+                    console.log("label:"+label);
+                    A.AddButton( label );
+                    if( !detail )
+                        detail =" ";
+                }
+                if( item.startsWith("HOVER LOAD IMAGE")){
+                    console.log("hover-load-image:"+file);
+                    setHover( "Image", file );
+                }
+                if( item.startsWith("HOVER LOAD SPEC")){
+                    file = ("X"+spec).split("Toolbox/")[1] ||
+                        fieldValue( "SPEC",item );
+                    console.log("hover-load-spec:"+file);
+                    setHover( "Spec", file );
+                }
+                if( item.startsWith("CLICK LOAD IMAGE")){
+                    console.log("click-load-image:"+file);
+                    setClick( "Image", file );
+                }
+                if( item.startsWith("CLICK LOAD SPEC")){
+                    file = ("X"+spec).split("Toolbox/")[1] ||
+                            fieldValue( "SPEC",item );
+                    console.log("click-load-spec:"+file);
+                    setClick( "Spec", file );
+                }
+                if( item.startsWith("CLICK GOTO")){
+                    file = item.split("GOTO=</pre>")[1]||"";
+                    // extract a wiki hyperlink.
+                    file = ("X"+file).split("[")[1] || "";
+                    file = file.split(" ")[0] || file.split("]")[0] || "";
+
+                    console.log("click-goto:"+file);
+                    setClick( "Goto", file );
+                }
+                if( item.startsWith("IMAGE")){
+                    console.log("image:"+file);
+                    A.Image.imageSrc = file;
+                }
+                if( item.startsWith("DISTORTION")){
+                    console.log("distortion:");
+                    A.Distortion.Map = "spherical";
+                }
+                if( item.startsWith("HOTSPOTS")){
+                    console.log("hotspots:"+file);
+                    A.Hotspots.imageSrc = file;
+                }
+                if( item.startsWith("CHART:")){
+                    var data = fieldValue( "DATA",item );
+                    console.log("data:"+data);
+                    var obj = JSON.parse( data );
+                    console.log(obj);
+                    A.Chart.type = 'bars';
+                    A.Chart.data = obj;
+
+                }
+                if( item.startsWith("COLOURSET=")){
+                    var data = fieldValue( "OURSET",item );
+                    console.log("colour-data:"+data);
+                    var obj = JSON.parse( data );
+                    console.log(obj);
+                    A.Hotspots.ColourZones = obj;
+                    A.Hotspots.ColourZoneIx=0;
+                }
+                if( item.startsWith("ZONECOLOURS=")){
+                    var data = fieldValue( "COLOURS",item );
+                    console.log("colour-data:"+data);
+                    var obj = JSON.parse( data );
+                    console.log(obj);
+                    A.Hotspots.ColourZones = obj;
+                    A.Hotspots.ColourZoneIx=0;
+                }
+                if( item.startsWith("FLOWCHART:")){
+                    var data = fieldValue( "DATA",item );
+                    console.log("flow-data:"+data);
+                    var obj = JSON.parse( data );
+                    console.log(obj);
+                    A.Chart.type = 'boxes';
+                    A.Chart.data = obj;
+                }
+
+                if( item.startsWith("CREDITS")){
+                    var caption = fieldValue( "CAPTION",item );
+                    console.log("caption:"+caption);
+                    setATitle( caption );
+                    A.AddInfo();
+                }
+                if( detail ){
+                    detail = sanitiseHtml(detail);
+                    console.log(" <<<" + detail + ">>>");
+                    A.AddDetail(detail);
+                }
+            }
+            updateImages();
+        }
+
+        function handleNewData( data ){
+            var spec = document.getElementById("spec");
+            // for debugging...
+            //spec.innerHTML = data.split("<pre>START</pre>")[1];
+            resetHotspots();
+            loadNewDetails( data );
+        }
+
+        /**
+         * Loads one source file into an item in an array.
+         * @param data
+         * @param action
+         * @param url
+         */
+        function fileActionLoader(data, action, url ){
+            var txtFile = new XMLHttpRequest();
+            // CDNs and Varnish should give us the very latest.
+            txtFile.onreadystatechange = function(){
+                if( this.readyState === 4 && this.status == 200 ){
+                    // data.push({ action: action, value: this.responseText});
+                    handleNewData( this.responseText);
+                }
+            };
+
+            txtFile.open("GET", url , true);
+            //txtFile.setRequestHeader( "Cache-Control", "s-maxage=0" );
+            txtFile.send();
+        }
+
+
+        function requestSpec( source, fromwiki ){
+            var A=Annotator;
+            A.SpecName = source;
+
+            if( fromwiki == 'no'){
+                fileActionLoader("","","./raw/raw_spec_"+source+".txt");
+            } else {
+                var date = new Date();
+                var nMillis = date.getTime();
+                // action=raw to get unprocessed file from wiki.
+                // time=nMillis to avoid issues with cached content.
+                fileActionLoader( "","","https://wiki.audacityteam.org/wiki/Toolbox/"+source+"?action=raw&time=" +
+                        nMillis);
+            }
+
+
+
+        }
+
+        function loadDiagram( source, fromwiki ){
+            var spec = document.getElementById("spec");
+            spec.innerHTML = "";
+            requestSpec( source, fromwiki );
+        }
+
+        function removeFrame(){
+            var doc = document.getElementById("body");
+            doc.innerHTML = '<div id="content_here" style="text-align:center;"></div><div id="atitle" style="text-align:center;"><em>No Hotspot Zones Loaded (Yet)</em></div><div id="spec" style="margin-left:10px"></div>';
+        }
+
+        function getArg( line, arg ){
+            line="&"+line.split('?')[1]||"";
+            line=line.split( '&'+arg+'=' )[1]||"";
+            line=(line+'&').split('&')[0];
+            return line;
+        }
+
+        function isFromServer(){
+            var str = window.location.href;
+            return (str.indexOf( 'localhost' ) != -1)?
+                    "no" :"yes";
+        }
+
+        window.onload = function(){
+
+            var query = window.location.href;
+            var page = getArg( query, 'page' ) || "The_AU19_Crowd";
+// Can't use the following on IE 11.
+//          var url = new URL(query);
+//          var page = url.searchParams.get("page") || "The_AU19_Crowd";
+            var frame = getArg( query, 'frame' ) || "yes";
+
+            A.fromWiki = isFromServer();
+            A.fromWiki = getArg( query, 'fromwiki' ) || A.fromWiki;
+            if( frame == "no" )
+               removeFrame();
+
+            createDomElements();
+            addImagesToDom();
+
+            console.log(page);
+            loadDiagram(page, A.fromWiki);
+            //requestSpec();
+        }
+
+    </script>
+</head>
+<body id="body" style="color:white;background-image:url(images/header-home-bg.jpg);margin:0px;background-attachment:fixed;">
+<div style="width:100%; text-align:center;background:#1d2134;height:5em;margin: 0px;">
+    <h1 style="margin:0px;padding-top:0.65em;padding-bottom:0.9em;"><em>Audacity Tool Kit</em>: Demo Page</h1>
+    <div style="width:100%; text-align:center;background:#303b70;position:relative;height:1.8em;top:-0.6em;box-shadow: inset 0 0px 4px 0px #000080, 0 -2px 7px -2px #618ef4;"></div>
+</div>
+<div style="width:100%;position:relative;top:-0.50em;left:0;display:inline-block;margin:0 auto;height:3em;">
+    <div class='pos-resetter'>
+        <h2 id="click-tip" style="color:#bfbfbf;display:block;position:relative;top:-0.55em;transition:opacity 4s;opacity:1;"><em>Version from 21-Nov-2019</em></h2>
+    </div>
+    <div class='pos-resetter'>
+        <div style="display:inline-block;">
+            <div class='linky' id="manual-url-holder">
+                Manual's URL, here</div> &nbsp;
+            <div class='linky' id="wit-url-holder">
+                WIT's URL, here</div> &nbsp;
+            <div class='linky' id="doxy-url-holder">
+                Doxygen's URL, here</div>
+        </div>
+    </div>
+</div>
+<a  href="https://www.audacityteam.org">
+    <div id="logoback" >
+        <img id='logo' src="images/audacity-logo.png">
+    </div>
+</a>
+<div style="height:1.9em;"></div>
+
+<div id="content_here" style="text-align:center;">
+</div>
+
+<div id="atitle" style="text-align:center;">
+    <em>No Hotspot Zones Loaded (Yet)</em>
+</div>
+
+<div style="margin-left:10px;color:#c2c2c2">
+    <div id="message"></div>
+    <div id="message2"></div>
+</div>
+<div style="margin-left:50px">
+<p>Demos from the Audacity Tool Kit.
+<p> Follow links below to see each of the examples.
+</div>
+<div style="margin-left:10px">
+
+    These examples have their specification in an editable wiki page.  Some are 'works in progress' (wip).
+    <ul>
+    <li><a href="./demos.htm?page=The_AU19_Crowd">The Audacity 2019 Unconference</a> - an annotated image people-identifier - <a href="https://wiki.audacityteam.org/wiki/Toolbox/The_AU19_Crowd">wiki spec</a>, <a href="./demos.htm?page=The_AU19_Crowd&fromwiki=no">no wiki</a><br>
+    <li><a href="./demos.htm?page=Window_Size"> Spectrogram
+    Window-Size Explanation</a> - an interactive diagram about a spectrogram - <a href="https://wiki.audacityteam.org/wiki/Toolbox/Window_Size">wiki spec</a>, <a href="./demos.htm?page=Window_Size&fromwiki=no"> no wiki</a>
+
+    <li><a href="./demos.htm?page=Hotspots"> More about the Focus-Detail tool</a> - shows the coloured hotspots image - <a href="https://wiki.audacityteam.org/wiki/Toolbox/Hotspots">wiki spec</a>, <a href="./demos.htm?page=Hotspots&fromwiki=no">no wiki</a>
+        <li><a href="./demos.htm?page=The_Ear"> The Ear</a>- <em>(wip)</em> using images from Blausen Medical (hotspots in subsidiary images to do &amp; mystery-meat fix) This is three linked image-mapped diagrams, the ear as a whole, and middle and inner ear - <a href="https://wiki.audacityteam.org/wiki/Toolbox/The_Ear">wiki spec</a>, <a href="./demos.htm?page=The_Ear&fromwiki=no">no wiki</a>
+        <li><a href="./demos.htm?page=Bug_Counts"> Bug Counts</a>- <em>(wip)</em> Audacity bug tracking - driven from data in wiki (scales, key and hotspots to do) - <a href="https://wiki.audacityteam.org/wiki/Toolbox/Bug_Counts">wiki spec</a>, <a href="./demos.htm?page=Bug_Counts&fromwiki=no">no wiki</a>
+        <li><a href="./demos.htm?page=Köppen_Climate_Classification"> Köppen Climate Classification</a> - <em>(wip)</em> A demo where the image is already colour coded - <a href="https://wiki.audacityteam.org/wiki/Toolbox/Köppen_Climate_Classification">wiki spec</a>, <a href="./demos.htm?page=Köppen_Climate_Classification&fromwiki=no">no wiki</a></li></ul>
+
+
+
+        These examples have their specification as an ordinary text file.  They could have an editable wiki page if we wanted (by pasting the text file into wiki).
+<ul>
+        <li><a href="./demos.htm?page=The_Situation_Room&fromwiki=no">The Situation Room</a> - more annotation of an image.  This is a featured image from Wikipedia<br>
+        <li><a href="./demos.htm?page=Lunar_Sites&fromwiki=no"> Lunar Sites</a>- <em>(Experimental)</em> A demo where the image is wrapped onto a sphere (no hotspots yet, distorted)
+        <li><a href="./demos.htm?page=Köppen_Globe&fromwiki=no"> Climate Zone as Globe</a>- <em>(Experimental)</em> Moon trick done for Köppen Image (no hotpsots yet, distorted)
+    <li><a href="./demos.htm?page=Ocean_Currents&fromwiki=no"> Ocean Currents as Globe</a>- <em>(Experimental)</em> Moon trick done for Ocean Currents Image (no hotpsots yet, distorted)    <!--
+    <li><a href="./demos.htm?page=Flow_Graph"> Flow Graph</a>- <em>(Experimental)</em> Flowchart of Making the Manual - <a href="https://wiki.audacityteam.org/wiki/Toolbox/Flow_Graph">from wiki</a><-->
+    </ul>
+
+
+<!---
+    <button onclick=loadDiagram('The_Ear')>Load</button> Ear Explanation<br>
+-->
+</div>
+<div id="spec" style="margin-left:10px"></div>
+</body>
+</html>
