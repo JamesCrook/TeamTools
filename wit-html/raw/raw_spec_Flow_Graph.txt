@@ -24,7 +24,7 @@ The detailed data for the regions, buttons and tooltips follows.
                 {"Rectangle":"WIT Menus"}
                 ]},
             {"VStack":[
-                {"SizeAs":3},
+                {"SizeAs":2},
                 {"Circle":"WIT"},
                 {"Rectangle":"Toolbar Images"}
                 ]},
@@ -37,8 +37,9 @@ The detailed data for the regions, buttons and tooltips follows.
             ]},
 
         {"HStack":[
+            {"SizeAs":0.8},
             {"VStack":[
-                {"SizeAs":1.5},
+                {"SizeAs":1.3},
                 {"Circle":"Audacity"},
                 {"Circle":"Scripting"}
                 ]},
@@ -55,7 +56,8 @@ The detailed data for the regions, buttons and tooltips follows.
     {"VStack":[
         {"SizeAs":2},
         {"Circle":"Cut & Paste"},
-        {"Rectangle":"Alpha Manual"}
+        {"Rectangle":"Alpha Manual"},
+        {"Spacer":0.35}
         ]}
     ]}
 </pre>
