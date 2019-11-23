@@ -14,46 +14,50 @@ The detailed data for the regions, buttons and tooltips follows.
 <pre>START</pre>
 
 <pre>FLOWCHART:DATA=
+{"HStack":[
+    {"SizeAs":3},
+    {"VStack":[
+        {"HStack":[
+            {"VStack":[
+                {"Rectangle":"WIT Shortcuts"},
+                {"Rectangle":"WIT Tooltips"},
+                {"Rectangle":"WIT Menus"}
+                ]},
+            {"VStack":[
+                {"SizeAs":3},
+                {"Circle":"WIT"},
+                {"Rectangle":"Toolbar Images"}
+                ]},
+            {"VStack":[
+                {"Rectangle":"Image Templates"},
+                {"Rectangle":"Big Pages"},
+                {"Rectangle":"Menu Images"}
+                ]},
+            {"Spacer":0.5}
+            ]},
 
-{"VStack":[
-    {"HStack":[
-        {"VStack":[
-            {"Rectangle":"WIT Shortcuts"},
-            {"Rectangle":"WIT Tooltips"},
-            {"Rectangle":"WIT Menus"}
-            ]},
-        {"VStack":[
-            {"Circle":"WIT"},
-            {"Rectangle":"Toolbar Images"}
-            ]},
-        {"VStack":[
-            {"Rectangle":"Image Templates"},
-            {"Rectangle":"Big Pages"},
-            {"Rectangle":"Menu Images"}
-            ]},
-        {"Foo":"Bogus"},
-        {"VStack":[
-            {"Circle":"Cut & Paste"},
-            {"Rectangle":"Alpha Manual"}
+        {"HStack":[
+            {"VStack":[
+                {"SizeAs":1.5},
+                {"Circle":"Audacity"},
+                {"Circle":"Scripting"}
+                ]},
+            {"VStack":[
+                {"Rectangle":"Preferences Images"},
+                {"Rectangle":"EGA Images"},
+                {"Rectangle":"Track Images"}
+                ]},
+            {"VStack":[
+                {"Circle":"File Upload"}
+                ]}
             ]}
         ]},
-
-    {"HStack":[
-        {"VStack":[
-            {"Circle":"Audacity"},
-            {"Circle":"Scripting"}
-            ]},
-        {"VStack":[
-            {"Rectangle":"Preferences Images"},
-            {"Rectangle":"EGA Images"},
-            {"Rectangle":"Track Images"}
-            ]},
-        {"VStack":[
-            {"Circle":"File Upload"}
-            ]}
+    {"VStack":[
+        {"SizeAs":2},
+        {"Circle":"Cut & Paste"},
+        {"Rectangle":"Alpha Manual"}
         ]}
     ]}
-
 </pre>
 
 

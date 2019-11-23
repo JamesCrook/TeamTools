@@ -919,10 +919,10 @@
             obj.sizing.min = 0;
             obj.sizing.wants = (proportion===undefined) ? 1.0 : proportion;
             obj.sizing.cumulativeWants=0.0;
-        }
-
-        function halfSizeCell( obj, d, proportion ){
-            sizeCell( obj, d, 0.3);
+            if( d.hasOwnProperty( "sizeAs" )){
+                obj.sizing.wants = d.sizeAs;
+                delete d.sizeAs;
+            }
         }
 
         function sizeContainer(obj,d){
@@ -946,7 +946,18 @@
             "VStack":sizeContainer,
             "HStack":sizeContainer,
 
-            "Foo":halfSizeCell,
+            // SizeAs gives this size to the next object.
+            // The size is normally 1, so 2 will increase
+            // the size, 0.5 will decrease the size.
+            "SizeAs":function(obj,d){
+                sizeCell( obj, d, 0.0);
+                d.sizeAs = obj.content;
+            },
+            // Spacer makes some open space
+            "Spacer":function(obj,d){
+                sizeCell( obj, d, obj.content);
+            },
+
             "Rectangle":sizeCell,
             "Circle":sizeCell
         };
