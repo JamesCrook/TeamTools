@@ -14,45 +14,45 @@ The detailed data for the regions, buttons and tooltips follows.
 <pre>START</pre>
 
 <pre>FLOWCHART:DATA=
- [
- 	{"VStack":[
-	 	{"HStack":[
-		 	{"VStack":[
-		 		{"Rectangle":"WIT Shortcuts"},
-		 		{"Rectangle":"WIT Tooltips"},
-		 		{"Rectangle":"WIT Menus"}
-				]},
-			{"VStack":[
-				{"Circle":"WIT"},
-				{"Rectangle":"Toolbar Images"}
-				]},
-		 	{"VStack":[
-		 		{"Rectangle":"Template to do\nImage maps"},
-		 		{"Rectangle":"Big pages with\nImages on them"},
-		 		{"Rectangle":"Menu images"}
-				]},
-			{"VStack":[
-				{"Circle":"Cut & paste into\nalpha manual always by hand"},
-				{"Rectangle":"Alpha Manual"}
-				]}
-			]},
 
-	 	{"HStack":[
-			{"VStack":[
-				{"Circle":"Audacity"},
-				{"Circle":"Scripting"}
-				]},
-		 	{"VStack":[
-		 		{"Rectangle":"Preferences Images"},
-		 		{"Rectangle":"EGA Images"},
-		 		{"Rectangle":"Track Images"}
-				]},
-			{"VStack":[
-				{"Circle":"File Upload"}
-				]}
-			]}
-		]}
-]
+{"VStack":[
+    {"HStack":[
+        {"VStack":[
+            {"Rectangle":"WIT Shortcuts"},
+            {"Rectangle":"WIT Tooltips"},
+            {"Rectangle":"WIT Menus"}
+            ]},
+        {"VStack":[
+            {"Circle":"WIT"},
+            {"Rectangle":"Toolbar Images"}
+            ]},
+        {"VStack":[
+            {"Rectangle":"Image Templates"},
+            {"Rectangle":"Big pages"},
+            {"Rectangle":"Menu images"}
+            ]},
+        {"VStack":[
+            {"Circle":"Cut & paste"},
+            {"Rectangle":"Alpha Manual"}
+            ]}
+        ]},
+
+    {"HStack":[
+        {"VStack":[
+            {"Circle":"Audacity"},
+            {"Circle":"Scripting"}
+            ]},
+        {"VStack":[
+            {"Rectangle":"Preferences Images"},
+            {"Rectangle":"EGA Images"},
+            {"Rectangle":"Track Images"}
+            ]},
+        {"VStack":[
+            {"Circle":"File Upload"}
+            ]}
+        ]}
+    ]}
+
 </pre>
 
 

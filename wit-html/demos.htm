@@ -294,6 +294,8 @@
             resizeDivs();
             if( A.Chart.type == "bars" )
                 drawBarChart();
+            if( A.Chart.type == "boxes" )
+                drawLayout( 0,0, A.Porthole.width, A.Porthole.height, A.Chart.data );
             Status.isAppReady = true;
         }
 
@@ -508,6 +510,28 @@
             }
             drawInfoButtonHotspot();
         }
+
+        function drawRectangle( x,y,xw,yh, obj )
+        {
+            var A = Annotator;
+            var ctx = A.BackingCanvas.ctx;
+            ctx.lineWidth = 3;
+            ctx.font="16px Arial";
+            ctx.strokeStyle = "rgba( 55, 55,155,1.0)";
+            ctx.globalCompositeOperation = 'source-over';
+
+            ctx.beginPath();
+            ctx.fillStyle = "rgba(255,255,255,1.0)";
+
+            ctx.rect(x, y, xw, yh);
+            ctx.fill();
+            ctx.stroke();
+            ctx.fillStyle = "rgba(0,0,0,1.0)";
+            ctx.fillText( obj, x+9, y+19 );
+
+        }
+
+
 
         function drawInfoButtonHotspot(){
             var A = Annotator;
@@ -836,6 +860,7 @@
                     drawLayout( x0+(i/n)*xw, y0, xw/n, yh, obj.content[i]);
             }else{
                 console.log( obj.type + " ("+(x0+5)+","+(y0+5)+","+(xw-10)+","+(yh-10)+") "+obj.content);
+                drawRectangle( x0+5, y0+5, xw-10, yh-10, obj.content);
 
             }
         }
@@ -979,9 +1004,8 @@
                     console.log(obj);
                     A.Chart.type = 'boxes';
                     A.Chart.data = obj;
-                    analyseLayout( "",obj[0] );
+                    analyseLayout( "",obj );
                     console.log(obj);
-                    drawLayout( 0,0,400,400, obj[0] );
                 }
 
                 if( item.startsWith("CREDITS")){
