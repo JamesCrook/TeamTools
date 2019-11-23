@@ -523,18 +523,46 @@
             ctx.strokeStyle = "rgba( 55, 55,155,1.0)";
             ctx.globalCompositeOperation = 'source-over';
 
+            ctx.save();
             ctx.beginPath();
             ctx.fillStyle = "rgba(255,255,255,1.0)";
 
             ctx.rect(x, y, xw, yh);
             ctx.fill();
             ctx.stroke();
+            ctx.textAlign = "center";
+
             ctx.fillStyle = "rgba(0,0,0,1.0)";
-            ctx.fillText( obj, x+9, y+19 );
+            ctx.fillText( obj, x+xw/2, y+yh/2+6 );
+            ctx.restore();
 
         }
 
+        function drawCircle( x,y,xw,yh, obj )
+        {
+            var A = Annotator;
+            var ctx = A.BackingCanvas.ctx;
+            ctx.lineWidth = 3;
+            ctx.font="16px Arial";
+            ctx.strokeStyle = "rgba( 55, 55,155,1.0)";
+            ctx.globalCompositeOperation = 'source-over';
 
+            ctx.save();
+            ctx.beginPath();
+            ctx.fillStyle = "rgba(255,255,255,1.0)";
+
+            var r = Math.min( xw, yh )/2;
+            ctx.arc(x+xw/2, y+yh/2, r, 0, Math.PI * 2.0, true);
+            ctx.fill();
+            ctx.stroke();
+
+            ctx.textAlign = "center";
+
+            ctx.fillStyle = "rgba(0,0,0,1.0)";
+            ctx.fillText( obj, x+xw/2, y+yh/2+6 );
+            ctx.restore();
+
+        }
 
         function drawInfoButtonHotspot(){
             var A = Annotator;
@@ -872,10 +900,50 @@
             "Circle":function(obj,d){
                 console.log( "draw - "+obj.type);
                 var l = obj.layout;
-                drawRectangle(l.x0, l.y0, l.xw, l.yh, obj.content);
+                drawCircle(l.x0, l.y0, l.xw, l.yh, obj.content);
             }
-
         };
+
+
+        function sizeCells( obj, data ){
+            visit( sizeThing, obj, data );
+        }
+
+        function sizeCell( obj, d, proportion ){
+            console.log( "size cell - "+obj.type);
+            obj.sizing = {};
+            obj.sizing.min = 0;
+            obj.sizing.wants = (proportion===undefined) ? 1.0 : proportion;
+            obj.sizing.cumulativeWants=0.0;
+        }
+
+        function sizeContainer(obj,d){
+            console.log( "size container - "+obj.type);
+            var n = obj.content.length;
+            sizeCell( obj,d, 0.0 );
+            for( var i=0;i<n;i++ ){
+                var o2 = obj.content[i];
+                sizeCells(o2, d);
+                obj.sizing.min += o2.sizing.min;
+                obj.sizing.cumulativeWants += o2.sizing.wants;
+            }
+        }
+
+        sizeThing = {
+            "default":function(obj,d){
+                console.log( "size (default) - "+obj.type);
+                sizeCell( obj, d, 0.0);
+
+            },
+            "VStack":sizeContainer,
+            "HStack":sizeContainer,
+
+            "Rectangle":sizeCell,
+            "Circle":sizeCell
+        };
+
+
+
 
         function layoutCell( x0, y0, xw, yh, obj ){
             obj.layout = { "x0":x0,"y0":y0, "xw":xw, "yh":yh};
