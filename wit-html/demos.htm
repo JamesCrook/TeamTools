@@ -294,8 +294,11 @@
             resizeDivs();
             if( A.Chart.type == "bars" )
                 drawBarChart();
-            if( A.Chart.type == "boxes" )
-                drawLayout( 0,0, A.Porthole.width, A.Porthole.height, A.Chart.data );
+            if( A.Chart.type == "boxes" ){
+                layoutCells(0, 0, A.Porthole.width, A.Porthole.height, A.Chart.data);
+                console.log(A.Chart.data );
+                drawCells(A.Chart.data, {});
+            }
             Status.isAppReady = true;
         }
 
@@ -841,34 +844,108 @@
             return html;
         }
 
-        Containers = {};
-        Containers.VStack = true;
-        Containers.HStack = true;
 
 
-        function drawLayout( x0,y0,xw,yh,obj){
-            //console.log("Draw Layout at "+x0+","+y0+" "+xw+" x " + yh);
-            //console.log( obj );
-            var n = obj.content.length;
-            var i;
-            if( obj.type == "VStack" ){
-                for( i=0;i<obj.content.length;i++ )
-                    drawLayout( x0, y0+(i/n)*yh, xw, yh/n, obj.content[i]);
-            }
-            else if( obj.type == "HStack" ){
-                for( i=0;i<obj.content.length; i++ )
-                    drawLayout( x0+(i/n)*xw, y0, xw/n, yh, obj.content[i]);
-            }else{
-                console.log( obj.type + " ("+(x0+5)+","+(y0+5)+","+(xw-10)+","+(yh-10)+") "+obj.content);
-                drawRectangle( x0+5, y0+5, xw-10, yh-10, obj.content);
-
-            }
+        function drawCells( obj, data ){
+            visit( drawThing, obj, data );
         }
+
+        function drawContainer(obj,d){
+            console.log( "draw container - "+obj.type);
+            var n = obj.content.length;
+            for( var i=0;i<n;i++ )
+                drawCells(obj.content[i],d );
+        }
+
+        drawThing = {
+            "default":function(obj,d){
+                console.log( "draw (default) - "+obj.type);
+            },
+            "VStack":drawContainer,
+            "HStack":drawContainer,
+
+            "Rectangle":function(obj,d){
+                console.log( "draw - "+obj.type);
+                var l = obj.layout;
+                drawRectangle(l.x0, l.y0, l.xw, l.yh, obj.content);
+            },
+            "Circle":function(obj,d){
+                console.log( "draw - "+obj.type);
+                var l = obj.layout;
+                drawRectangle(l.x0, l.y0, l.xw, l.yh, obj.content);
+            }
+
+        };
+
+        function layoutCell( x0, y0, xw, yh, obj ){
+            obj.layout = { "x0":x0,"y0":y0, "xw":xw, "yh":yh};
+        }
+
+        function layoutCells( x0, y0, xw, yh, obj ){
+            layoutCell( x0, y0, xw, yh, obj );
+            visit( layoutThing, obj, obj.layout );
+        }
+
+        layoutThing = {
+            "default":function(obj,d){
+                console.log( "layout (default) - "+obj.type);
+            },
+            "VStack":function(obj,d){
+                console.log( "layout - "+obj.type);
+                var n = obj.content.length;
+                for( var i=0;i<n;i++ )
+                    layoutCells(
+                            d.x0, d.y0+(i/n)* d.yh,
+                            d.xw, d.yh/n, obj.content[i] );
+            },
+            "HStack":function(obj,d){
+                console.log( "layout - "+obj.type);
+                var n = obj.content.length;
+                for( var i=0;i<n;i++ )
+                    layoutCells(
+                            d.x0+(i/n)* d.xw, d.y0,
+                            d.xw/n, d.yh, obj.content[i] );
+            },
+            "Rectangle":function(obj,d){
+                console.log( "layout - "+obj.type);
+                layoutCell(d.x0+5, d.y0+5, d.xw-10, d.yh-10, obj);
+            },
+            "Circle":function(obj,d){
+                console.log( "layout - "+obj.type);
+                layoutCell(d.x0+5, d.y0+5, d.xw-10, d.yh-10, obj);
+            }
+
+        };
+
+
+
+
+
+
 
         // converts user friendly format into more
         // verbose but more uniform format,
         // with content and type fields.
-        function analyseLayout( indent, layout ){
+
+
+        // @how has a function for each type of object
+        // @what is an object to visit
+        // @data carries extra information into the function
+        function visit( how, what, data ){
+            if( how[ what.type ] ){
+                how[ what.type].call( how, what, data );}
+            else
+                how.default.call( how, what, data );
+        }
+
+        // Used to tell the convert function which
+        // are containers to recurse into.
+        Containers = {};
+        Containers.VStack = true;
+        Containers.HStack = true;
+
+        function convertJsonStructure( indent, layout )
+        {
             var key;
             for( key in layout ){
                 if( !layout.hasOwnProperty( key ) )
@@ -882,13 +959,13 @@
             if( Containers[key]){
                 for( var i = 0; i < layout.content.length; i++ ){
                     console.log( indent+"Arg: "+i);
-                    analyseLayout( indent + "   ",layout.content[i] );
+                    convertJsonStructure( indent + "   ",layout.content[i] );
                 }
             }
         }
 
 
-        function loadNewDetails( specFileData ){
+         function loadNewDetails( specFileData ){
             var A=Annotator;
             var lines = specFileData.split("<pre>");
             setATitle("Caption was missing");
@@ -1004,7 +1081,7 @@
                     console.log(obj);
                     A.Chart.type = 'boxes';
                     A.Chart.data = obj;
-                    analyseLayout( "",obj );
+                    convertJsonStructure( "",obj );
                     console.log(obj);
                 }
 
@@ -1023,7 +1100,7 @@
             updateImages();
         }
 
-        function handleNewData( data ){
+         function handleNewData( data ){
             var spec = document.getElementById("spec");
             // for debugging...
             //spec.innerHTML = data.split("<pre>START</pre>")[1];
@@ -1031,8 +1108,11 @@
             loadNewDetails( data );
         }
 
-        /**
+         /**
          * Loads one source file into an item in an array.
+         * @param data
+         * @param action
+         * @param url
          * @param data
          * @param action
          * @param url

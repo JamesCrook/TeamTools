@@ -28,11 +28,11 @@ The detailed data for the regions, buttons and tooltips follows.
             ]},
         {"VStack":[
             {"Rectangle":"Image Templates"},
-            {"Rectangle":"Big pages"},
-            {"Rectangle":"Menu images"}
+            {"Rectangle":"Big Pages"},
+            {"Rectangle":"Menu Images"}
             ]},
         {"VStack":[
-            {"Circle":"Cut & paste"},
+            {"Circle":"Cut & Paste"},
             {"Rectangle":"Alpha Manual"}
             ]}
         ]},
