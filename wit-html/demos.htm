@@ -295,7 +295,10 @@
             if( A.Chart.type == "bars" )
                 drawBarChart();
             if( A.Chart.type == "boxes" ){
-                layoutCells(0, 0, A.Porthole.width, A.Porthole.height, A.Chart.data);
+                var d={};
+                sizeCells(A.Chart.data,d);
+                d.margins=10;
+                layoutCells(0, 0, A.Porthole.width, A.Porthole.height, A.Chart.data,d);
                 console.log(A.Chart.data );
                 drawCells(A.Chart.data, {});
             }
@@ -907,6 +910,7 @@
 
         function sizeCells( obj, data ){
             visit( sizeThing, obj, data );
+            console.log( obj.sizing);
         }
 
         function sizeCell( obj, d, proportion ){
@@ -917,10 +921,14 @@
             obj.sizing.cumulativeWants=0.0;
         }
 
+        function halfSizeCell( obj, d, proportion ){
+            sizeCell( obj, d, 0.3);
+        }
+
         function sizeContainer(obj,d){
             console.log( "size container - "+obj.type);
             var n = obj.content.length;
-            sizeCell( obj,d, 0.0 );
+            sizeCell( obj,d );
             for( var i=0;i<n;i++ ){
                 var o2 = obj.content[i];
                 sizeCells(o2, d);
@@ -938,6 +946,7 @@
             "VStack":sizeContainer,
             "HStack":sizeContainer,
 
+            "Foo":halfSizeCell,
             "Rectangle":sizeCell,
             "Circle":sizeCell
         };
@@ -945,13 +954,14 @@
 
 
 
-        function layoutCell( x0, y0, xw, yh, obj ){
+        function layoutCell( x0, y0, xw, yh, obj, d ){
             obj.layout = { "x0":x0,"y0":y0, "xw":xw, "yh":yh};
+            console.log( obj.layout );
         }
 
-        function layoutCells( x0, y0, xw, yh, obj ){
-            layoutCell( x0, y0, xw, yh, obj );
-            visit( layoutThing, obj, obj.layout );
+        function layoutCells( x0, y0, xw, yh, obj, d ){
+            layoutCell( x0, y0, xw, yh, obj, d );
+            visit( layoutThing, obj, d );
         }
 
         layoutThing = {
@@ -961,26 +971,40 @@
             "VStack":function(obj,d){
                 console.log( "layout - "+obj.type);
                 var n = obj.content.length;
-                for( var i=0;i<n;i++ )
-                    layoutCells(
-                            d.x0, d.y0+(i/n)* d.yh,
-                            d.xw, d.yh/n, obj.content[i] );
+                var l = obj.layout;
+                var k = obj.sizing.cumulativeWants;
+                console.log( "n: "+n+", k:"+k);
+                var wantsSoFar = 0.0;
+                for( var i=0;i<n;i++ ){
+                    var want = obj.content[i].sizing.wants;
+                    layoutCells(l.x0, l.y0 + (wantsSoFar / k) * l.yh, l.xw, l.yh * (want/k), obj.content[i], d);
+                    wantsSoFar += want;
+                }
             },
             "HStack":function(obj,d){
                 console.log( "layout - "+obj.type);
                 var n = obj.content.length;
-                for( var i=0;i<n;i++ )
-                    layoutCells(
-                            d.x0+(i/n)* d.xw, d.y0,
-                            d.xw/n, d.yh, obj.content[i] );
+                var l = obj.layout;
+                var k = obj.sizing.cumulativeWants;
+                console.log( "n: "+n+", k:"+k);
+                var wantsSoFar = 0.0;
+                for( var i=0;i<n;i++ ){
+                    var want = obj.content[i].sizing.wants;
+                    layoutCells(l.x0 + (wantsSoFar / k) * l.xw, l.y0, l.xw * (want/k), l.yh, obj.content[i], d);
+                    wantsSoFar += want;
+                }
             },
             "Rectangle":function(obj,d){
                 console.log( "layout - "+obj.type);
-                layoutCell(d.x0+5, d.y0+5, d.xw-10, d.yh-10, obj);
+                var m = d.margins;
+                var l = obj.layout;
+                layoutCell(l.x0+m, l.y0+m, l.xw-2*m, l.yh-2*m, obj,d);
             },
             "Circle":function(obj,d){
                 console.log( "layout - "+obj.type);
-                layoutCell(d.x0+5, d.y0+5, d.xw-10, d.yh-10, obj);
+                var m = 5;
+                var l = obj.layout;
+                layoutCell(l.x0+m, l.y0+m, l.xw-2*m, l.yh-2*m, obj,d);
             }
 
         };

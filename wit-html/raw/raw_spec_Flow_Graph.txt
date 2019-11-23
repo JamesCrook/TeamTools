@@ -31,6 +31,7 @@ The detailed data for the regions, buttons and tooltips follows.
             {"Rectangle":"Big Pages"},
             {"Rectangle":"Menu Images"}
             ]},
+        {"Foo":"Bogus"},
         {"VStack":[
             {"Circle":"Cut & Paste"},
             {"Rectangle":"Alpha Manual"}
