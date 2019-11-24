@@ -804,6 +804,8 @@
                     A.Buttons.chosen = actions.Zone;
                     doAction( actions.Hover );
                 }
+                e.target.style.cursor =
+                    actions.Click ? 'pointer' : 'auto';
             }
         }
 
