@@ -907,9 +907,12 @@
             //updateImages();
         }
 
-        function setATitle( caption ){
+        function setATitle( caption, page, fromWiki ){
             var atitle= document.getElementById("atitle");
-            atitle.innerHTML = sanitiseHtml( "<em>"+caption+"</em>" );
+            var str = "<em>"+caption+"</em>";
+            if( page )
+                str+=" &nbsp; [ <a href='https://wiki.audacityteam.org/w/index.php?title=Toolbox/"+page+"&action=edit'>edit</a> ]";
+            atitle.innerHTML = sanitiseHtml( str );
         }
 
         // finds field value to first ; or </pre>
@@ -1323,9 +1326,10 @@
                 }
 
                 if( item.startsWith("CREDITS")){
-                    var caption = fieldValue( "CAPTION",item );
-                    console.log("caption:"+caption);
-                    setATitle( caption );
+                    A.caption = fieldValue( "CAPTION",item );
+                    console.log("caption:"+ A.caption);
+                    setATitle(A.caption, A.page, A.fromWiki );
+                    // Reserve a colour for the info button.
                     A.AddInfo();
                 }
                 if( detail ){
@@ -1416,7 +1420,7 @@
         window.onload = function(){
 
             var query = window.location.href;
-            var page = getArg( query, 'page' ) || "The_AU19_Crowd";
+            A.page = getArg( query, 'page' ) || "The_AU19_Crowd";
 // Can't use the following on IE 11.
 //          var url = new URL(query);
 //          var page = url.searchParams.get("page") || "The_AU19_Crowd";
@@ -1430,8 +1434,8 @@
             createDomElements();
             addImagesToDom();
 
-            console.log(page);
-            loadDiagram(page, A.fromWiki);
+            console.log(A.page);
+            loadDiagram(A.page, A.fromWiki);
             //requestSpec();
         }
 
