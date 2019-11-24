@@ -190,6 +190,7 @@
 
         A.AddHot = function( index ){
             var actions = {};
+            A.Hotspots.Colours[ index ] = actions;
             A.Hotspots.Colours[ roundColour(index) ] = actions;
             A.Hotspots.Current = actions;
             actions.Zone = A.Hotspots.count++;
@@ -287,6 +288,8 @@
             var A = Annotator;
             A.Porthole.width = 700;
             A.Porthole.height = 400;
+            A.Detail.width = A.Porthole.width / 2-10;
+            A.Detail.height = A.Porthole.height -100;
             A.Hotspots.canvas.width = A.Porthole.width;
             A.Hotspots.canvas.height = A.Porthole.height;
             A.Hotspots.ctx = A.Hotspots.canvas.getContext('2d');
@@ -303,6 +306,7 @@
                 drawArrows();
                 drawCells(A.Chart.data, {});
             }
+            drawButtons();
             Status.isAppReady = true;
         }
 
@@ -387,10 +391,6 @@
                     drawLabel( T, values, i );
                 }
             }
-
-
-
-            drawButtons();
         }
 
         function drawHotspots(){
@@ -581,7 +581,13 @@
             ctx.fillStyle = "rgba(0,0,0,1.0)";
             ctx.fillText( obj.content, x+xw/2, y+yh/2+6 );
             ctx.restore();
-
+            if( obj.hotspotColour ){
+                var ctx2 = A.Hotspots.ctx;
+                ctx2.beginPath();
+                ctx2.rect(x, y, xw, yh);
+                ctx2.fillStyle = obj.hotspotColour;
+                ctx2.fill();
+            }
         }
 
         function drawCircle( x,y,xw,yh, obj )
@@ -605,7 +611,13 @@
             ctx.fillStyle = "rgba(0,0,0,1.0)";
             ctx.fillText( obj.content, x+xw/2, y+yh/2+6 );
             ctx.restore();
-
+            if( obj.hotspotColour ){
+                var ctx2 = A.Hotspots.ctx;
+                ctx2.beginPath();
+                ctx2.arc(x+xw/2, y+yh/2, r, 0, Math.PI * 2.0, true);
+                ctx2.fillStyle = obj.hotspotColour;
+                ctx2.fill();
+            }
         }
 
         function drawInfoButtonHotspot(){
@@ -695,10 +707,15 @@
         }
 
         function roundColour( tuple ){
-            values = JSON.parse( tuple );
+            var values = JSON.parse( tuple );
             var result = values.map( function( v ){
                 return Math.floor((v+2.5)/5) *5;});
             return '['+result.toString() + ']';
+        }
+
+        function rgbOfColourTuple( tuple ){
+            var v = JSON.parse( tuple );
+            return "rgba("+v[0]+","+v[1]+","+v[2]+","+v[3]+")";
         }
 
         function removeAdornments(e){
@@ -720,8 +737,10 @@
                 return -1;
             var pixel = A.Hotspots.ctx.getImageData(x,y,1,1).data;
             var result= "["+pixel[0]+","+pixel[1]+","+pixel[2]+","+pixel[3]+"]";
-            result = roundColour( result );
-            var actions = A.Hotspots.Colours[result] || Nozone;
+            var actions =
+                    A.Hotspots.Colours[result] ||
+                    A.Hotspots.Colours[roundColour( result )] ||
+                    Nozone;
             if( Message2 )
                 Message2.innerHTML = "Colour &amp; Zone: rgba" + result + ", Zone "+actions.Zone;
             if( flags == "log" )
@@ -1283,8 +1302,14 @@
                     data = fieldValue("CORNER_RADIUS",item);
                     if( data && (!isNaN(Number(data))))
                         obj.corner_radius = Number(data);
-
-
+                    if( detail ){
+                        // Note that Chrome and other
+                        // browsers may not preserve the
+                        // alpha exactly.
+                        var c="["+(n+2)+",21,0,255]";
+                        obj.hotspotColour = rgbOfColourTuple(c);
+                        A.AddHot(c);
+                    }
                 }
 
                 if( item.startsWith("ARROWS:")){
