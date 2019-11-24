@@ -300,6 +300,7 @@
                 d.margins=10;
                 layoutCells(0, 0, A.Porthole.width, A.Porthole.height, A.Chart.data,d);
                 console.log(A.Chart.data );
+                drawArrows();
                 drawCells(A.Chart.data, {});
             }
             Status.isAppReady = true;
@@ -517,26 +518,68 @@
             drawInfoButtonHotspot();
         }
 
+        function roundRect(ctx, x, y, w, h, r) {
+            if (w < 2*r) r = w / 2;
+            if (h < 2*r) r = h / 2;
+            ctx.beginPath();
+            ctx.moveTo(x+r, y);
+            ctx.arcTo(x+w, y,   x+w, y+h, r);
+            ctx.arcTo(x+w, y+h, x,   y+h, r);
+            ctx.arcTo(x,   y+h, x,   y,   r);
+            ctx.arcTo(x,   y,   x+w, y,   r);
+            ctx.closePath();
+        }
+
+        function setStyles( ctx, obj ){
+            ctx.lineWidth = 3;
+            ctx.font="16px Arial";
+            ctx.globalCompositeOperation = 'source-over';
+
+            if( obj.colour )
+                ctx.fillStyle = obj.colour;
+            else
+                ctx.fillStyle = "rgba(255,255,255,1.0)";
+
+            if( obj.bcolour )
+                ctx.strokeStyle = obj.bcolour;
+            else
+                ctx.strokeStyle = "rgba( 55, 55,155,1.0)";
+        }
+
+        function drawArrow( obj1, obj2 ){
+            var A = Annotator;
+            var ctx = A.BackingCanvas.ctx;
+            var x1 = obj1.layout.x0 + obj1.layout.xw/2;
+            var x2 = obj2.layout.x0 + obj2.layout.xw/2;
+            var y1 = obj1.layout.y0 + obj1.layout.yh/2;
+            var y2 = obj2.layout.y0 + obj2.layout.yh/2;
+            ctx.beginPath();
+            ctx.strokeStyle = "rgba(0,0,0,1.0)";
+            ctx.lineWidth = 3;
+            ctx.moveTo( x1,y1);
+            ctx.lineTo( x2,y2);
+            ctx.stroke();
+        }
+
         function drawRectangle( x,y,xw,yh, obj )
         {
             var A = Annotator;
             var ctx = A.BackingCanvas.ctx;
-            ctx.lineWidth = 3;
-            ctx.font="16px Arial";
-            ctx.strokeStyle = "rgba( 55, 55,155,1.0)";
-            ctx.globalCompositeOperation = 'source-over';
 
             ctx.save();
             ctx.beginPath();
-            ctx.fillStyle = "rgba(255,255,255,1.0)";
 
-            ctx.rect(x, y, xw, yh);
+            setStyles( ctx, obj );
+            if( obj.corner_radius )
+                roundRect( ctx, x,y,xw,yh, obj.corner_radius);
+            else
+                ctx.rect(x, y, xw, yh);
             ctx.fill();
             ctx.stroke();
-            ctx.textAlign = "center";
 
+            ctx.textAlign = "center";
             ctx.fillStyle = "rgba(0,0,0,1.0)";
-            ctx.fillText( obj, x+xw/2, y+yh/2+6 );
+            ctx.fillText( obj.content, x+xw/2, y+yh/2+6 );
             ctx.restore();
 
         }
@@ -547,12 +590,11 @@
             var ctx = A.BackingCanvas.ctx;
             ctx.lineWidth = 3;
             ctx.font="16px Arial";
-            ctx.strokeStyle = "rgba( 55, 55,155,1.0)";
             ctx.globalCompositeOperation = 'source-over';
 
             ctx.save();
             ctx.beginPath();
-            ctx.fillStyle = "rgba(255,255,255,1.0)";
+            setStyles( ctx, obj );
 
             var r = Math.min( xw, yh )/2;
             ctx.arc(x+xw/2, y+yh/2, r, 0, Math.PI * 2.0, true);
@@ -560,9 +602,8 @@
             ctx.stroke();
 
             ctx.textAlign = "center";
-
             ctx.fillStyle = "rgba(0,0,0,1.0)";
-            ctx.fillText( obj, x+xw/2, y+yh/2+6 );
+            ctx.fillText( obj.content, x+xw/2, y+yh/2+6 );
             ctx.restore();
 
         }
@@ -579,6 +620,28 @@
             ctx2.fillStyle = "rgba(0,0,5,1.0)";
             ctx2.rect(x, y, xw, yh);
             ctx2.fill();
+        }
+
+
+        function objFromId( id ){
+            if( !isDefined( id ))
+                return id;
+            var A = Annotator;
+            return A.Chart.objectDict[ id.substr(0,10)];
+        }
+
+        function drawArrows(){
+            var A = Annotator;
+            var arrows = A.Chart.arrows;
+            if( !isDefined( arrows ))
+                return;
+            for(i=0;i<arrows.length;i+=2){
+                var obj1 = objFromId( arrows[i] );
+                var obj2 = objFromId( arrows[i+1] );
+                if( !isDefined( obj1 ) || !isDefined( obj2))
+                        return;
+                drawArrow( obj1, obj2 );
+            }
         }
 
         function drawInfoButton(){
@@ -898,12 +961,12 @@
             "Rectangle":function(obj,d){
                 console.log( "draw - "+obj.type);
                 var l = obj.layout;
-                drawRectangle(l.x0, l.y0, l.xw, l.yh, obj.content);
+                drawRectangle(l.x0, l.y0, l.xw, l.yh, obj);
             },
             "Circle":function(obj,d){
                 console.log( "draw - "+obj.type);
                 var l = obj.layout;
-                drawCircle(l.x0, l.y0, l.xw, l.yh, obj.content);
+                drawCircle(l.x0, l.y0, l.xw, l.yh, obj);
             }
         };
 
@@ -1047,6 +1110,7 @@
         Containers.VStack = true;
         Containers.HStack = true;
 
+
         function convertJsonStructure( indent, layout )
         {
             var key;
@@ -1056,6 +1120,11 @@
                 layout.content = layout[key];
                 layout.type = key;
                 delete layout[ key ];
+                if( (typeof layout.content) == "string" ){
+                    layout.id = layout.content.substr(0, 10);
+                    A.Chart.objectDict[layout.id] = layout;
+                    A.Chart.objectList.push( layout );
+                }
                 console.log( indent+key );
                 break;
             }
@@ -1065,6 +1134,11 @@
                     convertJsonStructure( indent + "   ",layout.content[i] );
                 }
             }
+        }
+
+        function isDefined( x ){
+            var undef;
+            return x !== undef;
         }
 
 
@@ -1181,11 +1255,44 @@
                     var data = fieldValue( "DATA",item );
                     console.log("flow-data:"+data);
                     var obj = JSON.parse( data );
-                    console.log(obj);
+                    //console.log(obj);
                     A.Chart.type = 'boxes';
                     A.Chart.data = obj;
+                    A.Chart.itemIndex = 0;
+                    A.Chart.objectDict = {};
+                    A.Chart.objectList = [];
+
                     convertJsonStructure( "",obj );
+                    //console.log(obj);
+                }
+                if( item.startsWith("NEXTOBJECT:") ){
+                    if( !isDefined( A.Chart.objectList ))
+                            continue;
+                    var n = A.Chart.itemIndex++;
+                    obj = A.Chart.objectList[n];
+                    if( !isDefined( obj ) )
+                            continue;
+
+                    var data;
+                    data = fieldValue("COLOUR",item);
+                    if( data )
+                        obj.colour=data;
+                    data = fieldValue("BCOLOUR",item);
+                    if( data )
+                        obj.bcolour=data;
+                    data = fieldValue("CORNER_RADIUS",item);
+                    if( data && (!isNaN(Number(data))))
+                        obj.corner_radius = Number(data);
+
+
+                }
+
+                if( item.startsWith("ARROWS:")){
+                    var data = fieldValue( "DATA",item );
+                    console.log("arrow-data:"+data);
+                    var obj = JSON.parse( data );
                     console.log(obj);
+                    A.Chart.arrows = obj;
                 }
 
                 if( item.startsWith("CREDITS")){
@@ -1310,7 +1417,7 @@
 </div>
 <div style="width:100%;position:relative;top:-0.50em;left:0;display:inline-block;margin:0 auto;height:3em;">
     <div class='pos-resetter'>
-        <h2 id="click-tip" style="color:#bfbfbf;display:block;position:relative;top:-0.55em;transition:opacity 4s;opacity:1;"><em>Version from 21-Nov-2019</em></h2>
+        <h2 id="click-tip" style="color:#bfbfbf;display:block;position:relative;top:-0.55em;transition:opacity 4s;opacity:1;"><em>Version from 23-Nov-2019</em></h2>
     </div>
     <div class='pos-resetter'>
         <div style="display:inline-block;">
