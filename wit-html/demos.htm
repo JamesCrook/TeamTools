@@ -391,37 +391,46 @@
             return Math.acos( -slice )/Math.PI;
         }
 
-        function drawSphere(xx,yy,xw,yh,img){
+        function drawSphere(xx,yy,xw,yh,obj){
             console.log( "Draw at "+xx+","+yy+" ["+xw+" by "+yh+"]");
             var A = Annotator;
             var ctx = A.BackingCanvas.ctx;
-
-            ctx.drawImage(img, 0, 0, img.width, img.height);
+            var ctx2 = obj.ctx;
+            var img = obj.img;
+            if( !ctx2 ){
+                obj.canvas = document.createElement( "canvas" );
+                obj.canvas.width = img.width;
+                obj.canvas.height = img.height;
+                obj.ctx = obj.canvas.getContext('2d');
+                ctx2 = obj.ctx;
+            }
+            ctx2.drawImage(img, 0, 0, img.width, img.height);
             var x0 = xw/2;
             var rotate = 400;
 
-            var srcData = ctx.getImageData( 0, 0, img.width, img.height);
-            var dstData = ctx.createImageData( img.height,img.height) ;
+            var srcData = ctx2.getImageData( 0, 0, img.width, img.height);
+            var dstData = ctx.createImageData( yh,yh) ;
 
-            var h = Math.floor(img.height/2);
-            var w = Math.floor(img.width/2);
+            var w = Math.floor(xw/2);
+            var h = Math.floor(yh/2);
             var offsets=[];
             for(i=0;i<img.width;i++){
                 d= Math.floor(Math.asin( i/img.width)*img.width/4)*4;
                 offsets.push(d);
 
             }
+            var yRatio = img.height/h;
+            var xRatio = img.width/w;
             for( var y=-h;y<h;y++){
                 var dx= Math.floor(Math.sqrt( h*h - y*y));
-                var srcLine = Math.floor(sourceForSlice(y*1.0/h)*img.height);
+                var srcLine = Math.floor(sourceForSlice(y/h)*img.height);
                 var srcBase = (srcLine*img.width+rotate) *4;
-                var index = Math.floor((y+img.height/2)*img.height +h-dx)*4;
+                var index = Math.floor((y+h)*yh +h-dx)*4;
                 var sign;
                 //console.log( 'row:'+y+' ('+(h-dx)+'..'+(h+dx)+')');
                 for( var x = -dx; x<dx;x++){
                     sign = (x<0)?-1:1;
-                    var srcIndex = srcBase + sign * offsets[ Math.floor(
-                                    Math.abs(x)*img.width/dx) ];
+                    var srcIndex = srcBase + sign * offsets[ Math.floor( Math.abs(x)*img.width/dx) ];
 
                     if( srcData.data[srcIndex+3] < 128 ){
                         dstData.data[index++] = 20;
@@ -438,19 +447,8 @@
                     }
                 }
             }
-            ctx.clearRect(0,0,img.width,img.height);
-            ctx.putImageData( dstData, x0-img.height/2, 0 );
-        }
-
-        function drawBacking(){
-            var A = Annotator;
-            var img = A.Backing.img;
-            var extra = A.Buttons.Names.length ? 25 : 0;
-            if( A.Distortion.Map )
-                drawSphere();
-            else
-                A.BackingCanvas.ctx.drawImage(img, 0, extra, img.width, img.height);
-            drawButtons();
+            ctx.clearRect(xx,yy,xw,yh);
+            ctx.putImageData( dstData, xx+xw/2-h, yy );
         }
 
         function drawButtons(){
@@ -544,8 +542,8 @@
             if( obj.status != "arrived" ){
                 drawRectangle( x,y,xw,yh,obj );
             }
-            else if( A.Distortion.Map ){
-                drawSphere( x,y,xw,yh, obj.img);
+            else if( obj.spherical ){
+                drawSphere( x,y,xw,yh, obj);
             } else {
                 ctx.drawImage(obj.img, x, y, xw, yh);
                 if( obj.hot && obj.hot.status == "arrived" )
@@ -1272,6 +1270,12 @@
                 if( item.startsWith("DISTORTION")){
                     console.log("distortion:");
                     A.Distortion.Map = "spherical";
+
+                    var obj = A.Chart.lastImage;
+                    if( !obj )
+                        continue;
+                    obj.spherical = true;
+
                 }
                 if( item.startsWith("HOTSPOTS")){
                     console.log("hotspots:"+file);
@@ -1313,6 +1317,7 @@
                     obj.status = "asked";
                     obj.file = file;
                     obj.content = file;
+                    obj.spherical = false;
                     obj.resize = A.Chart.content.length ==0;
                     obj.img = document.createElement( "img");
                     obj.img.onload = (function(){
