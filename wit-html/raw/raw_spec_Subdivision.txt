@@ -1,0 +1,87 @@
+__NOTOC__
+
+
+{{ATK_Header}}
+
+This is the spec for the interactive diagram for testing out subdivision of the space for a diagram:
+
+
+<pre>
+DISPLAY_FOCUS_DETAIL Focus=SmallCircle
+  IMAGE_WITH_HOTSPOTS
+</pre>
+
+
+The specification above builds a simple focus-detail display.  There's a stand-alone [https://wit.audacityteam.org/demos.htm?page=Subdivision interactive demo] but here is the result in wiki:
+
+
+-----
+{{#widget:Dynamic|page=Subdivision|height=450px}}
+-----
+
+The detailed data for the chart follows.
+
+<pre>START</pre>
+
+<pre>FLOWCHART:DATA=
+    {"HStack":[
+         {"Rectangle":"Rectangle 3"},
+         {"Rectangle":"Rectangle 4"}
+    ]}
+</pre>
+
+
+<pre>CHART:DATA=
+ {
+   "titles":["Date","Live Bugs","Slain Bugs"],
+   "display":["Label","Blue","Green"],
+   "values":[
+   ["Aug 2017",605,1104],
+   ["Sep 2017",543,1192],
+   ["Oct 2017",557,1195],
+   ["Nov 2017",556,1212],
+   ["Dec 2017",542,1255],
+   ["Jan 2018",549,1266],
+   ["Mar 2018",539,1310],
+   ["Apr 2018",518,1345],
+   ["May 2018",489,1382],
+   ["Jun 2018",493,1390],
+   ["Jul 2018",495,1401],
+   ["Aug 2018",501,1410],
+   ["Sep 2018",447,1517],
+   ["Oct 2018",445,1545],
+   ["Nov 2018",450,1571],
+   ["Dec 2018",458,1585],
+   ["Jan 2019",464,1588],
+   ["Feb 2019",468,1592],
+   ["Mar 2019",470,1605],
+   ["Apr 2019",472,1616],
+   ["May 2019",468,1638],
+   ["Jun 2019",423,1695],
+   ["Jul 2019",404,1740],
+   ["Aug 2019",390,1792],
+   ["Sep 2019",356,1853],
+   ["Oct 2019",360,1860],
+   ["Nov 2019",362,1867]
+
+   ]
+}
+</pre>
+
+<pre>CHART:DATA=
+ {
+   "titles":["Date","Live Bugs","Slain Bugs"],
+   "display":["Label","Blue","Green"],
+   "values":[
+   ["Aug 2017",605,1104],
+   ["Sep 2019",356,1853],
+   ["Oct 2019",360,1860],
+   ["Nov 2019",362,1867]
+
+   ]
+}
+</pre>
+
+
+<pre>CREDITS:CAPTION=Subdivision of a Diagram;TIP=</pre>
+<b>Credits:</b> <em>James Crook (c) 2019.  Image placed in Public Domain</em>

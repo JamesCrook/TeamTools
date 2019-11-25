@@ -286,8 +286,6 @@
 
         function onChart(){
             var A = Annotator;
-            A.Porthole.width = 700;
-            A.Porthole.height = 400;
             A.Detail.width = A.Porthole.width / 2-10;
             A.Detail.height = A.Porthole.height -100;
             A.Hotspots.canvas.width = A.Porthole.width;
@@ -295,17 +293,15 @@
             A.Hotspots.ctx = A.Hotspots.canvas.getContext('2d');
 
             resizeDivs();
-            if( A.Chart.type == "bars" )
-                drawBarChart();
-            if( A.Chart.type == "boxes" ){
-                var d={};
-                sizeCells(A.Chart.data,d);
-                d.margins=10;
-                layoutCells(0, 0, A.Porthole.width, A.Porthole.height, A.Chart.data,d);
-                console.log(A.Chart.data );
-                drawArrows();
-                drawCells(A.Chart.data, {});
-            }
+
+            var d={};
+            sizeCells(A.Chart,d);
+            d.margins=10;
+            layoutCells(0, 0, A.Porthole.width, A.Porthole.height, A.Chart,d);
+            console.log(A.Chart.content );
+            drawArrows();
+            drawCells(A.Chart, {});
+
             drawButtons();
             Status.isAppReady = true;
         }
@@ -338,7 +334,7 @@
             var y = vx * T.yScaler;
             var ctx = A.BackingCanvas.ctx;
             ctx.beginPath();
-            ctx.rect(T.margin+x+(ix-1)* T.width, T.yh-(T.margin+y), T.width, y);
+            ctx.rect(T.margin+x+(ix-1)* T.width+ T.x0, T.yh-(T.margin+y)+ T.y0, T.width, y);
             ctx.fillStyle =
                     (ix!=1)?"rgba(105,205,105,1.0)":"rgba(105,105,205,1.0)";
             ctx.fill();
@@ -350,7 +346,7 @@
             var x = i * T.xScaler+ T.width;
             var y = -11;
             ctx.save();
-            ctx.translate(T.margin+x, T.yh-(T.margin+y));
+            ctx.translate(T.margin+x+ T.x0, T.yh-(T.margin+y)+ T.y0);
             ctx.rotate(-Math.PI/4);
             ctx.textAlign = "right";
             ctx.fillStyle = "rgba(15,35,165,1.0)";
@@ -358,24 +354,23 @@
             ctx.restore();
         }
 
-        function drawBarChart(){
+        function drawBarChart2(x0,y0,xw,yh, values){
             var A = Annotator;
 
-            var xw = A.Porthole.width;
-            var yh = A.Porthole.height;
             var ctx = A.BackingCanvas.ctx;
             ctx.beginPath();
             ctx.fillStyle = "rgba(205,205,205,1.0)";
             ctx.strokeStyle = "rgba( 55, 55,155,1.0)";
             ctx.lineWidth = 1;
 
-            ctx.rect(5, 5, xw-10, yh-10);
+            ctx.rect(x0+5, y0+5, xw-10, yh-10);
             ctx.fill();
             ctx.stroke();
 
-            var values = A.Chart.data.values;
             if( values ){
                 var T={};
+                T.x0=x0;
+                T.y0=y0;
                 T.xw=xw;
                 T.yh=yh-20;
                 T.count = values.length;
@@ -391,6 +386,10 @@
                     drawLabel( T, values, i );
                 }
             }
+        }
+
+        function drawChart3( x0,y0,xw,yh, obj ){
+            drawBarChart2(x0,y0,xw,yh, obj.content.values);
         }
 
         function drawHotspots(){
@@ -560,6 +559,36 @@
             ctx.lineTo( x2,y2);
             ctx.stroke();
         }
+
+        function drawImage( x,y,xw,yh, obj )
+        {
+            var A = Annotator;
+            var ctx = A.BackingCanvas.ctx;
+
+            ctx.save();
+            ctx.beginPath();
+
+            setStyles( ctx, obj );
+            if( obj.corner_radius )
+                roundRect( ctx, x,y,xw,yh, obj.corner_radius);
+            else
+                ctx.rect(x, y, xw, yh);
+            ctx.fill();
+            ctx.stroke();
+
+            ctx.textAlign = "center";
+            ctx.fillStyle = "rgba(0,0,0,1.0)";
+            ctx.fillText( obj.content.file, x+xw/2, y+yh/2+6 );
+            ctx.restore();
+            if( obj.hotspotColour ){
+                var ctx2 = A.Hotspots.ctx;
+                ctx2.beginPath();
+                ctx2.rect(x, y, xw, yh);
+                ctx2.fillStyle = obj.hotspotColour;
+                ctx2.fill();
+            }
+        }
+
 
         function drawRectangle( x,y,xw,yh, obj )
         {
@@ -882,7 +911,7 @@
         }
 
         function updateImages(){
-            if( A.Chart.data ){
+            if( A.Chart.content.length ){
                 onChart();
                 return;
             }
@@ -982,6 +1011,16 @@
             "VStack":drawContainer,
             "HStack":drawContainer,
 
+            "Chart":function(obj,d){
+                console.log( "draw - "+obj.type);
+                var l = obj.layout;
+                drawChart3(l.x0, l.y0, l.xw, l.yh, obj);
+            },
+            "Image":function(obj,d){
+                console.log( "draw - "+obj.type);
+                var l = obj.layout;
+                drawImage(l.x0, l.y0, l.xw, l.yh, obj);
+            },
             "Rectangle":function(obj,d){
                 console.log( "draw - "+obj.type);
                 var l = obj.layout;
@@ -1044,7 +1083,8 @@
             "Spacer":function(obj,d){
                 sizeCell( obj, d, obj.content);
             },
-
+            "Chart":sizeCell,
+            "Image":sizeCell,
             "Rectangle":sizeCell,
             "Circle":sizeCell
         };
@@ -1060,6 +1100,13 @@
         function layoutCells( x0, y0, xw, yh, obj, d ){
             layoutCell( x0, y0, xw, yh, obj, d );
             visit( layoutThing, obj, d );
+        }
+
+        function layoutMargined( obj, d ){
+            console.log( "layout - "+obj.type);
+            var m = d.margins;
+            var l = obj.layout;
+            layoutCell(l.x0+m, l.y0+m, l.xw-2*m, l.yh-2*m, obj,d);
         }
 
         layoutThing = {
@@ -1092,6 +1139,8 @@
                     wantsSoFar += want;
                 }
             },
+            "Chart": layoutMargined,
+            "Image": layoutMargined,
             "Rectangle":function(obj,d){
                 console.log( "layout - "+obj.type);
                 var m = d.margins;
@@ -1165,11 +1214,22 @@
             return x !== undef;
         }
 
+        function startChart(){
+            A.Porthole.width = 700;
+            A.Porthole.height = 200;
 
-         function loadNewDetails( specFileData ){
+            A.Chart.type = 'VStack';
+            A.Chart.content = [];
+            A.Chart.itemIndex = 0;
+            A.Chart.objectDict = {};
+            A.Chart.objectList = [];
+        }
+
+        function loadNewDetails( specFileData ){
             var A=Annotator;
             var lines = specFileData.split("<pre>");
             setATitle("Caption was missing");
+            startChart();
             for(i=0;i<lines.length;i++)
             {
                 var item=lines[i];
@@ -1250,15 +1310,6 @@
                     console.log("hotspots:"+file);
                     A.Hotspots.imageSrc = file;
                 }
-                if( item.startsWith("CHART:")){
-                    var data = fieldValue( "DATA",item );
-                    console.log("data:"+data);
-                    var obj = JSON.parse( data );
-                    console.log(obj);
-                    A.Chart.type = 'bars';
-                    A.Chart.data = obj;
-
-                }
                 if( item.startsWith("COLOURSET=")){
                     var data = fieldValue( "OURSET",item );
                     console.log("colour-data:"+data);
@@ -1274,20 +1325,38 @@
                     console.log(obj);
                     A.Hotspots.ColourZones = obj;
                     A.Hotspots.ColourZoneIx=0;
+
                 }
                 if( item.startsWith("FLOWCHART:")){
                     var data = fieldValue( "DATA",item );
                     console.log("flow-data:"+data);
                     var obj = JSON.parse( data );
                     //console.log(obj);
-                    A.Chart.type = 'boxes';
-                    A.Chart.data = obj;
-                    A.Chart.itemIndex = 0;
-                    A.Chart.objectDict = {};
-                    A.Chart.objectList = [];
 
                     convertJsonStructure( "",obj );
+                    A.Chart.content.push( obj );
+                    A.Porthole.height += 200;
                     //console.log(obj);
+                }
+                if( item.startsWith("IMAGE2")){
+                    console.log("image2:"+file);
+                    var obj = {};
+                    obj.Image = {"file": file };
+                    convertJsonStructure( "",obj );
+                    A.Chart.content.push( obj );
+                }
+                if( item.startsWith("CHART")){
+                    var data = fieldValue( "DATA",item );
+                    console.log("chart-data:"+data);
+                    var obj = JSON.parse( data );
+
+                    // Chart wrapper for the data.
+                    var obj2 = {};
+                    obj2.Chart = {};
+                    convertJsonStructure( "",obj2 );
+                    obj2.content = obj;
+                    A.Chart.content.push( obj2 );
+                    A.Porthole.height += 200;
                 }
                 if( item.startsWith("NEXTOBJECT:") ){
                     if( !isDefined( A.Chart.objectList ))
@@ -1505,7 +1574,8 @@
         <li><a href="./demos.htm?page=Köppen_Globe&fromwiki=no"> Climate Zone as Globe</a>- <em>(Experimental)</em> Moon trick done for Köppen Image (no hotpsots yet, distorted)
     <li><a href="./demos.htm?page=Ocean_Currents&fromwiki=no"> Ocean Currents as Globe</a>- <em>(Experimental)</em> Moon trick done for Ocean Currents Image (no hotpsots yet, distorted)
     <li><a href="./demos.htm?page=Flow_Graph"> Flow Graph</a>- <em>(Experimental)</em> Flowchart of Making the Manual - <a href="https://wiki.audacityteam.org/wiki/Toolbox/Flow_Graph">wiki spec</a>
-    </ul>
+    <li><a href="./demos.htm?page=Subdivision"> Subdivision</a>- <em>(Experimental)</em> Methods for subdividing a diagram - <a href="https://wiki.audacityteam.org/wiki/Toolbox/Subdivision">wiki spec</a>
+</ul>
 
 
 <!---
