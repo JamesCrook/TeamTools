@@ -258,6 +258,9 @@
             A.FocusCanvas.height = A.Porthole.height;
             A.DetailDiv.style.width = A.Detail.width+'px';
             A.DetailDiv.style.height = A.Detail.height+'px';
+            A.Hotspots.canvas.width = A.Porthole.width;
+            A.Hotspots.canvas.height = A.Porthole.height;
+            A.Hotspots.ctx = A.Hotspots.canvas.getContext('2d');
         }
 
         function anotherImageReady(){
@@ -275,6 +278,14 @@
             anotherImageReady();
         }
 
+        function resizeForImage(img){
+            //alert( "RESIZING "+img.width +"x"+img.height );
+            A.Porthole.width = img.width;
+            A.Porthole.height = img.height;
+            // resizeDivs();
+            if( Status.isAppReady )
+                onChart();
+        }
 
         function onHotspotImage(){
             var A = Annotator;
@@ -288,9 +299,6 @@
             var A = Annotator;
             A.Detail.width = A.Porthole.width / 2-10;
             A.Detail.height = A.Porthole.height -100;
-            A.Hotspots.canvas.width = A.Porthole.width;
-            A.Hotspots.canvas.height = A.Porthole.height;
-            A.Hotspots.ctx = A.Hotspots.canvas.getContext('2d');
 
             resizeDivs();
 
@@ -564,29 +572,14 @@
         {
             var A = Annotator;
             var ctx = A.BackingCanvas.ctx;
-
-            ctx.save();
-            ctx.beginPath();
-
-            setStyles( ctx, obj );
-            if( obj.corner_radius )
-                roundRect( ctx, x,y,xw,yh, obj.corner_radius);
-            else
-                ctx.rect(x, y, xw, yh);
-            ctx.fill();
-            ctx.stroke();
-
-            ctx.textAlign = "center";
-            ctx.fillStyle = "rgba(0,0,0,1.0)";
-            ctx.fillText( obj.content.file, x+xw/2, y+yh/2+6 );
-            ctx.restore();
-            if( obj.hotspotColour ){
-                var ctx2 = A.Hotspots.ctx;
-                ctx2.beginPath();
-                ctx2.rect(x, y, xw, yh);
-                ctx2.fillStyle = obj.hotspotColour;
-                ctx2.fill();
+            var ctx2 = A.Hotspots.ctx;
+            if( obj.status == "arrived" ){
+                ctx.drawImage(obj.img, x,y,xw,yh);
+                if( obj.hot && obj.hot.status=="arrived")
+                    ctx2.drawImage(obj.hot.img, x,y,xw,yh);
             }
+            else
+                drawRectangle( x,y,xw,yh,obj );
         }
 
 
@@ -782,8 +775,16 @@
             // rather than adding 1, we set the count to 1.
             // That's because if we ask too quickly, only the
             // most recent request will be honoured.
-            Status.imagesToCome=1;
-            A.Backing.img.src = url;
+            //Status.imagesToCome=1;
+            //A.Backing.img.src = url;
+
+            if((A.Chart.content.length == 1) &&
+                    (A.Chart.content[0].type == "Image" )){
+                var obj = A.Chart.content[0];
+                obj.file = url;
+                obj.img.src = obj.file;
+            }
+
         }
 
         function doAction( action ){
@@ -906,33 +907,33 @@
 
             A.DetailDiv.style.display = "none";
             A.DetailDiv.className = "detaildiv";
+
+            // Hotspot canvas and context do not need to be attached.
+            A.Hotspots.canvas = document.createElement('canvas');
+
+
             resizeDivs();
 
         }
 
         function updateImages(){
-            if( A.Chart.content.length ){
-                onChart();
-                return;
+            if((A.Chart.content.length == 1) &&
+               (A.Chart.content[0].type == "Image" )){
+                var obj = A.Chart.content[0];
+                if( obj.file ){
+                    obj.img.src = obj.file;
+                }
+                if( obj.hot && obj.hot.file ){
+                    obj.hot.img.src = obj.hot.file;
+                }
             }
-            Status.imagesToCome=2;
-            A.Hotspots.img.src = A.Hotspots.imageSrc;
-            A.Backing.img.src = A.Image.imageSrc;
+            onChart();
         }
 
         function addImagesToDom(){
             var A=Annotator;
             //Status.isAppReady = true;
-            A.Hotspots.img = document.createElement('img');
-            A.Hotspots.canvas = document.createElement('canvas');
-            A.Hotspots.img.onload = onHotspotImage;
-            A.Hotspots.img.onerror = onFailedImage;
-
             A.Backing = {};
-            A.Backing.img = document.createElement( "img");
-            A.Backing.img.onload = onBackingImage;
-            A.Backing.img.onerror = onFailedImage;
-            A.Backing.img.className="centred";
             //updateImages();
         }
 
@@ -1298,7 +1299,7 @@
                     console.log("click-goto:"+file);
                     setClick( "Goto", file );
                 }
-                if( item.startsWith("IMAGE")){
+                if( item.startsWith("IMAGE5")){
                     console.log("image:"+file);
                     A.Image.imageSrc = file;
                 }
@@ -1338,12 +1339,65 @@
                     A.Porthole.height += 200;
                     //console.log(obj);
                 }
-                if( item.startsWith("IMAGE2")){
-                    console.log("image2:"+file);
+                if( item.startsWith("IMAGE")){
+                    console.log("image:"+file);
                     var obj = {};
-                    obj.Image = {"file": file };
+                    obj.Image = { };
                     convertJsonStructure( "",obj );
+                    obj.status = "asked";
+                    obj.file = file;
+                    obj.content = file;
+                    obj.resize = A.Chart.content.length ==0;
+                    obj.img = document.createElement( "img");
+                    obj.img.onload = (function(){
+                        var obj1 = obj;
+                        return function(){
+                            obj1.status="arrived";
+                            //alert("Loaded image " + obj1.file);
+                            if( obj1.resize )
+                                resizeForImage(obj1.img);
+                            else if( Status.isAppReady )
+                                onChart();
+                        }
+                    })();
+                    obj.img.onerror = (function(){
+                        var obj1 = obj;
+                        return function(){
+                            obj1.status="failed";
+                            alert("Failed to load image " + obj1.file);
+                        }
+                    })();
+                    obj.img.src = file;
+
+                    A.Chart.lastImage = obj;
                     A.Chart.content.push( obj );
+                }
+                if( item.startsWith("HOTSPOTS")){
+                    console.log("image:"+file);
+                    var obj = A.Chart.lastImage;
+                    if( !obj )
+                            continue;
+
+                    obj.hot={};
+                    obj.hot.status = "asked";
+                    obj.hot.file = file;
+                    obj.hot.img = document.createElement( "img");
+                    obj.hot.img.onload = (function(){
+                        var obj1 = obj;
+                        return function(){
+                            obj1.hot.status="arrived";
+                            if( Status.isAppReady )
+                                drawCells(A.Chart, {});
+                        }
+                    })();
+                    obj.hot.img.onerror = (function(){
+                        var obj1 = obj;
+                        return function(){
+                            obj1.status="failed";
+                            alert("Failed to load hotspots " + obj1.hot.file);
+                        }
+                    })();
+                    obj.hot.img.src = file;
                 }
                 if( item.startsWith("CHART")){
                     var data = fieldValue( "DATA",item );

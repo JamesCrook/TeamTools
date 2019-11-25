@@ -30,6 +30,8 @@ The detailed data for the chart follows.
     ]}
 </pre>
 
+<pre>IMAGE:DATA=</pre>
+[[File:audacity-logo.png]]
 
 <pre>CHART:DATA=
  {
