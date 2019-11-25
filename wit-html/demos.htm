@@ -280,12 +280,12 @@
             d.margins=10;
             layoutCells(0, 0, A.Porthole.width, A.Porthole.height, A.Chart,d);
             //console.log(A.Chart.content );
-            drawArrows();
 
             var ctx = A.BackingCanvas.ctx;
             var ctx2 = A.Hotspots.ctx;
             ctx.clearRect( 0,0, A.Porthole.width, A.Porthole.height );
             ctx2.clearRect( 0,0, A.Porthole.width, A.Porthole.height );
+            drawArrows();
             drawCells(A.Chart, {});
 
             drawButtons();
@@ -395,12 +395,12 @@
         function drawSphere(xx,yy,xw,yh,obj){
             xw = Math.floor(xw);
             yh = Math.floor(yh);
-            console.log( "Draw at "+xx+","+yy+" ["+xw+" by "+yh+"]");
+            //console.log( "Draw at "+xx+","+yy+" ["+xw+" by "+yh+"]");
             var A = Annotator;
             var ctx = A.BackingCanvas.ctx;
             var ctx2 = obj.ctx;
             var img = obj.img;
-            console.log( "From image "+img.width+" by "+img.height);
+            //console.log( "From image "+img.width+" by "+img.height);
             if( !ctx2 ){
                 obj.canvas = document.createElement( "canvas" );
                 obj.canvas.width = img.width;
@@ -1436,7 +1436,7 @@
                     var data = fieldValue( "DATA",item );
                     console.log("arrow-data:"+data);
                     var obj = JSON.parse( data );
-                    console.log(obj);
+                    //console.log(obj);
                     A.Chart.arrows = obj;
                 }
 
