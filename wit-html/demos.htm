@@ -241,12 +241,6 @@
         var Message;
         var Message2;
 
-        function recomputePorthole(){
-            var extra = A.Buttons.Names.length ? 25 : 0;
-            A.Porthole.width = A.Backing.img.width;
-            A.Porthole.height = A.Backing.img.height+extra;
-        }
-
 
         function resizeDivs(){
             var A = Annotator;
@@ -263,20 +257,6 @@
             A.Hotspots.ctx = A.Hotspots.canvas.getContext('2d');
         }
 
-        function anotherImageReady(){
-            Status.imagesToCome--;
-            if( Status.imagesToCome > 0 )
-                return;
-            drawHotspots();
-            drawBacking();
-            Status.isAppReady = true;
-        }
-
-        function onBackingImage(){
-            recomputePorthole();
-            resizeDivs();
-            anotherImageReady();
-        }
 
         function resizeForImage(img){
             //alert( "RESIZING "+img.width +"x"+img.height );
@@ -285,14 +265,6 @@
             // resizeDivs();
             if( Status.isAppReady )
                 onChart();
-        }
-
-        function onHotspotImage(){
-            var A = Annotator;
-            A.Hotspots.canvas.width = A.Hotspots.img.width;
-            A.Hotspots.canvas.height = A.Hotspots.img.height;
-            A.Hotspots.ctx = A.Hotspots.canvas.getContext('2d');
-            anotherImageReady();
         }
 
         function onChart(){
@@ -308,6 +280,11 @@
             layoutCells(0, 0, A.Porthole.width, A.Porthole.height, A.Chart,d);
             console.log(A.Chart.content );
             drawArrows();
+
+            var ctx = A.BackingCanvas.ctx;
+            var ctx2 = A.Hotspots.ctx;
+            ctx.clearRect( 0,0, A.Porthole.width, A.Porthole.height );
+            ctx2.clearRect( 0,0, A.Porthole.width, A.Porthole.height );
             drawCells(A.Chart, {});
 
             drawButtons();
@@ -414,23 +391,14 @@
             return Math.acos( -slice )/Math.PI;
         }
 
-        function drawSphere(){
+        function drawSphere(xx,yy,xw,yh,img){
+            console.log( "Draw at "+xx+","+yy+" ["+xw+" by "+yh+"]");
             var A = Annotator;
-            var img = A.Backing.img;
-            var extra = A.Buttons.Names.length ? 25 : 0;
             var ctx = A.BackingCanvas.ctx;
 
-            ctx.drawImage(img, 0, extra, img.width, img.height);
-/*
-            ctx.drawImage(img,
-                    img.width/2,0,img.width/2, img.height,
-                    0, extra, img.width/2, img.height);
-            ctx.drawImage(img,
-                    0,0,img.width/2, img.height,
-                    img.width/2, extra, img.width/2, img.height);
-*/
-            var x0 = img.width/2;
-            var rotate = 400;//820;
+            ctx.drawImage(img, 0, 0, img.width, img.height);
+            var x0 = xw/2;
+            var rotate = 400;
 
             var srcData = ctx.getImageData( 0, 0, img.width, img.height);
             var dstData = ctx.createImageData( img.height,img.height) ;
@@ -573,13 +541,16 @@
             var A = Annotator;
             var ctx = A.BackingCanvas.ctx;
             var ctx2 = A.Hotspots.ctx;
-            if( obj.status == "arrived" ){
-                ctx.drawImage(obj.img, x,y,xw,yh);
-                if( obj.hot && obj.hot.status=="arrived")
-                    ctx2.drawImage(obj.hot.img, x,y,xw,yh);
-            }
-            else
+            if( obj.status != "arrived" ){
                 drawRectangle( x,y,xw,yh,obj );
+            }
+            else if( A.Distortion.Map ){
+                drawSphere( x,y,xw,yh, obj.img);
+            } else {
+                ctx.drawImage(obj.img, x, y, xw, yh);
+                if( obj.hot && obj.hot.status == "arrived" )
+                    ctx2.drawImage(obj.hot.img, x, y, xw, yh);
+            }
         }
 
 
@@ -772,12 +743,7 @@
 
         function setNewImage( url ){
             var A=Annotator;
-            // rather than adding 1, we set the count to 1.
-            // That's because if we ask too quickly, only the
-            // most recent request will be honoured.
-            //Status.imagesToCome=1;
-            //A.Backing.img.src = url;
-
+            // Only supported for whole-div images.
             if((A.Chart.content.length == 1) &&
                     (A.Chart.content[0].type == "Image" )){
                 var obj = A.Chart.content[0];
