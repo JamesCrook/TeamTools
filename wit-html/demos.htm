@@ -269,6 +269,7 @@
 
         function onChart(){
             var A = Annotator;
+            console.log("onChart");
             A.Detail.width = A.Porthole.width / 2-10;
             A.Detail.height = A.Porthole.height -100;
 
@@ -278,7 +279,7 @@
             sizeCells(A.Chart,d);
             d.margins=10;
             layoutCells(0, 0, A.Porthole.width, A.Porthole.height, A.Chart,d);
-            console.log(A.Chart.content );
+            //console.log(A.Chart.content );
             drawArrows();
 
             var ctx = A.BackingCanvas.ctx;
@@ -392,11 +393,14 @@
         }
 
         function drawSphere(xx,yy,xw,yh,obj){
+            xw = Math.floor(xw);
+            yh = Math.floor(yh);
             console.log( "Draw at "+xx+","+yy+" ["+xw+" by "+yh+"]");
             var A = Annotator;
             var ctx = A.BackingCanvas.ctx;
             var ctx2 = obj.ctx;
             var img = obj.img;
+            console.log( "From image "+img.width+" by "+img.height);
             if( !ctx2 ){
                 obj.canvas = document.createElement( "canvas" );
                 obj.canvas.width = img.width;
@@ -419,8 +423,8 @@
                 offsets.push(d);
 
             }
-            var yRatio = img.height/h;
-            var xRatio = img.width/w;
+
+
             for( var y=-h;y<h;y++){
                 var dx= Math.floor(Math.sqrt( h*h - y*y));
                 var srcLine = Math.floor(sourceForSlice(y/h)*img.height);
@@ -963,7 +967,7 @@
         }
 
         function drawContainer(obj,d){
-            console.log( "draw container - "+obj.type);
+            //console.log( "draw container - "+obj.type);
             var n = obj.content.length;
             for( var i=0;i<n;i++ )
                 drawCells(obj.content[i],d );
@@ -971,28 +975,28 @@
 
         drawThing = {
             "default":function(obj,d){
-                console.log( "draw (default) - "+obj.type);
+                //console.log( "draw (default) - "+obj.type);
             },
             "VStack":drawContainer,
             "HStack":drawContainer,
 
             "Chart":function(obj,d){
-                console.log( "draw - "+obj.type);
+                //console.log( "draw - "+obj.type);
                 var l = obj.layout;
                 drawChart3(l.x0, l.y0, l.xw, l.yh, obj);
             },
             "Image":function(obj,d){
-                console.log( "draw - "+obj.type);
+                //console.log( "draw - "+obj.type);
                 var l = obj.layout;
                 drawImage(l.x0, l.y0, l.xw, l.yh, obj);
             },
             "Rectangle":function(obj,d){
-                console.log( "draw - "+obj.type);
+                //console.log( "draw - "+obj.type);
                 var l = obj.layout;
                 drawRectangle(l.x0, l.y0, l.xw, l.yh, obj);
             },
             "Circle":function(obj,d){
-                console.log( "draw - "+obj.type);
+                //console.log( "draw - "+obj.type);
                 var l = obj.layout;
                 drawCircle(l.x0, l.y0, l.xw, l.yh, obj);
             }
@@ -1001,11 +1005,11 @@
 
         function sizeCells( obj, data ){
             visit( sizeThing, obj, data );
-            console.log( obj.sizing);
+            //console.log( obj.sizing);
         }
 
         function sizeCell( obj, d, proportion ){
-            console.log( "size cell - "+obj.type);
+            //console.log( "size cell - "+obj.type);
             obj.sizing = {};
             obj.sizing.min = 0;
             obj.sizing.wants = (proportion===undefined) ? 1.0 : proportion;
@@ -1017,7 +1021,7 @@
         }
 
         function sizeContainer(obj,d){
-            console.log( "size container - "+obj.type);
+            //console.log( "size container - "+obj.type);
             var n = obj.content.length;
             sizeCell( obj,d );
             for( var i=0;i<n;i++ ){
@@ -1030,7 +1034,7 @@
 
         sizeThing = {
             "default":function(obj,d){
-                console.log( "size (default) - "+obj.type);
+                //console.log( "size (default) - "+obj.type);
                 sizeCell( obj, d, 0.0);
 
             },
@@ -1059,7 +1063,7 @@
 
         function layoutCell( x0, y0, xw, yh, obj, d ){
             obj.layout = { "x0":x0,"y0":y0, "xw":xw, "yh":yh};
-            console.log( obj.layout );
+            //console.log( obj.layout );
         }
 
         function layoutCells( x0, y0, xw, yh, obj, d ){
@@ -1068,7 +1072,7 @@
         }
 
         function layoutMargined( obj, d ){
-            console.log( "layout - "+obj.type);
+            //console.log( "layout - "+obj.type);
             var m = d.margins;
             var l = obj.layout;
             layoutCell(l.x0+m, l.y0+m, l.xw-2*m, l.yh-2*m, obj,d);
@@ -1076,14 +1080,14 @@
 
         layoutThing = {
             "default":function(obj,d){
-                console.log( "layout (default) - "+obj.type);
+                //console.log( "layout (default) - "+obj.type);
             },
             "VStack":function(obj,d){
-                console.log( "layout - "+obj.type);
+                //console.log( "layout - "+obj.type);
                 var n = obj.content.length;
                 var l = obj.layout;
                 var k = obj.sizing.cumulativeWants;
-                console.log( "n: "+n+", k:"+k);
+                //console.log( "n: "+n+", k:"+k);
                 var wantsSoFar = 0.0;
                 for( var i=0;i<n;i++ ){
                     var want = obj.content[i].sizing.wants;
@@ -1092,11 +1096,11 @@
                 }
             },
             "HStack":function(obj,d){
-                console.log( "layout - "+obj.type);
+                //console.log( "layout - "+obj.type);
                 var n = obj.content.length;
                 var l = obj.layout;
                 var k = obj.sizing.cumulativeWants;
-                console.log( "n: "+n+", k:"+k);
+                //console.log( "n: "+n+", k:"+k);
                 var wantsSoFar = 0.0;
                 for( var i=0;i<n;i++ ){
                     var want = obj.content[i].sizing.wants;
@@ -1107,13 +1111,13 @@
             "Chart": layoutMargined,
             "Image": layoutMargined,
             "Rectangle":function(obj,d){
-                console.log( "layout - "+obj.type);
+                //console.log( "layout - "+obj.type);
                 var m = d.margins;
                 var l = obj.layout;
                 layoutCell(l.x0+m, l.y0+m, l.xw-2*m, l.yh-2*m, obj,d);
             },
             "Circle":function(obj,d){
-                console.log( "layout - "+obj.type);
+                //console.log( "layout - "+obj.type);
                 var m = 5;
                 var l = obj.layout;
                 layoutCell(l.x0+m, l.y0+m, l.xw-2*m, l.yh-2*m, obj,d);
@@ -1163,15 +1167,24 @@
                     A.Chart.objectDict[layout.id] = layout;
                     A.Chart.objectList.push( layout );
                 }
-                console.log( indent+key );
+                //console.log( indent+key );
                 break;
             }
             if( Containers[key]){
                 for( var i = 0; i < layout.content.length; i++ ){
-                    console.log( indent+"Arg: "+i);
+                    //console.log( indent+"Arg: "+i);
                     convertJsonStructure( indent + "   ",layout.content[i] );
                 }
             }
+        }
+
+        function getObjectByName(name){
+            if( !name )
+                    return 0;
+            if( !A.Chart.objectDict )
+                    return 0;
+            var shortName = name.substr(0, 10);
+            return A.Chart.objectDict[ shortName ];
         }
 
         function isDefined( x ){
@@ -1277,15 +1290,15 @@
                     obj.spherical = true;
 
                 }
-                if( item.startsWith("HOTSPOTS")){
-                    console.log("hotspots:"+file);
-                    A.Hotspots.imageSrc = file;
-                }
+//                if( item.startsWith("HOTSPOTS")){
+//                    console.log("hotspots:"+file);
+//                    A.Hotspots.imageSrc = file;
+//                }
                 if( item.startsWith("COLOURSET=")){
                     var data = fieldValue( "OURSET",item );
                     console.log("colour-data:"+data);
                     var obj = JSON.parse( data );
-                    console.log(obj);
+                    //console.log(obj);
                     A.Hotspots.ColourZones = obj;
                     A.Hotspots.ColourZoneIx=0;
                 }
@@ -1311,19 +1324,28 @@
                 }
                 if( item.startsWith("IMAGE")){
                     console.log("image:"+file);
-                    var obj = {};
-                    obj.Image = { };
-                    convertJsonStructure( "",obj );
+                    var obj=getObjectByName(fieldValue( "NAME",item ));
+                    if( obj ){
+                        obj.resize = false;
+                    } else {
+                        obj = {};
+                        obj.Image = {};
+                        convertJsonStructure("", obj);
+                        obj.resize = A.Chart.content.length ==0;
+                        A.Chart.content.push( obj );
+                    }
+                    A.Chart.lastImage = obj;
+
                     obj.status = "asked";
                     obj.file = file;
                     obj.content = file;
                     obj.spherical = false;
-                    obj.resize = A.Chart.content.length ==0;
                     obj.img = document.createElement( "img");
                     obj.img.onload = (function(){
                         var obj1 = obj;
                         return function(){
                             obj1.status="arrived";
+                            console.log( obj1.file+" image arrived");
                             //alert("Loaded image " + obj1.file);
                             if( obj1.resize )
                                 resizeForImage(obj1.img);
@@ -1340,11 +1362,9 @@
                     })();
                     obj.img.src = file;
 
-                    A.Chart.lastImage = obj;
-                    A.Chart.content.push( obj );
                 }
                 if( item.startsWith("HOTSPOTS")){
-                    console.log("image:"+file);
+                    console.log("hotspots:"+file);
                     var obj = A.Chart.lastImage;
                     if( !obj )
                             continue;
@@ -1357,6 +1377,7 @@
                         var obj1 = obj;
                         return function(){
                             obj1.hot.status="arrived";
+                            console.log( obj1.file+" HS arrived");
                             if( Status.isAppReady )
                                 drawCells(A.Chart, {});
                         }

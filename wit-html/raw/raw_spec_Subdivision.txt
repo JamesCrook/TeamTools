@@ -25,19 +25,18 @@ The detailed data for the chart follows.
 
 <pre>FLOWCHART:DATA=
     {"HStack":[
-         {"Rectangle":"Rectangle 3"},
-         {"Rectangle":"Rectangle 4"}
+         {"Image":"Moon"}
     ]}
 </pre>
 
 <pre>FLOWCHART:DATA=
     {"HStack":[
-         {"Image":"Rectangle 5"},
-         {"Rectangle":"Rectangle 6"}
+         {"Image":"Current"},
+         {"Image":"Climate"}
     ]}
 </pre>
 
-<pre>IMAGE</pre>
+<pre>IMAGE:NAME=Current</pre>
 [[File:atlantic20100325-640.jpg]]
 
 <pre>HOTSPOTS</pre>
@@ -60,7 +59,7 @@ The detailed data for the chart follows.
 
 <pre>DISTORTION:MAP=SPHERICAL</pre>
 
-<pre>IMAGE</pre>
+<pre>IMAGE:NAME=Climate</pre>
 [[File:1024px-Köppen-Geiger_Climate_Classification_Map.png]]
 
 <pre>HOTSPOTS</pre>
@@ -110,6 +109,30 @@ The detailed data for the chart follows.
 
 ]
 </pre>
+
+<pre>IMAGE:NAME=Moon</pre>
+[[File:Moonmap_from_clementine_data.png]]
+
+<pre>HOTSPOTS</pre>
+[[File:Moonmap_from_clementine_data.png]]
+
+<pre>COLOURSET=
+[
+	[240,135,150,255],
+	[225,135,240,255],
+	[165,135,240,255],
+	[135,135,240,255],
+	[135,240,165,255],
+	[135,180,240,255],
+	[135,240,195,255],
+	[240,210,135,255],
+	[210,240,135,255],
+	[240,180,135,255]
+]
+</pre>
+
+<pre>DISTORTION:MAP=SPHERICAL</pre>
+
 
 <pre>CHART:DATA=
  {
