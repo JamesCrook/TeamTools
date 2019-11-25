@@ -552,12 +552,22 @@
             var vx = x1-x2;
             var vy = y1-y2;
             var theta = -Math.atan2( vx, vy)-Math.PI/2;
+            var m=0;
             if( obj2.type == "Circle" ){
                 var r= Math.min(obj2.layout.yh,obj2.layout.xw)/2;
-                var m = 0.93*r/Math.sqrt( vx*vx+vy*vy);
-                x2 =x2+m*vx;
-                y2 =y2+m*vy;
+                m = 0.93*r/Math.sqrt( vx*vx+vy*vy);
+            } else {
+                m = 1;//0.5;
+
+                if( Math.abs(vx)*obj2.layout.yh >
+                        Math.abs(vy)*obj2.layout.xw )
+                    m= obj2.layout.xw /(2*Math.abs(vx));
+                else
+                    m= obj2.layout.yh /(2*Math.abs(vy));
+
             }
+            x2 =x2+m*vx;
+            y2 =y2+m*vy;
 
 
             ctx.save();
