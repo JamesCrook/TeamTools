@@ -271,7 +271,7 @@
             var A = Annotator;
             console.log("onChart");
             A.Detail.width = A.Porthole.width / 2-10;
-            A.Detail.height = A.Porthole.height -100;
+            A.Detail.height = Math.min( 300,A.Porthole.height -100);
 
             resizeDivs();
 
