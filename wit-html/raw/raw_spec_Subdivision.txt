@@ -28,7 +28,11 @@ The detailed data for the chart follows.
 </pre>
 
 <pre>FLOWCHART:DATA=
-    {"HStack":[
+    {"Overlay":[
+         {"HStack":[
+            {"Rectangle":"Foo"},
+            {"Rectangle":"Bar"}
+         ]},
          {"Image":"Moon"}
     ]}
 </pre>
@@ -70,12 +74,25 @@ The detailed data for the chart follows.
 }
 </pre>
 
+
+<pre>NEXTOBJECT:COLOUR=rgb(255,230,205);BCOLOUR=rgb(215,155,0);CORNER_RADIUS=15</pre>
+<pre>NEXTOBJECT:COLOUR=rgb(215,230,210);BCOLOUR=rgb(130,180,100);CORNER_RADIUS=15;TIP=</pre>
+
+Oh my Goodness!
+
+
+
 <pre>FLOWCHART:DATA=
-    {"HStack":[
-         {"Image":"Current"},
+    {"Overlay":[
+         {"Rectangle":"This is a very long indeed title so that we can see it"},
          {"Image":"Climate"}
     ]}
 </pre>
+
+<pre>FLOWCHART:DATA=
+    {"Image":"Current"}
+</pre>
+
 
 <pre>IMAGE:NAME=Current</pre>
 [[File:atlantic20100325-640.jpg]]

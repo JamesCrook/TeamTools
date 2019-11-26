@@ -452,7 +452,7 @@
                     }
                 }
             }
-            ctx.clearRect(xx,yy,xw,yh);
+            //ctx.clearRect(xx,yy,xw,yh);
             ctx.putImageData( dstData, xx+xw/2-h, yy );
         }
 
@@ -1034,6 +1034,7 @@
             },
             "VStack":drawContainer,
             "HStack":drawContainer,
+            "Overlay":drawContainer,
 
             "Chart":function(obj,d){
                 //console.log( "draw - "+obj.type);
@@ -1095,6 +1096,7 @@
             },
             "VStack":sizeContainer,
             "HStack":sizeContainer,
+            "Overlay":sizeContainer,
 
             // SizeAs gives this size to the next object.
             // The size is normally 1, so 2 will increase
@@ -1163,6 +1165,15 @@
                     wantsSoFar += want;
                 }
             },
+            // Superimposed elements, all the same size.
+            "Overlay":function(obj,d){
+                //console.log( "layout - "+obj.type);
+                var n = obj.content.length;
+                var l = obj.layout;
+                for( var i=0;i<n;i++ ){
+                    layoutCells(l.x0,l.y0, l.xw, l.yh, obj.content[i], d);
+                }
+            },
             "Chart": layoutMargined,
             "Image": layoutMargined,
             "Rectangle":function(obj,d){
@@ -1206,7 +1217,7 @@
         Containers = {};
         Containers.VStack = true;
         Containers.HStack = true;
-
+        Containers.Overlay = true;
 
         function convertJsonStructure( indent, layout )
         {
