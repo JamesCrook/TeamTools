@@ -413,11 +413,6 @@
             var x0 = xw/2;
             var rotate = 400;
 
-            var srcData = ctx2.getImageData( 0, 0, img.width, img.height);
-            var dstData = ctx.createImageData( yh,yh) ;
-
-            var w = Math.floor(xw/2);
-            var h = Math.floor(yh/2);
             var offsets=[];
             for(i=0;i<img.width;i++){
                 d= Math.floor(Math.asin( i/img.width)*img.width/4)*4;
@@ -425,12 +420,22 @@
 
             }
 
+            var w = Math.floor(xw/2);
+            var h1 = Math.floor(yh/2);
+            var h = Math.min(h1,w);
+
+
+            var srcData = ctx2.getImageData( 0, 0, img.width, img.height);
+            //var dstData = ctx.createImageData( h*2,h*2) ;
+
+            var dstData = ctx.getImageData(xx+(w-h), yy+(h1-h),h*2,h*2);
+
 
             for( var y=-h;y<h;y++){
                 var dx= Math.floor(Math.sqrt( h*h - y*y));
                 var srcLine = Math.floor(sourceForSlice(y/h)*img.height);
                 var srcBase = (srcLine*img.width+rotate) *4;
-                var index = Math.floor((y+h)*yh +h-dx)*4;
+                var index = Math.floor((y+h)*h*2 +h-dx)*4;
                 var sign;
                 //console.log( 'row:'+y+' ('+(h-dx)+'..'+(h+dx)+')');
                 for( var x = -dx; x<dx;x++){
@@ -453,7 +458,7 @@
                 }
             }
             //ctx.clearRect(xx,yy,xw,yh);
-            ctx.putImageData( dstData, xx+xw/2-h, yy );
+            ctx.putImageData( dstData, xx+(w-h), yy+(h1-h) );
         }
 
         function drawButtons(){
@@ -1135,6 +1140,13 @@
             layoutCell(l.x0+m, l.y0+m, l.xw-2*m, l.yh-2*m, obj,d);
         }
 
+        function layoutUnmargined( obj, d ){
+            //console.log( "layout - "+obj.type);
+            var m = 7;
+            var l = obj.layout;
+            layoutCell(l.x0+m, l.y0+m, l.xw-2*m, l.yh-2*m, obj,d);
+        }
+
         layoutThing = {
             "default":function(obj,d){
                 //console.log( "layout (default) - "+obj.type);
@@ -1175,7 +1187,7 @@
                 }
             },
             "Chart": layoutMargined,
-            "Image": layoutMargined,
+            "Image": layoutUnmargined,
             "Rectangle":function(obj,d){
                 //console.log( "layout - "+obj.type);
                 var m = d.margins;
@@ -1184,7 +1196,7 @@
             },
             "Circle":function(obj,d){
                 //console.log( "layout - "+obj.type);
-                var m = 5;
+                var m = d.margins;
                 var l = obj.layout;
                 layoutCell(l.x0+m, l.y0+m, l.xw-2*m, l.yh-2*m, obj,d);
             }
