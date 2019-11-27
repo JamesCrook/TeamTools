@@ -210,7 +210,7 @@
             A.Buttons.Names = [];
             A.Buttons.chosen = -1;
 
-            A.Chart = {};
+            A.RootObject = {};
             A.Distortion = {};
         }
 
@@ -275,7 +275,7 @@
             ctx.clearRect( 0,0, A.Porthole.width, A.Porthole.height );
             ctx2.clearRect( 0,0, A.Porthole.width, A.Porthole.height );
             drawArrows();
-            drawCells(A.Chart, {});
+            drawCells(A.RootObject, {});
             drawArrowHeads();
 
             drawButtons();
@@ -290,10 +290,10 @@
             resizeDivs();
 
             var d={};
-            sizeCells(A.Chart,d);
+            sizeCells(A.RootObject,d);
             d.margins=10;
-            layoutCells(0, 0, A.Porthole.width, A.Porthole.height, A.Chart,d);
-            //console.log(A.Chart.content );
+            layoutCells(0, 0, A.Porthole.width, A.Porthole.height, A.RootObject,d);
+            //console.log(A.RootObject.content );
             innerDraw();
             Status.isAppReady = true;
 
@@ -353,7 +353,7 @@
             ctx.restore();
         }
 
-        function drawBarChart2(x0,y0,xw,yh, values){
+        function clearBacking(x0, y0, xw, yh){
             var A = Annotator;
 
             var ctx = A.BackingCanvas.ctx;
@@ -362,33 +362,92 @@
             ctx.strokeStyle = "rgba( 55, 55,155,1.0)";
             ctx.lineWidth = 1;
 
-            ctx.rect(x0+5, y0+5, xw-10, yh-10);
+            ctx.rect(x0 + 5, y0 + 5, xw - 10, yh - 10);
             ctx.fill();
             ctx.stroke();
+        }
+        function computeSpacing(T, x0, y0, xw, yh, values){
+            T.x0 = x0;
+            T.y0 = y0;
+            T.xw = xw;
+            T.yh = yh - 20;
+            T.count = T.count || values.length;
+            T.items = T.items || (values[0].length - 1);
+            T.margin = 60;
+            if( T.width )
+                T.spacer = (xw - 2 * T.margin - T.count * T.width * T.items) /
+                    (T.count - 1);
+            else {
+                T.spacer = T.spacer || 4;
+                T.width = ((xw+ T.spacer-2 * T.margin ) / T.count - T.spacer )/ T.items;
+            }
+            T.xScaler = (T.width* T.items  + T.spacer);
+            T.yScaler = (Math.min(20, Status.time) / 20) * (yh - 2 * T.margin) /
+                    2000.0;
+        }
+        function drawSpacedItems(x0,y0,xw,yh, values, fn, T){
+            clearBacking(x0, y0, xw, yh);
 
-            if( values ){
-                var T={};
-                T.x0=x0;
-                T.y0=y0;
-                T.xw=xw;
-                T.yh=yh-20;
-                T.count = values.length;
-                T.items = 2;
-                T.margin = 60;
-                T.width = 4;
-                T.spacer = (xw-2*T.margin- T.count* T.width* T.items)/(T.count-1);
-                T.xScaler = (T.width* T.items+ T.spacer);
-                T.yScaler = (Math.min( 20, Status.time)/20)*(yh-2* T.margin)/2000.0;
-                for(i=0;i< T.count;i++){
-                    drawBar( T, values, i, 1 );
-                    drawBar( T, values, i, 2 );
-                    drawLabel( T, values, i );
-                }
+            if( !values )
+                    return;
+            computeSpacing(T, x0, y0, xw, yh, values);
+            for(i=0;i< T.count;i++){
+                for( j=0;j< T.items;j++)
+                    fn( T, values, i, 1+j );
+                drawLabel( T, values, i );
             }
         }
 
         function drawChart3( x0,y0,xw,yh, obj ){
-            drawBarChart2(x0,y0,xw,yh, obj.content.values);
+            var T={};
+            T.width = 8;
+            drawSpacedItems(x0,y0,xw,yh, obj.values, drawBar, T);
+        }
+
+        function drawDonut( T,values,i,ix ){
+            var A = Annotator;
+            var xw = T.width;
+            var x = i * T.xScaler+ T.margin + T.x0+xw/2;
+            var y = T.y0 + T.yh - T.margin - T.width+xw/2;
+            var r = xw/2;
+            var r2 = r*0.40;
+            var t0 = 2.0*Math.PI *0.75;
+            var t1 = 2.0*Math.PI *0.75;
+            var colours = ["rgba(105,205,105,1.0)","rgba(105,105,205,1.0)"];
+
+            // get total
+            var total =0;
+            var j;
+            for(j=1;j<values[i].length;j++)
+                total = total + values[i][j];
+
+            var ctx = A.BackingCanvas.ctx;
+
+            var frac = Math.min(20, Status.time) / 20;
+
+            for(j=1;j<values[i].length;j++){
+                t0=t1;
+                t1=t1+ frac * Math.PI*2*values[i][j]/total;
+                ctx.beginPath();
+                ctx.moveTo(x + r2 * Math.cos(t0), y + r2 * Math.sin(t0));
+                ctx.lineTo(x + r * Math.cos(t0), y + r * Math.sin(t0));
+                ctx.arc(x, y, r, t0, t1, false);
+                ctx.lineTo(x + r2 * Math.cos(t1), y + r2 * Math.sin(t1));
+                ctx.arc(x, y, r2, t1, t0, true);
+                ctx.closePath();
+                //ctx.rect(x, y, T.width, T.width);
+                ctx.fillStyle = colours[j % 2];
+                ctx.fill();
+                ctx.stroke();
+            }
+        }
+
+        function drawPieChart(x0,y0,xw,yh, obj ){
+            var T={};
+            //T.width = 100;
+            T.spacer = 30;
+            T.items =1;
+            drawSpacedItems(x0,y0,xw,yh, obj.values, drawDonut, T);
         }
 
         function drawHotspots(){
@@ -427,7 +486,7 @@
 
             var offsets=[];
             for(i=0;i<img.width;i++){
-                d= Math.floor(Math.asin( i/img.width)*img.width/4)*4;
+                d= Math.floor(Math.asin( i/img.width)*(img.width)/4)*4;
                 offsets.push(d);
 
             }
@@ -448,7 +507,7 @@
                 var srcLine = Math.floor(sourceForSlice(y/h)*img.height);
                 var srcBase = (srcLine*img.width+rotate) *4;
                 var index = Math.floor((y+h)*h*2 +h-dx)*4;
-                var rescaler =img.width/dx;
+                var rescaler =(img.width-1)/dx;
                 var srcIndex;
                 var offset;
                 var src = srcData.data;
@@ -707,12 +766,12 @@
             if( !isDefined( id ))
                 return id;
             var A = Annotator;
-            return A.Chart.objectDict[ id.substr(0,10)];
+            return A.RootObject.objectDict[ id.substr(0,10)];
         }
 
         function drawArrowThing( fn ){
             var A = Annotator;
-            var arrows = A.Chart.arrows;
+            var arrows = A.RootObject.arrows;
             if( !isDefined( arrows ))
                 return;
             for(i=0;i<arrows.length;i+=2){
@@ -828,9 +887,9 @@
         function setNewImage( url ){
             var A=Annotator;
             // Only supported for whole-div images.
-            if((A.Chart.content.length == 1) &&
-                    (A.Chart.content[0].type == "Image" )){
-                var obj = A.Chart.content[0];
+            if((A.RootObject.content.length == 1) &&
+                    (A.RootObject.content[0].type == "Image" )){
+                var obj = A.RootObject.content[0];
                 obj.file = url;
                 obj.img.src = obj.file;
             }
@@ -967,9 +1026,9 @@
         }
 
         function updateImages(){
-            if((A.Chart.content.length == 1) &&
-               (A.Chart.content[0].type == "Image" )){
-                var obj = A.Chart.content[0];
+            if((A.RootObject.content.length == 1) &&
+               (A.RootObject.content[0].type == "Image" )){
+                var obj = A.RootObject.content[0];
                 if( obj.file ){
                     obj.img.src = obj.file;
                 }
@@ -1068,6 +1127,11 @@
                 var l = obj.layout;
                 drawChart3(l.x0, l.y0, l.xw, l.yh, obj);
             },
+            "PieChart":function(obj,d){
+                //console.log( "draw - "+obj.type);
+                var l = obj.layout;
+                drawPieChart(l.x0, l.y0, l.xw, l.yh, obj);
+            },
             "Image":function(obj,d){
                 //console.log( "draw - "+obj.type);
                 var l = obj.layout;
@@ -1105,7 +1169,9 @@
 
         function sizeContainer(obj,d){
             //console.log( "size container - "+obj.type);
-            var n = obj.content.length;
+            var n = 0;
+            if(obj.content && Array.isArray(obj.content))
+                n=obj.content.length;
             sizeCell( obj,d );
             for( var i=0;i<n;i++ ){
                 var o2 = obj.content[i];
@@ -1115,15 +1181,16 @@
             }
         }
 
-        sizeThing = {
-            "default":function(obj,d){
-                //console.log( "size (default) - "+obj.type);
-                sizeCell( obj, d, 0.0);
+        function sizeContainer2(obj,d){
+            sizeContainer(obj, d);
+        }
 
-            },
-            "VStack":sizeContainer,
-            "HStack":sizeContainer,
-            "Overlay":sizeContainer,
+
+        sizeThing = {
+            "default":sizeContainer,
+            //"VStack":sizeContainer,
+            //"HStack":sizeContainer,
+            //"Overlay":sizeContainer,
 
             // SizeAs gives this size to the next object.
             // The size is normally 1, so 2 will increase
@@ -1136,10 +1203,11 @@
             "Spacer":function(obj,d){
                 sizeCell( obj, d, obj.value);
             },
-            "Chart":sizeCell,
-            "Image":sizeCell,
-            "Rectangle":sizeCell,
-            "Circle":sizeCell
+            //"Chart":sizeContainer,
+            //"PieChart":sizeCell,
+            //"Image":sizeContainer2,
+            //"Rectangle":sizeCell,
+            //"Circle":sizeCell
         };
 
 
@@ -1164,15 +1232,13 @@
 
         function layoutUnmargined( obj, d ){
             //console.log( "layout - "+obj.type);
-            var m = 7;
+            var m = 0;
             var l = obj.layout;
             layoutCell(l.x0+m, l.y0+m, l.xw-2*m, l.yh-2*m, obj,d);
         }
 
         layoutThing = {
-            "default":function(obj,d){
-                //console.log( "layout (default) - "+obj.type);
-            },
+            "default":layoutUnmargined,
             "VStack":function(obj,d){
                 //console.log( "layout - "+obj.type);
                 var n = obj.content.length;
@@ -1209,6 +1275,7 @@
                 }
             },
             "Chart": layoutMargined,
+            //"PieChart":layoutMargined,
             "Image": layoutUnmargined,
             "Rectangle":function(obj,d){
                 //console.log( "layout - "+obj.type);
@@ -1269,13 +1336,16 @@
                 layout.type = key;
                 delete layout[ key ];
 
-                if( layout.value && (typeof layout.value) == "string" ){
-                    layout.id = layout.value.substr(0, 10);
-                    A.Chart.objectDict[layout.id] = layout;
-                    A.Chart.objectList.push( layout );
-                }
                 //console.log( indent+key );
                 break;
+            }
+            if( (!layout.id) && layout.value && (typeof layout.value) == "string" ){
+                layout.id = layout.value;
+            }
+            if( layout.id ){
+                layout.id = layout.id.substr(0, 10);
+                A.RootObject.objectDict[layout.id] = layout;
+                A.RootObject.objectList.push( layout );
             }
             if( layout.content && Array.isArray( layout.content)){
                 for( var i = 0; i < layout.content.length; i++ ){
@@ -1288,10 +1358,10 @@
         function getObjectByName(name){
             if( !name )
                     return 0;
-            if( !A.Chart.objectDict )
+            if( !A.RootObject.objectDict )
                     return 0;
             var shortName = name.substr(0, 10);
-            return A.Chart.objectDict[ shortName ];
+            return A.RootObject.objectDict[ shortName ];
         }
 
         function isDefined( x ){
@@ -1303,11 +1373,11 @@
             A.Porthole.width = 700;
             A.Porthole.height = 200;
 
-            A.Chart.type = 'VStack';
-            A.Chart.content = [];
-            A.Chart.itemIndex = 0;
-            A.Chart.objectDict = {};
-            A.Chart.objectList = [];
+            A.RootObject.type = 'VStack';
+            A.RootObject.content = [];
+            A.RootObject.itemIndex = 0;
+            A.RootObject.objectDict = {};
+            A.RootObject.objectList = [];
         }
 
         function loadNewDetails( specFileData ){
@@ -1391,7 +1461,7 @@
                     console.log("distortion:");
                     A.Distortion.Map = "spherical";
 
-                    var obj = A.Chart.lastImage;
+                    var obj = A.RootObject.lastImage;
                     if( !obj )
                         continue;
                     obj.spherical = true;
@@ -1418,16 +1488,29 @@
                     A.Hotspots.ColourZoneIx=0;
 
                 }
-                if( item.startsWith("FLOWCHART:")){
+                if( item.startsWith("FLOWCHART:") ||
+                        item.startsWith("ADD:")
+                ){
                     var data = fieldValue( "DATA",item );
                     console.log("flow-data:"+data);
                     var obj = JSON.parse( data );
                     //console.log(obj);
 
                     convertJsonStructure( "",obj );
-                    A.Chart.content.push( obj );
+                    A.RootObject.content.push( obj );
                     A.Porthole.height += 200;
                     //console.log(obj);
+                }
+                if( item.startsWith("CHART")){
+                    var data = fieldValue( "DATA",item );
+                    console.log("chart-data:"+data);
+                    var obj = JSON.parse( data );
+                    convertJsonStructure( "",obj );
+                    obj.content=[];
+                    obj.type = "Chart";
+
+                    A.RootObject.content.push( obj );
+                    A.Porthole.height += 200;
                 }
                 if( item.startsWith("IMAGE")){
                     console.log("image:"+file);
@@ -1436,16 +1519,16 @@
                         obj.resize = false;
                     } else {
                         obj = {};
-                        obj.Image = {};
+                        obj.Image = file;
                         convertJsonStructure("", obj);
-                        obj.resize = A.Chart.content.length ==0;
-                        A.Chart.content.push( obj );
+                        obj.resize = A.RootObject.content.length ==0;
+                        A.RootObject.content.push( obj );
                     }
-                    A.Chart.lastImage = obj;
+                    A.RootObject.lastImage = obj;
 
                     obj.status = "asked";
                     obj.file = file;
-                    obj.content = file;
+                    obj.content = [];
                     obj.spherical = false;
                     obj.img = document.createElement( "img");
                     obj.img.onload = (function(){
@@ -1472,7 +1555,7 @@
                 }
                 if( item.startsWith("HOTSPOTS")){
                     console.log("hotspots:"+file);
-                    var obj = A.Chart.lastImage;
+                    var obj = A.RootObject.lastImage;
                     if( !obj )
                             continue;
 
@@ -1486,7 +1569,7 @@
                             obj1.hot.status="arrived";
                             console.log( obj1.file+" HS arrived");
                             if( Status.isAppReady )
-                                drawCells(A.Chart, {});
+                                drawCells(A.RootObject, {});
                         }
                     })();
                     obj.hot.img.onerror = (function(){
@@ -1498,24 +1581,12 @@
                     })();
                     obj.hot.img.src = file;
                 }
-                if( item.startsWith("CHART")){
-                    var data = fieldValue( "DATA",item );
-                    console.log("chart-data:"+data);
-                    var obj = JSON.parse( data );
 
-                    // Chart wrapper for the data.
-                    var obj2 = {};
-                    obj2.Chart = {};
-                    convertJsonStructure( "",obj2 );
-                    obj2.content = obj;
-                    A.Chart.content.push( obj2 );
-                    A.Porthole.height += 200;
-                }
                 if( item.startsWith("NEXTOBJECT:") ){
-                    if( !isDefined( A.Chart.objectList ))
+                    if( !isDefined( A.RootObject.objectList ))
                             continue;
-                    var n = A.Chart.itemIndex++;
-                    obj = A.Chart.objectList[n];
+                    var n = A.RootObject.itemIndex++;
+                    obj = A.RootObject.objectList[n];
                     if( !isDefined( obj ) )
                             continue;
 
@@ -1544,7 +1615,7 @@
                     console.log("arrow-data:"+data);
                     var obj = JSON.parse( data );
                     //console.log(obj);
-                    A.Chart.arrows = obj;
+                    A.RootObject.arrows = obj;
                 }
 
                 if( item.startsWith("CREDITS")){
@@ -1731,7 +1802,8 @@
     <li><a href="./demos.htm?page=Ocean_Currents&fromwiki=no"> Ocean Currents as Globe</a>- <em>(Experimental)</em> Moon trick done for Ocean Currents Image (no hotpsots yet, distorted)
     <li><a href="./demos.htm?page=Flow_Graph"> Flow Graph</a>- <em>(Experimental)</em> Flowchart of Making the Manual - <a href="https://wiki.audacityteam.org/wiki/Toolbox/Flow_Graph">wiki spec</a>
     <li><a href="./demos.htm?page=Subdivision"> Subdivision</a>- <em>(Experimental)</em> Methods for subdividing a diagram - <a href="https://wiki.audacityteam.org/wiki/Toolbox/Subdivision">wiki spec</a>
-</ul>
+    <li><a href="./demos.htm?page=Graphing"> Graphing</a>- <em>(Experimental)</em> Various graphs - <a href="https://wiki.audacityteam.org/wiki/Toolbox/Graphing">wiki spec</a>
+</ul></ul>
 
 
 <!---
