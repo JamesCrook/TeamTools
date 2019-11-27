@@ -237,6 +237,7 @@
         var Status = {};
         Status.OldHit = -1;
         Status.imagesToCome = 2;
+        Status.time = 0;
 
         var Message;
         var Message2;
@@ -267,6 +268,19 @@
                 onChart();
         }
 
+        function innerDraw(){
+            Status.drawing = true;
+            var ctx = A.BackingCanvas.ctx;
+            var ctx2 = A.Hotspots.ctx;
+            ctx.clearRect( 0,0, A.Porthole.width, A.Porthole.height );
+            ctx2.clearRect( 0,0, A.Porthole.width, A.Porthole.height );
+            drawArrows();
+            drawCells(A.Chart, {});
+            drawArrowHeads();
+
+            drawButtons();
+            Status.drawing = false;
+        }
         function onChart(){
             var A = Annotator;
             console.log("onChart");
@@ -280,17 +294,15 @@
             d.margins=10;
             layoutCells(0, 0, A.Porthole.width, A.Porthole.height, A.Chart,d);
             //console.log(A.Chart.content );
-
-            var ctx = A.BackingCanvas.ctx;
-            var ctx2 = A.Hotspots.ctx;
-            ctx.clearRect( 0,0, A.Porthole.width, A.Porthole.height );
-            ctx2.clearRect( 0,0, A.Porthole.width, A.Porthole.height );
-            drawArrows();
-            drawCells(A.Chart, {});
-            drawArrowHeads();
-
-            drawButtons();
+            innerDraw();
             Status.isAppReady = true;
+
+        }
+
+        function timerCallback(){
+            Status.time++;
+            if( !Status.drawing )
+               innerDraw();
         }
 
         function onFailedImage(){
@@ -411,7 +423,7 @@
             }
             ctx2.drawImage(img, 0, 0, img.width, img.height);
             var x0 = xw/2;
-            var rotate = 400;
+            var rotate = img.width - ((Status.time*3)%img.width);
 
             var offsets=[];
             for(i=0;i<img.width;i++){
@@ -436,24 +448,34 @@
                 var srcLine = Math.floor(sourceForSlice(y/h)*img.height);
                 var srcBase = (srcLine*img.width+rotate) *4;
                 var index = Math.floor((y+h)*h*2 +h-dx)*4;
-                var sign;
+                var rescaler =img.width/dx;
+                var srcIndex;
+                var offset;
+                var src = srcData.data;
+                var dst = dstData.data;
                 //console.log( 'row:'+y+' ('+(h-dx)+'..'+(h+dx)+')');
                 for( var x = -dx; x<dx;x++){
-                    sign = (x<0)?-1:1;
-                    var srcIndex = srcBase + sign * offsets[ Math.floor( Math.abs(x)*img.width/dx) ];
+                    // This inner loop has had a little TLC for speed.
+                    // Taking 25% of CPU to 15% by taking calculations
+                    // outside the loop.
+                    offset = offsets[ Math.floor( Math.abs(x)*rescaler) ];
+                    if( x<0 )
+                        srcIndex = srcBase - offset;
+                    else
+                        srcIndex = srcBase + offset;
 
-                    if( srcData.data[srcIndex+3] < 128 ){
-                        dstData.data[index++] = 20;
-                        dstData.data[index++] = 20;
-                        dstData.data[index++] = 110;
-                        dstData.data[index++] = 100;
+                    if( src[srcIndex+3] < 128 ){
+                        dst[index++] = 20;
+                        dst[index++] = 20;
+                        dst[index++] = 110;
+                        dst[index++] = 100;
                     }
                     else
                     {
-                        dstData.data[index++] = srcData.data[srcIndex++];
-                        dstData.data[index++] = srcData.data[srcIndex++];
-                        dstData.data[index++] = srcData.data[srcIndex++];
-                        dstData.data[index++] = srcData.data[srcIndex++];
+                        dst[index++] = src[srcIndex++];
+                        dst[index++] = src[srcIndex++];
+                        dst[index++] = src[srcIndex++];
+                        dst[index++] = src[srcIndex++];
                     }
                 }
             }
@@ -1629,6 +1651,7 @@
 
             console.log(A.page);
             loadDiagram(A.page, A.fromWiki);
+            setInterval(timerCallback, 30);
             //requestSpec();
         }
 
