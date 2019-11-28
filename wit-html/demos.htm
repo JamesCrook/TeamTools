@@ -196,6 +196,19 @@
             actions.Zone = A.Hotspots.count++;
         };
 
+        A.NextAutoColour = function(Tip){
+            var a = (A.Hotspots.autoColour++) + 256*11;
+            var index = "["+Math.floor(a/255)+","+(a%256)+",30,255]";
+            var rgb = rgbOfColourTuple(index);
+            var actions = A.Hotspots.Colours[ index ];
+            if( actions )
+                    return rgb;
+            actions = {};
+            A.Hotspots.Colours[ index ] = actions;
+            actions.Tip = Tip;
+            return rgb;
+        };
+
         var Nozone={};
         Nozone.Zone = 0;
 
@@ -203,6 +216,7 @@
             var A = Annotator;
             A.Hotspots.Colours = [];
             A.Hotspots.count = 0;
+            A.Hotspots.autoColour = 0;
             // Bogus entry to catch bad tips.
             A.AddHot( "[5,0,0,0]" );
 
@@ -274,6 +288,9 @@
             var ctx2 = A.Hotspots.ctx;
             ctx.clearRect( 0,0, A.Porthole.width, A.Porthole.height );
             ctx2.clearRect( 0,0, A.Porthole.width, A.Porthole.height );
+
+            // Some hotpspot colours are created as needed.
+            A.Hotspots.autoColour = 0;
             drawArrows();
             drawCells(A.RootObject, {});
             drawArrowHeads();
@@ -375,9 +392,11 @@
             T.items = T.items || (values[0].length - 1);
             T.margin = 60;
             if( T.width )
+                // If width of each item is given, then space between is what's left over
                 T.spacer = (xw - 2 * T.margin - T.count * T.width * T.items) /
                     (T.count - 1);
             else {
+                // otherwise width of item is determined by spacing between.
                 T.spacer = T.spacer || 4;
                 T.width = ((xw+ T.spacer-2 * T.margin ) / T.count - T.spacer )/ T.items;
             }
@@ -449,6 +468,67 @@
             T.items =1;
             drawSpacedItems(x0,y0,xw,yh, obj.values, drawDonut, T);
         }
+
+        function drawGriddedItems( x0,y0,xw,yh, values,  T)
+        {
+            x0 += T.margin+ T.width/2;
+            y0 += T.margin+ T.width/2;
+            T.xSpacing = (xw-2* T.margin)/ (T.n);
+            T.ySpacing = (yh-2* T.margin)/ (T.m);
+            var i=0;
+            var ctx = A.BackingCanvas.ctx;
+            var ctx2 = A.Hotspots.ctx;
+            var frac = Math.min(120, Status.time) / 120;
+            var maxv = Math.floor( frac * values.length );
+            for(var j=0;j< maxv;j+=2){
+                if( values[j+1]=="No Description")
+                        continue;
+                var r = 1.6*Math.log( (values[j+1].length)+0.1);
+                var row = Math.floor( i/ T.n);
+                var col = i-row* T.n;
+                if( row %2)
+                        col = T.n-col-1;
+                ctx.beginPath();
+                ctx.arc(x0+col* T.xSpacing, y0+row* T.ySpacing, r, 0, 2*Math.PI, false);
+                ctx.closePath();
+                ctx.fillStyle = "rgba(105,205,105,1.0)";
+                ctx.fill();
+                //ctx.stroke();
+                i++;
+
+
+                ctx2.beginPath();
+                ctx2.arc(x0+col* T.xSpacing, y0+row* T.ySpacing, r, 0, 2*Math.PI, false);
+                ctx2.closePath();
+                ctx2.fillStyle = A.NextAutoColour(
+                        "<h1>"+values[j]+"</h1>"+values[j+1] );
+                ctx2.fill();
+
+
+
+            }
+        }
+
+        // draws a path inside a box.
+        function drawPath(x0,y0,xw,yh, obj ){
+            var T={};
+            //T.width = 100;
+            //T.spacer = 30;
+            T.items =1;
+            T.count=0;
+            T.width = 15;
+            for(var i=0;i<obj.values.length;i+=2){
+                if( obj.values[i+1] != "No Description" )
+                    T.count++;
+            }
+            T.margin = 30;
+            T.n = Math.ceil(Math.sqrt(T.count) * xw / yh);
+            T.m = Math.ceil(T.count/ T.n);
+            //T.spacer = (xw-2* T.margin)/ (T.n-1);
+
+            drawGriddedItems(x0,y0,xw,yh, obj.values, T);
+        }
+
 
         function drawHotspots(){
             var A = Annotator;
@@ -1132,6 +1212,11 @@
                 var l = obj.layout;
                 drawPieChart(l.x0, l.y0, l.xw, l.yh, obj);
             },
+            "Path":function(obj,d){
+                //console.log( "draw - "+obj.type);
+                var l = obj.layout;
+                drawPath(l.x0, l.y0, l.xw, l.yh, obj);
+            },
             "Image":function(obj,d){
                 //console.log( "draw - "+obj.type);
                 var l = obj.layout;
@@ -1275,8 +1360,8 @@
                 }
             },
             "Chart": layoutMargined,
-            //"PieChart":layoutMargined,
-            "Image": layoutUnmargined,
+            //"PieChart":layoutUnmargined,
+            //"Image": layoutUnmargined,
             "Rectangle":function(obj,d){
                 //console.log( "layout - "+obj.type);
                 var m = d.margins;
@@ -1502,6 +1587,7 @@
                     //console.log(obj);
                 }
                 if( item.startsWith("CHART")){
+                    // Chart relies on a values array that holds the data.
                     var data = fieldValue( "DATA",item );
                     console.log("chart-data:"+data);
                     var obj = JSON.parse( data );
@@ -1803,6 +1889,7 @@
     <li><a href="./demos.htm?page=Flow_Graph"> Flow Graph</a>- <em>(Experimental)</em> Flowchart of Making the Manual - <a href="https://wiki.audacityteam.org/wiki/Toolbox/Flow_Graph">wiki spec</a>
     <li><a href="./demos.htm?page=Subdivision"> Subdivision</a>- <em>(Experimental)</em> Methods for subdividing a diagram - <a href="https://wiki.audacityteam.org/wiki/Toolbox/Subdivision">wiki spec</a>
     <li><a href="./demos.htm?page=Graphing"> Graphing</a>- <em>(Experimental)</em> Various graphs - <a href="https://wiki.audacityteam.org/wiki/Toolbox/Graphing">wiki spec</a>
+    <li><a href="./demos.htm?page=Classes"> Classes</a>- <em>(Experimental)</em> A metro-line display of classes - <a href="https://wiki.audacityteam.org/wiki/Toolbox/Graphing">wiki spec</a>
 </ul></ul>
 
 
