@@ -565,11 +565,14 @@
         var x0 = xw / 2;
         var rotate = img.width - ((Status.time * 3) % img.width);
 
-        var offsets = [];
-        for( i = 0; i < img.width; i++ ){
-          d = Math.floor(Math.asin(i / img.width) * (img.width) / 4) * 4;
-          offsets.push(d);
-
+        var offsets = obj.offsets || [];
+        if( offsets.length !== img.width ) {
+          offsets = [];
+          for( i = 0; i < img.width; i++ ){
+            d = Math.floor(Math.asin(i / img.width) * (img.width) / 4) * 4;
+            offsets.push(d);
+          }
+          obj.offsets = offsets;
         }
 
         var w = Math.floor(xw / 2);
