@@ -23,74 +23,72 @@ The detailed data for the chart follows.
 
 <pre>START</pre>
 
-<pre>FLOWCHART:DATA=
+<pre>ADD:DATA=
     {"SizeAs":2.8}
 </pre>
 
-<pre>FLOWCHART:DATA=
+<pre>ADD:DATA=
     {"Overlay":[
-         {"HStack":[
-            {"Rectangle":"Foo"},
-            {"Rectangle":"Bar"}
+         {"VStack":[
+             {"Chart":"Fum",
+              "titles":["Date","Live Bugs","Slain Bugs"],
+              "display":["Label","Blue","Green"],
+              "values":[
+                   ["Aug 2017",605,1104],
+                   ["Sep 2017",543,1192],
+                   ["Oct 2017",557,1195],
+                   ["Nov 2017",556,1212],
+                   ["Dec 2017",542,1255],
+                   ["Jan 2018",549,1266],
+                   ["Mar 2018",539,1310],
+                   ["Apr 2018",518,1345],
+                   ["May 2018",489,1382],
+                   ["Jun 2018",493,1390],
+                   ["Jul 2018",495,1401],
+                   ["Aug 2018",501,1410],
+                   ["Sep 2018",447,1517],
+                   ["Oct 2018",445,1545],
+                   ["Nov 2018",450,1571],
+                   ["Dec 2018",458,1585],
+                   ["Jan 2019",464,1588],
+                   ["Feb 2019",468,1592],
+                   ["Mar 2019",470,1605],
+                   ["Apr 2019",472,1616],
+                   ["May 2019",468,1638],
+                   ["Jun 2019",423,1695],
+                   ["Jul 2019",404,1740],
+                   ["Aug 2019",390,1792],
+                   ["Sep 2019",356,1853],
+                   ["Oct 2019",360,1860],
+                   ["Nov 2019",362,1867]
+              ]
+             },
+             {"HStack":[
+                {"Rectangle":"Foo"},
+                {"Rectangle":"Bar"}
+             ]}
          ]},
          {"Image":"Moon"}
     ]}
 </pre>
 
-<pre>CHART:DATA=
- {
-   "titles":["Date","Live Bugs","Slain Bugs"],
-   "display":["Label","Blue","Green"],
-   "values":[
-   ["Aug 2017",605,1104],
-   ["Sep 2017",543,1192],
-   ["Oct 2017",557,1195],
-   ["Nov 2017",556,1212],
-   ["Dec 2017",542,1255],
-   ["Jan 2018",549,1266],
-   ["Mar 2018",539,1310],
-   ["Apr 2018",518,1345],
-   ["May 2018",489,1382],
-   ["Jun 2018",493,1390],
-   ["Jul 2018",495,1401],
-   ["Aug 2018",501,1410],
-   ["Sep 2018",447,1517],
-   ["Oct 2018",445,1545],
-   ["Nov 2018",450,1571],
-   ["Dec 2018",458,1585],
-   ["Jan 2019",464,1588],
-   ["Feb 2019",468,1592],
-   ["Mar 2019",470,1605],
-   ["Apr 2019",472,1616],
-   ["May 2019",468,1638],
-   ["Jun 2019",423,1695],
-   ["Jul 2019",404,1740],
-   ["Aug 2019",390,1792],
-   ["Sep 2019",356,1853],
-   ["Oct 2019",360,1860],
-   ["Nov 2019",362,1867]
-
-   ]
-}
-</pre>
-
-
-<pre>NEXTOBJECT:COLOUR=rgb(255,230,205);BCOLOUR=rgb(215,155,0);CORNER_RADIUS=15</pre>
+<pre>NEXTOBJECT:;TIP=</pre>
+Gaa
+<pre>NEXTOBJECT:COLOUR=rgb(255,230,205);BCOLOUR=rgb(215,155,0);CORNER_RADIUS=15;TIP=</pre>
+This is in the orange rectangle.
 <pre>NEXTOBJECT:COLOUR=rgb(215,230,210);BCOLOUR=rgb(130,180,100);CORNER_RADIUS=15;TIP=</pre>
-
-Oh my Goodness!
-
+This is in the green rectangle.
 
 
 <pre>FLOWCHART:DATA=
+{"HStack":[
     {"Overlay":[
-         {"Rectangle":"This is a very long indeed title so that we can see it"},
+         {"Rectangle":"This is a long title so we can see it"},
          {"Image":"Climate"}
-    ]}
-</pre>
-
-<pre>FLOWCHART:DATA=
+    ]},
     {"Image":"Current"}
+
+]}
 </pre>
 
 
