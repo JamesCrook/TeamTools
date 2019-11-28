@@ -569,7 +569,7 @@
         if( offsets.length !== img.width ) {
           offsets = [];
           for( i = 0; i < img.width; i++ ){
-            d = Math.floor(Math.asin(i / img.width) * (img.width) / 4) * 4;
+            d = Math.floor(Math.asin(i / img.width) * (img.width) / (2*Math.PI)) * 4;
             offsets.push(d);
           }
           obj.offsets = offsets;
@@ -585,10 +585,24 @@
         var dstData = ctx.getImageData(xx + (w - h), yy + (h1 - h), h * 2,
           h * 2);
 
+        var adjustedOffsets = [];
+        var frac = Math.max(0,Math.min( 40, Status.time-120) )/40;
+
+        if( frac === 1 )
+          adjustedOffsets = offsets;
+        else for( var i=0;i<img.width;i++){
+          // 2*Math.PI would match the centre of the sphere exactly.
+          // slightly less to match away from equator.
+          // That way Africa bulges as the distortion happens.
+          var p = i/(1.4*Math.PI);
+          adjustedOffsets.push( 4*Math.floor(p + frac * (offsets[i]/4-p)));
+        }
+
         for( var y = -h; y < h; y++ ){
           var dx = Math.floor(Math.sqrt(h * h - y * y));
           var srcLine = Math.floor(sourceForSlice(y / h) * img.height);
           var srcBase = (srcLine * img.width + rotate) * 4;
+          dx = h + frac *(dx-h);
           var index = Math.floor((y + h) * h * 2 + h - dx) * 4;
           var rescaler = (img.width - 1) / dx;
           var srcIndex;
@@ -600,7 +614,7 @@
             // This inner loop has had a little TLC for speed.
             // Taking 25% of CPU to 15% by taking calculations
             // outside the loop.
-            offset = offsets[Math.floor(Math.abs(x) * rescaler)];
+            offset = adjustedOffsets[Math.floor(Math.abs(x) * rescaler)];
             if( x < 0 ) srcIndex = srcBase - offset; else srcIndex =
               srcBase + offset;
 
