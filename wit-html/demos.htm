@@ -324,7 +324,7 @@
 
         var d = {};
         sizeCells(A.RootObject, d);
-        d.margins = 10;
+        d.margins = 0;
         layoutCells(0, 0, A.Porthole.width, A.Porthole.height, A.RootObject, d);
         //console.log(A.RootObject.content );
         innerDraw();
@@ -396,7 +396,7 @@
         ctx.strokeStyle = "rgba( 55, 55,155,1.0)";
         ctx.lineWidth = 1;
 
-        ctx.rect(x0 + 5, y0 + 5, xw - 10, yh - 10);
+        ctx.rect(x0, y0, xw, yh);
         ctx.fill();
         ctx.stroke();
       }
@@ -1247,7 +1247,7 @@
         obj.sizing.min = 0;
         obj.sizing.wants = (proportion === undefined) ? 1.0 : proportion;
         obj.sizing.cumulativeWants = 0.0;
-        if( d.hasOwnProperty("sizeAs") ){
+        if( d.hasOwnProperty("sizeAs") && (proportion === undefined)){
           obj.sizing.wants = d.sizeAs;
           delete d.sizeAs;
         }
@@ -1284,7 +1284,12 @@
         }, // Spacer makes some open space
         "Spacer": function(obj, d){
           sizeCell(obj, d, obj.value);
-        }, //"Chart":sizeContainer,
+        },
+        "Margins":function(obj, d){
+          sizeCell(obj, d, 0.0);
+        }
+
+        //"Chart":sizeContainer,
         //"PieChart":sizeCell,
         //"Image":sizeContainer2,
         //"Rectangle":sizeCell,
@@ -1316,7 +1321,8 @@
       }
 
       layoutThing = {
-        "default": layoutUnmargined, "VStack": function(obj, d){
+        "default": layoutUnmargined,
+        "VStack": function(obj, d){
           //console.log( "layout - "+obj.type);
           var n = obj.content.length;
           var l = obj.layout;
@@ -1350,19 +1356,15 @@
           for( var i = 0; i < n; i++ ){
             layoutCells(l.x0, l.y0, l.xw, l.yh, obj.content[i], d);
           }
-        }, "Chart": layoutMargined, //"PieChart":layoutUnmargined,
-        //"Image": layoutUnmargined,
-        "Rectangle": function(obj, d){
-          //console.log( "layout - "+obj.type);
-          var m = d.margins;
-          var l = obj.layout;
-          layoutCell(l.x0 + m, l.y0 + m, l.xw - 2 * m, l.yh - 2 * m, obj, d);
-        }, "Circle": function(obj, d){
-          //console.log( "layout - "+obj.type);
-          var m = d.margins;
-          var l = obj.layout;
-          layoutCell(l.x0 + m, l.y0 + m, l.xw - 2 * m, l.yh - 2 * m, obj, d);
+        },
+        "Chart": layoutMargined, //"PieChart":layoutUnmargined,
+        "Image": layoutMargined,
+        "Rectangle": layoutMargined,
+        "Circle": layoutMargined,
+        "Margins":function(obj, d){
+          d.margins = obj.value;
         }
+
 
       };
 

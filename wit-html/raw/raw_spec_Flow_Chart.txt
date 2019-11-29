@@ -23,6 +23,7 @@ The detailed data for the chart follows.
 <pre>FLOWCHART:DATA=
 {"HStack":[
     {"SizeAs":3},
+    {"Margins":7},
     {"VStack":[
         {"HStack":[
             {"VStack":[
