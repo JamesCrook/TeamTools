@@ -26,7 +26,7 @@ The detailed data for the chart follows.
 <pre>START</pre>
 
 <pre>ADD:DATA=
-{
+[{
    "Path":"Citric Acid Cycle",
    "baseSize":20,
    "values":[
@@ -40,10 +40,7 @@ The detailed data for the chart follows.
         "Malate","Malate",
         "Oxaloacetate","Oxaloacetate"
     ]
-}
-</pre>
-
-<pre>ADD:DATA=
+},
 {
    "Path":"Glycolysis",
    "baseSize":20,
@@ -60,7 +57,7 @@ The detailed data for the chart follows.
         "2-Phosphoenolpyruvate","2-Phosphoenolpyruvate (PEP)",
         "Pyruvate","Pyruvate (PYR)"
     ]
-}
+}]
 </pre>
 
 <pre>NEXTOBJECT:;TIP=</pre>

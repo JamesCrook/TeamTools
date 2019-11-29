@@ -1490,8 +1490,6 @@
           }
           if( item.startsWith("DISTORTION") ){
             console.log("distortion:");
-            A.Distortion.Map = "spherical";
-
             var obj = A.RootObject.lastImage;
             if( !obj ) continue;
             obj.spherical = true;
@@ -1521,11 +1519,18 @@
           if( item.startsWith("FLOWCHART:") || item.startsWith("ADD:") ){
             var data = fieldValue("DATA", item);
             console.log("flow-data:" + data);
-            var obj = JSON.parse(data);
+            var container =[];
+            var json = JSON.parse(data);
             //console.log(obj);
+            if( !Array.isArray( json ) )
+              container.push( json );
+            else
+              container = json;
 
-            convertJsonStructure("", obj);
-            A.RootObject.content.push(obj);
+            for( var kk=0;kk<container.length;kk++ ){
+              convertJsonStructure("", container[kk]);
+              A.RootObject.content.push(container[kk]);
+            }
             A.Porthole.height += 200;
             //console.log(obj);
           }
@@ -1551,6 +1556,7 @@
               obj.Image = file;
               convertJsonStructure("", obj);
               obj.resize = A.RootObject.content.length === 0;
+              obj.spherical = false;
               A.RootObject.content.push(obj);
             }
             A.RootObject.lastImage = obj;
@@ -1558,7 +1564,6 @@
             obj.status = "asked";
             obj.file = file;
             obj.content = [];
-            obj.spherical = false;
             obj.img = document.createElement("img");
             obj.img.onload = (function(){
               var obj1 = obj;
@@ -1733,7 +1738,7 @@
       window.onload = function(){
 
         var query = window.location.href;
-        A.page = getArg(query, 'page') || "The_AU19_Crowd";
+        A.page = getArg(query, 'page') || "SmallCrowd";
 // Can't use the following on IE 11.
 //          var url = new URL(query);
 //          var page = url.searchParams.get("page") || "The_AU19_Crowd";
@@ -1759,7 +1764,7 @@
       style="color:white;background-image:url(./images/header-home-bg.jpg);margin:0px;background-attachment:fixed;">
 <div style="width:100%; text-align:center;background:#1d2134;height:5em;margin: 0px;">
     <h1 style="margin:0px;padding-top:0.65em;padding-bottom:0.9em;"><em>Audacity
-        Tool Kit</em>: Demo Page</h1>
+        ToolKit</em>: Demo Page</h1>
     <div style="width:100%; text-align:center;background:#303b70;position:relative;height:1.8em;top:-0.6em;box-shadow: inset 0 0px 4px 0px #000080, 0 -2px 7px -2px #618ef4;"></div>
 </div>
 <div style="width:100%;position:relative;top:-0.50em;left:0;display:inline-block;margin:0 auto;height:3em;">
@@ -1801,7 +1806,7 @@
     <div id="message2"></div>
 </div>
 <div style="margin-left:50px">
-    <p>Demos from the Audacity Tool Kit.
+    <p>Demos from the Audacity Toolkit.
     <p> Follow links below to see each of the examples.
 </div>
 <div style="margin-left:10px">
@@ -1809,36 +1814,12 @@
     These examples have their specification in an editable wiki page. Some are
     'works in progress' (wip).
     <ul>
+<!--
         <li><a href="./demos.htm?page=The_AU19_Crowd">The Audacity 2019
             Unconference</a> - an annotated image people-identifier - <a
                 href="https://wiki.audacityteam.org/wiki/Toolbox/The_AU19_Crowd">wiki
             spec</a>, <a href="./demos.htm?page=The_AU19_Crowd&fromwiki=no">no
             wiki</a><br>
-        <li><a href="./demos.htm?page=Window_Size"> Spectrogram
-            Window-Size Explanation</a> - an interactive diagram about a
-            spectrogram - <a
-                    href="https://wiki.audacityteam.org/wiki/Toolbox/Window_Size">wiki
-                spec</a>, <a href="./demos.htm?page=Window_Size&fromwiki=no"> no
-                wiki</a>
-
-        <li><a href="./demos.htm?page=Hotspots"> More about the Focus-Detail
-            tool</a> - shows the coloured hotspots image - <a
-                href="https://wiki.audacityteam.org/wiki/Toolbox/Hotspots">wiki
-            spec</a>, <a href="./demos.htm?page=Hotspots&fromwiki=no">no
-            wiki</a>
-        <li><a href="./demos.htm?page=The_Ear"> The Ear</a>- <em>(wip)</em>
-            using images from Blausen Medical (hotspots in subsidiary images to
-            do &amp; mystery-meat fix) This is three linked image-mapped
-            diagrams, the ear as a whole, and middle and inner ear - <a
-                    href="https://wiki.audacityteam.org/wiki/Toolbox/The_Ear">wiki
-                spec</a>, <a href="./demos.htm?page=The_Ear&fromwiki=no">no
-                wiki</a>
-        <li><a href="./demos.htm?page=Bug_Counts"> Bug Counts</a>-
-            <em>(wip)</em> Audacity bug tracking - driven from data in wiki
-            (scales, key and hotspots to do) - <a
-                    href="https://wiki.audacityteam.org/wiki/Toolbox/Bug_Counts">wiki
-                spec</a>, <a href="./demos.htm?page=Bug_Counts&fromwiki=no">no
-                wiki</a>
         <li><a href="./demos.htm?page=Köppen_Climate_Classification"> Köppen
             Climate Classification</a> - <em>(wip)</em> A demo where the image
             is already colour coded - <a
@@ -1846,6 +1827,38 @@
                 spec</a>, <a
                     href="./demos.htm?page=Köppen_Climate_Classification&fromwiki=no">no
                 wiki</a></li>
+        <li><a href="./demos.htm?page=Bug_Counts"> Bug Counts</a>-
+            <em>(wip)</em> Audacity bug tracking - driven from data in wiki
+            (scales, key and hotspots to do) - <a
+                    href="https://wiki.audacityteam.org/wiki/Toolbox/Bug_Counts">wiki
+                spec</a>, <a href="./demos.htm?page=Bug_Counts&fromwiki=no">no
+                wiki</a>
+        <li><a href="./demos.htm?page=The_Ear"> The Ear</a>- <em>(wip)</em>
+            using images from Blausen Medical (hotspots in subsidiary images to
+            do &amp; mystery-meat fix) This is three linked image-mapped
+            diagrams, the ear as a whole, and middle and inner ear - <a
+                    href="https://wiki.audacityteam.org/wiki/Toolbox/The_Ear">wiki
+                spec</a>, <a href="./demos.htm?page=The_Ear&fromwiki=no">no
+                wiki</a>
+        <li><a href="./demos.htm?page=Hotspots"> More about the Focus-Detail
+            tool</a> - shows the coloured hotspots image - <a
+                href="https://wiki.audacityteam.org/wiki/Toolbox/Hotspots">wiki
+            spec</a>, <a href="./demos.htm?page=Hotspots&fromwiki=no">no
+            wiki</a>
+-->
+        <li><a href="./demos.htm?page=Window_Size"> Spectrogram
+            Window-Size Explanation</a> - an interactive diagram about a
+            spectrogram - <a
+                    href="https://wiki.audacityteam.org/wiki/Toolbox/Window_Size">wiki
+                spec</a>, <a href="./demos.htm?page=Window_Size&fromwiki=no"> no
+                wiki</a>
+        <li><a href="./demos.htm?page=Ear2"> The Ear 2</a>- <em>(wip)</em>
+            using images from Blausen Medical (hotspots in subsidiary images to
+            do &amp; mystery-meat fix) This is three linked image-mapped
+            diagrams, the ear as a whole, and middle and inner ear - <a
+                    href="https://wiki.audacityteam.org/wiki/Toolbox/Ear2">wiki
+                spec</a>, <a href="./demos.htm?page=Ear2&fromwiki=no">no
+                wiki</a>
     </ul>
 
 
@@ -1853,27 +1866,35 @@
     have an editable wiki page if we wanted (by pasting the text file into
     wiki).
     <ul>
+<!--
         <li><a href="./demos.htm?page=The_Situation_Room&fromwiki=no">The
             Situation Room</a> - more annotation of an image. This is a featured
             image from Wikipedia<br>
-        <li><a href="./demos.htm?page=Lunar_Sites&fromwiki=no"> Lunar Sites</a>-
-            <em>(Experimental)</em> A demo where the image is wrapped onto a
-            sphere (no hotspots yet, distorted)
-        <li><a href="./demos.htm?page=Köppen_Globe&fromwiki=no"> Climate Zone as
-            Globe</a>- <em>(Experimental)</em> Moon trick done for Köppen Image
-            (no hotpsots yet, distorted)
-        <li><a href="./demos.htm?page=Ocean_Currents&fromwiki=no"> Ocean
-            Currents as Globe</a>- <em>(Experimental)</em> Moon trick done for
-            Ocean Currents Image (no hotpsots yet, distorted)
-        <li><a href="./demos.htm?page=Flow_Graph"> Flow Graph</a>- <em>(Experimental)</em>
-            Flowchart of Making the Manual - <a
-                    href="https://wiki.audacityteam.org/wiki/Toolbox/Flow_Graph">wiki
-                spec</a>
         <li><a href="./demos.htm?page=Subdivision"> Subdivision</a>- <em>(Experimental)</em>
             Methods for subdividing a diagram - <a
                     href="https://wiki.audacityteam.org/wiki/Toolbox/Subdivision">wiki
                 spec</a>
-        <li><a href="./demos.htm?page=Graphing"> Graphing</a>- <em>(Experimental)</em>
+
+        <li><a href="./demos.htm?page=Lunar_Sites&fromwiki=no"> Lunar Sites</a>-
+            <em>(Experimental)</em> A demo where the image is wrapped onto a
+            sphere (no hotspots yet, distorted)
+        <li><a href="./demos.htm?page=Köppen_Globe&fromwiki=no"> Climate Zone as
+            Globe</a>- Moon trick done for Köppen Image
+        <li><a href="./demos.htm?page=Ocean_Currents&fromwiki=no"> Ocean
+            Currents as Globe</a>- <em>(Experimental)</em> Moon trick done for
+            Ocean Currents Image (no hotpsots yet, distorted)
+-->
+        <li><a href="./demos.htm?page=SmallCrowd"> Embedded Picture</a>-
+            A hotspots-image in a more complex layout - <a
+                    href="https://wiki.audacityteam.org/wiki/Toolbox/SmallCrowd">wiki
+                spec</a>
+        <li><a href="./demos.htm?page=Köppen2&fromwiki=no"> Climate Zone as
+            Globe</a>- Moon trick done for Köppen Image
+        <li><a href="./demos.htm?page=Flow_Graph"> Flow Graph</a>-
+            Flowchart of Making the Manual - <a
+                    href="https://wiki.audacityteam.org/wiki/Toolbox/Flow_Graph">wiki
+                spec</a>
+        <li><a href="./demos.htm?page=Graphing"> Graphing</a>-
             Various graphs - <a
                     href="https://wiki.audacityteam.org/wiki/Toolbox/Graphing">wiki
                 spec</a>
@@ -1884,10 +1905,6 @@
         <li><a href="./demos.htm?page=Biochemical"> Biochemical</a>-
             <em>(Experimental)</em> A metro-line display of biochemical pathways - <a
                     href="https://wiki.audacityteam.org/wiki/Toolbox/Biochemical">wiki
-                spec</a>
-        <li><a href="./demos.htm?page=SmallCrowd"> Embedded Picture</a>-
-            <em>(Experimental)</em> A hotspots-image in a more complex layout - <a
-                    href="https://wiki.audacityteam.org/wiki/Toolbox/SmallCrowd">wiki
                 spec</a>
     </ul>
 

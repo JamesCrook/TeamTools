@@ -21,12 +21,24 @@ The detailed data for the regions, buttons and tooltips follows.
 <pre>START</pre>
 
 <pre>ADD:DATA=
-{"VStack":[
-    {"SizeAs":9},
-    {"Image":"Crowd"},
-    {"Rectangle":"This image, and its hotspots, are scaled to fit."}
+{"HStack":[
+    {"VStack":[
+        {"Image":"Crowd"},
+        {"SizeAs":1.2},
+        {"Image":"Situation Room"}
+    ]},
+    {"SizeAs":0.8},
+    {"Rectangle":"Placeholder"}
 ]}
 </pre>
+
+<pre>NEXTOBJECT:COLOUR=rgb(215,230,210);BCOLOUR=rgb(130,180,100);TIP=</pre>
+1This box has a tip.
+<pre>NEXTOBJECT:COLOUR=rgb(215,230,210);BCOLOUR=rgb(130,180,100);TIP=</pre>
+2This box has a tip.
+<pre>NEXTOBJECT:COLOUR=rgb(215,230,210);BCOLOUR=rgb(130,180,100);CORNER_RADIUS=15;TIP=</pre>
+This box has a tip.
+
 
 <pre>IMAGE:NAME=Crowd</pre>
 [[File:AudacityAu19.jpg]]
@@ -90,10 +102,98 @@ The detailed data for the regions, buttons and tooltips follows.
 <h1>Peter Sampson</h1>
 <em><p>Audacity forum, documentation and QA</p></em>
 
-<pre>CREDITS:CAPTION=Audacity 2019 Unconference;TIP=</pre>
+
+
+<pre>IMAGE:NAME=Situation Room</pre>
+[[File:Obama_and_Biden_await_updates_on_bin_Laden.jpg]]
+
+<pre>HOTSPOTS</pre>
+[[File:Obama_and_Biden_await_updates_on_bin_LadenHS.png]]
+
+<pre>ZONECOLOURS=
+[
+	[229,136,173,255],
+	[175,136,229,255],
+	[ 97,159, 89,255],
+	[232,221,183,255],
+	[149,176,227,255],
+	[194,243,167,255],
+	[ 53, 97,179,255],
+	[146, 55,176,255],
+	[209,141,219,255],
+	[ 64,135, 69,255],
+	[136,228,234,255],
+	[234,226,136,255],
+	[227,119, 14,255],
+	[227, 14, 54,255]
+]
+</pre>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Joe Biden</h1>
+<em><p>Vice President</p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Barack Obama</h1>
+<em><p>President</p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Marshall B. "Brad" Webb</h1>
+<em><p>Brigadier General; Assistant Commanding General, Joint Special Operations Command</p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Denis McDonough</h1>
+<em><p>Deputy National Security Adviser</p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Hillary Rodham Clinton</h1>
+<em><p>Secretary of State</p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Robert Gates</h1>
+<em><p>Secretary of Defense</p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Mike Mullan</h1>
+<em><p>Admiral; Chairman of the Joint Chief of Staffs</p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Tom Donilon</h1>
+<em><p>National Security Advisor</p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Bill Daley</h1>
+<em><p>Chief of Staff</p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Tony Blinken</h1>
+<em><p>National Security Advisor to the Vice President</p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Audrey Tomason</h1>
+<em><p>Director of Counterterrorism</p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>John Brennan</h1>
+<em><p>Assistant to the President for Homeland Security and Counterterrorism</p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>James Clapper</h1>
+<em><p>Director of National Intelligence</p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Someone</h1>
+<em><p>...in a black suit and white tie</p></em>
+
+
+<pre>CREDITS:CAPTION=A mosaic of images;TIP=</pre>
 <h3>Instructions</h3>
 <ul>
 <li>Hover over hotspots in the image for more details.
 <li>Hold shift down to freeze the hotspot - e.g. when taking a screenshot.
-</ul><br><br>
-<b>Credits:</b> <em>Photo by Arturo Buanzo Busleiman ©2019; CC3 BY-SA</em>
+</ul>
+<b>Credits:</b> <em>Photos<ol><li>by Arturo Buanzo Busleiman ©2019; CC3
+BY-SA
+<li>Pete Souza - <a href="https://commons.wikimedia
+.org/wiki/File:Obama_and_Biden_await_updates_on_bin_Laden.jpg">see description on Wikipedia</a>
+</ol></em>
