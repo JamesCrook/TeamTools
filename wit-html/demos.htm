@@ -498,6 +498,10 @@
         if( row % 2 ) col = T.n - col - 1;
         var x = T.x0 + col * T.xSpacing;
         var y = T.y0 + row * T.ySpacing;
+        if( T.isPath ){
+          if( i === 0 ) x -= T.xSpacing;
+          if( i === T.maxv-1 ) x += T.xSpacing;
+        }
         return {"x":x,"y":y};
       }
 
@@ -513,12 +517,35 @@
         // longer on very long paths
         var animateTime = 11 * Math.log( values.length + 5);
         var frac = Math.min(animateTime, Status.time) / animateTime;
-        var maxv = Math.floor(frac * values.length);
+        var maxv = Math.floor(frac * T.count);
 
-        for( var j = 0; j < maxv; j += 2 ){
+
+        ctx.beginPath();
+        ctx.lineWidth = 5;
+
+        var S;
+        var j;
+        T.isPath = true;
+        T.maxv = maxv;
+        for( j = 0; i < maxv; j += 2 ){
+          if( values[j + 1] === "No Description" ) continue;
+          S = T.fn( i, T );
+          if( i===0 )
+            ctx.moveTo( S.x, S.y );
+          else
+            ctx.lineTo( S.x, S.y );
+          i++;
+
+        }
+        ctx.strokeStyle = "rgba(0,0,0,1.0)";
+        ctx.stroke();
+        i=0;
+
+        T.isPath = false;
+        for( j = 0; i < maxv; j += 2 ){
           if( values[j + 1] === "No Description" ) continue;
           var r = 1.6 * Math.log((values[j + 1].length) + 0.1)+T.r0;
-          var S = T.fn( i, T );
+          S = T.fn( i, T );
           ctx.beginPath();
           ctx.arc(S.x, S.y, r, 0, 2 * Math.PI, false);
           ctx.closePath();
