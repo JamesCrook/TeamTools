@@ -1431,7 +1431,7 @@
 
       function startChart(){
         A.Porthole.width = 700;
-        A.Porthole.height = 200;
+        A.Porthole.height = 400;
 
         A.RootObject.type = 'VStack';
         A.RootObject.content = [];
@@ -1510,10 +1510,6 @@
             console.log("click-goto:" + file);
             setClick("Goto", file);
           }
-          if( item.startsWith("IMAGE5") ){
-            console.log("image:" + file);
-            A.Image.imageSrc = file;
-          }
           if( item.startsWith("DISTORTION") ){
             console.log("distortion:");
             var obj = A.RootObject.lastImage;
@@ -1557,7 +1553,6 @@
               convertJsonStructure("", container[kk]);
               A.RootObject.content.push(container[kk]);
             }
-            A.Porthole.height += 200;
             //console.log(obj);
           }
           if( item.startsWith("CHART") ){
@@ -1570,7 +1565,6 @@
             obj.type = "Chart";
 
             A.RootObject.content.push(obj);
-            A.Porthole.height += 200;
           }
           if( item.startsWith("IMAGE") ){
             console.log("image:" + file);
