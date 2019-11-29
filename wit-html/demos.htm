@@ -491,11 +491,17 @@
         drawSpacedItems(x0, y0, xw, yh, obj.values, drawDonut, T);
       }
 
-      function drawGriddedItems(x0, y0, xw, yh, values, T){
-        x0 += T.margin + T.width / 2;
-        y0 += T.margin + T.width / 2;
-        T.xSpacing = (xw - 2 * T.margin) / (T.n);
-        T.ySpacing = (yh - 2 * T.margin) / (T.m);
+
+      function xyOfIndexSnakey( i, T ){
+        var row = Math.floor(i / T.n);
+        var col = i - row * T.n;
+        if( row % 2 ) col = T.n - col - 1;
+        var x = T.x0 + col * T.xSpacing;
+        var y = T.y0 + row * T.ySpacing;
+        return {"x":x,"y":y};
+      }
+
+      function drawMultipleItems(values, T){
         var i = 0;
         var ctx = A.BackingCanvas.ctx;
         var ctx2 = A.Hotspots.ctx;
@@ -512,25 +518,21 @@
         for( var j = 0; j < maxv; j += 2 ){
           if( values[j + 1] === "No Description" ) continue;
           var r = 1.6 * Math.log((values[j + 1].length) + 0.1)+T.r0;
-          var row = Math.floor(i / T.n);
-          var col = i - row * T.n;
-          if( row % 2 ) col = T.n - col - 1;
+          var S = T.fn( i, T );
           ctx.beginPath();
-          ctx.arc(x0 + col * T.xSpacing, y0 + row * T.ySpacing, r, 0,
-            2 * Math.PI, false);
+          ctx.arc(S.x, S.y, r, 0, 2 * Math.PI, false);
           ctx.closePath();
           ctx.fillStyle = "rgba(105,205,105,1.0)";
           ctx.fill();
           //ctx.stroke();
-          i++;
 
           ctx2.beginPath();
-          ctx2.arc(x0 + col * T.xSpacing, y0 + row * T.ySpacing, r, 0,
-            2 * Math.PI, false);
+          ctx2.arc(S.x, S.y, r, 0, 2 * Math.PI, false);
           ctx2.closePath();
           ctx2.fillStyle =
             A.NextAutoColour("<h1>" + values[j] + "</h1>" + values[j + 1]);
           ctx2.fill();
+          i++;
 
         }
       }
@@ -547,12 +549,18 @@
           if( obj.values[i + 1] !== "No Description" ) T.count++;
         }
         T.margin = 30;
+        // The sqrt is so that we get the same density in x and y.
         T.n = Math.ceil(Math.sqrt(T.count) * xw / yh);
         T.m = Math.ceil(T.count / T.n);
         //T.spacer = (xw-2* T.margin)/ (T.n-1);
         T.r0 = obj.baseSize || 0;
+        T.x0 = x0 + T.margin + T.width / 2;
+        T.y0 = y0 + T.margin + T.width / 2;
+        T.xSpacing = (xw - 2 * T.margin) / (T.n);
+        T.ySpacing = (yh - 2 * T.margin) / (T.m);
 
-        drawGriddedItems(x0, y0, xw, yh, obj.values, T);
+        T.fn = xyOfIndexSnakey;
+        drawMultipleItems( obj.values, T);
       }
 
       // slice is a number from -1 to +1.
