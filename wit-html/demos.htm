@@ -499,8 +499,16 @@
         var i = 0;
         var ctx = A.BackingCanvas.ctx;
         var ctx2 = A.Hotspots.ctx;
-        var frac = Math.min(120, Status.time) / 120;
+
+
+        // These are concerned with animation - a gradual reveal of the
+        // 'stations'.
+        // The log heuristic makes us spend a bit
+        // longer on very long paths
+        var animateTime = 11 * Math.log( values.length + 5);
+        var frac = Math.min(animateTime, Status.time) / animateTime;
         var maxv = Math.floor(frac * values.length);
+
         for( var j = 0; j < maxv; j += 2 ){
           if( values[j + 1] === "No Description" ) continue;
           var r = 1.6 * Math.log((values[j + 1].length) + 0.1)+T.r0;
