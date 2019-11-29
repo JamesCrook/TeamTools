@@ -1,0 +1,82 @@
+__NOTOC__
+
+
+{{ATK_Header}}
+
+This is the spec for the interactive diagram which shows a chart of temperature
+and precipitation.
+
+<pre>
+DISPLAY_FOCUS_DETAIL Focus=SmallCircle
+  IMAGE_WITH_HOTSPOTS
+</pre>
+
+The specification above builds a simple focus-detail display for the chart.  Here's the result:
+
+-----
+{{#widget:Dynamic|page=ClimateChart|height=450px}}
+-----
+
+The detailed data for the chart follows.
+
+<pre>START</pre>
+
+<pre>ADD:DATA=
+{"HStack":[
+    {"VStack":
+        [{
+           "Chart":"Test",
+           "titles":["Date","Live Bugs","Slain Bugs"],
+           "display":["Label","Blue","Green"],
+           "subtype":"adjacent",
+           "values":[
+           ["Jan 2019",464,1588],
+           ["Feb 2019",468,1592],
+           ["Mar 2019",470,1605],
+           ["Apr 2019",472,1616],
+           ["May 2019",468,1638],
+           ["Jun 2019",423,1695],
+           ["Jul 2019",404,1740],
+           ["Aug 2019",390,1792],
+           ["Sep 2019",356,1853],
+           ["Oct 2019",360,1860],
+           ["Nov 2019",362,1867]
+
+           ]
+        },
+        {"SizeAs":0.16},
+        {
+           "Chart":"Scale",
+           "titles":["Date","Live Bugs","Slain Bugs"],
+           "display":["Label","Blue","Green"],
+           "subtype":"labels",
+           "values":[
+           ["Jan",464,1588],
+           ["Feb",468,1592],
+           ["Mar",470,1605],
+           ["Apr",472,1616],
+           ["May",468,1638],
+           ["Jun",423,1695],
+           ["Jul",404,1740],
+           ["Aug",390,1792],
+           ["Sep",356,1853],
+           ["Oct",360,1860],
+           ["Nov",362,1867]
+
+           ]
+        }
+
+        ]
+     },
+     {"Margins":5},
+     {"Rectangle":"More Info","colour":"rgb(215,230,210)",
+     "bcolour":"rgb(115,180,110)","corner_radius":25}
+]}
+</pre>
+
+
+<pre>CREDITS:CAPTION=Climate Chart;TIP=</pre>
+<h3>Instructions</h3>
+<ul>
+<li>Hover over bars in the image for more details.
+</ul>

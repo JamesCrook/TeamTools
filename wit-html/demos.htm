@@ -376,8 +376,8 @@
 
       function drawLabel(T, values, i){
         var ctx = A.BackingCanvas.ctx;
-        var x = i * T.xScaler + T.width;
-        var y = -11;
+        var x = i * T.xScaler + T.width+10;
+        var y = T.margin;
         ctx.save();
         ctx.translate(T.margin + x + T.x0, T.yh - (T.margin + y) + T.y0);
         ctx.rotate(-Math.PI / 4);
@@ -393,22 +393,23 @@
         var ctx = A.BackingCanvas.ctx;
         ctx.beginPath();
         ctx.fillStyle = "rgba(205,205,205,1.0)";
-        ctx.strokeStyle = "rgba( 55, 55,155,1.0)";
+        //ctx.strokeStyle = "rgba( 55, 55,155,1.0)";
         ctx.lineWidth = 1;
 
         ctx.rect(x0, y0, xw, yh);
         ctx.fill();
-        ctx.stroke();
+        //ctx.stroke();
       }
 
       function computeSpacing(T, x0, y0, xw, yh, values){
         T.x0 = x0;
         T.y0 = y0;
         T.xw = xw;
-        T.yh = yh - 20;
+        T.yh = yh;
         T.count = T.count || values.length;
         T.items = T.items || (values[0].length - 1);
-        T.margin = 60;
+        T.margin = 40;
+        T.yh += T.margin-10;
         if( T.width )
           // If width of each item is given, then space between is what's left over
           T.spacer = (xw - 2 * T.margin - T.count * T.width * T.items) /
@@ -420,24 +421,28 @@
         }
         T.xScaler = (T.width * T.items + T.spacer);
         T.yScaler =
-          (Math.min(20, Status.time) / 20) * (yh - 2 * T.margin) / 2000.0;
+          (Math.min(20, Status.time) / 20) * (yh ) / 2000.0;
       }
 
       function drawSpacedItems(x0, y0, xw, yh, values, fn, T){
-        clearBacking(x0, y0, xw, yh);
 
         if( !values ) return;
         computeSpacing(T, x0, y0, xw, yh, values);
         for( i = 0; i < T.count; i++ ){
-          for( j = 0; j < T.items; j++ ) fn(T, values, i, 1 + j);
-          drawLabel(T, values, i);
+          for( j = 0; j < T.items; j++ )
+            fn(T, values, i, 1 + j);
         }
       }
 
       function drawChart3(x0, y0, xw, yh, obj){
         var T = {};
         T.width = 8;
-        drawSpacedItems(x0, y0, xw, yh, obj.values, drawBar, T);
+        clearBacking(x0, y0, xw, yh);
+        if( obj.subtype != "labels" )
+            drawSpacedItems(x0, y0, xw, yh, obj.values, drawBar, T);
+        T.items = 1;
+        if( obj.subtype == "labels" )
+            drawSpacedItems(x0, y0, xw, yh, obj.values, drawLabel, T);
       }
 
       function drawDonut(T, values, i, ix){
@@ -482,6 +487,7 @@
         //T.width = 100;
         T.spacer = 30;
         T.items = 1;
+        clearBacking(x0, y0, xw, yh);
         drawSpacedItems(x0, y0, xw, yh, obj.values, drawDonut, T);
       }
 
@@ -1519,10 +1525,6 @@
             obj.spherical = true;
 
           }
-//                if( item.startsWith("HOTSPOTS")){
-//                    console.log("hotspots:"+file);
-//                    A.Hotspots.imageSrc = file;
-//                }
           if( item.startsWith("COLOURSET=") ){
             var data = fieldValue("OURSET", item);
             console.log("colour-data:" + data);
@@ -1786,12 +1788,13 @@
         str += formatExample("Inner_Ear_Anatomy2","The Inner Ear", "Schematic", "");
 
         str+= "</ul>These examples don't have wiki pages, but they could do by pasting their text into wiki:<ul>";
-        str += formatExample("SmallCrowd","Embedded Picture","Hotspot-images in a more complex layout","");
 
         str += formatExample("Moon","The Moon","Moon map warped onto a sphere","");
         str += formatExample("Köppen2","Climate Zone as Globe","Moon trick done for Köppen Image","")
         str += formatExample("Globe","Plate Techtonics","Moon trick done for plates of the Earth image","");
+        str += formatExample("SmallCrowd","Embedded Picture","Hotspot-images in a more complex layout","");
         str += formatExample("Flow_Chart","Flow Chart","Flowchart of Making the Manual","");
+        str += formatExample("ClimateChart","Climate Chart","A Plotted Climate Chart","");
         str += formatExample("Graphing","Graphing","Various graphs","");
         str += formatExample("Classes","Classes","A metro-line display of classes","");
         str += formatExample("Biochemical","Biochemical","A metro-line display of biochemical pathways","");
