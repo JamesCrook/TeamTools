@@ -765,6 +765,32 @@
           drawSphere(x, y, xw, yh, ctx, obj);
           drawSphere(x, y, xw, yh, ctx2, obj.hot);
         } else {
+          if( obj.stretch == "yes" ){
+            // rescaled to fit, aspect ratio ignored.
+          }
+          else if( obj.stretch == "no" ){
+            // ToDo: crop or center.
+          }
+          else{
+            // obj.stretch undefined or "preserve-aspect"
+            // Logic to rescale image to fit, preserving
+            // aspect ratio and placing centrally.
+            if( obj.img.width * yh < obj.img.height * xw){
+              // shift image left to centre.
+              x+= xw*0.5;
+              // rescale x
+              xw = obj.img.width* yh/obj.img.height;
+              // shift image mid back to mid
+              x-= xw*0.5;
+            } else {
+              // shift image top to y centre line
+              y+= yh*0.5;
+              // rescale y
+              yh = obj.img.height* xw/obj.img.width;
+              // shift image mid back to y centre line
+              y-= yh*0.5;
+            }
+          }
           ctx.drawImage(obj.img, x, y, xw, yh);
           if( obj.hot && obj.hot.status === "arrived" ) ctx2.drawImage(
             obj.hot.img, x, y, xw, yh);
@@ -1557,6 +1583,7 @@
               convertJsonStructure("", obj);
               obj.resize = A.RootObject.content.length === 0;
               obj.spherical = false;
+              obj.stretch = "preserve-aspect";
               A.RootObject.content.push(obj);
             }
             A.RootObject.lastImage = obj;
