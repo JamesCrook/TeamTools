@@ -1762,10 +1762,10 @@
         var bWiki = codes.indexOf( "wiki" ) >=0;
         var bWip = codes.indexOf( "wip" ) >=0;
         var args = "?page="+name;
-        args = args + (bWiki?"":"&fromwiki=no");
+        args = args + "&fromwiki=no";
 
-        var caveats = bWip ? "<em>Wip</em> ":"";
-        var extras = bWiki ? " - <a href='./demos.htm?page="+name+"&fromwiki=no'>no wiki</a>" :"";
+        var caveats = bWip ? "<em>(Wip)</em> ":"";
+        var extras = bWiki ? " - <a href='./demos.htm?page="+name+"&fromwiki=yes'>using wiki</a>" :"";
         var str = "<li><a href='./demos.htm"+args+"'>"+short+"</a> - "+caveats + long + extras;
         str += "</li>";
         return str;
@@ -1779,14 +1779,18 @@
 
         str+= "These examples have editable wiki pages:<ul>";
 //      str += formatExample("Globes","Globes","A demo of planets","wiki");
-        str += formatExample("Window_Size","Spectrogram Window-Size Explanation","an interactive diagram about a spectrogram","wiki");
+        str += formatExample("Window_Size","Spectrogram Window-Size Explanation","An interactive diagram about a spectrogram","wiki");
 
-        str += formatExample("Ear2","The Ear 2", "using images from Blausen Medical (mystery-meat fix needed) This is three linked image-mapped diagrams, the ear as a whole, and middle and inner ear", "wiki:wip");
+        str += formatExample("Ear2","The Ear", "Three linked image-mapped diagrams from Blausen Medical", "");
+        str += formatExample("Middle_Ear_Anatomy2","The Middle Ear", "Schematic", "");
+        str += formatExample("Inner_Ear_Anatomy2","The Inner Ear", "Schematic", "");
 
-        str+= "</ul>These examples don't have wiki pages, but they could by pasting their text into wiki:<ul>";
+        str+= "</ul>These examples don't have wiki pages, but they could do by pasting their text into wiki:<ul>";
         str += formatExample("SmallCrowd","Embedded Picture","Hotspot-images in a more complex layout","");
 
+        str += formatExample("Moon","The Moon","Moon map warped onto a sphere","");
         str += formatExample("Köppen2","Climate Zone as Globe","Moon trick done for Köppen Image","")
+        str += formatExample("Globe","Plate Techtonics","Moon trick done for plates of the Earth image","");
         str += formatExample("Flow_Chart","Flow Chart","Flowchart of Making the Manual","");
         str += formatExample("Graphing","Graphing","Various graphs","");
         str += formatExample("Classes","Classes","A metro-line display of classes","");

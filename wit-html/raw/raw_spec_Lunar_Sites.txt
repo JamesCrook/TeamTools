@@ -1,16 +1,19 @@
 __NOTOC__
 
-Interactive diagrams are programs.  This is the program structure for the interactive diagram which shows who is who at the AU19 Audacity conference:
+Interactive diagrams are programs.  This is the program structure for the
+interactive diagram which shows Lunar sites:
 
 <pre>
 VERTICAL_LAYOUT
   RGBA_FOCUS_DETAIL Focus=SmallCircle
 </pre>
 
-The specification above builds a simple focus-detail display.  There's a stand-alone [https://wit.audacityteam.org/imagemap2_test.htm?page=The_AU19_Crowd interactive demo] but here is the result in wiki:
+The specification above builds a simple focus-detail display.  There's a
+stand-alone [https://wit.audacityteam.org/imagemap2_test.htm?page=Lunar_Sites
+interactive demo] but here is the result in wiki:
 
 -----
-{{#widget:Dynamic|page=The_AU19_Crowd|height=620px}}
+{{#widget:Dynamic|page=Lunar_Sites|height=620px}}
 -----
 
 The detailed data for the regions, buttons and tooltips follows.
@@ -46,4 +49,4 @@ The detailed data for the regions, buttons and tooltips follows.
 <li>Hover over hotspots in the image for more details.
 <li>Hold shift down to freeze the hotspot - e.g. when taking a screenshot.
 </ul><br><br>
-<b>Credits:</b> <em>Photo by Arturo Buanzo Busleiman ©2019; CC3 BY-SA</em>
+<b>Credits:</b> <em>TBD</em>

@@ -25,8 +25,6 @@ The detailed data for the chart follows.
    "Chart":"Test",
    "titles":["Date","Live Bugs","Slain Bugs"],
    "display":["Label","Blue","Green"],
-   "style":"donuts",
-   "radius":30,
    "values":[
    ["Aug 2017",605,1104],
    ["Sep 2017",543,1192],

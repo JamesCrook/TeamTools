@@ -1,0 +1,158 @@
+__NOTOC__
+
+{{ATK_Header}}
+
+This is the spec for the interactive diagram which shows the structure of the Inner Ear:
+
+<pre>
+DISPLAY_FOCUS_DETAIL Focus=SmallCircle
+  BUTTON_ROW
+  IMAGE_WITH_HOTSPOTS
+</pre>
+
+The specification above builds a simple focus-detail display.  There's an [https://wit.audacityteam.org/imagemap2_test.htm?page=The_Ear interactive demo].
+
+This is one of three related pages.  The other two are:
+<ul>
+<li>[https://wit.audacityteam.org/imagemap2_test.htm?page=The_Ear The Ear] [[Toolbox/The_Ear|spec]]
+<li>[https://wit.audacityteam.org/imagemap2_test.htm?page=Middle_Ear_Anatomy Middle Ear] [[Toolbox/Middle_Ear_Anatomy|spec]]
+</ul>
+
+The detailed data for the regions, buttons and tooltips follows.
+
+<pre>START</pre>
+
+<pre>ADD:DATA=
+
+{"Overlay":[
+    {"Image":"Ear"}
+
+]}
+
+<pre>IMAGE:NAME=Ear</pre>
+[[File:1024px-Blausen_0329_EarAnatomy_InternalEar.png]]
+
+<pre>HOTSPOTS</pre>
+[[File:1024px-Blausen_0329_EarAnatomy_InternalEarHS.png]]
+
+
+
+<pre>BUTTON:LABEL=Ear;TIP=</pre>
+
+<h1>[https://en.wikipedia.org/wiki/Ear The Ear]</h1><p><em>Sound is transformed from pressure waves in air to vibrations of tiny bones, to movement in cells that generate electrical impulses in the auditory nerve.</em></p>
+
+<pre>HOVER LOAD SPEC=</pre>
+[[Toolbox/Ear2]]
+
+<pre>BUTTON:LABEL=Middle;TIP=</pre>
+<h1>[https://en.wikipedia.org/wiki/Middle_ear Middle Ear]</h1><p><em>The middle ear has tiny bones that transmit pressure from the outer ear to the inner ear.</em></p>
+
+<pre>HOVER LOAD SPEC=</pre>
+[[Toolbox/Middle_Ear_Anatomy2]]
+
+<pre>BUTTON:LABEL=Inner;TIP=</pre>
+<h1>[https://en.wikipedia.org/wiki/Inner_ear Inner Ear]</h1><p><em>The cochlear of the inner ear is a spiral shaped organ that has nerve cells that respond to different frequencies of sound.</em></p>
+
+<pre>HOVER LOAD SPEC=</pre>
+[[Toolbox/Inner_Ear_Anatomy2]]
+
+<pre>//The three buttons at the top of the page act when you hover on them.  The three corresponding regions defined next act when you click on them.</pre>
+
+
+<pre>ZONECOLOURS=
+[
+	[0,20,100,255],
+	[0,20,110,255],
+	[0,20,120,255],
+	[0,20,130,255],
+	[0,20,140,255],
+	[0,20,150,255],
+	[0,20,160,255],
+	[0,20,170,255],
+	[0,20,180,255],
+	[0,20,190,255],
+	[0,20,200,255],
+	[0,20,210,255],
+	[0,20,220,255],
+	[0,20,230,255],
+	[0,20,240,255],
+	[0,20,250,255]
+]
+</pre>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>[https://en.wikipedia.org/wiki/Inner_ear Inner Ear]</h1><em><p>The cochlear of the inner ear is a spiral shaped organ that has nerve cells that respond to different frequencies of sound.</p><p>Click for Wikipedia article.</p></em>
+
+<pre>CLICK GOTO=</pre>
+[https://en.wikipedia.org/wiki/Inner_ear Inner Ear]
+
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Cristae within ampullae</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Utricle</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Saccule</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>[https://en.wikipedia.org/wiki/Auditory_nerve Auditory Nerve]</h1>
+<em><p>The auditory nerves conduct signals from the ears to the brain.  There is also auditory processing in the nerves.</p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>[https://en.wikipedia.org/wiki/Cochlea Cochlea]</h1>
+<em><p>The Cochlea is a spiral shaped organ that has standing waves of sound in it.  The spiral shape is relevant to its ability to sensitively sense different frequencies of sound.</p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Tympanic duct</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Cochlear duct</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Vestibular duct</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Posterior semicircular duct</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Lateral semicircular duct</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Anterior semicircular duct</h1>
+<em><p></p></em>
+
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>[https://en.wikipedia.org/wiki/Semicircular_canal Semicircular ducts]</h1>
+<em><p>The semicircular canals are concerned with balance and equilibrium</p></em>
+
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Bony labyrinth</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Membranous labyrinth</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+
+<h1>[https://en.wikipedia.org/wiki/Ear The Ear]</h1><p><em>Sound is transformed from pressure waves in air to vibrations of tiny bones, to movement in cells that generate electrical impulses in the auditory nerve.</em></p>
+<p>Click to go back to the ear.</p>
+
+<pre>CLICK LOAD SPEC=Ear2</pre>
+
+
+<pre>CREDITS:CAPTION=The Ear;TIP=</pre>
+<b>Credits:</b> <em>[https://en.wikiversity.org/wiki/WikiJournal_of_Medicine/Medical_gallery_of_Blausen_Medical_2014 Images by Blausen Medical ©2014; CC3 BY-SA]</em>
+
