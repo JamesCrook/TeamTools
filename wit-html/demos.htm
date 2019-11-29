@@ -1762,6 +1762,45 @@
         return (str.indexOf('localhost') !== -1) ? "no" : "yes";
       }
 
+      function formatExample( name, short, long, codes ){
+        var bWiki = codes.indexOf( "wiki" ) >=0;
+        var bWip = codes.indexOf( "wip" ) >=0;
+        var args = "?page="+name;
+        args = args + (bWiki?"":"&fromwiki=no");
+
+        var caveats = bWip ? "<em>Wip</em> ":"";
+        var extras = bWiki ? " - <a href='./demos.htm?page="+name+"&fromwiki=no'>no wiki</a>" :"";
+        var str = "<li><a href='./demos.htm"+args+"'>"+short+"</a> - "+caveats + long + extras;
+        str += "</li>";
+        return str;
+      }
+
+      function addExamples(){
+        var examples = document.getElementById("examples");
+        if( !examples )
+          return;
+        var str = "";
+
+        str+= "These examples have editable wiki pages:<ul>";
+//      str += formatExample("Globes","Globes","A demo of planets","wiki");
+        str += formatExample("Window_Size","Spectrogram Window-Size Explanation","an interactive diagram about a spectrogram","wiki");
+
+        str += formatExample("Ear2","The Ear 2", "using images from Blausen Medical (mystery-meat fix needed) This is three linked image-mapped diagrams, the ear as a whole, and middle and inner ear", "wiki:wip");
+
+        str+= "</ul>These examples don't have wiki pages, but they could by pasting their text into wiki:<ul>";
+        str += formatExample("SmallCrowd","Embedded Picture","Hotspot-images in a more complex layout","");
+
+        str += formatExample("Köppen2","Climate Zone as Globe","Moon trick done for Köppen Image","")
+        str += formatExample("Flow_Chart","Flow Chart","Flowchart of Making the Manual","");
+        str += formatExample("Graphing","Graphing","Various graphs","");
+        str += formatExample("Classes","Classes","A metro-line display of classes","");
+        str += formatExample("Biochemical","Biochemical","A metro-line display of biochemical pathways","");
+        str+="</ul>";
+
+
+        examples.innerHTML = str;
+      }
+
       window.onload = function(){
 
         var query = window.location.href;
@@ -1774,6 +1813,7 @@
         A.fromWiki = isFromServer();
         A.fromWiki = getArg(query, 'fromwiki') || A.fromWiki;
         if( frame === "no" ) removeFrame();
+        addExamples();
 
         createDomElements();
         addImagesToDom();
@@ -1798,7 +1838,7 @@
     <div class='pos-resetter'>
         <h2 id="click-tip"
             style="color:#bfbfbf;display:block;position:relative;top:-0.55em;transition:opacity 4s;opacity:1;">
-            <em>Version from 27-Nov-2019</em></h2>
+            <em>Version from 29-Nov-2019</em></h2>
     </div>
     <div class='pos-resetter'>
         <div style="display:inline-block;">
@@ -1836,110 +1876,11 @@
     <p>Demos from the Audacity Toolkit.
     <p> Follow links below to see each of the examples.
 </div>
-<div style="margin-left:10px">
 
-    These examples have their specification in an editable wiki page. Some are
-    'works in progress' (wip).
-    <ul>
-<!--
-        <li><a href="./demos.htm?page=The_AU19_Crowd">The Audacity 2019
-            Unconference</a> - an annotated image people-identifier - <a
-                href="https://wiki.audacityteam.org/wiki/Toolbox/The_AU19_Crowd">wiki
-            spec</a>, <a href="./demos.htm?page=The_AU19_Crowd&fromwiki=no">no
-            wiki</a><br>
-        <li><a href="./demos.htm?page=Köppen_Climate_Classification"> Köppen
-            Climate Classification</a> - <em>(wip)</em> A demo where the image
-            is already colour coded - <a
-                    href="https://wiki.audacityteam.org/wiki/Toolbox/Köppen_Climate_Classification">wiki
-                spec</a>, <a
-                    href="./demos.htm?page=Köppen_Climate_Classification&fromwiki=no">no
-                wiki</a></li>
-        <li><a href="./demos.htm?page=Bug_Counts"> Bug Counts</a>-
-            <em>(wip)</em> Audacity bug tracking - driven from data in wiki
-            (scales, key and hotspots to do) - <a
-                    href="https://wiki.audacityteam.org/wiki/Toolbox/Bug_Counts">wiki
-                spec</a>, <a href="./demos.htm?page=Bug_Counts&fromwiki=no">no
-                wiki</a>
-        <li><a href="./demos.htm?page=The_Ear"> The Ear</a>- <em>(wip)</em>
-            using images from Blausen Medical (hotspots in subsidiary images to
-            do &amp; mystery-meat fix) This is three linked image-mapped
-            diagrams, the ear as a whole, and middle and inner ear - <a
-                    href="https://wiki.audacityteam.org/wiki/Toolbox/The_Ear">wiki
-                spec</a>, <a href="./demos.htm?page=The_Ear&fromwiki=no">no
-                wiki</a>
-        <li><a href="./demos.htm?page=Hotspots"> More about the Focus-Detail
-            tool</a> - shows the coloured hotspots image - <a
-                href="https://wiki.audacityteam.org/wiki/Toolbox/Hotspots">wiki
-            spec</a>, <a href="./demos.htm?page=Hotspots&fromwiki=no">no
-            wiki</a>
--->
-        <li><a href="./demos.htm?page=Window_Size"> Spectrogram
-            Window-Size Explanation</a> - an interactive diagram about a
-            spectrogram - <a
-                    href="https://wiki.audacityteam.org/wiki/Toolbox/Window_Size">wiki
-                spec</a>, <a href="./demos.htm?page=Window_Size&fromwiki=no"> no
-                wiki</a>
-        <li><a href="./demos.htm?page=Ear2"> The Ear 2</a>- <em>(wip)</em>
-            using images from Blausen Medical (hotspots in subsidiary images to
-            do &amp; mystery-meat fix) This is three linked image-mapped
-            diagrams, the ear as a whole, and middle and inner ear - <a
-                    href="https://wiki.audacityteam.org/wiki/Toolbox/Ear2">wiki
-                spec</a>, <a href="./demos.htm?page=Ear2&fromwiki=no">no
-                wiki</a>
-    </ul>
-
-
-    These examples have their specification as an ordinary text file. They could
-    have an editable wiki page if we wanted (by pasting the text file into
-    wiki).
-    <ul>
-<!--
-        <li><a href="./demos.htm?page=The_Situation_Room&fromwiki=no">The
-            Situation Room</a> - more annotation of an image. This is a featured
-            image from Wikipedia<br>
-        <li><a href="./demos.htm?page=Subdivision"> Subdivision</a>- <em>(Experimental)</em>
-            Methods for subdividing a diagram - <a
-                    href="https://wiki.audacityteam.org/wiki/Toolbox/Subdivision">wiki
-                spec</a>
-
-        <li><a href="./demos.htm?page=Lunar_Sites&fromwiki=no"> Lunar Sites</a>-
-            <em>(Experimental)</em> A demo where the image is wrapped onto a
-            sphere (no hotspots yet, distorted)
-        <li><a href="./demos.htm?page=Köppen_Globe&fromwiki=no"> Climate Zone as
-            Globe</a>- Moon trick done for Köppen Image
-        <li><a href="./demos.htm?page=Ocean_Currents&fromwiki=no"> Ocean
-            Currents as Globe</a>- <em>(Experimental)</em> Moon trick done for
-            Ocean Currents Image (no hotpsots yet, distorted)
--->
-        <li><a href="./demos.htm?page=SmallCrowd"> Embedded Picture</a>-
-            A hotspots-image in a more complex layout - <a
-                    href="https://wiki.audacityteam.org/wiki/Toolbox/SmallCrowd">wiki
-                spec</a>
-        <li><a href="./demos.htm?page=Köppen2&fromwiki=no"> Climate Zone as
-            Globe</a>- Moon trick done for Köppen Image
-        <li><a href="./demos.htm?page=Flow_Graph"> Flow Graph</a>-
-            Flowchart of Making the Manual - <a
-                    href="https://wiki.audacityteam.org/wiki/Toolbox/Flow_Graph">wiki
-                spec</a>
-        <li><a href="./demos.htm?page=Graphing"> Graphing</a>-
-            Various graphs - <a
-                    href="https://wiki.audacityteam.org/wiki/Toolbox/Graphing">wiki
-                spec</a>
-        <li><a href="./demos.htm?page=Classes"> Classes</a>-
-            <em>(Experimental)</em> A metro-line display of classes - <a
-                    href="https://wiki.audacityteam.org/wiki/Toolbox/Graphing">wiki
-                spec</a>
-        <li><a href="./demos.htm?page=Biochemical"> Biochemical</a>-
-            <em>(Experimental)</em> A metro-line display of biochemical pathways - <a
-                    href="https://wiki.audacityteam.org/wiki/Toolbox/Biochemical">wiki
-                spec</a>
-    </ul>
-
-
-    <!---
-    <button onclick=loadDiagram('The_Ear')>Load</button> Ear Explanation<br>
--->
+<div id="examples" style="margin-left:10px">
 </div>
+
+
 <div id="spec" style="margin-left:10px"></div>
 </body>
 </html>
