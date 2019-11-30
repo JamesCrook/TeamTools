@@ -223,6 +223,7 @@
         var actions = A.Hotspots.Colours[index];
         if( actions ) return rgb;
         actions = {};
+        actions.Zone = -1;
         A.Hotspots.Colours[index] = actions;
         actions.Tip = Tip;
         return rgb;
@@ -530,6 +531,7 @@
         var frac = Math.min(animateTime, Status.time) / animateTime;
         var maxv = Math.floor(frac * T.count);
 
+        var reserveColoursTo = A.Hotspots.autoColour + T.count;
 
         ctx.beginPath();
         ctx.lineWidth = 5;
@@ -575,6 +577,7 @@
           i++;
 
         }
+        A.Hotspots.autoColour = reserveColoursTo;
       }
 
       // draws a path inside a box.
@@ -592,6 +595,13 @@
         // The sqrt is so that we get the same density in x and y.
         T.n = Math.ceil(Math.sqrt(T.count) * xw / yh);
         T.m = Math.ceil(T.count / T.n);
+        var unused = T.n*T.m-T.count;
+        // Make more square, if there is room.
+        if( T.n<T.m)
+          T.m -= Math.floor( unused/T.n );
+        else
+          T.n -= Math.floor( unused/T.m );
+
         //T.spacer = (xw-2* T.margin)/ (T.n-1);
         T.r0 = obj.baseSize || 0;
         T.x0 = x0 + T.margin + T.width / 2;
