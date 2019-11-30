@@ -35,7 +35,7 @@ A.AddHot = function(index){
 A.NextAutoColour = function(Tip){
   var a = (A.Hotspots.autoColour++) + 256 * 11;
   var index = "[" + Math.floor(a / 255) + "," + (a % 256) + ",30,255]";
-  var rgb = rgbOfColourTuple(index);
+  var rgb = rgbOfJsonColourTuple(index);
   var actions = A.Hotspots.Colours[index];
   if( actions ) return rgb;
   actions = {};
@@ -816,9 +816,17 @@ function roundColour(tuple){
   return '[' + result.toString() + ']';
 }
 
-function rgbOfColourTuple(tuple){
-  var v = JSON.parse(tuple);
+function stringOfTuple( v ){
+  return "[" + v[0] + "," + v[1] + "," + v[2] + "," + v[3] + "]";
+}
+
+function rgbOfColourTuple( v ){
   return "rgba(" + v[0] + "," + v[1] + "," + v[2] + "," + v[3] + ")";
+}
+
+function rgbOfJsonColourTuple(tuple){
+  var tuple2 = JSON.parse(tuple);
+  return rgbOfColourTuple( tuple2 );
 }
 
 function removeAdornments(e){
@@ -1000,12 +1008,41 @@ function addImagesToDom(){
   //updateImages();
 }
 
+function makeToc(){
+  var h = A.Hotspots;
+  var str = "<table>";
+  for(var i=0;i<h.ColourZones.length;i++){
+    var c = h.ColourZones[i];
+    var tip = h.Colours[ stringOfTuple( c )].Tip;
+    str += "<tr><td>Zone: "+(i)+"</td><td>"+tip+"</td></tr>";
+  }
+  str += "</table>";
+  return str;
+}
+
+function setToc( text ){
+  var div = document.getElementById("tabular_contents");
+  if( !div )
+    return;
+  div.innerHTML = text;
+}
+
+function displayDetailsInToc(){
+  var date = new Date();
+  var nMillis = date.getTime();
+  var contents = makeToc();
+  setToc( "This is the full details" + nMillis +"<br>"+contents);
+  return false;
+}
+
 function setATitle(caption, page, fromWiki){
   var atitle = document.getElementById("atitle");
   var str = "<em>" + caption + "</em>";
   if( page ) str +=
     " &nbsp; [ <a href='https://wiki.audacityteam.org/w/index.php?title=Toolbox/" +
-    page + "&action=edit'>edit</a> ]";
+    page + "&action=edit'>edit</a> ]"+
+  " &nbsp; [ <a href='#Expanded_Details'" +
+    " onclick='displayDetailsInToc()'>details</a> ]";
   atitle.innerHTML = sanitiseHtml(str);
 }
 
@@ -1300,6 +1337,8 @@ function startChart(){
   A.RootObject.itemIndex = 0;
   A.RootObject.objectDict = {};
   A.RootObject.objectList = [];
+
+  A.Hotspots.ColourZoneIx = 0;
 }
 
 function loadNewDetails(specFileData){
@@ -1382,7 +1421,7 @@ function loadNewDetails(specFileData){
       var obj = JSON.parse(data);
       //console.log(obj);
       A.Hotspots.ColourZones = obj;
-      A.Hotspots.ColourZoneIx = 0;
+      //A.Hotspots.ColourZoneIx = 0;
     }
     if( item.startsWith("ZONECOLOURS=") ){
       var data = fieldValue("COLOURS", item);
@@ -1503,7 +1542,7 @@ function loadNewDetails(specFileData){
         // browsers may not preserve the
         // alpha exactly.
         var c = "[" + (n + 2) + ",21,0,255]";
-        obj.hotspotColour = rgbOfColourTuple(c);
+        obj.hotspotColour = rgbOfJsonColourTuple(c);
         A.AddHot(c);
       }
     }
@@ -1586,6 +1625,7 @@ function requestSpec(source, fromwiki){
 function loadDiagram(source, fromwiki){
   var spec = document.getElementById("spec");
   spec.innerHTML = "";
+  setToc("");
   requestSpec(source, fromwiki);
 }
 
