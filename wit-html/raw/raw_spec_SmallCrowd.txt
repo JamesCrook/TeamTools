@@ -2,7 +2,8 @@ __NOTOC__
 
 {{ATK_Header}}
 
-This is the spec for the interactive diagram which shows who is who at the AU19 Audacity conference:
+This is the spec for the interactive diagram which shows two who-is-who image
+maps:
 
 <pre>
 DISPLAY_FOCUS_DETAIL Focus=SmallCircle
@@ -10,10 +11,12 @@ DISPLAY_FOCUS_DETAIL Focus=SmallCircle
 </pre>
 
 
-The specification above builds a simple focus-detail display.  There's a stand-alone [https://wit.audacityteam.org/imagemap2_test.htm?page=The_AU19_Crowd interactive demo] but here is the result in wiki:
+The specification above builds a simple focus-detail display.  There's a
+stand-alone [https://wit.audacityteam.org/imagemap2_test.htm?page=SmallCrowd
+interactive demo] but here is the result in wiki:
 
 -----
-{{#widget:Dynamic|page=The_AU19_Crowd|height=620px}}
+{{#widget:Dynamic|page=SmallCrowd|height=620px}}
 -----
 
 The detailed data for the regions, buttons and tooltips follows.

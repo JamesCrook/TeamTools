@@ -3,14 +3,16 @@ __NOTOC__
 
 {{ATK_Header}}
 
-This is the spec for the interactive diagram which shows a chart of Audacity bug counts:
+This is the spec for the interactive diagram which shows a display of Audacity
+classes:
 
 <pre>
 DISPLAY_FOCUS_DETAIL Focus=SmallCircle
   IMAGE_WITH_HOTSPOTS
 </pre>
 
-The specification above builds a simple focus-detail display for the bar chart.  Here's the result:
+The specification above builds a simple focus-detail display for the display of
+all Audacity classes.  Here's the result:
 
 -----
 {{#widget:Dynamic|page=Classes|height=450px}}
@@ -1536,7 +1538,7 @@ The detailed data for the chart follows.
 
              "SetTrackAudioCommand","A SetTrackBase that sets pan, gain, mute and solo ",
 
-             "SetTrackBase","Base class for the various SetTrackCommand classes. Sbclasses provide the settings that are relevant to them ",
+             "SetTrackBase","Base class for the various SetTrackCommand classes. Subclasses provide the settings that are relevant to them ",
 
              "SetTrackCommand","A SetTrackBase that combines SetTrackStatusCommand, SetTrackAudioCommand and SetTrackVisualsCommand ",
 
