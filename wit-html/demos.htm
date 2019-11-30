@@ -499,8 +499,19 @@
         var x = T.x0 + col * T.xSpacing;
         var y = T.y0 + row * T.ySpacing;
         if( T.isPath ){
-          if( i === 0 ) x -= T.xSpacing;
-          if( i === T.maxv-1 ) x += T.xSpacing;
+          T.theta = undefined;
+          if( i === 0 )
+            x -= T.xSpacing;
+          else if( i === T.maxv-1 )
+            x += T.xSpacing;
+          // end of row
+          else if( i%T.n === 0 ){
+            T.theta = (3*Math.PI/2);
+            y-= T.ySpacing/2;
+            T.thetaDirection = (row%2)===0;
+          }
+
+
         }
         return {"x":x,"y":y};
       }
@@ -532,6 +543,8 @@
           S = T.fn( i, T );
           if( i===0 )
             ctx.moveTo( S.x, S.y );
+          else if( T.theta !== undefined)
+            ctx.arc(S.x,S.y,T.ySpacing/2, T.theta, T.theta+Math.PI,T.thetaDirection );
           else
             ctx.lineTo( S.x, S.y );
           i++;
