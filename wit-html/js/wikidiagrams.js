@@ -19,7 +19,7 @@ A.Image.imageSrc = './images/AudacityAu19.jpg';
 A.Hotspots = {};
 A.Hotspots.imageSrc = './images/AudacityAu19HS.png';
 A.Focus = {};
-A.Focus.radius = 150;
+A.Focus.radius = 75;
 A.Detail = {};
 A.Detail.width = 400;
 A.Detail.height = 300;
@@ -492,10 +492,10 @@ function drawSphere(xx, yy, xw, yh, ctx, obj){
       if( x < 0 ) srcIndex = srcBase - offset; else srcIndex = srcBase + offset;
 
       if( src[srcIndex + 3] < 128 ){
-        dst[index++] = 20;
-        dst[index++] = 20;
+        dst[index++] = 10;
+        dst[index++] = 10;
         dst[index++] = 110;
-        dst[index++] = 100;
+        dst[index++] = 180;
       } else {
         dst[index++] = src[srcIndex++];
         dst[index++] = src[srcIndex++];
@@ -794,7 +794,7 @@ function drawFocusSpot(x, y){
   if( y < extra ) return;
 
   var m = A.Porthole.margin;
-  ctx.fillStyle = "rgba( 255,255,255,0.5)";
+  ctx.fillStyle = "rgba( 5,5,5,0.2)";
 
   ctx.fillRect(m, m + extra, A.Porthole.width - 2 * m,
     A.Porthole.height - 2 * m - extra);
@@ -972,7 +972,7 @@ function createDomElements(){
   A.FocusCanvas.ctx = A.FocusCanvas.getContext('2d');
 
   A.DetailDiv.innerHTML = "Some Text";
-  A.DetailDiv.style.backgroundColor = "rgba(0,0,0,0.6)";
+  A.DetailDiv.style.backgroundColor = "rgba(210,210,230,0.9)";
   A.DetailDiv.style.position = "absolute";
   A.DetailDiv.style.left = "0px";
   A.DetailDiv.style.top = "0px";
