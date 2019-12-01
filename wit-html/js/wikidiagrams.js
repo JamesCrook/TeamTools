@@ -1610,7 +1610,11 @@ function requestSpec(source, fromwiki){
 
   if( fromwiki === 'no' ){
     fileActionLoader("", "", "./raw/raw_spec_" + source + ".txt");
-  } else {
+  } else   if( fromwiki === 'remote' ){
+    fileActionLoader("", "", "https://wit.audacityteam.org/raw/raw_spec_" + source + ".txt");
+  }
+
+    else {
     var date = new Date();
     var nMillis = date.getTime();
     // action=raw to get unprocessed file from wiki.

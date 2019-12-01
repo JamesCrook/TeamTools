@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hidden iframe</title>
+    <script>
+      console.log("Protocol is " + window.location.protocol);
+      if( window.location.protocol === "http:" ){
+        console.log("Http: detected");
+        if( window.location.href.indexOf("localhost") <
+          0 ) window.location.href = "https:" + window.location.href.slice(5);
+      }
+</script>
+    <script>
+
+      function handleNewData(data){
+        parent.postMessage( "GotSpec:" +data,"*" );
+      }
+
+      /**
+       * Loads one source file into an item in an array.
+       * @param data
+       * @param action
+       * @param url
+       * @param data
+       * @param action
+       * @param url
+       */
+      function fileActionLoader(data, action, url){
+        var txtFile = new XMLHttpRequest();
+        // CDNs and Varnish should give us the very latest.
+        txtFile.onreadystatechange = function(){
+          if( this.readyState === 4 && this.status === 200 ){
+            // data.push({ action: action, value: this.responseText});
+            handleNewData(this.responseText);
+          }
+        };
+
+        txtFile.open("GET", url, true);
+        //txtFile.setRequestHeader( "Cache-Control", "s-maxage=0" );
+        txtFile.send();
+      }
+
+
+
+
+      // Our receiveMessage is providing files which are already open
+      // to read from any browser with GET.  So we accept any file name
+      // request, fetch it, and then pass the result on.
+      // A simpler approach is to add CORS headers to this site to explicitly
+      // give permission to read those files.  Then there is no need for this
+      // 'trampolining'.
+      // This workaround/hack was written because I do not control the CORS
+      // headers on the two sites, but I can write javascript on both sites.
+      function receiveMessage(event) {
+        //if (event.origin !== "http://example.org:8080")
+        //  return;
+        var source = event.source;
+        console.log("Got:" + event.data );
+        var b = document.getElementById("body");
+        b.innerHTML = event.data;
+        fileActionLoader("","","raw/raw_spec_"+event.data+".txt");
+
+      }
+
+
+      window.onload = function(){
+
+        window.addEventListener("message", receiveMessage, false);
+
+
+        console.log("Helper iframe loaded");
+      }
+
+    </script>
+</head>
+<body id="body">This is the iframe contents.  You should never see this!
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hidden iframe</title>
+    <script>
+      console.log("Protocol is " + window.location.protocol);
+      if( window.location.protocol === "http:" ){
+        console.log("Http: detected");
+        if( window.location.href.indexOf("localhost") <
+          0 ) window.location.href = "https:" + window.location.href.slice(5);
+      }
+</script>
+    <script>
+
+
+      function receiveReply(event) {
+        //if (event.origin !== "http://example.org:8080")
+        //  return;
+        var source = event.source;
+        console.log("Got Reply:" + event.data );
+        var result = document.getElementById("result");
+        result.innerHTML = event.data ;
+
+      }
+
+    function loaded(win){
+      window.addEventListener("message", receiveReply, false);
+
+      var trampoline = document.getElementById("trampoline").contentWindow;
+      // Don't care who receiver is, if they give us back a spec
+      trampoline.postMessage( "Flow_Chart","*");
+    }
+
+    </script>
+</head>
+
+<iframe id="trampoline" onload="loaded(this)" src="trampoline.htm" style="display:none"></iframe><br>
+<textarea id="result" rows="25" cols="80">Foo</textarea>
+</html>
