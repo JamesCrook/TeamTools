@@ -1031,7 +1031,7 @@ function displayDetailsInToc(){
   var date = new Date();
   var nMillis = date.getTime();
   var contents = makeToc();
-  setToc( "This is the full details" + nMillis +"<br>"+contents);
+  setToc( "This is the full list of zones:<br>"+contents);
   return false;
 }
 
@@ -1041,8 +1041,8 @@ function setATitle(caption, page, fromWiki){
   if( page ) str +=
     " &nbsp; [ <a href='https://wiki.audacityteam.org/w/index.php?title=Toolbox/" +
     page + "&action=edit'>edit</a> ]"+
-  " &nbsp; [ <a href='#Expanded_Details'" +
-    " onclick='displayDetailsInToc()'>details</a> ]";
+  " &nbsp; [ <a href='#zonelist'" +
+    " onclick='displayDetailsInToc()'>zones</a> ]";
   atitle.innerHTML = sanitiseHtml(str);
 }
 
