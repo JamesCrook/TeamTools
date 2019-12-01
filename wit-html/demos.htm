@@ -238,7 +238,7 @@
 //          var page = url.searchParams.get("page") || "The_AU19_Crowd";
         var frame = getArg(query, 'frame') || "yes";
 
-        A.fromWiki = isFromServer();
+        A.fromWiki = 'no';//isFromServer();
         A.fromWiki = getArg(query, 'fromwiki') || A.fromWiki;
         if( frame === "no" ) removeFrame();
         addExamples();
