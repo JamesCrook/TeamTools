@@ -43,12 +43,12 @@ The detailed data for the regions, buttons and tooltips follows.
 
 <pre>NEXTZONE:TIP=</pre>
 <h1>Dude 1</h1>
-<em><p>Vice President</p>
-<p>(All the supposed titles are of course made up.)  This text comes from the wiki, and could be "Lorem Ipsum Dolors" if we wanted.</p></em>
+<em><p>Role 1</p>
+<p>.</p></em>
 
 <pre>NEXTZONE:TIP=</pre>
 <h1>Dude 2</h1>
-<em><p>President</p></em>
+<em><p>Role 2</p></em>
 
 <pre>NEXTZONE:TIP=</pre>
 <h1>Roger Dannenberg</h1>

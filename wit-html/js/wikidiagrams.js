@@ -1057,9 +1057,12 @@ function setATitle(caption, page, fromWiki){
   var str = "<em>" + caption + "</em>";
   if( page ) str +=
     " &nbsp; [ <a href='https://wiki.audacityteam.org/w/index.php?title=Toolbox/" +
-    page + "&action=edit'>edit</a> ]"+
-  " &nbsp; [ <a href='#zonelist' id='zoneToggler'" +
-    " onclick='toggleDetailsInToc()'>+zones</a> ]";
+    page + "&action=edit'>edit</a> ]"
+
+  if( A.Hotspots.ColourZones && A.Hotspots.ColourZones.length > 0)
+    str +=
+      " &nbsp; [ <a href='#zonelist' id='zoneToggler'" +
+      " onclick='toggleDetailsInToc()'>+zones</a> ]";
   atitle.innerHTML = sanitiseHtml(str);
 }
 
