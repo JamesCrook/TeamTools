@@ -1025,13 +1025,22 @@ function setToc( text ){
   if( !div )
     return;
   div.innerHTML = text;
+
+  div.style.display = A.TocShown ? 'block':'none';
+  var toggler = document.getElementById("zoneToggler");
+  if( !toggler)
+    return;
+  toggler.innerHTML=A.TocShown ?"-zones":"+zones";
+
 }
 
-function displayDetailsInToc(){
+function toggleDetailsInToc(){
   var date = new Date();
   var nMillis = date.getTime();
   var contents = makeToc();
-  setToc( "This is the full list of zones:<br>"+contents);
+  A.TocShown = !(A.TocShown || false);
+  var text ="This is the full list of zones:<br>"+contents;
+  setToc( text );
   return false;
 }
 
@@ -1041,8 +1050,8 @@ function setATitle(caption, page, fromWiki){
   if( page ) str +=
     " &nbsp; [ <a href='https://wiki.audacityteam.org/w/index.php?title=Toolbox/" +
     page + "&action=edit'>edit</a> ]"+
-  " &nbsp; [ <a href='#zonelist'" +
-    " onclick='displayDetailsInToc()'>zones</a> ]";
+  " &nbsp; [ <a href='#zonelist' id='zoneToggler'" +
+    " onclick='toggleDetailsInToc()'>+zones</a> ]";
   atitle.innerHTML = sanitiseHtml(str);
 }
 
