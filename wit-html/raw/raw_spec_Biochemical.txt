@@ -60,12 +60,10 @@ The detailed data for the chart follows.
 }]
 </pre>
 
-<pre>NEXTOBJECT:;TIP=</pre>
-Gaa
-<pre>NEXTOBJECT:COLOUR=rgb(255,230,205);BCOLOUR=rgb(215,155,0);CORNER_RADIUS=15;TIP=</pre>
-This is in the orange rectangle.
-<pre>NEXTOBJECT:COLOUR=rgb(215,230,210);BCOLOUR=rgb(130,180,100);CORNER_RADIUS=15;TIP=</pre>
-This is in the green rectangle.
+<pre>NEXTOBJECT:/pre>
+<pre>NEXTOBJECT:COLOUR=rgb(255,230,205);BCOLOUR=rgb(215,155,0);CORNER_RADIUS=15</pre>
+<pre>NEXTOBJECT:COLOUR=rgb(215,230,210);BCOLOUR=rgb(130,180,100);CORNER_RADIUS=15</pre>
+
 
 
 

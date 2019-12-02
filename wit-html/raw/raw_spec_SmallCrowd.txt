@@ -35,12 +35,9 @@ The detailed data for the regions, buttons and tooltips follows.
 ]}
 </pre>
 
-<pre>NEXTOBJECT:COLOUR=rgb(215,230,210);BCOLOUR=rgb(130,180,100);TIP=</pre>
-1This box has a tip.
-<pre>NEXTOBJECT:COLOUR=rgb(215,230,210);BCOLOUR=rgb(130,180,100);TIP=</pre>
-2This box has a tip.
-<pre>NEXTOBJECT:COLOUR=rgb(215,230,210);BCOLOUR=rgb(130,180,100);CORNER_RADIUS=15;TIP=</pre>
-This box has a tip.
+<pre>NEXTOBJECT:COLOUR=rgb(215,230,210);BCOLOUR=rgb(130,180,100)</pre>
+<pre>NEXTOBJECT:COLOUR=rgb(215,230,210);BCOLOUR=rgb(130,180,100)</pre>
+<pre>NEXTOBJECT:COLOUR=rgb(215,230,210);BCOLOUR=rgb(130,180,100);CORNER_RADIUS=15</pre>
 
 
 <pre>IMAGE:NAME=Crowd</pre>
