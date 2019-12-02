@@ -1351,7 +1351,10 @@ function loadNewDetails(specFileData){
     var detail = item.split("TIP=</pre>")[1];
     var file = item.split("[[File:")[1] || "";
     file = file.split("]]")[0] || "";
-    file = "./images/" + file;
+    if( isFromServer() === "yes" )
+      file = "https://wit.audacityteam.org/images/" + file;
+    else
+      file = "./images/" + file;
 
     var spec = item.split("[[")[1] || "";
     spec = spec.split("]]")[0] || spec;
@@ -1608,10 +1611,11 @@ function requestSpec(source, fromwiki){
   var A = Annotator;
   A.SpecName = source;
 
-  if( fromwiki === 'no' ){
+  if( isFromServer() === "no" )
+  {
     fileActionLoader("", "", "./raw/raw_spec_" + source + ".txt");
-  } else   if( fromwiki === 'remote' ){
-    fileActionLoader("", "", "https://wit.audacityteam.org/raw/raw_spec_" + source + ".txt");
+  } else  if( fromwiki !== 'yes' ){
+    fileActionLoader("", "", "https://wit.audacityteam.org/raw/raw_spec_" + source + ".txt?time="+ nMillis);
   }
 
     else {
