@@ -1355,6 +1355,7 @@ function loadNewDetails(specFileData){
   var lines = specFileData.split("<pre>");
   setATitle("Caption was missing");
   startChart();
+  Status.isAppReady = false;
   for( i = 0; i < lines.length; i++ ){
     var item = lines[i];
     var detail = item.split("TIP=</pre>")[1];
@@ -1379,11 +1380,10 @@ function loadNewDetails(specFileData){
     }
     if( item.startsWith("NEXTZONE:") ){
       if( A.Hotspots.ColourZones ){
-        var n = A.Hotspots.ColourZoneIx;
+        var n = A.Hotspots.ColourZoneIx++ % A.Hotspots.ColourZones.length;
         var c = A.Hotspots.ColourZones[n];
-        A.Hotspots.ColourZoneIx = (n + 1) % A.Hotspots.ColourZones.length;
         c = '[' + c[0] + ',' + c[1] + ',' + c[2] + ',' + c[3] + ']';
-        console.log("next-color:" + c);
+        console.log("next-color:" + c+ "n:"+n);
         A.AddHot(c);
       }
     }
@@ -1432,16 +1432,18 @@ function loadNewDetails(specFileData){
       console.log("colour-data:" + data);
       var obj = JSON.parse(data);
       //console.log(obj);
-      A.Hotspots.ColourZones = obj;
-      //A.Hotspots.ColourZoneIx = 0;
+      A.Hotspots.ColourZones = A.Hotspots.ColourZones || [];
+      A.Hotspots.ColourZones = A.Hotspots.ColourZones.concat( obj );
+      A.Hotspots.ColourZoneIx = A.Hotspots.ColourZoneIx || 0;
     }
     if( item.startsWith("ZONECOLOURS=") ){
       var data = fieldValue("COLOURS", item);
       console.log("colour-data:" + data);
       var obj = JSON.parse(data);
       console.log(obj);
-      A.Hotspots.ColourZones = obj;
-      A.Hotspots.ColourZoneIx = 0;
+      A.Hotspots.ColourZones = A.Hotspots.ColourZones || [];
+      A.Hotspots.ColourZones = A.Hotspots.ColourZones.concat( obj );
+      A.Hotspots.ColourZoneIx = A.Hotspots.ColourZoneIx || 0;
 
     }
     if( item.startsWith("FLOWCHART:") || item.startsWith("ADD:") ){
@@ -1496,7 +1498,9 @@ function loadNewDetails(specFileData){
           console.log(obj1.file + " image arrived");
           //alert("Loaded image " + obj1.file);
           if( obj1.resize ) resizeForImage(
-            obj1.img); else if( Status.isAppReady ) onChart();
+            obj1.img);
+          else if( Status.isAppReady )
+            onChart();
         }
       })();
       obj.img.onerror = (function(){
