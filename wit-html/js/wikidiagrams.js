@@ -32,6 +32,7 @@ A.AddHot = function(index){
   actions.Zone = A.Hotspots.count++;
 };
 
+// These are for hotspot colours added by an actual image.
 A.NextAutoColour = function(Tip){
   var a = (A.Hotspots.autoColour++) + 256 * 11;
   var index = "[" + Math.floor(a / 255) + "," + (a % 256) + ",30,255]";
@@ -1013,8 +1014,15 @@ function makeToc(){
   var str = "<table>";
   for(var i=0;i<h.ColourZones.length;i++){
     var c = h.ColourZones[i];
+    // White text for numbers on dark backgrounds, black when light.
+    var textColor = ((c[0]+c[1]+c[2])>380) ? 'black':'white';
     var tip = h.Colours[ stringOfTuple( c )].Tip;
-    str += "<tr><td>Zone: "+(i)+"</td><td>"+tip+"</td></tr>";
+    str += "<tr><td>Zone"+
+      "<div style='width:30px;height:30px;color:"+textColor+
+      ";border:thin solid black;text-align:center;vertical-align:middle;"+
+      "line-height:30px;background-color:"+
+      rgbOfColourTuple(c)+
+      "'>"+i+"</div></td><td>"+tip+"</td></tr>";
   }
   str += "</table>";
   return str;
