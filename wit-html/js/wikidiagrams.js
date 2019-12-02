@@ -32,19 +32,57 @@ A.AddHot = function(index){
   actions.Zone = A.Hotspots.count++;
 };
 
-// These are for hotspot colours added by an actual image.
+A.AddHotExact = function(index){
+  var actions = {};
+  A.Hotspots.Colours[index] = actions;
+  A.Hotspots.Current = actions;
+  actions.Zone = A.Hotspots.count++;
+};
+
+A.AddButton = function(text){
+  A.Buttons.Names.push(text);
+  A.AddHot("[0,10," + A.Buttons.Names.length * 5 + ",255]");
+};
+
+A.AddInfo = function(){
+  A.AddHot("[0,0,5,255]");
+};
+
+A.AddDetail = function(text){
+  A.Hotspots.Current.Tip = text;
+};
+
+A.AddHover = function(text){
+  A.Hotspots.Current.Hover = text;
+};
+
+
+// These are for hotspot colours added by a drawn image.
 A.NextAutoColour = function(Tip){
   var a = (A.Hotspots.autoColour++) + 256 * 11;
+
+  // Note that Chrome and other
+  // browsers may not preserve the
+  // alpha exactly, so we do not use that.
+
   var index = "[" + Math.floor(a / 255) + "," + (a % 256) + ",30,255]";
   var rgb = rgbOfJsonColourTuple(index);
   var actions = A.Hotspots.Colours[index];
   if( actions ) return rgb;
-  actions = {};
-  actions.Zone = -1;
-  A.Hotspots.Colours[index] = actions;
-  actions.Tip = Tip;
+
+  A.AddHotExact( index );
+  A.AddDetail( Tip );
+
+  A.Hotspots.ColourZones = A.Hotspots.ColourZones || [];
+  A.Hotspots.ColourZones.push( JSON.parse( index ) );
+  A.Hotspots.ColourZoneIx++;
+
+  if( A.Hotspots.ColourZoneIx === 1 ){
+    setATitle( A.Caption.text, A.Caption.page, A.Caption.fromWiki );
+  }
   return rgb;
 };
+
 
 var Nozone = {};
 Nozone.Zone = 0;
@@ -67,22 +105,7 @@ function resetHotspots(){
 
 resetHotspots();
 
-A.AddButton = function(text){
-  A.Buttons.Names.push(text);
-  A.AddHot("[0,10," + A.Buttons.Names.length * 5 + ",255]");
-};
 
-A.AddInfo = function(){
-  A.AddHot("[0,0,5,255]");
-};
-
-A.AddDetail = function(text){
-  A.Hotspots.Current.Tip = text;
-};
-
-A.AddHover = function(text){
-  A.Hotspots.Current.Hover = text;
-};
 
 var Status = {};
 Status.OldHit = -1;
@@ -1053,6 +1076,12 @@ function toggleDetailsInToc(){
 }
 
 function setATitle(caption, page, fromWiki){
+  A.TocShown = false;
+  A.Caption = {};
+  A.Caption.text = caption;
+  A.Caption.page = page;
+  A.Caption.fromWiki = fromWiki;
+
   var atitle = document.getElementById("atitle");
   var str = "<em>" + caption + "</em>";
   if( page ) str +=
@@ -1565,12 +1594,10 @@ function loadNewDetails(specFileData){
       data = fieldValue("CORNER_RADIUS", item);
       if( data && (!isNaN(Number(data))) ) obj.corner_radius = Number(data);
       if( detail ){
-        // Note that Chrome and other
-        // browsers may not preserve the
-        // alpha exactly.
-        var c = "[" + (n + 2) + ",21,0,255]";
-        obj.hotspotColour = rgbOfJsonColourTuple(c);
-        A.AddHot(c);
+        detail = sanitiseHtml(detail);
+        var c = A.NextAutoColour(detail);
+        detail = ""; //so as not to add it twice.
+        obj.hotspotColour = c;
       }
     }
 
