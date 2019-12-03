@@ -213,6 +213,10 @@ function onChart(){
 function timerCallback(){
   if( Status.isFocus ) return;
   Status.time++;
+  // animation stops on America.
+  // and dark side of moon.
+  if( Status.time > 600 )
+    return;
   if( !Status.drawing ) innerDraw();
 }
 
