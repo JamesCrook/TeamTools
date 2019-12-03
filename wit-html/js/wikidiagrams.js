@@ -59,13 +59,50 @@ A.AddHover = function(text){
 
 // These are for hotspot colours added by a drawn image.
 A.NextAutoColour = function(Tip){
-  var a = (A.Hotspots.autoColour++) + 256 * 11;
+  var a = (A.Hotspots.autoColour++);
 
   // Note that Chrome and other
   // browsers may not preserve the
   // alpha exactly, so we do not use that.
 
-  var index = "[" + Math.floor(a / 255) + "," + (a % 256) + ",30,255]";
+  // a with 24 bits.
+  a = a %(65536*256);
+
+
+  // h (hue) on its own gives us 17 distinct colours before it repeats.
+  // it doesn't actually repeat at 17, but visually it is almost identical.
+  var h= (Math.PI * 57 * 2/1023) * a%1024;
+  //a = Math.floor(a/1024);
+
+  var r= Math.floor( 127 * Math.cos( h ))+128;
+  h -= Math.PI * 2/3;
+  var g= Math.floor( 127 * Math.cos( h ))+128;
+  h -= Math.PI * 2/3;
+  var b= Math.floor( 127 * Math.cos( h ))+128;
+  h -= Math.PI * 2/3;
+
+  // drop the lower 4 bits, since our above cycle is about 16.
+  a = a>>4;
+  // Now gray-code the remaining bits
+  // Idea of using gray code is to make changes in luminance or in
+  // saturation, not both at the same time.
+  a = a ^ (a>>1);
+
+  // luminance and saturation each grab 3 bits.
+  var l = (((a&2)<<6) + ((a&8)<<3) + ((a&32)));
+  var s = (((a&1)<<7) + ((a&4)<<4) + ((a&16)<<1))/500;
+
+  // saturation is grabbing 4 bits.
+  //var s = (a & 15)/19;
+
+  // We've only used about 11 bits, so 2048 colours.
+
+  r = Math.floor( r + (l-r) * s );
+  g = Math.floor( g + (l-g) * s );
+  b = Math.floor( b + (l-b) * s );
+
+
+  var index = "[" + r + "," + g + "," + b + ",255]";
   var rgb = rgbOfJsonColourTuple(index);
   var actions = A.Hotspots.Colours[index];
   if( actions ) return rgb;
