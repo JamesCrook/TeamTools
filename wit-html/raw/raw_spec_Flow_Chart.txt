@@ -185,7 +185,7 @@ copy.
 
 
 
-<pre>CREDITS:CAPTION=Flowchart of Making the Manual;TIP=</pre>
+<pre>CREDITS:CAPTION=Flowchart of Making the Audacity Manual;TIP=</pre>
 <h3>Instructions</h3>
 <ul>
 <li>Hover over boxes in the image for more details.
