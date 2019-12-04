@@ -412,8 +412,8 @@ function drawMultipleItems(values, T){
   var j;
   T.isPath = true;
   T.maxv = maxv;
-  for( j = 0; i < maxv; j += 2 ){
-    if( values[j + 1] === "No Description" ) continue;
+  for( j = 0; i < maxv; j += T.stride ){
+    if( (T.stride>1) && values[j + 1] === "No Description" ) continue;
     S = T.fn(i, T);
     if( i === 0 ) ctx.moveTo(S.x, S.y); else if( T.theta !==
       undefined ) ctx.arc(S.x, S.y, T.ySpacing / 2, T.theta, T.theta + Math.PI,
@@ -426,9 +426,12 @@ function drawMultipleItems(values, T){
   i = 0;
 
   T.isPath = false;
-  for( j = 0; i < maxv; j += 2 ){
-    if( values[j + 1] === "No Description" ) continue;
-    var r = 1.6 * Math.log((values[j + 1].length) + 0.1) + T.r0;
+  for( j = 0; i < maxv; j += T.stride ){
+    var r=T.r0+7;
+    if( (T.stride>1) ){
+      if( values[j + 1] === "No Description" ) continue;
+      r = 1.6 * Math.log((values[j + 1].length) + 0.1) + T.r0;
+    }
     S = T.fn(i, T);
     ctx.beginPath();
     ctx.arc(S.x, S.y, r, 0, 2 * Math.PI, false);
@@ -450,14 +453,18 @@ function drawMultipleItems(values, T){
 }
 
 // draws a path inside a box.
-function drawPath(x0, y0, xw, yh, obj){
+function drawPath(x0, y0, xw, yh, obj, stride){
+  stride = stride || 2;
   var T = {};
   //T.width = 100;
   //T.spacer = 30;
   T.items = 1;
   T.count = 0;
   T.width = 15;
-  for( let i = 0; i < obj.values.length; i += 2 ){
+  T.stride = stride;
+  if( T.stride == 1){
+    T.count = obj.values.length;
+  } else for( let i = 0; i < obj.values.length; i += T.stride ){
     if( obj.values[i + 1] !== "No Description" ) T.count++;
   }
   T.margin = 30;
@@ -479,6 +486,12 @@ function drawPath(x0, y0, xw, yh, obj){
   T.fn = xyOfIndexSnakey;
   drawMultipleItems(obj.values, T);
 }
+
+function drawTree(x0, y0, xw, yh, obj){
+  drawPath(x0, y0, xw, yh, obj, 1);
+}
+
+
 
 // slice is a number from -1 to +1.
 // source is a number from 0 to 1.
@@ -1209,6 +1222,10 @@ drawThing = {
     //console.log( "draw - "+obj.type);
     var l = obj.layout;
     drawPath(l.x0, l.y0, l.xw, l.yh, obj);
+  }, "Tree": function(obj, d){
+    //console.log( "draw - "+obj.type);
+    var l = obj.layout;
+    drawTree(l.x0, l.y0, l.xw, l.yh, obj);
   }, "Image": function(obj, d){
     //console.log( "draw - "+obj.type);
     var l = obj.layout;
