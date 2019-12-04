@@ -637,10 +637,9 @@ The detailed data for the chart follows.
 </pre>
 
 
-<pre>CREDITS:CAPTION=Audacity Classes;TIP=</pre>
-<h3>Instructions</h3>
+<pre>CREDITS:CAPTION=Audacity Structure;TIP=</pre>
 <ul>
-<li>Hover over blobs on the track for details about that item.
-<li>Larger spots have more information about them.
+<li>Red tracks for mainstream classes
+<li>Blue tracks for plumbing and support
 </ul><br><br>
 <b>Credits:</b> <em>James Crook ©2019; Data and Image placed in Public Domain</em>
