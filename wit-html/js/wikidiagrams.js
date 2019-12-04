@@ -422,13 +422,13 @@ function drawMultipleItems(values, T){
     ctx.lineWidth = nextWidth;
     ctx.strokeStyle = nextStyle;
 
-    if(  values[i].startsWith("*")){
+    if(  values[j].startsWith("*")){
       nextWidth = 13;
       nextStyle = "rgb(156,3,0)";
       ctx.lineWidth = 5;
       ctx.strokeStyle = "rgba(0,0,0,1.0)";
 
-    }else if(  values[i].startsWith("#"))
+    }else if(  values[j].startsWith("#"))
     {
       nextWidth = 9;
       nextStyle = "rgb(15,0,181)";

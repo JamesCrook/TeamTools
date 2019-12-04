@@ -30,14 +30,14 @@ The detailed data for the chart follows.
 
    "values":[
 
-            "*Dialogs",
+             "*Dialogs",
+             "AboutDialog",
              "ApplyMacroDialog",
              "AutoRecoveryDialog",
              "BenchmarkDialog",
              "BrowserDialog",
              "DependencyDialog",
              "EchoDialog",
-             "EffectDialog",
              "ExportMixerDialog",
              "FindClippingDialog",             "FindFFmpegDialog",
              "ImportRawDialog",
@@ -49,7 +49,6 @@ The detailed data for the chart follows.
              "NoiseRemovalDialog",
              "NyquistOutputDialog",
              "PrefsDialog",
-             "ProgressDialog",
              "RepeatDialog",
              "ScoreAlignDialog",
              "SplashDialog",
@@ -59,17 +58,20 @@ The detailed data for the chart follows.
              "TagsEditor",
 
 
-            "*Generic Dialogs",
+             "*Generic Dialogs",
              "AudacityCommandDialog",
              "AudacityMessageDialog",
              "AudacityTextEntryDialog",
-             "AboutDialog",
+             "EffectDialog",
              "FileDialog",
+             "ProgressDialog",
              "SliderDialog",
-             "ToolBarDialog",
              "ErrorDialog",
              "WarningDialog",
              "MultiDialog",
+
+             "#Dialogs",
+             "ToolBarDialog",
              "DemoDialog",
 
 
@@ -84,7 +86,6 @@ The detailed data for the chart follows.
              "MeterPanel",
              "PrefsPanel",
              "RulerPanel",
-             "TipPanel",
 
              "#Panels",
              "InvisiblePanel",
@@ -105,6 +106,7 @@ The detailed data for the chart follows.
              "LinkingHtmlWindow",
              "ProjectWindow",
              "ScreenFrame",
+             "TipPanel",
 
 
              "*Shuttles",
@@ -119,6 +121,14 @@ The detailed data for the chart follows.
              "ShuttleSetAutomation",
              "WrappedType",
              "ShuttlePrefs",
+
+             "*XML",
+             "XMLFileReader",
+             "XMLFileWriter",
+             "XMLStringWriter",
+             "XMLTagHandler",
+             "XMLValueChecker",
+             "XMLWriter",
 
 
              "*Effects",
@@ -170,6 +180,13 @@ The detailed data for the chart follows.
              "LadspaEffect",
              "NyquistEffect",
              "NyqControl",
+             "AutoDuckRegion",
+             "Biquad",
+             "ComponentInterface",
+             "ComponentInterfaceSymbol",
+             "ConfigClientInterface",
+             "CrossFader",
+             "PaulStretch",
 
              "*Prefs",
              "BatchPrefs",
@@ -195,7 +212,7 @@ The detailed data for the chart follows.
              "WarningsPrefs",
              "WaveformPrefs",
 
-             "*Settings",
+             "#Prefs",
              "ProjectSettings",
              "SpectrogramSettings",
              "WaveformSettings",
@@ -262,7 +279,6 @@ The detailed data for the chart follows.
 
              "*ToolBars",
              "ToolBar",
-             "ExpandingToolBar",
              "ControlToolBar",
              "DeviceToolBar",
              "EditToolBar",
@@ -288,6 +304,8 @@ The detailed data for the chart follows.
              "ToolDock",
              "ToolFrame",
              "ToolManager",
+             "ExpandingToolBar",
+
              "*Tracks",
              "AudioTrack",
              "LabelTrack",
@@ -408,14 +426,6 @@ The detailed data for the chart follows.
 
 
 
-             "*XML",
-             "XMLFileReader",
-             "XMLFileWriter",
-             "XMLStringWriter",
-             "XMLTagHandler",
-             "XMLValueChecker",
-             "XMLWriter",
-
              "*Menus",
              "MenuTable",
              "MenuBarList",
@@ -525,16 +535,6 @@ The detailed data for the chart follows.
              "SimpleMessageBoxException",
 
 
-            "#Effects",
-             "AutoDuckRegion",
-             "Biquad",
-             "ComponentInterface",
-             "ComponentInterfaceSymbol",
-             "ConfigClientInterface",
-             "CrossFader",
-             "PaulStretch",
-
-
              "#Audio IO",
              "WaveCache",
              "WaveClip",
@@ -575,7 +575,7 @@ The detailed data for the chart follows.
              "PCMImportFileHandle",
 
 
-             "*LADSPA",
+             "#LADSPA",
              "_LADSPA_Descriptor",
              "_LADSPA_PortRangeHint",
 
