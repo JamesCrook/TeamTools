@@ -405,24 +405,54 @@ function drawMultipleItems(values, T){
 
   var reserveColoursTo = A.Hotspots.autoColour + T.count;
 
-  ctx.beginPath();
-  ctx.lineWidth = 5;
 
-  var S;
+  var S={};
   var j;
+  S.x=0;S.y=0;
   T.isPath = true;
   T.maxv = maxv;
+  var nextWidth = 5;
+  var nextStyle = "rgba(0,0,0,1.0)";
+
   for( j = 0; i < maxv; j += T.stride ){
     if( (T.stride>1) && values[j + 1] === "No Description" ) continue;
+
+    ctx.beginPath();
+    ctx.moveTo(S.x, S.y);
+    ctx.lineWidth = nextWidth;
+    ctx.strokeStyle = nextStyle;
+
+    if(  values[i].startsWith("*")){
+      nextWidth = 13;
+      nextStyle = "rgb(156,3,0)";
+      ctx.lineWidth = 5;
+      ctx.strokeStyle = "rgba(0,0,0,1.0)";
+
+    }else if(  values[i].startsWith("#"))
+    {
+      nextWidth = 9;
+      nextStyle = "rgb(15,0,181)";
+      ctx.lineWidth = 5;
+      ctx.strokeStyle = "rgba(0,0,0,1.0)";
+
+    }
+    else {
+    }
     S = T.fn(i, T);
-    if( i === 0 ) ctx.moveTo(S.x, S.y); else if( T.theta !==
-      undefined ) ctx.arc(S.x, S.y, T.ySpacing / 2, T.theta, T.theta + Math.PI,
-      T.thetaDirection); else ctx.lineTo(S.x, S.y);
+    if( i === 0 )
+      ctx.moveTo(S.x, S.y);
+    else if( T.theta !== undefined ){
+      ctx.arc(S.x, S.y, T.ySpacing / 2, T.theta, T.theta + Math.PI,
+        T.thetaDirection);
+      S.y += T.ySpacing / 2;
+    }
+    else {
+      ctx.lineTo(S.x, S.y);
+    }
     i++;
+    ctx.stroke();
 
   }
-  ctx.strokeStyle = "rgba(0,0,0,1.0)";
-  ctx.stroke();
   i = 0;
 
   T.isPath = false;
