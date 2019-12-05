@@ -970,6 +970,7 @@ function setNewImage(url){
     (A.RootObject.content[0].type === "Image") ){
     var obj = A.RootObject.content[0];
     obj.file = url;
+    obj.img.crossOrigin = "anonymous";
     obj.img.src = obj.file;
   }
 
@@ -1100,9 +1101,11 @@ function updateImages(){
     (A.RootObject.content[0].type === "Image") ){
     var obj = A.RootObject.content[0];
     if( obj.file ){
+      obj.img.crossOrigin = "anonymous";
       obj.img.src = obj.file;
     }
     if( obj.hot && obj.hot.file ){
+      obj.hot.img.crossOrigin = "anonymous";
       obj.hot.img.src = obj.hot.file;
     }
   }
@@ -1638,6 +1641,7 @@ function loadNewDetails(specFileData){
           alert("Failed to load image " + obj1.file);
         }
       })();
+      obj.img.crossOrigin = "anonymous";
       obj.img.src = file;
 
     }
@@ -1665,6 +1669,7 @@ function loadNewDetails(specFileData){
           alert("Failed to load hotspots " + obj1.hot.file);
         }
       })();
+      obj.hot.img.crossOrigin = "anonymous";
       obj.hot.img.src = file;
     }
 
