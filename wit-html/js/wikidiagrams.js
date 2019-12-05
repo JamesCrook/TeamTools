@@ -19,7 +19,7 @@ A.Image.imageSrc = './images/AudacityAu19.jpg';
 A.Hotspots = {};
 A.Hotspots.imageSrc = './images/AudacityAu19HS.png';
 A.Focus = {};
-A.Focus.radius = 75;
+A.Focus.radius = 35;
 A.Detail = {};
 A.Detail.width = 400;
 A.Detail.height = 300;
@@ -904,8 +904,14 @@ function drawFocusSpot(x, y){
   var m = A.Porthole.margin;
   ctx.fillStyle = "rgba( 5,5,5,0.2)";
 
-  ctx.fillRect(m, m + extra, A.Porthole.width - 2 * m,
-    A.Porthole.height - 2 * m - extra);
+  ctx.beginPath();
+  ctx.arc(x, y, A.Focus.radius+15, 0, Math.PI * 2.0, true);
+  ctx.closePath();
+  ctx.fill();
+
+
+  // ctx.fillRect(m, m + extra, A.Porthole.width - 2 * m,
+ //   A.Porthole.height - 2 * m - extra);
 
   ctx.fillStyle = "rgba(0,255,255,1.0)";
   ctx.globalCompositeOperation = 'destination-out';
