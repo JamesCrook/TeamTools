@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="19d53a3f-3465-411f-b55c-a4cbe997b0eb" name="Default" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageViewManager">
+    <option name="myElementSize" value="80" />
+  </component>
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="AudacityTeamTools" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="ProjectId" id="1UFoSYu0jvyr9lPWurgG8zbgoXn" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="273" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="302" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="303" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="977" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="295" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="294" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="296" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="970" />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="SearchEverywhereHistoryKey" value="ShowUrls&#9;null&#9;null" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/wit-html/raw" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_interpreter_path" value="C:\Program Files\nodejs\node.exe" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.splitter.proportion" value="0.34114054" />
+    <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/wit-html/raw/raw_menu.txt" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\OpenSourceGit\AudacityTeamTools\resources" />
+      <recent name="C:\OpenSourceGit\AudacityTeamTools\wit-html\js" />
+      <recent name="C:\OpenSourceGit\AudacityTeamTools\wit-html\raw" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\OpenSourceGit\AudacityTeamTools\wit-html\raw" />
+      <recent name="C:\OpenSourceGit\AudacityTeamTools\wit-html" />
+      <recent name="C:\OpenSourceGit\AudacityTeamTools\wit-html\scroller-contents" />
+      <recent name="C:\OpenSourceGit\AudacityTeamTools\wit-html\v01\scroller-contents" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="demos.htm" type="JavascriptDebugType" nameIsGenerated="true" uri="http://localhost:63342/AudacityTeamTools/wit-html/demos.htm" useFirstLineBreakpoints="true" useBuiltInWebServerPort="true">
+      <mapping url="http://localhost:63342/AudacityTeamTools/wit-html/js" local-file="$PROJECT_DIR$/wit-html/js" />
+      <mapping url="http://localhost:63342/AudacityTeamTools/wit-html/js/wikidiagrams.js" local-file="$PROJECT_DIR$/wit-html/js/wikidiagrams.js" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="StructureViewFactory">
+    <option name="AUTOSCROLL_FROM_SOURCE" value="true" />
+    <option name="ACTIVE_ACTIONS" value=",HIDE_INHERITED,HIDE_INHERITED_FROM_OBJECT,HTML5_OUTLINE_MODE,ALPHA_COMPARATOR,SHOW_CLASSES" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="19d53a3f-3465-411f-b55c-a4cbe997b0eb" name="Default" comment="" />
+      <created>1512406922952</created>
+      <option name="number" value="Default" />
+      <updated>1512406922952</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="136" y="414" key="#Inspections" timestamp="1574969521230">
+      <screen x="0" y="0" width="1080" height="1880" />
+    </state>
+    <state x="136" y="414" key="#Inspections/1080.0.1080.1880/0.0.1080.1880@0.0.1080.1880" timestamp="1574969521230" />
+    <state x="136" y="414" width="816" height="733" key="#Intentions" timestamp="1574969671738">
+      <screen x="0" y="0" width="1080" height="1880" />
+    </state>
+    <state x="136" y="414" width="816" height="733" key="#Intentions/1080.0.1080.1880/0.0.1080.1880@0.0.1080.1880" timestamp="1574969671738" />
+    <state x="0" y="248" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1575143995839">
+      <screen x="0" y="0" width="1080" height="1880" />
+    </state>
+    <state x="0" y="248" key="#com.intellij.execution.impl.EditConfigurationsDialog/1080.0.1080.1880/0.0.1080.1880@0.0.1080.1880" timestamp="1575143995839" />
+    <state x="309" y="742" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1575658302740">
+      <screen x="0" y="0" width="1080" height="1880" />
+    </state>
+    <state x="309" y="742" key="#com.intellij.fileTypes.FileTypeChooser/1080.0.1080.1880/0.0.1080.1880@0.0.1080.1880" timestamp="1575658302740" />
+    <state x="322" y="600" key="FileChooserDialogImpl" timestamp="1575142555515">
+      <screen x="0" y="0" width="1080" height="1880" />
+    </state>
+    <state x="322" y="600" key="FileChooserDialogImpl/1080.0.1080.1880/0.0.1080.1880@0.0.1080.1880" timestamp="1575142555515" />
+    <state width="1081" height="479" key="GridCell.Tab.0.bottom" timestamp="1575659413701">
+      <screen x="0" y="0" width="1080" height="1880" />
+    </state>
+    <state width="1081" height="479" key="GridCell.Tab.0.bottom/1080.0.1080.1880/0.0.1080.1880@0.0.1080.1880" timestamp="1575659413701" />
+    <state width="1081" height="479" key="GridCell.Tab.0.center" timestamp="1575659413701">
+      <screen x="0" y="0" width="1080" height="1880" />
+    </state>
+    <state width="1081" height="479" key="GridCell.Tab.0.center/1080.0.1080.1880/0.0.1080.1880@0.0.1080.1880" timestamp="1575659413701" />
+    <state width="1081" height="479" key="GridCell.Tab.0.left" timestamp="1575659413701">
+      <screen x="0" y="0" width="1080" height="1880" />
+    </state>
+    <state width="1081" height="479" key="GridCell.Tab.0.left/1080.0.1080.1880/0.0.1080.1880@0.0.1080.1880" timestamp="1575659413701" />
+    <state width="1081" height="479" key="GridCell.Tab.0.right" timestamp="1575659413701">
+      <screen x="0" y="0" width="1080" height="1880" />
+    </state>
+    <state width="1081" height="479" key="GridCell.Tab.0.right/1080.0.1080.1880/0.0.1080.1880@0.0.1080.1880" timestamp="1575659413701" />
+    <state width="1059" height="826" key="GridCell.Tab.1.bottom" timestamp="1575575103594">
+      <screen x="0" y="0" width="1080" height="1880" />
+    </state>
+    <state width="1059" height="826" key="GridCell.Tab.1.bottom/1080.0.1080.1880/0.0.1080.1880@0.0.1080.1880" timestamp="1575575103594" />
+    <state width="1059" height="826" key="GridCell.Tab.1.center" timestamp="1575575103594">
+      <screen x="0" y="0" width="1080" height="1880" />
+    </state>
+    <state width="1059" height="826" key="GridCell.Tab.1.center/1080.0.1080.1880/0.0.1080.1880@0.0.1080.1880" timestamp="1575575103594" />
+    <state width="1059" height="826" key="GridCell.Tab.1.left" timestamp="1575575103594">
+      <screen x="0" y="0" width="1080" height="1880" />
+    </state>
+    <state width="1059" height="826" key="GridCell.Tab.1.left/1080.0.1080.1880/0.0.1080.1880@0.0.1080.1880" timestamp="1575575103594" />
+    <state width="1059" height="826" key="GridCell.Tab.1.right" timestamp="1575575103594">
+      <screen x="0" y="0" width="1080" height="1880" />
+    </state>
+    <state width="1059" height="826" key="GridCell.Tab.1.right/1080.0.1080.1880/0.0.1080.1880@0.0.1080.1880" timestamp="1575575103594" />
+    <state width="1000" height="541" key="GridCell.Tab.2.bottom" timestamp="1574981088448">
+      <screen x="0" y="0" width="1080" height="1880" />
+    </state>
+    <state width="1000" height="541" key="GridCell.Tab.2.bottom/1080.0.1080.1880/0.0.1080.1880@0.0.1080.1880" timestamp="1574981088448" />
+    <state width="1000" height="541" key="GridCell.Tab.2.center" timestamp="1574981088448">
+      <screen x="0" y="0" width="1080" height="1880" />
+    </state>
+    <state width="1000" height="541" key="GridCell.Tab.2.center/1080.0.1080.1880/0.0.1080.1880@0.0.1080.1880" timestamp="1574981088448" />
+    <state width="1000" height="541" key="GridCell.Tab.2.left" timestamp="1574981088448">
+      <screen x="0" y="0" width="1080" height="1880" />
+    </state>
+    <state width="1000" height="541" key="GridCell.Tab.2.left/1080.0.1080.1880/0.0.1080.1880@0.0.1080.1880" timestamp="1574981088448" />
+    <state width="1000" height="541" key="GridCell.Tab.2.right" timestamp="1574981088448">
+      <screen x="0" y="0" width="1080" height="1880" />
+    </state>
+    <state width="1000" height="541" key="GridCell.Tab.2.right/1080.0.1080.1880/0.0.1080.1880@0.0.1080.1880" timestamp="1574981088448" />
+    <state x="82" y="476" key="SettingsEditor" timestamp="1575657989138">
+      <screen x="0" y="0" width="1080" height="1880" />
+    </state>
+    <state x="82" y="476" key="SettingsEditor/1080.0.1080.1880/0.0.1080.1880@0.0.1080.1880" timestamp="1575657989138" />
+    <state x="171" y="493" width="737" height="894" key="find.popup" timestamp="1575625143675">
+      <screen x="0" y="0" width="1080" height="1880" />
+    </state>
+    <state x="171" y="493" width="737" height="894" key="find.popup/1080.0.1080.1880/0.0.1080.1880@0.0.1080.1880" timestamp="1575625143675" />
+    <state x="195" y="495" width="672" height="678" key="search.everywhere.popup" timestamp="1574964807676">
+      <screen x="0" y="0" width="1080" height="1880" />
+    </state>
+    <state x="195" y="495" width="672" height="678" key="search.everywhere.popup/1080.0.1080.1880/0.0.1080.1880@0.0.1080.1880" timestamp="1574964807676" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/AudacityTeamTools$demos_htm.dat" NAME="demos.htm Coverage Results" MODIFIED="1575658357069" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="WipCoverageRunner" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+</project>
