@@ -54,8 +54,13 @@ The detailed data for the chart follows.
              "SplashDialog",
              "TimeDialog",
              "TimerRecordDialog",
+
              "SoundActivatedRecord",
-             "TagsEditor",
+             "TagsEditorDialog",
+             "ExportMultipleDialog",
+             "FrequencyPlotDialog",
+             "HistoryDialog",
+             "ScreenshotBigDialog",
 
 
              "*Generic Dialogs",
@@ -100,13 +105,10 @@ The detailed data for the chart follows.
 
 
              "*Windows",
-             "FreqWindow",
-             "HistoryWindow",
              "HtmlWindow",
              "LinkingHtmlWindow",
              "ProjectWindow",
-             "ScreenFrame",
-             "TipPanel",
+             "TipWindow",
 
 
              "*Shuttles",
@@ -346,7 +348,6 @@ The detailed data for the chart follows.
              "ExportFFmpegOptions",
              "ExportFFmpegWMAOptions",
 
-             "ExportMultiple",
              "ExportType",
 
 

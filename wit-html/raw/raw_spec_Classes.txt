@@ -750,7 +750,8 @@ The detailed data for the chart follows.
 
              "ExportMP3Options","No Description",
 
-             "ExportMultiple","Presents a dialog box allowing the user to export multiple files either by exporting each track as a separate file, or by exporting each label as a separate file ",
+             "ExportMultipleDialog","Presents a dialog box allowing the user to
+             export multiple files either by exporting each track as a separate file, or by exporting each label as a separate file ",
 
              "ExportOGG","No Description",
 
@@ -846,7 +847,8 @@ The detailed data for the chart follows.
 
              "FreqPlot","Works with FreqWindow to dsplay a spectrum plot of the waveform. This class actually does the graph display ",
 
-             "FreqWindow","Displays a spectrum plot of the waveform. Has options for selecting parameters of the plot ",
+             "FrequencyPlotDialog","Displays a spectrum plot of the
+             waveform. Has options for selecting parameters of the plot ",
 
              "g_mutex_locker","No Description",
 
@@ -892,7 +894,8 @@ The detailed data for the chart follows.
 
              "HighlightTextCtrl","No Description",
 
-             "HistoryWindow","Works with UndoManager to allow user to see descriptions of and undo previous commands. Also allows you to selectively clear the undo memory so as to free up space ",
+             "HistoryDialog","Works with UndoManager to allow user to see
+             descriptions of and undo previous commands. Also allows you to selectively clear the undo memory so as to free up space ",
 
              "HitTestPreview","No Description",
 
@@ -1470,7 +1473,8 @@ The detailed data for the chart follows.
 
              "ScoreAlignDialog","ScoreAlignDialog is  ",
 
-             "ScreenFrame","ScreenFrame provides an alternative Gui for ScreenshotCommand. It adds a timer that allows a delay before taking a screenshot, provides lots of one-click buttons, options to resize the screen. It forwards the actual work of doing the commands to the ScreenshotCommand ",
+             "ScreenshotBigDialog","ScreenFrame provides an alternative Gui for
+             ScreenshotCommand. It adds a timer that allows a delay before taking a screenshot, provides lots of one-click buttons, options to resize the screen. It forwards the actual work of doing the commands to the ScreenshotCommand ",
 
              "ScreenFrameTimer","No Description",
 
@@ -1696,7 +1700,8 @@ The detailed data for the chart follows.
 
              "TimeWarper","Transforms one point in time to another point. For example, a time stretching effect might use one to keep track of what happens to labels and split points in the input ",
 
-             "TipPanel","A wxPopupWindow used to give the numerical value of an LWSlider or ASlider ",
+             "TipWindow","A wxPopupWindow used to give the numerical value of an
+              LWSlider or ASlider ",
 
              "TitleRestorer","No Description",
 
