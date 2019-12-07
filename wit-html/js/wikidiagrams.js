@@ -1280,6 +1280,17 @@ drawThing = {
   }
 };
 
+/*
+"BarChart" : function(obj,d){
+  d.T = {};
+  d.T.prepareForAll = prepareForBars;
+  d.T.prepareForOne = prepareBar;
+  d.T.drawOne = drawBar;
+  drawFlyweightCells( obj, d );
+}
+*/
+
+
 function sizeCells(obj, data){
   visit(sizeThing, obj, data);
   //console.log( obj.sizing);
