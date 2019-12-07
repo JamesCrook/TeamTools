@@ -6,23 +6,25 @@ if( !String.prototype.startsWith ){
   };
 }
 
-var Annotator = {};
+var Annotator = [];
 
-var A = Annotator;
-A.Spec = {}; // the unparsed spec from wiki arrives here.
-A.Porthole = {};
-A.Porthole.width = 1024;
-A.Porthole.height = 567;
-A.Porthole.margin = 5;
-A.Image = {};
-A.Image.imageSrc = './images/AudacityAu19.jpg';
-A.Hotspots = {};
-A.Hotspots.imageSrc = './images/AudacityAu19HS.png';
-A.Focus = {};
-A.Focus.radius = 35;
-A.Detail = {};
-A.Detail.width = 400;
-A.Detail.height = 300;
+function InitAnnotator(A){
+  A.Spec = {}; // the unparsed spec from wiki arrives here.
+  A.Porthole = {};
+  A.Porthole.width = 1024;
+  A.Porthole.height = 567;
+  A.Porthole.margin = 5;
+  A.Image = {};
+  A.Image.imageSrc = './images/AudacityAu19.jpg';
+  A.Hotspots = {};
+  A.Hotspots.imageSrc = './images/AudacityAu19HS.png';
+  A.Focus = {};
+  A.Focus.radius = 35;
+  A.Detail = {};
+  A.Detail.width = 400;
+  A.Detail.height = 300;
+}
+
 
 AddHot = function( A, index){
   var actions = {};
@@ -115,17 +117,14 @@ NextAutoColour = function( A, Tip){
   A.Hotspots.ColourZoneIx++;
 
   if( A.Hotspots.ColourZoneIx === 1 ){
-    setATitle( A.Caption.text, A.Caption.page, A.Caption.fromWiki );
+    setATitle( A, A.Caption.text, A.Caption.page, A.Caption.fromWiki );
   }
   return rgb;
 };
 
 
-var Nozone = {};
-Nozone.Zone = 0;
 
-function resetHotspots(){
-  var A = Annotator;
+function resetHotspots(A){
   A.Hotspots.Colours = [];
   A.Hotspots.count = 0;
   A.Hotspots.autoColour = 0;
@@ -140,20 +139,10 @@ function resetHotspots(){
   A.Distortion = {};
 }
 
-resetHotspots();
 
 
 
-var Status = {};
-Status.OldHit = -1;
-Status.imagesToCome = 2;
-Status.time = 0;
-
-var Message;
-var Message2;
-
-function resizeDivs(){
-  var A = Annotator;
+function resizeDivs(A){
   A.MainDiv.style.width = A.Porthole.width + 'px';
   A.MainDiv.style.height = A.Porthole.height + 'px';
   A.BackingCanvas.width = A.Porthole.width;
@@ -167,15 +156,15 @@ function resizeDivs(){
   A.Hotspots.ctx = A.Hotspots.canvas.getContext('2d');
 }
 
-function resizeForImage(img){
+function resizeForImage(A,img){
   //alert( "RESIZING "+img.width +"x"+img.height );
   A.Porthole.width = img.width;
   A.Porthole.height = img.height;
   // resizeDivs();
-  if( Status.isAppReady ) onChart();
+  if( Status.isAppReady ) onChart(A);
 }
 
-function innerDraw(){
+function innerDraw(A){
   Status.drawing = true;
   var ctx = A.BackingCanvas.ctx;
   var ctx2 = A.Hotspots.ctx;
@@ -184,28 +173,27 @@ function innerDraw(){
 
   // Some hotpspot colours are created as needed.
   A.Hotspots.autoColour = 0;
-  drawArrows();
-  drawCells(A.RootObject, {});
-  drawArrowHeads();
+  drawArrows(A);
+  drawCells(A,A.RootObject, {});
+  drawArrowHeads(A);
 
-  drawButtons();
+  drawButtons(A);
   Status.drawing = false;
 }
 
-function onChart(){
-  var A = Annotator;
+function onChart(A){
   console.log("onChart");
   A.Detail.width = A.Porthole.width / 2 - 10;
   A.Detail.height = Math.min(300, A.Porthole.height - 100);
 
-  resizeDivs();
+  resizeDivs(A);
 
   var d = {};
-  sizeCells(A.RootObject, d);
+  sizeCells(A,A.RootObject, d);
   d.margins = 0;
-  layoutCells(0, 0, A.Porthole.width, A.Porthole.height, A.RootObject, d);
+  layoutCells(A,0, 0, A.Porthole.width, A.Porthole.height, A.RootObject, d);
   //console.log(A.RootObject.content );
-  innerDraw();
+  innerDraw(A);
   Status.isAppReady = true;
 
 }
@@ -217,15 +205,15 @@ function timerCallback(){
   // and dark side of moon.
   if( Status.time > 600 )
     return;
-  if( !Status.drawing ) innerDraw();
+  var A = Annotator[0];
+  if( !Status.drawing ) innerDraw(A);
 }
 
 function onFailedImage(){
   alert("Image failed to load");
 }
 
-function detailPosFromCursorPos(x, y){
-  var A = Annotator;
+function detailPosFromCursorPos(A,x, y){
   var pt = {};
   // get position as somewhere in range -1..+1
   var vx = 2.0 * x / A.Porthole.width - 1;
@@ -241,8 +229,7 @@ function detailPosFromCursorPos(x, y){
   return pt;
 }
 
-function drawBar(T, values, i, ix){
-  var A = Annotator;
+function drawBar(A,T, values, i, ix){
   var vx = values[i][ix];
   var x = i * T.xScaler;
   var y = vx * T.yScaler;
@@ -256,7 +243,7 @@ function drawBar(T, values, i, ix){
   ctx.stroke();
 }
 
-function drawLabel(T, values, i){
+function drawLabel(A,T, values, i){
   var ctx = A.BackingCanvas.ctx;
   var x = i * T.xScaler + T.width + 10;
   var y = T.margin;
@@ -269,9 +256,7 @@ function drawLabel(T, values, i){
   ctx.restore();
 }
 
-function clearBacking(x0, y0, xw, yh){
-  var A = Annotator;
-
+function clearBacking(A,x0, y0, xw, yh){
   var ctx = A.BackingCanvas.ctx;
   ctx.beginPath();
   ctx.fillStyle = "rgba(205,205,205,1.0)";
@@ -304,28 +289,27 @@ function computeSpacing(T, x0, y0, xw, yh, values){
   T.yScaler = (Math.min(20, Status.time) / 20) * (yh) / 2000.0;
 }
 
-function drawSpacedItems(x0, y0, xw, yh, values, fn, T){
+function drawSpacedItems(A,x0, y0, xw, yh, values, fn, T){
 
   if( !values ) return;
   computeSpacing(T, x0, y0, xw, yh, values);
   for( i = 0; i < T.count; i++ ){
-    for( j = 0; j < T.items; j++ ) fn(T, values, i, 1 + j);
+    for( j = 0; j < T.items; j++ ) fn(A,T, values, i, 1 + j);
   }
 }
 
-function drawChart3(x0, y0, xw, yh, obj){
+function drawChart3(A,x0, y0, xw, yh, obj){
   var T = {};
   T.width = 8;
-  clearBacking(x0, y0, xw, yh);
-  if( obj.subtype != "labels" ) drawSpacedItems(x0, y0, xw, yh, obj.values,
+  clearBacking(A,x0, y0, xw, yh);
+  if( obj.subtype != "labels" ) drawSpacedItems(A,x0, y0, xw, yh, obj.values,
     drawBar, T);
   T.items = 1;
-  if( obj.subtype == "labels" ) drawSpacedItems(x0, y0, xw, yh, obj.values,
+  if( obj.subtype == "labels" ) drawSpacedItems(A,x0, y0, xw, yh, obj.values,
     drawLabel, T);
 }
 
-function drawDonut(T, values, i, ix){
-  var A = Annotator;
+function drawDonut(A,T, values, i, ix){
   var xw = T.width;
   var x = i * T.xScaler + T.margin + T.x0 + xw / 2;
   var y = T.y0 + T.yh - T.margin - T.width + xw / 2;
@@ -361,13 +345,13 @@ function drawDonut(T, values, i, ix){
   }
 }
 
-function drawPieChart(x0, y0, xw, yh, obj){
+function drawPieChart(A,x0, y0, xw, yh, obj){
   var T = {};
   //T.width = 100;
   T.spacer = 30;
   T.items = 1;
-  clearBacking(x0, y0, xw, yh);
-  drawSpacedItems(x0, y0, xw, yh, obj.values, drawDonut, T);
+  clearBacking(A, x0, y0, xw, yh);
+  drawSpacedItems(A,x0, y0, xw, yh, obj.values, drawDonut, T);
 }
 
 function xyOfIndexSnakey(i, T){
@@ -390,7 +374,7 @@ function xyOfIndexSnakey(i, T){
   return { "x": x, "y": y };
 }
 
-function drawMultipleItems(values, T){
+function drawMultipleItems(A,values, T){
   var i = 0;
   var ctx = A.BackingCanvas.ctx;
   var ctx2 = A.Hotspots.ctx;
@@ -483,7 +467,7 @@ function drawMultipleItems(values, T){
 }
 
 // draws a path inside a box.
-function drawPath(x0, y0, xw, yh, obj, stride){
+function drawPath(A,x0, y0, xw, yh, obj, stride){
   stride = stride || 2;
   var T = {};
   //T.width = 100;
@@ -514,11 +498,11 @@ function drawPath(x0, y0, xw, yh, obj, stride){
   T.ySpacing = (yh - 2 * T.margin) / (T.m);
 
   T.fn = xyOfIndexSnakey;
-  drawMultipleItems(obj.values, T);
+  drawMultipleItems(A,obj.values, T);
 }
 
-function drawTree(x0, y0, xw, yh, obj){
-  drawPath(x0, y0, xw, yh, obj, 1);
+function drawTree(A,x0, y0, xw, yh, obj){
+  drawPath(A,x0, y0, xw, yh, obj, 1);
 }
 
 
@@ -529,11 +513,10 @@ function sourceForSlice(slice){
   return Math.acos(-slice) / Math.PI;
 }
 
-function drawSphere(xx, yy, xw, yh, ctx, obj){
+function drawSphere(A,xx, yy, xw, yh, ctx, obj){
   xw = Math.floor(xw);
   yh = Math.floor(yh);
   //console.log( "Draw at "+xx+","+yy+" ["+xw+" by "+yh+"]");
-  var A = Annotator;
   var ctx2 = obj.ctx;
   var img = obj.img;
   //console.log( "From image "+img.width+" by "+img.height);
@@ -616,8 +599,7 @@ function drawSphere(xx, yy, xw, yh, ctx, obj){
   ctx.putImageData(dstData, xx + (w - h), yy + (h1 - h));
 }
 
-function drawButtons(){
-  var A = Annotator;
+function drawButtons(A){
   var xw = 60;
   var yh = 25;
   var gap = 9;
@@ -651,7 +633,7 @@ function drawButtons(){
     ctx2.rect(x + i * (xw + gap), y + 0 * (yh + gap), xw, yh);
     ctx2.fill();
   }
-  drawInfoButtonHotspot();
+  drawInfoButtonHotspot(A);
 }
 
 function roundRect(ctx, x, y, w, h, r){
@@ -678,8 +660,7 @@ function setStyles(ctx, obj){
     "rgba( 55, 55,155,1.0)";
 }
 
-function drawArrow(obj1, obj2){
-  var A = Annotator;
+function drawArrow(A,obj1, obj2){
   var ctx = A.BackingCanvas.ctx;
   var x1 = obj1.layout.x0 + obj1.layout.xw / 2;
   var x2 = obj2.layout.x0 + obj2.layout.xw / 2;
@@ -693,8 +674,7 @@ function drawArrow(obj1, obj2){
   ctx.stroke();
 }
 
-function drawArrowHead(obj1, obj2){
-  var A = Annotator;
+function drawArrowHead(A,obj1, obj2){
   var ctx = A.BackingCanvas.ctx;
   var x1 = obj1.layout.x0 + obj1.layout.xw / 2;
   var x2 = obj2.layout.x0 + obj2.layout.xw / 2;
@@ -734,15 +714,14 @@ function drawArrowHead(obj1, obj2){
   ctx.restore();
 }
 
-function drawImage(x, y, xw, yh, obj){
-  var A = Annotator;
+function drawImage(A,x, y, xw, yh, obj){
   var ctx = A.BackingCanvas.ctx;
   var ctx2 = A.Hotspots.ctx;
   if( obj.status !== "arrived" ){
-    drawRectangle(x, y, xw, yh, obj);
+    drawRectangle(A, x, y, xw, yh, obj);
   } else if( obj.spherical ){
-    drawSphere(x, y, xw, yh, ctx, obj);
-    drawSphere(x, y, xw, yh, ctx2, obj.hot);
+    drawSphere(A, x, y, xw, yh, ctx, obj);
+    drawSphere(A, x, y, xw, yh, ctx2, obj.hot);
   } else {
     if( obj.stretch == "yes" ){
       // rescaled to fit, aspect ratio ignored.
@@ -774,8 +753,7 @@ function drawImage(x, y, xw, yh, obj){
   }
 }
 
-function drawRectangle(x, y, xw, yh, obj){
-  var A = Annotator;
+function drawRectangle(A,x, y, xw, yh, obj){
   var ctx = A.BackingCanvas.ctx;
 
   ctx.save();
@@ -800,8 +778,8 @@ function drawRectangle(x, y, xw, yh, obj){
   }
 }
 
-function drawCircle(x, y, xw, yh, obj){
-  var A = Annotator;
+function drawCircle(A,x, y, xw, yh, obj){
+
   var ctx = A.BackingCanvas.ctx;
   ctx.lineWidth = 3;
   ctx.font = "16px Arial";
@@ -829,8 +807,7 @@ function drawCircle(x, y, xw, yh, obj){
   }
 }
 
-function drawInfoButtonHotspot(){
-  var A = Annotator;
+function drawInfoButtonHotspot(A){
   var xw = 25;
   var yh = 25;
   var x = 5;
@@ -843,34 +820,31 @@ function drawInfoButtonHotspot(){
   ctx2.fill();
 }
 
-function objFromId(id){
+function objFromId(A,id){
   if( !isDefined(id) ) return id;
-  var A = Annotator;
   return A.RootObject.objectDict[id.substr(0, 10)];
 }
 
-function drawArrowThing(fn){
-  var A = Annotator;
+function drawArrowThing(A,fn){
   var arrows = A.RootObject.arrows;
   if( !isDefined(arrows) ) return;
   for( i = 0; i < arrows.length; i += 2 ){
-    var obj1 = objFromId(arrows[i]);
-    var obj2 = objFromId(arrows[i + 1]);
+    var obj1 = objFromId(A,arrows[i]);
+    var obj2 = objFromId(A,arrows[i + 1]);
     if( !isDefined(obj1) || !isDefined(obj2) ) return;
-    fn(obj1, obj2);
+    fn(A,obj1, obj2);
   }
 }
 
-function drawArrows(){
-  drawArrowThing(drawArrow);
+function drawArrows(A){
+  drawArrowThing(A,drawArrow);
 }
 
-function drawArrowHeads(){
-  drawArrowThing(drawArrowHead);
+function drawArrowHeads(A,){
+  drawArrowThing(A,drawArrowHead);
 }
 
-function drawInfoButton(){
-  var A = Annotator;
+function drawInfoButton(A){
   var xw = 25;
   var yh = 25;
   var x = 5;
@@ -891,8 +865,8 @@ function drawInfoButton(){
   ctx.fillText("i", x + 9, y + 19);
 }
 
-function drawFocusSpot(x, y){
-  var A = Annotator;
+function drawFocusSpot(A,x, y){
+
   var ctx = A.FocusCanvas.ctx;
   var extra = A.Buttons.Names.length ? 25 : 0;
 
@@ -944,10 +918,10 @@ function rgbOfJsonColourTuple(tuple){
 }
 
 function removeAdornments(e){
+  var A = Annotator[0];  /**************FIX ME *****************/
   Status.isFocus = false;
   if( !Status.isAppReady ) return;
   if( e.shiftKey ) return;
-  var A = Annotator;
   var ctx = A.FocusCanvas.ctx;
   ctx.globalCompositeOperation = 'source-over';
   ctx.clearRect(0, 0, A.Porthole.width, A.Porthole.height);
@@ -955,8 +929,8 @@ function removeAdornments(e){
   Status.OldHit = -1;
 }
 
-function actionsFromCursorPos(x, y, flags){
-  var A = Annotator;
+function actionsFromCursorPos(A,x, y, flags){
+
   if( !A.Hotspots.ctx ) return -1;
   var pixel = A.Hotspots.ctx.getImageData(x, y, 1, 1).data;
   var result = "[" + pixel[0] + "," + pixel[1] + "," + pixel[2] + "," +
@@ -969,8 +943,8 @@ function actionsFromCursorPos(x, y, flags){
   return actions;
 }
 
-function setNewImage(url){
-  var A = Annotator;
+function setNewImage(A,url){
+
   // Only supported for whole-div images.
   if( (A.RootObject.content.length === 1) &&
     (A.RootObject.content[0].type === "Image") ){
@@ -982,21 +956,21 @@ function setNewImage(url){
 
 }
 
-function doAction(action){
-  var A = Annotator;
-  if( action.Action === "Spec" ) requestSpec(action.Name,
-    A.fromWiki); else if( action.Action === "Image" ) setNewImage(
-    action.Name); else if( action.Action === "Goto" ){
+function doAction(A,action){
+  if( action.Action === "Spec" ){
+    requestSpec( A, action.Name, A.fromWiki);
+  } else if( action.Action === "Image" ) {
+    setNewImage( A, action.Name);
+  } else if( action.Action === "Goto" ){
     window.location.href = action.Name;
   }
-
 }
 
 function mousemoveOnMap(e){
   if( !Status.isAppReady ) return;
-
   Status.isFocus = true;
-  var A = Annotator;
+
+  var A = Annotator[0];  /**************FIX ME *****************/
   if( e.shiftKey ) return;
 
   var rect = e.target.getBoundingClientRect();
@@ -1004,11 +978,11 @@ function mousemoveOnMap(e){
   var y = e.clientY - rect.top;
   var coordinates = "Coordinates: (" + x + "," + y + ")";
 
-  var pt = detailPosFromCursorPos(x, y);
+  var pt = detailPosFromCursorPos(A, x, y);
 
-  drawFocusSpot(x, y);
-  drawInfoButton();
-  var actions = actionsFromCursorPos(x, y);
+  drawFocusSpot(A,x, y);
+  drawInfoButton(A);
+  var actions = actionsFromCursorPos(A, x, y);
   if( Message ) Message.innerHTML = coordinates;
   A.DetailDiv.style.left = pt.x + "px";
   A.DetailDiv.style.top = pt.y + "px";
@@ -1023,7 +997,7 @@ function mousemoveOnMap(e){
     // Do any additional hover action
     if( actions.Hover ){
       A.Buttons.chosen = actions.Zone;
-      doAction(actions.Hover);
+      doAction(A, actions.Hover);
     }
     e.target.style.cursor = actions.Click ? 'pointer' : 'auto';
   }
@@ -1033,19 +1007,19 @@ function onFocusClicked(e){
   if( !Status.isAppReady ) return;
 
   if( e.shiftKey ) return;
+  var A = Annotator[0];  /**************FIX ME *****************/
 
   var rect = e.target.getBoundingClientRect();
   var x = e.clientX - rect.left;
   var y = e.clientY - rect.top;
 
-  var actions = actionsFromCursorPos(x, y, "log");
+  var actions = actionsFromCursorPos(A,x, y, "log");
   if( actions.Click ){
-    doAction(actions.Click);
+    doAction(A, actions.Click);
   }
 }
 
-function createDomElements(){
-  var A = Annotator;
+function createDomElements(A){
   var contentHere = document.getElementById("content_here");
 
   // Used for debugging messages
@@ -1098,11 +1072,11 @@ function createDomElements(){
   // Hotspot canvas and context do not need to be attached.
   A.Hotspots.canvas = document.createElement('canvas');
 
-  resizeDivs();
+  resizeDivs(A);
 
 }
 
-function updateImages(){
+function updateImages(A){
   if( (A.RootObject.content.length === 1) &&
     (A.RootObject.content[0].type === "Image") ){
     var obj = A.RootObject.content[0];
@@ -1115,17 +1089,16 @@ function updateImages(){
       obj.hot.img.src = obj.hot.file;
     }
   }
-  onChart();
+  onChart(A);
 }
 
-function addImagesToDom(){
-  var A = Annotator;
+function addImagesToDom(A){
   //Status.isAppReady = true;
   A.Backing = {};
   //updateImages();
 }
 
-function makeToc(){
+function makeToc(A){
   var h = A.Hotspots;
   var str = "<table>";
   for(var i=0;i<h.ColourZones.length;i++){
@@ -1144,7 +1117,7 @@ function makeToc(){
   return str;
 }
 
-function setToc( text ){
+function setToc( A,text ){
   var div = document.getElementById("tabular_contents");
   if( !div )
     return;
@@ -1159,16 +1132,17 @@ function setToc( text ){
 }
 
 function toggleDetailsInToc(){
+  var A = Annotator[0]; // ***** FIXME *********
   var date = new Date();
   var nMillis = date.getTime();
-  var contents = makeToc();
+  var contents = makeToc(A);
   A.TocShown = !(A.TocShown || false);
   var text ="This is the full list of zones:<br>"+contents;
-  setToc( text );
+  setToc( A, text );
   return false;
 }
 
-function setATitle(caption, page, fromWiki){
+function setATitle(A,caption, page, fromWiki){
   A.TocShown = false;
   A.Caption = {};
   A.Caption.text = caption;
@@ -1197,16 +1171,16 @@ function fieldValue(field, line){
   return value;
 }
 
-function setHover(type, location){
-  var A = Annotator;
+function setHover(A,type, location){
+
   var h = A.Hotspots.Current.Hover || {};
   h.Action = type;
   h.Name = location;
   A.Hotspots.Current.Hover = h;
 }
 
-function setClick(type, location){
-  var A = Annotator;
+function setClick(A,type, location){
+
   var h = A.Hotspots.Current.Click || {};
   h.Action = type;
   h.Name = location;
@@ -1234,49 +1208,49 @@ function sanitiseHtml(html){
   return html;
 }
 
-function drawCells(obj, data){
-  visit(drawThing, obj, data);
+function drawCells(A, obj, data){
+  visit(drawThing, A, obj, data);
 }
 
-function drawContainer(obj, d){
+function drawContainer(A, obj, d){
   //console.log( "draw container - "+obj.type);
   var n = obj.content.length;
-  for( var i = 0; i < n; i++ ) drawCells(obj.content[i], d);
+  for( var i = 0; i < n; i++ ) drawCells(A,obj.content[i], d);
 }
 
 drawThing = {
-  "default": function(obj, d){
+  "default": function(A, obj, d){
     //console.log( "draw (default) - "+obj.type);
   }, "VStack": drawContainer, "HStack": drawContainer, "Overlay": drawContainer,
 
-  "Chart": function(obj, d){
+  "Chart": function(A, obj, d){
     //console.log( "draw - "+obj.type);
     var l = obj.layout;
-    drawChart3(l.x0, l.y0, l.xw, l.yh, obj);
-  }, "PieChart": function(obj, d){
+    drawChart3(A,l.x0, l.y0, l.xw, l.yh, obj);
+  }, "PieChart": function(A, obj, d){
     //console.log( "draw - "+obj.type);
     var l = obj.layout;
-    drawPieChart(l.x0, l.y0, l.xw, l.yh, obj);
-  }, "Path": function(obj, d){
+    drawPieChart(A,l.x0, l.y0, l.xw, l.yh, obj);
+  }, "Path": function(A, obj, d){
     //console.log( "draw - "+obj.type);
     var l = obj.layout;
-    drawPath(l.x0, l.y0, l.xw, l.yh, obj);
-  }, "Tree": function(obj, d){
+    drawPath(A,l.x0, l.y0, l.xw, l.yh, obj);
+  }, "Tree": function(A, obj, d){
     //console.log( "draw - "+obj.type);
     var l = obj.layout;
-    drawTree(l.x0, l.y0, l.xw, l.yh, obj);
-  }, "Image": function(obj, d){
+    drawTree(A,l.x0, l.y0, l.xw, l.yh, obj);
+  }, "Image": function(A, obj, d){
     //console.log( "draw - "+obj.type);
     var l = obj.layout;
-    drawImage(l.x0, l.y0, l.xw, l.yh, obj);
-  }, "Rectangle": function(obj, d){
+    drawImage(A,l.x0, l.y0, l.xw, l.yh, obj);
+  }, "Rectangle": function(A, obj, d){
     //console.log( "draw - "+obj.type);
     var l = obj.layout;
-    drawRectangle(l.x0, l.y0, l.xw, l.yh, obj);
-  }, "Circle": function(obj, d){
+    drawRectangle(A,l.x0, l.y0, l.xw, l.yh, obj);
+  }, "Circle": function(A, obj, d){
     //console.log( "draw - "+obj.type);
     var l = obj.layout;
-    drawCircle(l.x0, l.y0, l.xw, l.yh, obj);
+    drawCircle(A,l.x0, l.y0, l.xw, l.yh, obj);
   }
 };
 
@@ -1291,12 +1265,12 @@ drawThing = {
 */
 
 
-function sizeCells(obj, data){
-  visit(sizeThing, obj, data);
+function sizeCells(A, obj, data){
+  visit(sizeThing, A, obj, data);
   //console.log( obj.sizing);
 }
 
-function sizeCell(obj, d, proportion){
+function sizeCell(A, obj, d, proportion){
   //console.log( "size cell - "+obj.type);
   obj.sizing = {};
   obj.sizing.min = 0;
@@ -1308,21 +1282,21 @@ function sizeCell(obj, d, proportion){
   }
 }
 
-function sizeContainer(obj, d){
+function sizeContainer(A, obj, d){
   //console.log( "size container - "+obj.type);
   var n = 0;
   if( obj.content && Array.isArray(obj.content) ) n = obj.content.length;
-  sizeCell(obj, d);
+  sizeCell(A, obj, d);
   for( var i = 0; i < n; i++ ){
     var o2 = obj.content[i];
-    sizeCells(o2, d);
+    sizeCells(A, o2, d);
     obj.sizing.min += o2.sizing.min;
     obj.sizing.cumulativeWants += o2.sizing.wants;
   }
 }
 
-function sizeContainer2(obj, d){
-  sizeContainer(obj, d);
+function sizeContainer2(A, obj, d){
+  sizeContainer(A, obj, d);
 }
 
 sizeThing = {
@@ -1333,14 +1307,15 @@ sizeThing = {
   // SizeAs gives this size to the next object.
   // The size is normally 1, so 2 will increase
   // the size, 0.5 will decrease the size.
-  "SizeAs": function(obj, d){
-    sizeCell(obj, d, 0.0);
+  "SizeAs": function(A, obj, d){
+    sizeCell(A, obj, d, 0.0);
     d.sizeAs = obj.value;
   }, // Spacer makes some open space
-  "Spacer": function(obj, d){
-    sizeCell(obj, d, obj.value);
-  }, "Margins": function(obj, d){
-    sizeCell(obj, d, 0.0);
+  "Spacer": function(A, obj, d){
+    sizeCell(A, obj, d, obj.value);
+  },
+  "Margins": function(A, obj, d){
+    sizeCell(A, obj, d, 0.0);
   }
 
   //"Chart":sizeContainer,
@@ -1350,33 +1325,33 @@ sizeThing = {
   //"Circle":sizeCell
 };
 
-function layoutCell(x0, y0, xw, yh, obj, d){
+function layoutCell(A, x0, y0, xw, yh, obj, d){
   obj.layout = { "x0": x0, "y0": y0, "xw": xw, "yh": yh };
   //console.log( obj.layout );
 }
 
-function layoutCells(x0, y0, xw, yh, obj, d){
-  layoutCell(x0, y0, xw, yh, obj, d);
-  visit(layoutThing, obj, d);
+function layoutCells(A, x0, y0, xw, yh, obj, d){
+  layoutCell(A, x0, y0, xw, yh, obj, d);
+  visit(layoutThing, A, obj, d);
 }
 
-function layoutMargined(obj, d){
+function layoutMargined(A, obj, d){
   //console.log( "layout - "+obj.type);
   var m = d.margins;
   var l = obj.layout;
-  layoutCell(l.x0 + m, l.y0 + m, l.xw - 2 * m, l.yh - 2 * m, obj, d);
+  layoutCell(A, l.x0 + m, l.y0 + m, l.xw - 2 * m, l.yh - 2 * m, obj, d);
 }
 
-function layoutUnmargined(obj, d){
+function layoutUnmargined(A, obj, d){
   //console.log( "layout - "+obj.type);
   var m = 0;
   var l = obj.layout;
-  layoutCell(l.x0 + m, l.y0 + m, l.xw - 2 * m, l.yh - 2 * m, obj, d);
+  layoutCell(A, l.x0 + m, l.y0 + m, l.xw - 2 * m, l.yh - 2 * m, obj, d);
 }
 
 layoutThing = {
   "default": layoutUnmargined,
-  "VStack": function(obj, d){
+  "VStack": function(A, obj, d){
     //console.log( "layout - "+obj.type);
     var n = obj.content.length;
     var l = obj.layout;
@@ -1385,12 +1360,12 @@ layoutThing = {
     var wantsSoFar = 0.0;
     for( var i = 0; i < n; i++ ){
       var want = obj.content[i].sizing.wants;
-      layoutCells(l.x0, l.y0 + (wantsSoFar / k) * l.yh, l.xw, l.yh * (want / k),
+      layoutCells(A, l.x0, l.y0 + (wantsSoFar / k) * l.yh, l.xw, l.yh * (want / k),
         obj.content[i], d);
       wantsSoFar += want;
     }
   },
-  "HStack": function(obj, d){
+  "HStack": function(A, obj, d){
     //console.log( "layout - "+obj.type);
     var n = obj.content.length;
     var l = obj.layout;
@@ -1399,24 +1374,24 @@ layoutThing = {
     var wantsSoFar = 0.0;
     for( var i = 0; i < n; i++ ){
       var want = obj.content[i].sizing.wants;
-      layoutCells(l.x0 + (wantsSoFar / k) * l.xw, l.y0, l.xw * (want / k), l.yh,
+      layoutCells(A, l.x0 + (wantsSoFar / k) * l.xw, l.y0, l.xw * (want / k), l.yh,
         obj.content[i], d);
       wantsSoFar += want;
     }
   }, // Superimposed elements, all the same size.
-  "Overlay": function(obj, d){
+  "Overlay": function(A, obj, d){
     //console.log( "layout - "+obj.type);
     var n = obj.content.length;
     var l = obj.layout;
     for( var i = 0; i < n; i++ ){
-      layoutCells(l.x0, l.y0, l.xw, l.yh, obj.content[i], d);
+      layoutCells(A, l.x0, l.y0, l.xw, l.yh, obj.content[i], d);
     }
   },
   "Chart": layoutMargined, //"PieChart":layoutUnmargined,
   "Image": layoutMargined,
   "Rectangle": layoutMargined,
   "Circle": layoutMargined,
-  "Margins": function(obj, d){
+  "Margins": function(A,obj, d){
     d.margins = obj.value;
   }
 
@@ -1429,13 +1404,13 @@ layoutThing = {
 // @how has a function for each type of object
 // @what is an object to visit
 // @data carries extra information into the function
-function visit(how, what, data){
+function visit(how, A, what, data){
   if( how[what.type] ){
-    how[what.type].call(how, what, data);
-  } else how.default.call(how, what, data);
+    how[what.type].call(how, A, what, data);
+  } else how.default.call(how, A, what, data);
 }
 
-function convertJsonStructure(indent, layout){
+function convertJsonStructure(A, indent, layout){
   var key;
   for( key in layout ){
     if( !layout.hasOwnProperty(key) ) continue;
@@ -1468,12 +1443,12 @@ function convertJsonStructure(indent, layout){
   if( layout.content && Array.isArray(layout.content) ){
     for( var i = 0; i < layout.content.length; i++ ){
       //console.log( indent+"Arg: "+i);
-      convertJsonStructure(indent + "   ", layout.content[i]);
+      convertJsonStructure( A, indent + "   ", layout.content[i]);
     }
   }
 }
 
-function getObjectByName(name){
+function getObjectByName(A, name){
   if( !name ) return 0;
   if( !A.RootObject.objectDict ) return 0;
   var shortName = name.substr(0, 10);
@@ -1485,7 +1460,7 @@ function isDefined(x){
   return x !== undef;
 }
 
-function startChart(){
+function startChart(A){
   A.Porthole.width = 700;
   A.Porthole.height = 400;
 
@@ -1498,11 +1473,10 @@ function startChart(){
   A.Hotspots.ColourZoneIx = 0;
 }
 
-function loadNewDetails(specFileData){
-  var A = Annotator;
+function loadNewDetails(A, specFileData){
   var lines = specFileData.split("<pre>");
-  setATitle("Caption was missing");
-  startChart();
+  setATitle(A,"Caption was missing");
+  startChart(A);
   Status.isAppReady = false;
   for( i = 0; i < lines.length; i++ ){
     var item = lines[i];
@@ -1543,21 +1517,21 @@ function loadNewDetails(specFileData){
     }
     if( item.startsWith("HOVER LOAD IMAGE") ){
       console.log("hover-load-image:" + file);
-      setHover("Image", file);
+      setHover(A,"Image", file);
     }
     if( item.startsWith("HOVER LOAD SPEC") ){
       file = ("X" + spec).split("Toolbox/")[1] || fieldValue("SPEC", item);
       console.log("hover-load-spec:" + file);
-      setHover("Spec", file);
+      setHover(A,"Spec", file);
     }
     if( item.startsWith("CLICK LOAD IMAGE") ){
       console.log("click-load-image:" + file);
-      setClick("Image", file);
+      setClick(A,"Image", file);
     }
     if( item.startsWith("CLICK LOAD SPEC") ){
       file = ("X" + spec).split("Toolbox/")[1] || fieldValue("SPEC", item);
       console.log("click-load-spec:" + file);
-      setClick("Spec", file);
+      setClick(A,"Spec", file);
     }
     if( item.startsWith("CLICK GOTO") ){
       file = item.split("GOTO=</pre>")[1] || "";
@@ -1566,7 +1540,7 @@ function loadNewDetails(specFileData){
       file = file.split(" ")[0] || file.split("]")[0] || "";
 
       console.log("click-goto:" + file);
-      setClick("Goto", file);
+      setClick(A,"Goto", file);
     }
     if( item.startsWith("DISTORTION") ){
       console.log("distortion:");
@@ -1603,7 +1577,7 @@ function loadNewDetails(specFileData){
       if( !Array.isArray(json) ) container.push(json); else container = json;
 
       for( var kk = 0; kk < container.length; kk++ ){
-        convertJsonStructure("", container[kk]);
+        convertJsonStructure(A,"", container[kk]);
         A.RootObject.content.push(container[kk]);
       }
       //console.log(obj);
@@ -1613,7 +1587,7 @@ function loadNewDetails(specFileData){
       var data = fieldValue("DATA", item);
       console.log("chart-data:" + data);
       var obj = JSON.parse(data);
-      convertJsonStructure("", obj);
+      convertJsonStructure(A,"", obj);
       obj.content = [];
       obj.type = "Chart";
 
@@ -1621,13 +1595,13 @@ function loadNewDetails(specFileData){
     }
     if( item.startsWith("IMAGE") ){
       console.log("image:" + file);
-      var obj = getObjectByName(fieldValue("NAME", item));
+      var obj = getObjectByName(A, fieldValue("NAME", item));
       if( obj ){
         obj.resize = false;
       } else {
         obj = {};
         obj.Image = file;
-        convertJsonStructure("", obj);
+        convertJsonStructure(A,"", obj);
         obj.resize = A.RootObject.content.length === 0;
         obj.spherical = false;
         obj.stretch = "preserve-aspect";
@@ -1645,10 +1619,10 @@ function loadNewDetails(specFileData){
           obj1.status = "arrived";
           console.log(obj1.file + " image arrived");
           //alert("Loaded image " + obj1.file);
-          if( obj1.resize ) resizeForImage(
+          if( obj1.resize ) resizeForImage(A,
             obj1.img);
           else if( Status.isAppReady )
-            onChart();
+            onChart(A);
         }
       })();
       obj.img.onerror = (function(){
@@ -1676,7 +1650,7 @@ function loadNewDetails(specFileData){
         return function(){
           obj1.hot.status = "arrived";
           console.log(obj1.file + " HS arrived");
-          if( Status.isAppReady ) drawCells(A.RootObject, {});
+          if( Status.isAppReady ) drawCells(A, A.RootObject, {});
         }
       })();
       obj.hot.img.onerror = (function(){
@@ -1722,7 +1696,7 @@ function loadNewDetails(specFileData){
     if( item.startsWith("CREDITS") ){
       A.caption = fieldValue("CAPTION", item);
       console.log("caption:" + A.caption);
-      setATitle(A.caption, A.page, A.fromWiki);
+      setATitle(A, A.caption, A.page, A.fromWiki);
       // Reserve a colour for the info button.
       AddInfo(A);
     }
@@ -1733,15 +1707,16 @@ function loadNewDetails(specFileData){
     }
   }
   Status.time = 0;
-  updateImages();
+  updateImages(A);
 }
 
 function handleNewData(data){
+  var A = Annotator[0]; // ***** FIXME *********
   var spec = document.getElementById("spec");
   // for debugging...
   //spec.innerHTML = data.split("<pre>START</pre>")[1];
-  resetHotspots();
-  loadNewDetails(data);
+  resetHotspots(A);
+  loadNewDetails(A,data);
 }
 
 /**
@@ -1753,7 +1728,7 @@ function handleNewData(data){
  * @param action
  * @param url
  */
-function fileActionLoader(data, action, url){
+function fileActionLoader(A,data, action, url){
   var txtFile = new XMLHttpRequest();
   // CDNs and Varnish should give us the very latest.
   txtFile.onreadystatechange = function(){
@@ -1768,15 +1743,15 @@ function fileActionLoader(data, action, url){
   txtFile.send();
 }
 
-function requestSpec(source, fromwiki){
-  var A = Annotator;
+function requestSpec(A,source, fromwiki){
+
   A.SpecName = source;
 
   if( isFromServer() === "no" )
   {
-    fileActionLoader("", "", "./raw/raw_spec_" + source + ".txt");
+    fileActionLoader( A,"", "", "./raw/raw_spec_" + source + ".txt");
   } else  if( fromwiki !== 'yes' ){
-    fileActionLoader("", "", "https://wit.audacityteam.org/raw/raw_spec_" + source + ".txt?time="+ nMillis);
+    fileActionLoader( A,"", "", "https://wit.audacityteam.org/raw/raw_spec_" + source + ".txt?time="+ nMillis);
   }
 
     else {
@@ -1784,21 +1759,21 @@ function requestSpec(source, fromwiki){
     var nMillis = date.getTime();
     // action=raw to get unprocessed file from wiki.
     // time=nMillis to avoid issues with cached content.
-    fileActionLoader("", "",
+    fileActionLoader( A,"", "",
       "https://wiki.audacityteam.org/wiki/Toolbox/" + source +
       "?action=raw&time=" + nMillis);
   }
 
 }
 
-function loadDiagram(source, fromwiki){
+function loadDiagram(A,source, fromwiki){
   var spec = document.getElementById("spec");
   spec.innerHTML = "";
-  setToc("");
-  requestSpec(source, fromwiki);
+  setToc( A,"");
+  requestSpec( A,source, fromwiki);
 }
 
-function removeFrame(){
+function removeFrame(A){
   var doc = document.getElementById("body");
   doc.innerHTML =
     '<div id="content_here" style="text-align:center;"></div><div id="atitle" style="text-align:center;"><em>No Hotspot Zones Loaded (Yet)</em></div><div id="spec" style="margin-left:10px"></div>';
@@ -1815,3 +1790,20 @@ function isFromServer(){
   var str = window.location.href;
   return (str.indexOf('localhost') !== -1) ? "no" : "yes";
 }
+
+
+
+var Nozone = {};
+Nozone.Zone = 0;
+
+var Status = {};
+Status.OldHit = -1;
+Status.imagesToCome = 2;
+Status.time = 0;
+
+var Message;
+var Message2;
+
+Annotator[0] = {};
+InitAnnotator(Annotator[0]);
+resetHotspots(Annotator[0]);

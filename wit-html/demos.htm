@@ -238,7 +238,7 @@
       }
 
       window.onload = function(){
-
+        var A = Annotator[0]; /************ FIXME ****************/
         var query = window.location.href;
         A.page = getArg(query, 'page') || "SmallCrowd";
 // Can't use the following on IE 11.
@@ -251,11 +251,11 @@
         if( frame === "no" ) removeFrame();
         addExamples();
 
-        createDomElements();
-        addImagesToDom();
+        createDomElements(A);
+        addImagesToDom(A);
 
         console.log(A.page);
-        loadDiagram(A.page, A.fromWiki);
+        loadDiagram(A,A.page, A.fromWiki);
         // Timer is for animation such as rotating earth.
         setInterval(timerCallback, 30);
         //requestSpec();
