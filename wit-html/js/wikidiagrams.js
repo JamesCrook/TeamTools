@@ -24,7 +24,7 @@ A.Detail = {};
 A.Detail.width = 400;
 A.Detail.height = 300;
 
-A.AddHot = function(index){
+AddHot = function( A, index){
   var actions = {};
   A.Hotspots.Colours[index] = actions;
   A.Hotspots.Colours[roundColour(index)] = actions;
@@ -32,33 +32,33 @@ A.AddHot = function(index){
   actions.Zone = A.Hotspots.count++;
 };
 
-A.AddHotExact = function(index){
+AddHotExact = function( A, index){
   var actions = {};
   A.Hotspots.Colours[index] = actions;
   A.Hotspots.Current = actions;
   actions.Zone = A.Hotspots.count++;
 };
 
-A.AddButton = function(text){
+AddButton = function( A, text){
   A.Buttons.Names.push(text);
-  A.AddHot("[0,10," + A.Buttons.Names.length * 5 + ",255]");
+  AddHot(A,"[0,10," + A.Buttons.Names.length * 5 + ",255]");
 };
 
-A.AddInfo = function(){
-  A.AddHot("[0,0,5,255]");
+AddInfo = function( A ){
+  AddHot(A,"[0,0,5,255]");
 };
 
-A.AddDetail = function(text){
+AddDetail = function( A, text){
   A.Hotspots.Current.Tip = text;
 };
 
-A.AddHover = function(text){
+AddHover = function( A, text){
   A.Hotspots.Current.Hover = text;
 };
 
 
 // These are for hotspot colours added by a drawn image.
-A.NextAutoColour = function(Tip){
+NextAutoColour = function( A, Tip){
   var a = (A.Hotspots.autoColour++);
 
   // Note that Chrome and other
@@ -107,8 +107,8 @@ A.NextAutoColour = function(Tip){
   var actions = A.Hotspots.Colours[index];
   if( actions ) return rgb;
 
-  A.AddHotExact( index );
-  A.AddDetail( Tip );
+  AddHotExact( A, index );
+  AddDetail( A, Tip );
 
   A.Hotspots.ColourZones = A.Hotspots.ColourZones || [];
   A.Hotspots.ColourZones.push( JSON.parse( index ) );
@@ -130,7 +130,7 @@ function resetHotspots(){
   A.Hotspots.count = 0;
   A.Hotspots.autoColour = 0;
   // Bogus entry to catch bad tips.
-  A.AddHot("[5,0,0,0]");
+  AddHot(A,"[5,0,0,0]");
 
   A.Buttons = {};
   A.Buttons.Names = [];
@@ -474,7 +474,7 @@ function drawMultipleItems(values, T){
     ctx2.arc(S.x, S.y, r, 0, 2 * Math.PI, false);
     ctx2.closePath();
     ctx2.fillStyle =
-      A.NextAutoColour("<h1>" + values[j] + "</h1>" + values[j + 1]);
+      NextAutoColour( A, "<h1>" + values[j] + "</h1>" + values[j + 1]);
     ctx2.fill();
     i++;
 
@@ -1524,7 +1524,7 @@ function loadNewDetails(specFileData){
       index = index.replace("(", "[");
       index = index.replace(")", "]");
       console.log("color:" + index);
-      A.AddHot(index);
+      AddHot(A,index);
     }
     if( item.startsWith("NEXTZONE:") ){
       if( A.Hotspots.ColourZones ){
@@ -1532,13 +1532,13 @@ function loadNewDetails(specFileData){
         var c = A.Hotspots.ColourZones[n];
         c = '[' + c[0] + ',' + c[1] + ',' + c[2] + ',' + c[3] + ']';
         console.log("next-color:" + c+ "n:"+n);
-        A.AddHot(c);
+        AddHot(A,c);
       }
     }
     if( item.startsWith("ZONE:LABEL=") || item.startsWith("BUTTON:LABEL=") ){
       var label = fieldValue("LABEL", item);
       console.log("label:" + label);
-      A.AddButton(label);
+      AddButton(A,label);
       if( !detail ) detail = " ";
     }
     if( item.startsWith("HOVER LOAD IMAGE") ){
@@ -1705,7 +1705,7 @@ function loadNewDetails(specFileData){
       if( data && (!isNaN(Number(data))) ) obj.corner_radius = Number(data);
       if( detail ){
         detail = sanitiseHtml(detail);
-        var c = A.NextAutoColour(detail);
+        var c = NextAutoColour( A, detail);
         detail = ""; //so as not to add it twice.
         obj.hotspotColour = c;
       }
@@ -1724,12 +1724,12 @@ function loadNewDetails(specFileData){
       console.log("caption:" + A.caption);
       setATitle(A.caption, A.page, A.fromWiki);
       // Reserve a colour for the info button.
-      A.AddInfo();
+      AddInfo(A);
     }
     if( detail ){
       detail = sanitiseHtml(detail);
       console.log(" <<<" + detail + ">>>");
-      A.AddDetail(detail);
+      AddDetail(A,detail);
     }
   }
   Status.time = 0;
