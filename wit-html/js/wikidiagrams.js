@@ -10,6 +10,10 @@ var Annotator = [];
 
 function InitAnnotator(A){
   A.Spec = {}; // the unparsed spec from wiki arrives here.
+  A.Status = {};
+  A.Status.OldHit = -1;
+  A.Status.imagesToCome = 2;
+  A.Status.time = 0;
   A.Porthole = {};
   A.Porthole.width = 1024;
   A.Porthole.height = 567;
@@ -25,6 +29,137 @@ function InitAnnotator(A){
   A.Detail.height = 300;
 }
 
+
+function resetHotspots(A){
+  A.Hotspots.Colours = [];
+  A.Hotspots.count = 0;
+  A.Hotspots.autoColour = 0;
+  // Bogus entry to catch bad tips.
+  AddHot(A,"[5,0,0,0]");
+
+  A.Buttons = {};
+  A.Buttons.Names = [];
+  A.Buttons.chosen = -1;
+
+  A.RootObject = {};
+  A.Distortion = {};
+}
+
+function startChart(A){
+  A.Porthole.width = 700;
+  A.Porthole.height = 400;
+
+  A.RootObject.type = 'VStack';
+  A.RootObject.content = [];
+  A.RootObject.itemIndex = 0;
+  A.RootObject.objectDict = {};
+  A.RootObject.objectList = [];
+
+  A.Hotspots.ColourZoneIx = 0;
+}
+
+
+
+
+function resizeDivs(A){
+  A.MainDiv.style.width = A.Porthole.width + 'px';
+  A.MainDiv.style.height = A.Porthole.height + 'px';
+  A.BackingCanvas.width = A.Porthole.width;
+  A.BackingCanvas.height = A.Porthole.height;
+  A.FocusCanvas.width = A.Porthole.width;
+  A.FocusCanvas.height = A.Porthole.height;
+  A.DetailDiv.style.width = A.Detail.width + 'px';
+  A.DetailDiv.style.height = A.Detail.height + 'px';
+  A.Hotspots.canvas.width = A.Porthole.width;
+  A.Hotspots.canvas.height = A.Porthole.height;
+  A.Hotspots.ctx = A.Hotspots.canvas.getContext('2d');
+}
+
+function resizeForImage(A,img){
+  //alert( "RESIZING "+img.width +"x"+img.height );
+  A.Porthole.width = img.width;
+  A.Porthole.height = img.height;
+  // resizeDivs();
+  if( A.Status.isAppReady ) onChart(A);
+}
+
+
+function populateDomElement(A, contentHere){
+
+  // Used for debugging messages
+  Message = document.getElementById("message");
+  Message2 = document.getElementById("message2");
+
+  // MainDiv contains all the other divs
+  A.MainDiv = document.createElement("div");
+  // Backing canvas has the image drawn into it
+  A.BackingCanvas = document.createElement("canvas");
+  // Focus canvas has the white-out with focus circle
+  A.FocusCanvas = document.createElement("canvas");
+  // Detail div floats above the white-out
+  A.DetailDiv = document.createElement("div");
+
+  contentHere.appendChild(A.MainDiv);
+  A.MainDiv.appendChild(A.BackingCanvas);
+  A.MainDiv.appendChild(A.FocusCanvas);
+  A.MainDiv.appendChild(A.DetailDiv);
+
+
+  A.TitleDiv = document.createElement("div");
+  A.TitleDiv.style.textAlign = "center";
+  A.TitleDiv.innerHTML = "<em>No Hotspot Zones Loaded (Yet)</em>";
+  A.TableOfHotsDiv = document.createElement("div");
+  A.TableOfHotsDiv.style.margin = "5px";
+  A.TableOfHotsDiv.style.maxHeight = "400px";
+  A.TableOfHotsDiv.style.padding = "5px";
+  A.TableOfHotsDiv.style.border = "inset 2px #C3C3C3";
+  A.TableOfHotsDiv.style.overflow = "auto";
+  A.TableOfHotsDiv.style.textAlign = "left";
+
+  contentHere.appendChild(A.TitleDiv);
+  contentHere.appendChild(A.TableOfHotsDiv);
+
+  A.MainDiv.style.position = "relative";
+  A.MainDiv.style.display = "inline-block";
+  A.MainDiv.style.marginLeft = "auto";
+  A.MainDiv.style.marginRight = "auto";
+  A.MainDiv.style.overflow = "hidden";
+
+  A.BackingCanvas.style.position = "absolute";
+  A.BackingCanvas.style.left = "0px";
+  A.BackingCanvas.style.top = "0px";
+  A.BackingCanvas.ctx = A.BackingCanvas.getContext('2d');
+
+  A.FocusCanvas.toolkitIndex = A.index;
+  A.FocusCanvas.onmousemove = mousemoveOnMap;
+  A.FocusCanvas.onmouseout = onMouseOut;
+  A.FocusCanvas.onclick = onFocusClicked;
+
+  A.FocusCanvas.style.position = "absolute";
+  A.FocusCanvas.style.left = "0px";
+  A.FocusCanvas.style.top = "0px";
+  A.FocusCanvas.ctx = A.FocusCanvas.getContext('2d');
+
+  A.DetailDiv.innerHTML = "Some Text";
+  A.DetailDiv.style.backgroundColor = "rgba(210,210,230,0.9)";
+  A.DetailDiv.style.position = "absolute";
+  A.DetailDiv.style.left = "0px";
+  A.DetailDiv.style.top = "0px";
+
+  A.DetailDiv.style.display = "none";
+  A.DetailDiv.className = "detaildiv";
+
+  // Hotspot canvas and context do not need to be attached.
+  A.Hotspots.canvas = document.createElement('canvas');
+  A.Backing = {};
+  resizeDivs(A);
+
+}
+
+function createDomElements(A){
+  var contentHere = document.getElementById("content_here" + A.index);
+  populateDomElement( A, contentHere);
+}
 
 AddHot = function( A, index){
   var actions = {};
@@ -122,50 +257,8 @@ NextAutoColour = function( A, Tip){
   return rgb;
 };
 
-
-
-function resetHotspots(A){
-  A.Hotspots.Colours = [];
-  A.Hotspots.count = 0;
-  A.Hotspots.autoColour = 0;
-  // Bogus entry to catch bad tips.
-  AddHot(A,"[5,0,0,0]");
-
-  A.Buttons = {};
-  A.Buttons.Names = [];
-  A.Buttons.chosen = -1;
-
-  A.RootObject = {};
-  A.Distortion = {};
-}
-
-
-
-
-function resizeDivs(A){
-  A.MainDiv.style.width = A.Porthole.width + 'px';
-  A.MainDiv.style.height = A.Porthole.height + 'px';
-  A.BackingCanvas.width = A.Porthole.width;
-  A.BackingCanvas.height = A.Porthole.height;
-  A.FocusCanvas.width = A.Porthole.width;
-  A.FocusCanvas.height = A.Porthole.height;
-  A.DetailDiv.style.width = A.Detail.width + 'px';
-  A.DetailDiv.style.height = A.Detail.height + 'px';
-  A.Hotspots.canvas.width = A.Porthole.width;
-  A.Hotspots.canvas.height = A.Porthole.height;
-  A.Hotspots.ctx = A.Hotspots.canvas.getContext('2d');
-}
-
-function resizeForImage(A,img){
-  //alert( "RESIZING "+img.width +"x"+img.height );
-  A.Porthole.width = img.width;
-  A.Porthole.height = img.height;
-  // resizeDivs();
-  if( Status.isAppReady ) onChart(A);
-}
-
 function innerDraw(A){
-  Status.drawing = true;
+  A.Status.drawing = true;
   var ctx = A.BackingCanvas.ctx;
   var ctx2 = A.Hotspots.ctx;
   ctx.clearRect(0, 0, A.Porthole.width, A.Porthole.height);
@@ -178,7 +271,7 @@ function innerDraw(A){
   drawArrowHeads(A);
 
   drawButtons(A);
-  Status.drawing = false;
+  A.Status.drawing = false;
 }
 
 function onChart(A){
@@ -194,19 +287,24 @@ function onChart(A){
   layoutCells(A,0, 0, A.Porthole.width, A.Porthole.height, A.RootObject, d);
   //console.log(A.RootObject.content );
   innerDraw(A);
-  Status.isAppReady = true;
+  A.Status.isAppReady = true;
 
 }
 
 function timerCallback(){
-  if( Status.isFocus ) return;
-  Status.time++;
-  // animation stops on America.
-  // and dark side of moon.
-  if( Status.time > 600 )
-    return;
-  var A = Annotator[0];
-  if( !Status.drawing ) innerDraw(A);
+
+  for(var i=0;i<Annotator.length;i++){
+    A = Annotator[i];
+    if( A.Status.isFocus )
+      continue;
+    A.Status.time++;
+    // animation stops on America.
+    // and dark side of moon.
+    if( A.Status.time > 600 )
+      continue;
+    if( !A.Status.drawing )
+      innerDraw(A);
+  }
 }
 
 function onFailedImage(){
@@ -268,7 +366,7 @@ function clearBacking(A,x0, y0, xw, yh){
   //ctx.stroke();
 }
 
-function computeSpacing(T, x0, y0, xw, yh, values){
+function computeSpacing(A, T, x0, y0, xw, yh, values){
   T.x0 = x0;
   T.y0 = y0;
   T.xw = xw;
@@ -286,13 +384,13 @@ function computeSpacing(T, x0, y0, xw, yh, values){
     T.width = ((xw + T.spacer - 2 * T.margin) / T.count - T.spacer) / T.items;
   }
   T.xScaler = (T.width * T.items + T.spacer);
-  T.yScaler = (Math.min(20, Status.time) / 20) * (yh) / 2000.0;
+  T.yScaler = (Math.min(20, A.Status.time) / 20) * (yh) / 2000.0;
 }
 
 function drawSpacedItems(A,x0, y0, xw, yh, values, fn, T){
 
   if( !values ) return;
-  computeSpacing(T, x0, y0, xw, yh, values);
+  computeSpacing(A, T, x0, y0, xw, yh, values);
   for( i = 0; i < T.count; i++ ){
     for( j = 0; j < T.items; j++ ) fn(A,T, values, i, 1 + j);
   }
@@ -326,7 +424,7 @@ function drawDonut(A,T, values, i, ix){
 
   var ctx = A.BackingCanvas.ctx;
 
-  var frac = Math.min(20, Status.time) / 20;
+  var frac = Math.min(20, A.Status.time) / 20;
 
   for( j = 1; j < values[i].length; j++ ){
     t0 = t1;
@@ -384,7 +482,7 @@ function drawMultipleItems(A,values, T){
   // The log heuristic makes us spend a bit
   // longer on very long paths
   var animateTime = 11 * Math.log(values.length + 5);
-  var frac = Math.min(animateTime, Status.time) / animateTime;
+  var frac = Math.min(animateTime, A.Status.time) / animateTime;
   var maxv = Math.floor(frac * T.count);
 
   var reserveColoursTo = A.Hotspots.autoColour + T.count;
@@ -529,7 +627,7 @@ function drawSphere(A,xx, yy, xw, yh, ctx, obj){
   }
   ctx2.drawImage(img, 0, 0, img.width, img.height);
   var x0 = xw / 2;
-  var rotate = img.width - ((Status.time * 3) % img.width);
+  var rotate = img.width - ((A.Status.time * 3) % img.width);
 
   var offsets = obj.offsets || [];
   if( offsets.length !== img.width ){
@@ -552,7 +650,7 @@ function drawSphere(A,xx, yy, xw, yh, ctx, obj){
   var dstData = ctx.getImageData(xx + (w - h), yy + (h1 - h), h * 2, h * 2);
 
   var adjustedOffsets = [];
-  var frac = Math.max(0, Math.min(40, Status.time - 120)) / 40;
+  var frac = Math.max(0, Math.min(40, A.Status.time - 120)) / 40;
 
   if( frac === 1 ) adjustedOffsets = offsets; else for( var i = 0;
                                                         i < img.width; i++ ){
@@ -917,16 +1015,21 @@ function rgbOfJsonColourTuple(tuple){
   return rgbOfColourTuple( tuple2 );
 }
 
-function removeAdornments(e){
-  var A = Annotator[0];  /**************FIX ME *****************/
-  Status.isFocus = false;
-  if( !Status.isAppReady ) return;
+/*
+ * When we exit the annotation area,
+ * remove the decorations (the extra focus ring and the detail div).
+ */
+function onMouseOut(e){
+  var index = e.target.toolkitIndex;
+  var A = Annotator[index];
+  A.Status.isFocus = false;
+  if( !A.Status.isAppReady ) return;
   if( e.shiftKey ) return;
   var ctx = A.FocusCanvas.ctx;
   ctx.globalCompositeOperation = 'source-over';
   ctx.clearRect(0, 0, A.Porthole.width, A.Porthole.height);
   A.DetailDiv.style.display = "none";
-  Status.OldHit = -1;
+  A.Status.OldHit = -1;
 }
 
 function actionsFromCursorPos(A,x, y, flags){
@@ -967,11 +1070,13 @@ function doAction(A,action){
 }
 
 function mousemoveOnMap(e){
-  if( !Status.isAppReady ) return;
-  Status.isFocus = true;
-
-  var A = Annotator[0];  /**************FIX ME *****************/
+  var index = e.target.toolkitIndex;
+  var A = Annotator[index];
   if( e.shiftKey ) return;
+
+  if( !A.Status.isAppReady ) return;
+  A.Status.isFocus = true;
+
 
   var rect = e.target.getBoundingClientRect();
   var x = e.clientX - rect.left;
@@ -986,8 +1091,8 @@ function mousemoveOnMap(e){
   if( Message ) Message.innerHTML = coordinates;
   A.DetailDiv.style.left = pt.x + "px";
   A.DetailDiv.style.top = pt.y + "px";
-  if( Status.OldHit !== actions.Zone ){
-    Status.OldHit = actions.Zone;
+  if( A.Status.OldHit !== actions.Zone ){
+    A.Status.OldHit = actions.Zone;
 
     // Update the detail div
     A.DetailDiv.style.display = (actions.Tip) ? "block" : "none";
@@ -1004,10 +1109,11 @@ function mousemoveOnMap(e){
 }
 
 function onFocusClicked(e){
-  if( !Status.isAppReady ) return;
-
   if( e.shiftKey ) return;
-  var A = Annotator[0];  /**************FIX ME *****************/
+  var index = e.target.toolkitIndex;
+  var A = Annotator[index];
+
+  if( !A.Status.isAppReady ) return;
 
   var rect = e.target.getBoundingClientRect();
   var x = e.clientX - rect.left;
@@ -1019,62 +1125,6 @@ function onFocusClicked(e){
   }
 }
 
-function createDomElements(A){
-  var contentHere = document.getElementById("content_here");
-
-  // Used for debugging messages
-  Message = document.getElementById("message");
-  Message2 = document.getElementById("message2");
-
-  // MainDiv contains all the other divs
-  A.MainDiv = document.createElement("div");
-  // Backing canvas has the image drawn into it
-  A.BackingCanvas = document.createElement("canvas");
-  // Focus canvas has the white-out with focus circle
-  A.FocusCanvas = document.createElement("canvas");
-  // Detail div floats above the white-out
-  A.DetailDiv = document.createElement("div");
-
-  contentHere.appendChild(A.MainDiv);
-  A.MainDiv.appendChild(A.BackingCanvas);
-  A.MainDiv.appendChild(A.FocusCanvas);
-  A.MainDiv.appendChild(A.DetailDiv);
-
-  A.MainDiv.style.position = "relative";
-  A.MainDiv.style.display = "inline-block";
-  A.MainDiv.style.marginLeft = "auto";
-  A.MainDiv.style.marginRight = "auto";
-  A.MainDiv.style.overflow = "hidden";
-
-  A.BackingCanvas.style.position = "absolute";
-  A.BackingCanvas.style.left = "0px";
-  A.BackingCanvas.style.top = "0px";
-  A.BackingCanvas.ctx = A.BackingCanvas.getContext('2d');
-
-  A.FocusCanvas.onmousemove = mousemoveOnMap;
-  A.FocusCanvas.onmouseout = removeAdornments;
-  A.FocusCanvas.onclick = onFocusClicked;
-
-  A.FocusCanvas.style.position = "absolute";
-  A.FocusCanvas.style.left = "0px";
-  A.FocusCanvas.style.top = "0px";
-  A.FocusCanvas.ctx = A.FocusCanvas.getContext('2d');
-
-  A.DetailDiv.innerHTML = "Some Text";
-  A.DetailDiv.style.backgroundColor = "rgba(210,210,230,0.9)";
-  A.DetailDiv.style.position = "absolute";
-  A.DetailDiv.style.left = "0px";
-  A.DetailDiv.style.top = "0px";
-
-  A.DetailDiv.style.display = "none";
-  A.DetailDiv.className = "detaildiv";
-
-  // Hotspot canvas and context do not need to be attached.
-  A.Hotspots.canvas = document.createElement('canvas');
-
-  resizeDivs(A);
-
-}
 
 function updateImages(A){
   if( (A.RootObject.content.length === 1) &&
@@ -1090,12 +1140,6 @@ function updateImages(A){
     }
   }
   onChart(A);
-}
-
-function addImagesToDom(A){
-  //Status.isAppReady = true;
-  A.Backing = {};
-  //updateImages();
 }
 
 function makeToc(A){
@@ -1118,21 +1162,21 @@ function makeToc(A){
 }
 
 function setToc( A,text ){
-  var div = document.getElementById("tabular_contents");
+  var div = A.TableOfHotsDiv;//.getElementById("tabular_contents"+A.index);
   if( !div )
     return;
   div.innerHTML = text;
 
   div.style.display = A.TocShown ? 'block':'none';
-  var toggler = document.getElementById("zoneToggler");
+  var toggler = document.getElementById("zoneToggler"+A.index);
   if( !toggler)
     return;
   toggler.innerHTML=A.TocShown ?"-zones":"+zones";
 
 }
 
-function toggleDetailsInToc(){
-  var A = Annotator[0]; // ***** FIXME *********
+function toggleDetailsInToc(index){
+  var A = Annotator[index];
   var date = new Date();
   var nMillis = date.getTime();
   var contents = makeToc(A);
@@ -1149,7 +1193,7 @@ function setATitle(A,caption, page, fromWiki){
   A.Caption.page = page;
   A.Caption.fromWiki = fromWiki;
 
-  var atitle = document.getElementById("atitle");
+  var atitle = A.TitleDiv;//.getElementById("atitle"+A.index);
   var str = "<em>" + caption + "</em>";
   if( page ) str +=
     " &nbsp; [ <a href='https://wiki.audacityteam.org/w/index.php?title=Toolbox/" +
@@ -1157,8 +1201,8 @@ function setATitle(A,caption, page, fromWiki){
 
   if( A.Hotspots.ColourZones && A.Hotspots.ColourZones.length > 0)
     str +=
-      " &nbsp; [ <a href='#zonelist' id='zoneToggler'" +
-      " onclick='toggleDetailsInToc()'>+zones</a> ]";
+      " &nbsp; [ <a href='#zonelist' id='zoneToggler" + A.index +
+      "' onclick='toggleDetailsInToc("+A.index+")'>+zones</a> ]";
   atitle.innerHTML = sanitiseHtml(str);
 }
 
@@ -1460,24 +1504,13 @@ function isDefined(x){
   return x !== undef;
 }
 
-function startChart(A){
-  A.Porthole.width = 700;
-  A.Porthole.height = 400;
 
-  A.RootObject.type = 'VStack';
-  A.RootObject.content = [];
-  A.RootObject.itemIndex = 0;
-  A.RootObject.objectDict = {};
-  A.RootObject.objectList = [];
-
-  A.Hotspots.ColourZoneIx = 0;
-}
 
 function loadNewDetails(A, specFileData){
   var lines = specFileData.split("<pre>");
   setATitle(A,"Caption was missing");
   startChart(A);
-  Status.isAppReady = false;
+  A.Status.isAppReady = false;
   for( i = 0; i < lines.length; i++ ){
     var item = lines[i];
     var detail = item.split("TIP=</pre>")[1];
@@ -1621,7 +1654,7 @@ function loadNewDetails(A, specFileData){
           //alert("Loaded image " + obj1.file);
           if( obj1.resize ) resizeForImage(A,
             obj1.img);
-          else if( Status.isAppReady )
+          else if( A.Status.isAppReady )
             onChart(A);
         }
       })();
@@ -1650,7 +1683,7 @@ function loadNewDetails(A, specFileData){
         return function(){
           obj1.hot.status = "arrived";
           console.log(obj1.file + " HS arrived");
-          if( Status.isAppReady ) drawCells(A, A.RootObject, {});
+          if( A.Status.isAppReady ) drawCells(A, A.RootObject, {});
         }
       })();
       obj.hot.img.onerror = (function(){
@@ -1706,12 +1739,12 @@ function loadNewDetails(A, specFileData){
       AddDetail(A,detail);
     }
   }
-  Status.time = 0;
+  A.Status.time = 0;
   updateImages(A);
 }
 
-function handleNewData(data){
-  var A = Annotator[0]; // ***** FIXME *********
+function handleNewData(A, data){
+  //var A = Annotator[0]; // ***** FIXME *********
   var spec = document.getElementById("spec");
   // for debugging...
   //spec.innerHTML = data.split("<pre>START</pre>")[1];
@@ -1734,7 +1767,7 @@ function fileActionLoader(A,data, action, url){
   txtFile.onreadystatechange = function(){
     if( this.readyState === 4 && this.status === 200 ){
       // data.push({ action: action, value: this.responseText});
-      handleNewData(this.responseText);
+      handleNewData(A,this.responseText);
     }
   };
 
@@ -1766,11 +1799,14 @@ function requestSpec(A,source, fromwiki){
 
 }
 
-function loadDiagram(A,source, fromwiki){
+function loadDiagram(A,page, fromwiki){
+  console.log("Load Diagram: "+page);
+  A.page = page;
+  A.fromWiki = fromwiki;
   var spec = document.getElementById("spec");
   spec.innerHTML = "";
   setToc( A,"");
-  requestSpec( A,source, fromwiki);
+  requestSpec( A,page, fromwiki);
 }
 
 function removeFrame(A){
@@ -1796,14 +1832,20 @@ function isFromServer(){
 var Nozone = {};
 Nozone.Zone = 0;
 
-var Status = {};
-Status.OldHit = -1;
-Status.imagesToCome = 2;
-Status.time = 0;
 
 var Message;
 var Message2;
 
-Annotator[0] = {};
-InitAnnotator(Annotator[0]);
-resetHotspots(Annotator[0]);
+function makeAnnotator(){
+  var l = Annotator.length;
+  var newA = {};
+  newA.index = l;
+  Annotator.push( newA );
+  InitAnnotator(newA);
+  resetHotspots(newA);
+  return newA;
+}
+
+
+makeAnnotator();
+

@@ -238,24 +238,24 @@
       }
 
       window.onload = function(){
-        var A = Annotator[0]; /************ FIXME ****************/
         var query = window.location.href;
-        A.page = getArg(query, 'page') || "SmallCrowd";
-// Can't use the following on IE 11.
-//          var url = new URL(query);
-//          var page = url.searchParams.get("page") || "The_AU19_Crowd";
+        var page = getArg(query, 'page') || "SmallCrowd";
         var frame = getArg(query, 'frame') || "yes";
 
-        A.fromWiki = 'no';//isFromServer();
-        A.fromWiki = getArg(query, 'fromwiki') || A.fromWiki;
+        var fromWiki = 'no';//isFromServer();
+        fromWiki = getArg(query, 'fromwiki') || fromWiki;
         if( frame === "no" ) removeFrame();
         addExamples();
 
+        var A = Annotator[0];
         createDomElements(A);
-        addImagesToDom(A);
+        loadDiagram(A,page, fromWiki);
 
-        console.log(A.page);
-        loadDiagram(A,A.page, A.fromWiki);
+        // For additional images/islands.
+        //A= makeAnnotator();
+        //createDomElements(A);
+        //loadDiagram(A,"Flow_Chart", fromWiki);
+
         // Timer is for animation such as rotating earth.
         setInterval(timerCallback, 30);
         //requestSpec();
@@ -297,12 +297,14 @@
 </a>
 <div style="height:1.9em;"></div>
 
-<div id="content_here" style="text-align:center;">
+<div id="content_here0" style="text-align:center;">
 </div>
-<div id="atitle" style="text-align:center;">
-    <em>No Hotspot Zones Loaded (Yet)</em>
+
+<div id="content_here1" style="text-align:center;">
 </div>
-<div id="tabular_contents" style="margin:5px;max-height:400px;padding:5px;border: inset 2px #C3C3C3;overflow:auto"></div>
+
+
+
 
 
 <div style="margin-left:10px;color:#818181">
