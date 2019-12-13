@@ -1744,10 +1744,6 @@ function loadNewDetails(A, specFileData){
 }
 
 function handleNewData(A, data){
-  //var A = Annotator[0]; // ***** FIXME *********
-  var spec = document.getElementById("spec");
-  // for debugging...
-  //spec.innerHTML = data.split("<pre>START</pre>")[1];
   resetHotspots(A);
   loadNewDetails(A,data);
 }
@@ -1803,8 +1799,6 @@ function loadDiagram(A,page, fromwiki){
   console.log("Load Diagram: "+page);
   A.page = page;
   A.fromWiki = fromwiki;
-  var spec = document.getElementById("spec");
-  spec.innerHTML = "";
   setToc( A,"");
   requestSpec( A,page, fromwiki);
 }

@@ -194,12 +194,15 @@
       function formatExample( name, short, long, codes ){
         var bWiki = codes.indexOf( "wiki" ) >=0;
         var bWip = codes.indexOf( "wip" ) >=0;
-        var args = "?page="+name;
-        args = args + "&fromwiki=no";
+        var args1 = "?page0="+name;
+        args1 = args1 + "&fromwiki=no";
+        var args2 = "?page1="+name;
+        args2 = args2 + "&fromwiki=no";
 
         var caveats = bWip ? "<em>(Wip)</em> ":"";
-        var extras = bWiki ? " - <a href='./demos.htm?page="+name+"&fromwiki=yes'>using wiki</a>" :"";
-        var str = "<li><a href='./demos.htm"+args+"'>"+short+"</a> - "+caveats + long + extras;
+        var extras = bWiki ? " - <a href='./demos.htm?page0="+name+"&fromwiki=yes'>using wiki</a>" :"";
+        var str = "<li><a href='./demos.htm"+args1+"'>"+short+"</a> - <a href='./demos.htm"+
+          args2+"'>2</a> -"+caveats + long + extras;
         str += "</li>";
         return str;
       }
@@ -238,11 +241,12 @@
       }
 
       function initContent(){
+        var query = window.location.href;
         var contentDivs = document.getElementsByClassName( "atkContentDiv" );
         for(var i=0;i<contentDivs.length;i++){
            var A = makeAnnotator();
            A.index = i;
-           A.page = contentDivs[i].getAttribute("data-page") || "SmallCrowd";
+           A.page = getArg(query, 'page'+i) || contentDivs[i].getAttribute("data-page") || "SmallCrowd";
            populateDomElement( A, contentDivs[i] );
            loadDiagram( A, A.page, 'no');
         }
@@ -321,9 +325,6 @@
 </div>
 
 
-
-
-
 <div style="margin-left:10px;color:#818181">
     <div id="message"></div>
     <div id="message2"></div>
@@ -336,7 +337,5 @@
 <div id="examples" style="margin-left:10px">
 </div>
 
-
-<div id="spec" style="margin-left:10px"></div>
 </body>
 </html>
