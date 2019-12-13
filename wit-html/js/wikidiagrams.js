@@ -1843,3 +1843,17 @@ function makeAnnotator(){
 
 //makeAnnotator();
 
+function initContent(){
+  var query = window.location.href;
+  var contentDivs = document.getElementsByClassName( "atkContentDiv" );
+  for(var i=0;i<contentDivs.length;i++){
+    var A = makeAnnotator();
+    A.index = i;
+    A.page = getArg(query, 'page'+i) || contentDivs[i].getAttribute("data-page") || "SmallCrowd";
+    populateDomElement( A, contentDivs[i] );
+    loadDiagram( A, A.page, 'no');
+  }
+  // Timer is for animation such as rotating earth.
+  setInterval(timerCallback, 30);
+
+}
