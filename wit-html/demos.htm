@@ -237,6 +237,20 @@
         examples.innerHTML = str;
       }
 
+      function initContent(){
+        var contentDivs = document.getElementsByClassName( "atkContentDiv" );
+        for(var i=0;i<contentDivs.length;i++){
+           var A = makeAnnotator();
+           A.index = i;
+           A.page = contentDivs[i].getAttribute("data-page") || "SmallCrowd";
+           populateDomElement( A, contentDivs[i] );
+           loadDiagram( A, A.page, 'no');
+        }
+        // Timer is for animation such as rotating earth.
+        setInterval(timerCallback, 30);
+
+      }
+
       window.onload = function(){
         var query = window.location.href;
         var page = getArg(query, 'page') || "SmallCrowd";
@@ -246,7 +260,9 @@
         fromWiki = getArg(query, 'fromwiki') || fromWiki;
         if( frame === "no" ) removeFrame();
         addExamples();
+        initContent();
 
+        /*
         var A = Annotator[0];
         createDomElements(A);
         loadDiagram(A,page, fromWiki);
@@ -259,6 +275,7 @@
         // Timer is for animation such as rotating earth.
         setInterval(timerCallback, 30);
         //requestSpec();
+        */
       }
 
     </script>
@@ -297,10 +314,10 @@
 </a>
 <div style="height:1.9em;"></div>
 
-<div id="content_here0" style="text-align:center;">
+<div id="content_here0" class="atkContentDiv" data-page="Flow_Chart" style="text-align:center;">
 </div>
 
-<div id="content_here1" style="text-align:center;">
+<div id="content_here1" class="atkContentDiv" data-page="Graphing" style="text-align:center;">
 </div>
 
 
