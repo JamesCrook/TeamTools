@@ -34,6 +34,8 @@ function resetHotspots(A){
   A.Hotspots.Colours = [];
   A.Hotspots.count = 0;
   A.Hotspots.autoColour = 0;
+  A.Hotspots.ColourZoneIx = 0;
+  A.Hotspots.ColourZones = [];
   // Bogus entry to catch bad tips.
   AddHot(A,"[5,0,0,0]");
 
@@ -1061,7 +1063,7 @@ function setNewImage(A,url){
 
 function doAction(A,action){
   if( action.Action === "Spec" ){
-    requestSpec( A, action.Name, A.fromWiki);
+    requestSpec( A, action.Name, A.fromWiki, action.Section);
   } else if( action.Action === "Image" ) {
     setNewImage( A, action.Name);
   } else if( action.Action === "Goto" ){
@@ -1215,6 +1217,12 @@ function fieldValue(field, line){
   return value;
 }
 
+function setSection( A, section ){
+  var h = A.Hotspots.Current.Click || {};
+  h.Section = JSON.parse(section)+1;
+  A.Hotspots.Current.Click = h;
+}
+
 function setHover(A,type, location){
 
   var h = A.Hotspots.Current.Hover || {};
@@ -1326,6 +1334,14 @@ function sizeCell(A, obj, d, proportion){
   }
 }
 
+function sizeRectangle( A, obj, d, proportion){
+  sizeCell( A, obj, d, proportion );
+  if( obj.choice ){
+    obj.sizing.wants = 0.01;
+    obj.sizing.min = 40;
+  }
+}
+
 function sizeContainer(A, obj, d){
   //console.log( "size container - "+obj.type);
   var n = 0;
@@ -1360,12 +1376,12 @@ sizeThing = {
   },
   "Margins": function(A, obj, d){
     sizeCell(A, obj, d, 0.0);
-  }
+  },
 
   //"Chart":sizeContainer,
   //"PieChart":sizeCell,
   //"Image":sizeContainer2,
-  //"Rectangle":sizeCell,
+  "Rectangle":sizeRectangle,
   //"Circle":sizeCell
 };
 
@@ -1506,13 +1522,18 @@ function isDefined(x){
 
 
 
-function loadNewDetails(A, specFileData){
+function loadNewDetails(A, specFileData, section){
+  if( section )
+    specFileData = specFileData.split("<pre>START</pre>")[section] || "";
+
   var lines = specFileData.split("<pre>");
   setATitle(A,"Caption was missing");
   startChart(A);
   A.Status.isAppReady = false;
   for( i = 0; i < lines.length; i++ ){
     var item = lines[i];
+    var data;
+    var obj;
     var detail = item.split("TIP=</pre>")[1];
     var file = item.split("[[File:")[1] || "";
     file = file.split("]]")[0] || "";
@@ -1566,6 +1587,10 @@ function loadNewDetails(A, specFileData){
       console.log("click-load-spec:" + file);
       setClick(A,"Spec", file);
     }
+    if( item.startsWith("SECTION") ){
+      data = fieldValue( "SECTION",item );
+      setSection( A, data );
+    }
     if( item.startsWith("CLICK GOTO") ){
       file = item.split("GOTO=</pre>")[1] || "";
       // extract a wiki hyperlink.
@@ -1577,24 +1602,24 @@ function loadNewDetails(A, specFileData){
     }
     if( item.startsWith("DISTORTION") ){
       console.log("distortion:");
-      var obj = A.RootObject.lastImage;
+      obj = A.RootObject.lastImage;
       if( !obj ) continue;
       obj.spherical = true;
 
     }
     if( item.startsWith("COLOURSET=") ){
-      var data = fieldValue("OURSET", item);
+      data = fieldValue("OURSET", item);
       console.log("colour-data:" + data);
-      var obj = JSON.parse(data);
+      obj = JSON.parse(data);
       //console.log(obj);
       A.Hotspots.ColourZones = A.Hotspots.ColourZones || [];
       A.Hotspots.ColourZones = A.Hotspots.ColourZones.concat( obj );
       A.Hotspots.ColourZoneIx = A.Hotspots.ColourZoneIx || 0;
     }
     if( item.startsWith("ZONECOLOURS=") ){
-      var data = fieldValue("COLOURS", item);
+      data = fieldValue("COLOURS", item);
       console.log("colour-data:" + data);
-      var obj = JSON.parse(data);
+      obj = JSON.parse(data);
       console.log(obj);
       A.Hotspots.ColourZones = A.Hotspots.ColourZones || [];
       A.Hotspots.ColourZones = A.Hotspots.ColourZones.concat( obj );
@@ -1602,7 +1627,7 @@ function loadNewDetails(A, specFileData){
 
     }
     if( item.startsWith("FLOWCHART:") || item.startsWith("ADD:") ){
-      var data = fieldValue("DATA", item);
+      data = fieldValue("DATA", item);
       console.log("flow-data:" + data);
       var container = [];
       var json = JSON.parse(data);
@@ -1617,9 +1642,9 @@ function loadNewDetails(A, specFileData){
     }
     if( item.startsWith("CHART") ){
       // Chart relies on a values array that holds the data.
-      var data = fieldValue("DATA", item);
+      data = fieldValue("DATA", item);
       console.log("chart-data:" + data);
-      var obj = JSON.parse(data);
+      obj = JSON.parse(data);
       convertJsonStructure(A,"", obj);
       obj.content = [];
       obj.type = "Chart";
@@ -1628,7 +1653,7 @@ function loadNewDetails(A, specFileData){
     }
     if( item.startsWith("IMAGE") ){
       console.log("image:" + file);
-      var obj = getObjectByName(A, fieldValue("NAME", item));
+      obj = getObjectByName(A, fieldValue("NAME", item));
       if( obj ){
         obj.resize = false;
       } else {
@@ -1671,7 +1696,7 @@ function loadNewDetails(A, specFileData){
     }
     if( item.startsWith("HOTSPOTS") ){
       console.log("hotspots:" + file);
-      var obj = A.RootObject.lastImage;
+      obj = A.RootObject.lastImage;
       if( !obj ) continue;
 
       obj.hot = {};
@@ -1703,7 +1728,6 @@ function loadNewDetails(A, specFileData){
       obj = A.RootObject.objectList[n];
       if( !isDefined(obj) ) continue;
 
-      var data;
       data = fieldValue("CHOICE", item);
       if( data ) obj.choice = data;
       data = fieldValue("COLOUR", item);
@@ -1721,9 +1745,9 @@ function loadNewDetails(A, specFileData){
     }
 
     if( item.startsWith("ARROWS:") ){
-      var data = fieldValue("DATA", item);
+      data = fieldValue("DATA", item);
       console.log("arrow-data:" + data);
-      var obj = JSON.parse(data);
+      obj = JSON.parse(data);
       //console.log(obj);
       A.RootObject.arrows = obj;
     }
@@ -1745,27 +1769,29 @@ function loadNewDetails(A, specFileData){
   updateImages(A);
 }
 
-function handleNewData(A, data){
+function handleNewData(A, data, section){
   resetHotspots(A);
-  loadNewDetails(A,data);
+  loadNewDetails(A,data,section);
 }
 
 /**
  * Loads one source file into an item in an array.
+ * @param A
  * @param data
  * @param action
  * @param url
+ * @param section
  * @param data
  * @param action
  * @param url
  */
-function fileActionLoader(A,data, action, url){
+function fileActionLoader(A,data, action, url,section){
   var txtFile = new XMLHttpRequest();
   // CDNs and Varnish should give us the very latest.
   txtFile.onreadystatechange = function(){
     if( this.readyState === 4 && this.status === 200 ){
       // data.push({ action: action, value: this.responseText});
-      handleNewData(A,this.responseText);
+      handleNewData(A,this.responseText,section);
     }
   };
 
@@ -1774,15 +1800,15 @@ function fileActionLoader(A,data, action, url){
   txtFile.send();
 }
 
-function requestSpec(A,source, fromwiki){
+function requestSpec(A,source, fromwiki,section){
 
   A.SpecName = source;
 
   if( isFromServer() === "no" )
   {
-    fileActionLoader( A,"", "", "./raw/raw_spec_" + source + ".txt");
+    fileActionLoader( A,"", "", "./raw/raw_spec_" + source + ".txt",section);
   } else  if( fromwiki !== 'yes' ){
-    fileActionLoader( A,"", "", "https://wit.audacityteam.org/raw/raw_spec_" + source + ".txt?time="+ nMillis);
+    fileActionLoader( A,"", "", "https://wit.audacityteam.org/raw/raw_spec_" + source + ".txt?time="+ nMillis,section);
   }
 
     else {
@@ -1792,17 +1818,17 @@ function requestSpec(A,source, fromwiki){
     // time=nMillis to avoid issues with cached content.
     fileActionLoader( A,"", "",
       "https://wiki.audacityteam.org/wiki/Toolbox/" + source +
-      "?action=raw&time=" + nMillis);
+      "?action=raw&time=" + nMillis,section);
   }
 
 }
 
-function loadDiagram(A,page, fromwiki){
+function loadDiagram(A,page, fromwiki,section){
   console.log("Load Diagram: "+page);
   A.page = page;
   A.fromWiki = fromwiki;
   setToc( A,"");
-  requestSpec( A,page, fromwiki);
+  requestSpec( A,page, fromwiki,section);
 }
 
 function removeFrame(A){
@@ -1853,7 +1879,7 @@ function initContent(){
     A.index = i;
     A.page = getArg(query, 'page'+i) || contentDivs[i].getAttribute("data-page") || "SmallCrowd";
     populateDomElement( A, contentDivs[i] );
-    loadDiagram( A, A.page, 'no');
+    loadDiagram( A, A.page, 'no',1);
   }
   // Timer is for animation such as rotating earth.
   setInterval(timerCallback, 30);
