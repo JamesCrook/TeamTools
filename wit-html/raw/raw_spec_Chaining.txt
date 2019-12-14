@@ -1,0 +1,155 @@
+__NOTOC__
+
+Interactive diagrams are programs.  This is the program structure for the interactive diagram which shows who is who at the AU19 Audacity conference:
+
+<pre>
+VERTICAL_LAYOUT
+  RGBA_FOCUS_DETAIL Focus=SmallCircle
+</pre>
+
+The specification above builds a simple focus-detail display.  There's a
+stand-alone [https://wit.audacityteam.org/demos.htm?page=Maps
+interactive demo] but here is the result in wiki:
+
+-----
+{{#widget:Dynamic|page=Maps|height=620px}}
+-----
+
+The detailed data for the regions, buttons and tooltips follows.
+
+<pre>START</pre>
+
+
+<pre>ADD:DATA=
+[
+{"SizeAs":0.07},
+{"HStack":[
+    {"Rectangle":"Ocean Currents"},
+    {"Rectangle":"Climate Zones"},
+    {"Rectangle":"Plate Techtonics"}
+    ]},
+{"Image":"1Ocean Currents","spherical":true}
+]
+</pre>
+
+
+<pre>NEXTOBJECT:CHOICE=yes;COLOUR=rgb(255,250,235);BCOLOUR=rgb(145,125,0);CORNER_RADIUS=8</pre>
+
+<pre>SECTION=0</pre>
+<pre>CLICK LOAD SPEC=</pre>
+[[Toolbox/Chaining]]
+
+
+<pre>NEXTOBJECT:CHOICE=no;COLOUR=rgb(255,230,205);BCOLOUR=rgb(215,155,0);
+CORNER_RADIUS=8;TIP=</pre>
+<h1>Climate Zones</h1>
+
+<pre>SECTION=1</pre>
+<pre>CLICK LOAD SPEC=</pre>
+[[Toolbox/Chaining]]
+
+<pre>NEXTOBJECT:CHOICE=no;COLOUR=rgb(255,230,205);BCOLOUR=rgb(215,155,0);
+CORNER_RADIUS=8;TIP=</pre>
+<h1>Plate Techtonics</h1>
+
+<pre>SECTION=2</pre>
+<pre>CLICK LOAD SPEC=</pre>
+[[Toolbox/Chaining]]
+
+<pre>CREDITS:CAPTION=Ocean Currents;TIP=</pre>
+<h3>Instructions</h3>
+<ul>
+<li>Hover over hotspots in the image for more details.
+<li>Hold shift down to freeze the hotspot - e.g. when taking a screenshot.
+</ul><br><br>
+<b>Credits:</b> <em>[https://www.jpl.nasa.gov/news/news.php?release=2010-101 NASA/JPL]</em>
+
+
+<pre>START</pre>
+
+
+<pre>FLOWCHART:DATA=
+[
+{"SizeAs":0.07},
+{"HStack":[
+    {"Rectangle":"Ocean Currents"},
+    {"Rectangle":"Climate Zones"},
+    {"Rectangle":"Plate Techtonics"}
+    ]},
+{"Image":"2Climate Zones","spherical":true}
+]
+</pre>
+
+
+
+<pre>NEXTOBJECT:CHOICE=no;COLOUR=rgb(255,230,205);BCOLOUR=rgb(215,155,0);CORNER_RADIUS=8;TIP=</pre>
+<h1>Ocean Currents</h1>
+
+<pre>SECTION=0</pre>
+<pre>CLICK LOAD SPEC=</pre>
+[[Toolbox/Chaining]]
+
+
+<pre>NEXTOBJECT:CHOICE=yes;COLOUR=rgb(255,250,235);BCOLOUR=rgb(145,125,0);CORNER_RADIUS=8;TIP=</pre>
+<h1>Climate Zones</h1>
+
+<pre>SECTION=1</pre>
+<pre>CLICK LOAD SPEC=</pre>
+[[Toolbox/Chaining]]
+
+<pre>NEXTOBJECT:CHOICE=no;COLOUR=rgb(255,230,205);BCOLOUR=rgb(215,155,0);CORNER_RADIUS=8;TIP=</pre>
+<h1>Plate Techtonics</h1>
+
+<pre>SECTION=2</pre>
+<pre>CLICK LOAD SPEC=</pre>
+[[Toolbox/Chaining]]
+
+
+<pre>CREDITS:CAPTION=Köppen Climate Classification Map;TIP=</pre>
+<b>Credits:</b> <em>Beck et Al. - <a href="https://commons.wikimedia.org/wiki/File:K%C3%B6ppen-Geiger_Climate_Classification_Map.png">see description on Wikipedia</a>
+
+<pre>---</pre>
+
+<pre>START</pre>
+
+
+<pre>FLOWCHART:DATA=
+[
+{"SizeAs":0.07},
+{"HStack":[
+    {"Rectangle":"Ocean Currents"},
+    {"Rectangle":"Climate Zones"},
+    {"Rectangle":"Plate Techtonics"}
+    ]},
+{"Image":"3Plate Techtonics","spherical":true}
+]
+</pre>
+
+
+<pre>NEXTOBJECT:CHOICE=no;COLOUR=rgb(255,230,205);BCOLOUR=rgb(215,155,0);CORNER_RADIUS=8;TIP=</pre>
+<h1>Ocean Currents</h1>
+
+<pre>SECTION=0</pre>
+<pre>CLICK LOAD SPEC=</pre>
+[[Toolbox/Chaining]]
+
+
+<pre>NEXTOBJECT:CHOICE=no;COLOUR=rgb(255,230,205);BCOLOUR=rgb(215,155,0);CORNER_RADIUS=8;TIP=</pre>
+<h1>Climate Zones</h1>
+
+<pre>SECTION=1</pre>
+<pre>CLICK LOAD SPEC=</pre>
+[[Toolbox/Chaining]]
+
+<pre>NEXTOBJECT:CHOICE=yes;COLOUR=rgb(255,250,235);BCOLOUR=rgb(145,125,0);CORNER_RADIUS=8;TIP=</pre>
+<h1>Plate Techtonics</h1>
+
+<pre>SECTION=2</pre>
+<pre>CLICK LOAD SPEC=</pre>
+[[Toolbox/Chaining]]
+
+
+<pre>CREDITS:CAPTION=Map derived from US Geological Survey;TIP=</pre>
+<b>Credits:</b> <em>United States Geological Survey. - <a href="https://commons
+.wikimedia.org/wiki/File:USGS_majplatecolor.png">see description on Wikipedia</a></em>
+

@@ -737,6 +737,8 @@ function drawButtons(A){
 }
 
 function roundRect(ctx, x, y, w, h, r){
+  if( w < 0 ) return;
+  if( h < 0 ) return;
   if( w < 2 * r ) r = w / 2;
   if( h < 2 * r ) r = h / 2;
   ctx.beginPath();
@@ -890,6 +892,8 @@ function drawCircle(A,x, y, xw, yh, obj){
   setStyles(ctx, obj);
 
   var r = Math.min(xw, yh) / 2;
+  if( r < 0 )
+    return;
   ctx.arc(x + xw / 2, y + yh / 2, r, 0, Math.PI * 2.0, true);
   ctx.fill();
   ctx.stroke();
@@ -932,6 +936,7 @@ function drawArrowThing(A,fn){
     var obj1 = objFromId(A,arrows[i]);
     var obj2 = objFromId(A,arrows[i + 1]);
     if( !isDefined(obj1) || !isDefined(obj2) ) return;
+    if( !isDefined(obj1.layout) || !isDefined(obj2.layout) ) continue;
     fn(A,obj1, obj2);
   }
 }
@@ -1216,6 +1221,15 @@ function fieldValue(field, line){
 
   return value;
 }
+
+function shortFieldValue(field, line){
+  var value = line.split(field + "=")[1] || "";
+  value = value.split("</pre>")[0];
+  value = value.split(";")[0];
+
+  return value;
+}
+
 
 function setSection( A, section ){
   var h = A.Hotspots.Current.Click || {};
@@ -1520,27 +1534,23 @@ function isDefined(x){
   return x !== undef;
 }
 
-
-
-function loadNewDetails(A, specFileData, section){
+function loadNewLines(A, specFileData, section){
   if( section )
     specFileData = specFileData.split("<pre>START</pre>")[section] || "";
 
   var lines = specFileData.split("<pre>");
-  setATitle(A,"Caption was missing");
-  startChart(A);
-  A.Status.isAppReady = false;
-  for( i = 0; i < lines.length; i++ ){
+
+
+  for( var i = 0; i < lines.length; i++ ){
     var item = lines[i];
     var data;
     var obj;
     var detail = item.split("TIP=</pre>")[1];
     var file = item.split("[[File:")[1] || "";
     file = file.split("]]")[0] || "";
-    if( isFromServer() === "yes" )
-      file = "https://wit.audacityteam.org/images/" + file;
-    else
-      file = "./images/" + file;
+    if( isFromServer() === "yes" ) file =
+      "https://wit.audacityteam.org/images/" + file; else file =
+      "./images/" + file;
 
     var spec = item.split("[[")[1] || "";
     spec = spec.split("]]")[0] || spec;
@@ -1552,44 +1562,44 @@ function loadNewDetails(A, specFileData, section){
       index = index.replace("(", "[");
       index = index.replace(")", "]");
       console.log("color:" + index);
-      AddHot(A,index);
+      AddHot(A, index);
     }
     if( item.startsWith("NEXTZONE:") ){
       if( A.Hotspots.ColourZones ){
         var n = A.Hotspots.ColourZoneIx++ % A.Hotspots.ColourZones.length;
         var c = A.Hotspots.ColourZones[n];
         c = '[' + c[0] + ',' + c[1] + ',' + c[2] + ',' + c[3] + ']';
-        console.log("next-color:" + c+ "n:"+n);
-        AddHot(A,c);
+        console.log("next-color:" + c + "n:" + n);
+        AddHot(A, c);
       }
     }
     if( item.startsWith("ZONE:LABEL=") || item.startsWith("BUTTON:LABEL=") ){
       var label = fieldValue("LABEL", item);
       console.log("label:" + label);
-      AddButton(A,label);
+      AddButton(A, label);
       if( !detail ) detail = " ";
     }
     if( item.startsWith("HOVER LOAD IMAGE") ){
       console.log("hover-load-image:" + file);
-      setHover(A,"Image", file);
+      setHover(A, "Image", file);
     }
     if( item.startsWith("HOVER LOAD SPEC") ){
       file = ("X" + spec).split("Toolbox/")[1] || fieldValue("SPEC", item);
       console.log("hover-load-spec:" + file);
-      setHover(A,"Spec", file);
+      setHover(A, "Spec", file);
     }
     if( item.startsWith("CLICK LOAD IMAGE") ){
       console.log("click-load-image:" + file);
-      setClick(A,"Image", file);
+      setClick(A, "Image", file);
     }
     if( item.startsWith("CLICK LOAD SPEC") ){
       file = ("X" + spec).split("Toolbox/")[1] || fieldValue("SPEC", item);
       console.log("click-load-spec:" + file);
-      setClick(A,"Spec", file);
+      setClick(A, "Spec", file);
     }
     if( item.startsWith("SECTION") ){
-      data = fieldValue( "SECTION",item );
-      setSection( A, data );
+      data = fieldValue("SECTION", item);
+      setSection(A, data);
     }
     if( item.startsWith("CLICK GOTO") ){
       file = item.split("GOTO=</pre>")[1] || "";
@@ -1598,7 +1608,7 @@ function loadNewDetails(A, specFileData, section){
       file = file.split(" ")[0] || file.split("]")[0] || "";
 
       console.log("click-goto:" + file);
-      setClick(A,"Goto", file);
+      setClick(A, "Goto", file);
     }
     if( item.startsWith("DISTORTION") ){
       console.log("distortion:");
@@ -1613,7 +1623,7 @@ function loadNewDetails(A, specFileData, section){
       obj = JSON.parse(data);
       //console.log(obj);
       A.Hotspots.ColourZones = A.Hotspots.ColourZones || [];
-      A.Hotspots.ColourZones = A.Hotspots.ColourZones.concat( obj );
+      A.Hotspots.ColourZones = A.Hotspots.ColourZones.concat(obj);
       A.Hotspots.ColourZoneIx = A.Hotspots.ColourZoneIx || 0;
     }
     if( item.startsWith("ZONECOLOURS=") ){
@@ -1622,11 +1632,15 @@ function loadNewDetails(A, specFileData, section){
       obj = JSON.parse(data);
       console.log(obj);
       A.Hotspots.ColourZones = A.Hotspots.ColourZones || [];
-      A.Hotspots.ColourZones = A.Hotspots.ColourZones.concat( obj );
+      A.Hotspots.ColourZones = A.Hotspots.ColourZones.concat(obj);
       A.Hotspots.ColourZoneIx = A.Hotspots.ColourZoneIx || 0;
 
     }
     if( item.startsWith("FLOWCHART:") || item.startsWith("ADD:") ){
+      var root = getObjectByName(A, shortFieldValue("NAME", item));
+      root = root || A.RootObject;
+      root.type = "VStack";
+      root.content = root.content || [];
       data = fieldValue("DATA", item);
       console.log("flow-data:" + data);
       var container = [];
@@ -1635,31 +1649,33 @@ function loadNewDetails(A, specFileData, section){
       if( !Array.isArray(json) ) container.push(json); else container = json;
 
       for( var kk = 0; kk < container.length; kk++ ){
-        convertJsonStructure(A,"", container[kk]);
-        A.RootObject.content.push(container[kk]);
+        convertJsonStructure(A, "", container[kk]);
+        root.content.push(container[kk]);
       }
       //console.log(obj);
     }
     if( item.startsWith("CHART") ){
+      var root = getObjectByName(A, shortFieldValue("NAME", item));
+      root = root || A.RootObject;
       // Chart relies on a values array that holds the data.
       data = fieldValue("DATA", item);
       console.log("chart-data:" + data);
       obj = JSON.parse(data);
-      convertJsonStructure(A,"", obj);
+      convertJsonStructure(A, "", obj);
       obj.content = [];
       obj.type = "Chart";
 
-      A.RootObject.content.push(obj);
+      root.content.push(obj);
     }
     if( item.startsWith("IMAGE") ){
       console.log("image:" + file);
-      obj = getObjectByName(A, fieldValue("NAME", item));
+      obj = getObjectByName(A, shortFieldValue("NAME", item));
       if( obj ){
         obj.resize = false;
       } else {
         obj = {};
         obj.Image = file;
-        convertJsonStructure(A,"", obj);
+        convertJsonStructure(A, "", obj);
         obj.resize = A.RootObject.content.length === 0;
         obj.spherical = false;
         obj.stretch = "preserve-aspect";
@@ -1676,9 +1692,9 @@ function loadNewDetails(A, specFileData, section){
         return function(){
           obj1.status = "arrived";
           console.log(obj1.file + " image arrived");
-          //alert("Loaded image " + obj1.file);
-          if( obj1.resize ) resizeForImage(A,
-            obj1.img);
+          // May need to layout and draw when image arrives.
+          if( obj1.resize )
+            resizeForImage(A, obj1.img);
           else if( A.Status.isAppReady )
             onChart(A);
         }
@@ -1722,6 +1738,43 @@ function loadNewDetails(A, specFileData, section){
       obj.hot.img.src = file;
     }
 
+    if( item.startsWith("SUBOBJECT") ){
+      console.log("subobject:" + file);
+      obj = getObjectByName(A, shortFieldValue("NAME", item));
+      if( obj ){
+        obj.resize = false;
+      } else {
+        obj = {};
+        obj.Overlay = file;
+        convertJsonStructure(A, "", obj);
+        A.RootObject.content.push(obj);
+      }
+
+      obj.status = "asked";
+      obj.file = file;
+      obj.content = [];
+      obj.onload = (function(){
+        var obj1 = obj;
+        return function(){
+          obj1.status = "arrived";
+          console.log(obj1.file + " subdiagram arrived");
+          if( A.Status.isAppReady )
+            onChart(A);
+        }
+      })();
+      obj.onerror = (function(){
+        var obj1 = obj;
+        return function(){
+          obj1.status = "failed";
+          alert("Failed to load subdiagram " + obj1.file);
+        }
+      })();
+
+      //obj.img.src = file;
+
+    }
+
+
     if( item.startsWith("NEXTOBJECT:") ){
       if( !isDefined(A.RootObject.objectList) ) continue;
       var n = A.RootObject.itemIndex++;
@@ -1738,7 +1791,7 @@ function loadNewDetails(A, specFileData, section){
       if( data && (!isNaN(Number(data))) ) obj.corner_radius = Number(data);
       if( detail ){
         detail = sanitiseHtml(detail);
-        var c = NextAutoColour( A, detail);
+        var c = NextAutoColour(A, detail);
         detail = ""; //so as not to add it twice.
         obj.hotspotColour = c;
       }
@@ -1762,16 +1815,26 @@ function loadNewDetails(A, specFileData, section){
     if( detail ){
       detail = sanitiseHtml(detail);
       console.log(" <<<" + detail + ">>>");
-      AddDetail(A,detail);
+      AddDetail(A, detail);
     }
   }
+}
+
+function addNewDetails(A, data, section){
+  A.Status.isAppReady = false;
+  loadNewLines(A, data, section);
   A.Status.time = 0;
   updateImages(A);
 }
 
 function handleNewData(A, data, section){
   resetHotspots(A);
-  loadNewDetails(A,data,section);
+  setATitle(A,"Caption was missing");
+  startChart(A);
+  A.Status.isAppReady = false;
+  loadNewLines(A, data, section);
+  A.Status.time = 0;
+  updateImages(A);
 }
 
 /**
@@ -1785,13 +1848,13 @@ function handleNewData(A, data, section){
  * @param action
  * @param url
  */
-function fileActionLoader(A,data, action, url,section){
+function fileActionLoader(A,data, action, url,section,fn){
   var txtFile = new XMLHttpRequest();
   // CDNs and Varnish should give us the very latest.
   txtFile.onreadystatechange = function(){
     if( this.readyState === 4 && this.status === 200 ){
       // data.push({ action: action, value: this.responseText});
-      handleNewData(A,this.responseText,section);
+      fn(A,this.responseText,section);
     }
   };
 
@@ -1800,15 +1863,16 @@ function fileActionLoader(A,data, action, url,section){
   txtFile.send();
 }
 
-function requestSpec(A,source, fromwiki,section){
+function requestSpec(A,source, fromwiki,section,fn){
 
+  fn = fn || handleNewData;
   A.SpecName = source;
 
   if( isFromServer() === "no" )
   {
-    fileActionLoader( A,"", "", "./raw/raw_spec_" + source + ".txt",section);
+    fileActionLoader( A,"", "", "./raw/raw_spec_" + source + ".txt",section, fn);
   } else  if( fromwiki !== 'yes' ){
-    fileActionLoader( A,"", "", "https://wit.audacityteam.org/raw/raw_spec_" + source + ".txt?time="+ nMillis,section);
+    fileActionLoader( A,"", "", "https://wit.audacityteam.org/raw/raw_spec_" + source + ".txt?time="+ nMillis,section,fn);
   }
 
     else {
@@ -1818,7 +1882,7 @@ function requestSpec(A,source, fromwiki,section){
     // time=nMillis to avoid issues with cached content.
     fileActionLoader( A,"", "",
       "https://wiki.audacityteam.org/wiki/Toolbox/" + source +
-      "?action=raw&time=" + nMillis,section);
+      "?action=raw&time=" + nMillis,section, fn);
   }
 
 }
