@@ -1704,6 +1704,8 @@ function loadNewDetails(A, specFileData){
       if( !isDefined(obj) ) continue;
 
       var data;
+      data = fieldValue("CHOICE", item);
+      if( data ) obj.choice = data;
       data = fieldValue("COLOUR", item);
       if( data ) obj.colour = data;
       data = fieldValue("BCOLOUR", item);
