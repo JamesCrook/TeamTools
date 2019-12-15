@@ -1217,19 +1217,16 @@ function setATitle(A,caption, page, fromWiki){
 function fieldValue(field, line){
   var value = line.split(field + "=")[1] || "";
   value = value.split("</pre>")[0];
-  if( value.indexOf('\n') === -1 ) value = value.split(";")[0];
+  var sepIndex = value.indexOf(';');
+  var lineEndIndex = value.indexOf('\n');
+
+  // command ends at </pre> or at ;.
+  // Only use a ; as the end, if it is on the same line.
+  if( (lineEndIndex === -1 ) || ( sepIndex < lineEndIndex))
+    value = value.split(";")[0];
 
   return value;
 }
-
-function shortFieldValue(field, line){
-  var value = line.split(field + "=")[1] || "";
-  value = value.split("</pre>")[0];
-  value = value.split(";")[0];
-
-  return value;
-}
-
 
 function setSection( A, section ){
   var h = A.Hotspots.Current.Click || {};
@@ -1521,6 +1518,27 @@ function convertJsonStructure(A, indent, layout){
     }
   }
 }
+function setupForChoosing( A, obj, item )
+{
+
+}
+function doChoose( A, parentObj, item )
+{
+  if( !parentObj.content )
+    return;
+  if( !Array.isArray(parentObj.content))
+    return;
+
+  item--;
+  var n = parentObj.content.length;
+  for( var i=0;i<n;i++){
+    var obj = parentObj.content[i];
+
+    obj.colour  = (i===item) ? "rgb(255,250,235)":"rgb(255,230,205)";
+    obj.bcolour = (i===item) ? "rgb(145,125,0)"  :"rgb(215,155,0)";
+    obj.corner_radius = 8;
+  }
+}
 
 function getObjectByName(A, name){
   if( !name ) return 0;
@@ -1637,7 +1655,7 @@ function loadNewLines(A, specFileData, section){
 
     }
     if( item.startsWith("FLOWCHART:") || item.startsWith("ADD:") ){
-      var root = getObjectByName(A, shortFieldValue("NAME", item));
+      var root = getObjectByName(A, fieldValue("NAME", item));
       root = root || A.RootObject;
       root.type = "VStack";
       root.content = root.content || [];
@@ -1655,7 +1673,7 @@ function loadNewLines(A, specFileData, section){
       //console.log(obj);
     }
     if( item.startsWith("CHART") ){
-      var root = getObjectByName(A, shortFieldValue("NAME", item));
+      var root = getObjectByName(A, fieldValue("NAME", item));
       root = root || A.RootObject;
       // Chart relies on a values array that holds the data.
       data = fieldValue("DATA", item);
@@ -1669,7 +1687,7 @@ function loadNewLines(A, specFileData, section){
     }
     if( item.startsWith("IMAGE") ){
       console.log("image:" + file);
-      obj = getObjectByName(A, shortFieldValue("NAME", item));
+      obj = getObjectByName(A, fieldValue("NAME", item));
       if( obj ){
         obj.resize = false;
       } else {
@@ -1740,7 +1758,7 @@ function loadNewLines(A, specFileData, section){
 
     if( item.startsWith("SUBOBJECT") ){
       console.log("subobject:" + file);
-      obj = getObjectByName(A, shortFieldValue("NAME", item));
+      obj = getObjectByName(A, fieldValue("NAME", item));
       if( obj ){
         obj.resize = false;
       } else {
@@ -1782,7 +1800,11 @@ function loadNewLines(A, specFileData, section){
       if( !isDefined(obj) ) continue;
 
       data = fieldValue("CHOICE", item);
-      if( data ) obj.choice = data;
+      if( data ){
+        obj.choice = data;
+        setupForChoosing( A, obj, 1 );
+        doChoose( A, obj, 1 );
+      }
       data = fieldValue("COLOUR", item);
       if( data ) obj.colour = data;
       data = fieldValue("BCOLOUR", item);
