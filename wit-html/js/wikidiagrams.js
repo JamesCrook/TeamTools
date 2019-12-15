@@ -620,13 +620,14 @@ function drawSphere(A,xx, yy, xw, yh, ctx, obj){
   var ctx2 = obj.ctx;
   var img = obj.img;
   //console.log( "From image "+img.width+" by "+img.height);
-  if( !ctx2 ){
+  if( !ctx2 || (obj.canvas.width !== img.width) || (obj.canvas.height !== img.height)){
     obj.canvas = document.createElement("canvas");
     obj.canvas.width = img.width;
     obj.canvas.height = img.height;
     obj.ctx = obj.canvas.getContext('2d');
     ctx2 = obj.ctx;
   }
+  ctx2.clearRect( 0, 0, img.width, img.height);
   ctx2.drawImage(img, 0, 0, img.width, img.height);
   var x0 = xw / 2;
   var rotate = img.width - ((A.Status.time * 3) % img.width);

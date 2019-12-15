@@ -39,13 +39,14 @@ The detailed data for the regions, buttons and tooltips follows.
 
 This is the chooser object.
 
-<pre>NEXTOBJECT:CHOICE=5</pre>
+<pre>NEXTOBJECT:CHOICE=1</pre>
 
 <pre>IMAGE:NAME=Image Goes Here</pre>
-[[File:Moonmap_from_clementine_data.png]]
+[[File:1024px-Köppen-Geiger_Climate_Classification_Map.png]]
 
 <pre>HOTSPOTS</pre>
-[[File:Moonmap_from_clementine_data.png]]
+[[File:1024px-Köppen-Geiger_Climate_Classification_Map.png]]
+
 
 
 <pre>NEXTOBJECT:TIP=</pre>
@@ -91,8 +92,8 @@ from us.
 <pre>CLICK DO:SECTION=5;SPEC=</pre>
 [[Toolbox/Chaining]]
 
-<pre>CREDITS:CAPTION=Infra-red map of moon;TIP=</pre>
-<b>Credits:</b> See Wikipedia for credits</em>
+<pre>CREDITS:CAPTION=Köppen Climate Classification Map;TIP=</pre>
+<b>Credits:</b> <em>Beck et Al. - <a href="https://commons.wikimedia.org/wiki/File:K%C3%B6ppen-Geiger_Climate_Classification_Map.png">see description on Wikipedia</a>
 
 
 
