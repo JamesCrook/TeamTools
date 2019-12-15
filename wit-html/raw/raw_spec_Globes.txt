@@ -53,16 +53,14 @@ This is the chooser object.
 This is the Köppen climate classification map.  Temperature and precipitation
 both play a part in determining climate zones.
 
-<pre>SECTION=1</pre>
-<pre>CLICK DO:SPEC=</pre>
+<pre>CLICK DO:SECTION=1;SPEC=</pre>
 [[Toolbox/Chaining]]
 
 <pre>NEXTOBJECT:TIP=</pre>
 <h1>Vegetation</h1>
 Closely allied to climate zones is the vegetation map.
 
-<pre>SECTION=2</pre>
-<pre>CLICK DO:SPEC=</pre>
+<pre>CLICK DO:SECTION=2;SPEC=</pre>
 [[Toolbox/Chaining]]
 
 <pre>NEXTOBJECT:TIP=</pre>
@@ -71,8 +69,7 @@ Shows the 'great conveyor belt', cold water flowing deep down, warmed water
 flowing in the opposite direction near the surface.  Unfortunately this map
 does not join up properly East-West.
 
-<pre>SECTION=3</pre>
-<pre>CLICK DO:SPEC=</pre>
+<pre>CLICK DO:SECTION=3;SPEC=</pre>
 [[Toolbox/Chaining]]
 
 <pre>NEXTOBJECT:TIP=</pre>
@@ -80,8 +77,7 @@ does not join up properly East-West.
 Shows the boundaries between plates, where seismic and volcanic activity are
 most likely.  Includes 'the great ring of fire'.
 
-<pre>SECTION=4</pre>
-<pre>CLICK DO:SPEC=</pre>
+<pre>CLICK DO:SECTION=4;SPEC=</pre>
 [[Toolbox/Chaining]]
 
 
@@ -92,8 +88,7 @@ any more dark than the side we see, it is just that it is always turned away
 from us.
  The side near to us is smoother than the more pock marked hidden side.
 
-<pre>SECTION=5</pre>
-<pre>CLICK DO:SPEC=</pre>
+<pre>CLICK DO:SECTION=5;SPEC=</pre>
 [[Toolbox/Chaining]]
 
 <pre>CREDITS:CAPTION=Infra-red map of moon;TIP=</pre>

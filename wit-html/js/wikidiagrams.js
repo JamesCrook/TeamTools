@@ -1625,6 +1625,10 @@ function loadNewLines(A, specFileData, section){
     if( item.startsWith("CLICK DO") ){
       file = ("X" + spec).split("Toolbox/")[1] || fieldValue("SPEC", item);
       console.log("click-do-spec:" + file);
+      data = fieldValue("SECTION", item);
+      if( data ){
+        setSection(A, data);
+      }
       setClick(A, "DoSpec", file);
     }
     if( item.startsWith("SECTION") ){
