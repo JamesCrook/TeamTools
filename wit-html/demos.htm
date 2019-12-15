@@ -201,8 +201,9 @@
 
         var caveats = bWip ? "<em>(Wip)</em> ":"";
         var extras = bWiki ? " - <a href='./demos.htm?page0="+name+"&fromwiki=yes'>using wiki</a>" :"";
-        var str = "<li><a href='./demos.htm"+args1+"'>"+short+"</a> - <a href='./demos.htm"+
-          args2+"'>2</a> -"+caveats + long + extras;
+        var str = "<li><a href='./demos.htm"+args1+"'>"+short+"</a> - ";
+        //str += "<a href='./demos.htm"+ args2+"'>2</a>";
+        str +=  caveats + long + extras;
         str += "</li>";
         return str;
       }
@@ -220,9 +221,9 @@
         //str += formatExample("Globes","Globes","A demo of planets","wiki");
         //str += formatExample("Window_Size","Spectrogram Window-Sizes","Explanation of a spectrogram","wiki");
 
-        str += formatExample("Ear2","The Ear", "Schematics based on Blausen Medical's images", "");
-        str += formatExample("Middle_Ear_Anatomy2","The Middle Ear", "Schematic", "");
-        str += formatExample("Inner_Ear_Anatomy2","The Inner Ear", "Schematic", "");
+        str += formatExample("Ear3","The Ear", "Three schematics based on Blausen Medical's images", "");
+        //str += formatExample("Middle_Ear_Anatomy2","The Middle Ear", "Schematic", "");
+        //str += formatExample("Inner_Ear_Anatomy2","The Inner Ear", "Schematic", "");
 
         str+= "</ul>These are further experiments:<ul>";
 
