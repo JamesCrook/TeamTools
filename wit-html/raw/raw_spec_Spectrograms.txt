@@ -96,25 +96,25 @@ This is the spec for the interactive diagram which explains window size in spect
 <h1>Window Size</h1><em><p>Small windows sizes measure frequency over a short time range.  This is good when the frequencies change quickly.</p><p>Where the frequencies are sustained over longer time periods, larger window sizes give more precision about what the frequencies are.</p><p>The number for 'window size' is 'the number of audio samples'.</p></em>
 
 <pre>NEXTZONE:COMMENT=Aw;TIP=</pre>
-<h1><em style='color: #ffc747'>Aw</em>-dasssi-tee</h1><p><em>The initial vowel sound in the word 'Audacity'  The sound changes slightly over the duration of the vowel as the lips move closer together and are rounded more towards the end of the vowel sound.</em></p>
+<h1><em style='color: #a4762a'>Aw</em>-dasssi-tee</h1><p><em>The initial vowel sound in the word 'Audacity'  The sound changes slightly over the duration of the vowel as the lips move closer together and are rounded more towards the end of the vowel sound.</em></p>
 
 <pre>NEXTZONE:COMMENT=-d;TIP=</pre>
-<h1>Aw<em style='color: #ffc747'>-d</em>asssi-tee</h1><p><em>The 'd' consonant sound in 'Audacity'.  There is a moment of near silence just before the 'd'.</em></p>
+<h1>Aw<em style='color: #a4762a'>-d</em>asssi-tee</h1><p><em>The 'd' consonant sound in 'Audacity'.  There is a moment of near silence just before the 'd'.</em></p>
 
 <pre>NEXTZONE:COMMENT=a;TIP=</pre>
-<h1>Aw-d<em style='color: #ffc747'>a</em>sssi-tee</h1><p><em>The second vowel sound in 'Audacity' just before the loud 'sss' sound.  The pitch rises slightly towards the end as the mouth closes somewhat for the next sound.</em></p>
+<h1>Aw-d<em style='color: #a4762a'>a</em>sssi-tee</h1><p><em>The second vowel sound in 'Audacity' just before the loud 'sss' sound.  The pitch rises slightly towards the end as the mouth closes somewhat for the next sound.</em></p>
 
 <pre>NEXTZONE:COMMENT=sss;TIP=</pre>
-<h1>Aw-da<em style='color: #ffc747'>sss</em>i-tee</h1><p><em>The 'sss' sound of the 'c' in 'Audacity'.  The bright region at about 5KHz is showing many frequencies, all quite loud.</p><p>This sound is similar to the sound of [https://manual.audacityteam.org/man/noise.html 'white noise'] which also has many frequencies at once.</em></p>
+<h1>Aw-da<em style='color: #a4762a'>sss</em>i-tee</h1><p><em>The 'sss' sound of the 'c' in 'Audacity'.  The bright region at about 5KHz is showing many frequencies, all quite loud.</p><p>This sound is similar to the sound of [https://manual.audacityteam.org/man/noise.html 'white noise'] which also has many frequencies at once.</em></p>
 
 <pre>NEXTZONE:COMMENT=i;TIP=</pre>
-<h1>Aw-dasss<em style='color: #ffc747'>i</em>-tee</h1><p><em>The 'i' vowel sound in 'Audacity'</em></p>
+<h1>Aw-dasss<em style='color: #a4762a'>i</em>-tee</h1><p><em>The 'i' vowel sound in 'Audacity'</em></p>
 
 <pre>NEXTZONE:COMMENT=t;TIP=</pre>
-<h1>Aw-dasssi<em style='color: #ffc747'>-t</em>ee</h1><p><em>The 't' consonant sound in the word 'Audacity'.  There is a moment of near silence just before the 't'.</em></p>
+<h1>Aw-dasssi<em style='color: #a4762a'>-t</em>ee</h1><p><em>The 't' consonant sound in the word 'Audacity'.  There is a moment of near silence just before the 't'.</em></p>
 
 <pre>NEXTZONE:COMMENT=ee;TIP=</pre>
-<h1>Aw-dasssi-t<em style='color: #ffc747'>ee</em></h1><p><em>The 'y' vowel sound in 'Audacity'.</em></p>
+<h1>Aw-dasssi-t<em style='color: #a4762a'>ee</em></h1><p><em>The 'y' vowel sound in 'Audacity'.</em></p>
 
 <pre>CREDITS:CAPTION=Spectrogram Window Sizes;TIP=</pre>
 <h3>Instructions</h3>
