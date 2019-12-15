@@ -133,31 +133,31 @@ This is the spec for the interactive diagram which explains window size in spect
 <pre>IMAGE:NAME=Spectro</pre>
 [[File:SpectralVocalDark256Dark.png]]
 
-<pre>START:Section 1</pre>
+<pre>START:Section 2</pre>
 <pre>DO:CHOOSER_NAME=SpectroChooser;VALUE=2</pre>
 
 <pre>IMAGE:NAME=Spectro</pre>
 [[File:SpectralVocalDark512Dark.png]]
 
-<pre>START:Section 1</pre>
+<pre>START:Section 3</pre>
 <pre>DO:CHOOSER_NAME=SpectroChooser;VALUE=3</pre>
 
 <pre>IMAGE:NAME=Spectro</pre>
 [[File:SpectralVocalDark1024Dark.png]]
 
-<pre>START:Section 1</pre>
+<pre>START:Section 4</pre>
 <pre>DO:CHOOSER_NAME=SpectroChooser;VALUE=4</pre>
 
 <pre>IMAGE:NAME=Spectro</pre>
 [[File:SpectralVocalDark2048Dark.png]]
 
-<pre>START:Section 1</pre>
+<pre>START:Section 5</pre>
 <pre>DO:CHOOSER_NAME=SpectroChooser;VALUE=5</pre>
 
 <pre>IMAGE:NAME=Spectro</pre>
 [[File:SpectralVocalDark4096Dark.png]]
 
-<pre>START:Section 1</pre>
+<pre>START:Section 6</pre>
 <pre>DO:CHOOSER_NAME=SpectroChooser;VALUE=6</pre>
 
 <pre>IMAGE:NAME=Spectro</pre>
