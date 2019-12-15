@@ -1,0 +1,165 @@
+__NOTOC__
+
+
+{{ATK_Header}}
+
+This is the spec for the interactive diagram which explains window size in spectrograms:
+
+
+
+
+<pre>START</pre>
+
+<pre>ADD:DATA=
+[
+    {"SizeAs":0.05},
+    {"HStack":[
+        {"Rectangle":"256"},
+        {"Rectangle":"512"},
+        {"Rectangle":"1024"},
+        {"Rectangle":"2048"},
+        {"Rectangle":"4096"},
+        {"Rectangle":"8192"}
+        ],
+        "id":"SpectroChooser"},
+    {"Image":"Spectro"}
+]
+</pre>
+
+
+<pre>NEXTOBJECT:CHOICE=1</pre>
+
+<pre>IMAGE:NAME=Spectro</pre>
+[[File:SpectralVocalDark256Dark.png]]
+
+<pre>HOTSPOTS</pre>
+[[File:SpectralVocalDark256DarkHS.png]]
+
+
+
+<pre>NEXTOBJECT:TIP=</pre>
+
+<h1>256: Most Wideband</h1><p><em>This window size gives the spectrogram the best temporal resolution, but the worst frequency resolution.</em></p>
+<pre>CLICK DO:SECTION=1;SPEC=</pre>
+[[Toolbox/Spectrograms]]
+
+
+<pre>NEXTOBJECT:TIP=</pre>
+<h1>Window size 512</h1><p><em>Frequencies are not as clear as at window size of 2048 and above</em></p>
+<pre>CLICK DO:SECTION=2;SPEC=</pre>
+[[Toolbox/Spectrograms]]
+
+<pre>NEXTOBJECT:TIP=</pre>
+<h1>Window size 1024</h1><p><em>A good compromise.</em></p>
+<pre>CLICK DO:SECTION=3;SPEC=</pre>
+[[Toolbox/Spectrograms]]
+
+<pre>NEXTOBJECT:TIP=</pre>
+<h1>Window size 2048</h1><p><em>The duration of the silences before the 'd' and 't' in 'Audacity' are a lot less clear than for smaller window sizes.</em></p>
+<pre>CLICK DO:SECTION=4;SPEC=</pre>
+[[Toolbox/Spectrograms]]
+
+<pre>NEXTOBJECT:TIP=</pre>
+<h1>Window size 4096</h1><p><em>All sounds are shown as having longer duration than they really do</em></p>
+<pre>CLICK DO:SECTION=5;SPEC=</pre>
+[[Toolbox/Spectrograms]]
+
+
+<pre>NEXTOBJECT:TIP=</pre>
+<h1>8192: Most Narrowband</h1><p><em>This window size gives the spectrogram the worst temporal resolution and the best frequency resolution.</em></p>
+<pre>CLICK DO:SECTION=6;SPEC=</pre>
+[[Toolbox/Spectrograms]]
+
+
+<pre>ZONECOLOURS=
+[
+	[170,136,221,255],
+	[187,238,170,255],
+	[136,221,238,255],
+	[102,153, 85,255],
+	[238,221,136,255],
+	[221,119, 17,255],
+	[221, 17,221,255],
+	[221, 17, 51,255],
+	[ 68,170, 68,255],
+	[ 85,102,204,255]
+]
+</pre>
+
+<pre>NEXTZONE:COMMENT=tcp;TIP=</pre>
+<h1>Track Control Panel</h1><p><em>The <a href="https://manual.audacityteam.org/man/track_control_panel_and_vertical_scale.html">Track Control Panel (TCP)</a> in Audacity contains controls used, for example, to adjust the loudness of the track.</em></p>
+
+<pre>NEXTZONE:COMMENT=freq;TIP=</pre>
+<h2>Frequency Scale</h2><em><p>The spectrogram is a plot showing how the frequencies of a sound vary over time. The <b>frequency scale</b> runs from 0 KHz to 8 KHz.</p><p>This spectrogram shows a plot for the word 'Audacity'. </p><p>The most intense sounds are shown in white, then red, purple, blue, with black indicating no intensity at that frequency at that time.</p></em>
+
+<pre>NEXTZONE:COMMENT=win-size;TIP=</pre>
+<h1>Window Size</h1><em><p>Small windows sizes measure frequency over a short time range.  This is good when the frequencies change quickly.</p><p>Where the frequencies are sustained over longer time periods, larger window sizes give more precision about what the frequencies are.</p><p>The number for 'window size' is 'the number of audio samples'.</p></em>
+
+<pre>NEXTZONE:COMMENT=Aw;TIP=</pre>
+<h1><em style='color: #ffc747'>Aw</em>-dasssi-tee</h1><p><em>The initial vowel sound in the word 'Audacity'  The sound changes slightly over the duration of the vowel as the lips move closer together and are rounded more towards the end of the vowel sound.</em></p>
+
+<pre>NEXTZONE:COMMENT=-d;TIP=</pre>
+<h1>Aw<em style='color: #ffc747'>-d</em>asssi-tee</h1><p><em>The 'd' consonant sound in 'Audacity'.  There is a moment of near silence just before the 'd'.</em></p>
+
+<pre>NEXTZONE:COMMENT=a;TIP=</pre>
+<h1>Aw-d<em style='color: #ffc747'>a</em>sssi-tee</h1><p><em>The second vowel sound in 'Audacity' just before the loud 'sss' sound.  The pitch rises slightly towards the end as the mouth closes somewhat for the next sound.</em></p>
+
+<pre>NEXTZONE:COMMENT=sss;TIP=</pre>
+<h1>Aw-da<em style='color: #ffc747'>sss</em>i-tee</h1><p><em>The 'sss' sound of the 'c' in 'Audacity'.  The bright region at about 5KHz is showing many frequencies, all quite loud.</p><p>This sound is similar to the sound of [https://manual.audacityteam.org/man/noise.html 'white noise'] which also has many frequencies at once.</em></p>
+
+<pre>NEXTZONE:COMMENT=i;TIP=</pre>
+<h1>Aw-dasss<em style='color: #ffc747'>i</em>-tee</h1><p><em>The 'i' vowel sound in 'Audacity'</em></p>
+
+<pre>NEXTZONE:COMMENT=t;TIP=</pre>
+<h1>Aw-dasssi<em style='color: #ffc747'>-t</em>ee</h1><p><em>The 't' consonant sound in the word 'Audacity'.  There is a moment of near silence just before the 't'.</em></p>
+
+<pre>NEXTZONE:COMMENT=ee;TIP=</pre>
+<h1>Aw-dasssi-t<em style='color: #ffc747'>ee</em></h1><p><em>The 'y' vowel sound in 'Audacity'.</em></p>
+
+<pre>CREDITS:CAPTION=Spectrogram Window Sizes;TIP=</pre>
+<h3>Instructions</h3>
+<ul>
+<li>Hover over parts of the spectrogram for explanations.
+<li>Click numbers at top to change spectrogram window size.
+<li>Hold shift down to freeze the hotspot.
+</ul><br>
+<b>Credits:</b> <em>Screenshots by James Crook, 2019, and placed in the Public Domain</em>
+
+
+
+<pre>START:Section 1</pre>
+<pre>DO:CHOOSER_NAME=SpectroChooser;VALUE=1</pre>
+
+<pre>IMAGE:NAME=Spectro</pre>
+[[File:SpectralVocalDark256Dark.png]]
+
+<pre>START:Section 1</pre>
+<pre>DO:CHOOSER_NAME=SpectroChooser;VALUE=2</pre>
+
+<pre>IMAGE:NAME=Spectro</pre>
+[[File:SpectralVocalDark512Dark.png]]
+
+<pre>START:Section 1</pre>
+<pre>DO:CHOOSER_NAME=SpectroChooser;VALUE=3</pre>
+
+<pre>IMAGE:NAME=Spectro</pre>
+[[File:SpectralVocalDark1024Dark.png]]
+
+<pre>START:Section 1</pre>
+<pre>DO:CHOOSER_NAME=SpectroChooser;VALUE=4</pre>
+
+<pre>IMAGE:NAME=Spectro</pre>
+[[File:SpectralVocalDark2048Dark.png]]
+
+<pre>START:Section 1</pre>
+<pre>DO:CHOOSER_NAME=SpectroChooser;VALUE=5</pre>
+
+<pre>IMAGE:NAME=Spectro</pre>
+[[File:SpectralVocalDark4096Dark.png]]
+
+<pre>START:Section 1</pre>
+<pre>DO:CHOOSER_NAME=SpectroChooser;VALUE=6</pre>
+
+<pre>IMAGE:NAME=Spectro</pre>
+[[File:SpectralVocalDark8192Dark.png]]
+
