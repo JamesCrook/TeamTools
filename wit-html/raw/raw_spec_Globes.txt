@@ -1,6 +1,7 @@
 __NOTOC__
 
-Interactive diagrams are programs.  This is the program structure for the interactive diagram which shows who is who at the AU19 Audacity conference:
+Interactive diagrams are programs.  This is the program structure for the
+interactive diagram which shows different world maps wrapped onto a sphere:
 
 <pre>
 VERTICAL_LAYOUT
@@ -8,11 +9,11 @@ VERTICAL_LAYOUT
 </pre>
 
 The specification above builds a simple focus-detail display.  There's a
-stand-alone [https://wit.audacityteam.org/demos.htm?page=Maps
+stand-alone [https://wit.audacityteam.org/demos.htm?page=Globes
 interactive demo] but here is the result in wiki:
 
 -----
-{{#widget:Dynamic|page=Maps|height=620px}}
+{{#widget:Dynamic|page=Globes|height=620px}}
 -----
 
 The detailed data for the regions, buttons and tooltips follows.

@@ -213,20 +213,18 @@
           return;
         var str = "";
 
-        str+= "These examples have editable wiki pages:<ul>";
-//      str += formatExample("Globes","Globes","A demo of planets","wiki");
+        str+= "These are compound examples, made from simpler pages:<ul>";
+        str += formatExample("Globes","Globes","Five different 'World Maps': Climate, Vegetation, Ocean Currents, Plate Techtonics and The Moon","");
+
+        //      str += formatExample("Globes","Globes","A demo of planets","wiki");
         str += formatExample("Window_Size","Spectrogram Window-Sizes","Explanation of a spectrogram","wiki");
 
         str += formatExample("Ear2","The Ear", "Schematics based on Blausen Medical's images", "");
         str += formatExample("Middle_Ear_Anatomy2","The Middle Ear", "Schematic", "");
         str += formatExample("Inner_Ear_Anatomy2","The Inner Ear", "Schematic", "");
 
-        str+= "</ul>These examples don't have wiki pages, but they could do by pasting their text into wiki:<ul>";
+        str+= "</ul>These are further experiments:<ul>";
 
-        str += formatExample("Moon","The Moon","Moon-map wrapped onto a sphere","");
-        str += formatExample("Köppen2","Climate Zones","Köppen climate map, wrapped onto sphere","")
-        str += formatExample("Vegetation","Vegetation Zones","Vegetation zone map, wrapped onto sphere","")
-        str += formatExample("Globe","Plate Techtonics","Earth's plates map, wrapped onto sphere","");
         str += formatExample("SmallCrowd","Who is who?","Two who-is-who images","");
         str += formatExample("Flow_Chart","Flow Chart","Flowchart of Making the Manual","");
         str += formatExample("ClimateChart","Climate Chart","Graphing a Climate Chart","");
@@ -307,7 +305,7 @@
 </a>
 <div style="height:1.9em;"></div>
 
-<div id="content_here0" class="atkContentDiv" data-page="Chaining" style="text-align:center;">
+<div id="content_here0" class="atkContentDiv" data-page="Globes" style="text-align:center;">
 </div>
 
 <!--<div id="content_here1" class="atkContentDiv" data-page="Graphing" style="text-align:center;">

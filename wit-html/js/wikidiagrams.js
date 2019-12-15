@@ -1069,7 +1069,10 @@ function setNewImage(A,url){
 function doAction(A,action){
   if( action.Action === "Spec" ){
     requestSpec( A, action.Name, A.fromWiki, action.Section);
-  } else if( action.Action === "Image" ) {
+  } else if( action.Action === "DoSpec" ){
+    requestSpec( A, action.Name, A.fromWiki, action.Section, addNewDetails);
+  }
+  else if( action.Action === "Image" ) {
     setNewImage( A, action.Name);
   } else if( action.Action === "Goto" ){
     window.location.href = action.Name;
@@ -1553,8 +1556,12 @@ function isDefined(x){
 }
 
 function loadNewLines(A, specFileData, section){
-  if( section )
-    specFileData = specFileData.split("<pre>START</pre>")[section] || "";
+  if( section ){
+    specFileData = specFileData.split("<pre>START")[section] || "";
+    var ix = specFileData.indexOf("</pre>");
+    if( ix >=0 )
+      specFileData = specFileData.substr(ix+6);
+  }
 
   var lines = specFileData.split("<pre>");
 
@@ -1614,6 +1621,11 @@ function loadNewLines(A, specFileData, section){
       file = ("X" + spec).split("Toolbox/")[1] || fieldValue("SPEC", item);
       console.log("click-load-spec:" + file);
       setClick(A, "Spec", file);
+    }
+    if( item.startsWith("CLICK DO") ){
+      file = ("X" + spec).split("Toolbox/")[1] || fieldValue("SPEC", item);
+      console.log("click-do-spec:" + file);
+      setClick(A, "DoSpec", file);
     }
     if( item.startsWith("SECTION") ){
       data = fieldValue("SECTION", item);
@@ -1755,7 +1767,16 @@ function loadNewLines(A, specFileData, section){
       obj.hot.img.crossOrigin = "anonymous";
       obj.hot.img.src = file;
     }
-
+    if( item.startsWith("DO") ){
+      obj = getObjectByName(A, fieldValue("CHOOSER_NAME", item));
+      if( obj ){
+        data = fieldValue("VALUE", item);
+        if( data ){
+           data = JSON.parse( data );
+           doChoose( A, obj, data );
+        }
+      }
+    }
     if( item.startsWith("SUBOBJECT") ){
       console.log("subobject:" + file);
       obj = getObjectByName(A, fieldValue("NAME", item));
@@ -1801,9 +1822,9 @@ function loadNewLines(A, specFileData, section){
 
       data = fieldValue("CHOICE", item);
       if( data ){
-        obj.choice = data;
-        setupForChoosing( A, obj, 1 );
-        doChoose( A, obj, 1 );
+        obj.choice = JSON.parse( data );
+        setupForChoosing( A, obj, obj.choice);
+        doChoose( A, obj, obj.choice );
       }
       data = fieldValue("COLOUR", item);
       if( data ) obj.colour = data;
