@@ -149,7 +149,18 @@ function populateDomElement(A, contentHere){
   A.DetailDiv.style.top = "0px";
 
   A.DetailDiv.style.display = "none";
-  A.DetailDiv.className = "detaildiv";
+  //A.DetailDiv.className = "detaildiv";
+
+
+  A.DetailDiv.style.padding = "20px";
+  // so the div is exactly therequested size.
+  A.DetailDiv.style.boxSizing =  "border-box";
+  A.DetailDiv.style.border = "1px solid rgba(230, 230, 230, 0)";
+  A.DetailDiv.style.borderRadius = "5px";
+  A.DetailDiv.style.MozBorderRadius = "5px";
+  A.DetailDiv.style.textAlign = "left";
+  A.DetailDiv.style.margin = "0px";
+
 
   // Hotspot canvas and context do not need to be attached.
   A.Hotspots.canvas = document.createElement('canvas');
