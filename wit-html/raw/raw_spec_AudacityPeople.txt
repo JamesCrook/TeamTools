@@ -58,7 +58,7 @@ the hotspots.  A different colour is used for each person.</em></p>
 <pre>HOTSPOTS</pre>
 [[File:AudacityAu19HS.png]]
 
-<pre>COLOURSET=
+<pre>ZONECOLOURS=
 [
 	[240,135,150,255],
 	[225,135,240,255],

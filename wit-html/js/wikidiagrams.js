@@ -1593,85 +1593,31 @@ function loadNewLines(A, specFileData, section){
     spec = spec.split("]]")[0] || spec;
     spec = spec.split("|")[0] || spec;
 
-    if( item.startsWith("ZONE:RGBA=(") ){
-      var index = fieldValue("RGBA", item);
-      index = index.split(" ").join("");
-      index = index.replace("(", "[");
-      index = index.replace(")", "]");
-      console.log("color:" + index);
-      AddHot(A, index);
-    }
-    if( item.startsWith("NEXTZONE:") ){
-      if( A.Hotspots.ColourZones ){
-        var n = A.Hotspots.ColourZoneIx++ % A.Hotspots.ColourZones.length;
-        var c = A.Hotspots.ColourZones[n];
-        c = '[' + c[0] + ',' + c[1] + ',' + c[2] + ',' + c[3] + ']';
-        console.log("next-color:" + c + "n:" + n);
-        AddHot(A, c);
-      }
-    }
+
+    // Deprecated way to create a selector button
     if( item.startsWith("ZONE:LABEL=") || item.startsWith("BUTTON:LABEL=") ){
       var label = fieldValue("LABEL", item);
       console.log("label:" + label);
       AddButton(A, label);
       if( !detail ) detail = " ";
     }
-    if( item.startsWith("HOVER LOAD IMAGE") ){
-      console.log("hover-load-image:" + file);
-      setHover(A, "Image", file);
-    }
-    if( item.startsWith("HOVER LOAD SPEC") ){
-      file = ("X" + spec).split("Toolbox/")[1] || fieldValue("SPEC", item);
-      console.log("hover-load-spec:" + file);
-      setHover(A, "Spec", file);
-    }
-    if( item.startsWith("CLICK LOAD IMAGE") ){
-      console.log("click-load-image:" + file);
-      setClick(A, "Image", file);
-    }
-    if( item.startsWith("CLICK LOAD SPEC") ){
-      file = ("X" + spec).split("Toolbox/")[1] || fieldValue("SPEC", item);
-      console.log("click-load-spec:" + file);
-      setClick(A, "Spec", file);
-    }
-    if( item.startsWith("CLICK DO") ){
-      file = ("X" + spec).split("Toolbox/")[1] || fieldValue("SPEC", item);
-      console.log("click-do-spec:" + file);
-      data = fieldValue("SECTION", item);
-      if( data ){
-        setSection(A, data);
-      }
-      setClick(A, "DoSpec", file);
-    }
-    if( item.startsWith("SECTION") ){
-      data = fieldValue("SECTION", item);
-      setSection(A, data);
-    }
-    if( item.startsWith("CLICK GOTO") ){
-      file = item.split("GOTO=</pre>")[1] || "";
-      // extract a wiki hyperlink.
-      file = ("X" + file).split("[")[1] || "";
-      file = file.split(" ")[0] || file.split("]")[0] || "";
-
-      console.log("click-goto:" + file);
-      setClick(A, "Goto", file);
-    }
+    // Deprecated way to turn an image spherical.
+    // The new way is to specify obj.spherical in the spec.
     if( item.startsWith("DISTORTION") ){
       console.log("distortion:");
       obj = A.RootObject.lastImage;
       if( !obj ) continue;
       obj.spherical = true;
+    }
+    // Obsolete way to specify a section in a spec file.
+    if( item.startsWith("SECTION") ){
+      data = fieldValue("SECTION", item);
+      setSection(A, data);
+    }
 
-    }
-    if( item.startsWith("COLOURSET=") ){
-      data = fieldValue("OURSET", item);
-      console.log("colour-data:" + data);
-      obj = JSON.parse(data);
-      //console.log(obj);
-      A.Hotspots.ColourZones = A.Hotspots.ColourZones || [];
-      A.Hotspots.ColourZones = A.Hotspots.ColourZones.concat(obj);
-      A.Hotspots.ColourZoneIx = A.Hotspots.ColourZoneIx || 0;
-    }
+
+
+    // Specify a table of colours which will be used for hotspots.
     if( item.startsWith("ZONECOLOURS=") ){
       data = fieldValue("COLOURS", item);
       console.log("colour-data:" + data);
@@ -1682,6 +1628,104 @@ function loadNewLines(A, specFileData, section){
       A.Hotspots.ColourZoneIx = A.Hotspots.ColourZoneIx || 0;
 
     }
+
+    // Add a TIP to a zone, specifying colour of zone
+    if( item.startsWith("ZONE:RGBA=(") ){
+      var index = fieldValue("RGBA", item);
+      index = index.split(" ").join("");
+      index = index.replace("(", "[");
+      index = index.replace(")", "]");
+      console.log("color:" + index);
+      AddHot(A, index);
+    }
+    // Add a TIP to the next zone (from zones specified earlier via ZONECOLOURS)
+    if( item.startsWith("NEXTZONE:") ){
+      if( A.Hotspots.ColourZones ){
+        var n = A.Hotspots.ColourZoneIx++ % A.Hotspots.ColourZones.length;
+        var c = A.Hotspots.ColourZones[n];
+        c = '[' + c[0] + ',' + c[1] + ',' + c[2] + ',' + c[3] + ']';
+        console.log("next-color:" + c + "n:" + n);
+        AddHot(A, c);
+      }
+    }
+
+    // Add a TIP to the next object.
+    // Can also modify other attributes such as colours and edge rounding.
+    // Can also turn an object into a chooser.
+    if( item.startsWith("NEXTOBJECT:") ){
+      if( !isDefined(A.RootObject.objectList) ) continue;
+      var n = A.RootObject.itemIndex++;
+      obj = A.RootObject.objectList[n];
+      if( !isDefined(obj) ) continue;
+
+      data = fieldValue("CHOICE", item);
+      if( data ){
+        obj.choice = JSON.parse( data );
+        setupForChoosing( A, obj, obj.choice);
+        doChoose( A, obj, obj.choice );
+      }
+      data = fieldValue("COLOUR", item);
+      if( data ) obj.colour = data;
+      data = fieldValue("BCOLOUR", item);
+      if( data ) obj.bcolour = data;
+      data = fieldValue("CORNER_RADIUS", item);
+      if( data && (!isNaN(Number(data))) ) obj.corner_radius = Number(data);
+      if( detail ){
+        detail = sanitiseHtml(detail);
+        var c = NextAutoColour(A, detail);
+        detail = ""; //so as not to add it twice.
+        obj.hotspotColour = c;
+      }
+    }
+
+    // Set object hover to load an image
+    if( item.startsWith("HOVER LOAD IMAGE") ){
+      console.log("hover-load-image:" + file);
+      setHover(A, "Image", file);
+    }
+    // Set object hover to load a spec
+    if( item.startsWith("HOVER LOAD SPEC") ){
+      file = ("X" + spec).split("Toolbox/")[1] || fieldValue("SPEC", item);
+      console.log("hover-load-spec:" + file);
+      setHover(A, "Spec", file);
+    }
+    // Set object click to load an image
+    if( item.startsWith("CLICK LOAD IMAGE") ){
+      console.log("click-load-image:" + file);
+      setClick(A, "Image", file);
+    }
+    // Set object click to load a spec
+    if( item.startsWith("CLICK LOAD SPEC") ){
+      file = ("X" + spec).split("Toolbox/")[1] || fieldValue("SPEC", item);
+      console.log("click-load-spec:" + file);
+      setClick(A, "Spec", file);
+    }
+
+    // Set object click to execute a section of a spec (without erasing
+    // what's already there)
+    if( item.startsWith("CLICK DO") ){
+      file = ("X" + spec).split("Toolbox/")[1] || fieldValue("SPEC", item);
+      console.log("click-do-spec:" + file);
+      data = fieldValue("SECTION", item);
+      if( data ){
+        setSection(A, data);
+      }
+      setClick(A, "DoSpec", file);
+    }
+
+    // Set object click to goto a hyperlink
+    if( item.startsWith("CLICK GOTO") ){
+      file = item.split("GOTO=</pre>")[1] || "";
+      // extract a wiki hyperlink.
+      file = ("X" + file).split("[")[1] || "";
+      file = file.split(" ")[0] || file.split("]")[0] || "";
+
+      console.log("click-goto:" + file);
+      setClick(A, "Goto", file);
+    }
+
+    // ADD in some object into the scene graph.
+    // Can add at a particular named place using 'NAME='
     if( item.startsWith("FLOWCHART:") || item.startsWith("ADD:") ){
       var root = getObjectByName(A, fieldValue("NAME", item));
       root = root || A.RootObject;
@@ -1700,6 +1744,8 @@ function loadNewLines(A, specFileData, section){
       }
       //console.log(obj);
     }
+
+    // Add a CHART object into the scene graph.
     if( item.startsWith("CHART") ){
       var root = getObjectByName(A, fieldValue("NAME", item));
       root = root || A.RootObject;
@@ -1713,6 +1759,9 @@ function loadNewLines(A, specFileData, section){
 
       root.content.push(obj);
     }
+
+    // Add an image into the scene graph.
+    // This is required, if you want the image to actually load.
     if( item.startsWith("IMAGE") ){
       console.log("image:" + file);
       obj = getObjectByName(A, fieldValue("NAME", item));
@@ -1756,6 +1805,8 @@ function loadNewLines(A, specFileData, section){
       obj.img.src = file;
 
     }
+
+    // Used after IMAGE to add hotspot image for that image.
     if( item.startsWith("HOTSPOTS") ){
       console.log("hotspots:" + file);
       obj = A.RootObject.lastImage;
@@ -1783,6 +1834,9 @@ function loadNewLines(A, specFileData, section){
       obj.hot.img.crossOrigin = "anonymous";
       obj.hot.img.src = file;
     }
+
+    // DO some immediate command.  Currently it's confined to changing
+    // the choice in a chooser.
     if( item.startsWith("DO") ){
       obj = getObjectByName(A, fieldValue("CHOOSER_NAME", item));
       if( obj ){
@@ -1793,6 +1847,9 @@ function loadNewLines(A, specFileData, section){
         }
       }
     }
+
+    // Experimental (and incomplete) code to request a subdiagram to add
+    // in at a specified place.
     if( item.startsWith("SUBOBJECT") ){
       console.log("subobject:" + file);
       obj = getObjectByName(A, fieldValue("NAME", item));
@@ -1830,32 +1887,7 @@ function loadNewLines(A, specFileData, section){
     }
 
 
-    if( item.startsWith("NEXTOBJECT:") ){
-      if( !isDefined(A.RootObject.objectList) ) continue;
-      var n = A.RootObject.itemIndex++;
-      obj = A.RootObject.objectList[n];
-      if( !isDefined(obj) ) continue;
-
-      data = fieldValue("CHOICE", item);
-      if( data ){
-        obj.choice = JSON.parse( data );
-        setupForChoosing( A, obj, obj.choice);
-        doChoose( A, obj, obj.choice );
-      }
-      data = fieldValue("COLOUR", item);
-      if( data ) obj.colour = data;
-      data = fieldValue("BCOLOUR", item);
-      if( data ) obj.bcolour = data;
-      data = fieldValue("CORNER_RADIUS", item);
-      if( data && (!isNaN(Number(data))) ) obj.corner_radius = Number(data);
-      if( detail ){
-        detail = sanitiseHtml(detail);
-        var c = NextAutoColour(A, detail);
-        detail = ""; //so as not to add it twice.
-        obj.hotspotColour = c;
-      }
-    }
-
+    // Takes a spec of joinings, and adds it in.
     if( item.startsWith("ARROWS:") ){
       data = fieldValue("DATA", item);
       console.log("arrow-data:" + data);
