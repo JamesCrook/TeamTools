@@ -20,7 +20,7 @@ The detailed data for the chart follows.
 
 <pre>START</pre>
 
-<pre>FLOWCHART:DATA=
+<pre>ADD:DATA=
 {"HStack":[
     {"SizeAs":3},
     {"Margins":7},

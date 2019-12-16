@@ -1709,7 +1709,7 @@ function loadNewLines(A, specFileData, section){
 
     // ADD in some object into the scene graph.
     // Can add at a particular named place using 'NAME='
-    if( item.startsWith("FLOWCHART:") || item.startsWith("ADD:") ){
+    if( item.startsWith("ADD:") ){
       root = getObjectByName(A, fieldValue("NAME", item));
       root = root || A.RootObject;
       root.type = "VStack";
@@ -1726,21 +1726,6 @@ function loadNewLines(A, specFileData, section){
         root.content.push(container[kk]);
       }
       //console.log(obj);
-    }
-
-    // Add a CHART object into the scene graph.
-    if( item.startsWith("CHART") ){
-      root = getObjectByName(A, fieldValue("NAME", item));
-      root = root || A.RootObject;
-      // Chart relies on a values array that holds the data.
-      data = fieldValue("DATA", item);
-      console.log("chart-data:" + data);
-      obj = JSON.parse(data);
-      convertJsonStructure(A, "", obj);
-      obj.content = [];
-      obj.type = "Chart";
-
-      root.content.push(obj);
     }
 
     // Add an image into the scene graph.
