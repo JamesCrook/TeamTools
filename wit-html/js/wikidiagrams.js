@@ -1582,6 +1582,10 @@ function loadNewLines(A, specFileData, section){
     var item = lines[i];
     var data;
     var obj;
+    var n;
+    var c;
+    var root;
+
     var detail = item.split("TIP=</pre>")[1];
     var file = item.split("[[File:")[1] || "";
     file = file.split("]]")[0] || "";
@@ -1592,28 +1596,6 @@ function loadNewLines(A, specFileData, section){
     var spec = item.split("[[")[1] || "";
     spec = spec.split("]]")[0] || spec;
     spec = spec.split("|")[0] || spec;
-
-
-    // Deprecated way to create a selector button
-    if( item.startsWith("ZONE:LABEL=") || item.startsWith("BUTTON:LABEL=") ){
-      var label = fieldValue("LABEL", item);
-      console.log("label:" + label);
-      AddButton(A, label);
-      if( !detail ) detail = " ";
-    }
-    // Deprecated way to turn an image spherical.
-    // The new way is to specify obj.spherical in the spec.
-    if( item.startsWith("DISTORTION") ){
-      console.log("distortion:");
-      obj = A.RootObject.lastImage;
-      if( !obj ) continue;
-      obj.spherical = true;
-    }
-    // Obsolete way to specify a section in a spec file.
-    if( item.startsWith("SECTION") ){
-      data = fieldValue("SECTION", item);
-      setSection(A, data);
-    }
 
 
 
@@ -1629,24 +1611,25 @@ function loadNewLines(A, specFileData, section){
 
     }
 
-    // Add a TIP to a zone, specifying colour of zone
-    if( item.startsWith("ZONE:RGBA=(") ){
-      var index = fieldValue("RGBA", item);
-      index = index.split(" ").join("");
-      index = index.replace("(", "[");
-      index = index.replace(")", "]");
-      console.log("color:" + index);
-      AddHot(A, index);
-    }
     // Add a TIP to the next zone (from zones specified earlier via ZONECOLOURS)
     if( item.startsWith("NEXTZONE:") ){
       if( A.Hotspots.ColourZones ){
-        var n = A.Hotspots.ColourZoneIx++ % A.Hotspots.ColourZones.length;
-        var c = A.Hotspots.ColourZones[n];
+        n = A.Hotspots.ColourZoneIx++ % A.Hotspots.ColourZones.length;
+        c = A.Hotspots.ColourZones[n];
         c = '[' + c[0] + ',' + c[1] + ',' + c[2] + ',' + c[3] + ']';
         console.log("next-color:" + c + "n:" + n);
         AddHot(A, c);
       }
+    }
+
+    // Add a TIP to a zone, specifying colour of zone
+    if( item.startsWith("ZONE:RGBA=(") ){
+      c = fieldValue("RGBA", item);
+      c = c.split(" ").join("");
+      c = c.replace("(", "[");
+      c = c.replace(")", "]");
+      console.log("color:" + c);
+      AddHot(A, c);
     }
 
     // Add a TIP to the next object.
@@ -1654,7 +1637,7 @@ function loadNewLines(A, specFileData, section){
     // Can also turn an object into a chooser.
     if( item.startsWith("NEXTOBJECT:") ){
       if( !isDefined(A.RootObject.objectList) ) continue;
-      var n = A.RootObject.itemIndex++;
+      n = A.RootObject.itemIndex++;
       obj = A.RootObject.objectList[n];
       if( !isDefined(obj) ) continue;
 
@@ -1727,7 +1710,7 @@ function loadNewLines(A, specFileData, section){
     // ADD in some object into the scene graph.
     // Can add at a particular named place using 'NAME='
     if( item.startsWith("FLOWCHART:") || item.startsWith("ADD:") ){
-      var root = getObjectByName(A, fieldValue("NAME", item));
+      root = getObjectByName(A, fieldValue("NAME", item));
       root = root || A.RootObject;
       root.type = "VStack";
       root.content = root.content || [];
@@ -1747,7 +1730,7 @@ function loadNewLines(A, specFileData, section){
 
     // Add a CHART object into the scene graph.
     if( item.startsWith("CHART") ){
-      var root = getObjectByName(A, fieldValue("NAME", item));
+      root = getObjectByName(A, fieldValue("NAME", item));
       root = root || A.RootObject;
       // Chart relies on a values array that holds the data.
       data = fieldValue("DATA", item);
@@ -1896,6 +1879,7 @@ function loadNewLines(A, specFileData, section){
       A.RootObject.arrows = obj;
     }
 
+    // Set the caption, and info for the info button.
     if( item.startsWith("CREDITS") ){
       A.caption = fieldValue("CAPTION", item);
       console.log("caption:" + A.caption);
@@ -1903,6 +1887,8 @@ function loadNewLines(A, specFileData, section){
       // Reserve a colour for the info button.
       AddInfo(A);
     }
+
+    // Adds the TIP to current hotspot.
     if( detail ){
       detail = sanitiseHtml(detail);
       console.log(" <<<" + detail + ">>>");
