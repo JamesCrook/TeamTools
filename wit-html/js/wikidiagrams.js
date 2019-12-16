@@ -1221,7 +1221,12 @@ function setATitle(A,caption, page, fromWiki){
     if( fromWiki === "yes" )
       str +=
         " &nbsp; [ <a href='https://wiki.audacityteam.org/w/index.php?title=Toolbox/" +
-        page + "&action=edit'>edit</a> ]"
+        page + "&action=edit'>edit</a> ]";
+    else if( fromWiki === "remote" )
+      str +=
+        " &nbsp; [ <a" +
+        " href='https://wit.audacityteam.org/edit.htm?page0=" +
+        page + "&action=edit'>edit</a> ]";
     else
       str +=
         " &nbsp; [ <a target='editor' href='./edit.htm?page0=" +
