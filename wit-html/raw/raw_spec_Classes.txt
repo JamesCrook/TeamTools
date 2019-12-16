@@ -2024,6 +2024,6 @@ The detailed data for the chart follows.
 <h3>Instructions</h3>
 <ul>
 <li>Hover over blobs on the track for details about that item.
-<li>Larger spots have more information about them.
+<li>Larger spots have more information about them than smaller ones.
 </ul><br><br>
 <b>Credits:</b> <em>James Crook ©2019; Data and Image placed in Public Domain</em>

@@ -196,15 +196,24 @@
           return;
         var str = "";
 
-        str+= "These are compound examples, made from a chooser to choose from simpler pages.  They show several different uses for the souped-up image map:<ul>";
-        str += formatExample("SmallCrowd","People","Two who-is-who images, one from the Audacity unconference, one a featured image in English Wikipedia, showing how an image map can provide a key for identifying people.","");
+        str+= "These are compound examples, made from a chooser to choose from simpler pages.  They show how the souped-up image map works and several different uses:<ul>";
+        str += formatExample("AudacityPeople","Audacity People","A who-is-who image that also shows how the hotspots work.","");
+//        str += formatExample("SmallCrowd","People","Two who-is-who images, one from the Audacity unconference, one a featured image in English Wikipedia, showing how an image map can provide a key for identifying people.","");
+        str += formatExample("Ear3","The Ear", "Three schematics of the ear, based on Blausen Medical's images", "");
         str += formatExample("Spectrograms","Spectrograms","Six related spectrograms for the word 'Audacity', explaining what the spectrogram shows.","");
         //str += formatExample("Globes","Globes","A demo of planets","wiki");
         //str += formatExample("Window_Size","Spectrogram Window-Sizes","Explanation of a spectrogram","wiki");
 
-        str += formatExample("Ear3","The Ear", "Three schematics of the ear, based on Blausen Medical's images", "");
         //str += formatExample("Middle_Ear_Anatomy2","The Middle Ear", "Schematic", "");
         //str += formatExample("Inner_Ear_Anatomy2","The Inner Ear", "Schematic", "");
+
+        str+= "</ul>Interactive diagrams for explaining Audacity code and development:<ul>";
+
+        str += formatExample("Flow_Chart","Flow Chart","Flowchart of making the Audacity manual.  Shows more complex layout and shows arrows.","");
+        str += formatExample("Classes","Classes","A metro-line zig-zag display of 494 classes in Audacity","");
+        str += formatExample("Structure","Tree Diagram","A 2-level tree diagram of Audacity classes","");
+
+        str += formatExample("Graphing","Bug Chart","Graph of Audacity bugs over time.  Illustrates layouts where legends labels and scales are added as layers with relative positioning.","");
 
         str+= "</ul>The globes (next) show a special feature of the images, that they can be wrapped around a sphere.  The climate classification example is the most involved, as it also shows some rainfall and temperature charting for the climate charts:<ul>";
 
@@ -213,12 +222,8 @@
 
         str+= "</ul>These are further experiments and examples showing other features:<ul>";
 
-        str += formatExample("Flow_Chart","Flow Chart","Flowchart of Making the Manual.  Shows more complex layout and shows arrows.","");
-        str += formatExample("ClimateChart","Climate Chart","Graphing a Climate Chart","");
-        str += formatExample("Graphing","Graphing","More graphs of various kinds.  Illustrates layouts where legends labels and scales are added as layers with relative positioning.","");
-        str += formatExample("Classes","Classes","A metro-line zig-zag display of 494 classes","");
-        str += formatExample("Structure","Tree Diagram","A 2-level tree diagram of Audacity classes","");
-        str += formatExample("Biochemical","Biochemical","A metro-line display of biochemical pathways","");
+        str += formatExample("ClimateChart","Climate Chart","Graphing a Climate Chart.  In time these will appear on the globes","");
+        str += formatExample("Biochemical","Biochemical","A metro-line display of biochemical pathways.  This diagram and the code structure diagram for Audacity are related.","");
         str+="</ul>";
 
 
