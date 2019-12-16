@@ -1224,7 +1224,7 @@ function setATitle(A,caption, page, fromWiki){
         page + "&action=edit'>edit</a> ]"
     else
       str +=
-        " &nbsp; [ <a href='./edit.htm?page0=" +
+        " &nbsp; [ <a target='editor' href='./edit.htm?page0=" +
         page + "&action=edit'>edit</a> ]"
   }
 
