@@ -1217,9 +1217,16 @@ function setATitle(A,caption, page, fromWiki){
 
   var atitle = A.TitleDiv;//.getElementById("atitle"+A.index);
   var str = "<em>" + caption + "</em>";
-  if( page ) str +=
-    " &nbsp; [ <a href='https://wiki.audacityteam.org/w/index.php?title=Toolbox/" +
-    page + "&action=edit'>edit</a> ]"
+  if( page ){
+    if( fromWiki === "yes" )
+      str +=
+        " &nbsp; [ <a href='https://wiki.audacityteam.org/w/index.php?title=Toolbox/" +
+        page + "&action=edit'>edit</a> ]"
+    else
+      str +=
+        " &nbsp; [ <a href='./edit.htm?page0=" +
+        page + "&action=edit'>edit</a> ]"
+  }
 
   if( A.Hotspots.ColourZones && A.Hotspots.ColourZones.length > 0)
     str +=
@@ -2013,5 +2020,44 @@ function initContent(){
   }
   // Timer is for animation such as rotating earth.
   setInterval(timerCallback, 30);
+
+}
+
+function handleEditorData(A, data, section){
+  A.MainDiv.innerHTML = data;
+}
+
+function populateEditorElement(A, contentHere){
+
+  // Used for debugging messages
+  Message = document.getElementById("message");
+  Message2 = document.getElementById("message2");
+
+  // MainDiv contains all the other divs
+  A.MainDiv = document.createElement("textarea");
+  A.MainDiv.rows=50;
+  A.MainDiv.cols=80;
+  A.MainDiv.style.width="80%";
+  A.MainDiv.style.fontFamily = "Consolas,Lucida Console,monospace";
+  A.MainDiv.spellcheck="false";
+
+  contentHere.appendChild(A.MainDiv);
+}
+
+function initEditors(){
+  var query = window.location.href;
+  var contentDivs = document.getElementsByClassName( "atkContentDiv" );
+  for(var i=0;i<contentDivs.length;i++){
+    var A = makeAnnotator();
+    A.index = i;
+    A.page = getArg(query, 'page'+i) || contentDivs[i].getAttribute("data-page") || "SmallCrowd";
+    populateEditorElement( A, contentDivs[i] );
+    requestSpec(A,A.page, 'remote',1,handleEditorData);
+
+
+    loadDiagram( A, A.page, 'no',1);
+  }
+  // Timer is for animation such as rotating earth.
+  //setInterval(timerCallback, 30);
 
 }
