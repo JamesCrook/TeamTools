@@ -45,8 +45,10 @@ The detailed data for the regions, buttons and tooltips follows.
 
 
 <pre>NEXTOBJECT:TIP=</pre>
-<h1>Hotspots</h1><p><em>This shows the coloured regions used to define
-the hotspots.  A different colour is used for each person.</em></p>
+<h1>Hotspots</h1><p><em>Click on this button to show the coloured regions
+used to define the hotspots.  A different colour is used for each person
+.</em></p>
+
 <pre>CLICK DO:SECTION=2;SPEC=</pre>
 [[Toolbox/AudacityPeople]]
 
