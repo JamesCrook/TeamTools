@@ -1661,29 +1661,33 @@ function loadNewLines(A, specFileData, section){
       }
     }
 
-    // Set object hover to load an image
-    if( item.startsWith("HOVER LOAD IMAGE") ){
-      console.log("hover-load-image:" + file);
-      setHover(A, "Image", file);
-    }
-    // Set object hover to load a spec
-    if( item.startsWith("HOVER LOAD SPEC") ){
-      file = ("X" + spec).split("Toolbox/")[1] || fieldValue("SPEC", item);
-      console.log("hover-load-spec:" + file);
-      setHover(A, "Spec", file);
-    }
-    // Set object click to load an image
-    if( item.startsWith("CLICK LOAD IMAGE") ){
-      console.log("click-load-image:" + file);
-      setClick(A, "Image", file);
-    }
-    // Set object click to load a spec
-    if( item.startsWith("CLICK LOAD SPEC") ){
-      file = ("X" + spec).split("Toolbox/")[1] || fieldValue("SPEC", item);
-      console.log("click-load-spec:" + file);
-      setClick(A, "Spec", file);
-    }
+    /* These 4 appear not to be needed now.
 
+        // Set object hover to load an image
+        if( item.startsWith("HOVER LOAD IMAGE") ){
+          console.log("hover-load-image:" + file);
+          setHover(A, "Image", file);
+        }
+        // Set object hover to load a spec
+        if( item.startsWith("HOVER LOAD SPEC") ){
+          file = ("X" + spec).split("Toolbox/")[1] || fieldValue("SPEC", item);
+          console.log("hover-load-spec:" + file);
+          setHover(A, "Spec", file);
+        }
+
+
+        // Set object click to load an image
+        if( item.startsWith("CLICK LOAD IMAGE") ){
+          console.log("click-load-image:" + file);
+          setClick(A, "Image", file);
+        }
+        // Set object click to load a spec
+        if( item.startsWith("CLICK LOAD SPEC") ){
+          file = ("X" + spec).split("Toolbox/")[1] || fieldValue("SPEC", item);
+          console.log("click-load-spec:" + file);
+          setClick(A, "Spec", file);
+        }
+    */
     // Set object click to execute a section of a spec (without erasing
     // what's already there)
     if( item.startsWith("CLICK DO") ){
