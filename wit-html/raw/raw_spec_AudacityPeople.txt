@@ -22,6 +22,7 @@ The detailed data for the regions, buttons and tooltips follows.
 
 <pre>ADD:DATA=
 [
+    {"Margins":1.6},
     {"SizeAs":0.07},
     {"HStack":[
         {"Rectangle":"Photo"},
