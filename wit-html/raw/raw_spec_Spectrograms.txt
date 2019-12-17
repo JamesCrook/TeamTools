@@ -12,7 +12,8 @@ This is the spec for the interactive diagram which explains window size in spect
 
 <pre>ADD:DATA=
 [
-    {"SizeAs":0.05},
+    {"Margins":1.6},
+    {"SizeAs":0.07},
     {"HStack":[
         {"Rectangle":"256"},
         {"Rectangle":"512"},
