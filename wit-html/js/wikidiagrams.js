@@ -264,9 +264,9 @@ NextAutoColour = function( A, Tip){
   A.Hotspots.ColourZones.push( JSON.parse( index ) );
   A.Hotspots.ColourZoneIx++;
 
-  if( A.Hotspots.ColourZoneIx === 1 ){
-    setATitle( A, A.Caption.text, A.Caption.page, A.Caption.fromWiki );
-  }
+  //if( A.Hotspots.ColourZoneIx === 1 ){
+  //  setATitle( A, A.Caption.text, A.Caption.page, A.fromWiki );
+  //}
   return rgb;
 };
 
@@ -1673,7 +1673,7 @@ function loadNewLines(A, specFileData, section){
       }
     }
 
-    /* These 4 appear not to be needed now.
+    /* These 3 appear not to be needed now.
 
         // Set object hover to load an image
         if( item.startsWith("HOVER LOAD IMAGE") ){
@@ -1693,13 +1693,15 @@ function loadNewLines(A, specFileData, section){
           console.log("click-load-image:" + file);
           setClick(A, "Image", file);
         }
-        // Set object click to load a spec
-        if( item.startsWith("CLICK LOAD SPEC") ){
-          file = ("X" + spec).split("Toolbox/")[1] || fieldValue("SPEC", item);
-          console.log("click-load-spec:" + file);
-          setClick(A, "Spec", file);
-        }
     */
+
+    // Set object click to load a spec
+    if( item.startsWith("CLICK LOAD SPEC") ){
+      file = ("X" + spec).split("Toolbox/")[1] || fieldValue("SPEC", item);
+      console.log("click-load-spec:" + file);
+      setClick(A, "Spec", file);
+    }
+
     // Set object click to execute a section of a spec (without erasing
     // what's already there)
     if( item.startsWith("CLICK DO") ){
