@@ -1218,19 +1218,25 @@ function setATitle(A,caption, page, fromWiki){
   var atitle = A.TitleDiv;//.getElementById("atitle"+A.index);
   var str = "<em>" + caption + "</em>";
   if( page ){
-    if( fromWiki === "yes" )
+
+    if( isFromServer() === "no" )
+    {
       str +=
-        " &nbsp; [ <a href='https://wiki.audacityteam.org/w/index.php?title=Toolbox/" +
-        page + "&action=edit'>edit</a> ]";
-    else if( fromWiki === "remote" )
+        " &nbsp; [ <a target='editor' href='./edit.htm?page0=" +
+        page + "&action=edit'>edit</a> ]"
+    } else  if( fromWiki !== 'yes' ){
       str +=
         " &nbsp; [ <a" +
         " href='https://wit.audacityteam.org/edit.htm?page0=" +
         page + "&action=edit'>edit</a> ]";
-    else
+    }
+
+    else {
       str +=
-        " &nbsp; [ <a target='editor' href='./edit.htm?page0=" +
-        page + "&action=edit'>edit</a> ]"
+        " &nbsp; [ <a href='https://wiki.audacityteam.org/w/index.php?title=Toolbox/" +
+        page + "&action=edit'>edit</a> ]";
+    }
+
   }
 
   if( A.Hotspots.ColourZones && A.Hotspots.ColourZones.length > 0)
