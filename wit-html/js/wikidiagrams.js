@@ -354,12 +354,27 @@ function drawBar(A,T, values, i, ix){
   ctx.stroke();
 }
 
+function drawSpot(A,T, values, i, ix){
+  var vx = values[i][ix];
+  var x = T.margin + T.x0 + i * T.xScaler;
+  var y = vx * T.yScaler;
+  var ctx = A.BackingCanvas.ctx;
+  ctx.beginPath();
+  ctx.rect(x + (ix - 1) * T.width,
+    T.yh - (T.margin + y) + T.y0, T.width, T.width);
+  ctx.fillStyle =
+    (ix !== 1) ? "rgba(105,205,105,1.0)" : "rgba(105,105,205,1.0)";
+  ctx.fill();
+  ctx.stroke();
+}
+
+
 function drawLabel(A,T, values, i,ix){
   // Only label the x axis items once.
   if( ix > 1 )
     return;
   var ctx = A.BackingCanvas.ctx;
-  // The +8 is 0.707 * font height.
+  // The +8 is 0.707 * font height of 11.
   var x = T.margin + T.x0 + i * T.xScaler+(T.width*T.items)*0.5+8;
   var y = T.margin;
   ctx.save();
@@ -391,30 +406,52 @@ function computeSpacing(A, T, x0, y0, xw, yh, values){
   // Count is the number of rows in the table.  One per time.
   // Items is the number of cols in the table.  One per data series.
   T.count = T.count || values.length;
-  T.items = T.items || (values[0].length - 1);
+  T.items = T.items || values[0].length;
+  // Cols is the number of columns to draw.
+  T.cols = T.items-1;
+
   T.margin = 40;
   T.yh += T.margin - 10;
   if( T.width )
     // If width of each item is given, then space between is what's left over
     T.spacer =
-      (xw - 2 * T.margin - T.count * T.width * T.items) / (T.count - 1);
+      (xw - 2 * T.margin - T.count * T.width * T.cols) / (T.count - 1);
   else {
     // otherwise width of item is determined by spacing between.
     T.spacer = T.spacer || 4;
-    T.width = ((xw + T.spacer - 2 * T.margin) / T.count - T.spacer) / T.items;
+    T.width = ((xw + T.spacer - 2 * T.margin) / T.count - T.spacer) / T.cols;
   }
-  T.xScaler = (T.width * T.items + T.spacer);
+  T.xScaler = (T.width * T.cols + T.spacer);
 
   // yScale so that items grow.
   T.yScaler = (Math.min(20, A.Status.time) / 20) * (yh) / 2000.0;
 }
 
-function drawSpacedItems(A,x0, y0, xw, yh, values, fn, T){
+function drawSpacedItems(A,x0, y0, xw, yh, values, T){
+  for( j = 0; j < T.items; j++ ){
+    for( i = 0; i < T.count; i++ ){
+      T.fns[j](A, T, values, i, j);
+    }
+  }
+}
 
-  if( !values ) return;
-  computeSpacing(A, T, x0, y0, xw, yh, values);
-  for( i = 0; i < T.count; i++ ){
-    for( j = 0; j < T.items; j++ ) fn(A,T, values, i, 1 + j);
+function drawNowt(A,T, values, i,ix){
+  return;
+}
+
+function makeFunctionTable(T, obj){
+  // prepare which functions to call
+  T.fns = [];
+  for( var j = 0; j < T.items; j++ ){
+    var type = obj.subtype[j];
+    if( type === "bar" )
+      T.fns.push(drawBar);
+    else if( type === "label" )
+      T.fns.push(drawLabel);
+    else if( type === "spot" )
+      T.fns.push(drawSpot);
+    else
+      T.fns.push(drawNowt);
   }
 }
 
@@ -422,12 +459,12 @@ function drawChart3(A,x0, y0, xw, yh, obj){
   var T = {};
   // We can either specify width of the bars, or the spacing between bar groups.
   T.width = 8;
+  if( !obj.values )
+    return;
   clearBacking(A,x0, y0, xw, yh);
-  if( obj.subtype != "labels" ) drawSpacedItems(A,x0, y0, xw, yh, obj.values,
-    drawBar, T);
-  //T.items = 1;
-  if( obj.subtype == "labels" ) drawSpacedItems(A,x0, y0, xw, yh, obj.values,
-    drawLabel, T);
+  computeSpacing(A, T, x0, y0, xw, yh, obj.values);
+  makeFunctionTable(T, obj);
+  drawSpacedItems(A,x0, y0, xw, yh, obj.values, T);
 }
 
 function drawDonut(A,T, values, i, ix){
