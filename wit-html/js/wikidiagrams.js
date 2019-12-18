@@ -342,11 +342,11 @@ function detailPosFromCursorPos(A,x, y){
 
 function drawBar(A,T, values, i, ix){
   var vx = values[i][ix];
-  var x = i * T.xScaler;
+  var x = T.margin + T.x0 + i * T.xScaler;
   var y = vx * T.yScaler;
   var ctx = A.BackingCanvas.ctx;
   ctx.beginPath();
-  ctx.rect(T.margin + x + (ix - 1) * T.width + T.x0,
+  ctx.rect(x + (ix - 1) * T.width,
     T.yh - (T.margin + y) + T.y0, T.width, y);
   ctx.fillStyle =
     (ix !== 1) ? "rgba(105,205,105,1.0)" : "rgba(105,105,205,1.0)";
@@ -354,12 +354,16 @@ function drawBar(A,T, values, i, ix){
   ctx.stroke();
 }
 
-function drawLabel(A,T, values, i){
+function drawLabel(A,T, values, i,ix){
+  // Only label the x axis items once.
+  if( ix > 1 )
+    return;
   var ctx = A.BackingCanvas.ctx;
-  var x = i * T.xScaler + T.width + 10;
+  // The +8 is 0.707 * font height.
+  var x = T.margin + T.x0 + i * T.xScaler+(T.width*T.items)*0.5+8;
   var y = T.margin;
   ctx.save();
-  ctx.translate(T.margin + x + T.x0, T.yh - (T.margin + y) + T.y0);
+  ctx.translate(x+ (ix - 1) * T.width, T.yh - (T.margin + y) + T.y0);
   ctx.rotate(-Math.PI / 4);
   ctx.textAlign = "right";
   ctx.fillStyle = "rgba(15,35,165,1.0)";
@@ -384,6 +388,8 @@ function computeSpacing(A, T, x0, y0, xw, yh, values){
   T.y0 = y0;
   T.xw = xw;
   T.yh = yh;
+  // Count is the number of rows in the table.  One per time.
+  // Items is the number of cols in the table.  One per data series.
   T.count = T.count || values.length;
   T.items = T.items || (values[0].length - 1);
   T.margin = 40;
@@ -391,12 +397,15 @@ function computeSpacing(A, T, x0, y0, xw, yh, values){
   if( T.width )
     // If width of each item is given, then space between is what's left over
     T.spacer =
-      (xw - 2 * T.margin - T.count * T.width * T.items) / (T.count - 1); else {
+      (xw - 2 * T.margin - T.count * T.width * T.items) / (T.count - 1);
+  else {
     // otherwise width of item is determined by spacing between.
     T.spacer = T.spacer || 4;
     T.width = ((xw + T.spacer - 2 * T.margin) / T.count - T.spacer) / T.items;
   }
   T.xScaler = (T.width * T.items + T.spacer);
+
+  // yScale so that items grow.
   T.yScaler = (Math.min(20, A.Status.time) / 20) * (yh) / 2000.0;
 }
 
@@ -411,11 +420,12 @@ function drawSpacedItems(A,x0, y0, xw, yh, values, fn, T){
 
 function drawChart3(A,x0, y0, xw, yh, obj){
   var T = {};
+  // We can either specify width of the bars, or the spacing between bar groups.
   T.width = 8;
   clearBacking(A,x0, y0, xw, yh);
   if( obj.subtype != "labels" ) drawSpacedItems(A,x0, y0, xw, yh, obj.values,
     drawBar, T);
-  T.items = 1;
+  //T.items = 1;
   if( obj.subtype == "labels" ) drawSpacedItems(A,x0, y0, xw, yh, obj.values,
     drawLabel, T);
 }
