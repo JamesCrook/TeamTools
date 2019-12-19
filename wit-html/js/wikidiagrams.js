@@ -368,6 +368,44 @@ function drawSpot(A,T, values, i, ix){
   ctx.stroke();
 }
 
+function drawDonut(A,T, values, i, ix){
+  if( ix !== 1)
+    return;
+  var xw = T.width;
+  var x = i * T.xScaler + T.margin + T.x0 + xw / 2;
+  var y = T.y0 + T.yh - T.margin - T.width + xw / 2;
+  var r = xw / 2;
+  var r2 = r * 0.40;
+  var t0 = 2.0 * Math.PI * 0.75;
+  var t1 = 2.0 * Math.PI * 0.75;
+  var colours = ["rgba(105,205,105,1.0)", "rgba(105,105,205,1.0)"];
+
+  // get total
+  var total = 0;
+  var j;
+  for( j = 1; j < values[i].length; j++ ) total = total + values[i][j];
+
+  var ctx = A.BackingCanvas.ctx;
+
+  var frac = Math.min(20, A.Status.time) / 20;
+
+  for( j = 1; j < values[i].length; j++ ){
+    t0 = t1;
+    t1 = t1 + frac * Math.PI * 2 * values[i][j] / total;
+    ctx.beginPath();
+    ctx.moveTo(x + r2 * Math.cos(t0), y + r2 * Math.sin(t0));
+    ctx.lineTo(x + r * Math.cos(t0), y + r * Math.sin(t0));
+    ctx.arc(x, y, r, t0, t1, false);
+    ctx.lineTo(x + r2 * Math.cos(t1), y + r2 * Math.sin(t1));
+    ctx.arc(x, y, r2, t1, t0, true);
+    ctx.closePath();
+    //ctx.rect(x, y, T.width, T.width);
+    ctx.fillStyle = colours[j % 2];
+    ctx.fill();
+    ctx.stroke();
+  }
+}
+
 
 function drawLabel(A,T, values, i,ix){
   // Only label the x axis items once.
@@ -408,7 +446,7 @@ function computeSpacing(A, T, x0, y0, xw, yh, values){
   T.count = T.count || values.length;
   T.items = T.items || values[0].length;
   // Cols is the number of columns to draw.
-  T.cols = T.items-1;
+  T.cols = T.cols || T.items-1;
 
   T.margin = 40;
   T.yh += T.margin - 10;
@@ -435,9 +473,11 @@ function drawSpacedItems(A,x0, y0, xw, yh, values, T){
   }
 }
 
+
 function drawNowt(A,T, values, i,ix){
-  return;
 }
+//function drawNowt(A, obj, d){
+//}
 
 function makeFunctionTable(T, obj){
   // prepare which functions to call
@@ -448,6 +488,8 @@ function makeFunctionTable(T, obj){
       T.fns.push(drawBar);
     else if( type === "label" )
       T.fns.push(drawLabel);
+    else if( type === "pie" )
+      T.fns.push(drawDonut);
     else if( type === "spot" )
       T.fns.push(drawSpot);
     else
@@ -455,7 +497,14 @@ function makeFunctionTable(T, obj){
   }
 }
 
-function drawChart3(A,x0, y0, xw, yh, obj){
+function drawChart(A, obj, d){
+  //console.log( "draw - "+obj.type);
+  var l = obj.layout;
+  var x0 = l.x0;
+  var y0 = l.y0;
+  var xw = l.xw;
+  var yh = l.yh;
+
   var T = {};
   // We can either specify width of the bars, or the spacing between bar groups.
   T.width = 8;
@@ -467,49 +516,22 @@ function drawChart3(A,x0, y0, xw, yh, obj){
   drawSpacedItems(A,x0, y0, xw, yh, obj.values, T);
 }
 
-function drawDonut(A,T, values, i, ix){
-  var xw = T.width;
-  var x = i * T.xScaler + T.margin + T.x0 + xw / 2;
-  var y = T.y0 + T.yh - T.margin - T.width + xw / 2;
-  var r = xw / 2;
-  var r2 = r * 0.40;
-  var t0 = 2.0 * Math.PI * 0.75;
-  var t1 = 2.0 * Math.PI * 0.75;
-  var colours = ["rgba(105,205,105,1.0)", "rgba(105,105,205,1.0)"];
+function drawPieChart(A, obj, d){
+  //console.log( "draw - "+obj.type);
+  var l = obj.layout;
+  var x0 = l.x0;
+  var y0 = l.y0;
+  var xw = l.xw;
+  var yh = l.yh;
 
-  // get total
-  var total = 0;
-  var j;
-  for( j = 1; j < values[i].length; j++ ) total = total + values[i][j];
-
-  var ctx = A.BackingCanvas.ctx;
-
-  var frac = Math.min(20, A.Status.time) / 20;
-
-  for( j = 1; j < values[i].length; j++ ){
-    t0 = t1;
-    t1 = t1 + frac * Math.PI * 2 * values[i][j] / total;
-    ctx.beginPath();
-    ctx.moveTo(x + r2 * Math.cos(t0), y + r2 * Math.sin(t0));
-    ctx.lineTo(x + r * Math.cos(t0), y + r * Math.sin(t0));
-    ctx.arc(x, y, r, t0, t1, false);
-    ctx.lineTo(x + r2 * Math.cos(t1), y + r2 * Math.sin(t1));
-    ctx.arc(x, y, r2, t1, t0, true);
-    ctx.closePath();
-    //ctx.rect(x, y, T.width, T.width);
-    ctx.fillStyle = colours[j % 2];
-    ctx.fill();
-    ctx.stroke();
-  }
-}
-
-function drawPieChart(A,x0, y0, xw, yh, obj){
   var T = {};
   //T.width = 100;
   T.spacer = 30;
-  T.items = 1;
+  T.cols = 1;
   clearBacking(A, x0, y0, xw, yh);
-  drawSpacedItems(A,x0, y0, xw, yh, obj.values, drawDonut, T);
+  computeSpacing(A, T, x0, y0, xw, yh, obj.values);
+  makeFunctionTable(T, obj);
+  drawSpacedItems(A,x0, y0, xw, yh, obj.values, T);
 }
 
 function xyOfIndexSnakey(i, T){
@@ -532,6 +554,8 @@ function xyOfIndexSnakey(i, T){
   return { "x": x, "y": y };
 }
 
+
+// For drawing a snakey plot
 function drawMultipleItems(A,values, T){
   var i = 0;
   var ctx = A.BackingCanvas.ctx;
@@ -625,7 +649,14 @@ function drawMultipleItems(A,values, T){
 }
 
 // draws a path inside a box.
-function drawPath(A,x0, y0, xw, yh, obj, stride){
+function drawPath(A, obj, d, stride){
+  //console.log( "draw - "+obj.type);
+  var l = obj.layout;
+  var x0 = l.x0;
+  var y0 = l.y0;
+  var xw = l.xw;
+  var yh = l.yh;
+
   stride = stride || 2;
   var T = {};
   //T.width = 100;
@@ -659,8 +690,9 @@ function drawPath(A,x0, y0, xw, yh, obj, stride){
   drawMultipleItems(A,obj.values, T);
 }
 
-function drawTree(A,x0, y0, xw, yh, obj){
-  drawPath(A,x0, y0, xw, yh, obj, 1);
+function drawTree(A, obj, d){
+  //console.log( "draw - "+obj.type);
+  drawPath(A, obj, d, 1);
 }
 
 
@@ -875,11 +907,18 @@ function drawArrowHead(A,obj1, obj2){
   ctx.restore();
 }
 
-function drawImage(A,x, y, xw, yh, obj){
+function drawImage(A, obj, d){
+  //console.log( "draw - "+obj.type);
+  var l = obj.layout;
+  var x = l.x0;
+  var y = l.y0;
+  var xw = l.xw;
+  var yh = l.yh;
+
   var ctx = A.BackingCanvas.ctx;
   var ctx2 = A.Hotspots.ctx;
   if( obj.status !== "arrived" ){
-    drawRectangle(A, x, y, xw, yh, obj);
+    drawRectangle(A, obj, d);
   } else if( obj.spherical ){
     drawSphere(A, x, y, xw, yh, ctx, obj);
     drawSphere(A, x, y, xw, yh, ctx2, obj.hot);
@@ -909,12 +948,19 @@ function drawImage(A,x, y, xw, yh, obj){
       }
     }
     ctx.drawImage(obj.img, x, y, xw, yh);
-    if( obj.hot && obj.hot.status === "arrived" ) ctx2.drawImage(obj.hot.img, x,
-      y, xw, yh);
+    if( obj.hot && obj.hot.status === "arrived" )
+      ctx2.drawImage(obj.hot.img, x, y, xw, yh);
   }
 }
 
-function drawRectangle(A,x, y, xw, yh, obj){
+function drawRectangle(A, obj, d){
+  //console.log( "draw - "+obj.type);
+  var l = obj.layout;
+  var x = l.x0;
+  var y = l.y0;
+  var xw = l.xw;
+  var yh = l.yh;
+
   var ctx = A.BackingCanvas.ctx;
 
   ctx.save();
@@ -939,7 +985,14 @@ function drawRectangle(A,x, y, xw, yh, obj){
   }
 }
 
-function drawCircle(A,x, y, xw, yh, obj){
+
+function drawCircle(A, obj, d){
+  //console.log( "draw - "+obj.type);
+  var l = obj.layout;
+  var x = l.x0;
+  var y = l.y0;
+  var xw = l.xw;
+  var yh = l.yh;
 
   var ctx = A.BackingCanvas.ctx;
   ctx.lineWidth = 3;
@@ -1361,40 +1414,12 @@ function drawContainer(A, obj, d){
   for( var i = 0; i < n; i++ ) drawCells(A,obj.content[i], d);
 }
 
-drawThing = {
-  "default": function(A, obj, d){
-    //console.log( "draw (default) - "+obj.type);
-  }, "VStack": drawContainer, "HStack": drawContainer, "Overlay": drawContainer,
 
-  "Chart": function(A, obj, d){
-    //console.log( "draw - "+obj.type);
-    var l = obj.layout;
-    drawChart3(A,l.x0, l.y0, l.xw, l.yh, obj);
-  }, "PieChart": function(A, obj, d){
-    //console.log( "draw - "+obj.type);
-    var l = obj.layout;
-    drawPieChart(A,l.x0, l.y0, l.xw, l.yh, obj);
-  }, "Path": function(A, obj, d){
-    //console.log( "draw - "+obj.type);
-    var l = obj.layout;
-    drawPath(A,l.x0, l.y0, l.xw, l.yh, obj);
-  }, "Tree": function(A, obj, d){
-    //console.log( "draw - "+obj.type);
-    var l = obj.layout;
-    drawTree(A,l.x0, l.y0, l.xw, l.yh, obj);
-  }, "Image": function(A, obj, d){
-    //console.log( "draw - "+obj.type);
-    var l = obj.layout;
-    drawImage(A,l.x0, l.y0, l.xw, l.yh, obj);
-  }, "Rectangle": function(A, obj, d){
-    //console.log( "draw - "+obj.type);
-    var l = obj.layout;
-    drawRectangle(A,l.x0, l.y0, l.xw, l.yh, obj);
-  }, "Circle": function(A, obj, d){
-    //console.log( "draw - "+obj.type);
-    var l = obj.layout;
-    drawCircle(A,l.x0, l.y0, l.xw, l.yh, obj);
-  }
+drawThing = {
+  "default": drawNowt,
+  "VStack": drawContainer,
+  "HStack": drawContainer,
+  "Overlay": drawContainer,
 };
 
 /*
@@ -1423,14 +1448,10 @@ function sizeCell(A, obj, d, proportion){
     obj.sizing.wants = d.sizeAs;
     delete d.sizeAs;
   }
-}
-
-function sizeRectangle( A, obj, d, proportion){
-  sizeCell( A, obj, d, proportion );
-  if( obj.choice ){
-    obj.sizing.wants = 0.01;
-    obj.sizing.min = 40;
-  }
+  //if( obj.choice ){
+  //  obj.sizing.wants = 0.01;
+  //  obj.sizing.min = 40;
+ // }
 }
 
 function sizeContainer(A, obj, d){
@@ -1446,9 +1467,6 @@ function sizeContainer(A, obj, d){
   }
 }
 
-function sizeContainer2(A, obj, d){
-  sizeContainer(A, obj, d);
-}
 
 sizeThing = {
   "default": sizeContainer, //"VStack":sizeContainer,
@@ -1467,13 +1485,7 @@ sizeThing = {
   },
   "Margins": function(A, obj, d){
     sizeCell(A, obj, d, 0.0);
-  },
-
-  //"Chart":sizeContainer,
-  //"PieChart":sizeCell,
-  //"Image":sizeContainer2,
-  "Rectangle":sizeRectangle,
-  //"Circle":sizeCell
+  }
 };
 
 function layoutCell(A, x0, y0, xw, yh, obj, d){
@@ -1538,15 +1550,38 @@ layoutThing = {
       layoutCells(A, l.x0, l.y0, l.xw, l.yh, obj.content[i], d);
     }
   },
-  "Chart": layoutMargined, //"PieChart":layoutUnmargined,
-  "Image": layoutMargined,
-  "Rectangle": layoutMargined,
-  "Circle": layoutMargined,
   "Margins": function(A,obj, d){
     d.margins = obj.value;
   }
 
 };
+
+
+function registerMethod( forWhat, sizing, layout, draw )
+{
+  if( sizing )
+    sizeThing[ forWhat ] = sizing;
+  if( layout )
+    layoutThing[ forWhat ] = layout;
+  if( draw )
+    drawThing[ forWhat ] = draw;
+
+}
+
+function registerMethods()
+{
+  registerMethod( "Circle",    0, layoutMargined, drawCircle);
+  registerMethod( "Rectangle", 0, layoutMargined, drawRectangle);
+  registerMethod( "Image",     0, layoutMargined, drawImage);
+  registerMethod( "Chart",     0, layoutMargined, drawChart);
+
+  // The charts are unmargined...
+  registerMethod( "PieChart",0,0, drawPieChart);
+  registerMethod( "Path",    0,0, drawPath);
+  registerMethod( "Tree",    0,0, drawTree);
+
+
+}
 
 // converts user friendly format into more
 // verbose but more uniform format,
@@ -2069,6 +2104,7 @@ function makeAnnotator(){
 //makeAnnotator();
 
 function initContent(){
+  registerMethods();
   var query = window.location.href;
   var contentDivs = document.getElementsByClassName( "atkContentDiv" );
   for(var i=0;i<contentDivs.length;i++){

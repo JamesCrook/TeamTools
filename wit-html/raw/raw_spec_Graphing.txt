@@ -98,6 +98,7 @@ The detailed data for the chart follows.
  {"PieChart":"many donuts",
    "titles":["Date","Live Bugs","Slain Bugs"],
    "display":["Label","Blue","Green"],
+   "subtype":["*","pie","pie"],
    "values":[
    ["Aug 2017",605,1104],
    ["Sep 2017",543,1192],
