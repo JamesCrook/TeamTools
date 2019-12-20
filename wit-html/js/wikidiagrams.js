@@ -283,7 +283,8 @@ function innerDraw(A){
   drawCells(A,A.RootObject, {});
   drawArrowHeads(A);
 
-  drawButtons(A);
+  //drawButtons(A);
+  drawInfoButtonHotspot(A);
   A.Status.drawing = false;
 }
 
@@ -419,6 +420,7 @@ function drawLabel(A,T, values, i,ix){
   ctx.translate(x+ (ix - 1) * T.width, T.yh - (T.margin + y) + T.y0);
   ctx.rotate(-Math.PI / 4);
   ctx.textAlign = "right";
+  ctx.font = "15px Arial";
   ctx.fillStyle = "rgba(15,35,165,1.0)";
   ctx.fillText(values[i][0], 0, 0);
   ctx.restore();
@@ -790,44 +792,7 @@ function drawSphere(A,xx, yy, xw, yh, ctx, obj){
   ctx.putImageData(dstData, xx + (w - h), yy + (h1 - h));
 }
 
-function drawButtons(A){
-  var xw = 60;
-  var yh = 25;
-  var gap = 9;
-  var n = A.Buttons.Names.length;
-  var m = 1;
-  // grid of n by m buttons, with gaps between them.
-  var x = (A.Porthole.width - n * (xw + gap) + gap) * 0.5;
-  var y = 0;//(A.Porthole.height - m *(yh+gap) + gap) *0.5;
-  var ctx = A.BackingCanvas.ctx;
-  var ctx2 = A.Hotspots.ctx;
-  ctx.lineWidth = 3;
-  ctx.font = "16px Arial";
-  ctx.strokeStyle = "rgba( 55, 55,155,1.0)";
-  ctx2.lineWidth = 0;
-
-  var i;
-  for( i = 0; i < n; i++ ){
-    var xx = x + i * (xw + gap);
-    var yy = y + 1;
-    ctx.beginPath();
-    if( (i + 1) === A.Buttons.chosen ) ctx.fillStyle =
-      "rgba(255,255,255,1.0)"; else ctx.fillStyle = "rgba(205,205,205,1.0)";
-
-    ctx.rect(xx, yy, xw, yh);
-    ctx.fill();
-    ctx.stroke();
-    ctx.fillStyle = "rgba(0,0,0,1.0)";
-    ctx.fillText(A.Buttons.Names[i], xx + 11, yy + 18);
-    ctx2.beginPath();
-    ctx2.fillStyle = "rgba(0,10," + (i + 1) * 5 + ",1.0)";
-    ctx2.rect(x + i * (xw + gap), y + 0 * (yh + gap), xw, yh);
-    ctx2.fill();
-  }
-  drawInfoButtonHotspot(A);
-}
-
-function roundRect(ctx, x, y, w, h, r){
+function drawRoundRect(ctx, x, y, w, h, r){
   if( w < 0 ) return;
   if( h < 0 ) return;
   if( w < 2 * r ) r = w / 2;
@@ -967,8 +932,10 @@ function drawRectangle(A, obj, d){
   ctx.beginPath();
 
   setStyles(ctx, obj);
-  if( obj.corner_radius ) roundRect(ctx, x, y, xw, yh,
-    obj.corner_radius); else ctx.rect(x, y, xw, yh);
+  if( obj.corner_radius )
+    drawRoundRect(ctx, x, y, xw, yh, obj.corner_radius);
+  else
+    ctx.rect(x, y, xw, yh);
   ctx.fill();
   ctx.stroke();
 
@@ -1404,39 +1371,12 @@ function sanitiseHtml(html){
   return html;
 }
 
-function drawCells(A, obj, data){
-  visit(drawThing, A, obj, data);
-}
-
 function drawContainer(A, obj, d){
   //console.log( "draw container - "+obj.type);
   var n = obj.content.length;
   for( var i = 0; i < n; i++ ) drawCells(A,obj.content[i], d);
 }
 
-
-drawThing = {
-  "default": drawNowt,
-  "VStack": drawContainer,
-  "HStack": drawContainer,
-  "Overlay": drawContainer,
-};
-
-/*
-"BarChart" : function(obj,d){
-  d.T = {};
-  d.T.prepareForAll = prepareForBars;
-  d.T.prepareForOne = prepareBar;
-  d.T.drawOne = drawBar;
-  drawFlyweightCells( obj, d );
-}
-*/
-
-
-function sizeCells(A, obj, data){
-  visit(sizeThing, A, obj, data);
-  //console.log( obj.sizing);
-}
 
 function sizeCell(A, obj, d, proportion){
   //console.log( "size cell - "+obj.type);
@@ -1467,11 +1407,70 @@ function sizeContainer(A, obj, d){
   }
 }
 
+function layoutCell(A, x0, y0, xw, yh, obj, d){
+  obj.layout = { "x0": x0, "y0": y0, "xw": xw, "yh": yh };
+  //console.log( obj.layout );
+}
+
+
+function layoutMargined(A, obj, d){
+  //console.log( "layout - "+obj.type);
+  var m = d.margins;
+  var l = obj.layout;
+  layoutCell(A, l.x0 + m, l.y0 + m, l.xw - 2 * m, l.yh - 2 * m, obj, d);
+}
+
+function layoutUnmargined(A, obj, d){
+  //console.log( "layout - "+obj.type);
+  var m = 0;
+  var l = obj.layout;
+  layoutCell(A, l.x0 + m, l.y0 + m, l.xw - 2 * m, l.yh - 2 * m, obj, d);
+}
+
+function layoutContainer( A, obj, d){
+  //console.log( "layout - "+obj.type);
+  var n = obj.content.length;
+  var l = obj.layout;
+  var k = obj.sizing.cumulativeWants;
+  //console.log( "n: "+n+", k:"+k);
+  var wantsSoFar = 0.0;
+  for( var i = 0; i < n; i++ ){
+    var want = obj.content[i].sizing.wants;
+    switch( obj.type ){
+      case "HStack":
+        layoutCells(A, l.x0 + (wantsSoFar / k) * l.xw, l.y0,
+          l.xw * (want / k), l.yh, obj.content[i], d);
+        break;
+      case "VStack":
+        layoutCells(A, l.x0, l.y0 + (wantsSoFar / k) * l.yh,
+          l.xw,l.yh * (want / k), obj.content[i], d);
+        break;
+      case "Overlay":
+        layoutCells(A, l.x0, l.y0, l.xw, l.yh, obj.content[i], d);
+        break;
+      default:
+    }
+    wantsSoFar += want;
+  }
+}
+
+
+function sizeCells(A, obj, data){
+  visit(sizeThing, A, obj, data);
+  //console.log( obj.sizing);
+}
+
+function layoutCells(A, x0, y0, xw, yh, obj, d){
+  layoutCell(A, x0, y0, xw, yh, obj, d);
+  visit(layoutThing, A, obj, d);
+}
+
+function drawCells(A, obj, data){
+  visit(drawThing, A, obj, data);
+}
 
 sizeThing = {
-  "default": sizeContainer, //"VStack":sizeContainer,
-  //"HStack":sizeContainer,
-  //"Overlay":sizeContainer,
+  "default": sizeContainer,
 
   // SizeAs gives this size to the next object.
   // The size is normally 1, so 2 will increase
@@ -1488,72 +1487,22 @@ sizeThing = {
   }
 };
 
-function layoutCell(A, x0, y0, xw, yh, obj, d){
-  obj.layout = { "x0": x0, "y0": y0, "xw": xw, "yh": yh };
-  //console.log( obj.layout );
-}
-
-function layoutCells(A, x0, y0, xw, yh, obj, d){
-  layoutCell(A, x0, y0, xw, yh, obj, d);
-  visit(layoutThing, A, obj, d);
-}
-
-function layoutMargined(A, obj, d){
-  //console.log( "layout - "+obj.type);
-  var m = d.margins;
-  var l = obj.layout;
-  layoutCell(A, l.x0 + m, l.y0 + m, l.xw - 2 * m, l.yh - 2 * m, obj, d);
-}
-
-function layoutUnmargined(A, obj, d){
-  //console.log( "layout - "+obj.type);
-  var m = 0;
-  var l = obj.layout;
-  layoutCell(A, l.x0 + m, l.y0 + m, l.xw - 2 * m, l.yh - 2 * m, obj, d);
-}
-
 layoutThing = {
   "default": layoutUnmargined,
-  "VStack": function(A, obj, d){
-    //console.log( "layout - "+obj.type);
-    var n = obj.content.length;
-    var l = obj.layout;
-    var k = obj.sizing.cumulativeWants;
-    //console.log( "n: "+n+", k:"+k);
-    var wantsSoFar = 0.0;
-    for( var i = 0; i < n; i++ ){
-      var want = obj.content[i].sizing.wants;
-      layoutCells(A, l.x0, l.y0 + (wantsSoFar / k) * l.yh, l.xw, l.yh * (want / k),
-        obj.content[i], d);
-      wantsSoFar += want;
-    }
-  },
-  "HStack": function(A, obj, d){
-    //console.log( "layout - "+obj.type);
-    var n = obj.content.length;
-    var l = obj.layout;
-    var k = obj.sizing.cumulativeWants;
-    //console.log( "n: "+n+", k:"+k);
-    var wantsSoFar = 0.0;
-    for( var i = 0; i < n; i++ ){
-      var want = obj.content[i].sizing.wants;
-      layoutCells(A, l.x0 + (wantsSoFar / k) * l.xw, l.y0, l.xw * (want / k), l.yh,
-        obj.content[i], d);
-      wantsSoFar += want;
-    }
-  }, // Superimposed elements, all the same size.
-  "Overlay": function(A, obj, d){
-    //console.log( "layout - "+obj.type);
-    var n = obj.content.length;
-    var l = obj.layout;
-    for( var i = 0; i < n; i++ ){
-      layoutCells(A, l.x0, l.y0, l.xw, l.yh, obj.content[i], d);
-    }
-  },
+  "VStack": layoutContainer,
+  "HStack": layoutContainer,
+  "Overlay": layoutContainer,
   "Margins": function(A,obj, d){
     d.margins = obj.value;
   }
 
+};
+
+drawThing = {
+  "default": drawNowt,
+  "VStack": drawContainer,
+  "HStack": drawContainer,
+  "Overlay": drawContainer,
 };
 
 
@@ -1579,13 +1528,8 @@ function registerMethods()
   registerMethod( "PieChart",0,0, drawPieChart);
   registerMethod( "Path",    0,0, drawPath);
   registerMethod( "Tree",    0,0, drawTree);
-
-
 }
 
-// converts user friendly format into more
-// verbose but more uniform format,
-// with content and type fields.
 
 // @how has a function for each type of object
 // @what is an object to visit
@@ -1596,6 +1540,9 @@ function visit(how, A, what, data){
   } else how.default.call(how, A, what, data);
 }
 
+// converts user friendly format into more
+// verbose but more uniform format,
+// with content and type fields.
 function convertJsonStructure(A, indent, layout){
   var key;
   for( key in layout ){
