@@ -270,17 +270,18 @@ NextAutoColour = function( A, Tip){
   return rgb;
 };
 
-function innerDraw(A){
+function innerDraw(A,obj,d){
   A.Status.drawing = true;
   var ctx = A.BackingCanvas.ctx;
   var ctx2 = A.Hotspots.ctx;
-  ctx.clearRect(0, 0, A.Porthole.width, A.Porthole.height);
-  ctx2.clearRect(0, 0, A.Porthole.width, A.Porthole.height);
+  var l = obj.layout;
+  ctx.clearRect(l.x0,l.y0,l.xw,l.yh);
+  ctx2.clearRect(l.x0,l.y0,l.xw,l.yh);
 
   // Some hotpspot colours are created as needed.
   A.Hotspots.autoColour = 0;
   drawArrows(A);
-  drawCells(A,A.RootObject, {});
+  drawCells(A,obj, d);
   drawArrowHeads(A);
 
   //drawButtons(A);
@@ -288,21 +289,23 @@ function innerDraw(A){
   A.Status.drawing = false;
 }
 
+function sizeLayoutAndDraw(A, obj, d){
+  sizeCells(A, obj, d);
+  d.margins = 0;
+  layoutCells(A, obj, d);
+  innerDraw(A, obj, d);
+}
+
 function onChart(A){
   console.log("onChart");
   A.Detail.width = A.Porthole.width / 2 - 10;
   A.Detail.height = Math.min(300, A.Porthole.height - 100);
-
   resizeDivs(A);
-
   var d = {};
-  sizeCells(A,A.RootObject, d);
-  d.margins = 0;
-  layoutCells(A,0, 0, A.Porthole.width, A.Porthole.height, A.RootObject, d);
-  //console.log(A.RootObject.content );
-  innerDraw(A);
+  var obj = A.RootObject;
+  setCellLayout( A,0, 0, A.Porthole.width, A.Porthole.height, obj);
+  sizeLayoutAndDraw(A, obj, d);
   A.Status.isAppReady = true;
-
 }
 
 function timerCallback(){
@@ -317,7 +320,7 @@ function timerCallback(){
     if( A.Status.time > 600 )
       continue;
     if( !A.Status.drawing )
-      innerDraw(A);
+      innerDraw(A,A.RootObject,{});
   }
 }
 
@@ -1407,7 +1410,7 @@ function sizeContainer(A, obj, d){
   }
 }
 
-function layoutCell(A, x0, y0, xw, yh, obj, d){
+function setCellLayout(A, x0, y0, xw, yh, obj){
   obj.layout = { "x0": x0, "y0": y0, "xw": xw, "yh": yh };
   //console.log( obj.layout );
 }
@@ -1417,14 +1420,14 @@ function layoutMargined(A, obj, d){
   //console.log( "layout - "+obj.type);
   var m = d.margins;
   var l = obj.layout;
-  layoutCell(A, l.x0 + m, l.y0 + m, l.xw - 2 * m, l.yh - 2 * m, obj, d);
+  setCellLayout(A, l.x0 + m, l.y0 + m, l.xw - 2 * m, l.yh - 2 * m, obj, d);
 }
 
 function layoutUnmargined(A, obj, d){
   //console.log( "layout - "+obj.type);
   var m = 0;
   var l = obj.layout;
-  layoutCell(A, l.x0 + m, l.y0 + m, l.xw - 2 * m, l.yh - 2 * m, obj, d);
+  setCellLayout(A, l.x0 + m, l.y0 + m, l.xw - 2 * m, l.yh - 2 * m, obj, d);
 }
 
 function layoutContainer( A, obj, d){
@@ -1438,18 +1441,19 @@ function layoutContainer( A, obj, d){
     var want = obj.content[i].sizing.wants;
     switch( obj.type ){
       case "HStack":
-        layoutCells(A, l.x0 + (wantsSoFar / k) * l.xw, l.y0,
-          l.xw * (want / k), l.yh, obj.content[i], d);
+        setCellLayout(A, l.x0 + (wantsSoFar / k) * l.xw, l.y0,
+          l.xw * (want / k), l.yh, obj.content[i]);
         break;
       case "VStack":
-        layoutCells(A, l.x0, l.y0 + (wantsSoFar / k) * l.yh,
-          l.xw,l.yh * (want / k), obj.content[i], d);
+        setCellLayout(A, l.x0, l.y0 + (wantsSoFar / k) * l.yh,
+          l.xw,l.yh * (want / k), obj.content[i]);
         break;
       case "Overlay":
-        layoutCells(A, l.x0, l.y0, l.xw, l.yh, obj.content[i], d);
+        setCellLayout(A, l.x0, l.y0, l.xw, l.yh, obj.content[i]);
         break;
       default:
     }
+    layoutCells( A, obj.content[i], d );
     wantsSoFar += want;
   }
 }
@@ -1460,9 +1464,8 @@ function sizeCells(A, obj, data){
   //console.log( obj.sizing);
 }
 
-function layoutCells(A, x0, y0, xw, yh, obj, d){
-  layoutCell(A, x0, y0, xw, yh, obj, d);
-  visit(layoutThing, A, obj, d);
+function layoutCells(A, obj, data){
+  visit(layoutThing, A, obj, data);
 }
 
 function drawCells(A, obj, data){
