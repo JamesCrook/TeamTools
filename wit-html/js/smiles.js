@@ -109,7 +109,7 @@ function layoutMolecule( A, obj, d ){
   var yh = l.yh;
 
   // Vanillin
-  var thing = "O=Cc1ccc(O)c(OC)c1COCc1cc(C=O)ccc1O";
+  var thing = "O=Cc1ccc(O)c(OC)c1";//"COCc1cc(C=O)ccc1O";
 
   obj.atoms = [];
   obj.bonds = [];
