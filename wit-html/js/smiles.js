@@ -41,16 +41,27 @@ function getSmileToken( toParse ){
     return result;
   var tok = toParse.str + "..";
 
+  // b,c,n,o,p,s are aromatic atoms.
+  // The SMILES standard requires two (and three) letter atom names
+  // be in square brackets.
+  // We relax that, except for:
+  // Cs Co Hs Ho Pb Nb No Os Po Sc
+  // They need square brackets, otherwise they will be taken as two-atom
+  // combinations.
+
+
   n = 1;
-  // Look for a capital followed by a lower case that isn't 'c'.
+  // Look for a capital followed by a lower case that isn't
+  // one of the lower case aromatics.
   if( ('A' <= tok[0] ) && (tok[0] <= 'Z') )
   {
     result.type = 'atom';
-    if( ('a' <= tok[1]) && (tok[1] <= 'z') && (tok[1] !== 'c') ){
+    if( ('a' <= tok[1]) && (tok[1] <= 'z') &&
+      (Smiles.aromatics.indexOf( tok[1] ) !== -1) ){
       n = 2;
     }
   }
-  else if( tok[0] == 'c' ){
+  else if(Smiles.aromatics.indexOf( tok[0] ) !== -1){
     result.type = 'atom';
   }
 
@@ -99,6 +110,8 @@ function initSmiles(){
   for(i=0;i<bonds.length;i++){
     Smiles.multiplicity[ bonds[i] ] = multiplicity[i];
   }
+
+  Smiles.aromatics = "bcnops";
 
 
 }
