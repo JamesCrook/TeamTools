@@ -39,7 +39,8 @@ function getSmileToken( toParse ){
   n= toParse.str.length;
   if( n===0 )
     return result;
-  var tok = toParse.str + "..";
+  // extra padding to ensure tok[1] and tok[2] exist.
+  var tok = toParse.str + "...";
 
   // b,c,n,o,p,s are aromatic atoms.
   // The SMILES standard requires two (and three) letter atom names
@@ -51,26 +52,36 @@ function getSmileToken( toParse ){
 
 
   n = 1;
-  // Look for a capital followed by a lower case that isn't
+  // Look for a capital possibly followed by a lower case that isn't
   // one of the lower case aromatics.
   if( ('A' <= tok[0] ) && (tok[0] <= 'Z') )
   {
     result.type = 'atom';
+    // if followed by one of the other lower case letters, extend.
     if( ('a' <= tok[1]) && (tok[1] <= 'z') &&
       (Smiles.aromatics.indexOf( tok[1] ) === -1) ){
-      n = 2;
+      n++;
+      // and again extend if there's yet another...
+      if( ('a' <= tok[2]) && (tok[2] <= 'z') &&
+        (Smiles.aromatics.indexOf( tok[2] ) === -1) ){
+        n++;
+      }
     }
   }
+  // Wasn't upper case?  Then if aromatic, it's still an atom.
   else if(Smiles.aromatics.indexOf( tok[0] ) !== -1){
     result.type = 'atom';
   }
+  // Maybe it's a bond?
+  else if( Smiles.multiplicity.hasOwnProperty( tok[0] ) ){
+    result.type = 'bond';
+    result.multiplicity = Smiles.multiplicity[ tok[0] ];
+  }
 
+  // We know how many letters.  Take them.
   result.tok = toParse.str.slice(0,n);
   toParse.str = toParse.str.slice( n );
-  if( Smiles.multiplicity.hasOwnProperty( result.tok ) ){
-    result.type = 'bond';
-    result.multiplicity = Smiles.multiplicity[ result.tok ];
-  }
+
   return result;
 }
 
@@ -137,7 +148,6 @@ function layoutMolecule( A, obj, d ){
 
   obj.atoms = [];
   obj.bonds = [];
-  var oldAtom = {};
 
   var oldAtom = {};
   x += 40;
@@ -172,28 +182,6 @@ function layoutMolecule( A, obj, d ){
     }
   }
   while( result.tok !== "" );
-
-
-/*
-  for( var i=0;i< mol.length;i++){
-    var atom = {};
-    atom.r = 10;
-    atom.cx = x + xw/2 + (2*i-mol.length)*30;
-    atom.cy = y + yh/2;
-    atom.value = mol[i];
-    atom.colour = colours[i];
-    obj.atoms.push( atom );
-    if( i> 0 ){
-      var bond = {};
-      bond.fromPt = {x:oldAtom.cx, y:oldAtom.cy};
-      bond.toPt = {x:atom.cx, y:atom.cy};
-      bond.multiplicity = (i %3) +1;
-      obj.bonds.push( bond );
-    }
-    oldAtom = atom;
-  }
-
- */
 }
 
 
