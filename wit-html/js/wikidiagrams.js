@@ -1083,6 +1083,8 @@ function drawFocusSpot(A,x, y){
   ctx.fill();
 }
 
+
+//------------------ Some colour utilities...
 function roundColour(tuple){
   var values = JSON.parse(tuple);
   var result = values.map(function(v){
@@ -1103,6 +1105,25 @@ function rgbOfJsonColourTuple(tuple){
   var tuple2 = JSON.parse(tuple);
   return rgbOfColourTuple( tuple2 );
 }
+
+function textColourForColourTuple( c ){
+  return ((c[0]+c[1]+c[2])>380) ? 'black':'white';
+}
+
+function colourTupleOfRgb( rgb ){
+  var t = rgb.split( "(" )[1]||"0,0,0";
+  t = t.split(")")[0];
+  t = t.split(",");
+  t = t.map( Number );
+  return t;
+}
+
+function textColourForRgb( rgb ){
+  var c = colourTupleOfRgb( rgb );
+  return textColourForColourTuple( c );
+}
+//----------- end of colour utilities.
+
 
 /*
  * When we exit the annotation area,
@@ -1240,7 +1261,7 @@ function makeToc(A){
   for(var i=0;i<h.ColourZones.length;i++){
     var c = h.ColourZones[i];
     // White text for numbers on dark backgrounds, black when light.
-    var textColor = ((c[0]+c[1]+c[2])>380) ? 'black':'white';
+    var textColor = textColourForColourTuple(c);
     var tip = h.Colours[ stringOfTuple( c )].Tip;
     str += "<tr><td>Zone"+
       "<div style='width:30px;height:30px;color:"+textColor+
