@@ -57,7 +57,7 @@ function getSmileToken( toParse ){
   {
     result.type = 'atom';
     if( ('a' <= tok[1]) && (tok[1] <= 'z') &&
-      (Smiles.aromatics.indexOf( tok[1] ) !== -1) ){
+      (Smiles.aromatics.indexOf( tok[1] ) === -1) ){
       n = 2;
     }
   }
