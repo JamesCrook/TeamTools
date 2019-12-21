@@ -1,38 +1,5 @@
 
 
-function drawAtom(A, obj, d){
-  var ctx = A.BackingCanvas.ctx;
-
-  ctx.save();
-  ctx.beginPath();
-  ctx.arc(obj.cx , obj.cy, obj.r, 0, Math.PI * 2.0, true);
-  var rgb = obj.colour ||  "rgba(200,0,0,0.3)";
-  ctx.fillStyle = rgb;
-  ctx.fill();
-  ctx.strokeWidth = 0.1;
-  var rgbText = textColourForRgb( rgb );
-  ctx.strokeStyle = rgbText;
-  ctx.stroke();
-
-  ctx.textAlign = "center";
-  ctx.fillStyle = rgbText;
-  ctx.font = "16px Arial";
-  ctx.fillText(obj.value, obj.cx, obj.cy+6);
-
-
-  ctx.restore();
-
-}
-
-function drawMolecule( A, obj, d ){
-  var i;
-  for(i=0;i<obj.bonds.length;i++){
-    drawBond( A, obj.bonds[i], d );
-  }
-  for(i=0;i<obj.atoms.length;i++){
-    drawAtom( A, obj.atoms[i], d );
-  }
-}
 
 function getSmileToken( toParse ){
   result = { tok:"", type:'none'};
@@ -141,10 +108,8 @@ function layoutMolecule( A, obj, d ){
   var xw = l.xw;
   var yh = l.yh;
 
-
   // Vanillin
   var thing = "O=Cc1ccc(O)c(OC)c1COCc1cc(C=O)ccc1O";
-
 
   obj.atoms = [];
   obj.bonds = [];
@@ -222,6 +187,28 @@ function layoutBond( A, obj, d ){
   obj.multiplicity = 2;
 }
 
+function drawAtom(A, obj, d){
+  var ctx = A.BackingCanvas.ctx;
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.arc(obj.cx , obj.cy, obj.r, 0, Math.PI * 2.0, true);
+  var rgb = obj.colour ||  "rgba(200,0,0,0.3)";
+  ctx.fillStyle = rgb;
+  ctx.fill();
+  ctx.strokeWidth = 0.1;
+  var rgbText = textColourForRgb( rgb );
+  ctx.strokeStyle = rgbText;
+  ctx.stroke();
+
+  ctx.textAlign = "center";
+  ctx.fillStyle = rgbText;
+  ctx.font = "16px Arial";
+  ctx.fillText(obj.value, obj.cx, obj.cy+6);
+  ctx.restore();
+}
+
+
 function drawBond(A, obj, d){
   var ctx = A.BackingCanvas.ctx;
 
@@ -243,10 +230,7 @@ function drawBond(A, obj, d){
   ctx.strokeStyle = "rgba(110,110,110,1.0)";
   ctx.stroke();
   ctx.restore();
-
 }
-
-
 
 function drawBenzene( A, obj, d ){
   var l = obj.layout;
@@ -364,6 +348,17 @@ function drawText(A, obj, d){
     ctx2.rect(x, y, xw, yh);
     ctx2.fillStyle = obj.hotspotColour;
     ctx2.fill();
+  }
+}
+
+
+function drawMolecule( A, obj, d ){
+  var i;
+  for(i=0;i<obj.bonds.length;i++){
+    drawBond( A, obj.bonds[i], d );
+  }
+  for(i=0;i<obj.atoms.length;i++){
+    drawAtom( A, obj.atoms[i], d );
   }
 }
 
