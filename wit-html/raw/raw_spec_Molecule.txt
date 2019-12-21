@@ -24,10 +24,5 @@ With the layout established, the details that follow customise the objects.
 
 
 <pre>CREDITS:CAPTION=Chemical Structure of Vanillin;TIP=</pre>
-<h3>Instructions</h3>
-<ul>
-<li>Hover over boxes in the image for more details.
-<li>Hold shift down to keep the detail box still, so that you can click the hyperlinks in it
-</ul><br><br>
 <b>Credits:</b> <em>James Crook ©2019; Vanillin Image placed in Public
 Domain</em>
