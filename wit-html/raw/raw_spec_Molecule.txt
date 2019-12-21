@@ -1,0 +1,33 @@
+__NOTOC__
+
+
+{{ATK_Header}}
+
+This is the spec for the interactive diagram which shows a chemical structure.
+
+Here's the result:
+
+-----
+{{#widget:Dynamic|page=Molecule|height=450px}}
+-----
+
+The detailed data for the chart follows.
+
+<pre>START</pre>
+
+<pre>ADD:DATA=
+{"Chem":"Nothing Here"}
+</pre>
+
+With the layout established, the details that follow customise the objects.
+
+
+
+<pre>CREDITS:CAPTION=Chemical Structure of Vanillin;TIP=</pre>
+<h3>Instructions</h3>
+<ul>
+<li>Hover over boxes in the image for more details.
+<li>Hold shift down to keep the detail box still, so that you can click the hyperlinks in it
+</ul><br><br>
+<b>Credits:</b> <em>James Crook ©2019; Vanillin Image placed in Public
+Domain</em>
