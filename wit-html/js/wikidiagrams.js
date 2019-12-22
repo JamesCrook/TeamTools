@@ -1339,15 +1339,27 @@ function setATitle(A,caption, page, fromWiki){
 
 // finds field value to first ; or </pre>
 function fieldValue(field, line){
-  var value = line.split(field + "=")[1] || "";
-  value = value.split("</pre>")[0];
-  var sepIndex = value.indexOf(';');
+  var value;
+  var sepIndex;
+  var sep = ";";
+  if( field.charAt( 0 ) === field.charAt(0).toUpperCase() ){
+    value = line.split(field + "=")[1] || "";
+    value = value.split("</pre>")[0];
+    sepIndex = value.indexOf(sep);
+  }
+  else {
+    sep = '\n';
+    value = line.split(field + ":")[1] || "";
+    value = value.split("</pre>")[0];
+    sepIndex = value.indexOf(sep);
+  }
+
   var lineEndIndex = value.indexOf('\n');
 
   // command ends at </pre> or at ;.
   // Only use a ; as the end, if it is on the same line.
-  if( (lineEndIndex === -1 ) || ( sepIndex < lineEndIndex))
-    value = value.split(";")[0];
+  if( (lineEndIndex === -1 ) || ( sepIndex <= lineEndIndex))
+    value = value.split(sep)[0];
 
   return value;
 }
