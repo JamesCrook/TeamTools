@@ -1382,7 +1382,11 @@ function setClick(A,type, location){
 
   var h = A.Hotspots.Current.Click || {};
   h.Action = type;
-  h.Name = location;
+  // ignore after '#'
+  h.Name = (location + "#").split("#")[0];
+  var num = location.split("#")[1]||"0";
+  num = Number( num );
+  h.Section = num+1;
   A.Hotspots.Current.Click = h;
 }
 

@@ -41,8 +41,8 @@ The detailed data for the regions, buttons and tooltips follows.
 
 <h1>Photo</h1><p><em>This is the photo from the Audacity unconference in Nov
 2019.</em></p>
-<pre>CLICK DO:SECTION=1;SPEC=</pre>
-[[Toolbox/AudacityPeople]]
+<pre>CLICK DO:SPEC=</pre>
+[[Toolbox/AudacityPeople#1]]
 
 
 <pre>NEXTOBJECT:TIP=</pre>
@@ -50,8 +50,8 @@ The detailed data for the regions, buttons and tooltips follows.
 used to define the hotspots.  A different colour is used for each person
 .</em></p>
 
-<pre>CLICK DO:SECTION=2;SPEC=</pre>
-[[Toolbox/AudacityPeople]]
+<pre>CLICK DO:SPEC=</pre>
+[[Toolbox/AudacityPeople#2]]
 
 
 

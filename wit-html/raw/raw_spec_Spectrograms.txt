@@ -41,35 +41,35 @@ This is the spec for the interactive diagram which explains window size in spect
 <pre>NEXTOBJECT:TIP=</pre>
 
 <h1>256: Most Wideband</h1><p><em>This window size gives the spectrogram the best temporal resolution, but the worst frequency resolution.</em></p>
-<pre>CLICK DO:SECTION=1;SPEC=</pre>
-[[Toolbox/Spectrograms]]
+<pre>CLICK DO:SPEC=</pre>
+[[Toolbox/Spectrograms#1]]
 
 
 <pre>NEXTOBJECT:TIP=</pre>
 <h1>Window size 512</h1><p><em>Frequencies are not as clear as at window size of 2048 and above</em></p>
-<pre>CLICK DO:SECTION=2;SPEC=</pre>
-[[Toolbox/Spectrograms]]
+<pre>CLICK DO:SPEC=</pre>
+[[Toolbox/Spectrograms#2]]
 
 <pre>NEXTOBJECT:TIP=</pre>
 <h1>Window size 1024</h1><p><em>A good compromise.</em></p>
-<pre>CLICK DO:SECTION=3;SPEC=</pre>
-[[Toolbox/Spectrograms]]
+<pre>CLICK DO:SPEC=</pre>
+[[Toolbox/Spectrograms#3]]
 
 <pre>NEXTOBJECT:TIP=</pre>
 <h1>Window size 2048</h1><p><em>The duration of the silences before the 'd' and 't' in 'Audacity' are a lot less clear than for smaller window sizes.</em></p>
-<pre>CLICK DO:SECTION=4;SPEC=</pre>
-[[Toolbox/Spectrograms]]
+<pre>CLICK DO:SPEC=</pre>
+[[Toolbox/Spectrograms#4]]
 
 <pre>NEXTOBJECT:TIP=</pre>
 <h1>Window size 4096</h1><p><em>All sounds are shown as having longer duration than they really do</em></p>
-<pre>CLICK DO:SECTION=5;SPEC=</pre>
-[[Toolbox/Spectrograms]]
+<pre>CLICK DO:SPEC=</pre>
+[[Toolbox/Spectrograms#5]]
 
 
 <pre>NEXTOBJECT:TIP=</pre>
 <h1>8192: Most Narrowband</h1><p><em>This window size gives the spectrogram the worst temporal resolution and the best frequency resolution.</em></p>
-<pre>CLICK DO:SECTION=6;SPEC=</pre>
-[[Toolbox/Spectrograms]]
+<pre>CLICK DO:SPEC=</pre>
+[[Toolbox/Spectrograms#6]]
 
 
 <pre>ZONECOLOURS=
