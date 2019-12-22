@@ -935,8 +935,8 @@ function drawRectangle(A, obj, d){
   ctx.beginPath();
 
   setStyles(ctx, obj);
-  if( obj.corner_radius )
-    drawRoundRect(ctx, x, y, xw, yh, obj.corner_radius);
+  if( obj.cornerRadius )
+    drawRoundRect(ctx, x, y, xw, yh, obj.cornerRadius);
   else
     ctx.rect(x, y, xw, yh);
   ctx.fill();
@@ -1622,7 +1622,7 @@ function doChoose( A, parentObj, item )
 
     obj.colour  = (i===item) ? "rgb(255,250,235)":"rgb(255,230,205)";
     obj.bcolour = (i===item) ? "rgb(145,125,0)"  :"rgb(215,155,0)";
-    obj.corner_radius = 8;
+    obj.cornerRadius = 8;
   }
 }
 
@@ -1723,7 +1723,7 @@ function loadNewLines(A, specFileData, section){
       data = fieldValue("BCOLOUR", item);
       if( data ) obj.bcolour = data;
       data = fieldValue("CORNER_RADIUS", item);
-      if( data && (!isNaN(Number(data))) ) obj.corner_radius = Number(data);
+      if( data && (!isNaN(Number(data))) ) obj.cornerRadius = Number(data);
       if( detail ){
         detail = sanitiseHtml(detail);
         var c = NextAutoColour(A, detail);

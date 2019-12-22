@@ -285,8 +285,8 @@ function drawChem(A, obj, d){
   ctx.beginPath();
 
   setStyles(ctx, obj);
-  if( obj.corner_radius )
-    drawRoundRect(ctx, x, y, xw, yh, obj.corner_radius);
+  if( obj.cornerRadius )
+    drawRoundRect(ctx, x, y, xw, yh, obj.cornerRadius);
   else
     ctx.rect(x, y, xw, yh);
   ctx.fill();
@@ -321,8 +321,8 @@ function drawText(A, obj, d){
   ctx.beginPath();
 
   setStyles(ctx, obj);
-  if( obj.corner_radius )
-    drawRoundRect(ctx, x, y, xw, yh, obj.corner_radius);
+  if( obj.cornerRadius )
+    drawRoundRect(ctx, x, y, xw, yh, obj.cornerRadius);
   else
     ctx.rect(x, y, xw, yh);
   ctx.fill();
