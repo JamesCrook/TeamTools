@@ -94,7 +94,9 @@ The detailed data for the regions, buttons and tooltips follows.
 <h1>Dude 10</h1>
 <em><p>National Security Advisor to the Vice President</p></em>
 
-<pre>CREDITS:CAPTION=Hotspot Zones for an ImageMap;TIP=</pre>
+<pre>CREDITS:
+   CAPTION=Hotspot Zones for an ImageMap;
+   TIP=</pre>
 <h3>Instructions</h3>
 <ul>
 <li>Hover over hotspots in the image for more details.

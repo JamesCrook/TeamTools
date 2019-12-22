@@ -83,7 +83,8 @@ most likely.  Includes 'the great ring of fire'.
 [[Toolbox/Globes]]
 
 
-<pre>NEXTOBJECT:TIP=</pre>
+<pre>NEXTOBJECT:
+   TIP=</pre>
 <h1>Moon</h1>
 An infra red map of the moon.  The 'dark side' of the moon is not actually
 any more dark than the side we see, it is just that it is always turned away
@@ -93,7 +94,9 @@ from us.
 <pre>CLICK DO:SECTION=5;SPEC=</pre>
 [[Toolbox/Globes]]
 
-<pre>CREDITS:CAPTION=Köppen Climate Classification Map;TIP=</pre>
+<pre>CREDITS:
+   CAPTION=Köppen Climate Classification Map;
+   TIP=</pre>
 <b>Credits:</b> <em>Beck et Al. - <a href="https://commons.wikimedia.org/wiki/File:K%C3%B6ppen-Geiger_Climate_Classification_Map.png">see description on Wikipedia</a>
 
 
@@ -111,7 +114,9 @@ from us.
 [[File:1024px-Köppen-Geiger_Climate_Classification_Map.png]]
 
 
-<pre>CREDITS:CAPTION=Köppen Climate Classification Map;TIP=</pre>
+<pre>CREDITS:
+   CAPTION=Köppen Climate Classification Map;
+   TIP=</pre>
 <b>Credits:</b> <em>Beck et Al. - <a href="https://commons.wikimedia.org/wiki/File:K%C3%B6ppen-Geiger_Climate_Classification_Map.png">see description on Wikipedia</a>
 
 

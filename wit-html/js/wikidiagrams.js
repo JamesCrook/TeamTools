@@ -1657,7 +1657,9 @@ function loadNewLines(A, specFileData, section){
     var c;
     var root;
 
-    var detail = item.split("TIP=</pre>")[1];
+    var detail =
+      item.split("TIP=</pre>")[1] ||
+      item.split("tip=</pre>")[1];
     var file = item.split("[[File:")[1] || "";
     file = file.split("]]")[0] || "";
     if( isFromServer() === "yes" ) file =
@@ -1718,11 +1720,11 @@ function loadNewLines(A, specFileData, section){
         setupForChoosing( A, obj, obj.choice);
         doChoose( A, obj, obj.choice );
       }
-      data = fieldValue("COLOUR", item);
+      data = fieldValue("colour", item);
       if( data ) obj.colour = data;
-      data = fieldValue("BCOLOUR", item);
+      data = fieldValue("bcolour", item);
       if( data ) obj.bcolour = data;
-      data = fieldValue("CORNER_RADIUS", item);
+      data = fieldValue("cornerRadius", item);
       if( data && (!isNaN(Number(data))) ) obj.cornerRadius = Number(data);
       if( detail ){
         detail = sanitiseHtml(detail);
