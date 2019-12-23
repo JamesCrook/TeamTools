@@ -43,11 +43,52 @@ function getSmileToken( toParse ){
   else if( Smiles.multiplicity.hasOwnProperty( tok[0] ) ){
     result.type = 'bond';
     result.multiplicity = Smiles.multiplicity[ tok[0] ];
+  } else if( !isNaN( tok[0] ) ){
+    var m= Number( tok[0] );
+    if( toParse.noted[m] ){
+      // noted stores values+1, so we can test as a bool.
+      var ix = toParse.noted[m]-1;
+      result.type = 'abond';
+      result.multiplicity = 3;//Smiles.multiplicity[ tok[0] ];
+      toParse.toAtom = ix;
+      toParse.noted[m]=0;
+    }
+    else {
+      toParse.noted[m] = toParse.fromAtom+1;
+    }
   }
 
-  // We know how many letters.  Take them.
-  result.tok = toParse.str.slice(0,n);
-  toParse.str = toParse.str.slice( n );
+  // add bond implied by adjacency.
+  if( (toParse.was === 'atom' ) && (result.type=== 'atom')){
+    result.tok = '-';
+    result.type = 'bond';
+    result.multiplicity = 1;
+  }
+  else {
+    // We know how many letters.  Take them.
+    result.tok = toParse.str.slice(0,n);
+    toParse.str = toParse.str.slice( n );
+  }
+
+  if( tok[0]==='(' ){
+    toParse.stack.push( toParse.fromAtom);
+    //console.log( "pushed atom"+(toParse.fromAtom) );
+  }
+
+  // for aromatic bond, we're still in 'was atom'.
+  if( result.type === 'abond' ){
+    result.type = 'bond';
+  }
+  else if( result.type !== 'none')
+    toParse.was = result.type;
+  if( result.type === 'atom' ){
+    toParse.fromAtom = toParse.nAtoms++;
+  }
+  if( tok[0]===')' ){
+    toParse.fromAtom = toParse.stack.pop();
+    //console.log( "popped atom"+toParse.fromAtom );
+  }
+
 
   return result;
 }
@@ -108,17 +149,24 @@ function layoutMolecule( A, obj, d ){
   var xw = l.xw;
   var yh = l.yh;
 
-  // Vanillin
-  var thing = "O=Cc1ccc(O)c(OC)c1";//"COCc1cc(C=O)ccc1O";
+  var smilesString = "O=Cc1ccc(O)c(OC)c1";//Vanillin
+
+  //smilesString = "HC(H)(H)H";// Methane
+  smilesString = "CC(=O)NCCC1=CNc2c1cc(OC)cc2"; //melatonin
 
   obj.atoms = [];
   obj.bonds = [];
 
-  var oldAtom = {};
+  var oldAtom = {cx:10,cy:10};
   x += 40;
   toParse = {};
-  toParse.str = thing;//"CClHc-B=Br";
+  toParse.str = smilesString;//"CClHc-B=Br";
   toParse.state = "empty";
+  toParse.stack = [];
+  toParse.noted = [];
+  toParse.nAtoms = 0;
+  toParse.fromAtom = -1;
+  toParse.toAtom = -1;
   var result;
   do{
     result = getSmileToken( toParse );
@@ -126,17 +174,33 @@ function layoutMolecule( A, obj, d ){
       var atom = {};
       atom.cx = x;
       atom.cy = y + yh/2;
+      atom.dx=0;
+      atom.dy=0;
       atom.r = 10;
       x+= 40;
       atom.value = result.tok;
       atom.colour = rgbOfAtom( result.tok );
       obj.atoms.push( atom );
-      oldAtom = atom;
     }
     if( result.type === 'bond' ){
       var bond = {};
-      bond.fromPt = {x:oldAtom.cx, y:oldAtom.cy};
-      bond.toPt = {x:x, y:y+yh/2};
+      bond.fromIx = toParse.fromAtom;
+      if( obj.atoms.length > 0 ){
+        oldAtom = obj.atoms[ toParse.fromAtom];
+      }
+      bond.fromPt = {x:oldAtom.cx, y:oldAtom.cy-10};
+
+
+      if( toParse.toAtom >=0 ){
+        var newAtom = obj.atoms[ toParse.toAtom];
+        bond.toIx = toParse.toAtom;
+        bond.toPt = {x:newAtom.cx, y:newAtom.cy+10};
+        toParse.toAtom = -1;
+      }
+      else {
+        bond.toIx = obj.atoms.length;
+        bond.toPt = { x: x, y: y + yh / 2 + 10 };
+      }
       bond.multiplicity = result.multiplicity;
       obj.bonds.push( bond );
 
@@ -160,7 +224,7 @@ function layoutAtom( A, obj, d ){
   obj.r = 10;
   obj.cx = x + xw/2;
   obj.cy = y + yh/2;
-  obj.value = "C";
+  obj.value = obj.value || "C";
 }
 
 function normalizedDifference( pt1, pt2, length ){
@@ -190,9 +254,11 @@ function layoutBond( A, obj, d ){
 function drawAtom(A, obj, d){
   var ctx = A.BackingCanvas.ctx;
 
+  var dx = obj.dx || 0;
+  var dy = obj.dy || 0;
   ctx.save();
   ctx.beginPath();
-  ctx.arc(obj.cx , obj.cy, obj.r, 0, Math.PI * 2.0, true);
+  ctx.arc(obj.cx+dx, obj.cy+dy, obj.r, 0, Math.PI * 2.0, true);
   var rgb = obj.colour ||  "rgba(200,0,0,0.3)";
   ctx.fillStyle = rgb;
   ctx.fill();
@@ -204,7 +270,7 @@ function drawAtom(A, obj, d){
   ctx.textAlign = "center";
   ctx.fillStyle = rgbText;
   ctx.font = "16px Arial";
-  ctx.fillText(obj.value, obj.cx, obj.cy+6);
+  ctx.fillText(obj.value, obj.cx+dx, obj.cy+dy+6);
   ctx.restore();
 }
 
@@ -351,9 +417,113 @@ function drawText(A, obj, d){
   }
 }
 
+var iter = 160;
+
+function minEnergy( A, obj, d ){
+  var atoms = [];
+  var i;
+  var j;
+  var f;
+  var m;
+  var n;
+
+
+  var atomFrom;
+  var atomTo;
+
+  if( iter === 0 )
+    return;
+  iter--;
+
+  for(i=0;i<obj.atoms.length;i++){
+    obj.atoms[i].x = obj.atoms[i].cx + obj.atoms[i].dx +(Math.random()*10-5)*0.1;
+    obj.atoms[i].y = obj.atoms[i].cy + obj.atoms[i].dy +(Math.random()*10-5)*0.1;
+    atoms.push( [] ); // each joined to nothing.
+  }
+
+  // bonds as springs.
+  for( j=0;j<obj.bonds.length; j++){
+    var from = obj.bonds[j].fromIx;
+    var to = obj.bonds[j].toIx;
+    // Build list of 2 way links.
+    atoms[from].push( to );
+    atoms[to].push( from );
+
+    atomFrom = obj.atoms[from];
+    atomTo = obj.atoms[to];
+
+
+    // use the bond forces (as springs of length 40).
+    f = { x: atomFrom.x-atomTo.x,
+          y: atomFrom.y-atomTo.y};
+    m = (f.x*f.x + f.y*f.y);
+    m = Math.sqrt( m );
+    n = (m-40)*0.25/(m+0.1);
+    f.x = f.x *n;
+    f.y = f.y *n;
+    if( iter === 0 ){
+      console.log( "LINK from "+atomFrom.value + " to " + atomTo.value +" force" +
+        " "+f.x + "," + f.y );
+    }
+    atomFrom.dx -= f.x;
+    atomFrom.dy -= f.y;
+    atomTo.dx += f.x;
+    atomTo.dy += f.y;
+  }
+
+  for(i=0;i<atoms.length;i++){
+    if( iter === 0 ){
+      var atom = obj.atoms[i];
+      console.log( "Atom "+atom.value + " at " + atom.x + "," + atom.y );
+    }
+    var links = atoms[i].length;
+    if( links > 1 ) for( j=0;j<links;j++){
+      // Sequential atoms around this atom.
+      atomFrom = obj.atoms[atoms[i][j]];
+      atomTo = obj.atoms[atoms[i][(j+1)%links]];
+      f = { x: atomFrom.x-atomTo.x,
+            y: atomFrom.y-atomTo.y};
+      m = (f.x*f.x + f.y*f.y);
+      m = Math.sqrt( m );
+      n = (m-70)*0.1/(m+0.1);
+      f.x = f.x *n;
+      f.y = f.y *n;
+      if( iter === 0 ){
+        console.log( "REP from "+atomFrom.value + " to " + atomTo.value +" force" +
+          " "+f.x + "," + f.y );
+      }
+      atomFrom.dx -= f.x;
+      atomFrom.dy -= f.y;
+      atomTo.dx += f.x;
+      atomTo.dy += f.y;
+    }
+  }
+
+
+  // update x, based on dx, y on dy.
+  for(i=0;i<obj.atoms.length;i++){
+    obj.atoms[i].x = obj.atoms[i].cx + obj.atoms[i].dx;
+    obj.atoms[i].y = obj.atoms[i].cy + obj.atoms[i].dy;
+  }
+
+  // now move all the bonds.
+  for( j=0;j<obj.bonds.length; j++){
+    var bond = obj.bonds[j];
+    atomFrom = obj.atoms[bond.fromIx];
+    atomTo = obj.atoms[bond.toIx];
+    bond.fromPt.x = atomFrom.x;
+    bond.fromPt.y = atomFrom.y;
+    bond.toPt.x = atomTo.x;
+    bond.toPt.y = atomTo.y;
+  }
+
+
+}
+
 
 function drawMolecule( A, obj, d ){
   var i;
+  minEnergy( A,obj,d);
   for(i=0;i<obj.bonds.length;i++){
     drawBond( A, obj.bonds[i], d );
   }
