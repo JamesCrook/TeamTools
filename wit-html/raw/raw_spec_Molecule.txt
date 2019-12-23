@@ -23,6 +23,6 @@ With the layout established, the details that follow customise the objects.
 
 
 
-<pre>CREDITS:CAPTION=Chemical Structure of Vanillin;TIP=</pre>
-<b>Credits:</b> <em>James Crook ©2019; Vanillin Image placed in Public
+<pre>CREDITS:CAPTION=Chemical Structure of Seratonin;TIP=</pre>
+<b>Credits:</b> <em>James Crook ©2019; Seratonin Image placed in Public
 Domain</em>

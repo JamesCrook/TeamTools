@@ -49,7 +49,7 @@ function getSmileToken( toParse ){
       // noted stores values+1, so we can test as a bool.
       var ix = toParse.noted[m]-1;
       result.type = 'abond';
-      result.multiplicity = 3;//Smiles.multiplicity[ tok[0] ];
+      result.multiplicity = 1;//Smiles.multiplicity[ tok[0] ];
       toParse.toAtom = ix;
       toParse.noted[m]=0;
     }
@@ -152,7 +152,7 @@ function layoutMolecule( A, obj, d ){
   var smilesString = "O=Cc1ccc(O)c(OC)c1";//Vanillin
 
   //smilesString = "HC(H)(H)H";// Methane
-  smilesString = "CC(=O)NCCC1=CNc2c1cc(OC)cc2"; //melatonin
+  smilesString = "CC(=O)NCCC1=CNC2=C1C=C(OC)C=C2"; //melatonin
 
   obj.atoms = [];
   obj.bonds = [];
