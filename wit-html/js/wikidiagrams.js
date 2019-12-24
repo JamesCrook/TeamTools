@@ -1341,7 +1341,7 @@ function makeToc(A){
     // White text for numbers on dark backgrounds, black when light.
     var textColor = textColourForColourTuple(c);
     var tip = h.Colours[ stringOfTuple( c )].Tip;
-    str += "<tr><td>Zone"+
+    str += "<tr><td style='vertical-align:top;padding-top:28px'>"+
       "<div style='width:30px;height:30px;color:"+textColor+
       ";border:thin solid black;text-align:center;vertical-align:middle;"+
       "line-height:30px;background-color:"+
