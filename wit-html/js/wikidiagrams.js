@@ -1090,24 +1090,23 @@ function objFromId(A,id){
   return A.RootObject.objectDict[id.substr(0, 10)];
 }
 
-function drawArrowThing(A,fn){
-  var arrows = A.RootObject.arrows;
+function drawArrows(A,obj,d){
+  var arrows = obj.content;
   if( !isDefined(arrows) ) return;
+  if( !Array.isArray( arrows) ) return;
+  if( (d.stage !== kStageArrowShaft ) && (d.stage !== kStageArrowHead ) )
+    return;
+
   for( i = 0; i < arrows.length; i += 2 ){
     var obj1 = objFromId(A,arrows[i]);
     var obj2 = objFromId(A,arrows[i + 1]);
     if( !isDefined(obj1) || !isDefined(obj2) ) return;
     if( !isDefined(obj1.layout) || !isDefined(obj2.layout) ) continue;
-    fn(A,obj1, obj2);
+    if( d.stage === kStageArrowShaft )
+      drawArrow(A,obj1,obj2);
+    if( d.stage === kStageArrowHead )
+      drawArrowHead(A,obj1,obj2);
   }
-}
-
-function drawArrows(A){
-  drawArrowThing(A,drawArrow);
-}
-
-function drawArrowHeads(A,){
-  drawArrowThing(A,drawArrowHead);
 }
 
 function drawInfoButton(A){
@@ -1575,6 +1574,14 @@ function layoutContainer( A, obj, d){
 }
 
 
+function sizeNowt( A, obj, data ){
+  sizeCell( A, obj, data );
+  obj.sizing.wants = 0;
+}
+
+function layoutNowt( A, obj, data ){
+}
+
 function sizeCells(A, obj, data){
   visit(sizeThing, A, obj, data);
   //console.log( obj.sizing);
@@ -1647,6 +1654,7 @@ function registerMethods()
   registerMethod( "PieChart",0,0, drawPieChart);
   registerMethod( "Path",    0,0, drawPath);
   registerMethod( "Tree",    0,0, drawTree);
+  registerMethod( "Arrows",  sizeNowt,layoutNowt, drawArrows);
 }
 
 

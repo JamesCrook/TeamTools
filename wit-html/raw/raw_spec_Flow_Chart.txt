@@ -61,6 +61,29 @@ The detailed data for the chart follows.
         {"Circle":"Cut & Paste"},
         {"Rectangle":"Alpha Manual"},
         {"Spacer":0.35}
+        ]},
+    {"Arrows":[
+        "WIT Shortcuts","WIT",
+        "WIT Tooltips","WIT",
+        "WIT Menus","WIT",
+        "WIT","Toolbar Images",
+        "WIT","Image Templates",
+        "WIT","Big Pages",
+        "WIT","Menu Images",
+        "Audacity","WIT Menus",
+        "Scripting","Audacity",
+        "Audacity","Preferences Images",
+        "Audacity","EGA Images",
+        "Scripting","Track Images",
+        "Toolbar Images","File Upload",
+        "Menu Images","File Upload",
+        "Preferences Images","File Upload",
+        "EGA Images","File Upload",
+        "Track Images","File Upload",
+        "File Upload","Alpha Manual",
+        "Image Templates","Cut & Paste",
+        "Big Pages","Cut & Paste",
+        "Cut & Paste","Alpha Manual"
         ]}
     ]}
 </pre>
@@ -201,35 +224,6 @@ pasted into the manual by hand.
 <h1><a href="https://alphamanual.audacityteam.org/man/Main_Page">Alpha Manual</a></h1>
 The manual for the current alpha edition of Audacity is maintained in wiki.  When it is ready we use the <a href="https://github.com/audacity/audacity/blob/master/scripts/mw2html_audacity/mw2html.py">mw2html</a> script to convert it to static html pages, which are included with the Audacity installer, and also uploaded to the current online
 copy.
-
-
-<pre>ARROWS:DATA=
-[
-"WIT Shortcuts","WIT",
-"WIT Tooltips","WIT",
-"WIT Menus","WIT",
-"WIT","Toolbar Images",
-"WIT","Image Templates",
-"WIT","Big Pages",
-"WIT","Menu Images",
-"Audacity","WIT Menus",
-"Scripting","Audacity",
-"Audacity","Preferences Images",
-"Audacity","EGA Images",
-"Scripting","Track Images",
-"Toolbar Images","File Upload",
-"Menu Images","File Upload",
-"Preferences Images","File Upload",
-"EGA Images","File Upload",
-"Track Images","File Upload",
-"File Upload","Alpha Manual",
-"Image Templates","Cut & Paste",
-"Big Pages","Cut & Paste",
-"Cut & Paste","Alpha Manual"
-]
-</pre>
-
-
 
 <pre>CREDITS:
    CAPTION=Flowchart of Making the Audacity Manual;
