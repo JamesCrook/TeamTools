@@ -299,6 +299,10 @@ function drawBond(A, obj, d){
 }
 
 function drawBenzene( A, obj, d ){
+  if( d.stage !== kStageFillAndText )
+    return;
+
+
   var l = obj.layout;
   var x = l.x0;
   var y = l.y0;
@@ -338,6 +342,9 @@ function drawBenzene( A, obj, d ){
 
 
 function drawChem(A, obj, d){
+  if( d.stage !== kStageFillAndText )
+    return;
+
   //console.log( "draw - "+obj.type);
   var l = obj.layout;
   var x = l.x0;
@@ -374,6 +381,9 @@ function drawChem(A, obj, d){
 
 
 function drawText(A, obj, d){
+  if( d.stage !== kStageFillAndText )
+    return;
+
   //console.log( "draw - "+obj.type);
   var l = obj.layout;
   var x = l.x0;
@@ -485,12 +495,22 @@ function minEnergy( A, obj, d ){
             y: atomFrom.y-atomTo.y};
       m = (f.x*f.x + f.y*f.y);
       m = Math.sqrt( m );
-      n = (m-70)*0.1/(m+0.1);
-      f.x = f.x *n;
-      f.y = f.y *n;
+      var vLinks = Math.max( 3, links );
+      var idealLength = 70;
+      idealLength = 40 * Math.sin( Math.PI / vLinks ) *2;
+      n = (m-idealLength)*0.1/(m+0.1);
+
+      // n>0 implies we are too long.
+      // only shorten weakly (at 1/10th amount).
+      //if( n>0 )
+      //  n=n*0.8;
+
+      f.x = f.x * n;
+      f.y = f.y * n;
       if( iter === 0 ){
-        console.log( "REP from "+atomFrom.value + " to " + atomTo.value +" force" +
-          " "+f.x + "," + f.y );
+        console.log(
+          "REP from " + atomFrom.value + " to " + atomTo.value + " force" +
+          " " + f.x + "," + f.y);
       }
       atomFrom.dx -= f.x;
       atomFrom.dy -= f.y;
@@ -522,6 +542,9 @@ function minEnergy( A, obj, d ){
 
 
 function drawMolecule( A, obj, d ){
+  if( d.stage !== kStageFillAndText )
+    return;
+
   var i;
   minEnergy( A,obj,d);
   for(i=0;i<obj.bonds.length;i++){
