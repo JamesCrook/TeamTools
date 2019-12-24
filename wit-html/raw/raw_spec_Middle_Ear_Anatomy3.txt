@@ -32,7 +32,11 @@ The detailed data for the regions, buttons and tooltips follows.
         {"Rectangle":"Middle Ear Anatomy"},
         {"Rectangle":"Inner Ear Anatomy"}
         ],"id":"Chooser"},
-    {"Image":"Ear"}
+    {"Overlay":[
+        {"Rectangle":"",
+         "style":"chosen"},
+        {"Image":"Ear"}
+        ]}
     ]}
 ]
 </pre>

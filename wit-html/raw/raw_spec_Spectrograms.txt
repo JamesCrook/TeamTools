@@ -23,7 +23,11 @@ This is the spec for the interactive diagram which explains window size in spect
         {"Rectangle":"8192"}
         ],
         "id":"SpectroChooser"},
-    {"Image":"Spectro"}
+    {"Overlay":[
+        {"Rectangle":"",
+         "style":"chosen"},
+        {"Image":"Spectro"}
+        ]}
 ]
 </pre>
 

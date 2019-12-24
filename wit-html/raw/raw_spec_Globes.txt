@@ -33,7 +33,11 @@ The detailed data for the regions, buttons and tooltips follows.
         {"Rectangle":"Plate Techtonics"},
         {"Rectangle":"Moon"}
         ],"id":"MapChooser"},
-    {"Image":"Image Goes Here","spherical":true}
+    {"Overlay":[
+        {"Rectangle":"",
+         "style":"chosen"},
+        {"Image":"Image Goes Here","spherical":true}
+        ]}
     ]}
 ]
 </pre>

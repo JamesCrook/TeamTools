@@ -6,6 +6,17 @@ if( !String.prototype.startsWith ){
   };
 }
 
+
+// These are constants for drawing stages.
+const kStageArrowShaft=1;
+const kStageOutlineEarly=3;
+const kStageFillAndTextEarly=4;
+const kStageOutline=5;
+const kStageFillAndText=6;
+const kStageArrowHead=9;
+const kStageHots=10;
+
+
 var Annotator = [];
 
 function InitAnnotator(A){
@@ -280,9 +291,13 @@ function innerDraw(A,obj,d){
 
   // Some hotpspot colours are created as needed.
   A.Hotspots.autoColour = 0;
-  drawArrows(A);
-  drawCells(A,obj, d);
-  drawArrowHeads(A);
+  //drawArrows(A);
+  var i;
+  for(i=0;i<=10;i++){
+    d.stage = i;
+    drawCells(A, obj, d);
+  }
+  //drawArrowHeads(A);
 
   //drawButtons(A);
   drawInfoButtonHotspot(A);
@@ -503,6 +518,9 @@ function makeFunctionTable(T, obj){
 }
 
 function drawChart(A, obj, d){
+  if( d.stage !== kStageFillAndText )
+    return;
+
   //console.log( "draw - "+obj.type);
   var l = obj.layout;
   var x0 = l.x0;
@@ -522,6 +540,9 @@ function drawChart(A, obj, d){
 }
 
 function drawPieChart(A, obj, d){
+  if( d.stage !== kStageFillAndText )
+    return;
+
   //console.log( "draw - "+obj.type);
   var l = obj.layout;
   var x0 = l.x0;
@@ -655,6 +676,9 @@ function drawMultipleItems(A,values, T){
 
 // draws a path inside a box.
 function drawPath(A, obj, d, stride){
+  if( d.stage != kStageFillAndText )
+    return;
+
   //console.log( "draw - "+obj.type);
   var l = obj.layout;
   var x0 = l.x0;
@@ -887,38 +911,49 @@ function drawImage(A, obj, d){
   var ctx2 = A.Hotspots.ctx;
   if( obj.status !== "arrived" ){
     drawRectangle(A, obj, d);
-  } else if( obj.spherical ){
-    drawSphere(A, x, y, xw, yh, ctx, obj);
-    drawSphere(A, x, y, xw, yh, ctx2, obj.hot);
+    return;
+  }
+
+
+  if( obj.spherical ){
+    if( d.stage === kStageFillAndText )
+      drawSphere(A, x, y, xw, yh, ctx, obj);
+    if( d.stage === kStageHots )
+      drawSphere(A, x, y, xw, yh, ctx2, obj.hot);
+    return;
+  }
+
+
+  if( obj.stretch === "yes" ){
+    // rescaled to fit, aspect ratio ignored.
+  } else if( obj.stretch === "no" ){
+    // ToDo: crop or center.
   } else {
-    if( obj.stretch == "yes" ){
-      // rescaled to fit, aspect ratio ignored.
-    } else if( obj.stretch == "no" ){
-      // ToDo: crop or center.
+    // obj.stretch undefined or "preserve-aspect"
+    // Logic to rescale image to fit, preserving
+    // aspect ratio and placing centrally.
+    if( obj.img.width * yh < obj.img.height * xw ){
+      // shift image left to centre.
+      x += xw * 0.5;
+      // rescale x
+      xw = obj.img.width * yh / obj.img.height;
+      // shift image mid back to mid
+      x -= xw * 0.5;
     } else {
-      // obj.stretch undefined or "preserve-aspect"
-      // Logic to rescale image to fit, preserving
-      // aspect ratio and placing centrally.
-      if( obj.img.width * yh < obj.img.height * xw ){
-        // shift image left to centre.
-        x += xw * 0.5;
-        // rescale x
-        xw = obj.img.width * yh / obj.img.height;
-        // shift image mid back to mid
-        x -= xw * 0.5;
-      } else {
-        // shift image top to y centre line
-        y += yh * 0.5;
-        // rescale y
-        yh = obj.img.height * xw / obj.img.width;
-        // shift image mid back to y centre line
-        y -= yh * 0.5;
-      }
+      // shift image top to y centre line
+      y += yh * 0.5;
+      // rescale y
+      yh = obj.img.height * xw / obj.img.width;
+      // shift image mid back to y centre line
+      y -= yh * 0.5;
     }
+  }
+  if( d.stage === kStageFillAndText )
     ctx.drawImage(obj.img, x, y, xw, yh);
+
+  if( d.stage === kStageHots )
     if( obj.hot && obj.hot.status === "arrived" )
       ctx2.drawImage(obj.hot.img, x, y, xw, yh);
-  }
 }
 
 function drawRectangle(A, obj, d){
@@ -928,25 +963,61 @@ function drawRectangle(A, obj, d){
   var y = l.y0;
   var xw = l.xw;
   var yh = l.yh;
+  var stage = d.stage;
+
+  // -- Extra twiddles for chooser
+  // The unchosen tabs are drawn early, so that they get overlapped.
+  if( obj.drawEarly && (stage<9) ){
+    stage += 2;
+  }
+  // Text position unchanged even if we expand the rectangle.
+  xwText = xw;
+  yhText = yh;
+  // All the chooser rectangles are expanded, so that they will overlap.
+  if( obj.drawExtra ){
+    // The direction to expand in is currently a hack, based on size.
+    // fixme drawExtra should tell us which direction to expand in.
+    if( yh < 50 ){
+      yh+=10;
+    }
+    else {
+      xw+=10;
+    }
+  }
+  // A chosen main rectangle has this style, to meld with the chooser rectangle.
+  if( obj.style === "chosen" ){
+    obj.colour       = "rgb(255,250,235)";
+    obj.bcolour      = "rgb(145,125,0)";
+    obj.cornerRadius = 8;
+  }
+  // -- End of extra twiddles for chooser.
 
   var ctx = A.BackingCanvas.ctx;
 
-  ctx.save();
-  ctx.beginPath();
+  if( (stage===kStageOutline) || (stage===kStageFillAndText) ){
+    ctx.save();
+    ctx.beginPath();
 
-  setStyles(ctx, obj);
-  if( obj.cornerRadius )
-    drawRoundRect(ctx, x, y, xw, yh, obj.cornerRadius);
-  else
-    ctx.rect(x, y, xw, yh);
-  ctx.fill();
-  ctx.stroke();
+    setStyles(ctx, obj);
+    if( obj.cornerRadius )
+      drawRoundRect(ctx, x, y, xw, yh, obj.cornerRadius);
+    else
+      ctx.rect(x, y, xw, yh);
 
-  ctx.textAlign = "center";
-  ctx.fillStyle = "rgba(0,0,0,1.0)";
-  ctx.fillText(obj.value, x + xw / 2, y + yh / 2 + 6);
-  ctx.restore();
-  if( obj.hotspotColour ){
+    if( stage===kStageOutline){
+      ctx.stroke();
+    }
+
+    if( stage===kStageFillAndText){
+      ctx.fill();
+      ctx.textAlign = "center";
+      ctx.fillStyle = "rgba(0,0,0,1.0)";
+      ctx.fillText(obj.value, x + xwText / 2, y + yhText / 2 + 6);
+    }
+    ctx.restore();
+  }
+
+  if( (stage===kStageHots) && obj.hotspotColour ){
     var ctx2 = A.Hotspots.ctx;
     ctx2.beginPath();
     ctx2.rect(x, y, xw, yh);
@@ -964,27 +1035,35 @@ function drawCircle(A, obj, d){
   var xw = l.xw;
   var yh = l.yh;
 
+  var r = Math.min(xw, yh) / 2;
+  if( r < 0 )
+    return;
+
   var ctx = A.BackingCanvas.ctx;
   ctx.lineWidth = 3;
   ctx.font = "16px Arial";
   ctx.globalCompositeOperation = 'source-over';
 
-  ctx.save();
-  ctx.beginPath();
-  setStyles(ctx, obj);
 
-  var r = Math.min(xw, yh) / 2;
-  if( r < 0 )
-    return;
-  ctx.arc(x + xw / 2, y + yh / 2, r, 0, Math.PI * 2.0, true);
-  ctx.fill();
-  ctx.stroke();
+  if( (d.stage===kStageOutline) || (d.stage===kStageFillAndText) ){
+    ctx.save();
+    ctx.beginPath();
+    setStyles(ctx, obj);
 
-  ctx.textAlign = "center";
-  ctx.fillStyle = "rgba(0,0,0,1.0)";
-  ctx.fillText(obj.value, x + xw / 2, y + yh / 2 + 6);
-  ctx.restore();
-  if( obj.hotspotColour ){
+    ctx.arc(x + xw / 2, y + yh / 2, r, 0, Math.PI * 2.0, true);
+    if( d.stage===kStageOutline){
+      ctx.stroke();
+    }
+
+    if( d.stage===kStageFillAndText){
+      ctx.fill();
+      ctx.textAlign = "center";
+      ctx.fillStyle = "rgba(0,0,0,1.0)";
+      ctx.fillText(obj.value, x + xw / 2, y + yh / 2 + 6);
+    }
+    ctx.restore();
+  }
+  if( (d.stage===kStageHots ) && obj.hotspotColour ){
     var ctx2 = A.Hotspots.ctx;
     ctx2.beginPath();
     ctx2.arc(x + xw / 2, y + yh / 2, r, 0, Math.PI * 2.0, true);
@@ -1639,6 +1718,8 @@ function doChoose( A, parentObj, item )
     obj.colour  = (i===item) ? "rgb(255,250,235)":"rgb(255,230,205)";
     obj.bcolour = (i===item) ? "rgb(145,125,0)"  :"rgb(215,155,0)";
     obj.cornerRadius = 8;
+    obj.drawEarly = (i!==item);
+    obj.drawExtra = true;
   }
 }
 

@@ -29,7 +29,12 @@ The detailed data for the regions, buttons and tooltips follows.
         {"Rectangle":"Hotspots"}
         ],
         "id":"ImageChooser"},
-    {"Image":"Image"}
+
+    {"Overlay":[
+        {"Rectangle":"",
+         "style":"chosen"},
+        {"Image":"Image"}
+        ]}
 ]
 </pre>
 
