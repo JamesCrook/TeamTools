@@ -23,6 +23,6 @@ With the layout established, the details that follow customise the objects.
 
 
 
-<pre>CREDITS:CAPTION=Chemical Structure of Seratonin;TIP=</pre>
-<b>Credits:</b> <em>James Crook ©2019; Seratonin Image placed in Public
+<pre>CREDITS:CAPTION=Chemical Structure of Melatonin;TIP=</pre>
+<b>Credits:</b> <em>James Crook ©2019; Melatonin Image placed in Public
 Domain</em>
