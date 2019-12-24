@@ -530,31 +530,15 @@ function drawChart(A, obj, d){
 
   var T = {};
   // We can either specify width of the bars, or the spacing between bar groups.
-  T.width = 8;
+  if( obj.pie ){
+    T.spacer = 30;
+    T.cols = 1;
+  }
+  else
+    T.width = 8;
   if( !obj.values )
     return;
   clearBacking(A,x0, y0, xw, yh);
-  computeSpacing(A, T, x0, y0, xw, yh, obj.values);
-  makeFunctionTable(T, obj);
-  drawSpacedItems(A,x0, y0, xw, yh, obj.values, T);
-}
-
-function drawPieChart(A, obj, d){
-  if( d.stage !== kStageFillAndText )
-    return;
-
-  //console.log( "draw - "+obj.type);
-  var l = obj.layout;
-  var x0 = l.x0;
-  var y0 = l.y0;
-  var xw = l.xw;
-  var yh = l.yh;
-
-  var T = {};
-  //T.width = 100;
-  T.spacer = 30;
-  T.cols = 1;
-  clearBacking(A, x0, y0, xw, yh);
   computeSpacing(A, T, x0, y0, xw, yh, obj.values);
   makeFunctionTable(T, obj);
   drawSpacedItems(A,x0, y0, xw, yh, obj.values, T);
@@ -1651,7 +1635,6 @@ function registerMethods()
   registerMethod( "Chart",     0, layoutMargined, drawChart);
 
   // The charts are unmargined...
-  registerMethod( "PieChart",0,0, drawPieChart);
   registerMethod( "Path",    0,0, drawPath);
   registerMethod( "Tree",    0,0, drawTree);
   registerMethod( "Arrows",  sizeNowt,layoutNowt, drawArrows);
