@@ -17,7 +17,6 @@ The detailed data for the chart follows.
 
 <pre>ADD:DATA=
 {"HStack":[
-    {"SizeAs":3},
     {"Margins":7},
     {"VStack":[
         {"HStack":[
@@ -27,8 +26,7 @@ The detailed data for the chart follows.
                 {"Rectangle":"WIT Menus"}
                 ]},
             {"VStack":[
-                {"SizeAs":2},
-                {"Circle":"WIT"},
+                {"Circle":"WIT","sizeAs":2},
                 {"Rectangle":"Toolbar Images"}
                 ]},
             {"VStack":[
@@ -40,12 +38,13 @@ The detailed data for the chart follows.
             ]},
 
         {"HStack":[
-            {"SizeAs":0.8},
             {"VStack":[
-                {"SizeAs":1.3},
-                {"Circle":"Audacity"},
+                {"Circle":"Audacity",
+                 "sizeAs":1.3},
                 {"Circle":"Scripting"}
-                ]},
+                ],
+                "sizeAs":0.8
+                },
             {"VStack":[
                 {"Rectangle":"Preferences Images"},
                 {"Rectangle":"EGA Images"},
@@ -55,10 +54,11 @@ The detailed data for the chart follows.
                 {"Circle":"File Upload"}
                 ]}
             ]}
-        ]},
+        ],
+        "sizeAs":3
+        },
     {"VStack":[
-        {"SizeAs":2},
-        {"Circle":"Cut & Paste"},
+        {"Circle":"Cut & Paste","sizeAs":2},
         {"Rectangle":"Alpha Manual"},
         {"Spacer":0.35}
         ]},

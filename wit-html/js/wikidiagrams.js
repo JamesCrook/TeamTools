@@ -1480,20 +1480,12 @@ function drawContainer(A, obj, d){
 }
 
 
-function sizeCell(A, obj, d, proportion){
+function sizeCell(A, obj, d){
   //console.log( "size cell - "+obj.type);
   obj.sizing = {};
   obj.sizing.min = 0;
-  obj.sizing.wants = (proportion === undefined) ? 1.0 : proportion;
+  obj.sizing.wants = obj.sizeAs || 1.0;
   obj.sizing.cumulativeWants = 0.0;
-  if( d.hasOwnProperty("sizeAs") && (proportion === undefined) ){
-    obj.sizing.wants = d.sizeAs;
-    delete d.sizeAs;
-  }
-  //if( obj.choice ){
-  //  obj.sizing.wants = 0.01;
-  //  obj.sizing.min = 40;
- // }
 }
 
 function sizeContainer(A, obj, d){
@@ -1557,6 +1549,10 @@ function layoutContainer( A, obj, d){
   }
 }
 
+function sizeSpacer( A, obj, data ){
+  sizeCell(A, obj, data );
+  obj.sizing.wants = obj.value;
+}
 
 function sizeNowt( A, obj, data ){
   sizeCell( A, obj, data );
@@ -1581,20 +1577,8 @@ function drawCells(A, obj, data){
 
 sizeThing = {
   "default": sizeContainer,
-
-  // SizeAs gives this size to the next object.
-  // The size is normally 1, so 2 will increase
-  // the size, 0.5 will decrease the size.
-  "SizeAs": function(A, obj, d){
-    sizeCell(A, obj, d, 0.0);
-    d.sizeAs = obj.value;
-  }, // Spacer makes some open space
-  "Spacer": function(A, obj, d){
-    sizeCell(A, obj, d, obj.value);
-  },
-  "Margins": function(A, obj, d){
-    sizeCell(A, obj, d, 0.0);
-  }
+  "Spacer": sizeSpacer,
+  "Margins": sizeNowt
 };
 
 layoutThing = {

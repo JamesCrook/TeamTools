@@ -45,7 +45,6 @@ The detailed data for the chart follows.
 
            ]
         },
-        {"SizeAs":0.16},
         {
            "Chart":"Scale",
            "titles":["Date","Live Bugs","Slain Bugs"],
@@ -65,7 +64,8 @@ The detailed data for the chart follows.
            ["Nov",362,1867],
            ["Dec",362,1867]
 
-           ]
+           ],
+           "sizeAs":0.16
         }
 
         ]

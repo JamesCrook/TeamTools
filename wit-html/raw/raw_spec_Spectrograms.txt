@@ -13,7 +13,6 @@ This is the spec for the interactive diagram which explains window size in spect
 <pre>ADD:DATA=
 [
     {"Margins":1.6},
-    {"SizeAs":0.07},
     {"HStack":[
         {"Rectangle":"256"},
         {"Rectangle":"512"},
@@ -22,7 +21,8 @@ This is the spec for the interactive diagram which explains window size in spect
         {"Rectangle":"4096"},
         {"Rectangle":"8192"}
         ],
-        "id":"SpectroChooser"},
+        "id":"SpectroChooser",
+        "sizeAs":0.07},
     {"Overlay":[
         {"Rectangle":"",
          "style":"chosen"},

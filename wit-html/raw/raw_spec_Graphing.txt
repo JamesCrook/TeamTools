@@ -57,7 +57,6 @@ The detailed data for the chart follows.
 
    ]
 },
-{"SizeAs":0.18},
 {
    "Chart":"Scale",
    "titles":["Date","Live Bugs","Slain Bugs"],
@@ -92,10 +91,10 @@ The detailed data for the chart follows.
    ["Oct 2019",360,1860],
    ["Nov 2019",362,1867]
 
-   ]
+   ],
+   "sizeAs":0.18
 },
-{"SizeAs":0.3},
- {"Chart":"many donuts",
+{"Chart":"many donuts",
    "titles":["Date","Live Bugs","Slain Bugs"],
    "display":["Label","Blue","Green"],
    "subtype":["*","pie","pie"],
@@ -109,7 +108,8 @@ The detailed data for the chart follows.
    ["Oct 2017",557,1195],
    ["Nov 2019",362,1867]
 
-   ]
+   ],
+   "sizeAs":0.3
 }]
 </pre>
 

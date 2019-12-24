@@ -25,14 +25,15 @@ The detailed data for the regions, buttons and tooltips follows.
 [
 {"HStack":[
     {"Margins":1.6},
-    {"SizeAs":0.24},
     {"VStack":[
         {"Rectangle":"Climate Zones"},
         {"Rectangle":"Vegetation"},
         {"Rectangle":"Ocean Currents"},
         {"Rectangle":"Plate Techtonics"},
         {"Rectangle":"Moon"}
-        ],"id":"MapChooser"},
+        ],
+        "id":"MapChooser",
+        "sizeAs":0.24},
     {"Overlay":[
         {"Rectangle":"",
          "style":"chosen"},
