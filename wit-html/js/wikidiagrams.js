@@ -2172,6 +2172,39 @@ function initContent(){
 
 function handleEditorData(A, data, section){
   A.MainDiv.innerHTML = data;
+  var div = document.getElementById( "page" );
+  if( !div )
+    return;
+  data = data.replace( /__NOTOC__/g, "" );
+  data = data.replace( /^----*/gm, "<hr>");
+  data = data.replace( /\[http(\S*)\s([^\]]*)\]/g,"<a" +
+    " href='http$1'>$2</a>");
+  data = data.replace( /\[\[File:([^\]]*)\]\]/g, "<img" +
+    " style='width:700px;border:solid black 1px' src='./images/$1'>");
+  data = data.replace( /https:\/\/wit.audacityteam.org\//g, '' );
+  data = data.replace( /\[\[Toolbox\/([^\|\]]*)\|([^\[]*)\]\]/g, "<a" +
+    " href='raw/raw_spec_$1.txt'>Toolbox/$2</a>");
+  data = data.replace( /\[\[Toolbox\/([^\]]*)\]\]/g, "<a" +
+    " href='raw/raw_spec_$1.txt'>Toolbox/$1</a>");
+  data = data.replace( /#.\.txt/g, ".txt" );
+
+  data=data.replace( /{{ATK_Header}}/g,
+"<div style='margin:0 auto;background:#EEEEFF;padding:10px;border:1px solid" +
+    " #999999;width:90%;align:center;margin-top:30px;margin-bottom:30px'" +
+    ">This is an example interactive" +
+    " diagram created using the " +
+    "<a href='https://wiki.audacityteam.org/wiki/Audacity_Tool_Kit'>Audacity " +
+    "Tool Kit</a> (ATK).  The aim of the ATK" +
+    " project is to provide interactive diagrams that explain everything to do" +
+    " with Audacity.  The ATK is also expected to be useful for other code" +
+    " projects, and eventually for Wikipedia too, for biochemical pathways and" +
+    " other interactive diagrams.</div>");
+
+  var name = A.page;
+  name = name.replace(/_/g," ");
+  data = "<h1><a href='demos.htm?page0="+A.page+"'>Toolkit/"+name+"</a></h1><hr>"+data;
+
+  div.innerHTML = data;
 }
 
 function populateEditorElement(A, contentHere){
@@ -2202,7 +2235,7 @@ function initEditors(){
     requestSpec(A,A.page, 'remote',1,handleEditorData);
 
 
-    loadDiagram( A, A.page, 'no',1);
+    //loadDiagram( A, A.page, 'no',1);
   }
   // Timer is for animation such as rotating earth.
   //setInterval(timerCallback, 30);

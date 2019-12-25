@@ -79,8 +79,10 @@
         }
 
         pre {
-            background-color: #1d2134;
-            color: yellow;
+            font-family : Consolas,Lucida Console,monospace;
+            background-color: #fff9f6;
+            border: solid #ceccd1 1px;
+            padding:10px;
         }
 
         div.bt {
@@ -274,15 +276,15 @@
 <div style="height:1.9em;"></div>
 
 <div style="margin-left:10px">
-    <h3>Edit spec:</h3>
+    <h3>Edit the spec for a diagram</h3>
     The toolkit can keep its spec files in mediawiki, and can view and edit them
     there without any change to mediawiki software.
-    <p>This particular spec file
-    is hosted at 'wit' instead.  Editing is possible here, but is not saved.<br><br>
+    <p>This alternative edit page is for experiments.  Edits are not saved.<br><br>
 </div>
 
 <div class = "tabber">
     <span class="tab" onClick="selectTab('page',this)">page</span>
+    <span class="tab" onClick="selectTab('discussion',this)">discussion</span>
     <span class="tab selected" onClick="selectTab('edit',this)">edit</span>
     <span class="tab" onClick="selectTab('richEdit',this)">rich-edit</span>
     <span class="tab" onClick="selectTab('history',this)">history</span>
@@ -290,6 +292,7 @@
 
 <div class="scenebacker">
     <div id="page" class="choice" style="display:none">PAGE</div>
+    <div id="discussion" class="choice" style="display:none">DISCUSSION</div>
     <div id="edit" class="choice" style="display:block">
         <div id="content_here0" class="atkContentDiv" data-page="Globes" style="text-align:center;">
         </div>
