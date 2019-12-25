@@ -8,7 +8,7 @@ This is the spec for the interactive diagram which shows a chemical structure.
 Here's the result:
 
 -----
-{{#widget:Dynamic|page=Molecule|height=450px}}
+{{#widget:Dynamic|page=Molecule}}
 -----
 
 The detailed data for the chart follows.
@@ -23,6 +23,6 @@ With the layout established, the details that follow customise the objects.
 
 
 
-<pre>CREDITS:CAPTION=Chemical Structure of Melatonin;TIP=</pre>
+<pre>CREDITS:CAPTION=Chemical Structure of Melatonin;tip=</pre>
 <b>Credits:</b> <em>James Crook ©2019; Melatonin Image placed in Public
 Domain</em>

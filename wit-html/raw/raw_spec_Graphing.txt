@@ -5,15 +5,10 @@ __NOTOC__
 
 This is the spec for the interactive diagram which shows a chart of Audacity bug counts:
 
-<pre>
-DISPLAY_FOCUS_DETAIL Focus=SmallCircle
-  IMAGE_WITH_HOTSPOTS
-</pre>
-
-The specification above builds a simple focus-detail display for the bar chart.  Here's the result:
+Here's the result:
 
 -----
-{{#widget:Dynamic|page=Bug_Counts|height=450px}}
+{{#widget:Dynamic|page=Bug_Counts}}
 -----
 
 The detailed data for the chart follows.

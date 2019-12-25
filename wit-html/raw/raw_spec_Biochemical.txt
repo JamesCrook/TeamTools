@@ -6,19 +6,13 @@ __NOTOC__
 This is the spec for the interactive diagram for testing out display of
 Biochemical pathway charts.
 
-<pre>
-DISPLAY_FOCUS_DETAIL Focus=SmallCircle
-  IMAGE_WITH_HOTSPOTS
-</pre>
-
-
-The specification above builds a simple focus-detail display.  There's a
+There's a
 stand-alone [https://wit.audacityteam.org/demos.htm?page=Biochemical interactive
  demo] but here is the result in wiki:
 
 
 -----
-{{#widget:Dynamic|page=Biochemical|height=450px}}
+{{#widget:Dynamic|page=Biochemical}}
 -----
 
 The detailed data for the chart follows.
@@ -60,16 +54,9 @@ The detailed data for the chart follows.
 }]
 </pre>
 
-<pre>NEXTOBJECT:/pre>
+<pre>NEXTOBJECT:</pre>
 <pre>NEXTOBJECT:COLOUR=rgb(255,230,205);BCOLOUR=rgb(215,155,0);CORNER_RADIUS=15</pre>
 <pre>NEXTOBJECT:COLOUR=rgb(215,230,210);BCOLOUR=rgb(130,180,100);CORNER_RADIUS=15</pre>
-
-
-
-
-
-
-
 
 <pre>CREDITS:CAPTION=Biochemical Pathways;TIP=</pre>
 <b>Credits:</b> <em>James Crook (c) 2019.  CC-BY-SA-3</em>

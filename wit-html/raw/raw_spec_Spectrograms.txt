@@ -6,8 +6,6 @@ __NOTOC__
 This is the spec for the interactive diagram which explains window size in spectrograms:
 
 
-
-
 <pre>START</pre>
 
 <pre>ADD:DATA=

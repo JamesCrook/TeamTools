@@ -4,17 +4,10 @@ __NOTOC__
 {{ATK_Header}}
 
 This is the spec for the interactive diagram which shows a chart of temperature
-and precipitation.
-
-<pre>
-DISPLAY_FOCUS_DETAIL Focus=SmallCircle
-  IMAGE_WITH_HOTSPOTS
-</pre>
-
-The specification above builds a simple focus-detail display for the chart.  Here's the result:
+and precipitation.  Here's the result:
 
 -----
-{{#widget:Dynamic|page=ClimateChart|height=450px}}
+{{#widget:Dynamic|page=ClimateChart}}
 -----
 
 The detailed data for the chart follows.

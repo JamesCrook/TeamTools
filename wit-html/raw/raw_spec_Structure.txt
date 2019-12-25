@@ -3,18 +3,12 @@ __NOTOC__
 
 {{ATK_Header}}
 
-This is the spec for the interactive diagram which shows a tree display of Audacity classes:
+This is the spec for the interactive diagram which shows a tree display of Audacity classes.
 
-<pre>
-DISPLAY_FOCUS_DETAIL Focus=SmallCircle
-  IMAGE_WITH_HOTSPOTS
-</pre>
-
-The specification above builds a simple focus-detail display for the display of
-all Audacity classes.  Here's the result:
+Here's the result:
 
 -----
-{{#widget:Dynamic|page=Structure|height=450px}}
+{{#widget:Dynamic|page=Structure}}
 -----
 
 The detailed data for the chart follows.

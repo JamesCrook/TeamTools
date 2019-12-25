@@ -2,15 +2,8 @@ __NOTOC__
 
 {{ATK_Header}}
 
-This is the spec for the interactive diagram which shows the structure of the Middle Ear:
-
-<pre>
-DISPLAY_FOCUS_DETAIL Focus=SmallCircle
-  BUTTON_ROW
-  IMAGE_WITH_HOTSPOTS
-</pre>
-
-The specification above builds a simple focus-detail display.  There's an [https://wit.audacityteam.org/imagemap2_test.htm?page=The_Ear interactive demo].
+This is the spec for the interactive diagram which shows the structure of the
+Middle Ear.  There's an [https://wit.audacityteam.org/demos.htm?page=The_Ear interactive demo].
 
 This is one of three related pages.  The other two are:
 <ul>
