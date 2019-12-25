@@ -158,6 +158,43 @@
 
         }
 
+        span.tab {
+            border: solid #7890B7 2px;
+            border-radius : 3px;
+            background-color: #dcdcdc;
+            margin:5px;
+            padding:5px;
+            padding-bottom : 1px;
+            box-sizing : border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+        }
+
+        span.tab:hover {
+            background-color: #383838;
+            color: lightblue;
+        }
+
+        span.tab.selected {
+            border-bottom: solid #e6f1ff 2px;
+            background-color: #e6f1ff;
+            color : black;
+        }
+
+
+        div.tabber {
+
+            margin-left : auto;
+            margin-right : auto;
+            border-bottom: solid #7890B7 2px;
+        }
+
+        div.scenebacker {
+            background-color : #e6f1ff;
+            padding : 5px;
+            border-bottom: solid #7890B7 2px;
+        }
+
 
 
 
@@ -182,6 +219,22 @@
         fromWiki = getArg(query, 'fromwiki') || fromWiki;
         if( frame === "no" ) removeFrame();
         initEditors();
+      }
+
+
+      function selectTab(name, widget) {
+        var i;
+        var tabs = document.getElementsByClassName("tab");
+        for (i = 0; i < tabs.length; i++) {
+          tabs[i].className = "tab";
+        }
+        widget.className = "tab selected";
+        document.getElementById(name).style.display = "block";
+        var choices = document.getElementsByClassName("choice");
+        for (i = 0; i < choices.length; i++) {
+          choices[i].style.display = "none";
+        }
+        document.getElementById(name).style.display = "block";
       }
 
     </script>
@@ -222,12 +275,29 @@
 
 <div style="margin-left:10px">
     <h3>Edit spec:</h3>
-    This is something like how the spec would appear in a wiki edit page.<br><br>
+    The toolkit can keep its spec files in mediawiki, and can view and edit them
+    there without any change to mediawiki software.
+    <p>This particular spec file
+    is hosted at 'wit' instead.  Editing is possible here, but is not saved.<br><br>
 </div>
 
-
-<div id="content_here0" class="atkContentDiv" data-page="Globes" style="text-align:center;">
+<div class = "tabber">
+    <span class="tab" onClick="selectTab('page',this)">page</span>
+    <span class="tab selected" onClick="selectTab('edit',this)">edit</span>
+    <span class="tab" onClick="selectTab('richEdit',this)">rich-edit</span>
+    <span class="tab" onClick="selectTab('history',this)">history</span>
 </div>
+
+<div class="scenebacker">
+    <div id="page" class="choice" style="display:none">PAGE</div>
+    <div id="edit" class="choice" style="display:block">
+        <div id="content_here0" class="atkContentDiv" data-page="Globes" style="text-align:center;">
+        </div>
+    </div>
+    <div id="richEdit" class="choice" style="display:none">RICH EDIT</div>
+    <div id="history" class="choice" style="display:none">HISTORY</div>
+</div>
+
 
 <!--<div id="content_here1" class="atkContentDiv" data-page="Graphing" style="text-align:center;">
 </div>-->

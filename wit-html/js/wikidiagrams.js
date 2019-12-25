@@ -75,6 +75,8 @@ function startChart(A){
 
 
 function resizeDivs(A){
+  if( !A.BackingCanvas )
+    return;
   A.MainDiv.style.width = A.Porthole.width + 'px';
   A.MainDiv.style.height = A.Porthole.height + 'px';
   A.BackingCanvas.width = A.Porthole.width;
@@ -1302,6 +1304,8 @@ function onFocusClicked(e){
 
 
 function updateImages(A){
+  if( !A.BackingCanvas )
+    return;
   if( (A.RootObject.content.length === 1) &&
     (A.RootObject.content[0].type === "Image") ){
     var obj = A.RootObject.content[0];
@@ -1369,6 +1373,8 @@ function setATitle(A,caption, page, fromWiki){
   A.Caption.fromWiki = fromWiki;
 
   var atitle = A.TitleDiv;//.getElementById("atitle"+A.index);
+  if( !atitle )
+    return;
   var str = "<em>" + caption + "</em>";
   if( page ){
 
