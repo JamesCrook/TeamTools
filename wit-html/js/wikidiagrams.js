@@ -68,9 +68,6 @@ function startChart(A){
   A.Hotspots.colourZoneIx = 0;
 }
 
-
-
-
 function resizeDivs(A){
   if( !A.BackingCanvas )
     return;
@@ -1965,17 +1962,7 @@ function loadNewLines(A, specFileData, section){
     if( item.startsWith("IMAGE") ){
       console.log("image:" + file);
       obj = getObjectByName(A, fieldValue("NAME", item));
-      if( obj ){
-        obj.resize = false;
-      } else {
-        obj = {};
-        obj.Image = file;
-        convertJsonStructure(A, "", obj);
-        obj.resize = A.RootObject.content.length === 0;
-        obj.spherical = false;
-        obj.stretch = "preserve-aspect";
-        A.RootObject.content.push(obj);
-      }
+      if( !obj ) continue;
       A.RootObject.lastImage = obj;
       obj.src = file;
     }
@@ -2006,14 +1993,7 @@ function loadNewLines(A, specFileData, section){
     if( item.startsWith("SUBOBJECT") ){
       console.log("subobject:" + file);
       obj = getObjectByName(A, fieldValue("NAME", item));
-      if( obj ){
-        obj.resize = false;
-      } else {
-        obj = {};
-        obj.Overlay = file;
-        convertJsonStructure(A, "", obj);
-        A.RootObject.content.push(obj);
-      }
+      if( !obj ) continue;
 
       obj.status = "asked";
       obj.file = file;
