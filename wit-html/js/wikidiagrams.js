@@ -54,14 +54,17 @@ function resetHotspots(A){
   A.Buttons.Names = [];
   A.Buttons.chosen = -1;
 
-  A.RootObject = {};
   A.Distortion = {};
+}
+
+function resetSceneGraph(A){
 }
 
 function startChart(A){
   A.Porthole.width = 700;
   A.Porthole.height = 400;
 
+  A.RootObject = {};
   A.RootObject.type = 'VStack';
   A.RootObject.content = [];
   A.RootObject.itemIndex = 0;
@@ -1585,6 +1588,38 @@ function mayRegisterClickAction( A, obj ){
   }
 }
 
+function mayRequestImage( A, obj ){
+  if( !obj.src )
+    return;
+  if( obj.type !== "Image" )
+    return;
+
+  obj.status = "asked";
+  obj.file = obj.src;
+  obj.content = [];
+  obj.img = document.createElement("img");
+  obj.img.onload = (function(){
+    var obj1 = obj;
+    return function(){
+      obj1.status = "arrived";
+      console.log(obj1.file + " image arrived");
+      // May need to layout and draw when image arrives.
+      if( obj1.resize ) resizeForImage(A,
+        obj1.img); else if( A.Status.isAppReady ) onChart(A);
+    }
+  })();
+  obj.img.onerror = (function(){
+    var obj1 = obj;
+    return function(){
+      obj1.status = "failed";
+      alert("Failed to load image " + obj1.file);
+    }
+  })();
+  obj.img.crossOrigin = "anonymous";
+  obj.img.src = obj.src;
+}
+
+
 
 function createCell(A, obj, d){
 
@@ -1598,6 +1633,7 @@ function createCell(A, obj, d){
   }
 
   mayRegisterClickAction( A, obj);
+  mayRequestImage( A, obj );
 
   if( obj.hasOwnProperty( 'choice')){
     doChoose(A, obj, obj.choice);
@@ -1940,33 +1976,7 @@ function loadNewLines(A, specFileData, section){
         A.RootObject.content.push(obj);
       }
       A.RootObject.lastImage = obj;
-
-      obj.status = "asked";
-      obj.file = file;
-      obj.content = [];
-      obj.img = document.createElement("img");
-      obj.img.onload = (function(){
-        var obj1 = obj;
-        return function(){
-          obj1.status = "arrived";
-          console.log(obj1.file + " image arrived");
-          // May need to layout and draw when image arrives.
-          if( obj1.resize )
-            resizeForImage(A, obj1.img);
-          else if( A.Status.isAppReady )
-            onChart(A);
-        }
-      })();
-      obj.img.onerror = (function(){
-        var obj1 = obj;
-        return function(){
-          obj1.status = "failed";
-          alert("Failed to load image " + obj1.file);
-        }
-      })();
-      obj.img.crossOrigin = "anonymous";
-      obj.img.src = file;
-
+      obj.src = file;
     }
 
     // Used after IMAGE to add hotspot image for that image.
@@ -2006,7 +2016,7 @@ function loadNewLines(A, specFileData, section){
         data = fieldValue("VALUE", item);
         if( data ){
            data = JSON.parse( data );
-           doChoose( A, obj, data );
+           obj.choice = data;
         }
       }
     }
@@ -2081,9 +2091,15 @@ function loadNewLines(A, specFileData, section){
  * @param section
  */
 function addNewDetails(A, data, section){
+  resetHotspots(A);
   A.Status.isAppReady = false;
   loadNewLines(A, data, section);
+
+  var d= {};
+  var obj = A.RootObject;
+  createCells( A, obj, d );
   A.Status.time = 0;
+
   updateImages(A);
 }
 
