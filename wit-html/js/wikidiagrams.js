@@ -49,12 +49,6 @@ function resetHotspots(A){
   A.Hotspots.colourZones = [];
   // Bogus entry to catch bad tips.
   AddHot(A,"[5,0,0,0]");
-
-  A.Buttons = {};
-  A.Buttons.Names = [];
-  A.Buttons.chosen = -1;
-
-  A.Distortion = {};
 }
 
 function resetSceneGraph(A){
@@ -205,11 +199,6 @@ AddHotExact = function( A, index){
   actions.Zone = A.Hotspots.count++;
 };
 
-AddButton = function( A, text){
-  A.Buttons.Names.push(text);
-  AddHot(A,"[0,10," + A.Buttons.Names.length * 5 + ",255]");
-};
-
 AddInfo = function( A ){
   AddHot(A,"[0,0,5,255]");
 };
@@ -276,13 +265,8 @@ NextAutoColour = function( A, Tip){
   AddHotExact( A, index );
   AddDetail( A, Tip );
 
-  //A.Hotspots.colourZones = A.Hotspots.colourZones || [];
-  //A.Hotspots.colourZones.push( JSON.parse( index ) );
   A.Hotspots.colourZoneIx++;
 
-  //if( A.Hotspots.ColourZoneIx === 1 ){
-  //  setATitle( A, A.Caption.text, A.Caption.page, A.fromWiki );
-  //}
   return rgb;
 };
 
@@ -300,15 +284,13 @@ function innerDraw(A,obj,d){
 
   // Some hotpspot colours are created as needed.
   A.Hotspots.autoColour = 0;
-  //drawArrows(A);
+
   var i;
   for(i=0;i<=10;i++){
     d.stage = i;
     drawCells(A, obj, d);
   }
-  //drawArrowHeads(A);
 
-  //drawButtons(A);
   drawInfoButtonHotspot(A);
   A.Status.drawing = false;
 }
@@ -1126,12 +1108,9 @@ function drawInfoButton(A){
 function drawFocusSpot(A,x, y){
 
   var ctx = A.FocusCanvas.ctx;
-  var extra = A.Buttons.Names.length ? 25 : 0;
 
   ctx.globalCompositeOperation = 'source-over';
   ctx.clearRect(0, 0, A.Porthole.width, A.Porthole.height);
-
-  if( y < extra ) return;
 
   var m = A.Porthole.margin;
   ctx.fillStyle = "rgba( 5,5,5,0.2)";
@@ -1141,9 +1120,6 @@ function drawFocusSpot(A,x, y){
   ctx.closePath();
   ctx.fill();
 
-
-  // ctx.fillRect(m, m + extra, A.Porthole.width - 2 * m,
- //   A.Porthole.height - 2 * m - extra);
 
   ctx.fillStyle = "rgba(0,255,255,1.0)";
   ctx.globalCompositeOperation = 'destination-out';
@@ -1285,7 +1261,6 @@ function mousemoveOnMap(e){
     }
     // Do any additional hover action
     if( actions.Hover ){
-      A.Buttons.chosen = actions.Zone;
       doAction(A, actions.Hover);
     }
     e.target.style.cursor = actions.Click ? 'pointer' : 'auto';
