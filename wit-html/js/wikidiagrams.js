@@ -1594,6 +1594,31 @@ function mayRequestImage( A, obj ){
   obj.img.src = obj.src;
 }
 
+function mayRequestHotImage( A, obj ){
+  if( !obj.hotsrc ) return;
+  if( obj.type !== "Image" ) return;
+  obj.hot = {};
+  obj.hot.status = "asked";
+  obj.hot.file = obj.hotsrc;
+  obj.hot.img = document.createElement("img");
+  obj.hot.img.onload = (function(){
+    var obj1 = obj;
+    return function(){
+      obj1.hot.status = "arrived";
+      console.log(obj1.file + " HS arrived");
+      if( A.Status.isAppReady ) drawCells(A, A.RootObject, {});
+    }
+  })();
+  obj.hot.img.onerror = (function(){
+    var obj1 = obj;
+    return function(){
+      obj1.status = "failed";
+      alert("Failed to load hotspots " + obj1.hot.file);
+    }
+  })();
+  obj.hot.img.crossOrigin = "anonymous";
+  obj.hot.img.src = obj.hotsrc;
+}
 
 
 function createCell(A, obj, d){
@@ -1609,6 +1634,7 @@ function createCell(A, obj, d){
 
   mayRegisterClickAction( A, obj);
   mayRequestImage( A, obj );
+  mayRequestHotImage( A, obj );
 
   if( obj.hasOwnProperty( 'choice')){
     doChoose(A, obj, obj.choice);
@@ -1959,28 +1985,7 @@ function loadNewLines(A, specFileData, section){
       console.log("hotspots:" + file);
       obj = A.RootObject.lastImage;
       if( !obj ) continue;
-
-      obj.hot = {};
-      obj.hot.status = "asked";
-      obj.hot.file = file;
-      obj.hot.img = document.createElement("img");
-      obj.hot.img.onload = (function(){
-        var obj1 = obj;
-        return function(){
-          obj1.hot.status = "arrived";
-          console.log(obj1.file + " HS arrived");
-          if( A.Status.isAppReady ) drawCells(A, A.RootObject, {});
-        }
-      })();
-      obj.hot.img.onerror = (function(){
-        var obj1 = obj;
-        return function(){
-          obj1.status = "failed";
-          alert("Failed to load hotspots " + obj1.hot.file);
-        }
-      })();
-      obj.hot.img.crossOrigin = "anonymous";
-      obj.hot.img.src = file;
+      obj.hotsrc = file;
     }
 
     // DO some immediate command.  Currently it's confined to changing
