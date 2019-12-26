@@ -45,8 +45,8 @@ function resetHotspots(A){
   A.Hotspots.Colours = [];
   A.Hotspots.count = 0;
   A.Hotspots.autoColour = 0;
-  A.Hotspots.ColourZoneIx = 0;
-  A.Hotspots.ColourZones = [];
+  A.Hotspots.colourZoneIx = 0;
+  A.Hotspots.colourZones = [];
   // Bogus entry to catch bad tips.
   AddHot(A,"[5,0,0,0]");
 
@@ -68,7 +68,7 @@ function startChart(A){
   A.RootObject.objectDict = {};
   A.RootObject.objectList = [];
 
-  A.Hotspots.ColourZoneIx = 0;
+  A.Hotspots.colourZoneIx = 0;
 }
 
 
@@ -273,9 +273,9 @@ NextAutoColour = function( A, Tip){
   AddHotExact( A, index );
   AddDetail( A, Tip );
 
-  A.Hotspots.ColourZones = A.Hotspots.ColourZones || [];
-  A.Hotspots.ColourZones.push( JSON.parse( index ) );
-  A.Hotspots.ColourZoneIx++;
+  //A.Hotspots.colourZones = A.Hotspots.colourZones || [];
+  //A.Hotspots.colourZones.push( JSON.parse( index ) );
+  A.Hotspots.colourZoneIx++;
 
   //if( A.Hotspots.ColourZoneIx === 1 ){
   //  setATitle( A, A.Caption.text, A.Caption.page, A.fromWiki );
@@ -1331,17 +1331,18 @@ function updateImages(A){
 function makeToc(A){
   var h = A.Hotspots;
   var str = "<table>";
-  for(var i=0;i<h.ColourZones.length;i++){
-    var c = h.ColourZones[i];
-    // White text for numbers on dark backgrounds, black when light.
-    var textColor = textColourForColourTuple(c);
-    var tip = h.Colours[ stringOfTuple( c )].Tip;
-    str += "<tr><td style='vertical-align:top;padding-top:28px'>"+
-      "<div style='width:30px;height:30px;color:"+textColor+
-      ";border:thin solid black;text-align:center;vertical-align:middle;"+
-      "line-height:30px;background-color:"+
-      rgbOfColourTuple(c)+
-      "'>"+i+"</div></td><td>"+tip+"</td></tr>";
+  for(var i=0;i<h.colourZones.length;i++){
+    var c = h.colourZones[i].rgb;
+    if( c ){
+      // White text for numbers on dark backgrounds, black when light.
+      var textColor = textColourForColourTuple(c);
+      var tip = h.Colours[stringOfTuple(c)].Tip;
+      str += "<tr><td style='vertical-align:top;padding-top:28px'>" +
+        "<div style='width:30px;height:30px;color:" + textColor +
+        ";border:thin solid black;text-align:center;vertical-align:middle;" +
+        "line-height:30px;background-color:" + rgbOfColourTuple(c) + "'>" + i +
+        "</div></td><td>" + tip + "</td></tr>";
+    }
   }
   str += "</table>";
   return str;
@@ -1596,18 +1597,19 @@ function createCell(A, obj, d){
   }
 
   // Image zone colours only used for tips.
-  if( obj.hasOwnProperty('zoneColours') ){
+  if( obj.hasOwnProperty('colourZones') ){
     var i;
-    var n = Math.min(
-      obj.zoneColours.length ||0,
-      obj.zoneTips.length ||0);
+    var n = obj.colourZones.length;
     for(i=0;i<n;i++){
-      c = obj.zoneColours[i];
-      c = '[' + c[0] + ',' + c[1] + ',' + c[2] + ',' + c[3] + ']';
-      //console.log("next-color:" + c + "n:" + n);
-      detail = sanitiseHtml(obj.zoneTips[i]);
-      AddHot(A, c);
-      AddDetail(A, detail);
+      var zone = obj.colourZones[i];
+      if( zone.rgb && zone.tip ){
+        c = zone.rgb;
+        var colourString = '[' + c[0] + ',' + c[1] + ',' + c[2] + ',' + c[3] + ']';
+        //console.log("next-color:" + c + "n:" + n);
+        detail = sanitiseHtml(zone.tip);
+        AddHot(A, colourString);
+        AddDetail(A, detail);
+      }
     }
   }
 
@@ -1821,12 +1823,10 @@ function loadNewLines(A, specFileData, section){
       console.log("colour-data:" + data);
       var colours = JSON.parse(data);
       console.log(colours);
-      obj.zoneColours = obj.zoneColours || [];
-      obj.zoneTips = obj.zoneTips||[];
-      //A.Hotspots.ColourZones = obj.zoneColours;
-      A.Hotspots.ColourTips = obj.zoneTips;
-      //A.Hotspots.ColourZoneIx = obj.zoneColours.length;
-      obj.zoneColours = obj.zoneColours.concat( colours );
+      obj.colourZones = obj.colourZones || [];
+      A.Hotspots.colourZoneIx = obj.colourZones.length;
+      obj.colourZones = obj.colourZones.concat( colours );
+      A.Hotspots.colourZones = obj.colourZones;
 
 /*    A.Hotspots.ColourZones = A.Hotspots.ColourZones || [];
       A.Hotspots.ColourZones = A.Hotspots.ColourZones.concat(obj);
@@ -1837,8 +1837,16 @@ function loadNewLines(A, specFileData, section){
 
     // Add a TIP to the next zone (from zones specified earlier via ZONECOLOURS)
     if( item.startsWith("NEXTZONE:") ){
-      if( A.Hotspots.ColourTips &&  detail ){
-        A.Hotspots.ColourTips.push( detail );
+      if( A.Hotspots.colourZones &&  detail ){
+        var zone = A.Hotspots.colourZones[ A.Hotspots.colourZoneIx ];
+        if( isDefined( zone )){
+          if( !isDefined( zone.rgb ) ){
+            zone = { 'rgb': zone };
+          }
+          zone.tip = detail;
+          A.Hotspots.colourZones[ A.Hotspots.colourZoneIx++ ] = zone;
+        }
+        //A.Hotspots.ColourTips.push( detail );
 //          console.log(" <<<" + detail + ">>>");
 //          AddDetail(A, detail);
       }
