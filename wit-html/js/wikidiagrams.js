@@ -284,10 +284,14 @@ NextAutoColour = function( A, Tip){
 };
 
 function innerDraw(A,obj,d){
+  var l = obj.layout;
+  if( !l )
+    return;
+
   A.Status.drawing = true;
   var ctx = A.BackingCanvas.ctx;
   var ctx2 = A.Hotspots.ctx;
-  var l = obj.layout;
+
   ctx.clearRect(l.x0,l.y0,l.xw,l.yh);
   ctx2.clearRect(l.x0,l.y0,l.xw,l.yh);
 
@@ -1306,6 +1310,7 @@ function onFocusClicked(e){
 function updateImages(A){
   if( !A.BackingCanvas )
     return;
+/*
   if( (A.RootObject.content.length === 1) &&
     (A.RootObject.content[0].type === "Image") ){
     var obj = A.RootObject.content[0];
@@ -1318,6 +1323,8 @@ function updateImages(A){
       obj.hot.img.src = obj.hot.file;
     }
   }
+
+ */
   onChart(A);
 }
 
@@ -1568,6 +1575,37 @@ function sizeNowt( A, obj, data ){
 function layoutNowt( A, obj, data ){
 }
 
+
+function createCell(A, obj, d){
+}
+
+function createContainer( A, obj, d){
+//console.log( "create container - "+obj.type);
+  var n = 0;
+  if( obj.content && Array.isArray(obj.content) ) n = obj.content.length;
+  createCell(A, obj, d);
+  for( var i = 0; i < n; i++ ){
+    var o2 = obj.content[i];
+    createCells(A, o2, d);
+  }
+}
+
+
+function createCells(A, obj, data){
+  // NextAutoColour sets up the 'Hotspots.Current.Click' object.
+  if( obj.hasOwnProperty('tip') ){
+    var detail = sanitiseHtml(obj.tip);
+    var c = NextAutoColour(A, detail);
+    obj.hotspotColour = c;
+  }
+  // setClick uses the 'Hotspots.Current.Click' object.
+  if( obj.hasOwnProperty( "clickDo" )){
+    setClick( A, obj.clickDo[0], obj.clickDo[1] );
+  }
+  visit(createThing, A, obj, data);
+}
+
+
 function sizeCells(A, obj, data){
   visit(sizeThing, A, obj, data);
   //console.log( obj.sizing);
@@ -1582,6 +1620,10 @@ function layoutCells(A, obj, data){
 function drawCells(A, obj, data){
   visit(drawThing, A, obj, data);
 }
+
+createThing = {
+  "default": createContainer,
+};
 
 sizeThing = {
   "default": sizeContainer,
@@ -1802,10 +1844,15 @@ function loadNewLines(A, specFileData, section){
       data = fieldValue("cornerRadius", item);
       if( data && (!isNaN(Number(data))) ) obj.cornerRadius = Number(data);
       if( detail ){
+        obj.tip = detail;
+        detail = "";//so as not to add it twice.
+        /*
         detail = sanitiseHtml(detail);
         var c = NextAutoColour(A, detail);
         detail = ""; //so as not to add it twice.
         obj.hotspotColour = c;
+
+         */
       }
     }
 
@@ -1835,7 +1882,7 @@ function loadNewLines(A, specFileData, section){
     if( item.startsWith("CLICK LOAD SPEC") ){
       file = ("X" + spec).split("Toolbox/")[1] || fieldValue("SPEC", item);
       console.log("click-load-spec:" + file);
-      setClick(A, "Spec", file);
+      obj.clickDo = ["Spec",file];
     }
 
     // Set object click to execute a section of a spec (without erasing
@@ -1843,11 +1890,7 @@ function loadNewLines(A, specFileData, section){
     if( item.startsWith("CLICK DO") ){
       file = ("X" + spec).split("Toolbox/")[1] || fieldValue("SPEC", item);
       console.log("click-do-spec:" + file);
-      data = fieldValue("SECTION", item);
-      if( data ){
-        setSection(A, data);
-      }
-      setClick(A, "DoSpec", file);
+      obj.clickDo = ["DoSpec",file];
     }
 
     // Set object click to goto a hyperlink
@@ -1858,7 +1901,7 @@ function loadNewLines(A, specFileData, section){
       file = file.split(" ")[0] || file.split("]")[0] || "";
 
       console.log("click-goto:" + file);
-      setClick(A, "Goto", file);
+      obj.clickDo = ["Goto",file];
     }
 
     // ADD in some object into the scene graph.
@@ -2036,6 +2079,14 @@ function loadNewLines(A, specFileData, section){
   }
 }
 
+/**
+ * addNewDetails does not clear out old data before loading new lines from
+ * a file.
+ * It does do 'updateImages' so can be used to change the image.
+ * @param A
+ * @param data
+ * @param section
+ */
 function addNewDetails(A, data, section){
   A.Status.isAppReady = false;
   loadNewLines(A, data, section);
@@ -2043,13 +2094,25 @@ function addNewDetails(A, data, section){
   updateImages(A);
 }
 
+/**
+ * handleNewData wipes out all old data, including captions and hotpsots,
+ * before bringing new data in.
+ * @param A
+ * @param data
+ * @param section
+ */
 function handleNewData(A, data, section){
   resetHotspots(A);
   setATitle(A,"Caption was missing");
   startChart(A);
   A.Status.isAppReady = false;
   loadNewLines(A, data, section);
+
+  var d= {};
+  var obj = A.RootObject;
+  createCells( A, obj, d );
   A.Status.time = 0;
+
   updateImages(A);
 }
 
