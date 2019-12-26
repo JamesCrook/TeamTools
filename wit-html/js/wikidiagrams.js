@@ -1332,7 +1332,7 @@ function makeToc(A){
   var h = A.Hotspots;
   var str = "<table>";
   for(var i=0;i<h.colourZones.length;i++){
-    var c = h.colourZones[i].rgb;
+    var c = h.colourZones[i].hotspotColour;
     if( c ){
       // White text for numbers on dark backgrounds, black when light.
       var textColor = textColourForColourTuple(c);
@@ -1406,7 +1406,7 @@ function setATitle(A,caption, page, fromWiki){
 
   }
 
-  if( A.Hotspots.ColourZones && A.Hotspots.ColourZones.length > 0)
+  if( A.Hotspots.colourZones && A.Hotspots.colourZones.length > 0)
     str +=
       " &nbsp; [ <a href='#zonelist' id='zoneToggler" + A.index +
       "' onclick='toggleDetailsInToc("+A.index+")'>+zones</a> ]";
