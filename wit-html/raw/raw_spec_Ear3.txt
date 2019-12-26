@@ -52,7 +52,7 @@ This is the chooser object.
 <pre>NEXTOBJECT:TIP=</pre>
 <h1>[https://en.wikipedia.org/wiki/Ear The Ear]</h1><p><em>Sound is transformed from pressure waves in air to vibrations of tiny bones, to movement in cells that generate electrical impulses in the auditory nerve.</em></p>
 
-<pre>CLICK LOAD SPEC=</pre>
+<pre>CLICK xLOAD SPEC=</pre>
 [[Toolbox/Ear3]]
 
 <pre>NEXTOBJECT:TIP=</pre>
@@ -102,13 +102,13 @@ This is the chooser object.
 
 <h1>[https://en.wikipedia.org/wiki/Middle_ear Middle Ear]</h1><em><p>The middle ear has tiny bones that transmit pressure from the outer ear to the inner ear.</p><p>Click to learn more.</p></em>
 
-<pre>CLICK LOAD SPEC=Middle_Ear_Anatomy2</pre>
+<pre>CLICK xLOAD SPEC=Middle_Ear_Anatomy2</pre>
 
 
 <pre>NEXTZONE:TIP=</pre>
 <h1>[https://en.wikipedia.org/wiki/Inner_ear Inner Ear]</h1><em><p>The cochlear of the inner ear is a spiral shaped organ that has nerve cells that respond to different frequencies of sound.</p><p>Click to learn more.</p></em>
 
-<pre>CLICK LOAD SPEC=Inner_Ear_Anatomy2</pre>
+<pre>CLICK xLOAD SPEC=Inner_Ear_Anatomy2</pre>
 
 <pre>NEXTZONE:TIP=</pre>
 <h1>[https://en.wikipedia.org/wiki/Elastic_cartilage Elastic Cartilages]</h1>
@@ -161,7 +161,7 @@ This is the chooser object.
 <pre>NEXTZONE:TIP=</pre>
 <h1>[https://en.wikipedia.org/wiki/Ear The Ear]</h1><em><p>Click to go to the wikipedia page on the ear</p></em>
 
-<pre>CLICK GOTO=</pre>
+<pre>CLICK xGOTO=</pre>
 [https://en.wikipedia.org/wiki/Ear The Ear]
 
 <pre>//There are two zones that 'do the same' as the labels.</pre>

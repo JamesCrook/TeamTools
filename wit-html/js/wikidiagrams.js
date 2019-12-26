@@ -1577,12 +1577,16 @@ function layoutNowt( A, obj, data ){
 
 
 function createCell(A, obj, d){
+
+  var detail;
+  var c;
   // NextAutoColour sets up the 'Hotspots.Current.Click' object.
   if( obj.hasOwnProperty('tip') ){
-    var detail = sanitiseHtml(obj.tip);
-    var c = NextAutoColour(A, detail);
+    detail = sanitiseHtml(obj.tip);
+    c = NextAutoColour(A, detail);
     obj.hotspotColour = c;
   }
+
   // setClick uses the 'Hotspots.Current.Click' object.
   if( obj.hasOwnProperty( "clickDo" )){
     setClick( A, obj.clickDo[0], obj.clickDo[1] );
@@ -1590,6 +1594,25 @@ function createCell(A, obj, d){
   if( obj.hasOwnProperty( 'choice')){
     doChoose(A, obj, obj.choice);
   }
+
+  // Image zone colours only used for tips.
+  if( obj.hasOwnProperty('zoneColours') ){
+    var i;
+    var n = Math.min(
+      obj.zoneColours.length ||0,
+      obj.zoneTips.length ||0);
+    for(i=0;i<n;i++){
+      c = obj.zoneColours[i];
+      c = '[' + c[0] + ',' + c[1] + ',' + c[2] + ',' + c[3] + ']';
+      //console.log("next-color:" + c + "n:" + n);
+      detail = sanitiseHtml(obj.zoneTips[i]);
+      AddHot(A, c);
+      AddDetail(A, detail);
+    }
+  }
+
+
+
 }
 
 function createContainer( A, obj, d){
@@ -1791,36 +1814,54 @@ function loadNewLines(A, specFileData, section){
 
     // Specify a table of colours which will be used for hotspots.
     if( item.startsWith("ZONECOLOURS=") ){
+      obj = A.RootObject.lastImage;
+      if( !obj ) continue;
+
       data = fieldValue("COLOURS", item);
       console.log("colour-data:" + data);
-      obj = JSON.parse(data);
-      console.log(obj);
-      A.Hotspots.ColourZones = A.Hotspots.ColourZones || [];
+      var colours = JSON.parse(data);
+      console.log(colours);
+      obj.zoneColours = obj.zoneColours || [];
+      obj.zoneTips = obj.zoneTips||[];
+      //A.Hotspots.ColourZones = obj.zoneColours;
+      A.Hotspots.ColourTips = obj.zoneTips;
+      //A.Hotspots.ColourZoneIx = obj.zoneColours.length;
+      obj.zoneColours = obj.zoneColours.concat( colours );
+
+/*    A.Hotspots.ColourZones = A.Hotspots.ColourZones || [];
       A.Hotspots.ColourZones = A.Hotspots.ColourZones.concat(obj);
       A.Hotspots.ColourZoneIx = A.Hotspots.ColourZoneIx || 0;
+ */
 
     }
 
     // Add a TIP to the next zone (from zones specified earlier via ZONECOLOURS)
     if( item.startsWith("NEXTZONE:") ){
-      if( A.Hotspots.ColourZones ){
-        n = A.Hotspots.ColourZoneIx++ % A.Hotspots.ColourZones.length;
-        c = A.Hotspots.ColourZones[n];
-        c = '[' + c[0] + ',' + c[1] + ',' + c[2] + ',' + c[3] + ']';
-        console.log("next-color:" + c + "n:" + n);
-        AddHot(A, c);
+      if( A.Hotspots.ColourTips &&  detail ){
+        A.Hotspots.ColourTips.push( detail );
+//          console.log(" <<<" + detail + ">>>");
+//          AddDetail(A, detail);
       }
     }
 
-    // Add a TIP to a zone, specifying colour of zone
-    if( item.startsWith("ZONE:RGBA=(") ){
-      c = fieldValue("RGBA", item);
-      c = c.split(" ").join("");
-      c = c.replace("(", "[");
-      c = c.replace(")", "]");
-      console.log("color:" + c);
-      AddHot(A, c);
-    }
+    /*
+        // Add a TIP to a zone, specifying colour of zone
+        if( item.startsWith("ZONE:RGBA=(") ){
+          c = fieldValue("RGBA", item);
+          c = c.split(" ").join("");
+          c = c.replace("(", "[");
+          c = c.replace(")", "]");
+          console.log("color:" + c);
+          AddHot(A, c);
+          // Adds the TIP to current hotspot.
+          if( detail ){
+
+    //        detail = sanitiseHtml(detail);
+    //        console.log(" <<<" + detail + ">>>");
+    //        AddDetail(A, detail);
+          }
+    */
+
 
     // Add a TIP to the next object.
     // Can also modify other attributes such as colours and edge rounding.
@@ -1839,10 +1880,11 @@ function loadNewLines(A, specFileData, section){
       if( data && (!isNaN(Number(data))) ) obj.cornerRadius = Number(data);
       if( detail ){
         obj.tip = detail;
-        detail = "";//so as not to add it twice.
       }
     }
 
+
+    // ----------- Filename follows these -----------------------------
     // Set object click to load a spec
     if( item.startsWith("CLICK LOAD SPEC") ){
       file = ("X" + spec).split("Toolbox/")[1] || fieldValue("SPEC", item);
@@ -1868,6 +1910,10 @@ function loadNewLines(A, specFileData, section){
       console.log("click-goto:" + file);
       obj.clickDo = ["Goto",file];
     }
+    // ------------ End of group requiring a filename. ----------------
+
+
+
 
     // ADD in some object into the scene graph.
     // Can add at a particular named place using 'NAME='
@@ -2035,12 +2081,7 @@ function loadNewLines(A, specFileData, section){
       AddInfo(A);
     }
 
-    // Adds the TIP to current hotspot.
-    if( detail ){
-      detail = sanitiseHtml(detail);
-      console.log(" <<<" + detail + ">>>");
-      AddDetail(A, detail);
-    }
+
   }
 }
 

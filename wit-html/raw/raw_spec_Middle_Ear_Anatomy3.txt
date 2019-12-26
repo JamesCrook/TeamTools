@@ -59,7 +59,7 @@ This is the chooser object.
 <pre>NEXTOBJECT:TIP=</pre>
 <h1>[https://en.wikipedia.org/wiki/Middle_ear Middle Ear]</h1><p><em>The middle ear has tiny bones that transmit pressure from the outer ear to the inner ear.</em></p>
 
-<pre>CLICK LOAD SPEC=</pre>
+<pre>CLICK xLOAD SPEC=</pre>
 [[Toolbox/Middle_Ear_Anatomy3]]
 
 <pre>NEXTOBJECT:TIP=</pre>
@@ -94,7 +94,7 @@ This is the chooser object.
 
 <h1>[https://en.wikipedia.org/wiki/Middle_ear Middle Ear]</h1><em><p>The middle ear has tiny bones that transmit pressure from the outer ear to the inner ear.</p><p>Click for Wikipedia article.</p></em>
 
-<pre>CLICK GOTO=</pre>
+<pre>CLICK xGOTO=</pre>
 [https://en.wikipedia.org/wiki/Middle_ear Middle Ear]
 
 
@@ -143,7 +143,7 @@ This is the chooser object.
 <pre>NEXTZONE:TIP=</pre>
 <h1>[https://en.wikipedia.org/wiki/Ear The Ear]</h1><em><p>Click to go back to the ear</p></em>
 
-<pre>CLICK LOAD SPEC=Ear3</pre>
+<pre>CLICK xLOAD SPEC=Ear3</pre>
 
 
 

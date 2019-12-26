@@ -63,7 +63,7 @@ This is the chooser object.
 <pre>NEXTOBJECT:TIP=</pre>
 <h1>[https://en.wikipedia.org/wiki/Inner_ear Inner Ear]</h1><p><em>The cochlear of the inner ear is a spiral shaped organ that has nerve cells that respond to different frequencies of sound.</em></p>
 
-<pre>CLICK LOAD SPEC=</pre>
+<pre>CLICK xLOAD SPEC=</pre>
 [[Toolbox/Inner_Ear_Anatomy3]]
 
 <pre>//The three buttons at the top of the page act when you hover on them.  The three corresponding regions defined next act when you click on them.</pre>
@@ -93,7 +93,7 @@ This is the chooser object.
 <pre>NEXTZONE:TIP=</pre>
 <h1>[https://en.wikipedia.org/wiki/Inner_ear Inner Ear]</h1><em><p>The cochlear of the inner ear is a spiral shaped organ that has nerve cells that respond to different frequencies of sound.</p><p>Click for Wikipedia article.</p></em>
 
-<pre>CLICK GOTO=</pre>
+<pre>CLICK xGOTO=</pre>
 [https://en.wikipedia.org/wiki/Inner_ear Inner Ear]
 
 
@@ -160,7 +160,7 @@ This is the chooser object.
 <h1>[https://en.wikipedia.org/wiki/Ear The Ear]</h1><p><em>Sound is transformed from pressure waves in air to vibrations of tiny bones, to movement in cells that generate electrical impulses in the auditory nerve.</em></p>
 <p>Click to go back to the ear.</p>
 
-<pre>CLICK LOAD SPEC=Ear2</pre>
+<pre>CLICK xLOAD SPEC=Ear3</pre>
 
 
 <pre>CREDITS:CAPTION=Inner Ear Anatomy;TIP=</pre>
