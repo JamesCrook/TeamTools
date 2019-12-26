@@ -66,7 +66,8 @@ The detailed data for the chart follows.
      },
      {"Spacer":0,"margins":5},
      {"Rectangle":"More Info","colour":"rgb(215,230,210)",
-     "bcolour":"rgb(115,180,110)","cornerRadius":25
+     "bcolour":"rgb(115,180,110)","cornerRadius":25,
+     "tip":"<h1>A Tip</h1>This tip was added directly in the object"
      }
 ]}
 </pre>

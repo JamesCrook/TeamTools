@@ -11,7 +11,7 @@ This interactive diagram uses the same image for both the displayed image and th
 
 The original image has slight variations in colour, so the program rounds colour values to the nearest multiple of 5.  Even so, the 'Humid Continental' region in Iran is in 4 different colours.  The workaround is to create multiple tips.  However, it would be better and simpler to correct the original image source.
 
-There's a stand-alone [https://wit.audacityteam.org/imagemap2_test.htm?page=Köppen_Climate_Classification interactive demo] but here is the result in wiki:
+There's a stand-alone [https://wit.audacityteam.org/demos.htm?page=Köppen_Climate_Classification interactive demo] but here is the result in wiki:
 
 -----
 {{#widget:Dynamic|page=Köppen_Climate_Classification|height=620px}}
@@ -21,13 +21,18 @@ The detailed data for the regions follows.
 
 <pre>START</pre>
 
-<pre>IMAGE</pre>
+
+<pre>ADD:DATA=
+   {"Image":"Globe","spherical":true}
+</pre>
+
+<pre>IMAGE:NAME=Globe</pre>
 [[File:1024px-Köppen-Geiger_Climate_Classification_Map.png]]
 
 <pre>HOTSPOTS</pre>
 [[File:1024px-Köppen-Geiger_Climate_Classification_Map.png]]
 
-<pre>COLOURSET=
+<pre>ZONECOLOURS=
 [
     [0,0,255,255],
     [0,120,255,255],
@@ -68,8 +73,6 @@ The detailed data for the regions follows.
 
 ]
 </pre>
-
-<pre>DISTORTION:MAP=SPHERICAL</pre>
 
 <pre>NEXTZONE:TIP=</pre>
 <h1>Tropical rainforest (Af)</h1>
