@@ -3,12 +3,12 @@ __NOTOC__
 {{ATK_Header}} 
 
 This is the spec for the interactive diagram which shows the structure of the
-Ear. There's an [https://wit.audacityteam.org/imagemap2_test.htm?page=The_Ear interactive demo].
+Ear. There's an [https://wit.audacityteam.org/demos.htm?page=The_Ear interactive demo].
 
 This is one of three related pages.  The other two are:
 <ul>
-<li>[https://wit.audacityteam.org/imagemap2_test.htm?page=Middle_Ear_Anatomy Middle Ear] [[Toolbox/Middle_Ear_Anatomy|spec]]
-<li>[https://wit.audacityteam.org/imagemap2_test.htm?page=Inner_Ear_Anatomy Inner Ear] [[Toolbox/Inner_Ear_Anatomy|spec]]
+<li>[https://wit.audacityteam.org/demos.htm?page=Middle_Ear_Anatomy Middle Ear] [[Toolbox/Middle_Ear_Anatomy|spec]]
+<li>[https://wit.audacityteam.org/demos.htm?page=Inner_Ear_Anatomy Inner Ear] [[Toolbox/Inner_Ear_Anatomy|spec]]
 </ul>
 
 The detailed data for the regions, buttons and tooltips follows.
@@ -18,7 +18,6 @@ The detailed data for the regions, buttons and tooltips follows.
 <pre>ADD:DATA=
 [
 {"HStack":[
-    {"Margins":1.6},
     {"VStack":[
         {"Rectangle":"The Ear"},
         {"Rectangle":"Middle Ear Anatomy"},
@@ -31,7 +30,9 @@ The detailed data for the regions, buttons and tooltips follows.
          "style":"chosen"},
         {"Image":"Ear"}
         ]}
-    ]}
+    ],
+    "margins":1.6
+    }
 ]
 </pre>
 

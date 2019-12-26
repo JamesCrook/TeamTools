@@ -12,7 +12,7 @@ DISPLAY_FOCUS_DETAIL Focus=SmallCircle
 
 
 
-The specification above builds a simple focus-detail display.  There's an [https://wit.audacityteam.org/imagemap2_test.htm?page=Hotspots interactive demo].
+The specification above builds a simple focus-detail display.  There's an [https://wit.audacityteam.org/demos.htm?page=Hotspots interactive demo].
 Based on [[Toolbox/The_AU19_Crowd]]
 
 The detailed data for the regions, buttons and tooltips follows.

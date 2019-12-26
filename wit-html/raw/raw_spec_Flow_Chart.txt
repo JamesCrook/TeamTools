@@ -17,7 +17,6 @@ The detailed data for the chart follows.
 
 <pre>ADD:DATA=
 {"HStack":[
-    {"Margins":7},
     {"VStack":[
         {"HStack":[
             {"VStack":[
@@ -55,7 +54,8 @@ The detailed data for the chart follows.
                 ]}
             ]}
         ],
-        "sizeAs":3
+        "sizeAs":3,
+        "margins":7
         },
     {"VStack":[
         {"Circle":"Cut & Paste","sizeAs":2},

@@ -62,10 +62,12 @@ The detailed data for the chart follows.
         }
 
         ]
+
      },
-     {"Margins":5},
+     {"Spacer":0,"margins":5},
      {"Rectangle":"More Info","colour":"rgb(215,230,210)",
-     "bcolour":"rgb(115,180,110)","cornerRadius":25}
+     "bcolour":"rgb(115,180,110)","cornerRadius":25
+     }
 ]}
 </pre>
 

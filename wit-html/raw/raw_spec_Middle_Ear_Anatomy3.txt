@@ -7,8 +7,8 @@ Middle Ear.  There's an [https://wit.audacityteam.org/demos.htm?page=The_Ear int
 
 This is one of three related pages.  The other two are:
 <ul>
-<li>[https://wit.audacityteam.org/imagemap2_test.htm?page=The_Ear The Ear] [[Toolbox/The_Ear|spec]]
-<li>[https://wit.audacityteam.org/imagemap2_test.htm?page=Inner_Ear_Anatomy Inner Ear] [[Toolbox/Inner_Ear_Anatomy|spec]]
+<li>[https://wit.audacityteam.org/demos.htm?page=The_Ear The Ear] [[Toolbox/The_Ear|spec]]
+<li>[https://wit.audacityteam.org/demos.htm?page=Inner_Ear_Anatomy Inner Ear] [[Toolbox/Inner_Ear_Anatomy|spec]]
 </ul>
 
 The detailed data for the regions, buttons and tooltips follows.
@@ -18,7 +18,6 @@ The detailed data for the regions, buttons and tooltips follows.
 <pre>ADD:DATA=
 [
 {"HStack":[
-    {"Margins":1.6},
     {"VStack":[
         {"Rectangle":"The Ear"},
         {"Rectangle":"Middle Ear Anatomy"},
@@ -31,7 +30,9 @@ The detailed data for the regions, buttons and tooltips follows.
          "style":"chosen"},
         {"Image":"Ear"}
         ]}
-    ]}
+    ],
+    "margins":1.6
+    }
 ]
 </pre>
 

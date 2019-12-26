@@ -10,12 +10,12 @@ DISPLAY_FOCUS_DETAIL Focus=SmallCircle
   IMAGE_WITH_HOTSPOTS
 </pre>
 
-The specification above builds a simple focus-detail display.  There's an [https://wit.audacityteam.org/imagemap2_test.htm?page=The_Ear interactive demo].
+The specification above builds a simple focus-detail display.  There's an [https://wit.audacityteam.org/demos.htm?page=The_Ear interactive demo].
 
 This is one of three related pages.  The other two are:
 <ul>
-<li>[https://wit.audacityteam.org/imagemap2_test.htm?page=Middle_Ear_Anatomy Middle Ear] [[Toolbox/Middle_Ear_Anatomy|spec]]
-<li>[https://wit.audacityteam.org/imagemap2_test.htm?page=Inner_Ear_Anatomy Inner Ear] [[Toolbox/Inner_Ear_Anatomy|spec]]
+<li>[https://wit.audacityteam.org/demos.htm?page=Middle_Ear_Anatomy Middle Ear] [[Toolbox/Middle_Ear_Anatomy|spec]]
+<li>[https://wit.audacityteam.org/demos.htm?page=Inner_Ear_Anatomy Inner Ear] [[Toolbox/Inner_Ear_Anatomy|spec]]
 </ul>
 
 The detailed data for the regions, buttons and tooltips follows.

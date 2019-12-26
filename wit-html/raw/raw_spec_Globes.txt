@@ -18,7 +18,6 @@ The detailed data for the regions, buttons and tooltips follows.
 <pre>ADD:DATA=
 [
 {"HStack":[
-    {"Margins":1.6},
     {"VStack":[
         {"Rectangle":"Climate Zones"},
         {"Rectangle":"Vegetation"},
@@ -33,7 +32,9 @@ The detailed data for the regions, buttons and tooltips follows.
          "style":"chosen"},
         {"Image":"Image Goes Here","spherical":true}
         ]}
-    ]}
+    ],
+    "margins":1.6
+    }
 ]
 </pre>
 

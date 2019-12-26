@@ -1574,6 +1574,8 @@ function sizeCells(A, obj, data){
 }
 
 function layoutCells(A, obj, data){
+  if( obj.hasOwnProperty('margins') )
+    data.margins = obj.margins;
   visit(layoutThing, A, obj, data);
 }
 
@@ -1584,7 +1586,6 @@ function drawCells(A, obj, data){
 sizeThing = {
   "default": sizeContainer,
   "Spacer": sizeSpacer,
-  "Margins": sizeNowt
 };
 
 layoutThing = {
@@ -1592,10 +1593,6 @@ layoutThing = {
   "VStack": layoutContainer,
   "HStack": layoutContainer,
   "Overlay": layoutContainer,
-  "Margins": function(A,obj, d){
-    d.margins = obj.value;
-  }
-
 };
 
 drawThing = {
