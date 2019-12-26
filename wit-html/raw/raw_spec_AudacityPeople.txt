@@ -20,6 +20,7 @@ The detailed data for the regions, buttons and tooltips follows.
         {"Rectangle":"Hotspots"}
         ],
         "id":"ImageChooser",
+        "choice":1,
         "sizeAs":0.07,
         "margins":1.6
         },
@@ -33,7 +34,7 @@ The detailed data for the regions, buttons and tooltips follows.
 </pre>
 
 
-<pre>NEXTOBJECT:CHOICE=1</pre>
+<pre>NEXTOBJECT:</pre>
 
 
 <pre>NEXTOBJECT:TIP=</pre>

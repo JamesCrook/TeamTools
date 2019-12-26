@@ -19,6 +19,7 @@ This is the spec for the interactive diagram which explains window size in spect
         {"Rectangle":"8192"}
         ],
         "id":"SpectroChooser",
+        "choice":4,
         "sizeAs":0.07,
         "margins":1.6
         },
@@ -31,7 +32,7 @@ This is the spec for the interactive diagram which explains window size in spect
 </pre>
 
 
-<pre>NEXTOBJECT:CHOICE=1</pre>
+<pre>NEXTOBJECT:</pre>
 
 <pre>IMAGE:NAME=Spectro</pre>
 [[File:SpectralVocalDark256Dark.png]]

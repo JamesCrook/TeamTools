@@ -26,6 +26,7 @@ The detailed data for the regions, buttons and tooltips follows.
         {"Rectangle":"Moon"}
         ],
         "id":"MapChooser",
+        "choice":1,
         "sizeAs":0.24},
     {"Overlay":[
         {"Rectangle":"",
@@ -40,7 +41,7 @@ The detailed data for the regions, buttons and tooltips follows.
 
 This is the chooser object.
 
-<pre>NEXTOBJECT:CHOICE=1</pre>
+<pre>NEXTOBJECT:</pre>
 
 <pre>IMAGE:NAME=Image Goes Here</pre>
 [[File:1024px-Köppen-Geiger_Climate_Classification_Map.png]]

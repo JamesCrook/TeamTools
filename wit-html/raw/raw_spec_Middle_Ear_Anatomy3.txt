@@ -24,6 +24,7 @@ The detailed data for the regions, buttons and tooltips follows.
         {"Rectangle":"Inner Ear Anatomy"}
         ],
         "id":"Chooser",
+        "choice":2,
         "sizeAs":0.32},
     {"Overlay":[
         {"Rectangle":"",
@@ -38,7 +39,7 @@ The detailed data for the regions, buttons and tooltips follows.
 
 This is the chooser object.
 
-<pre>NEXTOBJECT:CHOICE=2</pre>
+<pre>NEXTOBJECT:</pre>
 
 <pre>IMAGE:NAME=Ear</pre>
 [[File:1024px-Blausen_0330_EarAnatomy_MiddleEar.png]]
@@ -142,7 +143,7 @@ This is the chooser object.
 <pre>NEXTZONE:TIP=</pre>
 <h1>[https://en.wikipedia.org/wiki/Ear The Ear]</h1><em><p>Click to go back to the ear</p></em>
 
-<pre>CLICK LOAD SPEC=Ear2</pre>
+<pre>CLICK LOAD SPEC=Ear3</pre>
 
 
 

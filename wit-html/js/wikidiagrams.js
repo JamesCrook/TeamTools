@@ -1577,6 +1577,19 @@ function layoutNowt( A, obj, data ){
 
 
 function createCell(A, obj, d){
+  // NextAutoColour sets up the 'Hotspots.Current.Click' object.
+  if( obj.hasOwnProperty('tip') ){
+    var detail = sanitiseHtml(obj.tip);
+    var c = NextAutoColour(A, detail);
+    obj.hotspotColour = c;
+  }
+  // setClick uses the 'Hotspots.Current.Click' object.
+  if( obj.hasOwnProperty( "clickDo" )){
+    setClick( A, obj.clickDo[0], obj.clickDo[1] );
+  }
+  if( obj.hasOwnProperty( 'choice')){
+    doChoose(A, obj, obj.choice);
+  }
 }
 
 function createContainer( A, obj, d){
@@ -1592,16 +1605,6 @@ function createContainer( A, obj, d){
 
 
 function createCells(A, obj, data){
-  // NextAutoColour sets up the 'Hotspots.Current.Click' object.
-  if( obj.hasOwnProperty('tip') ){
-    var detail = sanitiseHtml(obj.tip);
-    var c = NextAutoColour(A, detail);
-    obj.hotspotColour = c;
-  }
-  // setClick uses the 'Hotspots.Current.Click' object.
-  if( obj.hasOwnProperty( "clickDo" )){
-    setClick( A, obj.clickDo[0], obj.clickDo[1] );
-  }
   visit(createThing, A, obj, data);
 }
 
@@ -1719,10 +1722,7 @@ function convertJsonStructure(A, indent, layout){
     }
   }
 }
-function setupForChoosing( A, obj, item )
-{
 
-}
 function doChoose( A, parentObj, item )
 {
   if( !parentObj.content )
@@ -1831,12 +1831,6 @@ function loadNewLines(A, specFileData, section){
       obj = A.RootObject.objectList[n];
       if( !isDefined(obj) ) continue;
 
-      data = fieldValue("CHOICE", item);
-      if( data ){
-        obj.choice = JSON.parse( data );
-        setupForChoosing( A, obj, obj.choice);
-        doChoose( A, obj, obj.choice );
-      }
       data = fieldValue("colour", item);
       if( data ) obj.colour = data;
       data = fieldValue("bcolour", item);
@@ -1846,37 +1840,8 @@ function loadNewLines(A, specFileData, section){
       if( detail ){
         obj.tip = detail;
         detail = "";//so as not to add it twice.
-        /*
-        detail = sanitiseHtml(detail);
-        var c = NextAutoColour(A, detail);
-        detail = ""; //so as not to add it twice.
-        obj.hotspotColour = c;
-
-         */
       }
     }
-
-    /* These 3 appear not to be needed now.
-
-        // Set object hover to load an image
-        if( item.startsWith("HOVER LOAD IMAGE") ){
-          console.log("hover-load-image:" + file);
-          setHover(A, "Image", file);
-        }
-        // Set object hover to load a spec
-        if( item.startsWith("HOVER LOAD SPEC") ){
-          file = ("X" + spec).split("Toolbox/")[1] || fieldValue("SPEC", item);
-          console.log("hover-load-spec:" + file);
-          setHover(A, "Spec", file);
-        }
-
-
-        // Set object click to load an image
-        if( item.startsWith("CLICK LOAD IMAGE") ){
-          console.log("click-load-image:" + file);
-          setClick(A, "Image", file);
-        }
-    */
 
     // Set object click to load a spec
     if( item.startsWith("CLICK LOAD SPEC") ){
