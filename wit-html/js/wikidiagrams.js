@@ -1577,6 +1577,15 @@ function layoutNowt( A, obj, data ){
 }
 
 
+
+function mayRegisterClickAction( A, obj ){
+  // setClick uses the 'Hotspots.Current.Click' object.
+  if( obj.hasOwnProperty( "clickDo" )){
+    setClick( A, obj.clickDo[0], obj.clickDo[1] );
+  }
+}
+
+
 function createCell(A, obj, d){
 
   var detail;
@@ -1588,10 +1597,8 @@ function createCell(A, obj, d){
     obj.hotspotColour = c;
   }
 
-  // setClick uses the 'Hotspots.Current.Click' object.
-  if( obj.hasOwnProperty( "clickDo" )){
-    setClick( A, obj.clickDo[0], obj.clickDo[1] );
-  }
+  mayRegisterClickAction( A, obj);
+
   if( obj.hasOwnProperty( 'choice')){
     doChoose(A, obj, obj.choice);
   }
@@ -1602,20 +1609,19 @@ function createCell(A, obj, d){
     var n = obj.colourZones.length;
     for(i=0;i<n;i++){
       var zone = obj.colourZones[i];
-      if( zone.rgb && zone.tip ){
-        c = zone.rgb;
+      if( zone.hotspotColour && zone.tip ){
+        c = zone.hotspotColour;
         var colourString = '[' + c[0] + ',' + c[1] + ',' + c[2] + ',' + c[3] + ']';
         //console.log("next-color:" + c + "n:" + n);
         detail = sanitiseHtml(zone.tip);
         AddHot(A, colourString);
         AddDetail(A, detail);
       }
+      mayRegisterClickAction( A, zone );
     }
   }
-
-
-
 }
+
 
 function createContainer( A, obj, d){
 //console.log( "create container - "+obj.type);
@@ -1827,12 +1833,6 @@ function loadNewLines(A, specFileData, section){
       A.Hotspots.colourZoneIx = obj.colourZones.length;
       obj.colourZones = obj.colourZones.concat( colours );
       A.Hotspots.colourZones = obj.colourZones;
-
-/*    A.Hotspots.ColourZones = A.Hotspots.ColourZones || [];
-      A.Hotspots.ColourZones = A.Hotspots.ColourZones.concat(obj);
-      A.Hotspots.ColourZoneIx = A.Hotspots.ColourZoneIx || 0;
- */
-
     }
 
     // Add a TIP to the next zone (from zones specified earlier via ZONECOLOURS)
@@ -1840,36 +1840,15 @@ function loadNewLines(A, specFileData, section){
       if( A.Hotspots.colourZones &&  detail ){
         var zone = A.Hotspots.colourZones[ A.Hotspots.colourZoneIx ];
         if( isDefined( zone )){
-          if( !isDefined( zone.rgb ) ){
-            zone = { 'rgb': zone };
+          if( !isDefined( zone.hotspotColour ) ){
+            zone = { 'hotspotColour': zone };
           }
           zone.tip = detail;
           A.Hotspots.colourZones[ A.Hotspots.colourZoneIx++ ] = zone;
+          obj = zone;
         }
-        //A.Hotspots.ColourTips.push( detail );
-//          console.log(" <<<" + detail + ">>>");
-//          AddDetail(A, detail);
       }
     }
-
-    /*
-        // Add a TIP to a zone, specifying colour of zone
-        if( item.startsWith("ZONE:RGBA=(") ){
-          c = fieldValue("RGBA", item);
-          c = c.split(" ").join("");
-          c = c.replace("(", "[");
-          c = c.replace(")", "]");
-          console.log("color:" + c);
-          AddHot(A, c);
-          // Adds the TIP to current hotspot.
-          if( detail ){
-
-    //        detail = sanitiseHtml(detail);
-    //        console.log(" <<<" + detail + ">>>");
-    //        AddDetail(A, detail);
-          }
-    */
-
 
     // Add a TIP to the next object.
     // Can also modify other attributes such as colours and edge rounding.

@@ -161,7 +161,7 @@ This is the chooser object.
 <pre>NEXTZONE:TIP=</pre>
 <h1>[https://en.wikipedia.org/wiki/Ear The Ear]</h1><em><p>Click to go to the wikipedia page on the ear</p></em>
 
-<pre>CLICK xGOTO=</pre>
+<pre>CLICK GOTO=</pre>
 [https://en.wikipedia.org/wiki/Ear The Ear]
 
 <pre>//There are two zones that 'do the same' as the labels.</pre>
