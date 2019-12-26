@@ -93,7 +93,8 @@ from us.
 <pre>CREDITS:
    CAPTION=Köppen Climate Classification Map;
    TIP=</pre>
-<b>Credits:</b> <em>Beck et Al. - <a href="https://commons.wikimedia.org/wiki/File:K%C3%B6ppen-Geiger_Climate_Classification_Map.png">see description on Wikipedia</a>
+<b>Credits:</b> <em>Beck et Al.</em> - <a href="https://commons.wikimedia
+.org/wiki/File:K%C3%B6ppen-Geiger_Climate_Classification_Map.png">see description on Wikipedia</a>
 
 
 
