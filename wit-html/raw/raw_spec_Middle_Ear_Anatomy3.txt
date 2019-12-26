@@ -57,10 +57,9 @@ This is the chooser object.
 [[Toolbox/Ear3]]
 
 <pre>NEXTOBJECT:TIP=</pre>
-<h1>[https://en.wikipedia.org/wiki/Middle_ear Middle Ear]</h1><p><em>The middle ear has tiny bones that transmit pressure from the outer ear to the inner ear.</em></p>
-
-<pre>CLICK xLOAD SPEC=</pre>
-[[Toolbox/Middle_Ear_Anatomy3]]
+<h1>[https://en.wikipedia.org/wiki/Middle_ear Middle Ear]</h1><p><em>The middle
+ear has tiny bones that transmit vibrations from the outer ear to the inner ear
+.</em></p>
 
 <pre>NEXTOBJECT:TIP=</pre>
 <h1>[https://en.wikipedia.org/wiki/Inner_ear Inner Ear]</h1><p><em>The cochlear of the inner ear is a spiral shaped organ that has nerve cells that respond to different frequencies of sound.</em></p>
@@ -94,7 +93,7 @@ This is the chooser object.
 
 <h1>[https://en.wikipedia.org/wiki/Middle_ear Middle Ear]</h1><em><p>The middle ear has tiny bones that transmit pressure from the outer ear to the inner ear.</p><p>Click for Wikipedia article.</p></em>
 
-<pre>CLICK xGOTO=</pre>
+<pre>CLICK GOTO=</pre>
 [https://en.wikipedia.org/wiki/Middle_ear Middle Ear]
 
 
@@ -141,9 +140,12 @@ This is the chooser object.
 
 
 <pre>NEXTZONE:TIP=</pre>
-<h1>[https://en.wikipedia.org/wiki/Ear The Ear]</h1><em><p>Click to go back to the ear</p></em>
+<h1>[https://en.wikipedia.org/wiki/Ear The Ear]</h1><p><em>Sound is transformed
+from pressure waves in air to <b>vibrations of tiny bones</b>, to movement in
+cells that generate electrical impulses in the auditory nerve.</em></p>
+<p>Click to go back to the ear.</p>
 
-<pre>CLICK xLOAD SPEC=Ear3</pre>
+<pre>CLICK LOAD SPEC=Ear3</pre>
 
 
 

@@ -56,7 +56,9 @@ This is the chooser object.
 [[Toolbox/Ear3]]
 
 <pre>NEXTOBJECT:TIP=</pre>
-<h1>[https://en.wikipedia.org/wiki/Middle_ear Middle Ear]</h1><p><em>The middle ear has tiny bones that transmit pressure from the outer ear to the inner ear.</em></p>
+<h1>[https://en.wikipedia.org/wiki/Middle_ear Middle Ear]</h1><p><em>The middle
+ear has tiny bones that transmit vibrations from the outer ear to the inner ear
+.</em></p>
 
 <pre>CLICK LOAD SPEC=</pre>
 [[Toolbox/Middle_Ear_Anatomy3]]
@@ -100,15 +102,17 @@ This is the chooser object.
 
 <pre>NEXTZONE:TIP=</pre>
 
-<h1>[https://en.wikipedia.org/wiki/Middle_ear Middle Ear]</h1><em><p>The middle ear has tiny bones that transmit pressure from the outer ear to the inner ear.</p><p>Click to learn more.</p></em>
+<h1>[https://en.wikipedia.org/wiki/Middle_ear Middle Ear]</h1><em><p>The middle
+ear has tiny bones that transmit vibrations in the tympanic membrane from the
+outer ear to the inner ear.</p><p>Click to learn more.</p></em>
 
-<pre>CLICK xLOAD SPEC=Middle_Ear_Anatomy2</pre>
+<pre>CLICK LOAD SPEC=Middle_Ear_Anatomy3</pre>
 
 
 <pre>NEXTZONE:TIP=</pre>
 <h1>[https://en.wikipedia.org/wiki/Inner_ear Inner Ear]</h1><em><p>The cochlear of the inner ear is a spiral shaped organ that has nerve cells that respond to different frequencies of sound.</p><p>Click to learn more.</p></em>
 
-<pre>CLICK xLOAD SPEC=Inner_Ear_Anatomy2</pre>
+<pre>CLICK LOAD SPEC=Inner_Ear_Anatomy3</pre>
 
 <pre>NEXTZONE:TIP=</pre>
 <h1>[https://en.wikipedia.org/wiki/Elastic_cartilage Elastic Cartilages]</h1>
@@ -170,7 +174,10 @@ This is the chooser object.
 <h1>[https://en.wikipedia.org/wiki/Auricle_(anatomy) Auricle]</h1><em><p>The auricle is the outermost part of the ear</p></em>
 
 <pre>NEXTZONE:TIP=</pre>
-<h1>[https://en.wikipedia.org/wiki/Ear_canal Ear Canal]</h1><em><p>The ear canal <em>(external acoustic meatus)</em> brings sound to the middle ear.  The inner structures of the ear are housed in a bony compartment, whereas the outer ear is outside the skull and uses cartilage to hold its shape.</p></em>
+<h1>[https://en.wikipedia.org/wiki/Ear_canal Ear Canal]</h1><em><p>The ear canal
+ <em>(external acoustic meatus)</em> brings sound to the middle ear.  The inner
+ structures of the ear are housed in a bony compartment, whereas the auricle is
+ outside the skull and uses cartilage to hold its shape.</p></em>
 
 
 <pre>CREDITS:CAPTION=The Ear;TIP=</pre>
