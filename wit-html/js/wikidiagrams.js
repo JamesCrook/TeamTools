@@ -597,7 +597,7 @@ function drawSnakeyPath(A, values, T){
 
   }
 
-
+  var isHead = false;
   for( j = 0; i < maxv; j += T.stride ){
     if( (T.stride>1) && values[j + 1] === "No Description" ) continue;
 
@@ -610,14 +610,14 @@ function drawSnakeyPath(A, values, T){
       nextWidth = 13;
       nextStyle = "rgb(156,3,0)";
       ctx.lineWidth = 5;
-      ctx.strokeStyle = "rgba(0,0,0,1.0)";
+      ctx.strokeStyle = "rgba(0,0,0,0)";
 
     }else if(  values[j].startsWith("#"))
     {
       nextWidth = 9;
       nextStyle = "rgb(15,0,181)";
       ctx.lineWidth = 5;
-      ctx.strokeStyle = "rgba(0,0,0,1.0)";
+      ctx.strokeStyle = "rgba(0,0,0,0)";
 
     }
     else {
@@ -648,7 +648,23 @@ function drawSnakeyPath(A, values, T){
     }
     S = T.fn(i, T);
     ctx.fillStyle = "rgba(105,205,105,1.0)";
-    if( i===(maxv-1)){
+    ctx.strokeStyle = nextStyle;
+    isHead = false;
+    if( i===(maxv-1) )
+    {
+      isHead = true;
+    }
+    else if( values[j+T.stride].startsWith("*")){
+      nextStyle = "rgb(156,3,0)";
+      isHead = true;
+    }
+    else if( values[j+T.stride].startsWith("#")){
+      nextStyle = "rgb(15,0,181)";
+      isHead = true;
+    }
+
+    if( isHead ){
+      // lighter green for head.
       ctx.fillStyle = "rgb(182,222,157)";
       r+=3;
     }
@@ -656,7 +672,7 @@ function drawSnakeyPath(A, values, T){
     ctx.arc(S.x, S.y, r, 0, 2 * Math.PI, false);
     ctx.closePath();
     ctx.fill();
-    if( i===(maxv-1)){
+    if( isHead){
       ctx.lineWidth = 1;
       ctx.stroke();
     }
@@ -698,13 +714,14 @@ function drawPath(A, obj, d, stride){
   } else for( let i = 0; i < obj.values.length; i += T.stride ){
     if( obj.values[i + 1] !== "No Description" ) T.count++;
   }
-  T.margin = 20;
+  T.margin = 9;
   T.factor = 1.1;// increase density along snake.
-  xw -= 3*T.margin;
-  yh -= 2*T.margin;
+  xw -= 2*T.margin+T.width;
+  yh -= 2*T.margin+T.width;
   // The sqrt is so that we get the same density in x and y.
-  T.n = Math.ceil(Math.sqrt(T.count * T.factor * xw / yh));
+  T.n = Math.ceil(Math.sqrt(T.count * T.factor * xw / yh))+1;
   T.m = Math.ceil(T.count / T.n);
+
   var unused = T.n * T.m - T.count;
   // Make more square, if there is room.
   if( T.n < T.m )
@@ -716,7 +733,7 @@ function drawPath(A, obj, d, stride){
   T.r0 = obj.baseSize || 0;
   T.x0 = x0 + T.margin + T.width / 2;
   T.y0 = y0 + T.margin + T.width / 2;
-  T.xSpacing = xw / (T.n);
+  T.xSpacing = xw / ((T.n-1)||1);
   T.ySpacing = yh / ((T.m-1)||1);
 
   T.fn = xyOfIndexSnakey;

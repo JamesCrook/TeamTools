@@ -76,9 +76,9 @@ The detailed data for the chart follows.
    "style":2
  },
  {"Rectangle":"Audacity Structure","colour":"rgb(215,230,210)",
-  "bcolour":"rgb(115,180,110)","cornerRadius":25,"sizeAs":2}
+  "bcolour":"rgb(115,180,110)","cornerRadius":25,"sizeAs":0.6}
  ],
- "margins":5
+ "margins":1
 },
 
 {
@@ -182,13 +182,17 @@ The detailed data for the chart follows.
              "EffectUIHostInterface","EffectUIHostInterface has nothing in it. It is provided so that an Effect can call SetHostUI passing in a pointer to an EffectUIHostInterface. It contains no functionality and is provided, apparently, for type checking. Since only EffectUIHost uses it, EffectUIHost could be used instead ",
 
              "EffectWahwah","An Effect that adds a 'spectral glide' ",
-             "Specific Effects","These are the built in effects of Audacity.  Apart from the simplest effects, each has a dialog to adjust its parameters. Some effects that you might expect to be in this list like 'Fade In' are provided by Nyquist, so they don't have their own dedicated effects class and are handled by the Nyquist code"
+             "Audio Effects","These are the built in effects of Audacity.  Apart from the simplest effects, each has a dialog to adjust its parameters. Some effects that you might expect to be in this list like 'Fade In' are provided by Nyquist, so they don't have their own dedicated effects class and are handled by the Nyquist code"
 
 
    ],
-   "sizeAs":0.6,
+   "sizeAs":0.9,
    "style":2
  },
+
+
+{"Rectangle":"Squeeze the space by adding this rectangle","colour":"rgb(215,230,210)",
+"bcolour":"rgb(115,180,110)","cornerRadius":25,"sizeAs":0.4},
  {
    "Path":"Audacity Classes",
    "values":[
@@ -264,20 +268,1934 @@ The detailed data for the chart follows.
                  "SetTrackVisualsCommand","A SetTrackBase that sets appearance of a track ",
                  "SubMenuListEntry","SubMenuListEntry is a structure used by CommandManager ",
                  "TargetFactory","TargetFactory makes Command output targets. By default, we ignore progress updates but display all other messages directly ",
-                 "Audacity Commands", "These are the scripting commands in Audacity which are designed to be called from an external script, such as a script in python.  They are also available from the 'extra' menu."
+                 "Audacity Commands", "These are the scripting commands in Audacity which are designed to be called from an external script, such as a script in python.  They are also available from the 'extra' menu.",
+
+
+                 "#ClientData","No Description",
+
+                              "Base","No Description",
+
+                              "Cloneable","No Description",
+
+                              "Site","No Description",
+
+                              "#RegisteredFactory","Type meant to be stored by client code in a static variable, and used as a retrieval key to get the manufactured client object back from the host object. It can be destroyed to de-register the factory, but usually not before destruction of statics at program exit ",
+
+                              "Lockable","No Description",
+
+                              "Lockable&lt; Object, NoLocking &gt;","No Description",
+
+                              "Lock","No Description",
+
+                              "Lockable&lt; Object, NonrecursiveLocking &gt;","No Description",
+
+                              "Lockable&lt; Object, RecursiveLocking &gt;","No Description",
+
+                              "Locked","No Description",
+
+                              "Copyable","No Description",
+
+                              "Copyable&lt; Container, SkipCopying &gt;","No Description",
+
+                              "Copyable&lt; Container, ShallowCopying &gt;","No Description",
+
+                              "Copyable&lt; Container, DeepCopying &gt;","No Description",
+
+                              "ClipActions","Namespace for functions for Clip menu ",
+
+                              "Handler","No Description",
+
+                              "EditActions","No Description",
+
+                              "Handler","No Description",
+
+                              "ExtraActions","Namespace for helper functions for Extra menu ",
+
+                              "Handler","No Description",
+
+                              "FileActions","No Description",
+
+                              "Handler","No Description",
+
+                              "HelpActions","No Description",
+
+                              "Handler","No Description",
+
+                              "KeyboardCapture","No Description",
+
+                              "LabelEditActions","Namespace for functions for Edit Label submenu ",
+
+                              "Handler","No Description",
+
+                              "MenuTable","Namespace for structures that go into building a menu ",
+
+                              "BaseItem","No Description",
+
+                              "ComputedItem","No Description",
+
+                              "GroupItem","No Description",
+
+                              "MenuItem","No Description",
+
+                              "ConditionalGroupItem","No Description",
+
+                              "SeparatorItem","No Description",
+
+
+
+                              "SpecialItem","No Description",
+
+                              "MissingAliasFilesDialog","No Description",
+
+                              "NavigationActions","Namespace for functions for project navigation menu (part of Extra menu) ",
+
+                              "Handler","No Description",
+
+                              "PluginActions","No Description",
+
+                              "Handler","No Description",
+
+                              "ProjectFileIORegistry","No Description",
+
+                              "Entry","No Description",
+
+                              "RefreshCode","Namespace containing an enum 'what to do on a refresh?' ",
+
+                              "SelectActions","No Description",
+
+                              "Handler","No Description",
+
+                              "SelectUtilities","Namespace for functions for Select menu ",
+
+                              "hash&lt; NormalizedKeyString &gt;","No Description",
+
+                              "__make_unique_result","No Description",
+
+                              "__make_unique_result&lt; X[]&gt;","No Description",
+
+                              "hash&lt; wxString &gt;","No Description",
+
+                              "hash&lt; Identifier &gt;","No Description",
+
+                              "hash&lt; TaggedIdentifier&lt; Tag, b &gt; &gt;","No Description",
+
+                              "ToolbarActions","Namespace for functions for View Toolbar menu ",
+
+                              "Handler","No Description",
+
+                              "ToolCodes","No Description",
+
+                              "TrackActions","No Description",
+
+                              "Handler","No Description",
+
+                              "TrackArt","No Description",
+
+                              "TrackInfo","Functions for drawing the track control panel, which is shown to the side of a track It has the menus, pan and gain controls displayed in it. So \"Info\" is somewhat a misnomer. Should possibly be \"TrackControls\" ",
+
+                              "TCPLine","No Description",
+
+                              "TrackTyper","Metaprogramming in TrackTyper lets track_cast work even when the track subclasses are visible only as incomplete types ",
+
+                              "Pair","No Description",
+
+                              "Lookup","No Description",
+
+                              "Lookup&lt; TrackType, std::tuple&lt; Pair&lt; TrackType, Here &gt;, Rest... &gt; &gt;","No Description",
+
+                              "Lookup&lt; TrackType, std::tuple&lt; NotHere, Rest... &gt; &gt;","No Description",
+
+                              "TrackUtilities","No Description",
+
+                              "TransportActions","No Description",
+
+                              "Handler","No Description",
+
+                              "ViewActions","No Description",
+
+                              "Handler","No Description",
+
+                              "WaveTrackViewConstants","No Description",
+
+                              "WaveTrackVRulerControls","No Description",
+
+                              "WaveTrackVZoomHandle","No Description",
+
+                              "_LADSPA_Descriptor","_LADSPA_Descriptor is a structure that provides the API to a LADSPA (Linux Audio Plugin Architecture) Effect ",
+
+                              "_LADSPA_PortRangeHint","_LADSPA_PortRangeHint is a structure that gives parameter validation information for a LADSPA (Linux Audio Plugin Architecture) plug in effect ",
+
+                              "AboutDialog","The AboutDialog shows the program version and developer credits ",
+
+                              "AboutDialogCreditItem","AboutDialogCreditItem is a structure used by the AboutDialog to hold information about one contributor to Audacity ",
+
+                              "AButton","A wxButton with mouse-over behaviour ",
+
+                              "ImageArr","No Description",
+
+                              "Listener","No Description",
+
+                              "Resetter","No Description",
+
+                              "AColor","AColor Manages color brushes and pens ",
+
+                              "ADCChanger","Makes temporary drawing context changes that you back out of, RAII style ",
+
+                              "AdornedRulerPanel","This is an Audacity Specific ruler panel which additionally has border, selection markers, play marker ",
+
+                              "CommonRulerHandle","No Description",
+
+                              "MainGroup","No Description",
+
+                              "QPCell","No Description",
+
+                              "QPHandle","No Description",
+
+                              "QuickPlayIndicatorOverlay","No Description",
+
+                              "QuickPlayRulerOverlay","No Description",
+
+                              "Resetter","No Description",
+
+                              "ScrubbingCell","No Description",
+
+                              "ScrubbingHandle","No Description",
+
+                              "Subgroup","No Description",
+
+                              "AEffect","VST Effects class, conforming to VST layout ",
+
+                              "AliasBlockFile","A BlockFile that refers to data in an existing file ",
+
+                              "AliasedFile","An audio file that is referenced (pointed into) directly from an Audacity .aup file rather thna Audacity having its own copies of the data ",
+
+                              "AllProjects","Object of class AllProjects acts like a standard library container, but refers to a global array of open projects. So you can iterate easily over shared pointers to them with range-for : for (auto pProject : AllProjects{}) { ... } The pointers are never null ",
+
+                              "AndValidator","Parameter must pass both of the supplied validators ",
+
+
+                              "ApplicableFor","Entry for the Applicability table ",
+
+
+
+                              "ArrayOf","This simplifies arrays of arrays, each array separately allocated with NEW[] But it might be better to use std::Array&lt;ArrayOf&lt;X&gt;, N&gt; for some small constant N Or use just one array when sub-arrays have a common size and are not large ",
+
+                              "ArraysOf","Memory.h template class for making an array of arrays ",
+
+                              "ASlider","ASlider is a custom slider, allowing for a slicker look and feel ",
+
+                              "Options","No Description",
+
+                              "Resetter","No Description",
+
+                              "AStaticBitmap","A widget for bitmaps which ignores the erase event for flicker-free use ",
+
+                              "AttachableScrollBar","An AttachableScrollBar is a scroll bar that can be attached to multiple items and so control their scrolling. Uses floats internally, not ints, allowing for (external) control of zooming ",
+
+                              "AttachedVirtualFunction","No Description",
+
+                              "Entry","No Description",
+
+                              "Override","No Description",
+
+                              "AUControl","WxControl with Cocoa/Carbon support ",
+
+                              "AUControlImpl","WxWidgetCocoaImpl ",
+
+                              "AudacityApp","AudacityApp is the 'main' class for Audacity ",
+
+
+
+                              "AudacityException","Root of a hierarchy of classes that are thrown and caught by Audacity ",
+
+                              "AudacityLogger","AudacityLogger is a thread-safe logger class ",
+
+                              "AudacityMessageDialog","Wrap wxMessageDialog so that caption IS translatable ",
+
+                              "AudacityPrefs","Our own specialisation of wxFileConfig. It is essentially a renaming, though it does provide one new access function. Most of the prefs work is actually done by the InitPreferences() function ",
+
+                              "AudacityPrintout","Derived from wxPrintout, this class helps with printing ",
+
+                              "AudacityProject","The top-level handle to an Audacity project. It serves as a source of events that other objects can bind to, and a container of associated sub-objects that it treats opaquely. It stores a filename and a status message and a few other things. There is very little in this class, most of the intelligence residing in the cooperating attached objects ",
+
+                              "AudacityTextEntryDialog","Wrap wxTextEntryDialog so that caption IS translatable ",
+
+                              "AudioIO","AudioIO uses the PortAudio library to play and record sound ",
+
+                              "AudioIOBase","A singleton object supporting queries of the state of any active audio streams, and audio device capabilities ",
+
+                              "PlaybackSchedule","No Description",
+
+                              "RecordingSchedule","No Description",
+
+                              "AudioIoCallback","AudioIoCallback is a class that implements the callback required by PortAudio. The callback needs to be responsive, has no GUI, and copies data into and out of the sound card buffers. It also sends data to the meters ",
+
+                              "ScrubState","No Description",
+
+                              "Data","No Description",
+
+                              "Message","No Description",
+
+                              "TimeQueue","No Description",
+
+                              "Cursor","No Description",
+
+                              "AudioIOListener","Monitors record play start/stop and new blockfiles. Has callbacks for these events ",
+
+                              "AudioIOStartStreamOptions","Struct holding stream options, including a pointer to the time warp info and AudioIOListener and whether the playback is looped ",
+
+                              "AudioThread","Defined different on Mac and other platforms (on Mac it does not use wxWidgets wxThread), this class sits in a thread loop reading and writing audio ",
+
+                              "AudioTrack","A Track that can load/save audio data to/from XML ",
+
+                              "AudioUnitEffect","An Effect class that handles a wide range of effects. ??Mac only?? ",
+
+                              "AudioUnitEffectExportDialog","No Description",
+
+                              "AudioUnitEffectImportDialog","No Description",
+
+                              "AudioUnitEffectOptionsDialog","No Description",
+
+                              "AudioUnitEffectsModule","No Description",
+
+                              "AudioUnitParameterInfoEx","No Description",
+
+                              "auHeader","The auHeader is a structure used by SimpleBlockFile for .au file format. There probably is an 'official' header file we should include to get its definition, rather than rolling our own ",
+
+                              "auStaticText","Like wxStaticText, except it can be themed. wxStaticText can't be ",
+
+                              "AutoDuckRegion","Struct that holds a start and end time ",
+
+                              "AutoRecoveryDialog","The AutoRecoveryDialog prompts the user whether to recover previous Audacity projects that were closed incorrectly ",
+
+                              "AutoRollbackRenamer","AutoRollbackRenamer handles the renaming of files which is needed when producing a NEW version of a file which may fail. On failure the old version is put back in place ",
+
+                              "AutoSaveFile","Class wrapping reading and writing of arbitrary data in text or binary format to a file ",
+
+                              "AV_Deleter","AV_Deleter is part of FFmpeg support. It's used with the RAII idiom ",
+
+                              "AV_Deleter&lt; T, void, Fn &gt;","No Description",
+
+                              "AV_Deleterp","No Description",
+
+                              "AVPacketEx","No Description",
+
+                              "BackedPanel","BackedPanel is for a panel that consists of a bitmap with something drawn over it. It supports efficient repainting when the overlays change and recreation of the bitmap when the panel size is changed ",
+
+                              "BackgroundCell","Class representing the background of a Track. It provides the hit test function that tells us what was hit ",
+
+                              "BackgroundHandle","No Description",
+
+
+
+                              "BatchPrefs","A probably unused PrefsPanel that in debug builds could offer a setting used in debugging batch (aka macros) processing ",
+
+                              "BE_CONFIG","BE_CONFIG is a structure defined in the Blade DLL Interface for LAME (MP3 Conversion DLL) ",
+
+                              "BE_VERSION","BE_VERSION is a structure defined in the Blade DLL Interface for LAME (MP3 Conversion DLL) ",
+
+                              "BenchmarkDialog","BenchmarkDialog is used for measuring performance and accuracy of the BlockFile system ",
+
+                              "Biquad","Represents a biquad digital filter ",
+
+                              "BlockArray","No Description",
+
+                              "BlockFile","A BlockFile is a chunk of immutable audio data ",
+
+                              "GetFileNameResult","No Description",
+
+                              "MinMaxRMS","No Description",
+
+                              "ReadLock","No Description",
+
+                              "ReadLocker","No Description",
+
+                              "ReadUnlocker","No Description",
+
+                              "BlockGenerator","No Description",
+
+                              "BoolArrayValidator","Parameter must be char array of booleans, e.g. \"011010001\" ",
+
+                              "BoolValidator","Parameter must be a boolean ",
+
+                              "BoundedEnvelope","No Description",
+
+
+
+                              "BrowserDialog","Adds some event handling to an HtmlWindow ",
+
+
+                              "BuiltinEffectsModule","Internal module to auto register all built in effects ",
+
+                              "BuiltinFormatString","Struct to hold a formatting control string and its user facing name Used in an array to hold the built-in time formats that are always available to the user ",
+
+                              "ButtonHandle","A UIHandle for a TrackPanel button, such as the Mute and Solo buttons ",
+
+                              "CellularPanel","Formerly part of TrackPanel, this abstract base class has no special knowledge of Track objects and is intended for reuse with other windows ",
+
+                              "Filter","No Description",
+
+                              "FoundCell","No Description",
+
+                              "State","No Description",
+
+                              "Visitor","No Description",
+
+                              "CFReleaser","No Description",
+
+                              "ChoiceEditor","Modified version of wxGridChoiceEditor using wxChoice instead of wxComboBox ",
+
+                              "FocusHandler","No Description",
+
+                              "CHOICES","No Description",
+
+                              "ChoiceSetting","No Description",
+
+                              "Clipboard","No Description",
+
+                              "ClipMoveState","No Description",
+
+                              "ClipParameters","No Description",
+
+                              "CloseButtonHandle","No Description",
+
+                              "CombinedMessageTarget","Sends messages to two message targets at once ",
+
+                              "ComboEditor","No Description",
+
+
+
+
+                              "RegisterType","No Description",
+
+
+
+
+
+
+
+
+                              "Options","No Description",
+
+
+
+
+
+
+
+                              "CommonTrackCell","No Description",
+
+                              "CommonTrackControls","No Description",
+
+                              "InitMenuData","No Description",
+
+                              "CommonTrackPanelCell","No Description",
+
+                              "CommonTrackView","No Description",
+
+
+                              "CompatibilityEntry","Describes format-codec compatibility ",
+
+                              "ComponentInterface","ComponentInterface provides name / vendor / version functions to identify plugins. It is what makes a class a plug-in. Additionally it provides an optional parameter definitions function, for those components such as commands, effects and (soon) preference pagess that define parameters ",
+
+                              "ComponentInterfaceSymbol","ComponentInterfaceSymbol pairs a persistent string identifier used internally with an optional, different string as msgid for lookup in a translation catalog ",
+
+                              "CompressorPanel","Panel used within the EffectCompressor for EffectCompressor ",
+
+                              "ConfigClientInterface","ConfigClientInterface is an unholy get/set configuration class, which differentiates between private and shared config. It should probably be replaced with a Shuttle ",
+
+                              "ContrastDialog","No Description",
+
+                              "ControlToolBar","A ToolBar that has the main Transport buttons ",
+
+                              "CrossFader","Not used by Audacity (yet) apparently work in progress that has been abandoned ",
+
+                              "CutlineHandle","No Description",
+
+                              "DCUnchanger","Used to restore pen, brush and logical-op in a DC back to what they were ",
+
+
+                              "DefaultConfigEntry","No Description",
+
+                              "DefaultDelayedHandlerAction","Performs the delayed configured action, when invoked ",
+
+                              "DefaultValidator","No Description",
+
+                              "Deleter","No Description",
+
+
+
+                              "DependencyDialog","DependencyDialog shows dependencies of an AudacityProject on AliasedFile s ",
+
+                              "Destroyer","A deleter class to supply the second template parameter of unique_ptr for classes like wxWindow that should be sent a message called Destroy rather than be deleted directly ",
+
+                              "DeviceManager","A singleton that manages the audio devices known to Audacity ",
+
+                              "DevicePrefs","A PrefsPanel used to select recording and playback devices and other settings ",
+
+                              "DeviceSourceMap","No Description",
+
+                              "DeviceToolBar","A toobar to allow easier changing of input and output devices ",
+
+                              "Diags","Processing of the macros for recording bad events or performance monitoring ",
+
+                              "DigitInfo","DigitInfo is a class used in NumericTextCtrl ",
+
+                              "DirectoriesPrefs","A PrefsPanel used to select directories ",
+
+                              "DirManager","Creates and manages BlockFile objects ",
+
+                              "BalanceInfo","No Description",
+
+                              "ProjectSetter","No Description",
+
+                              "Impl","No Description",
+
+                              "RegisteredBlockFileDeserializer","No Description",
+
+                              "Dither","This class implements various functions for dithering and is derived from the dither code in the Ardour project, written by Steve Harris ",
+
+                              "DoubleValidator","Parameter must be a floating-point number ",
+
+
+                              "EchoDialog","EchoDialog used with EffectEcho ",
+
+                              "EditCursorOverlay","No Description",
+
+                              "EditCurvesDialog","No Description",
+
+                              "EditToolBar","A ToolBar that has the edit buttons on it ",
+
+                              "Effect","Base class for many of the effects in Audacity ",
+
+                              "AddedAnalysisTrack","No Description",
+
+                              "ModifiedAnalysisTrack","No Description",
+
+                              "EffectAmplify","An Effect that makes a sound louder or softer ",
+
+                              "EffectAutoDuck","Implements the Auto Ducking effect ",
+
+                              "EffectAutoDuckPanel","No Description",
+
+                              "EffectBassTreble","A high shelf and low shelf filter ",
+
+                              "EffectBassTrebleState","No Description",
+
+                              "EffectChangeSpeed","An Effect that affects both pitch &amp; speed ",
+
+                              "EffectChangeTempo","An EffectSoundTouch provides speeding up or slowing down tempo without changing pitch ",
+
+                              "EffectClickRemoval","An Effect for removing clicks ",
+
+
+                              "EffectCompressor","An Effect derived from EffectTwoPassSimpleMono ",
+
+                              "EffectCompressorPanel","No Description",
+
+                              "EffectDefinitionInterface","EffectDefinitionInterface is a ComponentInterface that additionally tracks flag-functions for interactivity, play-preview and whether the effect can run without a GUI ",
+
+                              "EffectDialog","New (Jun-2006) base class for effects dialogs. Likely to get greater use in future ",
+
+                              "EffectDistortion","A WaveShaper distortion effect ",
+
+                              "Params","No Description",
+
+                              "EffectDistortionState","No Description",
+
+                              "EffectDtmf","An effect that generates DTMF tones ",
+
+                              "EffectEcho","An Effect that causes an echo, variable delay and volume ",
+
+                              "EffectEqualization","An Effect that modifies volume in different frequency bands ",
+
+                              "EffectFade","An Effect that reduces the volume to zero over achosen interval ",
+
+                              "EffectFindClipping","Locates clipping and inserts labels when found ",
+
+                              "EffectHostInterface","EffectHostInterface is a decorator of a EffectUIClientInterface. It adds virtual (abstract) functions to get presets and actually apply the effect. It uses ConfigClientInterface to add Getters/setters for private and shared configs ",
+
+                              "EffectInvert","An Effect that inverts the selected audio ",
+
+                              "EffectLeveller","An Effect that aims to selectively make softer sounds louder ",
+
+                              "EffectManager","EffectManager is the class that handles effects and effect categories ",
+
+                              "UnsetBatchProcessing","No Description",
+
+                              "EffectManagerInterface","UNUSED. EffectManagerInterface provides a single function to find files matching a pattern in a list ",
+
+                              "EffectNoise","An effect to add white noise ",
+
+                              "EffectNoiseReduction","A two-pass effect to reduce background noise ",
+
+                              "Dialog","Dialog used with EffectNoiseReduction ",
+
+                              "Settings","No Description",
+
+                              "Statistics","No Description",
+
+                              "Worker","No Description",
+
+                              "Record","No Description",
+
+                              "EffectNoiseRemoval","A two-pass effect to remove background noise ",
+
+                              "EffectNormalize","An Effect to bring the peak level up to a chosen level ",
+
+                              "EffectPanel","No Description",
+
+                              "EffectPaulstretch","An Extreme Time Stretch and Time Smear effect ",
+
+                              "EffectPhaser","An Effect that changes frequencies in a time varying manner ",
+
+                              "EffectPhaserState","No Description",
+
+                              "EffectPresetsDialog","No Description",
+
+                              "EffectRepair","Use the interpolation code to fill in damaged audio. Damage can include pops, clicks, or clipping. As long as the damaged section is short and surrounded by lots of good audio, it is usually quite successful ",
+
+                              "EffectRepeat","An Effect that repeats audio several times over ",
+
+                              "EffectReverb","A reverberation effect ",
+
+                              "Params","No Description",
+
+                              "EffectReverse","An Effect that reverses the selected audio ",
+
+                              "EffectSBSMS","No Description",
+
+                              "EffectScienFilter","An Effect that applies 'classical' IIR filters ",
+
+                              "EffectScienFilterPanel","EffectScienFilterPanel is used with EffectScienFilter and controls a graph for EffectScienFilter ",
+
+                              "EffectSilence","An effect to add silence ",
+
+                              "EffectSimpleMono","An abstract Effect class that simplifies the implementation of a basic monaural effect. Inherit from it if your effect just modifies a single track in place and doesn't care how many samples it gets at a time ",
+
+                              "EffectsPrefs","A PrefsPanel for general GUI prefernces ",
+
+                              "EffectStereoToMono","An Effect to convert stereo to mono ",
+
+                              "EffectTimeScale","An EffectTimeScale does high quality sliding time scaling/pitch shifting ",
+
+                              "EffectToneGen","An Effect that can generate a sine, square or sawtooth wave. An extended mode of EffectToneGen supports 'chirps' where the frequency changes smoothly during the tone ",
+
+                              "EffectTruncSilence","Truncate Silence automatically reduces the length of passages where the volume is below a set threshold level ",
+
+                              "EffectTwoPassSimpleMono","An Effect base class that implements a two pass process by using EffectSimpleMono ",
+
+                              "EffectUIClientInterface","EffectUIClientInterface is an abstract base class to populate a UI and validate UI values. It can import and export presets ",
+
+                              "EffectUIHost","No Description",
+
+                              "EffectUIHostInterface","EffectUIHostInterface has nothing in it. It is provided so that an Effect can call SetHostUI passing in a pointer to an EffectUIHostInterface. It contains no functionality and is provided, apparently, for type checking. Since only EffectUIHost uses it, EffectUIHost could be used instead ",
+
+                              "EffectWahwah","An Effect that adds a 'spectral glide' ",
+
+                              "EffectWahwahState","No Description",
+
+                              "Entry","No Description",
+
+                              "Enums","Enums is a helper class for Shuttle. It defines enumerations which are used in effects dialogs, in the effects themselves and in preferences ",
+
+                              "EnumSetting","No Description",
+
+                              "Envelope","Piecewise linear or piecewise exponential function from double to double ",
+
+                              "EnvelopeEditor","No Description",
+
+                              "EnvelopeHandle","No Description",
+
+                              "EnvPoint","EnvPoint, derived from XMLTagHandler, provides Envelope with a draggable point type ",
+
+                              "EQCurve","EQCurve is used with EffectEqualization ",
+
+                              "EQPoint","EQPoint is used with EQCurve and hence EffectEqualization ",
+
+                              "EqualizationPanel","EqualizationPanel is used with EqualizationDialog and controls a graph for EffectEqualization. We should look at amalgamating the various graphing code, such as provided by FreqWindow and FilterPanel ",
+
+                              "ErrorDialog","Gives an Error message with an option for help ",
+
+                              "EventMonitor","No Description",
+
+                              "ExpandingToolBar","A smart ToolBar class that has a \"MainPanel\" which is always displayed, and an \"ExtraPanel\" that can be hidden to save space ",
+
+                              "ExpandingToolBarEvtHandler","A custom event handler for ExpandingToolBar ",
+
+                              "Export","Main class to control the export function ",
+
+                              "ExportCL","No Description",
+
+                              "ExportCLOptions","No Description",
+
+                              "ExportCLProcess","No Description",
+
+
+                              "Exporter","No Description",
+
+                              "ExportFFmpeg","Controlling class for FFmpeg exporting. Creates the options dialog of the appropriate type, adds tags and invokes the export function ",
+
+                              "ExportFFmpegAACOptions","Options dialog for FFmpeg exporting of AAC format ",
+
+                              "ExportFFmpegAC3Options","AC3 export options dialog ",
+
+                              "ExportFFmpegAMRNBOptions","Options dialog for FFmpeg exporting of AMRNB format ",
+
+                              "ExportFFmpegCustomOptions","No Description",
+
+                              "ExportFFmpegOptions","Custom FFmpeg export dialog ",
+
+                              "ExportFFmpegWMAOptions","Options dialog for FFmpeg exporting of WMA format ",
+
+                              "ExportFLAC","No Description",
+
+                              "ExportFLACOptions","No Description",
+
+                              "ExportMixerDialog","Dialog for advanced mixing ",
+
+                              "ExportMixerPanel","Panel that displays mixing for advanced mixing option ",
+
+                              "ExportMP3","No Description",
+
+                              "ExportMP3Options","No Description",
+
+                              "ExportMultipleDialog","Presents a dialog box allowing the user to export multiple files either by exporting each track as a separate file, or by exporting each label as a separate file",
+
+                              "ExportOGG","No Description",
+
+                              "ExportOGGOptions","No Description",
+
+                              "ExportPCM","No Description",
+
+                              "ExportPCMOptions","No Description",
+
+                              "ExportPlugin","No Description",
+
+                              "ExportType","Container for information about supported export types ",
+
+                              "ExposedFormat","Describes export type ",
+
+                              "ExtImportItem","No Description",
+
+                              "ExtImportPrefs","A PrefsPanel used to select extended import filter options ",
+
+                              "ExtImportPrefsDropTarget","No Description",
+
+                              "ExtTargetFactory","Extended Target Factory with more options ",
+
+                              "FFmpegContext","No Description",
+
+                              "FFmpegImportFileHandle","! Does acual import, returned by FFmpegImportPlugin::Open ",
+
+                              "FFmpegImportPlugin","An ImportPlugin for FFmpeg data ",
+
+                              "FFmpegLibs","Class used to dynamically load FFmpeg libraries ",
+
+                              "FFmpegNotFoundDialog","No Description",
+
+                              "FFmpegPreset","No Description",
+
+                              "FFmpegPresets","No Description",
+
+                              "FFTDeleter","No Description",
+
+                              "FFTParam","No Description",
+
+                              "fifo_t","No Description",
+
+                              "FileDialog","Dialog used to present platform specific \"Save As\" dialog with custom controls ",
+
+                              "Disabler","No Description",
+
+                              "FileDialogBase","No Description",
+
+                              "FileDialogWrapper","No Description",
+
+                              "FileException","No Description",
+
+                              "FileHistory","Similar to wxFileHistory, but customized to our needs ",
+
+                              "FileIO","No Description",
+
+                              "FileNames","Provides Static functions to yield filenames ",
+
+                              "filter_array_t","No Description",
+
+                              "filter_t","No Description",
+
+                              "Final_action","\"finally\" as in The C++ Programming Language, 4th ed., p. 358 Useful for defining ad-hoc RAII actions. typical usage: auto cleanup = finally([&amp;]{ ... code; ... }); ",
+
+                              "FindClippingDialog","FindClippingDialog used with EffectFindClipping ",
+
+                              "FindDialog","No Description",
+
+                              "FindFFmpegDialog","Allows user to locate libav* libraries ",
+
+                              "FLAC__StreamMetadataDeleter","No Description",
+
+                              "FLACImportFileHandle","An ImportFileHandle for FLAC data ",
+
+                              "FLACImportPlugin","An ImportPlugin for FLAC data ",
+
+                              "FlowPacker","Packs rectangular boxes into a rectangle, using simple first fit ",
+
+                              "Format","Abstract base class used in importing a file ",
+
+                              "FormatClassifier","FormatClassifier classifies the sample format and endianness of raw audio files ",
+
+                              "FormatClassT","No Description",
+
+                              "FormatInfo","No Description",
+
+                              "FormatMenuTable","No Description",
+
+                              "freer","No Description",
+
+                              "FreqGauge","No Description",
+
+                              "FreqPlot","Works with FreqWindow to dsplay a spectrum plot of the waveform. This class actually does the graph display ",
+
+                              "FrequencyPlotDialog","Displays a spectrum plot of the waveform. Has options for selecting parameters of the plot ",
+
+                              "g_mutex_locker","No Description",
+
+                              "GainSliderHandle","No Description",
+
+                              "Generator","No Description",
+
+                              "GeometricInputRateTimeWarper","TimeScale - rate varies geometrically with input ",
+
+                              "GeometricInputTimeWarper","No Description",
+
+                              "GeometricOutputRateTimeWarper","TimeScale - rate varies geometrically with output ",
+
+                              "GeometricOutputTimeWarper","No Description",
+
+
+
+
+                              "GlobalPrefsDialog","No Description",
+
+                              "Grabber","The widget to the left of a ToolBar that allows it to be dragged around to NEW positions ",
+
+                              "GrabberEvent","Grabber Class ",
+
+                              "Grid","Supplies an accessible grid based on wxGrid ",
+
+                              "GrowableSampleBuffer","No Description",
+
+                              "GStreamContext","No Description",
+
+                              "GStreamerImportFileHandle","! Does actual import, returned by GStreamerImportPlugin::Open ",
+
+                              "GStreamerImportPlugin","An ImportPlugin for GStreamer data ",
+
+                              "GUIPrefs","A PrefsPanel for general GUI preferences ",
+
+
+                              "HelpSystem","Class which contains static methods and data needed for implementing help buttons ",
+
+                              "HighlightTextCtrl","No Description",
+
+                              "HistoryDialog","Works with UndoManager to allow user to see descriptions of and undo previous commands. Also allows you to selectively clear the undo memory so as to free up space ",
+
+                              "HitTestPreview","No Description",
+
+                              "HtmlWindow","HtmlWindow Class ",
+
+                              "Identifier","No Description",
+
+                              "IdentityTimeWarper","No change to time at all ",
+
+                              "ImageRoll","An ImageRoll is an image that can be expanded to an arbitrary size; it is made up of both fixed pieces and repeating pieces ",
+
+                              "ImageRollPanel","A wxPanel which displays an ImageRoll ",
+
+
+                              "Importer","Class which actulaly imports the auido, using functions defined in ImportPCM.cpp, ImportMP3.cpp, ImportOGG.cpp, ImportRawData.cpp, and ImportLOF.cpp ",
+
+                              "RegisteredImportPlugin","No Description",
+
+                              "RegisteredUnusableImportPlugin","No Description",
+
+                              "ImporterClientInterface","No Description",
+
+                              "ImporterHostInterface","No Description",
+
+                              "ImporterInterface","No Description",
+
+                              "ImportExportPrefs","A PrefsPanel used to select import and export options ",
+
+                              "ImportFileHandle","An ImportFileHandle for data ",
+
+                              "ImportPlugin","Base class for FlacImportPlugin, LOFImportPlugin, MP3ImportPlugin, OggImportPlugin and PCMImportPlugin. Gives API for sound file import ",
+
+                              "ImportRawDialog","ImportRawDialog prompts you with options such as endianness and sample size to help you importing data of an unknown format ",
+
+                              "ImportStreamDialog","No Description",
+
+                              "ImportXMLTagHandler","No Description",
+
+                              "InconsistencyException","No Description",
+
+                              "InstallHandlers","No Description",
+
+                              "InstallHook","No Description",
+
+                              "InstallTopPanelHook","No Description",
+
+                              "InteractiveOutputTargets","InteractiveOutputTargets is an output target that pops up a dialog, if necessary ",
+
+                              "Internat","Internationalisation support ",
+
+                              "IntValidator","Parameter must be integral ",
+
+                              "InvisiblePanel","An InvisiblePanel is a panel which does not repaint its own background ",
+
+                              "IPCConn","No Description",
+
+                              "IPCServ","No Description",
+
+                              "IsVisibleTrack","No Description",
+
+                              "ItemData","No Description",
+
+                              "IteratorRange","A convenience for use with range-for ",
+
+                              "identity","No Description",
+
+                              "KeyConfigPrefs","A PrefsPanel for keybindings ",
+
+                              "KeyNode","No Description",
+
+                              "KeyView","Provides multiple views of keyboard shortcuts ",
+
+                              "LabelDefaultClickHandle","No Description",
+
+                              "LabelState","No Description",
+
+                              "LabelDialog","Dialog for editing labels ",
+
+                              "LabelGlyphHandle","No Description",
+
+                              "LabelStruct","A LabelStruct holds information for ONE label in a LabelTrack ",
+
+                              "BadFormatException","No Description",
+
+                              "LabelTextHandle","No Description",
+
+                              "LabelTrack","A LabelTrack is a Track that holds labels (LabelStruct) ",
+
+                              "LabelTrackControls","No Description",
+
+                              "LabelTrackEvent","No Description",
+
+                              "LabelTrackHit","No Description",
+
+                              "LabelTrackMenuTable","No Description",
+
+                              "LabelTrackView","No Description",
+
+                              "Flags","No Description",
+
+                              "LabelTrackVRulerControls","No Description",
+
+                              "LadspaEffect","An Effect that calls up a LADSPA plug in, i.e. many possible effects from this one class ",
+
+                              "LadspaEffectDialog","Dialog used with Effect ",
+
+                              "LadspaEffectMeter","No Description",
+
+                              "LadspaEffectOptionsDialog","No Description",
+
+                              "LadspaEffectsModule","No Description",
+
+                              "lame_global_flags","Struct with zillion of control parameters that control lame export (MP3 Conversion DLL) ",
+
+                              "LangChoiceDialog","A dialog used (at start up) to present the user with a choice of languages for Audacity ",
+
+                              "LegacyAliasBlockFile","An AliasBlockFile that references uncompressed data in an existing file ",
+
+                              "LegacyBlockFile","Audacity 1.1.0 block file format: ",
+
+                              "LibraryPrefs","A PrefsPanel used to select manage external libraries like the MP3 and FFmpeg encoding libraries ",
+
+                              "LinearInputInverseRateTimeWarper","TimeScale - inverse rate varies linearly with input ",
+
+                              "LinearInputRateTimeWarper","TimeScale - rate varies linearly with input ",
+
+                              "LinearInputStretchTimeWarper","No Description",
+
+                              "LinearOutputRateTimeWarper","TimeScale - rate varies linearly with output ",
+
+                              "LinearOutputStretchTimeWarper","No Description",
+
+                              "LinearTimeWarper","Linear scaling, initialised by giving two points on the line ",
+
+                              "LinkingHtmlWindow","An HtmlWindow that handles linked clicked - usually the link will go to our own local copy of the manual, but it could launch a new browser window ",
+
+
+
+                              "LOFImportFileHandle","An ImportFileHandle for LOF data ",
+
+                              "LOFImportPlugin","An ImportPlugin for LOF data ",
+
+                              "LongMessageDialog","LongMessageDialog is a dialog with a Text Window in it to capture the more lengthy output from some commands ",
+
+                              "LV2Effect","No Description",
+
+                              "LV2EffectMeter","No Description",
+
+                              "LV2EffectSettingsDialog","No Description",
+
+                              "LV2EffectsModule","No Description",
+
+                              "LV2Port","No Description",
+
+                              "LWSlider","Lightweight version of ASlider. In other words it does not have a window permanently associated with it ",
+
+                              "LyricsPanel","LyricsPanel is a panel that paints the bouncing ball and the lyrics text ",
+
+                              "LyricsWindow","No Description",
+
+                              "MachineEndianness","No Description",
+
+
+
+
+                              "Entry","No Description",
+
+                              "MacrosWindow","No Description",
+
+                              "mad_bitptr","Struct in the MPEG library, used for MP3 compression by MP3Exporter ",
+
+                              "mad_decoder","Struct in the MPEG library, used for MP3 compression by MP3Exporter ",
+
+                              "mad_frame","Struct in the MPEG library, used for MP3 compression by MP3Exporter ",
+
+                              "mad_header","Struct in the MPEG library, used for MP3 compression by MP3Exporter ",
+
+                              "mad_pcm","Struct in the MPEG library, used for MP3 compression by MP3Exporter ",
+
+                              "mad_stream","Struct in the MPEG library, used for MP3 compression by MP3Exporter ",
+
+                              "mad_synth","Struct in the MPEG library, used for MP3 compression by MP3Exporter ",
+
+                              "mad_timer_t","Struct in the MPEG library, used for MP3 compression by MP3Exporter ",
+
+                              "Matrix","Holds a matrix of doubles and supports arithmetic, subsetting, and matrix inversion. Used by InterpolateAudio ",
+
+                              "Maybe","Like a smart pointer, allows for object to not exist (nullptr) ",
+
+                              "MenuBarList","List of MenuBarListEntry ",
+
+
+                              "MenuButtonHandle","No Description",
+
+                              "MenuCreator","MenuCreator is responsible for creating the main menu bar ",
+
+                              "MenuItemEnabler","No Description",
+
+                              "MenuManager","MenuManager handles updates to menu state ",
+
+                              "MessageBoxException","A subclass of AudacityException whose delayed handler action displays a message box. The message is specified by further subclasses. Not more than one message box will be displayed for each pass through the main event idle loop ",
+
+                              "MessageBoxTarget","Displays messages from a command in an AudacityMessageBox ",
+
+                              "MessageBuffer","No Description",
+
+                              "UpdateSlot","No Description",
+
+
+
+
+                              "MeterBar","A struct used by MeterPanel to hold the position of one bar ",
+
+                              "MeterPanel","MeterPanel is a panel that paints the meter used for monitoring or playback ",
+
+                              "State","No Description",
+
+                              "MeterPanelBase","No Description",
+
+                              "Resetter","No Description",
+
+                              "MeterToolBar","A ToolBar that holds the VU Meter ",
+
+                              "MeterUpdateMsg","Message used to update the MeterPanel ",
+
+                              "MeterUpdateQueue","Queue of MeterUpdateMsg used to feed the MeterPanel ",
+
+                              "MidiIOPrefs","A PrefsPanel used to select recording and playback devices and other settings ",
+
+                              "MIDIParser","Unused class that might someday be used again to read MIDI files into a NoteTrack ",
+
+                              "MidiThread","No Description",
+
+                              "MinimizeButtonHandle","No Description",
+
+                              "MissingAliasFileDialog","No Description",
+
+                              "Mixer","Functions for doing the mixdown of the tracks ",
+
+                              "WarpOptions","No Description",
+
+                              "MixerBoard","No Description",
+
+                              "MixerBoardFrame","No Description",
+
+                              "MixerBoardScrolledWindow","No Description",
+
+                              "MixerSpec","Class used with Mixer ",
+
+                              "MixerToolBar","A ToolBar that provides the record and playback volume settings ",
+
+                              "MixerTrackCluster","No Description",
+
+                              "MixerTrackSlider","No Description",
+
+                              "Module","No Description",
+
+                              "ModuleInterface","No Description",
+
+                              "ModuleInterfaceDeleter","No Description",
+
+                              "ModuleManager","No Description",
+
+                              "ModuleManagerInterface","No Description",
+
+                              "ModulePrefs","A PrefsPanel to enable/disable certain modules. 'Modules' are dynamically linked libraries that modify Audacity. They are plug-ins with names like mnod-script-pipe that add NEW features ",
+
+                              "MouseEvtHandler","No Description",
+
+                              "MousePrefs","A PrefsPanel that presents an interface for user to view the default bindings of mouse buttons to commands ",
+
+                              "MP2Exporter","Class used to export MP2 files ",
+
+                              "MP3Exporter","Class used to export MP3 files ",
+
+                              "MP3ImportFileHandle","An ImportFileHandle for MP3 data ",
+
+                              "MP3ImportPlugin","An ImportPlugin for MP3 data ",
+
+                              "MultiDialog","A multi purpose dialog, mainly used to show lists of orphaned or damaged block files. It is a good alternative to having a dialog pop up for each problem encountered, since there can be many orphans ",
+
+                              "MultiFormatReader","MultiFormatReader reads raw audio files in different formats and machine endianness representations ",
+
+                              "MusicalInstrument","No Description",
+
+                              "MuteButtonHandle","No Description",
+
+                              "MyFLACFile","No Description",
+
+                              "NoiseRemovalDialog","Dialog used with EffectNoiseRemoval ",
+
+                              "NonKeystrokeInterceptingWindow","No Description",
+
+                              "NormalizedKeyString","No Description",
+
+                              "NoteTrack","A Track that is used for Midi notes. (Somewhat old code) ",
+
+                              "NoteTrackButtonHandle","No Description",
+
+                              "NoteTrackControls","No Description",
+
+                              "NoteTrackDisplayData","Data used to display a note track ",
+
+                              "NoteTrackMenuTable","No Description",
+
+                              "NoteTrackTCPLines","No Description",
+
+                              "NoteTrackView","No Description",
+
+                              "NoteTrackVRulerControls","No Description",
+
+                              "NoteTrackVRulerMenuTable","No Description",
+
+                              "NoteTrackVZoomHandle","No Description",
+
+                              "NotifyingSelectedRegion","No Description",
+
+                              "NotYetAvailableException","No Description",
+
+                              "NullMessageTarget","Used to ignore a command's message updates ",
+
+                              "NullProgressTarget","Used to ignore a command's progress updates ",
+
+                              "NumberFormatter","No Description",
+
+                              "NumberScale","No Description",
+
+                              "Iterator","No Description",
+
+                              "NumericConverter","NumericConverter provides the advanced formatting control used in the selection bar of Audacity ",
+
+                              "NumericEditor","WxGridCellEditor for the NumericTextCtrl ",
+
+                              "NumericField","NumericField is a class used in NumericTextCtrl ",
+
+                              "NumericRenderer","WxGridCellRenderer for the NumericTextCtrl ",
+
+                              "NumericTextCtrl","No Description",
+
+                              "Options","No Description",
+
+                              "NumericTextCtrlAx","NumericTextCtrlAx gives the NumericTextCtrl Accessibility ",
+
+                              "NyqControl","A control on a NyquistDialog ",
+
+                              "NyquistEffect","An Effect that calls up a Nyquist (XLISP) plug-in, i.e. many possible effects from this one class ",
+
+                              "Tokenizer","No Description",
+
+                              "NyquistEffectsModule","No Description",
+
+                              "NyquistOutputDialog","Dialog used with NyquistEffect ",
+
+                              "ODComputeSummaryTask","A class representing a modular task to be used with the On-Demand structures ",
+
+                              "ODCondition","No Description",
+
+                              "ODDecodeBlockFile","An AliasBlockFile that references uncompressed data in an existing file ",
+
+                              "ODDecodeFlacTask","A class representing a modular task to be used with the On-Demand structures ",
+
+                              "ODDecodeTask","A class representing a modular task to be used with the On-Demand structures ",
+
+                              "ODFileDecoder","Class to decode a particular file (one per file). Saves info such as filename and length (after the header is read.) ",
+
+                              "ODFlacDecoder","Class to decode a particular file (one per file). Saves info such as filename and length (after the header is read.) ",
+
+                              "ODFLACFile","No Description",
+
+                              "ODLock","No Description",
+
+                              "ODLocker","No Description",
+
+                              "ODManager","A singleton that manages currently running Tasks on an arbitrary number of threads ",
+
+                              "ODManagerHelperThread","No Description",
+
+                              "Pauser","No Description",
+
+                              "ODPCMAliasBlockFile","An AliasBlockFile that references uncompressed data in an existing file ",
+
+                              "ODTask","A class representing a modular task to be used with the On-Demand structures ",
+
+                              "ODTaskThread","A thread that executes a part of the task specfied by an ODTask ",
+
+                              "ODUnlocker","No Description",
+
+                              "ODWaveTrackTaskQueue","A class representing a modular task to be used with the On-Demand structures ",
+
+                              "OggImportFileHandle","No Description",
+
+                              "OggImportPlugin","No Description",
+
+                              "OGGImportPlugin","An ImportPlugin for OGG data ",
+
+
+
+
+                              "one_pole_t","No Description",
+
+
+                              "OptionValidator","Parameter must be one of the defined options ",
+
+                              "Overlay","No Description",
+
+                              "OverlayPanel","No Description",
+
+                              "PanSliderHandle","No Description",
+
+                              "PaulStretch","Class that helps EffectPaulStretch. It does the FFTs and inner loop of the effect ",
+
+                              "PCMAliasBlockFile","An AliasBlockFile that references uncompressed data in an existing file ",
+
+                              "PCMImportFileHandle","An ImportFileHandle for PCM data ",
+
+                              "PCMImportPlugin","An ImportPlugin for PCM data ",
+
+                              "PlatformCompatibility","Filename Compatibility utilities ",
+
+                              "PlayableTrack","An AudioTrack that can be played and stopped ",
+
+                              "PlayableTrackControls","No Description",
+
+                              "PlaybackPrefs","A PrefsPanel used to select playback options ",
+
+                              "PlayIndicatorOverlay","No Description",
+
+                              "PlayIndicatorOverlayBase","No Description",
+
+                              "PlayRegion","No Description",
+
+                              "PluginDescriptor","No Description",
+
+                              "PluginManager","PluginManager maintains a list of all plug ins. That covers modules, effects, generators, analysis-effects, commands. It also has functions for shared and private configs - which need to move out ",
+
+                              "PluginManagerInterface","No Description",
+
+                              "PluginRegistrationDialog","No Description",
+
+                              "PopupMenuTable","No Description",
+
+                              "Menu","No Description",
+
+                              "PopupMenuTableEntry","No Description",
+
+                              "PrefsDialog","Dialog that shows the current PrefsPanel in a tabbed divider ",
+
+                              "PrefsNode","No Description",
+
+                              "PrefsListener","No Description",
+
+                              "Impl","No Description",
+
+                              "PrefsPanel","Base class for a panel in the PrefsDialog. Classes derived from this class include BatchPrefs, DirectoriesPrefs, GUIPrefs, KeyConfigPrefs, MousePrefs, QualityPrefs, SpectrumPrefs and ThemePrefs ",
+
+                              "private_data","No Description",
+
+                              "Profiler","A simple profiler to measure the average time lengths that a particular task/function takes. Currently not thread-safe and not thread-smart, but it will probably work fine if you use it on a high level ",
+
+                              "ProgressDialog","ProgressDialog Class ",
+
+                              "ProgressToMessageTarget","ProgressToMessageTarget formats the percentage complete text as a message and sends it to that message target ",
+
+                              "ProjectAudioIO","No Description",
+
+                              "ProjectAudioManager","No Description",
+
+                              "ProjectFileIO","Object associated with a project that manages reading and writing of Audacity project file formats, and autosave ",
+
+                              "ProjectFileManager","No Description",
+
+                              "ReadProjectResults","No Description",
+
+                              "ProjectHistory","No Description",
+
+                              "ProjectManager","Object associated with a project for high-level management of the project's lifetime, including creation, destruction, opening from file, importing, pushing undo states, and reverting to saved states ",
+
+                              "ProjectSelectionManager","No Description",
+
+                              "ProjectSettings","Holds various per-project settings values, including the sample rate, and sends events to the project when certain values change ",
+
+                              "ProjectsPrefs","A PrefsPanel used to select options related to Audacity Project handling ",
+
+                              "ProjectStatus","No Description",
+
+                              "RegisteredStatusWidthFunction","No Description",
+
+                              "ProjectWindow","A top-level window associated with a project, and handling scrollbars and zooming ",
+
+                              "PlaybackScroller","No Description",
+
+                              "QualityPrefs","A PrefsPanel used for setting audio quality ",
+
+                              "RangeValidator","Parameter must lie between the two given numbers ",
+
+                              "RateMenuTable","No Description",
+
+                              "RealtimeEffectManager","No Description",
+
+                              "RealtimeEffectState","No Description",
+
+                              "RecordingPrefs","A PrefsPanel used to select recording options ",
+
+                              "RecordingRecoveryHandler","No Description",
+
+                              "Region","Structure to hold region of a wavetrack and a comparison function for sortability ",
+
+                              "RegionList","No Description",
+
+                              "RegionTimeWarper","No change before the specified region; during the region, warp according to the given warper; after the region, constant shift so as to match at the end of the warped region ",
+
+                              "RegisteredMenuItemEnabler","No Description",
+
+                              "RegisteredToolbarFactory","No Description",
+
+                              "Registrar","Base class for registration callback. Audacity will call providers RegisterNameOfThing() functions with an &amp;Registrar as the argument. RegisterNameOfThing() is then responsible for calling the appropriate callback functions ",
+
+                              "RepeatDialog","Dialog used with EffectRepeat ",
+
+                              "Resample","Interface to libsoxr ",
+
+                              "ResampleBuf","No Description",
+
+
+                              "Response","Stores a command response string (and other response data if it becomes necessary) ",
+
+                              "ResponseQueue","Allow messages to be sent from the main thread to the script thread ",
+
+                              "ResponseQueueTarget","Adds messages to the global response queue (to be sent back to a script) ",
+
+                              "RestoreValue","Structure used by ValueRestorer ",
+
+                              "Reverb_priv_t","No Description",
+
+                              "reverb_t","No Description",
+
+                              "RingBuffer","Holds streamed audio samples ",
+
+                              "RowData","No Description",
+
+                              "Ruler","Used to display a Ruler ",
+
+                              "Fonts","No Description",
+
+                              "Label","An array of these created by the Ruler is used to determine what and where text annotations to the numbers on the Ruler get drawn ",
+
+                              "RulerPanel","RulerPanel class allows you to work with a Ruler like any other wxWindow ",
+
+                              "Options","No Description",
+
+                              "SampleBuffer","No Description",
+
+                              "sampleCount","No Description",
+
+                              "SampleHandle","No Description",
+
+
+                              "SBSMSEffectInterface","No Description",
+
+                              "ScoreAlignDialog","ScoreAlignDialog is  ",
+
+
+                              "ScreenFrameTimer","No Description",
+
+
+
+                              "Scrubber","No Description",
+
+                              "ScrubPoller","No Description",
+
+                              "ScrubPollerThread","No Description",
+
+                              "ScrubbingOptions","No Description",
+
+                              "ScrubbingOverlay","No Description",
+
+                              "ScrubbingToolBar","No Description",
+
+                              "ScrubForwarder","No Description",
+
+                              "SelectButtonHandle","No Description",
+
+
+                              "SelectedRegion","Defines a selected portion of a project ",
+
+                              "SelectedRegionEvent","No Description",
+
+
+                              "SelectHandle","No Description",
+
+                              "TimerHandler","No Description",
+
+                              "SelectionBar","(not quite a Toolbar) at foot of screen for setting and viewing the selection range ",
+
+                              "SelectionBarListener","A parent class of SelectionBar, used to forward events to do with changes in the SelectionBar ",
+
+                              "SelectionState","No Description",
+
+                              "SelectionStateChanger","No Description",
+
+
+
+                              "SeqBlock","Data structure containing pointer to a BlockFile and a start time. Element of a BlockArray ",
+
+                              "Sequence","A WaveTrack contains WaveClip(s). A WaveClip contains a Sequence. A Sequence is primarily an interface to an array of SeqBlock instances, corresponding to the audio BlockFiles on disk. Contrast with RingBuffer ",
+
+                              "DeleteUpdateMutexLocker","No Description",
+
+
+
+
+
+
+                              "Settings","No Description",
+
+
+
+
+
+
+                              "SFFile","No Description",
+
+                              "SFFileCloser","No Description",
+
+                              "ShiftTimeWarper","Behaves like another, given TimeWarper, except shifted by a fixed amount ",
+
+                              "Shuttle","Moves data from one place to another, converting it as required ",
+
+                              "ShuttleCli","Derived from Shuttle, this class exchanges string parameters with a binary representation ",
+
+                              "ShuttleDefaults","Shuttle that sets parameters to their default values ",
+
+                              "ShuttleGetAutomation","Shuttle that gets parameter values into a string ",
+
+                              "ShuttleGetDefinition","Shuttle that retrieves a JSON format definition of a command's parameters ",
+
+                              "ShuttleGui","Derived from ShuttleGuiBase, an Audacity specific class for shuttling data to and from GUI ",
+
+                              "ShuttleGuiBase","Base class for shuttling data to and from a GUI ",
+
+                              "ShuttleParams","Shuttle that deals with parameters. This is a base class with lots of virtual functions that do nothing by default ",
+
+                              "ShuttlePrefs","A kind of Shuttle to exchange data with preferences e.g. the registry ",
+
+                              "ShuttleSetAutomation","Shuttle that sets parameters to a value (from a string) ",
+
+                              "SilentBlockFile","A BlockFile containing nothing but silence. Saves disk space ",
+
+                              "SimpleBlockFile","A BlockFile that reads and writes uncompressed data using libsndfile ",
+
+                              "SimpleBlockFileCache","No Description",
+
+                              "SimpleGuard","SimpleGuard classes add the second argument of GuardedCall: Frequently useful converter of all exceptions to some failure constant ",
+
+                              "SimpleGuard&lt; bool &gt;","SimpleGuard specialization that returns bool, and defines Default ",
+
+                              "SimpleGuard&lt; void &gt;","SimpleGuard specialization that returns nothing, and defines Default ",
+
+                              "SimpleMessageBoxException","A MessageBoxException that shows a given, unvarying string ",
+
+                              "SinCosStruct","No Description",
+
+                              "SinCosTable","No Description",
+
+                              "SliderDialog","Pop up dialog used with an LWSlider ",
+
+                              "SliderHandle","No Description",
+
+                              "SnapManager","No Description",
+
+                              "SnapPoint","No Description",
+
+                              "SnapResults","No Description",
+
+                              "SoloButtonHandle","No Description",
+
+                              "SoundActivatedRecord","Configures sound activated recording ",
+
+                              "SourceOutputStream","Helper class based on wxOutputStream used to get a png file in text format ",
+
+                              "soxr_deleter","No Description",
+
+                              "SpecCache","No Description",
+
+                              "SpecPowerCalculation","SpecPowerCalculation is a simple spectral power level meter ",
+
+                              "SpecPxCache","No Description",
+
+                              "SpectralSelectionBar","(not quite a Toolbar) at foot of screen for setting and viewing the frequency selection range ",
+
+                              "SpectralSelectionBarListener","A class used to forward events to do with changes in the SpectralSelectionBar ",
+
+                              "SpectrogramSettings","Spectrogram settings, either for one track or as defaults ",
+
+                              "Globals","No Description",
+
+                              "SpectrumAnalyst","Used for finding the peaks, for snapping to peaks ",
+
+                              "SpectrumPrefs","A PrefsPanel for spectrum settings ",
+
+                              "SpectrumView","No Description",
+
+                              "SpectrumVRulerControls","No Description",
+
+                              "SpectrumVRulerMenuTable","No Description",
+
+                              "SpectrumVZoomHandle","No Description",
+
+                              "SplashDialog","The SplashDialog shows help information for Audacity when Audacity starts up ",
+
+                              "StatusBarTarget","Displays messages from a command in a wxStatusBar ",
+
+                              "StepTimeWarper","Like identity but with a jump ",
+
+                              "streamContext","No Description",
+
+                              "StretchHandle","No Description",
+
+                              "StretchState","No Description",
+
+                              "SubMenuList","List of SubMenuListEntry ",
+
+
+                              "SuccessDialog","No Description",
+
+                              "SummaryInfo","Works with BlockFile to hold info about max and min and RMS over multiple samples, which in turn allows rapid drawing when zoomed out ",
+
+                              "Syllable","Used in LyricsPanel, a Syllable gives positional information to be used with the bouncing ball effect ",
+
+                              "t_diag_struct","No Description",
+
+                              "TaggedIdentifier","No Description",
+
+                              "Tags","ID3 Tags (for MP3) ",
+
+                              "TagsEditor","Derived from ExpandingToolBar, this dialog allows editing of Tags ",
+
+
+                              "TaskProfile","Simple class to keep track of one task that may be called multiple times ",
+
+                              "Theme","Based on ThemeBase, Theme manages image and icon resources ",
+
+                              "ThemeBase","Theme management - Image loading and saving ",
+
+                              "ThemePrefs","A PrefsPanel that configures dynamic loading of Theme icons and colours ",
+
+                              "TimeDialog","Dialog used to request a time value ",
+
+                              "TimerProgressDialog","No Description",
+
+                              "TimerRecordDialog","Dialog for Timer Record, i.e., timed or long recording ",
+
+                              "TimerRecordPathCtrl","No Description",
+
+                              "TimeShiftHandle","No Description",
+
+                              "TimeTrack","A kind of Track used to 'warp time' ",
+
+                              "TimeTrackControls","No Description",
+
+                              "TimeTrackMenuTable","No Description",
+
+                              "TimeTrackView","No Description",
+
+                              "TimeTrackVRulerControls","No Description",
+
+                              "TimeWarper","Transforms one point in time to another point. For example, a time stretching effect might use one to keep track of what happens to labels and split points in the input ",
+
+                              "TipWindow","A wxPopupWindow used to give the numerical value of an LWSlider or ASlider ",
+
+                              "TitleRestorer","No Description",
+
+                              "ToolBar","Works with ToolManager and ToolDock to provide a dockable window in which buttons can be placed ",
+
+                              "ToolBarArea","An alterantive to ToolBarFrame which can contain an ExpandingToolBar. ToolBarArea is used for a 'docked' ToolBar, ToolBarFrame for a floating one ",
+
+                              "ToolBarArrangement","Small class that holds some layout information for an ExpandingToolBar ",
+
+                              "ToolBarConfiguration","No Description",
+
+                              "Iterator","No Description",
+
+                              "Triple","No Description",
+
+                              "Legacy","No Description",
+
+                              "Place","No Description",
+
+                              "Position","No Description",
+
+                              "Tree","No Description",
+
+                              "ToolBarDialog","A dialog based container for ExpandingToolBars providing modal based operations ",
+
+                              "ToolBarFrame","A miniframe based container for ExpandingToolBars providing modeless presentation ",
+
+                              "ToolBarGrabber","Draws the grabber for an ExpandingToolBar ",
+
+                              "ToolBarResizer","WxWindow that provides the resizer for a toolbar on the right hand side. Responsible for drawing the resizer appearance, resizing mouse events and constraining the resizing ",
+
+                              "ToolDock","A dynamic panel where a ToolBar can be docked ",
+
+                              "LayoutVisitor","No Description",
+
+                              "ToolFrame","Class ToolFrame ",
+
+                              "ToolManager","Class ToolManager ",
+
+                              "ToolsToolBar","A kind of ToolBar with Tools on it ",
+
+                              "TopLevelKeystrokeHandlingWindow","No Description",
+
+                              "Track","Fundamental data object of Audacity, placed in the TrackPanel. Classes derived form it include the WaveTrack, NoteTrack, LabelTrack and TimeTrack ",
+
+                              "Dispatcher","No Description",
+
+                              "applicable1","No Description",
+
+                              "applicable2","No Description",
+
+                              "inapplicable","No Description",
+
+                              "Switch","No Description",
+
+                              "Switch&lt; R, ConcreteType &gt;","No Description",
+
+                              "Switch&lt; R, ConcreteType, BaseClass, BaseClasses... &gt;","No Description",
+
+                              "Executor","No Description",
+
+                              "Executor&lt; R, ConcreteType &gt;","No Description",
+
+                              "Executor&lt; R, ConcreteType, Function, Functions... &gt;","No Description",
+
+                              "Executor&lt; R, const ConcreteType, Function, Functions... &gt;","No Description",
+
+                              "Executor&lt; void, ConcreteType &gt;","No Description",
+
+                              "TrackArtist","This class handles the actual rendering of WaveTracks (both waveforms and spectra), NoteTracks, LabelTracks and TimeTracks ",
+
+                              "TrackClip","No Description",
+
+                              "TrackClipArray","No Description",
+
+                              "TrackControls","No Description",
+
+                              "TrackFactory","Used to create a WaveTrack, or a LabelTrack.. Implementation of the functions of this class are dispersed through the different Track classes ",
+
+                              "TrackFocus","No Description",
+
+                              "TrackId","No Description",
+
+                              "TrackIter","No Description",
+
+                              "TrackIterRange","No Description",
+
+                              "TrackList","TrackList is a flat linked list of tracks supporting Add, Remove, Clear, and Contains, plus serialization of the list of tracks ",
+
+                              "TrackListEvent","No Description",
+
+                              "TrackMenuTable","No Description",
+
+                              "TrackPanel","Coordinates updates and operations on the main part of the screen which contains multiple tracks ",
+
+                              "AudacityTimer","Timer class dedicated to informing the TrackPanel that it is time to refresh some aspect of the screen ",
+
+                              "TrackPanelAx","Helper to TrackPanel to give accessibility ",
+
+                              "TrackPanelCell","No Description",
+
+                              "TrackPanelDrawable","Drawing interface common to cells, groups of cells, and temporary handles in CellularPanel ",
+
+                              "TrackPanelDrawingContext","No Description",
+
+                              "TrackPanelGroup","No Description",
+
+                              "TrackPanelListener","No Description",
+
+                              "TrackPanelMouseEvent","No Description",
+
+                              "TrackPanelMouseState","No Description",
+
+                              "TrackPanelNode","The TrackPanel is built up of nodes, subtrees of the CellularPanel's area Common base class for TrackPanelCell (leaf) and TrackPanelGroup (nonleaf) ",
+
+                              "TrackPanelResizeHandle","No Description",
+
+                              "TrackPanelResizerCell","No Description",
+
+                              "TracksBehaviorsPrefs","A PrefsPanel for Tracks Behaviors settings ",
+
+                              "TrackSelectHandle","No Description",
+
+                              "TracksPrefs","A PrefsPanel for track display and behavior properties ",
+
+                              "TracksViewModeSetting","No Description",
+
+                              "TrackView","No Description",
+
+                              "TrackVRulerControls","No Description",
+
+                              "TranscriptionToolBar","A kind of ToolBar used to help with analysing voice recordings ",
+
+                              "TranslatableArray","No Description",
+
+                              "TranslatedInternalString","No Description",
+
+                              "TransportTracks","No Description",
+
+                              "UFileHolder","FFmpeg structure to hold a file pointer and provide a return value when closing the file ",
+
+                              "UIHandle","Short-lived drawing and event-handling object associated with a TrackPanelCell ",
+
+                              "UndoManager","Works with HistoryWindow to provide the Undo functionality ",
+
+                              "UndoStackElem","Holds one item with description and time range for the UndoManager ",
+
+                              "UndoState","No Description",
+
+                              "UnusableImportPlugin","Used in place of a real plug in for plug ins that have not been compiled or are not available in this version of Audacity. Has enough information to identify the file extensions that would be used, but little else ",
+
+                              "UserException","No Description",
+
+                              "Validator","A Validator is an object which checks whether a wxVariant satisfies a certain criterion. This is a base validator which allows anything ",
+
+                              "ValueRestorer","Set a variable temporarily in a scope ",
+
+                              "VampEffect","No Description",
+
+                              "VampEffectsModule","No Description",
+
+                              "VarSetter","No Description",
+
+                              "Vector","Holds a matrix of doubles and supports arithmetic operations, including Vector-Matrix operations. Used by InterpolateAudio ",
+
+                              "VelocitySliderHandle","No Description",
+
+                              "ViewInfo","No Description",
+
+                              "VoiceKey","This implements a voice key, detecting either the next \"ON\" or \"OFF\" point ",
+
+                              "VSTControl","No Description",
+
+                              "VSTControlBase","No Description",
+
+                              "VSTControlImpl","No Description",
+
+                              "VSTEffect","No Description",
+
+                              "ModuleDeleter","No Description",
+
+                              "VSTEffectLink","No Description",
+
+                              "VSTEffectOptionsDialog","No Description",
+
+                              "VSTEffectsModule","No Description",
+
+                              "VSTEffectTimer","No Description",
+
+                              "VstEvent","No Description",
+
+                              "VstEvents","No Description",
+
+                              "VstMidiEvent","No Description",
+
+                              "VstParameterProperties","No Description",
+
+                              "VstPatchChunkInfo","No Description",
+
+                              "VstRect","No Description",
+
+                              "VSTSubEntry","No Description",
+
+                              "VSTSubProcess","No Description",
+
+                              "VstTimeInfo","No Description",
+
+                              "WarningDialog","Gives a warning message, that can be dismissed, with crucially the ability to not see similar warnings again for this session ",
+
+                              "WarningsPrefs","A PrefsPanel to enable/disable certain warning messages ",
+
+                              "wav_header","No Description",
+
+                              "WaveCache","Cache used with WaveClip to cache wave information (for drawing) ",
+
+                              "InvalidRegion","No Description",
+
+                              "WaveClip","This allows multiple clips to be a part of one WaveTrack ",
+
+                              "WaveColorMenuTable","No Description",
+
+                              "WaveDisplay","No Description",
+
+                              "WaveformPrefs","A PrefsPanel for spectrum settings ",
+
+                              "WaveformSettings","Waveform settings, either for one track or as defaults ",
+
+                              "Globals","No Description",
+
+                              "WaveformView","No Description",
+
+                              "WaveformVRulerControls","No Description",
+
+                              "WaveformVRulerMenuTable","No Description",
+
+                              "WaveformVZoomHandle","No Description",
+
+                              "WaveTrack","A Track that contains audio waveform data ",
+
+                              "AllClipsConstIterator","No Description",
+
+                              "AllClipsIterator","No Description",
+
+                              "Location","Used only by WaveTrack, a special way to hold location that can accommodate merged regions ",
+
+                              "Locker","No Description",
+
+                              "WaveTrackLockDeleter","No Description",
+
+                              "WaveTrackCache","No Description",
+
+                              "Buffer","No Description",
+
+                              "WaveTrackControls","No Description",
+
+                              "WaveTrackLocation","No Description",
+
+                              "WaveTrackMenuTable","No Description",
+
+                              "WaveTrackSubView","No Description",
+
+                              "WaveTrackSubViewPlacement","No Description",
+
+                              "WaveTrackTCPLines","No Description",
+
+                              "WaveTrackView","No Description",
+
+                              "WaveTrackVRulerMenuTable","No Description",
+
+                              "InitMenuData","No Description",
+
+                              "WindowAccessible","An alternative to using wxWindowAccessible, which in wxWidgets 3.1.1 contained GetParent() which was incorrect ",
+
+                              "WrappedType","Used in type conversions, this wrapper for ints, strings, doubles and enums provides conversions between all the types. Functions that work on wrapped types can quickly be reused to work on any of these types. This cuts out a lot of repetitive code ",
+
+                              "wxArrayStringEx","No Description",
+
+                              "wxDialogWrapper","No Description",
+
+                              "wxDirDialogWrapper","No Description",
+
+                              "wxFileNameWrapper","No Description",
+
+                              "wxFrameEx","No Description",
+
+                              "wxGtkString","No Description",
+
+                              "wxOPENFILENAME","No Description",
+
+                              "wxPanelWrapper","No Description",
+
+                              "wxPizza","No Description",
+
+                              "wxTabTraversalWrapper","No Description",
+
+                              "wxTreebook","A wxTreebook is a class like wxNotebook, but not yet supported by wxWidgets 2.6.3 ",
+
+                              "wxTreebookItemData","One item in a wxTreebook. (I think) ",
+
+                              "XMLFileReader","Reads a file and passes the results through an XMLTagHandler ",
+
+                              "XMLFileWriter","Wrapper to output XML data to files ",
+
+                              "XMLStringWriter","Wrapper to output XML data to strings ",
+
+                              "XMLTagHandler","This class is an interface which should be implemented by classes which wish to be able to load and save themselves using XML files ",
+
+                              "XMLValueChecker","XMLValueChecker implements static bool methods for checking input values from XML files ",
+
+                              "XMLWriter","Base class for XMLFileWriter and XMLStringWriter that provides the general functionality for creating XML in UTF8 encoding ",
+
+                              "xmm_mm_union","No Description",
+
+                              "ZoomHandle","No Description",
+
+                              "ZoomInfo","No Description",
+
+                              "Interval","No Description",
+                              "Unsorted","These are the Audacity classes which we have not yet put into one of the other snakes."
 
 
 
 
              ],
              "style":1,
-             "sizeAs":1.1
+             "sizeAs":4.1
 
-},
-
-
-    {"Rectangle":"Squeeze","colour":"rgb(215,230,210)",
-     "bcolour":"rgb(115,180,110)","cornerRadius":25,"sizeAs":0.3}
+}
 ]
 </pre>
 
