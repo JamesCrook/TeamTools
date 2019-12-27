@@ -182,9 +182,96 @@ The detailed data for the chart follows.
              "EffectUIHostInterface","EffectUIHostInterface has nothing in it. It is provided so that an Effect can call SetHostUI passing in a pointer to an EffectUIHostInterface. It contains no functionality and is provided, apparently, for type checking. Since only EffectUIHost uses it, EffectUIHost could be used instead ",
 
              "EffectWahwah","An Effect that adds a 'spectral glide' ",
-             "Specific Effects","These are the built in effects of Audacity.  Apart from the simplest effects, each has a dialog to adjust its parameters. Some effects that you might expect to be in this list like 'Fade In' are provided by Nyquist, so they don't have their own dedicated effects class and are handled by the Nyquist code" ],
+             "Specific Effects","These are the built in effects of Audacity.  Apart from the simplest effects, each has a dialog to adjust its parameters. Some effects that you might expect to be in this list like 'Fade In' are provided by Nyquist, so they don't have their own dedicated effects class and are handled by the Nyquist code"
+
+
+   ],
+   "sizeAs":0.6,
+   "style":2
+ },
+ {
+   "Path":"Audacity Classes",
+   "values":[
+
+              "AppCommandEvent","An event 'envelope' for sending Command objects through the wxwidgets event loop ",
+                 "ApplyAndSendResponse","ApplyAndSendResponse is a DecoratoredCommand that performs the given command and then outputs a status message according to the result. It manages a CommandContext which is passed into its mCommand, so that result messages are routed back to the right place ",
+                 "ApplyMacroDialog","Shows progress in executing commands in MacroCommands ",
+                 "AudacityCommand","Base class for command in Audacity ",
+
+                 "BatchEvalCommand","Given a string representing a command, pass it to the MacroCommands system ",
+                 "BatchEvalCommandType","The &lt;something&gt;CommandType classes are classes which are going away. They all provided a BuildSignature (what parameters they accept) and Name, but that is now replaced by the AudacityCommand interface ",
+                 "BriefCommandMessageTarget","BriefCommandMessageTarget is a CommandOutputTarget that provides status in a briefer listing ",
+                 "BriefCommandOutputTargets","BriefCommandOutputTargets is a CommandOutputTargets that replaces the status message target with the BriefCommandMessageTarget version ",
+                 "BuiltinCommandsModule","Internal module to auto register all built in commands. It is closely modelled on BuiltinEffectsModule ",
+                 "CommandBuilder","A type of factory for Commands of various sorts ",
+                 "CommandContext","CommandContext provides addiitonal information to an 'Apply()' command. It provides the project, and provides output channels for Error, Progress and Status. Status is used for general messaging from a command back to its invoker ",
+                 "CommandDirectory","Allows registration and lookup (by name) of command types ",
+                 "CommandFlagOptions","No Description",
+                 "CommandFunctor","CommandFunctor is a very small class that works with CommandManager. It holds the callback for one command ",
+                 "CommandGroupItem","No Description",
+                 "CommandHandler","Contains methods for applying commands that are passed to it ",
+                 "CommandImplementation","Derived from OldStyleCommand. It validates and applies the command. CommandImplementation::Apply() is overloaded in classes derived from it ",
+                 "CommandItem","No Description",
+                 "CommandList","List of CommandListEntry ",
+                 "CommandListEntry","CommandListEntry is a structure used by CommandManager ",
+                 "CommandManager","CommandManager implements a system for organizing all user-callable commands ",
+                 "CommandMessageTarget","Interface for objects that can receive (string) messages from a command ",
+                 "CommandMessageTargetDecorator","CommandMessageTargetDecorator is a CommandOutputTarget that forwards its work on to another one. Typically we derive from it to modify some functionality and forward the rest ",
+                 "CommandOutputTargets","CommandOutputTargets a mix of three output classes to output progress indication, status messages and errors ",
+                 "CommandParameters","CommandParameters, derived from wxFileConfig, is essentially doing the same things as the Shuttle classes. It does text &lt;-&gt; binary conversions of parameters. It does not seem to be using actual file read/writing ",
+                 "CommandProgressTarget","Interface for objects that can receive command progress information ",
+                 "CommandSignature","Class that maps parameter names to default values and validators ",
+                 "CompareAudioCommand","Returns information about the amount of audio that is about a certain threshold of difference in two selected tracks ",
+                 "DecoratedCommand","DecoratedCommand is a decorator for command. It forwards functions to the mCommand it holds ",
+                 "DemoCommand","An AudacityCommand that does nothing but provide parameters. It is for development purposes ",
+                 "DragCommand","Command that sets clip information ",
+                 "EffectClientInterface","EffectClientInterface provides the ident interface to Effect, and is what makes Effect into a plug-in command. It has functions for realtime that are not part of AudacityCommand ",
+                 "ExportCommand","Command for exporting audio ",
+                 "GetInfoCommand","Command which outputs a list of available menu commands on the status channel ",
+                 "GetPreferenceCommand","Command for getting the value of a preference ",
+                 "GetTrackInfoCommand","Obsolete. GetInfo now does it ",
+                 "HelpCommand","Command to get help about other commands ",
+                 "ImportCommand","Command for importing audio ",
+                 "LispifiedCommandOutputTargets","LispifiedCommandOutputTargets is a CommandOutputTargets that replaces the status message target with the LispyCommandMessageTarget version ",
+                 "LispyCommandMessageTarget","LispyCommandMessageTarget is a CommandOutputTarget that provides status in a lispy style ",
+                 "MacroCommands","Maintains the list of commands for batch/macro processing. See also MacrosWindow and ApplyMacroDialog ",
+                 "MacroCommandsCatalog","No Description",
+                 "MenuBarListEntry","MenuBarListEntry is a structure used by CommandManager ",
+                 "MessageCommand","Command to get a message response. Used for testing, and used internally to create messages for forwarding ",
+                 "MessageCommandType","The &lt;something&gt;CommandType classes are classes which are going away. They all provided a BuildSignature (what parameters they accept) and Name, but that is now replaced by the AudacityCommand interface ",
+                 "MessageDialogTarget","MessageDialogTarget is a CommandOutputTarget that sends its status to the LongMessageDialog ",
+                 "OldStyleCommand","Abstract base class for command interface. This is the version created by Dan Horgan. It was previously a factory for other command classes. It created a separation between the type of a command and the command itself, which is being removed. These Cmmands were managed by CommandDirectory ",
+                 "OldStyleCommandPointer","OldStyleCommandPointer is a unique_ptr to an OldStyleCommand ",
+                 "OldStyleCommandType","Base class for containing data common to all commands of a given type. Also acts as a factory ",
+                 "OpenProjectCommand","Command for opening an Audacity project ",
+                 "ReservedCommandFlag","No Description",
+                 "SaveProjectCommand","Command for saving an Audacity project ",
+                 "ScreenshotCommand","Implements a command for capturing various areas of the screen or project window. It's one big if-elseif switch statement with lots of small calculations of rectangles ",
+                 "ScriptCommandRelay","ScriptCommandRelay is just a way to move some of the scripting-specific code out of ModuleManager ",
+                 "SelectCommand","Command for changing time, frequency and track selection. This class is a little baroque, as it uses the SelectTimeCommand, SelectFrequenciesCommand and SelectTracksCommand, when it could just explicitly code all three ",
+                 "SelectFrequenciesCommand","Command for changing the frequency selection ",
+                 "SelectTimeCommand","Command for changing the time selection ",
+                 "SelectTracksCommand","Command for changing the selection of tracks ",
+                 "SetClipCommand","Command that sets clip information ",
+                 "SetEnvelopeCommand","Command that sets envelope information ",
+                 "SetLabelCommand","Command that sets label information ",
+                 "SetPreferenceCommand","Command for setting a preference to a given value ",
+                 "SetProjectCommand","Command that sets project information ",
+                 "SetTrackAudioCommand","A SetTrackBase that sets pan, gain, mute and solo ",
+                 "SetTrackBase","Base class for the various SetTrackCommand classes. Subclasses provide the settings that are relevant to them ",
+                 "SetTrackCommand","A SetTrackBase that combines SetTrackStatusCommand, SetTrackAudioCommand and SetTrackVisualsCommand ",
+                 "SetTrackStatusCommand","A SetTrackBase that sets name, selected and focus ",
+                 "SetTrackVisualsCommand","A SetTrackBase that sets appearance of a track ",
+                 "SubMenuListEntry","SubMenuListEntry is a structure used by CommandManager ",
+                 "TargetFactory","TargetFactory makes Command output targets. By default, we ignore progress updates but display all other messages directly ",
+                 "Audacity Commands", "These are the scripting commands in Audacity which are designed to be called from an external script, such as a script in python.  They are also available from the 'extra' menu."
+
+
+
+
+             ],
              "style":1,
-             "sizeAs":0.6
+             "sizeAs":1.1
 
 },
 
@@ -219,6 +306,32 @@ These are some other dialogs that do not have good descriptions.
              "VSTEffectOptionsDialog","No Description",
              "wxDialogWrapper","No Description",
              "wxDirDialogWrapper","No Description"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -698,21 +698,26 @@ function drawPath(A, obj, d, stride){
   } else for( let i = 0; i < obj.values.length; i += T.stride ){
     if( obj.values[i + 1] !== "No Description" ) T.count++;
   }
-  T.margin = 30;
+  T.margin = 20;
+  T.factor = 1.1;// increase density along snake.
+  xw -= 3*T.margin;
+  yh -= 2*T.margin;
   // The sqrt is so that we get the same density in x and y.
-  T.n = Math.ceil(Math.sqrt(T.count) * xw / yh);
+  T.n = Math.ceil(Math.sqrt(T.count * T.factor * xw / yh));
   T.m = Math.ceil(T.count / T.n);
   var unused = T.n * T.m - T.count;
   // Make more square, if there is room.
-  if( T.n < T.m ) T.m -= Math.floor(unused / T.n); else T.n -=
-    Math.floor(unused / T.m);
+  if( T.n < T.m )
+    T.m -= Math.floor(unused / T.n);
+  else
+    T.n -= Math.floor(unused / T.m);
 
   //T.spacer = (xw-2* T.margin)/ (T.n-1);
   T.r0 = obj.baseSize || 0;
   T.x0 = x0 + T.margin + T.width / 2;
   T.y0 = y0 + T.margin + T.width / 2;
-  T.xSpacing = (xw - 2 * T.margin) / (T.n);
-  T.ySpacing = (yh - 2 * T.margin) / (T.m);
+  T.xSpacing = xw / (T.n);
+  T.ySpacing = yh / ((T.m-1)||1);
 
   T.fn = xyOfIndexSnakey;
   T.style = obj.style || 0;
