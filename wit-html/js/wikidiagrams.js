@@ -548,8 +548,9 @@ function xyOfIndexSnakey(i, T){
       T.thetaDirection = (row % 2) === 0;
     }
     // whether we extend or reduce depends on odd or even row.
-    else if( i === T.maxv - 1 )
-      x += (1-2*( row % 2 ))*T.xSpacing*0.75;
+    // but code disabled as we want a snake's head.
+    //else if( i === T.maxv - 1 )
+    //  x += (1-2*( row % 2 ))*T.xSpacing*0.75;
 
   }
   return { "x": x, "y": y };
@@ -557,7 +558,7 @@ function xyOfIndexSnakey(i, T){
 
 
 // For drawing a snakey plot
-function drawMultipleItems(A,values, T){
+function drawSnakeyPath(A, values, T){
   var i = 0;
   var ctx = A.BackingCanvas.ctx;
   var ctx2 = A.Hotspots.ctx;
@@ -580,6 +581,22 @@ function drawMultipleItems(A,values, T){
   T.maxv = maxv;
   var nextWidth = 5;
   var nextStyle = "rgba(0,0,0,1.0)";
+
+  if(  T.style === 1){
+    nextWidth = 13;
+    nextStyle = "rgb(156,3,0)";
+    ctx.lineWidth = 5;
+    ctx.strokeStyle = "rgba(0,0,0,1.0)";
+
+  }else if(  T.style ===2)
+  {
+    nextWidth = 9;
+    nextStyle = "rgb(15,0,181)";
+    ctx.lineWidth = 5;
+    ctx.strokeStyle = "rgba(0,0,0,1.0)";
+
+  }
+
 
   for( j = 0; i < maxv; j += T.stride ){
     if( (T.stride>1) && values[j + 1] === "No Description" ) continue;
@@ -630,12 +647,19 @@ function drawMultipleItems(A,values, T){
       r = 1.6 * Math.log((values[j + 1].length) + 0.1) + T.r0;
     }
     S = T.fn(i, T);
+    ctx.fillStyle = "rgba(105,205,105,1.0)";
+    if( i===(maxv-1)){
+      ctx.fillStyle = "rgb(182,222,157)";
+      r+=3;
+    }
     ctx.beginPath();
     ctx.arc(S.x, S.y, r, 0, 2 * Math.PI, false);
     ctx.closePath();
-    ctx.fillStyle = "rgba(105,205,105,1.0)";
     ctx.fill();
-    //ctx.stroke();
+    if( i===(maxv-1)){
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
 
     ctx2.beginPath();
     ctx2.arc(S.x, S.y, r, 0, 2 * Math.PI, false);
@@ -691,7 +715,8 @@ function drawPath(A, obj, d, stride){
   T.ySpacing = (yh - 2 * T.margin) / (T.m);
 
   T.fn = xyOfIndexSnakey;
-  drawMultipleItems(A,obj.values, T);
+  T.style = obj.style || 0;
+  drawSnakeyPath(A,obj.values, T);
 }
 
 function drawTree(A, obj, d){
