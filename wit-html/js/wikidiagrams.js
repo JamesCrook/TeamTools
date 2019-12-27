@@ -540,13 +540,16 @@ function xyOfIndexSnakey(i, T){
   var y = T.y0 + row * T.ySpacing;
   if( T.isPath ){
     T.theta = undefined;
-    if( i === 0 ) x -= T.xSpacing; else if( i === T.maxv - 1 ) x += T.xSpacing;
-    // end of row
+    if( i === 0 )
+      x -= T.xSpacing *0.75;
     else if( i % T.n === 0 ){
       T.theta = (3 * Math.PI / 2);
       y -= T.ySpacing / 2;
       T.thetaDirection = (row % 2) === 0;
     }
+    // whether we extend or reduce depends on odd or even row.
+    else if( i === T.maxv - 1 )
+      x += (1-2*( row % 2 ))*T.xSpacing*0.75;
 
   }
   return { "x": x, "y": y };

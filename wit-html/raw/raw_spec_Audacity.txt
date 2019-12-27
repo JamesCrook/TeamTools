@@ -1,0 +1,120 @@
+ __NOTOC__
+
+
+{{ATK_Header}}
+
+This is the spec for the interactive diagram which shows a display of Audacity
+classes.  Here's the result:
+
+-----
+{{#widget:Dynamic|page=Classes}}
+-----
+
+The detailed data for the chart follows.
+
+<pre>START</pre>
+
+
+<pre>ADD:DATA=[
+{"HStack":[
+ {
+   "Path":"Audacity Classes",
+   "values":[
+   "*Single Use Dialogs","These dialogs are very specific for a purpose, and are used in just one place in Audacity.  For example, they have all the parameters for a particular effect, or configure a feature like Timer Record'",
+            "AboutDialog","The AboutDialog shows the program version and developer credits ",
+             "ApplyMacroDialog","Shows progress in executing commands in MacroCommands ",
+             "AutoRecoveryDialog","The AutoRecoveryDialog prompts the user whether to recover previous Audacity projects that were closed incorrectly ",
+             "BenchmarkDialog","BenchmarkDialog is used for measuring performance and accuracy of the BlockFile system ",
+             "BrowserDialog","Adds some event handling to an HtmlWindow ",
+             "DependencyDialog","DependencyDialog shows dependencies of an AudacityProject on AliasedFiles ",
+             "DemoDialog","DemoDialog used with DemoCommand ",
+             "EchoDialog","EchoDialog used with EffectEcho ",
+             "EqualizationDialog","EqualizationDialog controls a graph for         EffectEqualization. We should look at amalgamating the various graphing code, such as provided by EqualizationPanel, FreqWindow and FilterPanel",
+             "ExportMixerDialog","Dialog for advanced mixing ",
+             "ExportMultipleDialog","Presents a dialog box allowing the user to export multiple files either by exporting each track as a separate file, or by exporting each label as a separate file",
+             "FindClippingDialog","FindClippingDialog used with EffectFindClipping ",
+             "FindFFmpegDialog","Allows user to locate libav* libraries ",
+             "FrequencyPlotDialog","Displays a spectrum plot of the waveform. Has options for selecting parameters of the plot ",
+             "HistoryDialog","Works with UndoManager to allow user to see descriptions of and undo previous commands. Also allows you to selectively clear the undo memory so as to free up space ",
+             "ImportRawDialog","ImportRawDialog prompts you with options such as endianness and sample size to help you importing data of an unknown format ",
+             "LabelDialog","Dialog for editing labels ",
+             "LadspaEffectDialog","Dialog used with Effect ",
+             "LangChoiceDialog","A dialog used (at start up) to present the user with a choice of languages for Audacity ",
+             "LongMessageDialog","LongMessageDialog is a dialog with a Text Window in it to capture the more lengthy output from some commands ",
+             "MacroCommandDialog","Provides a list of configurable commands for use with MacroCommands ",
+             "NoiseRemovalDialog","Dialog used with EffectNoiseRemoval ",
+             "NyquistOutputDialog","Dialog used with NyquistEffect ",
+             "PrefsDialog","Dialog that shows the current PrefsPanel in a tabbed divider ",
+             "RepeatDialog","Dialog used with EffectRepeat ",
+             "ScoreAlignDialog","ScoreAlignDialog is  ",
+             "ScreenshotBigDialog","ScreenBigDialog provides an alternative Gui for ScreenshotCommand. It adds a timer that allows a delay before taking a screenshot, provides lots of one-click buttons, options to resize the screen. It forwards the actual work of doing the commands to the ScreenshotCommand ",
+             "SplashDialog","The SplashDialog shows help information for Audacity when Audacity starts up ",
+             "TimerRecordDialog","Dialog for Timer Record, i.e., timed or long recording "
+   ]
+ },
+ {
+   "Path":"Audacity Classes",
+   "values":[
+              "#Multi-Use Dialogs","These dialogs are more general purpose and each is used in several places in Audacity.  For example, they allow setting of a single value using a slider, show progress, or act as a base class to provide the shared functionality that's shared by all effects dialogs",
+
+             "AudacityCommandDialog","Default dialog used for commands. Is populated using ShuttleGui ",
+             "AudacityMessageDialog","Wrap wxMessageDialog so that caption IS translatable ",
+             "AudacityTextEntryDialog","Wrap wxTextEntryDialog so that caption IS translatable ",
+             "EffectDialog","New (Jun-2006) base class for effects dialogs. Likely to get greater use in future ",
+             "ErrorDialog","Gives an Error message with an option for help ",
+             "FileDialog","Dialog used to present platform specific \"Save As\" dialog with custom controls ",
+             "MultiDialog","A dialog for showing lists of items, mainly used to show lists of orphaned or damaged block files. It is a good alternative to having a dialog pop up for each problem encountered, since there can be many orphans ",
+             "ProgressDialog","ProgressDialog Class ",
+             "SliderDialog","Pop up dialog used with an LWSlider ",
+             "TimeDialog","Dialog used to request a time value ",
+             "ToolBarDialog","A dialog based container for ExpandingToolBars, providing modal based operations ",
+             "WarningDialog","Gives a warning message, that can be dismissed, with crucially the ability to not see similar warnings again for this session "
+
+   ],
+   "sizeAs":0.7
+ },
+ {"Rectangle":"Audacity Structure","colour":"rgb(215,230,210)",
+  "bcolour":"rgb(115,180,110)","cornerRadius":25,"sizeAs":2}
+ ],
+ "margins":20
+},
+    {"Rectangle":"Squeeze","colour":"rgb(215,230,210)",
+     "bcolour":"rgb(115,180,110)","cornerRadius":25,"sizeAs":1.3}
+]
+</pre>
+
+These are some other dialogs that do not have good descriptions.
+
+
+             "AudioUnitEffectExportDialog","No Description",
+             "AudioUnitEffectImportDialog","No Description",
+             "AudioUnitEffectOptionsDialog","No Description",
+             "ContrastDialog","No Description",
+             "EditCurvesDialog","No Description",
+             "EffectPresetsDialog","No Description",
+             "FFmpegNotFoundDialog","No Description",
+             "FileDialogBase","No Description",
+             "FileDialogWrapper","No Description",
+             "FindDialog","No Description",
+             "GlobalPrefsDialog","No Description",
+             "ImportStreamDialog","No Description",
+             "LadspaEffectOptionsDialog","No Description",
+             "LV2EffectSettingsDialog","No Description",
+             "MissingAliasFileDialog","No Description",
+             "MissingAliasFilesDialog","No Description",
+             "PluginRegistrationDialog","No Description",
+             "SuccessDialog","No Description",
+             "TimerProgressDialog","No Description",
+             "VSTEffectOptionsDialog","No Description",
+             "wxDialogWrapper","No Description",
+             "wxDirDialogWrapper","No Description"
+
+
+
+<pre>CREDITS:CAPTION=Audacity Classes;TIP=</pre>
+<h3>Instructions</h3>
+<ul>
+<li>Hover over blobs on the track for details about that item.
+<li>Larger spots have more information about them than smaller ones.
+</ul><br><br>
+<b>Credits:</b> <em>James Crook ©2019; Data and Image placed in Public Domain</em>
