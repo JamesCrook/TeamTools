@@ -191,7 +191,7 @@
         return str;
       }
 
-      function addExamples(){
+      function addExamples( bonusContent ){
         var examples = document.getElementById("examples");
         if( !examples )
           return;
@@ -211,7 +211,7 @@
         str+= "</ul>Interactive diagrams for explaining Audacity code and development:<ul>";
 
         str += formatExample("Flow_Chart","Flow Chart","Flowchart of making the Audacity manual.  Shows a relative layout which avoids absolute positions for items.  Also shows arrows.","");
-        str += formatExample("Audacity","Snake Diagram","A metro-line snake zig-zag display of dialog classes in Audacity","");
+        str += formatExample("Audacity","Snake Diagram","A metro-line snake zig-zag display of groups of related classes in Audacity","");
 
         str += formatExample("Graphing","Bug Chart","Graph of Audacity bugs over time.  Legends, labels and scales are added as layers with relative positioning.","");
 
@@ -223,11 +223,21 @@
 
         str+= "</ul>These are further experiments and examples showing other features:<ul>";
 
-        str += formatExample("ClimateChart","Climate Chart","Graphing a Climate Chart.  In time these will appear on the globes","");
-        str += formatExample("Biochemical","Biochemical","A metro-line display of biochemical pathways.  This diagram and the code structure diagram for Audacity are related.","");
         str += formatExample("Molecule","Molecule","A molecule in SMILES format.","");
-        str += formatExample("Classes","Classes","A metro-line zig-zag display of 494 classes in Audacity","");
-        str += formatExample("Structure","Tree Diagram","Another experiment with  zig-zag display.  A 2-level tree of Audacity classes","");
+
+        if( bonusContent ){
+          str += formatExample("ClimateChart", "Climate Chart",
+            "Graphing a Climate Chart.  In time these will appear on the globes",
+            "");
+          str += formatExample("Biochemical", "Biochemical",
+            "A metro-line display of biochemical pathways.  This diagram and the code structure diagram for Audacity are related.",
+            "");
+          str += formatExample("Classes", "Classes",
+            "A metro-line zig-zag display of 494 classes in Audacity", "");
+          str += formatExample("Structure", "Tree Diagram",
+            "Another experiment with  zig-zag display.  A 2-level tree of Audacity classes",
+            "");
+        }
         str+="</ul>";
 
 
@@ -244,7 +254,9 @@
         var fromWiki = 'no';//isFromServer();
         fromWiki = getArg(query, 'fromwiki') || fromWiki;
         if( frame === "no" ) removeFrame();
-        addExamples();
+
+        var bonusContent = getArg(query, 'bonus') || false;
+        addExamples( bonusContent );
         initContent();
 
         /*
@@ -276,7 +288,7 @@
     <div class='pos-resetter'>
         <h2 id="click-tip"
             style="color:#bfbfbf;display:block;position:relative;top:-0.55em;transition:opacity 4s;opacity:1;">
-            <em>Version from 27-Dec-2019</em></h2>
+            <em>Version from 28-Dec-2019</em></h2>
     </div>
     <div class='pos-resetter'>
         <div style="display:inline-block;">
