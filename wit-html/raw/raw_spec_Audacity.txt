@@ -121,7 +121,7 @@
     "sizeAs":0.9,
     "style":2
     },
-    {"Rectangle":"Squeeze the space by adding this rectangle","colour":"rgb(215,230,210)",
+    {"Rectangle":"Snakes will use the spaces provided for them","colour":"rgb(215,230,210)",
     "bcolour":"rgb(115,180,110)","cornerRadius":25,"sizeAs":0.4},
     {
     "Path":"Audacity Classes",
