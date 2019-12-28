@@ -85,6 +85,13 @@
             padding:10px;
         }
 
+
+        span.pre {
+            font-family : Consolas,Lucida Console,monospace;
+            background-color: #fff9f6;
+            border: solid #ceccd1 1px;
+        }
+
         div.bt {
 
             -webkit-touch-callout: none;
@@ -164,6 +171,7 @@
             border: solid #7890B7 2px;
             border-radius : 3px;
             background-color: #dcdcdc;
+            cursor:pointer;
             margin:5px;
             padding:5px;
             padding-bottom : 1px;
@@ -278,8 +286,10 @@
 <div style="margin-left:10px">
     <h3>Edit the spec for a diagram</h3>
     The toolkit can keep its spec files in mediawiki, and can view and edit them
-    there without any change to mediawiki software.
-    <p>This alternative edit page is for experiments.  Edits are not saved.<br><br>
+    there.  My demonstrator of that uses <a href="https://www.mediawiki.org/wiki/Extension:Widgets">Extension:Widgets</a>.  I use that extension to add a custom javascript file, and to call that javascript to process the spec for the diagram.  Edits are done using unmodified mediawiki built in editor.  All processing of the spec to make the diagram is done client side.
+    <p>This alternative edit page is for experiments.  Edits are not saved.
+    <p>I am using <span class="pre">&lt;pre&gt;</span> blocks for commands to the diagram maker.  The entire raw unprocessed page is handed to the diagram maker javascript, and it picks out the parts that it needs.  The wikitext that follows some <span class="pre">&lt;pre&gt;</span> blocks is also used by the diagram maker.  Blocks that end with '<span class="pre">TIP=&lt;/pre&gt;</span>' use the wikitext that immediately follows them as wikitext for a tip.
+    <br><br>
 </div>
 
 <div class = "tabber">
