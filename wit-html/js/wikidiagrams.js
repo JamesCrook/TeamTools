@@ -47,7 +47,7 @@ function resetHotspots(A){
   A.Hotspots.autoColour = 0;
   A.Hotspots.colourZoneIx = 0;
   A.Hotspots.colourZones = [];
-  // Bogus entry to catch bad tips.
+  // Bogus entry to catch bad tips.  This is Zone 0.
   AddHot(A,"[5,0,0,0]");
 }
 
@@ -182,21 +182,25 @@ function createDomElements(A){
 }
 
 AddHot = function( A, index){
-  var actions = {};
-  A.Hotspots.Colours[index] = actions;
-  A.Hotspots.Colours[roundColour(index)] = actions;
-  A.Hotspots.Current = actions;
-  actions.Zone = A.Hotspots.count++;
+  AddHotExact( A, index );
+  // Extra entry for the rounded (reduced) colour.
+  A.Hotspots.Colours[roundColour(index)] = A.Hotspots.Colours[index];
 };
 
+// index is a colour in string format like "[10,10,30,255]".
 AddHotExact = function( A, index){
   var actions = {};
+  if( !A.Hotspots.Colours.hasOwnProperty(index) ){
+    A.Hotspots.toc = A.Hotspots.toc || [];
+    A.Hotspots.toc.push( index );
+  }
   A.Hotspots.Colours[index] = actions;
   A.Hotspots.Current = actions;
   actions.Zone = A.Hotspots.count++;
 };
 
 AddInfo = function( A ){
+  // This is the zone for the info tip.
   AddHot(A,"[0,0,5,255]");
 };
 
@@ -210,6 +214,13 @@ AddHover = function( A, text){
 
 
 // These are for hotspot colours added by a drawn image.
+// With a hotspot image, the colours are provided.
+// Here the oclours must be auto-generated.
+// We try to make a nice palette of colours, moving through different hues
+// and then different darkness/lightness, then coming back to very slightly
+// different hues.
+// There are 3x17=51 easily distinguished colours here, after that it's hard to
+// tell some colours apart.
 NextAutoColour = function( A, Tip){
   var a = (A.Hotspots.autoColour++);
 
@@ -237,7 +248,7 @@ NextAutoColour = function( A, Tip){
   a = a>>4;
   // Now gray-code the remaining bits
   // Idea of using gray code is to make changes in luminance or in
-  // saturation, not both at the same time.
+  // saturation, but not both at the same time.
   a = a ^ (a>>1);
 
   // luminance and saturation each grab 3 bits.
@@ -1195,6 +1206,10 @@ function rgbOfColourTuple( v ){
   return "rgba(" + v[0] + "," + v[1] + "," + v[2] + "," + v[3] + ")";
 }
 
+function colourTupleOfJsonString(string){
+  return JSON.parse(string);
+}
+
 function rgbOfJsonColourTuple(tuple){
   var tuple2 = JSON.parse(tuple);
   return rgbOfColourTuple( tuple2 );
@@ -1355,19 +1370,28 @@ function updateImages(A){
 
 function makeToc(A){
   var h = A.Hotspots;
+  if( !h || !h.toc)
+    return "NO HOTSPOT COLOURS";
   var str = "<table>";
-  for(var i=0;i<h.colourZones.length;i++){
-    var c = h.colourZones[i].hotspotColour;
-    if( c ){
-      // White text for numbers on dark backgrounds, black when light.
-      var textColor = textColourForColourTuple(c);
-      var tip = h.Colours[stringOfTuple(c)].Tip;
-      str += "<tr><td style='vertical-align:top;padding-top:28px'>" +
-        "<div style='width:30px;height:30px;color:" + textColor +
-        ";border:thin solid black;text-align:center;vertical-align:middle;" +
-        "line-height:30px;background-color:" + rgbOfColourTuple(c) + "'>" + i +
-        "</div></td><td>" + tip + "</td></tr>";
-    }
+  for(var i=1;i<h.toc.length;i++){
+    var c = h.toc[i];
+    if( !c )
+      continue;
+    //var strc = stringOfTuple(c);
+    var item = h.Colours[c];
+    if( !item )
+      continue;
+    var tip = item.Tip;
+    if( !tip )
+      continue;
+    // White text for numbers on dark backgrounds, black when light.
+    var c2 = colourTupleOfJsonString(c);
+    var textColor = textColourForColourTuple(c2);
+    str += "<tr><td style='vertical-align:top;padding-top:28px'>" +
+      "<div style='width:30px;height:30px;color:" + textColor +
+      ";border:thin solid black;text-align:center;vertical-align:middle;" +
+      "line-height:30px;background-color:" + rgbOfColourTuple(c2) + "'>" + (i-1) +
+      "</div></td><td>" + tip + "</td></tr>";
   }
   str += "</table>";
   return str;
@@ -1431,7 +1455,7 @@ function setATitle(A,caption, page, fromWiki){
 
   }
 
-  if( A.Hotspots.colourZones && A.Hotspots.colourZones.length > 0)
+  if( A.Hotspots.toc && A.Hotspots.toc.length > 0)
     str +=
       " &nbsp; [ <a href='#zonelist' id='zoneToggler" + A.index +
       "' onclick='toggleDetailsInToc("+A.index+")'>+zones</a> ]";
@@ -2086,6 +2110,11 @@ function loadNewLines(A, specFileData, section){
       setATitle(A, A.caption, A.page, A.fromWiki);
       // Reserve a colour for the info button.
       AddInfo(A);
+
+      if( detail ){
+        AddDetail( A, detail );
+      }
+
     }
 
 
