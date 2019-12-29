@@ -1114,7 +1114,8 @@ function drawInfoButtonHotspot(A){
   ctx2.lineWidth = 0;
   ctx2.beginPath();
   ctx2.fillStyle = "rgba(0,0,5,1.0)";
-  ctx2.rect(x, y, xw, yh);
+  //ctx2.rect(x, y, xw, yh);
+  ctx2.arc(x + xw / 2, y + yh / 2, xw / 2, 0, Math.PI * 2.0, true);
   ctx2.fill();
 }
 
@@ -1178,7 +1179,6 @@ function drawFocusSpot(A,x, y){
   ctx.closePath();
   ctx.fill();
 
-
   ctx.fillStyle = "rgba(0,255,255,1.0)";
   ctx.globalCompositeOperation = 'destination-out';
 
@@ -1186,6 +1186,53 @@ function drawFocusSpot(A,x, y){
   ctx.arc(x, y, A.Focus.radius, 0, Math.PI * 2.0, true);
   ctx.closePath();
   ctx.fill();
+}
+
+
+function drawHotShape(A, c){
+
+  var ctx = A.FocusCanvas.ctx;
+
+  var w = A.Porthole.width;
+  var h = A.Porthole.height;
+
+  if( !A.Hotspots.ctx ) return -1;
+  var colourString = rgbOfColourTuple(c);
+
+  ctx.globalCompositeOperation = 'source-over';
+  ctx.clearRect(0, 0, A.Porthole.width, A.Porthole.height);
+
+  // We'll cache the picked-out shape.
+  if( A.Hotspots.lastHot !== colourString ){
+    var pixels = A.Hotspots.ctx.getImageData(0, 0, w, h);
+    var d = pixels.data;
+    for( var i = 0; i < w * h * 4; i += 4 ){
+      if( c[3] === 0 && d[i+3]<50){
+        d[i]=255;
+        d[i+1]=255;
+        d[i+2]=255;
+        d[i + 3] = 200;
+      }
+      else if( c[3] === 0 ){
+        d[i + 3] = 230;
+      }
+      else if( d[i] === c[0] && d[i + 1] === c[1] && d[i + 2] === c[2] &&
+        d[i + 3] === c[3] ){
+        d[i] = c[0];
+        d[i + 1] = c[1];
+        d[i + 2] = c[2];
+        d[i + 3] = 200; // faded slightly so we can see the image too.
+      } else {
+        d[i]=255;
+        d[i+1]=255;
+        d[i+2]=255;
+        d[i + 3] = 200;      }
+    }
+    A.Hotspots.lastHot = colourString;
+    A.Hotspots.pixels = pixels;
+  }
+
+  ctx.putImageData( A.Hotspots.pixels, 0, 0);
 }
 
 
@@ -1368,6 +1415,11 @@ function updateImages(A){
   onChart(A);
 }
 
+function fooo( ix, c ){
+  var A = Annotator[ ix ];
+  drawHotShape(A,c);
+}
+
 function makeToc(A){
   var h = A.Hotspots;
   if( !h || !h.toc)
@@ -1386,11 +1438,12 @@ function makeToc(A){
       continue;
     // White text for numbers on dark backgrounds, black when light.
     var c2 = colourTupleOfJsonString(c);
+    var clicker = "onmouseover='fooo("+A.index+","+c+")' onmouseout='fooo("+A.index+",[0,0,0,0])'";
     var textColor = textColourForColourTuple(c2);
     str += "<tr><td style='vertical-align:top;padding-top:28px'>" +
       "<div style='width:30px;height:30px;color:" + textColor +
       ";border:thin solid black;text-align:center;vertical-align:middle;" +
-      "line-height:30px;background-color:" + rgbOfColourTuple(c2) + "'>" + (i-1) +
+      "line-height:30px;background-color:" + rgbOfColourTuple(c2) + "' "+clicker+">" + (i-1) +
       "</div></td><td>" + tip + "</td></tr>";
   }
   str += "</table>";
