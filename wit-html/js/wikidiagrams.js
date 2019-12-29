@@ -1189,7 +1189,9 @@ function drawFocusSpot(A,x, y){
 }
 
 
-function drawHotShape(A, c){
+function drawHotShape(ix, action, c){
+  var A = Annotator[ ix ];
+
 
   var ctx = A.FocusCanvas.ctx;
 
@@ -1197,23 +1199,35 @@ function drawHotShape(A, c){
   var h = A.Porthole.height;
 
   if( !A.Hotspots.ctx ) return -1;
-  var colourString = rgbOfColourTuple(c);
 
   ctx.globalCompositeOperation = 'source-over';
   ctx.clearRect(0, 0, A.Porthole.width, A.Porthole.height);
+
+  if( action === "clear" ){
+    A.Hotspots.lastHot = action;
+    return;
+  }
+
+  var drawAll = action === "drawAll";
+
+  var colourString;
+  if( drawAll )
+    colourString = "all";
+  else
+    colourString = rgbOfColourTuple(c);
 
   // We'll cache the picked-out shape.
   if( A.Hotspots.lastHot !== colourString ){
     var pixels = A.Hotspots.ctx.getImageData(0, 0, w, h);
     var d = pixels.data;
     for( var i = 0; i < w * h * 4; i += 4 ){
-      if( c[3] === 0 && d[i+3]<50){
+      if( drawAll  && d[i+3]<50){
         d[i]=255;
         d[i+1]=255;
         d[i+2]=255;
         d[i + 3] = 200;
       }
-      else if( c[3] === 0 ){
+      else if( drawAll ){
         d[i + 3] = 230;
       }
       else if( d[i] === c[0] && d[i + 1] === c[1] && d[i + 2] === c[2] &&
@@ -1438,7 +1452,8 @@ function makeToc(A){
       continue;
     // White text for numbers on dark backgrounds, black when light.
     var c2 = colourTupleOfJsonString(c);
-    var clicker = "onmouseover='fooo("+A.index+","+c+")' onmouseout='fooo("+A.index+",[0,0,0,0])'";
+    var clicker = "onmouseover='drawHotShape("+A.index+",\"draw\","+c+")'" +
+      " onmouseout='drawHotShape("+A.index+",\"clear\")'";
     var textColor = textColourForColourTuple(c2);
     str += "<tr><td style='vertical-align:top;padding-top:28px'>" +
       "<div style='width:30px;height:30px;color:" + textColor +
@@ -1470,7 +1485,11 @@ function toggleDetailsInToc(index){
   var nMillis = date.getTime();
   var contents = makeToc(A);
   A.TocShown = !(A.TocShown || false);
-  var text ="This is the full list of zones:<br>"+contents;
+  var clicker = "onmouseover='drawHotShape("+A.index+",\"drawAll\")'" +
+    " onmouseout='drawHotShape("+A.index+",\"clear\")' ";
+
+  var text ="<div " + clicker +
+    "style='float:left;width:30px;height:30px;margin:5px;text-align:center;vertical-align:middle;line-height:30px;color:white;border:1px solid;border-color: #000000;background:repeating-linear-gradient(-45deg,#d68252,#9c43ad,#326489,#32852f 33%)'>All</div><h3>Zones</h3>Hover over coloured boxes in this list to see the zones in the image highlighted.  The stripy box above highlights all clickable zones<br clear='all'><hr>"+contents;
   setToc( A, text );
   return false;
 }
