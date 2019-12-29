@@ -152,7 +152,7 @@ function layoutMolecule( A, obj, d ){
   var smilesString = "O=Cc1ccc(O)c(OC)c1";//Vanillin
 
   //smilesString = "HC(H)(H)H";// Methane
-  smilesString = "CC(=O)NCCC1=CNC2=C1C=C(OC)C=C2"; //melatonin
+  smilesString = obj.structure;//"CC(=O)NCCC1=CNC2=C1C=C(OC)C=C2"; //melatonin
 
   obj.atoms = [];
   obj.bonds = [];

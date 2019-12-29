@@ -16,7 +16,10 @@ The detailed data for the chart follows.
 <pre>START</pre>
 
 <pre>ADD:DATA=
-{"Chem":"Nothing Here"}
+{
+"Chem":"Melatonin",
+"structure":"CC(=O)NCCC1=CNC2=C1C=C(OC)C=C2"
+}
 </pre>
 
 With the layout established, the details that follow customise the objects.
