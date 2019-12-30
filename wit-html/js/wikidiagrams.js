@@ -193,11 +193,13 @@ AddHot = function( A, index){
 
 // index is a colour in string format like "[10,10,30,255]".
 AddHotExact = function( A, index){
-  var actions = {};
-  if( !A.Hotspots.Colours.hasOwnProperty(index) ){
-    A.Hotspots.toc = A.Hotspots.toc || [];
-    A.Hotspots.toc.push( index );
+  if( A.Hotspots.Colours.hasOwnProperty(index) ){
+    A.Hotspots.Current = A.Hotspots.Colours[index];
+    return;
   }
+  var actions = {};
+  A.Hotspots.toc = A.Hotspots.toc || [];
+  A.Hotspots.toc.push( index );
   A.Hotspots.Colours[index] = actions;
   A.Hotspots.Current = actions;
   actions.Zone = A.Hotspots.count++;
@@ -224,55 +226,60 @@ AddHover = function( A, text){
 // and then different darkness/lightness, then coming back to very slightly
 // different hues.
 // There are 3x17=51 easily distinguished colours here, after that it's hard to
-// tell some colours apart.
-NextAutoColour = function( A, Tip){
-  var a = (A.Hotspots.autoColour++);
+function autoColourOfIndex(a){
+
 
   // Note that Chrome and other
   // browsers may not preserve the
   // alpha exactly, so we do not use that.
 
   // a with 24 bits.
-  a = a %(65536*256);
-
+  a = a % (65536 * 256);
 
   // h (hue) on its own gives us 17 distinct colours before it repeats.
   // it doesn't actually repeat at 17, but visually it is almost identical.
-  var h= (Math.PI * 57 * 2/1023) * a%1024;
+  var h = (Math.PI * 57 * 2 / 1023) * a % 1024;
   //a = Math.floor(a/1024);
 
-  var r= Math.floor( 127 * Math.cos( h ))+128;
-  h -= Math.PI * 2/3;
-  var g= Math.floor( 127 * Math.cos( h ))+128;
-  h -= Math.PI * 2/3;
-  var b= Math.floor( 127 * Math.cos( h ))+128;
-  h -= Math.PI * 2/3;
+  var r = Math.floor(127 * Math.cos(h)) + 128;
+  h -= Math.PI * 2 / 3;
+  var g = Math.floor(127 * Math.cos(h)) + 128;
+  h -= Math.PI * 2 / 3;
+  var b = Math.floor(127 * Math.cos(h)) + 128;
+  h -= Math.PI * 2 / 3;
 
   // drop the lower 4 bits, since our above cycle is about 16.
-  a = a>>4;
+  a = a >> 4;
   // Now gray-code the remaining bits
   // Idea of using gray code is to make changes in luminance or in
   // saturation, but not both at the same time.
-  a = a ^ (a>>1);
+  a = a ^ (a >> 1);
 
   // luminance and saturation each grab 3 bits.
-  var l = (((a&2)<<6) + ((a&8)<<3) + ((a&32)));
-  var s = (((a&1)<<7) + ((a&4)<<4) + ((a&16)<<1))/500;
+  var l = (((a & 2) << 6) + ((a & 8) << 3) + ((a & 32)));
+  var s = (((a & 1) << 7) + ((a & 4) << 4) + ((a & 16) << 1)) / 500;
 
   // saturation is grabbing 4 bits.
   //var s = (a & 15)/19;
 
   // We've only used about 11 bits, so 2048 colours.
 
-  r = Math.floor( r + (l-r) * s );
-  g = Math.floor( g + (l-g) * s );
-  b = Math.floor( b + (l-b) * s );
-
+  r = Math.floor(r + (l - r) * s);
+  g = Math.floor(g + (l - g) * s);
+  b = Math.floor(b + (l - b) * s);
 
   var index = "[" + r + "," + g + "," + b + ",255]";
+  return index;
+}
+
+// tell some colours apart.
+NextAutoColour = function( A, Tip){
+  var a = (A.Hotspots.autoColour++);
+  var index = autoColourOfIndex(a);
   var rgb = rgbOfJsonColourTuple(index);
   var actions = A.Hotspots.Colours[index];
-  if( actions ) return rgb;
+  if( actions )
+    return rgb;
 
   AddHotExact( A, index );
   AddDetail( A, Tip );
@@ -390,6 +397,16 @@ function drawSpot(A,T, values, i, ix){
   ctx.stroke();
 }
 
+function boxColourOfIndex( i ){
+  var colours = ["rgba(105,205,105,1.0)", "rgba(105,105,205,1.0)"];
+  if( i<3 )
+    return colours[i%2];
+  var c = autoColourOfIndex(i-3);
+  c = JSON.parse( c );
+  c = rgbOfColourTuple(c);
+  return c;
+}
+
 function drawDonut(A,T, values, i, ix){
   if( ix !== 1)
     return;
@@ -400,7 +417,6 @@ function drawDonut(A,T, values, i, ix){
   var r2 = r * 0.40;
   var t0 = 2.0 * Math.PI * 0.75;
   var t1 = 2.0 * Math.PI * 0.75;
-  var colours = ["rgba(105,205,105,1.0)", "rgba(105,105,205,1.0)"];
 
   // get total
   var total = 0;
@@ -408,6 +424,15 @@ function drawDonut(A,T, values, i, ix){
   for( j = 1; j < values[i].length; j++ ) total = total + values[i][j];
 
   var ctx = A.BackingCanvas.ctx;
+
+  if( T.stage === kStageHots ){
+    ctx = A.Hotspots.ctx;
+    for( j = 1; j < values[i].length; j++ ){
+      var colour = autoColourOfIndex( (j-1) *3 );
+      AddHot( A, colour );
+      AddDetail( A, T.obj.titles[j] + ": "+(values[i][j] *0.1).toFixed(1)+"%");
+    }
+  }
 
   var frac = Math.min(20, A.Status.time) / 20;
 
@@ -422,7 +447,7 @@ function drawDonut(A,T, values, i, ix){
     ctx.arc(x, y, r2, t1, t0, true);
     ctx.closePath();
     //ctx.rect(x, y, T.width, T.width);
-    ctx.fillStyle = colours[j % 2];
+    ctx.fillStyle = boxColourOfIndex( j*3 );
     ctx.fill();
     ctx.stroke();
   }
@@ -521,7 +546,7 @@ function makeFunctionTable(T, obj){
 }
 
 function drawChart(A, obj, d){
-  if( d.stage !== kStageFillAndText )
+  if( d.stage !== kStageFillAndText && ( d.stage !== kStageHots ) )
     return;
 
   //console.log( "draw - "+obj.type);
@@ -539,9 +564,12 @@ function drawChart(A, obj, d){
   }
   else
     T.width = 8;
+  T.stage = d.stage;
+  T.obj = obj;// Heck, pass the whole object too...
   if( !obj.values )
     return;
-  clearBacking(A,x0, y0, xw, yh);
+  if( T.stage === kStageFillAndText )
+    clearBacking(A,x0, y0, xw, yh);
   computeSpacing(A, T, x0, y0, xw, yh, obj.values);
   makeFunctionTable(T, obj);
   drawSpacedItems(A,x0, y0, xw, yh, obj.values, T);

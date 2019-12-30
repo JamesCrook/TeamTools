@@ -1,0 +1,40 @@
+__NOTOC__
+
+
+{{ATK_Header}}
+
+This is the spec for the interactive diagram which shows a breakdown of the different languages used in Audacity:
+
+Here's the result:
+
+-----
+{{#widget:Dynamic|page=Languages}}
+-----
+
+The detailed data for the chart follows.
+
+<pre>START</pre>
+
+<pre>ADD:DATA=
+{"HStack":
+[
+{"Chart":"many donuts",
+   "titles":["What","C","C++","Python","Shell","Makefile","Objective-C","Other"],
+   "display":["Label","Blue","Green"],
+   "subtype":["*","pie","pie"],
+   "pie":true,
+   "values":[
+   ["Languages",334,222,144,118,83,29,70]
+    ]
+},
+{"Rectangle":"Audacity source code, by language","colour":"rgb(215,230,210)", "bcolour":"rgb(115,180,110)","cornerRadius":25}
+],"margins":5}
+</pre>
+
+
+<pre>CREDITS:CAPTION=Audacity Languages Doughnutchart;TIP=</pre>
+<h3>Instructions</h3>
+<ul>
+<li>Hover over segments for more details.
+</ul><br><br>
+<b>Credits:</b> <em>James Crook ©2019; Data and Image placed in Public Domain</em>
