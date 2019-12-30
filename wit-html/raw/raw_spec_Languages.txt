@@ -18,7 +18,14 @@ The detailed data for the chart follows.
 <pre>ADD:DATA=
 {"HStack":
 [
-{"Chart":"many donuts",
+{"Prog":"Init",
+ "code":[
+    "setCaption","Audacity Languages Doughnut Chart",
+    "setCreditsTip", "<b>Credits:</b> <em>James Crook ©2019; Data and Image placed in Public Domain</em>",
+    "chooseItem","panel",
+    "setTip","Foo!"
+ ]},
+ {"Chart":"Languages Doughnut",
    "titles":["What","C","C++","Python","Shell","Makefile","Objective-C","Other"],
    "display":["Label","Blue","Green"],
    "subtype":["*","pie","pie"],
@@ -27,14 +34,12 @@ The detailed data for the chart follows.
    ["Languages",334,222,144,118,83,29,70]
     ]
 },
-{"Rectangle":"Audacity source code, by language","colour":"rgb(215,230,210)", "bcolour":"rgb(115,180,110)","cornerRadius":25}
+{"Rectangle":"Audacity source code, by language",
+ "id":"panel",
+ "colour":"rgb(215,230,210)",
+ "bcolour":"rgb(115,180,110)",
+ "cornerRadius":25}
 ],"margins":5}
 </pre>
 
 
-<pre>CREDITS:CAPTION=Audacity Languages Doughnutchart;TIP=</pre>
-<h3>Instructions</h3>
-<ul>
-<li>Hover over segments for more details.
-</ul><br><br>
-<b>Credits:</b> <em>James Crook ©2019; Data and Image placed in Public Domain</em>

@@ -1717,6 +1717,32 @@ function layoutContainer( A, obj, d){
   }
 }
 
+function createProg( A, obj, data ){
+  if( !obj.code )
+    return;
+  var activeObject;
+  var code = obj.code;
+  for(i=0;i<=code.length;){
+    var command = code[i++];
+    if( command === "selectCredits" ){
+    }
+    else if( command === "setCaption" ){
+      setATitle(A, code[i++], A.page, A.fromWiki);
+    }
+    else if( command === "setCreditsTip" ){
+      // Reserve a colour for the info button.
+      AddInfo(A);
+      AddDetail( A, code[i++] );
+    }
+    else if( command === "chooseItem" ){
+      activeObject = getObjectByName(A, code[i++]);
+    }
+    else if( command === "setTip" ){
+      activeObject.tip = code[i++];
+    }
+  }
+}
+
 function sizeSpacer( A, obj, data ){
   sizeCell(A, obj, data );
   obj.sizing.wants = obj.value;
@@ -1892,8 +1918,10 @@ drawThing = {
 };
 
 
-function registerMethod( forWhat, sizing, layout, draw )
+function registerMethod( forWhat, creating, sizing, layout, draw )
 {
+  if( creating )
+    createThing[ forWhat ] = creating;
   if( sizing )
     sizeThing[ forWhat ] = sizing;
   if( layout )
@@ -1905,15 +1933,17 @@ function registerMethod( forWhat, sizing, layout, draw )
 
 function registerMethods()
 {
-  registerMethod( "Circle",    0, layoutMargined, drawCircle);
-  registerMethod( "Rectangle", 0, layoutMargined, drawRectangle);
-  registerMethod( "Image",     0, layoutMargined, drawImage);
-  registerMethod( "Chart",     0, layoutMargined, drawChart);
+  registerMethod( "Circle",    0,0, layoutMargined, drawCircle);
+  registerMethod( "Rectangle", 0,0, layoutMargined, drawRectangle);
+  registerMethod( "Image",     0,0, layoutMargined, drawImage);
+  registerMethod( "Chart",     0,0, layoutMargined, drawChart);
 
   // The charts are unmargined...
-  registerMethod( "Path",    0,0, drawPath);
-  registerMethod( "Tree",    0,0, drawTree);
-  registerMethod( "Arrows",  sizeNowt,layoutNowt, drawArrows);
+  registerMethod( "Path",    0,0,0, drawPath);
+  registerMethod( "Tree",    0,0,0, drawTree);
+  registerMethod( "Arrows",  0, sizeNowt,layoutNowt, drawArrows);
+  registerMethod( "Prog",     createProg,sizeNowt,layoutNowt, 0);
+
 }
 
 
@@ -2196,16 +2226,6 @@ function loadNewLines(A, specFileData, section){
 
       //obj.img.src = file;
 
-    }
-
-
-    // Takes a spec of joinings, and adds it in.
-    if( item.startsWith("ARROWS:") ){
-      data = fieldValue("DATA", item);
-      console.log("arrow-data:" + data);
-      obj = JSON.parse(data);
-      //console.log(obj);
-      A.RootObject.arrows = obj;
     }
 
     // Set the caption, and info for the info button.

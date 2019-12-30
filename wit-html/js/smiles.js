@@ -558,12 +558,12 @@ function drawMolecule( A, obj, d ){
 
 function registerSmilesMethods()
 {
-  registerMethod( "Text",    0, layoutMargined, drawText);
-  registerMethod( "Chem",    0, 0, drawBenzene);
-  registerMethod( "Chem",    0, layoutMolecule, drawMolecule);
+  registerMethod( "Text",    0,0, layoutMargined, drawText);
+  registerMethod( "Chem",    0,0, 0, drawBenzene);
+  registerMethod( "Chem",    0,0, layoutMolecule, drawMolecule);
   //registerMethod( "Chem",    0, 0, drawChem);
-  registerMethod( "Atom",    0, layoutAtom, drawAtom);
-  registerMethod( "Bond",    0, layoutBond, drawBond);
+  registerMethod( "Atom",    0,0, layoutAtom, drawAtom);
+  registerMethod( "Bond",    0,0, layoutBond, drawBond);
 }
 
 registerSmilesMethods();

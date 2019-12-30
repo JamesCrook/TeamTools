@@ -389,7 +389,7 @@
     "Validator","A Validator is an object which checks whether a wxVariant satisfies a certain criterion. This is a base validator which allows anything ",
 
 
-    "*ExportPlugin","No Description",
+    "*ExportPlugin","+No Description",
     "FFmpegImportPlugin","An ImportPlugin for FFmpeg data ",
     "FLACImportPlugin","An ImportPlugin for FLAC data ",
     "GStreamerImportPlugin","An ImportPlugin for GStreamer data ",
@@ -401,7 +401,7 @@
     "RegisteredImportPlugin","No Description",
     "RegisteredUnusableImportPlugin","No Description",
     "UnusableImportPlugin","Used in place of a real plug in for plug ins that have not been compiled or are not available in this version of Audacity. Has enough information to identify the file extensions that would be used, but little else ",
-    "Plugins","For extending Audacity, often with third party code rather thna our own",
+    "Plugins","For extending Audacity, often with third party code rather than our own",
 
     "*ODComputeSummaryTask","A class representing a modular task to be used with the On-Demand structures ",
     "ODCondition","No Description",
