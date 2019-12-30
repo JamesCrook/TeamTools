@@ -184,7 +184,11 @@ function createDomElements(A){
 AddHot = function( A, index){
   AddHotExact( A, index );
   // Extra entry for the rounded (reduced) colour.
-  A.Hotspots.Colours[roundColour(index)] = A.Hotspots.Colours[index];
+  // This idea was introduced to cope with the climate map, where the colour
+  // coding varied somewhat.
+  // Reduced colour is not needed, provided hotspot image is already
+  // reduced.  We've done this now.
+  //A.Hotspots.Colours[roundColour(index)] = A.Hotspots.Colours[index];
 };
 
 // index is a colour in string format like "[10,10,30,255]".
@@ -1312,17 +1316,18 @@ function onMouseOut(e){
   A.Status.OldHit = -1;
 }
 
-function actionsFromCursorPos(A,x, y, flags){
+function actionsFromCursorPos(A,x,y){
 
   if( !A.Hotspots.ctx ) return -1;
   var pixel = A.Hotspots.ctx.getImageData(x, y, 1, 1).data;
   var result = "[" + pixel[0] + "," + pixel[1] + "," + pixel[2] + "," +
     pixel[3] + "]";
   var actions = A.Hotspots.Colours[result] ||
-    A.Hotspots.Colours[roundColour(result)] || Nozone;
+    // Testing with a reduced colour is no longer needed.
+    /* A.Hotspots.Colours[roundColour(result)] || */
+    Nozone;
   if( Message2 ) Message2.innerHTML =
     "Colour &amp; Zone: rgba" + result + ", Zone " + actions.Zone;
-  if( flags === "log" ) console.log(roundColour(result) + ",");
   return actions;
 }
 
@@ -1489,7 +1494,7 @@ function toggleDetailsInToc(index){
     " onmouseout='drawHotShape("+A.index+",\"clear\")' ";
 
   var text ="<div " + clicker +
-    "style='float:left;width:30px;height:30px;margin:5px;text-align:center;vertical-align:middle;line-height:30px;color:white;border:1px solid;border-color: #000000;background:repeating-linear-gradient(-45deg,#d68252,#9c43ad,#326489,#32852f 33%)'>All</div><h3>Zones</h3>Hover over coloured boxes in this list to see the zones in the image highlighted.  The stripy box above highlights all clickable zones<br clear='all'><hr>"+contents;
+    "style='float:left;width:30px;height:30px;margin:5px;text-align:center;vertical-align:middle;line-height:30px;color:white;border:1px solid;border-color: #000000;background:repeating-linear-gradient(-45deg,#d68252,#9c43ad,#326489,#32852f 33%)'>All</div><h3>Zones</h3>Hover over coloured boxes in this list to see the zones in the image highlighted.  The stripy box above highlights all zones<br clear='all'><hr>"+contents;
   setToc( A, text );
   return false;
 }

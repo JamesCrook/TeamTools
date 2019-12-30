@@ -47,7 +47,7 @@ This is the chooser object.
 [[File:1024px-Köppen-Geiger_Climate_Classification_Map.png]]
 
 <pre>HOTSPOTS</pre>
-[[File:1024px-Köppen-Geiger_Climate_Classification_Map.png]]
+[[File:1024px-ClimateClassificationMap.png]]
 
 <pre>NEXTOBJECT:TIP=</pre>
 <h1>Climate Zones</h1>
@@ -110,8 +110,7 @@ from us.
 [[File:1024px-Köppen-Geiger_Climate_Classification_Map.png]]
 
 <pre>HOTSPOTS</pre>
-[[File:1024px-Köppen-Geiger_Climate_Classification_Map.png]]
-
+[[File:1024px-ClimateClassificationMap.png]]
 
 <pre>CREDITS:
    CAPTION=Köppen Climate Classification Map;

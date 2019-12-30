@@ -30,7 +30,7 @@ The detailed data for the regions follows.
 [[File:1024px-Köppen-Geiger_Climate_Classification_Map.png]]
 
 <pre>HOTSPOTS</pre>
-[[File:1024px-Köppen-Geiger_Climate_Classification_Map.png]]
+[[File:1024px-ClimateClassificationMap.png]]
 
 <pre>ZONECOLOURS=
 [
