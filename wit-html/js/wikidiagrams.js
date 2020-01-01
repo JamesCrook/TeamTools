@@ -419,8 +419,6 @@ function drawStar(ctx, A, x, y){
   }
   ctx.fill();
   ctx.lineWidth = 0.5;
-  ctx.strokeStyle = "rgb(120,97,46)";
-  ctx.stroke();
 }
 
 // Used for irregularly spaced items.
@@ -446,6 +444,10 @@ function drawEvent(A,T, values, i, ix){
   }
 
   drawStar(ctx, A, x, y);
+  if( T.stage === kStageFillAndText ){
+    ctx.strokeStyle = "rgb(120,97,46)";
+    ctx.stroke();
+  }
 }
 
 function boxColourOfIndex( i ){
@@ -1041,6 +1043,10 @@ function drawImage(A, obj, d){
     return;
   }
 
+  if( obj.hot && (obj.hot.status !== "arrived") ){
+    drawRectangle(A, obj, d);
+    return;
+  }
 
   if( obj.spherical ){
     if( d.stage === kStageFillAndText )
@@ -1569,7 +1575,7 @@ function toggleDetailsInToc(index){
     " onmouseout='drawHotShape("+A.index+",\"clear\")' ";
 
   var text ="<div " + clicker +
-    "style='float:left;width:30px;height:30px;margin:5px;text-align:center;vertical-align:middle;line-height:30px;color:white;border:1px solid;border-color: #000000;background:repeating-linear-gradient(-45deg,#d68252,#9c43ad,#326489,#32852f 33%)'>All</div><h3>Zones</h3>Hover over coloured boxes in this list to see the zones in the image highlighted.  The stripy box above highlights all zones<br clear='all'><hr>"+contents;
+    "style='float:left;width:30px;height:30px;margin:5px;text-align:center;vertical-align:middle;line-height:30px;color:white;border:1px solid;border-color: #000000;background:repeating-linear-gradient(-45deg,#d68252,#9c43ad,#326489,#32852f 33%)'>All</div><h3>Zones</h3>Hover over coloured boxes in this list to see the zones in the image highlighted.  Hover over the stripy box to see all zones<br clear='all'><hr>"+contents;
   setToc( A, text );
   return false;
 }
