@@ -28,7 +28,7 @@ The detailed data for the chart follows.
 
 {"Overlay":[
   {"Image":"Audacity",
-   "src":"./images/Audacity_Logo_large_transparent.png",
+   "src":"Audacity_Logo_large_transparent.png",
    "margins":75},
   {"Chart":"Languages Doughnut",
    "titles":["What","C","C++","Python","Shell","Makefile","Objective-C","Other"],
