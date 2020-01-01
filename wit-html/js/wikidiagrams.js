@@ -1421,15 +1421,15 @@ function actionsFromCursorPos(A,x,y){
   return actions;
 }
 
-function setNewImage(A,url){
+function setNewImage(A,file){
 
   // Only supported for whole-div images.
   if( (A.RootObject.content.length === 1) &&
     (A.RootObject.content[0].type === "Image") ){
     var obj = A.RootObject.content[0];
-    obj.file = url;
+    obj.file = file;
     obj.img.crossOrigin = "anonymous";
-    obj.img.src = obj.file;
+    obj.img.src = urlOfFile( obj.file );
   }
 
 }
@@ -1506,21 +1506,6 @@ function onFocusClicked(e){
 function updateImages(A){
   if( !A.BackingCanvas )
     return;
-/*
-  if( (A.RootObject.content.length === 1) &&
-    (A.RootObject.content[0].type === "Image") ){
-    var obj = A.RootObject.content[0];
-    if( obj.file ){
-      obj.img.crossOrigin = "anonymous";
-      obj.img.src = obj.file;
-    }
-    if( obj.hot && obj.hot.file ){
-      obj.hot.img.crossOrigin = "anonymous";
-      obj.hot.img.src = obj.hot.file;
-    }
-  }
-
- */
   onChart(A);
 }
 
@@ -1827,6 +1812,14 @@ function mayRegisterClickAction( A, obj ){
   }
 }
 
+function urlOfFile(file){
+  if( isFromServer() === "yes" )
+    file = "https://wit.audacityteam.org/images/" + file;
+  else
+    file = "./images/" + file;
+  return file;
+}
+
 function mayRequestImage( A, obj ){
   if( !obj.src )
     return;
@@ -1834,7 +1827,8 @@ function mayRequestImage( A, obj ){
     return;
 
   obj.status = "asked";
-  obj.file = obj.src;
+  obj.file = urlOfFile(obj.src);
+
   obj.content = [];
   obj.img = document.createElement("img");
   obj.img.onload = (function(){
@@ -1855,7 +1849,7 @@ function mayRequestImage( A, obj ){
     }
   })();
   obj.img.crossOrigin = "anonymous";
-  obj.img.src = obj.src;
+  obj.img.src = obj.file;
 }
 
 function mayRequestHotImage( A, obj ){
@@ -1863,7 +1857,8 @@ function mayRequestHotImage( A, obj ){
   if( obj.type !== "Image" ) return;
   obj.hot = {};
   obj.hot.status = "asked";
-  obj.hot.file = obj.hotsrc;
+  obj.hot.file = urlOfFile(obj.hotsrc);
+
   obj.hot.img = document.createElement("img");
   obj.hot.img.onload = (function(){
     var obj1 = obj;
@@ -1881,7 +1876,7 @@ function mayRequestHotImage( A, obj ){
     }
   })();
   obj.hot.img.crossOrigin = "anonymous";
-  obj.hot.img.src = obj.hotsrc;
+  obj.hot.img.src = obj.hot.file;
 }
 
 
@@ -2115,9 +2110,6 @@ function loadNewLines(A, specFileData, section){
       item.split("tip=</pre>")[1];
     var file = item.split("[[File:")[1] || "";
     file = file.split("]]")[0] || "";
-    if( isFromServer() === "yes" ) file =
-      "https://wit.audacityteam.org/images/" + file; else file =
-      "./images/" + file;
 
     var spec = item.split("[[")[1] || "";
     spec = spec.split("]]")[0] || spec;
