@@ -411,7 +411,7 @@ function drawStar(ctx, A, x, y){
   ctx.beginPath();
   var i;
   for( i = 0; i <= n; i++ ){
-    var theta = Math.PI * 2 * (i / n + (Math.min(20, A.Status.time) / 20));
+    var theta = Math.PI * 2 * (i / n + (Math.min(20, A.Status.time) / 40));
     var r0 = (i % 2 === 0) ? r : 3.5 * r;
     var xx = x + r0 * Math.cos(theta);
     var yy = y + r0 * Math.sin(theta);
@@ -461,11 +461,15 @@ function boxColourOfIndex( i ){
 function drawDonut(A,T, values, i, ix){
   if( ix !== 1)
     return;
-  var xw = T.width;
-  var x = i * T.xScaler + T.margin + T.x0 + xw / 2;
-  var y = T.y0 + T.yh - T.margin - T.width + xw / 2;
+  var l = T.obj.layout;
+  var xw = l.xw;//T.width;
+  var yh = l.yh;
+  //var x = i * T.xScaler + T.margin + T.x0 + xw / 2;
+  //var y = T.y0 - T.margin - T.width + yh / 2;
+  var x =  l.x0 + xw / 2;
+  var y =  l.y0 + yh / 2;
   var r = xw / 2;
-  var r2 = r * 0.40;
+  var r2 = r * 0.70;
   var t0 = 2.0 * Math.PI * 0.75;
   var t1 = 2.0 * Math.PI * 0.75;
 
@@ -500,7 +504,8 @@ function drawDonut(A,T, values, i, ix){
     //ctx.rect(x, y, T.width, T.width);
     ctx.fillStyle = boxColourOfIndex( j*3 );
     ctx.fill();
-    ctx.stroke();
+    if( T.stage === kStageFillAndText )
+      ctx.stroke();
   }
 }
 

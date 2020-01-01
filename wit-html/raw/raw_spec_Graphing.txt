@@ -85,6 +85,7 @@ The detailed data for the chart follows.
 <pre>CREDITS:CAPTION=Audacity Bugs Barchart;TIP=</pre>
 <h3>Instructions</h3>
 <ul>
-<li>Hover over bars in the image for more details.
+<li>Hover over bars in the image for more bugs details.
+<li>Hover over stars in the image for more details of releases.
 </ul><br><br>
 <b>Credits:</b> <em>James Crook ©2019; Data and Image placed in Public Domain</em>

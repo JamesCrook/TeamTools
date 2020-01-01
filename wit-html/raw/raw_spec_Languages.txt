@@ -25,15 +25,21 @@ The detailed data for the chart follows.
      "chooseItem","panel",
      "setTip","Foo!"]
   },
+
+{"Overlay":[
+  {"Image":"Audacity",
+   "src":"./images/Audacity_Logo_large_transparent.png",
+   "margins":75},
   {"Chart":"Languages Doughnut",
    "titles":["What","C","C++","Python","Shell","Makefile","Objective-C","Other"],
    "display":["Label","Blue","Green"],
    "subtype":["*","pie","pie"],
    "pie":true,
+   "margins":5,
    "values":[
        ["Languages",334,222,144,118,83,29,70]
      ]
-  },
+  }]},
   {"Rectangle":"Audacity source code, by language",
    "id":"panel",
    "colour":"rgb(215,230,210)",
