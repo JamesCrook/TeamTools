@@ -369,7 +369,11 @@ function detailPosFromCursorPos(A,x, y){
   return pt;
 }
 
+
+// Used for bars from base line to curve.
 function drawBar(A,T, values, i, ix){
+  if( T.stage !== kStageFillAndText )
+    return;
   var vx = values[i][ix];
   var x = T.margin + T.x0 + i * T.xScaler;
   var y = vx * T.yScaler;
@@ -380,9 +384,12 @@ function drawBar(A,T, values, i, ix){
   ctx.fillStyle =
     (ix !== 1) ? "rgba(105,205,105,1.0)" : "rgba(105,105,205,1.0)";
   ctx.fill();
+  ctx.lineWidth = 0.5;
+  ctx.strokeStyle = "black";
   ctx.stroke();
 }
 
+// Used for values that follow (are on) a curve.
 function drawSpot(A,T, values, i, ix){
   var vx = values[i][ix];
   var x = T.margin + T.x0 + i * T.xScaler;
@@ -395,6 +402,50 @@ function drawSpot(A,T, values, i, ix){
     (ix !== 1) ? "rgba(105,205,105,1.0)" : "rgba(105,105,205,1.0)";
   ctx.fill();
   ctx.stroke();
+}
+
+function drawStar(ctx, A, x, y){
+  var n = 10;
+  var r = 3.5;
+
+  ctx.beginPath();
+  var i;
+  for( i = 0; i <= n; i++ ){
+    var theta = Math.PI * 2 * (i / n + (Math.min(20, A.Status.time) / 20));
+    var r0 = (i % 2 === 0) ? r : 3.5 * r;
+    var xx = x + r0 * Math.cos(theta);
+    var yy = y + r0 * Math.sin(theta);
+    if( i === 0 ) ctx.moveTo(xx, yy); else ctx.lineTo(xx, yy);
+  }
+  ctx.fill();
+  ctx.lineWidth = 0.5;
+  ctx.strokeStyle = "rgb(120,97,46)";
+  ctx.stroke();
+}
+
+// Used for irregularly spaced items.
+function drawEvent(A,T, values, i, ix){
+  if( ix !== 1)
+    return;
+
+  var vx = values[i][ix];
+
+  var x = 7+T.margin + T.x0 + 0.06 * vx * T.xScaler;
+  var y = T.yh + T.y0 - T.margin - 0.0 * 2000 * T.yScaler;
+
+  var ctx = A.BackingCanvas.ctx;
+  if( T.stage === kStageHots ){
+    var colour = autoColourOfIndex( i *3 );
+    AddHot( A, colour );
+    AddDetail( A, "<h2>Audacity " + values[i][2] + "</h2>Released: "+values[i][0]);
+    ctx = A.Hotspots.ctx;
+    ctx.fillStyle = boxColourOfIndex( (i+1) * 3);
+  }
+  else {
+    ctx.fillStyle = "rgb(205,192,67)";
+  }
+
+  drawStar(ctx, A, x, y);
 }
 
 function boxColourOfIndex( i ){
@@ -540,6 +591,8 @@ function makeFunctionTable(T, obj){
       T.fns.push(drawDonut);
     else if( type === "spot" )
       T.fns.push(drawSpot);
+    else if( type === "event" )
+      T.fns.push(drawEvent);
     else
       T.fns.push(drawNowt);
   }
@@ -566,10 +619,14 @@ function drawChart(A, obj, d){
     T.width = 8;
   T.stage = d.stage;
   T.obj = obj;// Heck, pass the whole object too...
+  if( obj.valuesFrom ){
+    var obj2 = getObjectByName(A,obj.valuesFrom );
+    obj.values = obj2.values;
+  }
   if( !obj.values )
     return;
-  if( T.stage === kStageFillAndText )
-    clearBacking(A,x0, y0, xw, yh);
+  //if( T.stage === kStageFillAndText )
+  //  clearBacking(A,x0, y0, xw, yh);
   computeSpacing(A, T, x0, y0, xw, yh, obj.values);
   makeFunctionTable(T, obj);
   drawSpacedItems(A,x0, y0, xw, yh, obj.values, T);
