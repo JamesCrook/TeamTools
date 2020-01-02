@@ -339,8 +339,9 @@ function timerCallback(){
 
   for(var i=0;i<Annotator.length;i++){
     A = Annotator[i];
-    if( A.Status.isFocus )
+    if( A.Status.isFocus && !A.newEvents)
       continue;
+    A.newEvents = false;
     A.Status.time++;
     // animation stops on America.
     // and dark side of moon.
@@ -1828,11 +1829,13 @@ function urlOfFile(file){
   return file;
 }
 
-function mayRequestImage( A, obj ){
-  if( !obj.src )
+function mayRequestImage(A, obj){
+  if( !obj.src ){
     return;
-  if( obj.type !== "Image" )
+  }
+  if( obj.type !== "Image" ){
     return;
+  }
 
   obj.status = "asked";
   obj.file = urlOfFile(obj.src);
@@ -1845,8 +1848,12 @@ function mayRequestImage( A, obj ){
       obj1.status = "arrived";
       console.log(obj1.file + " image arrived");
       // May need to layout and draw when image arrives.
-      if( obj1.resize ) resizeForImage(A,
-        obj1.img); else if( A.Status.isAppReady ) onChart(A);
+      A.newEvents = true;
+      if( obj1.resize ){
+        resizeForImage(A, obj1.img);
+      } else if( A.Status.isAppReady ){
+        onChart(A);
+      }
     }
   })();
   obj.img.onerror = (function(){
@@ -1860,9 +1867,13 @@ function mayRequestImage( A, obj ){
   obj.img.src = obj.file;
 }
 
-function mayRequestHotImage( A, obj ){
-  if( !obj.hotsrc ) return;
-  if( obj.type !== "Image" ) return;
+function mayRequestHotImage(A, obj){
+  if( !obj.hotsrc ){
+    return;
+  }
+  if( obj.type !== "Image" ){
+    return;
+  }
   obj.hot = {};
   obj.hot.status = "asked";
   obj.hot.file = urlOfFile(obj.hotsrc);
@@ -1873,7 +1884,10 @@ function mayRequestHotImage( A, obj ){
     return function(){
       obj1.hot.status = "arrived";
       console.log(obj1.file + " HS arrived");
-      if( A.Status.isAppReady ) drawCells(A, A.RootObject, {});
+      A.newEvents = true;
+      if( A.Status.isAppReady ){
+        drawCells(A, A.RootObject, {});
+      }
     }
   })();
   obj.hot.img.onerror = (function(){
@@ -1886,7 +1900,6 @@ function mayRequestHotImage( A, obj ){
   obj.hot.img.crossOrigin = "anonymous";
   obj.hot.img.src = obj.hot.file;
 }
-
 
 function createCell(A, obj, d){
 
@@ -2347,6 +2360,7 @@ function handleNewData(A, data, section){
   var obj = A.RootObject;
   createCells( A, obj, d );
   A.Status.time = 0;
+  A.newEvents = true;
 
   updateImages(A);
 }
