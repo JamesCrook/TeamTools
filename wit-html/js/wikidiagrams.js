@@ -290,6 +290,8 @@ NextAutoColour = function( A, Tip){
 };
 
 function innerDraw(A,obj,d){
+  if( !obj )
+    return;
   var l = obj.layout;
   if( !l )
     return;
