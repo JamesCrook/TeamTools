@@ -20,6 +20,7 @@ The detailed data for the regions, buttons and tooltips follows.
 {"HStack":[
     {"VStack":[
         {"Rectangle":"Climate Zones"},
+        {"Rectangle":"Moisture"},
         {"Rectangle":"Vegetation"},
         {"Rectangle":"Ocean Currents"},
         {"Rectangle":"Plate Techtonics"},
@@ -58,11 +59,19 @@ both play a part in determining climate zones.
 [[Toolbox/Globes#1]]
 
 <pre>NEXTOBJECT:TIP=</pre>
+<h1>Moisture</h1>
+Evaporation minus precipitation
+
+<pre>CLICK DO:SPEC=</pre>
+[[Toolbox/Globes#2]]
+
+
+<pre>NEXTOBJECT:TIP=</pre>
 <h1>Vegetation</h1>
 Closely allied to climate zones is the vegetation map.
 
 <pre>CLICK DO:SPEC=</pre>
-[[Toolbox/Globes#2]]
+[[Toolbox/Globes#3]]
 
 <pre>NEXTOBJECT:TIP=</pre>
 <h1>Ocean Currents</h1>
@@ -71,7 +80,7 @@ flowing in the opposite direction near the surface.  Unfortunately this map
 does not join up properly East-West.
 
 <pre>CLICK DO:SPEC=</pre>
-[[Toolbox/Globes#3]]
+[[Toolbox/Globes#4]]
 
 <pre>NEXTOBJECT:TIP=</pre>
 <h1>Plate Techtonics</h1>
@@ -79,7 +88,7 @@ Shows the boundaries between plates, where seismic and volcanic activity are
 most likely.  Includes 'the great ring of fire'.
 
 <pre>CLICK DO:SPEC=</pre>
-[[Toolbox/Globes#4]]
+[[Toolbox/Globes#5]]
 
 <pre>NEXTOBJECT:
    TIP=</pre>
@@ -90,7 +99,7 @@ from us.
  The side near to us is smoother than the more pock marked hidden side.
 
 <pre>CLICK DO:SPEC=</pre>
-[[Toolbox/Globes#5]]
+[[Toolbox/Globes#6]]
 
 <pre>CREDITS:
    CAPTION=Köppen Climate Classification Map;
@@ -120,10 +129,24 @@ from us.
 
 
 
-
-
 <pre>START:Section 2</pre>
 <pre>DO:CHOOSER_NAME=MapChooser;VALUE=2</pre>
+
+<pre>IMAGE:NAME=Image Goes Here</pre>
+[[File:Latitude_Longitude_Evaporation_minus_precipitationCropped.jpg]]
+
+<pre>HOTSPOTS</pre>
+[[File:Latitude_Longitude_Evaporation_minus_precipitationCropped.jpg]]
+
+
+<pre>CREDITS:CAPTION=Evaporation minus Precipitation;TIP=</pre>
+<b>Credits:</b><a href="https://en.m.wikipedia.org/wiki/File:Latitude_Longitude_Evaporation_minus_precipitation.jpg">Public domain</a></em>
+[[File:Latitude_Longitude_Evaporation_minus_precipitationCropped.jpg]]
+
+
+
+<pre>START:Section 3</pre>
+<pre>DO:CHOOSER_NAME=MapChooser;VALUE=3</pre>
 
 <pre>IMAGE:NAME=Image Goes Here</pre>
 [[File:Vegetation-no-legend2.png]]
@@ -137,8 +160,8 @@ from us.
 
 
 
-<pre>START:Section 3</pre>
-<pre>DO:CHOOSER_NAME=MapChooser;VALUE=3</pre>
+<pre>START:Section 4</pre>
+<pre>DO:CHOOSER_NAME=MapChooser;VALUE=4</pre>
 
 <pre>IMAGE:NAME=Image Goes Here</pre>
 [[File:atlantic20100325-640.jpg]]
@@ -156,8 +179,8 @@ from us.
 
 
 
-<pre>START:Section 4</pre>
-<pre>DO:CHOOSER_NAME=MapChooser;VALUE=4</pre>
+<pre>START:Section 5</pre>
+<pre>DO:CHOOSER_NAME=MapChooser;VALUE=5</pre>
 
 
 <pre>IMAGE:NAME=Image Goes Here</pre>
@@ -174,8 +197,8 @@ TIP=</pre>
 
 
 
-<pre>START:Section 5</pre>
-<pre>DO:CHOOSER_NAME=MapChooser;VALUE=5</pre>
+<pre>START:Section 6</pre>
+<pre>DO:CHOOSER_NAME=MapChooser;VALUE=6</pre>
 
 <pre>IMAGE:NAME=Image Goes Here</pre>
 [[File:Moonmap_from_clementine_data.png]]
@@ -187,6 +210,7 @@ TIP=</pre>
 
 <pre>CREDITS:CAPTION=Infra-red image of moon;TIP=</pre>
 <b>Credits:</b> See Wikipedia for credits</em>
+
 
 
 
