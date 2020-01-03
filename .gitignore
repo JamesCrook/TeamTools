@@ -27,6 +27,9 @@ CMakeFiles/
 CTestTestfile.cmake
 cmake_install.cmake
 
+# NPM stuff
+node_modules
+
 # Mac build outputs
 mac/Makefile
 mac/confdefs.h
