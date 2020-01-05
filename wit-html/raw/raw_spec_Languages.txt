@@ -23,7 +23,7 @@ The detailed data for the chart follows.
      "setCaption","Audacity Languages Doughnut Chart",
      "setCreditsTip", "<b>Credits:</b> <em>James Crook ©2019; Data and Image placed in Public Domain</em>",
      "chooseItem","panel",
-     "setTip","Foo!"]
+     "setTip","Hover over segments for detail!"]
   },
 
 {"Overlay":[

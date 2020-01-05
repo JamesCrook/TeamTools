@@ -303,6 +303,7 @@ function innerDraw(A,obj,d){
 
   var i;
   for(i=0;i<=10;i++){
+    A.Hotspots.autoColour = 0;
     d.stage = i;
     drawCells(A, obj, d);
   }
@@ -482,16 +483,13 @@ function drawDonut(A,T, values, i, ix){
 
   if( T.stage === kStageHots ){
     ctx = A.Hotspots.ctx;
-    for( j = 1; j < values[i].length; j++ ){
-      var colour = autoColourOfIndex( (j-1) *3 );
-      AddHot( A, colour );
-      AddDetail( A, T.obj.titles[j] + ": "+(values[i][j] *0.1).toFixed(1)+"%");
-    }
   }
 
   var frac = Math.min(20, A.Status.time) / 20;
 
   for( j = 1; j < values[i].length; j++ ){
+    var c = NextAutoColour( A, T.obj.titles[j] + ": "+(values[i][j] *0.1).toFixed(1)+"%");
+    A.Hotspots.autoColour+=2;
     t0 = t1;
     t1 = t1 + frac * Math.PI * 2 * values[i][j] / total;
     ctx.beginPath();
@@ -502,7 +500,7 @@ function drawDonut(A,T, values, i, ix){
     ctx.arc(x, y, r2, t1, t0, true);
     ctx.closePath();
     //ctx.rect(x, y, T.width, T.width);
-    ctx.fillStyle = boxColourOfIndex( j*3 );
+    ctx.fillStyle = c;//boxColourOfIndex( j*3 );
     ctx.fill();
     if( T.stage === kStageFillAndText )
       ctx.stroke();
@@ -752,12 +750,15 @@ function drawSnakeyPath(A, values, T){
   i = 0;
 
   T.isPath = false;
-  for( j = 0; i < maxv; j += T.stride ){
+  for( j = 0; i < T.count; j += T.stride ){
     var r=T.r0+7;
     if( (T.stride>1) ){
       if( values[j + 1] === "No Description" ) continue;
       r = 1.6 * Math.log((values[j + 1].length) + 0.1) + T.r0;
     }
+    var c =  NextAutoColour( A, "<h3>" + stripSignalChar( values[j] ) + "</h3>" + values[j + 1]);
+    if( i >= maxv )
+      break;
     S = T.fn(i, T);
     ctx.fillStyle = "rgba(105,205,105,1.0)";
     ctx.strokeStyle = nextStyle;
@@ -792,13 +793,12 @@ function drawSnakeyPath(A, values, T){
     ctx2.beginPath();
     ctx2.arc(S.x, S.y, r, 0, 2 * Math.PI, false);
     ctx2.closePath();
-    ctx2.fillStyle =
-      NextAutoColour( A, "<h3>" + stripSignalChar( values[j] ) + "</h3>" + values[j + 1]);
+    ctx2.fillStyle = c ;
     ctx2.fill();
     i++;
 
   }
-  A.Hotspots.autoColour = reserveColoursTo;
+  //A.Hotspots.autoColour = reserveColoursTo;
 }
 
 // draws a path inside a box.
