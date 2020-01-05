@@ -182,18 +182,8 @@ function createDomElements(A){
   populateDomElement( A, contentHere);
 }
 
-AddHot = function( A, index){
-  AddHotExact( A, index );
-  // Extra entry for the rounded (reduced) colour.
-  // This idea was introduced to cope with the climate map, where the colour
-  // coding varied somewhat.
-  // Reduced colour is not needed, provided hotspot image is already
-  // reduced.  We've done this now.
-  //A.Hotspots.Colours[roundColour(index)] = A.Hotspots.Colours[index];
-};
-
 // index is a colour in string format like "[10,10,30,255]".
-AddHotExact = function( A, index){
+AddHot = function( A, index){
   if( A.Hotspots.Colours.hasOwnProperty(index) ){
     A.Hotspots.Current = A.Hotspots.Colours[index];
     return;
@@ -286,7 +276,7 @@ NextAutoColour = function( A, Tip){
   if( actions )
     return rgb;
 
-  AddHotExact( A, index );
+  AddHot( A, index );
   AddDetail( A, Tip );
 
   A.Hotspots.colourZoneIx++;

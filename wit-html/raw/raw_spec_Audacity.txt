@@ -9,6 +9,8 @@
     <pre>START</pre>
     <pre>ADD:DATA=[
     {"HStack":[
+    {"Rectangle":"Audacity Structure","colour":"rgb(215,230,210)",
+    "bcolour":"rgb(115,180,110)","cornerRadius":25,"sizeAs":0.6},
     {
     "Path":"Audacity Classes",
     "values":[
@@ -63,9 +65,7 @@
     ],
     "sizeAs":0.7,
     "style":2
-    },
-    {"Rectangle":"Audacity Structure","colour":"rgb(215,230,210)",
-    "bcolour":"rgb(115,180,110)","cornerRadius":25,"sizeAs":0.6}
+    }
     ],
     "margins":1
     },
