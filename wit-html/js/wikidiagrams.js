@@ -1468,8 +1468,8 @@ function mousemoveOnMap(e){
 
 
   var rect = e.target.getBoundingClientRect();
-  var x = e.clientX - rect.left;
-  var y = e.clientY - rect.top;
+  var x = Math.ceil(e.clientX - rect.left);
+  var y = Math.ceil(e.clientY - rect.top);
   var coordinates = "Coordinates: (" + x + "," + y + ")";
 
   var pt = detailPosFromCursorPos(A, x, y);
