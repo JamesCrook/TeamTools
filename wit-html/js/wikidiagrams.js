@@ -670,6 +670,13 @@ function xyOfIndexSnakey(i, T){
   return { "x": x, "y": y };
 }
 
+function stripSignalChar( str ){
+  if( str.length < 2 )
+    return str;
+  if( str[0] === '*' || str[0] === '#' )
+    return str.substr( 1 );
+  return str;
+}
 
 // For drawing a snakey plot
 function drawSnakeyPath(A, values, T){
@@ -795,7 +802,7 @@ function drawSnakeyPath(A, values, T){
     ctx2.arc(S.x, S.y, r, 0, 2 * Math.PI, false);
     ctx2.closePath();
     ctx2.fillStyle =
-      NextAutoColour( A, "<h3>" + values[j] + "</h3>" + values[j + 1]);
+      NextAutoColour( A, "<h3>" + stripSignalChar( values[j] ) + "</h3>" + values[j + 1]);
     ctx2.fill();
     i++;
 
