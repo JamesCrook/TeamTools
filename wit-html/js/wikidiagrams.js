@@ -47,6 +47,7 @@ function resetHotspots(A){
   A.Hotspots.autoColour = 0;
   A.Hotspots.colourZoneIx = 0;
   A.Hotspots.colourZones = [];
+  A.Hotspots.toc = [];
   // Bogus entry to catch bad tips.  This is Zone 0.
   AddHot(A,"[5,0,0,0]");
 }
