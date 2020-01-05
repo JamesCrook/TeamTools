@@ -238,7 +238,10 @@ function autoColourOfIndex(a){
 
   // h (hue) on its own gives us 17 distinct colours before it repeats.
   // it doesn't actually repeat at 17, but visually it is almost identical.
-  var h = (Math.PI * 57 * 2 / 1023) * a % 1024;
+
+  // We have 1024 different hues since we're using a % 1024.
+  var h = (Math.PI * 57 * 2 / 1023) * (a % 1024);
+  //var h = (Math.PI * 57 * 2 / 1024) * (a % 1024);
   //a = Math.floor(a/1024);
 
   var r = Math.floor(127 * Math.cos(h)) + 128;
@@ -248,7 +251,8 @@ function autoColourOfIndex(a){
   var b = Math.floor(127 * Math.cos(h)) + 128;
   h -= Math.PI * 2 / 3;
 
-  // drop the lower 4 bits, since our above cycle is about 16.
+  //a=0;
+  // drop the lower 4 bits, since our above hue cycle is about 16.
   a = a >> 4;
   // Now gray-code the remaining bits
   // Idea of using gray code is to make changes in luminance or in
@@ -791,7 +795,7 @@ function drawSnakeyPath(A, values, T){
     ctx2.arc(S.x, S.y, r, 0, 2 * Math.PI, false);
     ctx2.closePath();
     ctx2.fillStyle =
-      NextAutoColour( A, "<h1>" + values[j] + "</h1>" + values[j + 1]);
+      NextAutoColour( A, "<h3>" + values[j] + "</h3>" + values[j + 1]);
     ctx2.fill();
     i++;
 
@@ -1544,11 +1548,11 @@ function makeToc(A){
     var clicker = "onmouseover='drawHotShape("+A.index+",\"draw\","+c+")'" +
       " onmouseout='drawHotShape("+A.index+",\"clear\")'";
     var textColor = textColourForColourTuple(c2);
-    str += "<tr><td style='vertical-align:top;padding-top:28px'>" +
+    str += "<tr><td style='vertical-align:top;padding:5px;padding-left:0px'>" +
       "<div style='width:30px;height:30px;color:" + textColor +
       ";border:thin solid black;text-align:center;vertical-align:middle;" +
       "line-height:30px;background-color:" + rgbOfColourTuple(c2) + "' "+clicker+">" + (i-1) +
-      "</div></td><td>" + tip + "</td></tr>";
+      "</div></td><td  style='padding:5px'>" + tip + "</td></tr>";
   }
   str += "</table>";
   return str;
