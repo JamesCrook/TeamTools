@@ -19,8 +19,8 @@ The detailed data for the regions, buttons and tooltips follows.
 [
 {"HStack":[
     {"VStack":[
-        {"Rectangle":"Climate Zones"},
         {"Rectangle":"Moisture"},
+        {"Rectangle":"Climate Zones"},
         {"Rectangle":"Vegetation"},
         {"Rectangle":"Ocean Currents"},
         {"Rectangle":"Plate Techtonics"},
@@ -45,22 +45,23 @@ This is the chooser object.
 <pre>NEXTOBJECT:</pre>
 
 <pre>IMAGE:NAME=Image Goes Here</pre>
-[[File:1024px-Köppen-Geiger_Climate_Classification_Map.png]]
+[[File:Latitude_Longitude_Evaporation_minus_precipitationCropped.jpg]]
 
 <pre>HOTSPOTS</pre>
-[[File:1024px-ClimateClassificationMap.png]]
+[[File:Latitude_Longitude_Evaporation_minus_precipitationCropped.jpg]]
+
 
 <pre>NEXTOBJECT:TIP=</pre>
-<h1>Climate Zones</h1>
-This is the Köppen climate classification map.  Temperature and precipitation
-both play a part in determining climate zones.
+<h1>Moisture</h1>
+Evaporation minus precipitation
 
 <pre>CLICK DO:SPEC=</pre>
 [[Toolbox/Globes#1]]
 
 <pre>NEXTOBJECT:TIP=</pre>
-<h1>Moisture</h1>
-Evaporation minus precipitation
+<h1>Climate Zones</h1>
+This is the Köppen climate classification map.  Temperature and precipitation
+both play a part in determining climate zones.
 
 <pre>CLICK DO:SPEC=</pre>
 [[Toolbox/Globes#2]]
@@ -101,36 +102,14 @@ from us.
 <pre>CLICK DO:SPEC=</pre>
 [[Toolbox/Globes#6]]
 
-<pre>CREDITS:
-   CAPTION=Köppen Climate Classification Map;
-   TIP=</pre>
-<b>Credits:</b> <em>Beck et Al.</em> - <a href="https://commons.wikimedia
-.org/wiki/File:K%C3%B6ppen-Geiger_Climate_Classification_Map.png">see description on Wikipedia</a>
-
-
-
+<pre>CREDITS:CAPTION=Evaporation minus Precipitation;TIP=</pre>
+<b>Credits:</b><a href="https://en.m.wikipedia.org/wiki/File:Latitude_Longitude_Evaporation_minus_precipitation.jpg">Public domain</a></em>
+[[File:Latitude_Longitude_Evaporation_minus_precipitationCropped.jpg]]
 
 
 
 <pre>START:Section 1</pre>
 <pre>DO:CHOOSER_NAME=MapChooser;VALUE=1</pre>
-
-<pre>IMAGE:NAME=Image Goes Here</pre>
-[[File:1024px-Köppen-Geiger_Climate_Classification_Map.png]]
-
-<pre>HOTSPOTS</pre>
-[[File:1024px-ClimateClassificationMap.png]]
-
-<pre>CREDITS:
-   CAPTION=Köppen Climate Classification Map;
-   TIP=</pre>
-<b>Credits:</b> <em>Beck et Al.</em> - <a href="https://commons.wikimedia
-.org/wiki/File:K%C3%B6ppen-Geiger_Climate_Classification_Map.png">see description on Wikipedia</a>
-
-
-
-<pre>START:Section 2</pre>
-<pre>DO:CHOOSER_NAME=MapChooser;VALUE=2</pre>
 
 <pre>IMAGE:NAME=Image Goes Here</pre>
 [[File:Latitude_Longitude_Evaporation_minus_precipitationCropped.jpg]]
@@ -142,6 +121,207 @@ from us.
 <pre>CREDITS:CAPTION=Evaporation minus Precipitation;TIP=</pre>
 <b>Credits:</b><a href="https://en.m.wikipedia.org/wiki/File:Latitude_Longitude_Evaporation_minus_precipitation.jpg">Public domain</a></em>
 [[File:Latitude_Longitude_Evaporation_minus_precipitationCropped.jpg]]
+
+
+<pre>START:Section 2</pre>
+<pre>DO:CHOOSER_NAME=MapChooser;VALUE=2</pre>
+
+<pre>IMAGE:NAME=Image Goes Here</pre>
+[[File:1024px-Köppen-Geiger_Climate_Classification_Map.png]]
+
+<pre>HOTSPOTS</pre>
+[[File:1024px-ClimateClassificationMap.png]]
+
+<pre>ZONECOLOURS=
+[
+    [0,0,255,255],
+    [0,120,255,255],
+    [70,170,250,255],
+    [255,0,0,255],
+    [255,150,150,255],
+    [245,165,0,255],
+    [255,220,100,255],
+    [255,255,0,255],
+    [200,200,0,255],
+    [150,150,0,255],
+    [150,255,150,255],
+    [100,200,100,255],
+    [50,150,50,255],
+    [200,255,80,255],
+    [100,255,80,255],
+    [50,200,0,255],
+    [255,0,255,255],
+    [200,0,200,255],
+    [150,50,150,255],
+    [150,100,150,255],
+    [170,175,255,255],
+    [90,120,220,255],
+    [75,80,180,255],
+    [50,0,135,255],
+    [0,255,255,255],
+    [50,200,255,255],
+    [0,125,125,255],
+    [0,70,95,255],
+    [180,180,180,255],
+    [100,100,100,255],
+
+
+    [205,0,205,255],
+    [215,15,200,255],
+    [210,0,210,255]
+
+
+]
+</pre>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Tropical rainforest (Af)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Tropical monsoon (Am)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Tropical savanna (Aw/As)</h1>
+<em><p></p></em>
+
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Hot Desert (BWh)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Cold Desert (BWk)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Hot semi-arid (BSh)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Cold semi-arid (BSk)</h1>
+<em><p></p></em>
+
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Hot-summer Mediterranean (Csa)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Warm-summer Mediterranean (Csb)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Mediterranean (Csc)</h1>
+<em><p></p></em>
+
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Humid subtropical (Cwa)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Subtropical highland (Cwb)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Subtropical highland(Cwc)</h1>
+<em><p></p></em>
+
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Humid subtropical (Cfa)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Oceanic (Cfb)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Subpolar oceanic (Cfc)</h1>
+<em><p></p></em>
+
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Humid Continental (Dsa)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Humid Continental (Dsb)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Subarctic (Dsc)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Subarctic (Dsd)</h1>
+<em><p></p></em>
+
+
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Humid Continental (Dwa)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Humid Continental (Dwb)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Subarctic (Dwc)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Subarctic (Dwd)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Humid Continental (Dfa)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Humid Continental (Dfb)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Sub Arctic (Dfc)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Subarctic (Dfd)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Tundra (ET)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>Ice cap (EF)</h1>
+<em><p></p></em>
+
+
+
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>2.Humid Continental (Dsb)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>3.Humid Continental (Dsb)</h1>
+<em><p></p></em>
+
+<pre>NEXTZONE:TIP=</pre>
+<h1>4.Humid Continental (Dsb)</h1>
+<em><p></p></em>
+
+
+<pre>CREDITS:
+   CAPTION=Köppen Climate Classification Map;
+   TIP=</pre>
+<b>Credits:</b> <em>Beck et Al.</em> - <a href="https://commons.wikimedia
+.org/wiki/File:K%C3%B6ppen-Geiger_Climate_Classification_Map.png">see description on Wikipedia</a>
 
 
 
