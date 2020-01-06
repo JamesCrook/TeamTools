@@ -300,11 +300,10 @@ function innerDraw(A,obj,d){
   ctx2.clearRect(l.x0,l.y0,l.xw,l.yh);
 
   // Some hotpspot colours are created as needed.
-  A.Hotspots.autoColour = 0;
 
   var i;
   for(i=0;i<=10;i++){
-    A.Hotspots.autoColour = 0;
+    A.Hotspots.autoColour = A.Hotspots.InitialAutocolours;
     d.stage = i;
     drawCells(A, obj, d);
   }
@@ -2362,6 +2361,7 @@ function handleNewData(A, data, section){
   var d= {};
   var obj = A.RootObject;
   createCells( A, obj, d );
+  A.Hotspots.InitialAutocolours = A.Hotspots.autoColour;
   A.Status.time = 0;
   A.newEvents = true;
 
