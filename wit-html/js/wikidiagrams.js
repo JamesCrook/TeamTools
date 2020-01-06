@@ -192,6 +192,7 @@ function populateDomElement(A, contentHere){
   A.DetailDiv.style.MozBorderRadius = "5px";
   A.DetailDiv.style.textAlign = "left";
   A.DetailDiv.style.margin = "0px";
+  A.DetailHideTime = -1;
 
 
   // Hotspot canvas and context do not need to be attached.
@@ -361,6 +362,13 @@ function timerCallback(){
 
   for(var i=0;i<Annotator.length;i++){
     A = Annotator[i];
+    if( A.DetailHideTime > 0 ){
+      A.DetailHideTime--;
+      if( A.DetailHideTime <= 0 ){
+        A.DetailDiv.style.display = 'none';
+      }
+    }
+
     if( A.Status.isFocus && !A.newEvents)
       continue;
     A.newEvents = false;
@@ -1525,9 +1533,17 @@ function mousemoveOnMap(e){
     A.Status.OldHit = actions.Zone;
 
     // Update the detail div
-    A.DetailDiv.style.display = (actions.Tip) ? "block" : "none";
+
+
     if( actions.Tip ){
+      A.DetailDiv.style.display = "block";
+      A.DetailHideTime = -1;
       A.DetailDiv.innerHTML = actions.Tip;
+    }
+    else {
+      // Keep div that should disappear around for 30 ticks...
+      // so it does not flicker.
+      A.DetailHideTime = 10;
     }
     // Do any additional hover action
     if( actions.Hover ){
