@@ -1582,37 +1582,40 @@ function makeToc(A){
   return str;
 }
 
-function setToc( A,text ){
+function setToc( A, bShow ){
+  A.TocShown = bShow;
   var div = A.TableOfHotsDiv;//.getElementById("tabular_contents"+A.index);
   if( !div )
     return;
-  div.innerHTML = text;
 
-  div.style.display = A.TocShown ? 'block':'none';
+
+  if( bShow ){
+    var contents = makeToc(A);
+    var clicker = "onmouseover='drawHotShape("+A.index+",\"drawAll\")'" +
+      " onmouseout='drawHotShape("+A.index+",\"clear\")' ";
+    var text = "<div " + clicker +
+      "style='float:left;width:30px;height:30px;margin:5px;text-align:center;vertical-align:middle;line-height:30px;color:white;border:1px solid;border-color: #000000;background:repeating-linear-gradient(-45deg,#d68252,#9c43ad,#326489,#32852f 33%)'>All</div><h3>Zones</h3>Hover over coloured boxes in this list to see the zones in the image highlighted.  Hover over the stripy box to see all zones<br clear='all'><hr>" +
+      contents;
+    div.innerHTML = text;
+  }
+
+  div.style.display = bShow? 'block':'none';
   var toggler = document.getElementById("zoneToggler"+A.index);
   if( !toggler)
     return;
-  toggler.innerHTML=A.TocShown ?"-zones":"+zones";
+  toggler.innerHTML=bShow ?"-zones":"+zones";
 
 }
 
 function toggleDetailsInToc(index){
   var A = Annotator[index];
-  var date = new Date();
-  var nMillis = date.getTime();
-  var contents = makeToc(A);
   A.TocShown = !(A.TocShown || false);
-  var clicker = "onmouseover='drawHotShape("+A.index+",\"drawAll\")'" +
-    " onmouseout='drawHotShape("+A.index+",\"clear\")' ";
-
-  var text ="<div " + clicker +
-    "style='float:left;width:30px;height:30px;margin:5px;text-align:center;vertical-align:middle;line-height:30px;color:white;border:1px solid;border-color: #000000;background:repeating-linear-gradient(-45deg,#d68252,#9c43ad,#326489,#32852f 33%)'>All</div><h3>Zones</h3>Hover over coloured boxes in this list to see the zones in the image highlighted.  Hover over the stripy box to see all zones<br clear='all'><hr>"+contents;
-  setToc( A, text );
+  setToc( A, A.TocShown );
   return false;
 }
 
 function setATitle(A,caption, page, fromWiki){
-  A.TocShown = false;
+  //A.TocShown = false;
   A.Caption = {};
   A.Caption.text = caption;
   A.Caption.page = page;
@@ -2368,6 +2371,7 @@ function addNewDetails(A, data, section){
   A.Status.time = 0;
 
   updateImages(A);
+  setToc( A, A.TocShown );
 }
 
 /**
@@ -2392,6 +2396,7 @@ function handleNewData(A, data, section){
   A.newEvents = true;
 
   updateImages(A);
+  setToc( A, A.TocShown );
 }
 
 /**
@@ -2448,7 +2453,7 @@ function loadDiagram(A,page, fromwiki,section){
   console.log("Load Diagram: "+page);
   A.page = page;
   A.fromWiki = fromwiki;
-  setToc( A,"");
+  setToc( A, false);
   requestSpec( A,page, fromwiki,section);
 }
 
