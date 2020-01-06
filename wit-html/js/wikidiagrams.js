@@ -397,18 +397,34 @@ function detailPosFromCursorPos(A,x, y){
 
 // Used for bars from base line to curve.
 function drawBar(A,T, values, i, ix){
-  if( T.stage !== kStageFillAndText )
+  if( T.stage !== kStageFillAndText && T.stage !== kStageHots )
     return;
   var vx = values[i][ix];
   var x = T.margin + T.x0 + i * T.xScaler;
   var y = vx * T.yScaler;
   var ctx = A.BackingCanvas.ctx;
+
+  if( T.stage === kStageHots ){
+    var colour = NextAutoColour( A,
+      "<b> &nbsp;Live Bugs: " + values[i][1] + "</b><br>" +
+      "<b>Slain Bugs: " + values[i][2] + "</b><br><br>" +
+      "As of: "+values[i][0]);
+    ctx = A.Hotspots.ctx;
+    ctx.fillStyle = colour;//rgbOfJsonColourTuple(colour);
+  }
+  else {
+    ctx.fillStyle =
+      (ix !== 1) ? "rgba(105,205,105,1.0)" : "rgba(105,105,205,1.0)";
+  }
+
   ctx.beginPath();
   ctx.rect(x + (ix - 1) * T.width,
     T.yh - (T.margin + y) + T.y0, T.width, y);
-  ctx.fillStyle =
-    (ix !== 1) ? "rgba(105,205,105,1.0)" : "rgba(105,105,205,1.0)";
   ctx.fill();
+
+  if( T.stage !== kStageFillAndText )
+    return;
+
   ctx.lineWidth = 0.5;
   ctx.strokeStyle = "black";
   ctx.stroke();
@@ -458,11 +474,10 @@ function drawEvent(A,T, values, i, ix){
 
   var ctx = A.BackingCanvas.ctx;
   if( T.stage === kStageHots ){
-    var colour = autoColourOfIndex( i *3 );
-    AddHot( A, colour );
-    AddDetail( A, "<h2>Audacity " + values[i][2] + "</h2>Released: "+values[i][0]);
+    var colour = NextAutoColour( A,
+      "<h2>Audacity " + values[i][2] + "</h2>Released: "+values[i][0]);
     ctx = A.Hotspots.ctx;
-    ctx.fillStyle = boxColourOfIndex( (i+1) * 3);
+    ctx.fillStyle = colour;// rgbOfJsonColourTuple(colour);
   }
   else {
     ctx.fillStyle = "rgb(205,192,67)";
@@ -2498,6 +2513,7 @@ function makeAnnotator(){
 //makeAnnotator();
 
 function initContent(){
+  Annotator = [];
   registerMethods();
   var query = window.location.href;
   var contentDivs = document.getElementsByClassName( "atkContentDiv" );
@@ -2512,6 +2528,28 @@ function initContent(){
   setInterval(timerCallback, 30);
 
 }
+
+
+function initEditors(){
+  Annotator = [];
+  registerMethods();
+  var query = window.location.href;
+  var contentDivs = document.getElementsByClassName( "atkEditorDiv" );
+  for(var i=0;i<contentDivs.length;i++){
+    var A = makeAnnotator();
+    A.index = i;
+    A.page = getArg(query, 'page'+i) || contentDivs[i].getAttribute("data-page") || "SmallCrowd";
+    populateEditorElement( A, contentDivs[i] );
+    requestSpec(A,A.page, 'remote',1,handleEditorData);
+
+
+    //loadDiagram( A, A.page, 'no',1);
+  }
+  // Timer is for animation such as rotating earth.
+  //setInterval(timerCallback, 30);
+
+}
+
 
 function handleEditorData(A, data, section){
   A.MainDiv.innerHTML = data;
@@ -2565,22 +2603,4 @@ function populateEditorElement(A, contentHere){
   A.MainDiv.spellcheck="false";
 
   contentHere.appendChild(A.MainDiv);
-}
-
-function initEditors(){
-  var query = window.location.href;
-  var contentDivs = document.getElementsByClassName( "atkContentDiv" );
-  for(var i=0;i<contentDivs.length;i++){
-    var A = makeAnnotator();
-    A.index = i;
-    A.page = getArg(query, 'page'+i) || contentDivs[i].getAttribute("data-page") || "SmallCrowd";
-    populateEditorElement( A, contentDivs[i] );
-    requestSpec(A,A.page, 'remote',1,handleEditorData);
-
-
-    //loadDiagram( A, A.page, 'no',1);
-  }
-  // Timer is for animation such as rotating earth.
-  //setInterval(timerCallback, 30);
-
 }
