@@ -42,13 +42,36 @@ function InitAnnotator(A){
 
 
 function resetHotspots(A){
-  A.Hotspots.Colours = [];
-  A.Hotspots.count = 0;
-  A.Hotspots.autoColour = 0;
-  A.Hotspots.colourZoneIx = 0;
-  A.Hotspots.colourZones = [];
-  A.Hotspots.toc = [];
-  // Bogus entry to catch bad tips.  This is Zone 0.
+
+  // Both these array structures includes hand-specified and autocolours.
+  // The colours are added as they are discovered.
+
+  // Array: It's indexed via the zone number and yields the colour,
+  // e.g "[1,2,3,4]"
+  // This structure is important for building the displayed toc
+  A.Hotspots.colourOfZone = [];
+
+  // HashTable: It's indexed via a colour string such as "[1,2,3,4]"
+  // and yields an actions {} object.
+  // The actions object includes, tips, click and hover actions and a
+  // zone number.
+  // This structure is important for deciding what to do on a click
+  // or hover.
+  A.Hotspots.actionsOfColour = [];
+
+  // Autocolours are generated 'on demand', starting from colour 0.
+  A.Hotspots.autoColourIx = 0;
+  // The next quantity counts the number of autocolours found BEFORE
+  // we get to drawing.  More may be used in drawing.
+  A.Hotspots.InitialAutocolours = 0;
+
+  // Array of colours specified by-hand.
+  A.Hotspots.byHandColours = [];
+  // A counter used when doling out the hand colours to the structures
+  // that consume them.
+  A.Hotspots.byHandColourIx = 0;
+
+  // Bogus entry to catch bad tips.  This bogus entry acts as Zone 0.
   AddHot(A,"[5,0,0,0]");
 }
 
@@ -66,7 +89,7 @@ function startChart(A){
   A.RootObject.objectDict = {};
   A.RootObject.objectList = [];
 
-  A.Hotspots.colourZoneIx = 0;
+  A.Hotspots.byHandColourIx = 0;
 }
 
 function resizeDivs(A){
@@ -185,16 +208,21 @@ function createDomElements(A){
 
 // index is a colour in string format like "[10,10,30,255]".
 AddHot = function( A, index){
-  if( A.Hotspots.Colours.hasOwnProperty(index) ){
-    A.Hotspots.Current = A.Hotspots.Colours[index];
+
+  // If we already have this colour, reuse it.
+  if( A.Hotspots.actionsOfColour.hasOwnProperty(index) ){
+    A.Hotspots.Current = A.Hotspots.actionsOfColour[index];
     return;
   }
+  
+  // Otherwise create a new actions object, and 
+  // record the new colour in our two tables.
   var actions = {};
-  A.Hotspots.toc = A.Hotspots.toc || [];
-  A.Hotspots.toc.push( index );
-  A.Hotspots.Colours[index] = actions;
+  actions.Zone = A.Hotspots.colourOfZone.length;
   A.Hotspots.Current = actions;
-  actions.Zone = A.Hotspots.count++;
+
+  A.Hotspots.colourOfZone.push( index );
+  A.Hotspots.actionsOfColour[index] = actions;
 };
 
 AddInfo = function( A ){
@@ -270,17 +298,15 @@ function autoColourOfIndex(a){
 
 // tell some colours apart.
 NextAutoColour = function( A, Tip){
-  var a = (A.Hotspots.autoColour++);
+  var a = (A.Hotspots.autoColourIx++);
   var index = autoColourOfIndex(a);
   var rgb = rgbOfJsonColourTuple(index);
-  var actions = A.Hotspots.Colours[index];
+  var actions = A.Hotspots.actionsOfColour[index];
   if( actions )
     return rgb;
 
   AddHot( A, index );
   AddDetail( A, Tip );
-
-  A.Hotspots.colourZoneIx++;
 
   return rgb;
 };
@@ -303,7 +329,7 @@ function innerDraw(A,obj,d){
 
   var i;
   for(i=0;i<=10;i++){
-    A.Hotspots.autoColour = A.Hotspots.InitialAutocolours;
+    A.Hotspots.autoColourIx = A.Hotspots.InitialAutocolours;
     d.stage = i;
     drawCells(A, obj, d);
   }
@@ -489,7 +515,7 @@ function drawDonut(A,T, values, i, ix){
 
   for( j = 1; j < values[i].length; j++ ){
     var c = NextAutoColour( A, T.obj.titles[j] + ": "+(values[i][j] *0.1).toFixed(1)+"%");
-    A.Hotspots.autoColour+=2;
+    A.Hotspots.autoColourIx+=2;
     t0 = t1;
     t1 = t1 + frac * Math.PI * 2 * values[i][j] / total;
     ctx.beginPath();
@@ -681,7 +707,7 @@ function drawSnakeyPath(A, values, T){
   var frac = Math.min(animateTime, A.Status.time) / animateTime;
   var maxv = Math.floor(frac * T.count);
 
-  var reserveColoursTo = A.Hotspots.autoColour + T.count;
+  var reserveColoursTo = A.Hotspots.autoColourIx + T.count;
 
 
   var S={};
@@ -798,7 +824,7 @@ function drawSnakeyPath(A, values, T){
     i++;
 
   }
-  //A.Hotspots.autoColour = reserveColoursTo;
+  //A.Hotspots.autoColourIx = reserveColoursTo;
 }
 
 // draws a path inside a box.
@@ -1423,9 +1449,9 @@ function actionsFromCursorPos(A,x,y){
   var pixel = A.Hotspots.ctx.getImageData(x, y, 1, 1).data;
   var result = "[" + pixel[0] + "," + pixel[1] + "," + pixel[2] + "," +
     pixel[3] + "]";
-  var actions = A.Hotspots.Colours[result] ||
+  var actions = A.Hotspots.actionsOfColour[result] ||
     // Testing with a reduced colour is no longer needed.
-    /* A.Hotspots.Colours[roundColour(result)] || */
+    /* A.Hotspots.actionsOfColour[roundColour(result)] || */
     Nozone;
   if( Message2 ) Message2.innerHTML =
     "Colour &amp; Zone: rgba" + result + ", Zone " + actions.Zone;
@@ -1527,15 +1553,15 @@ function fooo( ix, c ){
 
 function makeToc(A){
   var h = A.Hotspots;
-  if( !h || !h.toc)
+  if( !h || !h.colourOfZone)
     return "NO HOTSPOT COLOURS";
   var str = "<table>";
-  for(var i=1;i<h.toc.length;i++){
-    var c = h.toc[i];
+  for(var i=1;i<h.colourOfZone.length;i++){
+    var c = h.colourOfZone[i];
     if( !c )
       continue;
     //var strc = stringOfTuple(c);
-    var item = h.Colours[c];
+    var item = h.actionsOfColour[c];
     if( !item )
       continue;
     var tip = item.Tip;
@@ -1618,7 +1644,7 @@ function setATitle(A,caption, page, fromWiki){
 
   }
 
-  if( A.Hotspots.toc && A.Hotspots.toc.length > 0)
+  if( A.Hotspots.colourOfZone && A.Hotspots.colourOfZone.length > 0)
     str +=
       " &nbsp; [ <a href='#zonelist' id='zoneToggler" + A.index +
       "' onclick='toggleDetailsInToc("+A.index+")'>+zones</a> ]";
@@ -1923,11 +1949,11 @@ function createCell(A, obj, d){
   }
 
   // Image zone colours only used for tips.
-  if( obj.hasOwnProperty('colourZones') ){
+  if( obj.hasOwnProperty('byHandColours') ){
     var i;
-    var n = obj.colourZones.length;
+    var n = obj.byHandColours.length;
     for(i=0;i<n;i++){
-      var zone = obj.colourZones[i];
+      var zone = obj.byHandColours[i];
       if( zone.hotspotColour && zone.tip ){
         c = zone.hotspotColour;
         var colourString = '[' + c[0] + ',' + c[1] + ',' + c[2] + ',' + c[3] + ']';
@@ -2149,22 +2175,22 @@ function loadNewLines(A, specFileData, section){
       console.log("colour-data:" + data);
       var colours = JSON.parse(data);
       console.log(colours);
-      obj.colourZones = obj.colourZones || [];
-      A.Hotspots.colourZoneIx = obj.colourZones.length;
-      obj.colourZones = obj.colourZones.concat( colours );
-      A.Hotspots.colourZones = obj.colourZones;
+      obj.byHandColours = obj.byHandColours || [];
+      A.Hotspots.byHandColourIx = obj.byHandColours.length;
+      obj.byHandColours = obj.byHandColours.concat( colours );
+      A.Hotspots.byHandColours = obj.byHandColours;
     }
 
     // Add a TIP to the next zone (from zones specified earlier via ZONECOLOURS)
     if( item.startsWith("NEXTZONE:") ){
-      if( A.Hotspots.colourZones &&  detail ){
-        var zone = A.Hotspots.colourZones[ A.Hotspots.colourZoneIx ];
+      if( A.Hotspots.byHandColours &&  detail ){
+        var zone = A.Hotspots.byHandColours[ A.Hotspots.byHandColourIx ];
         if( isDefined( zone )){
           if( !isDefined( zone.hotspotColour ) ){
             zone = { 'hotspotColour': zone };
           }
           zone.tip = detail;
-          A.Hotspots.colourZones[ A.Hotspots.colourZoneIx++ ] = zone;
+          A.Hotspots.byHandColours[ A.Hotspots.byHandColourIx++ ] = zone;
           obj = zone;
         }
       }
@@ -2361,7 +2387,7 @@ function handleNewData(A, data, section){
   var d= {};
   var obj = A.RootObject;
   createCells( A, obj, d );
-  A.Hotspots.InitialAutocolours = A.Hotspots.autoColour;
+  A.Hotspots.InitialAutocolours = A.Hotspots.autoColourIx;
   A.Status.time = 0;
   A.newEvents = true;
 
