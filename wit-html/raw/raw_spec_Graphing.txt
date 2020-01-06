@@ -51,14 +51,17 @@ The detailed data for the chart follows.
    ["Aug 2019",390,1792],
    ["Sep 2019",356,1853],
    ["Oct 2019",360,1860],
-   ["Nov 2019",362,1867]
+   ["Nov 2019",362,1867],
+   ["Dec 2019",374,1878],
+   ["Jan 2020",384,1887]
 
    ]
 },
-  {"Chart":"Languages Doughnut",
-   "titles":["What","C","C++","Python","Shell","Makefile","Objective-C","Other"],
+  {"Chart":"Releases",
+   "titles":["When","Percent","Release"],
    "display":["Label","Blue","Green"],
    "subtype":["*","event"],
+   "range":["01-Aug-2017","31-Jan-2020"],
    "events":true,
    "values":[
         ["02-Nov-2017",12,"2.2.0"],

@@ -470,14 +470,42 @@ function drawStar(ctx, A, x, y){
   ctx.lineWidth = 0.5;
 }
 
+
+// int will be in mins.
+function intOfDate( date ){
+  var d = date.split("-");
+  var months = "Jan.Feb.Mar.Apr.May.Jun.Jul.Aug.Sep.Oct.Nov.Dec.";
+  var day = Number(d[0]);
+  var month = months.indexOf( d[1]+".")/4;
+  var year = Number(d[2]);
+  var result = day + (356/12) * month + 356 * year;
+  result = result * 24 * 60 * 60;
+  return result;
+}
+
 // Used for irregularly spaced items.
 function drawEvent(A,T, values, i, ix){
   if( ix !== 1)
     return;
 
-  var vx = values[i][ix];
+  var vx;
 
-  var x = 7+T.margin + T.x0 + 0.06 * vx * T.xScaler;
+  // This should all be calculated in advance and rolled into the scaling.
+  {
+    var date = T.obj.range[0];
+    var low = intOfDate( date );
+    //console.log( "Low for "+ date + " was " + low );
+    var date2 = T.obj.range[1];
+    var high = intOfDate( date2 );
+    //console.log( "Low for "+ date2 + " was " + high );
+    var date3 = values[i][0];
+    var vv = intOfDate( date3 );
+    vx =  (vv- low)/(high-low);
+    vx = vx * (T.count * T.xScaler - T.spacer) / T.xScaler;
+  }
+
+
+  var x = 7+T.margin + T.x0 + vx * T.xScaler;
   var y = T.yh + T.y0 - T.margin - 0.0 * 2000 * T.yScaler;
 
   var ctx = A.BackingCanvas.ctx;
