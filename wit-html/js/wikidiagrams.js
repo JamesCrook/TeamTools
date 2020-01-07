@@ -2610,22 +2610,23 @@ function initContent(){
 
 }
 
+var Editors = [];
 
 function initEditors(){
-  Annotator = [];
   registerMethods();
   var query = window.location.href;
   var contentDivs = document.getElementsByClassName( "atkEditorDiv" );
   for(var i=0;i<contentDivs.length;i++){
-    var A = makeAnnotator();
+    var A = {};
     A.index = i;
     A.page = getArg(query, 'page'+i) || contentDivs[i].getAttribute("data-page") || "SmallCrowd";
     populateEditorElement( A, contentDivs[i] );
     requestSpec(A,A.page, 'remote',1,handleEditorData);
-
+    Editors.push( A );
 
     //loadDiagram( A, A.page, 'no',1);
   }
+  initContent();
   // Timer is for animation such as rotating earth.
   //setInterval(timerCallback, 30);
 

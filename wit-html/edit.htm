@@ -244,6 +244,19 @@
         document.getElementById(name).style.display = "block";
       }
 
+      function descapeSpec( spec ){
+        var str = spec;
+        str = str.replace( /&lt;/g, "<" );
+        str = str.replace( /&gt;/g, ">" );
+        return str;
+      }
+
+      function selectPreview( name, widget ){
+        selectTab( name, widget);
+        var spec = Editors[0].MainDiv.value
+        handleNewData( Annotator[0], spec );
+      }
+
     </script>
 </head>
 <body id="body"
@@ -282,14 +295,15 @@
 
 <div style="margin-left:10px">
     <h3>Edit the spec for a diagram</h3>
-    <p>This edit page is for future experiments with new ways to edit.  Edits here don't yet do anythng and they are not saved.  The page lets you look at specs of diagrams, and that's about it.
+    <p>This edit page is for future experiments with new ways to edit.  Edits here are not saved.  The page lets you look at specs of diagrams and make some small changes, and that's about it.
 
-    <p>Some diagram specs are hosted in the audacityteam wiki.  Specs hosted there can be edited using the unmodified mediawiki built in editor.<br><br><br>
+    <p>Some diagram specs are hosted in the audacityteam wiki.  Specs hosted there can be edited using the unmodified mediawiki built-in editor.<br><br><br>
 
 </div>
 
 <div class = "tabber">
     <span class="tab" onClick="selectTab('page',this)">page</span>
+    <span class="tab" onClick="selectPreview('preview',this)">preview</span>
     <span class="tab" onClick="selectTab('discussion',this)">discussion</span>
     <span class="tab selected" onClick="selectTab('edit',this)">edit</span>
     <span class="tab" onClick="selectTab('richEdit',this)">rich-edit</span>
@@ -298,6 +312,10 @@
 
 <div class="scenebacker">
     <div id="page" class="choice" style="display:none">PAGE</div>
+    <div id="preview" class="choice" style="display:none">
+        <div id="content_here1" class="atkContentDiv" data-page="Graphing" style="text-align:center;">
+        </div>
+    </div>
     <div id="discussion" class="choice" style="display:none">DISCUSSION</div>
     <div id="edit" class="choice" style="display:block">
         <div id="content_here0" class="atkEditorDiv" data-page="Globes" style="text-align:center;">
@@ -308,8 +326,7 @@
 </div>
 
 
-<!--<div id="content_here1" class="atkContentDiv" data-page="Graphing" style="text-align:center;">
-</div>-->
+<!---->
 
 
 <div style="margin-left:10px;color:#818181">
