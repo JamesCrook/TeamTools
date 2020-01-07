@@ -19,6 +19,11 @@ The detailed data for the chart follows.
 [
 {"Overlay":[
 {
+   "Chart":"Lines",
+   "subtype":["lines","*","*"],
+   "values":"Lines"
+},
+{
    "Chart":"BugChart",
    "titles":["Date","Live Bugs","Slain Bugs"],
    "display":["Label","Blue","Green"],

@@ -402,6 +402,53 @@ function detailPosFromCursorPos(A,x, y){
   return pt;
 }
 
+// fudge factors that later will become proper parameters...
+var fudgeLineMargin = 5;// lines outside chart by 5 pixels.
+var fudgeLineDrop = 3;  // drop bars down by 6 pixels.
+var fudgeBarDrop =9;  // drop bars down by 6 pixels.
+var fudgeStarDrop = 6; // drop stars by 3 pixels.
+var fudgeLabelDrop = 4; // labels lower (relative to lines).
+var fudgeLabelMargin = 2; // labels to left
+
+
+// Used for bars from base line to curve.
+function drawLines(A,T, values, i, ix){
+  if( T.stage !== kStageFillAndText )
+    return;
+  if( i!== 0)
+    return;
+
+  var l = T.obj.layout;
+  var x = T.margin + T.x0 - fudgeLineMargin;
+  var y = T.yh + T.y0 + fudgeLineDrop;
+  var xw = l.xw - 2*T.margin+2*fudgeLineMargin;
+  var yh = T.yh;
+
+  var ctx = A.BackingCanvas.ctx;
+
+  ctx.fillStyle = "rgba(105,205,105,1.0)";
+  ctx.lineWidth = 0.5;
+  ctx.strokeStyle = "black";
+
+  for(i=0;i<11;i++){
+    var yy = y-(1-i/11)*yh;
+    ctx.beginPath();
+    ctx.moveTo(x, yy);
+    ctx.lineTo(x + xw, yy );
+    ctx.stroke();
+
+    ctx.save();
+    ctx.textAlign = "right";
+    ctx.font = "10px Arial";
+    ctx.fillStyle = "rgba(15,35,165,1.0)";
+    ctx.fillText( (10-i)*200, x-fudgeLabelMargin, yy+fudgeLabelDrop);
+    ctx.restore();
+
+
+
+  }
+}
+
 
 // Used for bars from base line to curve.
 function drawBar(A,T, values, i, ix){
@@ -427,7 +474,7 @@ function drawBar(A,T, values, i, ix){
 
   ctx.beginPath();
   ctx.rect(x + (ix - 1) * T.width,
-    T.yh - (T.margin + y) + T.y0, T.width, y);
+    T.yh - (T.margin + y) + T.y0+fudgeBarDrop, T.width, y);
   ctx.fill();
 
   if( T.stage !== kStageFillAndText )
@@ -506,7 +553,7 @@ function drawEvent(A,T, values, i, ix){
 
 
   var x = 7+T.margin + T.x0 + vx * T.xScaler;
-  var y = T.yh + T.y0 - T.margin - 0.0 * 2000 * T.yScaler;
+  var y = T.yh + T.y0 - T.margin - 0.0 * 2000 * T.yScaler+fudgeStarDrop;
 
   var ctx = A.BackingCanvas.ctx;
   if( T.stage === kStageHots ){
@@ -526,24 +573,12 @@ function drawEvent(A,T, values, i, ix){
   }
 }
 
-function boxColourOfIndex( i ){
-  var colours = ["rgba(105,205,105,1.0)", "rgba(105,105,205,1.0)"];
-  if( i<3 )
-    return colours[i%2];
-  var c = autoColourOfIndex(i-3);
-  c = JSON.parse( c );
-  c = rgbOfColourTuple(c);
-  return c;
-}
-
 function drawDonut(A,T, values, i, ix){
   if( ix !== 1)
     return;
   var l = T.obj.layout;
   var xw = l.xw;//T.width;
   var yh = l.yh;
-  //var x = i * T.xScaler + T.margin + T.x0 + xw / 2;
-  //var y = T.y0 - T.margin - T.width + yh / 2;
   var x =  l.x0 + xw / 2;
   var y =  l.y0 + yh / 2;
   var r = xw / 2;
@@ -597,7 +632,7 @@ function drawLabel(A,T, values, i,ix){
   ctx.translate(x+ (ix - 1) * T.width, T.yh - (T.margin + y) + T.y0);
   ctx.rotate(-Math.PI / 4);
   ctx.textAlign = "right";
-  ctx.font = "15px Arial";
+  ctx.font = "12px Arial";
   ctx.fillStyle = "rgba(15,35,165,1.0)";
   ctx.fillText(values[i][0], 0, 0);
   ctx.restore();
@@ -673,6 +708,8 @@ function makeFunctionTable(T, obj){
       T.fns.push(drawSpot);
     else if( type === "event" )
       T.fns.push(drawEvent);
+    else if( type === "lines" )
+      T.fns.push(drawLines);
     else
       T.fns.push(drawNowt);
   }
