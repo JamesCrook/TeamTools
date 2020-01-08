@@ -1965,8 +1965,10 @@ function mayRequestImage(A, obj){
     return;
   }
 
-  obj.status = "asked";
   obj.file = urlOfFile(obj.src);
+  if( obj.previous_img === obj.file )
+    return;
+  obj.status = "asked";
 
   obj.content = [];
   obj.img = document.createElement("img");
@@ -1992,6 +1994,8 @@ function mayRequestImage(A, obj){
     }
   })();
   obj.img.crossOrigin = "anonymous";
+  // avoid asking twice.
+  obj.previous_img = obj.file;
   obj.img.src = obj.file;
 }
 
@@ -2002,9 +2006,14 @@ function mayRequestHotImage(A, obj){
   if( obj.type !== "Image" ){
     return;
   }
+
+  var file = urlOfFile(obj.hotsrc);
+  if( obj.hot && obj.hot.previous_image === file )
+    return;
+
   obj.hot = {};
   obj.hot.status = "asked";
-  obj.hot.file = urlOfFile(obj.hotsrc);
+  obj.hot.file = file;
 
   obj.hot.img = document.createElement("img");
   obj.hot.img.onload = (function(){
@@ -2026,6 +2035,7 @@ function mayRequestHotImage(A, obj){
     }
   })();
   obj.hot.img.crossOrigin = "anonymous";
+  obj.hot.previous_image = obj.hot.file;
   obj.hot.img.src = obj.hot.file;
 }
 
@@ -2220,6 +2230,8 @@ function doChoose( A, parentObj, item )
     obj.cornerRadius = 8;
     obj.drawEarly = (i!==item);
     obj.drawExtra = true;
+    if( A.dataArriving )
+      continue;
     if( i===item && (parentObj.chosen !== item )){
       parentObj.chosen = item;
       //console.log( "New choice of "+(item+1));
@@ -2247,6 +2259,8 @@ function isDefined(x){
 }
 
 function loadNewLines(A, specFileData, section){
+  console.log( "Loading new file..." );
+
   if( section ){
     specFileData = specFileData.split("<pre>START")[section] || "";
     var ix = specFileData.indexOf("</pre>");
@@ -2387,7 +2401,10 @@ function loadNewLines(A, specFileData, section){
       obj = getObjectByName(A, fieldValue("NAME", item));
       if( !obj ) continue;
       A.RootObject.lastImage = obj;
-      obj.src = file;
+      if( obj.src !== file )
+        obj.src = file;
+      else
+        console.log("Already set" );
     }
 
     // Used after IMAGE to add hotspot image for that image.
@@ -2395,7 +2412,10 @@ function loadNewLines(A, specFileData, section){
       console.log("hotspots:" + file);
       obj = A.RootObject.lastImage;
       if( !obj ) continue;
-      obj.hotsrc = file;
+      if( obj.hotsrc !== file )
+        obj.hotsrc = file;
+      else
+        console.log("Already set" );
     }
 
     // DO some immediate command.  Currently it's confined to changing
@@ -2455,9 +2475,8 @@ function loadNewLines(A, specFileData, section){
       }
 
     }
-
-
   }
+  console.log( "...New file loaded" );
 }
 
 /**
@@ -2469,6 +2488,7 @@ function loadNewLines(A, specFileData, section){
  * @param section
  */
 function addNewDetails(A, data, section){
+  A.dataArriving = true;
   resetHotspots(A);
   A.Status.isAppReady = false;
   loadNewLines(A, data, section);
@@ -2480,6 +2500,7 @@ function addNewDetails(A, data, section){
 
   updateImages(A);
   setToc( A, A.TocShown );
+  A.dataArriving = false;
 }
 
 /**
