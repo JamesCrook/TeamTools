@@ -36,24 +36,31 @@ The detailed data for the regions, buttons and tooltips follows.
 
 <pre>NEXTOBJECT:</pre>
 
-
 <pre>NEXTOBJECT:TIP=</pre>
-
 <h1>Photo</h1><p><em>This selects the photo from the Audacity unconference in Nov
 2019.</em></p>
 <pre>CLICK DO:SPEC=</pre>
 [[Toolbox/AudacityPeople#1]]
 
-
 <pre>NEXTOBJECT:TIP=</pre>
 <h1>Hotspots</h1><p><em>Click on this button to show the coloured regions
 used to define the hotspots.  A different colour is used for each person
 .</em></p>
-
 <pre>CLICK DO:SPEC=</pre>
 [[Toolbox/AudacityPeople#2]]
 
+<pre>CREDITS:CAPTION=Audacity 2019 Unconference;TIP=</pre>
+<h3>Instructions</h3>
+<ul>
+<li>Hover over hotspots in the image for more details.
+<li>Hold shift down to freeze the hotspot - e.g. when taking a screenshot.
+</ul><br><br>
+<b>Credits:</b> <em>Photo by Arturo Buanzo Busleiman ©2019; CC3 BY-SA</em>
 
+
+
+<pre>START:Section 1</pre>
+<pre>DO:CHOOSER_NAME=ImageChooser;VALUE=1</pre>
 
 <pre>IMAGE:NAME=Image</pre>
 [[File:AudacityAu19.jpg]]
@@ -117,32 +124,10 @@ used to define the hotspots.  A different colour is used for each person
 <h1>Peter Sampson</h1>
 <em><p>Audacity forum, documentation and QA</p></em>
 
-<pre>CREDITS:CAPTION=Audacity 2019 Unconference;TIP=</pre>
-<h3>Instructions</h3>
-<ul>
-<li>Hover over hotspots in the image for more details.
-<li>Hold shift down to freeze the hotspot - e.g. when taking a screenshot.
-</ul><br><br>
-<b>Credits:</b> <em>Photo by Arturo Buanzo Busleiman ©2019; CC3 BY-SA</em>
 
-
-
-
-<pre>START:Section 1</pre>
-<pre>DO:CHOOSER_NAME=ImageChooser;VALUE=1</pre>
-
-<pre>IMAGE:NAME=Image</pre>
-[[File:AudacityAu19.jpg]]
-
-<pre>HOTSPOTS</pre>
-[[File:AudacityAu19HS.png]]
 
 <pre>START:Section 2</pre>
 <pre>DO:CHOOSER_NAME=ImageChooser;VALUE=2</pre>
 
 <pre>IMAGE:NAME=Image</pre>
 [[File:AudacityAu19HS.png]]
-
-<pre>HOTSPOTS</pre>
-[[File:AudacityAu19HS.png]]
-
