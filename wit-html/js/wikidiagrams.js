@@ -1917,6 +1917,7 @@ function createProg( A, obj, data ){
       AddInfo(A);
       AddDetail( A, code[i++] );
     }
+    // This is just selecting the item, to do more with it.
     else if( command === "chooseItem" ){
       activeObject = getObjectByName(A, code[i++]);
     }
@@ -2219,6 +2220,17 @@ function doChoose( A, parentObj, item )
     obj.cornerRadius = 8;
     obj.drawEarly = (i!==item);
     obj.drawExtra = true;
+    if( i===item && (parentObj.chosen !== item )){
+      parentObj.chosen = item;
+      //console.log( "New choice of "+(item+1));
+      if( obj.clickDo ){
+        // This makes a temporary click action, so that we can
+        // do it immediately.
+        A.Hotspots.Current.Click = {};
+        setClick( A, obj.clickDo[0], obj.clickDo[1] );
+        doAction(A,A.Hotspots.Current.Click);
+      }
+    }
   }
 }
 

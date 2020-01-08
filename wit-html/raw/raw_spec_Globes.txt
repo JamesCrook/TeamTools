@@ -19,8 +19,8 @@ The detailed data for the regions, buttons and tooltips follows.
 [
 {"HStack":[
     {"VStack":[
-        {"Rectangle":"Moisture"},
         {"Rectangle":"Climate Zones"},
+        {"Rectangle":"Moisture"},
         {"Rectangle":"Vegetation"},
         {"Rectangle":"Ocean Currents"},
         {"Rectangle":"Plate Techtonics"},
@@ -44,24 +44,18 @@ This is the chooser object.
 
 <pre>NEXTOBJECT:</pre>
 
-<pre>IMAGE:NAME=Image Goes Here</pre>
-[[File:Latitude_Longitude_Evaporation_minus_precipitationCropped.jpg]]
+<pre>NEXTOBJECT:TIP=</pre>
+<h1>Climate Zones</h1>
+This is the Köppen climate classification map.  Temperature and precipitation
+both play a part in determining climate zones.
 
-<pre>HOTSPOTS</pre>
-[[File:Latitude_Longitude_Evaporation_minus_precipitationCropped.jpg]]
+<pre>CLICK DO:SPEC=</pre>
+[[Toolbox/Globes#1]]
 
 
 <pre>NEXTOBJECT:TIP=</pre>
 <h1>Moisture</h1>
 Evaporation minus precipitation
-
-<pre>CLICK DO:SPEC=</pre>
-[[Toolbox/Globes#1]]
-
-<pre>NEXTOBJECT:TIP=</pre>
-<h1>Climate Zones</h1>
-This is the Köppen climate classification map.  Temperature and precipitation
-both play a part in determining climate zones.
 
 <pre>CLICK DO:SPEC=</pre>
 [[Toolbox/Globes#2]]
@@ -102,29 +96,13 @@ from us.
 <pre>CLICK DO:SPEC=</pre>
 [[Toolbox/Globes#6]]
 
-<pre>CREDITS:CAPTION=Evaporation minus Precipitation;TIP=</pre>
-<b>Credits:</b><a href="https://en.m.wikipedia.org/wiki/File:Latitude_Longitude_Evaporation_minus_precipitation.jpg">Public domain</a></em>
-[[File:Latitude_Longitude_Evaporation_minus_precipitationCropped.jpg]]
 
 
 
 <pre>START:Section 1</pre>
+
 <pre>DO:CHOOSER_NAME=MapChooser;VALUE=1</pre>
 
-<pre>IMAGE:NAME=Image Goes Here</pre>
-[[File:Latitude_Longitude_Evaporation_minus_precipitationCropped.jpg]]
-
-<pre>HOTSPOTS</pre>
-[[File:Latitude_Longitude_Evaporation_minus_precipitationCropped.jpg]]
-
-
-<pre>CREDITS:CAPTION=Evaporation minus Precipitation;TIP=</pre>
-<b>Credits:</b><a href="https://en.m.wikipedia.org/wiki/File:Latitude_Longitude_Evaporation_minus_precipitation.jpg">Public domain</a></em>
-[[File:Latitude_Longitude_Evaporation_minus_precipitationCropped.jpg]]
-
-
-<pre>START:Section 2</pre>
-<pre>DO:CHOOSER_NAME=MapChooser;VALUE=2</pre>
 
 <pre>IMAGE:NAME=Image Goes Here</pre>
 [[File:1024px-Köppen-Geiger_Climate_Classification_Map.png]]
@@ -322,6 +300,22 @@ from us.
    TIP=</pre>
 <b>Credits:</b> <em>Beck et Al.</em> - <a href="https://commons.wikimedia
 .org/wiki/File:K%C3%B6ppen-Geiger_Climate_Classification_Map.png">see description on Wikipedia</a>
+
+
+
+<pre>START:Section 2</pre>
+<pre>DO:CHOOSER_NAME=MapChooser;VALUE=2</pre>
+
+<pre>IMAGE:NAME=Image Goes Here</pre>
+[[File:Latitude_Longitude_Evaporation_minus_precipitationCropped.jpg]]
+
+<pre>HOTSPOTS</pre>
+[[File:Latitude_Longitude_Evaporation_minus_precipitationCropped.jpg]]
+
+
+<pre>CREDITS:CAPTION=Evaporation minus Precipitation;TIP=</pre>
+<b>Credits:</b><a href="https://en.m.wikipedia.org/wiki/File:Latitude_Longitude_Evaporation_minus_precipitation.jpg">Public domain</a></em>
+[[File:Latitude_Longitude_Evaporation_minus_precipitationCropped.jpg]]
 
 
 
