@@ -432,6 +432,8 @@ function drawLines(A,T, values, i, ix){
 
   for(i=0;i<11;i++){
     var yy = y-(1-i/11)*yh;
+    // Get crisp lines by positioning at 0.5 of a pixel.
+    yy = Math.floor( yy ) + 0.5;
     ctx.beginPath();
     ctx.moveTo(x, yy);
     ctx.lineTo(x + xw, yy );
