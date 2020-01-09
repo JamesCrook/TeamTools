@@ -368,7 +368,7 @@
     "ShuttleSetAutomation","Shuttle that sets parameters to a value (from a string) ",
     "Shuttle","These classes take things out of and put things into dialogs",
 
-    "#Menu","No Description",
+    "#Menu","+No Description",
     "MenuBarList","List of MenuBarListEntry ",
     "MenuButtonHandle","No Description",
     "MenuCreator","MenuCreator is responsible for creating the main menu bar ",

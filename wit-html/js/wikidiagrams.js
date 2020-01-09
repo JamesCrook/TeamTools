@@ -873,44 +873,41 @@ function drawSnakeyPath(A, values, T){
       r = 1.6 * Math.log((values[j + 1].length) + 0.1) + T.r0;
     }
     var c =  NextAutoColour( A, "<h3>" + stripSignalChar( values[j] ) + "</h3>" + values[j + 1]);
-    if( i >= maxv )
-      break;
-    S = T.fn(i, T);
-    ctx.fillStyle = "rgba(105,205,105,1.0)";
-    ctx.strokeStyle = nextStyle;
-    isHead = false;
-    if( i===(maxv-1) )
-    {
-      isHead = true;
-    }
-    else if( values[j+T.stride].startsWith("*")){
-      nextStyle = "rgb(156,3,0)";
-      isHead = true;
-    }
-    else if( values[j+T.stride].startsWith("#")){
-      nextStyle = "rgb(15,0,181)";
-      isHead = true;
-    }
+    if( i < maxv ){
+      S = T.fn(i, T);
+      ctx.fillStyle = "rgba(105,205,105,1.0)";
+      ctx.strokeStyle = nextStyle;
+      isHead = false;
+      if( i === (maxv - 1) ){
+        isHead = true;
+      } else if( values[j + T.stride].startsWith("*") ){
+        nextStyle = "rgb(156,3,0)";
+        isHead = true;
+      } else if( values[j + T.stride].startsWith("#") ){
+        nextStyle = "rgb(15,0,181)";
+        isHead = true;
+      }
 
-    if( isHead ){
-      // lighter green for head.
-      ctx.fillStyle = "rgb(182,222,157)";
-      r+=3;
-    }
-    ctx.beginPath();
-    ctx.arc(S.x, S.y, r, 0, 2 * Math.PI, false);
-    ctx.closePath();
-    ctx.fill();
-    if( isHead){
-      ctx.lineWidth = 1;
-      ctx.stroke();
-    }
+      if( isHead ){
+        // lighter green for head.
+        ctx.fillStyle = "rgb(182,222,157)";
+        r += 3;
+      }
+      ctx.beginPath();
+      ctx.arc(S.x, S.y, r, 0, 2 * Math.PI, false);
+      ctx.closePath();
+      ctx.fill();
+      if( isHead ){
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
 
-    ctx2.beginPath();
-    ctx2.arc(S.x, S.y, r, 0, 2 * Math.PI, false);
-    ctx2.closePath();
-    ctx2.fillStyle = c ;
-    ctx2.fill();
+      ctx2.beginPath();
+      ctx2.arc(S.x, S.y, r, 0, 2 * Math.PI, false);
+      ctx2.closePath();
+      ctx2.fillStyle = c;
+      ctx2.fill();
+    }
     i++;
 
   }
