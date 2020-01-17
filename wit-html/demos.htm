@@ -184,12 +184,19 @@
     <script>
 
       function formatExample( name, short, long, codes ){
+        var query = window.location.href;
+        var bonusContent = getArg(query, 'bonus') || false;
+
         var bWiki = codes.indexOf( "wiki" ) >=0;
         var bWip = codes.indexOf( "wip" ) >=0;
         var args1 = "?page0="+name;
         args1 = args1 + "&fromwiki=no";
         var args2 = "?page1="+name;
         args2 = args2 + "&fromwiki=no";
+
+        if( bonusContent){
+          args1 += "&bonus=y";
+        }
 
         var caveats = bWip ? "<em>(Wip)</em> ":"";
         var extras = bWiki ? " - <a href='./demos.htm?page0="+name+"&fromwiki=yes'>using wiki</a>" :"";
