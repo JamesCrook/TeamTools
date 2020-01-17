@@ -1,0 +1,130 @@
+__NOTOC__
+
+
+{{ATK_Header}}
+
+This is the spec for the interactive diagram which shows the architecture
+of SQLite
+
+Here's the result:
+
+-----
+{{#widget:Dynamic|page=SqliteArchitecture}}
+-----
+
+The detailed data for the chart follows.
+
+<pre>START</pre>
+
+<pre>ADD:DATA=
+{"HStack":
+[
+
+{"Prog":"Init",
+   "code":[
+     "setCaption","SQLite Architecture Diagram",
+     "setCreditsTip", "<b>Credits:</b> <em>adapted from <a href='https://sqlite.org/arch.html'>https://sqlite.org/arch.html</a></em>"]
+  },
+
+{"HStack":[
+  {"VStack":[
+     {"Overlay":[
+        {"Rectangle":"Core"},
+        {"VStack":[
+            {"Rectangle":"Interface",
+               "colour":"rgb(215,230,210)",
+               "bcolour":"rgb(115,180,110)",
+               "cornerRadius":25},
+            {"Rectangle":"SQL Command",
+               "colour":"rgb(215,230,210)",
+               "bcolour":"rgb(115,180,110)",
+               "cornerRadius":25},
+            {"Rectangle":"Virtual Machine",
+               "colour":"rgb(215,230,210)",
+               "bcolour":"rgb(115,180,110)",
+               "cornerRadius":25}
+            ],"margins":10}
+        ]},
+     {"Overlay":[
+        {"Rectangle":"Backend"},
+        {"VStack":[
+            {"Rectangle":"B-Tree",
+               "colour":"rgb(215,230,210)",
+               "bcolour":"rgb(115,180,110)",
+               "cornerRadius":25},
+            {"Rectangle":"Pager",
+               "colour":"rgb(215,230,210)",
+               "bcolour":"rgb(115,180,110)",
+               "cornerRadius":25},
+            {"Rectangle":"OS Interface",
+               "colour":"rgb(215,230,210)",
+               "bcolour":"rgb(115,180,110)",
+               "cornerRadius":25}
+            ],"margins":10}
+        ],"margins":5}
+     ]},
+
+
+  {"VStack":[
+     {"Overlay":[
+        {"Rectangle":"SQL Compiler"},
+        {"VStack":[
+            {"Rectangle":"Tokenizer",
+               "colour":"rgb(215,230,210)",
+               "bcolour":"rgb(115,180,110)",
+               "cornerRadius":25},
+            {"Rectangle":"Parser",
+               "colour":"rgb(215,230,210)",
+               "bcolour":"rgb(115,180,110)",
+               "cornerRadius":25},
+            {"Rectangle":"Code Generator",
+               "colour":"rgb(215,230,210)",
+               "bcolour":"rgb(115,180,110)",
+               "cornerRadius":25}
+            ],"margins":10}
+        ],
+        "sizeAs":2,
+        "margins":5},
+     {"Overlay":[
+        {"Rectangle":"Accessories"},
+        {"VStack":[
+            {"Rectangle":"Utilities",
+               "colour":"rgb(215,230,210)",
+               "bcolour":"rgb(115,180,110)",
+               "cornerRadius":25},
+            {"Rectangle":"Test Code",
+               "colour":"rgb(215,230,210)",
+               "bcolour":"rgb(115,180,110)",
+               "cornerRadius":25}
+            ],"margins":10}
+        ],"margins":5}
+     ]}
+  ]},
+    {"Arrows":[
+        "Interface","Backend",
+        "WIT Tooltips","WIT",
+        "WIT Menus","WIT",
+        "WIT","Toolbar Images",
+        "WIT","Image Templates",
+        "WIT","Big Pages",
+        "WIT","Menu Images",
+        "Audacity","WIT Menus",
+        "Scripting","Audacity",
+        "Audacity","Preferences Images",
+        "Audacity","EGA Images",
+        "Scripting","Track Images",
+        "Toolbar Images","File Upload",
+        "Menu Images","File Upload",
+        "Preferences Images","File Upload",
+        "EGA Images","File Upload",
+        "Track Images","File Upload",
+        "File Upload","Alpha Manual",
+        "Image Templates","Cut & Paste",
+        "Big Pages","Cut & Paste",
+        "Cut & Paste","Alpha Manual"
+        ]}
+
+],"margins":5}
+</pre>
+
+
