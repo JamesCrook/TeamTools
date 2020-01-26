@@ -257,6 +257,12 @@
         handleNewData( Annotator[0], spec );
       }
 
+      function selectPage( name, widget ){
+        selectTab( name, widget);
+        var spec = Editors[0].MainDiv.value;
+        handlePageData( Annotator[0], spec );
+      }
+
     </script>
 </head>
 <body id="body"
@@ -302,7 +308,7 @@
 </div>
 
 <div class = "tabber">
-    <span class="tab" onClick="selectTab('page',this)">page</span>
+    <span class="tab" onClick="selectPage('page',this)">page</span>
     <span class="tab" onClick="selectPreview('preview',this)">preview</span>
     <span class="tab" onClick="selectTab('discussion',this)">discussion</span>
     <span class="tab selected" onClick="selectTab('edit',this)">edit</span>

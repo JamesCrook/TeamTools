@@ -2665,9 +2665,13 @@ function initEditors(){
 
 }
 
-
+// Puts wikitext data into the edit page
 function handleEditorData(A, data, section){
   A.MainDiv.innerHTML = data;
+}
+
+// Translates wikitext data into html in the page.
+function handlePageData(A,data){
   var div = document.getElementById( "page" );
   if( !div )
     return;
@@ -2695,6 +2699,17 @@ function handleEditorData(A, data, section){
     " with Audacity.  The ATK is also expected to be useful for other code" +
     " projects, and eventually for Wikipedia too, for biochemical pathways and" +
     " other interactive diagrams.</div>");
+
+
+  data = data.replace( /^======(.*)======/gm, "<h2>$1</h2>" );
+  data = data.replace( /^=====(.*)=====/gm, "<h3>$1</h3>" );
+  data = data.replace( /\*\*(.*)\*\*/gm, "<b>$1</b>" );
+  data = data.replace( /~~(.*)~~/gm, "<s>$1</s>" );
+  data = data.replace( /\n'''\n([\s\S]*?)\n'''\n/g, "<pre><xmp>$1</xmp></pre>" );
+
+
+  data = data.replace( /^\*/gm, "<br> • " );
+  data = data.replace( /\n\n([^<])/gm, "<br><br>$1" );
 
   var name = A.page;
   name = name.replace(/_/g," ");

@@ -1,9 +1,5 @@
-Content-Type: text/x-zim-wiki
-Wiki-Format: zim 0.4
-Creation-Date: 2019-12-07T11:14:00+00:00
 
 ====== Progress Report Feb 2020 ======
-Created Saturday 07 December 2019
 
 For start of Feb
 
@@ -41,4 +37,4 @@ I have some demos:
 
 ===== Documentation =====
 
-I've begun writing user documentation.  The commands and syntax are changing all the time as a I work out what is good and what isn't, so this isn't a fixed locked down API in any sense.  I currently use JSON syntax to specify the scene graph.  That is built in to Javascript, so is trivial to parse and is also what Vega does.  I've found though that JSON isn't a good format for users.  It is too fussy about punctuation.  I'm planning to use YAML which has less punctuation clutter and gives better diffs and the documentation is as if I were already using YAML.
+I've begun writing user documentation.  The commands and syntax are changing all the time as I work out what is good and what isn't, so this isn't a fixed locked down API in any sense.  I currently use JSON syntax to specify the scene graph.  That is built in to Javascript, so is trivial to parse and is also what Vega does.  I've found though that JSON isn't a good format for users.  It is too fussy about punctuation.  I'm planning to use YAML which has less punctuation clutter and gives better diffs and the documentation is as if I were already using YAML.

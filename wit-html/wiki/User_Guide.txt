@@ -1,0 +1,147 @@
+
+====== Wikidiagrams Documentation ======
+Wikidiagrams is a mediawiki extension for drawing interactive diagrams from textual specifications.  It works with annotated graphs, timelines, molecules, flowcharts and pathway diagrams.
+
+Wikidiagrams occupies the middle ground between fully automated presentation of data and custom hand produced infographics.  Data can be updated without repositioning graphics by hand.  At the same time customisation similar to that in an SVG editor is possible.  
+
+These instructions illustrate the major features of Wikidiagrams 0.1, with examples.  
+
+===== Getting help =====
+
+===== Quick Start =====
+Here's a diagram spec that is used for one of the diagrams.  It specifies how parts of the diagram are arranged. 
+
+'''
+HStack
+    VStack
+        choice: 1
+        Rectangle: The Ear
+        Rectangle: Middle Ear Anatomy
+        Rectangle: Inner Ear Anatomy
+    Overlay
+        style: chosen
+        Rectangle: ""
+        Image: Ear
+'''
+
+HStack and VStack are horizontal and vertical 'arrangements of things'.  Overlay is a sequence of things drawn in order, so that later things in the list are drawn over earlier things.  Elaborations of that spec to say what is in the images and the rectangles leads to a diagram like this one: 
+
+
+
+The diagram is interactive:
+* It has rich tooltips which show when you hover over.  
+* You can select one of the three different named views.  
+
+Other kinds of spec will create interactive infographics, timelines and flow charts from text.  The component features build to make a general system for creating diagrams from text.  The rest of this document gives the nitty-gritty detail.
+
+===== Using Wikidiagrams at audacityteam =====
+The Audacity team have a wiki with WikiDiagrams installed.
+
+You can view examples at:
+https://wiki.audacityteam.org/wiki/Toolbox/Examples
+
+~~A slightly wider range of examples is at:~~
+~~https://wit.audacityteam.org/demos.htm~~
+
+Because of the way WikiDiagrams is being developed and our still only being at version 0.1, some of the specs for the diagrams shown in the wiki aren't hosted at the wiki.  For those specs that are, editing in the wiki is possible.  For those that aren't, the edit link takes you to an edit page intended for future experiments with editing.  You can view and make some small edits, but you can't actually save changes at the experimental edit page yet.  
+
+
+===== Installing Wikidiagrams =====
+
+If you've a recent install of mediawiki, follow the instructions for installing [[User Guide:Extension:Widgets]] from https://www.mediawiki.org/wiki/Extension:Widgets
+
+Test the installation works using their example AssocTest widget
+
+'''
+<includeonly><ul>
+<!--{foreach from=$arg key=key item=item}-->
+   <li><!--{$key|escape:'html'}-->: set to <!--{$item|escape:'html'}--></li>
+<!--{/foreach}-->
+</ul></includeonly>
+'''
+
+
+Wikidiagrams is implemented as a widget which you add to the widget namespace in the same way as the AssocTest widget:
+
+'''
+<noinclude>
+{{intro|This runs a script on loading complete}}
+
+</noinclude><includeonly>
+<!--{if $page}-->
+<div id="content_here" class="atkContentDiv" data-page="<!--{$page|escape:'url'}-->" style="text-align:center;">
+</div>
+
+<!--{/if}-->
+<!--{if $init}-->
+<script data-cfasync="false" src="https://wit.audacityteam.org/js/wikidiagrams.js?time=1134"></script>
+
+<script>
+initContent();
+</script>
+
+<!--{/if}-->
+<includeonly>
+'''
+
+The 'content_here' div is where the diagram content will appear.  The widget has two script blocks.  The first script includes the required javascript code.  The second script initialises the diagrams.
+
+Because we're at 0.1 and WikiDiagrams has so far only been used in one wiki installation, the steps above won't on their own be enough.  The included javascript currently makes assumptions about file and image locations and also about CORS settings.  Those locations and settings will need adjusting.  Contact me for details.
+
+===== Wikidiagrams-GitHub =====
+
+I am iterating on the wikidiagrams javascript functions outside mediawiki, since they work perfectly well on their own.  My development set up lets me test out the code without involving mediawiki code.  All the code and diagram specs and images are in a GitHub repository which also has some other Audacity tools in it too.
+
+If you're interested in the wiki-free deployment, contact me for details.
+
+
+===== Making a diagram =====
+
+===== Kinds of objects =====
+Wikidiagrams processes a spec, drawing the objects specified.
+
+There are four kinds of objects:
+* Containers that contain other objects
+* Objects that 'draw' something, for example to draw a rectangle
+* Data objects such as numbers for a graph
+* Program objects.
+
+The distinction between the different kinds of objects are somewhat blurred.  An object that draws a line could be a container that contains icons to draw along the line.  A data object to draw a graph could contain a program to generate some of the data points.  Nevertheless the way the objects are commonly used makes these distinctions useful.
+
+The real situation is that all objects are programs, that contain code and data.  Some of the programs call javascript functions to draw data.
+
+===== Containers =====
+Containers contain other objects and specify how they are laid out.
+
+* VStack: Vertical column layout for the contents.  All items inside are offered the same width, so for example rectangles in a VStack will all be the same width.
+* HStack: Horizontal row layout for the contents.  All items inside are offered the same height, so for example rectangles in an HStack will all be the same height. 
+* Overlay: The contents are drawn in order, so the last in the list will be 'on top'.
+* ~~FlowLayout: Objects are placed in the same order as word wrapping.  There are options for horizontal or vertical or spiral or zig-zag.~~
+
+
+===== Standard Objects =====
+Standard objects draw something directly 
+
+* Image: A png image.  Options control centerring and clipping.  Often you'll also supply a hotspot image that says what the zones of the image are.  The zones are used for annotations so that you can give more information about different parts of the image.
+* Text: Text.  Options control positioning.
+* Rectangle, Bar & Choice: Three ways of drawing a rectangle. Bar is sized by an item of data.  Choice has a styling that depends on whether it is 'chosen' or not.
+* Circle, InfoDot & Atom: Three ways of drawing a circle.  InfoDot is automatically sized by the amount of information.  Atom is styled with a colour appropriate for the chemical element it is for.
+* Link, Arrow & Bond: These are three ways of drawing a line between two things.  The difference is in their styling.  Bonds are styled like chemical bonds, possibly double bonds.  Arrows have arrow heads.
+* Spacer: Draws nothing at all.  It is used with layout objects like VStack and HStack to put space in a diagram.
+ 
+
+===== Data Objects =====
+Data objects have data that indirectly specifies what to draw.  Often standard objects, with suitable colours and options, are used to configure details of how a data object draws its data.  Containers may be used to specify how the objects are laid out.
+
+* Chart - Standard graphs and charts such as bar charts, timelines, pie charts.
+* Links - Data specifying pairs of objects.  Linking lines are drawn between those objects.  Syntax makes some patterns of links (paths, clusters, cycles, trees) more concise than just listing the pairs.
+* Chem - A textual (SMILES) representation of a molecule.
+
+===== Program Objects =====
+
+* Prog - Contains a program and possibly data too.  A Prog object does not necessarily draw anything.  It may instead modify other objects in the scene graph.
+
+
+
+
+

@@ -207,6 +207,14 @@
         return str;
       }
 
+      function formatEdit( name, short, long, code ){
+        var args1 = "?page0="+name+"&action=edit";
+        var str = "<li><a href='./edit.htm"+args1+"'>"+short+"</a> - ";
+        str +=  long;
+        str += "</li>";
+        return str;
+      }
+
       function addExamples( bonusContent ){
         var examples = document.getElementById("examples");
         if( !examples )
@@ -259,7 +267,14 @@
             "A block diagram of SQLite",
             "");
         }
-        str+="</ul>";
+        str+="</ul>Ordinary wiki pages<ul>";
+        {
+          str += formatEdit("PR1", "PR1",
+            "February 2020 Progress Report");
+          str += formatEdit("User_Guide", "User Guide",
+            "Wikidiagrams User Guide");
+        }
+        str += "</ul>";
 
 
         examples.innerHTML = str;
