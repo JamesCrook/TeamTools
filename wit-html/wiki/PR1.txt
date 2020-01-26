@@ -1,40 +1,41 @@
 
 ====== Progress Report Feb 2020 ======
-
 For start of Feb
 
 ===== Diagram Types =====
-
 I aimed to create families of diagram rather than single special cases.  I'm having some success in that:
 
 * **Annotated diagrams.**  My image-maps have rich (large) tootlips.  They allow a lot of annotation without overcrowding.  Screen-reader users, users who want to cut and paste text, and people who want to know what there is to find on the image can now toggle the zone list, which lists all zones and their tips.  The annotation system works with all diagrams, including moving diagrams, not just images (i.e. it's not just for pngs and jpegs).
+
 * **Bar charts and pie charts**.  The current implementation has just enough for some bug tracking and some code metrics for Audacity.  The charts are a long way short of <chart> or GnuPlot.  The annotations and the opportunity to customise these charts already make them preferable for Audacity's own uses.
-* ~~Molecules.  Proof-of-concept.  Can parse SMILES strings for molecules and render them.  The energy-minimiser that positions atoms needs more work.  It can cope with melatonin, a molecule with two linked ring structures.   On many other examples the minimiser will get stuck in a poor configuration.~~
+
 * **Choosers. **This is a style for shapes that turns them into clickable boxes to choose between one of several displays.  This may be used for different ways of displaying the same data as in the spectrograms, or for overviews and detail, as in 'The Ear' demo.
+
 * **Flow charts.**  These are laid out in terms of logical substructures, with the intention that boxes can be introduced and removed without manually re-laying out the entire diagram.  Biochemical pathways will use the layout system.
+
 * **Path-plots.**  (early stage).  Designed for in future showing the workings of large programs, biochemical pathways and metro maps.  The current path-plot demo provides a zig-zag index of Audacity classes, organising them into 'snakes' of related classes.  This is en-route to supporting a more metro-map layout, and especially cycles like The Citric Acid cycle.
-* **Spherical distortion of map data**.  'Eye-candy', these make constructing a whole-planet infographic from a map easy. 
+
+* **Spherical distortion of map data**.  'Eye-candy', these make constructing a whole-planet infographic from a map easy.
 
 
 ===== MediaWiki Integration =====
+The diagrams can be made and used in wiki.  For deployment on wiki I am currently piggy-backing on mediwiki extension 'widgets' https://www.mediawiki.org/wiki/Extension:Widgets.  Later I'll work up an extension of my own.
 
-The diagrams can be made and used in wiki.  For deployment on wiki I am currently piggy-backing on mediwiki extension 'widgets' https://www.mediawiki.org/wiki/Extension:Widgets.  Later I'll work up an extension of my own.  
 
 Extension : Widgets is potentially dangerous as it gives privileged users the rights to add any javascript code at all to a mediawiki installation.  The widgets extension is safe for regular users.  Regular users get to use the javascript in a controlled way, via a template{ { #widgets:wikidiagram|} }.  Regular users can only make diagrams, not add new javascript.  
 
+
 A custom extension will be needed for security reasons and as work on a visual diagram editor unfolds.  It isn't essential to have a custom editor at this early stage.  Right now diagrams can be created and edited in the existing mediwiki demo just fine, as text.  
+
 
 I've chosen that each diagram has a page of its own, complete with history and discussion page.  This is in line with using images from wiki commons, where each image has its own page.  
 
 
 ===== Demos =====
-
 I have some demos:
 
 * The main demo shows the different kinds of diagram in a live wiki that's used by Audacity https://wiki.audacityteam.org/wiki/Toolbox/Examples.  I've also begun some further wiki pages that use diagrams, for explaining audio and Audacity code https://wiki.audacityteam.org/wiki/Toolbox/Tutorials.
-* ~~A slightly wider set of demos is at https://wit.audacityteam.org/demos.htm . These are outside wiki, but using the same format.  These include more of the non-Audacity demos.~~
 
 
 ===== Documentation =====
-
 I've begun writing user documentation.  The commands and syntax are changing all the time as I work out what is good and what isn't, so this isn't a fixed locked down API in any sense.  I currently use JSON syntax to specify the scene graph.  That is built in to Javascript, so is trivial to parse and is also what Vega does.  I've found though that JSON isn't a good format for users.  It is too fussy about punctuation.  I'm planning to use YAML which has less punctuation clutter and gives better diffs and the documentation is as if I were already using YAML.

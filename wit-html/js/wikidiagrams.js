@@ -2706,7 +2706,8 @@ function handlePageData(A,data){
   data = data.replace( /\*\*(.*)\*\*/gm, "<b>$1</b>" );
   data = data.replace( /~~(.*)~~/gm, "<s>$1</s>" );
   data = data.replace( /\n'''\n([\s\S]*?)\n'''\n/g, "<pre><xmp>$1</xmp></pre>" );
-
+  data = data.replace( /(\s)http(\S*)(\.\s)/gm, "$1<a href='http$2'>http$2</a>$3" );
+  data = data.replace( /(\s)http(\S*)(\s)/gm, "$1<a href='http$2'>http$2</a>$3" );
 
   data = data.replace( /^\*/gm, "<br> • " );
   data = data.replace( /\n\n([^<])/gm, "<br><br>$1" );

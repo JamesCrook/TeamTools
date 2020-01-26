@@ -2,11 +2,13 @@
 ====== Wikidiagrams Documentation ======
 Wikidiagrams is a mediawiki extension for drawing interactive diagrams from textual specifications.  It works with annotated graphs, timelines, molecules, flowcharts and pathway diagrams.
 
-Wikidiagrams occupies the middle ground between fully automated presentation of data and custom hand produced infographics.  Data can be updated without repositioning graphics by hand.  At the same time customisation similar to that in an SVG editor is possible.  
+Wikidiagrams occupies the middle ground between fully automated presentation of data and custom hand produced infographics.  Data can be updated without repositioning graphics by hand.  At the same time customisation similar to that in an SVG editor is possible.  The software differs from an SVG editor by having layout components into which other components can be placed.  Also it offers more interactivity possibilities in the diagrams.
 
 These instructions illustrate the major features of Wikidiagrams 0.1, with examples.  
 
 ===== Getting help =====
+
+For help on this system, contact james.k.crook@gmail.com
 
 ===== Quick Start =====
 Here's a diagram spec that is used for one of the diagrams.  It specifies how parts of the diagram are arranged. 
@@ -24,15 +26,17 @@ HStack
         Image: Ear
 '''
 
-HStack and VStack are horizontal and vertical 'arrangements of things'.  Overlay is a sequence of things drawn in order, so that later things in the list are drawn over earlier things.  Elaborations of that spec to say what is in the images and the rectangles leads to a diagram like this one: 
+HStack and VStack are horizontal and vertical 'arrangements of things'.  Overlay is a sequence of things drawn in order.  Later things in the overlay's list are drawn over earlier things.
 
+Elaborations of that spec to say what are in the images and the rectangles leads to a diagram like this one:
 
+{{#widget:Dynamic|page=Ear}}
 
 The diagram is interactive:
 * It has rich tooltips which show when you hover over.  
 * You can select one of the three different named views.  
 
-Other kinds of spec will create interactive infographics, timelines and flow charts from text.  The component features build to make a general system for creating diagrams from text.  The rest of this document gives the nitty-gritty detail.
+Other kinds of spec will create interactive infographics, timelines and flow charts from text.  The component features for layout, objects and interaction are intended to build to make a general system for creating diagrams from text.  The rest of this document gives the nitty-gritty detail.
 
 ===== Using Wikidiagrams at audacityteam =====
 The Audacity team have a wiki with WikiDiagrams installed.
@@ -40,15 +44,12 @@ The Audacity team have a wiki with WikiDiagrams installed.
 You can view examples at:
 https://wiki.audacityteam.org/wiki/Toolbox/Examples
 
-~~A slightly wider range of examples is at:~~
-~~https://wit.audacityteam.org/demos.htm~~
-
-Because of the way WikiDiagrams is being developed and our still only being at version 0.1, some of the specs for the diagrams shown in the wiki aren't hosted at the wiki.  For those specs that are, editing in the wiki is possible.  For those that aren't, the edit link takes you to an edit page intended for future experiments with editing.  You can view and make some small edits, but you can't actually save changes at the experimental edit page yet.  
+Because of the way WikiDiagrams is being developed and our still only being at version 0.1, some of the specs for the diagrams shown in the wiki aren't hosted at the wiki.  For those specs that are hosted there, editing in the wiki is possible.  For those that aren't, the edit link takes you to an edit page intended for future experiments with editing.  You can view and make some small edits, but you can't yet actually save changes at the experimental edit page.
 
 
 ===== Installing Wikidiagrams =====
 
-If you've a recent install of mediawiki, follow the instructions for installing [[User Guide:Extension:Widgets]] from https://www.mediawiki.org/wiki/Extension:Widgets
+If you've a recent install of mediawiki, follow the instructions for installing Extension:Widgets from https://www.mediawiki.org/wiki/Extension:Widgets
 
 Test the installation works using their example AssocTest widget
 
@@ -90,12 +91,14 @@ Because we're at 0.1 and WikiDiagrams has so far only been used in one wiki inst
 
 ===== Wikidiagrams-GitHub =====
 
-I am iterating on the wikidiagrams javascript functions outside mediawiki, since they work perfectly well on their own.  My development set up lets me test out the code without involving mediawiki code.  All the code and diagram specs and images are in a GitHub repository which also has some other Audacity tools in it too.
+I am working on improving the wikidiagrams javascript functions outside mediawiki, since the functions work perfectly well without wiki.  My development set up lets me test out the code without involving mediawiki code.  All the code and diagram specs and images are in a GitHub repository which also has some other Audacity tools in it too.
 
 If you're interested in the wiki-free deployment, contact me for details.
 
 
 ===== Making a diagram =====
+
+Creating a diagram is 'the same' as creating a textual wiki page.  The diagram structure is specified in a &amp;lt;pre&amp;gt; block.  The details are then elaborated.  I'm expecting that most diagrams will have built in annotation.  The annotations are part of the elaboration.  They use wiki mark up, and the rendering of that mark-up can be pre-viewed in previews of the page.
 
 ===== Kinds of objects =====
 Wikidiagrams processes a spec, drawing the objects specified.
@@ -106,15 +109,15 @@ There are four kinds of objects:
 * Data objects such as numbers for a graph
 * Program objects.
 
-The distinction between the different kinds of objects are somewhat blurred.  An object that draws a line could be a container that contains icons to draw along the line.  A data object to draw a graph could contain a program to generate some of the data points.  Nevertheless the way the objects are commonly used makes these distinctions useful.
+The distinction between the different kinds of objects are somewhat blurred.  An object that draws a line could be a container that contains icons to draw along the line and data for the positions.  A data object to draw a graph could contain a program to generate some of the data points.  Nevertheless the way the objects are commonly used makes these distinctions useful.
 
-The real situation is that all objects are programs, that contain code and data.  Some of the programs call javascript functions to draw data.
+The actual situation is that all objects are programs that contain code and data and that can invoke javascript functions to draw shapes specified by the data.
 
 ===== Containers =====
 Containers contain other objects and specify how they are laid out.
 
-* VStack: Vertical column layout for the contents.  All items inside are offered the same width, so for example rectangles in a VStack will all be the same width.
-* HStack: Horizontal row layout for the contents.  All items inside are offered the same height, so for example rectangles in an HStack will all be the same height. 
+* VStack: A vertical column layout for the contents.  All items inside are offered the same width, so for example rectangles in a VStack will all be the same width.
+* HStack: A horizontal row layout for the contents.  All items inside are offered the same height, so for example rectangles in an HStack will all be the same height.
 * Overlay: The contents are drawn in order, so the last in the list will be 'on top'.
 * ~~FlowLayout: Objects are placed in the same order as word wrapping.  There are options for horizontal or vertical or spiral or zig-zag.~~
 
