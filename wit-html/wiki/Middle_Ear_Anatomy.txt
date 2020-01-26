@@ -54,7 +54,7 @@ This is the chooser object.
 <h1>[https://en.wikipedia.org/wiki/Ear The Ear]</h1><p><em>Sound is transformed from pressure waves in air to vibrations of tiny bones, to movement in cells that generate electrical impulses in the auditory nerve.</em></p>
 
 <pre>CLICK LOAD SPEC=</pre>
-[[Toolbox/Ear3]]
+[[Toolbox/Ear]]
 
 <pre>NEXTOBJECT:TIP=</pre>
 <h1>[https://en.wikipedia.org/wiki/Middle_ear Middle Ear]</h1><p><em>The middle
@@ -65,7 +65,7 @@ ear has tiny bones that transmit vibrations from the outer ear to the inner ear
 <h1>[https://en.wikipedia.org/wiki/Inner_ear Inner Ear]</h1><p><em>The cochlear of the inner ear is a spiral shaped organ that has nerve cells that respond to different frequencies of sound.</em></p>
 
 <pre>CLICK LOAD SPEC=</pre>
-[[Toolbox/Inner_Ear_Anatomy3]]
+[[Toolbox/Inner_Ear_Anatomy]]
 
 <pre>//The three buttons at the top of the page act when you hover on them.  The three corresponding regions defined next act when you click on them.</pre>
 
@@ -145,7 +145,7 @@ from pressure waves in air to <b>vibrations of tiny bones</b>, to movement in
 cells that generate electrical impulses in the auditory nerve.</em></p>
 <p>Click to go back to the ear.</p>
 
-<pre>CLICK LOAD SPEC=Ear3</pre>
+<pre>CLICK LOAD SPEC=Ear</pre>
 
 
 

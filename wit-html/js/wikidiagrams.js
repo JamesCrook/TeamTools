@@ -2561,9 +2561,9 @@ function requestSpec(A,source, fromwiki,section,fn){
 
   if( isFromServer() === "no" )
   {
-    fileActionLoader( A,"", "", "./raw/raw_spec_" + source + ".txt",section, fn);
+    fileActionLoader( A,"", "", "./wiki/" + source + ".txt",section, fn);
   } else  if( fromwiki !== 'yes' ){
-    fileActionLoader( A,"", "", "https://wit.audacityteam.org/raw/raw_spec_" + source + ".txt?time="+ nMillis,section,fn);
+    fileActionLoader( A,"", "", "https://wit.audacityteam.org/wiki/" + source + ".txt?time="+ nMillis,section,fn);
   }
 
     else {
