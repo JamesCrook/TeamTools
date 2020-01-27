@@ -96,4 +96,4 @@ The detailed data for the chart follows.
 <li>Hover over bars in the image for more bugs details.
 <li>Hover over stars in the image for more details of releases.
 </ul><br><br>
-<b>Credits:</b> <em>James Crook ©2019; Data and Image placed in Public Domain</em>
+<b>Credits:</b> <em>James Crook ©2020; Data and Image placed in Public Domain</em>

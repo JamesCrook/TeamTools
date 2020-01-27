@@ -233,4 +233,4 @@ copy.
 <li>Hover over boxes in the image for more details.
 <li>Hold shift down to keep the detail box still, so that you can click the hyperlinks in it
 </ul><br><br>
-<b>Credits:</b> <em>James Crook ©2019; Flowchart Image placed in Public Domain</em>
+<b>Credits:</b> <em>James Crook ©2020; Flowchart Image placed in Public Domain</em>
