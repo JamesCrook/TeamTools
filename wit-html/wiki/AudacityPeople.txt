@@ -49,13 +49,6 @@ used to define the hotspots.  A different colour is used for each person
 <pre>CLICK DO:SPEC=</pre>
 [[Toolbox/AudacityPeople#2]]
 
-<pre>CREDITS:CAPTION=Audacity 2019 Unconference;TIP=</pre>
-<h3>Instructions</h3>
-<ul>
-<li>Hover over hotspots in the image for more details.
-<li>Hold shift down to freeze the hotspot - e.g. when taking a screenshot.
-</ul><br><br>
-<b>Credits:</b> <em>Photo by Arturo Buanzo Busleiman ©2019; CC3 BY-SA</em>
 
 
 
@@ -125,9 +118,28 @@ used to define the hotspots.  A different colour is used for each person
 <em><p>Audacity forum, documentation and QA</p></em>
 
 
+<pre>CREDITS:CAPTION=Audacity 2019 Unconference;TIP=</pre>
+<h3>Instructions</h3>
+<ul>
+<li>Hover over hotspots in the image for more details.
+<li>Hold shift down to freeze the hotspot - e.g. when taking a screenshot.
+</ul><br><br>
+<b>Credits:</b> <em>Photo by Arturo Buanzo Busleiman ©2019; CC3 BY-SA</em>
+
+
+
 
 <pre>START:Section 2</pre>
 <pre>DO:CHOOSER_NAME=ImageChooser;VALUE=2</pre>
 
 <pre>IMAGE:NAME=Image</pre>
 [[File:AudacityAu19HS.png]]
+
+<pre>CREDITS:CAPTION=Audacity 2019 Unconference;TIP=</pre>
+<h3>Instructions</h3>
+<ul>
+<li>Hover over hotspots in the image for more details.
+<li>Hold shift down to freeze the hotspot - e.g. when taking a screenshot.
+</ul><br><br>
+<b>Credits:</b> <em>Photo by Arturo Buanzo Busleiman ©2019; CC3 BY-SA</em>
+

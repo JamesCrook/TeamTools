@@ -121,14 +121,6 @@ This is the spec for the interactive diagram which explains window size in spect
 <pre>NEXTZONE:COMMENT=ee;TIP=</pre>
 <h1>Aw-dasssi-t<em style='color: #a4762a'>ee</em></h1><p><em>The 'y' vowel sound in 'Audacity'.</em></p>
 
-<pre>CREDITS:CAPTION=Spectrogram Window Sizes;TIP=</pre>
-<h3>Instructions</h3>
-<ul>
-<li>Hover over parts of the spectrogram for explanations.
-<li>Click numbers at top to change spectrogram window size.
-<li>Hold shift down to freeze the hotspot.
-</ul><br>
-<b>Credits:</b> <em>Screenshots by James Crook, 2019, and placed in the Public Domain</em>
 
 
 
@@ -138,11 +130,31 @@ This is the spec for the interactive diagram which explains window size in spect
 <pre>IMAGE:NAME=Spectro</pre>
 [[File:SpectralVocalDark256Dark.png]]
 
+<pre>CREDITS:CAPTION=Spectrogram Window Sizes;TIP=</pre>
+<h3>Instructions</h3>
+<ul>
+<li>Hover over parts of the spectrogram for explanations.
+<li>Click numbers at top to change spectrogram window size.
+<li>Hold shift down to freeze the hotspot.
+</ul><br>
+<b>Credits:</b> <em>Screenshots by James Crook, 2020, and placed in the Public Domain</em>
+
+
 <pre>START:Section 2</pre>
 <pre>DO:CHOOSER_NAME=SpectroChooser;VALUE=2</pre>
 
 <pre>IMAGE:NAME=Spectro</pre>
 [[File:SpectralVocalDark512Dark.png]]
+
+<pre>CREDITS:CAPTION=Spectrogram Window Sizes;TIP=</pre>
+<h3>Instructions</h3>
+<ul>
+<li>Hover over parts of the spectrogram for explanations.
+<li>Click numbers at top to change spectrogram window size.
+<li>Hold shift down to freeze the hotspot.
+</ul><br>
+<b>Credits:</b> <em>Screenshots by James Crook, 2020, and placed in the Public Domain</em>
+
 
 <pre>START:Section 3</pre>
 <pre>DO:CHOOSER_NAME=SpectroChooser;VALUE=3</pre>
@@ -150,11 +162,31 @@ This is the spec for the interactive diagram which explains window size in spect
 <pre>IMAGE:NAME=Spectro</pre>
 [[File:SpectralVocalDark1024Dark.png]]
 
+<pre>CREDITS:CAPTION=Spectrogram Window Sizes;TIP=</pre>
+<h3>Instructions</h3>
+<ul>
+<li>Hover over parts of the spectrogram for explanations.
+<li>Click numbers at top to change spectrogram window size.
+<li>Hold shift down to freeze the hotspot.
+</ul><br>
+<b>Credits:</b> <em>Screenshots by James Crook, 2020, and placed in the Public Domain</em>
+
+
 <pre>START:Section 4</pre>
 <pre>DO:CHOOSER_NAME=SpectroChooser;VALUE=4</pre>
 
 <pre>IMAGE:NAME=Spectro</pre>
 [[File:SpectralVocalDark2048Dark.png]]
+
+<pre>CREDITS:CAPTION=Spectrogram Window Sizes;TIP=</pre>
+<h3>Instructions</h3>
+<ul>
+<li>Hover over parts of the spectrogram for explanations.
+<li>Click numbers at top to change spectrogram window size.
+<li>Hold shift down to freeze the hotspot.
+</ul><br>
+<b>Credits:</b> <em>Screenshots by James Crook, 2020, and placed in the Public Domain</em>
+
 
 <pre>START:Section 5</pre>
 <pre>DO:CHOOSER_NAME=SpectroChooser;VALUE=5</pre>
@@ -162,9 +194,28 @@ This is the spec for the interactive diagram which explains window size in spect
 <pre>IMAGE:NAME=Spectro</pre>
 [[File:SpectralVocalDark4096Dark.png]]
 
+<pre>CREDITS:CAPTION=Spectrogram Window Sizes;TIP=</pre>
+<h3>Instructions</h3>
+<ul>
+<li>Hover over parts of the spectrogram for explanations.
+<li>Click numbers at top to change spectrogram window size.
+<li>Hold shift down to freeze the hotspot.
+</ul><br>
+<b>Credits:</b> <em>Screenshots by James Crook, 2020, and placed in the Public Domain</em>
+
+
 <pre>START:Section 6</pre>
 <pre>DO:CHOOSER_NAME=SpectroChooser;VALUE=6</pre>
 
 <pre>IMAGE:NAME=Spectro</pre>
 [[File:SpectralVocalDark8192Dark.png]]
+
+<pre>CREDITS:CAPTION=Spectrogram Window Sizes;TIP=</pre>
+<h3>Instructions</h3>
+<ul>
+<li>Hover over parts of the spectrogram for explanations.
+<li>Click numbers at top to change spectrogram window size.
+<li>Hold shift down to freeze the hotspot.
+</ul><br>
+<b>Credits:</b> <em>Screenshots by James Crook, 2020, and placed in the Public Domain</em>
 
