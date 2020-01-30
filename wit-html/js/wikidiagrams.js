@@ -2653,6 +2653,8 @@ function initEditors(){
     var A = {};
     A.index = i;
     A.page = getArg(query, 'page'+i) || contentDivs[i].getAttribute("data-page") || "SmallCrowd";
+    A.tab = getArg(query, 'tab' );
+
     populateEditorElement( A, contentDivs[i] );
     requestSpec(A,A.page, 'remote',1,handleEditorData);
     Editors.push( A );
@@ -2668,6 +2670,13 @@ function initEditors(){
 // Puts wikitext data into the edit page
 function handleEditorData(A, data, section){
   A.MainDiv.innerHTML = data;
+  // And switches to a different tab, if it should.
+  if( A.tab ){
+    var widget = document.getElementById( A.tab + 'Tab');
+    if( widget ){
+      widget.onclick();
+    }
+  }
 }
 
 // Translates wikitext data into html in the page.

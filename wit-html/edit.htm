@@ -205,6 +205,10 @@
             border-bottom: solid #7890B7 2px;
         }
 
+        div.choice {
+            margin-left:15px;
+        }
+
 
 
 
@@ -226,6 +230,7 @@
         var frame = getArg(query, 'frame') || "yes";
         if( frame === "no" ) removeFrame();
         initEditors();
+
       }
 
 
@@ -301,19 +306,19 @@
 
 <div style="margin-left:10px">
     <h3>Edit the spec for a diagram</h3>
-    <p>This edit page is for future experiments with new ways to edit.  Edits here are not saved.  The page lets you look at specs of diagrams and make some small changes, and that's about it.
+    <p>This edit page is for future experiments with new ways to edit.  Edits here are not saved.  The page lets you look at specs of <a href="./demos.htm">the demo diagrams</a> and make some small changes, and that's about it.
 
     <p>Some diagram specs are hosted in the audacityteam wiki.  Specs hosted there can be edited using the unmodified mediawiki built-in editor.<br><br><br>
 
 </div>
 
 <div class = "tabber">
-    <span class="tab" onClick="selectPage('page',this)">page</span>
-    <span class="tab" onClick="selectPreview('preview',this)">preview</span>
-    <span class="tab" onClick="selectTab('discussion',this)">discussion</span>
-    <span class="tab selected" onClick="selectTab('edit',this)">edit</span>
-    <span class="tab" onClick="selectTab('richEdit',this)">rich-edit</span>
-    <span class="tab" onClick="selectTab('history',this)">history</span>
+    <span class="tab" id='pageTab' onClick="selectPage('page',this)">page</span>
+    <span class="tab" id='previewTab' onClick="selectPreview('preview',this)">preview</span>
+    <span class="tab" id='discussionTab' onClick="selectTab('discussion',this)">discussion</span>
+    <span class="tab selected" id='editTab' onClick="selectTab('edit',this)">edit</span>
+    <span class="tab" id='richEditTab' onClick="selectTab('richEdit',this)">rich-edit</span>
+    <span class="tab" id='historyTab' onClick="selectTab('history',this)">history</span>
 </div>
 
 <div class="scenebacker">
