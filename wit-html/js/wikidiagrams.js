@@ -2722,6 +2722,7 @@ function handlePageData(A,data){
   data = data.replace( /\n\n([^<])/gm, "<br><br>$1" );
 
   var name = A.page;
+  name = decodeURI( name );
   name = name.replace(/_/g," ");
   data = "<h1><a href='demos.htm?page0="+A.page+"'>Toolkit/"+name+"</a></h1><hr>"+data;
 
