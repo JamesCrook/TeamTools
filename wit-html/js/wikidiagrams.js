@@ -1352,7 +1352,7 @@ function drawArrows(A,obj,d){
   for( i = 0; i < arrows.length; i += 2 ){
     var obj1 = objFromId(A,arrows[i]);
     var obj2 = objFromId(A,arrows[i + 1]);
-    if( !isDefined(obj1) || !isDefined(obj2) ) return;
+    if( !isDefined(obj1) || !isDefined(obj2) ) continue;
     if( !isDefined(obj1.layout) || !isDefined(obj2.layout) ) continue;
     if( d.stage === kStageArrowShaft )
       drawArrow(A,obj1,obj2);
@@ -2626,24 +2626,43 @@ function makeAnnotator(){
 
 //makeAnnotator();
 
-function initContent(){
-  Annotator = [];
+var timer = 0;
+
+function initContent( classes ){
+  if( classes ){
+  }
+  else {
+    classes = "atkContentDiv";
+    Annotator = [];
+  }
+  var base = Annotator.length;
   registerMethods();
   var query = window.location.href;
-  var contentDivs = document.getElementsByClassName( "atkContentDiv" );
+  var contentDivs = document.getElementsByClassName( classes );
   for(var i=0;i<contentDivs.length;i++){
     var A = makeAnnotator();
-    A.index = i;
-    A.page = getArg(query, 'page'+i) || contentDivs[i].getAttribute("data-page") || "SmallCrowd";
+    A.index = i+base;
+    A.page = getArg(query, 'page'+(i+base)) || contentDivs[i].getAttribute("data-page") || "SmallCrowd";
     populateDomElement( A, contentDivs[i] );
-    loadDiagram( A, A.page, 'no',1);
+
+    if( (base > 0 ) && (A.page === getArg( query, 'page0' )) ){
+      var spec = Editors[0].MainDiv.value;
+      handleNewData( A, spec );
+    }
+    else {
+      loadDiagram(A, A.page, 'no', 1);
+    }
   }
+  if( timer )
+    clearInterval( timer );
   // Timer is for animation such as rotating earth.
-  setInterval(timerCallback, 30);
+  timer = setInterval(timerCallback, 30);
 
 }
 
 var Editors = [];
+
+
 
 function initEditors(){
   registerMethods();
@@ -2666,6 +2685,12 @@ function initEditors(){
   //setInterval(timerCallback, 30);
 
 }
+
+function addPreview(){
+  Annotator.splice(1);
+  initContent("atkContentDiv2");
+}
+
 
 // Puts wikitext data into the edit page
 function handleEditorData(A, data, section){
@@ -2720,6 +2745,10 @@ function handlePageData(A,data){
 
   data = data.replace( /^\*/gm, "<br> • " );
   data = data.replace( /\n\n([^<])/gm, "<br><br>$1" );
+  data = data.replace( /\{\{#widget:WikiDiagram\|page=(\w*).*?\}\}/gm, '        <div id="content_here1" class="atkContentDiv2" data-page="$1" style="text-align:center;">\n' +
+    '        </div>' );
+  //data = data.replace( /page=(\w*)/gm, "Goo:$1:" );
+
 
   var name = A.page;
   name = decodeURI( name );
@@ -2727,6 +2756,7 @@ function handlePageData(A,data){
   data = "<h1><a href='demos.htm?page0="+A.page+"'>Toolkit/"+name+"</a></h1><hr>"+data;
 
   div.innerHTML = data;
+  addPreview();
 }
 
 function populateEditorElement(A, contentHere){
