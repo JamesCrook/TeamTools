@@ -52,7 +52,7 @@ This is the chooser object.
 <h1>[https://en.wikipedia.org/wiki/Ear The Ear]</h1><p><em>Sound is transformed from pressure waves in air to vibrations of tiny bones, to movement in cells that generate electrical impulses in the auditory nerve.</em></p>
 
 <pre>CLICK LOAD SPEC=</pre>
-[[Toolbox/Ear]]
+[[Toolbox/The_Ear]]
 
 <pre>NEXTOBJECT:TIP=</pre>
 <h1>[https://en.wikipedia.org/wiki/Middle_ear Middle Ear]</h1><p><em>The middle
