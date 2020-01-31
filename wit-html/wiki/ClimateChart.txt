@@ -7,7 +7,7 @@ This is the spec for the interactive diagram which shows a chart of temperature
 and precipitation.  Here's the result:
 
 -----
-{{#widget:Dynamic|page=ClimateChart}}
+{{#widget:WikiDiagram|page=ClimateChart|init=yes}}
 -----
 
 The detailed data for the chart follows.

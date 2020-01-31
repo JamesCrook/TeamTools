@@ -6,7 +6,7 @@ This is the spec for the interactive diagram which shows who is who at the AU19
 Audacity conference.  Here is the result in wiki:
 
 -----
-{{#widget:Dynamic|page=AudacityPeople}}
+{{#widget:WikiDiagram|page=AudacityPeople|init=yes}}
 -----
 
 The detailed data for the regions, buttons and tooltips follows.

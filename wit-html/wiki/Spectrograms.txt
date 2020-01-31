@@ -5,6 +5,11 @@ __NOTOC__
 
 This is the spec for the interactive diagram which explains window size in spectrograms:
 
+Here's the result:
+
+-----
+{{#widget:WikiDiagram|page=Spectrograms|init=yes}}
+-----
 
 <pre>START</pre>
 

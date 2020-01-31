@@ -14,7 +14,7 @@ The original image has slight variations in colour, so the program rounds colour
 There's a stand-alone [https://wit.audacityteam.org/demos.htm?page=Köppen_Climate_Classification interactive demo] but here is the result in wiki:
 
 -----
-{{#widget:Dynamic|page=Köppen_Climate_Classification|height=620px}}
+{{#widget:WikiDiagram|page=Köppen_Globe|init=yes}}
 -----
 
 The detailed data for the regions follows.

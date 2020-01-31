@@ -12,7 +12,7 @@ stand-alone [https://wit.audacityteam.org/demos.htm?page=Biochemical interactive
 
 
 -----
-{{#widget:Dynamic|page=Biochemical}}
+{{#widget:WikiDiagram|page=Biochemical|init=yes}}
 -----
 
 The detailed data for the chart follows.

@@ -8,7 +8,7 @@ This is the spec for the interactive diagram which shows a breakdown of the diff
 Here's the result:
 
 -----
-{{#widget:Dynamic|page=Languages}}
+{{#widget:WikiDiagram|page=Languages|init=yes}}
 -----
 
 The detailed data for the chart follows.

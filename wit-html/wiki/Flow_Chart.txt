@@ -8,7 +8,7 @@ This is the spec for the interactive diagram which shows a flow chart for produc
 Here's the result:
 
 -----
-{{#widget:Dynamic|page=Flow_Chart|init=yes}}
+{{#widget:WikiDiagram|page=Flow_Chart|init=yes}}
 -----
 
 The detailed data for the chart follows.

@@ -6,9 +6,11 @@ __NOTOC__
 This is the spec for the interactive diagram which shows a display of Audacity
 classes.  Here's the result:
 
+
 -----
-{{#widget:Dynamic|page=Classes}}
+{{#widget:WikiDiagram|page=Classes|init=yes}}
 -----
+
 
 The detailed data for the chart follows.
 

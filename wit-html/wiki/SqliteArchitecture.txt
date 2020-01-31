@@ -9,7 +9,7 @@ of SQLite
 Here's the result:
 
 -----
-{{#widget:Dynamic|page=SqliteArchitecture}}
+{{#widget:WikiDiagram|page=SqliteArchitecture|init=yes}}
 -----
 
 The detailed data for the chart follows.
