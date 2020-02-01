@@ -560,7 +560,7 @@ function drawEvent(A,T, values, i, ix){
   var ctx = A.BackingCanvas.ctx;
   if( T.stage === kStageHots ){
     var colour = NextAutoColour( A,
-      "<h2>Audacity " + values[i][2] + "</h2>Released: "+values[i][0]);
+      "<h2>Audacity " + values[i][1] + "</h2>Released: "+values[i][0]);
     ctx = A.Hotspots.ctx;
     ctx.fillStyle = colour;// rgbOfJsonColourTuple(colour);
   }
