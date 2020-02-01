@@ -30,7 +30,9 @@ HStack and VStack are horizontal and vertical 'arrangements of things'.  Overlay
 
 Elaborations of that spec to say what are in the images and the rectangles leads to a diagram like this one:
 
-{{#widget:Dynamic|page=Ear}}
+-----
+{{#widget:WikiDiagram|page=The_Ear|init=yes}}
+-----
 
 The diagram is interactive:
 * It has rich tooltips which show when you hover over.  

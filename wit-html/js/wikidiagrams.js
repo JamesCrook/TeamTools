@@ -2747,7 +2747,7 @@ function handlePageData(A,data){
   data = data.replace( /\n\n([^<])/gm, "<br><br>$1" );
   data = data.replace( /\{\{#widget:WikiDiagram\|page=([\wö]*).*?\}\}/gm, '        <div id="content_here1" class="atkContentDiv2" data-page="$1" style="text-align:center;">\n' +
     '        </div>' );
-  //data = data.replace( /page=(\w*)/gm, "Goo:$1:" );
+  //data = data.replace( /page=([_A-Za-z\u00C0-\u017F]*)/gm, "Goo:$1:" );
 
 
   var name = A.page;
