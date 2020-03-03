@@ -59,15 +59,15 @@ The detailed data for the chart follows.
    ["Nov 2019",362,1867],
    ["Dec 2019",374,1878],
    ["Jan 2020",384,1887],
-   ["Feb 2020",398,2300]
-
+   ["Feb 2020",398,2300],
+   ["Mar 2020",380,2345]
    ]
 },
   {"Chart":"Releases",
    "titles":["When","Release"],
    "display":["Label","Blue","Green"],
    "subtype":["*","event"],
-   "range":["01-Aug-2017","29-Feb-2020"],
+   "range":["01-Aug-2017","29-Mar-2020"],
    "events":true,
    "values":[
         ["02-Nov-2017","2.2.0"],
