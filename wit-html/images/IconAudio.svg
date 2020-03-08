@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="140.88931mm"
+   height="56.803963mm"
+   viewBox="0 0 499.2141 201.27388"
+   id="svg5812"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="IconAudio.svg">
+  <defs
+     id="defs5814" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.2410176"
+     inkscape:cx="94.264678"
+     inkscape:cy="-229.73688"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1798"
+     inkscape:window-height="1473"
+     inkscape:window-x="88"
+     inkscape:window-y="77"
+     inkscape:window-maximized="0"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <metadata
+     id="metadata5817">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-104.53764,-95.170339)">
+    <g
+       id="g5866"
+       transform="translate(28.202662,2.4173711)">
+      <g
+         transform="matrix(10.312738,0,0,8.3520144,76.334976,92.752968)"
+         id="g5832">
+        <path
+           inkscape:connector-curvature="0"
+           d="m 3,9 0,6 4,0 5,5 L 12,4 7,9 3,9 Z m 13.5,3 C 16.5,10.23 15.48,8.71 14,7.97 l 0,8.05 C 15.48,15.29 16.5,13.77 16.5,12 Z M 14,3.23 14,5.29 c 2.89,0.86 5,3.54 5,6.71 0,3.17 -2.11,5.85 -5,6.71 l 0,2.06 C 18.01,19.86 21,16.28 21,12 21,7.72 18.01,4.14 14,3.23 Z"
+           id="path5822" />
+        <path
+           style="fill:none"
+           inkscape:connector-curvature="0"
+           d="M 0,0 24,0 24,24 0,24 Z"
+           id="path5824" />
+      </g>
+      <g
+         transform="matrix(10.312738,0,0,8.3520144,328.04336,93.578505)"
+         id="g5848">
+        <path
+           inkscape:connector-curvature="0"
+           d="m 12,14 c 1.66,0 2.99,-1.34 2.99,-3 L 15,5 C 15,3.34 13.66,2 12,2 10.34,2 9,3.34 9,5 l 0,6 c 0,1.66 1.34,3 3,3 z m 5.3,-3 c 0,3 -2.54,5.1 -5.3,5.1 C 9.24,16.1 6.7,14 6.7,11 L 5,11 c 0,3.41 2.72,6.23 6,6.72 l 0,3.28 2,0 0,-3.28 c 3.28,-0.48 6,-3.3 6,-6.72 l -1.7,0 z"
+           id="path5838" />
+        <path
+           style="fill:none"
+           inkscape:connector-curvature="0"
+           d="M 0,0 24,0 24,24 0,24 Z"
+           id="path5840" />
+      </g>
+    </g>
+  </g>
+</svg>
