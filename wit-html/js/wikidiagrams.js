@@ -1199,8 +1199,12 @@ function drawImage(A, obj, d){
       y -= yh * 0.5;
     }
   }
+  if( isDefined( obj.opacity) )
+    ctx.globalAlpha = obj.opacity;
   if( d.stage === kStageFillAndText )
     ctx.drawImage(obj.img, x, y, xw, yh);
+  ctx.globalAlpha = 1.0;
+
 
   if( d.stage === kStageHots )
     if( obj.hot && obj.hot.status === "arrived" )

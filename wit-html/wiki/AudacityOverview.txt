@@ -37,7 +37,7 @@ The detailed data for the regions, buttons and tooltips follows.
             {"Rectangle":"Preferences",
              "src":"IconSettings.svg"},
             {"Rectangle":"Dialogs"},
-            {"Rectangle":"FX",
+            {"Rectangle":"Audio Effects",
              "sizeAs":2
             }
             ]},
@@ -54,37 +54,63 @@ The detailed data for the regions, buttons and tooltips follows.
     "margins":7},
     {"HStack":[
         {"VStack":[
-            {"Rectangle":"Project"},
-            {"Rectangle":"Toolbars"},
+            {"Image":"Project",
+             "src":"IconProject.svg",
+             "opacity":0.3
+            },
+            {"Image":"Toolbars",
+             "src":"IconToolbar.svg",
+             "opacity":0.3
+            },
             {"Image":"Scaffolding",
              "src":"IconScaffolding.svg",
+             "opacity":0.3,
              "sizeAs":2
             }
             ]},
         {"VStack":[
-            {"Rectangle":"Commands"},
-            {"Rectangle":"Menus"},
+            {"Image":"Commands",
+             "src":"IconCommands.svg",
+             "opacity":0.3
+            },
+            {"Image":"Menus",
+             "src":"IconMenu.svg",
+             "opacity":0.3
+            },
             {"Image":"Plugins",
-             "src":"IconPlugin.svg"},
+             "src":"IconPlugin.svg",
+             "opacity":0.3},
             {"Image":"Import/Export",
-             "src":"IconExport.svg"}
+             "src":"IconExport.svg",
+             "opacity":0.3}
             ]},
         {"VStack":[
             {"Image":"Preferences",
-             "src":"IconSettings.svg"},
-            {"Rectangle":"Dialogs"},
-            {"Rectangle":"FX",
+             "src":"IconSettings.svg",
+             "opacity":0.3},
+            {"Image":"Dialogs",
+             "src":"IconDialog.svg",
+             "opacity":0.3},
+            {"Image":"Audio Effects",
+             "src":"IconEffects.svg",
+             "opacity":0.3,
              "sizeAs":2
             }
             ]},
         {"VStack":[
             {"Image":"Blockfiles",
-             "src":"IconFolder.svg"},
+             "src":"IconFolder.svg",
+             "opacity":0.3},
             {"Image":"Audio I/O",
-             "src":"IconAudio.svg"},
-            {"Rectangle":"Tracks"},
+             "src":"IconAudio.svg",
+             "opacity":0.3},
+            {"Image":"Tracks",
+             "src":"IconTrack.svg",
+             "opacity":0.3
+            },
             {"Image":"Misc.",
-             "src":"IconMisc.svg"}
+             "src":"IconMisc.svg",
+             "opacity":0.3}
             ]}
     ],
     "margins":17}
@@ -101,12 +127,12 @@ audio data.  The project file keeps a record of which chunks make up each track.
 
 <pre>NEXTOBJECT:TIP=</pre>
 <h1>Toolbars</h1>
-Toolbars have buttons for quick access to some of the most commonly used Audacity commands.  The transport Toolbar, for example, has large buttons for play, record and pause.
+Toolbars have buttons for quick access to some of the most commonly used Audacity commands.  The TransportToolbar, for example, has large buttons for play, record and pause.
 
 <pre>NEXTOBJECT:TIP=</pre>
 <h1>Scaffolding</h1>
 Many classes in Audacity are utility classes of one sort or another that aren't
-specifically to do with audio.  For example, loggers, exceptions, timers, matrix and vector classes.
+specifically to do with audio.  For example, loggers, exceptions, timers, internationalisation support, help system, matrix and vector classes.
 
 
 <pre>NEXTOBJECT:TIP=</pre>
@@ -139,7 +165,7 @@ export MP3 and other audio formats.
 <pre>NEXTOBJECT:TIP=</pre>
 <h1>Preferences</h1>
 Many preferences and settings in Audacity can be set using the preferences
-dialog.  These are stored in a config file, audacity.cfg.
+dialog.  These preferences are stored in a config file, audacity.cfg.
 
 <pre>NEXTOBJECT:TIP=</pre>
 <h1>Dialogs</h1>
@@ -150,12 +176,12 @@ languages too.  To avoid a lot of repetitive code, Audacity uses a class Shuttle
 
 <pre>NEXTOBJECT:TIP=</pre>
 <h1>Audio Effects</h1>
-Audacity effects do something to Audio, for example a fade in or fade out.  We include audio generators like Chirp and audio analyzers like find clipping in the general effects category, which is sometimes known as EGAs (Effects, Generators  and Analyzers).
+Audacity effects do something to Audio, for example a fade in or fade out.  We include audio generators like 'Chirp' and audio analyzers like 'Find Clipping' in the general effects category.  Collectively these are sometimes known as 'EGAs' (Effects, Generators  and Analyzers).
 
 
 <pre>NEXTOBJECT:TIP=</pre>
 <h1>Blockfiles</h1>
-Audacity splits audio into blockfiles, chunks of audio data, and keeps a record of the order in which to play blockfiles.  This is important when cutting and pasting audio.  The order of playing blockfiles can be updated without moving a lot of sudio data around.
+Audacity splits audio into blockfiles, chunks of audio data, and keeps a record of the order in which to play blockfiles.  This is important for speed when cutting and pasting audio.  The order of playing blockfiles can be updated without moving a lot of audio data around.
 
 <pre>NEXTOBJECT:TIP=</pre>
 <h1>Audio I/O</h1>
@@ -163,18 +189,18 @@ Audacity uses a library, PortAudio, to support cross platform playing and record
 
 <pre>NEXTOBJECT:TIP=</pre>
 <h1>Tracks</h1>
-Audacity has several track types, wave (audio), labels, notes (MIDI) and time tracks (used for stretching and compressing audio).  There are also classes to manage tracks and to actually draw the on screen representation.
+Audacity has several track types, WaveTrack (audio), LabelTrack, NoteTrack (MIDI) and TimeTrack (used for stretching and compressing audio).  There are also classes to manage tracks and to actually draw the on screen representation.
 
 <pre>NEXTOBJECT:TIP=</pre>
 <h1>Miscellaneous</h1>
-Many classes in Audacity did not fall neatly into one of the categories.  These are in the miscellaneous classes.
+Many classes in Audacity do not fall neatly into one of the categories.  These are in the miscellaneous category.
 
 
 
-<pre>CREDITS:CAPTION=Iconic Audacity Overview;TIP=</pre>
+<pre>CREDITS:CAPTION=Tile-Based Overview of Audacity;TIP=</pre>
 <h3>Iconic Map of Audacity</h3>
-This diagram presents the icons for various families of
-C++ classes in Audacity.<br><br>
+This diagram presents tiles for various families of
+C++ classes in Audacity.  As we write up more, clicking on the tiles will take you to wiki pages with more details on those topics<br><br>
 <b>Credits:</b> <em>Image design by James Crook ©2020; CC3 BY-SA</em>
 
 
