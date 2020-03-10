@@ -1120,7 +1120,7 @@ These are some other dialogs that do not have good descriptions.
 "VSTEffectOptionsDialog","No Description",
 "wxDialogWrapper","No Description",
 "wxDirDialogWrapper","No Description"
-<pre>CREDITS:CAPTION=Audacity Classes;TIP=</pre>
+<pre>CREDITS:CAPTION=Audacity Classes - Snake Diagram;TIP=</pre>
 <h3>Instructions</h3>
 <ul>
 <li>Hover over blobs on the track for details about that item.
