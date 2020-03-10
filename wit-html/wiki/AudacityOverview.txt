@@ -169,10 +169,10 @@ dialog.  These preferences are stored in a config file, audacity.cfg.
 
 <pre>NEXTOBJECT:TIP=</pre>
 <h1>Dialogs</h1>
-Audacity uses wxSizers from wxWidgets to arrange items in Audacity dialogs.
-The sizer methods are valuable, as the sizes of dialog items differ on
-different platforms (Mac, Windows, Linux).  Text lengths vary in different
-languages too.  To avoid a lot of repetitive code, Audacity uses a class ShuttleGUI that constructs dialogs and moves information in and out of them.
+Audacity uses wxSizers from wxWidgets to keep the layouts of dialogs good. Text varies in different languages, and
+sizes of dialog items differ on different platforms (Mac, Windows, Linux).
+<br><br>
+To avoid a lot of repetitive code, Audacity uses a class, ShuttleGUI, that constructs dialogs and moves information in and out of them.
 
 <pre>NEXTOBJECT:TIP=</pre>
 <h1>Audio Effects</h1>
