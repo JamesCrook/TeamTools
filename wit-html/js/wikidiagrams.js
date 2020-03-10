@@ -2158,6 +2158,7 @@ function registerMethods()
   registerMethod( "Chart",     0,0, layoutMargined, drawChart);
 
   // The charts are unmargined...
+  registerMethod( "Nowt",    0,0,0, drawNowt);
   registerMethod( "Path",    0,0,0, drawPath);
   registerMethod( "Tree",    0,0,0, drawTree);
   registerMethod( "Arrows",  0, sizeNowt,layoutNowt, drawArrows);
