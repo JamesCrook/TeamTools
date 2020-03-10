@@ -78,7 +78,7 @@ The detailed data for the chart follows.
 "ShuttleSetAutomation","Shuttle that sets parameters to a value (from a string) ",
 "Shuttle","These classes take things out of and put things into dialogs",
 
-"*AndValidator","Parameter must pass both of the supplied validators ",
+"#AndValidator","Parameter must pass both of the supplied validators ",
 "BoolArrayValidator","Parameter must be char array of booleans, e.g. \"011010001\" ",
 "BoolValidator","Parameter must be a boolean ",
 "DefaultValidator","No Description",
@@ -88,7 +88,7 @@ The detailed data for the chart follows.
 "RangeValidator","Parameter must lie between the two given numbers ",
 "Validator","A Validator is an object which checks whether a wxVariant satisfies a certain criterion. This is a base validator which allows anything ",
 
-"*EqualizationDialog","EqualizationDialog controls a graph for         EffectEqualization. We should look at amalgamating the various graphing code, such as provided by EqualizationPanel, FreqWindow and FilterPanel",
+"#EqualizationDialog","EqualizationDialog controls a graph for         EffectEqualization. We should look at amalgamating the various graphing code, such as provided by EqualizationPanel, FreqWindow and FilterPanel",
 "EffectAutoDuckPanel","+No Description",
 "EffectCompressorPanel","+No Description",
 "EffectPanel","+No Description",

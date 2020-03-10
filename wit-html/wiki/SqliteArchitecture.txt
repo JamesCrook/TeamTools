@@ -26,10 +26,35 @@ The detailed data for the chart follows.
      "setCreditsTip", "<b>Credits:</b> <em>adapted from <a href='https://sqlite.org/arch.html'>https://sqlite.org/arch.html</a></em>"]
   },
 
-{"HStack":[
+
+{
+"margins":5,
+"Overlay":[
+  {"Rectangle":"","margins":-5, "colour":"rgb(200,200,200)"},
+
+
+
+{"margins":5,
+ "HStack":[
   {"VStack":[
-     {"Overlay":[
-        {"Rectangle":"Core"},
+        {"Rectangle":"Core","colour":"rgb(250,255,240)"},
+        {"Rectangle":"Backend","colour":"rgb(250,255,240)"}
+     ]},
+  {"VStack":[
+        {"Rectangle":"SQL Compiler",
+        "colour":"rgb(250,255,240)",
+        "sizeAs":2},
+        {"Rectangle":"Accessories",
+        "colour":"rgb(250,255,240)"}
+     ]}
+  ]},
+
+
+
+{
+"margins":15,
+"HStack":[
+  {"VStack":[
         {"VStack":[
             {"Rectangle":"Interface",
                "colour":"rgb(215,230,210)",
@@ -43,10 +68,7 @@ The detailed data for the chart follows.
                "colour":"rgb(215,230,210)",
                "bcolour":"rgb(115,180,110)",
                "cornerRadius":25}
-            ],"margins":10}
-        ]},
-     {"Overlay":[
-        {"Rectangle":"Backend"},
+            ]},
         {"VStack":[
             {"Rectangle":"B-Tree",
                "colour":"rgb(215,230,210)",
@@ -60,14 +82,11 @@ The detailed data for the chart follows.
                "colour":"rgb(215,230,210)",
                "bcolour":"rgb(115,180,110)",
                "cornerRadius":25}
-            ],"margins":10}
-        ],"margins":5}
+            ]}
      ]},
 
 
   {"VStack":[
-     {"Overlay":[
-        {"Rectangle":"SQL Compiler"},
         {"VStack":[
             {"Rectangle":"Tokenizer",
                "colour":"rgb(215,230,210)",
@@ -81,12 +100,8 @@ The detailed data for the chart follows.
                "colour":"rgb(215,230,210)",
                "bcolour":"rgb(115,180,110)",
                "cornerRadius":25}
-            ],"margins":10}
-        ],
-        "sizeAs":2,
-        "margins":5},
-     {"Overlay":[
-        {"Rectangle":"Accessories"},
+            ],
+        "sizeAs":2},
         {"VStack":[
             {"Rectangle":"Utilities",
                "colour":"rgb(215,230,210)",
@@ -96,8 +111,7 @@ The detailed data for the chart follows.
                "colour":"rgb(215,230,210)",
                "bcolour":"rgb(115,180,110)",
                "cornerRadius":25}
-            ],"margins":10}
-        ],"margins":5}
+            ]}
      ]}
   ]},
     {"Arrows":[
@@ -123,6 +137,8 @@ The detailed data for the chart follows.
         "Big Pages","Cut & Paste",
         "Cut & Paste","Alpha Manual"
         ]}
+
+]}
 
 ],"margins":5}
 </pre>
