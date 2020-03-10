@@ -1282,6 +1282,13 @@ function drawRectangle(A, obj, d){
 }
 
 
+function drawTile(A,obj,d){
+  drawRectangle( A, obj, d );
+  increaseMargin( A, obj, 10);
+  drawImage( A,obj,d);
+  increaseMargin( A, obj, -10);
+}
+
 function drawCircle(A, obj, d){
   //console.log( "draw - "+obj.type);
   var l = obj.layout;
@@ -1861,11 +1868,18 @@ function setCellLayout(A, x0, y0, xw, yh, obj){
 }
 
 
+function increaseMargin(A, obj, m){
+  //console.log( "layout - "+obj.type);
+  var l = obj.layout;
+  setCellLayout(A, l.x0 + m, l.y0 + m, l.xw - 2 * m, l.yh - 2 * m, obj);
+}
+
 function layoutMargined(A, obj, d){
   //console.log( "layout - "+obj.type);
-  var m = d.margins;
-  var l = obj.layout;
-  setCellLayout(A, l.x0 + m, l.y0 + m, l.xw - 2 * m, l.yh - 2 * m, obj, d);
+  increaseMargin( A, obj, d.margins );
+//  var m = d.margins;
+//  var l = obj.layout;
+//  setCellLayout(A, l.x0 + m, l.y0 + m, l.xw - 2 * m, l.yh - 2 * m, obj, d);
 }
 
 function layoutUnmargined(A, obj, d){
@@ -1964,7 +1978,7 @@ function mayRequestImage(A, obj){
   if( !obj.src ){
     return;
   }
-  if( obj.type !== "Image" ){
+  if( obj.type !== "Image" && obj.type !== "Tile" ){
     return;
   }
 
@@ -2156,6 +2170,7 @@ function registerMethods()
   registerMethod( "Rectangle", 0,0, layoutMargined, drawRectangle);
   registerMethod( "Image",     0,0, layoutMargined, drawImage);
   registerMethod( "Chart",     0,0, layoutMargined, drawChart);
+  registerMethod( "Tile",    0,0,layoutMargined, drawTile);
 
   // The charts are unmargined...
   registerMethod( "Nowt",    0,0,0, drawNowt);

@@ -15,106 +15,68 @@ The detailed data for the regions, buttons and tooltips follows.
 
 <pre>ADD:DATA=
 [
-{"Overlay":[
     {"HStack":[
         {"VStack":[
-            {"Rectangle":"Project"},
-            {"Rectangle":"Toolbars"},
-            {"Rectangle":"Scaffolding",
-             "src":"IconScaffolding.svg",
-             "sizeAs":2
-            }
-            ]},
-        {"VStack":[
-            {"Rectangle":"Commands"},
-            {"Rectangle":"Menus"},
-            {"Rectangle":"Plugins",
-             "src":"IconPlugin.svg"},
-            {"Rectangle":"Import/Export",
-             "src":"IconExport.svg"}
-            ]},
-        {"VStack":[
-            {"Rectangle":"Preferences",
-             "src":"IconSettings.svg"},
-            {"Rectangle":"Dialogs"},
-            {"Rectangle":"Audio Effects",
-             "sizeAs":2
-            }
-            ]},
-        {"VStack":[
-            {"Rectangle":"Blockfiles",
-             "src":"IconFolder.svg"},
-            {"Rectangle":"Audio I/O",
-             "src":"IconAudio.svg"},
-            {"Rectangle":"Tracks"},
-            {"Rectangle":"Misc.",
-             "src":"IconMisc.svg"}
-            ]}
-    ],
-    "margins":7},
-    {"HStack":[
-        {"VStack":[
-            {"Image":"Project",
+            {"Tile":"Project",
              "src":"IconProject.svg",
              "opacity":0.3
             },
-            {"Image":"Toolbars",
+            {"Tile":"Toolbars",
              "src":"IconToolbar.svg",
              "opacity":0.3
             },
-            {"Image":"Scaffolding",
+            {"Tile":"Scaffolding",
              "src":"IconScaffolding.svg",
              "opacity":0.3,
              "sizeAs":2
             }
             ]},
         {"VStack":[
-            {"Image":"Commands",
+            {"Tile":"Commands",
              "src":"IconCommands.svg",
              "opacity":0.3
             },
-            {"Image":"Menus",
+            {"Tile":"Menus",
              "src":"IconMenu.svg",
              "opacity":0.3
             },
-            {"Image":"Plugins",
+            {"Tile":"Plugins",
              "src":"IconPlugin.svg",
              "opacity":0.3},
-            {"Image":"Import/Export",
+            {"Tile":"Import/Export",
              "src":"IconExport.svg",
              "opacity":0.3}
             ]},
         {"VStack":[
-            {"Image":"Preferences",
+            {"Tile":"Preferences",
              "src":"IconSettings.svg",
              "opacity":0.3},
-            {"Image":"Dialogs",
+            {"Tile":"Dialogs",
              "src":"IconDialog.svg",
              "opacity":0.3},
-            {"Image":"Audio Effects",
+            {"Tile":"Audio Effects",
              "src":"IconEffects.svg",
              "opacity":0.3,
              "sizeAs":2
             }
             ]},
         {"VStack":[
-            {"Image":"Blockfiles",
+            {"Tile":"Blockfiles",
              "src":"IconFolder.svg",
              "opacity":0.3},
-            {"Image":"Audio I/O",
+            {"Tile":"Audio I/O",
              "src":"IconAudio.svg",
              "opacity":0.3},
-            {"Image":"Tracks",
+            {"Tile":"Tracks",
              "src":"IconTrack.svg",
              "opacity":0.3
             },
-            {"Image":"Misc.",
+            {"Tile":"Misc.",
              "src":"IconMisc.svg",
              "opacity":0.3}
             ]}
     ],
-    "margins":17}
-  ]}
+    "margins":5}
 ]
 </pre>
 
