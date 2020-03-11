@@ -198,6 +198,7 @@ The detailed data for the chart follows.
             {
               "className": "EffectsPrefs",
               "docString": "<h3>EffectsPrefs</h3>A PrefsPanel for general GUI prefernces ",
+              "category":"Preferences",
               "snakeStyle": 1
             },
             {
@@ -292,6 +293,14 @@ The detailed data for the chart follows.
               "className": "WaveformPrefs",
               "docString": "<h3>WaveformPrefs</h3>A PrefsPanel for spectrum settings "
             },
+             {
+               "className": "PrefsListener",
+               "docString": "<h3>PrefsListener</h3>No Description"
+             },
+             {
+               "className": "PrefsNode",
+               "docString": "<h3>PrefsNode</h3>No Description"
+             },
             {
               "className": "Prefs",
               "docString": "<h3>Prefs</h3>The Audacity Preference panels for the preference dialog that each hold a collection of related preferences",
@@ -300,6 +309,7 @@ The detailed data for the chart follows.
             {
               "className": "EffectAmplify",
               "docString": "<h3>EffectAmplify</h3>An Effect that makes a sound louder or softer ",
+              "category":"Effects",
               "snakeStyle": 2
             },
             {
@@ -482,6 +492,7 @@ The detailed data for the chart follows.
          {
            "className": "VSTControl",
            "docString": "<h3>VSTControl</h3>+No Description",
+           "category":"Effects",
            "snakeStyle": 2
          },
          {
@@ -552,6 +563,7 @@ The detailed data for the chart follows.
          {
            "className": "LadspaEffectMeter",
            "docString": "<h3>LadspaEffectMeter</h3>+No Description",
+           "category":"Effects",
            "snakeStyle": 2
          },
          {
@@ -574,6 +586,7 @@ The detailed data for the chart follows.
          {
            "className": "LV2EffectMeter",
            "docString": "<h3>LV2EffectMeter</h3>+No Description",
+           "category":"Effects",
            "snakeStyle": 2
          },
          {
@@ -592,6 +605,7 @@ The detailed data for the chart follows.
          {
            "className": "Audio Units",
            "docString": "<h3>Audio Units</h3>A plug in effect subsystem on macOS",
+           "category":"Effects",
            "snakeStyle": 2
          },
          {
@@ -604,11 +618,14 @@ The detailed data for the chart follows.
          },
          {
            "className": "AudioUnitEffect",
-           "docString": "<h3>AudioUnitEffect</h3>An effect class that handles a wide range of effects on macOS"
+           "docString": "<h3>AudioUnitEffect</h3>An effect class that handles a wide range of effects on macOS",
+           "isHead": true
          },
          {
            "className": "AppCommandEvent",
-           "docString": "<h3>AppCommandEvent</h3>An event 'envelope' for sending Command objects through the wxwidgets event loop "
+           "docString": "<h3>AppCommandEvent</h3>An event 'envelope' for sending Command objects through the wxwidgets event loop ",
+           "category":"Commands",
+           "snakeStyle": 2
          },
          {
            "className": "ApplyAndSendResponse",
@@ -894,6 +911,7 @@ The detailed data for the chart follows.
          {
            "className": "ControlToolBar",
            "docString": "<h3>ControlToolBar</h3>A ToolBar that has the main Transport buttons ",
+           "category":"Toolbars",
            "snakeStyle": 1
          },
          {
@@ -940,6 +958,7 @@ The detailed data for the chart follows.
          {
            "className": "ToolbarActions",
            "docString": "<h3>ToolbarActions</h3>Namespace for functions for View Toolbar menu ",
+           "category":"Toolbars",
            "snakeStyle": 2
          },
          {
@@ -1684,6 +1703,7 @@ The detailed data for the chart follows.
          {
            "className": "Menu",
            "docString": "<h3>Menu</h3>+No Description",
+           "category":"Menus",
            "snakeStyle": 2
          },
          {
@@ -1722,6 +1742,7 @@ The detailed data for the chart follows.
          {
            "className": "AndValidator",
            "docString": "<h3>AndValidator</h3>Parameter must pass both of the supplied validators ",
+           "category":"Dialogs",
            "snakeStyle": 1
          },
          {
@@ -1760,6 +1781,7 @@ The detailed data for the chart follows.
          {
            "className": "ODComputeSummaryTask",
            "docString": "<h3>ODComputeSummaryTask</h3>A class representing a modular task to be used with the On-Demand structures ",
+           "category":"Blockfiles",
            "snakeStyle": 1
          },
          {
@@ -1826,6 +1848,7 @@ The detailed data for the chart follows.
          {
            "className": "AudacityException",
            "docString": "<h3>AudacityException</h3>Root of a hierarchy of classes that are thrown and caught by Audacity ",
+           "category":"Scaffolding",
            "snakeStyle": 2
          },
          {
@@ -1898,6 +1921,7 @@ The detailed data for the chart follows.
          {
            "className": "Scrubber",
            "docString": "<h3>Scrubber</h3>+No Description",
+           "category":"Audio",
            "snakeStyle": 1
          },
          {
@@ -1940,6 +1964,7 @@ The detailed data for the chart follows.
          {
            "className": "AButton",
            "docString": "<h3>AButton</h3>A wxButton with mouse-over behaviour ",
+           "category":"Scaffolding",
            "snakeStyle": 1
          },
          {
@@ -2045,6 +2070,7 @@ The detailed data for the chart follows.
          {
            "className": "AllProjects",
            "docString": "<h3>AllProjects</h3>Object of class AllProjects acts like a standard library container, but refers to a global array of open projects. So you can iterate easily over shared pointers to them with range-for : for (auto pProject : AllProjects{}) { ... } The pointers are never null ",
+           "category":"Scaffolding",
            "snakeStyle": 1
          },
          {
@@ -2059,6 +2085,7 @@ The detailed data for the chart follows.
          {
            "className": "NumberFormatter",
            "docString": "<h3>NumberFormatter</h3>+No Description",
+           "category":"Dialogs",
            "snakeStyle": 2
          },
          {
@@ -2093,6 +2120,7 @@ The detailed data for the chart follows.
          {
            "className": "AV_Deleter",
            "docString": "<h3>AV_Deleter</h3>AV_Deleter is part of FFmpeg support. It's used with the RAII idiom ",
+           "category":"Plugins",
            "snakeStyle": 1
          },
          {
@@ -2131,6 +2159,7 @@ The detailed data for the chart follows.
          {
            "className": "SpecCache",
            "docString": "<h3>SpecCache</h3>+No Description",
+           "category":"Effects",
            "snakeStyle": 1
          },
          {
@@ -2177,6 +2206,7 @@ The detailed data for the chart follows.
          {
            "className": "EQCurve",
            "docString": "<h3>EQCurve</h3>EQCurve is used with EffectEqualization ",
+           "category":"Tracks",
            "snakeStyle": 1
          },
          {
@@ -2203,6 +2233,7 @@ The detailed data for the chart follows.
          {
            "className": "BenchmarkDialog",
            "docString": "<h3>BenchmarkDialog</h3>BenchmarkDialog is used for measuring performance and accuracy of the BlockFile system ",
+           "category":"Dialogs",
            "snakeStyle": 1
          },
          {
@@ -2217,15 +2248,20 @@ The detailed data for the chart follows.
          {
            "className": "ProjectAudioIO",
            "docString": "<h3>ProjectAudioIO</h3>+No Description",
+           "category":"Audio",
            "snakeStyle": 1
          },
          {
            "className": "ProjectAudioManager",
-           "docString": "<h3>ProjectAudioManager</h3>+No Description"
+           "docString": "<h3>ProjectAudioManager</h3>+No Description",
+           "isHead": true
+
          },
          {
            "className": "ProjectFileIO",
-           "docString": "<h3>ProjectFileIO</h3>Object associated with a project that manages reading and writing of Audacity project file formats, and autosave "
+           "docString": "<h3>ProjectFileIO</h3>Object associated with a project that manages reading and writing of Audacity project file formats, and autosave ",
+           "category":"Projects",
+           "snakeStyle": 1
          },
          {
            "className": "ProjectFileIORegistry",
@@ -2271,6 +2307,7 @@ The detailed data for the chart follows.
          {
            "className": "RegisteredBlockFileDeserializer",
            "docString": "<h3>RegisteredBlockFileDeserializer</h3>No Description",
+           "category":"Blockfiles",
            "snakeStyle": 1
          },
          {
@@ -2337,6 +2374,7 @@ The detailed data for the chart follows.
          {
            "className": "MixerBoardFrame",
            "docString": "<h3>MixerBoardFrame</h3>+No Description",
+           "category":"Plugins",
            "snakeStyle": 1
          },
          {
@@ -2359,6 +2397,7 @@ The detailed data for the chart follows.
          {
            "className": "Matrix",
            "docString": "<h3>Matrix</h3>Holds a matrix of doubles and supports arithmetic, subsetting, and matrix inversion. Used by InterpolateAudio ",
+           "category":"Scaffolding",
            "snakeStyle": 1
          },
          {
@@ -2373,6 +2412,7 @@ The detailed data for the chart follows.
          {
            "className": "AudacityTimer",
            "docString": "<h3>AudacityTimer</h3>Timer class dedicated to informing the TrackPanel that it is time to refresh some aspect of the screen ",
+           "category":"Scaffolding",
            "snakeStyle": 1
          },
          {
@@ -2411,6 +2451,7 @@ The detailed data for the chart follows.
          {
            "className": "wxArrayStringEx",
            "docString": "<h3>wxArrayStringEx</h3>+No Description",
+           "category":"Scaffolding",
            "snakeStyle": 1
          },
          {
@@ -2465,6 +2506,7 @@ The detailed data for the chart follows.
          {
            "className": "XMLFileReader",
            "docString": "<h3>XMLFileReader</h3>Reads a file and passes the results through an XMLTagHandler ",
+           "category":"Scaffolding",
            "snakeStyle": 1
          },
          {
@@ -2501,6 +2543,7 @@ The detailed data for the chart follows.
          {
            "className": "ClientData",
            "docString": "<h3>ClientData</h3>+No Description",
+           "category":"Misc",
            "snakeStyle": 1
          },
          {
@@ -3438,14 +3481,6 @@ The detailed data for the chart follows.
          {
            "className": "Position",
            "docString": "<h3>Position</h3>No Description"
-         },
-         {
-           "className": "PrefsListener",
-           "docString": "<h3>PrefsListener</h3>No Description"
-         },
-         {
-           "className": "PrefsNode",
-           "docString": "<h3>PrefsNode</h3>No Description"
          },
          {
            "className": "private_data",

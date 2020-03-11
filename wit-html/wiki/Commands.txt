@@ -1,0 +1,19 @@
+__NOTOC__
+{{ATK_Header}}
+This is the spec for the interactive diagram which shows a display of Audacity
+classes.  Here's the result:
+
+-----
+{{#widget:WikiDiagram|page=Commands|init=yes}}
+-----
+
+The detailed data for the chart follows.
+
+<pre>START</pre>
+<pre>ADD:DATA=[
+        {"Prog":"Foo",
+"code":[
+    "loadSpec","Audacity", "Commands"
+    ]}
+]
+</pre>

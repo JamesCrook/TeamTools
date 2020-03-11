@@ -207,6 +207,10 @@
         return str;
       }
 
+      function formatTileEdit( name ){
+        return formatExample( name, name, name + " in Audacity", "" );
+      }
+
       function formatEdit( name, short, long, code ){
         var args1 = "?page0="+name+"&action=edit&tab=page";
         var str = "<li><a href='./edit.htm"+args1+"'>"+short+"</a> - ";
@@ -268,18 +272,20 @@
           str += formatExample("SqliteArchitecture", "SQLite",
             "A block diagram of SQLite",
             "");
-          str += formatExample("Dialogs", "Dialogs",
-            "Dialogs in Audacity",
-            "");
-          str += formatExample("Plugins", "Plugins",
-            "Plugins in Audacity",
-            "");
-          str += formatExample("Exports", "Exports",
-            "Exports in Audacity",
-            "");
-          str += formatExample("Tracks", "Tracks",
-            "Tracks in Audacity",
-            "");
+          str += formatTileEdit( "Projects" );
+          str += formatTileEdit( "Commands" );
+          str += formatTileEdit( "Preferences" );
+          str += formatTileEdit( "Blockfiles" );
+          str += formatTileEdit( "Toolbars" );
+          str += formatTileEdit( "Menus" );
+          str += formatTileEdit( "Dialogs" );
+          str += formatTileEdit( "Audio" );
+          str += formatTileEdit( "Scaffolding" );
+          str += formatTileEdit( "Plugins" );
+          str += formatTileEdit( "Effects" );
+          str += formatTileEdit( "Tracks" );
+          str += formatTileEdit( "Exports" );
+          str += formatTileEdit( "Misc" );
         }
         str+="</ul>Ordinary wiki pages about the diagrams<ul>";
         {
