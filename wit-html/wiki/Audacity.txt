@@ -10,15 +10,25 @@ classes.  Here's the result:
 The detailed data for the chart follows.
 <pre>START</pre>
 <pre>ADD:DATA=[
-        {"Prog":"Foo",
-"code":["setBright",["Export"]]
-        },
 
 {"Path":"Snakes!",
  "values":[
             {
               "className": "AboutDialog",
               "docString": "<h3>AboutDialog</h3>The AboutDialog shows the program version and developer credits ",
+              "snakeStyle": 0
+            },
+
+            {
+              "className": "AboutDialog",
+              "docString": "<h3>AboutDialog</h3>The AboutDialog shows the program version and developer credits ",
+              "snakeStyle": 0
+            },
+
+            {
+              "className": "AboutDialog",
+              "docString": "<h3>AboutDialog</h3>The AboutDialog shows the program version and developer credits ",
+              "category":"Dialogs",
               "snakeStyle": 1
             },
             {
@@ -133,6 +143,7 @@ The detailed data for the chart follows.
             {
               "className": "AudacityCommandDialog",
               "docString": "<h3>AudacityCommandDialog</h3>Default dialog used for commands. Is populated using ShuttleGui ",
+              "category":"Dialogs",
               "snakeStyle": 2
             },
             {
@@ -979,6 +990,7 @@ The detailed data for the chart follows.
          {
            "className": "TrackActions",
            "docString": "<h3>TrackActions</h3>xNo Description",
+           "category":"Tracks",
            "snakeStyle": 2
          },
          {
@@ -1117,6 +1129,7 @@ The detailed data for the chart follows.
          {
            "className": "Label",
            "docString": "<h3>Label</h3>An array of these created by the Ruler is used to determine what and where text annotations to the numbers on the Ruler get drawn ",
+           "category":"Tracks",
            "snakeStyle": 2
          },
          {
@@ -1175,6 +1188,7 @@ The detailed data for the chart follows.
          {
            "className": "NoteTrackButtonHandle",
            "docString": "<h3>NoteTrackButtonHandle</h3>+No Description",
+           "category":"Tracks",
            "snakeStyle": 2
          },
          {
@@ -1217,6 +1231,7 @@ The detailed data for the chart follows.
          {
            "className": "IdentityTimeWarper",
            "docString": "<h3>IdentityTimeWarper</h3>No change to time at all ",
+           "category":"Tracks",
            "snakeStyle": 2
          },
          {
@@ -1303,6 +1318,7 @@ The detailed data for the chart follows.
          {
            "className": "WaveTrackCache",
            "docString": "<h3>WaveTrackCache</h3>+No Description",
+           "category":"Tracks",
            "snakeStyle": 2
          },
          {
@@ -1397,6 +1413,7 @@ The detailed data for the chart follows.
          {
            "className": "Export",
            "docString": "<h3>Export</h3>Main class to control the export function ",
+           "category":"Exports",
            "snakeStyle": 1
          },
          {
@@ -1503,6 +1520,7 @@ The detailed data for the chart follows.
          {
            "className": "mad_bitptr",
            "docString": "<h3>mad_bitptr</h3>Struct in the MPEG library, used for MP3 compression by MP3Exporter ",
+           "category":"Exports",
            "snakeStyle": 2
          },
          {
@@ -1541,6 +1559,7 @@ The detailed data for the chart follows.
          {
            "className": "ImporterClientInterface",
            "docString": "<h3>ImporterClientInterface</h3>+No Description",
+           "category":"Exports",
            "snakeStyle": 2
          },
          {
@@ -1567,6 +1586,7 @@ The detailed data for the chart follows.
          {
            "className": "ExportPlugin",
            "docString": "<h3>ExportPlugin</h3>+No Description",
+           "category":"Plugins",
            "snakeStyle": 1
          },
          {
@@ -1621,6 +1641,7 @@ The detailed data for the chart follows.
          {
            "className": "Shuttle",
            "docString": "<h3>Shuttle</h3>Moves data from one place to another, converting it as required ",
+           "category":"Dialogs",
            "snakeStyle": 2
          },
          {
@@ -1941,6 +1962,7 @@ The detailed data for the chart follows.
          {
            "className": "EqualizationDialog",
            "docString": "<h3>EqualizationDialog</h3>EqualizationDialog controls a graph for         EffectEqualization. We should look at amalgamating the various graphing code, such as provided by EqualizationPanel, FreqWindow and FilterPanel",
+           "category":"Dialogs",
            "snakeStyle": 1
          },
          {
@@ -2469,7 +2491,13 @@ The detailed data for the chart follows.
            "className": "XML",
            "docString": "<h3>XML</h3>Stuff for XML.  The .aup file is an XML file, and this stuff is responsible for reading and wriitng it.",
            "isHead": true
-         },
+         }
+
+    ]
+}
+]
+</pre>
+
          {
            "className": "ClientData",
            "docString": "<h3>ClientData</h3>+No Description",
@@ -4032,10 +4060,6 @@ The detailed data for the chart follows.
              "docString": "<h3>Unsorted</h3>This longest snake has all the Audacity classes which we have not yet put into one of the other snakes.",
              "isHead": true
            }
-    ]
-}
-]
-</pre>
 
 
 <pre>CREDITS:CAPTION=Audacity Classes - Snake Diagram;TIP=</pre>
@@ -4045,3 +4069,7 @@ The detailed data for the chart follows.
 <li>Larger spots have more information about them than smaller ones.
 </ul><br><br>
 <b>Credits:</b> <em>James Crook ©2019; Data and Image placed in Public Domain</em>
+
+
+<pre>START:Section 1</pre>
+<pre>DO:BRIGHT_OBJECTS=Export</pre>

@@ -804,6 +804,18 @@ function snakeType( A, name ){
   return result;
 }
 
+function getSnakeStyle(X, style, A){
+  if( isDefined(X.snakeStyle) ){
+    style = X.snakeStyle;
+    if( isDefined(A.BrightObjects) ){
+      if( X.category !== A.BrightObjects ){
+        style = 0;
+      }
+    }
+  }
+  return style;
+}
+
 // For drawing a snakey plot
 function drawSnakeyPath(A, values, T){
   var i = 0;
@@ -826,10 +838,11 @@ function drawSnakeyPath(A, values, T){
   S.x=0;S.y=0;
   T.isPath = true;
   T.maxv = maxv;
-  nextStyle = "rgb(190,190,190)";
 
   var widths = [5,6,9];
-  var lines = ["rgb(190,190,190)", "rgb(156,3,0)", "rgb(15,0,181)"];
+  var lines = ["rgb(150,150,150)", "rgb(156,3,0)", "rgb(15,0,181)"];
+  var blobs = ["rgb(120,120,120)", "rgb(105,205,105)", "rgb(105,205,105)"];
+  var heads = ["rgb(180,180,180)", "rgb(182,222,157)", "rgb(182,222,157)"];
 
 
   // draw snakey body
@@ -839,8 +852,7 @@ function drawSnakeyPath(A, values, T){
   for( j = 0; i < maxv; j += T.stride ){
 
     X = values[j];
-    if( isDefined(X.snakeStyle) )
-      style = X.snakeStyle;
+    style = getSnakeStyle(X, style, A);
 
     ctx.beginPath();
     ctx.moveTo(S.x, S.y);
@@ -886,15 +898,14 @@ function drawSnakeyPath(A, values, T){
     if( i < maxv ){
       S = T.fn(i, T);
 
-      if( isDefined(X.snakeStyle) )
-        style = X.snakeStyle;
+      style = getSnakeStyle(X, style, A);
 
-      ctx.fillStyle = blobColour;
+      ctx.fillStyle = blobs[style];
       ctx.strokeStyle = lines[style];
 
       if( X.isHead ){
         // lighter green for head.
-        ctx.fillStyle = "rgb(182,222,157)";
+        ctx.fillStyle = heads[style];
         r += 3;
       }
       ctx.beginPath();
@@ -1926,7 +1937,7 @@ function createProg( A, obj, data ){
     return;
   var activeObject;
   var code = obj.code;
-  for(i=0;i<=code.length;){
+  for(i=0;i<code.length;){
     var command = code[i++];
     if( command === "selectCredits" ){
     }
@@ -1948,6 +1959,18 @@ function createProg( A, obj, data ){
     else if( command === "setBright" ){
       A.BrightObjects = code[i++];
     }
+    else if( command === "loadSpec" ){
+      var spec = code[i++];
+      const bright = code[i++];
+      requestSpec(A, spec, A.fromWiki, 1,
+        function( AA, data, ss ){
+          handleNewData(AA, data, ss);
+          AA.BrightObjects = bright;
+        }
+
+        );
+    }
+
   }
 }
 
@@ -2437,6 +2460,10 @@ function loadNewLines(A, specFileData, section){
            data = JSON.parse( data );
            obj.choice = data;
         }
+      }
+      var bright = fieldValue("BRIGHT_OBJECTS", item);
+      if( bright ){
+        A.BrightObject = bright;
       }
     }
 

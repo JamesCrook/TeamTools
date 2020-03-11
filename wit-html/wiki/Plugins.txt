@@ -4,7 +4,7 @@ This is the spec for the interactive diagram which shows a display of Audacity
 classes.  Here's the result:
 
 -----
-{{#widget:WikiDiagram|page=Dialogs|init=yes}}
+{{#widget:WikiDiagram|page=Plugins|init=yes}}
 -----
 
 The detailed data for the chart follows.
@@ -13,7 +13,7 @@ The detailed data for the chart follows.
 <pre>ADD:DATA=[
         {"Prog":"Foo",
 "code":[
-    "loadSpec","Audacity", "Dialogs"
+    "loadSpec","Audacity", "Plugins"
     ]}
 ]
 </pre>
