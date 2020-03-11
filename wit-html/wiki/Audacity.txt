@@ -25,6 +25,730 @@ The detailed data for the chart follows.
               "snakeStyle": 0
             },
 
+
+         {
+           "className": "ProjectFileIO",
+           "docString": "<h3>ProjectFileIO</h3>Object associated with a project that manages reading and writing of Audacity project file formats, and autosave ",
+           "category":"Projects",
+           "snakeStyle": 1
+         },
+         {
+           "className": "ProjectFileIORegistry",
+           "docString": "<h3>ProjectFileIORegistry</h3>+No Description"
+         },
+         {
+           "className": "ProjectFileManager",
+           "docString": "<h3>ProjectFileManager</h3>+No Description"
+         },
+         {
+           "className": "ProjectHistory",
+           "docString": "<h3>ProjectHistory</h3>+No Description"
+         },
+         {
+           "className": "ProjectManager",
+           "docString": "<h3>ProjectManager</h3>Object associated with a project for high-level management of the project's lifetime, including creation, destruction, opening from file, importing, pushing undo states, and reverting to saved states "
+         },
+         {
+           "className": "ProjectSelectionManager",
+           "docString": "<h3>ProjectSelectionManager</h3>+No Description"
+         },
+         {
+           "className": "ProjectSetter",
+           "docString": "<h3>ProjectSetter</h3>+No Description"
+         },
+         {
+           "className": "ProjectSettings",
+           "docString": "<h3>ProjectSettings</h3>Holds various per-project settings values, including the sample rate, and sends events to the project when certain values change "
+         },
+         {
+           "className": "ProjectStatus",
+           "docString": "<h3>ProjectStatus</h3>+No Description"
+         },
+         {
+           "className": "ProjectWindow",
+           "docString": "<h3>ProjectWindow</h3>A top-level window associated with a project, and handling scrollbars and zooming "
+         },
+         {
+           "className": "AudacityProject",
+           "docString": "<h3>AudacityProject</h3>The top-level handle to an Audacity project. It serves as a source of events that other objects can bind to, and a container of associated sub-objects that it treats opaquely. It stores a filename and a status message and a few other things. There is very little in this class, most of the intelligence residing in the cooperating attached objects ",
+           "isHead": true
+         },
+
+         {
+           "className": "AppCommandEvent",
+           "docString": "<h3>AppCommandEvent</h3>An event 'envelope' for sending Command objects through the wxwidgets event loop ",
+           "category":"Commands",
+           "snakeStyle": 2
+         },
+         {
+           "className": "ApplyAndSendResponse",
+           "docString": "<h3>ApplyAndSendResponse</h3>ApplyAndSendResponse is a DecoratoredCommand that performs the given command and then outputs a status message according to the result. It manages a CommandContext which is passed into its mCommand, so that result messages are routed back to the right place "
+         },
+         {
+           "className": "ApplyMacroDialog",
+           "docString": "<h3>ApplyMacroDialog</h3>Shows progress in executing commands in MacroCommands "
+         },
+         {
+           "className": "AudacityCommand",
+           "docString": "<h3>AudacityCommand</h3>Base class for command in Audacity "
+         },
+         {
+           "className": "BatchEvalCommand",
+           "docString": "<h3>BatchEvalCommand</h3>Given a string representing a command, pass it to the MacroCommands system "
+         },
+         {
+           "className": "BatchEvalCommandType",
+           "docString": "<h3>BatchEvalCommandType</h3>The <something>CommandType classes are classes which are going away. They all provided a BuildSignature (what parameters they accept) and Name, but that is now replaced by the AudacityCommand interface "
+         },
+         {
+           "className": "BriefCommandMessageTarget",
+           "docString": "<h3>BriefCommandMessageTarget</h3>BriefCommandMessageTarget is a CommandOutputTarget that provides status in a briefer listing "
+         },
+         {
+           "className": "BriefCommandOutputTargets",
+           "docString": "<h3>BriefCommandOutputTargets</h3>BriefCommandOutputTargets is a CommandOutputTargets that replaces the status message target with the BriefCommandMessageTarget version "
+         },
+         {
+           "className": "BuiltinCommandsModule",
+           "docString": "<h3>BuiltinCommandsModule</h3>Internal module to auto register all built in commands. It is closely modelled on BuiltinEffectsModule "
+         },
+         {
+           "className": "CommandBuilder",
+           "docString": "<h3>CommandBuilder</h3>A type of factory for Commands of various sorts "
+         },
+         {
+           "className": "CommandContext",
+           "docString": "<h3>CommandContext</h3>CommandContext provides addiitonal information to an 'Apply()' command. It provides the project, and provides output channels for Error, Progress and Status. Status is used for general messaging from a command back to its invoker "
+         },
+         {
+           "className": "CommandDirectory",
+           "docString": "<h3>CommandDirectory</h3>Allows registration and lookup (by name) of command types "
+         },
+         {
+           "className": "CommandFlagOptions",
+           "docString": "<h3>CommandFlagOptions</h3>No Description"
+         },
+         {
+           "className": "CommandFunctor",
+           "docString": "<h3>CommandFunctor</h3>CommandFunctor is a very small class that works with CommandManager. It holds the callback for one command "
+         },
+         {
+           "className": "CommandGroupItem",
+           "docString": "<h3>CommandGroupItem</h3>No Description"
+         },
+         {
+           "className": "CommandHandler",
+           "docString": "<h3>CommandHandler</h3>Contains methods for applying commands that are passed to it "
+         },
+         {
+           "className": "CommandImplementation",
+           "docString": "<h3>CommandImplementation</h3>Derived from OldStyleCommand. It validates and applies the command. CommandImplementation::Apply() is overloaded in classes derived from it "
+         },
+         {
+           "className": "CommandItem",
+           "docString": "<h3>CommandItem</h3>No Description"
+         },
+         {
+           "className": "CommandList",
+           "docString": "<h3>CommandList</h3>List of CommandListEntry "
+         },
+         {
+           "className": "CommandListEntry",
+           "docString": "<h3>CommandListEntry</h3>CommandListEntry is a structure used by CommandManager "
+         },
+         {
+           "className": "CommandManager",
+           "docString": "<h3>CommandManager</h3>CommandManager implements a system for organizing all user-callable commands "
+         },
+         {
+           "className": "CommandMessageTarget",
+           "docString": "<h3>CommandMessageTarget</h3>Interface for objects that can receive (string) messages from a command "
+         },
+         {
+           "className": "CommandMessageTargetDecorator",
+           "docString": "<h3>CommandMessageTargetDecorator</h3>CommandMessageTargetDecorator is a CommandOutputTarget that forwards its work on to another one. Typically we derive from it to modify some functionality and forward the rest "
+         },
+         {
+           "className": "CommandOutputTargets",
+           "docString": "<h3>CommandOutputTargets</h3>CommandOutputTargets a mix of three output classes to output progress indication, status messages and errors "
+         },
+         {
+           "className": "CommandParameters",
+           "docString": "<h3>CommandParameters</h3>CommandParameters, derived from wxFileConfig, is essentially doing the same things as the Shuttle classes. It does text <-> binary conversions of parameters. It does not seem to be using actual file read/writing "
+         },
+         {
+           "className": "CommandProgressTarget",
+           "docString": "<h3>CommandProgressTarget</h3>Interface for objects that can receive command progress information "
+         },
+         {
+           "className": "CommandSignature",
+           "docString": "<h3>CommandSignature</h3>Class that maps parameter names to default values and validators "
+         },
+         {
+           "className": "CompareAudioCommand",
+           "docString": "<h3>CompareAudioCommand</h3>Returns information about the amount of audio that is about a certain threshold of difference in two selected tracks "
+         },
+         {
+           "className": "DecoratedCommand",
+           "docString": "<h3>DecoratedCommand</h3>DecoratedCommand is a decorator for command. It forwards functions to the mCommand it holds "
+         },
+         {
+           "className": "DemoCommand",
+           "docString": "<h3>DemoCommand</h3>An AudacityCommand that does nothing but provide parameters. It is for development purposes "
+         },
+         {
+           "className": "DragCommand",
+           "docString": "<h3>DragCommand</h3>Command that sets clip information "
+         },
+         {
+           "className": "EffectClientInterface",
+           "docString": "<h3>EffectClientInterface</h3>EffectClientInterface provides the ident interface to Effect, and is what makes Effect into a plug-in command. It has functions for realtime that are not part of AudacityCommand "
+         },
+         {
+           "className": "ExportCommand",
+           "docString": "<h3>ExportCommand</h3>Command for exporting audio "
+         },
+         {
+           "className": "GetInfoCommand",
+           "docString": "<h3>GetInfoCommand</h3>Command which outputs a list of available menu commands on the status channel "
+         },
+         {
+           "className": "GetPreferenceCommand",
+           "docString": "<h3>GetPreferenceCommand</h3>Command for getting the value of a preference "
+         },
+         {
+           "className": "GetTrackInfoCommand",
+           "docString": "<h3>GetTrackInfoCommand</h3>Obsolete. GetInfo now does it "
+         },
+         {
+           "className": "HelpCommand",
+           "docString": "<h3>HelpCommand</h3>Command to get help about other commands "
+         },
+         {
+           "className": "ImportCommand",
+           "docString": "<h3>ImportCommand</h3>Command for importing audio "
+         },
+         {
+           "className": "LispifiedCommandOutputTargets",
+           "docString": "<h3>LispifiedCommandOutputTargets</h3>LispifiedCommandOutputTargets is a CommandOutputTargets that replaces the status message target with the LispyCommandMessageTarget version "
+         },
+         {
+           "className": "LispyCommandMessageTarget",
+           "docString": "<h3>LispyCommandMessageTarget</h3>LispyCommandMessageTarget is a CommandOutputTarget that provides status in a lispy style "
+         },
+         {
+           "className": "MacroCommands",
+           "docString": "<h3>MacroCommands</h3>Maintains the list of commands for batch/macro processing. See also MacrosWindow and ApplyMacroDialog "
+         },
+         {
+           "className": "MacroCommandsCatalog",
+           "docString": "<h3>MacroCommandsCatalog</h3>No Description"
+         },
+         {
+           "className": "MenuBarListEntry",
+           "docString": "<h3>MenuBarListEntry</h3>MenuBarListEntry is a structure used by CommandManager "
+         },
+         {
+           "className": "MessageCommand",
+           "docString": "<h3>MessageCommand</h3>Command to get a message response. Used for testing, and used internally to create messages for forwarding "
+         },
+         {
+           "className": "MessageCommandType",
+           "docString": "<h3>MessageCommandType</h3>The <something>CommandType classes are classes which are going away. They all provided a BuildSignature (what parameters they accept) and Name, but that is now replaced by the AudacityCommand interface "
+         },
+         {
+           "className": "MessageDialogTarget",
+           "docString": "<h3>MessageDialogTarget</h3>MessageDialogTarget is a CommandOutputTarget that sends its status to the LongMessageDialog "
+         },
+         {
+           "className": "OldStyleCommand",
+           "docString": "<h3>OldStyleCommand</h3>Abstract base class for command interface. This is the version created by Dan Horgan. It was previously a factory for other command classes. It created a separation between the type of a command and the command itself, which is being removed. These Cmmands were managed by CommandDirectory "
+         },
+         {
+           "className": "OldStyleCommandPointer",
+           "docString": "<h3>OldStyleCommandPointer</h3>OldStyleCommandPointer is a unique_ptr to an OldStyleCommand "
+         },
+         {
+           "className": "OldStyleCommandType",
+           "docString": "<h3>OldStyleCommandType</h3>Base class for containing data common to all commands of a given type. Also acts as a factory "
+         },
+         {
+           "className": "OpenProjectCommand",
+           "docString": "<h3>OpenProjectCommand</h3>Command for opening an Audacity project "
+         },
+         {
+           "className": "ReservedCommandFlag",
+           "docString": "<h3>ReservedCommandFlag</h3>No Description"
+         },
+         {
+           "className": "SaveProjectCommand",
+           "docString": "<h3>SaveProjectCommand</h3>Command for saving an Audacity project "
+         },
+         {
+           "className": "ScreenshotCommand",
+           "docString": "<h3>ScreenshotCommand</h3>Implements a command for capturing various areas of the screen or project window. It's one big if-elseif switch statement with lots of small calculations of rectangles "
+         },
+         {
+           "className": "ScriptCommandRelay",
+           "docString": "<h3>ScriptCommandRelay</h3>ScriptCommandRelay is just a way to move some of the scripting-specific code out of ModuleManager "
+         },
+         {
+           "className": "SelectCommand",
+           "docString": "<h3>SelectCommand</h3>Command for changing time, frequency and track selection. This class is a little baroque, as it uses the SelectTimeCommand, SelectFrequenciesCommand and SelectTracksCommand, when it could just explicitly code all three "
+         },
+         {
+           "className": "SelectFrequenciesCommand",
+           "docString": "<h3>SelectFrequenciesCommand</h3>Command for changing the frequency selection "
+         },
+         {
+           "className": "SelectTimeCommand",
+           "docString": "<h3>SelectTimeCommand</h3>Command for changing the time selection "
+         },
+         {
+           "className": "SelectTracksCommand",
+           "docString": "<h3>SelectTracksCommand</h3>Command for changing the selection of tracks "
+         },
+         {
+           "className": "SetClipCommand",
+           "docString": "<h3>SetClipCommand</h3>Command that sets clip information "
+         },
+         {
+           "className": "SetEnvelopeCommand",
+           "docString": "<h3>SetEnvelopeCommand</h3>Command that sets envelope information "
+         },
+         {
+           "className": "SetLabelCommand",
+           "docString": "<h3>SetLabelCommand</h3>Command that sets label information "
+         },
+         {
+           "className": "SetPreferenceCommand",
+           "docString": "<h3>SetPreferenceCommand</h3>Command for setting a preference to a given value "
+         },
+         {
+           "className": "SetProjectCommand",
+           "docString": "<h3>SetProjectCommand</h3>Command that sets project information "
+         },
+         {
+           "className": "SetTrackAudioCommand",
+           "docString": "<h3>SetTrackAudioCommand</h3>A SetTrackBase that sets pan, gain, mute and solo "
+         },
+         {
+           "className": "SetTrackBase",
+           "docString": "<h3>SetTrackBase</h3>Base class for the various SetTrackCommand classes. Subclasses provide the settings that are relevant to them "
+         },
+         {
+           "className": "SetTrackCommand",
+           "docString": "<h3>SetTrackCommand</h3>A SetTrackBase that combines SetTrackStatusCommand, SetTrackAudioCommand and SetTrackVisualsCommand "
+         },
+         {
+           "className": "SetTrackStatusCommand",
+           "docString": "<h3>SetTrackStatusCommand</h3>A SetTrackBase that sets name, selected and focus "
+         },
+         {
+           "className": "SetTrackVisualsCommand",
+           "docString": "<h3>SetTrackVisualsCommand</h3>A SetTrackBase that sets appearance of a track "
+         },
+         {
+           "className": "SubMenuListEntry",
+           "docString": "<h3>SubMenuListEntry</h3>SubMenuListEntry is a structure used by CommandManager "
+         },
+         {
+           "className": "TargetFactory",
+           "docString": "<h3>TargetFactory</h3>TargetFactory makes Command output targets. By default, we ignore progress updates but display all other messages directly "
+         },
+         {
+           "className": "Audacity Commands",
+           "docString": "<h3>Audacity Commands</h3>These are the scripting commands in Audacity which are designed to be called from an external script, such as a script in python.  They are also available from the 'extra' menu.",
+           "isHead": true
+         },
+
+            {
+              "className": "EffectsPrefs",
+              "docString": "<h3>EffectsPrefs</h3>A PrefsPanel for general GUI prefernces ",
+              "category":"Preferences",
+              "snakeStyle": 1
+            },
+            {
+              "className": "AudacityPrefs",
+              "docString": "<h3>AudacityPrefs</h3>Our own specialisation of wxFileConfig. It is essentially a renaming, though it does provide one new access function. Most of the prefs work is actually done by the InitPreferences() function "
+            },
+            {
+              "className": "BatchPrefs",
+              "docString": "<h3>BatchPrefs</h3>A probably unused PrefsPanel that in debug builds could offer a setting used in debugging batch (aka macros) processing "
+            },
+            {
+              "className": "DevicePrefs",
+              "docString": "<h3>DevicePrefs</h3>A PrefsPanel used to select recording and playback devices and other settings "
+            },
+            {
+              "className": "DirectoriesPrefs",
+              "docString": "<h3>DirectoriesPrefs</h3>A PrefsPanel used to select directories "
+            },
+            {
+              "className": "ExtImportPrefs",
+              "docString": "<h3>ExtImportPrefs</h3>A PrefsPanel used to select extended import filter options "
+            },
+            {
+              "className": "GUIPrefs",
+              "docString": "<h3>GUIPrefs</h3>A PrefsPanel for general GUI preferences "
+            },
+            {
+              "className": "ImportExportPrefs",
+              "docString": "<h3>ImportExportPrefs</h3>A PrefsPanel used to select import and export options "
+            },
+            {
+              "className": "KeyConfigPrefs",
+              "docString": "<h3>KeyConfigPrefs</h3>A PrefsPanel for keybindings "
+            },
+            {
+              "className": "LibraryPrefs",
+              "docString": "<h3>LibraryPrefs</h3>A PrefsPanel used to select manage external libraries like the MP3 and FFmpeg encoding libraries "
+            },
+            {
+              "className": "MidiIOPrefs",
+              "docString": "<h3>MidiIOPrefs</h3>A PrefsPanel used to select recording and playback devices and other settings "
+            },
+            {
+              "className": "ModulePrefs",
+              "docString": "<h3>ModulePrefs</h3>A PrefsPanel to enable/disable certain modules. 'Modules' are dynamically linked libraries that modify Audacity. They are plug-ins with names like mnod-script-pipe that add NEW features "
+            },
+            {
+              "className": "MousePrefs",
+              "docString": "<h3>MousePrefs</h3>A PrefsPanel that presents an interface for user to view the default bindings of mouse buttons to commands "
+            },
+            {
+              "className": "PlaybackPrefs",
+              "docString": "<h3>PlaybackPrefs</h3>A PrefsPanel used to select playback options "
+            },
+            {
+              "className": "ProjectsPrefs",
+              "docString": "<h3>ProjectsPrefs</h3>A PrefsPanel used to select options related to Audacity Project handling "
+            },
+            {
+              "className": "QualityPrefs",
+              "docString": "<h3>QualityPrefs</h3>A PrefsPanel used for setting audio quality "
+            },
+            {
+              "className": "RecordingPrefs",
+              "docString": "<h3>RecordingPrefs</h3>A PrefsPanel used to select recording options "
+            },
+            {
+              "className": "ShuttlePrefs",
+              "docString": "<h3>ShuttlePrefs</h3>A kind of Shuttle to exchange data with preferences e.g. the registry "
+            },
+            {
+              "className": "SpectrumPrefs",
+              "docString": "<h3>SpectrumPrefs</h3>A PrefsPanel for spectrum settings "
+            },
+            {
+              "className": "ThemePrefs",
+              "docString": "<h3>ThemePrefs</h3>A PrefsPanel that configures dynamic loading of Theme icons and colours "
+            },
+            {
+              "className": "TracksBehaviorsPrefs",
+              "docString": "<h3>TracksBehaviorsPrefs</h3>A PrefsPanel for Tracks Behaviors settings "
+            },
+            {
+              "className": "TracksPrefs",
+              "docString": "<h3>TracksPrefs</h3>A PrefsPanel for track display and behavior properties "
+            },
+            {
+              "className": "WarningsPrefs",
+              "docString": "<h3>WarningsPrefs</h3>A PrefsPanel to enable/disable certain warning messages "
+            },
+            {
+              "className": "WaveformPrefs",
+              "docString": "<h3>WaveformPrefs</h3>A PrefsPanel for spectrum settings "
+            },
+             {
+               "className": "PrefsListener",
+               "docString": "<h3>PrefsListener</h3>No Description"
+             },
+             {
+               "className": "PrefsNode",
+               "docString": "<h3>PrefsNode</h3>No Description"
+             },
+            {
+              "className": "Prefs",
+              "docString": "<h3>Prefs</h3>The Audacity Preference panels for the preference dialog that each hold a collection of related preferences",
+              "isHead": true
+            },
+
+         {
+           "className": "ODComputeSummaryTask",
+           "docString": "<h3>ODComputeSummaryTask</h3>A class representing a modular task to be used with the On-Demand structures ",
+           "category":"Blockfiles",
+           "snakeStyle": 1
+         },
+         {
+           "className": "ODCondition",
+           "docString": "<h3>ODCondition</h3>No Description"
+         },
+         {
+           "className": "ODDecodeFlacTask",
+           "docString": "<h3>ODDecodeFlacTask</h3>A class representing a modular task to be used with the On-Demand structures "
+         },
+         {
+           "className": "ODDecodeTask",
+           "docString": "<h3>ODDecodeTask</h3>A class representing a modular task to be used with the On-Demand structures "
+         },
+         {
+           "className": "ODFileDecoder",
+           "docString": "<h3>ODFileDecoder</h3>Class to decode a particular file (one per file). Saves info such as filename and length (after the header is read.) "
+         },
+         {
+           "className": "ODFlacDecoder",
+           "docString": "<h3>ODFlacDecoder</h3>Class to decode a particular file (one per file). Saves info such as filename and length (after the header is read.) "
+         },
+         {
+           "className": "ODFLACFile",
+           "docString": "<h3>ODFLACFile</h3>No Description"
+         },
+         {
+           "className": "ODLock",
+           "docString": "<h3>ODLock</h3>No Description"
+         },
+         {
+           "className": "ODLocker",
+           "docString": "<h3>ODLocker</h3>No Description"
+         },
+         {
+           "className": "ODManager",
+           "docString": "<h3>ODManager</h3>A singleton that manages currently running Tasks on an arbitrary number of threads "
+         },
+         {
+           "className": "ODManagerHelperThread",
+           "docString": "<h3>ODManagerHelperThread</h3>No Description"
+         },
+         {
+           "className": "ODTask",
+           "docString": "<h3>ODTask</h3>A class representing a modular task to be used with the On-Demand structures "
+         },
+         {
+           "className": "ODTaskThread",
+           "docString": "<h3>ODTaskThread</h3>A thread that executes a part of the task specfied by an ODTask "
+         },
+         {
+           "className": "ODUnlocker",
+           "docString": "<h3>ODUnlocker</h3>No Description"
+         },
+         {
+           "className": "ODWaveTrackTaskQueue",
+           "docString": "<h3>ODWaveTrackTaskQueue</h3>A class representing a modular task to be used with the On-Demand structures "
+         },
+         {
+           "className": "On Demand",
+           "docString": "<h3>On Demand</h3>A feature to allow editing of audio before it has been fully read in.  With the OD mode enabled, stripy bars appear where the waveform has not yet been processed",
+           "isHead": true
+         },
+
+         {
+           "className": "RegisteredBlockFileDeserializer",
+           "docString": "<h3>RegisteredBlockFileDeserializer</h3>No Description",
+           "category":"Blockfiles",
+           "snakeStyle": 1
+         },
+         {
+           "className": "SeqBlock",
+           "docString": "<h3>SeqBlock</h3>Data structure containing pointer to a BlockFile and a start time. Element of a BlockArray "
+         },
+         {
+           "className": "Sequence",
+           "docString": "<h3>Sequence</h3>A WaveTrack contains WaveClip(s). A WaveClip contains a Sequence. A Sequence is primarily an interface to an array of SeqBlock instances, corresponding to the audio BlockFiles on disk. Contrast with RingBuffer "
+         },
+         {
+           "className": "ODDecodeBlockFile",
+           "docString": "<h3>ODDecodeBlockFile</h3>An AliasBlockFile that references uncompressed data in an existing file "
+         },
+         {
+           "className": "ODPCMAliasBlockFile",
+           "docString": "<h3>ODPCMAliasBlockFile</h3>An AliasBlockFile that references uncompressed data in an existing file "
+         },
+         {
+           "className": "AliasBlockFile",
+           "docString": "<h3>AliasBlockFile</h3>A BlockFile that refers to data in an existing file "
+         },
+         {
+           "className": "LegacyAliasBlockFile",
+           "docString": "<h3>LegacyAliasBlockFile</h3>An AliasBlockFile that references uncompressed data in an existing file "
+         },
+         {
+           "className": "LegacyBlockFile",
+           "docString": "<h3>LegacyBlockFile</h3>Audacity 1.1.0 block file format: "
+         },
+         {
+           "className": "PCMAliasBlockFile",
+           "docString": "<h3>PCMAliasBlockFile</h3>An AliasBlockFile that references uncompressed data in an existing file "
+         },
+         {
+           "className": "SilentBlockFile",
+           "docString": "<h3>SilentBlockFile</h3>A BlockFile containing nothing but silence. Saves disk space "
+         },
+         {
+           "className": "SimpleBlockFile",
+           "docString": "<h3>SimpleBlockFile</h3>A BlockFile that reads and writes uncompressed data using libsndfile "
+         },
+         {
+           "className": "SimpleBlockFileCache",
+           "docString": "<h3>SimpleBlockFileCache</h3>No Description"
+         },
+         {
+           "className": "SummaryInfo",
+           "docString": "<h3>SummaryInfo</h3>Works with BlockFile to hold info about max and min and RMS over multiple samples, which in turn allows rapid drawing when zoomed out "
+         },
+         {
+           "className": "auHeader",
+           "docString": "<h3>auHeader</h3>The auHeader is a structure used by SimpleBlockFile for .au file format. There probably is an 'official' header file we should include to get its definition, rather than rolling our own "
+         },
+         {
+           "className": "DirManager",
+           "docString": "<h3>DirManager</h3>Creates and manages BlockFile objects "
+         },
+         {
+           "className": "BlockFile",
+           "docString": "<h3>BlockFile</h3>A BlockFile is a chunk of immutable audio data ",
+           "isHead": true
+         },
+
+         {
+           "className": "ControlToolBar",
+           "docString": "<h3>ControlToolBar</h3>A ToolBar that has the main Transport buttons ",
+           "category":"Toolbars",
+           "snakeStyle": 1
+         },
+         {
+           "className": "DeviceToolBar",
+           "docString": "<h3>DeviceToolBar</h3>A toobar to allow easier changing of input and output devices "
+         },
+         {
+           "className": "EditToolBar",
+           "docString": "<h3>EditToolBar</h3>A ToolBar that has the edit buttons on it "
+         },
+         {
+           "className": "ExpandingToolBar",
+           "docString": "<h3>ExpandingToolBar</h3>A smart ToolBar class that has a \"MainPanel\" which is always displayed, and an \"ExtraPanel\" that can be hidden to save space "
+         },
+         {
+           "className": "MeterToolBar",
+           "docString": "<h3>MeterToolBar</h3>A ToolBar that holds the VU Meter "
+         },
+         {
+           "className": "MixerToolBar",
+           "docString": "<h3>MixerToolBar</h3>A ToolBar that provides the record and playback volume settings "
+         },
+         {
+           "className": "ScrubbingToolBar",
+           "docString": "<h3>ScrubbingToolBar</h3>No Description"
+         },
+         {
+           "className": "ToolBar",
+           "docString": "<h3>ToolBar</h3>Works with ToolManager and ToolDock to provide a dockable window in which buttons can be placed "
+         },
+         {
+           "className": "ToolsToolBar",
+           "docString": "<h3>ToolsToolBar</h3>A kind of ToolBar with Tools on it "
+         },
+         {
+           "className": "TranscriptionToolBar",
+           "docString": "<h3>TranscriptionToolBar</h3>A kind of ToolBar used to help with analysing voice recordings "
+         },
+         {
+           "className": "Toolbars",
+           "docString": "<h3>Toolbars</h3>Toolbars are in the top or bottom dock of Audacity and provide buttons for the most commonly used functions.",
+           "isHead": true
+         },
+         {
+           "className": "ToolbarActions",
+           "docString": "<h3>ToolbarActions</h3>Namespace for functions for View Toolbar menu ",
+           "category":"Toolbars",
+           "snakeStyle": 2
+         },
+         {
+           "className": "ToolBarArea",
+           "docString": "<h3>ToolBarArea</h3>An alterantive to ToolBarFrame which can contain an ExpandingToolBar. ToolBarArea is used for a 'docked' ToolBar, ToolBarFrame for a floating one "
+         },
+         {
+           "className": "ToolBarArrangement",
+           "docString": "<h3>ToolBarArrangement</h3>Small class that holds some layout information for an ExpandingToolBar "
+         },
+         {
+           "className": "ToolBarConfiguration",
+           "docString": "<h3>ToolBarConfiguration</h3>No Description"
+         },
+         {
+           "className": "ToolBarFrame",
+           "docString": "<h3>ToolBarFrame</h3>A miniframe based container for ExpandingToolBars providing modeless presentation "
+         },
+         {
+           "className": "ToolBarGrabber",
+           "docString": "<h3>ToolBarGrabber</h3>Draws the grabber for an ExpandingToolBar "
+         },
+         {
+           "className": "ToolBarResizer",
+           "docString": "<h3>ToolBarResizer</h3>WxWindow that provides the resizer for a toolbar on the right hand side. Responsible for drawing the resizer appearance, resizing mouse events and constraining the resizing "
+         },
+         {
+           "className": "ToolCodes",
+           "docString": "<h3>ToolCodes</h3>No Description"
+         },
+         {
+           "className": "ToolDock",
+           "docString": "<h3>ToolDock</h3>A dynamic panel where a ToolBar can be docked "
+         },
+         {
+           "className": "ToolFrame",
+           "docString": "<h3>ToolFrame</h3>Class ToolFrame "
+         },
+         {
+           "className": "ToolManager",
+           "docString": "<h3>ToolManager</h3>Class ToolManager "
+         },
+         {
+           "className": "Toolbar Support",
+           "docString": "<h3>Toolbar Support</h3>Classes that help the main Toolbar classes",
+           "isHead": true
+         },
+
+         {
+           "className": "Menu",
+           "docString": "<h3>Menu</h3>+No Description",
+           "category":"Menus",
+           "snakeStyle": 2
+         },
+         {
+           "className": "MenuBarList",
+           "docString": "<h3>MenuBarList</h3>List of MenuBarListEntry "
+         },
+         {
+           "className": "MenuButtonHandle",
+           "docString": "<h3>MenuButtonHandle</h3>No Description"
+         },
+         {
+           "className": "MenuCreator",
+           "docString": "<h3>MenuCreator</h3>MenuCreator is responsible for creating the main menu bar "
+         },
+         {
+           "className": "MenuItem",
+           "docString": "<h3>MenuItem</h3>No Description"
+         },
+         {
+           "className": "MenuItemEnabler",
+           "docString": "<h3>MenuItemEnabler</h3>No Description"
+         },
+         {
+           "className": "MenuManager",
+           "docString": "<h3>MenuManager</h3>MenuManager handles updates to menu state "
+         },
+         {
+           "className": "MenuTable",
+           "docString": "<h3>MenuTable</h3>Namespace for structures that go into building a menu "
+         },
+         {
+           "className": "Menu Classes",
+           "docString": "<h3>Menu Classes</h3>We have helper classes to build the menus.  We intend that they become part of the Shuttle system",
+           "isHead": true
+         },
+
             {
               "className": "AboutDialog",
               "docString": "<h3>AboutDialog</h3>The AboutDialog shows the program version and developer credits ",
@@ -195,117 +919,724 @@ The detailed data for the chart follows.
               "docString": "<h3>Multi-Use Dialogs</h3>These dialogs are more general purpose and each is used in several places in Audacity.  For example, they allow setting of a single value using a slider, show progress, or act as a base class to provide the shared functionality that's shared by all effects dialogs",
               "isHead": true
             },
-            {
-              "className": "EffectsPrefs",
-              "docString": "<h3>EffectsPrefs</h3>A PrefsPanel for general GUI prefernces ",
-              "category":"Preferences",
-              "snakeStyle": 1
-            },
-            {
-              "className": "AudacityPrefs",
-              "docString": "<h3>AudacityPrefs</h3>Our own specialisation of wxFileConfig. It is essentially a renaming, though it does provide one new access function. Most of the prefs work is actually done by the InitPreferences() function "
-            },
-            {
-              "className": "BatchPrefs",
-              "docString": "<h3>BatchPrefs</h3>A probably unused PrefsPanel that in debug builds could offer a setting used in debugging batch (aka macros) processing "
-            },
-            {
-              "className": "DevicePrefs",
-              "docString": "<h3>DevicePrefs</h3>A PrefsPanel used to select recording and playback devices and other settings "
-            },
-            {
-              "className": "DirectoriesPrefs",
-              "docString": "<h3>DirectoriesPrefs</h3>A PrefsPanel used to select directories "
-            },
-            {
-              "className": "ExtImportPrefs",
-              "docString": "<h3>ExtImportPrefs</h3>A PrefsPanel used to select extended import filter options "
-            },
-            {
-              "className": "GUIPrefs",
-              "docString": "<h3>GUIPrefs</h3>A PrefsPanel for general GUI preferences "
-            },
-            {
-              "className": "ImportExportPrefs",
-              "docString": "<h3>ImportExportPrefs</h3>A PrefsPanel used to select import and export options "
-            },
-            {
-              "className": "KeyConfigPrefs",
-              "docString": "<h3>KeyConfigPrefs</h3>A PrefsPanel for keybindings "
-            },
-            {
-              "className": "LibraryPrefs",
-              "docString": "<h3>LibraryPrefs</h3>A PrefsPanel used to select manage external libraries like the MP3 and FFmpeg encoding libraries "
-            },
-            {
-              "className": "MidiIOPrefs",
-              "docString": "<h3>MidiIOPrefs</h3>A PrefsPanel used to select recording and playback devices and other settings "
-            },
-            {
-              "className": "ModulePrefs",
-              "docString": "<h3>ModulePrefs</h3>A PrefsPanel to enable/disable certain modules. 'Modules' are dynamically linked libraries that modify Audacity. They are plug-ins with names like mnod-script-pipe that add NEW features "
-            },
-            {
-              "className": "MousePrefs",
-              "docString": "<h3>MousePrefs</h3>A PrefsPanel that presents an interface for user to view the default bindings of mouse buttons to commands "
-            },
-            {
-              "className": "PlaybackPrefs",
-              "docString": "<h3>PlaybackPrefs</h3>A PrefsPanel used to select playback options "
-            },
-            {
-              "className": "ProjectsPrefs",
-              "docString": "<h3>ProjectsPrefs</h3>A PrefsPanel used to select options related to Audacity Project handling "
-            },
-            {
-              "className": "QualityPrefs",
-              "docString": "<h3>QualityPrefs</h3>A PrefsPanel used for setting audio quality "
-            },
-            {
-              "className": "RecordingPrefs",
-              "docString": "<h3>RecordingPrefs</h3>A PrefsPanel used to select recording options "
-            },
-            {
-              "className": "ShuttlePrefs",
-              "docString": "<h3>ShuttlePrefs</h3>A kind of Shuttle to exchange data with preferences e.g. the registry "
-            },
-            {
-              "className": "SpectrumPrefs",
-              "docString": "<h3>SpectrumPrefs</h3>A PrefsPanel for spectrum settings "
-            },
-            {
-              "className": "ThemePrefs",
-              "docString": "<h3>ThemePrefs</h3>A PrefsPanel that configures dynamic loading of Theme icons and colours "
-            },
-            {
-              "className": "TracksBehaviorsPrefs",
-              "docString": "<h3>TracksBehaviorsPrefs</h3>A PrefsPanel for Tracks Behaviors settings "
-            },
-            {
-              "className": "TracksPrefs",
-              "docString": "<h3>TracksPrefs</h3>A PrefsPanel for track display and behavior properties "
-            },
-            {
-              "className": "WarningsPrefs",
-              "docString": "<h3>WarningsPrefs</h3>A PrefsPanel to enable/disable certain warning messages "
-            },
-            {
-              "className": "WaveformPrefs",
-              "docString": "<h3>WaveformPrefs</h3>A PrefsPanel for spectrum settings "
-            },
-             {
-               "className": "PrefsListener",
-               "docString": "<h3>PrefsListener</h3>No Description"
-             },
-             {
-               "className": "PrefsNode",
-               "docString": "<h3>PrefsNode</h3>No Description"
-             },
-            {
-              "className": "Prefs",
-              "docString": "<h3>Prefs</h3>The Audacity Preference panels for the preference dialog that each hold a collection of related preferences",
-              "isHead": true
-            },
+
+         {
+           "className": "Shuttle",
+           "docString": "<h3>Shuttle</h3>Moves data from one place to another, converting it as required ",
+           "category":"Dialogs",
+           "snakeStyle": 2
+         },
+         {
+           "className": "ShuttleCli",
+           "docString": "<h3>ShuttleCli</h3>Derived from Shuttle, this class exchanges string parameters with a binary representation "
+         },
+         {
+           "className": "ShuttleDefaults",
+           "docString": "<h3>ShuttleDefaults</h3>Shuttle that sets parameters to their default values "
+         },
+         {
+           "className": "ShuttleGetAutomation",
+           "docString": "<h3>ShuttleGetAutomation</h3>Shuttle that gets parameter values into a string "
+         },
+         {
+           "className": "ShuttleGetDefinition",
+           "docString": "<h3>ShuttleGetDefinition</h3>Shuttle that retrieves a JSON format definition of a command's parameters "
+         },
+         {
+           "className": "ShuttleGui",
+           "docString": "<h3>ShuttleGui</h3>Derived from ShuttleGuiBase, an Audacity specific class for shuttling data to and from GUI "
+         },
+         {
+           "className": "ShuttleGuiBase",
+           "docString": "<h3>ShuttleGuiBase</h3>Base class for shuttling data to and from a GUI "
+         },
+         {
+           "className": "ShuttleParams",
+           "docString": "<h3>ShuttleParams</h3>Shuttle that deals with parameters. This is a base class with lots of virtual functions that do nothing by default "
+         },
+         {
+           "className": "ShuttleSetAutomation",
+           "docString": "<h3>ShuttleSetAutomation</h3>Shuttle that sets parameters to a value (from a string) "
+         },
+         {
+           "className": "Shuttle",
+           "docString": "<h3>Shuttle</h3>These classes take things out of and put things into dialogs",
+           "isHead": true
+         },
+         {
+           "className": "AndValidator",
+           "docString": "<h3>AndValidator</h3>Parameter must pass both of the supplied validators ",
+           "category":"Dialogs",
+           "snakeStyle": 1
+         },
+         {
+           "className": "BoolArrayValidator",
+           "docString": "<h3>BoolArrayValidator</h3>Parameter must be char array of booleans, e.g. \"011010001\" "
+         },
+         {
+           "className": "BoolValidator",
+           "docString": "<h3>BoolValidator</h3>Parameter must be a boolean "
+         },
+         {
+           "className": "DefaultValidator",
+           "docString": "<h3>DefaultValidator</h3>No Description"
+         },
+         {
+           "className": "DoubleValidator",
+           "docString": "<h3>DoubleValidator</h3>Parameter must be a floating-point number "
+         },
+         {
+           "className": "IntValidator",
+           "docString": "<h3>IntValidator</h3>Parameter must be integral "
+         },
+         {
+           "className": "OptionValidator",
+           "docString": "<h3>OptionValidator</h3>Parameter must be one of the defined options "
+         },
+         {
+           "className": "RangeValidator",
+           "docString": "<h3>RangeValidator</h3>Parameter must lie between the two given numbers "
+         },
+         {
+           "className": "Validator",
+           "docString": "<h3>Validator</h3>A Validator is an object which checks whether a wxVariant satisfies a certain criterion. This is a base validator which allows anything ",
+           "isHead": true
+         },
+
+
+         {
+           "className": "EqualizationDialog",
+           "docString": "<h3>EqualizationDialog</h3>EqualizationDialog controls a graph for         EffectEqualization. We should look at amalgamating the various graphing code, such as provided by EqualizationPanel, FreqWindow and FilterPanel",
+           "category":"Dialogs",
+           "snakeStyle": 1
+         },
+         {
+           "className": "EffectAutoDuckPanel",
+           "docString": "<h3>EffectAutoDuckPanel</h3>+No Description"
+         },
+         {
+           "className": "EffectCompressorPanel",
+           "docString": "<h3>EffectCompressorPanel</h3>+No Description"
+         },
+         {
+           "className": "EffectPanel",
+           "docString": "<h3>EffectPanel</h3>+No Description"
+         },
+         {
+           "className": "EffectScienFilterPanel",
+           "docString": "<h3>EffectScienFilterPanel</h3>EffectScienFilterPanel is used with EffectScienFilter and controls a graph for EffectScienFilter "
+         },
+         {
+           "className": "TrackPanel",
+           "docString": "<h3>TrackPanel</h3>Coordinates updates and operations on the main part of the screen which contains multiple tracks "
+         },
+         {
+           "className": "ExportMixerPanel",
+           "docString": "<h3>ExportMixerPanel</h3>Panel that displays mixing for advanced mixing option "
+         },
+         {
+           "className": "AdornedRulerPanel",
+           "docString": "<h3>AdornedRulerPanel</h3>This is an Audacity Specific ruler panel which additionally has border, selection markers, play marker "
+         },
+         {
+           "className": "BackedPanel",
+           "docString": "<h3>BackedPanel</h3>BackedPanel is for a panel that consists of a bitmap with something drawn over it. It supports efficient repainting when the overlays change and recreation of the bitmap when the panel size is changed "
+         },
+         {
+           "className": "CellularPanel",
+           "docString": "<h3>CellularPanel</h3>Formerly part of TrackPanel, this abstract base class has no special knowledge of Track objects and is intended for reuse with other windows "
+         },
+         {
+           "className": "CompressorPanel",
+           "docString": "<h3>CompressorPanel</h3>Panel used within the EffectCompressor for EffectCompressor "
+         },
+         {
+           "className": "EqualizationPanel",
+           "docString": "<h3>EqualizationPanel</h3>EqualizationPanel is used with EqualizationDialog and controls a graph for EffectEqualization. We should look at amalgamating the various graphing code, such as provided by FreqWindow and FilterPanel "
+         },
+         {
+           "className": "ImageRollPanel",
+           "docString": "<h3>ImageRollPanel</h3>A wxPanel which displays an ImageRoll "
+         },
+         {
+           "className": "InvisiblePanel",
+           "docString": "<h3>InvisiblePanel</h3>An InvisiblePanel is a panel which does not repaint its own background "
+         },
+         {
+           "className": "LyricsPanel",
+           "docString": "<h3>LyricsPanel</h3>LyricsPanel is a panel that paints the bouncing ball and the lyrics text "
+         },
+         {
+           "className": "MeterPanel",
+           "docString": "<h3>MeterPanel</h3>MeterPanel is a panel that paints the meter used for monitoring or playback "
+         },
+         {
+           "className": "OverlayPanel",
+           "docString": "<h3>OverlayPanel</h3>+No Description"
+         },
+         {
+           "className": "PrefsPanel",
+           "docString": "<h3>PrefsPanel</h3>Base class for a panel in the PrefsDialog. Classes derived from this class include BatchPrefs, DirectoriesPrefs, GUIPrefs, KeyConfigPrefs, MousePrefs, QualityPrefs, SpectrumPrefs and ThemePrefs "
+         },
+         {
+           "className": "RulerPanel",
+           "docString": "<h3>RulerPanel</h3>RulerPanel class allows you to work with a Ruler like any other wxWindow "
+         },
+         {
+           "className": "Panels",
+           "docString": "<h3>Panels</h3>Panels are components of a window or dialog that we draw onto.",
+           "isHead": true
+         },
+         {
+           "className": "NumberFormatter",
+           "docString": "<h3>NumberFormatter</h3>+No Description",
+           "category":"Dialogs",
+           "snakeStyle": 2
+         },
+         {
+           "className": "NumberScale",
+           "docString": "<h3>NumberScale</h3>+No Description"
+         },
+         {
+           "className": "NumericEditor",
+           "docString": "<h3>NumericEditor</h3>WxGridCellEditor for the NumericTextCtrl "
+         },
+         {
+           "className": "NumericField",
+           "docString": "<h3>NumericField</h3>NumericField is a class used in NumericTextCtrl "
+         },
+         {
+           "className": "NumericRenderer",
+           "docString": "<h3>NumericRenderer</h3>WxGridCellRenderer for the NumericTextCtrl "
+         },
+         {
+           "className": "NumericTextCtrl",
+           "docString": "<h3>NumericTextCtrl</h3>+No Description"
+         },
+         {
+           "className": "NumericTextCtrlAx",
+           "docString": "<h3>NumericTextCtrlAx</h3>NumericTextCtrlAx gives the NumericTextCtrl Accessibility "
+         },
+         {
+           "className": "NumericConverter",
+           "docString": "<h3>NumericConverter</h3>NumericConverter provides the advanced formatting control used in the selection bar of Audacity ",
+           "isHead": true
+         },
+
+         {
+           "className": "BenchmarkDialog",
+           "docString": "<h3>BenchmarkDialog</h3>BenchmarkDialog is used for measuring performance and accuracy of the BlockFile system ",
+           "category":"Dialogs",
+           "snakeStyle": 1
+         },
+         {
+           "className": "FileDialogBase",
+           "docString": "<h3>FileDialogBase</h3>+No Description"
+         },
+         {
+           "className": "FileDialogWrapper",
+           "docString": "<h3>FileDialogWrapper</h3>+No Description",
+           "isHead": true
+         },
+
+         {
+           "className": "Scrubber",
+           "docString": "<h3>Scrubber</h3>+No Description",
+           "category":"Audio",
+           "snakeStyle": 1
+         },
+         {
+           "className": "ScrubbingCell",
+           "docString": "<h3>ScrubbingCell</h3>+No Description"
+         },
+         {
+           "className": "ScrubbingHandle",
+           "docString": "<h3>ScrubbingHandle</h3>+No Description"
+         },
+         {
+           "className": "ScrubbingOptions",
+           "docString": "<h3>ScrubbingOptions</h3>+No Description"
+         },
+         {
+           "className": "ScrubbingOverlay",
+           "docString": "<h3>ScrubbingOverlay</h3>+No Description"
+         },
+         {
+           "className": "ScrubForwarder",
+           "docString": "<h3>ScrubForwarder</h3>+No Description"
+         },
+         {
+           "className": "ScrubPoller",
+           "docString": "<h3>ScrubPoller</h3>+No Description"
+         },
+         {
+           "className": "ScrubPollerThread",
+           "docString": "<h3>ScrubPollerThread</h3>+No Description"
+         },
+         {
+           "className": "ScrubState",
+           "docString": "<h3>ScrubState</h3>+No Description"
+         },
+         {
+           "className": "Scrubbing",
+           "docString": "<h3>Scrubbing</h3>Classes for Scrubbing.  All undocumented",
+           "isHead": true
+         },
+
+         {
+           "className": "ProjectAudioIO",
+           "docString": "<h3>ProjectAudioIO</h3>+No Description",
+           "category":"Audio",
+           "snakeStyle": 1
+         },
+         {
+           "className": "ProjectAudioManager",
+           "docString": "<h3>ProjectAudioManager</h3>+No Description"
+         },
+
+         {
+           "className": "AudioIO",
+           "docString": "<h3>AudioIO</h3>AudioIO uses the PortAudio library to play and record sound "
+         },
+         {
+           "className": "AudioIOBase",
+           "docString": "<h3>AudioIOBase</h3>A singleton object supporting queries of the state of any active audio streams, and audio device capabilities "
+         },
+         {
+           "className": "AudioIoCallback",
+           "docString": "<h3>AudioIoCallback</h3>AudioIoCallback is a class that implements the callback required by PortAudio. The callback needs to be responsive, has no GUI, and copies data into and out of the sound card buffers. It also sends data to the meters "
+         },
+         {
+           "className": "AudioIOListener",
+           "docString": "<h3>AudioIOListener</h3>Monitors record play start/stop and new blockfiles. Has callbacks for these events "
+         },
+         {
+           "className": "AudioIOStartStreamOptions",
+           "docString": "<h3>AudioIOStartStreamOptions</h3>Struct holding stream options, including a pointer to the time warp info and AudioIOListener and whether the playback is looped "
+         },
+         {
+           "className": "AudioThread",
+           "docString": "<h3>AudioThread</h3>Defined different on Mac and other platforms (on Mac it does not use wxWidgets wxThread), this class sits in a thread loop reading and writing audio "
+         },
+         {
+           "className": "AudioTrack",
+           "docString": "<h3>AudioTrack</h3>A Track that can load/save audio data to/from XML "
+         },
+         {
+           "className": "Audio",
+           "docString": "<h3>Audio</h3>Classes that deal with the portaudio thread",
+           "isHead": true
+         },
+
+
+         {
+           "className": "AudacityException",
+           "docString": "<h3>AudacityException</h3>Root of a hierarchy of classes that are thrown and caught by Audacity ",
+           "category":"Scaffolding",
+           "snakeStyle": 2
+         },
+         {
+           "className": "BadFormatException",
+           "docString": "<h3>BadFormatException</h3>+No Description"
+         },
+         {
+           "className": "FileException",
+           "docString": "<h3>FileException</h3>+No Description"
+         },
+         {
+           "className": "InconsistencyException",
+           "docString": "<h3>InconsistencyException</h3>+No Description"
+         },
+         {
+           "className": "MessageBoxException",
+           "docString": "<h3>MessageBoxException</h3>A subclass of AudacityException whose delayed handler action displays a message box. The message is specified by further subclasses. Not more than one message box will be displayed for each pass through the main event idle loop "
+         },
+         {
+           "className": "NotYetAvailableException",
+           "docString": "<h3>NotYetAvailableException</h3>+No Description"
+         },
+         {
+           "className": "SimpleMessageBoxException",
+           "docString": "<h3>SimpleMessageBoxException</h3>A MessageBoxException that shows a given, unvarying string "
+         },
+         {
+           "className": "UserException",
+           "docString": "<h3>UserException</h3>+No Description"
+         },
+         {
+           "className": "Exceptions",
+           "docString": "<h3>Exceptions</h3>For unexpected events such as file not found or not writable.",
+           "isHead": true
+         },
+         {
+           "className": "AButton",
+           "docString": "<h3>AButton</h3>A wxButton with mouse-over behaviour ",
+           "category":"Scaffolding",
+           "snakeStyle": 1
+         },
+         {
+           "className": "AColor",
+           "docString": "<h3>AColor</h3>AColor Manages color brushes and pens "
+         },
+         {
+           "className": "ASlider",
+           "docString": "<h3>ASlider</h3>ASlider is a custom slider, allowing for a slicker look and feel "
+         },
+         {
+           "className": "AStaticBitmap",
+           "docString": "<h3>AStaticBitmap</h3>A widget for bitmaps which ignores the erase event for flicker-free use "
+         },
+         {
+           "className": "auStaticText",
+           "docString": "<h3>auStaticText</h3>Like wxStaticText, except it can be themed. wxStaticText can't be ",
+           "isHead": true
+         },
+         {
+           "className": "Matrix",
+           "docString": "<h3>Matrix</h3>Holds a matrix of doubles and supports arithmetic, subsetting, and matrix inversion. Used by InterpolateAudio ",
+           "category":"Scaffolding",
+           "snakeStyle": 1
+         },
+         {
+           "className": "Biquad",
+           "docString": "<h3>Biquad</h3>Represents a biquad digital filter "
+         },
+         {
+           "className": "Vector",
+           "docString": "<h3>Vector</h3>Holds a matrix of doubles and supports arithmetic operations, including Vector-Matrix operations. Used by InterpolateAudio ",
+           "isHead": true
+         },
+         {
+           "className": "AudacityTimer",
+           "docString": "<h3>AudacityTimer</h3>Timer class dedicated to informing the TrackPanel that it is time to refresh some aspect of the screen ",
+           "category":"Scaffolding",
+           "snakeStyle": 1
+         },
+         {
+           "className": "AudacityApp",
+           "docString": "<h3>AudacityApp</h3>AudacityApp is the 'main' class for Audacity "
+         },
+         {
+           "className": "AudacityLogger",
+           "docString": "<h3>AudacityLogger</h3>AudacityLogger is a thread-safe logger class "
+         },
+         {
+           "className": "AudacityPrintout",
+           "docString": "<h3>AudacityPrintout</h3>Derived from wxPrintout, this class helps with printing "
+         },
+         {
+           "className": "Audacity Customizations",
+           "docString": "<h3>Audacity Customizations</h3>Customizations of Library classes"
+         },
+         {
+           "className": "ArrayOf",
+           "docString": "<h3>ArrayOf</h3>This simplifies arrays of arrays, each array separately allocated with NEW[] But it might be better to use std::Array<ArrayOf<X>, N> for some small constant N Or use just one array when sub-arrays have a common size and are not large "
+         },
+         {
+           "className": "ArraysOf",
+           "docString": "<h3>ArraysOf</h3>Memory.h template class for making an array of arrays "
+         },
+         {
+           "className": "Maybe",
+           "docString": "<h3>Maybe</h3>Like a smart pointer, allows for object to not exist (nullptr) "
+         },
+         {
+           "className": "Missing in wx",
+           "docString": "<h3>Missing in wx</h3>Our own extensions to wxWidgets and std::",
+           "isHead": true
+         },
+         {
+           "className": "wxArrayStringEx",
+           "docString": "<h3>wxArrayStringEx</h3>+No Description",
+           "category":"Scaffolding",
+           "snakeStyle": 1
+         },
+         {
+           "className": "wxFrameEx",
+           "docString": "<h3>wxFrameEx</h3>+No Description"
+         },
+         {
+           "className": "wxGtkString",
+           "docString": "<h3>wxGtkString</h3>+No Description"
+         },
+         {
+           "className": "wxOPENFILENAME",
+           "docString": "<h3>wxOPENFILENAME</h3>+No Description"
+         },
+         {
+           "className": "wxPizza",
+           "docString": "<h3>wxPizza</h3>+No Description"
+         },
+         {
+           "className": "wxTabTraversalWrapper",
+           "docString": "<h3>wxTabTraversalWrapper</h3>+No Description"
+         },
+         {
+           "className": "wxTreebook",
+           "docString": "<h3>wxTreebook</h3>A wxTreebook is a class like wxNotebook, but not yet supported by wxWidgets 2.6.3 "
+         },
+         {
+           "className": "wxTreebookItemData",
+           "docString": "<h3>wxTreebookItemData</h3>One item in a wxTreebook. (I think) "
+         },
+         {
+           "className": "wxDialogWrapper",
+           "docString": "<h3>wxDialogWrapper</h3>+No Description"
+         },
+         {
+           "className": "wxDirDialogWrapper",
+           "docString": "<h3>wxDirDialogWrapper</h3>+No Description"
+         },
+         {
+           "className": "wxFileNameWrapper",
+           "docString": "<h3>wxFileNameWrapper</h3>+No Description"
+         },
+         {
+           "className": "wxPanelWrapper",
+           "docString": "<h3>wxPanelWrapper</h3>+No Description"
+         },
+         {
+           "className": "wx Thing",
+           "docString": "<h3>wx Thing</h3>Our wrappers and variants of wxWidgets components",
+           "isHead": true
+         },
+         {
+           "className": "XMLFileReader",
+           "docString": "<h3>XMLFileReader</h3>Reads a file and passes the results through an XMLTagHandler ",
+           "category":"Scaffolding",
+           "snakeStyle": 1
+         },
+         {
+           "className": "XMLFileWriter",
+           "docString": "<h3>XMLFileWriter</h3>Wrapper to output XML data to files "
+         },
+         {
+           "className": "XMLStringWriter",
+           "docString": "<h3>XMLStringWriter</h3>Wrapper to output XML data to strings "
+         },
+         {
+           "className": "XMLTagHandler",
+           "docString": "<h3>XMLTagHandler</h3>This class is an interface which should be implemented by classes which wish to be able to load and save themselves using XML files "
+         },
+         {
+           "className": "XMLValueChecker",
+           "docString": "<h3>XMLValueChecker</h3>XMLValueChecker implements static bool methods for checking input values from XML files "
+         },
+         {
+           "className": "XMLWriter",
+           "docString": "<h3>XMLWriter</h3>Base class for XMLFileWriter and XMLStringWriter that provides the general functionality for creating XML in UTF8 encoding "
+         },
+         {
+           "className": "XML",
+           "docString": "<h3>XML</h3>Stuff for XML.  The .aup file is an XML file, and this stuff is responsible for reading and wriitng it.",
+           "isHead": true
+         },
+
+         {
+           "className": "AllProjects",
+           "docString": "<h3>AllProjects</h3>Object of class AllProjects acts like a standard library container, but refers to a global array of open projects. So you can iterate easily over shared pointers to them with range-for : for (auto pProject : AllProjects{}) { ... } The pointers are never null ",
+           "category":"Scaffolding",
+           "snakeStyle": 1
+         },
+         {
+           "className": "AllClipsConstIterator",
+           "docString": "<h3>AllClipsConstIterator</h3>+No Description"
+         },
+         {
+           "className": "AllClipsIterator",
+           "docString": "<h3>AllClipsIterator</h3>+No Description",
+           "isHead": true
+         },
+
+         {
+           "className": "MixerBoardFrame",
+           "docString": "<h3>MixerBoardFrame</h3>+No Description",
+           "category":"Plugins",
+           "snakeStyle": 1
+         },
+         {
+           "className": "MixerBoardScrolledWindow",
+           "docString": "<h3>MixerBoardScrolledWindow</h3>+No Description"
+         },
+         {
+           "className": "MixerTrackCluster",
+           "docString": "<h3>MixerTrackCluster</h3>+No Description"
+         },
+         {
+           "className": "MixerTrackSlider",
+           "docString": "<h3>MixerTrackSlider</h3>+No Description"
+         },
+         {
+           "className": "MixerBoard",
+           "docString": "<h3>MixerBoard</h3>+No Description",
+           "isHead": true
+         },
+
+         {
+           "className": "AV_Deleter",
+           "docString": "<h3>AV_Deleter</h3>AV_Deleter is part of FFmpeg support. It's used with the RAII idiom ",
+           "category":"Plugins",
+           "snakeStyle": 1
+         },
+         {
+           "className": "AV_Deleter< T, void, Fn >",
+           "docString": "<h3>AV_Deleter< T, void, Fn ></h3>+No Description"
+         },
+         {
+           "className": "AV_Deleterp",
+           "docString": "<h3>AV_Deleterp</h3>+No Description"
+         },
+         {
+           "className": "AVPacketEx",
+           "docString": "<h3>AVPacketEx</h3>+No Description"
+         },
+         {
+           "className": "FFmpegContext",
+           "docString": "<h3>FFmpegContext</h3>+No Description"
+         },
+         {
+           "className": "FFmpegImportFileHandle",
+           "docString": "<h3>FFmpegImportFileHandle</h3>! Does acual import, returned by FFmpegImportPlugin::Open "
+         },
+         {
+           "className": "FFmpegLibs",
+           "docString": "<h3>FFmpegLibs</h3>Class used to dynamically load FFmpeg libraries "
+         },
+         {
+           "className": "FFmpegPreset",
+           "docString": "<h3>FFmpegPreset</h3>+No Description"
+         },
+         {
+           "className": "FFmpegPresets",
+           "docString": "<h3>FFmpegPresets</h3>+No Description",
+           "isHead": true
+         },
+
+         {
+           "className": "ExportPlugin",
+           "docString": "<h3>ExportPlugin</h3>+No Description",
+           "category":"Plugins",
+           "snakeStyle": 1
+         },
+         {
+           "className": "FFmpegImportPlugin",
+           "docString": "<h3>FFmpegImportPlugin</h3>An ImportPlugin for FFmpeg data "
+         },
+         {
+           "className": "FLACImportPlugin",
+           "docString": "<h3>FLACImportPlugin</h3>An ImportPlugin for FLAC data "
+         },
+         {
+           "className": "GStreamerImportPlugin",
+           "docString": "<h3>GStreamerImportPlugin</h3>An ImportPlugin for GStreamer data "
+         },
+         {
+           "className": "ImportPlugin",
+           "docString": "<h3>ImportPlugin</h3>Base class for FlacImportPlugin, LOFImportPlugin, MP3ImportPlugin, OggImportPlugin and PCMImportPlugin. Gives API for sound file import "
+         },
+         {
+           "className": "LOFImportPlugin",
+           "docString": "<h3>LOFImportPlugin</h3>An ImportPlugin for LOF data "
+         },
+         {
+           "className": "MP3ImportPlugin",
+           "docString": "<h3>MP3ImportPlugin</h3>An ImportPlugin for MP3 data "
+         },
+         {
+           "className": "OGGImportPlugin",
+           "docString": "<h3>OGGImportPlugin</h3>An ImportPlugin for OGG data "
+         },
+         {
+           "className": "PCMImportPlugin",
+           "docString": "<h3>PCMImportPlugin</h3>An ImportPlugin for PCM data "
+         },
+         {
+           "className": "RegisteredImportPlugin",
+           "docString": "<h3>RegisteredImportPlugin</h3>No Description"
+         },
+         {
+           "className": "RegisteredUnusableImportPlugin",
+           "docString": "<h3>RegisteredUnusableImportPlugin</h3>No Description"
+         },
+         {
+           "className": "UnusableImportPlugin",
+           "docString": "<h3>UnusableImportPlugin</h3>Used in place of a real plug in for plug ins that have not been compiled or are not available in this version of Audacity. Has enough information to identify the file extensions that would be used, but little else "
+         },
+         {
+           "className": "Plugins",
+           "docString": "<h3>Plugins</h3>For extending Audacity, e.g. for imports, exports and effects, often with third party code rather than our own",
+           "isHead": true
+         },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+         {
+           "className": "SpecCache",
+           "docString": "<h3>SpecCache</h3>+No Description",
+           "category":"Effects",
+           "snakeStyle": 1
+         },
+         {
+           "className": "SpecPowerCalculation",
+           "docString": "<h3>SpecPowerCalculation</h3>SpecPowerCalculation is a simple spectral power level meter "
+         },
+         {
+           "className": "SpecPxCache",
+           "docString": "<h3>SpecPxCache</h3>+No Description"
+         },
+         {
+           "className": "SpectralSelectionBar",
+           "docString": "<h3>SpectralSelectionBar</h3>(not quite a Toolbar) at foot of screen for setting and viewing the frequency selection range "
+         },
+         {
+           "className": "SpectralSelectionBarListener",
+           "docString": "<h3>SpectralSelectionBarListener</h3>A class used to forward events to do with changes in the SpectralSelectionBar "
+         },
+         {
+           "className": "SpectrogramSettings",
+           "docString": "<h3>SpectrogramSettings</h3>Spectrogram settings, either for one track or as defaults "
+         },
+         {
+           "className": "SpectrumAnalyst",
+           "docString": "<h3>SpectrumAnalyst</h3>Used for finding the peaks, for snapping to peaks "
+         },
+         {
+           "className": "SpectrumView",
+           "docString": "<h3>SpectrumView</h3>+No Description"
+         },
+         {
+           "className": "SpectrumVRulerControls",
+           "docString": "<h3>SpectrumVRulerControls</h3>+No Description"
+         },
+         {
+           "className": "SpectrumVRulerMenuTable",
+           "docString": "<h3>SpectrumVRulerMenuTable</h3>+No Description"
+         },
+         {
+           "className": "SpectrumVZoomHandle",
+           "docString": "<h3>SpectrumVZoomHandle</h3>+No Description",
+           "isHead": true
+         },
+
+
             {
               "className": "EffectAmplify",
               "docString": "<h3>EffectAmplify</h3>An Effect that makes a sound louder or softer ",
@@ -622,390 +1953,34 @@ The detailed data for the chart follows.
            "isHead": true
          },
          {
-           "className": "AppCommandEvent",
-           "docString": "<h3>AppCommandEvent</h3>An event 'envelope' for sending Command objects through the wxwidgets event loop ",
-           "category":"Commands",
-           "snakeStyle": 2
-         },
-         {
-           "className": "ApplyAndSendResponse",
-           "docString": "<h3>ApplyAndSendResponse</h3>ApplyAndSendResponse is a DecoratoredCommand that performs the given command and then outputs a status message according to the result. It manages a CommandContext which is passed into its mCommand, so that result messages are routed back to the right place "
-         },
-         {
-           "className": "ApplyMacroDialog",
-           "docString": "<h3>ApplyMacroDialog</h3>Shows progress in executing commands in MacroCommands "
-         },
-         {
-           "className": "AudacityCommand",
-           "docString": "<h3>AudacityCommand</h3>Base class for command in Audacity "
-         },
-         {
-           "className": "BatchEvalCommand",
-           "docString": "<h3>BatchEvalCommand</h3>Given a string representing a command, pass it to the MacroCommands system "
-         },
-         {
-           "className": "BatchEvalCommandType",
-           "docString": "<h3>BatchEvalCommandType</h3>The <something>CommandType classes are classes which are going away. They all provided a BuildSignature (what parameters they accept) and Name, but that is now replaced by the AudacityCommand interface "
-         },
-         {
-           "className": "BriefCommandMessageTarget",
-           "docString": "<h3>BriefCommandMessageTarget</h3>BriefCommandMessageTarget is a CommandOutputTarget that provides status in a briefer listing "
-         },
-         {
-           "className": "BriefCommandOutputTargets",
-           "docString": "<h3>BriefCommandOutputTargets</h3>BriefCommandOutputTargets is a CommandOutputTargets that replaces the status message target with the BriefCommandMessageTarget version "
-         },
-         {
-           "className": "BuiltinCommandsModule",
-           "docString": "<h3>BuiltinCommandsModule</h3>Internal module to auto register all built in commands. It is closely modelled on BuiltinEffectsModule "
-         },
-         {
-           "className": "CommandBuilder",
-           "docString": "<h3>CommandBuilder</h3>A type of factory for Commands of various sorts "
-         },
-         {
-           "className": "CommandContext",
-           "docString": "<h3>CommandContext</h3>CommandContext provides addiitonal information to an 'Apply()' command. It provides the project, and provides output channels for Error, Progress and Status. Status is used for general messaging from a command back to its invoker "
-         },
-         {
-           "className": "CommandDirectory",
-           "docString": "<h3>CommandDirectory</h3>Allows registration and lookup (by name) of command types "
-         },
-         {
-           "className": "CommandFlagOptions",
-           "docString": "<h3>CommandFlagOptions</h3>No Description"
-         },
-         {
-           "className": "CommandFunctor",
-           "docString": "<h3>CommandFunctor</h3>CommandFunctor is a very small class that works with CommandManager. It holds the callback for one command "
-         },
-         {
-           "className": "CommandGroupItem",
-           "docString": "<h3>CommandGroupItem</h3>No Description"
-         },
-         {
-           "className": "CommandHandler",
-           "docString": "<h3>CommandHandler</h3>Contains methods for applying commands that are passed to it "
-         },
-         {
-           "className": "CommandImplementation",
-           "docString": "<h3>CommandImplementation</h3>Derived from OldStyleCommand. It validates and applies the command. CommandImplementation::Apply() is overloaded in classes derived from it "
-         },
-         {
-           "className": "CommandItem",
-           "docString": "<h3>CommandItem</h3>No Description"
-         },
-         {
-           "className": "CommandList",
-           "docString": "<h3>CommandList</h3>List of CommandListEntry "
-         },
-         {
-           "className": "CommandListEntry",
-           "docString": "<h3>CommandListEntry</h3>CommandListEntry is a structure used by CommandManager "
-         },
-         {
-           "className": "CommandManager",
-           "docString": "<h3>CommandManager</h3>CommandManager implements a system for organizing all user-callable commands "
-         },
-         {
-           "className": "CommandMessageTarget",
-           "docString": "<h3>CommandMessageTarget</h3>Interface for objects that can receive (string) messages from a command "
-         },
-         {
-           "className": "CommandMessageTargetDecorator",
-           "docString": "<h3>CommandMessageTargetDecorator</h3>CommandMessageTargetDecorator is a CommandOutputTarget that forwards its work on to another one. Typically we derive from it to modify some functionality and forward the rest "
-         },
-         {
-           "className": "CommandOutputTargets",
-           "docString": "<h3>CommandOutputTargets</h3>CommandOutputTargets a mix of three output classes to output progress indication, status messages and errors "
-         },
-         {
-           "className": "CommandParameters",
-           "docString": "<h3>CommandParameters</h3>CommandParameters, derived from wxFileConfig, is essentially doing the same things as the Shuttle classes. It does text <-> binary conversions of parameters. It does not seem to be using actual file read/writing "
-         },
-         {
-           "className": "CommandProgressTarget",
-           "docString": "<h3>CommandProgressTarget</h3>Interface for objects that can receive command progress information "
-         },
-         {
-           "className": "CommandSignature",
-           "docString": "<h3>CommandSignature</h3>Class that maps parameter names to default values and validators "
-         },
-         {
-           "className": "CompareAudioCommand",
-           "docString": "<h3>CompareAudioCommand</h3>Returns information about the amount of audio that is about a certain threshold of difference in two selected tracks "
-         },
-         {
-           "className": "DecoratedCommand",
-           "docString": "<h3>DecoratedCommand</h3>DecoratedCommand is a decorator for command. It forwards functions to the mCommand it holds "
-         },
-         {
-           "className": "DemoCommand",
-           "docString": "<h3>DemoCommand</h3>An AudacityCommand that does nothing but provide parameters. It is for development purposes "
-         },
-         {
-           "className": "DragCommand",
-           "docString": "<h3>DragCommand</h3>Command that sets clip information "
-         },
-         {
-           "className": "EffectClientInterface",
-           "docString": "<h3>EffectClientInterface</h3>EffectClientInterface provides the ident interface to Effect, and is what makes Effect into a plug-in command. It has functions for realtime that are not part of AudacityCommand "
-         },
-         {
-           "className": "ExportCommand",
-           "docString": "<h3>ExportCommand</h3>Command for exporting audio "
-         },
-         {
-           "className": "GetInfoCommand",
-           "docString": "<h3>GetInfoCommand</h3>Command which outputs a list of available menu commands on the status channel "
-         },
-         {
-           "className": "GetPreferenceCommand",
-           "docString": "<h3>GetPreferenceCommand</h3>Command for getting the value of a preference "
-         },
-         {
-           "className": "GetTrackInfoCommand",
-           "docString": "<h3>GetTrackInfoCommand</h3>Obsolete. GetInfo now does it "
-         },
-         {
-           "className": "HelpCommand",
-           "docString": "<h3>HelpCommand</h3>Command to get help about other commands "
-         },
-         {
-           "className": "ImportCommand",
-           "docString": "<h3>ImportCommand</h3>Command for importing audio "
-         },
-         {
-           "className": "LispifiedCommandOutputTargets",
-           "docString": "<h3>LispifiedCommandOutputTargets</h3>LispifiedCommandOutputTargets is a CommandOutputTargets that replaces the status message target with the LispyCommandMessageTarget version "
-         },
-         {
-           "className": "LispyCommandMessageTarget",
-           "docString": "<h3>LispyCommandMessageTarget</h3>LispyCommandMessageTarget is a CommandOutputTarget that provides status in a lispy style "
-         },
-         {
-           "className": "MacroCommands",
-           "docString": "<h3>MacroCommands</h3>Maintains the list of commands for batch/macro processing. See also MacrosWindow and ApplyMacroDialog "
-         },
-         {
-           "className": "MacroCommandsCatalog",
-           "docString": "<h3>MacroCommandsCatalog</h3>No Description"
-         },
-         {
-           "className": "MenuBarListEntry",
-           "docString": "<h3>MenuBarListEntry</h3>MenuBarListEntry is a structure used by CommandManager "
-         },
-         {
-           "className": "MessageCommand",
-           "docString": "<h3>MessageCommand</h3>Command to get a message response. Used for testing, and used internally to create messages for forwarding "
-         },
-         {
-           "className": "MessageCommandType",
-           "docString": "<h3>MessageCommandType</h3>The <something>CommandType classes are classes which are going away. They all provided a BuildSignature (what parameters they accept) and Name, but that is now replaced by the AudacityCommand interface "
-         },
-         {
-           "className": "MessageDialogTarget",
-           "docString": "<h3>MessageDialogTarget</h3>MessageDialogTarget is a CommandOutputTarget that sends its status to the LongMessageDialog "
-         },
-         {
-           "className": "OldStyleCommand",
-           "docString": "<h3>OldStyleCommand</h3>Abstract base class for command interface. This is the version created by Dan Horgan. It was previously a factory for other command classes. It created a separation between the type of a command and the command itself, which is being removed. These Cmmands were managed by CommandDirectory "
-         },
-         {
-           "className": "OldStyleCommandPointer",
-           "docString": "<h3>OldStyleCommandPointer</h3>OldStyleCommandPointer is a unique_ptr to an OldStyleCommand "
-         },
-         {
-           "className": "OldStyleCommandType",
-           "docString": "<h3>OldStyleCommandType</h3>Base class for containing data common to all commands of a given type. Also acts as a factory "
-         },
-         {
-           "className": "OpenProjectCommand",
-           "docString": "<h3>OpenProjectCommand</h3>Command for opening an Audacity project "
-         },
-         {
-           "className": "ReservedCommandFlag",
-           "docString": "<h3>ReservedCommandFlag</h3>No Description"
-         },
-         {
-           "className": "SaveProjectCommand",
-           "docString": "<h3>SaveProjectCommand</h3>Command for saving an Audacity project "
-         },
-         {
-           "className": "ScreenshotCommand",
-           "docString": "<h3>ScreenshotCommand</h3>Implements a command for capturing various areas of the screen or project window. It's one big if-elseif switch statement with lots of small calculations of rectangles "
-         },
-         {
-           "className": "ScriptCommandRelay",
-           "docString": "<h3>ScriptCommandRelay</h3>ScriptCommandRelay is just a way to move some of the scripting-specific code out of ModuleManager "
-         },
-         {
-           "className": "SelectCommand",
-           "docString": "<h3>SelectCommand</h3>Command for changing time, frequency and track selection. This class is a little baroque, as it uses the SelectTimeCommand, SelectFrequenciesCommand and SelectTracksCommand, when it could just explicitly code all three "
-         },
-         {
-           "className": "SelectFrequenciesCommand",
-           "docString": "<h3>SelectFrequenciesCommand</h3>Command for changing the frequency selection "
-         },
-         {
-           "className": "SelectTimeCommand",
-           "docString": "<h3>SelectTimeCommand</h3>Command for changing the time selection "
-         },
-         {
-           "className": "SelectTracksCommand",
-           "docString": "<h3>SelectTracksCommand</h3>Command for changing the selection of tracks "
-         },
-         {
-           "className": "SetClipCommand",
-           "docString": "<h3>SetClipCommand</h3>Command that sets clip information "
-         },
-         {
-           "className": "SetEnvelopeCommand",
-           "docString": "<h3>SetEnvelopeCommand</h3>Command that sets envelope information "
-         },
-         {
-           "className": "SetLabelCommand",
-           "docString": "<h3>SetLabelCommand</h3>Command that sets label information "
-         },
-         {
-           "className": "SetPreferenceCommand",
-           "docString": "<h3>SetPreferenceCommand</h3>Command for setting a preference to a given value "
-         },
-         {
-           "className": "SetProjectCommand",
-           "docString": "<h3>SetProjectCommand</h3>Command that sets project information "
-         },
-         {
-           "className": "SetTrackAudioCommand",
-           "docString": "<h3>SetTrackAudioCommand</h3>A SetTrackBase that sets pan, gain, mute and solo "
-         },
-         {
-           "className": "SetTrackBase",
-           "docString": "<h3>SetTrackBase</h3>Base class for the various SetTrackCommand classes. Subclasses provide the settings that are relevant to them "
-         },
-         {
-           "className": "SetTrackCommand",
-           "docString": "<h3>SetTrackCommand</h3>A SetTrackBase that combines SetTrackStatusCommand, SetTrackAudioCommand and SetTrackVisualsCommand "
-         },
-         {
-           "className": "SetTrackStatusCommand",
-           "docString": "<h3>SetTrackStatusCommand</h3>A SetTrackBase that sets name, selected and focus "
-         },
-         {
-           "className": "SetTrackVisualsCommand",
-           "docString": "<h3>SetTrackVisualsCommand</h3>A SetTrackBase that sets appearance of a track "
-         },
-         {
-           "className": "SubMenuListEntry",
-           "docString": "<h3>SubMenuListEntry</h3>SubMenuListEntry is a structure used by CommandManager "
-         },
-         {
-           "className": "TargetFactory",
-           "docString": "<h3>TargetFactory</h3>TargetFactory makes Command output targets. By default, we ignore progress updates but display all other messages directly "
-         },
-         {
-           "className": "Audacity Commands",
-           "docString": "<h3>Audacity Commands</h3>These are the scripting commands in Audacity which are designed to be called from an external script, such as a script in python.  They are also available from the 'extra' menu.",
-           "isHead": true
-         },
-         {
-           "className": "ControlToolBar",
-           "docString": "<h3>ControlToolBar</h3>A ToolBar that has the main Transport buttons ",
-           "category":"Toolbars",
+           "className": "EQCurve",
+           "docString": "<h3>EQCurve</h3>EQCurve is used with EffectEqualization ",
+           "category":"Tracks",
            "snakeStyle": 1
          },
          {
-           "className": "DeviceToolBar",
-           "docString": "<h3>DeviceToolBar</h3>A toobar to allow easier changing of input and output devices "
+           "className": "EQPoint",
+           "docString": "<h3>EQPoint</h3>EQPoint is used with EQCurve and hence EffectEqualization "
          },
          {
-           "className": "EditToolBar",
-           "docString": "<h3>EditToolBar</h3>A ToolBar that has the edit buttons on it "
+           "className": "EnvelopeEditor",
+           "docString": "<h3>EnvelopeEditor</h3>+No Description"
          },
          {
-           "className": "ExpandingToolBar",
-           "docString": "<h3>ExpandingToolBar</h3>A smart ToolBar class that has a \"MainPanel\" which is always displayed, and an \"ExtraPanel\" that can be hidden to save space "
+           "className": "EnvelopeHandle",
+           "docString": "<h3>EnvelopeHandle</h3>+No Description"
          },
          {
-           "className": "MeterToolBar",
-           "docString": "<h3>MeterToolBar</h3>A ToolBar that holds the VU Meter "
+           "className": "EnvPoint",
+           "docString": "<h3>EnvPoint</h3>EnvPoint, derived from XMLTagHandler, provides Envelope with a draggable point type "
          },
          {
-           "className": "MixerToolBar",
-           "docString": "<h3>MixerToolBar</h3>A ToolBar that provides the record and playback volume settings "
-         },
-         {
-           "className": "ScrubbingToolBar",
-           "docString": "<h3>ScrubbingToolBar</h3>No Description"
-         },
-         {
-           "className": "ToolBar",
-           "docString": "<h3>ToolBar</h3>Works with ToolManager and ToolDock to provide a dockable window in which buttons can be placed "
-         },
-         {
-           "className": "ToolsToolBar",
-           "docString": "<h3>ToolsToolBar</h3>A kind of ToolBar with Tools on it "
-         },
-         {
-           "className": "TranscriptionToolBar",
-           "docString": "<h3>TranscriptionToolBar</h3>A kind of ToolBar used to help with analysing voice recordings "
-         },
-         {
-           "className": "Toolbars",
-           "docString": "<h3>Toolbars</h3>Toolbars are in the top or bottom dock of Audacity and provide buttons for the most commonly used functions.",
+           "className": "Envelope",
+           "docString": "<h3>Envelope</h3>Piecewise linear or piecewise exponential function from double to double ",
            "isHead": true
          },
-         {
-           "className": "ToolbarActions",
-           "docString": "<h3>ToolbarActions</h3>Namespace for functions for View Toolbar menu ",
-           "category":"Toolbars",
-           "snakeStyle": 2
-         },
-         {
-           "className": "ToolBarArea",
-           "docString": "<h3>ToolBarArea</h3>An alterantive to ToolBarFrame which can contain an ExpandingToolBar. ToolBarArea is used for a 'docked' ToolBar, ToolBarFrame for a floating one "
-         },
-         {
-           "className": "ToolBarArrangement",
-           "docString": "<h3>ToolBarArrangement</h3>Small class that holds some layout information for an ExpandingToolBar "
-         },
-         {
-           "className": "ToolBarConfiguration",
-           "docString": "<h3>ToolBarConfiguration</h3>No Description"
-         },
-         {
-           "className": "ToolBarFrame",
-           "docString": "<h3>ToolBarFrame</h3>A miniframe based container for ExpandingToolBars providing modeless presentation "
-         },
-         {
-           "className": "ToolBarGrabber",
-           "docString": "<h3>ToolBarGrabber</h3>Draws the grabber for an ExpandingToolBar "
-         },
-         {
-           "className": "ToolBarResizer",
-           "docString": "<h3>ToolBarResizer</h3>WxWindow that provides the resizer for a toolbar on the right hand side. Responsible for drawing the resizer appearance, resizing mouse events and constraining the resizing "
-         },
-         {
-           "className": "ToolCodes",
-           "docString": "<h3>ToolCodes</h3>No Description"
-         },
-         {
-           "className": "ToolDock",
-           "docString": "<h3>ToolDock</h3>A dynamic panel where a ToolBar can be docked "
-         },
-         {
-           "className": "ToolFrame",
-           "docString": "<h3>ToolFrame</h3>Class ToolFrame "
-         },
-         {
-           "className": "ToolManager",
-           "docString": "<h3>ToolManager</h3>Class ToolManager "
-         },
-         {
-           "className": "Toolbar Support",
-           "docString": "<h3>Toolbar Support</h3>Classes that help the main Toolbar classes",
-           "isHead": true
-         },
+
+
          {
            "className": "TrackActions",
            "docString": "<h3>TrackActions</h3>xNo Description",
@@ -1601,944 +2576,34 @@ The detailed data for the chart follows.
            "className": "Importer",
            "docString": "<h3>Importer</h3>Class which actulaly imports the auido, using functions defined in ImportPCM.cpp, ImportMP3.cpp, ImportOGG.cpp, ImportRawData.cpp, and ImportLOF.cpp ",
            "isHead": true
-         },
-         {
-           "className": "ExportPlugin",
-           "docString": "<h3>ExportPlugin</h3>+No Description",
-           "category":"Plugins",
-           "snakeStyle": 1
-         },
-         {
-           "className": "FFmpegImportPlugin",
-           "docString": "<h3>FFmpegImportPlugin</h3>An ImportPlugin for FFmpeg data "
-         },
-         {
-           "className": "FLACImportPlugin",
-           "docString": "<h3>FLACImportPlugin</h3>An ImportPlugin for FLAC data "
-         },
-         {
-           "className": "GStreamerImportPlugin",
-           "docString": "<h3>GStreamerImportPlugin</h3>An ImportPlugin for GStreamer data "
-         },
-         {
-           "className": "ImportPlugin",
-           "docString": "<h3>ImportPlugin</h3>Base class for FlacImportPlugin, LOFImportPlugin, MP3ImportPlugin, OggImportPlugin and PCMImportPlugin. Gives API for sound file import "
-         },
-         {
-           "className": "LOFImportPlugin",
-           "docString": "<h3>LOFImportPlugin</h3>An ImportPlugin for LOF data "
-         },
-         {
-           "className": "MP3ImportPlugin",
-           "docString": "<h3>MP3ImportPlugin</h3>An ImportPlugin for MP3 data "
-         },
-         {
-           "className": "OGGImportPlugin",
-           "docString": "<h3>OGGImportPlugin</h3>An ImportPlugin for OGG data "
-         },
-         {
-           "className": "PCMImportPlugin",
-           "docString": "<h3>PCMImportPlugin</h3>An ImportPlugin for PCM data "
-         },
-         {
-           "className": "RegisteredImportPlugin",
-           "docString": "<h3>RegisteredImportPlugin</h3>No Description"
-         },
-         {
-           "className": "RegisteredUnusableImportPlugin",
-           "docString": "<h3>RegisteredUnusableImportPlugin</h3>No Description"
-         },
-         {
-           "className": "UnusableImportPlugin",
-           "docString": "<h3>UnusableImportPlugin</h3>Used in place of a real plug in for plug ins that have not been compiled or are not available in this version of Audacity. Has enough information to identify the file extensions that would be used, but little else "
-         },
-         {
-           "className": "Plugins",
-           "docString": "<h3>Plugins</h3>For extending Audacity, e.g. for imports, exports and effects, often with third party code rather than our own",
-           "isHead": true
-         },
-         {
-           "className": "Shuttle",
-           "docString": "<h3>Shuttle</h3>Moves data from one place to another, converting it as required ",
-           "category":"Dialogs",
-           "snakeStyle": 2
-         },
-         {
-           "className": "ShuttleCli",
-           "docString": "<h3>ShuttleCli</h3>Derived from Shuttle, this class exchanges string parameters with a binary representation "
-         },
-         {
-           "className": "ShuttleDefaults",
-           "docString": "<h3>ShuttleDefaults</h3>Shuttle that sets parameters to their default values "
-         },
-         {
-           "className": "ShuttleGetAutomation",
-           "docString": "<h3>ShuttleGetAutomation</h3>Shuttle that gets parameter values into a string "
-         },
-         {
-           "className": "ShuttleGetDefinition",
-           "docString": "<h3>ShuttleGetDefinition</h3>Shuttle that retrieves a JSON format definition of a command's parameters "
-         },
-         {
-           "className": "ShuttleGui",
-           "docString": "<h3>ShuttleGui</h3>Derived from ShuttleGuiBase, an Audacity specific class for shuttling data to and from GUI "
-         },
-         {
-           "className": "ShuttleGuiBase",
-           "docString": "<h3>ShuttleGuiBase</h3>Base class for shuttling data to and from a GUI "
-         },
-         {
-           "className": "ShuttleParams",
-           "docString": "<h3>ShuttleParams</h3>Shuttle that deals with parameters. This is a base class with lots of virtual functions that do nothing by default "
-         },
-         {
-           "className": "ShuttleSetAutomation",
-           "docString": "<h3>ShuttleSetAutomation</h3>Shuttle that sets parameters to a value (from a string) "
-         },
-         {
-           "className": "Shuttle",
-           "docString": "<h3>Shuttle</h3>These classes take things out of and put things into dialogs",
-           "isHead": true
-         },
-         {
-           "className": "Menu",
-           "docString": "<h3>Menu</h3>+No Description",
-           "category":"Menus",
-           "snakeStyle": 2
-         },
-         {
-           "className": "MenuBarList",
-           "docString": "<h3>MenuBarList</h3>List of MenuBarListEntry "
-         },
-         {
-           "className": "MenuButtonHandle",
-           "docString": "<h3>MenuButtonHandle</h3>No Description"
-         },
-         {
-           "className": "MenuCreator",
-           "docString": "<h3>MenuCreator</h3>MenuCreator is responsible for creating the main menu bar "
-         },
-         {
-           "className": "MenuItem",
-           "docString": "<h3>MenuItem</h3>No Description"
-         },
-         {
-           "className": "MenuItemEnabler",
-           "docString": "<h3>MenuItemEnabler</h3>No Description"
-         },
-         {
-           "className": "MenuManager",
-           "docString": "<h3>MenuManager</h3>MenuManager handles updates to menu state "
-         },
-         {
-           "className": "MenuTable",
-           "docString": "<h3>MenuTable</h3>Namespace for structures that go into building a menu "
-         },
-         {
-           "className": "Menu Classes",
-           "docString": "<h3>Menu Classes</h3>We have helper classes to build the menus.  We intend that they become part of the Shuttle system",
-           "isHead": true
-         },
-         {
-           "className": "AndValidator",
-           "docString": "<h3>AndValidator</h3>Parameter must pass both of the supplied validators ",
-           "category":"Dialogs",
-           "snakeStyle": 1
-         },
-         {
-           "className": "BoolArrayValidator",
-           "docString": "<h3>BoolArrayValidator</h3>Parameter must be char array of booleans, e.g. \"011010001\" "
-         },
-         {
-           "className": "BoolValidator",
-           "docString": "<h3>BoolValidator</h3>Parameter must be a boolean "
-         },
-         {
-           "className": "DefaultValidator",
-           "docString": "<h3>DefaultValidator</h3>No Description"
-         },
-         {
-           "className": "DoubleValidator",
-           "docString": "<h3>DoubleValidator</h3>Parameter must be a floating-point number "
-         },
-         {
-           "className": "IntValidator",
-           "docString": "<h3>IntValidator</h3>Parameter must be integral "
-         },
-         {
-           "className": "OptionValidator",
-           "docString": "<h3>OptionValidator</h3>Parameter must be one of the defined options "
-         },
-         {
-           "className": "RangeValidator",
-           "docString": "<h3>RangeValidator</h3>Parameter must lie between the two given numbers "
-         },
-         {
-           "className": "Validator",
-           "docString": "<h3>Validator</h3>A Validator is an object which checks whether a wxVariant satisfies a certain criterion. This is a base validator which allows anything ",
-           "isHead": true
-         },
-         {
-           "className": "ODComputeSummaryTask",
-           "docString": "<h3>ODComputeSummaryTask</h3>A class representing a modular task to be used with the On-Demand structures ",
-           "category":"Blockfiles",
-           "snakeStyle": 1
-         },
-         {
-           "className": "ODCondition",
-           "docString": "<h3>ODCondition</h3>No Description"
-         },
-         {
-           "className": "ODDecodeFlacTask",
-           "docString": "<h3>ODDecodeFlacTask</h3>A class representing a modular task to be used with the On-Demand structures "
-         },
-         {
-           "className": "ODDecodeTask",
-           "docString": "<h3>ODDecodeTask</h3>A class representing a modular task to be used with the On-Demand structures "
-         },
-         {
-           "className": "ODFileDecoder",
-           "docString": "<h3>ODFileDecoder</h3>Class to decode a particular file (one per file). Saves info such as filename and length (after the header is read.) "
-         },
-         {
-           "className": "ODFlacDecoder",
-           "docString": "<h3>ODFlacDecoder</h3>Class to decode a particular file (one per file). Saves info such as filename and length (after the header is read.) "
-         },
-         {
-           "className": "ODFLACFile",
-           "docString": "<h3>ODFLACFile</h3>No Description"
-         },
-         {
-           "className": "ODLock",
-           "docString": "<h3>ODLock</h3>No Description"
-         },
-         {
-           "className": "ODLocker",
-           "docString": "<h3>ODLocker</h3>No Description"
-         },
-         {
-           "className": "ODManager",
-           "docString": "<h3>ODManager</h3>A singleton that manages currently running Tasks on an arbitrary number of threads "
-         },
-         {
-           "className": "ODManagerHelperThread",
-           "docString": "<h3>ODManagerHelperThread</h3>No Description"
-         },
-         {
-           "className": "ODTask",
-           "docString": "<h3>ODTask</h3>A class representing a modular task to be used with the On-Demand structures "
-         },
-         {
-           "className": "ODTaskThread",
-           "docString": "<h3>ODTaskThread</h3>A thread that executes a part of the task specfied by an ODTask "
-         },
-         {
-           "className": "ODUnlocker",
-           "docString": "<h3>ODUnlocker</h3>No Description"
-         },
-         {
-           "className": "ODWaveTrackTaskQueue",
-           "docString": "<h3>ODWaveTrackTaskQueue</h3>A class representing a modular task to be used with the On-Demand structures "
-         },
-         {
-           "className": "On Demand",
-           "docString": "<h3>On Demand</h3>A feature to allow editing of audio before it has been fully read in.  With the OD mode enabled, stripy bars appear where the waveform has not yet been processed",
-           "isHead": true
-         },
-         {
-           "className": "AudacityException",
-           "docString": "<h3>AudacityException</h3>Root of a hierarchy of classes that are thrown and caught by Audacity ",
-           "category":"Scaffolding",
-           "snakeStyle": 2
-         },
-         {
-           "className": "BadFormatException",
-           "docString": "<h3>BadFormatException</h3>+No Description"
-         },
-         {
-           "className": "FileException",
-           "docString": "<h3>FileException</h3>+No Description"
-         },
-         {
-           "className": "InconsistencyException",
-           "docString": "<h3>InconsistencyException</h3>+No Description"
-         },
-         {
-           "className": "MessageBoxException",
-           "docString": "<h3>MessageBoxException</h3>A subclass of AudacityException whose delayed handler action displays a message box. The message is specified by further subclasses. Not more than one message box will be displayed for each pass through the main event idle loop "
-         },
-         {
-           "className": "NotYetAvailableException",
-           "docString": "<h3>NotYetAvailableException</h3>+No Description"
-         },
-         {
-           "className": "SimpleMessageBoxException",
-           "docString": "<h3>SimpleMessageBoxException</h3>A MessageBoxException that shows a given, unvarying string "
-         },
-         {
-           "className": "UserException",
-           "docString": "<h3>UserException</h3>+No Description"
-         },
-         {
-           "className": "Exceptions",
-           "docString": "<h3>Exceptions</h3>For unexpected events such as file not found or not writable.",
-           "isHead": true
-         },
-         {
-           "className": "AudioIO",
-           "docString": "<h3>AudioIO</h3>AudioIO uses the PortAudio library to play and record sound ",
-           "snakeStyle": 1
-         },
-         {
-           "className": "AudioIOBase",
-           "docString": "<h3>AudioIOBase</h3>A singleton object supporting queries of the state of any active audio streams, and audio device capabilities "
-         },
-         {
-           "className": "AudioIoCallback",
-           "docString": "<h3>AudioIoCallback</h3>AudioIoCallback is a class that implements the callback required by PortAudio. The callback needs to be responsive, has no GUI, and copies data into and out of the sound card buffers. It also sends data to the meters "
-         },
-         {
-           "className": "AudioIOListener",
-           "docString": "<h3>AudioIOListener</h3>Monitors record play start/stop and new blockfiles. Has callbacks for these events "
-         },
-         {
-           "className": "AudioIOStartStreamOptions",
-           "docString": "<h3>AudioIOStartStreamOptions</h3>Struct holding stream options, including a pointer to the time warp info and AudioIOListener and whether the playback is looped "
-         },
-         {
-           "className": "AudioThread",
-           "docString": "<h3>AudioThread</h3>Defined different on Mac and other platforms (on Mac it does not use wxWidgets wxThread), this class sits in a thread loop reading and writing audio "
-         },
-         {
-           "className": "AudioTrack",
-           "docString": "<h3>AudioTrack</h3>A Track that can load/save audio data to/from XML "
-         },
-         {
-           "className": "Audio",
-           "docString": "<h3>Audio</h3>Classes that deal with the portaudio thread",
-           "isHead": true
-         },
-         {
-           "className": "Scrubber",
-           "docString": "<h3>Scrubber</h3>+No Description",
-           "category":"Audio",
-           "snakeStyle": 1
-         },
-         {
-           "className": "ScrubbingCell",
-           "docString": "<h3>ScrubbingCell</h3>+No Description"
-         },
-         {
-           "className": "ScrubbingHandle",
-           "docString": "<h3>ScrubbingHandle</h3>+No Description"
-         },
-         {
-           "className": "ScrubbingOptions",
-           "docString": "<h3>ScrubbingOptions</h3>+No Description"
-         },
-         {
-           "className": "ScrubbingOverlay",
-           "docString": "<h3>ScrubbingOverlay</h3>+No Description"
-         },
-         {
-           "className": "ScrubForwarder",
-           "docString": "<h3>ScrubForwarder</h3>+No Description"
-         },
-         {
-           "className": "ScrubPoller",
-           "docString": "<h3>ScrubPoller</h3>+No Description"
-         },
-         {
-           "className": "ScrubPollerThread",
-           "docString": "<h3>ScrubPollerThread</h3>+No Description"
-         },
-         {
-           "className": "ScrubState",
-           "docString": "<h3>ScrubState</h3>+No Description"
-         },
-         {
-           "className": "Scrubbing",
-           "docString": "<h3>Scrubbing</h3>Classes for Scrubbing.  All undocumented",
-           "isHead": true
-         },
-         {
-           "className": "AButton",
-           "docString": "<h3>AButton</h3>A wxButton with mouse-over behaviour ",
-           "category":"Scaffolding",
-           "snakeStyle": 1
-         },
-         {
-           "className": "AColor",
-           "docString": "<h3>AColor</h3>AColor Manages color brushes and pens "
-         },
-         {
-           "className": "ASlider",
-           "docString": "<h3>ASlider</h3>ASlider is a custom slider, allowing for a slicker look and feel "
-         },
-         {
-           "className": "AStaticBitmap",
-           "docString": "<h3>AStaticBitmap</h3>A widget for bitmaps which ignores the erase event for flicker-free use "
-         },
-         {
-           "className": "auStaticText",
-           "docString": "<h3>auStaticText</h3>Like wxStaticText, except it can be themed. wxStaticText can't be ",
-           "isHead": true
-         },
-         {
-           "className": "EqualizationDialog",
-           "docString": "<h3>EqualizationDialog</h3>EqualizationDialog controls a graph for         EffectEqualization. We should look at amalgamating the various graphing code, such as provided by EqualizationPanel, FreqWindow and FilterPanel",
-           "category":"Dialogs",
-           "snakeStyle": 1
-         },
-         {
-           "className": "EffectAutoDuckPanel",
-           "docString": "<h3>EffectAutoDuckPanel</h3>+No Description"
-         },
-         {
-           "className": "EffectCompressorPanel",
-           "docString": "<h3>EffectCompressorPanel</h3>+No Description"
-         },
-         {
-           "className": "EffectPanel",
-           "docString": "<h3>EffectPanel</h3>+No Description"
-         },
-         {
-           "className": "EffectScienFilterPanel",
-           "docString": "<h3>EffectScienFilterPanel</h3>EffectScienFilterPanel is used with EffectScienFilter and controls a graph for EffectScienFilter "
-         },
-         {
-           "className": "TrackPanel",
-           "docString": "<h3>TrackPanel</h3>Coordinates updates and operations on the main part of the screen which contains multiple tracks "
-         },
-         {
-           "className": "ExportMixerPanel",
-           "docString": "<h3>ExportMixerPanel</h3>Panel that displays mixing for advanced mixing option "
-         },
-         {
-           "className": "AdornedRulerPanel",
-           "docString": "<h3>AdornedRulerPanel</h3>This is an Audacity Specific ruler panel which additionally has border, selection markers, play marker "
-         },
-         {
-           "className": "BackedPanel",
-           "docString": "<h3>BackedPanel</h3>BackedPanel is for a panel that consists of a bitmap with something drawn over it. It supports efficient repainting when the overlays change and recreation of the bitmap when the panel size is changed "
-         },
-         {
-           "className": "CellularPanel",
-           "docString": "<h3>CellularPanel</h3>Formerly part of TrackPanel, this abstract base class has no special knowledge of Track objects and is intended for reuse with other windows "
-         },
-         {
-           "className": "CompressorPanel",
-           "docString": "<h3>CompressorPanel</h3>Panel used within the EffectCompressor for EffectCompressor "
-         },
-         {
-           "className": "EqualizationPanel",
-           "docString": "<h3>EqualizationPanel</h3>EqualizationPanel is used with EqualizationDialog and controls a graph for EffectEqualization. We should look at amalgamating the various graphing code, such as provided by FreqWindow and FilterPanel "
-         },
-         {
-           "className": "ImageRollPanel",
-           "docString": "<h3>ImageRollPanel</h3>A wxPanel which displays an ImageRoll "
-         },
-         {
-           "className": "InvisiblePanel",
-           "docString": "<h3>InvisiblePanel</h3>An InvisiblePanel is a panel which does not repaint its own background "
-         },
-         {
-           "className": "LyricsPanel",
-           "docString": "<h3>LyricsPanel</h3>LyricsPanel is a panel that paints the bouncing ball and the lyrics text "
-         },
-         {
-           "className": "MeterPanel",
-           "docString": "<h3>MeterPanel</h3>MeterPanel is a panel that paints the meter used for monitoring or playback "
-         },
-         {
-           "className": "OverlayPanel",
-           "docString": "<h3>OverlayPanel</h3>+No Description"
-         },
-         {
-           "className": "PrefsPanel",
-           "docString": "<h3>PrefsPanel</h3>Base class for a panel in the PrefsDialog. Classes derived from this class include BatchPrefs, DirectoriesPrefs, GUIPrefs, KeyConfigPrefs, MousePrefs, QualityPrefs, SpectrumPrefs and ThemePrefs "
-         },
-         {
-           "className": "RulerPanel",
-           "docString": "<h3>RulerPanel</h3>RulerPanel class allows you to work with a Ruler like any other wxWindow "
-         },
-         {
-           "className": "Panels",
-           "docString": "<h3>Panels</h3>Panels are components of a window or dialog that we draw onto.",
-           "isHead": true
-         },
-         {
-           "className": "AllProjects",
-           "docString": "<h3>AllProjects</h3>Object of class AllProjects acts like a standard library container, but refers to a global array of open projects. So you can iterate easily over shared pointers to them with range-for : for (auto pProject : AllProjects{}) { ... } The pointers are never null ",
-           "category":"Scaffolding",
-           "snakeStyle": 1
-         },
-         {
-           "className": "AllClipsConstIterator",
-           "docString": "<h3>AllClipsConstIterator</h3>+No Description"
-         },
-         {
-           "className": "AllClipsIterator",
-           "docString": "<h3>AllClipsIterator</h3>+No Description",
-           "isHead": true
-         },
-         {
-           "className": "NumberFormatter",
-           "docString": "<h3>NumberFormatter</h3>+No Description",
-           "category":"Dialogs",
-           "snakeStyle": 2
-         },
-         {
-           "className": "NumberScale",
-           "docString": "<h3>NumberScale</h3>+No Description"
-         },
-         {
-           "className": "NumericEditor",
-           "docString": "<h3>NumericEditor</h3>WxGridCellEditor for the NumericTextCtrl "
-         },
-         {
-           "className": "NumericField",
-           "docString": "<h3>NumericField</h3>NumericField is a class used in NumericTextCtrl "
-         },
-         {
-           "className": "NumericRenderer",
-           "docString": "<h3>NumericRenderer</h3>WxGridCellRenderer for the NumericTextCtrl "
-         },
-         {
-           "className": "NumericTextCtrl",
-           "docString": "<h3>NumericTextCtrl</h3>+No Description"
-         },
-         {
-           "className": "NumericTextCtrlAx",
-           "docString": "<h3>NumericTextCtrlAx</h3>NumericTextCtrlAx gives the NumericTextCtrl Accessibility "
-         },
-         {
-           "className": "NumericConverter",
-           "docString": "<h3>NumericConverter</h3>NumericConverter provides the advanced formatting control used in the selection bar of Audacity ",
-           "isHead": true
-         },
-         {
-           "className": "AV_Deleter",
-           "docString": "<h3>AV_Deleter</h3>AV_Deleter is part of FFmpeg support. It's used with the RAII idiom ",
-           "category":"Plugins",
-           "snakeStyle": 1
-         },
-         {
-           "className": "AV_Deleter< T, void, Fn >",
-           "docString": "<h3>AV_Deleter< T, void, Fn ></h3>+No Description"
-         },
-         {
-           "className": "AV_Deleterp",
-           "docString": "<h3>AV_Deleterp</h3>+No Description"
-         },
-         {
-           "className": "AVPacketEx",
-           "docString": "<h3>AVPacketEx</h3>+No Description"
-         },
-         {
-           "className": "FFmpegContext",
-           "docString": "<h3>FFmpegContext</h3>+No Description"
-         },
-         {
-           "className": "FFmpegImportFileHandle",
-           "docString": "<h3>FFmpegImportFileHandle</h3>! Does acual import, returned by FFmpegImportPlugin::Open "
-         },
-         {
-           "className": "FFmpegLibs",
-           "docString": "<h3>FFmpegLibs</h3>Class used to dynamically load FFmpeg libraries "
-         },
-         {
-           "className": "FFmpegPreset",
-           "docString": "<h3>FFmpegPreset</h3>+No Description"
-         },
-         {
-           "className": "FFmpegPresets",
-           "docString": "<h3>FFmpegPresets</h3>+No Description",
-           "isHead": true
-         },
-         {
-           "className": "SpecCache",
-           "docString": "<h3>SpecCache</h3>+No Description",
-           "category":"Effects",
-           "snakeStyle": 1
-         },
-         {
-           "className": "SpecPowerCalculation",
-           "docString": "<h3>SpecPowerCalculation</h3>SpecPowerCalculation is a simple spectral power level meter "
-         },
-         {
-           "className": "SpecPxCache",
-           "docString": "<h3>SpecPxCache</h3>+No Description"
-         },
-         {
-           "className": "SpectralSelectionBar",
-           "docString": "<h3>SpectralSelectionBar</h3>(not quite a Toolbar) at foot of screen for setting and viewing the frequency selection range "
-         },
-         {
-           "className": "SpectralSelectionBarListener",
-           "docString": "<h3>SpectralSelectionBarListener</h3>A class used to forward events to do with changes in the SpectralSelectionBar "
-         },
-         {
-           "className": "SpectrogramSettings",
-           "docString": "<h3>SpectrogramSettings</h3>Spectrogram settings, either for one track or as defaults "
-         },
-         {
-           "className": "SpectrumAnalyst",
-           "docString": "<h3>SpectrumAnalyst</h3>Used for finding the peaks, for snapping to peaks "
-         },
-         {
-           "className": "SpectrumView",
-           "docString": "<h3>SpectrumView</h3>+No Description"
-         },
-         {
-           "className": "SpectrumVRulerControls",
-           "docString": "<h3>SpectrumVRulerControls</h3>+No Description"
-         },
-         {
-           "className": "SpectrumVRulerMenuTable",
-           "docString": "<h3>SpectrumVRulerMenuTable</h3>+No Description"
-         },
-         {
-           "className": "SpectrumVZoomHandle",
-           "docString": "<h3>SpectrumVZoomHandle</h3>+No Description",
-           "isHead": true
-         },
-         {
-           "className": "EQCurve",
-           "docString": "<h3>EQCurve</h3>EQCurve is used with EffectEqualization ",
-           "category":"Tracks",
-           "snakeStyle": 1
-         },
-         {
-           "className": "EQPoint",
-           "docString": "<h3>EQPoint</h3>EQPoint is used with EQCurve and hence EffectEqualization "
-         },
-         {
-           "className": "EnvelopeEditor",
-           "docString": "<h3>EnvelopeEditor</h3>+No Description"
-         },
-         {
-           "className": "EnvelopeHandle",
-           "docString": "<h3>EnvelopeHandle</h3>+No Description"
-         },
-         {
-           "className": "EnvPoint",
-           "docString": "<h3>EnvPoint</h3>EnvPoint, derived from XMLTagHandler, provides Envelope with a draggable point type "
-         },
-         {
-           "className": "Envelope",
-           "docString": "<h3>Envelope</h3>Piecewise linear or piecewise exponential function from double to double ",
-           "isHead": true
-         },
-         {
-           "className": "BenchmarkDialog",
-           "docString": "<h3>BenchmarkDialog</h3>BenchmarkDialog is used for measuring performance and accuracy of the BlockFile system ",
-           "category":"Dialogs",
-           "snakeStyle": 1
-         },
-         {
-           "className": "FileDialogBase",
-           "docString": "<h3>FileDialogBase</h3>+No Description"
-         },
-         {
-           "className": "FileDialogWrapper",
-           "docString": "<h3>FileDialogWrapper</h3>+No Description",
-           "isHead": true
-         },
-         {
-           "className": "ProjectAudioIO",
-           "docString": "<h3>ProjectAudioIO</h3>+No Description",
-           "category":"Audio",
-           "snakeStyle": 1
-         },
-         {
-           "className": "ProjectAudioManager",
-           "docString": "<h3>ProjectAudioManager</h3>+No Description",
-           "isHead": true
-
-         },
-         {
-           "className": "ProjectFileIO",
-           "docString": "<h3>ProjectFileIO</h3>Object associated with a project that manages reading and writing of Audacity project file formats, and autosave ",
-           "category":"Projects",
-           "snakeStyle": 1
-         },
-         {
-           "className": "ProjectFileIORegistry",
-           "docString": "<h3>ProjectFileIORegistry</h3>+No Description"
-         },
-         {
-           "className": "ProjectFileManager",
-           "docString": "<h3>ProjectFileManager</h3>+No Description"
-         },
-         {
-           "className": "ProjectHistory",
-           "docString": "<h3>ProjectHistory</h3>+No Description"
-         },
-         {
-           "className": "ProjectManager",
-           "docString": "<h3>ProjectManager</h3>Object associated with a project for high-level management of the project's lifetime, including creation, destruction, opening from file, importing, pushing undo states, and reverting to saved states "
-         },
-         {
-           "className": "ProjectSelectionManager",
-           "docString": "<h3>ProjectSelectionManager</h3>+No Description"
-         },
-         {
-           "className": "ProjectSetter",
-           "docString": "<h3>ProjectSetter</h3>+No Description"
-         },
-         {
-           "className": "ProjectSettings",
-           "docString": "<h3>ProjectSettings</h3>Holds various per-project settings values, including the sample rate, and sends events to the project when certain values change "
-         },
-         {
-           "className": "ProjectStatus",
-           "docString": "<h3>ProjectStatus</h3>+No Description"
-         },
-         {
-           "className": "ProjectWindow",
-           "docString": "<h3>ProjectWindow</h3>A top-level window associated with a project, and handling scrollbars and zooming "
-         },
-         {
-           "className": "AudacityProject",
-           "docString": "<h3>AudacityProject</h3>The top-level handle to an Audacity project. It serves as a source of events that other objects can bind to, and a container of associated sub-objects that it treats opaquely. It stores a filename and a status message and a few other things. There is very little in this class, most of the intelligence residing in the cooperating attached objects ",
-           "isHead": true
-         },
-         {
-           "className": "RegisteredBlockFileDeserializer",
-           "docString": "<h3>RegisteredBlockFileDeserializer</h3>No Description",
-           "category":"Blockfiles",
-           "snakeStyle": 1
-         },
-         {
-           "className": "SeqBlock",
-           "docString": "<h3>SeqBlock</h3>Data structure containing pointer to a BlockFile and a start time. Element of a BlockArray "
-         },
-         {
-           "className": "Sequence",
-           "docString": "<h3>Sequence</h3>A WaveTrack contains WaveClip(s). A WaveClip contains a Sequence. A Sequence is primarily an interface to an array of SeqBlock instances, corresponding to the audio BlockFiles on disk. Contrast with RingBuffer "
-         },
-         {
-           "className": "ODDecodeBlockFile",
-           "docString": "<h3>ODDecodeBlockFile</h3>An AliasBlockFile that references uncompressed data in an existing file "
-         },
-         {
-           "className": "ODPCMAliasBlockFile",
-           "docString": "<h3>ODPCMAliasBlockFile</h3>An AliasBlockFile that references uncompressed data in an existing file "
-         },
-         {
-           "className": "AliasBlockFile",
-           "docString": "<h3>AliasBlockFile</h3>A BlockFile that refers to data in an existing file "
-         },
-         {
-           "className": "LegacyAliasBlockFile",
-           "docString": "<h3>LegacyAliasBlockFile</h3>An AliasBlockFile that references uncompressed data in an existing file "
-         },
-         {
-           "className": "LegacyBlockFile",
-           "docString": "<h3>LegacyBlockFile</h3>Audacity 1.1.0 block file format: "
-         },
-         {
-           "className": "PCMAliasBlockFile",
-           "docString": "<h3>PCMAliasBlockFile</h3>An AliasBlockFile that references uncompressed data in an existing file "
-         },
-         {
-           "className": "SilentBlockFile",
-           "docString": "<h3>SilentBlockFile</h3>A BlockFile containing nothing but silence. Saves disk space "
-         },
-         {
-           "className": "SimpleBlockFile",
-           "docString": "<h3>SimpleBlockFile</h3>A BlockFile that reads and writes uncompressed data using libsndfile "
-         },
-         {
-           "className": "SimpleBlockFileCache",
-           "docString": "<h3>SimpleBlockFileCache</h3>No Description"
-         },
-         {
-           "className": "SummaryInfo",
-           "docString": "<h3>SummaryInfo</h3>Works with BlockFile to hold info about max and min and RMS over multiple samples, which in turn allows rapid drawing when zoomed out "
-         },
-         {
-           "className": "auHeader",
-           "docString": "<h3>auHeader</h3>The auHeader is a structure used by SimpleBlockFile for .au file format. There probably is an 'official' header file we should include to get its definition, rather than rolling our own "
-         },
-         {
-           "className": "DirManager",
-           "docString": "<h3>DirManager</h3>Creates and manages BlockFile objects "
-         },
-         {
-           "className": "BlockFile",
-           "docString": "<h3>BlockFile</h3>A BlockFile is a chunk of immutable audio data ",
-           "isHead": true
-         },
-         {
-           "className": "MixerBoardFrame",
-           "docString": "<h3>MixerBoardFrame</h3>+No Description",
-           "category":"Plugins",
-           "snakeStyle": 1
-         },
-         {
-           "className": "MixerBoardScrolledWindow",
-           "docString": "<h3>MixerBoardScrolledWindow</h3>+No Description"
-         },
-         {
-           "className": "MixerTrackCluster",
-           "docString": "<h3>MixerTrackCluster</h3>+No Description"
-         },
-         {
-           "className": "MixerTrackSlider",
-           "docString": "<h3>MixerTrackSlider</h3>+No Description"
-         },
-         {
-           "className": "MixerBoard",
-           "docString": "<h3>MixerBoard</h3>+No Description",
-           "isHead": true
-         },
-         {
-           "className": "Matrix",
-           "docString": "<h3>Matrix</h3>Holds a matrix of doubles and supports arithmetic, subsetting, and matrix inversion. Used by InterpolateAudio ",
-           "category":"Scaffolding",
-           "snakeStyle": 1
-         },
-         {
-           "className": "Biquad",
-           "docString": "<h3>Biquad</h3>Represents a biquad digital filter "
-         },
-         {
-           "className": "Vector",
-           "docString": "<h3>Vector</h3>Holds a matrix of doubles and supports arithmetic operations, including Vector-Matrix operations. Used by InterpolateAudio ",
-           "isHead": true
-         },
-         {
-           "className": "AudacityTimer",
-           "docString": "<h3>AudacityTimer</h3>Timer class dedicated to informing the TrackPanel that it is time to refresh some aspect of the screen ",
-           "category":"Scaffolding",
-           "snakeStyle": 1
-         },
-         {
-           "className": "AudacityApp",
-           "docString": "<h3>AudacityApp</h3>AudacityApp is the 'main' class for Audacity "
-         },
-         {
-           "className": "AudacityLogger",
-           "docString": "<h3>AudacityLogger</h3>AudacityLogger is a thread-safe logger class "
-         },
-         {
-           "className": "AudacityPrintout",
-           "docString": "<h3>AudacityPrintout</h3>Derived from wxPrintout, this class helps with printing "
-         },
-         {
-           "className": "Audacity Customizations",
-           "docString": "<h3>Audacity Customizations</h3>Customizations of Library classes"
-         },
-         {
-           "className": "ArrayOf",
-           "docString": "<h3>ArrayOf</h3>This simplifies arrays of arrays, each array separately allocated with NEW[] But it might be better to use std::Array<ArrayOf<X>, N> for some small constant N Or use just one array when sub-arrays have a common size and are not large "
-         },
-         {
-           "className": "ArraysOf",
-           "docString": "<h3>ArraysOf</h3>Memory.h template class for making an array of arrays "
-         },
-         {
-           "className": "Maybe",
-           "docString": "<h3>Maybe</h3>Like a smart pointer, allows for object to not exist (nullptr) "
-         },
-         {
-           "className": "Missing in wx",
-           "docString": "<h3>Missing in wx</h3>Our own extensions to wxWidgets and std::",
-           "isHead": true
-         },
-         {
-           "className": "wxArrayStringEx",
-           "docString": "<h3>wxArrayStringEx</h3>+No Description",
-           "category":"Scaffolding",
-           "snakeStyle": 1
-         },
-         {
-           "className": "wxFrameEx",
-           "docString": "<h3>wxFrameEx</h3>+No Description"
-         },
-         {
-           "className": "wxGtkString",
-           "docString": "<h3>wxGtkString</h3>+No Description"
-         },
-         {
-           "className": "wxOPENFILENAME",
-           "docString": "<h3>wxOPENFILENAME</h3>+No Description"
-         },
-         {
-           "className": "wxPizza",
-           "docString": "<h3>wxPizza</h3>+No Description"
-         },
-         {
-           "className": "wxTabTraversalWrapper",
-           "docString": "<h3>wxTabTraversalWrapper</h3>+No Description"
-         },
-         {
-           "className": "wxTreebook",
-           "docString": "<h3>wxTreebook</h3>A wxTreebook is a class like wxNotebook, but not yet supported by wxWidgets 2.6.3 "
-         },
-         {
-           "className": "wxTreebookItemData",
-           "docString": "<h3>wxTreebookItemData</h3>One item in a wxTreebook. (I think) "
-         },
-         {
-           "className": "wxDialogWrapper",
-           "docString": "<h3>wxDialogWrapper</h3>+No Description"
-         },
-         {
-           "className": "wxDirDialogWrapper",
-           "docString": "<h3>wxDirDialogWrapper</h3>+No Description"
-         },
-         {
-           "className": "wxFileNameWrapper",
-           "docString": "<h3>wxFileNameWrapper</h3>+No Description"
-         },
-         {
-           "className": "wxPanelWrapper",
-           "docString": "<h3>wxPanelWrapper</h3>+No Description"
-         },
-         {
-           "className": "wx Thing",
-           "docString": "<h3>wx Thing</h3>Our wrappers and variants of wxWidgets components",
-           "isHead": true
-         },
-         {
-           "className": "XMLFileReader",
-           "docString": "<h3>XMLFileReader</h3>Reads a file and passes the results through an XMLTagHandler ",
-           "category":"Scaffolding",
-           "snakeStyle": 1
-         },
-         {
-           "className": "XMLFileWriter",
-           "docString": "<h3>XMLFileWriter</h3>Wrapper to output XML data to files "
-         },
-         {
-           "className": "XMLStringWriter",
-           "docString": "<h3>XMLStringWriter</h3>Wrapper to output XML data to strings "
-         },
-         {
-           "className": "XMLTagHandler",
-           "docString": "<h3>XMLTagHandler</h3>This class is an interface which should be implemented by classes which wish to be able to load and save themselves using XML files "
-         },
-         {
-           "className": "XMLValueChecker",
-           "docString": "<h3>XMLValueChecker</h3>XMLValueChecker implements static bool methods for checking input values from XML files "
-         },
-         {
-           "className": "XMLWriter",
-           "docString": "<h3>XMLWriter</h3>Base class for XMLFileWriter and XMLStringWriter that provides the general functionality for creating XML in UTF8 encoding "
-         },
-         {
-           "className": "XML",
-           "docString": "<h3>XML</h3>Stuff for XML.  The .aup file is an XML file, and this stuff is responsible for reading and wriitng it.",
-           "isHead": true
          }
+
 
     ]
 }
 ]
 </pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
          {
            "className": "ClientData",
