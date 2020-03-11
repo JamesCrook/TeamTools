@@ -778,9 +778,30 @@ function xyOfIndexSnakey(i, T){
 function stripSignalChar( str ){
   if( str.length < 2 )
     return str;
-  if( str[0] === '*' || str[0] === '#' )
+  if( str[0] === '*' || str[0] === '#' || str[0] === '.')
     return str.substr( 1 );
   return str;
+}
+
+
+function snakeType( A, name ){
+  var result = 0;
+  if(  name.startsWith("*")){
+    result = 2;
+  }
+  if(  name.startsWith("#")){
+    result = 3;
+  }
+  if(  name.startsWith(".")){
+    result = 1;
+  }
+  if( result > 1){
+    if( A.BrightObjects ){
+      if( A.BrightObjects.indexOf(name.substr(1)) < 0)
+        result=1;
+    }
+  }
+  return result;
 }
 
 // For drawing a snakey plot
@@ -805,49 +826,28 @@ function drawSnakeyPath(A, values, T){
   S.x=0;S.y=0;
   T.isPath = true;
   T.maxv = maxv;
-  var nextWidth = 5;
-  var nextStyle = "rgba(0,0,0,1.0)";
+  nextStyle = "rgb(190,190,190)";
 
-  if(  T.style === 1){
-    nextWidth = 13;
-    nextStyle = "rgb(156,3,0)";
-    ctx.lineWidth = 5;
-    ctx.strokeStyle = "rgba(0,0,0,1.0)";
+  var widths = [5,6,9];
+  var lines = ["rgb(190,190,190)", "rgb(156,3,0)", "rgb(15,0,181)"];
 
-  }else if(  T.style ===2)
-  {
-    nextWidth = 9;
-    nextStyle = "rgb(15,0,181)";
-    ctx.lineWidth = 5;
-    ctx.strokeStyle = "rgba(0,0,0,1.0)";
 
-  }
-
+  // draw snakey body
   var isHead = false;
+  var X;
+  var style = 1;
   for( j = 0; i < maxv; j += T.stride ){
-    if( (T.stride>1) && values[j + 1] === "No Description" ) continue;
+
+    X = values[j];
+    if( isDefined(X.snakeStyle) )
+      style = X.snakeStyle;
 
     ctx.beginPath();
     ctx.moveTo(S.x, S.y);
-    ctx.lineWidth = nextWidth;
-    ctx.strokeStyle = nextStyle;
+    ctx.lineWidth = widths[style];
+    ctx.strokeStyle = lines[style];
 
-    if(  values[j].startsWith("*")){
-      nextWidth = 13;
-      nextStyle = "rgb(156,3,0)";
-      ctx.lineWidth = 5;
-      ctx.strokeStyle = "rgba(0,0,0,0)";
 
-    }else if(  values[j].startsWith("#"))
-    {
-      nextWidth = 9;
-      nextStyle = "rgb(15,0,181)";
-      ctx.lineWidth = 5;
-      ctx.strokeStyle = "rgba(0,0,0,0)";
-
-    }
-    else {
-    }
     S = T.fn(i, T);
     if( i === 0 )
       ctx.moveTo(S.x, S.y);
@@ -860,35 +860,39 @@ function drawSnakeyPath(A, values, T){
       ctx.lineTo(S.x, S.y);
     }
     i++;
-    ctx.stroke();
+    if( !isDefined(X.snakeStyle) )
+      ctx.stroke();
 
   }
   i = 0;
 
+  var greenBlob = "rgba(105,205,105,1.0)";
+  var blobColour = greenBlob;
+  // draw blobs.
   T.isPath = false;
+
+
+  style = 1;
   for( j = 0; i < T.count; j += T.stride ){
     var r=T.r0+7;
-    if( (T.stride>1) ){
-      if( values[j + 1] === "No Description" ) continue;
-      r = 1.6 * Math.log((values[j + 1].length) + 0.1) + T.r0;
-    }
-    var c =  NextAutoColour( A, "<h3>" + stripSignalChar( values[j] ) + "</h3>" + values[j + 1]);
+
+    X = values[j];
+    var c =  NextAutoColour( A, X.docString);
+    r = 1.6 * Math.log((X.docString.length) + 0.1) + T.r0;
+
+    if( X.docString.indexOf("No Description") >= 0 )
+      r = 3;
+
     if( i < maxv ){
       S = T.fn(i, T);
-      ctx.fillStyle = "rgba(105,205,105,1.0)";
-      ctx.strokeStyle = nextStyle;
-      isHead = false;
-      if( i === (maxv - 1) ){
-        isHead = true;
-      } else if( values[j + T.stride].startsWith("*") ){
-        nextStyle = "rgb(156,3,0)";
-        isHead = true;
-      } else if( values[j + T.stride].startsWith("#") ){
-        nextStyle = "rgb(15,0,181)";
-        isHead = true;
-      }
 
-      if( isHead ){
+      if( isDefined(X.snakeStyle) )
+        style = X.snakeStyle;
+
+      ctx.fillStyle = blobColour;
+      ctx.strokeStyle = lines[style];
+
+      if( X.isHead ){
         // lighter green for head.
         ctx.fillStyle = "rgb(182,222,157)";
         r += 3;
@@ -897,7 +901,7 @@ function drawSnakeyPath(A, values, T){
       ctx.arc(S.x, S.y, r, 0, 2 * Math.PI, false);
       ctx.closePath();
       ctx.fill();
-      if( isHead ){
+      if( X.isHead ){
         ctx.lineWidth = 1;
         ctx.stroke();
       }
@@ -926,7 +930,7 @@ function drawPath(A, obj, d, stride){
   var xw = l.xw;
   var yh = l.yh;
 
-  stride = stride || 2;
+  stride = stride || 1;
   var T = {};
   //T.width = 100;
   //T.spacer = 30;
@@ -1941,6 +1945,9 @@ function createProg( A, obj, data ){
     else if( command === "setTip" ){
       activeObject.tip = code[i++];
     }
+    else if( command === "setBright" ){
+      A.BrightObjects = code[i++];
+    }
   }
 }
 
@@ -2161,23 +2168,6 @@ function registerMethod( forWhat, creating, sizing, layout, draw )
     layoutThing[ forWhat ] = layout;
   if( draw )
     drawThing[ forWhat ] = draw;
-
-}
-
-function registerMethods()
-{
-  registerMethod( "Circle",    0,0, layoutMargined, drawCircle);
-  registerMethod( "Rectangle", 0,0, layoutMargined, drawRectangle);
-  registerMethod( "Image",     0,0, layoutMargined, drawImage);
-  registerMethod( "Chart",     0,0, layoutMargined, drawChart);
-  registerMethod( "Tile",    0,0,layoutMargined, drawTile);
-
-  // The charts are unmargined...
-  registerMethod( "Nowt",    0,0,0, drawNowt);
-  registerMethod( "Path",    0,0,0, drawPath);
-  registerMethod( "Tree",    0,0,0, drawTree);
-  registerMethod( "Arrows",  0, sizeNowt,layoutNowt, drawArrows);
-  registerMethod( "Prog",     createProg,sizeNowt,layoutNowt, 0);
 
 }
 
@@ -2793,3 +2783,46 @@ function populateEditorElement(A, contentHere){
 
   contentHere.appendChild(A.MainDiv);
 }
+
+
+
+function registerMethods()
+{
+  registerMethod( "Circle",    0,0, layoutMargined, drawCircle);
+  registerMethod( "Rectangle", 0,0, layoutMargined, drawRectangle);
+  registerMethod( "Image",     0,0, layoutMargined, drawImage);
+  registerMethod( "Chart",     0,0, layoutMargined, drawChart);
+  registerMethod( "Tile",    0,0,layoutMargined, drawTile);
+
+  // The charts are unmargined...
+  registerMethod( "Nowt",    0,0,0, drawNowt);
+  registerMethod( "Path",    0,0,0, drawPath);
+  registerMethod( "Tree",    0,0,0, drawTree);
+  registerMethod( "Arrows",  0, sizeNowt,layoutNowt, drawArrows);
+  registerMethod( "Prog",     createProg,sizeNowt,layoutNowt, 0);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo Page</title>
+    <style type="text/css">
+        h1 {
+            font-size: 2em;
+        }
+
+        h2 {
+            font-size: 1.5em;
+        }
+
+        h3 {
+            font-size: 1.17em;
+        }
+
+        h4 {
+            font-size: 1.12em;
+        }
+
+        h5 {
+            font-size: .83em;
+        }
+
+        h6 {
+            font-size: .67em;
+        }
+
+        html * {
+            font-family: Arial;
+        }
+
+        #logoback {
+            transition: all 0.15s;
+            background-color: #edebfc;
+            border: 2px solid;
+            border-color: #edebfc;
+            position: absolute;
+            top: 1.25em;
+            left: 0.9375em;
+            width: 5.75em;
+            height: 5.75em;
+            color: black;
+            box-sizing: border-box;
+            line-height: 5.75em;
+            border-radius: 2.875em;
+            box-shadow: 0px 0px 1.25em 1px #000080;
+        "
+
+        }
+
+        #logoback:hover {
+            /*background-color: #c7cfff;*/
+            border-color: #848ff8;
+        }
+
+        #logo {
+            position: relative;
+            top: 0.5em;
+            left: 0.5625em;
+            transition: all 0.1s;
+            width: 4.375em;
+            height: 4.375em;
+
+        }
+
+        #logo:hover {
+            /*top:6px;*/
+            /*transform: rotate(10deg);*/
+        }
+
+        #logo:hover:active {
+            width: 5em;
+            height: 5em;
+            left: 0.25em;
+            top: 0.0625em;
+        }
+
+        pre {
+            font-family : Consolas,Lucida Console,monospace;
+            background-color: #fff9f6;
+            border: solid #ceccd1 1px;
+            padding:10px;
+        }
+
+
+        span.pre {
+            font-family : Consolas,Lucida Console,monospace;
+            background-color: #fff9f6;
+            border: solid #ceccd1 1px;
+        }
+
+        div.bt {
+
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+
+            display: inline-block;
+            color: black;
+            font-size: 13px;
+            border: 1px solid;
+            padding: 2px 15px 2px 15px;
+            border-color: #8696b2;
+            background-color: #c5d4fc;
+            box-shadow: inset 0 -5px 5px 0 #a6c1e7;
+        }
+
+        div.bt:hover {
+            cursor: pointer;
+            /*box-shadow: inset 0 -5px 15px 0 #7c94b7;*/
+            background-color: #a9bdff;
+            border-color: #2130ba;
+        }
+
+        div.bt:hover:active {
+            background-color: #a5c3ee;
+            box-shadow: inset 0 2px 5px 0 #7c94b7;
+        }
+
+
+        img.centred {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+            bottom: -9999px;
+            right: -9999px;
+            margin: auto;
+        }
+
+
+        div.linky:hover {
+            /* background-color: #a5c3ee;*/
+            border-color: #848ff8;
+
+        }
+
+        div.pos-resetter {
+            width: 100%;
+            display: inline-block;
+            text-align: center;
+            position: absolute;
+            margin: 0 auto;
+        }
+
+        div.linky {
+            transition: all 0.15s;
+            display: none;
+            background-color: #c5d4fc;
+            border: 2px solid;
+            border-color: #c5d4fc;
+            /*border-color: #8696b2;*/
+            padding: 0px 1.25em 0px 1.25em;
+            color: black;
+            height: 2.25em;
+            line-height: 2.25em;
+            box-sizing: border-box;
+            border-radius: 1.25em;
+            margin: 0 auto;
+            box-shadow: 0 0 20px 1px #000080;
+            cursor: pointer;
+
+        }
+
+        span.tab {
+            border: solid #7890B7 2px;
+            border-radius : 3px;
+            background-color: #dcdcdc;
+            cursor:pointer;
+            margin:5px;
+            padding:5px;
+            padding-bottom : 1px;
+            box-sizing : border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+        }
+
+        span.tab:hover {
+            background-color: #383838;
+            color: lightblue;
+        }
+
+        span.tab.selected {
+            border-bottom: solid #e6f1ff 2px;
+            background-color: #e6f1ff;
+            color : black;
+        }
+
+
+        div.tabber {
+
+            margin-left : auto;
+            margin-right : auto;
+            border-bottom: solid #7890B7 2px;
+        }
+
+        div.scenebacker {
+            background-color : #e6f1ff;
+            padding : 5px;
+            border-bottom: solid #7890B7 2px;
+        }
+
+        div.choice {
+            margin-left:15px;
+        }
+
+
+
+
+    </style>
+    <script>
+      console.log("Protocol is " + window.location.protocol);
+      if( window.location.protocol === "http:" ){
+        console.log("Http: detected");
+        if( window.location.href.indexOf("localhost") <
+          0 ) window.location.href = "https:" + window.location.href.slice(5);
+      }
+</script>
+    <script data-cfasync="false" src="js/wikidiagrams.js?time=1134"></script>
+    <script data-cfasync="false" src="js/smiles.js?time=1134"></script>
+    <script>
+
+      window.onload = function(){
+        var query = window.location.href;
+        var frame = getArg(query, 'frame') || "yes";
+        if( frame === "no" ) removeFrame();
+        initEditors();
+
+      }
+
+
+      function selectTab(name, widget) {
+        var i;
+        var tabs = document.getElementsByClassName("tab");
+        for (i = 0; i < tabs.length; i++) {
+          tabs[i].className = "tab";
+        }
+        widget.className = "tab selected";
+        document.getElementById(name).style.display = "block";
+        var choices = document.getElementsByClassName("choice");
+        for (i = 0; i < choices.length; i++) {
+          choices[i].style.display = "none";
+        }
+        document.getElementById(name).style.display = "block";
+      }
+
+      function toSnake( X ){
+        var result = [];
+        var i=0;
+        var style;
+        for(i=0;i<X.length;){
+          style = (i===0) ? 1 :0;
+          var Name = X[i];
+          if( Name.startsWith('*') ){
+            style = 1;
+          }
+          if( Name.startsWith('#') ){
+            style = 2;
+          }
+
+          if( style ){
+            Name=Name.substr( 1 );
+          }
+
+          var docString = "<h1>"+Name+"</h1>"+X[i+1];
+          result.push( { "className": Name, "docString": docString } );
+
+          if( style ){
+            result[ result.length -1].snakeStyle = style;
+            if( result.length > 1 ){
+              result[result.length - 2].isHead = true;
+            }
+          }
+
+          i+=2;
+        }
+        result[result.length-1].isHead = true;
+        return result;
+      }
+
+      function descapeSpec( spec ){
+        var str = spec;
+        str = str.replace( /&lt;/g, "<" );
+        str = str.replace( /&gt;/g, ">" );
+        return str;
+      }
+
+      function selectData( name, widget ){
+        selectTab( name, widget);
+        //var spec = Editors[0].MainDiv.value;
+        //handleNewData( Annotator[0], spec );
+      }
+
+      function selectResults( name, widget ){
+        selectTab( name, widget);
+
+        var div = document.getElementById( name );
+        if( !div )
+          return;
+
+        var spec = Editors[0].MainDiv.value;
+        var X = JSON.parse( spec );
+        X = toSnake( X );
+
+        X = JSON.stringify( X, null, 2);
+        X=X.replace( /</g, "&lt;" );
+
+        div.innerHTML = "<pre>"+X+"</pre>";
+
+        //var spec = Editors[0].MainDiv.value;
+        //handlePageData( Annotator[0], spec );
+      }
+
+    </script>
+</head>
+<body id="body"
+      style="background-image:url(./images/header-light-bg.jpg);margin:0px;background-attachment:fixed;">
+<div style="width:100%; text-align:center;background:#1d2134;height:5em;margin: 0px;">
+    <h1 style="color:white;margin:0px;padding-top:0.65em;padding-bottom:0.9em;"><em>Audacity
+        ToolKit</em>: Data Mangler</h1>
+    <div style="width:100%; text-align:center;background:#303b70;position:relative;height:1.8em;top:-0.6em;box-shadow: inset 0 0px 4px 0px #000080, 0 -2px 7px -2px #618ef4;"></div>
+</div>
+<div style="width:100%;position:relative;top:-0.50em;left:0;display:inline-block;margin:0 auto;height:3em;">
+    <div class='pos-resetter'>
+        <h2 id="click-tip"
+            style="color:#bfbfbf;display:block;position:relative;top:-0.55em;transition:opacity 4s;opacity:1;">
+            <em>Version from 11-Mar-2020</em></h2>
+    </div>
+    <div class='pos-resetter'>
+        <div style="display:inline-block;">
+            <div class='linky' id="manual-url-holder">
+                Manual's URL, here
+            </div> &nbsp;
+            <div class='linky' id="wit-url-holder">
+                WIT's URL, here
+            </div> &nbsp;
+            <div class='linky' id="doxy-url-holder">
+                Doxygen's URL, here
+            </div>
+        </div>
+    </div>
+</div>
+<a href="https://www.audacityteam.org">
+    <div id="logoback">
+        <img id='logo' src="./images/audacity-logo.png">
+    </div>
+</a>
+<div style="height:1.9em;"></div>
+
+<div style="margin-left:10px">
+    <h3>In Audacity Wiki:</h3>
+    See the interactive wikidiagrams in a live wiki:
+    <ul>
+        <li><a href="https://wiki.audacityteam.org/wiki/Toolbox/Examples">The examples</a>, the diagrams themselves
+        <li>Edit the <a href="https://wiki.audacityteam.org/w/index.php?title=Toolbox/Flow_Chart&action=edit">flow chart</a> spec in mediawiki
+    </ul>
+</div><br>
+
+<div class = "tabber">
+    <span class="tab selected" id='dataTab' onClick="selectData('data',this)">data</span>
+    <span class="tab" id='resultsTab' onClick="selectResults('results',this)">results</span>
+</div>
+
+<div class="scenebacker">
+    <div id="data" class="choice" style="display:block">
+        <div id="content_here0" class="atkEditorDiv" data-page="Audacity" style="text-align:center;">
+        </div>
+    </div>
+    <div id="results" class="choice" style="display:none">RESULTS</div>
+</div>
+
+
+<div style="margin-left:10px">
+
+<!---->
+
+
+<div style="margin-left:10px;color:#818181">
+    <div id="message"></div>
+    <div id="message2"></div>
+</div>
+
+<div id="examples" style="margin-left:10px">
+</div>
+
+</body>
+</html>
