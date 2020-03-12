@@ -11,6 +11,8 @@ The detailed data for the chart follows.
 <pre>START</pre>
 <pre>ADD:DATA=[
 
+{"Overlay":[
+
 {"Path":"Snakes!",
  "values":[
             {
@@ -2581,7 +2583,13 @@ The detailed data for the chart follows.
 
     ]
 }
-]
+
+
+,
+{"Image":"svg",
+"src":"IconEffects.svg",
+"opacity":0.2}]}]
+
 </pre>
 
 

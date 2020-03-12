@@ -10,10 +10,14 @@ classes.  Here's the result:
 The detailed data for the chart follows.
 
 <pre>START</pre>
+
 <pre>ADD:DATA=[
         {"Prog":"Foo",
 "code":[
-    "loadSpec","Audacity", "Projects"
+    "loadSpec","Audacity",
+    "setBright", "Projects",
+    "chooseItem","svg",
+    "loadImage","IconProject.svg"
     ]}
 ]
 </pre>

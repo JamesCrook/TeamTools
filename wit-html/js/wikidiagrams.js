@@ -1957,7 +1957,7 @@ function layoutContainer( A, obj, d){
 
 
 function doAction(A,code){
-  var activeObject;
+  var activeObject = {};
   var name;
   var section;
 
@@ -1985,14 +1985,22 @@ function doAction(A,code){
     }
     else if( command === "loadSpec" ){
       var spec = code[i++];
-      const bright = code[i++];
-      requestSpec(A, spec, A.fromWiki, 1,
-        function( AA, data, ss ){
+      //const bright = code[i++];
+      var prog = code.slice( i );
+      var handler = (function( pp ){
+        return function( AA, data, ss ){
           handleNewData(AA, data, ss);
-          AA.BrightObjects = bright;
+          doAction( AA, pp );
+          //AA.BrightObjects = bright;
         }
-
-      );
+      }(prog));
+      requestSpec(A, spec, A.fromWiki, 1, handler );
+      return;
+    }
+    else if( command === "loadImage" ){
+      activeObject.file = code[i++];
+      activeObject.img.crossOrigin = "anonymous";
+      activeObject.img.src = urlOfFile( activeObject.file );
     }
     else if( command === "Spec" ){
       name = code[i++];

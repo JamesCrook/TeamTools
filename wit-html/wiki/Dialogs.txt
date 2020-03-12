@@ -13,7 +13,10 @@ The detailed data for the chart follows.
 <pre>ADD:DATA=[
         {"Prog":"Foo",
 "code":[
-    "loadSpec","Audacity", "Dialogs"
+    "loadSpec","Audacity",
+    "setBright", "Dialogs",
+    "chooseItem","svg",
+    "loadImage","IconDialog.svg"
     ]}
 ]
 </pre>
