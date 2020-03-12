@@ -145,7 +145,7 @@ from pressure waves in air to <b>vibrations of tiny bones</b>, to movement in
 cells that generate electrical impulses in the auditory nerve.</em></p>
 <p>Click to go back to the ear.</p>
 
-<pre>CLICK LOAD SPEC=Ear</pre>
+<pre>CLICK LOAD SPEC=The_Ear</pre>
 
 
 

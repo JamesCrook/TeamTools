@@ -379,54 +379,6 @@ function drawChem(A, obj, d){
   drawBenzene( A, obj, d );
 }
 
-
-function drawText(A, obj, d){
-  if( d.stage !== kStageFillAndText )
-    return;
-
-  //console.log( "draw - "+obj.type);
-  var l = obj.layout;
-  var x = l.x0;
-  var y = l.y0;
-  var xw = l.xw;
-  var yh = l.yh;
-
-  var ctx = A.BackingCanvas.ctx;
-
-  ctx.save();
-  ctx.beginPath();
-
-  setStyles(ctx, obj);
-  if( obj.cornerRadius )
-    drawRoundRect(ctx, x, y, xw, yh, obj.cornerRadius);
-  else
-    ctx.rect(x, y, xw, yh);
-  ctx.fill();
-  ctx.stroke();
-
-  //ctx.textAlign = "left";
-  ctx.fillStyle = "rgba(0,0,0,1.0)";
-
-  var textWidth  = ctx.measureText( obj.value ).width;
-  // Approximate height (as M is 'square' );
-  // Advanced metrics not supported in firefox or ie or edge.
-  var textHeight = ctx.measureText( "M").width;
-
-  var xPercent = isDefined( obj.xPos ) ? obj.xPos : 0.50;
-  var yPercent = isDefined( obj.yPos ) ? obj.yPos : 0.50;
-  ctx.fillText(obj.value,
-    x + (xw-textWidth) * xPercent,
-    y + (yh-textHeight) * yPercent + textHeight);
-  ctx.restore();
-  if( obj.hotspotColour ){
-    var ctx2 = A.Hotspots.ctx;
-    ctx2.beginPath();
-    ctx2.rect(x, y, xw, yh);
-    ctx2.fillStyle = obj.hotspotColour;
-    ctx2.fill();
-  }
-}
-
 var iter = 160;
 
 function minEnergy( A, obj, d ){
@@ -558,7 +510,6 @@ function drawMolecule( A, obj, d ){
 
 function registerSmilesMethods()
 {
-  registerMethod( "Text",    0,0, layoutMargined, drawText);
   registerMethod( "Chem",    0,0, 0, drawBenzene);
   registerMethod( "Chem",    0,0, layoutMolecule, drawMolecule);
   //registerMethod( "Chem",    0, 0, drawChem);

@@ -1297,6 +1297,56 @@ function drawRectangle(A, obj, d){
 }
 
 
+
+function drawText(A, obj, d){
+  if( d.stage !== kStageFillAndText )
+    return;
+
+  //console.log( "draw - "+obj.type);
+  var l = obj.layout;
+  var x = l.x0;
+  var y = l.y0;
+  var xw = l.xw;
+  var yh = l.yh;
+
+  var ctx = A.BackingCanvas.ctx;
+
+  ctx.save();
+  ctx.beginPath();
+
+  setStyles(ctx, obj);
+  if( obj.cornerRadius )
+    drawRoundRect(ctx, x, y, xw, yh, obj.cornerRadius);
+  else
+    ctx.rect(x, y, xw, yh);
+  ctx.fill();
+  ctx.stroke();
+
+  //ctx.textAlign = "left";
+  ctx.fillStyle = "rgba(0,0,0,1.0)";
+
+  var textWidth  = ctx.measureText( obj.value ).width;
+  // Approximate height (as M is 'square' );
+  // Advanced metrics not supported in firefox or ie or edge.
+  var textHeight = ctx.measureText( "M").width;
+
+  var xPercent = isDefined( obj.xPos ) ? obj.xPos : 0.50;
+  var yPercent = isDefined( obj.yPos ) ? obj.yPos : 0.50;
+  ctx.fillText(obj.value,
+    x + (xw-textWidth) * xPercent,
+    y + (yh-textHeight) * yPercent + textHeight);
+  ctx.restore();
+  if( obj.hotspotColour ){
+    var ctx2 = A.Hotspots.ctx;
+    ctx2.beginPath();
+    ctx2.rect(x, y, xw, yh);
+    ctx2.fillStyle = obj.hotspotColour;
+    ctx2.fill();
+  }
+}
+
+
+
 function drawTile(A,obj,d){
   drawRectangle( A, obj, d );
   increaseMargin( A, obj, 10);
@@ -1584,19 +1634,6 @@ function setNewImage(A,file){
 
 }
 
-function doAction(A,action){
-  if( action.Action === "Spec" ){
-    requestSpec( A, action.Name, A.fromWiki, action.Section);
-  } else if( action.Action === "DoSpec" ){
-    requestSpec( A, action.Name, A.fromWiki, action.Section, addNewDetails);
-  }
-  else if( action.Action === "Image" ) {
-    setNewImage( A, action.Name);
-  } else if( action.Action === "Goto" ){
-    window.location.href = action.Name;
-  }
-}
-
 function mousemoveOnMap(e){
   var index = e.target.toolkitIndex;
   var A = Annotator[index];
@@ -1802,29 +1839,15 @@ function fieldValue(field, line){
   return value;
 }
 
-function setSection( A, section ){
-  var h = A.Hotspots.Current.Click || {};
-  h.Section = JSON.parse(section)+1;
-  A.Hotspots.Current.Click = h;
-}
-
-function setHover(A,type, location){
-
-  var h = A.Hotspots.Current.Hover || {};
-  h.Action = type;
-  h.Name = location;
-  A.Hotspots.Current.Hover = h;
-}
 
 function setClick(A,type, location){
-
-  var h = A.Hotspots.Current.Click || {};
-  h.Action = type;
+  var h = A.Hotspots.Current.Click || [];
+  h.push( type );
   // ignore after '#'
-  h.Name = (location + "#").split("#")[0];
+  h.push(  (location + "#").split("#")[0]);
   var num = location.split("#")[1]||"0";
   num = Number( num );
-  h.Section = num+1;
+  h.push( num+1 );
   A.Hotspots.Current.Click = h;
 }
 
@@ -1932,11 +1955,12 @@ function layoutContainer( A, obj, d){
   }
 }
 
-function createProg( A, obj, data ){
-  if( !obj.code )
-    return;
+
+function doAction(A,code){
   var activeObject;
-  var code = obj.code;
+  var name;
+  var section;
+
   for(i=0;i<code.length;){
     var command = code[i++];
     if( command === "selectCredits" ){
@@ -1968,10 +1992,37 @@ function createProg( A, obj, data ){
           AA.BrightObjects = bright;
         }
 
-        );
+      );
+    }
+    else if( command === "Spec" ){
+      name = code[i++];
+      section = code[i++];
+      requestSpec( A, name, A.fromWiki, section);
+    }
+    else if( command === "DoSpec" ){
+      name = code[i++];
+      section = code[i++];
+      requestSpec( A, name, A.fromWiki, section, addNewDetails);
+    }
+    else if( command === "Image" ) {
+      name = code[i++];
+      setNewImage( A, name);
+    }
+    else if( command === "Goto" ){
+      name = code[i++];
+      window.location.href = name;
+      return;
     }
 
+
   }
+}
+
+function createProg( A, obj, data ){
+  if( !obj.code )
+    return;
+  doAction( A, obj.code );
+
 }
 
 function sizeSpacer( A, obj, data ){
@@ -2270,7 +2321,7 @@ function doChoose( A, parentObj, item )
       if( obj.clickDo ){
         // This makes a temporary click action, so that we can
         // do it immediately.
-        A.Hotspots.Current.Click = {};
+        A.Hotspots.Current.Click = [];
         setClick( A, obj.clickDo[0], obj.clickDo[1] );
         doAction(A,A.Hotspots.Current.Click);
       }
@@ -2815,17 +2866,17 @@ function populateEditorElement(A, contentHere){
 
 function registerMethods()
 {
-  registerMethod( "Circle",    0,0, layoutMargined, drawCircle);
-  registerMethod( "Rectangle", 0,0, layoutMargined, drawRectangle);
-  registerMethod( "Image",     0,0, layoutMargined, drawImage);
-  registerMethod( "Chart",     0,0, layoutMargined, drawChart);
-  registerMethod( "Tile",    0,0,layoutMargined, drawTile);
+  registerMethod( "Image",    0,0, layoutMargined, drawImage);
+  registerMethod( "Text",     0,0, layoutMargined, drawText);
+  registerMethod( "Circle",   0,0, layoutMargined, drawCircle);
+  registerMethod( "Rectangle",0,0, layoutMargined, drawRectangle);
+  registerMethod( "Tile",     0,0, layoutMargined, drawTile);
+  registerMethod( "Spacer",   0,0,0, drawNowt);
 
-  // The charts are unmargined...
-  registerMethod( "Nowt",    0,0,0, drawNowt);
-  registerMethod( "Path",    0,0,0, drawPath);
-  registerMethod( "Tree",    0,0,0, drawTree);
-  registerMethod( "Arrows",  0, sizeNowt,layoutNowt, drawArrows);
+  registerMethod( "Chart",    0,0, layoutMargined, drawChart);
+  registerMethod( "Path",     0,0,0, drawPath);
+  registerMethod( "Tree",     0,0,0, drawTree);
+  registerMethod( "Arrows",   0, sizeNowt,layoutNowt, drawArrows);
   registerMethod( "Prog",     createProg,sizeNowt,layoutNowt, 0);
 
 }
