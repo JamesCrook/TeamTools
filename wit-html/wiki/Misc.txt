@@ -190,10 +190,6 @@ The detailed data for the chart follows.
            "docString": "<h3>CloseButtonHandle</h3>No Description"
          },
          {
-           "className": "CombinedMessageTarget",
-           "docString": "<h3>CombinedMessageTarget</h3>Sends messages to two message targets at once "
-         },
-         {
            "className": "ComboEditor",
            "docString": "<h3>ComboEditor</h3>No Description"
          },
@@ -594,10 +590,6 @@ The detailed data for the chart follows.
            "docString": "<h3>InstallTopPanelHook</h3>No Description"
          },
          {
-           "className": "InteractiveOutputTargets",
-           "docString": "<h3>InteractiveOutputTargets</h3>InteractiveOutputTargets is an output target that pops up a dialog, if necessary "
-         },
-         {
            "className": "Internat",
            "docString": "<h3>Internat</h3>Internationalisation support "
          },
@@ -722,18 +714,6 @@ The detailed data for the chart follows.
            "docString": "<h3>MainGroup</h3>No Description"
          },
          {
-           "className": "Message",
-           "docString": "<h3>Message</h3>No Description"
-         },
-         {
-           "className": "MessageBoxTarget",
-           "docString": "<h3>MessageBoxTarget</h3>Displays messages from a command in an AudacityMessageBox "
-         },
-         {
-           "className": "MessageBuffer",
-           "docString": "<h3>MessageBuffer</h3>No Description"
-         },
-         {
            "className": "MIDIParser",
            "docString": "<h3>MIDIParser</h3>Unused class that might someday be used again to read MIDI files into a NoteTrack "
          },
@@ -816,10 +796,6 @@ The detailed data for the chart follows.
          {
            "className": "NotifyingSelectedRegion",
            "docString": "<h3>NotifyingSelectedRegion</h3>No Description"
-         },
-         {
-           "className": "NullMessageTarget",
-           "docString": "<h3>NullMessageTarget</h3>Used to ignore a command's message updates "
          },
          {
            "className": "NullProgressTarget",
@@ -1222,10 +1198,6 @@ The detailed data for the chart follows.
            "docString": "<h3>Switch< R, ConcreteType, BaseClass, BaseClasses... ></h3>No Description"
          },
          {
-           "className": "Syllable",
-           "docString": "<h3>Syllable</h3>Used in LyricsPanel, a Syllable gives positional information to be used with the bouncing ball effect "
-         },
-         {
            "className": "t_diag_struct",
            "docString": "<h3>t_diag_struct</h3>No Description"
          },
@@ -1565,7 +1537,7 @@ The detailed data for the chart follows.
 
 
 
-<pre>CREDITS:CAPTION=Audacity Classes - Snake Diagram;TIP=</pre>
+<pre>CREDITS:CAPTION=Miscellaneous Audacity Classes - Snake Diagram;TIP=</pre>
 <h3>Instructions</h3>
 <ul>
 <li>Hover over blobs on the track for details about that item.
