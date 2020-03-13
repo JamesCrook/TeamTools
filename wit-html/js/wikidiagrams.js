@@ -1172,7 +1172,8 @@ function drawImage(A, obj, d){
   var ctx = A.BackingCanvas.ctx;
   var ctx2 = A.Hotspots.ctx;
   if( obj.status !== "arrived" ){
-    drawRectangle(A, obj, d);
+    if( obj.src )
+       drawRectangle(A, obj, d);
     return;
   }
 
@@ -1627,9 +1628,12 @@ function setNewImage(A,file){
   if( (A.RootObject.content.length === 1) &&
     (A.RootObject.content[0].type === "Image") ){
     var obj = A.RootObject.content[0];
-    obj.file = file;
-    obj.img.crossOrigin = "anonymous";
-    obj.img.src = urlOfFile( obj.file );
+    //obj.file = file;
+    //obj.img.crossOrigin = "anonymous";
+    //obj.img.src = urlOfFile( obj.file );
+    obj.src = file;
+    mayRequestImage(A, obj)
+
   }
 
 }
@@ -1998,9 +2002,8 @@ function doAction(A,code){
       return;
     }
     else if( command === "loadImage" ){
-      activeObject.file = code[i++];
-      activeObject.img.crossOrigin = "anonymous";
-      activeObject.img.src = urlOfFile( activeObject.file );
+      activeObject.src = code[i++];
+      mayRequestImage(A, activeObject);
     }
     else if( command === "Spec" ){
       name = code[i++];
@@ -2472,9 +2475,10 @@ function loadNewLines(A, specFileData, section){
       root.type = "VStack";
       root.content = root.content || [];
       data = fieldValue("DATA", item);
-      console.log("flow-data:" + data);
       var container = [];
       var json = JSON.parse(data);
+      console.log("flow-data:" + JSON.stringify( json, null, 2) );
+
       //console.log(obj);
       if( !Array.isArray(json) ) container.push(json); else container = json;
 
