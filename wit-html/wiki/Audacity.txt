@@ -1200,6 +1200,11 @@ The detailed data for the chart follows.
                 "docString": "<h3>NumericConverter</h3>NumericConverter provides the advanced formatting control used in the selection bar of Audacity ",
                 "isHead": true
               },
+             {
+               "className": "DigitInfo",
+               "docString": "<h3>DigitInfo</h3>DigitInfo is a class used in NumericTextCtrl "
+             },
+
               {
                 "className": "BenchmarkDialog",
                 "docString": "<h3>BenchmarkDialog</h3>BenchmarkDialog is used for measuring performance and accuracy of the BlockFile system ",
@@ -1430,6 +1435,16 @@ The detailed data for the chart follows.
                    "className": "Destroyer",
                    "docString": "<h3>Destroyer</h3>A deleter class to supply the second template parameter of unique_ptr for classes like wxWindow that should be sent a message called Destroy rather than be deleted directly "
                  },
+                 {
+                   "className": "ValueRestorer",
+                   "docString": "<h3>ValueRestorer</h3>Set a variable temporarily in a scope "
+                 },
+
+                 {
+                   "className": "RestoreValue",
+                   "docString": "<h3>RestoreValue</h3>Structure used by ValueRestorer "
+                 },
+
 
                  {
                    "className": "SimpleGuard",
@@ -2034,7 +2049,10 @@ The detailed data for the chart follows.
                     "className": "EffectPaulstretch",
                     "docString": "<h3>EffectPaulstretch</h3>An Extreme Time Stretch and Time Smear effect "
                   },
-                  {
+                 {
+                   "className": "PaulStretch",
+                   "docString": "<h3>PaulStretch</h3>Class that helps EffectPaulStretch. It does the FFTs and inner loop of the effect "
+                 },                  {
                     "className": "EffectPhaser",
                     "docString": "<h3>EffectPhaser</h3>An Effect that changes frequencies in a time varying manner "
                   },
