@@ -90,6 +90,21 @@ The detailed data for the chart follows.
                     "className": "ApplyAndSendResponse",
                     "docString": "<h3>ApplyAndSendResponse</h3>ApplyAndSendResponse is a DecoratoredCommand that performs the given command and then outputs a status message according to the result. It manages a CommandContext which is passed into its mCommand, so that result messages are routed back to the right place "
                   },
+
+                 {
+                   "className": "Response",
+                   "docString": "<h3>Response</h3>Stores a command response string (and other response data if it becomes necessary) "
+                 },
+                 {
+                   "className": "ResponseQueue",
+                   "docString": "<h3>ResponseQueue</h3>Allow messages to be sent from the main thread to the script thread "
+                 },
+                 {
+                   "className": "ResponseQueueTarget",
+                   "docString": "<h3>ResponseQueueTarget</h3>Adds messages to the global response queue (to be sent back to a script) "
+                 },
+
+
                   {
                     "className": "ApplyMacroDialog",
                     "docString": "<h3>ApplyMacroDialog</h3>Shows progress in executing commands in MacroCommands "
@@ -646,6 +661,24 @@ The detailed data for the chart follows.
                 "className": "MeterToolBar",
                 "docString": "<h3>MeterToolBar</h3>A ToolBar that holds the VU Meter "
               },
+             {
+               "className": "MeterBar",
+               "docString": "<h3>MeterBar</h3>A struct used by MeterPanel to hold the position of one bar "
+             },
+             {
+               "className": "MeterPanelBase",
+               "docString": "<h3>MeterPanelBase</h3>No Description"
+             },
+             {
+               "className": "MeterUpdateMsg",
+               "docString": "<h3>MeterUpdateMsg</h3>Message used to update the MeterPanel "
+             },
+             {
+               "className": "MeterUpdateQueue",
+               "docString": "<h3>MeterUpdateQueue</h3>Queue of MeterUpdateMsg used to feed the MeterPanel "
+             },
+
+
               {
                 "className": "MixerToolBar",
                 "docString": "<h3>MixerToolBar</h3>A ToolBar that provides the record and playback volume settings "
@@ -767,6 +800,11 @@ The detailed data for the chart follows.
                 "category": "Dialogs",
                 "snakeStyle": 2
               },
+             {
+               "className": "AboutDialogCreditItem",
+               "docString": "<h3>AboutDialogCreditItem</h3>AboutDialogCreditItem is a structure used by the AboutDialog to hold information about one contributor to Audacity "
+             },
+
               {
                 "className": "ApplyMacroDialog",
                 "docString": "<h3>ApplyMacroDialog</h3>Shows progress in executing commands in MacroCommands "
@@ -961,6 +999,11 @@ The detailed data for the chart follows.
                 "className": "ShuttleGuiBase",
                 "docString": "<h3>ShuttleGuiBase</h3>Base class for shuttling data to and from a GUI "
               },
+             {
+               "className": "WrappedType",
+               "docString": "<h3>WrappedType</h3>Used in type conversions, this wrapper for ints, strings, doubles and enums provides conversions between all the types. Functions that work on wrapped types can quickly be reused to work on any of these types. This cuts out a lot of repetitive code "
+             },
+
               {
                 "className": "ShuttleParams",
                 "docString": "<h3>ShuttleParams</h3>Shuttle that deals with parameters. This is a base class with lots of virtual functions that do nothing by default "
@@ -1227,6 +1270,11 @@ The detailed data for the chart follows.
                 "className": "AudioTrack",
                 "docString": "<h3>AudioTrack</h3>A Track that can load/save audio data to/from XML "
               },
+             {
+               "className": "RingBuffer",
+               "docString": "<h3>RingBuffer</h3>Holds streamed audio samples "
+             },
+
               {
                 "className": "Audio",
                 "docString": "<h3>Audio</h3>Classes that deal with the portaudio thread",
@@ -1238,7 +1286,7 @@ The detailed data for the chart follows.
             "sizeAs": 2,
             "HStack": [
               {
-                "sizeAs": 1.2,
+                "sizeAs": 1.4,
                 "Path": "Snakes9-11",
                 "values": [
                   {
@@ -1352,6 +1400,25 @@ The detailed data for the chart follows.
                     "className": "Maybe",
                     "docString": "<h3>Maybe</h3>Like a smart pointer, allows for object to not exist (nullptr) "
                   },
+                 {
+                   "className": "Destroyer",
+                   "docString": "<h3>Destroyer</h3>A deleter class to supply the second template parameter of unique_ptr for classes like wxWindow that should be sent a message called Destroy rather than be deleted directly "
+                 },
+
+                 {
+                   "className": "SimpleGuard",
+                   "docString": "<h3>SimpleGuard</h3>SimpleGuard classes add the second argument of GuardedCall: Frequently useful converter of all exceptions to some failure constant "
+                 },
+                 {
+                   "className": "SimpleGuard< bool >",
+                   "docString": "<h3>SimpleGuard< bool ></h3>SimpleGuard specialization that returns bool, and defines Default "
+                 },
+                 {
+                   "className": "SimpleGuard< void >",
+                   "docString": "<h3>SimpleGuard< void ></h3>SimpleGuard specialization that returns nothing, and defines Default "
+                 },
+
+
                   {
                     "className": "Missing in wx",
                     "docString": "<h3>Missing in wx</h3>Our own extensions to wxWidgets and std::",
@@ -1520,11 +1587,45 @@ The detailed data for the chart follows.
                     "docString": "<h3>FFmpegPresets</h3>+No Description",
                     "isHead": true
                   },
+
+
+                 {
+                   "className": "RegisteredFactory",
+                   "docString": "<h3>RegisteredFactory</h3>Type meant to be stored by client code in a static variable, and used as a retrieval key to get the manufactured client object back from the host object. It can be destroyed to de-register the factory, but usually not before destruction of statics at program exit ",
+                   "snakeStyle":1
+                 },
+                 {
+                   "className": "RegisteredMenuItemEnabler",
+                   "docString": "<h3>RegisteredMenuItemEnabler</h3>No Description"
+                 },
+                 {
+                   "className": "RegisteredStatusWidthFunction",
+                   "docString": "<h3>RegisteredStatusWidthFunction</h3>No Description"
+                 },
+                 {
+                   "className": "RegisteredToolbarFactory",
+                   "docString": "<h3>RegisteredToolbarFactory</h3>No Description"
+                 },
+                 {
+                   "className": "RegisterType",
+                   "docString": "<h3>RegisterType</h3>No Description"
+                 },
+                 {
+                   "className": "Registrar",
+                   "docString": "<h3>Registrar</h3>Base class for registration callback. Audacity will call providers RegisterNameOfThing() functions with an &Registrar as the argument. RegisterNameOfThing() is then responsible for calling the appropriate callback functions "
+                 },
+                   {
+                     "className": "PluginManager",
+                     "docString": "<h3>PluginManager</h3>PluginManager maintains a list of all plug ins. That covers modules, effects, generators, analysis-effects, commands. It also has functions for shared and private configs - which need to move out "
+                   },
+                   {
+                     "className": "PluginManagerInterface",
+                     "docString": "<h3>PluginManagerInterface</h3>No Description"
+                   },
+
                   {
                     "className": "ExportPlugin",
-                    "docString": "<h3>ExportPlugin</h3>+No Description",
-                    "category": "Plugins",
-                    "snakeStyle": 1
+                    "docString": "<h3>ExportPlugin</h3>+No Description"
                   },
                   {
                     "className": "FFmpegImportPlugin",

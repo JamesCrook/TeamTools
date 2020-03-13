@@ -7,7 +7,1575 @@ classes.  Here's the result:
 {{#widget:WikiDiagram|page=Misc|init=yes}}
 -----
 
+__NOTOC__
+{{ATK_Header}}
+This is the spec for the interactive diagram which shows a display of Audacity
+classes.  Here's the result:
+
+-----
+{{#widget:WikiDiagram|page=Audacity|init=yes}}
+-----
+
 The detailed data for the chart follows.
+<pre>START</pre>
+<pre>ADD:DATA=
+
+[
+  {
+    "Overlay": [
+      {
+        "Path":"Misc",
+        "values":
+         [
+         {
+           "className": "ClientData",
+           "docString": "<h3>ClientData</h3>+No Description",
+           "category":"Misc",
+           "snakeStyle": 2
+         },
+         {
+           "className": "__make_unique_result",
+           "docString": "<h3>__make_unique_result</h3>No Description"
+         },
+         {
+           "className": "__make_unique_result< X[]>",
+           "docString": "<h3>__make_unique_result< X[]></h3>No Description"
+         },
+         {
+           "className": "ADCChanger",
+           "docString": "<h3>ADCChanger</h3>Makes temporary drawing context changes that you back out of, RAII style "
+         },
+         {
+           "className": "AddedAnalysisTrack",
+           "docString": "<h3>AddedAnalysisTrack</h3>No Description"
+         },
+         {
+           "className": "AliasedFile",
+           "docString": "<h3>AliasedFile</h3>An audio file that is referenced (pointed into) directly from an Audacity .aup file rather thna Audacity having its own copies of the data "
+         },
+         {
+           "className": "applicable1",
+           "docString": "<h3>applicable1</h3>No Description"
+         },
+         {
+           "className": "applicable2",
+           "docString": "<h3>applicable2</h3>No Description"
+         },
+         {
+           "className": "ApplicableFor",
+           "docString": "<h3>ApplicableFor</h3>Entry for the Applicability table "
+         },
+         {
+           "className": "AttachableScrollBar",
+           "docString": "<h3>AttachableScrollBar</h3>An AttachableScrollBar is a scroll bar that can be attached to multiple items and so control their scrolling. Uses floats internally, not ints, allowing for (external) control of zooming "
+         },
+         {
+           "className": "AttachedVirtualFunction",
+           "docString": "<h3>AttachedVirtualFunction</h3>No Description"
+         },
+         {
+           "className": "AUControl",
+           "docString": "<h3>AUControl</h3>WxControl with Cocoa/Carbon support "
+         },
+         {
+           "className": "AUControlImpl",
+           "docString": "<h3>AUControlImpl</h3>WxWidgetCocoaImpl "
+         },
+         {
+           "className": "AutoDuckRegion",
+           "docString": "<h3>AutoDuckRegion</h3>Struct that holds a start and end time "
+         },
+         {
+           "className": "AutoRollbackRenamer",
+           "docString": "<h3>AutoRollbackRenamer</h3>AutoRollbackRenamer handles the renaming of files which is needed when producing a NEW version of a file which may fail. On failure the old version is put back in place "
+         },
+         {
+           "className": "AutoSaveFile",
+           "docString": "<h3>AutoSaveFile</h3>Class wrapping reading and writing of arbitrary data in text or binary format to a file "
+         },
+         {
+           "className": "BackgroundCell",
+           "docString": "<h3>BackgroundCell</h3>Class representing the background of a Track. It provides the hit test function that tells us what was hit "
+         },
+         {
+           "className": "BackgroundHandle",
+           "docString": "<h3>BackgroundHandle</h3>No Description"
+         },
+         {
+           "className": "BalanceInfo",
+           "docString": "<h3>BalanceInfo</h3>No Description"
+         },
+         {
+           "className": "Base",
+           "docString": "<h3>Base</h3>No Description"
+         },
+         {
+           "className": "BaseItem",
+           "docString": "<h3>BaseItem</h3>No Description"
+         },
+         {
+           "className": "BE_CONFIG",
+           "docString": "<h3>BE_CONFIG</h3>BE_CONFIG is a structure defined in the Blade DLL Interface for LAME (MP3 Conversion DLL) "
+         },
+         {
+           "className": "BE_VERSION",
+           "docString": "<h3>BE_VERSION</h3>BE_VERSION is a structure defined in the Blade DLL Interface for LAME (MP3 Conversion DLL) "
+         },
+         {
+           "className": "BlockArray",
+           "docString": "<h3>BlockArray</h3>No Description"
+         },
+         {
+           "className": "BlockGenerator",
+           "docString": "<h3>BlockGenerator</h3>No Description"
+         },
+         {
+           "className": "BoundedEnvelope",
+           "docString": "<h3>BoundedEnvelope</h3>No Description"
+         },
+         {
+           "className": "Buffer",
+           "docString": "<h3>Buffer</h3>No Description"
+         },
+         {
+           "className": "BuiltinEffectsModule",
+           "docString": "<h3>BuiltinEffectsModule</h3>Internal module to auto register all built in effects "
+         },
+         {
+           "className": "BuiltinFormatString",
+           "docString": "<h3>BuiltinFormatString</h3>Struct to hold a formatting control string and its user facing name Used in an array to hold the built-in time formats that are always available to the user "
+         },
+         {
+           "className": "ButtonHandle",
+           "docString": "<h3>ButtonHandle</h3>A UIHandle for a TrackPanel button, such as the Mute and Solo buttons "
+         },
+         {
+           "className": "CFReleaser",
+           "docString": "<h3>CFReleaser</h3>No Description"
+         },
+         {
+           "className": "ChoiceEditor",
+           "docString": "<h3>ChoiceEditor</h3>Modified version of wxGridChoiceEditor using wxChoice instead of wxComboBox "
+         },
+         {
+           "className": "CHOICES",
+           "docString": "<h3>CHOICES</h3>No Description"
+         },
+         {
+           "className": "ChoiceSetting",
+           "docString": "<h3>ChoiceSetting</h3>No Description"
+         },
+         {
+           "className": "ClipActions",
+           "docString": "<h3>ClipActions</h3>Namespace for functions for Clip menu "
+         },
+         {
+           "className": "Clipboard",
+           "docString": "<h3>Clipboard</h3>No Description"
+         },
+         {
+           "className": "ClipMoveState",
+           "docString": "<h3>ClipMoveState</h3>No Description"
+         },
+         {
+           "className": "ClipParameters",
+           "docString": "<h3>ClipParameters</h3>No Description"
+         },
+         {
+           "className": "Cloneable",
+           "docString": "<h3>Cloneable</h3>No Description"
+         },
+         {
+           "className": "CloseButtonHandle",
+           "docString": "<h3>CloseButtonHandle</h3>No Description"
+         },
+         {
+           "className": "CombinedMessageTarget",
+           "docString": "<h3>CombinedMessageTarget</h3>Sends messages to two message targets at once "
+         },
+         {
+           "className": "ComboEditor",
+           "docString": "<h3>ComboEditor</h3>No Description"
+         },
+         {
+           "className": "CommonRulerHandle",
+           "docString": "<h3>CommonRulerHandle</h3>No Description"
+         },
+         {
+           "className": "CommonTrackCell",
+           "docString": "<h3>CommonTrackCell</h3>No Description"
+         },
+         {
+           "className": "CommonTrackControls",
+           "docString": "<h3>CommonTrackControls</h3>No Description"
+         },
+         {
+           "className": "CommonTrackPanelCell",
+           "docString": "<h3>CommonTrackPanelCell</h3>No Description"
+         },
+         {
+           "className": "CommonTrackView",
+           "docString": "<h3>CommonTrackView</h3>No Description"
+         },
+         {
+           "className": "CompatibilityEntry",
+           "docString": "<h3>CompatibilityEntry</h3>Describes format-codec compatibility "
+         },
+         {
+           "className": "ComponentInterface",
+           "docString": "<h3>ComponentInterface</h3>ComponentInterface provides name / vendor / version functions to identify plugins. It is what makes a class a plug-in. Additionally it provides an optional parameter definitions function, for those components such as commands, effects and (soon) preference pagess that define parameters "
+         },
+         {
+           "className": "ComponentInterfaceSymbol",
+           "docString": "<h3>ComponentInterfaceSymbol</h3>ComponentInterfaceSymbol pairs a persistent string identifier used internally with an optional, different string as msgid for lookup in a translation catalog "
+         },
+         {
+           "className": "ComputedItem",
+           "docString": "<h3>ComputedItem</h3>No Description"
+         },
+         {
+           "className": "ConditionalGroupItem",
+           "docString": "<h3>ConditionalGroupItem</h3>No Description"
+         },
+         {
+           "className": "ConfigClientInterface",
+           "docString": "<h3>ConfigClientInterface</h3>ConfigClientInterface is an unholy get/set configuration class, which differentiates between private and shared config. It should probably be replaced with a Shuttle "
+         },
+         {
+           "className": "Copyable",
+           "docString": "<h3>Copyable</h3>No Description"
+         },
+         {
+           "className": "Copyable< Container, DeepCopying >",
+           "docString": "<h3>Copyable< Container, DeepCopying ></h3>No Description"
+         },
+         {
+           "className": "Copyable< Container, ShallowCopying >",
+           "docString": "<h3>Copyable< Container, ShallowCopying ></h3>No Description"
+         },
+         {
+           "className": "Copyable< Container, SkipCopying >",
+           "docString": "<h3>Copyable< Container, SkipCopying ></h3>No Description"
+         },
+         {
+           "className": "CrossFader",
+           "docString": "<h3>CrossFader</h3>Not used by Audacity (yet) apparently work in progress that has been abandoned "
+         },
+         {
+           "className": "Cursor",
+           "docString": "<h3>Cursor</h3>No Description"
+         },
+         {
+           "className": "CutlineHandle",
+           "docString": "<h3>CutlineHandle</h3>No Description"
+         },
+         {
+           "className": "Data",
+           "docString": "<h3>Data</h3>No Description"
+         },
+         {
+           "className": "DCUnchanger",
+           "docString": "<h3>DCUnchanger</h3>Used to restore pen, brush and logical-op in a DC back to what they were "
+         },
+         {
+           "className": "DefaultConfigEntry",
+           "docString": "<h3>DefaultConfigEntry</h3>No Description"
+         },
+         {
+           "className": "DefaultDelayedHandlerAction",
+           "docString": "<h3>DefaultDelayedHandlerAction</h3>Performs the delayed configured action, when invoked "
+         },
+         {
+           "className": "Deleter",
+           "docString": "<h3>Deleter</h3>No Description"
+         },
+         {
+           "className": "DeleteUpdateMutexLocker",
+           "docString": "<h3>DeleteUpdateMutexLocker</h3>No Description"
+         },
+         {
+           "className": "DeviceManager",
+           "docString": "<h3>DeviceManager</h3>A singleton that manages the audio devices known to Audacity "
+         },
+         {
+           "className": "DeviceSourceMap",
+           "docString": "<h3>DeviceSourceMap</h3>No Description"
+         },
+         {
+           "className": "Diags",
+           "docString": "<h3>Diags</h3>Processing of the macros for recording bad events or performance monitoring "
+         },
+         {
+           "className": "DigitInfo",
+           "docString": "<h3>DigitInfo</h3>DigitInfo is a class used in NumericTextCtrl "
+         },
+         {
+           "className": "Disabler",
+           "docString": "<h3>Disabler</h3>No Description"
+         },
+         {
+           "className": "Dispatcher",
+           "docString": "<h3>Dispatcher</h3>No Description"
+         },
+         {
+           "className": "Dither",
+           "docString": "<h3>Dither</h3>This class implements various functions for dithering and is derived from the dither code in the Ardour project, written by Steve Harris "
+         },
+         {
+           "className": "EditActions",
+           "docString": "<h3>EditActions</h3>No Description"
+         },
+         {
+           "className": "EditCursorOverlay",
+           "docString": "<h3>EditCursorOverlay</h3>No Description"
+         },
+         {
+           "className": "Enums",
+           "docString": "<h3>Enums</h3>Enums is a helper class for Shuttle. It defines enumerations which are used in effects dialogs, in the effects themselves and in preferences "
+         },
+         {
+           "className": "EnumSetting",
+           "docString": "<h3>EnumSetting</h3>No Description"
+         },
+         {
+           "className": "EventMonitor",
+           "docString": "<h3>EventMonitor</h3>No Description"
+         },
+         {
+           "className": "Executor",
+           "docString": "<h3>Executor</h3>No Description"
+         },
+         {
+           "className": "Executor< R, ConcreteType >",
+           "docString": "<h3>Executor< R, ConcreteType ></h3>No Description"
+         },
+         {
+           "className": "Executor< R, ConcreteType, Function, Functions... >",
+           "docString": "<h3>Executor< R, ConcreteType, Function, Functions... ></h3>No Description"
+         },
+         {
+           "className": "Executor< R, const ConcreteType, Function, Functions... >",
+           "docString": "<h3>Executor< R, const ConcreteType, Function, Functions... ></h3>No Description"
+         },
+         {
+           "className": "Executor< void, ConcreteType >",
+           "docString": "<h3>Executor< void, ConcreteType ></h3>No Description"
+         },
+         {
+           "className": "ExpandingToolBarEvtHandler",
+           "docString": "<h3>ExpandingToolBarEvtHandler</h3>A custom event handler for ExpandingToolBar "
+         },
+         {
+           "className": "ExposedFormat",
+           "docString": "<h3>ExposedFormat</h3>Describes export type "
+         },
+         {
+           "className": "ExtImportItem",
+           "docString": "<h3>ExtImportItem</h3>No Description"
+         },
+         {
+           "className": "ExtImportPrefsDropTarget",
+           "docString": "<h3>ExtImportPrefsDropTarget</h3>No Description"
+         },
+         {
+           "className": "ExtraActions",
+           "docString": "<h3>ExtraActions</h3>Namespace for helper functions for Extra menu "
+         },
+         {
+           "className": "ExtTargetFactory",
+           "docString": "<h3>ExtTargetFactory</h3>Extended Target Factory with more options "
+         },
+         {
+           "className": "FFTDeleter",
+           "docString": "<h3>FFTDeleter</h3>No Description"
+         },
+         {
+           "className": "FFTParam",
+           "docString": "<h3>FFTParam</h3>No Description"
+         },
+         {
+           "className": "fifo_t",
+           "docString": "<h3>fifo_t</h3>No Description"
+         },
+         {
+           "className": "FileActions",
+           "docString": "<h3>FileActions</h3>No Description"
+         },
+         {
+           "className": "FileHistory",
+           "docString": "<h3>FileHistory</h3>Similar to wxFileHistory, but customized to our needs "
+         },
+         {
+           "className": "FileIO",
+           "docString": "<h3>FileIO</h3>No Description"
+         },
+         {
+           "className": "FileNames",
+           "docString": "<h3>FileNames</h3>Provides Static functions to yield filenames "
+         },
+         {
+           "className": "Filter",
+           "docString": "<h3>Filter</h3>No Description"
+         },
+         {
+           "className": "filter_array_t",
+           "docString": "<h3>filter_array_t</h3>No Description"
+         },
+         {
+           "className": "filter_t",
+           "docString": "<h3>filter_t</h3>No Description"
+         },
+         {
+           "className": "Final_action",
+           "docString": "<h3>Final_action</h3>\"finally\" as in The C++ Programming Language, 4th ed., p. 358 Useful for defining ad-hoc RAII actions. typical usage: auto cleanup = finally([&]{ ... code; ... }); "
+         },
+         {
+           "className": "FLAC__StreamMetadataDeleter",
+           "docString": "<h3>FLAC__StreamMetadataDeleter</h3>No Description"
+         },
+         {
+           "className": "FLACImportFileHandle",
+           "docString": "<h3>FLACImportFileHandle</h3>An ImportFileHandle for FLAC data "
+         },
+         {
+           "className": "Flags",
+           "docString": "<h3>Flags</h3>No Description"
+         },
+         {
+           "className": "FlowPacker",
+           "docString": "<h3>FlowPacker</h3>Packs rectangular boxes into a rectangle, using simple first fit "
+         },
+         {
+           "className": "FocusHandler",
+           "docString": "<h3>FocusHandler</h3>No Description"
+         },
+         {
+           "className": "Fonts",
+           "docString": "<h3>Fonts</h3>No Description"
+         },
+         {
+           "className": "Format",
+           "docString": "<h3>Format</h3>Abstract base class used in importing a file "
+         },
+         {
+           "className": "FormatClassifier",
+           "docString": "<h3>FormatClassifier</h3>FormatClassifier classifies the sample format and endianness of raw audio files "
+         },
+         {
+           "className": "FormatClassT",
+           "docString": "<h3>FormatClassT</h3>No Description"
+         },
+         {
+           "className": "FormatInfo",
+           "docString": "<h3>FormatInfo</h3>No Description"
+         },
+         {
+           "className": "FormatMenuTable",
+           "docString": "<h3>FormatMenuTable</h3>No Description"
+         },
+         {
+           "className": "FoundCell",
+           "docString": "<h3>FoundCell</h3>No Description"
+         },
+         {
+           "className": "freer",
+           "docString": "<h3>freer</h3>No Description"
+         },
+         {
+           "className": "FreqGauge",
+           "docString": "<h3>FreqGauge</h3>No Description"
+         },
+         {
+           "className": "FreqPlot",
+           "docString": "<h3>FreqPlot</h3>Works with FreqWindow to dsplay a spectrum plot of the waveform. This class actually does the graph display "
+         },
+         {
+           "className": "g_mutex_locker",
+           "docString": "<h3>g_mutex_locker</h3>No Description"
+         },
+         {
+           "className": "GainSliderHandle",
+           "docString": "<h3>GainSliderHandle</h3>No Description"
+         },
+         {
+           "className": "Generator",
+           "docString": "<h3>Generator</h3>No Description"
+         },
+         {
+           "className": "GetFileNameResult",
+           "docString": "<h3>GetFileNameResult</h3>No Description"
+         },
+         {
+           "className": "Globals",
+           "docString": "<h3>Globals</h3>No Description"
+         },
+         {
+           "className": "Globals",
+           "docString": "<h3>Globals</h3>No Description"
+         },
+         {
+           "className": "Grabber",
+           "docString": "<h3>Grabber</h3>The widget to the left of a ToolBar that allows it to be dragged around to NEW positions "
+         },
+         {
+           "className": "GrabberEvent",
+           "docString": "<h3>GrabberEvent</h3>Grabber Class "
+         },
+         {
+           "className": "Grid",
+           "docString": "<h3>Grid</h3>Supplies an accessible grid based on wxGrid "
+         },
+         {
+           "className": "GroupItem",
+           "docString": "<h3>GroupItem</h3>No Description"
+         },
+         {
+           "className": "GrowableSampleBuffer",
+           "docString": "<h3>GrowableSampleBuffer</h3>No Description"
+         },
+         {
+           "className": "GStreamContext",
+           "docString": "<h3>GStreamContext</h3>No Description"
+         },
+         {
+           "className": "GStreamerImportFileHandle",
+           "docString": "<h3>GStreamerImportFileHandle</h3>! Does actual import, returned by GStreamerImportPlugin::Open "
+         },
+         {
+           "className": "HelpActions",
+           "docString": "<h3>HelpActions</h3>No Description"
+         },
+         {
+           "className": "HelpSystem",
+           "docString": "<h3>HelpSystem</h3>Class which contains static methods and data needed for implementing help buttons "
+         },
+         {
+           "className": "HighlightTextCtrl",
+           "docString": "<h3>HighlightTextCtrl</h3>No Description"
+         },
+         {
+           "className": "HitTestPreview",
+           "docString": "<h3>HitTestPreview</h3>No Description"
+         },
+         {
+           "className": "HtmlWindow",
+           "docString": "<h3>HtmlWindow</h3>HtmlWindow Class "
+         },
+         {
+           "className": "Identifier",
+           "docString": "<h3>Identifier</h3>No Description"
+         },
+         {
+           "className": "identity",
+           "docString": "<h3>identity</h3>No Description"
+         },
+         {
+           "className": "ImageArr",
+           "docString": "<h3>ImageArr</h3>No Description"
+         },
+         {
+           "className": "ImageRoll",
+           "docString": "<h3>ImageRoll</h3>An ImageRoll is an image that can be expanded to an arbitrary size; it is made up of both fixed pieces and repeating pieces "
+         },
+         {
+           "className": "inapplicable",
+           "docString": "<h3>inapplicable</h3>No Description"
+         },
+         {
+           "className": "InstallHandlers",
+           "docString": "<h3>InstallHandlers</h3>No Description"
+         },
+         {
+           "className": "InstallHook",
+           "docString": "<h3>InstallHook</h3>No Description"
+         },
+         {
+           "className": "InstallTopPanelHook",
+           "docString": "<h3>InstallTopPanelHook</h3>No Description"
+         },
+         {
+           "className": "InteractiveOutputTargets",
+           "docString": "<h3>InteractiveOutputTargets</h3>InteractiveOutputTargets is an output target that pops up a dialog, if necessary "
+         },
+         {
+           "className": "Internat",
+           "docString": "<h3>Internat</h3>Internationalisation support "
+         },
+         {
+           "className": "Interval",
+           "docString": "<h3>Interval</h3>No Description"
+         },
+         {
+           "className": "InvalidRegion",
+           "docString": "<h3>InvalidRegion</h3>No Description"
+         },
+         {
+           "className": "IPCConn",
+           "docString": "<h3>IPCConn</h3>No Description"
+         },
+         {
+           "className": "IPCServ",
+           "docString": "<h3>IPCServ</h3>No Description"
+         },
+         {
+           "className": "IsVisibleTrack",
+           "docString": "<h3>IsVisibleTrack</h3>No Description"
+         },
+         {
+           "className": "ItemData",
+           "docString": "<h3>ItemData</h3>No Description"
+         },
+         {
+           "className": "IteratorRange",
+           "docString": "<h3>IteratorRange</h3>A convenience for use with range-for "
+         },
+         {
+           "className": "KeyboardCapture",
+           "docString": "<h3>KeyboardCapture</h3>No Description"
+         },
+         {
+           "className": "KeyNode",
+           "docString": "<h3>KeyNode</h3>No Description"
+         },
+         {
+           "className": "KeyView",
+           "docString": "<h3>KeyView</h3>Provides multiple views of keyboard shortcuts "
+         },
+         {
+           "className": "lame_global_flags",
+           "docString": "<h3>lame_global_flags</h3>Struct with zillion of control parameters that control lame export (MP3 Conversion DLL) "
+         },
+         {
+           "className": "LayoutVisitor",
+           "docString": "<h3>LayoutVisitor</h3>No Description"
+         },
+         {
+           "className": "Legacy",
+           "docString": "<h3>Legacy</h3>No Description"
+         },
+         {
+           "className": "LinkingHtmlWindow",
+           "docString": "<h3>LinkingHtmlWindow</h3>An HtmlWindow that handles linked clicked - usually the link will go to our own local copy of the manual, but it could launch a new browser window "
+         },
+         {
+           "className": "Listener",
+           "docString": "<h3>Listener</h3>No Description"
+         },
+         {
+           "className": "Location",
+           "docString": "<h3>Location</h3>Used only by WaveTrack, a special way to hold location that can accommodate merged regions "
+         },
+         {
+           "className": "Lock",
+           "docString": "<h3>Lock</h3>No Description"
+         },
+         {
+           "className": "Lockable",
+           "docString": "<h3>Lockable</h3>No Description"
+         },
+         {
+           "className": "Lockable< Object, NoLocking >",
+           "docString": "<h3>Lockable< Object, NoLocking ></h3>No Description"
+         },
+         {
+           "className": "Lockable< Object, NonrecursiveLocking >",
+           "docString": "<h3>Lockable< Object, NonrecursiveLocking ></h3>No Description"
+         },
+         {
+           "className": "Lockable< Object, RecursiveLocking >",
+           "docString": "<h3>Lockable< Object, RecursiveLocking ></h3>No Description"
+         },
+         {
+           "className": "Locked",
+           "docString": "<h3>Locked</h3>No Description"
+         },
+         {
+           "className": "Locker",
+           "docString": "<h3>Locker</h3>No Description"
+         },
+         {
+           "className": "LOFImportFileHandle",
+           "docString": "<h3>LOFImportFileHandle</h3>An ImportFileHandle for LOF data "
+         },
+         {
+           "className": "Lookup",
+           "docString": "<h3>Lookup</h3>No Description"
+         },
+         {
+           "className": "LWSlider",
+           "docString": "<h3>LWSlider</h3>Lightweight version of ASlider. In other words it does not have a window permanently associated with it "
+         },
+         {
+           "className": "LyricsWindow",
+           "docString": "<h3>LyricsWindow</h3>No Description"
+         },
+         {
+           "className": "MachineEndianness",
+           "docString": "<h3>MachineEndianness</h3>No Description"
+         },
+         {
+           "className": "MacrosWindow",
+           "docString": "<h3>MacrosWindow</h3>No Description"
+         },
+         {
+           "className": "MainGroup",
+           "docString": "<h3>MainGroup</h3>No Description"
+         },
+         {
+           "className": "Message",
+           "docString": "<h3>Message</h3>No Description"
+         },
+         {
+           "className": "MessageBoxTarget",
+           "docString": "<h3>MessageBoxTarget</h3>Displays messages from a command in an AudacityMessageBox "
+         },
+         {
+           "className": "MessageBuffer",
+           "docString": "<h3>MessageBuffer</h3>No Description"
+         },
+         {
+           "className": "MIDIParser",
+           "docString": "<h3>MIDIParser</h3>Unused class that might someday be used again to read MIDI files into a NoteTrack "
+         },
+         {
+           "className": "MidiThread",
+           "docString": "<h3>MidiThread</h3>No Description"
+         },
+         {
+           "className": "MinimizeButtonHandle",
+           "docString": "<h3>MinimizeButtonHandle</h3>No Description"
+         },
+         {
+           "className": "MinMaxRMS",
+           "docString": "<h3>MinMaxRMS</h3>No Description"
+         },
+         {
+           "className": "Mixer",
+           "docString": "<h3>Mixer</h3>Functions for doing the mixdown of the tracks "
+         },
+         {
+           "className": "MixerSpec",
+           "docString": "<h3>MixerSpec</h3>Class used with Mixer "
+         },
+         {
+           "className": "ModifiedAnalysisTrack",
+           "docString": "<h3>ModifiedAnalysisTrack</h3>No Description"
+         },
+         {
+           "className": "Module",
+           "docString": "<h3>Module</h3>No Description"
+         },
+         {
+           "className": "ModuleDeleter",
+           "docString": "<h3>ModuleDeleter</h3>No Description"
+         },
+         {
+           "className": "ModuleInterface",
+           "docString": "<h3>ModuleInterface</h3>No Description"
+         },
+         {
+           "className": "ModuleInterfaceDeleter",
+           "docString": "<h3>ModuleInterfaceDeleter</h3>No Description"
+         },
+         {
+           "className": "ModuleManager",
+           "docString": "<h3>ModuleManager</h3>No Description"
+         },
+         {
+           "className": "ModuleManagerInterface",
+           "docString": "<h3>ModuleManagerInterface</h3>No Description"
+         },
+         {
+           "className": "MouseEvtHandler",
+           "docString": "<h3>MouseEvtHandler</h3>No Description"
+         },
+         {
+           "className": "MusicalInstrument",
+           "docString": "<h3>MusicalInstrument</h3>No Description"
+         },
+         {
+           "className": "MuteButtonHandle",
+           "docString": "<h3>MuteButtonHandle</h3>No Description"
+         },
+         {
+           "className": "MyFLACFile",
+           "docString": "<h3>MyFLACFile</h3>No Description"
+         },
+         {
+           "className": "NavigationActions",
+           "docString": "<h3>NavigationActions</h3>Namespace for functions for project navigation menu (part of Extra menu) "
+         },
+         {
+           "className": "NonKeystrokeInterceptingWindow",
+           "docString": "<h3>NonKeystrokeInterceptingWindow</h3>No Description"
+         },
+         {
+           "className": "NormalizedKeyString",
+           "docString": "<h3>NormalizedKeyString</h3>No Description"
+         },
+         {
+           "className": "NotifyingSelectedRegion",
+           "docString": "<h3>NotifyingSelectedRegion</h3>No Description"
+         },
+         {
+           "className": "NullMessageTarget",
+           "docString": "<h3>NullMessageTarget</h3>Used to ignore a command's message updates "
+         },
+         {
+           "className": "NullProgressTarget",
+           "docString": "<h3>NullProgressTarget</h3>Used to ignore a command's progress updates "
+         },
+         {
+           "className": "NyqControl",
+           "docString": "<h3>NyqControl</h3>A control on a NyquistDialog "
+         },
+         {
+           "className": "NyquistEffect",
+           "docString": "<h3>NyquistEffect</h3>An Effect that calls up a Nyquist (XLISP) plug-in, i.e. many possible effects from this one class "
+         },
+         {
+           "className": "NyquistEffectsModule",
+           "docString": "<h3>NyquistEffectsModule</h3>No Description"
+         },
+         {
+           "className": "OggImportFileHandle",
+           "docString": "<h3>OggImportFileHandle</h3>No Description"
+         },
+         {
+           "className": "one_pole_t",
+           "docString": "<h3>one_pole_t</h3>No Description"
+         },
+         {
+           "className": "Overlay",
+           "docString": "<h3>Overlay</h3>No Description"
+         },
+         {
+           "className": "Override",
+           "docString": "<h3>Override</h3>No Description"
+         },
+         {
+           "className": "Pair",
+           "docString": "<h3>Pair</h3>No Description"
+         },
+         {
+           "className": "PanSliderHandle",
+           "docString": "<h3>PanSliderHandle</h3>No Description"
+         },
+         {
+           "className": "Params",
+           "docString": "<h3>Params</h3>No Description"
+         },
+         {
+           "className": "Params",
+           "docString": "<h3>Params</h3>No Description"
+         },
+         {
+           "className": "PaulStretch",
+           "docString": "<h3>PaulStretch</h3>Class that helps EffectPaulStretch. It does the FFTs and inner loop of the effect "
+         },
+         {
+           "className": "Pauser",
+           "docString": "<h3>Pauser</h3>No Description"
+         },
+         {
+           "className": "PCMImportFileHandle",
+           "docString": "<h3>PCMImportFileHandle</h3>An ImportFileHandle for PCM data "
+         },
+         {
+           "className": "Place",
+           "docString": "<h3>Place</h3>No Description"
+         },
+         {
+           "className": "PlatformCompatibility",
+           "docString": "<h3>PlatformCompatibility</h3>Filename Compatibility utilities "
+         },
+         {
+           "className": "PlayableTrack",
+           "docString": "<h3>PlayableTrack</h3>An AudioTrack that can be played and stopped "
+         },
+         {
+           "className": "PlayableTrackControls",
+           "docString": "<h3>PlayableTrackControls</h3>No Description"
+         },
+         {
+           "className": "PlaybackSchedule",
+           "docString": "<h3>PlaybackSchedule</h3>No Description"
+         },
+         {
+           "className": "PlaybackScroller",
+           "docString": "<h3>PlaybackScroller</h3>No Description"
+         },
+         {
+           "className": "PlayIndicatorOverlay",
+           "docString": "<h3>PlayIndicatorOverlay</h3>No Description"
+         },
+         {
+           "className": "PlayIndicatorOverlayBase",
+           "docString": "<h3>PlayIndicatorOverlayBase</h3>No Description"
+         },
+         {
+           "className": "PlayRegion",
+           "docString": "<h3>PlayRegion</h3>No Description"
+         },
+         {
+           "className": "PluginActions",
+           "docString": "<h3>PluginActions</h3>No Description"
+         },
+         {
+           "className": "PluginDescriptor",
+           "docString": "<h3>PluginDescriptor</h3>No Description"
+         },
+         {
+           "className": "PopupMenuTable",
+           "docString": "<h3>PopupMenuTable</h3>No Description"
+         },
+         {
+           "className": "PopupMenuTableEntry",
+           "docString": "<h3>PopupMenuTableEntry</h3>No Description"
+         },
+         {
+           "className": "Position",
+           "docString": "<h3>Position</h3>No Description"
+         },
+         {
+           "className": "private_data",
+           "docString": "<h3>private_data</h3>No Description"
+         },
+         {
+           "className": "Profiler",
+           "docString": "<h3>Profiler</h3>A simple profiler to measure the average time lengths that a particular task/function takes. Currently not thread-safe and not thread-smart, but it will probably work fine if you use it on a high level "
+         },
+         {
+           "className": "ProgressToMessageTarget",
+           "docString": "<h3>ProgressToMessageTarget</h3>ProgressToMessageTarget formats the percentage complete text as a message and sends it to that message target "
+         },
+         {
+           "className": "QPCell",
+           "docString": "<h3>QPCell</h3>No Description"
+         },
+         {
+           "className": "QPHandle",
+           "docString": "<h3>QPHandle</h3>No Description"
+         },
+         {
+           "className": "QuickPlayIndicatorOverlay",
+           "docString": "<h3>QuickPlayIndicatorOverlay</h3>No Description"
+         },
+         {
+           "className": "QuickPlayRulerOverlay",
+           "docString": "<h3>QuickPlayRulerOverlay</h3>No Description"
+         },
+         {
+           "className": "RateMenuTable",
+           "docString": "<h3>RateMenuTable</h3>No Description"
+         },
+         {
+           "className": "ReadLock",
+           "docString": "<h3>ReadLock</h3>No Description"
+         },
+         {
+           "className": "ReadLocker",
+           "docString": "<h3>ReadLocker</h3>No Description"
+         },
+         {
+           "className": "ReadProjectResults",
+           "docString": "<h3>ReadProjectResults</h3>No Description"
+         },
+         {
+           "className": "ReadUnlocker",
+           "docString": "<h3>ReadUnlocker</h3>No Description"
+         },
+         {
+           "className": "RealtimeEffectManager",
+           "docString": "<h3>RealtimeEffectManager</h3>No Description"
+         },
+         {
+           "className": "RealtimeEffectState",
+           "docString": "<h3>RealtimeEffectState</h3>No Description"
+         },
+         {
+           "className": "Record",
+           "docString": "<h3>Record</h3>No Description"
+         },
+         {
+           "className": "RecordingRecoveryHandler",
+           "docString": "<h3>RecordingRecoveryHandler</h3>No Description"
+         },
+         {
+           "className": "RecordingSchedule",
+           "docString": "<h3>RecordingSchedule</h3>No Description"
+         },
+         {
+           "className": "RefreshCode",
+           "docString": "<h3>RefreshCode</h3>Namespace containing an enum 'what to do on a refresh?' "
+         },
+         {
+           "className": "Region",
+           "docString": "<h3>Region</h3>Structure to hold region of a wavetrack and a comparison function for sortability "
+         },
+         {
+           "className": "RegionList",
+           "docString": "<h3>RegionList</h3>No Description"
+         },
+         {
+           "className": "Resample",
+           "docString": "<h3>Resample</h3>Interface to libsoxr "
+         },
+         {
+           "className": "ResampleBuf",
+           "docString": "<h3>ResampleBuf</h3>No Description"
+         },
+         {
+           "className": "RestoreValue",
+           "docString": "<h3>RestoreValue</h3>Structure used by ValueRestorer "
+         },
+         {
+           "className": "Reverb_priv_t",
+           "docString": "<h3>Reverb_priv_t</h3>No Description"
+         },
+         {
+           "className": "reverb_t",
+           "docString": "<h3>reverb_t</h3>No Description"
+         },
+         {
+           "className": "RowData",
+           "docString": "<h3>RowData</h3>No Description"
+         },
+         {
+           "className": "Ruler",
+           "docString": "<h3>Ruler</h3>Used to display a Ruler "
+         },
+         {
+           "className": "SampleBuffer",
+           "docString": "<h3>SampleBuffer</h3>No Description"
+         },
+         {
+           "className": "sampleCount",
+           "docString": "<h3>sampleCount</h3>No Description"
+         },
+         {
+           "className": "SampleHandle",
+           "docString": "<h3>SampleHandle</h3>No Description"
+         },
+         {
+           "className": "SBSMSEffectInterface",
+           "docString": "<h3>SBSMSEffectInterface</h3>No Description"
+         },
+         {
+           "className": "ScreenFrameTimer",
+           "docString": "<h3>ScreenFrameTimer</h3>No Description"
+         },
+         {
+           "className": "SelectActions",
+           "docString": "<h3>SelectActions</h3>No Description"
+         },
+         {
+           "className": "SelectButtonHandle",
+           "docString": "<h3>SelectButtonHandle</h3>No Description"
+         },
+         {
+           "className": "SelectedRegion",
+           "docString": "<h3>SelectedRegion</h3>Defines a selected portion of a project "
+         },
+         {
+           "className": "SelectedRegionEvent",
+           "docString": "<h3>SelectedRegionEvent</h3>No Description"
+         },
+         {
+           "className": "SelectHandle",
+           "docString": "<h3>SelectHandle</h3>No Description"
+         },
+         {
+           "className": "SelectionBar",
+           "docString": "<h3>SelectionBar</h3>(not quite a Toolbar) at foot of screen for setting and viewing the selection range "
+         },
+         {
+           "className": "SelectionBarListener",
+           "docString": "<h3>SelectionBarListener</h3>A parent class of SelectionBar, used to forward events to do with changes in the SelectionBar "
+         },
+         {
+           "className": "SelectionState",
+           "docString": "<h3>SelectionState</h3>No Description"
+         },
+         {
+           "className": "SelectionStateChanger",
+           "docString": "<h3>SelectionStateChanger</h3>No Description"
+         },
+         {
+           "className": "SelectUtilities",
+           "docString": "<h3>SelectUtilities</h3>Namespace for functions for Select menu "
+         },
+         {
+           "className": "SeparatorItem",
+           "docString": "<h3>SeparatorItem</h3>No Description"
+         },
+         {
+           "className": "Settings",
+           "docString": "<h3>Settings</h3>No Description"
+         },
+         {
+           "className": "Settings",
+           "docString": "<h3>Settings</h3>No Description"
+         },
+         {
+           "className": "SFFile",
+           "docString": "<h3>SFFile</h3>No Description"
+         },
+         {
+           "className": "SFFileCloser",
+           "docString": "<h3>SFFileCloser</h3>No Description"
+         },
+         {
+           "className": "SinCosStruct",
+           "docString": "<h3>SinCosStruct</h3>No Description"
+         },
+         {
+           "className": "SinCosTable",
+           "docString": "<h3>SinCosTable</h3>No Description"
+         },
+         {
+           "className": "Site",
+           "docString": "<h3>Site</h3>No Description"
+         },
+         {
+           "className": "SliderHandle",
+           "docString": "<h3>SliderHandle</h3>No Description"
+         },
+         {
+           "className": "SnapManager",
+           "docString": "<h3>SnapManager</h3>No Description"
+         },
+         {
+           "className": "SnapPoint",
+           "docString": "<h3>SnapPoint</h3>No Description"
+         },
+         {
+           "className": "SnapResults",
+           "docString": "<h3>SnapResults</h3>No Description"
+         },
+         {
+           "className": "SoloButtonHandle",
+           "docString": "<h3>SoloButtonHandle</h3>No Description"
+         },
+         {
+           "className": "SoundActivatedRecord",
+           "docString": "<h3>SoundActivatedRecord</h3>Configures sound activated recording "
+         },
+         {
+           "className": "SourceOutputStream",
+           "docString": "<h3>SourceOutputStream</h3>Helper class based on wxOutputStream used to get a png file in text format "
+         },
+         {
+           "className": "soxr_deleter",
+           "docString": "<h3>soxr_deleter</h3>No Description"
+         },
+         {
+           "className": "SpecialItem",
+           "docString": "<h3>SpecialItem</h3>No Description"
+         },
+         {
+           "className": "State",
+           "docString": "<h3>State</h3>No Description"
+         },
+         {
+           "className": "State",
+           "docString": "<h3>State</h3>No Description"
+         },
+         {
+           "className": "Statistics",
+           "docString": "<h3>Statistics</h3>No Description"
+         },
+         {
+           "className": "StatusBarTarget",
+           "docString": "<h3>StatusBarTarget</h3>Displays messages from a command in a wxStatusBar "
+         },
+         {
+           "className": "streamContext",
+           "docString": "<h3>streamContext</h3>No Description"
+         },
+         {
+           "className": "StretchHandle",
+           "docString": "<h3>StretchHandle</h3>No Description"
+         },
+         {
+           "className": "StretchState",
+           "docString": "<h3>StretchState</h3>No Description"
+         },
+         {
+           "className": "Subgroup",
+           "docString": "<h3>Subgroup</h3>No Description"
+         },
+         {
+           "className": "SubMenuList",
+           "docString": "<h3>SubMenuList</h3>List of SubMenuListEntry "
+         },
+         {
+           "className": "Switch",
+           "docString": "<h3>Switch</h3>No Description"
+         },
+         {
+           "className": "Switch< R, ConcreteType >",
+           "docString": "<h3>Switch< R, ConcreteType ></h3>No Description"
+         },
+         {
+           "className": "Switch< R, ConcreteType, BaseClass, BaseClasses... >",
+           "docString": "<h3>Switch< R, ConcreteType, BaseClass, BaseClasses... ></h3>No Description"
+         },
+         {
+           "className": "Syllable",
+           "docString": "<h3>Syllable</h3>Used in LyricsPanel, a Syllable gives positional information to be used with the bouncing ball effect "
+         },
+         {
+           "className": "t_diag_struct",
+           "docString": "<h3>t_diag_struct</h3>No Description"
+         },
+         {
+           "className": "TaggedIdentifier",
+           "docString": "<h3>TaggedIdentifier</h3>No Description"
+         },
+         {
+           "className": "Tags",
+           "docString": "<h3>Tags</h3>ID3 Tags (for MP3) "
+         },
+         {
+           "className": "TagsEditor",
+           "docString": "<h3>TagsEditor</h3>Derived from ExpandingToolBar, this dialog allows editing of Tags "
+         },
+         {
+           "className": "TaskProfile",
+           "docString": "<h3>TaskProfile</h3>Simple class to keep track of one task that may be called multiple times "
+         },
+         {
+           "className": "TCPLine",
+           "docString": "<h3>TCPLine</h3>No Description"
+         },
+         {
+           "className": "Theme",
+           "docString": "<h3>Theme</h3>Based on ThemeBase, Theme manages image and icon resources "
+         },
+         {
+           "className": "ThemeBase",
+           "docString": "<h3>ThemeBase</h3>Theme management - Image loading and saving "
+         },
+         {
+           "className": "TimeQueue",
+           "docString": "<h3>TimeQueue</h3>No Description"
+         },
+         {
+           "className": "TimerHandler",
+           "docString": "<h3>TimerHandler</h3>No Description"
+         },
+         {
+           "className": "TimerRecordPathCtrl",
+           "docString": "<h3>TimerRecordPathCtrl</h3>No Description"
+         },
+         {
+           "className": "TimeShiftHandle",
+           "docString": "<h3>TimeShiftHandle</h3>No Description"
+         },
+         {
+           "className": "TipWindow",
+           "docString": "<h3>TipWindow</h3>A wxPopupWindow used to give the numerical value of an LWSlider or ASlider "
+         },
+         {
+           "className": "TitleRestorer",
+           "docString": "<h3>TitleRestorer</h3>No Description"
+         },
+         {
+           "className": "Tokenizer",
+           "docString": "<h3>Tokenizer</h3>No Description"
+         },
+         {
+           "className": "TopLevelKeystrokeHandlingWindow",
+           "docString": "<h3>TopLevelKeystrokeHandlingWindow</h3>No Description"
+         },
+         {
+           "className": "TranslatableArray",
+           "docString": "<h3>TranslatableArray</h3>No Description"
+         },
+         {
+           "className": "TranslatedInternalString",
+           "docString": "<h3>TranslatedInternalString</h3>No Description"
+         },
+         {
+           "className": "TransportActions",
+           "docString": "<h3>TransportActions</h3>No Description"
+         },
+         {
+           "className": "TransportTracks",
+           "docString": "<h3>TransportTracks</h3>No Description"
+         },
+         {
+           "className": "Tree",
+           "docString": "<h3>Tree</h3>No Description"
+         },
+         {
+           "className": "Triple",
+           "docString": "<h3>Triple</h3>No Description"
+         },
+         {
+           "className": "UFileHolder",
+           "docString": "<h3>UFileHolder</h3>FFmpeg structure to hold a file pointer and provide a return value when closing the file "
+         },
+         {
+           "className": "UIHandle",
+           "docString": "<h3>UIHandle</h3>Short-lived drawing and event-handling object associated with a TrackPanelCell "
+         },
+         {
+           "className": "UndoManager",
+           "docString": "<h3>UndoManager</h3>Works with HistoryWindow to provide the Undo functionality "
+         },
+         {
+           "className": "UndoStackElem",
+           "docString": "<h3>UndoStackElem</h3>Holds one item with description and time range for the UndoManager "
+         },
+         {
+           "className": "UndoState",
+           "docString": "<h3>UndoState</h3>No Description"
+         },
+         {
+           "className": "UnsetBatchProcessing",
+           "docString": "<h3>UnsetBatchProcessing</h3>No Description"
+         },
+         {
+           "className": "UpdateSlot",
+           "docString": "<h3>UpdateSlot</h3>No Description"
+         },
+         {
+           "className": "ValueRestorer",
+           "docString": "<h3>ValueRestorer</h3>Set a variable temporarily in a scope "
+         },
+         {
+           "className": "VampEffect",
+           "docString": "<h3>VampEffect</h3>No Description"
+         },
+         {
+           "className": "VampEffectsModule",
+           "docString": "<h3>VampEffectsModule</h3>No Description"
+         },
+         {
+           "className": "VarSetter",
+           "docString": "<h3>VarSetter</h3>No Description"
+         },
+         {
+           "className": "VelocitySliderHandle",
+           "docString": "<h3>VelocitySliderHandle</h3>No Description"
+         },
+         {
+           "className": "ViewActions",
+           "docString": "<h3>ViewActions</h3>No Description"
+         },
+         {
+           "className": "ViewInfo",
+           "docString": "<h3>ViewInfo</h3>No Description"
+         },
+         {
+           "className": "Visitor",
+           "docString": "<h3>Visitor</h3>No Description"
+         },
+         {
+           "className": "VoiceKey",
+           "docString": "<h3>VoiceKey</h3>This implements a voice key, detecting either the next \"ON\" or \"OFF\" point "
+         },
+         {
+           "className": "wav_header",
+           "docString": "<h3>wav_header</h3>No Description"
+         },
+         {
+           "className": "WindowAccessible",
+           "docString": "<h3>WindowAccessible</h3>An alternative to using wxWindowAccessible, which in wxWidgets 3.1.1 contained GetParent() which was incorrect "
+         },
+         {
+           "className": "Worker",
+           "docString": "<h3>Worker</h3>No Description"
+         },
+         {
+           "className": "xmm_mm_union",
+           "docString": "<h3>xmm_mm_union</h3>No Description"
+         },
+         {
+           "className": "ZoomHandle",
+           "docString": "<h3>ZoomHandle</h3>No Description"
+         },
+         {
+           "className": "ZoomInfo",
+           "docString": "<h3>ZoomInfo</h3>No Description"
+         },
+         {
+           "className": "AudioUnitEffectExportDialog",
+           "docString": "<h3>AudioUnitEffectExportDialog</h3>No Description"
+         },
+         {
+           "className": "AudioUnitEffectImportDialog",
+           "docString": "<h3>AudioUnitEffectImportDialog</h3>No Description"
+         },
+         {
+           "className": "AudioUnitEffectOptionsDialog",
+           "docString": "<h3>AudioUnitEffectOptionsDialog</h3>No Description"
+         },
+         {
+           "className": "ContrastDialog",
+           "docString": "<h3>ContrastDialog</h3>No Description"
+         },
+         {
+           "className": "EditCurvesDialog",
+           "docString": "<h3>EditCurvesDialog</h3>No Description"
+         },
+         {
+           "className": "EffectPresetsDialog",
+           "docString": "<h3>EffectPresetsDialog</h3>No Description"
+         },
+         {
+           "className": "FFmpegNotFoundDialog",
+           "docString": "<h3>FFmpegNotFoundDialog</h3>No Description"
+         },
+         {
+           "className": "FileDialogBase",
+           "docString": "<h3>FileDialogBase</h3>No Description"
+         },
+         {
+           "className": "FileDialogWrapper",
+           "docString": "<h3>FileDialogWrapper</h3>No Description"
+         },
+         {
+           "className": "FindDialog",
+           "docString": "<h3>FindDialog</h3>No Description"
+         },
+         {
+           "className": "GlobalPrefsDialog",
+           "docString": "<h3>GlobalPrefsDialog</h3>No Description"
+         },
+         {
+           "className": "ImportStreamDialog",
+           "docString": "<h3>ImportStreamDialog</h3>No Description"
+         },
+         {
+           "className": "LadspaEffectOptionsDialog",
+           "docString": "<h3>LadspaEffectOptionsDialog</h3>No Description"
+         },
+         {
+           "className": "LV2EffectSettingsDialog",
+           "docString": "<h3>LV2EffectSettingsDialog</h3>No Description"
+         },
+         {
+           "className": "MissingAliasFileDialog",
+           "docString": "<h3>MissingAliasFileDialog</h3>No Description"
+         },
+         {
+           "className": "MissingAliasFilesDialog",
+           "docString": "<h3>MissingAliasFilesDialog</h3>No Description"
+         },
+         {
+           "className": "PluginRegistrationDialog",
+           "docString": "<h3>PluginRegistrationDialog</h3>No Description"
+         },
+         {
+           "className": "SuccessDialog",
+           "docString": "<h3>SuccessDialog</h3>No Description"
+         },
+         {
+           "className": "TimerProgressDialog",
+           "docString": "<h3>TimerProgressDialog</h3>No Description"
+         },
+         {
+           "className": "VSTEffectOptionsDialog",
+           "docString": "<h3>VSTEffectOptionsDialog</h3>No Description"
+         },
+         {
+           "className": "wxDialogWrapper",
+           "docString": "<h3>wxDialogWrapper</h3>No Description"
+         },
+         {
+           "className": "wxDirDialogWrapper",
+           "docString": "<h3>wxDirDialogWrapper</h3>No Description"
+         },
+           {
+             "className": "Unsorted",
+             "docString": "<h3>Unsorted</h3>This longest snake has all the Audacity classes which we have not yet put into one of the other snakes.",
+             "isHead": true
+           }
+        ]
+      },
+      {
+        "Image": "svg",
+        "src": "IconMisc.svg",
+        "opacity": 0.2
+      }
+    ]
+  }
+]
+
+
+
+</pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<pre>CREDITS:CAPTION=Audacity Classes - Snake Diagram;TIP=</pre>
+<h3>Instructions</h3>
+<ul>
+<li>Hover over blobs on the track for details about that item.
+<li>Larger spots have more information about them than smaller ones.
+</ul><br><br>
+<b>Credits:</b> <em>James Crook ©2019; Data and Image placed in Public Domain</em>
+
+
+<pre>START:Section 1</pre>
+<pre>DO:BRIGHT_OBJECTS=Export</pre>The detailed data for the chart follows.
 
 <pre>START</pre>
 <pre>ADD:DATA=[
