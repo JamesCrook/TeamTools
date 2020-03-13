@@ -25,12 +25,7 @@ The detailed data for the chart follows.
                 "values": [
                   {
                     "className": "AboutDialog",
-                    "docString": "<h3>AboutDialog</h3>The AboutDialog shows the program version and developer credits ",
-                    "snakeStyle": 0
-                  },
-                  {
-                    "className": "AboutDialog",
-                    "docString": "<h3>AboutDialog</h3>The AboutDialog shows the program version and developer credits ",
+                    "docString": "unused",
                     "snakeStyle": 0
                   },
                   {

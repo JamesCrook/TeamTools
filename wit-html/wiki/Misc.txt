@@ -27,11 +27,21 @@ The detailed data for the chart follows.
         "Path":"Misc",
         "values":
          [
+                  {
+                    "className": "a",
+                    "docString": "unused",
+                    "snakeStyle": 0,
+                   "snakeShape":0
+
+                  },
+
          {
            "className": "AliasedFile",
            "docString": "<h3>AliasedFile</h3>An audio file that is referenced (pointed into) directly from an Audacity .aup file rather thna Audacity having its own copies of the data ",
            "category":"Misc",
-           "snakeStyle": 2
+           "snakeStyle": 2,
+           "snakeShape":1
+
          },
          {
            "className": "AUControl",

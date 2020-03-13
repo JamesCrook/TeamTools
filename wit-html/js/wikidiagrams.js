@@ -772,7 +772,7 @@ function xyOfIndexSnakey(i, T){
     //  x += (1-2*( row % 2 ))*T.xSpacing*0.75;
 
   }
-  return { "x": x, "y": y };
+  return { "x": x, "y": y, "row":row };
 }
 
 function stripSignalChar( str ){
@@ -816,6 +816,53 @@ function getSnakeStyle(X, style, A){
   return style;
 }
 
+function getSnakeShape(X, shape){
+  if( isDefined(X.snakeShape) ){
+    shape = X.snakeShape;
+  }
+  return shape;
+}
+
+function drawSnakeSpot(ctx, ctx2, S, isHead, r){
+  ctx.beginPath();
+  ctx.arc(S.x, S.y, r, 0, 2 * Math.PI, false);
+  ctx.closePath();
+  ctx.fill();
+  if( isHead ){
+    ctx.stroke();
+  }
+
+  ctx2.beginPath();
+  ctx2.arc(S.x, S.y, r, 0, 2 * Math.PI, false);
+  ctx2.closePath();
+  ctx2.fill();
+}
+
+function drawSnakeRect(ctx, ctx2, S, isHead, r){
+  if( isHead ){
+    drawSnakeSpot( ctx, ctx2, S, isHead, r );
+    return;
+  }
+  var d = 8;
+  var dx = 7 * (S.row %2);
+  var v = (S.row%2)* (6-r*2)-3;
+  ctx.beginPath();
+  ctx.rect(S.x-d/2 +dx, S.y-v, d, -r*2);
+  ctx.closePath();
+  ctx.fill();
+  if( isHead ){
+    ctx.stroke();
+  }
+
+  d=14;
+  ctx2.beginPath();
+  ctx2.rect(S.x-d/2 +dx, S.y-v, d, -r*2);
+  ctx2.fill();
+}
+
+
+
+
 // For drawing a snakey plot
 function drawSnakeyPath(A, values, T){
   var i = 0;
@@ -841,18 +888,22 @@ function drawSnakeyPath(A, values, T){
 
   var widths = [5,6,9];
   var lines = ["rgb(150,150,150)", "rgb(156,3,0)", "rgb(15,0,181)"];
-  var blobs = ["rgb(120,120,120)", "rgb(105,205,105)", "rgb(105,205,105)"];
-  var heads = ["rgb(180,180,180)", "rgb(182,222,157)", "rgb(182,222,157)"];
+  var blobs = ["rgb(150,150,150)", "rgb(196,123,120)", "rgb(125,120,191)"];
+  var xblobs = ["rgb(120,120,120)", "rgb(105,205,105)", "rgb(105,205,105)"];
+  var xheads = ["rgb(180,180,180)", "rgb(182,222,157)", "rgb(182,222,157)"];
+  var heads = ["rgb(150,150,150)", "rgb(236,203,200)", "rgb(205,200,240)"];
 
 
   // draw snakey body
   var isHead = false;
   var X;
   var style = 1;
+  var shape = 0;
   for( j = 0; i < maxv; j += T.stride ){
 
     X = values[j];
     style = getSnakeStyle(X, style, A);
+    shape = getSnakeShape(X, shape );
 
     ctx.beginPath();
     ctx.moveTo(S.x, S.y);
@@ -885,6 +936,7 @@ function drawSnakeyPath(A, values, T){
 
 
   style = 1;
+  shape = 0;
   for( j = 0; i < T.count; j += T.stride ){
     var r=T.r0+7;
 
@@ -899,6 +951,7 @@ function drawSnakeyPath(A, values, T){
       S = T.fn(i, T);
 
       style = getSnakeStyle(X, style, A);
+      shape = getSnakeShape(X, shape );
 
       ctx.fillStyle = blobs[style];
       ctx.strokeStyle = lines[style];
@@ -906,22 +959,15 @@ function drawSnakeyPath(A, values, T){
       if( X.isHead ){
         // lighter green for head.
         ctx.fillStyle = heads[style];
+        ctx.lineWidth = 1;
         r += 3;
       }
-      ctx.beginPath();
-      ctx.arc(S.x, S.y, r, 0, 2 * Math.PI, false);
-      ctx.closePath();
-      ctx.fill();
-      if( X.isHead ){
-        ctx.lineWidth = 1;
-        ctx.stroke();
-      }
-
-      ctx2.beginPath();
-      ctx2.arc(S.x, S.y, r, 0, 2 * Math.PI, false);
-      ctx2.closePath();
       ctx2.fillStyle = c;
-      ctx2.fill();
+      isHead = X.isHead;
+      if( shape )
+        drawSnakeRect(ctx, ctx2, S, isHead, r);
+      else
+        drawSnakeSpot(ctx, ctx2, S, isHead, r);
     }
     i++;
 
