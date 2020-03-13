@@ -9,11 +9,24 @@ classes.  Here's the result:
 
 The detailed data for the chart follows.
 <pre>START</pre>
-<pre>ADD:DATA=[
+<pre>ADD:DATA=
+
+[
 
 {"Overlay":[
 
-{"Path":"Snakes!",
+
+
+{"VStack":[
+
+{
+"sizeAs":1,
+"HStack":[
+
+{
+"sizeAs":2,
+
+"Path":"Snakes1-4",
  "values":[
             {
               "className": "AboutDialog",
@@ -362,7 +375,15 @@ The detailed data for the chart follows.
            "className": "Audacity Commands",
            "docString": "<h3>Audacity Commands</h3>These are the scripting commands in Audacity which are designed to be called from an external script, such as a script in python.  They are also available from the 'extra' menu.",
            "isHead": true
-         },
+         }
+
+
+     ]},
+
+
+{"Path":"Snakes3-4",
+ "values":[
+
 
             {
               "className": "EffectsPrefs",
@@ -610,7 +631,15 @@ The detailed data for the chart follows.
            "className": "BlockFile",
            "docString": "<h3>BlockFile</h3>A BlockFile is a chunk of immutable audio data ",
            "isHead": true
-         },
+         }
+     ]}
+
+     ]},
+
+
+{"Path":"Snakes5-14",
+ "values":[
+
 
          {
            "className": "ControlToolBar",
@@ -1228,7 +1257,28 @@ The detailed data for the chart follows.
            "className": "Audio",
            "docString": "<h3>Audio</h3>Classes that deal with the portaudio thread",
            "isHead": true
-         },
+         }
+
+]},
+
+
+
+
+{
+"sizeAs":2,
+
+"Path":"Snakes9-12",
+ "values":[
+
+
+
+
+
+
+
+
+
+
 
 
          {
@@ -2581,8 +2631,9 @@ The detailed data for the chart follows.
          }
 
 
-    ]
-}
+    ]}
+  ]}
+
 
 
 ,
@@ -2590,7 +2641,71 @@ The detailed data for the chart follows.
 "src":"IconEffects.svg",
 "opacity":0.2}]}]
 
+
+
 </pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
