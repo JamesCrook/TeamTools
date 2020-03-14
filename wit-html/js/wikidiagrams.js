@@ -865,13 +865,13 @@ function hyperlinkOfWikiWord( word ){
   url = url.replace(/([A-Z])/g, function( match, index){
     return ( "_"+match[0].toLowerCase());
   });
-  url = "https://doxy.audacityteam.org/class_" + url + ".html";
+  url = "https://doxy.audacityteam.org/class" + url + ".html";
   return "<a href='"+url.toLowerCase() + "'>" + word +"</a>";
 }
 
 
 function addHyperlinks( string ){
-  var result = string.replace( /([a-zA-Z0-9_]*[a-z_]+[A-Z]+[A-Za-z0-9_]*)/g, function( match ){ return hyperlinkOfWikiWord( match );});
+  var result = string.replace( /([a-zA-Z0-9_]+[A-Z]+[A-Za-z0-9_]*)/g, function( match ){ return hyperlinkOfWikiWord( match );});
   return result;
 }
 

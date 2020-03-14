@@ -36,15 +36,15 @@ The detailed data for the chart follows.
                   },
                   {
                     "className": "ProjectFileIORegistry",
-                    "docString": "<h3>ProjectFileIORegistry</h3>+No Description"
+                    "docString": "<h3>ProjectFileIORegistry</h3>No Description"
                   },
                   {
                     "className": "ProjectFileManager",
-                    "docString": "<h3>ProjectFileManager</h3>+No Description"
+                    "docString": "<h3>ProjectFileManager</h3>No Description"
                   },
                   {
                     "className": "ProjectHistory",
-                    "docString": "<h3>ProjectHistory</h3>+No Description"
+                    "docString": "<h3>ProjectHistory</h3>No Description"
                   },
                   {
                     "className": "ProjectManager",
@@ -52,11 +52,11 @@ The detailed data for the chart follows.
                   },
                   {
                     "className": "ProjectSelectionManager",
-                    "docString": "<h3>ProjectSelectionManager</h3>+No Description"
+                    "docString": "<h3>ProjectSelectionManager</h3>No Description"
                   },
                   {
                     "className": "ProjectSetter",
-                    "docString": "<h3>ProjectSetter</h3>+No Description"
+                    "docString": "<h3>ProjectSetter</h3>No Description"
                   },
                   {
                     "className": "ProjectSettings",
@@ -64,7 +64,7 @@ The detailed data for the chart follows.
                   },
                   {
                     "className": "ProjectStatus",
-                    "docString": "<h3>ProjectStatus</h3>+No Description"
+                    "docString": "<h3>ProjectStatus</h3>No Description"
                   },
                   {
                     "className": "ProjectWindow",
@@ -778,7 +778,7 @@ The detailed data for the chart follows.
               },
               {
                 "className": "Menu",
-                "docString": "<h3>Menu</h3>+No Description",
+                "docString": "<h3>Menu</h3>No Description",
                 "category": "Menus",
                 "snakeStyle": 1
               },
@@ -1085,15 +1085,15 @@ The detailed data for the chart follows.
               },
               {
                 "className": "EffectAutoDuckPanel",
-                "docString": "<h3>EffectAutoDuckPanel</h3>+No Description"
+                "docString": "<h3>EffectAutoDuckPanel</h3>No Description"
               },
               {
                 "className": "EffectCompressorPanel",
-                "docString": "<h3>EffectCompressorPanel</h3>+No Description"
+                "docString": "<h3>EffectCompressorPanel</h3>No Description"
               },
               {
                 "className": "EffectPanel",
-                "docString": "<h3>EffectPanel</h3>+No Description"
+                "docString": "<h3>EffectPanel</h3>No Description"
               },
               {
                 "className": "EffectScienFilterPanel",
@@ -1145,7 +1145,7 @@ The detailed data for the chart follows.
               },
               {
                 "className": "OverlayPanel",
-                "docString": "<h3>OverlayPanel</h3>+No Description"
+                "docString": "<h3>OverlayPanel</h3>No Description"
               },
               {
                 "className": "PrefsPanel",
@@ -1162,13 +1162,13 @@ The detailed data for the chart follows.
               },
               {
                 "className": "NumberFormatter",
-                "docString": "<h3>NumberFormatter</h3>+No Description",
+                "docString": "<h3>NumberFormatter</h3>No Description",
                 "category": "Dialogs",
                 "snakeStyle": 1
               },
               {
                 "className": "NumberScale",
-                "docString": "<h3>NumberScale</h3>+No Description"
+                "docString": "<h3>NumberScale</h3>No Description"
               },
               {
                 "className": "NumericEditor",
@@ -1184,7 +1184,7 @@ The detailed data for the chart follows.
               },
               {
                 "className": "NumericTextCtrl",
-                "docString": "<h3>NumericTextCtrl</h3>+No Description"
+                "docString": "<h3>NumericTextCtrl</h3>No Description"
               },
               {
                 "className": "NumericTextCtrlAx",
@@ -1208,50 +1208,50 @@ The detailed data for the chart follows.
               },
               {
                 "className": "FileDialogBase",
-                "docString": "<h3>FileDialogBase</h3>+No Description"
+                "docString": "<h3>FileDialogBase</h3>No Description"
               },
               {
                 "className": "FileDialogWrapper",
-                "docString": "<h3>FileDialogWrapper</h3>+No Description",
+                "docString": "<h3>FileDialogWrapper</h3>No Description",
                 "isHead": true
               },
               {
                 "className": "Scrubber",
-                "docString": "<h3>Scrubber</h3>+No Description",
+                "docString": "<h3>Scrubber</h3>No Description",
                 "category": "Audio",
                 "snakeStyle": 2
               },
               {
                 "className": "ScrubbingCell",
-                "docString": "<h3>ScrubbingCell</h3>+No Description"
+                "docString": "<h3>ScrubbingCell</h3>No Description"
               },
               {
                 "className": "ScrubbingHandle",
-                "docString": "<h3>ScrubbingHandle</h3>+No Description"
+                "docString": "<h3>ScrubbingHandle</h3>No Description"
               },
               {
                 "className": "ScrubbingOptions",
-                "docString": "<h3>ScrubbingOptions</h3>+No Description"
+                "docString": "<h3>ScrubbingOptions</h3>No Description"
               },
               {
                 "className": "ScrubbingOverlay",
-                "docString": "<h3>ScrubbingOverlay</h3>+No Description"
+                "docString": "<h3>ScrubbingOverlay</h3>No Description"
               },
               {
                 "className": "ScrubForwarder",
-                "docString": "<h3>ScrubForwarder</h3>+No Description"
+                "docString": "<h3>ScrubForwarder</h3>No Description"
               },
               {
                 "className": "ScrubPoller",
-                "docString": "<h3>ScrubPoller</h3>+No Description"
+                "docString": "<h3>ScrubPoller</h3>No Description"
               },
               {
                 "className": "ScrubPollerThread",
-                "docString": "<h3>ScrubPollerThread</h3>+No Description"
+                "docString": "<h3>ScrubPollerThread</h3>No Description"
               },
               {
                 "className": "ScrubState",
-                "docString": "<h3>ScrubState</h3>+No Description"
+                "docString": "<h3>ScrubState</h3>No Description"
               },
               {
                 "className": "Scrubbing",
@@ -1260,13 +1260,13 @@ The detailed data for the chart follows.
               },
               {
                 "className": "ProjectAudioIO",
-                "docString": "<h3>ProjectAudioIO</h3>+No Description",
+                "docString": "<h3>ProjectAudioIO</h3>No Description",
                 "category": "Audio",
                 "snakeStyle": 2
               },
               {
                 "className": "ProjectAudioManager",
-                "docString": "<h3>ProjectAudioManager</h3>+No Description"
+                "docString": "<h3>ProjectAudioManager</h3>No Description"
               },
               {
                 "className": "AudioIO",
@@ -1323,15 +1323,15 @@ The detailed data for the chart follows.
                   },
                   {
                     "className": "BadFormatException",
-                    "docString": "<h3>BadFormatException</h3>+No Description"
+                    "docString": "<h3>BadFormatException</h3>No Description"
                   },
                   {
                     "className": "FileException",
-                    "docString": "<h3>FileException</h3>+No Description"
+                    "docString": "<h3>FileException</h3>No Description"
                   },
                   {
                     "className": "InconsistencyException",
-                    "docString": "<h3>InconsistencyException</h3>+No Description"
+                    "docString": "<h3>InconsistencyException</h3>No Description"
                   },
                   {
                     "className": "MessageBoxException",
@@ -1339,7 +1339,7 @@ The detailed data for the chart follows.
                   },
                   {
                     "className": "NotYetAvailableException",
-                    "docString": "<h3>NotYetAvailableException</h3>+No Description"
+                    "docString": "<h3>NotYetAvailableException</h3>No Description"
                   },
                   {
                     "className": "SimpleMessageBoxException",
@@ -1347,7 +1347,7 @@ The detailed data for the chart follows.
                   },
                   {
                     "className": "UserException",
-                    "docString": "<h3>UserException</h3>+No Description"
+                    "docString": "<h3>UserException</h3>No Description"
                   },
                   {
                     "className": "Exceptions",
@@ -1462,33 +1462,33 @@ The detailed data for the chart follows.
                   },
                   {
                     "className": "wxArrayStringEx",
-                    "docString": "<h3>wxArrayStringEx</h3>+No Description",
+                    "docString": "<h3>wxArrayStringEx</h3>No Description",
                     "category": "Scaffolding",
                     "snakeStyle": 1
                   },
                   {
                     "className": "wxFrameEx",
-                    "docString": "<h3>wxFrameEx</h3>+No Description"
+                    "docString": "<h3>wxFrameEx</h3>No Description"
                   },
                   {
                     "className": "wxGtkString",
-                    "docString": "<h3>wxGtkString</h3>+No Description"
+                    "docString": "<h3>wxGtkString</h3>No Description"
                   },
                   {
                     "className": "wxOPENFILENAME",
-                    "docString": "<h3>wxOPENFILENAME</h3>+No Description"
+                    "docString": "<h3>wxOPENFILENAME</h3>No Description"
                   },
                   {
                     "className": "wxPizza",
-                    "docString": "<h3>wxPizza</h3>+No Description"
+                    "docString": "<h3>wxPizza</h3>No Description"
                   },
                   {
                     "className": "wxTabTraversalWrapper",
-                    "docString": "<h3>wxTabTraversalWrapper</h3>+No Description"
+                    "docString": "<h3>wxTabTraversalWrapper</h3>No Description"
                   },
                   {
                     "className": "wxTreebook",
-                    "docString": "<h3>wxTreebook</h3>A wxTreebook is a class like wxNotebook, but not yet supported by wxWidgets 2.6.3 "
+                    "docString": "<h3>wxTreebook</h3>A wxTreebook is a class like wNotebook, but not yet supported by wxWidgets 2.6.3 "
                   },
                   {
                     "className": "wxTreebookItemData",
@@ -1496,19 +1496,19 @@ The detailed data for the chart follows.
                   },
                   {
                     "className": "wxDialogWrapper",
-                    "docString": "<h3>wxDialogWrapper</h3>+No Description"
+                    "docString": "<h3>wxDialogWrapper</h3>No Description"
                   },
                   {
                     "className": "wxDirDialogWrapper",
-                    "docString": "<h3>wxDirDialogWrapper</h3>+No Description"
+                    "docString": "<h3>wxDirDialogWrapper</h3>No Description"
                   },
                   {
                     "className": "wxFileNameWrapper",
-                    "docString": "<h3>wxFileNameWrapper</h3>+No Description"
+                    "docString": "<h3>wxFileNameWrapper</h3>No Description"
                   },
                   {
                     "className": "wxPanelWrapper",
-                    "docString": "<h3>wxPanelWrapper</h3>+No Description"
+                    "docString": "<h3>wxPanelWrapper</h3>No Description"
                   },
                   {
                     "className": "wx Thing",
@@ -1554,34 +1554,34 @@ The detailed data for the chart follows.
                   },
                   {
                     "className": "AllClipsConstIterator",
-                    "docString": "<h3>AllClipsConstIterator</h3>+No Description"
+                    "docString": "<h3>AllClipsConstIterator</h3>No Description"
                   },
                   {
                     "className": "AllClipsIterator",
-                    "docString": "<h3>AllClipsIterator</h3>+No Description",
+                    "docString": "<h3>AllClipsIterator</h3>No Description",
                     "isHead": true
                   },
                   {
                     "className": "MixerBoardFrame",
-                    "docString": "<h3>MixerBoardFrame</h3>+No Description",
+                    "docString": "<h3>MixerBoardFrame</h3>No Description",
                     "category": "Plugins",
                     "snakeStyle": 2
                   },
                   {
                     "className": "MixerBoardScrolledWindow",
-                    "docString": "<h3>MixerBoardScrolledWindow</h3>+No Description"
+                    "docString": "<h3>MixerBoardScrolledWindow</h3>No Description"
                   },
                   {
                     "className": "MixerTrackCluster",
-                    "docString": "<h3>MixerTrackCluster</h3>+No Description"
+                    "docString": "<h3>MixerTrackCluster</h3>No Description"
                   },
                   {
                     "className": "MixerTrackSlider",
-                    "docString": "<h3>MixerTrackSlider</h3>+No Description"
+                    "docString": "<h3>MixerTrackSlider</h3>No Description"
                   },
                   {
                     "className": "MixerBoard",
-                    "docString": "<h3>MixerBoard</h3>+No Description"
+                    "docString": "<h3>MixerBoard</h3>No Description"
                   },
          {
            "className": "Syllable",
@@ -1601,19 +1601,19 @@ The detailed data for the chart follows.
                   },
                   {
                     "className": "AV_Deleter< T, void, Fn >",
-                    "docString": "<h3>AV_Deleter< T, void, Fn ></h3>+No Description"
+                    "docString": "<h3>AV_Deleter< T, void, Fn ></h3>No Description"
                   },
                   {
                     "className": "AV_Deleterp",
-                    "docString": "<h3>AV_Deleterp</h3>+No Description"
+                    "docString": "<h3>AV_Deleterp</h3>No Description"
                   },
                   {
                     "className": "AVPacketEx",
-                    "docString": "<h3>AVPacketEx</h3>+No Description"
+                    "docString": "<h3>AVPacketEx</h3>No Description"
                   },
                   {
                     "className": "FFmpegContext",
-                    "docString": "<h3>FFmpegContext</h3>+No Description"
+                    "docString": "<h3>FFmpegContext</h3>No Description"
                   },
                   {
                     "className": "FFmpegImportFileHandle",
@@ -1625,11 +1625,11 @@ The detailed data for the chart follows.
                   },
                   {
                     "className": "FFmpegPreset",
-                    "docString": "<h3>FFmpegPreset</h3>+No Description"
+                    "docString": "<h3>FFmpegPreset</h3>No Description"
                   },
                   {
                     "className": "FFmpegPresets",
-                    "docString": "<h3>FFmpegPresets</h3>+No Description",
+                    "docString": "<h3>FFmpegPresets</h3>No Description",
                     "isHead": true
                   },
 
@@ -1670,7 +1670,7 @@ The detailed data for the chart follows.
 
                   {
                     "className": "ExportPlugin",
-                    "docString": "<h3>ExportPlugin</h3>+No Description"
+                    "docString": "<h3>ExportPlugin</h3>No Description"
                   },
                   {
                     "className": "FFmpegImportPlugin",
@@ -1869,17 +1869,17 @@ The detailed data for the chart follows.
                   },
                   {
                     "className": "ImporterClientInterface",
-                    "docString": "<h3>ImporterClientInterface</h3>+No Description",
+                    "docString": "<h3>ImporterClientInterface</h3>No Description",
                     "category": "Exports",
                     "snakeStyle": 1
                   },
                   {
                     "className": "ImporterHostInterface",
-                    "docString": "<h3>ImporterHostInterface</h3>+No Description"
+                    "docString": "<h3>ImporterHostInterface</h3>No Description"
                   },
                   {
                     "className": "ImporterInterface",
-                    "docString": "<h3>ImporterInterface</h3>+No Description"
+                    "docString": "<h3>ImporterInterface</h3>No Description"
                   },
                   {
                     "className": "ImportFileHandle",
@@ -1887,7 +1887,7 @@ The detailed data for the chart follows.
                   },
                   {
                     "className": "ImportXMLTagHandler",
-                    "docString": "<h3>ImportXMLTagHandler</h3>+No Description"
+                    "docString": "<h3>ImportXMLTagHandler</h3>No Description"
                   },
                   {
                     "className": "Importer",
@@ -1901,7 +1901,7 @@ The detailed data for the chart follows.
                 "values": [
                   {
                     "className": "SpecCache",
-                    "docString": "<h3>SpecCache</h3>+No Description",
+                    "docString": "<h3>SpecCache</h3>No Description",
                     "category": "Effects",
                     "snakeStyle": 2
                   },
@@ -1911,7 +1911,7 @@ The detailed data for the chart follows.
                   },
                   {
                     "className": "SpecPxCache",
-                    "docString": "<h3>SpecPxCache</h3>+No Description"
+                    "docString": "<h3>SpecPxCache</h3>No Description"
                   },
                   {
                     "className": "SpectralSelectionBar",
@@ -1931,19 +1931,19 @@ The detailed data for the chart follows.
                   },
                   {
                     "className": "SpectrumView",
-                    "docString": "<h3>SpectrumView</h3>+No Description"
+                    "docString": "<h3>SpectrumView</h3>No Description"
                   },
                   {
                     "className": "SpectrumVRulerControls",
-                    "docString": "<h3>SpectrumVRulerControls</h3>+No Description"
+                    "docString": "<h3>SpectrumVRulerControls</h3>No Description"
                   },
                   {
                     "className": "SpectrumVRulerMenuTable",
-                    "docString": "<h3>SpectrumVRulerMenuTable</h3>+No Description"
+                    "docString": "<h3>SpectrumVRulerMenuTable</h3>No Description"
                   },
                   {
                     "className": "SpectrumVZoomHandle",
-                    "docString": "<h3>SpectrumVZoomHandle</h3>+No Description",
+                    "docString": "<h3>SpectrumVZoomHandle</h3>No Description",
                     "isHead": true
                   },
                   {
@@ -2134,65 +2134,65 @@ The detailed data for the chart follows.
                   },
                   {
                     "className": "VSTControl",
-                    "docString": "<h3>VSTControl</h3>+No Description",
+                    "docString": "<h3>VSTControl</h3>No Description",
                     "category": "Effects",
                     "snakeStyle": 2
                   },
                   {
                     "className": "VSTControlBase",
-                    "docString": "<h3>VSTControlBase</h3>+No Description"
+                    "docString": "<h3>VSTControlBase</h3>No Description"
                   },
                   {
                     "className": "VSTControlImpl",
-                    "docString": "<h3>VSTControlImpl</h3>+No Description"
+                    "docString": "<h3>VSTControlImpl</h3>No Description"
                   },
                   {
                     "className": "VSTEffectLink",
-                    "docString": "<h3>VSTEffectLink</h3>+No Description"
+                    "docString": "<h3>VSTEffectLink</h3>No Description"
                   },
                   {
                     "className": "VSTEffectsModule",
-                    "docString": "<h3>VSTEffectsModule</h3>+No Description"
+                    "docString": "<h3>VSTEffectsModule</h3>No Description"
                   },
                   {
                     "className": "VSTEffectTimer",
-                    "docString": "<h3>VSTEffectTimer</h3>+No Description"
+                    "docString": "<h3>VSTEffectTimer</h3>No Description"
                   },
                   {
                     "className": "VstEvent",
-                    "docString": "<h3>VstEvent</h3>+No Description"
+                    "docString": "<h3>VstEvent</h3>No Description"
                   },
                   {
                     "className": "VstEvents",
-                    "docString": "<h3>VstEvents</h3>+No Description"
+                    "docString": "<h3>VstEvents</h3>No Description"
                   },
                   {
                     "className": "VstMidiEvent",
-                    "docString": "<h3>VstMidiEvent</h3>+No Description"
+                    "docString": "<h3>VstMidiEvent</h3>No Description"
                   },
                   {
                     "className": "VstParameterProperties",
-                    "docString": "<h3>VstParameterProperties</h3>+No Description"
+                    "docString": "<h3>VstParameterProperties</h3>No Description"
                   },
                   {
                     "className": "VstPatchChunkInfo",
-                    "docString": "<h3>VstPatchChunkInfo</h3>+No Description"
+                    "docString": "<h3>VstPatchChunkInfo</h3>No Description"
                   },
                   {
                     "className": "VstRect",
-                    "docString": "<h3>VstRect</h3>+No Description"
+                    "docString": "<h3>VstRect</h3>No Description"
                   },
                   {
                     "className": "VSTSubEntry",
-                    "docString": "<h3>VSTSubEntry</h3>+No Description"
+                    "docString": "<h3>VSTSubEntry</h3>No Description"
                   },
                   {
                     "className": "VSTSubProcess",
-                    "docString": "<h3>VSTSubProcess</h3>+No Description"
+                    "docString": "<h3>VSTSubProcess</h3>No Description"
                   },
                   {
                     "className": "VstTimeInfo",
-                    "docString": "<h3>VstTimeInfo</h3>+No Description"
+                    "docString": "<h3>VstTimeInfo</h3>No Description"
                   },
                   {
                     "className": "AEffect",
@@ -2205,13 +2205,13 @@ The detailed data for the chart follows.
                   },
                   {
                     "className": "LadspaEffectMeter",
-                    "docString": "<h3>LadspaEffectMeter</h3>+No Description",
+                    "docString": "<h3>LadspaEffectMeter</h3>No Description",
                     "category": "Effects",
                     "snakeStyle": 2
                   },
                   {
                     "className": "LadspaEffectsModule",
-                    "docString": "<h3>LadspaEffectsModule</h3>+No Description"
+                    "docString": "<h3>LadspaEffectsModule</h3>No Description"
                   },
                   {
                     "className": "_LADSPA_Descriptor",
@@ -2228,17 +2228,17 @@ The detailed data for the chart follows.
                   },
                   {
                     "className": "LV2EffectMeter",
-                    "docString": "<h3>LV2EffectMeter</h3>+No Description",
+                    "docString": "<h3>LV2EffectMeter</h3>No Description",
                     "category": "Effects",
                     "snakeStyle": 2
                   },
                   {
                     "className": "LV2EffectsModule",
-                    "docString": "<h3>LV2EffectsModule</h3>+No Description"
+                    "docString": "<h3>LV2EffectsModule</h3>No Description"
                   },
                   {
                     "className": "LV2Port",
-                    "docString": "<h3>LV2Port</h3>+No Description"
+                    "docString": "<h3>LV2Port</h3>No Description"
                   },
                   {
                     "className": "LV2Effect",
@@ -2281,11 +2281,11 @@ The detailed data for the chart follows.
                   },
                   {
                     "className": "EnvelopeEditor",
-                    "docString": "<h3>EnvelopeEditor</h3>+No Description"
+                    "docString": "<h3>EnvelopeEditor</h3>No Description"
                   },
                   {
                     "className": "EnvelopeHandle",
-                    "docString": "<h3>EnvelopeHandle</h3>+No Description"
+                    "docString": "<h3>EnvelopeHandle</h3>No Description"
                   },
                   {
                     "className": "EnvPoint",
@@ -2298,13 +2298,13 @@ The detailed data for the chart follows.
                   },
                   {
                     "className": "TrackActions",
-                    "docString": "<h3>TrackActions</h3>xNo Description",
+                    "docString": "<h3>TrackActions</h3>No Description",
                     "category": "Tracks",
                     "snakeStyle": 2
                   },
                   {
                     "className": "TrackArt",
-                    "docString": "<h3>TrackArt</h3>xNo Description"
+                    "docString": "<h3>TrackArt</h3>No Description"
                   },
                   {
                     "className": "TrackInfo",
@@ -2316,7 +2316,7 @@ The detailed data for the chart follows.
                   },
                   {
                     "className": "TrackUtilities",
-                    "docString": "<h3>TrackUtilities</h3>xNo Description"
+                    "docString": "<h3>TrackUtilities</h3>No Description"
                   },
                   {
                     "className": "Track",
@@ -2328,15 +2328,15 @@ The detailed data for the chart follows.
                   },
                   {
                     "className": "TrackClip",
-                    "docString": "<h3>TrackClip</h3>xNo Description"
+                    "docString": "<h3>TrackClip</h3>No Description"
                   },
                   {
                     "className": "TrackClipArray",
-                    "docString": "<h3>TrackClipArray</h3>xNo Description"
+                    "docString": "<h3>TrackClipArray</h3>No Description"
                   },
                   {
                     "className": "TrackControls",
-                    "docString": "<h3>TrackControls</h3>xNo Description"
+                    "docString": "<h3>TrackControls</h3>No Description"
                   },
                   {
                     "className": "TrackFactory",
@@ -2344,19 +2344,19 @@ The detailed data for the chart follows.
                   },
                   {
                     "className": "TrackFocus",
-                    "docString": "<h3>TrackFocus</h3>xNo Description"
+                    "docString": "<h3>TrackFocus</h3>No Description"
                   },
                   {
                     "className": "TrackId",
-                    "docString": "<h3>TrackId</h3>xNo Description"
+                    "docString": "<h3>TrackId</h3>No Description"
                   },
                   {
                     "className": "TrackIter",
-                    "docString": "<h3>TrackIter</h3>xNo Description"
+                    "docString": "<h3>TrackIter</h3>No Description"
                   },
                   {
                     "className": "TrackIterRange",
-                    "docString": "<h3>TrackIterRange</h3>xNo Description"
+                    "docString": "<h3>TrackIterRange</h3>No Description"
                   },
                   {
                     "className": "TrackList",
@@ -2364,11 +2364,11 @@ The detailed data for the chart follows.
                   },
                   {
                     "className": "TrackListEvent",
-                    "docString": "<h3>TrackListEvent</h3>xNo Description"
+                    "docString": "<h3>TrackListEvent</h3>No Description"
                   },
                   {
                     "className": "TrackMenuTable",
-                    "docString": "<h3>TrackMenuTable</h3>xNo Description"
+                    "docString": "<h3>TrackMenuTable</h3>No Description"
                   },
                   {
                     "className": "TrackPanelAx",
@@ -2376,7 +2376,7 @@ The detailed data for the chart follows.
                   },
                   {
                     "className": "TrackPanelCell",
-                    "docString": "<h3>TrackPanelCell</h3>xNo Description"
+                    "docString": "<h3>TrackPanelCell</h3>No Description"
                   },
                   {
                     "className": "TrackPanelDrawable",
@@ -2384,23 +2384,23 @@ The detailed data for the chart follows.
                   },
                   {
                     "className": "TrackPanelDrawingContext",
-                    "docString": "<h3>TrackPanelDrawingContext</h3>xNo Description"
+                    "docString": "<h3>TrackPanelDrawingContext</h3>No Description"
                   },
                   {
                     "className": "TrackPanelGroup",
-                    "docString": "<h3>TrackPanelGroup</h3>xNo Description"
+                    "docString": "<h3>TrackPanelGroup</h3>No Description"
                   },
                   {
                     "className": "TrackPanelListener",
-                    "docString": "<h3>TrackPanelListener</h3>xNo Description"
+                    "docString": "<h3>TrackPanelListener</h3>No Description"
                   },
                   {
                     "className": "TrackPanelMouseEvent",
-                    "docString": "<h3>TrackPanelMouseEvent</h3>xNo Description"
+                    "docString": "<h3>TrackPanelMouseEvent</h3>No Description"
                   },
                   {
                     "className": "TrackPanelMouseState",
-                    "docString": "<h3>TrackPanelMouseState</h3>xNo Description"
+                    "docString": "<h3>TrackPanelMouseState</h3>No Description"
                   },
                   {
                     "className": "TrackPanelNode",
@@ -2408,27 +2408,27 @@ The detailed data for the chart follows.
                   },
                   {
                     "className": "TrackPanelResizeHandle",
-                    "docString": "<h3>TrackPanelResizeHandle</h3>xNo Description"
+                    "docString": "<h3>TrackPanelResizeHandle</h3>No Description"
                   },
                   {
                     "className": "TrackPanelResizerCell",
-                    "docString": "<h3>TrackPanelResizerCell</h3>xNo Description"
+                    "docString": "<h3>TrackPanelResizerCell</h3>No Description"
                   },
                   {
                     "className": "TrackSelectHandle",
-                    "docString": "<h3>TrackSelectHandle</h3>xNo Description"
+                    "docString": "<h3>TrackSelectHandle</h3>No Description"
                   },
                   {
                     "className": "TracksViewModeSetting",
-                    "docString": "<h3>TracksViewModeSetting</h3>xNo Description"
+                    "docString": "<h3>TracksViewModeSetting</h3>No Description"
                   },
                   {
                     "className": "TrackView",
-                    "docString": "<h3>TrackView</h3>xNo Description"
+                    "docString": "<h3>TrackView</h3>No Description"
                   },
                   {
                     "className": "TrackVRulerControls",
-                    "docString": "<h3>TrackVRulerControls</h3>xNo Description"
+                    "docString": "<h3>TrackVRulerControls</h3>No Description"
                   },
                   {
                     "className": "Track Classes",
@@ -2443,7 +2443,7 @@ The detailed data for the chart follows.
                   },
                   {
                     "className": "LabelDefaultClickHandle",
-                    "docString": "<h3>LabelDefaultClickHandle</h3>+No Description"
+                    "docString": "<h3>LabelDefaultClickHandle</h3>No Description"
                   },
                   {
                     "className": "LabelEditActions",
@@ -2451,11 +2451,11 @@ The detailed data for the chart follows.
                   },
                   {
                     "className": "LabelGlyphHandle",
-                    "docString": "<h3>LabelGlyphHandle</h3>+No Description"
+                    "docString": "<h3>LabelGlyphHandle</h3>No Description"
                   },
                   {
                     "className": "LabelState",
-                    "docString": "<h3>LabelState</h3>+No Description"
+                    "docString": "<h3>LabelState</h3>No Description"
                   },
                   {
                     "className": "LabelStruct",
@@ -2463,31 +2463,31 @@ The detailed data for the chart follows.
                   },
                   {
                     "className": "LabelTextHandle",
-                    "docString": "<h3>LabelTextHandle</h3>+No Description"
+                    "docString": "<h3>LabelTextHandle</h3>No Description"
                   },
                   {
                     "className": "LabelTrackControls",
-                    "docString": "<h3>LabelTrackControls</h3>+No Description"
+                    "docString": "<h3>LabelTrackControls</h3>No Description"
                   },
                   {
                     "className": "LabelTrackEvent",
-                    "docString": "<h3>LabelTrackEvent</h3>+No Description"
+                    "docString": "<h3>LabelTrackEvent</h3>No Description"
                   },
                   {
                     "className": "LabelTrackHit",
-                    "docString": "<h3>LabelTrackHit</h3>+No Description"
+                    "docString": "<h3>LabelTrackHit</h3>No Description"
                   },
                   {
                     "className": "LabelTrackMenuTable",
-                    "docString": "<h3>LabelTrackMenuTable</h3>+No Description"
+                    "docString": "<h3>LabelTrackMenuTable</h3>No Description"
                   },
                   {
                     "className": "LabelTrackView",
-                    "docString": "<h3>LabelTrackView</h3>+No Description"
+                    "docString": "<h3>LabelTrackView</h3>No Description"
                   },
                   {
                     "className": "LabelTrackVRulerControls",
-                    "docString": "<h3>LabelTrackVRulerControls</h3>+No Description"
+                    "docString": "<h3>LabelTrackVRulerControls</h3>No Description"
                   },
                   {
                     "className": "LabelTrack",
@@ -2496,13 +2496,13 @@ The detailed data for the chart follows.
                   },
                   {
                     "className": "NoteTrackButtonHandle",
-                    "docString": "<h3>NoteTrackButtonHandle</h3>+No Description",
+                    "docString": "<h3>NoteTrackButtonHandle</h3>No Description",
                     "category": "Tracks",
                     "snakeStyle": 2
                   },
                   {
                     "className": "NoteTrackControls",
-                    "docString": "<h3>NoteTrackControls</h3>+No Description"
+                    "docString": "<h3>NoteTrackControls</h3>No Description"
                   },
                   {
                     "className": "NoteTrackDisplayData",
@@ -2510,27 +2510,27 @@ The detailed data for the chart follows.
                   },
                   {
                     "className": "NoteTrackMenuTable",
-                    "docString": "<h3>NoteTrackMenuTable</h3>+No Description"
+                    "docString": "<h3>NoteTrackMenuTable</h3>No Description"
                   },
                   {
                     "className": "NoteTrackTCPLines",
-                    "docString": "<h3>NoteTrackTCPLines</h3>+No Description"
+                    "docString": "<h3>NoteTrackTCPLines</h3>No Description"
                   },
                   {
                     "className": "NoteTrackView",
-                    "docString": "<h3>NoteTrackView</h3>+No Description"
+                    "docString": "<h3>NoteTrackView</h3>No Description"
                   },
                   {
                     "className": "NoteTrackVRulerControls",
-                    "docString": "<h3>NoteTrackVRulerControls</h3>+No Description"
+                    "docString": "<h3>NoteTrackVRulerControls</h3>No Description"
                   },
                   {
                     "className": "NoteTrackVRulerMenuTable",
-                    "docString": "<h3>NoteTrackVRulerMenuTable</h3>+No Description"
+                    "docString": "<h3>NoteTrackVRulerMenuTable</h3>No Description"
                   },
                   {
                     "className": "NoteTrackVZoomHandle",
-                    "docString": "<h3>NoteTrackVZoomHandle</h3>+No Description"
+                    "docString": "<h3>NoteTrackVZoomHandle</h3>No Description"
                   },
                   {
                     "className": "NoteTrack",
@@ -2553,7 +2553,7 @@ The detailed data for the chart follows.
                   },
                   {
                     "className": "LinearInputStretchTimeWarper",
-                    "docString": "<h3>LinearInputStretchTimeWarper</h3>+No Description"
+                    "docString": "<h3>LinearInputStretchTimeWarper</h3>No Description"
                   },
                   {
                     "className": "LinearOutputRateTimeWarper",
@@ -2561,7 +2561,7 @@ The detailed data for the chart follows.
                   },
                   {
                     "className": "LinearOutputStretchTimeWarper",
-                    "docString": "<h3>LinearOutputStretchTimeWarper</h3>+No Description"
+                    "docString": "<h3>LinearOutputStretchTimeWarper</h3>No Description"
                   },
                   {
                     "className": "LinearTimeWarper",
@@ -2573,7 +2573,7 @@ The detailed data for the chart follows.
                   },
                   {
                     "className": "GeometricInputTimeWarper",
-                    "docString": "<h3>GeometricInputTimeWarper</h3>+No Description"
+                    "docString": "<h3>GeometricInputTimeWarper</h3>No Description"
                   },
                   {
                     "className": "GeometricOutputRateTimeWarper",
@@ -2581,7 +2581,7 @@ The detailed data for the chart follows.
                   },
                   {
                     "className": "GeometricOutputTimeWarper",
-                    "docString": "<h3>GeometricOutputTimeWarper</h3>+No Description"
+                    "docString": "<h3>GeometricOutputTimeWarper</h3>No Description"
                   },
                   {
                     "className": "RegionTimeWarper",
@@ -2597,7 +2597,7 @@ The detailed data for the chart follows.
                   },
                   {
                     "className": "WarpOptions",
-                    "docString": "<h3>WarpOptions</h3>+No Description"
+                    "docString": "<h3>WarpOptions</h3>No Description"
                   },
                   {
                     "className": "TimeWarper",
@@ -2605,19 +2605,19 @@ The detailed data for the chart follows.
                   },
                   {
                     "className": "TimeTrackControls",
-                    "docString": "<h3>TimeTrackControls</h3>+No Description"
+                    "docString": "<h3>TimeTrackControls</h3>No Description"
                   },
                   {
                     "className": "TimeTrackMenuTable",
-                    "docString": "<h3>TimeTrackMenuTable</h3>+No Description"
+                    "docString": "<h3>TimeTrackMenuTable</h3>No Description"
                   },
                   {
                     "className": "TimeTrackView",
-                    "docString": "<h3>TimeTrackView</h3>+No Description"
+                    "docString": "<h3>TimeTrackView</h3>No Description"
                   },
                   {
                     "className": "TimeTrackVRulerControls",
-                    "docString": "<h3>TimeTrackVRulerControls</h3>+No Description"
+                    "docString": "<h3>TimeTrackVRulerControls</h3>No Description"
                   },
                   {
                     "className": "TimeTrack",
@@ -2626,57 +2626,57 @@ The detailed data for the chart follows.
                   },
                   {
                     "className": "WaveTrackCache",
-                    "docString": "<h3>WaveTrackCache</h3>+No Description",
+                    "docString": "<h3>WaveTrackCache</h3>No Description",
                     "category": "Tracks",
                     "snakeStyle": 2
                   },
                   {
                     "className": "WaveTrackControls",
-                    "docString": "<h3>WaveTrackControls</h3>+No Description"
+                    "docString": "<h3>WaveTrackControls</h3>No Description"
                   },
                   {
                     "className": "WaveTrackLocation",
-                    "docString": "<h3>WaveTrackLocation</h3>+No Description"
+                    "docString": "<h3>WaveTrackLocation</h3>No Description"
                   },
                   {
                     "className": "WaveTrackLockDeleter",
-                    "docString": "<h3>WaveTrackLockDeleter</h3>+No Description"
+                    "docString": "<h3>WaveTrackLockDeleter</h3>No Description"
                   },
                   {
                     "className": "WaveTrackMenuTable",
-                    "docString": "<h3>WaveTrackMenuTable</h3>+No Description"
+                    "docString": "<h3>WaveTrackMenuTable</h3>No Description"
                   },
                   {
                     "className": "WaveTrackSubView",
-                    "docString": "<h3>WaveTrackSubView</h3>+No Description"
+                    "docString": "<h3>WaveTrackSubView</h3>No Description"
                   },
                   {
                     "className": "WaveTrackSubViewPlacement",
-                    "docString": "<h3>WaveTrackSubViewPlacement</h3>+No Description"
+                    "docString": "<h3>WaveTrackSubViewPlacement</h3>No Description"
                   },
                   {
                     "className": "WaveTrackTCPLines",
-                    "docString": "<h3>WaveTrackTCPLines</h3>+No Description"
+                    "docString": "<h3>WaveTrackTCPLines</h3>No Description"
                   },
                   {
                     "className": "WaveTrackView",
-                    "docString": "<h3>WaveTrackView</h3>+No Description"
+                    "docString": "<h3>WaveTrackView</h3>No Description"
                   },
                   {
                     "className": "WaveTrackViewConstants",
-                    "docString": "<h3>WaveTrackViewConstants</h3>+No Description"
+                    "docString": "<h3>WaveTrackViewConstants</h3>No Description"
                   },
                   {
                     "className": "WaveTrackVRulerControls",
-                    "docString": "<h3>WaveTrackVRulerControls</h3>+No Description"
+                    "docString": "<h3>WaveTrackVRulerControls</h3>No Description"
                   },
                   {
                     "className": "WaveTrackVRulerMenuTable",
-                    "docString": "<h3>WaveTrackVRulerMenuTable</h3>+No Description"
+                    "docString": "<h3>WaveTrackVRulerMenuTable</h3>No Description"
                   },
                   {
                     "className": "WaveTrackVZoomHandle",
-                    "docString": "<h3>WaveTrackVZoomHandle</h3>+No Description"
+                    "docString": "<h3>WaveTrackVZoomHandle</h3>No Description"
                   },
                   {
                     "className": "WaveCache",
