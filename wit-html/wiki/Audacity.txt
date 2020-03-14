@@ -2740,64 +2740,13 @@ The detailed data for the chart follows.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <pre>CREDITS:CAPTION=Audacity Classes - Snake Diagram;TIP=</pre>
 <h3>Instructions</h3>
 <ul>
 <li>Hover over blobs on the track for details about that item.
 <li>Larger spots have more information about them than smaller ones.
-</ul><br><br>
+<li>Hold shift down to freeze the rich tooltip, so you can navigate to it and click on hyperlinks.
+</ul>
 <b>Credits:</b> <em>James Crook ©2019; Data and Image placed in Public Domain</em>
 
 

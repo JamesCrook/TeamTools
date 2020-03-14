@@ -860,8 +860,20 @@ function drawSnakeRect(ctx, ctx2, S, isHead, r){
   ctx2.fill();
 }
 
+function hyperlinkOfWikiWord( word ){
+  var url = word;
+  url = url.replace(/([A-Z])/g, function( match, index){
+    return ( "_"+match[0].toLowerCase());
+  });
+  url = "https://doxy.audacityteam.org/class_" + url + ".html";
+  return "<a href='"+url.toLowerCase() + "'>" + word +"</a>";
+}
 
 
+function addHyperlinks( string ){
+  var result = string.replace( /([a-zA-Z0-9_]*[a-z_]+[A-Z]+[A-Za-z0-9_]*)/g, function( match ){ return hyperlinkOfWikiWord( match );});
+  return result;
+}
 
 // For drawing a snakey plot
 function drawSnakeyPath(A, values, T){
@@ -941,7 +953,10 @@ function drawSnakeyPath(A, values, T){
     var r=T.r0+7;
 
     X = values[j];
-    var c =  NextAutoColour( A, X.docString);
+
+    var tipText=addHyperlinks( X.docString );
+
+    var c =  NextAutoColour( A, tipText);
     r = 1.6 * Math.log((X.docString.length) + 0.1) + T.r0;
 
     if( X.docString.indexOf("No Description") >= 0 )
