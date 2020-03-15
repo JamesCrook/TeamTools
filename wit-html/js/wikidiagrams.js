@@ -232,7 +232,7 @@ AddInfo = function( A ){
 };
 
 AddDetail = function( A, text){
-  A.Hotspots.Current.Tip = text;
+  A.Hotspots.Current.Tip = addHyperlinks( text );
 };
 
 AddHover = function( A, text){
@@ -1288,6 +1288,10 @@ function drawImage(A, obj, d){
       ctx2.drawImage(obj.hot.img, x, y, xw, yh);
 }
 
+function drawNowt2( A, obj, d ){
+
+}
+
 function drawRectangle(A, obj, d){
   //console.log( "draw - "+obj.type);
   var l = obj.layout;
@@ -1322,6 +1326,18 @@ function drawRectangle(A, obj, d){
     obj.bcolour      = "rgb(145,125,0)";
     obj.cornerRadius = 8;
   }
+  else{
+    if( A.rectStyle ){
+      obj.colour       = obj.colour || A.rectStyle.colour;
+      obj.bcolour      = obj.bcolour || A.rectStyle.bcolour;
+      obj.cornerRadius = obj.cornerRadius || A.rectStyle.cornerRadius;
+    }
+    A.rectStyle = {};
+    A.rectStyle.colour       = obj.colour;
+    A.rectStyle.bcolour      = obj.bcolour;
+    A.rectStyle.cornerRadius = obj.cornerRadius;
+  }
+
   // -- End of extra twiddles for chooser.
 
   var ctx = A.BackingCanvas.ctx;
@@ -2286,7 +2302,6 @@ createThing = {
 
 sizeThing = {
   "default": sizeContainer,
-  "Spacer": sizeSpacer,
 };
 
 layoutThing = {
@@ -2944,7 +2959,7 @@ function registerMethods()
   registerMethod( "Circle",   0,0, layoutMargined, drawCircle);
   registerMethod( "Rectangle",0,0, layoutMargined, drawRectangle);
   registerMethod( "Tile",     0,0, layoutMargined, drawTile);
-  registerMethod( "Spacer",   0,0,0, drawNowt);
+  registerMethod( "Spacer",   0,0, layoutMargined, drawNowt2);
 
   registerMethod( "Chart",    0,0, layoutMargined, drawChart);
   registerMethod( "Path",     0,0,0, drawPath);

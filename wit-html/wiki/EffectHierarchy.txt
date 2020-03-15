@@ -1,0 +1,96 @@
+__NOTOC__
+
+
+{{ATK_Header}}
+
+This is the spec for the interactive diagram which shows a flow chart for producing the Audacity manual:
+
+Here's the result:
+
+-----
+{{#widget:WikiDiagram|page=Flow_Chart|init=yes}}
+-----
+
+The detailed data for the chart follows.
+
+<pre>START</pre>
+
+<pre>ADD:DATA=
+{
+"margins":22,
+"VStack":[
+    {"HStack":[
+        {"Spacer":"aaa","sizeAs":0.15},
+        {"Rectangle":"ComponentInterface",
+         "colour":"rgb(255,230,205)",
+         "bcolour":"rgb(215,155,0)",
+         "cornerRadius":4,
+         "tip":"<h3>ComponentInterface</h3>Provides a name or identifier, version and vendor that uniquely identifies a plug in."
+         },
+        {"Spacer":"aaa","sizeAs":0.5},
+        {"Spacer":"aaa"},
+        {"Spacer":"aaa","sizeAs":0.15}
+        ]},
+    {"HStack":[
+        {"Spacer":"aaa","sizeAs":0.15},
+        {"Rectangle":"EffectDefinitionInterface"},
+        {"Spacer":"aaa","sizeAs":0.5},
+        {"Rectangle":"ConfigClientInterface"},
+        {"Spacer":"aaa","sizeAs":0.15}
+        ]},
+    {"HStack":[
+        {"Spacer":"aaa","sizeAs":0.25},
+        {"Rectangle":"EffectClientInterface"},
+        {"Spacer":"aaa","sizeAs":0.3},
+        {"Rectangle":"EffectHostInterface"},
+        {"Spacer":"aaa","sizeAs":0.25}
+        ]},
+
+    {"HStack":[
+        {"Rectangle":"wxEventHandler"},
+        {"Rectangle":"Effect",
+         "bcolour":"rgb(60,60,205)",
+         "colour":"rgb(255,255,255)"
+        },
+        {"Rectangle":"EffectUIClientInterface",
+         "colour":"rgb(255,230,205)",
+         "bcolour":"rgb(215,155,0)"
+        }
+        ]},
+    {"HStack":[
+        {"Spacer":"aaa","sizeAs":0.25},
+        {"Rectangle":"EffectAmplify",
+         "bcolour":"rgb(60,60,205)",
+         "colour":"rgb(255,255,255)"
+        },
+        {"Spacer":"aaa","sizeAs":0.3},
+        {"Rectangle":"EffectAutoDuck"},
+        {"Spacer":"aaa","sizeAs":0.25}
+        ]},
+    {"Arrows":[
+        "EffectDefinitionInterface","ComponentInterface",
+        "EffectClientInterface","EffectDefinitionInterface",
+        "Effect","EffectClientInterface",
+        "Effect","wxEventHandler",
+        "Effect","EffectUIClientInterface",
+        "Effect","EffectHostInterface",
+        "EffectHostInterface", "ConfigClientInterface",
+        "EffectAmplify","Effect",
+        "EffectAutoDuck","Effect"
+        ]}
+]}
+</pre>
+
+
+
+
+
+<pre>CREDITS:
+   CAPTION=Heirarchy Chart for 'Effect';
+   tip=</pre>
+<h3>Instructions</h3>
+<ul>
+<li>Hover over boxes in the image for more details.
+<li>Hold shift down to keep the detail box still, so that you can click the hyperlinks in it
+</ul><br><br>
+<b>Credits:</b> <em>James Crook ©2020; Flowchart Image placed in Public Domain</em>
