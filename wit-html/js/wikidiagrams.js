@@ -193,6 +193,7 @@ function populateDomElement(A, contentHere){
   A.DetailDiv.style.textAlign = "left";
   A.DetailDiv.style.margin = "0px";
   A.DetailHideTime = -1;
+  A.DetailDivFrozen = false; // frozen = don't hide.
 
 
   // Hotspot canvas and context do not need to be attached.
@@ -1680,8 +1681,11 @@ function onMouseOut(e){
   var ctx = A.FocusCanvas.ctx;
   ctx.globalCompositeOperation = 'source-over';
   ctx.clearRect(0, 0, A.Porthole.width, A.Porthole.height);
-  A.DetailDiv.style.display = "none";
-  A.Status.OldHit = -1;
+  if( !A.DetailDivFrozen ){
+    A.DetailDiv.style.display = "none";
+    A.Status.OldHit = -1;
+  }
+  A.DetailDivFrozen = false;
 }
 
 function actionsFromCursorPos(A,x,y){
@@ -1715,6 +1719,20 @@ function setNewImage(A,file){
 
 }
 
+function showOrHideTip(A, actions){
+  if( !A.DetailDivFrozen ){
+    if( actions.Tip ){
+      A.DetailDiv.style.display = "block";
+      A.DetailHideTime = -1;
+      A.DetailDiv.innerHTML = actions.Tip;
+    } else {
+      // Keep div that should disappear around for 30 ticks...
+      // so it does not flicker.
+      A.DetailHideTime = 10;
+    }
+  }
+}
+
 function mousemoveOnMap(e){
   var index = e.target.toolkitIndex;
   var A = Annotator[index];
@@ -1735,24 +1753,15 @@ function mousemoveOnMap(e){
   drawInfoButton(A);
   var actions = actionsFromCursorPos(A, x, y);
   if( Message ) Message.innerHTML = coordinates;
-  A.DetailDiv.style.left = pt.x + "px";
-  A.DetailDiv.style.top = pt.y + "px";
+  if( !A.DetailDivFrozen ){
+    A.DetailDiv.style.left = pt.x + "px";
+    A.DetailDiv.style.top = pt.y + "px";
+  }
   if( A.Status.OldHit !== actions.Zone ){
     A.Status.OldHit = actions.Zone;
 
     // Update the detail div
-
-
-    if( actions.Tip ){
-      A.DetailDiv.style.display = "block";
-      A.DetailHideTime = -1;
-      A.DetailDiv.innerHTML = actions.Tip;
-    }
-    else {
-      // Keep div that should disappear around for 30 ticks...
-      // so it does not flicker.
-      A.DetailHideTime = 10;
-    }
+    showOrHideTip(A, actions);
     // Do any additional hover action
     if( actions.Hover ){
       doAction(A, actions.Hover);
@@ -1776,6 +1785,11 @@ function onFocusClicked(e){
   if( actions.Click ){
     doAction(A, actions.Click);
   }
+  else {
+    A.DetailDivFrozen = !A.DetailDivFrozen;
+    showOrHideTip( A, actions );
+  }
+
 }
 
 
@@ -2691,6 +2705,7 @@ function handleNewData(A, data, section){
   startChart(A);
   A.Status.isAppReady = false;
   loadNewLines(A, data, section);
+  loadNewLines(A, A.inner);
 
   var d= {};
   var obj = A.RootObject;
@@ -2819,12 +2834,17 @@ function initContent( classes ){
     var A = makeAnnotator();
     A.index = i+base;
     A.page = getArg(query, 'page'+(i+base)) || contentDivs[i].getAttribute("data-page") || "SmallCrowd";
+    A.inner = contentDivs[i].innerHTML;
+
+    // Make the divs etc for the display.
     populateDomElement( A, contentDivs[i] );
 
+    // If it's an existing spec, update it with new data.
     if( (base > 0 ) && (A.page === getArg( query, 'page0' )) ){
       var spec = Editors[0].MainDiv.value;
       handleNewData( A, spec );
     }
+    // else load it with new data.
     else {
       loadDiagram(A, A.page, 'no', 1);
     }
