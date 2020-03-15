@@ -2738,8 +2738,6 @@ The detailed data for the chart follows.
 
 </pre>
 
-
-
 <pre>CREDITS:CAPTION=Audacity Classes - Snake Diagram;TIP=</pre>
 <h3>Instructions</h3>
 <ul>

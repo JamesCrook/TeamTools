@@ -208,7 +208,10 @@
       }
 
       function formatTileEdit( name ){
-        return formatExample( name, name, name + " in Audacity", "" );
+        var str = formatExample( name, name, "", "" );
+        str = str.replace("<li>", "");
+        str = str.replace("</li>", "");
+        return str;
       }
 
       function formatEdit( name, short, long, code ){
@@ -267,14 +270,10 @@
           str += formatExample("Biochemical", "Biochemical",
             "A metro-line display of biochemical pathways.  This diagram and the code structure diagram for Audacity are related.",
             "");
-          str += formatExample("Classes", "Classes",
-            "A metro-line zig-zag display of 494 classes in Audacity", "");
-          str += formatExample("Structure", "Tree Diagram",
-            "Another experiment with  zig-zag display.  A 2-level tree of Audacity classes",
-            "");
           str += formatExample("SqliteArchitecture", "SQLite",
             "A block diagram of SQLite",
             "");
+          str+="<ul><li>";
           str += formatTileEdit( "Projects" );
           str += formatTileEdit( "Commands" );
           str += formatTileEdit( "Preferences" );
@@ -289,6 +288,7 @@
           str += formatTileEdit( "Tracks" );
           str += formatTileEdit( "Exports" );
           str += formatTileEdit( "Misc" );
+          str += "</ul>";
         }
         str+="</ul>Ordinary wiki pages about the diagrams<ul>";
         {
@@ -371,7 +371,12 @@
 <div style="height:1.9em;"></div>
 
 <div id="content_here0" class="atkContentDiv" data-page="Globes" style="text-align:center;">
+    <div style="display:none">
+    <pre>IMAGE:NAME=svg</pre>
+    [[File:AudacityAu19HS.png]]
 </div>
+</div>
+
 
 <!--<div id="content_here1" class="atkContentDiv" data-page="Köppen_Globe" style="text-align:center;">
 </div>-->
