@@ -1720,16 +1720,15 @@ function setNewImage(A,file){
 }
 
 function showOrHideTip(A, actions){
-  if( !A.DetailDivFrozen ){
-    if( actions.Tip ){
-      A.DetailDiv.style.display = "block";
-      A.DetailHideTime = -1;
-      A.DetailDiv.innerHTML = actions.Tip;
-    } else {
-      // Keep div that should disappear around for 30 ticks...
-      // so it does not flicker.
-      A.DetailHideTime = 10;
-    }
+  if( actions.Tip ){
+    A.DetailDiv.style.display = "block";
+    A.DetailHideTime = -1;
+    A.DetailDiv.innerHTML = actions.Tip;
+  } else {
+    // Keep div that should disappear around for 30 ticks...
+    // so it does not flicker.
+    A.DetailHideTime = 10;
+    A.DetailDivFrozen = false;
   }
 }
 
@@ -1761,7 +1760,8 @@ function mousemoveOnMap(e){
     A.Status.OldHit = actions.Zone;
 
     // Update the detail div
-    showOrHideTip(A, actions);
+    if( !A.DetailDivFrozen )
+      showOrHideTip(A, actions);
     // Do any additional hover action
     if( actions.Hover ){
       doAction(A, actions.Hover);
@@ -1786,7 +1786,7 @@ function onFocusClicked(e){
     doAction(A, actions.Click);
   }
   else {
-    A.DetailDivFrozen = !A.DetailDivFrozen;
+    A.DetailDivFrozen = true;
     showOrHideTip( A, actions );
   }
 
