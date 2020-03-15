@@ -33,26 +33,33 @@ The detailed data for the chart follows.
         ]},
     {"HStack":[
         {"Spacer":"aaa","sizeAs":0.15},
-        {"Rectangle":"EffectDefinitionInterface"},
+        {"Rectangle":"EffectDefinitionInterface",
+        "tip":"<h3>EffectDefinitionInterface</h3>Adds virtual functions for meta data about audio specific roles. Does the effect support real time and automation? What family of effects does it belong to?"},
         {"Spacer":"aaa","sizeAs":0.5},
-        {"Rectangle":"ConfigClientInterface"},
+        {"Rectangle":"ConfigClientInterface",
+"tip":"<h3>ConfigClientInterface</h3>Virtual functions for setting/getting individual configuration values, using wxWidgets mechanisms." },
         {"Spacer":"aaa","sizeAs":0.15}
         ]},
     {"HStack":[
         {"Spacer":"aaa","sizeAs":0.25},
-        {"Rectangle":"EffectClientInterface"},
+        {"Rectangle":"EffectClientInterface",
+"tip":"<h3>EffectClientInterface</h3>Provides virtual functions for the nitty gritty of transferring audio blocks and real time start and finish." },
         {"Spacer":"aaa","sizeAs":0.3},
-        {"Rectangle":"EffectHostInterface"},
+        {"Rectangle":"EffectHostInterface",
+"tip":"<h3>EffectHostInterface</h3>Virtual functions to handle presets, factory defaults and duration. Whereas ConfigClientInterface works on individual settings, this class works on groups of settings." },
         {"Spacer":"aaa","sizeAs":0.25}
         ]},
 
     {"HStack":[
-        {"Rectangle":"wxEventHandler"},
+        {"Rectangle":"wxEventHandler",
+        "tip":"<h3>wxEventHandler</h3>wxWidgets class for handling events, such as clicking on a control on the effects dialog."},
         {"Rectangle":"Effect",
+        "tip":"<h3>Effect</h3>The actual effect class for Audacity built-in effects. Note that 3rd party effects like LADSPA and VST effects have their own versions, e.g. LadspaEffect and do not derive from Effect.",
          "bcolour":"rgb(60,60,205)",
          "colour":"rgb(255,255,255)"
         },
         {"Rectangle":"EffectUIClientInterface",
+         "tip":"<h3>EffectUIClientInterface</h3>Has virtual functions for management of the dialog, to show/hide/validate for example.",
          "colour":"rgb(255,230,205)",
          "bcolour":"rgb(215,155,0)"
         }
@@ -60,11 +67,15 @@ The detailed data for the chart follows.
     {"HStack":[
         {"Spacer":"aaa","sizeAs":0.25},
         {"Rectangle":"EffectAmplify",
+         "tip":"<h3>EffectAmplify</h3>One of many effects",
          "bcolour":"rgb(60,60,205)",
          "colour":"rgb(255,255,255)"
         },
         {"Spacer":"aaa","sizeAs":0.3},
-        {"Rectangle":"EffectAutoDuck"},
+        {"Rectangle":"EffectAutoDuck",
+         "tip":"<h3>EffectAutoDuck</h3>One of many effects"
+
+        },
         {"Spacer":"aaa","sizeAs":0.25}
         ]},
     {"Arrows":[
@@ -81,12 +92,8 @@ The detailed data for the chart follows.
 ]}
 </pre>
 
-
-
-
-
 <pre>CREDITS:
-   CAPTION=Heirarchy Chart for 'Effect';
+   CAPTION=Inheritance Diagram for 'Effect';
    tip=</pre>
 <h3>Instructions</h3>
 <ul>
