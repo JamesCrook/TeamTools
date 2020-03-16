@@ -81,24 +81,26 @@ The detailed data for the regions, buttons and tooltips follows.
 </pre>
 
 
+
+
 <pre>NEXTOBJECT:TIP=</pre>
-<h1>Project</h1>
+<h1><a href='https://wiki.audacityteam.org/wiki/Toolbox/Project'>Project</a></h1>
 The Audacity project is an XML file containing the layout of audio and other
 tracks that are being worked on.  Audio is stored in blockfiles, chunks of
 audio data.  The project file keeps a record of which chunks make up each track.  It also holds information about the state of each track.
 
 <pre>NEXTOBJECT:TIP=</pre>
-<h1>Toolbars</h1>
+<h1><a href='https://wiki.audacityteam.org/wiki/Toolbox/Toolbars'>Toolbars</a></h1>
 Toolbars have buttons for quick access to some of the most commonly used Audacity commands.  The TransportToolbar, for example, has large buttons for play, record and pause.
 
 <pre>NEXTOBJECT:TIP=</pre>
-<h1>Scaffolding</h1>
+<h1><a href='https://wiki.audacityteam.org/wiki/Toolbox/Scaffolding'>Scaffolding</a></h1>
 Many classes in Audacity are utility classes of one sort or another that aren't
 specifically to do with audio.  For example, loggers, exceptions, timers, internationalisation support, help system, matrix and vector classes.
 
 
 <pre>NEXTOBJECT:TIP=</pre>
-<h1>Commands</h1>
+<h1><a href='https://wiki.audacityteam.org/wiki/Toolbox/Commands'>Commands</a></h1>
 Each command in Audacity has an internal name, an ID, which uniquely
 identifies it.  This name is used to invoke the command, e.g. when scripting.
 Commands may be bound to menu items and to toolbar buttons.  Many commands
@@ -106,55 +108,55 @@ have additional parameters that are usually set via a dialog.
 
 
 <pre>NEXTOBJECT:TIP=</pre>
-<h1>Menus</h1>
+<h1><a href='https://wiki.audacityteam.org/wiki/Toolbox/Menus'>Menus</a></h1>
 Menus in Audacity are constructed in a 'decentralised' way.  Commands register
 with the MenuManager, and give an indication of where in the menus they
 belong.
 
 <pre>NEXTOBJECT:TIP=</pre>
-<h1>Plug Ins</h1>
+<h1><a href='https://wiki.audacityteam.org/wiki/Toolbox/Plugins'>Plugins</a></h1>
 Plug Ins extend the features of Audacity.  There are well established APIs
 for plug in effects and tools.  For example LV2 and AudioUnits for effects,
 VAMP for code that analyses audio, Nyquist LISP functions for general tools.
 Audacity also has plug in modules that can add to the user interface.
 
 <pre>NEXTOBJECT:TIP=</pre>
-<h1>Export and Import</h1>
+<h1><a href='https://wiki.audacityteam.org/wiki/Toolbox/Exports'>Exports &amp; Imports</a></h1>
 There are many competing standards for how to represent Audio.  Audacity
 supports many of them.  Audacity uses third party libraries to import and
 export MP3 and other audio formats.
 
 <pre>NEXTOBJECT:TIP=</pre>
-<h1>Preferences</h1>
+<h1><a href='https://wiki.audacityteam.org/wiki/Toolbox/Preferences'>Preferences</a></h1>
 Many preferences and settings in Audacity can be set using the preferences
 dialog.  These preferences are stored in a config file, audacity.cfg.
 
 <pre>NEXTOBJECT:TIP=</pre>
-<h1>Dialogs</h1>
+<h1><a href='https://wiki.audacityteam.org/wiki/Toolbox/Dialogs'>Dialogs</a></h1>
 Audacity uses wxSizers from wxWidgets to keep the layouts of dialogs good. Text varies in different languages, and
 sizes of dialog items differ on different platforms (Mac, Windows, Linux).
 <br><br>
 To avoid a lot of repetitive code, Audacity uses a class, ShuttleGUI, that constructs dialogs and moves information in and out of them.
 
 <pre>NEXTOBJECT:TIP=</pre>
-<h1>Audio Effects</h1>
+<h1><a href='https://wiki.audacityteam.org/wiki/Toolbox/Effects'>Audio Effects</a></h1>
 Audacity effects do something to Audio, for example a fade in or fade out.  We include audio generators like 'Chirp' and audio analyzers like 'Find Clipping' in the general effects category.  Collectively these are sometimes known as 'EGAs' (Effects, Generators  and Analyzers).
 
 
 <pre>NEXTOBJECT:TIP=</pre>
-<h1>Blockfiles</h1>
+<h1><a href='https://wiki.audacityteam.org/wiki/Toolbox/Blockfiles'>Blockfiles</a></h1>
 Audacity splits audio into blockfiles, chunks of audio data, and keeps a record of the order in which to play blockfiles.  This is important for speed when cutting and pasting audio.  The order of playing blockfiles can be updated without moving a lot of audio data around.
 
 <pre>NEXTOBJECT:TIP=</pre>
-<h1>Audio I/O</h1>
+<h1><a href='https://wiki.audacityteam.org/wiki/Toolbox/AudioIO'>Audio IO</a></h1>
 Audacity uses a library, PortAudio, to support cross platform playing and recording of audio.  Organising the data for PortAudio and saving recording results from PortAudio requires additional code that Audacity provides.
 
 <pre>NEXTOBJECT:TIP=</pre>
-<h1>Tracks</h1>
+<h1><a href='https://wiki.audacityteam.org/wiki/Toolbox/Tracks'>Tracks</a></h1>
 Audacity has several track types, WaveTrack (audio), LabelTrack, NoteTrack (MIDI) and TimeTrack (used for stretching and compressing audio).  There are also classes to manage tracks and to actually draw the on screen representation.
 
 <pre>NEXTOBJECT:TIP=</pre>
-<h1>Miscellaneous</h1>
+<h1><a href='https://wiki.audacityteam.org/wiki/Toolbox/Miscellaneous'>Miscellaneous</a></h1>
 Many classes in Audacity do not fall neatly into one of the categories.  These are in the miscellaneous category.
 
 

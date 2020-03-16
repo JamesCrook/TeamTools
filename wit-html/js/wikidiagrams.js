@@ -41,6 +41,7 @@ function InitAnnotator(A){
   A.Styles = {};
   A.Styles.current = 0;
   A.Styles.dict = [];
+  A.Styles.autolink = false;
 }
 
 
@@ -236,7 +237,7 @@ AddInfo = function( A ){
 };
 
 AddDetail = function( A, text){
-  A.Hotspots.Current.Tip = addHyperlinks( text );
+  A.Hotspots.Current.Tip = addHyperlinks( A, text );
 };
 
 AddHover = function( A, text){
@@ -874,7 +875,9 @@ function hyperlinkOfWikiWord( word ){
 }
 
 
-function addHyperlinks( string ){
+function addHyperlinks( A, string ){
+  if( !A.Styles.autolink )
+    return string;
   var result = string.replace( /([a-zA-Z0-9_]+[A-Z]+[A-Za-z0-9_]*)/g, function( match ){ return hyperlinkOfWikiWord( match );});
   return result;
 }
@@ -958,7 +961,7 @@ function drawSnakeyPath(A, values, T){
 
     X = values[j];
 
-    var tipText=addHyperlinks( X.docString );
+    var tipText=addHyperlinks( A, X.docString );
 
     var c =  NextAutoColour( A, tipText);
     r = 1.6 * Math.log((X.docString.length) + 0.1) + T.r0;
@@ -1005,6 +1008,9 @@ function drawPath(A, obj, d, stride){
   var y0 = l.y0;
   var xw = l.xw;
   var yh = l.yh;
+
+  if( isDefined( obj.autolink ) )
+    A.Styles.autolink = obj.autolink;
 
   stride = stride || 1;
   var T = {};

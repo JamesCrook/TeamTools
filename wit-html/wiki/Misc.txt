@@ -25,14 +25,14 @@ The detailed data for the chart follows.
     "Overlay": [
       {
         "Path":"Misc",
+        "autolink":true,
         "values":
          [
                   {
                     "className": "a",
                     "docString": "unused",
                     "snakeStyle": 0,
-                   "snakeShape":0
-
+                    "snakeShape":0
                   },
 
          {

@@ -22,6 +22,7 @@ The detailed data for the chart follows.
               {
                 "sizeAs": 1.5,
                 "Path": "Snakes1-4",
+                "autolink":true,
                 "values": [
                   {
                     "className": "AboutDialog",
