@@ -1,0 +1,29 @@
+__NOTOC__
+
+
+{{ATK_Header}}
+
+This is the spec for the interactive diagram which shows some code.
+
+Here's the result:
+
+-----
+{{#widget:WikiDiagram|page=Geshi|init=yes}}
+-----
+
+The detailed data for the chart follows.
+
+<pre>START</pre>
+
+<pre>ADD:DATA=
+{
+"Geshi":"127 size_t EffectEcho::ProcessBlock(float **inBlock, float **outBlock, size_t blockLen)\n128 {\n129    float *ibuf = inBlock[0];\n130    float *obuf = outBlock[0];\n131 \n132    for (decltype(blockLen) i = 0; i < blockLen; i++, histPos++)\n133    {\n134       if (histPos == histLen)\n135       {\n136          histPos = 0;\n137       }\n138       history[histPos] = obuf[i] = ibuf[i] + history[histPos] * decay;\n139    }\n140 \n141    return blockLen;\n142 }\n"
+}
+</pre>
+
+With the layout established, the details that follow customise the objects.
+
+
+
+<pre>CREDITS:CAPTION=Source Code for Echo Effect;tip=</pre>
+<b>Credits:</b> <em>Audacityteam ©2020</em>

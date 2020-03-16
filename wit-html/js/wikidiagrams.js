@@ -1384,6 +1384,48 @@ function drawRectangle(A, obj, d){
 }
 
 
+function drawGeshi(A, obj, d){
+  if( d.stage !== kStageFillAndText )
+    return;
+
+  //console.log( "draw - "+obj.type);
+  var l = obj.layout;
+  var x = l.x0;
+  var y = l.y0;
+  var xw = l.xw;
+  var yh = l.yh;
+
+
+  // This sizing/font matches typical appearance of <pre> element.
+  var ctx = A.BackingCanvas.ctx;
+  ctx.font = "13px monospace";
+
+  // Approximate height (as M is 'square' );
+  // Advanced metrics not supported in firefox or ie or edge.
+  var textHeight = (ctx.measureText( "M").width *1.8);
+
+  var i;
+  var lines = obj.value.split( "\n" );
+  for( i = 0;i< lines.length; i++){
+    var str = lines[i];
+
+    ctx.fillText(str,
+      x ,
+   y + textHeight*(i+1.5));
+/*
+    if( obj.hotspotColour ){
+      var ctx2 = A.Hotspots.ctx;
+      ctx2.beginPath();
+      ctx2.rect(x, y, xw, yh);
+      ctx2.fillStyle = obj.hotspotColour;
+      ctx2.fill();
+    }
+ */
+  }
+}
+
+
+
 
 function drawText(A, obj, d){
   if( d.stage !== kStageFillAndText )
@@ -2984,6 +3026,7 @@ function registerMethods()
 {
   registerMethod( "Image",    0,0, layoutMargined, drawImage);
   registerMethod( "Text",     0,0, layoutMargined, drawText);
+  registerMethod( "Geshi",     0,0, layoutMargined, drawGeshi);
   registerMethod( "Circle",   0,0, layoutMargined, drawCircle);
   registerMethod( "Rectangle",0,0, layoutMargined, drawRectangle);
   registerMethod( "Tile",     0,0, layoutMargined, drawTile);
