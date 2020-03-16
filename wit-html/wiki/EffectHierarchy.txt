@@ -25,6 +25,7 @@ The detailed data for the chart follows.
          "colour":"rgb(255,230,205)",
          "bcolour":"rgb(215,155,0)",
          "cornerRadius":4,
+         "style":0,
          "tip":"<h3>ComponentInterface</h3>Provides a name or identifier, version and vendor that uniquely identifies a plug in."
          },
         {"Spacer":"aaa","sizeAs":0.5},
@@ -55,19 +56,20 @@ The detailed data for the chart follows.
         "tip":"<h3>wxEventHandler</h3>wxWidgets class for handling events, such as clicking on a control on the effects dialog."},
         {"Rectangle":"Effect",
         "tip":"<h3>Effect</h3>The actual effect class for Audacity built-in effects. Note that 3rd party effects like LADSPA and VST effects have their own versions, e.g. LadspaEffect and do not derive from Effect.",
+         "style":1,
          "bcolour":"rgb(60,60,205)",
          "colour":"rgb(255,255,255)"
         },
         {"Rectangle":"EffectUIClientInterface",
          "tip":"<h3>EffectUIClientInterface</h3>Has virtual functions for management of the dialog, to show/hide/validate for example.",
-         "colour":"rgb(255,230,205)",
-         "bcolour":"rgb(215,155,0)"
+         "style":0
         }
         ]},
     {"HStack":[
         {"Spacer":"aaa","sizeAs":0.25},
         {"Rectangle":"EffectAmplify",
          "tip":"<h3>EffectAmplify</h3>One of many effects",
+         "style":1,
          "bcolour":"rgb(60,60,205)",
          "colour":"rgb(255,255,255)"
         },

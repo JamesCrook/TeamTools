@@ -38,6 +38,9 @@ function InitAnnotator(A){
   A.Detail = {};
   A.Detail.width = 400;
   A.Detail.height = 300;
+  A.Styles = {};
+  A.Styles.current = 0;
+  A.Styles.dict = [];
 }
 
 
@@ -1328,15 +1331,20 @@ function drawRectangle(A, obj, d){
     obj.cornerRadius = 8;
   }
   else{
-    if( A.rectStyle ){
-      obj.colour       = obj.colour || A.rectStyle.colour;
-      obj.bcolour      = obj.bcolour || A.rectStyle.bcolour;
-      obj.cornerRadius = obj.cornerRadius || A.rectStyle.cornerRadius;
+    if( isDefined( obj.style) && isFinite( obj.style )){
+      A.Styles.current = obj.style;
     }
-    A.rectStyle = {};
-    A.rectStyle.colour       = obj.colour;
-    A.rectStyle.bcolour      = obj.bcolour;
-    A.rectStyle.cornerRadius = obj.cornerRadius;
+
+    var styleRec = A.Styles.dict[ A.Styles.current ] || {};
+    if( styleRec ){
+      obj.colour       = obj.colour || styleRec.colour;
+      obj.bcolour      = obj.bcolour || styleRec.bcolour;
+      obj.cornerRadius = obj.cornerRadius || styleRec.cornerRadius;
+    }
+    styleRec.colour       = obj.colour || "rgb(255,255,255)";
+    styleRec.bcolour      = obj.bcolour || "rgb(80,80,200)";
+    styleRec.cornerRadius = isDefined(obj.cornerRadius)? obj.cornerRadius : 0;
+    A.Styles.dict[ A.Styles.current ] = styleRec;
   }
 
   // -- End of extra twiddles for chooser.

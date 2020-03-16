@@ -30,22 +30,33 @@ The detailed data for the chart follows.
 {
 "margins":5,
 "Overlay":[
-  {"Rectangle":"","margins":-5, "colour":"rgb(200,200,200)"},
+  {"Rectangle":"","margins":0,
+  "style":2,
+  "colour":"rgb(200,200,200)",
+  "bcolour":"rgb(200,200,200)",
+  "cornerRadius":35
+
+  },
 
 
 
 {"margins":5,
  "HStack":[
   {"VStack":[
-        {"Rectangle":"Core","colour":"rgb(250,255,240)"},
-        {"Rectangle":"Backend","colour":"rgb(250,255,240)"}
+        {"Rectangle":"Core",
+        "style":0,
+        "colour":"rgb(250,255,240)",
+        "cornerRadius":27
+        },
+        {"Rectangle":"Backend",
+        "style":0}
      ]},
   {"VStack":[
         {"Rectangle":"SQL Compiler",
-        "colour":"rgb(250,255,240)",
+        "style":0,
         "sizeAs":2},
         {"Rectangle":"Accessories",
-        "colour":"rgb(250,255,240)"}
+        "style":0}
      ]}
   ]},
 
@@ -57,31 +68,22 @@ The detailed data for the chart follows.
   {"VStack":[
         {"VStack":[
             {"Rectangle":"Interface",
+               "style":1,
                "colour":"rgb(215,230,210)",
                "bcolour":"rgb(115,180,110)",
                "cornerRadius":25},
             {"Rectangle":"SQL Command",
-               "colour":"rgb(215,230,210)",
-               "bcolour":"rgb(115,180,110)",
-               "cornerRadius":25},
+               "style":1},
             {"Rectangle":"Virtual Machine",
-               "colour":"rgb(215,230,210)",
-               "bcolour":"rgb(115,180,110)",
-               "cornerRadius":25}
+               "style":1}
             ]},
         {"VStack":[
             {"Rectangle":"B-Tree",
-               "colour":"rgb(215,230,210)",
-               "bcolour":"rgb(115,180,110)",
-               "cornerRadius":25},
+               "style":1},
             {"Rectangle":"Pager",
-               "colour":"rgb(215,230,210)",
-               "bcolour":"rgb(115,180,110)",
-               "cornerRadius":25},
+               "style":1},
             {"Rectangle":"OS Interface",
-               "colour":"rgb(215,230,210)",
-               "bcolour":"rgb(115,180,110)",
-               "cornerRadius":25}
+               "style":1}
             ]}
      ]},
 
@@ -89,28 +91,18 @@ The detailed data for the chart follows.
   {"VStack":[
         {"VStack":[
             {"Rectangle":"Tokenizer",
-               "colour":"rgb(215,230,210)",
-               "bcolour":"rgb(115,180,110)",
-               "cornerRadius":25},
+               "style":1},
             {"Rectangle":"Parser",
-               "colour":"rgb(215,230,210)",
-               "bcolour":"rgb(115,180,110)",
-               "cornerRadius":25},
+               "style":1},
             {"Rectangle":"Code Generator",
-               "colour":"rgb(215,230,210)",
-               "bcolour":"rgb(115,180,110)",
-               "cornerRadius":25}
+               "style":1}
             ],
         "sizeAs":2},
         {"VStack":[
             {"Rectangle":"Utilities",
-               "colour":"rgb(215,230,210)",
-               "bcolour":"rgb(115,180,110)",
-               "cornerRadius":25},
+               "style":1},
             {"Rectangle":"Test Code",
-               "colour":"rgb(215,230,210)",
-               "bcolour":"rgb(115,180,110)",
-               "cornerRadius":25}
+               "style":1}
             ]}
      ]}
   ]},
