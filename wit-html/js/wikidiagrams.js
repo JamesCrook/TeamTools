@@ -507,22 +507,7 @@ function drawSpot(A,T, values, i, ix){
   ctx.stroke();
 }
 
-function drawStar(ctx, A, x, y){
-  var n = 10;
-  var r = 3.5;
 
-  ctx.beginPath();
-  var i;
-  for( i = 0; i <= n; i++ ){
-    var theta = Math.PI * 2 * (i / n + (Math.min(20, A.Status.time) / 40));
-    var r0 = (i % 2 === 0) ? r : 3.5 * r;
-    var xx = x + r0 * Math.cos(theta);
-    var yy = y + r0 * Math.sin(theta);
-    if( i === 0 ) ctx.moveTo(xx, yy); else ctx.lineTo(xx, yy);
-  }
-  ctx.fill();
-  ctx.lineWidth = 0.5;
-}
 
 
 // int will be in mins.
@@ -828,7 +813,34 @@ function getSnakeShape(X, shape){
   return shape;
 }
 
-function drawSnakeSpot(ctx, ctx2, S, isHead, r){
+function drawStar(ctx, A, x, y, r){
+  var n = 10;
+  var r = r || 3.5;
+
+  ctx.beginPath();
+  var i;
+  for( i = 0; i <= n; i++ ){
+    var theta = Math.PI * 2 * (i / n + (Math.min(20, A.Status.time) / 40));
+    var r0 = (i % 2 === 0) ? r : 3.5 * r;
+    var xx = x + r0 * Math.cos(theta);
+    var yy = y + r0 * Math.sin(theta);
+    if( i === 0 ) ctx.moveTo(xx, yy); else ctx.lineTo(xx, yy);
+  }
+  ctx.fill();
+  ctx.lineWidth = 0.5;
+}
+
+
+function drawSnakeStar(A,ctx, ctx2, S, isHead, r){
+  if( isHead ){
+    drawSnakeSpot( A, ctx, ctx2, S, isHead, r );
+    return;
+  }
+  drawStar( ctx, A, S.x, S.y, r);
+  drawStar( ctx2, A, S.x, S.y,  r);
+}
+
+function drawSnakeSpot(A,ctx, ctx2, S, isHead, r){
   ctx.beginPath();
   ctx.arc(S.x, S.y, r, 0, 2 * Math.PI, false);
   ctx.closePath();
@@ -843,9 +855,9 @@ function drawSnakeSpot(ctx, ctx2, S, isHead, r){
   ctx2.fill();
 }
 
-function drawSnakeRect(ctx, ctx2, S, isHead, r){
+function drawSnakeRect(A,ctx, ctx2, S, isHead, r){
   if( isHead ){
-    drawSnakeSpot( ctx, ctx2, S, isHead, r );
+    drawSnakeSpot( A, ctx, ctx2, S, isHead, r );
     return;
   }
   var d = 8;
@@ -904,6 +916,8 @@ function drawSnakeyPath(A, values, T){
   S.x=0;S.y=0;
   T.isPath = true;
   T.maxv = maxv;
+
+  var drawFns = [drawSnakeSpot, drawSnakeRect, drawSnakeStar ];
 
   var widths = [5,6,9];
   var lines = ["rgb(150,150,150)", "rgb(156,3,0)", "rgb(15,0,181)"];
@@ -986,10 +1000,7 @@ function drawSnakeyPath(A, values, T){
       }
       ctx2.fillStyle = c;
       isHead = X.isHead;
-      if( shape )
-        drawSnakeRect(ctx, ctx2, S, isHead, r);
-      else
-        drawSnakeSpot(ctx, ctx2, S, isHead, r);
+      drawFns[ shape ](A, ctx, ctx2, S, isHead, r);
     }
     i++;
 
