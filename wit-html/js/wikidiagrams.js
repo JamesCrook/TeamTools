@@ -1203,6 +1203,32 @@ function drawArrow(A,obj1, obj2){
   ctx.stroke();
 }
 
+function drawPointedArrowHead(ctx){
+  ctx.moveTo(-11, -5);
+  ctx.lineTo(0, 0);
+  ctx.lineTo(-11, 5);
+  ctx.lineTo(-7, 0);
+  ctx.closePath();
+  ctx.fill();
+}
+
+function drawFlatArrowHead(ctx){
+  var k =7;
+  var p = 3;
+  var u = 1.5;
+  var z = 15;
+  ctx.moveTo(-z, u);
+  ctx.lineTo(-p, u);
+  ctx.lineTo(-p, k);
+  ctx.lineTo( 0, k);
+  ctx.lineTo( 0, -k);
+  ctx.lineTo(-p, -k);
+  ctx.lineTo(-p, -u);
+  ctx.lineTo(-z, -u);
+  ctx.closePath();
+  ctx.fill();
+}
+
 function drawArrowHead(A,obj1, obj2){
   var ctx = A.BackingCanvas.ctx;
   var x1 = obj1.layout.x0 + obj1.layout.xw / 2;
@@ -1234,12 +1260,12 @@ function drawArrowHead(A,obj1, obj2){
   ctx.save();
   ctx.translate(x2, y2);
   ctx.rotate(theta);
-  ctx.moveTo(-11, -5);
-  ctx.lineTo(0, 0);
-  ctx.lineTo(-11, 5);
-  ctx.lineTo(-7, 0);
-  ctx.closePath();
-  ctx.fill();
+//  drawPointedArrowHead(ctx);
+  if( A.Styles.head === "flat" )
+    drawFlatArrowHead(ctx);
+  else
+    drawPointedArrowHead(ctx);
+
   ctx.restore();
 }
 
@@ -1313,6 +1339,24 @@ function drawNowt2( A, obj, d ){
 
 }
 
+function setStyle( A, obj ){
+  if( isDefined( obj.style) && isFinite( obj.style )){
+    A.Styles.current = obj.style;
+  }
+  var styleRec = A.Styles.dict[ A.Styles.current ] || {};
+  if( styleRec ){
+    obj.colour       = obj.colour || styleRec.colour;
+    obj.bcolour      = obj.bcolour || styleRec.bcolour;
+    obj.cornerRadius = obj.cornerRadius || styleRec.cornerRadius;
+  }
+  styleRec.colour       = obj.colour || "rgb(255,255,255)";
+  styleRec.bcolour      = obj.bcolour || "rgb(80,80,200)";
+  styleRec.cornerRadius = isDefined(obj.cornerRadius)? obj.cornerRadius : 0;
+  styleRec.head         = obj.head;
+  A.Styles.dict[ A.Styles.current ] = styleRec;
+
+}
+
 function drawRectangle(A, obj, d){
   //console.log( "draw - "+obj.type);
   var l = obj.layout;
@@ -1348,20 +1392,7 @@ function drawRectangle(A, obj, d){
     obj.cornerRadius = 8;
   }
   else{
-    if( isDefined( obj.style) && isFinite( obj.style )){
-      A.Styles.current = obj.style;
-    }
-
-    var styleRec = A.Styles.dict[ A.Styles.current ] || {};
-    if( styleRec ){
-      obj.colour       = obj.colour || styleRec.colour;
-      obj.bcolour      = obj.bcolour || styleRec.bcolour;
-      obj.cornerRadius = obj.cornerRadius || styleRec.cornerRadius;
-    }
-    styleRec.colour       = obj.colour || "rgb(255,255,255)";
-    styleRec.bcolour      = obj.bcolour || "rgb(80,80,200)";
-    styleRec.cornerRadius = isDefined(obj.cornerRadius)? obj.cornerRadius : 0;
-    A.Styles.dict[ A.Styles.current ] = styleRec;
+    setStyle(A,obj);
   }
 
   // -- End of extra twiddles for chooser.
@@ -1570,6 +1601,8 @@ function drawArrows(A,obj,d){
   if( !Array.isArray( arrows) ) return;
   if( (d.stage !== kStageArrowShaft ) && (d.stage !== kStageArrowHead ) )
     return;
+
+  A.Styles.head         = obj.head;
 
   for( i = 0; i < arrows.length; i += 2 ){
     var obj1 = objFromId(A,arrows[i]);
