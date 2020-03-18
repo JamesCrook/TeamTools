@@ -3,12 +3,13 @@ __NOTOC__
 
 {{ATK_Header}}
 
-This is the spec for the interactive diagram which shows a flow chart for producing the Audacity manual:
+This is the spec for the interactive diagram which shows a hypothesised
+mechanism of lung damage in SARS-CoV.
 
 Here's the result:
 
 -----
-{{#widget:WikiDiagram|page=Flow_Chart|init=yes}}
+{{#widget:WikiDiagram|page=Ace2Downregulation|init=yes}}
 -----
 
 The detailed data for the chart follows.

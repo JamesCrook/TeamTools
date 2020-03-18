@@ -2968,7 +2968,7 @@ function initEditors(){
     var A = {};
     A.index = i;
     A.page = getArg(query, 'page'+i) || contentDivs[i].getAttribute("data-page") || "SmallCrowd";
-    A.tab = getArg(query, 'tab' );
+    A.tab = getArg(query, 'action' );
 
     populateEditorElement( A, contentDivs[i] );
     requestSpec(A,A.page, 'remote',1,handleEditorData);
@@ -3041,7 +3041,7 @@ function handlePageData(A,data){
 
   data = data.replace( /^\*/gm, "<br> • " );
   data = data.replace( /\n\n([^<])/gm, "<br><br>$1" );
-  data = data.replace( /\{\{#widget:WikiDiagram\|page=([_A-Za-z\u00C0-\u017F]*).*?\}\}/gm, '        <div id="content_here1" class="atkContentDiv2" data-page="$1" style="text-align:center;">\n' +
+  data = data.replace( /\{\{#widget:WikiDiagram\|page=([_A-Z0-9a-z\u00C0-\u017F]*).*?\}\}/gm, '        <div id="content_here1" class="atkContentDiv2" data-page="$1" style="text-align:center;">\n' +
     '        </div>' );
 
   var name = A.page;
