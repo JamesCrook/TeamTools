@@ -1229,44 +1229,67 @@ function drawFlatArrowHead(ctx){
   ctx.fill();
 }
 
-function drawArrowHead(A,obj1, obj2){
-  var ctx = A.BackingCanvas.ctx;
-  var x1 = obj1.layout.x0 + obj1.layout.xw / 2;
-  var x2 = obj2.layout.x0 + obj2.layout.xw / 2;
-  var y1 = obj1.layout.y0 + obj1.layout.yh / 2;
-  var y2 = obj2.layout.y0 + obj2.layout.yh / 2;
-  ctx.beginPath();
-  ctx.fillStyle = "rgba(0,0,0,1.0)";
-  ctx.lineWidth = 1;
-  var vx = x1 - x2;
-  var vy = y1 - y2;
-  var theta = -Math.atan2(vx, vy) - Math.PI / 2;
+function getLineExtent(obj, vx, vy){
   var m = 0;
-  if( obj2.type === "Circle" ){
-    var r = Math.min(obj2.layout.yh, obj2.layout.xw) / 2;
+  if( obj.type === "Circle" ){
+    var r = Math.min(obj.layout.yh, obj.layout.xw) / 2;
     m = 0.93 * r / Math.sqrt(vx * vx + vy * vy);
   } else {
     m = 1;//0.5;
 
-    if( Math.abs(vx) * obj2.layout.yh > Math.abs(vy) * obj2.layout.xw ) m =
-      obj2.layout.xw / (2 * Math.abs(vx)); else m =
-      obj2.layout.yh / (2 * Math.abs(vy));
+    if( Math.abs(vx) * obj.layout.yh > Math.abs(vy) * obj.layout.xw ){
+      m = obj.layout.xw / (2 * Math.abs(vx));
+    } else {
+      m = obj.layout.yh / (2 * Math.abs(vy));
+    }
     m = m * 0.93;
-
   }
-  x2 = x2 + m * vx;
-  y2 = y2 + m * vy;
+  return m;
+}
 
+function getLineBetween(obj1, obj2){
+  var x1 = obj1.layout.x0 + obj1.layout.xw / 2;
+  var x2 = obj2.layout.x0 + obj2.layout.xw / 2;
+  var y1 = obj1.layout.y0 + obj1.layout.yh / 2;
+  var y2 = obj2.layout.y0 + obj2.layout.yh / 2;
+  var vx = x1 - x2;
+  var vy = y1 - y2;
+
+  var S = {};
+  S.theta = -Math.atan2(vx, vy) - Math.PI / 2;
+  var m = getLineExtent(obj2, vx, vy);
+  var n = getLineExtent(obj1, vx, vy);
+
+  S.x2 = x2 + m * vx;
+  S.y2 = y2 + m * vy;
+  S.x1 = x1 - n * vx;
+  S.y1 = y1 - n * vy;
+  return S;
+}
+
+function drawAnEnd(ctx, x, y, theta, style){
   ctx.save();
-  ctx.translate(x2, y2);
+  ctx.beginPath();
+  ctx.fillStyle = "rgba(0,0,0,1.0)";
+  ctx.lineWidth = 1;
+  ctx.translate(x, y);
   ctx.rotate(theta);
-//  drawPointedArrowHead(ctx);
-  if( A.Styles.head === "flat" )
+  if( style === "flat" ){
     drawFlatArrowHead(ctx);
-  else
+  } else {
     drawPointedArrowHead(ctx);
-
+  }
   ctx.restore();
+}
+
+function drawArrowHeadAndTail(A, obj1, obj2){
+  var S = getLineBetween( obj1, obj2 );
+  var ctx = A.BackingCanvas.ctx;
+
+  // The head at obj2
+  drawAnEnd(ctx, S.x2, S.y2, S.theta,         A.Styles.head);
+  // The tail at obj1
+  //drawAnEnd(ctx, S.x1, S.y1, S.theta+Math.PI, A.Styles.head);
 }
 
 function drawImage(A, obj, d){
@@ -1612,7 +1635,7 @@ function drawArrows(A,obj,d){
     if( d.stage === kStageArrowShaft )
       drawArrow(A,obj1,obj2);
     if( d.stage === kStageArrowHead )
-      drawArrowHead(A,obj1,obj2);
+      drawArrowHeadAndTail(A,obj1,obj2);
   }
 }
 
