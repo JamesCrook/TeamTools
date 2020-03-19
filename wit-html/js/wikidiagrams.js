@@ -1289,7 +1289,7 @@ function drawArrowHeadAndTail(A, obj1, obj2){
   // The head at obj2
   drawAnEnd(ctx, S.x2, S.y2, S.theta,         A.Styles.head);
   // The tail at obj1
-  //drawAnEnd(ctx, S.x1, S.y1, S.theta+Math.PI, A.Styles.head);
+  //drawAnEnd(ctx, S.x1, S.y1, S.theta+Math.PI, "flat");//,A.Styles.head);
 }
 
 function drawImage(A, obj, d){
@@ -2366,6 +2366,8 @@ function createCell(A, obj, d){
 
   var detail;
   var c;
+  if( obj.hasOwnProperty('autolink') )
+    A.Styles.autolink = obj.autolink;
   // NextAutoColour sets up the 'Hotspots.Current.Click' object.
   if( obj.hasOwnProperty('tip') ){
     detail = sanitiseHtml(obj.tip);
