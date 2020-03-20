@@ -188,18 +188,18 @@ function layoutMolecule( A, obj, d ){
       if( obj.atoms.length > 0 ){
         oldAtom = obj.atoms[ toParse.fromAtom];
       }
-      bond.fromPt = {x:oldAtom.cx, y:oldAtom.cy-10};
+      bond.S0 = {x:oldAtom.cx, y:oldAtom.cy-10};
 
 
       if( toParse.toAtom >=0 ){
         var newAtom = obj.atoms[ toParse.toAtom];
         bond.toIx = toParse.toAtom;
-        bond.toPt = {x:newAtom.cx, y:newAtom.cy+10};
+        bond.S1 = {x:newAtom.cx, y:newAtom.cy+10};
         toParse.toAtom = -1;
       }
       else {
         bond.toIx = obj.atoms.length;
-        bond.toPt = { x: x, y: y + yh / 2 + 10 };
+        bond.S1 = { x: x, y: y + yh / 2 + 10 };
       }
       bond.multiplicity = result.multiplicity;
       obj.bonds.push( bond );
@@ -227,14 +227,6 @@ function layoutAtom( A, obj, d ){
   obj.value = obj.value || "C";
 }
 
-function normalizedDifference( pt1, pt2, length ){
-  length = length || 1.0;
-  var dx = pt2.x - pt1.x;
-  var dy = pt2.y - pt1.y;
-  var scale = length/Math.sqrt( dx*dx + dy*dy);
-  return { x: dx*scale, y: dy*scale };
-}
-
 function layoutBond( A, obj, d ){
   var l = obj.layout;
   var x = l.x0;
@@ -242,13 +234,14 @@ function layoutBond( A, obj, d ){
   var xw = l.xw;
   var yh = l.yh;
 
-  obj.fromPt = {};
-  obj.fromPt.x = x + xw/2 - 50;
-  obj.fromPt.y = y + yh/2;
-  obj.toPt = {};
-  obj.toPt.x = x + xw/2 + 50;
-  obj.toPt.y = y + yh/2;
+  obj.S0 = {};
+  obj.S0.x = x + xw/2 - 50;
+  obj.S0.y = y + yh/2;
+  obj.S1 = {};
+  obj.S1.x = x + xw/2 + 50;
+  obj.S1.y = y + yh/2;
   obj.multiplicity = 2;
+  obj.S = getBondBetween( obj.S0, obj.S1 );
 }
 
 function drawAtom(A, obj, d){
@@ -275,27 +268,60 @@ function drawAtom(A, obj, d){
 }
 
 
-function drawBond(A, obj, d){
-  var ctx = A.BackingCanvas.ctx;
+function getBondBetween(pt1, pt2){
+  var vx = pt2.x - pt1.x;
+  var vy = pt2.y - pt1.y;
 
-  // Should be an error...  but we allow it.
-  var d = normalizedDifference( obj.fromPt, obj.toPt, 12 );
-  var dPerp = {x:d.y/5,y:-d.x/5};
+  var l = Math.sqrt( vx * vx + vy*vy);
+
+
+  var S = [];
+
+  S[0] = { x: pt1.x, y: pt1.y, l:l};
+  S[1] = { x: pt2.x, y: pt2.y, l:l};
+
+  S[0].theta = Math.atan2(vy, vx)+ Math.PI;
+  S[1].theta = S[0].theta - Math.PI;
+
+  return S;
+}
+
+
+function drawBondInner(ctx, S, obj){
 
   ctx.save();
   ctx.beginPath();
-
-  var n = obj.multiplicity;
-  for(i=0;i<n;i++){
-    var p = (3*i-n+1)/n;
-    ctx.moveTo(obj.fromPt.x + d.x+dPerp.x*p, obj.fromPt.y + d.y+dPerp.y*p);
-    ctx.lineTo(obj.toPt.x - d.x+dPerp.x*p, obj.toPt.y - d.y+dPerp.y*p);
-  }
   ctx.lineWidth = 2;
   // grey rather than black to avoid over-intense.
   ctx.strokeStyle = "rgba(110,110,110,1.0)";
+  ctx.translate(S.x, S.y);
+  ctx.rotate(S.theta-Math.PI);
+
+  var atomSize = 12; // allows for a little space around.
+  var n = obj.multiplicity;
+  for(i=0;i<n;i++){
+    var p = 3.0*(3*i-n+1)/n;
+    ctx.moveTo(atomSize,  p);
+    ctx.lineTo( S.l-atomSize,  p);
+  }
+  ctx.lineWidth = 2;
+
   ctx.stroke();
   ctx.restore();
+}
+
+
+
+function drawBond(A, obj, d){
+
+  var ctx = A.BackingCanvas.ctx;
+
+  obj.S = getBondBetween( obj.S0, obj.S1 );
+
+  drawBondInner( ctx, obj.S[0], obj );
+
+  //drawAnEnd( ctx, S[0], "flat", -10);
+  //drawAnEnd( ctx, S[1], "pointed", -10);
 }
 
 function drawBenzene( A, obj, d ){
@@ -314,8 +340,8 @@ function drawBenzene( A, obj, d ){
   atom.value = "C";
 
   var bond = {};
-  bond.fromPt = {};
-  bond.toPt = {};
+  bond.S0 = {};
+  bond.S1 = {};
 
   var cx = x +xw/2;
   var cy = y +yh/2;
@@ -328,15 +354,15 @@ function drawBenzene( A, obj, d ){
     var theta = i*(Math.PI * 2.0)/6.0;
     atom.cx = cx + r1 * Math.cos( theta );
     atom.cy = cy + r1 * Math.sin( theta );
-    bond.toPt.x = atom.cx;
-    bond.toPt.y = atom.cy;
+    bond.S1.x = atom.cx;
+    bond.S1.y = atom.cy;
     if( i > 0 ){
       bond.multiplicity = ((i%2) === 0)?1:2;
       drawBond(A, bond, d);
       drawAtom(A, atom, d);
     }
-    bond.fromPt.x=atom.cx;
-    bond.fromPt.y=atom.cy;
+    bond.S0.x=atom.cx;
+    bond.S0.y=atom.cy;
   }
 }
 
@@ -483,10 +509,10 @@ function minEnergy( A, obj, d ){
     var bond = obj.bonds[j];
     atomFrom = obj.atoms[bond.fromIx];
     atomTo = obj.atoms[bond.toIx];
-    bond.fromPt.x = atomFrom.x;
-    bond.fromPt.y = atomFrom.y;
-    bond.toPt.x = atomTo.x;
-    bond.toPt.y = atomTo.y;
+    bond.S0.x = atomFrom.x;
+    bond.S0.y = atomFrom.y;
+    bond.S1.x = atomTo.x;
+    bond.S1.y = atomTo.y;
   }
 
 
@@ -494,16 +520,15 @@ function minEnergy( A, obj, d ){
 
 
 function drawMolecule( A, obj, d ){
-  if( d.stage !== kStageFillAndText )
-    return;
+  if( d.stage !== kStageFillAndText ) return;
 
   var i;
-  minEnergy( A,obj,d);
-  for(i=0;i<obj.bonds.length;i++){
-    drawBond( A, obj.bonds[i], d );
+  minEnergy(A, obj, d);
+  for( i = 0; i < obj.atoms.length; i++ ){
+    drawAtom(A, obj.atoms[i], d);
   }
-  for(i=0;i<obj.atoms.length;i++){
-    drawAtom( A, obj.atoms[i], d );
+  for( i = 0; i < obj.bonds.length; i++ ){
+    drawBond(A, obj.bonds[i], d);
   }
 }
 

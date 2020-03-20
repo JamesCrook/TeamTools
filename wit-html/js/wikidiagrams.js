@@ -1189,17 +1189,89 @@ function setStyles(ctx, obj){
     "rgba( 55, 55,155,1.0)";
 }
 
-function drawArrow(A,obj1, obj2){
-  var ctx = A.BackingCanvas.ctx;
+
+function getLineExtent(obj, vx, vy){
+  var m = 0;
+  var k = 1;
+  if( obj.type === "Circle" ){
+    var r = Math.min(obj.layout.yh, obj.layout.xw) / 2;
+    m = k * r / Math.sqrt(vx * vx + vy * vy);
+  } else {
+    m = 1;//0.5;
+
+    if( Math.abs(vx) * obj.layout.yh > Math.abs(vy) * obj.layout.xw ){
+      m = obj.layout.xw / (2 * Math.abs(vx));
+    } else {
+      m = obj.layout.yh / (2 * Math.abs(vy));
+    }
+    m = m * k;
+  }
+  return m;
+}
+
+function getLineBetween(obj1, obj2){
   var x1 = obj1.layout.x0 + obj1.layout.xw / 2;
   var x2 = obj2.layout.x0 + obj2.layout.xw / 2;
   var y1 = obj1.layout.y0 + obj1.layout.yh / 2;
   var y2 = obj2.layout.y0 + obj2.layout.yh / 2;
+  var vx = x2 - x1;
+  var vy = y2 - y1;
+
+  var m = getLineExtent(obj2, vx, vy);
+  var n = getLineExtent(obj1, vx, vy);
+
+  var S = [];
+  S[0] = {};
+  S[1] = {};
+
+  S[0].theta = Math.atan2(vy, vx) + Math.PI;
+  S[1].theta = S[0].theta - Math.PI;
+
+  S[0].x = x1 + n * vx;
+  S[0].y = y1 + n * vy;
+  S[1].x = x2 - m * vx;
+  S[1].y = y2 - m * vy;
+  return S;
+}
+
+function drawAnEnd(ctx, S, style, d){
+  if( !isDefined( d ) )
+    d=4;
+  ctx.save();
+  ctx.beginPath();
+  ctx.fillStyle = "rgba(0,0,0,1.0)";
+  ctx.lineWidth = 1;
+  ctx.translate(S.x, S.y);
+  ctx.rotate(S.theta);
+  ctx.translate( d, 0 );
+  if( style === "flat" ){
+    drawFlatArrowHead(ctx);
+  } else {
+    drawPointedArrowHead(ctx);
+  }
+  ctx.restore();
+}
+
+function drawArrowHeadAndTail(A, obj1, obj2){
+  var S = getLineBetween( obj1, obj2 );
+  var ctx = A.BackingCanvas.ctx;
+
+  // The head at obj2
+  drawAnEnd(ctx, S[1], A.Styles.head);
+  // The tail at obj1
+  //drawAnEnd(ctx, S[0], "flat");//,A.Styles.head);
+}
+
+function drawArrowBody(A, obj1, obj2){
+
+  var S = getLineBetween( obj1, obj2 );
+
+  var ctx = A.BackingCanvas.ctx;
   ctx.beginPath();
   ctx.strokeStyle = "rgba(0,0,0,1.0)";
   ctx.lineWidth = 3;
-  ctx.moveTo(x1, y1);
-  ctx.lineTo(x2, y2);
+  ctx.moveTo(S[0].x, S[0].y);
+  ctx.lineTo(S[1].x, S[1].y);
   ctx.stroke();
 }
 
@@ -1229,67 +1301,30 @@ function drawFlatArrowHead(ctx){
   ctx.fill();
 }
 
-function getLineExtent(obj, vx, vy){
-  var m = 0;
-  if( obj.type === "Circle" ){
-    var r = Math.min(obj.layout.yh, obj.layout.xw) / 2;
-    m = 0.93 * r / Math.sqrt(vx * vx + vy * vy);
-  } else {
-    m = 1;//0.5;
+function objFromId(A,id){
+  if( !isDefined(id) ) return id;
+  return A.RootObject.objectDict[id.substr(0, 10)];
+}
 
-    if( Math.abs(vx) * obj.layout.yh > Math.abs(vy) * obj.layout.xw ){
-      m = obj.layout.xw / (2 * Math.abs(vx));
-    } else {
-      m = obj.layout.yh / (2 * Math.abs(vy));
-    }
-    m = m * 0.93;
+function drawArrows(A,obj,d){
+  var arrows = obj.content;
+  if( !isDefined(arrows) ) return;
+  if( !Array.isArray( arrows) ) return;
+  if( (d.stage !== kStageArrowShaft ) && (d.stage !== kStageArrowHead ) )
+    return;
+
+  A.Styles.head         = obj.head;
+
+  for( i = 0; i < arrows.length; i += 2 ){
+    var obj1 = objFromId(A,arrows[i]);
+    var obj2 = objFromId(A,arrows[i + 1]);
+    if( !isDefined(obj1) || !isDefined(obj2) ) continue;
+    if( !isDefined(obj1.layout) || !isDefined(obj2.layout) ) continue;
+    if( d.stage === kStageArrowHead )
+      drawArrowBody(A,obj1,obj2);
+    if( d.stage === kStageArrowHead )
+      drawArrowHeadAndTail(A,obj1,obj2);
   }
-  return m;
-}
-
-function getLineBetween(obj1, obj2){
-  var x1 = obj1.layout.x0 + obj1.layout.xw / 2;
-  var x2 = obj2.layout.x0 + obj2.layout.xw / 2;
-  var y1 = obj1.layout.y0 + obj1.layout.yh / 2;
-  var y2 = obj2.layout.y0 + obj2.layout.yh / 2;
-  var vx = x1 - x2;
-  var vy = y1 - y2;
-
-  var S = {};
-  S.theta = -Math.atan2(vx, vy) - Math.PI / 2;
-  var m = getLineExtent(obj2, vx, vy);
-  var n = getLineExtent(obj1, vx, vy);
-
-  S.x2 = x2 + m * vx;
-  S.y2 = y2 + m * vy;
-  S.x1 = x1 - n * vx;
-  S.y1 = y1 - n * vy;
-  return S;
-}
-
-function drawAnEnd(ctx, x, y, theta, style){
-  ctx.save();
-  ctx.beginPath();
-  ctx.fillStyle = "rgba(0,0,0,1.0)";
-  ctx.lineWidth = 1;
-  ctx.translate(x, y);
-  ctx.rotate(theta);
-  if( style === "flat" ){
-    drawFlatArrowHead(ctx);
-  } else {
-    drawPointedArrowHead(ctx);
-  }
-  ctx.restore();
-}
-
-function drawArrowHeadAndTail(A, obj1, obj2){
-  var S = getLineBetween( obj1, obj2 );
-  var ctx = A.BackingCanvas.ctx;
-
-  // The head at obj2
-  drawAnEnd(ctx, S.x2, S.y2, S.theta,         A.Styles.head);
-  // The tail at obj1
-  //drawAnEnd(ctx, S.x1, S.y1, S.theta+Math.PI, "flat");//,A.Styles.head);
 }
 
 function drawImage(A, obj, d){
@@ -1613,31 +1648,7 @@ function drawInfoButtonHotspot(A){
   ctx2.fill();
 }
 
-function objFromId(A,id){
-  if( !isDefined(id) ) return id;
-  return A.RootObject.objectDict[id.substr(0, 10)];
-}
 
-function drawArrows(A,obj,d){
-  var arrows = obj.content;
-  if( !isDefined(arrows) ) return;
-  if( !Array.isArray( arrows) ) return;
-  if( (d.stage !== kStageArrowShaft ) && (d.stage !== kStageArrowHead ) )
-    return;
-
-  A.Styles.head         = obj.head;
-
-  for( i = 0; i < arrows.length; i += 2 ){
-    var obj1 = objFromId(A,arrows[i]);
-    var obj2 = objFromId(A,arrows[i + 1]);
-    if( !isDefined(obj1) || !isDefined(obj2) ) continue;
-    if( !isDefined(obj1.layout) || !isDefined(obj2.layout) ) continue;
-    if( d.stage === kStageArrowShaft )
-      drawArrow(A,obj1,obj2);
-    if( d.stage === kStageArrowHead )
-      drawArrowHeadAndTail(A,obj1,obj2);
-  }
-}
 
 function drawInfoButton(A){
   var xw = 25;
