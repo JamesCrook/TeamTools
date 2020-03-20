@@ -501,6 +501,8 @@ function drawBar(A,T, values, i, ix){
   var S = getBondBetween( {x:x0,y:y0+y}, {x:x0,y:y0});
   var obj = {S:S};
   //drawEnds( ctx, obj, 8);
+
+  //drawSpotification( A, S, 20 );
 }
 
 // Used for values that follow (are on) a curve.
