@@ -466,6 +466,9 @@ function drawBar(A,T, values, i, ix){
   var y = vx * T.yScaler;
   var ctx = A.BackingCanvas.ctx;
 
+
+
+
   if( T.stage === kStageHots ){
     var colour = NextAutoColour( A,
       "<b> &nbsp;Live Bugs: " + values[i][1] + "</b><br>" +
@@ -479,9 +482,11 @@ function drawBar(A,T, values, i, ix){
       (ix !== 1) ? "rgba(105,205,105,1.0)" : "rgba(105,105,205,1.0)";
   }
 
+  var x0 =  x + (ix - 1) * T.width;
+  var y0 = T.yh - (T.margin + y) + T.y0+fudgeBarDrop;
+
   ctx.beginPath();
-  ctx.rect(x + (ix - 1) * T.width,
-    T.yh - (T.margin + y) + T.y0+fudgeBarDrop, T.width, y);
+  ctx.rect(x0, y0, T.width, y);
   ctx.fill();
 
   if( T.stage !== kStageFillAndText )
@@ -490,6 +495,12 @@ function drawBar(A,T, values, i, ix){
   ctx.lineWidth = 0.5;
   ctx.strokeStyle = "black";
   ctx.stroke();
+
+  x0 += T.width/2;
+
+  var S = getBondBetween( {x:x0,y:y0+y}, {x:x0,y:y0});
+  var obj = {S:S};
+  //drawEnds( ctx, obj, 8);
 }
 
 // Used for values that follow (are on) a curve.

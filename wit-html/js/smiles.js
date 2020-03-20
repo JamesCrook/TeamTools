@@ -310,7 +310,11 @@ function drawBondInner(ctx, S, obj){
   ctx.restore();
 }
 
-
+function drawEnds(ctx, obj, d){
+  d = d || 0;
+  drawAnEnd(ctx, obj.S[0], "flat", d);
+  drawAnEnd(ctx, obj.S[1], "pointed", d);
+}
 
 function drawBond(A, obj, d){
 
@@ -319,9 +323,7 @@ function drawBond(A, obj, d){
   obj.S = getBondBetween( obj.S0, obj.S1 );
 
   drawBondInner( ctx, obj.S[0], obj );
-
-  //drawAnEnd( ctx, S[0], "flat", -10);
-  //drawAnEnd( ctx, S[1], "pointed", -10);
+  //drawEnds(ctx, obj ,-10);
 }
 
 function drawBenzene( A, obj, d ){
