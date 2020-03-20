@@ -1254,6 +1254,14 @@ function getLineBetween(obj1, obj2){
   S[0].y = y1 + n * vy;
   S[1].x = x2 - m * vx;
   S[1].y = y2 - m * vy;
+
+  vx = S[1].x - S[0].x;
+  vy = S[1].y - S[0].y;
+
+  var l = Math.sqrt( vx * vx + vy * vy);
+  S[0].l = l;
+  S[1].l = l;
+
   return S;
 }
 
@@ -1285,6 +1293,29 @@ function drawArrowHeadAndTail(A, obj1, obj2){
   //drawAnEnd(ctx, S[0], "flat");//,A.Styles.head);
 }
 
+
+function drawSpotification( A, S, d ){
+  d = d || 20;
+  var ctx = A.BackingCanvas.ctx;
+  var n = S[0].l / d;
+  var x = S[0].x;
+  var y = S[0].y;
+  var dx = (S[1].x-x)/n;
+  var dy = (S[1].y-y)/n;
+  var i;
+  for(i = 0;i<n;i++){
+    ctx.beginPath();
+    ctx.save();
+    ctx.fillStyle = "rgb(205,192,67)";
+    drawStar( ctx, A, x +dx*i, y+dy*i, 3 );
+    ctx.strokeStyle = "rgb(120,97,46)";
+    ctx.stroke();
+    //ctx.translate(S.x, S.y);
+    ctx.restore();
+
+  }
+}
+
 function drawArrowBody(A, obj1, obj2){
 
   var S = getLineBetween( obj1, obj2 );
@@ -1296,6 +1327,8 @@ function drawArrowBody(A, obj1, obj2){
   ctx.moveTo(S[0].x, S[0].y);
   ctx.lineTo(S[1].x, S[1].y);
   ctx.stroke();
+
+  //drawSpotification( A, S, 20 );
 }
 
 function drawPointedArrowHead(ctx){
@@ -1343,7 +1376,7 @@ function drawArrows(A,obj,d){
     var obj2 = objFromId(A,arrows[i + 1]);
     if( !isDefined(obj1) || !isDefined(obj2) ) continue;
     if( !isDefined(obj1.layout) || !isDefined(obj2.layout) ) continue;
-    if( d.stage === kStageArrowHead )
+    if( d.stage === kStageArrowShaft )
       drawArrowBody(A,obj1,obj2);
     if( d.stage === kStageArrowHead )
       drawArrowHeadAndTail(A,obj1,obj2);
