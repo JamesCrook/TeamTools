@@ -773,7 +773,7 @@ function xyOfIndexSnakey(i, T){
     //  x += (1-2*( row % 2 ))*T.xSpacing*0.75;
 
   }
-  return { "x": x, "y": y, "row":row };
+  return { "x": x, "y": y, "row":row , "theta": (row%2===0)?0:Math.PI };
 }
 
 function stripSignalChar( str ){
@@ -1012,6 +1012,18 @@ function drawSnakeyPath(A, values, T){
       ctx2.fillStyle = c;
       isHead = X.isHead;
       drawFns[ shape ](A, ctx, ctx2, S, isHead, r);
+
+      if( isHead ){
+        drawAnEnd( ctx, S, "pointed",r-2);
+      }
+
+/*
+      var isTail = isDefined( X.snakeStyle );
+      if( isTail ){
+        S.theta = S.theta + Math.PI;
+        drawAnEnd( ctx, S, "flat",4);
+      }
+*/
     }
     i++;
 
