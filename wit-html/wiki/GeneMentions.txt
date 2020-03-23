@@ -1,0 +1,100 @@
+__NOTOC__
+
+
+{{ATK_Header}}
+
+This is the spec for the interactive diagram which shows a chart of Gene mentions:
+
+Here's the result:
+
+-----
+{{#widget:WikiDiagram|page=GeneMentions|init=yes}}
+-----
+
+The detailed data for the chart follows.
+
+<pre>START</pre>
+
+<pre>ADD:DATA=
+[
+
+{"Overlay":[
+{
+   "Chart":"Lines",
+   "subtype":["lines","*","*"],
+   "maxY":90,
+   "linesAt":10,
+   "values":"Lines"
+},
+{
+   "Chart":"GeneMentions",
+   "titles":["Gene","Mentions"],
+   "display":["Label","#CC6699"],
+   "subtype":["*","bar"],
+   "maxY":80,
+   "autoTip":"Gene <b>%label</b> shown in pathways in %v1 of these 189 papers.<br><br>%longname<ul><li><a href='https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/%hgncid'>at HGNC</a><li><a href='https://www.alliancegenome.org/gene/%hgncid'>at alliance of genome reosurces</a><ul>",
+   "spacer":3,
+   "values":[
+["IFNA1",62,"interferon alpha 1","HGNC:5417","9p21.3"],
+["NFKB1",51,"nuclear factor kappa B subunit 1","HGNC:7794","4q24"],
+["STAT1",47,"signal transducer and activator of transcription 1","HGNC:11362","2q32.2"],
+["IRF3",46,"interferon regulatory factor 3","HGNC:6118","19q13.33"],
+["MAPK8",37,"mitogen-activated protein kinase 8","HGNC:6881","10q11.22"],
+["TYK2",36,"tyrosine kinase 2","HGNC:12440","19p13.2"],
+["MAPK9",35,"mitogen-activated protein kinase 9","HGNC:6886","5q35.3"],
+["MAVS",35,"mitochondrial antiviral signaling protein","HGNC:29233","20p13"],
+["IFNB1",34,"interferon beta 1","HGNC:5434","9p21.3"],
+["MAPK10",34,"mitogen-activated protein kinase 10","HGNC:6872","4q21.3"],
+["STAT2",34,"signal transducer and activator of transcription 2","HGNC:11363","12q13.3"],
+["DDX58",33,"DExD/H-box helicase 58","HGNC:19102","9p21.1"],
+["IKBKG",33,"inhibitor of nuclear factor kappa B kinase regulatory subunit gamma","HGNC:5961","Xq28"],
+["IRF7",33,"interferon regulatory factor 7","HGNC:6122","11p15.5"],
+["MAPK1",33,"mitogen-activated protein kinase 1","HGNC:6871","22q11.22"],
+["MAPK3",33,"mitogen-activated protein kinase 3","HGNC:6877","16p11.2"],
+["MAPK12",31,"mitogen-activated protein kinase 12","HGNC:6874","22q13.33"],
+["MAPK14",31,"mitogen-activated protein kinase 14","HGNC:6876","6p21.31"],
+["CHUK",30,"component of inhibitor of nuclear factor kappa B kinase complex","HGNC:1974","10q24.31"],
+["MAPK11",30,"mitogen-activated protein kinase 11","HGNC:6873","22q13.33"],
+["MAPK13",30,"mitogen-activated protein kinase 13","HGNC:6875","6p21.31"],
+["AKT1",28,"AKT serine/threonine kinase 1","HGNC:391","14q32.33"],
+["IKBKB",28,"inhibitor of nuclear factor kappa B kinase subunit beta","HGNC:5960","8p11.21"],
+["JAK1",28,"Janus kinase 1","HGNC:6190","1p31.3"],
+["TRAF3",26,"TNF receptor associated factor 3","HGNC:12033","14q32.32"],
+["AKT2",25,"AKT serine/threonine kinase 2","HGNC:392","19q13.2"],
+["AKT3",25,"AKT serine/threonine kinase 3","HGNC:393","1q43-q44"],
+["TLR3",25,"toll like receptor 3","HGNC:11849","4q35.1"],
+["PIK3CD",24,"phosphatidylinositol-4,5-bisphosphate 3-kinase catalytic subunit delta","HGNC:8977","1p36.22"],
+["PIK3R4",24,"phosphoinositide-3-kinase regulatory subunit 4","HGNC:8982","3q22.1"],
+["TRAF6",24,"TNF receptor associated factor 6","HGNC:12036","11p12"],
+["IKBKE",23,"inhibitor of nuclear factor kappa B kinase subunit epsilon","HGNC:14552","1q32.1"],
+["PIK3CA",23,"phosphatidylinositol-4,5-bisphosphate 3-kinase catalytic subunit alpha","HGNC:8975","3q26.32"],
+["PIK3CB",23,"phosphatidylinositol-4,5-bisphosphate 3-kinase catalytic subunit beta","HGNC:8976","3q22.3"],
+["PIK3CG",23,"phosphatidylinositol-4,5-bisphosphate 3-kinase catalytic subunit gamma","HGNC:8978","7q22.3"],
+["PIK3R3",23,"phosphoinositide-3-kinase regulatory subunit 3","HGNC:8981","1p34.1"],
+["PIK3R5",23,"phosphoinositide-3-kinase regulatory subunit 5","HGNC:30035","17p13.1"],
+["PIK3R6",23,"phosphoinositide-3-kinase regulatory subunit 6","HGNC:27101","17p13.1"],
+["MYD88",22,"MYD88 innate immune signal transduction adaptor","HGNC:7562","3p22.2"],
+["TLR4",22,"toll like receptor 4","HGNC:11850","9q33.1"]
+ ]}
+ ]},
+{
+   "Chart":"Scale",
+   "titles":["Gene","Mentions"],
+   "display":["Label","#CC6699"],
+   "subtype":["label","*"],
+   "valuesFrom":"GeneMentions",
+   "sizeAs":0.18
+}]
+</pre>
+
+
+<pre>CREDITS:CAPTION=Covid-19 Gene Mentions;TIP=</pre>
+<h3>Gene Mentions</h3>
+A datamining of 189 papers containing biochemical pathway figures from the CORD-19 collection yields a graph with this 
+distribution of mentions of various relevant genes.<br><br>
+
+
+<b>Credits:</b> <em>Adapted from <a href="https://wikipathways.github.io/cord-19/covid_figure_ocr_ner.nb.html">Wikipathways COVID data set analysis</a></em>
+
+
+

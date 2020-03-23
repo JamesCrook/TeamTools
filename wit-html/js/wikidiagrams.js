@@ -435,8 +435,13 @@ function drawLines(A,T, values, i, ix){
   ctx.lineWidth = 0.5;
   ctx.strokeStyle = "black";
 
-  for(i=0;i<11;i++){
-    var yy = y-(1-i/11)*yh;
+  var y0 = (T.margin ) + T.y0+fudgeBarDrop;
+
+
+  for(i=0;i<T.maxY;i+=T.linesAt){
+    var yy = T.yh - (y0 + i* T.yScaler);
+
+
     // Get crisp lines by positioning at 0.5 of a pixel.
     yy = Math.floor( yy ) + 0.5;
     ctx.beginPath();
@@ -448,7 +453,7 @@ function drawLines(A,T, values, i, ix){
     ctx.textAlign = "right";
     ctx.font = "10px Arial";
     ctx.fillStyle = "rgba(15,35,165,1.0)";
-    ctx.fillText( (10-i)*200, x-fudgeLabelMargin, yy+fudgeLabelDrop);
+    ctx.fillText( i, x-fudgeLabelMargin, yy+fudgeLabelDrop);
     ctx.restore();
 
 
@@ -470,16 +475,27 @@ function drawBar(A,T, values, i, ix){
 
 
   if( T.stage === kStageHots ){
+    var tip = T.obj.autoTip || "Value: %v1 at: %label";
+    tip = tip.replace( "%v1", values[i][1] );
+    tip = tip.replace( "%v2", values[i][2] );
+    tip = tip.replace( "%label", values[i][0] );
+
+    if( tip.indexOf( "%longname" )>=0)
+      tip = tip.replace( "%longname", values[i][2] );
+    if( tip.indexOf( "%hgncid" )>=0)
+      tip = tip.replace( /%hgncid/g, values[i][3] );
+
+/*
     var colour = NextAutoColour( A,
-      "<b> &nbsp;Live Bugs: " + values[i][1] + "</b><br>" +
-      "<b>Slain Bugs: " + values[i][2] + "</b><br><br>" +
-      "As of: "+values[i][0]);
+
+
+ */
+    var colour = NextAutoColour( A, tip );
     ctx = A.Hotspots.ctx;
     ctx.fillStyle = colour;//rgbOfJsonColourTuple(colour);
   }
   else {
-    ctx.fillStyle =
-      (ix !== 1) ? "rgba(105,205,105,1.0)" : "rgba(105,105,205,1.0)";
+    ctx.fillStyle = T.colours[ ix % 2];
   }
 
   var x0 =  x + (ix - 1) * T.width;
@@ -663,6 +679,8 @@ function computeSpacing(A, T, x0, y0, xw, yh, values){
   // Count is the number of rows in the table.  One per time.
   // Items is the number of cols in the table.  One per data series.
   T.count = T.count || values.length;
+  if( T.obj.display )
+    T.items = T.items || T.obj.display.length;
   T.items = T.items || values[0].length;
   // Cols is the number of columns to draw.
   T.cols = T.cols || T.items-1;
@@ -681,7 +699,7 @@ function computeSpacing(A, T, x0, y0, xw, yh, values){
   T.xScaler = (T.width * T.cols + T.spacer);
 
   // yScale so that items grow.
-  T.yScaler = (Math.min(20, A.Status.time) / 20) * (yh) / 2000.0;
+  T.yScaler = (Math.min(20, A.Status.time) / 20) * (yh) / T.maxY;
 }
 
 function drawSpacedItems(A,x0, y0, xw, yh, values, T){
@@ -737,6 +755,9 @@ function drawChart(A, obj, d){
     T.spacer = 30;
     T.cols = 1;
   }
+  else if( obj.spacer ){
+    T.spacer = obj.spacer;
+  }
   else
     T.width = 8;
   T.stage = d.stage;
@@ -744,11 +765,22 @@ function drawChart(A, obj, d){
   if( obj.valuesFrom ){
     var obj2 = getObjectByName(A,obj.valuesFrom );
     obj.values = obj2.values;
+    obj.maxY = obj.maxY || obj2.maxY;
   }
   if( !obj.values )
     return;
   //if( T.stage === kStageFillAndText )
   //  clearBacking(A,x0, y0, xw, yh);
+
+  T.colours = [];
+  T.colours[0] = "rgba(105,205,105,1.0)";
+  T.colours[1] = "rgba(105,105,205,1.0)";
+  T.linesAt = obj.linesAt || 200;
+  T.maxY = obj.maxY || 2600;
+
+  if( obj.display && obj.display[1].startsWith("#") )
+    T.colours[1] = "rgb(204,102,153)";
+
   computeSpacing(A, T, x0, y0, xw, yh, obj.values);
   makeFunctionTable(T, obj);
   drawSpacedItems(A,x0, y0, xw, yh, obj.values, T);
