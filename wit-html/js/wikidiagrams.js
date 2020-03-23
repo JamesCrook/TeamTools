@@ -2351,6 +2351,60 @@ function createProg( A, obj, data ){
 
 }
 
+
+function permuteMe( values ){
+  var i;
+
+  var stopwords = [];
+  stopwords["A"] = true;
+  stopwords["AN"] = true;
+  stopwords["AND"] = true;
+  stopwords["ARE"] = true;
+  stopwords["FOR"] = true;
+//  stopwords["FROM"] = true;
+//  stopwords["HAVE"] = true;
+  stopwords["HOW"] = true;
+  stopwords["IF"] = true;
+//  stopwords["IN"] = true;
+//  stopwords["INTO"] = true;
+  stopwords["OF"] = true;
+  stopwords["ON"] = true;
+  stopwords["THE"] = true;
+  stopwords["TO"] = true;
+//  stopwords["WHAT"] = true;
+//  stopwords["WHEN"] = true;
+//  stopwords["WHERE"] = true;
+  stopwords["-"] = true;
+
+
+  var results = [];
+  for( i= 0;i< values.length;i++){
+    var str = values[i];
+    var words = str.split( ' ');
+    var j;
+    for( j=0;j<words.length;j++){
+      if( stopwords[ words[j] ] )
+        continue;
+      var perm = words.slice(j).join(" ");
+      if( j> 0 )
+        perm = perm + " " + words.slice(0,j).join(" ");
+      results.push( perm );
+    }
+  }
+  return results;
+}
+
+
+function createKwic( A, obj, data ){
+  console.log("Got it");
+  //var X = [ obj.content[0] ];
+  var X = permuteMe( obj.content );
+  var i;
+  for(i=0;i<X.length;i++){
+    console.log( X[i] );
+  }
+}
+
 function sizeSpacer( A, obj, data ){
   sizeCell(A, obj, data );
   obj.sizing.wants = obj.value;
@@ -3213,6 +3267,7 @@ function registerMethods()
   registerMethod( "Tree",     0,0,0, drawTree);
   registerMethod( "Arrows",   0, sizeNowt,layoutNowt, drawArrows);
   registerMethod( "Prog",     createProg,sizeNowt,layoutNowt, 0);
+  registerMethod( "KWIC",   createKwic, sizeNowt,layoutNowt, 0);
 
 }
 
