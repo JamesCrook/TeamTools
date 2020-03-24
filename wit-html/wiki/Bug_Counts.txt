@@ -60,8 +60,8 @@ The detailed data for the chart follows.
    ["Nov 2019",362,1867],
    ["Dec 2019",374,1878],
    ["Jan 2020",384,1887],
-   ["Feb 2020",398,2300],
-   ["Mar 2020",380,2345]
+   ["Feb 2020",398,1902],
+   ["Mar 2020",380,1965]
    ]
 },
   {"Chart":"Releases",
