@@ -409,8 +409,8 @@ function detailPosFromCursorPos(A,x, y){
 
 // fudge factors that later will become proper parameters...
 var fudgeLineMargin = 5;// lines outside chart by 5 pixels.
-var fudgeLineDrop = 10;  // drop lines/bars down to contact axis labels.
-var fudgeBarDrop = 9.5;  // drop bars to fit exactly over lines.
+var fudgeLineDrop = 13;  // drop lines/bars down to contact axis labels.
+var fudgeBarDrop = 12.5;  // drop bars to fit exactly over lines.
 var fudgeStarDrop = 6; // drop stars slightly.
 var fudgeLabelDrop = 4; // line labels lower than lines
 var fudgeLabelMargin = 2; // labels to left
@@ -439,7 +439,7 @@ function drawLines(A,T, values, i, ix){
   var y0 = T.yh - T.margin  + T.y0+fudgeLineDrop;
 
 
-  for(i=0;i<T.maxY;i+=T.linesAt){
+  for(i=0;i<=T.maxY;i+=T.linesAt){
     var yy = y0 - i* T.yScalerMax;
 
     // Get crisp lines by positioning at 0.5 of a pixel.
@@ -774,7 +774,7 @@ function drawChart(A, obj, d){
   T.maxY = obj.maxY || 2600;
 
   if( obj.display && obj.display[1].startsWith("#") )
-    T.colours[1] = "rgb(204,102,153)";
+    T.colours[1] = obj.display[1];
 
   computeSpacing(A, T, x0, y0, xw, yh, obj.values);
   makeFunctionTable(T, obj);
