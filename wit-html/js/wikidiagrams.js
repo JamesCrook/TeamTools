@@ -3093,7 +3093,8 @@ function removeFrame(A){
     '<div id="content_here" style="text-align:center;"></div><div id="atitle" style="text-align:center;"><em>No Hotspot Zones Loaded (Yet)</em></div><div id="spec" style="margin-left:10px"></div>';
 }
 
-function getArg(line, arg){
+function getArg(arg){
+  var line = window.location.href;
   line = "&" + line.split('?')[1] || "";
   line = line.split('&' + arg + '=')[1] || "";
   line = (line + '&').split('&')[0];
@@ -3138,19 +3139,18 @@ function initContent( classes ){
   }
   var base = Annotator.length;
   registerMethods();
-  var query = window.location.href;
   var contentDivs = document.getElementsByClassName( classes );
   for(var i=0;i<contentDivs.length;i++){
     var A = makeAnnotator();
     A.index = i+base;
-    A.page = getArg(query, 'page'+(i+base)) || contentDivs[i].getAttribute("data-page") || "SmallCrowd";
+    A.page = getArg('page' + (i + base)) || contentDivs[i].getAttribute("data-page") || "SmallCrowd";
     A.inner = contentDivs[i].innerHTML;
 
     // Make the divs etc for the display.
     populateDomElement( A, contentDivs[i] );
 
     // If it's an existing spec, update it with new data.
-    if( (base > 0 ) && (A.page === getArg( query, 'page0' )) ){
+    if( (base > 0 ) && (A.page === getArg('page0')) ){
       var spec = Editors[0].MainDiv.value;
       handleNewData( A, spec );
     }
@@ -3172,13 +3172,13 @@ var Editors = [];
 
 function initEditors(){
   registerMethods();
-  var query = window.location.href;
+
   var contentDivs = document.getElementsByClassName( "atkEditorDiv" );
   for(var i=0;i<contentDivs.length;i++){
     var A = {};
     A.index = i;
-    A.page = getArg(query, 'page'+i) || contentDivs[i].getAttribute("data-page") || "SmallCrowd";
-    A.tab = getArg(query, 'action' );
+    A.page = getArg('page' + i) || contentDivs[i].getAttribute("data-page") || "SmallCrowd";
+    A.tab = getArg('action');
 
     populateEditorElement( A, contentDivs[i] );
     requestSpec(A,A.page, 'remote',1,handleEditorData);

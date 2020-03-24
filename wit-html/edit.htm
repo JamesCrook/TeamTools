@@ -227,7 +227,7 @@
 
       window.onload = function(){
         var query = window.location.href;
-        var frame = getArg(query, 'frame') || "yes";
+        var frame = getArg('frame') || "yes";
         if( frame === "no" ) removeFrame();
         initEditors();
 
@@ -265,7 +265,7 @@
       function selectHistory( name, widget ){
         selectTab( name, widget);
         var div = document.getElementById(name);
-        var page = getArg( window.location.href, 'page0' );
+        var page = getArg('page0');
 
         div.innerHTML  = '<a target=_blank href="https://github.com/JamesCrook/TeamTools/commits/master/wit-html/wiki/'+page+'.txt">See changes at GitHub</a>';
 

@@ -184,8 +184,7 @@
     <script>
 
       function formatExample( name, short, long, codes ){
-        var query = window.location.href;
-        var bonusContent = getArg(query, 'bonus') || false;
+        var bonusContent = getArg('bonus') || false;
 
         var bWiki = codes.indexOf( "wiki" ) >=0;
         var bWip = codes.indexOf( "wip" ) >=0;
@@ -194,6 +193,9 @@
         var args2 = "?page1="+name;
         args2 = args2 + "&fromwiki=no";
 
+        if( getArg('bio') ){
+          args1+='&bio=y';
+        }
         if( bonusContent){
           args1 += "&bonus=y";
         }
@@ -222,47 +224,66 @@
         return str;
       }
 
-      function addExamples( bonusContent ){
-        var examples = document.getElementById("examples");
-        if( !examples )
-          return;
+      function examplesText(bonusContent){
         var str = "";
 
-        str+= "These first few examples show how the souped-up image map works and demonstrate several different uses:<ul>";
-        str += formatExample("AudacityPeople","Audacity People","A who-is-who image that also shows how the hotspots work.","");
+        str +=
+          "These first few examples show how the souped-up image map works and demonstrate several different uses:<ul>";
+        str += formatExample("AudacityPeople", "Audacity People",
+          "A who-is-who image that also shows how the hotspots work.", "");
 //        str += formatExample("SmallCrowd","People","Two who-is-who images, one from the Audacity unconference, one a featured image in English Wikipedia, showing how an image map can provide a key for identifying people.","");
-        str += formatExample("The_Ear","The Ear", "Three schematics of the ear, based on Blausen Medical's images", "");
-        str += formatExample("Spectrograms","Spectrograms","Six related spectrograms for the word 'Audacity', explaining what the spectrogram shows.","");
+        str += formatExample("The_Ear", "The Ear",
+          "Three schematics of the ear, based on Blausen Medical's images", "");
+        str += formatExample("Spectrograms", "Spectrograms",
+          "Six related spectrograms for the word 'Audacity', explaining what the spectrogram shows.",
+          "");
         //str += formatExample("Globes","Globes","A demo of planets","wiki");
         //str += formatExample("Window_Size","Spectrogram Window-Sizes","Explanation of a spectrogram","wiki");
 
         //str += formatExample("Middle_Ear_Anatomy2","The Middle Ear", "Schematic", "");
         //str += formatExample("Inner_Ear_Anatomy2","The Inner Ear", "Schematic", "");
 
-        str+= "</ul>Interactive diagrams for explaining Audacity code and development:<ul>";
+        str +=
+          "</ul>Interactive diagrams for explaining Audacity code and development:<ul>";
 
-        str += formatExample("Flow_Chart","Flow Chart","Flowchart of making the Audacity manual.  Shows a relative layout which avoids absolute positions for items.  Also shows arrows.","");
+        str += formatExample("Flow_Chart", "Flow Chart",
+          "Flowchart of making the Audacity manual.  Shows a relative layout which avoids absolute positions for items.  Also shows arrows.",
+          "");
         str += formatExample("EffectHierarchy", "Effect Hierarchy",
           "Hierarchy tree for effects.  In reality this is just a flow-chart variant",
           "");
-        str += formatExample("Audacity","Snake Diagram","A metro-line snake zig-zag display of groups of related classes in Audacity","");
+        str += formatExample("Audacity", "Snake Diagram",
+          "A metro-line snake zig-zag display of groups of related classes in Audacity",
+          "");
         str += formatExample("AudacityOverview", "Overview",
-          "A tile based overview of Audacity classes.  This will in time lead into explanatory pages with 'Snake Diagrams'","");
+          "A tile based overview of Audacity classes.  This will in time lead into explanatory pages with 'Snake Diagrams'",
+          "");
 
-        str += formatExample("Bug_Counts","Bug Chart","Graph of Audacity bugs over time.  Legends, labels and scales are added as layers with relative positioning.","");
+        str += formatExample("Bug_Counts", "Bug Chart",
+          "Graph of Audacity bugs over time.  Legends, labels and scales are added as layers with relative positioning.",
+          "");
 
-        str += formatExample("Languages","Languages","Doughnut chart showing the different languages in Audacity source code.","");
+        str += formatExample("Languages", "Languages",
+          "Doughnut chart showing the different languages in Audacity source code.",
+          "");
 
-        str+= "</ul>The globes (next) show a special feature of the images, that they can be wrapped around a sphere.  The climate classification example is the most involved, as it also shows some rainfall and temperature charting for the climate charts:<ul>";
+        str +=
+          "</ul>The globes (next) show a special feature of the images, that they can be wrapped around a sphere.  The climate classification example is the most involved, as it also shows some rainfall and temperature charting for the climate charts:<ul>";
 
-        str += formatExample("Globes","Globes","Six different 'World Maps': Moisture, Climate, Vegetation, Ocean Currents, Plate Techtonics and The Moon","");
-        str += formatExample("Köppen_Globe","Köppen Globe","Climate zones on a globe","");
+        str += formatExample("Globes", "Globes",
+          "Six different 'World Maps': Moisture, Climate, Vegetation, Ocean Currents, Plate Techtonics and The Moon",
+          "");
+        str += formatExample("Köppen_Globe", "Köppen Globe",
+          "Climate zones on a globe", "");
 
+        str +=
+          "</ul>These are further experiments and examples showing other features:<ul>";
 
-        str+= "</ul>These are further experiments and examples showing other features:<ul>";
-
-        str += formatExample("Molecule","Molecule","A molecule in SMILES format.","");
-        str += formatExample("Ace2Downregulation","Ace2Downregulation","ACE2 down regulation in SARS-CoV infection.","");
+        str +=
+          formatExample("Molecule", "Molecule", "A molecule in SMILES format.",
+            "");
+        str += formatExample("Ace2Downregulation", "Ace2Downregulation",
+          "ACE2 down regulation in SARS-CoV infection.", "");
 
         if( bonusContent ){
           str += formatExample("ClimateChart", "Climate Chart",
@@ -275,40 +296,62 @@
             "An annotated graph of mentions of genes relevant to Covid-19.",
             "");
           str += formatExample("SqliteArchitecture", "SQLite",
-            "A block diagram of SQLite",
-            "");
-          str += formatExample("Geshi", "Geshi",
-            "Syntax Highlighted Source Code",
-            "");
-          str += formatExample("Kwic", "Kwic",
-            "Keyword in context index.",
-            "");
-          str+="<ul><li>";
-          str += formatTileEdit( "Projects" );
-          str += formatTileEdit( "Commands" );
-          str += formatTileEdit( "Preferences" );
-          str += formatTileEdit( "Blockfiles" );
-          str += formatTileEdit( "Toolbars" );
-          str += formatTileEdit( "Menus" );
-          str += formatTileEdit( "Dialogs" );
-          str += formatTileEdit( "Audio" );
-          str += formatTileEdit( "Scaffolding" );
-          str += formatTileEdit( "Plugins" );
-          str += formatTileEdit( "Effects" );
-          str += formatTileEdit( "Tracks" );
-          str += formatTileEdit( "Exports" );
-          str += formatTileEdit( "Misc" );
+            "A block diagram of SQLite", "");
+          str +=
+            formatExample("Geshi", "Geshi", "Syntax Highlighted Source Code",
+              "");
+          str += formatExample("Kwic", "Kwic", "Keyword in context index.", "");
+          str += "<ul><li>";
+          str += formatTileEdit("Projects");
+          str += formatTileEdit("Commands");
+          str += formatTileEdit("Preferences");
+          str += formatTileEdit("Blockfiles");
+          str += formatTileEdit("Toolbars");
+          str += formatTileEdit("Menus");
+          str += formatTileEdit("Dialogs");
+          str += formatTileEdit("Audio");
+          str += formatTileEdit("Scaffolding");
+          str += formatTileEdit("Plugins");
+          str += formatTileEdit("Effects");
+          str += formatTileEdit("Tracks");
+          str += formatTileEdit("Exports");
+          str += formatTileEdit("Misc");
           str += "</ul>";
         }
-        str+="</ul>Ordinary wiki pages about the diagrams<ul>";
+        str += "</ul>Ordinary wiki pages about the diagrams<ul>";
         {
-          str += formatEdit("PR1", "PR1",
-            "February 2020 Progress Report");
-          str += formatEdit("User_Guide", "User Guide",
-            "Wikidiagrams User Guide");
+          str += formatEdit("PR1", "PR1", "February 2020 Progress Report");
+          str +=
+            formatEdit("User_Guide", "User Guide", "Wikidiagrams User Guide");
         }
         str += "</ul>";
+        return str;
+      }
 
+      function bioExamplesText(){
+        var str = "<ul>";
+        str += formatExample("GeneMentions", "Gene Mentions",
+          "An annotated graph of mentions of genes relevant to Covid-19.",
+          "");
+        str +=
+          formatExample("Molecule", "Molecule", "A molecule in SMILES format.",
+            "");
+        str += formatExample("Ace2Downregulation", "Ace2Downregulation",
+          "ACE2 down regulation in SARS-CoV infection.", "");
+        str += "</ul>";
+        return str;
+      }
+
+      function addExamples( bonusContent ){
+        var examples = document.getElementById("examples");
+        if( !examples )
+          return;
+        var str;
+
+        if( !getArg('bio') )
+          str = examplesText(bonusContent);
+        else
+          str = bioExamplesText();
 
         examples.innerHTML = str;
       }
@@ -318,13 +361,13 @@
       window.onload = function(){
         var query = window.location.href;
         //var page = getArg(query, 'page') || "Maps";
-        var frame = getArg(query, 'frame') || "yes";
+        var frame = getArg('frame') || "yes";
 
         var fromWiki = 'no';//isFromServer();
-        fromWiki = getArg(query, 'fromwiki') || fromWiki;
+        fromWiki = getArg('fromwiki') || fromWiki;
         if( frame === "no" ) removeFrame();
 
-        var bonusContent = getArg(query, 'bonus') || false;
+        var bonusContent = getArg('bonus') || false;
         addExamples( bonusContent );
         initContent();
 
@@ -397,7 +440,7 @@
     <div id="message2"></div>
 </div>
 <div style="margin-left:10px">
-    <h3>In Audacity Wiki:</h3>
+    <h3>Example in the Audacity Wiki:</h3>
     See the interactive wikidiagrams in a live wiki:
     <ul>
         <li><a href="https://wiki.audacityteam.org/wiki/Toolbox/Examples">The examples</a> - The diagrams themselves
@@ -405,7 +448,7 @@
     </ul>
 </div>
 <div style="margin-left:10px">
-    <h3>Outside the Wiki:</h3>
+    <h3>Other Examples:</h3>
 </div>
 
 <div id="examples" style="margin-left:10px">

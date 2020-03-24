@@ -227,7 +227,7 @@
 
       window.onload = function(){
         var query = window.location.href;
-        var frame = getArg(query, 'frame') || "yes";
+        var frame = getArg('frame') || "yes";
         if( frame === "no" ) removeFrame();
         initEditors();
 

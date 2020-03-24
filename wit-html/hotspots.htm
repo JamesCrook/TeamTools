@@ -224,10 +224,10 @@
       window.onload = function(){
         var query = window.location.href;
         //var page = getArg(query, 'page') || "Maps";
-        var frame = getArg(query, 'frame') || "yes";
+        var frame = getArg('frame') || "yes";
 
         var fromWiki = 'no';//isFromServer();
-        fromWiki = getArg(query, 'fromwiki') || fromWiki;
+        fromWiki = getArg('fromwiki') || fromWiki;
         if( frame === "no" ) removeFrame();
         initEditors();
       }
