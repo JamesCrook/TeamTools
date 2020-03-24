@@ -409,10 +409,10 @@ function detailPosFromCursorPos(A,x, y){
 
 // fudge factors that later will become proper parameters...
 var fudgeLineMargin = 5;// lines outside chart by 5 pixels.
-var fudgeLineDrop = 3;  // drop bars down by 6 pixels.
-var fudgeBarDrop =9;  // drop bars down by 6 pixels.
-var fudgeStarDrop = 6; // drop stars by 3 pixels.
-var fudgeLabelDrop = 4; // labels lower (relative to lines).
+var fudgeLineDrop = 10;  // drop lines/bars down to contact axis labels.
+var fudgeBarDrop = 9.5;  // drop bars to fit exactly over lines.
+var fudgeStarDrop = 6; // drop stars slightly.
+var fudgeLabelDrop = 4; // line labels lower than lines
 var fudgeLabelMargin = 2; // labels to left
 
 
@@ -435,12 +435,12 @@ function drawLines(A,T, values, i, ix){
   ctx.lineWidth = 0.5;
   ctx.strokeStyle = "black";
 
-  var y0 = (T.margin ) + T.y0+fudgeBarDrop;
+  //var y0 = (T.margin ) + T.y0+fudgeBarDrop;
+  var y0 = T.yh - T.margin  + T.y0+fudgeLineDrop;
 
 
   for(i=0;i<T.maxY;i+=T.linesAt){
-    var yy = T.yh - (y0 + i* T.yScaler);
-
+    var yy = y0 - i* T.yScalerMax;
 
     // Get crisp lines by positioning at 0.5 of a pixel.
     yy = Math.floor( yy ) + 0.5;
@@ -455,9 +455,6 @@ function drawLines(A,T, values, i, ix){
     ctx.fillStyle = "rgba(15,35,165,1.0)";
     ctx.fillText( i, x-fudgeLabelMargin, yy+fudgeLabelDrop);
     ctx.restore();
-
-
-
   }
 }
 
@@ -470,9 +467,6 @@ function drawBar(A,T, values, i, ix){
   var x = T.margin + T.x0 + i * T.xScaler;
   var y = vx * T.yScaler;
   var ctx = A.BackingCanvas.ctx;
-
-
-
 
   if( T.stage === kStageHots ){
     var tip = T.obj.autoTip || "Value: %v1 at: %label";
@@ -699,6 +693,7 @@ function computeSpacing(A, T, x0, y0, xw, yh, values){
   T.xScaler = (T.width * T.cols + T.spacer);
 
   // yScale so that items grow.
+  T.yScalerMax = yh/T.maxY;
   T.yScaler = (Math.min(20, A.Status.time) / 20) * (yh) / T.maxY;
 }
 
@@ -1786,14 +1781,12 @@ function drawFocusSpot(A,x, y){
 }
 
 
-function drawHotShape(ix, action, c){
+function drawHotShape(ix, action, colourMatch){
   var A = Annotator[ ix ];
 
 
   var ctx = A.FocusCanvas.ctx;
 
-  var w = A.Porthole.width;
-  var h = A.Porthole.height;
 
   if( !A.Hotspots.ctx ) return -1;
 
@@ -1811,33 +1804,43 @@ function drawHotShape(ix, action, c){
   if( drawAll )
     colourString = "all";
   else
-    colourString = rgbOfColourTuple(c);
+    colourString = rgbOfColourTuple(colourMatch);
 
   // We'll cache the picked-out shape.
   if( A.Hotspots.lastHot !== colourString ){
+    var c = colourMatch;
+
+
+    // colourWith is slightly faded so we can see image underneath.
+    var colourWith   = drawAll ? [255,255,255,200] : [ c[0],c[1],c[2],200];
+    var colourAbsent = [ 255,255,255, 200];
+    var drawAllOpacity = 230;
+    var w = A.Porthole.width;
+    var h = A.Porthole.height;
     var pixels = A.Hotspots.ctx.getImageData(0, 0, w, h);
     var d = pixels.data;
     for( var i = 0; i < w * h * 4; i += 4 ){
       if( drawAll  && d[i+3]<50){
-        d[i]=255;
-        d[i+1]=255;
-        d[i+2]=255;
-        d[i + 3] = 200;
+        d[i    ] = colourWith[0];
+        d[i + 1] = colourWith[1];
+        d[i + 2] = colourWith[2];
+        d[i + 3] = colourWith[3];
       }
       else if( drawAll ){
-        d[i + 3] = 230;
+        d[i + 3] = drawAllOpacity;
       }
       else if( d[i] === c[0] && d[i + 1] === c[1] && d[i + 2] === c[2] &&
         d[i + 3] === c[3] ){
-        d[i] = c[0];
-        d[i + 1] = c[1];
-        d[i + 2] = c[2];
-        d[i + 3] = 200; // faded slightly so we can see the image too.
-      } else {
-        d[i]=255;
-        d[i+1]=255;
-        d[i+2]=255;
-        d[i + 3] = 200;      }
+        d[i    ] = colourWith[0];
+        d[i + 1] = colourWith[1];
+        d[i + 2] = colourWith[2];
+        d[i + 3] = colourWith[3];
+      } else if( colourAbsent[3] > 50) {
+        d[i    ] = colourAbsent[0];
+        d[i + 1] = colourAbsent[1];
+        d[i + 2] = colourAbsent[2];
+        d[i + 3] = colourAbsent[3];
+      }
     }
     A.Hotspots.lastHot = colourString;
     A.Hotspots.pixels = pixels;

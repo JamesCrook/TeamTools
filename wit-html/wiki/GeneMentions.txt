@@ -31,7 +31,7 @@ The detailed data for the chart follows.
    "titles":["Gene","Mentions"],
    "display":["Label","#CC6699"],
    "subtype":["*","bar"],
-   "maxY":80,
+   "maxY":90,
    "autoTip":"Gene <b>%label</b> shown in pathways in %v1 of these 189 papers.<br><br>%longname<ul><li><a href='https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/%hgncid'>at HGNC</a><li><a href='https://www.alliancegenome.org/gene/%hgncid'>at alliance of genome reosurces</a><ul>",
    "spacer":3,
    "values":[
