@@ -262,6 +262,16 @@
         handleNewData( Annotator[0], spec );
       }
 
+      function selectHistory( name, widget ){
+        selectTab( name, widget);
+        var div = document.getElementById(name);
+        var page = getArg( window.location.href, 'page0' );
+
+        div.innerHTML  = '<a target=_blank href="https://github.com/JamesCrook/TeamTools/commits/master/wit-html/wiki/'+page+'.txt">See changes at GitHub</a>';
+
+      }
+
+
       function selectPage( name, widget ){
         selectTab( name, widget);
         var spec = Editors[0].MainDiv.value;
@@ -281,7 +291,7 @@
     <div class='pos-resetter'>
         <h2 id="click-tip"
             style="color:#bfbfbf;display:block;position:relative;top:-0.55em;transition:opacity 4s;opacity:1;">
-            <em>Version from 08-Mar-2020</em></h2>
+            <em>Version from 24-Mar-2020</em></h2>
     </div>
     <div class='pos-resetter'>
         <div style="display:inline-block;">
@@ -319,7 +329,7 @@
     <span class="tab" id='discussionTab' onClick="selectTab('discussion',this)">discussion</span>
     <span class="tab selected" id='editTab' onClick="selectTab('edit',this)">edit</span>
     <span class="tab" id='richEditTab' onClick="selectTab('richEdit',this)">rich-edit</span>
-    <span class="tab" id='historyTab' onClick="selectTab('history',this)">history</span>
+    <span class="tab" id='historyTab' onClick="selectHistory('history',this)">history</span>
 </div>
 
 <div class="scenebacker">
@@ -334,7 +344,10 @@
         </div>
     </div>
     <div id="richEdit" class="choice" style="display:none">RICH EDIT</div>
-    <div id="history" class="choice" style="display:none">HISTORY</div>
+    <div id="history" class="choice" style="display:none">HISTORY
+
+
+    </div>
 </div>
 
 
