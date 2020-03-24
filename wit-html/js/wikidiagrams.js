@@ -302,6 +302,13 @@ function autoColourOfIndex(a){
   return index;
 }
 
+AutoColourFromOffset = function( A, offset ){
+  var a = (A.Hotspots.autoColourIx-offset);
+  var index = autoColourOfIndex(a);
+  var rgb = rgbOfJsonColourTuple(index);
+  return rgb;
+}
+
 // tell some colours apart.
 NextAutoColour = function( A, Tip){
   var a = (A.Hotspots.autoColourIx++);
@@ -644,6 +651,7 @@ function drawLabel(A,T, values, i,ix){
   var x = T.margin + T.x0 + i * T.xScaler+(T.width*T.items)*0.5+8;
   var y = T.margin;
   ctx.save();
+  ctx.beginPath();
   ctx.translate(x+ (ix - 1) * T.width, T.yh - (T.margin + y) + T.y0);
   ctx.rotate(-Math.PI / 4);
   ctx.textAlign = "right";
@@ -651,6 +659,23 @@ function drawLabel(A,T, values, i,ix){
   ctx.fillStyle = "rgba(15,35,165,1.0)";
   ctx.fillText(values[i][0], 0, 0);
   ctx.restore();
+
+  if( !isDefined( T.obj.tipsOnLabels ))
+    return;
+
+  var ctx2 = A.Hotspots.ctx;
+  ctx2.save();
+  ctx2.beginPath();
+  ctx2.translate(x+ (ix - 1) * T.width, T.yh - (T.margin + y) + T.y0);
+  ctx2.rotate(-Math.PI / 4);
+  ctx2.textAlign = "right";
+  ctx2.font = "12px Arial";
+  var size = ctx2.measureText( values[i][0] );
+  ctx2.fillStyle = AutoColourFromOffset( A, T.count-i);
+  ctx2.rect( -size.width,-9, size.width, 9 );
+  ctx2.fill();
+  ctx2.restore();
+
 }
 
 function clearBacking(A,x0, y0, xw, yh){
@@ -698,6 +723,8 @@ function computeSpacing(A, T, x0, y0, xw, yh, values){
 }
 
 function drawSpacedItems(A,x0, y0, xw, yh, values, T){
+  var j;
+  var i;
   for( j = 0; j < T.items; j++ ){
     for( i = 0; i < T.count; i++ ){
       T.fns[j](A, T, values, i, j);

@@ -81,6 +81,7 @@ The detailed data for the chart follows.
    "Chart":"Scale",
    "titles":["Gene","Mentions"],
    "display":["Label","#CC6699"],
+   "tipsOnLabels":true,
    "subtype":["label","*"],
    "valuesFrom":"GeneMentions",
    "sizeAs":0.18
