@@ -227,73 +227,91 @@
       function examplesText(bonusContent){
         var str = "";
 
-        str +=
-          "These first few examples show how the souped-up image map works and demonstrate several different uses:<ul>";
-        str += formatExample("AudacityPeople", "Audacity People",
-          "A who-is-who image that also shows how the hotspots work.", "");
-//        str += formatExample("SmallCrowd","People","Two who-is-who images, one from the Audacity unconference, one a featured image in English Wikipedia, showing how an image map can provide a key for identifying people.","");
-        str += formatExample("The_Ear", "The Ear",
-          "Three schematics of the ear, based on Blausen Medical's images", "");
-        str += formatExample("Spectrograms", "Spectrograms",
-          "Six related spectrograms for the word 'Audacity', explaining what the spectrogram shows.",
-          "");
-        //str += formatExample("Globes","Globes","A demo of planets","wiki");
-        //str += formatExample("Window_Size","Spectrogram Window-Sizes","Explanation of a spectrogram","wiki");
-
-        //str += formatExample("Middle_Ear_Anatomy2","The Middle Ear", "Schematic", "");
-        //str += formatExample("Inner_Ear_Anatomy2","The Inner Ear", "Schematic", "");
+        str += '<div>';
+        str += '<h3>Examples:</h3><ul>';
+        str += '<li><a href="./demos.htm?bio=y&page0=Molecule&fromwiki=no">Bio Diagrams</a> - Show just the diagrams related to biosciences.';
+        str += '</ul>';
+        str += '</div>';
+        str += '<div>';
+        str += '<h3>Audacity Code:</h3>';
+        str += '</div>';
 
         str +=
-          "</ul>Interactive diagrams for explaining Audacity code and development:<ul>";
+          "Interactive diagrams for exploring our Audacity source code:<ul>";
 
-        str += formatExample("Flow_Chart", "Flow Chart",
-          "Flowchart of making the Audacity manual.  Shows a relative layout which avoids absolute positions for items.  Also shows arrows.",
-          "");
-        str += formatExample("EffectHierarchy", "Effect Hierarchy",
-          "Hierarchy tree for effects.  In reality this is just a flow-chart variant",
+        str += formatExample("AudacityOverview", "Overview of Audacity Classes",
+          "A tile based overview of Audacity classes.",
           "");
         str += formatExample("Audacity", "Snake Diagram",
           "A metro-line snake zig-zag display of groups of related classes in Audacity",
           "");
-        str += formatExample("AudacityOverview", "Overview",
-          "A tile based overview of Audacity classes.  This will in time lead into explanatory pages with 'Snake Diagrams'",
-          "");
 
-        str += formatExample("Bug_Counts", "Bug Chart",
-          "Graph of Audacity bugs over time.  Legends, labels and scales are added as layers with relative positioning.",
+        str += formatExample("EffectHierarchy", "Effect Hierarchy",
+          "Hierarchy tree for effects.  This is 'just' a flow-chart variant",
           "");
 
         str += formatExample("Languages", "Languages",
           "Doughnut chart showing the different languages in Audacity source code.",
           "");
 
-        str +=
-          "</ul>The globes (next) show a special feature of the images, that they can be wrapped around a sphere.  The climate classification example is the most involved, as it also shows some rainfall and temperature charting for the climate charts:<ul>";
+        str += '</ul><div>';
+        str += '<h3>Other Audacity Diagrams:</h3>';
+        str += '</div>';
 
+
+
+        str +=
+          "People and processes in Audacity, and some background on audio:<ul>";
+        str += formatExample("AudacityPeople", "Audacity People",
+          "A who-is-who image that also shows how the hotspots work.", "");
+
+        str += formatExample("Bug_Counts", "Bug Chart",
+          "Graph of Audacity bugs over time.  Legends, labels and scales are added as layers.",
+          "");
+
+        str += formatExample("Flow_Chart", "Flow Chart",
+          "Flowchart of making the Audacity manual.",
+          "");
+        str += formatExample("Spectrograms", "Spectrograms",
+          "Six related spectrograms for the word 'Audacity', explaining what the spectrogram shows.",
+          "");
+
+        str += '</ul><div>';
+        str += '<h3>Other Features:</h3>';
+        str += '</div>';
+        str +=
+          "These are more animated images, just eye-candy at the moment:<ul>";
         str += formatExample("Globes", "Globes",
           "Six different 'World Maps': Moisture, Climate, Vegetation, Ocean Currents, Plate Techtonics and The Moon",
           "");
-        str += formatExample("Köppen_Globe", "Köppen Globe",
-          "Climate zones on a globe", "");
-
-        str +=
-          "</ul>These are further experiments and examples showing other features:<ul>";
-
         str +=
           formatExample("Molecule", "Molecule", "A molecule in SMILES format.",
             "");
-        str += formatExample("Ace2Downregulation", "Ace2Downregulation",
-          "ACE2 down regulation in SARS-CoV infection.", "");
 
         if( bonusContent ){
+          str += '</ul><div>';
+          str += '<h3>Extras:</h3>';
+          str += '</div>';
+
+          str +=
+            "These are further experiments and examples showing other features:<ul>";
+
+
+          str += formatExample("Köppen_Globe", "Köppen Globe",
+            "Climate zones on a globe", "");
+
+          str += formatExample("Ace2Downregulation", "Ace2Downregulation",
+            "ACE2 down regulation in SARS-CoV infection.", "");
+
+          str += formatExample("GeneMentions", "Gene Mentions",
+            "An annotated graph of mentions of genes relevant to Covid-19.",
+            "");
+
           str += formatExample("ClimateChart", "Climate Chart",
             "Graphing a Climate Chart.  In time these will appear on the globes",
             "");
           str += formatExample("Biochemical", "Biochemical",
             "A metro-line display of biochemical pathways.  This diagram and the code structure diagram for Audacity are related.",
-            "");
-          str += formatExample("GeneMentions", "Gene Mentions",
-            "An annotated graph of mentions of genes relevant to Covid-19.",
             "");
           str += formatExample("SqliteArchitecture", "SQLite",
             "A block diagram of SQLite", "");
@@ -318,24 +336,50 @@
           str += formatTileEdit("Misc");
           str += "</ul>";
         }
-        str += "</ul>Ordinary wiki pages about the diagrams<ul>";
-        {
-          str += formatEdit("PR1", "PR1", "February 2020 Progress Report");
-          str +=
-            formatEdit("User_Guide", "User Guide", "Wikidiagrams User Guide");
-        }
+        str += '</ul><div>';
+        str += '<h3>In Wiki:</h3>';
+        str += '</div>';
+        str += "Pages about the diagram software<ul>";
+        //str += formatEdit("PR1", "PR1", "February 2020 Progress Report");
+        //str += formatEdit("User_Guide", "User Guide", "Wikidiagrams User Guide");
+
+        str+= "<li><a target=_blank href='https://wiki.audacityteam.org/wiki/Toolbox/PR1'>PR1 (in wiki)</a> - February 2020 Progress Report"
+        str+= "<li><a target=_blank href='https://wiki.audacityteam.org/wiki/Toolbox/User_Guide'>User Guide (in wiki)</a> - Wikidiagrams User Guide, in Audacity wiki"
+        str += '</ul>';
+
+        str += "Pages in the wiki (pages under construction):<ul>";
+
+        str += '<li><a target=_blank href="https://wiki.audacityteam.org/wiki/Toolbox/Examples">The Examples (in wiki)</a> - Eight diagrams, live in the Audacity mediawiki';
+
+        str += '<li><a target=_blank href="https://wiki.audacityteam.org/wiki/Toolbox/Tutorials">Tutorials (in wiki)</a> - Stub pages about audio programming, live in the Audacity mediawiki.';
+
+
         str += "</ul>";
         return str;
       }
 
       function bioExamplesText(){
-        var str = "<ul>";
+        var str ="";
+
+          str += '<div>';
+        str += '<h3>Examples:</h3><ul>';
+        str += '<li><a href="./demos.htm?page0=Audacity&fromwiki=no">All Diagrams</a> - Show all \'Other Examples\', not just the bio ones.';
+        str += '<li><a href="https://wiki.audacityteam.org/wiki/Toolbox/Examples">The Examples (in wiki)</a> - Eight diagrams, live in the Audacity mediawiki';
+        str += '</ul>';
+        str += '</div>';
+        str += '<div>';
+        str += '<h3>Biological Sciences Examples:</h3>';
+        str += '</div>';
+
+        str +=  "<ul>";
         str += formatExample("GeneMentions", "Gene Mentions",
-          "An annotated graph of mentions of genes relevant to Covid-19.",
+          "An annotated graph from the literature of genes relevant to Covid-19.",
           "");
         str +=
-          formatExample("Molecule", "Molecule", "A molecule in SMILES format.",
+          formatExample("Molecule", "Molecule", "Melatonin molecule in SMILES format.",
             "");
+        str += formatExample("The_Ear", "The Ear",
+          "Three schematics of the ear, based on Blausen Medical's images", "");
         str += formatExample("Ace2Downregulation", "Ace2Downregulation",
           "ACE2 down regulation in SARS-CoV infection.", "");
         str += "</ul>";
@@ -439,19 +483,9 @@
     <div id="message"></div>
     <div id="message2"></div>
 </div>
-<div style="margin-left:10px">
-    <h3>Example in the Audacity Wiki:</h3>
-    See the interactive wikidiagrams in a live wiki:
-    <ul>
-        <li><a href="https://wiki.audacityteam.org/wiki/Toolbox/Examples">The examples</a> - The diagrams themselves
-        <li><a href="https://wiki.audacityteam.org/wiki/Toolbox/Tutorials">Tutorials</a> - Planned pages about audio programming which are motivating the new diagram software.
-    </ul>
-</div>
-<div style="margin-left:10px">
-    <h3>Other Examples:</h3>
-</div>
 
-<div id="examples" style="margin-left:10px">
+
+<div id="examples" style="margin-left:20px">
 </div>
 
 </body>
