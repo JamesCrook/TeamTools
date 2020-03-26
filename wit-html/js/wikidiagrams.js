@@ -466,6 +466,23 @@ function drawLines(A,T, values, i, ix){
 }
 
 
+function replaceAll(str, find, replace) {
+  return str.replace(new RegExp(find, 'g'), replace);
+}
+
+function chartSubber( obj ){
+  var object = obj;
+
+  return function( i, str ){
+    var j;
+    for(j=0;j<object.titles.length;j++){
+      var field = "%"+object.titles[j].toLowerCase();
+      str = replaceAll( str, field, object.values[ i][j]);
+    }
+    return str;
+  };
+}
+
 // Used for bars from base line to curve.
 function drawBar(A,T, values, i, ix){
   if( T.stage !== kStageFillAndText && T.stage !== kStageHots )
@@ -476,21 +493,9 @@ function drawBar(A,T, values, i, ix){
   var ctx = A.BackingCanvas.ctx;
 
   if( T.stage === kStageHots ){
+
     var tip = T.obj.autoTip || "Value: %v1 at: %label";
-    tip = tip.replace( "%v1", values[i][1] );
-    tip = tip.replace( "%v2", values[i][2] );
-    tip = tip.replace( "%label", values[i][0] );
-
-    if( tip.indexOf( "%longname" )>=0)
-      tip = tip.replace( "%longname", values[i][2] );
-    if( tip.indexOf( "%hgncid" )>=0)
-      tip = tip.replace( /%hgncid/g, values[i][3] );
-
-/*
-    var colour = NextAutoColour( A,
-
-
- */
+    tip = T.subber( i, tip );
     var colour = NextAutoColour( A, tip );
     ctx = A.Hotspots.ctx;
     ctx.fillStyle = colour;//rgbOfJsonColourTuple(colour);
@@ -596,7 +601,12 @@ function drawEvent(A,T, values, i, ix){
 }
 
 function drawDonut(A,T, values, i, ix){
-  if( ix !== 1)
+  //if( ix !== 1)
+  //  return;
+  if( T.stage !== kStageFillAndText && T.stage !== kStageHots )
+    return;
+
+  if( i!= 0 )
     return;
   var l = T.obj.layout;
   var xw = l.xw;//T.width;
@@ -611,7 +621,7 @@ function drawDonut(A,T, values, i, ix){
   // get total
   var total = 0;
   var j;
-  for( j = 1; j < values[i].length; j++ ) total = total + values[i][j];
+  for( j = 0; j < values.length; j++ ) total = total + values[j][1];
 
   var ctx = A.BackingCanvas.ctx;
 
@@ -621,11 +631,17 @@ function drawDonut(A,T, values, i, ix){
 
   var frac = Math.min(20, A.Status.time) / 20;
 
-  for( j = 1; j < values[i].length; j++ ){
-    var c = NextAutoColour( A, T.obj.titles[j] + ": "+(values[i][j] *0.1).toFixed(1)+"%");
+  for( j = 0; j < values.length; j++ ){
+
+    //if( T.stage === kStageHots )
+
+    var tip = T.obj.autoTip || "Value: %v1 at: %label";
+    tip = T.subber( j, tip );
+    var c = NextAutoColour( A, tip );
+
     A.Hotspots.autoColourIx+=2;
     t0 = t1;
-    t1 = t1 + frac * Math.PI * 2 * values[i][j] / total;
+    t1 = t1 + frac * Math.PI * 2 * values[j][1] / total;
     ctx.beginPath();
     ctx.moveTo(x + r2 * Math.cos(t0), y + r2 * Math.sin(t0));
     ctx.lineTo(x + r * Math.cos(t0), y + r * Math.sin(t0));
@@ -802,6 +818,8 @@ function drawChart(A, obj, d){
 
   if( obj.display && obj.display[1].startsWith("#") )
     T.colours[1] = obj.display[1];
+
+  T.subber = chartSubber( obj );
 
   computeSpacing(A, T, x0, y0, xw, yh, obj.values);
   makeFunctionTable(T, obj);

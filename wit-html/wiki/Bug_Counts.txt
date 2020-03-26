@@ -28,7 +28,7 @@ The detailed data for the chart follows.
    "titles":["Date","Live Bugs","Slain Bugs"],
    "display":["Label","Blue","Green"],
    "subtype":["*","bar","bar"],
-   "autoTip":"<b> &nbsp;Live Bugs: %v1</b><br><b>Slain Bugs: %v2</b><br><br>As of: %label",
+   "autoTip":"<b> &nbsp;Live Bugs: %live bugs</b><br><b>Slain Bugs: %slain bugs</b><br><br>As of: %date",
    "values":[
    ["Aug 2017",605,1104],
    ["Sep 2017",543,1192],

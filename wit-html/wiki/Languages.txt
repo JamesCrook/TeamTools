@@ -31,13 +31,20 @@ The detailed data for the chart follows.
    "src":"Audacity_Logo_large_transparent.png",
    "margins":75},
   {"Chart":"Languages Doughnut",
-   "titles":["What","C","C++","Python","Shell","Makefile","Objective-C","Other"],
-   "display":["Label","Blue","Green"],
-   "subtype":["*","pie","pie"],
+   "titles":["Language","amount"],
+   "display":["Label","Blue"],
+   "subtype":["*","pie"],
    "pie":true,
+   "autoTip":"Language:<b> %language</b><br>Amount: <b>%amount %</b>",
    "margins":5,
    "values":[
-       ["Languages",334,222,144,118,83,29,70]
+       ["C",33.4],
+       ["C++",22.2],
+       ["Python",14.4],
+       ["Shell",11.8],
+       ["Makefile",8.3],
+       ["Objective-C",2.9],
+       ["Other", 7.0]
      ]
   }]},
   {"Rectangle":"Audacity source code, by language",
