@@ -3044,7 +3044,7 @@ function handleNewData(A, data, section){
 
   updateImages(A);
   setToc( A, A.TocShown );
-  iter = 160;
+  iter = 200;
 }
 
 /**

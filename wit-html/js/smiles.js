@@ -409,6 +409,14 @@ function drawChem(A, obj, d){
 
 var iter = 160;
 
+
+
+
+// Each bond is a spring of length 40, and attempts to set its length.
+// Around each atom, the bonds 'try' to form a circle.
+// We randomly repel non-carbon atoms that are 'sufficiently far away'
+// from each other (by an overly crude metric).
+
 function minEnergy( A, obj, d ){
   var atoms = [];
   var i;
@@ -421,20 +429,24 @@ function minEnergy( A, obj, d ){
   var atomFrom;
   var atomTo;
 
-  if( iter === 0 )
+  if( iter <= 0 )
     return;
   iter--;
 
+  // all atoms move by their dx,dy and jiggle a little.
+  // and we populate an empty array of atoms.
   for(i=0;i<obj.atoms.length;i++){
     obj.atoms[i].x = obj.atoms[i].cx + obj.atoms[i].dx +(Math.random()*10-5)*0.1;
     obj.atoms[i].y = obj.atoms[i].cy + obj.atoms[i].dy +(Math.random()*10-5)*0.1;
     atoms.push( [] ); // each joined to nothing.
   }
 
-  // bonds as springs.
+  // bonds are springs.
+  // each actual bond is expected to have a length of 40.
   for( j=0;j<obj.bonds.length; j++){
     var from = obj.bonds[j].fromIx;
     var to = obj.bonds[j].toIx;
+
     // Build list of 2 way links.
     atoms[from].push( to );
     atoms[to].push( from );
@@ -461,6 +473,8 @@ function minEnergy( A, obj, d ){
     atomTo.dy += f.y;
   }
 
+  // Assume atoms around one atom will be equally spaced on a circle.
+  // Set their lengths and do.
   for(i=0;i<atoms.length;i++){
     if( iter === 0 ){
       var atom = obj.atoms[i];
@@ -500,13 +514,52 @@ function minEnergy( A, obj, d ){
   }
 
 
+  // list the non-carbon attoms.
+  var nonC = [];
+  for( i=0;i<obj.atoms.length;i++){
+    if( obj.atoms[i].value !== "C" ){
+      nonC.push( i );
+    }
+  }
+
+
+  // pick two non carbon atoms.
+  var first = 5;
+  var final = nonC.length;
+  first = Math.floor(Math.random() * final);
+  last = Math.floor(Math.random() * final);
+  if( Math.abs( first - last ) < 1){
+    first = (first + 1) % final;
+  }
+  first = nonC[first];
+  last  = nonC[last];
+
+  // repel them.
+  vx = obj.atoms[first].x - obj.atoms[last].x;
+  vy = obj.atoms[first].y - obj.atoms[last].y;
+  var pull = 0.05*final*Math.max( 0, iter/2-3);
+  // reduce the repulsion for small molecules.
+  pull *= (final > 20)?1:0.05;
+  console.log( "Iter: " + iter + " Pull: "+pull);
+  d = pull/(Math.sqrt( vx * vx + vy * vy ) +0.1);
+  vx *= d;
+  vy *= d;
+  //vx = d;
+  //vy = 0;
+  obj.atoms[first].dx += vx;
+  obj.atoms[first].dy += vy;
+  obj.atoms[last].dx -= vx;
+  obj.atoms[last].dy -= vy;
+
   // update x, based on dx, y on dy.
   for(i=0;i<obj.atoms.length;i++){
     obj.atoms[i].x = obj.atoms[i].cx + obj.atoms[i].dx;
     obj.atoms[i].y = obj.atoms[i].cy + obj.atoms[i].dy;
   }
 
-  // now move all the bonds.
+
+
+  // now tell all the bonds their ends have moved.
   for( j=0;j<obj.bonds.length; j++){
     var bond = obj.bonds[j];
     atomFrom = obj.atoms[bond.fromIx];

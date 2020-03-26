@@ -1,0 +1,31 @@
+__NOTOC__
+
+
+{{ATK_Header}}
+
+This is the spec for the interactive diagram which shows a chemical structure.
+
+Here's the result:
+
+-----
+{{#widget:WikiDiagram|page=Aldosterone|init=yes}}
+-----
+
+The detailed data for the chart follows.
+
+<pre>START</pre>
+
+<pre>ADD:DATA=
+{
+"Chem":"Aldosterone",
+"structure":"CC12CCC(=O)C=C1CCC3C2C(CC4(C3CCC4C(=O)CO)C=O)O"
+}
+</pre>
+
+With the layout established, the details that follow customise the objects.
+
+
+
+<pre>CREDITS:CAPTION=Chemical Structure of Aldosterone;tip=</pre>
+<b>Credits:</b> <em>James Crook ©2020; Aldosterone Image placed in Public
+Domain</em>
