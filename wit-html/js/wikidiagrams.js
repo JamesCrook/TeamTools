@@ -1282,7 +1282,7 @@ function setStyles(ctx, obj){
   if( obj.colour ) ctx.fillStyle = obj.colour; else ctx.fillStyle =
     "rgba(255,255,255,1.0)";
 
-  if( obj.bcolour ) ctx.strokeStyle = obj.bcolour; else ctx.strokeStyle =
+  if( obj.borderColour ) ctx.strokeStyle = obj.borderColour; else ctx.strokeStyle =
     "rgba( 55, 55,155,1.0)";
 }
 
@@ -1534,11 +1534,11 @@ function setStyle( A, obj ){
   var styleRec = A.Styles.dict[ A.Styles.current ] || {};
   if( styleRec ){
     obj.colour       = obj.colour || styleRec.colour;
-    obj.bcolour      = obj.bcolour || styleRec.bcolour;
+    obj.borderColour      = obj.borderColour || styleRec.borderColour;
     obj.cornerRadius = obj.cornerRadius || styleRec.cornerRadius;
   }
   styleRec.colour       = obj.colour || "rgb(255,255,255)";
-  styleRec.bcolour      = obj.bcolour || "rgb(80,80,200)";
+  styleRec.borderColour      = obj.borderColour || "rgb(80,80,200)";
   styleRec.cornerRadius = isDefined(obj.cornerRadius)? obj.cornerRadius : 0;
   styleRec.head         = obj.head;
   A.Styles.dict[ A.Styles.current ] = styleRec;
@@ -1576,7 +1576,7 @@ function drawRectangle(A, obj, d){
   // A chosen main rectangle has this style, to meld with the chooser rectangle.
   if( obj.style === "chosen" ){
     obj.colour       = "rgb(255,250,235)";
-    obj.bcolour      = "rgb(145,125,0)";
+    obj.borderColour      = "rgb(145,125,0)";
     obj.cornerRadius = 8;
   }
   else{
@@ -2738,7 +2738,7 @@ function doChoose( A, parentObj, item )
     var obj = parentObj.content[i];
 
     obj.colour  = (i===item) ? "rgb(255,250,235)":"rgb(255,230,205)";
-    obj.bcolour = (i===item) ? "rgb(145,125,0)"  :"rgb(215,155,0)";
+    obj.borderColour = (i===item) ? "rgb(145,125,0)"  :"rgb(215,155,0)";
     obj.cornerRadius = 8;
     obj.drawEarly = (i!==item);
     obj.drawExtra = true;
@@ -2844,8 +2844,8 @@ function loadNewLines(A, specFileData, section){
 
       data = fieldValue("colour", item);
       if( data ) obj.colour = data;
-      data = fieldValue("bcolour", item);
-      if( data ) obj.bcolour = data;
+      data = fieldValue("borderColour", item);
+      if( data ) obj.borderColour = data;
       data = fieldValue("cornerRadius", item);
       if( data && (!isNaN(Number(data))) ) obj.cornerRadius = Number(data);
       if( detail ){

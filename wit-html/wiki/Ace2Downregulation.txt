@@ -24,7 +24,7 @@ The detailed data for the chart follows.
         {"Spacer":"aaa"},
         {"Rectangle":"SARS-CoV Spike",
          "colour":"rgb(255,230,205)",
-         "bcolour":"rgb(215,155,0)",
+         "borderColour":"rgb(215,155,0)",
          "cornerRadius":8,
          "style":0,
          "tip":"<h3><a href='https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2750777/'>SARS-CoV Spike</a> (<a href='https://www.ncbi.nlm.nih.gov/protein/694009'>694009</a>)</h3>The spike protein is responsible for virion to cell attachment.  It has an S1 domain that engages with the host cell ACE2 and an S2 subunit that mediates fusion."
@@ -42,7 +42,7 @@ The detailed data for the chart follows.
 "tip":"<h3>Angiotensin II (<a href='https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:58506'>CHEBI:58506</a>)</h3>Acts directly on vascular smooth muscle as a potent vasoconstrictor, affects cardiac contractility and heart rate through its action on the sympathetic nervous system, and alters renal sodium and water absorption through its ability to stimulate <a href='https://en.wikipedia.org/wiki/Zona_glomerulosa'>the zona glomerulosa</a> cells of the adrenal cortex to synthesize and secrete <a href='https://en.wikipedia.org/wiki/Aldosterone'>aldosterone</a>." ,
 "style":2,
          "cornerRadius":3,
-         "bcolour":"rgb(80,100,205)",
+         "borderColour":"rgb(80,100,205)",
          "colour":"rgb(205,225,255)"
 
 },
@@ -62,7 +62,7 @@ The detailed data for the chart follows.
         {"Rectangle":"Lung Injury",
         "tip":"<h3><a href='https://en.wikipedia.org/wiki/Acute_respiratory_distress_syndrome'>Lung Injury</a></h3>Covid is a repiratory infection transmitted via coughs and sneezes that spread droplets.  Lung injury in Covid infection is a consequence of a build up of fluid in the lungs, similar to what's typical of pneumonias. ",
          "style":1,
-         "bcolour":"rgb(110,110,110)",
+         "borderColour":"rgb(110,110,110)",
          "colour":"rgb(255,255,255)"},
         {"Spacer":"aaa","sizeAs":0.5}
         ]},

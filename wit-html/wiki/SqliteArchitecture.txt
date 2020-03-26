@@ -33,7 +33,7 @@ The detailed data for the chart follows.
   {"Rectangle":"","margins":0,
   "style":2,
   "colour":"rgb(200,200,200)",
-  "bcolour":"rgb(200,200,200)",
+  "borderColour":"rgb(200,200,200)",
   "cornerRadius":35
 
   },
@@ -70,7 +70,7 @@ The detailed data for the chart follows.
             {"Rectangle":"Interface",
                "style":1,
                "colour":"rgb(215,230,210)",
-               "bcolour":"rgb(115,180,110)",
+               "borderColour":"rgb(115,180,110)",
                "cornerRadius":25},
             {"Rectangle":"SQL Command",
                "style":1},
