@@ -246,6 +246,22 @@ AddHover = function( A, text){
   A.Hotspots.Current.Hover = text;
 };
 
+AddClick = function( A, text){
+  if( !A.Hotspots )
+    return;
+  if( !A.Hotspots.Current )
+    return;
+  A.Hotspots.Current.Click = text;
+};
+
+AddDown = function( A, text){
+  if( !A.Hotspots )
+    return;
+  if( !A.Hotspots.Current )
+    return;
+  A.Hotspots.Current.Down = text;
+};
+
 
 // These are for hotspot colours added by a drawn image.
 // With a hotspot image, the colours are provided.
@@ -321,7 +337,9 @@ NextAutoColour = function( A, Tip){
     return rgb;
 
   AddHot( A, index );
-  AddDetail( A, Tip );
+  if( "Tip" )
+    AddDetail( A, Tip );
+
 
   return rgb;
 };
@@ -370,6 +388,11 @@ function onChart(A){
   setCellLayout( A,0, 0, A.Porthole.width, A.Porthole.height, obj);
   sizeLayoutAndDraw(A, obj, d);
   A.Status.isAppReady = true;
+}
+
+function drawAgain(){
+  if( !A.Status.drawing )
+    innerDraw(A,A.RootObject,{});
 }
 
 function timerCallback(){
@@ -1663,8 +1686,52 @@ function drawGeshi(A, obj, d){
 }
 
 
+function findInKwic( A, obj ){
+  var l = obj.layout;
+  var x = l.x0;
+  var y = l.y0;
+  var xw = l.xw;
+  var yh = l.yh;
+  if( !obj.oneSpace )
+    return;
+  if( !A.Status.click )
+    return;
+  var offsetX = -obj.offset.x;
+  var offsetY = obj.offset.y;
+  offsetX += A.Status.click.x;
+  offsetY += A.Status.click.y;
+  var textHeight = obj.oneSpace *1.8;
+  var textLineSpacing = textHeight;
+  var kwicSpace = obj.oneSpace;
+
+  var row = Math.floor(offsetY / textLineSpacing -0.5);
+  var col = Math.floor( offsetX / kwicSpace );
+
+  console.log("click at row:"+row+" col:"+col );
+  var D = obj.permutedIndex;
+
+  if( (0<=row) && (row<=D.length)){
+
+    var str = D[row];
+    // wrap around if after end of string.
+    if( col === -1 )
+      col =0;
+    if( col < 0 )
+      col++;
+    col = (col + 20*(str.length)) % (str.length);
+    if( str.length > col ){
+      while( (str[col]!==' ') && (col>1))
+        col--;
+      while( (str[col]===' ') && (col < (str.length-1)))
+        col++;
+      str = str.slice(col) +  " " + str.slice( 0, col);
+    }
+    console.log( "Jump to: " +str );
+  }
+}
+
 function drawKwic(A, obj, d){
-  if( d.stage !== kStageFillAndText )
+  if( d.stage !== kStageFillAndText && ( d.stage !== kStageHots ) )
     return;
 
   //console.log( "draw - "+obj.type);
@@ -1675,7 +1742,7 @@ function drawKwic(A, obj, d){
   var yh = l.yh;
 
   if( !isDefined( obj.offset )){
-    obj.offset = {x:xw/3, y:yh*20};
+    obj.offset = {x:xw/3, y:0};//y:yh*20};
   }
 
   // This sizing/font matches typical appearance of <pre> element.
@@ -1685,6 +1752,7 @@ function drawKwic(A, obj, d){
   // Approximate height (as M is 'square' );
   // Advanced metrics not supported in firefox or ie or edge.
   var oneSpace = ctx.measureText( "M").width;
+  obj.oneSpace = oneSpace;
   var textHeight = oneSpace *1.8;
   var textLineSpacing = textHeight;
   var kwicSpace = oneSpace;
@@ -1710,22 +1778,24 @@ function drawKwic(A, obj, d){
 
 
 
-  for( i = iStart;i< Math.min( iStart+lines, D.length); i++){
+  if( d.stage === kStageFillAndText )
+    for( i = iStart;i< Math.min( iStart+lines, D.length); i++){
     var str = D[i];
 
     ctx.textAlign = "right";
     ctx.fillText(str, x+dx-kwicSpace,y + dy + textLineSpacing*(i-iStart));
     ctx.textAlign = "left";
     ctx.fillText(str, x+dx,y + dy + textLineSpacing*(i-iStart));
-    /*
-        if( obj.hotspotColour ){
-          var ctx2 = A.Hotspots.ctx;
-          ctx2.beginPath();
-          ctx2.rect(x, y, xw, yh);
-          ctx2.fillStyle = obj.hotspotColour;
-          ctx2.fill();
-        }
-     */
+  }
+
+  if(  d.stage === kStageHots ){
+    var c = NextAutoColour(A, "");
+    AddDown(A,["clickObject",obj.id]);
+    var ctx2 = A.Hotspots.ctx;
+    ctx2.beginPath();
+    ctx2.rect(x, y, xw, yh);
+    ctx2.fillStyle = c;
+    ctx2.fill();
   }
 }
 
@@ -2082,7 +2152,6 @@ function onMouseUp( e ){
     x: A.Status.move.x-A.Status.click.x,
     y:A.Status.move.y-A.Status.click.y};
   //A.Status.move = {x:0,y:0};
-  A.Status.click = undefined;
   console.log( "Up ("+A.Status.displace.x + "," + A.Status.displace.y + ")");
 
 }
@@ -2107,8 +2176,15 @@ function onMouseDown( e ){
   {
     A.Status.click = { x: x, y: y };
   }
+
   console.log( "Down ("+A.Status.click.x + "," + A.Status.click.y + ")");
-  updateImages( A );
+
+  var actions = actionsFromCursorPos(A,x, y, "log");
+  if( actions.Down ){
+    doAction(A, actions.Down);
+  }
+
+  drawAgain();
 
 }
 
@@ -2151,7 +2227,7 @@ function mousemoveOnMap(e){
   }
   if( e.buttons ){
     A.Status.move = { x: x, y: y };
-    updateImages(A);
+    drawAgain();
   }
 }
 
@@ -2456,6 +2532,14 @@ function doAction(A,code){
     else if( command === "chooseItem" ){
       activeObject = getObjectByName(A, code[i++]);
     }
+    else if( command === "alert" ){
+      alert("alert in action");
+    }
+
+    else if( command === "clickObject" ){
+      activeObject = getObjectByName(A, code[i++]);
+      activeObject.onClick( A, activeObject );
+    }
     else if( command === "setTip" ){
       activeObject.tip = code[i++];
     }
@@ -2565,6 +2649,7 @@ function createKwic( A, obj, data ){
     console.log( X[i] );
   }
   obj.permutedIndex = X;
+  obj.onClick = findInKwic;//["clickAction",obj.name ];
 }
 
 function sizeSpacer( A, obj, data ){
