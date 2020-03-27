@@ -32,7 +32,7 @@ The detailed data for the chart follows.
         ]},
     {"HStack":[
         {"Rectangle":"ACE",
-        "tip":"<h3>Angiotensin-converting enzyme ACE (<a href='https://www.uniprot.org/uniprot/A0A0A0MSN4'>A0A0A0MSN4</a>)</h3>Carboxypeptidase that converts angiotensin I to angiotensin II be cleaving the terminal His-Leu.  Increases vasoconstrictor activity of angiotensin.  Inactivates bradykinin (vasodilator).  Also has glycosidase activity.  NO action on angiotensin II.  Activated by Chloride.  Inhibited by lisinopril.  Located in plasma membrane and extracellular"},
+        "tip":"<h3>Angiotensin-converting enzyme ACE (<a href='https://www.uniprot.org/uniprot/A0A0A0MSN4'>A0A0A0MSN4</a>)</h3>Carboxypeptidase that converts angiotensin I to angiotensin II by cleaving the terminal His-Leu.  Increases vasoconstrictor activity of angiotensin.  Inactivates bradykinin (vasodilator).  Also has glycosidase activity.  NO action on angiotensin II.  Activated by Chloride.  Inhibited by lisinopril.  Located in plasma membrane and extracellular"},
         {"Rectangle":"ACE2",
 "tip":"<h3>Angiotensin Converting Enzyme, ACE2 (<a href='https://www.uniprot.org/uniprot/Q9BYF1'>Q9BYF1</a>)</h3>The SARS-CoV receptor ACE2 has a protective role in acute lung failure. SARS-CoV Spike protein binding to ACE2 downmodulates ACE2 expression.  Loss of ACE2 expression results in severe acute respiratory failure.  ACE2 is a carboxypeptidase that converts angiotensin I to angiotensin 1-9.  Activated by Chloride.  NOT Inhibited by lisinopril or standard ACE inhibitors." }
         ]},
