@@ -17,7 +17,8 @@ The detailed data for the chart follows.
 
 <pre>ADD:DATA=
 {
-"KWIC":["1: THE ORIGIN, TRANSMISSION AND CLINICAL THERAPIES ON CORONAVIRUS DISEASE 2019 (COVID-19) OUTBREAK - AN UPDATE ON THE STATUS",
+"KWIC":"index",
+"values": ["1: THE ORIGIN, TRANSMISSION AND CLINICAL THERAPIES ON CORONAVIRUS DISEASE 2019 (COVID-19) OUTBREAK - AN UPDATE ON THE STATUS",
         "2: FROM SARS TO MERS, THRUSTING CORONAVIRUSES INTO THE SPOTLIGHT",
         "3: MIDDLE EAST RESPIRATORY SYNDROME CORONAVIRUS: ANOTHER ZOONOTIC BETACORONAVIRUS CAUSING SARS-LIKE DISEASE",
         "4: EMERGING NOVEL CORONAVIRUS (2019-NCOV)—CURRENT SCENARIO, EVOLUTIONARY PERSPECTIVE BASED ON GENOME ANALYSIS AND RECENT DEVELOPMENTS",
@@ -124,5 +125,7 @@ With the layout established, the details that follow customise the objects.
 
 
 
-<pre>CREDITS:CAPTION=A Keyword in context index;tip=</pre>
+<pre>CREDITS:CAPTION=Keyword in Context index - Click/Drag to explore words;tip=</pre>
+
+This is a Keyword in Context index of 23,000 papers relating to Covid.  Click on the word of interest and then drag to find papers sharing the same keyword or phrase in their titles.<br><br>
 <b>Credits:</b> <em>CC0 ©2020</em>

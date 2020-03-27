@@ -1661,6 +1661,65 @@ function drawGeshi(A, obj, d){
 }
 
 
+function drawKwic(A, obj, d){
+  if( d.stage !== kStageFillAndText )
+    return;
+
+  //console.log( "draw - "+obj.type);
+  var l = obj.layout;
+  var x = l.x0;
+  var y = l.y0;
+  var xw = l.xw;
+  var yh = l.yh;
+
+
+  // This sizing/font matches typical appearance of <pre> element.
+  var ctx = A.BackingCanvas.ctx;
+  ctx.font = "13px monospace";
+
+  // Approximate height (as M is 'square' );
+  // Advanced metrics not supported in firefox or ie or edge.
+  var oneSpace = ctx.measureText( "M").width;
+  var textHeight = oneSpace *1.8;
+  var textLineSpacing = textHeight;
+  var kwicSpace = oneSpace;
+
+  var i;
+  var lines = Math.floor( yh/textLineSpacing );
+  var D = obj.permutedIndex;
+
+  y+= 1.5*textLineSpacing;
+
+  var offsetX = xw/3;
+  var offsetY = yh *20;
+
+  var dx = offsetX;
+  var iStart = Math.floor(offsetY / textLineSpacing);
+  var dy = offsetY - iStart * textLineSpacing;
+
+
+
+  for( i = iStart;i< Math.min( iStart+lines, D.length); i++){
+    var str = D[i];
+
+    ctx.textAlign = "right";
+    ctx.fillText(str, x+dx-kwicSpace,y + dy + textLineSpacing*(i-iStart));
+    ctx.textAlign = "left";
+    ctx.fillText(str, x+dx,y + dy + textLineSpacing*(i-iStart));
+    /*
+        if( obj.hotspotColour ){
+          var ctx2 = A.Hotspots.ctx;
+          ctx2.beginPath();
+          ctx2.rect(x, y, xw, yh);
+          ctx2.fillStyle = obj.hotspotColour;
+          ctx2.fill();
+        }
+     */
+  }
+}
+
+
+
 
 
 function drawText(A, obj, d){
@@ -2446,11 +2505,13 @@ function permuteMe( values ){
 function createKwic( A, obj, data ){
   console.log("Got it");
   //var X = [ obj.content[0] ];
-  var X = permuteMe( obj.content );
+  var X = permuteMe( obj.values );
   var i;
+  X.sort( );
   for(i=0;i<X.length;i++){
     console.log( X[i] );
   }
+  obj.permutedIndex = X;
 }
 
 function sizeSpacer( A, obj, data ){
@@ -3315,7 +3376,7 @@ function registerMethods()
   registerMethod( "Tree",     0,0,0, drawTree);
   registerMethod( "Arrows",   0, sizeNowt,layoutNowt, drawArrows);
   registerMethod( "Prog",     createProg,sizeNowt,layoutNowt, 0);
-  registerMethod( "KWIC",   createKwic, sizeNowt,layoutNowt, 0);
+  registerMethod( "KWIC",   createKwic, 0,0, drawKwic);
 
 }
 
