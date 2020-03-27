@@ -8,7 +8,7 @@ This is the spec for the interactive diagram which shows some code.
 Here's the result:
 
 -----
-{{#widget:WikiDiagram|page=Geshi|init=yes}}
+{{#widget:WikiDiagram|page=Kwic|init=yes}}
 -----
 
 The detailed data for the chart follows.
