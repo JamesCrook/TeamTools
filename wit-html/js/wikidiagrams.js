@@ -171,6 +171,8 @@ function populateDomElement(A, contentHere){
   A.FocusCanvas.onmousemove = mousemoveOnMap;
   A.FocusCanvas.onmouseout = onMouseOut;
   A.FocusCanvas.onclick = onFocusClicked;
+  A.FocusCanvas.onmouseup = onMouseUp;
+  A.FocusCanvas.onmousedown = onMouseDown;
 
   A.FocusCanvas.style.position = "absolute";
   A.FocusCanvas.style.left = "0px";
@@ -1672,6 +1674,9 @@ function drawKwic(A, obj, d){
   var xw = l.xw;
   var yh = l.yh;
 
+  if( !isDefined( obj.offset )){
+    obj.offset = {x:xw/3, y:yh*20};
+  }
 
   // This sizing/font matches typical appearance of <pre> element.
   var ctx = A.BackingCanvas.ctx;
@@ -1690,12 +1695,18 @@ function drawKwic(A, obj, d){
 
   y+= 1.5*textLineSpacing;
 
-  var offsetX = xw/3;
-  var offsetY = yh *20;
+  var offsetX = obj.offset.x;
+  var offsetY = obj.offset.y;
+
+  if( A.Status.click ){
+    offsetX += A.Status.move.x-A.Status.click.x;
+    offsetY -= A.Status.move.y-A.Status.click.y;
+
+  }
 
   var dx = offsetX;
   var iStart = Math.floor(offsetY / textLineSpacing);
-  var dy = offsetY - iStart * textLineSpacing;
+  var dy = iStart * textLineSpacing-offsetY;
 
 
 
@@ -2063,6 +2074,44 @@ function showOrHideTip(A, actions){
   }
 }
 
+function onMouseUp( e ){
+  var index = e.target.toolkitIndex;
+  var A = Annotator[index];
+
+  A.Status.displace = {
+    x: A.Status.move.x-A.Status.click.x,
+    y:A.Status.move.y-A.Status.click.y};
+  //A.Status.move = {x:0,y:0};
+  A.Status.click = undefined;
+  console.log( "Up ("+A.Status.displace.x + "," + A.Status.displace.y + ")");
+
+}
+
+function onMouseDown( e ){
+  var index = e.target.toolkitIndex;
+  var A = Annotator[index];
+
+  A.Status.move = {x:0,y:0};
+  A.Status.click = undefined;
+
+  var rect = e.target.getBoundingClientRect();
+  var x = e.clientX - rect.left;
+  var y = e.clientY - rect.top;
+
+  A.Status.move = {x:x,y:y};
+  if( A.Status.displace )
+  {
+    A.Status.click = { x: x-A.Status.displace.x, y: y-A.Status.displace.y };
+  }
+  else
+  {
+    A.Status.click = { x: x, y: y };
+  }
+  console.log( "Down ("+A.Status.click.x + "," + A.Status.click.y + ")");
+  updateImages( A );
+
+}
+
 function mousemoveOnMap(e){
   var index = e.target.toolkitIndex;
   var A = Annotator[index];
@@ -2076,6 +2125,7 @@ function mousemoveOnMap(e){
   var x = Math.ceil(e.clientX - rect.left);
   var y = Math.ceil(e.clientY - rect.top);
   var coordinates = "Coordinates: (" + x + "," + y + ")";
+
 
   var pt = detailPosFromCursorPos(A, x, y);
 
@@ -2099,6 +2149,10 @@ function mousemoveOnMap(e){
     }
     e.target.style.cursor = actions.Click ? 'pointer' : 'auto';
   }
+  if( e.buttons ){
+    A.Status.move = { x: x, y: y };
+    updateImages(A);
+  }
 }
 
 function onFocusClicked(e){
@@ -2120,7 +2174,6 @@ function onFocusClicked(e){
     A.DetailDivFrozen = true;
     showOrHideTip( A, actions );
   }
-
 }
 
 
