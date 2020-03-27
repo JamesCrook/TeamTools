@@ -344,6 +344,27 @@ NextAutoColour = function( A, Tip){
   return rgb;
 };
 
+
+function getBondBetween(pt1, pt2){
+  var vx = pt2.x - pt1.x;
+  var vy = pt2.y - pt1.y;
+
+  var l = Math.sqrt( vx * vx + vy*vy);
+
+
+  var S = [];
+
+  S[0] = { x: pt1.x, y: pt1.y, l:l};
+  S[1] = { x: pt2.x, y: pt2.y, l:l};
+
+  S[0].theta = Math.atan2(vy, vx)+ Math.PI;
+  S[1].theta = S[0].theta - Math.PI;
+
+  return S;
+}
+
+
+
 function innerDraw(A,obj,d){
   if( !obj )
     return;
