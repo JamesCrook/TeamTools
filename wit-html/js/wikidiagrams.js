@@ -1779,7 +1779,10 @@ function drawKwic(A, obj, d){
 
 
   if( d.stage === kStageFillAndText )
-    for( i = iStart;i< Math.min( iStart+lines, D.length); i++){
+    for( i = iStart;i< Math.min( iStart+lines, D.length); i++)
+    {
+      if( i<0 )
+        continue;
     var str = D[i];
 
     ctx.textAlign = "right";
