@@ -2202,6 +2202,7 @@ function onMouseUp( e ){
     y:A.Status.move.y-A.Status.click.y};
   //A.Status.move = {x:0,y:0};
   console.log( "Up at "+stringOfCoord(A.Status.displace, -1 ) );
+  e.target.style.cursor = 'auto';
 
 }
 
@@ -2239,6 +2240,7 @@ function onMouseDown( e ){
   var actions = actionsFromCursorPos(A,x, y, "log");
   if( actions.Down ){
     doAction(A, actions.Down);
+    e.target.style.cursor = 'all-scroll';
   }
 
   drawAgain();
@@ -2280,7 +2282,8 @@ function mousemoveOnMap(e){
     if( actions.Hover ){
       doAction(A, actions.Hover);
     }
-    e.target.style.cursor = actions.Click ? 'pointer' : 'auto';
+    if( !actions.Down )
+      e.target.style.cursor = actions.Click ? 'pointer' : 'auto';
   }
   if( e.buttons ){
     A.Status.move = { x: x, y: y };
