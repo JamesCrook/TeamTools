@@ -1706,6 +1706,23 @@ function drawGeshi(A, obj, d){
   }
 }
 
+function reselectInKwic( obj ){
+  if( obj.selected ){
+    var X = obj.permutedIndex;
+    var index = bSearch(X, obj.selected);
+    console.log("found at: " + index);
+    console.log("value: " + X[index]);
+    if( obj.oneSpace ){
+      var textHeight = obj.oneSpace *1.8;
+      var row = Math.floor(A.Status.click.y / textHeight -0.5);
+      index = index-row;
+      A.Status.click.y += index*textHeight;
+
+
+    }
+  }
+
+}
 
 function findInKwic( A, obj ){
   var l = obj.layout;
@@ -1735,19 +1752,27 @@ function findInKwic( A, obj ){
 
     var str = D[row];
     // wrap around if after end of string.
+    var wrap = col;
     if( col === -1 )
       col =0;
     if( col < 0 )
       col++;
     col = (col + 20*(str.length)) % (str.length);
+    wrap = col-wrap;
+
     if( str.length > col ){
-      while( (str[col]!==' ') && (col>1))
+      while( (str[col]!==' ') && (col>0))
         col--;
       while( (str[col]===' ') && (col < (str.length-1)))
         col++;
       str = str.slice(col) +  " " + str.slice( 0, col);
+      str = str.trimEnd();
     }
     console.log( "Jump to: " +str );
+    obj.selected = str;
+    reselectInKwic( obj );
+    A.Status.click.x -= (col-wrap)*kwicSpace;
+    drawAgain();
   }
 }
 
@@ -2176,8 +2201,13 @@ function onMouseUp( e ){
     x: A.Status.move.x-A.Status.click.x,
     y:A.Status.move.y-A.Status.click.y};
   //A.Status.move = {x:0,y:0};
-  console.log( "Up ("+A.Status.displace.x + "," + A.Status.displace.y + ")");
+  console.log( "Up at "+stringOfCoord(A.Status.displace, -1 ) );
 
+}
+
+function stringOfCoord( coord, mul ){
+  mul = mul || 1;
+  return "("+Math.floor(coord.x*mul)+","+Math.floor(coord.y*mul)+")";
 }
 
 function onMouseDown( e ){
@@ -2195,13 +2225,16 @@ function onMouseDown( e ){
   if( A.Status.displace )
   {
     A.Status.click = { x: x-A.Status.displace.x, y: y-A.Status.displace.y };
+    console.log( "Down at "+stringOfCoord(A.Status.displace, -1 ) + " + click:" +
+      stringOfCoord({x:x,y:y} ) +" = "+
+      stringOfCoord(A.Status.click ) );
   }
   else
   {
     A.Status.click = { x: x, y: y };
+    console.log( "Down at "+ stringOfCoord(A.Status.click ) );
   }
 
-  console.log( "Down ("+A.Status.click.x + "," + A.Status.click.y + ")");
 
   var actions = actionsFromCursorPos(A,x, y, "log");
   if( actions.Down ){
@@ -2663,6 +2696,26 @@ function permuteMe( values ){
   return results;
 }
 
+// Always return something.
+// Aim to return the line that IS item, or near miss.
+function bSearch(array, item) {
+  // Use an INCLUSIVE range.
+  var lo = 0;
+  var hi = array.length - 1;
+  var mid = hi >> 1;
+  while (lo <= hi) {
+    mid = (lo +hi) >> 1;
+    if (item > array[mid]) {
+      lo = mid + 1;
+    } else if(item < array[mid]) {
+      hi = mid - 1;
+    } else {
+      return mid;
+    }
+  }
+  return mid;
+}
+
 
 function createKwic( A, obj, data ){
   console.log("Got it");
@@ -2675,6 +2728,8 @@ function createKwic( A, obj, data ){
   }
   obj.permutedIndex = X;
   obj.onClick = findInKwic;//["clickAction",obj.name ];
+
+
 }
 
 function sizeSpacer( A, obj, data ){
