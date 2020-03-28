@@ -2648,6 +2648,7 @@ function permuteMe( values ){
   var results = [];
   for( i= 0;i< values.length;i++){
     var str = values[i];
+    str = str.replace( /^[0-9]*: /, ":< " );
     var words = str.split( ' ');
     var j;
     for( j=0;j<words.length;j++){
@@ -2669,7 +2670,7 @@ function createKwic( A, obj, data ){
   var X = permuteMe( obj.values );
   var i;
   X.sort( );
-  for(i=0;i<X.length;i++){
+  for(i=0;i<Math.min( 3, X.length);i++){
     console.log( X[i] );
   }
   obj.permutedIndex = X;
@@ -3357,6 +3358,7 @@ var Message;
 var Message2;
 
 function makeAnnotator(){
+  console.log( "Making annotator instance "+Annotator.length );
   var l = Annotator.length;
   var newA = {};
   newA.index = l;
@@ -3435,6 +3437,7 @@ function initEditors(){
 
 function addPreview(){
   Annotator.splice(1);
+  console.log( "Removing annotator instance. "+Annotator.length + " remain" );
   initContent("atkContentDiv2");
 }
 
