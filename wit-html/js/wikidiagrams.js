@@ -328,16 +328,16 @@ AutoColourFromOffset = function( A, offset ){
 }
 
 // tell some colours apart.
-NextAutoColour = function( A, Tip){
+NextAutoColour = function( A, Tip, overwrite){
   var a = (A.Hotspots.autoColourIx++);
   var index = autoColourOfIndex(a);
   var rgb = rgbOfJsonColourTuple(index);
   var actions = A.Hotspots.actionsOfColour[index];
-  if( actions )
+  if( actions && !overwrite)
     return rgb;
 
   AddHot( A, index );
-  if( "Tip" )
+  if( Tip )
     AddDetail( A, Tip );
 
 
@@ -1821,20 +1821,33 @@ function drawKwic(A, obj, d){
   var dx = offsetX;
   var iStart = Math.floor(offsetY / textLineSpacing);
   var dy = iStart * textLineSpacing-offsetY;
-
-
+  var str;
+  var S;
+  var r=6;
+  var r2=2;
 
   if( d.stage === kStageFillAndText )
     for( i = iStart;i< Math.min( iStart+lines, D.length); i++)
     {
       if( i<0 )
         continue;
-    var str = D[i];
+    str = D[i];
 
+    ctx.fillStyle = "rgb(0,0,0)";
     ctx.textAlign = "right";
     ctx.fillText(str, x+dx-kwicSpace,y + dy + textLineSpacing*(i-iStart));
     ctx.textAlign = "left";
     ctx.fillText(str, x+dx,y + dy + textLineSpacing*(i-iStart));
+
+    S= {x: x+dx-kwicSpace/2+1, y: y+ dy + textLineSpacing*(i-iStart)-kwicSpace/2};
+    ctx.fillStyle = "rgb(100,100,250)";
+    ctx.beginPath();
+    ctx.rect( S.x-r2, S.y-r, r2*2, r*2 );
+    //ctx.arc(S.x, S.y, r, 0, 2 * Math.PI, false);
+    ctx.closePath();
+    ctx.fill();
+
+
   }
 
   if(  d.stage === kStageHots ){
@@ -1845,6 +1858,28 @@ function drawKwic(A, obj, d){
     ctx2.rect(x, y, xw, yh);
     ctx2.fillStyle = c;
     ctx2.fill();
+
+    if( A.Hotspots && A.Hotspots.autoColourIx)
+      A.Hotspots.autoColourIx += lines;
+
+    for( i = iStart;i< Math.min( iStart+lines, D.length); i++){
+      if( i < 0 ) continue;
+      str = D[i];
+      var str2 = D[i].split(":<",2);
+      str2 = "PMCID date<br>"+str2[1]+" <span style='color:blue'>&#9474;</span>"+str2[0].trimStart()+"<br>Authors";
+
+
+      S= {x: x+dx-kwicSpace/2+1, y: y+ dy + textLineSpacing*(i-iStart)-kwicSpace/2};
+      ctx2.fillStyle = NextAutoColour( A, ""+i+ ": "+str2, true );
+      ctx2.beginPath();
+      ctx2.rect( S.x-r2, S.y-r, r2*2, r*2 );
+      //ctx.arc(S.x, S.y, r, 0, 2 * Math.PI, false);
+      ctx2.closePath();
+      ctx2.fill();
+
+
+    }
+
   }
 }
 
