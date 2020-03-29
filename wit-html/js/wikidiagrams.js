@@ -1776,6 +1776,14 @@ function findInKwic( A, obj ){
   }
 }
 
+function pmcLink( str ){
+  if( str.indexOf( "PMCID: " ) == 0 ){
+    return "<a href='https://www.ncbi.nlm.nih.gov/pmc/articles/" +
+      str.substr(7) + "/' target='_blank'>" + str.substr(7) + "</a>";
+  }
+  return str;
+}
+
 function drawKwic(A, obj, d){
   if( d.stage !== kStageFillAndText && ( d.stage !== kStageHots ) )
     return;
@@ -1832,6 +1840,7 @@ function drawKwic(A, obj, d){
       if( i<0 )
         continue;
     str = D[i];
+    str = str.split(" ~")[0];
 
     ctx.fillStyle = "rgb(0,0,0)";
     ctx.textAlign = "right";
@@ -1855,22 +1864,45 @@ function drawKwic(A, obj, d){
     AddDown(A,["clickObject",obj.id]);
     var ctx2 = A.Hotspots.ctx;
     ctx2.beginPath();
-    ctx2.rect(x, y, xw, yh);
+    ctx2.rect(x, y-1.5*textLineSpacing, xw, yh);
     ctx2.fillStyle = c;
     ctx2.fill();
 
     if( A.Hotspots && A.Hotspots.autoColourIx)
       A.Hotspots.autoColourIx += lines;
 
+    var str2;
     for( i = iStart;i< Math.min( iStart+lines, D.length); i++){
       if( i < 0 ) continue;
-      str = D[i];
-      var str2 = D[i].split(":<",2);
-      str2 = "PMCID date<br>"+str2[1]+" <span style='color:blue'>&#9474;</span>"+str2[0].trimStart()+"<br>Authors";
+      var parts = D[i].split(" ~");
+
+      if( obj.longlist ){
+        var index = parseInt( parts[1] ) || 0;
+        str2 = obj.longlist[index];
+        var split = str2.split("\n" );
+        if( split.length > 3 ){
+          str2 = split[0]+
+            "<br><b>"+
+            pmcLink(split[3])+
+            "</b><br><br>"+
+            split[2]+
+            "</div><div style='font-size:75%;line-height:90%'><br><em>"+
+            split[1]+
+            "</em></div><div>";
+
+        }
+      }
+      else {
+        str2 = parts[0].split(":<", 2);
+        str2 = "PMCID date<br>" + str2[1] +
+          " <span style='color:blue'>&#9474;</span>" + str2[0].trimStart() +
+          "<br>Authors";
+        str2 = ""+i+": "+str2;
+      }
 
 
       S= {x: x+dx-kwicSpace/2+1, y: y+ dy + textLineSpacing*(i-iStart)-kwicSpace/2};
-      ctx2.fillStyle = NextAutoColour( A, ""+i+ ": "+str2, true );
+      ctx2.fillStyle = NextAutoColour( A, str2, true );
       ctx2.beginPath();
       ctx2.rect( S.x-r2, S.y-r, r2*2, r*2 );
       //ctx.arc(S.x, S.y, r, 0, 2 * Math.PI, false);
@@ -2728,7 +2760,7 @@ function permuteMe( values ){
       var perm = words.slice(j).join(" ");
       if( j> 0 )
         perm = perm + " " + words.slice(0,j).join(" ");
-      results.push( perm );
+      results.push( perm + " ~"+i);
     }
   }
   return results;
@@ -2755,6 +2787,33 @@ function bSearch(array, item) {
 }
 
 
+function newKwicData(A, obj, text ){
+  console.log( "Got text response "+text.length+" chars for object "+obj.type );
+  text = text.replace( /\r\n/gm , "\n" );
+  var X = text.split( "\n\n" );
+  obj.longlist = X;
+  console.log( "number of items "+X.length );
+
+  var Y;
+  Y= [];
+  var i;
+  for(i=0;i<X.length;i++){
+    var str = X[i].split("\n")[0];
+    str = str.toUpperCase();
+    Y.push(str);
+  }
+  Y = permuteMe( Y );
+  var i;
+  Y.sort( );
+  for(i=0;i<Math.min( 3, Y.length);i++){
+    console.log( Y[i] );
+  }
+  obj.permutedIndex = Y;
+
+}
+
+
+
 function createKwic( A, obj, data ){
   console.log("Got it");
   //var X = [ obj.content[0] ];
@@ -2767,7 +2826,9 @@ function createKwic( A, obj, data ){
   obj.permutedIndex = X;
   obj.onClick = findInKwic;//["clickAction",obj.name ];
 
-
+  if( !A.Papers ){
+    requestPapers(A, "CoronavirusTitlesShort", obj);
+  }
 }
 
 function sizeSpacer( A, obj, data ){
@@ -3391,10 +3452,24 @@ function fileActionLoader(A,data, action, url,section,fn){
 }
 
 function requestSpec(A,source, fromwiki,section,fn){
-
-  fn = fn || handleNewData;
   A.SpecName = source;
+  requestFile(A,source, fromwiki,section,fn);
+}
 
+function requestPapers(A,source, objin){
+  A.Papers = source;
+  var fromWiki = false;
+
+  var obj = objin;
+  var fn = function (A,text, n ){
+    newKwicData( A, obj, text );
+  };
+
+  requestFile(A,source, fromWiki, 0,fn);
+}
+
+function requestFile(A,source, fromwiki,section,fn){
+  fn = fn || handleNewData;
   if( isFromServer() === "no" )
   {
     fileActionLoader( A,"", "", "./wiki/" + source + ".txt",section, fn);
@@ -3634,7 +3709,7 @@ function registerMethods()
   registerMethod( "Tree",     0,0,0, drawTree);
   registerMethod( "Arrows",   0, sizeNowt,layoutNowt, drawArrows);
   registerMethod( "Prog",     createProg,sizeNowt,layoutNowt, 0);
-  registerMethod( "KWIC",   createKwic, 0,0, drawKwic);
+  registerMethod( "KWIC",     createKwic, 0,0, drawKwic);
 
 }
 
