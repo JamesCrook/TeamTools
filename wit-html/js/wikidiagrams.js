@@ -2058,6 +2058,69 @@ function drawInfoButton(A){
   ctx.fillText("i", x + 9, y + 19);
 }
 
+
+function drawFilledArrow(ctx, S, style, d){
+  if( !isDefined( d ) )
+    d=0;
+  ctx.save();
+  ctx.beginPath();
+
+  ctx.translate(S.x, S.y);
+  ctx.rotate(S.theta);
+  ctx.translate( d, 0 );
+
+  ctx.moveTo(0,S.shaftWidth/2 );
+  ctx.lineTo( S.shaftLength, S.shaftWidth/2 );
+  ctx.lineTo( S.shaftLength, S.shaftWidth/2 );
+  ctx.lineTo( S.shaftLength, S.headWidth/2 );
+  ctx.lineTo( S.shaftLength+S.headLength, 0 );
+  ctx.lineTo( S.shaftLength, -S.headWidth/2 );
+  ctx.lineTo( S.shaftLength, -S.shaftWidth/2 );
+  ctx.lineTo( S.shaftLength, -S.shaftWidth/2 );
+  ctx.lineTo(0,-S.shaftWidth/2 );
+
+  ctx.closePath();
+  ctx.fill();
+
+  ctx.restore();
+}
+
+
+// Draws arrows pointing North, South East and West
+// as an overlay.
+function drawFocusDragger(A,x, y){
+
+  var ctx = A.FocusCanvas.ctx;
+
+  ctx.clearRect(0, 0, A.Porthole.width, A.Porthole.height);
+
+
+  ctx.fillStyle = "rgba( 5,5,5,0.2)";
+
+  var S={};
+  S.shaftWidth = 10;
+  S.shaftLength = 20;
+  S.headWidth = 30;
+  S.headLength = 25;
+  S.theta = 0;
+  S.x = x;
+  S.y = y;
+
+  drawFilledArrow(ctx, S, "pointed", S.shaftWidth /2);
+  S.theta = Math.PI/2;
+  drawFilledArrow(ctx, S, "pointed", S.shaftWidth /2);
+  S.theta = Math.PI;
+  drawFilledArrow(ctx, S, "pointed", S.shaftWidth /2);
+  S.theta = Math.PI*1.5;
+  drawFilledArrow(ctx, S, "pointed", S.shaftWidth /2);
+
+  ctx.beginPath();
+  var w = S.shaftWidth;
+  ctx.rect( x-w/2,y-w/2,w,w );
+  ctx.closePath();
+  ctx.fill();
+}
+
 function drawFocusSpot(A,x, y){
 
   var ctx = A.FocusCanvas.ctx;
@@ -2065,7 +2128,6 @@ function drawFocusSpot(A,x, y){
   ctx.globalCompositeOperation = 'source-over';
   ctx.clearRect(0, 0, A.Porthole.width, A.Porthole.height);
 
-  var m = A.Porthole.margin;
   ctx.fillStyle = "rgba( 5,5,5,0.2)";
 
   ctx.beginPath();
@@ -2215,6 +2277,7 @@ function onMouseOut(e){
     A.Status.OldHit = -1;
   }
   A.DetailDivFrozen = false;
+  A.Cursor = "spot";
   e.target.style.cursor = 'auto';
 }
 
@@ -2272,7 +2335,7 @@ function onMouseUp( e ){
   //A.Status.move = {x:0,y:0};
   console.log( "Up at "+stringOfCoord(A.Status.displace, -1 ) );
   e.target.style.cursor = 'auto';
-
+  A.Cursor="spot";
 }
 
 function stringOfCoord( coord, mul ){
@@ -2309,7 +2372,9 @@ function onMouseDown( e ){
   var actions = actionsFromCursorPos(A,x, y, "log");
   if( actions.Down ){
     doAction(A, actions.Down);
-    e.target.style.cursor = 'all-scroll';
+    //e.target.style.cursor = 'all-scroll';
+    A.Cursor="dragger";
+    drawFocusDragger(A,x, y);
   }
 
   drawAgain();
@@ -2333,7 +2398,10 @@ function mousemoveOnMap(e){
 
   var pt = detailPosFromCursorPos(A, x, y);
 
-  drawFocusSpot(A,x, y);
+  if( A.Cursor === "dragger" )
+    drawFocusDragger(A,x, y);
+  else
+    drawFocusSpot(A,x, y);
   drawInfoButton(A);
   var actions = actionsFromCursorPos(A, x, y);
   if( Message ) Message.innerHTML = coordinates;
