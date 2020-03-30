@@ -1751,6 +1751,7 @@ function findInKwic( A, obj ){
   if( (0<=row) && (row<=D.length)){
 
     var str = D[row];
+    str = str.split(" ~")[0];
     // wrap around if after end of string.
     var wrap = col;
     if( col === -1 )
@@ -2214,6 +2215,7 @@ function onMouseOut(e){
     A.Status.OldHit = -1;
   }
   A.DetailDivFrozen = false;
+  e.target.style.cursor = 'auto';
 }
 
 function actionsFromCursorPos(A,x,y){
@@ -2339,7 +2341,7 @@ function mousemoveOnMap(e){
     A.DetailDiv.style.left = pt.x + "px";
     A.DetailDiv.style.top = pt.y + "px";
   }
-  if( A.Status.OldHit !== actions.Zone ){
+  if( (A.Status.OldHit !== actions.Zone) && !e.buttons  ){
     A.Status.OldHit = actions.Zone;
 
     // Update the detail div
@@ -2751,7 +2753,7 @@ function permuteMe( values ){
   var results = [];
   for( i= 0;i< values.length;i++){
     var str = values[i];
-    str = str.replace( /^[0-9]*: /, ":< " );
+    str = str.replace( /^[0-9]*: */, ":< " );
     var words = str.split( ' ');
     var j;
     for( j=0;j<words.length;j++){
