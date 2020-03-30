@@ -1709,7 +1709,7 @@ function drawGeshi(A, obj, d){
 function reselectInKwic( obj ){
   if( obj.selected ){
     var X = obj.permutedIndex;
-    var index = bSearch(X, obj.selected);
+    var index = bSearch(X, obj.selected + " ~ZZZ");
     console.log("found at: " + index);
     console.log("value: " + X[index]);
     if( obj.oneSpace ){
@@ -2777,6 +2777,7 @@ function bSearch(array, item) {
   var mid = hi >> 1;
   while (lo <= hi) {
     mid = (lo +hi) >> 1;
+    //console.log( "Cf "+array[mid] );
     if (item > array[mid]) {
       lo = mid + 1;
     } else if(item < array[mid]) {
@@ -2785,7 +2786,7 @@ function bSearch(array, item) {
       return mid;
     }
   }
-  return mid;
+  return hi;
 }
 
 
