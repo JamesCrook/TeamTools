@@ -128,5 +128,6 @@ With the layout established, the details that follow customise the objects.
 
 <pre>CREDITS:CAPTION=Keyword in Context index - Click/Drag to explore words;tip=</pre>
 
-This is a Keyword in Context index of 23,000 papers relating to Covid.  Click on the word of interest and then drag to find papers sharing the same keyword or phrase in their titles.<br><br>
+This is a Keyword in Context index of the first 500 of 23,000 papers relating to Covid.  Will show the full set, once we have background loading working.<br><br>Click on the word of interest and then drag to find papers sharing the same keyword or phrase in their titles.<br><br>
+Hover over the blue strip for deatils of each paper.<br><br>
 <b>Credits:</b> <em>CC0 ©2020</em>

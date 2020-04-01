@@ -70,7 +70,8 @@ The detailed data for the chart follows.
      "Arrows":
      [
         "SARS-CoV Spike", "ACE2",
-        "ACE2", "Angiotensin II"
+        "ACE2", "Angiotensin II",
+        "AT2R","Lung Injury"
         ]},
     {"head":"pointed",
      "Arrows":
@@ -78,8 +79,7 @@ The detailed data for the chart follows.
         "ACE","Angiotensin II",
         "Angiotensin II","AT1R",
         "Angiotensin II","AT2R",
-        "AT1R","Lung Injury",
-        "AT2R","Lung Injury"
+        "AT1R","Lung Injury"
         ]}
  ]}
 </pre>
@@ -88,5 +88,5 @@ The detailed data for the chart follows.
    CAPTION=Mechanism of SARS-CoV lung injury;
    tip=</pre>
 <h3>Lung injury with SARS-CoV</h3><ul>
-<li>SARS-CoV receptor ACE2 has a protective role in acute lung failure.<li>SARS-CoV Spike–mediated lung failure can be rescued by inhibition of AT1R - according to research on in vivo mice cells.</ul>
+<li>SARS-CoV receptor ACE2 has a protective role in acute lung failure.<li>SARS-CoV Spike–mediated lung failure can be rescued by inhibition of AT1R - according to research/tests on in vivo mice cells.</ul>
 <br><b>Credits:</b> <em>Diagram adapted from Wikipathways, <a href='https://www.wikipathways.org/index.php/Pathway:WP4799'>Koning & Ehrhart</a>, ©2020</em>
