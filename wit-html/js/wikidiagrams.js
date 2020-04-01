@@ -3541,16 +3541,15 @@ function requestPapers(A,source, objin){
 
 function requestFile(A,source, fromwiki,section,fn){
   fn = fn || handleNewData;
+  var date = new Date();
+  var nMillis = date.getTime();
+
   if( isFromServer() === "no" )
   {
     fileActionLoader( A,"", "", "./wiki/" + source + ".txt",section, fn);
   } else  if( fromwiki !== 'yes' ){
     fileActionLoader( A,"", "", "https://wit.audacityteam.org/wiki/" + source + ".txt?time="+ nMillis,section,fn);
-  }
-
-    else {
-    var date = new Date();
-    var nMillis = date.getTime();
+  } else {
     // action=raw to get unprocessed file from wiki.
     // time=nMillis to avoid issues with cached content.
     fileActionLoader( A,"", "",
