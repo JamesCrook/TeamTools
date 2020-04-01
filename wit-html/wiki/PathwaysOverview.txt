@@ -52,7 +52,7 @@ The detailed data for the regions, buttons and tooltips follows.
              }
             ]},
         {"VStack":[
-            {"Tile":"Clotting",
+            {"Tile":"Reconstruction",
              "src":"IconClot.svg",
              "opacity":0.3},
             {"Tile":"Other.",
@@ -128,10 +128,11 @@ The detailed data for the regions, buttons and tooltips follows.
 </ul>
 
 <pre>NEXTOBJECT:TIP=</pre>
-<h1><a href='https://wiki.audacityteam.org/wiki/Toolbox/Clotting'>Clotting</a></h1>
+<h1><a href='https://wiki.audacityteam.org/wiki/Toolbox/Reconstruction'>Reconstruction</a></h1>
 <ul>
 <li>Platelets
 <li>Fibrin
+<li>Folding and chaperonins
 </ul>
 
 <pre>NEXTOBJECT:TIP=</pre>
