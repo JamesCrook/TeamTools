@@ -3,7 +3,8 @@ __NOTOC__
 
 {{ATK_Header}}
 
-This is the spec for the interactive diagram which shows some code.
+This is the spec for the interactive diagram which shows an index of
+coronavirus papers
 
 Here's the result:
 
@@ -18,7 +19,8 @@ The detailed data for the chart follows.
 <pre>ADD:DATA=
 {
 "KWIC":"index",
-"selected":"KEY TARGET FOR  ANTIVIRALS",
+"selected":"KEY TARGET FOR ANTIVIRALS",
+"source":"CoronavirusTitlesShort",
 "values": ["1: THE ORIGIN, TRANSMISSION AND CLINICAL THERAPIES ON CORONAVIRUS DISEASE 2019 (COVID-19) OUTBREAK - AN UPDATE ON THE STATUS",
         "2: FROM SARS TO MERS, THRUSTING CORONAVIRUSES INTO THE SPOTLIGHT",
         "3: MIDDLE EAST RESPIRATORY SYNDROME CORONAVIRUS: ANOTHER ZOONOTIC BETACORONAVIRUS CAUSING SARS-LIKE DISEASE",
@@ -128,6 +130,6 @@ With the layout established, the details that follow customise the objects.
 
 <pre>CREDITS:CAPTION=Keyword in Context index - Click/Drag to explore words;tip=</pre>
 
-This is a Keyword in Context index of the first 500 of 23,000 papers relating to Covid.  Will show the full set, once we have background loading working.<br><br>Click on the word of interest and then drag to find papers sharing the same keyword or phrase in their titles.<br><br>
-Hover over the blue strip for deatils of each paper.<br><br>
+This is a Keyword in Context index of the first 500 of 23,000 papers relating to Covid.  Will show the full set, once I have background loading working.<br><br>Click on the word of interest and then drag to find papers sharing the same keyword or phrase in their titles.<br><br>
+Hover over the blue strip for details of each paper.<br><br>
 <b>Credits:</b> <em>CC0 ©2020</em>

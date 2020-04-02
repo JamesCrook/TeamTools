@@ -1785,6 +1785,15 @@ function pmcLink( str ){
   return str;
 }
 
+function wikipathwayLink( str ){
+  if( str.indexOf( "Pathway:" ) == 0 ){
+    return "<a href='https://www.wikipathways.org/index.php/" +
+      str+ "' target='_blank'>" + str.substr(8) + "</a>";
+  }
+  return str;
+}
+
+
 function drawKwic(A, obj, d){
   if( d.stage !== kStageFillAndText && ( d.stage !== kStageHots ) )
     return;
@@ -1890,7 +1899,14 @@ function drawKwic(A, obj, d){
             "</div><div style='font-size:75%;line-height:90%'><br><em>"+
             split[1]+
             "</em></div><div>";
-
+        }
+        else if( split.length > 2 ){
+          str2 = split[0]+
+            "<br><br><b>"+
+            wikipathwayLink(split[1])+
+            "</b><br><br>"+
+            split[2]+
+            "";
         }
       }
       else {
@@ -2821,7 +2837,8 @@ function permuteMe( values ){
   var results = [];
   for( i= 0;i< values.length;i++){
     var str = values[i];
-    str = str.replace( /^[0-9]*: */, ":< " );
+    str = str.replace( /^[0-9]*: */, "" );
+    str = ":< "+str;
     var words = str.split( ' ');
     var j;
     for( j=0;j<words.length;j++){
@@ -2898,7 +2915,8 @@ function createKwic( A, obj, data ){
   obj.onClick = findInKwic;//["clickAction",obj.name ];
 
   if( !A.Papers ){
-    requestPapers(A, "CoronavirusTitlesShort", obj);
+    if( obj.source )
+      requestPapers(A, obj.source, obj);
   }
 }
 
