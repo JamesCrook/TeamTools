@@ -241,7 +241,7 @@ function layoutBond( A, obj, d ){
   obj.S1.x = x + xw/2 + 50;
   obj.S1.y = y + yh/2;
   obj.multiplicity = 2;
-  obj.S = getBondBetween( obj.S0, obj.S1 );
+  obj.S = getLineBetweenPoints(obj.S0, obj.S1);
 }
 
 function drawAtom(A, obj, d){
@@ -300,7 +300,7 @@ function drawBond(A, obj, d){
 
   var ctx = A.BackingCanvas.ctx;
 
-  obj.S = getBondBetween( obj.S0, obj.S1 );
+  obj.S = getLineBetweenPoints(obj.S0, obj.S1);
 
   drawBondInner( ctx, obj.S[0], obj );
   //drawEnds(ctx, obj ,-10);
@@ -365,7 +365,7 @@ function drawChem(A, obj, d){
   ctx.save();
   ctx.beginPath();
 
-  setStyles(ctx, obj);
+  applyObjectSettingsToContext(ctx, obj);
   if( obj.cornerRadius )
     drawRoundRect(ctx, x, y, xw, yh, obj.cornerRadius);
   else

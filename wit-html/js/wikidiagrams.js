@@ -44,7 +44,6 @@ function InitAnnotator(A){
   A.Styles.autolink = false;
 }
 
-
 function resetHotspots(A){
 
   // Both these array structures includes hand-specified and autocolours.
@@ -77,9 +76,6 @@ function resetHotspots(A){
 
   // Bogus entry to catch bad tips.  This bogus entry acts as Zone 0.
   AddHot(A,"[5,0,0,0]");
-}
-
-function resetSceneGraph(A){
 }
 
 function startChart(A){
@@ -117,9 +113,8 @@ function resizeForImage(A,img){
   A.Porthole.width = img.width;
   A.Porthole.height = img.height;
   // resizeDivs();
-  if( A.Status.isAppReady ) onChart(A);
+  if( A.Status.isAppReady ) setupAndDrawDiagramDiv(A);
 }
-
 
 function populateDomElement(A, contentHere){
 
@@ -239,7 +234,7 @@ AddInfo = function( A ){
 };
 
 AddDetail = function( A, text){
-  A.Hotspots.Current.Tip = addHyperlinks( A, text );
+  A.Hotspots.Current.Tip = formatClassNames(A, text);
 };
 
 AddHover = function( A, text){
@@ -345,7 +340,306 @@ NextAutoColour = function( A, Tip, overwrite){
 };
 
 
-function getBondBetween(pt1, pt2){
+
+function sizeLayoutAndDrawDiagram(A, obj, d){
+  sizeCells(A, obj, d);
+  d.margins = 0;
+  layoutCells(A, obj, d);
+  drawDiagram(A, obj, d);
+}
+
+function setupAndDrawDiagramDiv(A){
+  console.log("setupAndDrawDiagram");
+  A.Detail.width = A.Porthole.width / 2 - 10;
+  A.Detail.height = Math.min(300, A.Porthole.height - 100);
+  resizeDivs(A);
+  var d = {};
+  var obj = A.RootObject;
+  setCellLayout( A,0, 0, A.Porthole.width, A.Porthole.height, obj);
+  sizeLayoutAndDrawDiagram(A, obj, d);
+  A.Status.isAppReady = true;
+}
+
+function timerCallback(){
+
+  for(var i=0;i<Annotator.length;i++){
+    A = Annotator[i];
+    if( A.DetailHideTime > 0 ){
+      A.DetailHideTime--;
+      if( A.DetailHideTime <= 0 ){
+        A.DetailDiv.style.display = 'none';
+      }
+    }
+
+    if( A.Status.isFocus && !A.newEvents)
+      continue;
+    A.newEvents = false;
+    A.Status.time++;
+    // animation stops on America.
+    // and dark side of moon.
+    if( A.Status.time > 600 )
+      continue;
+    if( !A.Status.drawing )
+      drawDiagram(A, A.RootObject, {});
+  }
+}
+
+function detailPosFromCursorPos(A,x, y){
+  var pt = {};
+  // get position as somewhere in range -1..+1
+  var vx = 2.0 * x / A.Porthole.width - 1;
+  var vy = 2.0 * y / A.Porthole.height - 1;
+
+  // Detail panel will be hard right or hard left.
+  vx = (vx > 0) ? -1 : 1;
+
+  // Message2.innerHTML = "Vec: ("+vx+","+vy+")";
+  pt.x = (vx + 1) * (A.Porthole.width - A.Detail.width) * 0.5;
+  pt.y = (vy + 1) * (A.Porthole.height - A.Detail.height) * 0.5;
+
+  return pt;
+}
+
+function stringOfCoord( coord, mul ){
+  mul = mul || 1;
+  return "("+Math.floor(coord.x*mul)+","+Math.floor(coord.y*mul)+")";
+}
+
+function makeLabelReplacerFn(obj){
+  var object = obj;
+
+  return function( i, str ){
+    var j;
+    for(j=0;j<object.titles.length;j++){
+      var field = "%"+object.titles[j].toLowerCase();
+      str = replaceAll( str, field, object.values[ i][j]);
+    }
+    return str;
+  };
+}
+
+function replaceAll(str, find, replace) {
+  return str.replace(new RegExp(find, 'g'), replace);
+}
+
+
+// fudge factors that later will become proper parameters...
+var fudgeLineMargin = 5;// lines outside chart by 5 pixels.
+var fudgeLineDrop = 13;  // drop lines/bars down to contact axis labels.
+var fudgeBarDrop = 12.5;  // drop bars to fit exactly over lines.
+var fudgeStarDrop = 6; // drop stars slightly.
+var fudgeLabelDrop = 4; // line labels lower than lines
+var fudgeLabelMargin = 2; // labels to left
+
+
+// -Start------------------ Unused
+
+function drawSpotification( A, S, d ){
+  d = d || 20;
+  var ctx = A.BackingCanvas.ctx;
+  var n = S[0].l / d;
+  var x = S[0].x;
+  var y = S[0].y;
+  var dx = (S[1].x-x)/n;
+  var dy = (S[1].y-y)/n;
+  var i;
+  for(i = 0;i<n;i++){
+    ctx.beginPath();
+    ctx.save();
+    ctx.fillStyle = "rgb(205,192,67)";
+    drawStar( ctx, A, x +dx*i, y+dy*i, 3 );
+    ctx.strokeStyle = "rgb(120,97,46)";
+    ctx.stroke();
+    ctx.restore();
+
+  }
+}
+
+function roundColour(tuple){
+  var values = JSON.parse(tuple);
+  var result = values.map(function(v){
+    return Math.floor((v + 2.5) / 5) * 5;
+  });
+  return '[' + result.toString() + ']';
+}
+
+function stringOfTuple( v ){
+  return "[" + v[0] + "," + v[1] + "," + v[2] + "," + v[3] + "]";
+}
+
+function onFailedImage(){
+  alert("Image failed to load");
+}
+
+
+// -End-------------------- Unused
+
+/**
+ *
+ * @param date in the format 07-Nov-2020
+ * @returns {number} a time in minutes
+ */
+function minutesFromDate(date ){
+  var d = date.split("-");
+  var months = "Jan.Feb.Mar.Apr.May.Jun.Jul.Aug.Sep.Oct.Nov.Dec.";
+  var day = Number(d[0]);
+  var month = months.indexOf( d[1]+".")/4;
+  var year = Number(d[2]);
+  var result = day + (356/12) * month + 356 * year;
+  result = result * 24 * 60 * 60;
+  return result;
+}
+
+function computeSpacing(A, T, x0, y0, xw, yh, values){
+  T.x0 = x0;
+  T.y0 = y0;
+  T.xw = xw;
+  T.yh = yh;
+  // Count is the number of rows in the table.  One per time.
+  // Items is the number of cols in the table.  One per data series.
+  T.count = T.count || values.length;
+  if( T.obj.display )
+    T.items = T.items || T.obj.display.length;
+  T.items = T.items || values[0].length;
+  // Cols is the number of columns to draw.
+  T.cols = T.cols || T.items-1;
+
+  T.margin = 40;
+  T.yh += T.margin - 10;
+  if( T.width )
+    // If width of each item is given, then space between is what's left over
+    T.spacer =
+      (xw - 2 * T.margin - T.count * T.width * T.cols) / (T.count - 1);
+  else {
+    // otherwise width of item is determined by spacing between.
+    T.spacer = T.spacer || 4;
+    T.width = ((xw + T.spacer - 2 * T.margin) / T.count - T.spacer) / T.cols;
+  }
+  T.xScaler = (T.width * T.cols + T.spacer);
+
+  // yScale so that items grow.
+  T.yScalerMax = yh/T.maxY;
+  T.yScaler = (Math.min(20, A.Status.time) / 20) * (yh) / T.maxY;
+}
+
+function makeFunctionTable(T, obj){
+  // prepare which functions to call
+  T.fns = [];
+  for( var j = 0; j < T.items; j++ ){
+    var type = obj.subtype[j];
+    if( type === "bar" )
+      T.fns.push(drawBar);
+    else if( type === "label" )
+      T.fns.push(drawLabel);
+    else if( type === "pie" )
+      T.fns.push(drawDonut);
+    else if( type === "spot" )
+      T.fns.push(drawSpot);
+    else if( type === "event" )
+      T.fns.push(drawEvent);
+    else if( type === "lines" )
+      T.fns.push(drawLines);
+    else
+      T.fns.push(drawNowt);
+  }
+}
+
+function xyOfIndexSnakey(i, T){
+  var row = Math.floor(i / T.n);
+  var col = i - row * T.n;
+  if( row % 2 ) col = T.n - col - 1;
+  var x = T.x0 + col * T.xSpacing;
+  var y = T.y0 + row * T.ySpacing;
+  if( T.isPath ){
+    T.theta = undefined;
+    if( i === 0 )
+      x -= T.xSpacing *0.75;
+    else if( i % T.n === 0 ){
+      T.theta = (3 * Math.PI / 2);
+      y -= T.ySpacing / 2;
+      T.thetaDirection = (row % 2) === 0;
+    }
+    // whether we extend or reduce depends on odd or even row.
+    // but code disabled as we want a snake's head.
+    //else if( i === T.maxv - 1 )
+    //  x += (1-2*( row % 2 ))*T.xSpacing*0.75;
+
+  }
+  return { "x": x, "y": y, "row":row , "theta": (row%2===0)?0:Math.PI };
+}
+
+/**
+ * Uses current item to (optionally) update the style number
+ * @param item - typically an item on a snake
+ * @param style - a number representing a style for an item
+ * @param A
+ * @returns {number} - possibly updated style
+ */
+function mayUpdateSpotStyle(item, style, A){
+  if( isDefined(item.snakeStyle) ){
+    style = item.snakeStyle;
+    if( isDefined(A.BrightObjects) ){
+      if( item.category !== A.BrightObjects ){
+        style = 0;
+      }
+    }
+  }
+  return style;
+}
+
+/**
+ * Uses current item to (optionally) update the shape number
+ * @param item
+ * @param shape
+ * @returns {number} - possibly updated shape
+ */
+function mayUpdateSpotShape(item, shape){
+  if( isDefined(item.snakeShape) ){
+    shape = item.snakeShape;
+  }
+  return shape;
+}
+
+/**
+ * Used in mapping calculation, this goes from a projected
+ * coordinate x, to an angle coordinate.
+ * @param x - projected coordinate in range -1 to +1
+ * @returns {number} - latitude in range 0 to 1
+ */
+function fractionalLatitudeFromX(x){
+  return Math.acos(-x) / Math.PI;
+}
+
+/**
+ * Takes the objects colours, if any, and applies
+ * them to the context.
+ * @param ctx
+ * @param obj
+ */
+function applyObjectSettingsToContext(ctx, obj){
+  ctx.lineWidth = 3;
+  ctx.font = "16px Arial";
+  ctx.globalCompositeOperation = 'source-over';
+
+  if( obj.colour )
+    ctx.fillStyle = obj.colour;
+  else
+    ctx.fillStyle = "rgba(255,255,255,1.0)";
+
+  if( obj.borderColour )
+    ctx.strokeStyle = obj.borderColour;
+  else
+    ctx.strokeStyle = "rgba( 55, 55,155,1.0)";
+}
+
+/**
+ * Computes length and angle of line between two points
+ * and presents in two endpoint structures.
+ * @param pt1
+ * @param pt2
+ * @returns {[]} - two endpoints, with x,y,l and theta.
+ */
+function getLineBetweenPoints(pt1, pt2){
   var vx = pt2.x - pt1.x;
   var vy = pt2.y - pt1.y;
 
@@ -363,9 +657,227 @@ function getBondBetween(pt1, pt2){
   return S;
 }
 
+/**
+ * Computes fraction by which to trim a line to account for
+ * size of a rectangular or circular object.
+ * @param obj - the object
+ * @param vx - x displacement to trim
+ * @param vy - y displacement to trim
+ * @returns {number} - the amount to multiply displacement by in order to trim.
+ */
+function getTrimmedLineExtent(obj, vx, vy){
+  var m = 0;
+  var k = 1;
+  if( obj.type === "Circle" ){
+    var r = Math.min(obj.layout.yh, obj.layout.xw) / 2;
+    m = k * r / Math.sqrt(vx * vx + vy * vy);
+  } else {
+    m = 1;//0.5;
+
+    if( Math.abs(vx) * obj.layout.yh > Math.abs(vy) * obj.layout.xw ){
+      m = obj.layout.xw / (2 * Math.abs(vx));
+    } else {
+      m = obj.layout.yh / (2 * Math.abs(vy));
+    }
+    m = m * k;
+  }
+  return m;
+}
+
+/**
+ * Computes length and angle of line between two objects
+ * and presents in two endpoint structures.  The line is
+ * trimmed to land on boundary of circular or rectangular objects
+ * @param obj1
+ * @param obj2
+ * @returns {[]} - two endpoints, with x,y,l and theta
+ */
+function getTrimmedLineBetweenObjects(obj1, obj2){
+  var x1 = obj1.layout.x0 + obj1.layout.xw / 2;
+  var x2 = obj2.layout.x0 + obj2.layout.xw / 2;
+  var y1 = obj1.layout.y0 + obj1.layout.yh / 2;
+  var y2 = obj2.layout.y0 + obj2.layout.yh / 2;
+  var vx = x2 - x1;
+  var vy = y2 - y1;
+
+  var m = getTrimmedLineExtent(obj2, vx, vy);
+  var n = getTrimmedLineExtent(obj1, vx, vy);
+
+  var S = [];
+  S[0] = {};
+  S[1] = {};
+
+  S[0].theta = Math.atan2(vy, vx) + Math.PI;
+  S[1].theta = S[0].theta - Math.PI;
+
+  S[0].x = x1 + n * vx;
+  S[0].y = y1 + n * vy;
+  S[1].x = x2 - m * vx;
+  S[1].y = y2 - m * vy;
+
+  vx = S[1].x - S[0].x;
+  vy = S[1].y - S[0].y;
+
+  var l = Math.sqrt( vx * vx + vy * vy);
+  S[0].l = l;
+  S[1].l = l;
+
+  return S;
+}
+
+/**
+ * Where an object contains styling information, update the style from it.
+ * Where it doesn't, get its style from the styling object (or from defaults)
+ * @param A
+ * @param obj
+ */
+function mayUpdateStyle(A, obj ){
+  if( isDefined( obj.style) && isFinite( obj.style )){
+    A.Styles.current = obj.style;
+  }
+  var styleRec = A.Styles.dict[ A.Styles.current ] || {};
+  if( styleRec ){
+    obj.colour       = obj.colour || styleRec.colour;
+    obj.borderColour = obj.borderColour || styleRec.borderColour;
+    obj.cornerRadius = obj.cornerRadius || styleRec.cornerRadius;
+  }
+  styleRec.colour       = obj.colour || "rgb(255,255,255)";
+  styleRec.borderColour = obj.borderColour || "rgb(80,80,200)";
+  styleRec.cornerRadius = isDefined(obj.cornerRadius)? obj.cornerRadius : 0;
+  styleRec.head         = obj.head;
+  A.Styles.dict[ A.Styles.current ] = styleRec;
+}
+
+/**
+ * Looks up an object by name.
+ * @param A
+ * @param id - the name.
+ * @returns {*} - the found object
+ */
+function objectFromId(A, id){
+  if( !isDefined(id) )
+    return undefined;
+  return A.RootObject.objectDict[id.substr(0, 10)];
+}
 
 
-function innerDraw(A,obj,d){
+
+
+// >>>>>>>>>>>>>>>>>>>>> Texty
+
+/**
+ * HTML anchor tag from a string like 'Pathway:WP2376'
+ * @param str
+ * @returns {string|*}
+ */
+function anchorTagFromWikipathwyaName(str){
+  if( str.indexOf( "Pathway:" ) == 0 ){
+    return "<a href='https://www.wikipathways.org/index.php/" +
+      str+ "' target='_blank'>" + str.substr(8) + "</a>";
+  }
+  return str;
+}
+
+/**
+ * HTML anchor tag from a string like 'PCMID: 19825'
+ * @param str
+ * @returns {string|*}
+ */
+function anchorTagFromPmcid(str){
+  if( str.indexOf( "PMCID: " ) == 0 ){
+    return "<a href='https://www.ncbi.nlm.nih.gov/pmc/articles/" +
+      str.substr(7) + "/' target='_blank'>" + str.substr(7) + "</a>";
+  }
+  return str;
+}
+
+/**
+ * Html anchor tag from a string like 'EffectDefinitionInterface'
+ * The anchor link will be class_effect_definition_interface.
+ * @param word
+ * @returns {string}
+ */
+function anchorTagFromDoxygennedClassName(word){
+  var url = word;
+  url = url.replace(/([A-Z])/g, function( match, index){
+    return ( "_"+match[0].toLowerCase());
+  });
+  url = "https://doxy.audacityteam.org/class" + url + ".html";
+  return "<a href='"+url.toLowerCase() + "'>" + word +"</a>";
+}
+
+/**
+ * Take a bare filename, and prefix whatever is needed to make a url
+ * @param file
+ * @returns {string}
+ */
+function urlOfFilename(file){
+  if( isFromServer() === "yes" )
+    file = "https://wit.audacityteam.org/images/" + file;
+  else
+    file = "./images/" + file;
+  return file;
+}
+
+/**
+ * Class names that get doxygenned get wrapped with their <a href> tags
+ * @param A
+ * @param text
+ * @returns {void|*}
+ */
+function formatClassNames(A, text){
+  if( !A.Styles.autolink )
+    return text;
+  var result = text.replace(
+    /([a-zA-Z0-9_]+[A-Z]+[A-Za-z0-9_]*)/g,
+    function(match ){
+      return anchorTagFromDoxygennedClassName( match);});
+  return result;
+}
+
+/**
+ * Replace strings like '[https:something foo]' with
+ *    <a href='https:something'>foo</a>
+ * i.e. replace external links marked up as in mediawiki.
+ * @param text
+ * @returns {string}
+ */
+function formatWikiExternalLinks(text){
+  text = text.split("[http");
+  var result = text[0];
+  text[0] = "";
+  text.forEach(function(item){
+    if( item ){
+      item = item.replace(" ", "'>");
+      item = item.replace("]", "</a>");
+      result += "<a href='http" + item;
+    }
+  });
+  return result;
+}
+
+/**
+ * SECURITY
+ * In a production system, this function should be called on all text being
+ * added into tags, for example bu tnot limitted to using innerHTML.
+ * We potentially have untrusted html to place in the tag.
+ * @todo This function needs to remove dangerous tags
+ * Dangerous tags would include, but are not limited to, <script> and also
+ * OnClick().
+ * @param html - Unsanitised (unsafe) html
+ * @returns {string} - Sanitised (safe) html
+ */
+function sanitiseHtml(html){
+  html = formatWikiExternalLinks(html);
+  // Whitelist all relevant tags.
+  return html;
+}
+
+
+// >>>>>>>>>>>>>>>>>>>>> Draw
+
+
+function drawDiagram(A, obj, d){
   if( !obj )
     return;
   var l = obj.layout;
@@ -392,84 +904,12 @@ function innerDraw(A,obj,d){
   A.Status.drawing = false;
 }
 
-function sizeLayoutAndDraw(A, obj, d){
-  sizeCells(A, obj, d);
-  d.margins = 0;
-  layoutCells(A, obj, d);
-  innerDraw(A, obj, d);
-}
-
-function onChart(A){
-  console.log("onChart");
-  A.Detail.width = A.Porthole.width / 2 - 10;
-  A.Detail.height = Math.min(300, A.Porthole.height - 100);
-  resizeDivs(A);
-  var d = {};
-  var obj = A.RootObject;
-  setCellLayout( A,0, 0, A.Porthole.width, A.Porthole.height, obj);
-  sizeLayoutAndDraw(A, obj, d);
-  A.Status.isAppReady = true;
-}
-
-function drawAgain(){
+function drawDiagramAgain(){
   if( !A.Status.drawing )
-    innerDraw(A,A.RootObject,{});
+    drawDiagram(A, A.RootObject, {});
 }
 
-function timerCallback(){
-
-  for(var i=0;i<Annotator.length;i++){
-    A = Annotator[i];
-    if( A.DetailHideTime > 0 ){
-      A.DetailHideTime--;
-      if( A.DetailHideTime <= 0 ){
-        A.DetailDiv.style.display = 'none';
-      }
-    }
-
-    if( A.Status.isFocus && !A.newEvents)
-      continue;
-    A.newEvents = false;
-    A.Status.time++;
-    // animation stops on America.
-    // and dark side of moon.
-    if( A.Status.time > 600 )
-      continue;
-    if( !A.Status.drawing )
-      innerDraw(A,A.RootObject,{});
-  }
-}
-
-function onFailedImage(){
-  alert("Image failed to load");
-}
-
-function detailPosFromCursorPos(A,x, y){
-  var pt = {};
-  // get position as somewhere in range -1..+1
-  var vx = 2.0 * x / A.Porthole.width - 1;
-  var vy = 2.0 * y / A.Porthole.height - 1;
-
-  // Detail panel will be hard right or hard left.
-  vx = (vx > 0) ? -1 : 1;
-
-  // Message2.innerHTML = "Vec: ("+vx+","+vy+")";
-  pt.x = (vx + 1) * (A.Porthole.width - A.Detail.width) * 0.5;
-  pt.y = (vy + 1) * (A.Porthole.height - A.Detail.height) * 0.5;
-
-  return pt;
-}
-
-// fudge factors that later will become proper parameters...
-var fudgeLineMargin = 5;// lines outside chart by 5 pixels.
-var fudgeLineDrop = 13;  // drop lines/bars down to contact axis labels.
-var fudgeBarDrop = 12.5;  // drop bars to fit exactly over lines.
-var fudgeStarDrop = 6; // drop stars slightly.
-var fudgeLabelDrop = 4; // line labels lower than lines
-var fudgeLabelMargin = 2; // labels to left
-
-
-// Used for bars from base line to curve.
+// Used for horizontal lines of the scale.
 function drawLines(A,T, values, i, ix){
   if( T.stage !== kStageFillAndText )
     return;
@@ -511,24 +951,6 @@ function drawLines(A,T, values, i, ix){
   }
 }
 
-
-function replaceAll(str, find, replace) {
-  return str.replace(new RegExp(find, 'g'), replace);
-}
-
-function chartSubber( obj ){
-  var object = obj;
-
-  return function( i, str ){
-    var j;
-    for(j=0;j<object.titles.length;j++){
-      var field = "%"+object.titles[j].toLowerCase();
-      str = replaceAll( str, field, object.values[ i][j]);
-    }
-    return str;
-  };
-}
-
 // Used for bars from base line to curve.
 function drawBar(A,T, values, i, ix){
   if( T.stage !== kStageFillAndText && T.stage !== kStageHots )
@@ -566,7 +988,7 @@ function drawBar(A,T, values, i, ix){
 
   x0 += T.width/2;
 
-  var S = getBondBetween( {x:x0,y:y0+y}, {x:x0,y:y0});
+  var S = getLineBetweenPoints({ x: x0, y: y0 + y }, { x: x0, y: y0 });
   var obj = {S:S};
   //drawEnds( ctx, obj, 8);
 
@@ -588,19 +1010,67 @@ function drawSpot(A,T, values, i, ix){
   ctx.stroke();
 }
 
+function drawStar(ctx, A, x, y, r){
+  var n = 10;
+  var r = r || 3.5;
 
+  ctx.beginPath();
+  var i;
+  for( i = 0; i <= n; i++ ){
+    var theta = Math.PI * 2 * (i / n + (Math.min(20, A.Status.time) / 40));
+    var r0 = (i % 2 === 0) ? r : 3.5 * r;
+    var xx = x + r0 * Math.cos(theta);
+    var yy = y + r0 * Math.sin(theta);
+    if( i === 0 ) ctx.moveTo(xx, yy); else ctx.lineTo(xx, yy);
+  }
+  ctx.fill();
+  ctx.lineWidth = 0.5;
+}
 
+function drawSnakeStar(A,ctx, ctx2, S, isHead, r){
+  if( isHead ){
+    drawSnakeSpot( A, ctx, ctx2, S, isHead, r );
+    return;
+  }
+  drawStar( ctx, A, S.x, S.y, r);
+  drawStar( ctx2, A, S.x, S.y,  r);
+}
 
-// int will be in mins.
-function intOfDate( date ){
-  var d = date.split("-");
-  var months = "Jan.Feb.Mar.Apr.May.Jun.Jul.Aug.Sep.Oct.Nov.Dec.";
-  var day = Number(d[0]);
-  var month = months.indexOf( d[1]+".")/4;
-  var year = Number(d[2]);
-  var result = day + (356/12) * month + 356 * year;
-  result = result * 24 * 60 * 60;
-  return result;
+function drawSnakeSpot(A,ctx, ctx2, S, isHead, r){
+  ctx.beginPath();
+  ctx.arc(S.x, S.y, r, 0, 2 * Math.PI, false);
+  ctx.closePath();
+  ctx.fill();
+  if( isHead ){
+    ctx.stroke();
+  }
+
+  ctx2.beginPath();
+  ctx2.arc(S.x, S.y, r, 0, 2 * Math.PI, false);
+  ctx2.closePath();
+  ctx2.fill();
+}
+
+function drawSnakeRect(A,ctx, ctx2, S, isHead, r){
+  if( isHead ){
+    drawSnakeSpot( A, ctx, ctx2, S, isHead, r );
+    return;
+  }
+  var d = 8;
+  var dx = 7 * (S.row %2);
+  var v = (S.row%2)* (6-r*2)-3;
+  ctx.beginPath();
+  ctx.rect(S.x-d/2 +dx, S.y-v, d, -r*2);
+  ctx.closePath();
+  ctx.fill();
+  if( isHead ){
+    ctx.stroke();
+  }
+
+  d=14;
+  ctx2.beginPath();
+  ctx2.rect(S.x-d/2 +dx, S.y-v, d, -r*2);
+  ctx2.fill();
 }
 
 // Used for irregularly spaced items.
@@ -613,13 +1083,13 @@ function drawEvent(A,T, values, i, ix){
   // This should all be calculated in advance and rolled into the scaling.
   {
     var date = T.obj.range[0];
-    var low = intOfDate( date );
+    var low = minutesFromDate( date );
     //console.log( "Low for "+ date + " was " + low );
     var date2 = T.obj.range[1];
-    var high = intOfDate( date2 );
+    var high = minutesFromDate( date2 );
     //console.log( "Low for "+ date2 + " was " + high );
     var date3 = values[i][0];
-    var vv = intOfDate( date3 );
+    var vv = minutesFromDate( date3 );
     vx =  (vv- low)/(high-low);
     vx = vx * (T.count * T.xScaler - T.spacer) / T.xScaler;
   }
@@ -703,7 +1173,6 @@ function drawDonut(A,T, values, i, ix){
   }
 }
 
-
 function drawLabel(A,T, values, i,ix){
   // Only label the x axis items once.
   if( ix > 1 )
@@ -740,289 +1209,13 @@ function drawLabel(A,T, values, i,ix){
 
 }
 
-function clearBacking(A,x0, y0, xw, yh){
-  var ctx = A.BackingCanvas.ctx;
-  ctx.beginPath();
-  ctx.fillStyle = "rgba(205,205,205,1.0)";
-  //ctx.strokeStyle = "rgba( 55, 55,155,1.0)";
-  ctx.lineWidth = 1;
-
-  ctx.rect(x0, y0, xw, yh);
-  ctx.fill();
-  //ctx.stroke();
-}
-
-function computeSpacing(A, T, x0, y0, xw, yh, values){
-  T.x0 = x0;
-  T.y0 = y0;
-  T.xw = xw;
-  T.yh = yh;
-  // Count is the number of rows in the table.  One per time.
-  // Items is the number of cols in the table.  One per data series.
-  T.count = T.count || values.length;
-  if( T.obj.display )
-    T.items = T.items || T.obj.display.length;
-  T.items = T.items || values[0].length;
-  // Cols is the number of columns to draw.
-  T.cols = T.cols || T.items-1;
-
-  T.margin = 40;
-  T.yh += T.margin - 10;
-  if( T.width )
-    // If width of each item is given, then space between is what's left over
-    T.spacer =
-      (xw - 2 * T.margin - T.count * T.width * T.cols) / (T.count - 1);
-  else {
-    // otherwise width of item is determined by spacing between.
-    T.spacer = T.spacer || 4;
-    T.width = ((xw + T.spacer - 2 * T.margin) / T.count - T.spacer) / T.cols;
-  }
-  T.xScaler = (T.width * T.cols + T.spacer);
-
-  // yScale so that items grow.
-  T.yScalerMax = yh/T.maxY;
-  T.yScaler = (Math.min(20, A.Status.time) / 20) * (yh) / T.maxY;
-}
-
-function drawSpacedItems(A,x0, y0, xw, yh, values, T){
-  var j;
-  var i;
-  for( j = 0; j < T.items; j++ ){
-    for( i = 0; i < T.count; i++ ){
-      T.fns[j](A, T, values, i, j);
-    }
-  }
-}
-
-
 function drawNowt(A,T, values, i,ix){
 }
 //function drawNowt(A, obj, d){
 //}
 
-function makeFunctionTable(T, obj){
-  // prepare which functions to call
-  T.fns = [];
-  for( var j = 0; j < T.items; j++ ){
-    var type = obj.subtype[j];
-    if( type === "bar" )
-      T.fns.push(drawBar);
-    else if( type === "label" )
-      T.fns.push(drawLabel);
-    else if( type === "pie" )
-      T.fns.push(drawDonut);
-    else if( type === "spot" )
-      T.fns.push(drawSpot);
-    else if( type === "event" )
-      T.fns.push(drawEvent);
-    else if( type === "lines" )
-      T.fns.push(drawLines);
-    else
-      T.fns.push(drawNowt);
-  }
-}
+function drawNowt2( A, obj, d ){
 
-function drawChart(A, obj, d){
-  if( d.stage !== kStageFillAndText && ( d.stage !== kStageHots ) )
-    return;
-
-  //console.log( "draw - "+obj.type);
-  var l = obj.layout;
-  var x0 = l.x0;
-  var y0 = l.y0;
-  var xw = l.xw;
-  var yh = l.yh;
-
-  var T = {};
-  // We can either specify width of the bars, or the spacing between bar groups.
-  if( obj.pie ){
-    T.spacer = 30;
-    T.cols = 1;
-  }
-  else if( obj.spacer ){
-    T.spacer = obj.spacer;
-  }
-  else
-    T.width = 8;
-  T.stage = d.stage;
-  T.obj = obj;// Heck, pass the whole object too...
-  if( obj.valuesFrom ){
-    var obj2 = getObjectByName(A,obj.valuesFrom );
-    obj.values = obj2.values;
-    obj.maxY = obj.maxY || obj2.maxY;
-  }
-  if( !obj.values )
-    return;
-  //if( T.stage === kStageFillAndText )
-  //  clearBacking(A,x0, y0, xw, yh);
-
-  T.colours = [];
-  T.colours[0] = "rgba(105,205,105,1.0)";
-  T.colours[1] = "rgba(105,105,205,1.0)";
-  T.linesAt = obj.linesAt || 200;
-  T.maxY = obj.maxY || 2600;
-
-  if( obj.display && obj.display[1].startsWith("#") )
-    T.colours[1] = obj.display[1];
-
-  T.subber = chartSubber( obj );
-
-  computeSpacing(A, T, x0, y0, xw, yh, obj.values);
-  makeFunctionTable(T, obj);
-  drawSpacedItems(A,x0, y0, xw, yh, obj.values, T);
-}
-
-function xyOfIndexSnakey(i, T){
-  var row = Math.floor(i / T.n);
-  var col = i - row * T.n;
-  if( row % 2 ) col = T.n - col - 1;
-  var x = T.x0 + col * T.xSpacing;
-  var y = T.y0 + row * T.ySpacing;
-  if( T.isPath ){
-    T.theta = undefined;
-    if( i === 0 )
-      x -= T.xSpacing *0.75;
-    else if( i % T.n === 0 ){
-      T.theta = (3 * Math.PI / 2);
-      y -= T.ySpacing / 2;
-      T.thetaDirection = (row % 2) === 0;
-    }
-    // whether we extend or reduce depends on odd or even row.
-    // but code disabled as we want a snake's head.
-    //else if( i === T.maxv - 1 )
-    //  x += (1-2*( row % 2 ))*T.xSpacing*0.75;
-
-  }
-  return { "x": x, "y": y, "row":row , "theta": (row%2===0)?0:Math.PI };
-}
-
-function stripSignalChar( str ){
-  if( str.length < 2 )
-    return str;
-  if( str[0] === '*' || str[0] === '#' || str[0] === '.')
-    return str.substr( 1 );
-  return str;
-}
-
-
-function snakeType( A, name ){
-  var result = 0;
-  if(  name.startsWith("*")){
-    result = 2;
-  }
-  if(  name.startsWith("#")){
-    result = 3;
-  }
-  if(  name.startsWith(".")){
-    result = 1;
-  }
-  if( result > 1){
-    if( A.BrightObjects ){
-      if( A.BrightObjects.indexOf(name.substr(1)) < 0)
-        result=1;
-    }
-  }
-  return result;
-}
-
-function getSnakeStyle(X, style, A){
-  if( isDefined(X.snakeStyle) ){
-    style = X.snakeStyle;
-    if( isDefined(A.BrightObjects) ){
-      if( X.category !== A.BrightObjects ){
-        style = 0;
-      }
-    }
-  }
-  return style;
-}
-
-function getSnakeShape(X, shape){
-  if( isDefined(X.snakeShape) ){
-    shape = X.snakeShape;
-  }
-  return shape;
-}
-
-function drawStar(ctx, A, x, y, r){
-  var n = 10;
-  var r = r || 3.5;
-
-  ctx.beginPath();
-  var i;
-  for( i = 0; i <= n; i++ ){
-    var theta = Math.PI * 2 * (i / n + (Math.min(20, A.Status.time) / 40));
-    var r0 = (i % 2 === 0) ? r : 3.5 * r;
-    var xx = x + r0 * Math.cos(theta);
-    var yy = y + r0 * Math.sin(theta);
-    if( i === 0 ) ctx.moveTo(xx, yy); else ctx.lineTo(xx, yy);
-  }
-  ctx.fill();
-  ctx.lineWidth = 0.5;
-}
-
-
-function drawSnakeStar(A,ctx, ctx2, S, isHead, r){
-  if( isHead ){
-    drawSnakeSpot( A, ctx, ctx2, S, isHead, r );
-    return;
-  }
-  drawStar( ctx, A, S.x, S.y, r);
-  drawStar( ctx2, A, S.x, S.y,  r);
-}
-
-function drawSnakeSpot(A,ctx, ctx2, S, isHead, r){
-  ctx.beginPath();
-  ctx.arc(S.x, S.y, r, 0, 2 * Math.PI, false);
-  ctx.closePath();
-  ctx.fill();
-  if( isHead ){
-    ctx.stroke();
-  }
-
-  ctx2.beginPath();
-  ctx2.arc(S.x, S.y, r, 0, 2 * Math.PI, false);
-  ctx2.closePath();
-  ctx2.fill();
-}
-
-function drawSnakeRect(A,ctx, ctx2, S, isHead, r){
-  if( isHead ){
-    drawSnakeSpot( A, ctx, ctx2, S, isHead, r );
-    return;
-  }
-  var d = 8;
-  var dx = 7 * (S.row %2);
-  var v = (S.row%2)* (6-r*2)-3;
-  ctx.beginPath();
-  ctx.rect(S.x-d/2 +dx, S.y-v, d, -r*2);
-  ctx.closePath();
-  ctx.fill();
-  if( isHead ){
-    ctx.stroke();
-  }
-
-  d=14;
-  ctx2.beginPath();
-  ctx2.rect(S.x-d/2 +dx, S.y-v, d, -r*2);
-  ctx2.fill();
-}
-
-function hyperlinkOfWikiWord( word ){
-  var url = word;
-  url = url.replace(/([A-Z])/g, function( match, index){
-    return ( "_"+match[0].toLowerCase());
-  });
-  url = "https://doxy.audacityteam.org/class" + url + ".html";
-  return "<a href='"+url.toLowerCase() + "'>" + word +"</a>";
-}
-
-
-function addHyperlinks( A, string ){
-  if( !A.Styles.autolink )
-    return string;
-  var result = string.replace( /([a-zA-Z0-9_]+[A-Z]+[A-Za-z0-9_]*)/g, function( match ){ return hyperlinkOfWikiWord( match );});
-  return result;
 }
 
 // For drawing a snakey plot
@@ -1066,8 +1259,8 @@ function drawSnakeyPath(A, values, T){
   for( j = 0; i < maxv; j += T.stride ){
 
     X = values[j];
-    style = getSnakeStyle(X, style, A);
-    shape = getSnakeShape(X, shape );
+    style = mayUpdateSpotStyle(X, style, A);
+    shape = mayUpdateSpotShape(X, shape);
 
     ctx.beginPath();
     ctx.moveTo(S.x, S.y);
@@ -1106,7 +1299,7 @@ function drawSnakeyPath(A, values, T){
 
     X = values[j];
 
-    var tipText=addHyperlinks( A, X.docString );
+    var tipText=formatClassNames(A, X.docString);
 
     var c =  NextAutoColour( A, tipText);
     r = 1.6 * Math.log((X.docString.length) + 0.1) + T.r0;
@@ -1117,8 +1310,8 @@ function drawSnakeyPath(A, values, T){
     if( i < maxv ){
       S = T.fn(i, T);
 
-      style = getSnakeStyle(X, style, A);
-      shape = getSnakeShape(X, shape );
+      style = mayUpdateSpotStyle(X, style, A);
+      shape = mayUpdateSpotShape(X, shape);
 
       ctx.fillStyle = blobs[style];
       ctx.strokeStyle = lines[style];
@@ -1211,14 +1404,6 @@ function drawTree(A, obj, d){
   drawPath(A, obj, d, 1);
 }
 
-
-
-// slice is a number from -1 to +1.
-// source is a number from 0 to 1.
-function sourceForSlice(slice){
-  return Math.acos(-slice) / Math.PI;
-}
-
 function drawSphere(A,xx, yy, xw, yh, ctx, obj){
   xw = Math.floor(xw);
   yh = Math.floor(yh);
@@ -1272,7 +1457,7 @@ function drawSphere(A,xx, yy, xw, yh, ctx, obj){
 
   for( var y = -h; y < h; y++ ){
     var dx = Math.floor(Math.sqrt(h * h - y * y));
-    var srcLine = Math.floor(sourceForSlice(y / h) * img.height);
+    var srcLine = Math.floor(fractionalLatitudeFromX(y / h) * img.height);
     var srcBase = (srcLine * img.width + rotate) * 4;
     dx = h + frac * (dx - h);
     var index = Math.floor((y + h) * h * 2 + h - dx) * 4;
@@ -1320,71 +1505,6 @@ function drawRoundRect(ctx, x, y, w, h, r){
   ctx.closePath();
 }
 
-function setStyles(ctx, obj){
-  ctx.lineWidth = 3;
-  ctx.font = "16px Arial";
-  ctx.globalCompositeOperation = 'source-over';
-
-  if( obj.colour ) ctx.fillStyle = obj.colour; else ctx.fillStyle =
-    "rgba(255,255,255,1.0)";
-
-  if( obj.borderColour ) ctx.strokeStyle = obj.borderColour; else ctx.strokeStyle =
-    "rgba( 55, 55,155,1.0)";
-}
-
-
-function getLineExtent(obj, vx, vy){
-  var m = 0;
-  var k = 1;
-  if( obj.type === "Circle" ){
-    var r = Math.min(obj.layout.yh, obj.layout.xw) / 2;
-    m = k * r / Math.sqrt(vx * vx + vy * vy);
-  } else {
-    m = 1;//0.5;
-
-    if( Math.abs(vx) * obj.layout.yh > Math.abs(vy) * obj.layout.xw ){
-      m = obj.layout.xw / (2 * Math.abs(vx));
-    } else {
-      m = obj.layout.yh / (2 * Math.abs(vy));
-    }
-    m = m * k;
-  }
-  return m;
-}
-
-function getLineBetween(obj1, obj2){
-  var x1 = obj1.layout.x0 + obj1.layout.xw / 2;
-  var x2 = obj2.layout.x0 + obj2.layout.xw / 2;
-  var y1 = obj1.layout.y0 + obj1.layout.yh / 2;
-  var y2 = obj2.layout.y0 + obj2.layout.yh / 2;
-  var vx = x2 - x1;
-  var vy = y2 - y1;
-
-  var m = getLineExtent(obj2, vx, vy);
-  var n = getLineExtent(obj1, vx, vy);
-
-  var S = [];
-  S[0] = {};
-  S[1] = {};
-
-  S[0].theta = Math.atan2(vy, vx) + Math.PI;
-  S[1].theta = S[0].theta - Math.PI;
-
-  S[0].x = x1 + n * vx;
-  S[0].y = y1 + n * vy;
-  S[1].x = x2 - m * vx;
-  S[1].y = y2 - m * vy;
-
-  vx = S[1].x - S[0].x;
-  vy = S[1].y - S[0].y;
-
-  var l = Math.sqrt( vx * vx + vy * vy);
-  S[0].l = l;
-  S[1].l = l;
-
-  return S;
-}
-
 function drawAnEnd(ctx, S, style, d){
   if( !isDefined( d ) )
     d=4;
@@ -1404,7 +1524,7 @@ function drawAnEnd(ctx, S, style, d){
 }
 
 function drawArrowHeadAndTail(A, obj1, obj2){
-  var S = getLineBetween( obj1, obj2 );
+  var S = getTrimmedLineBetweenObjects(obj1, obj2);
   var ctx = A.BackingCanvas.ctx;
 
   // The head at obj2
@@ -1413,32 +1533,9 @@ function drawArrowHeadAndTail(A, obj1, obj2){
   //drawAnEnd(ctx, S[0], "flat");//,A.Styles.head);
 }
 
-
-function drawSpotification( A, S, d ){
-  d = d || 20;
-  var ctx = A.BackingCanvas.ctx;
-  var n = S[0].l / d;
-  var x = S[0].x;
-  var y = S[0].y;
-  var dx = (S[1].x-x)/n;
-  var dy = (S[1].y-y)/n;
-  var i;
-  for(i = 0;i<n;i++){
-    ctx.beginPath();
-    ctx.save();
-    ctx.fillStyle = "rgb(205,192,67)";
-    drawStar( ctx, A, x +dx*i, y+dy*i, 3 );
-    ctx.strokeStyle = "rgb(120,97,46)";
-    ctx.stroke();
-    //ctx.translate(S.x, S.y);
-    ctx.restore();
-
-  }
-}
-
 function drawArrowBody(A, obj1, obj2){
 
-  var S = getLineBetween( obj1, obj2 );
+  var S = getTrimmedLineBetweenObjects(obj1, obj2);
 
   var ctx = A.BackingCanvas.ctx;
   ctx.beginPath();
@@ -1477,11 +1574,6 @@ function drawFlatArrowHead(ctx){
   ctx.fill();
 }
 
-function objFromId(A,id){
-  if( !isDefined(id) ) return id;
-  return A.RootObject.objectDict[id.substr(0, 10)];
-}
-
 function drawArrows(A,obj,d){
   var arrows = obj.content;
   if( !isDefined(arrows) ) return;
@@ -1492,8 +1584,8 @@ function drawArrows(A,obj,d){
   A.Styles.head         = obj.head;
 
   for( i = 0; i < arrows.length; i += 2 ){
-    var obj1 = objFromId(A,arrows[i]);
-    var obj2 = objFromId(A,arrows[i + 1]);
+    var obj1 = objectFromId(A, arrows[i]);
+    var obj2 = objectFromId(A, arrows[i + 1]);
     if( !isDefined(obj1) || !isDefined(obj2) ) continue;
     if( !isDefined(obj1.layout) || !isDefined(obj2.layout) ) continue;
     if( d.stage === kStageArrowShaft )
@@ -1569,28 +1661,6 @@ function drawImage(A, obj, d){
       ctx2.drawImage(obj.hot.img, x, y, xw, yh);
 }
 
-function drawNowt2( A, obj, d ){
-
-}
-
-function setStyle( A, obj ){
-  if( isDefined( obj.style) && isFinite( obj.style )){
-    A.Styles.current = obj.style;
-  }
-  var styleRec = A.Styles.dict[ A.Styles.current ] || {};
-  if( styleRec ){
-    obj.colour       = obj.colour || styleRec.colour;
-    obj.borderColour      = obj.borderColour || styleRec.borderColour;
-    obj.cornerRadius = obj.cornerRadius || styleRec.cornerRadius;
-  }
-  styleRec.colour       = obj.colour || "rgb(255,255,255)";
-  styleRec.borderColour      = obj.borderColour || "rgb(80,80,200)";
-  styleRec.cornerRadius = isDefined(obj.cornerRadius)? obj.cornerRadius : 0;
-  styleRec.head         = obj.head;
-  A.Styles.dict[ A.Styles.current ] = styleRec;
-
-}
-
 function drawRectangle(A, obj, d){
   //console.log( "draw - "+obj.type);
   var l = obj.layout;
@@ -1626,7 +1696,7 @@ function drawRectangle(A, obj, d){
     obj.cornerRadius = 8;
   }
   else{
-    setStyle(A,obj);
+    mayUpdateStyle(A,obj);
   }
 
   // -- End of extra twiddles for chooser.
@@ -1637,7 +1707,7 @@ function drawRectangle(A, obj, d){
     ctx.save();
     ctx.beginPath();
 
-    setStyles(ctx, obj);
+    applyObjectSettingsToContext(ctx, obj);
     if( obj.cornerRadius )
       drawRoundRect(ctx, x, y, xw, yh, obj.cornerRadius);
     else
@@ -1664,7 +1734,6 @@ function drawRectangle(A, obj, d){
     ctx2.fill();
   }
 }
-
 
 function drawGeshi(A, obj, d){
   if( d.stage !== kStageFillAndText )
@@ -1705,94 +1774,6 @@ function drawGeshi(A, obj, d){
  */
   }
 }
-
-function reselectInKwic( obj ){
-  if( obj.selected ){
-    var X = obj.permutedIndex;
-    var index = bSearch(X, obj.selected + " ~ZZZ");
-    console.log("found at: " + index);
-    console.log("value: " + X[index]);
-    if( obj.oneSpace ){
-      var textHeight = obj.oneSpace *1.8;
-      var row = Math.floor(A.Status.click.y / textHeight -0.5);
-      index = index-row;
-      A.Status.click.y += index*textHeight;
-
-
-    }
-  }
-
-}
-
-function findInKwic( A, obj ){
-  var l = obj.layout;
-  var x = l.x0;
-  var y = l.y0;
-  var xw = l.xw;
-  var yh = l.yh;
-  if( !obj.oneSpace )
-    return;
-  if( !A.Status.click )
-    return;
-  var offsetX = -obj.offset.x;
-  var offsetY = obj.offset.y;
-  offsetX += A.Status.click.x;
-  offsetY += A.Status.click.y;
-  var textHeight = obj.oneSpace *1.8;
-  var textLineSpacing = textHeight;
-  var kwicSpace = obj.oneSpace;
-
-  var row = Math.floor(offsetY / textLineSpacing -0.5);
-  var col = Math.floor( offsetX / kwicSpace );
-
-  console.log("click at row:"+row+" col:"+col );
-  var D = obj.permutedIndex;
-
-  if( (0<=row) && (row<=D.length)){
-
-    var str = D[row];
-    str = str.split(" ~")[0];
-    // wrap around if after end of string.
-    var wrap = col;
-    if( col === -1 )
-      col =0;
-    if( col < 0 )
-      col++;
-    col = (col + 20*(str.length)) % (str.length);
-    wrap = col-wrap;
-
-    if( str.length > col ){
-      while( (str[col]!==' ') && (col>0))
-        col--;
-      while( (str[col]===' ') && (col < (str.length-1)))
-        col++;
-      str = str.slice(col) +  " " + str.slice( 0, col);
-      str = str.trimEnd();
-    }
-    console.log( "Jump to: " +str );
-    obj.selected = str;
-    reselectInKwic( obj );
-    A.Status.click.x -= (col-wrap)*kwicSpace;
-    drawAgain();
-  }
-}
-
-function pmcLink( str ){
-  if( str.indexOf( "PMCID: " ) == 0 ){
-    return "<a href='https://www.ncbi.nlm.nih.gov/pmc/articles/" +
-      str.substr(7) + "/' target='_blank'>" + str.substr(7) + "</a>";
-  }
-  return str;
-}
-
-function wikipathwayLink( str ){
-  if( str.indexOf( "Pathway:" ) == 0 ){
-    return "<a href='https://www.wikipathways.org/index.php/" +
-      str+ "' target='_blank'>" + str.substr(8) + "</a>";
-  }
-  return str;
-}
-
 
 function drawKwic(A, obj, d){
   if( d.stage !== kStageFillAndText && ( d.stage !== kStageHots ) )
@@ -1893,7 +1874,7 @@ function drawKwic(A, obj, d){
         if( split.length > 3 ){
           str2 = split[0]+
             "<br><b>"+
-            pmcLink(split[3])+
+            anchorTagFromPmcid(split[3])+
             "</b><br><br>"+
             split[2]+
             "</div><div style='font-size:75%;line-height:90%'><br><em>"+
@@ -1903,7 +1884,7 @@ function drawKwic(A, obj, d){
         else if( split.length > 2 ){
           str2 = split[0]+
             "<br><br><b>"+
-            wikipathwayLink(split[1])+
+            anchorTagFromWikipathwyaName(split[1])+
             "</b><br><br>"+
             split[2]+
             "";
@@ -1932,10 +1913,6 @@ function drawKwic(A, obj, d){
   }
 }
 
-
-
-
-
 function drawText(A, obj, d){
   if( d.stage !== kStageFillAndText )
     return;
@@ -1952,7 +1929,7 @@ function drawText(A, obj, d){
   ctx.save();
   ctx.beginPath();
 
-  setStyles(ctx, obj);
+  applyObjectSettingsToContext(ctx, obj);
   if( obj.cornerRadius )
     drawRoundRect(ctx, x, y, xw, yh, obj.cornerRadius);
   else
@@ -1983,8 +1960,6 @@ function drawText(A, obj, d){
   }
 }
 
-
-
 function drawTile(A,obj,d){
   drawRectangle( A, obj, d );
   increaseMargin( A, obj, 10);
@@ -2013,7 +1988,7 @@ function drawCircle(A, obj, d){
   if( (d.stage===kStageOutline) || (d.stage===kStageFillAndText) ){
     ctx.save();
     ctx.beginPath();
-    setStyles(ctx, obj);
+    applyObjectSettingsToContext(ctx, obj);
 
     ctx.arc(x + xw / 2, y + yh / 2, r, 0, Math.PI * 2.0, true);
     if( d.stage===kStageOutline){
@@ -2036,44 +2011,6 @@ function drawCircle(A, obj, d){
     ctx2.fill();
   }
 }
-
-function drawInfoButtonHotspot(A){
-  var xw = 25;
-  var yh = 25;
-  var x = 5;
-  var y = 5;
-  var ctx2 = A.Hotspots.ctx;
-  ctx2.lineWidth = 0;
-  ctx2.beginPath();
-  ctx2.fillStyle = "rgba(0,0,5,1.0)";
-  //ctx2.rect(x, y, xw, yh);
-  ctx2.arc(x + xw / 2, y + yh / 2, xw / 2, 0, Math.PI * 2.0, true);
-  ctx2.fill();
-}
-
-
-
-function drawInfoButton(A){
-  var xw = 25;
-  var yh = 25;
-  var x = 5;
-  var y = 5;
-  var ctx = A.FocusCanvas.ctx;
-  ctx.lineWidth = 3;
-  ctx.font = "20px Times New Roman";
-  ctx.strokeStyle = "rgba( 55, 55,155,1.0)";
-  ctx.globalCompositeOperation = 'source-over';
-
-  ctx.beginPath();
-  ctx.fillStyle = "rgba(255,255,255,1.0)";
-
-  ctx.arc(x + xw / 2, y + yh / 2, xw / 2, 0, Math.PI * 2.0, true);
-  ctx.fill();
-  ctx.stroke();
-  ctx.fillStyle = "rgba(0,0,0,1.0)";
-  ctx.fillText("i", x + 9, y + 19);
-}
-
 
 function drawFilledArrow(ctx, S, style, d){
   if( !isDefined( d ) )
@@ -2101,6 +2038,114 @@ function drawFilledArrow(ctx, S, style, d){
   ctx.restore();
 }
 
+
+// >>>>>>>>>>>>>>>>>>> Draw iterators
+
+function drawSpacedItems(A,x0, y0, xw, yh, values, T){
+  var j;
+  var i;
+  for( j = 0; j < T.items; j++ ){
+    for( i = 0; i < T.count; i++ ){
+      T.fns[j](A, T, values, i, j);
+    }
+  }
+}
+
+function drawContainer(A, obj, d){
+  //console.log( "draw container - "+obj.type);
+  var n = obj.content.length;
+  for( var i = 0; i < n; i++ ) drawCells(A,obj.content[i], d);
+}
+
+function drawChart(A, obj, d){
+  if( d.stage !== kStageFillAndText && ( d.stage !== kStageHots ) )
+    return;
+
+  //console.log( "draw - "+obj.type);
+  var l = obj.layout;
+  var x0 = l.x0;
+  var y0 = l.y0;
+  var xw = l.xw;
+  var yh = l.yh;
+
+  var T = {};
+  // We can either specify width of the bars, or the spacing between bar groups.
+  if( obj.pie ){
+    T.spacer = 30;
+    T.cols = 1;
+  }
+  else if( obj.spacer ){
+    T.spacer = obj.spacer;
+  }
+  else
+    T.width = 8;
+  T.stage = d.stage;
+  T.obj = obj;// Heck, pass the whole object too...
+  if( obj.valuesFrom ){
+    var obj2 = getObjectByName(A,obj.valuesFrom );
+    obj.values = obj2.values;
+    obj.maxY = obj.maxY || obj2.maxY;
+  }
+  if( !obj.values )
+    return;
+  //if( T.stage === kStageFillAndText )
+  //  clearBacking(A,x0, y0, xw, yh);
+
+  T.colours = [];
+  T.colours[0] = "rgba(105,205,105,1.0)";
+  T.colours[1] = "rgba(105,105,205,1.0)";
+  T.linesAt = obj.linesAt || 200;
+  T.maxY = obj.maxY || 2600;
+
+  if( obj.display && obj.display[1].startsWith("#") )
+    T.colours[1] = obj.display[1];
+
+  T.subber = makeLabelReplacerFn(obj);
+
+  computeSpacing(A, T, x0, y0, xw, yh, obj.values);
+  makeFunctionTable(T, obj);
+  drawSpacedItems(A,x0, y0, xw, yh, obj.values, T);
+}
+
+
+
+
+// >>>>>>>>>>>>>>>>>>>> Draw on focus layer
+
+function drawInfoButtonHotspot(A){
+  var xw = 25;
+  var yh = 25;
+  var x = 5;
+  var y = 5;
+  var ctx2 = A.Hotspots.ctx;
+  ctx2.lineWidth = 0;
+  ctx2.beginPath();
+  ctx2.fillStyle = "rgba(0,0,5,1.0)";
+  //ctx2.rect(x, y, xw, yh);
+  ctx2.arc(x + xw / 2, y + yh / 2, xw / 2, 0, Math.PI * 2.0, true);
+  ctx2.fill();
+}
+
+function drawInfoButton(A){
+  var xw = 25;
+  var yh = 25;
+  var x = 5;
+  var y = 5;
+  var ctx = A.FocusCanvas.ctx;
+  ctx.lineWidth = 3;
+  ctx.font = "20px Times New Roman";
+  ctx.strokeStyle = "rgba( 55, 55,155,1.0)";
+  ctx.globalCompositeOperation = 'source-over';
+
+  ctx.beginPath();
+  ctx.fillStyle = "rgba(255,255,255,1.0)";
+
+  ctx.arc(x + xw / 2, y + yh / 2, xw / 2, 0, Math.PI * 2.0, true);
+  ctx.fill();
+  ctx.stroke();
+  ctx.fillStyle = "rgba(0,0,0,1.0)";
+  ctx.fillText("i", x + 9, y + 19);
+}
 
 // Draws arrows pointing North, South East and West
 // as an overlay.
@@ -2159,7 +2204,6 @@ function drawFocusSpot(A,x, y){
   ctx.closePath();
   ctx.fill();
 }
-
 
 function drawHotShape(ix, action, colourMatch){
   var A = Annotator[ ix ];
@@ -2230,19 +2274,7 @@ function drawHotShape(ix, action, colourMatch){
 }
 
 
-//------------------ Some colour utilities...
-function roundColour(tuple){
-  var values = JSON.parse(tuple);
-  var result = values.map(function(v){
-    return Math.floor((v + 2.5) / 5) * 5;
-  });
-  return '[' + result.toString() + ']';
-}
-
-function stringOfTuple( v ){
-  return "[" + v[0] + "," + v[1] + "," + v[2] + "," + v[3] + "]";
-}
-
+// >>>>>>>>>>>>>>>>>>>> Colour utilities...
 function rgbOfColourTuple( v ){
   return "rgba(" + v[0] + "," + v[1] + "," + v[2] + "," + v[3] + ")";
 }
@@ -2274,6 +2306,8 @@ function textColourForRgb( rgb ){
 }
 //----------- end of colour utilities.
 
+
+// >>>>>>>>>>>>>>>>>>>> Clicking or moving
 
 /*
  * When we exit the annotation area,
@@ -2320,7 +2354,7 @@ function setNewImage(A,file){
     var obj = A.RootObject.content[0];
     //obj.file = file;
     //obj.img.crossOrigin = "anonymous";
-    //obj.img.src = urlOfFile( obj.file );
+    //obj.img.src = urlOfFilename( obj.file );
     obj.src = file;
     mayRequestImage(A, obj)
 
@@ -2352,11 +2386,6 @@ function onMouseUp( e ){
   console.log( "Up at "+stringOfCoord(A.Status.displace, -1 ) );
   e.target.style.cursor = 'auto';
   A.Cursor="spot";
-}
-
-function stringOfCoord( coord, mul ){
-  mul = mul || 1;
-  return "("+Math.floor(coord.x*mul)+","+Math.floor(coord.y*mul)+")";
 }
 
 function onMouseDown( e ){
@@ -2393,7 +2422,7 @@ function onMouseDown( e ){
     drawFocusDragger(A,x, y);
   }
 
-  drawAgain();
+  drawDiagramAgain();
 
 }
 
@@ -2440,7 +2469,7 @@ function mousemoveOnMap(e){
   }
   if( e.buttons ){
     A.Status.move = { x: x, y: y };
-    drawAgain();
+    drawDiagramAgain();
   }
 }
 
@@ -2465,16 +2494,10 @@ function onFocusClicked(e){
   }
 }
 
-
 function updateImages(A){
   if( !A.BackingCanvas )
     return;
-  onChart(A);
-}
-
-function fooo( ix, c ){
-  var A = Annotator[ ix ];
-  drawHotShape(A,c);
+  setupAndDrawDiagramDiv(A);
 }
 
 function makeToc(A){
@@ -2619,34 +2642,6 @@ function setClick(A,type, location){
   A.Hotspots.Current.Click = h;
 }
 
-function fixHyperlinks(text){
-  text = text.split("[http");
-  var result = text[0];
-  text[0] = "";
-  text.forEach(function(item){
-    if( item ){
-      item = item.replace(" ", "'>");
-      item = item.replace("]", "</a>");
-      result += "<a href='http" + item;
-    }
-
-  });
-  return result;
-}
-
-function sanitiseHtml(html){
-  html = fixHyperlinks(html);
-  // Whitelist all relevant tags.
-  return html;
-}
-
-function drawContainer(A, obj, d){
-  //console.log( "draw container - "+obj.type);
-  var n = obj.content.length;
-  for( var i = 0; i < n; i++ ) drawCells(A,obj.content[i], d);
-}
-
-
 function sizeCell(A, obj, d){
   //console.log( "size cell - "+obj.type);
   obj.sizing = {};
@@ -2672,7 +2667,6 @@ function setCellLayout(A, x0, y0, xw, yh, obj){
   obj.layout = { "x0": x0, "y0": y0, "xw": xw, "yh": yh };
   //console.log( obj.layout );
 }
-
 
 function increaseMargin(A, obj, m){
   //console.log( "layout - "+obj.type);
@@ -2809,6 +2803,80 @@ function createProg( A, obj, data ){
 }
 
 
+// >>>>>>>>>>>>>>> Kwic
+
+
+function reselectInKwic( obj ){
+  if( obj.selected ){
+    var X = obj.permutedIndex;
+    var index = bSearch(X, obj.selected + " ~ZZZ");
+    console.log("found at: " + index);
+    console.log("value: " + X[index]);
+    if( obj.oneSpace ){
+      var textHeight = obj.oneSpace *1.8;
+      var row = Math.floor(A.Status.click.y / textHeight -0.5);
+      index = index-row;
+      A.Status.click.y += index*textHeight;
+
+
+    }
+  }
+
+}
+
+function findInKwic( A, obj ){
+  var l = obj.layout;
+  var x = l.x0;
+  var y = l.y0;
+  var xw = l.xw;
+  var yh = l.yh;
+  if( !obj.oneSpace )
+    return;
+  if( !A.Status.click )
+    return;
+  var offsetX = -obj.offset.x;
+  var offsetY = obj.offset.y;
+  offsetX += A.Status.click.x;
+  offsetY += A.Status.click.y;
+  var textHeight = obj.oneSpace *1.8;
+  var textLineSpacing = textHeight;
+  var kwicSpace = obj.oneSpace;
+
+  var row = Math.floor(offsetY / textLineSpacing -0.5);
+  var col = Math.floor( offsetX / kwicSpace );
+
+  console.log("click at row:"+row+" col:"+col );
+  var D = obj.permutedIndex;
+
+  if( (0<=row) && (row<=D.length)){
+
+    var str = D[row];
+    str = str.split(" ~")[0];
+    // wrap around if after end of string.
+    var wrap = col;
+    if( col === -1 )
+      col =0;
+    if( col < 0 )
+      col++;
+    col = (col + 20*(str.length)) % (str.length);
+    wrap = col-wrap;
+
+    if( str.length > col ){
+      while( (str[col]!==' ') && (col>0))
+        col--;
+      while( (str[col]===' ') && (col < (str.length-1)))
+        col++;
+      str = str.slice(col) +  " " + str.slice( 0, col);
+      str = str.trimEnd();
+    }
+    console.log( "Jump to: " +str );
+    obj.selected = str;
+    reselectInKwic( obj );
+    A.Status.click.x -= (col-wrap)*kwicSpace;
+    drawDiagramAgain();
+  }
+}
+
 function permuteMe( values ){
   var i;
 
@@ -2874,7 +2942,6 @@ function bSearch(array, item) {
   return hi;
 }
 
-
 function newKwicData(A, obj, text ){
   console.log( "Got text response "+text.length+" chars for object "+obj.type );
   text = text.replace( /\r\n/gm , "\n" );
@@ -2900,8 +2967,6 @@ function newKwicData(A, obj, text ){
 
 }
 
-
-
 function createKwic( A, obj, data ){
   console.log("Got it");
   //var X = [ obj.content[0] ];
@@ -2920,10 +2985,8 @@ function createKwic( A, obj, data ){
   }
 }
 
-function sizeSpacer( A, obj, data ){
-  sizeCell(A, obj, data );
-  obj.sizing.wants = obj.value;
-}
+
+// >>>>>>>>>>>>>>>>  Layout and sizing.
 
 function sizeNowt( A, obj, data ){
   sizeCell( A, obj, data );
@@ -2933,21 +2996,11 @@ function sizeNowt( A, obj, data ){
 function layoutNowt( A, obj, data ){
 }
 
-
-
 function mayRegisterClickAction( A, obj ){
   // setClick uses the 'Hotspots.Current.Click' object.
   if( obj.hasOwnProperty( "clickDo" )){
     setClick( A, obj.clickDo[0], obj.clickDo[1] );
   }
-}
-
-function urlOfFile(file){
-  if( isFromServer() === "yes" )
-    file = "https://wit.audacityteam.org/images/" + file;
-  else
-    file = "./images/" + file;
-  return file;
 }
 
 function mayRequestImage(A, obj){
@@ -2958,7 +3011,7 @@ function mayRequestImage(A, obj){
     return;
   }
 
-  obj.file = urlOfFile(obj.src);
+  obj.file = urlOfFilename(obj.src);
   if( obj.previous_img === obj.file )
     return;
   obj.status = "asked";
@@ -2975,7 +3028,7 @@ function mayRequestImage(A, obj){
       if( obj1.resize ){
         resizeForImage(A, obj1.img);
       } else if( A.Status.isAppReady ){
-        onChart(A);
+        setupAndDrawDiagramDiv(A);
       }
     }
   })();
@@ -3000,7 +3053,7 @@ function mayRequestHotImage(A, obj){
     return;
   }
 
-  var file = urlOfFile(obj.hotsrc);
+  var file = urlOfFilename(obj.hotsrc);
   if( obj.hot && obj.hot.previous_image === file )
     return;
 
@@ -3072,7 +3125,6 @@ function createCell(A, obj, d){
   }
 }
 
-
 function createContainer( A, obj, d){
 //console.log( "create container - "+obj.type);
   var n = 0;
@@ -3084,11 +3136,9 @@ function createContainer( A, obj, d){
   }
 }
 
-
 function createCells(A, obj, data){
   visit(createThing, A, obj, data);
 }
-
 
 function sizeCells(A, obj, data){
   visit(sizeThing, A, obj, data);
@@ -3127,6 +3177,14 @@ drawThing = {
   "Overlay": drawContainer,
 };
 
+// @how has a function for each type of object
+// @what is an object to visit
+// @data carries extra information into the function
+function visit(how, A, what, data){
+  if( how[what.type] ){
+    how[what.type].call(how, A, what, data);
+  } else how.default.call(how, A, what, data);
+}
 
 function registerMethod( forWhat, creating, sizing, layout, draw )
 {
@@ -3142,100 +3200,8 @@ function registerMethod( forWhat, creating, sizing, layout, draw )
 }
 
 
-// @how has a function for each type of object
-// @what is an object to visit
-// @data carries extra information into the function
-function visit(how, A, what, data){
-  if( how[what.type] ){
-    how[what.type].call(how, A, what, data);
-  } else how.default.call(how, A, what, data);
-}
 
-// converts user friendly format into more
-// verbose but more uniform format,
-// with content and type fields.
-function convertJsonStructure(A, indent, layout){
-  var key;
-  for( key in layout ){
-    if( !layout.hasOwnProperty(key) ) continue;
-    var ch = key.substr(0, 1);
-    if( ch !== ch.toUpperCase() ) continue;
-
-    // If an array, then there are more objects
-    // to explore.
-    if( Array.isArray(layout[key]) ){
-      layout.content = layout[key];
-    } else {
-      // otherwise there are no contents.
-      layout.content = [];
-      layout.value = layout[key];
-    }
-    layout.type = key;
-    delete layout[key];
-
-    //console.log( indent+key );
-    break;
-  }
-  if( (!layout.id) && layout.value && (typeof layout.value) == "string" ){
-    layout.id = layout.value;
-  }
-  if( layout.id ){
-    layout.id = layout.id.substr(0, 10);
-    A.RootObject.objectDict[layout.id] = layout;
-    A.RootObject.objectList.push(layout);
-  }
-  if( layout.content && Array.isArray(layout.content) ){
-    for( var i = 0; i < layout.content.length; i++ ){
-      //console.log( indent+"Arg: "+i);
-      convertJsonStructure( A, indent + "   ", layout.content[i]);
-    }
-  }
-}
-
-function doChoose( A, parentObj, item )
-{
-  if( !parentObj.content )
-    return;
-  if( !Array.isArray(parentObj.content))
-    return;
-
-  item--;
-  var n = parentObj.content.length;
-  for( var i=0;i<n;i++){
-    var obj = parentObj.content[i];
-
-    obj.colour  = (i===item) ? "rgb(255,250,235)":"rgb(255,230,205)";
-    obj.borderColour = (i===item) ? "rgb(145,125,0)"  :"rgb(215,155,0)";
-    obj.cornerRadius = 8;
-    obj.drawEarly = (i!==item);
-    obj.drawExtra = true;
-    if( A.dataArriving )
-      continue;
-    if( i===item && (parentObj.chosen !== item )){
-      parentObj.chosen = item;
-      //console.log( "New choice of "+(item+1));
-      if( obj.clickDo ){
-        // This makes a temporary click action, so that we can
-        // do it immediately.
-        A.Hotspots.Current.Click = [];
-        setClick( A, obj.clickDo[0], obj.clickDo[1] );
-        doAction(A,A.Hotspots.Current.Click);
-      }
-    }
-  }
-}
-
-function getObjectByName(A, name){
-  if( !name ) return 0;
-  if( !A.RootObject.objectDict ) return 0;
-  var shortName = name.substr(0, 10);
-  return A.RootObject.objectDict[shortName];
-}
-
-function isDefined(x){
-  var undef;
-  return x !== undef;
-}
+// >>>>>>>>>>>>>>>>>> Data requests
 
 function loadNewLines(A, specFileData, section){
   console.log( "Loading new file..." );
@@ -3405,8 +3371,8 @@ function loadNewLines(A, specFileData, section){
       if( obj ){
         data = fieldValue("VALUE", item);
         if( data ){
-           data = JSON.parse( data );
-           obj.choice = data;
+          data = JSON.parse( data );
+          obj.choice = data;
         }
       }
       var bright = fieldValue("BRIGHT_OBJECTS", item);
@@ -3431,7 +3397,7 @@ function loadNewLines(A, specFileData, section){
           obj1.status = "arrived";
           console.log(obj1.file + " subdiagram arrived");
           if( A.Status.isAppReady )
-            onChart(A);
+            setupAndDrawDiagramDiv(A);
         }
       })();
       obj.onerror = (function(){
@@ -3463,6 +3429,14 @@ function loadNewLines(A, specFileData, section){
   console.log( "...New file loaded" );
 }
 
+function loadDiagram(A,page, fromwiki,section){
+  console.log("Load Diagram: "+page);
+  A.page = page;
+  A.fromWiki = fromwiki;
+  setToc( A, false);
+  requestSpec( A,page, fromwiki,section);
+}
+
 /**
  * addNewDetails does not clear out old data before loading new lines from
  * a file.
@@ -3486,6 +3460,7 @@ function addNewDetails(A, data, section){
   setToc( A, A.TocShown );
   A.dataArriving = false;
 }
+
 
 /**
  * handleNewData wipes out all old data, including captions and hotpsots,
@@ -3513,6 +3488,72 @@ function handleNewData(A, data, section){
   setToc( A, A.TocShown );
   iter = 200;
 }
+
+// Puts wikitext data into the edit page
+function handleEditorData(A, data, section){
+  A.MainDiv.innerHTML = data;
+  // And switches to a different tab, if it should.
+  if( A.tab ){
+    var widget = document.getElementById( A.tab + 'Tab');
+    if( widget ){
+      widget.onclick();
+    }
+  }
+}
+
+// Translates wikitext data into html in the page.
+function handlePageData(A,data){
+  var div = document.getElementById( "page" );
+  if( !div )
+    return;
+  data = data.replace( /__NOTOC__/g, "" );
+  data = data.replace( /^----*/gm, "<hr>");
+  data = data.replace( /\[http(\S*)\s([^\]]*)\]/g,"<a" +
+    " href='http$1'>$2</a>");
+  data = data.replace( /\[\[File:([^\]]*)\]\]/g, "<img" +
+    " style='width:700px;border:solid black 1px' src='./images/$1'>");
+  data = data.replace( /https:\/\/wit.audacityteam.org\//g, '' );
+  data = data.replace( /\[\[Toolbox\/([^\|\]]*)\|([^\[]*)\]\]/g, "<a" +
+    " href='raw/raw_spec_$1.txt'>Toolbox/$2</a>");
+  data = data.replace( /\[\[Toolbox\/([^\]]*)\]\]/g, "<a" +
+    " href='raw/raw_spec_$1.txt'>Toolbox/$1</a>");
+  data = data.replace( /#.\.txt/g, ".txt" );
+
+  data=data.replace( /{{ATK_Header}}/g,
+    "<div style='margin:0 auto;background:#EEEEFF;padding:10px;border:1px solid" +
+    " #999999;width:90%;align:center;margin-top:30px;margin-bottom:30px'" +
+    ">This is an example interactive" +
+    " diagram created using the " +
+    "<a href='https://wiki.audacityteam.org/wiki/Audacity_Tool_Kit'>Audacity " +
+    "Tool Kit</a> (ATK).  The aim of the ATK" +
+    " project is to provide interactive diagrams that explain everything to do" +
+    " with Audacity.  The ATK is also expected to be useful for other code" +
+    " projects, and eventually for Wikipedia too, for biochemical pathways and" +
+    " other interactive diagrams.</div>");
+
+
+  data = data.replace( /^======(.*)======/gm, "<h2>$1</h2>" );
+  data = data.replace( /^=====(.*)=====/gm, "<h3>$1</h3>" );
+  data = data.replace( /\*\*(.*)\*\*/gm, "<b>$1</b>" );
+  data = data.replace( /~~(.*)~~/gm, "<s>$1</s>" );
+  data = data.replace( /\n'''\n([\s\S]*?)\n'''\n/g, "<pre><xmp>$1</xmp></pre>" );
+  data = data.replace( /(\s)http(\S*)(\.\s)/gm, "$1<a href='http$2'>http$2</a>$3" );
+  data = data.replace( /(\s)http(\S*)(\s)/gm, "$1<a href='http$2'>http$2</a>$3" );
+
+  data = data.replace( /^\*/gm, "<br> • " );
+  data = data.replace( /\n\n([^<])/gm, "<br><br>$1" );
+  data = data.replace( /\{\{#widget:WikiDiagram\|page=([_A-Z0-9a-z\u00C0-\u017F]*).*?\}\}/gm, '        <div id="content_here1" class="atkContentDiv2" data-page="$1" style="text-align:center;">\n' +
+    '        </div>' );
+
+  var name = A.page;
+  name = decodeURI( name );
+  name = name.replace(/_/g," ");
+  data = "<h1><a href='demos.htm?page0="+A.page+"'>Toolkit/"+name+"</a></h1><hr>"+data;
+
+  div.innerHTML = data;
+  addPreview();
+}
+
 
 /**
  * Loads one source file into an item in an array.
@@ -3577,12 +3618,94 @@ function requestFile(A,source, fromwiki,section,fn){
 
 }
 
-function loadDiagram(A,page, fromwiki,section){
-  console.log("Load Diagram: "+page);
-  A.page = page;
-  A.fromWiki = fromwiki;
-  setToc( A, false);
-  requestSpec( A,page, fromwiki,section);
+
+
+
+
+// converts user friendly format into more
+// verbose but more uniform format,
+// with content and type fields.
+function convertJsonStructure(A, indent, layout){
+  var key;
+  for( key in layout ){
+    if( !layout.hasOwnProperty(key) ) continue;
+    var ch = key.substr(0, 1);
+    if( ch !== ch.toUpperCase() ) continue;
+
+    // If an array, then there are more objects
+    // to explore.
+    if( Array.isArray(layout[key]) ){
+      layout.content = layout[key];
+    } else {
+      // otherwise there are no contents.
+      layout.content = [];
+      layout.value = layout[key];
+    }
+    layout.type = key;
+    delete layout[key];
+
+    //console.log( indent+key );
+    break;
+  }
+  if( (!layout.id) && layout.value && (typeof layout.value) == "string" ){
+    layout.id = layout.value;
+  }
+  if( layout.id ){
+    layout.id = layout.id.substr(0, 10);
+    A.RootObject.objectDict[layout.id] = layout;
+    A.RootObject.objectList.push(layout);
+  }
+  if( layout.content && Array.isArray(layout.content) ){
+    for( var i = 0; i < layout.content.length; i++ ){
+      //console.log( indent+"Arg: "+i);
+      convertJsonStructure( A, indent + "   ", layout.content[i]);
+    }
+  }
+}
+
+function doChoose( A, parentObj, item )
+{
+  if( !parentObj.content )
+    return;
+  if( !Array.isArray(parentObj.content))
+    return;
+
+  item--;
+  var n = parentObj.content.length;
+  for( var i=0;i<n;i++){
+    var obj = parentObj.content[i];
+
+    obj.colour  = (i===item) ? "rgb(255,250,235)":"rgb(255,230,205)";
+    obj.borderColour = (i===item) ? "rgb(145,125,0)"  :"rgb(215,155,0)";
+    obj.cornerRadius = 8;
+    obj.drawEarly = (i!==item);
+    obj.drawExtra = true;
+    if( A.dataArriving )
+      continue;
+    if( i===item && (parentObj.chosen !== item )){
+      parentObj.chosen = item;
+      //console.log( "New choice of "+(item+1));
+      if( obj.clickDo ){
+        // This makes a temporary click action, so that we can
+        // do it immediately.
+        A.Hotspots.Current.Click = [];
+        setClick( A, obj.clickDo[0], obj.clickDo[1] );
+        doAction(A,A.Hotspots.Current.Click);
+      }
+    }
+  }
+}
+
+function getObjectByName(A, name){
+  if( !name ) return 0;
+  if( !A.RootObject.objectDict ) return 0;
+  var shortName = name.substr(0, 10);
+  return A.RootObject.objectDict[shortName];
+}
+
+function isDefined(x){
+  var undef;
+  return x !== undef;
 }
 
 function removeFrame(A){
@@ -3605,13 +3728,13 @@ function isFromServer(){
 }
 
 
-
+var Editors = [];
 var Nozone = {};
 Nozone.Zone = 0;
 
-
 var Message;
 var Message2;
+var timer = 0;
 
 function makeAnnotator(){
   console.log( "Making annotator instance "+Annotator.length );
@@ -3623,11 +3746,6 @@ function makeAnnotator(){
   resetHotspots(newA);
   return newA;
 }
-
-
-//makeAnnotator();
-
-var timer = 0;
 
 function initContent( classes ){
   if( classes ){
@@ -3665,10 +3783,6 @@ function initContent( classes ){
 
 }
 
-var Editors = [];
-
-
-
 function initEditors(){
   registerMethods();
 
@@ -3697,71 +3811,6 @@ function addPreview(){
   initContent("atkContentDiv2");
 }
 
-
-// Puts wikitext data into the edit page
-function handleEditorData(A, data, section){
-  A.MainDiv.innerHTML = data;
-  // And switches to a different tab, if it should.
-  if( A.tab ){
-    var widget = document.getElementById( A.tab + 'Tab');
-    if( widget ){
-      widget.onclick();
-    }
-  }
-}
-
-// Translates wikitext data into html in the page.
-function handlePageData(A,data){
-  var div = document.getElementById( "page" );
-  if( !div )
-    return;
-  data = data.replace( /__NOTOC__/g, "" );
-  data = data.replace( /^----*/gm, "<hr>");
-  data = data.replace( /\[http(\S*)\s([^\]]*)\]/g,"<a" +
-    " href='http$1'>$2</a>");
-  data = data.replace( /\[\[File:([^\]]*)\]\]/g, "<img" +
-    " style='width:700px;border:solid black 1px' src='./images/$1'>");
-  data = data.replace( /https:\/\/wit.audacityteam.org\//g, '' );
-  data = data.replace( /\[\[Toolbox\/([^\|\]]*)\|([^\[]*)\]\]/g, "<a" +
-    " href='raw/raw_spec_$1.txt'>Toolbox/$2</a>");
-  data = data.replace( /\[\[Toolbox\/([^\]]*)\]\]/g, "<a" +
-    " href='raw/raw_spec_$1.txt'>Toolbox/$1</a>");
-  data = data.replace( /#.\.txt/g, ".txt" );
-
-  data=data.replace( /{{ATK_Header}}/g,
-"<div style='margin:0 auto;background:#EEEEFF;padding:10px;border:1px solid" +
-    " #999999;width:90%;align:center;margin-top:30px;margin-bottom:30px'" +
-    ">This is an example interactive" +
-    " diagram created using the " +
-    "<a href='https://wiki.audacityteam.org/wiki/Audacity_Tool_Kit'>Audacity " +
-    "Tool Kit</a> (ATK).  The aim of the ATK" +
-    " project is to provide interactive diagrams that explain everything to do" +
-    " with Audacity.  The ATK is also expected to be useful for other code" +
-    " projects, and eventually for Wikipedia too, for biochemical pathways and" +
-    " other interactive diagrams.</div>");
-
-
-  data = data.replace( /^======(.*)======/gm, "<h2>$1</h2>" );
-  data = data.replace( /^=====(.*)=====/gm, "<h3>$1</h3>" );
-  data = data.replace( /\*\*(.*)\*\*/gm, "<b>$1</b>" );
-  data = data.replace( /~~(.*)~~/gm, "<s>$1</s>" );
-  data = data.replace( /\n'''\n([\s\S]*?)\n'''\n/g, "<pre><xmp>$1</xmp></pre>" );
-  data = data.replace( /(\s)http(\S*)(\.\s)/gm, "$1<a href='http$2'>http$2</a>$3" );
-  data = data.replace( /(\s)http(\S*)(\s)/gm, "$1<a href='http$2'>http$2</a>$3" );
-
-  data = data.replace( /^\*/gm, "<br> • " );
-  data = data.replace( /\n\n([^<])/gm, "<br><br>$1" );
-  data = data.replace( /\{\{#widget:WikiDiagram\|page=([_A-Z0-9a-z\u00C0-\u017F]*).*?\}\}/gm, '        <div id="content_here1" class="atkContentDiv2" data-page="$1" style="text-align:center;">\n' +
-    '        </div>' );
-
-  var name = A.page;
-  name = decodeURI( name );
-  name = name.replace(/_/g," ");
-  data = "<h1><a href='demos.htm?page0="+A.page+"'>Toolkit/"+name+"</a></h1><hr>"+data;
-
-  div.innerHTML = data;
-  addPreview();
-}
 
 function populateEditorElement(A, contentHere){
 
