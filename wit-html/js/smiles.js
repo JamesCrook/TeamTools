@@ -131,8 +131,6 @@ function initSmiles(){
   }
 
   Smiles.aromatics = "bcnops";
-
-
 }
 
 initSmiles();
@@ -140,7 +138,6 @@ initSmiles();
 function rgbOfAtom( at ){
   return Smiles.colours[ at ] || "rgba(60,60,60,1.0)";
 }
-
 
 function layoutMolecule( A, obj, d ){
   var l = obj.layout;
@@ -213,7 +210,6 @@ function layoutMolecule( A, obj, d ){
   while( result.tok !== "" );
 }
 
-
 function layoutAtom( A, obj, d ){
   var l = obj.layout;
   var x = l.x0;
@@ -243,6 +239,8 @@ function layoutBond( A, obj, d ){
   obj.multiplicity = 2;
   obj.S = getLineBetweenPoints(obj.S0, obj.S1);
 }
+
+// >>>>>>>>>>>>>>>>>>> Draw Functions >>>>>>>>>>>>>>>>>>>>>>>>>>
 
 function drawAtom(A, obj, d){
   var ctx = A.BackingCanvas.ctx;
@@ -348,7 +346,6 @@ function drawBenzene( A, obj, d ){
   }
 }
 
-
 function drawChem(A, obj, d){
   if( d.stage !== kStageFillAndText )
     return;
@@ -387,16 +384,27 @@ function drawChem(A, obj, d){
   drawBenzene( A, obj, d );
 }
 
+function drawMolecule( A, obj, d ){
+  if( d.stage !== kStageFillAndText ) return;
+
+  var i;
+  minEnergy(A, obj, d);
+  for( i = 0; i < obj.atoms.length; i++ ){
+    drawAtom(A, obj.atoms[i], d);
+  }
+  for( i = 0; i < obj.bonds.length; i++ ){
+    drawBond(A, obj.bonds[i], d);
+  }
+}
+
+// <<<<<<<<<<<<<<<<<<<< Draw Functions <<<<<<<<<<<<<<<<<<<<<<<<
+
 var iter = 160;
-
-
-
 
 // Each bond is a spring of length 40, and attempts to set its length.
 // Around each atom, the bonds 'try' to form a circle.
 // We randomly repel non-carbon atoms that are 'sufficiently far away'
 // from each other (by an overly crude metric).
-
 function minEnergy( A, obj, d ){
   var atoms = [];
   var i;
@@ -494,7 +502,7 @@ function minEnergy( A, obj, d ){
   }
 
 
-  // list the non-carbon attoms.
+  // list the non-carbon atoms.
   var nonC = [];
   for( i=0;i<obj.atoms.length;i++){
     if( obj.atoms[i].value !== "C" ){
@@ -507,7 +515,7 @@ function minEnergy( A, obj, d ){
   var first = 5;
   var final = nonC.length;
   first = Math.floor(Math.random() * final);
-  last = Math.floor(Math.random() * final);
+  var last = Math.floor(Math.random() * final);
   if( Math.abs( first - last ) < 1){
     first = (first + 1) % final;
   }
@@ -515,8 +523,8 @@ function minEnergy( A, obj, d ){
   last  = nonC[last];
 
   // repel them.
-  vx = obj.atoms[first].x - obj.atoms[last].x;
-  vy = obj.atoms[first].y - obj.atoms[last].y;
+  var vx = obj.atoms[first].x - obj.atoms[last].x;
+  var vy = obj.atoms[first].y - obj.atoms[last].y;
   var pull = 0.05*final*Math.max( 0, iter/2-3);
   // reduce the repulsion for small molecules.
   pull *= (final > 20)?1:0.05;
@@ -549,22 +557,75 @@ function minEnergy( A, obj, d ){
     bond.S1.x = atomTo.x;
     bond.S1.y = atomTo.y;
   }
-
-
 }
 
 
-function drawMolecule( A, obj, d ){
-  if( d.stage !== kStageFillAndText ) return;
+function drawDragger(A, obj, d){
+  //console.log( "draw - "+obj.type);
+  var stage = d.stage;
+  if( stage !== kStageFillAndText ) return;
 
+  var l = obj.layout;
+  var x = l.x0;
+  var y = l.y0;
+  var xw = 15;
+  var yh = 15;
+  obj.draggerX = obj.draggerX || 100;
+  x += obj.draggerX;
+  y += l.yh-yh;
+
+  var ctx = A.BackingCanvas.ctx;
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.fillStyle = "rgb(0,0,0)";
+  ctx.moveTo(x,y);
+  ctx.lineTo(x+xw, y+yh );
+  ctx.lineTo( x-xw, y+yh);
+  ctx.closePath();
+  ctx.fill();
+  ctx.restore();
+
+}
+
+function drawRuler(A, obj, d){
+  //console.log( "draw - "+obj.type);
+  var stage = d.stage;
+  if( stage!==kStageFillAndText)
+    return;
+
+  var l = obj.layout;
+  var x = l.x0;
+  var y = l.y0;
+  var xw = l.xw;
+  var yh = l.yh;
+
+  mayUpdateStyle(A,obj);
+
+  var ctx = A.BackingCanvas.ctx;
+
+  ctx.save();
+  ctx.beginPath();
+
+  applyObjectSettingsToContext(ctx, obj);
+  if( obj.cornerRadius )
+    drawRoundRect(ctx, x, y, xw, yh, obj.cornerRadius);
+  else
+    ctx.rect(x, y, xw, yh);
+
+  ctx.strokeStyle = "rgb(0,0,0)";
+  ctx.strokeWidth = 1.5;
   var i;
-  minEnergy(A, obj, d);
-  for( i = 0; i < obj.atoms.length; i++ ){
-    drawAtom(A, obj.atoms[i], d);
+  for(i=0;i<xw;i+=12){
+    ctx.beginPath();
+    ctx.moveTo( x +i, y);
+    ctx.lineTo( x+i,y+yh);
+    ctx.stroke();
   }
-  for( i = 0; i < obj.bonds.length; i++ ){
-    drawBond(A, obj.bonds[i], d);
-  }
+
+  drawDragger(A, obj, d );
+
+  ctx.restore();
 }
 
 
@@ -575,6 +636,8 @@ function registerSmilesMethods()
   //registerMethod( "Chem",    0, 0, drawChem);
   registerMethod( "Atom",    0,0, layoutAtom, drawAtom);
   registerMethod( "Bond",    0,0, layoutBond, drawBond);
+  registerMethod( "Ruler",0,0, layoutMargined, drawRuler);
+
 }
 
 registerSmilesMethods();

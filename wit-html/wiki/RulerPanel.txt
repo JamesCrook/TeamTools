@@ -1,0 +1,38 @@
+__NOTOC__
+
+
+{{ATK_Header}}
+
+This is the spec for the interactive diagram which shows a chart of Audacity bug counts:
+
+Here's the result:
+
+-----
+{{#widget:WikiDiagram|page=RulerPanel|init=yes}}
+-----
+
+The detailed data for the chart follows.
+
+<pre>START</pre>
+
+<pre>ADD:DATA=
+[
+    {
+    "Ruler":"BugChart",
+    "margins":3,
+    "sizeAs":0.1,
+    "start":0,
+    "end":2000
+    },
+    {"Rectangle":"Chart"
+    }
+]
+</pre>
+
+
+<pre>CREDITS:CAPTION=Draggable Ruler;TIP=</pre>
+<h3>Instructions</h3>
+<ul>
+<li>Drag Ruler to resize.
+</ul><br><br>
+<b>Credits:</b> <em>James Crook ©2020; Image CC0</em>
