@@ -569,10 +569,6 @@ function onRulerClicked(A, obj){
 
   if( !A.Status.click )
     return;
-  var offsetX = -obj.offset.x;
-  var offsetY = obj.offset.y;
-  offsetX += A.Status.click.x;
-  offsetY += A.Status.click.y;
 }
 
 function displacement( A ){
