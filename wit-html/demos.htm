@@ -190,6 +190,7 @@
         var bWip = codes.indexOf( "wip" ) >=0;
         var args1 = "?page0="+name;
         args1 = args1 + "&fromwiki=no";
+
         var args2 = "?page1="+name;
         args2 = args2 + "&fromwiki=no";
 
@@ -229,7 +230,9 @@
 
         str += '<div>';
         str += '<h3>Examples:</h3><ul>';
-        str += '<li><a href="./demos.htm?bio=y&page0=Molecule&fromwiki=no">Bio Diagrams</a> - Show just the diagrams related to biosciences.';
+        str += '<li><a href="./demos.htm?bio=y&page0=Molecule&fromwiki=no' +
+          (bonusContent?'&bonus=y':'') +
+          '">Bio Diagrams</a> - Show just the diagrams related to biosciences.';
         str += '</ul>';
         str += '</div>';
         str += '<div>';
@@ -371,12 +374,14 @@
         return str;
       }
 
-      function bioExamplesText(){
+      function bioExamplesText(bonusContent){
         var str ="";
 
           str += '<div>';
         str += '<h3>Examples:</h3><ul>';
-        str += '<li><a href="./demos.htm?page0=Audacity&fromwiki=no">Audacity Diagrams</a> - Show just the audacity diagrams (and some extras).';
+        str += '<li><a href="./demos.htm?page0=Audacity&fromwiki=no'+
+          (bonusContent?'&bonus=y':'') +
+          '">Audacity Diagrams</a> - Show just the audacity diagrams (and some extras).';
         str += '</ul>';
         str += '</div>';
         str += '<div>';
@@ -409,7 +414,7 @@
         if( !getArg('bio') )
           str = examplesText(bonusContent);
         else
-          str = bioExamplesText();
+          str = bioExamplesText(bonusContent);
 
         examples.innerHTML = str;
       }

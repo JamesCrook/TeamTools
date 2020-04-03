@@ -318,7 +318,7 @@ function autoColourOfIndex(a){
 AutoColourFromOffset = function( A, offset ){
   var a = (A.Hotspots.autoColourIx-offset);
   var index = autoColourOfIndex(a);
-  var rgb = rgbOfJsonColourTuple(index);
+  var rgb = rgbOfJsonString(index);
   return rgb;
 }
 
@@ -326,7 +326,7 @@ AutoColourFromOffset = function( A, offset ){
 NextAutoColour = function( A, Tip, overwrite){
   var a = (A.Hotspots.autoColourIx++);
   var index = autoColourOfIndex(a);
-  var rgb = rgbOfJsonColourTuple(index);
+  var rgb = rgbOfJsonString(index);
   var actions = A.Hotspots.actionsOfColour[index];
   if( actions && !overwrite)
     return rgb;
@@ -358,6 +358,12 @@ function setupAndDrawDiagramDiv(A){
   setCellLayout( A,0, 0, A.Porthole.width, A.Porthole.height, obj);
   sizeLayoutAndDrawDiagram(A, obj, d);
   A.Status.isAppReady = true;
+}
+
+function updateImages(A){
+  if( !A.BackingCanvas )
+    return;
+  setupAndDrawDiagramDiv(A);
 }
 
 function timerCallback(){
@@ -601,6 +607,29 @@ function mayUpdateSpotShape(item, shape){
 }
 
 /**
+ * Where an object contains styling information, update the style from it.
+ * Where it doesn't, get its style from the styling object (or from defaults)
+ * @param A
+ * @param obj
+ */
+function mayUpdateObjectStyle(A, obj){
+  if( isDefined( obj.style) && isFinite( obj.style )){
+    A.Styles.current = obj.style;
+  }
+  var styleRec = A.Styles.dict[ A.Styles.current ] || {};
+  if( styleRec ){
+    obj.colour       = obj.colour || styleRec.colour;
+    obj.borderColour = obj.borderColour || styleRec.borderColour;
+    obj.cornerRadius = obj.cornerRadius || styleRec.cornerRadius;
+  }
+  styleRec.colour       = obj.colour || "rgb(255,255,255)";
+  styleRec.borderColour = obj.borderColour || "rgb(80,80,200)";
+  styleRec.cornerRadius = isDefined(obj.cornerRadius)? obj.cornerRadius : 0;
+  styleRec.head         = obj.head;
+  A.Styles.dict[ A.Styles.current ] = styleRec;
+}
+
+/**
  * Used in mapping calculation, this goes from a projected
  * coordinate x, to an angle coordinate.
  * @param x - projected coordinate in range -1 to +1
@@ -723,29 +752,6 @@ function getTrimmedLineBetweenObjects(obj1, obj2){
   S[1].l = l;
 
   return S;
-}
-
-/**
- * Where an object contains styling information, update the style from it.
- * Where it doesn't, get its style from the styling object (or from defaults)
- * @param A
- * @param obj
- */
-function mayUpdateStyle(A, obj ){
-  if( isDefined( obj.style) && isFinite( obj.style )){
-    A.Styles.current = obj.style;
-  }
-  var styleRec = A.Styles.dict[ A.Styles.current ] || {};
-  if( styleRec ){
-    obj.colour       = obj.colour || styleRec.colour;
-    obj.borderColour = obj.borderColour || styleRec.borderColour;
-    obj.cornerRadius = obj.cornerRadius || styleRec.cornerRadius;
-  }
-  styleRec.colour       = obj.colour || "rgb(255,255,255)";
-  styleRec.borderColour = obj.borderColour || "rgb(80,80,200)";
-  styleRec.cornerRadius = isDefined(obj.cornerRadius)? obj.cornerRadius : 0;
-  styleRec.head         = obj.head;
-  A.Styles.dict[ A.Styles.current ] = styleRec;
 }
 
 /**
@@ -1211,8 +1217,6 @@ function drawLabel(A,T, values, i,ix){
 
 function drawNowt(A,T, values, i,ix){
 }
-//function drawNowt(A, obj, d){
-//}
 
 function drawNowt2( A, obj, d ){
 
@@ -1696,7 +1700,7 @@ function drawRectangle(A, obj, d){
     obj.cornerRadius = 8;
   }
   else{
-    mayUpdateStyle(A,obj);
+    mayUpdateObjectStyle(A, obj);
   }
 
   // -- End of extra twiddles for chooser.
@@ -2108,8 +2112,6 @@ function drawChart(A, obj, d){
 }
 
 
-
-
 // >>>>>>>>>>>>>>>>>>>> Draw on focus layer
 
 function drawInfoButtonHotspot(A){
@@ -2279,17 +2281,13 @@ function rgbOfColourTuple( v ){
   return "rgba(" + v[0] + "," + v[1] + "," + v[2] + "," + v[3] + ")";
 }
 
+function rgbOfJsonString(string){
+  var tuple = colourTupleOfJsonString(string);
+  return rgbOfColourTuple( tuple );
+}
+
 function colourTupleOfJsonString(string){
   return JSON.parse(string);
-}
-
-function rgbOfJsonColourTuple(tuple){
-  var tuple2 = JSON.parse(tuple);
-  return rgbOfColourTuple( tuple2 );
-}
-
-function textColourForColourTuple( c ){
-  return ((c[0]+c[1]+c[2])>380) ? 'black':'white';
 }
 
 function colourTupleOfRgb( rgb ){
@@ -2298,6 +2296,15 @@ function colourTupleOfRgb( rgb ){
   t = t.split(",");
   t = t.map( Number );
   return t;
+}
+
+/**
+ * Choose a text colour with sufficient contrast to a colour tuple.
+ * @param c
+ * @returns {string}
+ */
+function textColourForColourTuple( c ){
+  return ((c[0]+c[1]+c[2])>380) ? 'black':'white';
 }
 
 function textColourForRgb( rgb ){
@@ -2329,50 +2336,6 @@ function onMouseOut(e){
   A.DetailDivFrozen = false;
   A.Cursor = "spot";
   e.target.style.cursor = 'auto';
-}
-
-function actionsFromCursorPos(A,x,y){
-
-  if( !A.Hotspots.ctx ) return -1;
-  var pixel = A.Hotspots.ctx.getImageData(x, y, 1, 1).data;
-  var result = "[" + pixel[0] + "," + pixel[1] + "," + pixel[2] + "," +
-    pixel[3] + "]";
-  var actions = A.Hotspots.actionsOfColour[result] ||
-    // Testing with a reduced colour is no longer needed.
-    /* A.Hotspots.actionsOfColour[roundColour(result)] || */
-    Nozone;
-  if( Message2 ) Message2.innerHTML =
-    "Colour &amp; Zone: rgba" + result + ", Zone " + actions.Zone;
-  return actions;
-}
-
-function setNewImage(A,file){
-
-  // Only supported for whole-div images.
-  if( (A.RootObject.content.length === 1) &&
-    (A.RootObject.content[0].type === "Image") ){
-    var obj = A.RootObject.content[0];
-    //obj.file = file;
-    //obj.img.crossOrigin = "anonymous";
-    //obj.img.src = urlOfFilename( obj.file );
-    obj.src = file;
-    mayRequestImage(A, obj)
-
-  }
-
-}
-
-function showOrHideTip(A, actions){
-  if( actions.Tip ){
-    A.DetailDiv.style.display = "block";
-    A.DetailHideTime = -1;
-    A.DetailDiv.innerHTML = actions.Tip;
-  } else {
-    // Keep div that should disappear around for 30 ticks...
-    // so it does not flicker.
-    A.DetailHideTime = 10;
-    A.DetailDivFrozen = false;
-  }
 }
 
 function onMouseUp( e ){
@@ -2494,11 +2457,54 @@ function onFocusClicked(e){
   }
 }
 
-function updateImages(A){
-  if( !A.BackingCanvas )
-    return;
-  setupAndDrawDiagramDiv(A);
+
+
+
+
+function actionsFromCursorPos(A,x,y){
+
+  if( !A.Hotspots.ctx ) return -1;
+  var pixel = A.Hotspots.ctx.getImageData(x, y, 1, 1).data;
+  var result = "[" + pixel[0] + "," + pixel[1] + "," + pixel[2] + "," +
+    pixel[3] + "]";
+  var actions = A.Hotspots.actionsOfColour[result] ||
+    // Testing with a reduced colour is no longer needed.
+    /* A.Hotspots.actionsOfColour[roundColour(result)] || */
+    Nozone;
+  if( Message2 ) Message2.innerHTML =
+    "Colour &amp; Zone: rgba" + result + ", Zone " + actions.Zone;
+  return actions;
 }
+
+function setNewImage(A,file){
+
+  // Only supported for whole-div images.
+  if( (A.RootObject.content.length === 1) &&
+    (A.RootObject.content[0].type === "Image") ){
+    var obj = A.RootObject.content[0];
+    //obj.file = file;
+    //obj.img.crossOrigin = "anonymous";
+    //obj.img.src = urlOfFilename( obj.file );
+    obj.src = file;
+    mayRequestImage(A, obj)
+
+  }
+
+}
+
+function showOrHideTip(A, actions){
+  if( actions.Tip ){
+    A.DetailDiv.style.display = "block";
+    A.DetailHideTime = -1;
+    A.DetailDiv.innerHTML = actions.Tip;
+  } else {
+    // Keep div that should disappear around for 30 ticks...
+    // so it does not flicker.
+    A.DetailHideTime = 10;
+    A.DetailDivFrozen = false;
+  }
+}
+
 
 function makeToc(A){
   var h = A.Hotspots;
@@ -2630,7 +2636,6 @@ function fieldValue(field, line){
   return value;
 }
 
-
 function setClick(A,type, location){
   var h = A.Hotspots.Current.Click || [];
   h.push( type );
@@ -2641,82 +2646,6 @@ function setClick(A,type, location){
   h.push( num+1 );
   A.Hotspots.Current.Click = h;
 }
-
-function sizeCell(A, obj, d){
-  //console.log( "size cell - "+obj.type);
-  obj.sizing = {};
-  obj.sizing.min = 0;
-  obj.sizing.wants = obj.sizeAs || 1.0;
-  obj.sizing.cumulativeWants = 0.0;
-}
-
-function sizeContainer(A, obj, d){
-  //console.log( "size container - "+obj.type);
-  var n = 0;
-  if( obj.content && Array.isArray(obj.content) ) n = obj.content.length;
-  sizeCell(A, obj, d);
-  for( var i = 0; i < n; i++ ){
-    var o2 = obj.content[i];
-    sizeCells(A, o2, d);
-    obj.sizing.min += o2.sizing.min;
-    obj.sizing.cumulativeWants += o2.sizing.wants;
-  }
-}
-
-function setCellLayout(A, x0, y0, xw, yh, obj){
-  obj.layout = { "x0": x0, "y0": y0, "xw": xw, "yh": yh };
-  //console.log( obj.layout );
-}
-
-function increaseMargin(A, obj, m){
-  //console.log( "layout - "+obj.type);
-  var l = obj.layout;
-  setCellLayout(A, l.x0 + m, l.y0 + m, l.xw - 2 * m, l.yh - 2 * m, obj);
-}
-
-function layoutMargined(A, obj, d){
-  //console.log( "layout - "+obj.type);
-  increaseMargin( A, obj, d.margins );
-//  var m = d.margins;
-//  var l = obj.layout;
-//  setCellLayout(A, l.x0 + m, l.y0 + m, l.xw - 2 * m, l.yh - 2 * m, obj, d);
-}
-
-function layoutUnmargined(A, obj, d){
-  //console.log( "layout - "+obj.type);
-  var m = 0;
-  var l = obj.layout;
-  setCellLayout(A, l.x0 + m, l.y0 + m, l.xw - 2 * m, l.yh - 2 * m, obj, d);
-}
-
-function layoutContainer( A, obj, d){
-  //console.log( "layout - "+obj.type);
-  var n = obj.content.length;
-  var l = obj.layout;
-  var k = obj.sizing.cumulativeWants;
-  //console.log( "n: "+n+", k:"+k);
-  var wantsSoFar = 0.0;
-  for( var i = 0; i < n; i++ ){
-    var want = obj.content[i].sizing.wants;
-    switch( obj.type ){
-      case "HStack":
-        setCellLayout(A, l.x0 + (wantsSoFar / k) * l.xw, l.y0,
-          l.xw * (want / k), l.yh, obj.content[i]);
-        break;
-      case "VStack":
-        setCellLayout(A, l.x0, l.y0 + (wantsSoFar / k) * l.yh,
-          l.xw,l.yh * (want / k), obj.content[i]);
-        break;
-      case "Overlay":
-        setCellLayout(A, l.x0, l.y0, l.xw, l.yh, obj.content[i]);
-        break;
-      default:
-    }
-    layoutCells( A, obj.content[i], d );
-    wantsSoFar += want;
-  }
-}
-
 
 function doAction(A,code){
   var activeObject = {};
@@ -2817,14 +2746,11 @@ function reselectInKwic( obj ){
       var row = Math.floor(A.Status.click.y / textHeight -0.5);
       index = index-row;
       A.Status.click.y += index*textHeight;
-
-
     }
   }
-
 }
 
-function findInKwic( A, obj ){
+function onKwicClicked(A, obj){
   var l = obj.layout;
   var x = l.x0;
   var y = l.y0;
@@ -2977,7 +2903,7 @@ function createKwic( A, obj, data ){
     console.log( X[i] );
   }
   obj.permutedIndex = X;
-  obj.onClick = findInKwic;//["clickAction",obj.name ];
+  obj.onClick = onKwicClicked;//["clickAction",obj.name ];
 
   if( !A.Papers ){
     if( obj.source )
@@ -2988,12 +2914,87 @@ function createKwic( A, obj, data ){
 
 // >>>>>>>>>>>>>>>>  Layout and sizing.
 
-function sizeNowt( A, obj, data ){
-  sizeCell( A, obj, data );
-  obj.sizing.wants = 0;
+function layoutMargined(A, obj, d){
+  //console.log( "layout - "+obj.type);
+  increaseMargin( A, obj, d.margins );
+//  var m = d.margins;
+//  var l = obj.layout;
+//  setCellLayout(A, l.x0 + m, l.y0 + m, l.xw - 2 * m, l.yh - 2 * m, obj, d);
+}
+
+function layoutUnmargined(A, obj, d){
+  //console.log( "layout - "+obj.type);
+  var m = 0;
+  var l = obj.layout;
+  setCellLayout(A, l.x0 + m, l.y0 + m, l.xw - 2 * m, l.yh - 2 * m, obj, d);
+}
+
+function layoutContainer( A, obj, d){
+  //console.log( "layout - "+obj.type);
+  var n = obj.content.length;
+  var l = obj.layout;
+  var k = obj.sizing.cumulativeWants;
+  //console.log( "n: "+n+", k:"+k);
+  var wantsSoFar = 0.0;
+  for( var i = 0; i < n; i++ ){
+    var want = obj.content[i].sizing.wants;
+    switch( obj.type ){
+      case "HStack":
+        setCellLayout(A, l.x0 + (wantsSoFar / k) * l.xw, l.y0,
+          l.xw * (want / k), l.yh, obj.content[i]);
+        break;
+      case "VStack":
+        setCellLayout(A, l.x0, l.y0 + (wantsSoFar / k) * l.yh,
+          l.xw,l.yh * (want / k), obj.content[i]);
+        break;
+      case "Overlay":
+        setCellLayout(A, l.x0, l.y0, l.xw, l.yh, obj.content[i]);
+        break;
+      default:
+    }
+    layoutCells( A, obj.content[i], d );
+    wantsSoFar += want;
+  }
 }
 
 function layoutNowt( A, obj, data ){
+}
+
+function sizeCell(A, obj, d){
+  //console.log( "size cell - "+obj.type);
+  obj.sizing = {};
+  obj.sizing.min = 0;
+  obj.sizing.wants = obj.sizeAs || 1.0;
+  obj.sizing.cumulativeWants = 0.0;
+}
+
+function sizeContainer(A, obj, d){
+  //console.log( "size container - "+obj.type);
+  var n = 0;
+  if( obj.content && Array.isArray(obj.content) ) n = obj.content.length;
+  sizeCell(A, obj, d);
+  for( var i = 0; i < n; i++ ){
+    var o2 = obj.content[i];
+    sizeCells(A, o2, d);
+    obj.sizing.min += o2.sizing.min;
+    obj.sizing.cumulativeWants += o2.sizing.wants;
+  }
+}
+
+function setCellLayout(A, x0, y0, xw, yh, obj){
+  obj.layout = { "x0": x0, "y0": y0, "xw": xw, "yh": yh };
+  //console.log( obj.layout );
+}
+
+function increaseMargin(A, obj, m){
+  //console.log( "layout - "+obj.type);
+  var l = obj.layout;
+  setCellLayout(A, l.x0 + m, l.y0 + m, l.xw - 2 * m, l.yh - 2 * m, obj);
+}
+
+function sizeNowt( A, obj, data ){
+  sizeCell( A, obj, data );
+  obj.sizing.wants = 0;
 }
 
 function mayRegisterClickAction( A, obj ){
@@ -3135,6 +3136,7 @@ function createContainer( A, obj, d){
     createCells(A, o2, d);
   }
 }
+
 
 function createCells(A, obj, data){
   visit(createThing, A, obj, data);

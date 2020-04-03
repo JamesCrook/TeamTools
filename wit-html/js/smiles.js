@@ -560,6 +560,30 @@ function minEnergy( A, obj, d ){
 }
 
 
+function onRulerClicked(A, obj){
+  var l = obj.layout;
+  var x = l.x0;
+  var y = l.y0;
+  var xw = l.xw;
+  var yh = l.yh;
+
+  if( !A.Status.click )
+    return;
+  var offsetX = -obj.offset.x;
+  var offsetY = obj.offset.y;
+  offsetX += A.Status.click.x;
+  offsetY += A.Status.click.y;
+}
+
+function displacement( A ){
+  if( A.Status.click && A.Status.move ){
+    return {
+      "x": A.Status.move.x - A.Status.click.x ,
+      "y": A.Status.move.y - A.Status.click.y };
+  }
+  return {"x":0, "y":0 };
+}
+
 function drawDragger(A, obj, d){
   //console.log( "draw - "+obj.type);
   var stage = d.stage;
@@ -571,7 +595,8 @@ function drawDragger(A, obj, d){
   var xw = 15;
   var yh = 15;
   obj.draggerX = obj.draggerX || 100;
-  x += obj.draggerX;
+  var disp = displacement( A );
+  x += obj.draggerX + disp.x;
   y += l.yh-yh;
 
   var ctx = A.BackingCanvas.ctx;
@@ -600,7 +625,7 @@ function drawRuler(A, obj, d){
   var xw = l.xw;
   var yh = l.yh;
 
-  mayUpdateStyle(A,obj);
+  mayUpdateObjectStyle(A, obj);
 
   var ctx = A.BackingCanvas.ctx;
 
@@ -626,8 +651,22 @@ function drawRuler(A, obj, d){
   drawDragger(A, obj, d );
 
   ctx.restore();
+
+  var ctx2 = A.Hotspots.ctx;
+
+  var c = NextAutoColour(A, "");
+  AddDown(A,["clickObject",obj.id]);
+
+  ctx2.beginPath();
+  ctx2.rect(x, y, xw, yh);
+  ctx2.fillStyle = c;
+  ctx2.fill();
 }
 
+
+function createRuler(A, obj, d){
+  obj.onClick = onRulerClicked;//["clickAction",obj.name ];
+}
 
 function registerSmilesMethods()
 {
@@ -636,7 +675,7 @@ function registerSmilesMethods()
   //registerMethod( "Chem",    0, 0, drawChem);
   registerMethod( "Atom",    0,0, layoutAtom, drawAtom);
   registerMethod( "Bond",    0,0, layoutBond, drawBond);
-  registerMethod( "Ruler",0,0, layoutMargined, drawRuler);
+  registerMethod( "Ruler", createRuler,0, layoutMargined, drawRuler);
 
 }
 
