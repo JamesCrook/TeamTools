@@ -1470,25 +1470,32 @@ function drawSphere(A,xx, yy, xw, yh, ctx, obj){
     adjustedOffsets.push(4 * Math.floor(p + frac * (offsets[i] / 4 - p)));
   }
 
+  var isSafari = window.safari !== undefined;
+
   for( var y = -h; y < h; y++ ){
     var dx = Math.floor(Math.sqrt(h * h - y * y));
     var srcLine = Math.floor(fractionalLatitudeFromX(y / h) * img.height);
     var srcBase = (srcLine * img.width + rotate) * 4;
     dx = h + frac * (dx - h);
     var index = Math.floor((y + h) * h * 2 + h - dx) * 4;
-    var rescaler = (img.width - 1) / dx;
+    var rescaler = (img.width -1) / dx;
     var srcIndex;
     var offset;
     var src = srcData.data;
     var dst = dstData.data;
+    // Safari dstData is 2h-1 not 2h in width, despite us asking for 2h.
+    if( isSafari )
+      index -= Math.floor(h-y)*4;
     //console.log( 'row:'+y+' ('+(h-dx)+'..'+(h+dx)+')');
     for( var x = -dx; x < dx; x++ ){
       // This inner loop has had a little TLC for speed.
       // Taking 25% of CPU to 15% by taking calculations
       // outside the loop.
       offset = adjustedOffsets[Math.floor(Math.abs(x) * rescaler)];
-      if( x < 0 ) srcIndex = srcBase - offset; else srcIndex = srcBase + offset;
-
+      if( x < 0 )
+        srcIndex = srcBase - offset;
+      else
+        srcIndex = srcBase + offset;
       if( src[srcIndex + 3] < 128 ){
         dst[index++] = 10;
         dst[index++] = 10;
