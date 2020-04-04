@@ -20,46 +20,77 @@ The detailed data for the chart follows.
     {"VStack":[
         {"HStack":[
             {"VStack":[
-                {"Rectangle":"WIT Shortcuts"},
+                {"Rectangle":"WIT Shortcuts",
+                "colour":"rgb(255,230,205)",
+                "borderColour":"rgb(215,155,0)",
+                "cornerRadius":7
+                },
                 {"Rectangle":"WIT Tooltips"},
                 {"Rectangle":"WIT Menus"}
                 ]},
             {"VStack":[
-                {"Circle":"WIT","sizeAs":2},
-                {"Rectangle":"Toolbar Images"}
+                {"Circle":"WIT","sizeAs":2,
+                "colour":"rgb(255,230,205)",
+                "borderColour":"rgb(215,155,0)",
+                "cornerRadius":15
+                },
+                {"Rectangle":"Toolbar Images",
+                "colour":"rgb(215,230,210)",
+                "borderColour":"rgb(130,180,100)"
+
+                }
                 ]},
             {"VStack":[
                 {"Rectangle":"Image Templates"},
                 {"Rectangle":"Big Pages"},
                 {"Rectangle":"Menu Images"}
                 ]},
-            {"Spacer":0.5}
+            {"Spacer":"foo",
+              "sizeAs":0.4}
             ]},
 
         {"HStack":[
             {"VStack":[
                 {"Circle":"Audacity",
+                "colour":"rgb(220,230,250)",
+                "borderColour":"rgb(108,140,190)",
                  "sizeAs":1.3},
-                {"Circle":"Scripting"}
+                {"Circle":"Scripting",
+                "colour":"rgb(220,230,250)",
+                "borderColour":"rgb(108,140,190)"
+                }
                 ],
                 "sizeAs":0.8
                 },
             {"VStack":[
-                {"Rectangle":"Preferences Images"},
+                {"Rectangle":"Preferences Images",
+                "colour":"rgb(220,230,250)",
+                "borderColour":"rgb(108,140,190)"
+                },
                 {"Rectangle":"EGA Images"},
                 {"Rectangle":"Track Images"}
                 ]},
             {"VStack":[
-                {"Circle":"File Upload"}
+                {"Circle":"File Upload",
+                "colour":"rgb(225,210,230)",
+                "borderColour":"rgb(150,115,165)"
+                }
                 ]}
             ]}
         ],
         "sizeAs":3,
-        "margins":7
+        "margins":5
         },
     {"VStack":[
-        {"Circle":"Cut & Paste","sizeAs":2},
-        {"Rectangle":"Alpha Manual"},
+        {"Circle":"Cut & Paste","sizeAs":2,
+        "colour":"rgb(225,210,230)",
+        "borderColour":"rgb(150,115,165)"
+        },
+        {"Rectangle":"Alpha Manual",
+        "colour":"rgb(225,210,230)",
+        "borderColour":"rgb(150,115,165)",
+        "cornerRadius":45
+        },
         {"Spacer":0.35}
         ]},
     {"Arrows":[
@@ -90,43 +121,24 @@ The detailed data for the chart follows.
 
 With the layout established, the details that follow customise the objects.
 
-<pre>NEXTOBJECT:
-   colour:rgb(255,230,205)
-   borderColour:rgb(215,155,0)
-   cornerRadius:15
-   tip=</pre>
+<pre>NEXTOBJECT:tip=</pre>
 <h1><a href="https://wiki.audacityteam.org/wiki/WIT_Audacity_Extra_Shortcuts">WIT Shortcuts</a></h1>
 Raw data listing the shortcuts.  Each shortcut is associated with a menu item.  Most of this data is in the menus file, so this list just lists the key combinations for optional shortcuts.
 
-<pre>NEXTOBJECT:
-   colour:rgb(255,230,205)
-   borderColour:rgb(215,155,0)
-   cornerRadius:15
-   tip=</pre>
+<pre>NEXTOBJECT:tip=</pre>
 <h1><a href="https://wiki.audacityteam.org/wiki/WIT_Audacity_Tooltips">WIT Tooltips</a></h1>
 Raw data, one item for each tooltip explaining what one menu item does.
 
-<pre>NEXTOBJECT:
-   colour:rgb(255,230,205)
-   borderColour:rgb(215,155,0)
-   cornerRadius:15
-   tip=</pre>
+<pre>NEXTOBJECT:tip=</pre>
 <h1><a href="https://wiki.audacityteam.org/wiki/WIT_Audacity_Menus">WIT Menus</a></h1>
 Raw data that specifies the full tree-like structure of the Audacity menus.  There is an entry in the raw data for each menu item.
 
-<pre>NEXTOBJECT:
-   colour:rgb(255,230,205)
-   borderColour:rgb(215,155,0)
-   cornerRadius:15
-   tip=</pre>
+<pre>NEXTOBJECT:tip=</pre>
 <h1><a href="https://wiki.audacityteam.org/wiki/Using_WIT">WIT</a></h1>
 <p>Wit is a web application that shows "What is That?" for many of the user interface fetures in Audacity.  It also has a hidden feature where it can generate images and tables for use in the Audacity manual.</p>
 <p>Wit consumes information stored in our Wiki as raw JSON data, and produces images and formatted tables which can be uploaded to the wiki for our manual.
 
-<pre>NEXTOBJECT:
-   colour:rgb(215,230,210)
-   borderColour:rgb(130,180,100)
-   tip=</pre>
+<pre>NEXTOBJECT:tip=</pre>
 <h1>Toolbar Images</h1>
 Annotated images of 9 of our toolbars in .png format.  These are extracted from the master image and have labels and arrows positioned and drawn by WIT.
 <p>One example:
@@ -135,20 +147,15 @@ Annotated images of 9 of our toolbars in .png format.  These are extracted from 
 </ul>
 </p>
 
-<pre>NEXTOBJECT:
-   colour:rgb(215,230,210)
-   borderColour:rgb(130,180,100)
-   tip=</pre>
+<pre>NEXTOBJECT:tip=</pre>
 <h1>Templates</h1>
 Wiki templates generated by WIT providing image maps. We have templates for:
  <ul>
  <li><a href="https://alphamanual.audacityteam.org/man/Template:Annotated">Toolbar Images</a>
  <li><a href="https://alphamanual.audacityteam.org/man/Template:All-menus">Menu Images</a>
  </ul>
-<pre>NEXTOBJECT:
-   colour:rgb(215,230,210)
-   borderColour:rgb(130,180,100)
-   tip=</pre>
+
+<pre>NEXTOBJECT:tip=</pre>
 <h1>Big Pages</h1>
 WIT-generated formatted wiki-text for the large pages.
 <ul>
@@ -156,10 +163,8 @@ WIT-generated formatted wiki-text for the large pages.
   <li><a href="https://alphamanual.audacityteam.org/man/Keyboard_Shortcut_Reference">Commands & Shortcuts</a>
   <li><a href="https://alphamanual.audacityteam.org/man/Index_of_Effects,_Generators_and_Analyzers">Effects</a>
 </ul>
-<pre>NEXTOBJECT:
-   colour:rgb(215,230,210)
-   borderColour:rgb(130,180,100)
-   tip=</pre>
+
+<pre>NEXTOBJECT:tip=</pre>
 <h1>Menu Images</h1>
 <p>Around 50 images (.png files) of menus in Audacity, showing different submenus open.  These are drawn by WIT, based on the raw menu information.</p>
 <p>One example:
@@ -168,59 +173,42 @@ WIT-generated formatted wiki-text for the large pages.
 </ul>
 </p>
 
-<pre>NEXTOBJECT:
-   colour:rgb(220,230,250)
-   borderColour:rgb(108,140,190)
-   tip=</pre>
+<pre>NEXTOBJECT:tip=</pre>
+spacer
+
+<pre>NEXTOBJECT:tip=</pre>
 <h1>Audacity</h1>
 Audacity generates raw data used by WIT.  For example, <a href="https://alphamanual.audacityteam.org/man/Extra_Menu:_Scriptables_II#get_info">Get Info</a> gets information about the menu structure and create a data file for that.  Audacity also generates the 'list of boxes' for the locations and dimensions of tool icons and toolbars.
-<pre>NEXTOBJECT:
-   colour:rgb(220,230,250)
-   borderColour:rgb(108,140,190)
-   tip=</pre>
+
+
+<pre>NEXTOBJECT:tip=</pre>
 <h1><a href="https://github.com/JamesCrook/TeamTools/blob/master/docs/ImageScript.md">Scripting</a></h1>
 Audacity has a plug-in, mod-script-pipe, which accepts scripting commands sent over a pipe from python.  <a href="https://github.com/audacity/audacity/blob/master/scripts/piped-work/docimages_all.py">Python scripts</a> create and capture a large number of <a href="https://wit.audacityteam.org/images.htm">images of
 tracks</a>.
-<pre>NEXTOBJECT:
-   colour:rgb(220,230,250)
-   borderColour:rgb(108,140,190)
-   tip=</pre>
+
+
+<pre>NEXTOBJECT:tip=</pre>
 <h1>Preferences Images</h1>
 Audacity Screenshot Tool captures images of all the preferences screens.
-<pre>NEXTOBJECT:
-   colour:rgb(220,230,250)
-   borderColour:rgb(108,140,190)
-   tip=</pre>
+
+<pre>NEXTOBJECT:tip=</pre>
 <h1>EGA Images</h1>
 Audacity Screenshot Tool captures images of all the Effects, Generators and Analysers (EGAs).
 
-<pre>NEXTOBJECT:
-   colour:rgb(220,230,250)
-   borderColour:rgb(108,140,190)
-   tip=</pre>
+<pre>NEXTOBJECT:tip=</pre>
 <h1><a href="https://wit.audacityteam.org/images.htm">Track Images</a></h1>
 Track Images are generated by Audacity scripting.  The script sets up different configurations of tracks and then calls the screenshot tool to capture an image of each.
 
 
-<pre>NEXTOBJECT:
-   colour:rgb(225,210,230)
-   borderColour:rgb(150,115,165)
-   tip=</pre>
+<pre>NEXTOBJECT:tip=</pre>
 <h1>File Upload</h1>
 Small numbers of WIT-generated image files are uploaded to our wiki by hand.  For larger numbers, we use a <a href="https://github.com/JamesCrook/TeamTools/blob/master/docs/Wikibot.md">pywikibot script</a>.
 
-<pre>NEXTOBJECT:
-   colour:rgb(225,210,230)
-   borderColour:rgb(150,115,165)
-   tip=</pre>
+<pre>NEXTOBJECT:tip=</pre>
 <h1>Cut &amp; Paste</h1>
 Tables and template definitions in textual form generated by WIT are always
 pasted into the manual by hand.
-<pre>NEXTOBJECT:
-   colour:rgb(225,210,230)
-   borderColour:rgb(150,115,165)
-   cornerRadius:15
-   tip=</pre>
+<pre>NEXTOBJECT:tip=</pre>
 <h1><a href="https://alphamanual.audacityteam.org/man/Main_Page">Alpha Manual</a></h1>
 The manual for the current alpha edition of Audacity is maintained in wiki.  When it is ready we use the <a href="https://github.com/audacity/audacity/blob/master/scripts/mw2html_audacity/mw2html.py">mw2html</a> script to convert it to static html pages, which are included with the Audacity installer, and also uploaded to the current online
 copy.
