@@ -6,6 +6,17 @@ if( !String.prototype.startsWith ){
   };
 }
 
+if( !String.prototype.trimStart ){
+  String.prototype.trimStart = function(){
+    return this.replace( /^\s+/, '');
+  };
+}
+
+if( !String.prototype.trimEnd ){
+  String.prototype.trimEnd = function(){
+    return this.replace( /\s+^/, '');
+  };
+}
 
 // These are constants for drawing stages.
 const kStageArrowShaft=1;
