@@ -1470,22 +1470,25 @@ function drawSphere(A,xx, yy, xw, yh, ctx, obj){
     adjustedOffsets.push(4 * Math.floor(p + frac * (offsets[i] / 4 - p)));
   }
 
-  var isSafari = window.safari !== undefined;
+  //var isSafari = window.safari !== undefined;
 
   for( var y = -h; y < h; y++ ){
     var dx = Math.floor(Math.sqrt(h * h - y * y));
     var srcLine = Math.floor(fractionalLatitudeFromX(y / h) * img.height);
     var srcBase = (srcLine * img.width + rotate) * 4;
     dx = h + frac * (dx - h);
-    var index = Math.floor((y + h) * h * 2 + h - dx) * 4;
+
+    // for Safari it is important to use the actual width of dstData,
+    // since getImageData may have given you more than what you asked for,
+    var index = Math.floor((y + h) * dstData.width + h - dx) * 4;
     var rescaler = (img.width -1) / dx;
     var srcIndex;
     var offset;
     var src = srcData.data;
     var dst = dstData.data;
     // Safari dstData is 2h-1 not 2h in width, despite us asking for 2h.
-    if( isSafari )
-      index -= Math.floor(h-y)*4;
+    //if( isSafari )
+    //  index -= Math.floor(h-y)*4;
     //console.log( 'row:'+y+' ('+(h-dx)+'..'+(h+dx)+')');
     for( var x = -dx; x < dx; x++ ){
       // This inner loop has had a little TLC for speed.
