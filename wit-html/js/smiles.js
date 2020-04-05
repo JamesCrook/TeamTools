@@ -593,19 +593,92 @@ function drawDragger(A, obj, d){
   obj.draggerX = obj.draggerX || 100;
   var disp = displacement( A );
   x += obj.draggerX + disp.x;
-  y += l.yh-yh;
+  y += l.yh-yh+3;
 
   var ctx = A.BackingCanvas.ctx;
 
   ctx.save();
   ctx.beginPath();
-  ctx.fillStyle = "rgb(0,0,0)";
+  ctx.fillStyle = "rgba(0,0,0,0.4)";
   ctx.moveTo(x,y);
   ctx.lineTo(x+xw, y+yh );
   ctx.lineTo( x-xw, y+yh);
   ctx.closePath();
   ctx.fill();
   ctx.restore();
+
+}
+
+
+rulerSpec1 = [
+  { mod :10, height : 1.0, 'width': 1.7},
+  { mod : 5, height : 0.6, 'width': 0.7},
+  { mod : 1, height : 0.4, 'width': 0.7}
+  ];
+
+rulerSpec2 = [
+  { mod :10, height : 1.0, 'width': 1.5},
+  { mod : 2, height : 0.5, 'width': 0.7},
+  { mod : 1, height : 0.25, 'width': 0.7}
+];
+
+rulerSpec = rulerSpec1;
+otherSpec = rulerSpec2;
+
+function drawRulerMark( A, obj, i ){
+  var l = obj.layout;
+  var x = l.x0 + i * obj.spacing;
+  var y = l.y0;
+  var xw = l.xw;
+  var yh = l.yh;
+
+
+  var ctx = A.BackingCanvas.ctx;
+  var v = rulerSpec[1].mod;
+
+  var j;
+
+  for( j=0;j<2;j++){
+    if( i % (v*otherSpec[j].mod) === 0)
+      break;
+  }
+  var spec2 = otherSpec[j];
+
+
+  for( j=0;j<2;j++){
+    if( (i % rulerSpec[j].mod) === 0)
+      break;
+  }
+  var spec = rulerSpec[j];
+
+
+
+
+
+  var height = spec.height;
+  var height2 = spec2.height;
+  if( j> 1 )
+    height2=0;
+
+  var blend = Math.max( 0, Math.min( (obj.spacing-3)/1.1, 1.0 ));
+  ctx.lineWidth = spec.width;
+
+  height = height2 + blend * (height-height2);
+
+
+  ctx.beginPath();
+  ctx.moveTo( x, y+yh);
+  ctx.lineTo( x,y+yh*(1-height*0.6));
+  ctx.stroke();
+
+  if( height > 0.7){
+    ctx.fillStyle = "rgb(0,0,0)";
+    ctx.font = "12px Arial";
+    ctx.globalAlpha = Math.max(0,Math.min( (height-0.7) *4, 1.0));
+    ctx.textAlign = "center";
+    ctx.fillText( ""+ (10*i/(1*obj.mul)), x, y+ 8);
+    ctx.globalAlpha = 1.0;
+  }
 
 }
 
@@ -635,13 +708,43 @@ function drawRuler(A, obj, d){
     ctx.rect(x, y, xw, yh);
 
   ctx.strokeStyle = "rgb(0,0,0)";
-  ctx.strokeWidth = 1.5;
+  ctx.strokeWidth = 0.5;
   var i;
-  for(i=0;i<xw;i+=12){
-    ctx.beginPath();
-    ctx.moveTo( x +i, y);
-    ctx.lineTo( x+i,y+yh);
-    ctx.stroke();
+  obj.draggerX = obj.draggerX || 100;
+  var disp = displacement( A );
+
+  var spacing = (obj.draggerX + disp.x)/10;
+  spacing = Math.max( 3, spacing );
+  var origSpacing = spacing;
+  var medium =5;
+  if( spacing > 6 ){
+    medium =2;
+    spacing /= 2;
+    if( spacing > 15 ){
+      medium =5;
+      spacing /= 5;
+      if( spacing > 6 ){
+        medium =2;
+        spacing /= 2;
+        if( spacing > 15 ){
+          medium =5;
+          spacing /= 5;
+        }
+      }
+    }
+  }
+  if( medium === 2 ){
+    rulerSpec = rulerSpec2;
+    otherSpec = rulerSpec1;
+  } else {
+    rulerSpec = rulerSpec1;
+    otherSpec = rulerSpec2;
+  }
+  obj.spacing= spacing;
+  obj.mul = origSpacing/spacing;
+  var nBars = Math.floor( xw / spacing)+1;
+  for(i=0;i<nBars;i++){
+    drawRulerMark( A, obj, i );
   }
 
   drawDragger(A, obj, d );
