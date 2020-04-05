@@ -1875,6 +1875,8 @@ function drawKwic(A, obj, d){
 
   }
 
+  r2=4; // increase width for hotspot use.
+
   if(  d.stage === kStageHots ){
     var c = NextAutoColour(A, "");
     AddDown(A,["clickObject",obj.id]);
