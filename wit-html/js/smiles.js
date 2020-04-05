@@ -643,7 +643,7 @@ function drawRulerMark( A, obj, i ){
       break;
   }
   var spec2 = otherSpec[j];
-
+  var j1=j;
 
   for( j=0;j<2;j++){
     if( (i % rulerSpec[j].mod) === 0)
@@ -660,7 +660,8 @@ function drawRulerMark( A, obj, i ){
   if( j> 1 )
     height2=0;
 
-  var blend = Math.max( 0, Math.min( (obj.spacing-3)/1.1, 1.0 ));
+  // spacing is between 3 and 6 or 3 and 15.
+  var blend = Math.max( 0, Math.min( (obj.spacing-4.5)/1.1, 1.0 ));
   ctx.lineWidth = spec.width;
 
   height = height2 + blend * (height-height2);
@@ -671,12 +672,19 @@ function drawRulerMark( A, obj, i ){
   ctx.lineTo( x,y+yh*(1-height*0.6));
   ctx.stroke();
 
-  if( height > 0.7){
+  var opacity = Math.max(0,Math.min( (obj.spacing-2.9) /2.1, 1.0));
+  if( j1 > 1 )
+    opacity=0;
+  if( j1 === 0 )
+    opacity = 1;
+
+  if( opacity > 0.1){
     ctx.fillStyle = "rgb(0,0,0)";
     ctx.font = "12px Arial";
-    ctx.globalAlpha = Math.max(0,Math.min( (height-0.7) *4, 1.0));
+
+    ctx.globalAlpha = opacity;
     ctx.textAlign = "center";
-    ctx.fillText( ""+ (10*i/(1*obj.mul)), x, y+ 8);
+    ctx.fillText( ""+ (Math.floor((100*i/(1*obj.mul))+0.9))/10, x, y+ 8);
     ctx.globalAlpha = 1.0;
   }
 
@@ -729,6 +737,14 @@ function drawRuler(A, obj, d){
         if( spacing > 15 ){
           medium =5;
           spacing /= 5;
+          if( spacing > 6 ){
+            medium =2;
+            spacing /= 2;
+            if( spacing > 15 ){
+              medium =5;
+              spacing /= 5;
+            }
+          }
         }
       }
     }
