@@ -21,6 +21,8 @@ The detailed data for the chart follows.
 {
    "Chart":"Lines",
    "subtype":["lines","*","*"],
+   "maxY":2100,
+   "linesAt":200,
    "values":"Lines"
 },
 {
@@ -28,6 +30,7 @@ The detailed data for the chart follows.
    "titles":["Date","Live Bugs","Slain Bugs"],
    "display":["Label","Blue","Green"],
    "subtype":["*","bar","bar"],
+   "maxY":2100,
    "autoTip":"<b> &nbsp;Live Bugs: %live bugs</b><br><b>Slain Bugs: %slain bugs</b><br><br>As of: %date",
    "values":[
    ["Aug 2017",605,1104],
@@ -61,7 +64,8 @@ The detailed data for the chart follows.
    ["Dec 2019",374,1878],
    ["Jan 2020",384,1887],
    ["Feb 2020",398,1902],
-   ["Mar 2020",380,1965]
+   ["Mar 2020",380,1965],
+   ["Apr 2020",368,2017]
    ]
 },
   {"Chart":"Releases",
