@@ -1891,18 +1891,26 @@ function drawKwic(A, obj, d){
 
   y+= 1.5*textLineSpacing;
 
+
+  // Calculate new offset
+  var dd = newPos( A, obj );
+  // And always accept it.
+  onLockInMove(A,obj,dd);
+
   var offsetX = obj.offset.x;
   var offsetY = obj.offset.y;
 
+/*
   if( A.Status.click ){
     offsetX += A.Status.move.x-A.Status.click.x;
-    offsetY -= A.Status.move.y-A.Status.click.y;
+    offsetY += A.Status.move.y-A.Status.click.y;
 
   }
+*/
 
   var dx = offsetX;
-  var iStart = Math.floor(offsetY / textLineSpacing);
-  var dy = iStart * textLineSpacing-offsetY;
+  var iStart = -Math.floor(offsetY / textLineSpacing);
+  var dy = iStart * textLineSpacing+offsetY;
   var str;
   var S;
   var r=6;
@@ -2436,6 +2444,7 @@ function onMouseUp( e ){
     A.dragObj.onMouseUp( A, A.dragObj );
   }
   A.dragObj = undefined;
+  A.Status.click = undefined;
 }
 
 function onMouseDown( e ){
@@ -2450,6 +2459,7 @@ function onMouseDown( e ){
   var y = e.clientY - rect.top;
 
   A.Status.move = {x:x,y:y};
+/*
   if( A.Status.displace )
   {
     A.Status.click = { x: x-A.Status.displace.x, y: y-A.Status.displace.y };
@@ -2457,7 +2467,7 @@ function onMouseDown( e ){
       stringOfCoord({x:x,y:y} ) +" = "+
       stringOfCoord(A.Status.click ) );
   }
-  else
+  else*/
   {
     A.Status.click = { x: x, y: y };
     console.log( "Down at "+ stringOfCoord(A.Status.click ) );
@@ -2822,7 +2832,7 @@ function createProg( A, obj, data ){
 // >>>>>>>>>>>>>>> Kwic
 
 
-function reselectInKwic( obj ){
+function reselectInKwic( obj,row ){
   if( obj.selected ){
     var X = obj.permutedIndex;
     var index = bSearch(X, obj.selected + " ~ZZZ");
@@ -2830,9 +2840,9 @@ function reselectInKwic( obj ){
     console.log("value: " + X[index]);
     if( obj.oneSpace ){
       var textHeight = obj.oneSpace *1.8;
-      var row = Math.floor(A.Status.click.y / textHeight -0.5);
+      //var row = Math.floor(A.Status.click.y / textHeight -0.5);
       index = index-row;
-      A.Status.click.y += index*textHeight;
+      obj.offset.y -= index*textHeight;
     }
   }
 }
@@ -2847,8 +2857,20 @@ function onKwicClicked(A, obj){
     return;
   if( !A.Status.click )
     return;
-  var offsetX = -obj.offset.x;
+
+/*
+  // Calculate new offset
+  var dd = newPos( A, obj );
+  // And always accept it.
+  onLockInMove(A,obj,dd);
+
+  var offsetX = obj.offset.x;
   var offsetY = obj.offset.y;
+*/
+
+
+  var offsetX = -obj.offset.x;
+  var offsetY = -obj.offset.y;
   offsetX += A.Status.click.x;
   offsetY += A.Status.click.y;
   var textHeight = obj.oneSpace *1.8;
@@ -2884,8 +2906,8 @@ function onKwicClicked(A, obj){
     }
     console.log( "Jump to: " +str );
     obj.selected = str;
-    reselectInKwic( obj );
-    A.Status.click.x -= (col-wrap)*kwicSpace;
+    reselectInKwic( obj, row );
+    obj.offset.x += (col-wrap)*kwicSpace;
     drawDiagramAgain();
   }
 }
@@ -3919,6 +3941,33 @@ function onDraggableClicked(A, obj){
     return;
   console.log( "Clicked on Object ", obj.id );
   A.dragObj = obj;
+}
+
+function newPos( A, obj ){
+  var d={};
+  if( !A.Status.click )
+    return d;
+  if( !obj.offset )
+    obj.offset = {x:0,y:0};
+  if( !A.Status.move ){
+    A.Status.move = {x:0,y:0};
+    A.Status.click = {x:0,y:0};
+  }
+  d.x = obj.offset.x+obj.layout.x0+A.Status.move.x -A.Status.click.x;
+  d.y = obj.offset.y+obj.layout.y0+A.Status.move.y -A.Status.click.y;
+  return d;
+}
+
+function onLockInMove( A, obj, d){
+  if( !A.Status.click )
+    return;
+  A.Status.click.x += d.x - obj.offset.x - obj.layout.x0;
+  A.Status.click.y += d.y - obj.offset.y - obj.layout.y0;
+  obj.offset.x = d.x - obj.layout.x0;
+  obj.offset.y = d.y - obj.layout.y0;
+  if( (Math.abs(d.x -obj.layout.x0 ) >0.1)|| (Math.abs(d.y -obj.layout.y0 )>0.1) ){
+    console.log("New offset: "+ stringOfCoord( obj.offset) );
+  }
 }
 
 function onDraggableMouseUp(A, obj, d){

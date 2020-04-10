@@ -592,6 +592,7 @@ function drawDragger(A, obj, d){
   var yh = 15;
   obj.draggerX = obj.draggerX || 100;
   var disp = displacement( A );
+  disp.x = 0;
   x += obj.draggerX + disp.x;
   y += l.yh-yh+3;
 
@@ -720,6 +721,7 @@ function drawRuler(A, obj, d){
   var i;
   obj.draggerX = obj.draggerX || 100;
   var disp = displacement( A );
+  disp.x = 0;
 
   var spacing = (obj.draggerX + disp.x)/10;
   spacing = Math.max( 3, spacing );
