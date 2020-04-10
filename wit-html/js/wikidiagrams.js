@@ -2509,7 +2509,7 @@ function setNewImage(A,file){
     //obj.img.crossOrigin = "anonymous";
     //obj.img.src = urlOfFilename( obj.file );
     obj.src = file;
-    mayRequestImage(A, obj)
+    mayRequestDisplayableImage(A, obj)
 
   }
 
@@ -2721,7 +2721,7 @@ function doAction(A,code){
     }
     else if( command === "loadImage" ){
       activeObject.src = code[i++];
-      mayRequestImage(A, activeObject);
+      mayRequestDisplayableImage(A, activeObject);
     }
     else if( command === "Spec" ){
       name = code[i++];
@@ -3027,32 +3027,35 @@ function mayRegisterClickAction( A, obj ){
   }
 }
 
-function mayRequestImage(A, obj){
-  if( !obj.src ){
+function mayRequestImage(A, parent, obj){
+
+  if( !obj ){
     return;
   }
-  if( obj.type !== "Image" && obj.type !== "Tile" ){
+  // note obj.src is user facing parameter, whereas
+  // obj.img.src is part of the dom
+  if( !obj.src )
+    return;
+  if( parent.type !== "Image"  && parent.type !== "Tile" ){
     return;
   }
 
-  obj.file = urlOfFilename(obj.src);
-  if( obj.previous_img === obj.file )
+  var file = urlOfFilename(obj.src);
+  if( obj.previous_image === file )
     return;
+
   obj.status = "asked";
+  obj.file = file;
 
-  obj.content = [];
   obj.img = document.createElement("img");
   obj.img.onload = (function(){
     var obj1 = obj;
     return function(){
       obj1.status = "arrived";
-      console.log(obj1.file + " image arrived");
-      // May need to layout and draw when image arrives.
+      console.log(obj1.file + " arrived");
       A.newEvents = true;
-      if( obj1.resize ){
-        resizeForImage(A, obj1.img);
-      } else if( A.Status.isAppReady ){
-        setupAndDrawDiagramDiv(A);
+      if( A.Status.isAppReady ){
+        drawCells(A, A.RootObject, {});
       }
     }
   })();
@@ -3064,50 +3067,21 @@ function mayRequestImage(A, obj){
     }
   })();
   obj.img.crossOrigin = "anonymous";
-  // avoid asking twice.
-  obj.previous_img = obj.file;
+  obj.previous_image = obj.file;
   obj.img.src = obj.file;
 }
 
 function mayRequestHotImage(A, obj){
-  if( !obj.hotsrc ){
-    return;
-  }
-  if( obj.type !== "Image" ){
-    return;
-  }
+  //if( !obj.hot )
+  //  return;
 
-  var file = urlOfFilename(obj.hotsrc);
-  if( obj.hot && obj.hot.previous_image === file )
-    return;
-
-  obj.hot = {};
-  obj.hot.status = "asked";
-  obj.hot.file = file;
-
-  obj.hot.img = document.createElement("img");
-  obj.hot.img.onload = (function(){
-    var obj1 = obj;
-    return function(){
-      obj1.hot.status = "arrived";
-      console.log(obj1.file + " HS arrived");
-      A.newEvents = true;
-      if( A.Status.isAppReady ){
-        drawCells(A, A.RootObject, {});
-      }
-    }
-  })();
-  obj.hot.img.onerror = (function(){
-    var obj1 = obj;
-    return function(){
-      obj1.status = "failed";
-      alert("Failed to load hotspots " + obj1.hot.file);
-    }
-  })();
-  obj.hot.img.crossOrigin = "anonymous";
-  obj.hot.previous_image = obj.hot.file;
-  obj.hot.img.src = obj.hot.file;
+  mayRequestImage(A, obj, obj.hot);
 }
+
+function mayRequestDisplayableImage(A, obj){
+  mayRequestImage(A, obj, obj);
+}
+
 
 function createCell(A, obj, d){
 
@@ -3123,7 +3097,7 @@ function createCell(A, obj, d){
   }
 
   mayRegisterClickAction( A, obj);
-  mayRequestImage( A, obj );
+  mayRequestDisplayableImage( A, obj );
   mayRequestHotImage( A, obj );
 
   if( obj.hasOwnProperty( 'choice')){
@@ -3383,8 +3357,10 @@ function loadNewLines(A, specFileData, section){
       console.log("hotspots:" + file);
       obj = A.RootObject.lastImage;
       if( !obj ) continue;
-      if( obj.hotsrc !== file )
-        obj.hotsrc = file;
+      if( !obj.hot )
+        obj.hot = {};
+      if( obj.hot.src !== file )
+        obj.hot.src = file;
       else
         console.log("Already set" );
     }
