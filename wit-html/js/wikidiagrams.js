@@ -1647,6 +1647,13 @@ function drawDraggable(A, obj, d ){
   var yh = l.yh;
   var stage = d.stage;
 
+  if( A.Status.click && (A.dragObj === obj)){
+    x += A.Status.move.x-A.Status.click.x;
+    y += A.Status.move.y-A.Status.click.y;
+
+  }
+
+
   var S = {};
   S.x = x + xw/2;
   S.y = y + yh/2;
@@ -1664,6 +1671,7 @@ function drawDraggable(A, obj, d ){
   }
   if( d.stage === kStageFillAndText ){
     var c = NextAutoColour(A, "");
+    AddDown(A,["clickObject",obj.id]);
     ctx2.fillStyle = c;
     S.doStroke = false;
     drawStar(ctx2, S);
@@ -2408,6 +2416,7 @@ function onMouseOut(e){
   }
   A.DetailDivFrozen = false;
   A.Cursor = "spot";
+  A.dragObj = undefined;
   e.target.style.cursor = 'auto';
 }
 
@@ -2422,6 +2431,11 @@ function onMouseUp( e ){
   console.log( "Up at "+stringOfCoord(A.Status.displace, -1 ) );
   e.target.style.cursor = 'auto';
   A.Cursor="spot";
+  if( A.dragObj && A.dragObj.onMouseUp )
+  {
+    A.dragObj.onMouseUp( A, A.dragObj );
+  }
+  A.dragObj = undefined;
 }
 
 function onMouseDown( e ){
@@ -2436,14 +2450,14 @@ function onMouseDown( e ){
   var y = e.clientY - rect.top;
 
   A.Status.move = {x:x,y:y};
-  if( A.Status.displace )
+/*  if( A.Status.displace )
   {
     A.Status.click = { x: x-A.Status.displace.x, y: y-A.Status.displace.y };
     console.log( "Down at "+stringOfCoord(A.Status.displace, -1 ) + " + click:" +
       stringOfCoord({x:x,y:y} ) +" = "+
       stringOfCoord(A.Status.click ) );
   }
-  else
+  else*/
   {
     A.Status.click = { x: x, y: y };
     console.log( "Down at "+ stringOfCoord(A.Status.click ) );
@@ -3894,6 +3908,30 @@ function populateEditorElement(A, contentHere){
 }
 
 
+function onDraggableClicked(A, obj){
+  var l = obj.layout;
+  var x = l.x0;
+  var y = l.y0;
+  var xw = l.xw;
+  var yh = l.yh;
+
+  if( !A.Status.click )
+    return;
+  console.log( "Clicked on Object ", obj.id );
+  A.dragObj = obj;
+}
+
+function onDraggableMouseUp(A, obj, d){
+  var l = obj.layout;
+  l.x0 += A.Status.displace.x;
+  l.y0 += A.Status.displace.y;
+}
+
+function createDraggable(A, obj, d){
+  obj.onClick = onDraggableClicked;
+  obj.onMouseUp = onDraggableMouseUp;
+}
+
 
 function registerMethods()
 {
@@ -3911,7 +3949,7 @@ function registerMethods()
   registerMethod( "Arrows",   0, sizeNowt,layoutNowt, drawArrows);
   registerMethod( "Prog",     createProg,sizeNowt,layoutNowt, 0);
   registerMethod( "KWIC",     createKwic, 0,0, drawKwic);
-  registerMethod( "Draggable", 0, 0,0, drawDraggable);
+  registerMethod( "Draggable", createDraggable, 0,0, drawDraggable);
 
 }
 
