@@ -24,7 +24,12 @@ The detailed data for the chart follows.
     "start":0,
     "end":2000
     },
-    {"Rectangle":"Chart"
+    {"HStack":[
+        {"Draggable":"Star1" },
+        {"Draggable":"Star2" },
+        {"Draggable":"Star3" },
+        {"Draggable":"Star4" }
+        ]
     }
 ]
 </pre>

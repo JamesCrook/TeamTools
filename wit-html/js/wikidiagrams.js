@@ -551,7 +551,7 @@ function makeFunctionTable(T, obj){
     else if( type === "pie" )
       T.fns.push(drawDonut);
     else if( type === "spot" )
-      T.fns.push(drawSpot);
+      T.fns.push(drawPlottedRect);
     else if( type === "event" )
       T.fns.push(drawEvent);
     else if( type === "lines" )
@@ -926,6 +926,45 @@ function drawDiagramAgain(){
     drawDiagram(A, A.RootObject, {});
 }
 
+// Functions for drawing small centred objects.
+function drawStar(ctx, S){
+  var n = 10;
+  var r = S.r || 3.5;
+
+  ctx.beginPath();
+  var i;
+  for( i = 0; i <= n; i++ ){
+    var theta = Math.PI * 2 * (i / n) + S.theta;
+    var r0 = (i % 2 === 0) ? r : 3.5 * r;
+    var xx = S.x + r0 * Math.cos(theta);
+    var yy = S.y + r0 * Math.sin(theta);
+    if( i === 0 ) ctx.moveTo(xx, yy); else ctx.lineTo(xx, yy);
+  }
+  ctx.fill();
+  ctx.lineWidth = 0.5;
+  if( !isDefined( S.doStroke ) || S.doStroke )
+    ctx.stroke();
+}
+
+function drawSpot(ctx, S){
+  ctx.beginPath();
+  ctx.arc(S.x, S.y, S.r, 0, 2 * Math.PI, false);
+  ctx.closePath();
+  ctx.fill();
+  if( !isDefined( S.doStroke ) || S.doStroke )
+    ctx.stroke();
+}
+
+function drawCentredRect(ctx, S){
+
+  ctx.beginPath();
+  ctx.rect(S.x -S.w/2, S.y - S.h/2, S.w, S.h);
+  ctx.closePath();
+  ctx.fill();
+  if( !isDefined( S.doStroke ) || S.doStroke )
+    ctx.stroke();
+}
+
 // Used for horizontal lines of the scale.
 function drawLines(A,T, values, i, ix){
   if( T.stage !== kStageFillAndText )
@@ -1013,7 +1052,7 @@ function drawBar(A,T, values, i, ix){
 }
 
 // Used for values that follow (are on) a curve.
-function drawSpot(A,T, values, i, ix){
+function drawPlottedRect(A, T, values, i, ix){
   var vx = values[i][ix];
   var x = T.margin + T.x0 + i * T.xScaler;
   var y = vx * T.yScaler;
@@ -1027,67 +1066,31 @@ function drawSpot(A,T, values, i, ix){
   ctx.stroke();
 }
 
-function drawStar(ctx, A, x, y, r){
-  var n = 10;
-  var r = r || 3.5;
-
-  ctx.beginPath();
-  var i;
-  for( i = 0; i <= n; i++ ){
-    var theta = Math.PI * 2 * (i / n + (Math.min(20, A.Status.time) / 40));
-    var r0 = (i % 2 === 0) ? r : 3.5 * r;
-    var xx = x + r0 * Math.cos(theta);
-    var yy = y + r0 * Math.sin(theta);
-    if( i === 0 ) ctx.moveTo(xx, yy); else ctx.lineTo(xx, yy);
-  }
-  ctx.fill();
-  ctx.lineWidth = 0.5;
+function drawSnakeStar(ctx, S){
+  drawStar(ctx, S);
 }
 
-function drawSnakeStar(A,ctx, ctx2, S, isHead, r){
-  if( isHead ){
-    drawSnakeSpot( A, ctx, ctx2, S, isHead, r );
+function drawSnakeSpot(ctx, S){
+  drawSpot(ctx, S);
+}
+
+function drawSnakeRect(ctx, S){
+  if( S.isHead ){
+    drawSnakeSpot( ctx, S);
     return;
   }
-  drawStar( ctx, A, S.x, S.y, r);
-  drawStar( ctx2, A, S.x, S.y,  r);
-}
 
-function drawSnakeSpot(A,ctx, ctx2, S, isHead, r){
-  ctx.beginPath();
-  ctx.arc(S.x, S.y, r, 0, 2 * Math.PI, false);
-  ctx.closePath();
-  ctx.fill();
-  if( isHead ){
-    ctx.stroke();
-  }
+  var d = S.isHotspot ? 14:8;
+  var dx = 4+ 9 * (S.row % 2);
+  var v = (S.row % 2) * (6 - S.r * 2) - 3;
 
-  ctx2.beginPath();
-  ctx2.arc(S.x, S.y, r, 0, 2 * Math.PI, false);
-  ctx2.closePath();
-  ctx2.fill();
-}
-
-function drawSnakeRect(A,ctx, ctx2, S, isHead, r){
-  if( isHead ){
-    drawSnakeSpot( A, ctx, ctx2, S, isHead, r );
-    return;
-  }
-  var d = 8;
-  var dx = 7 * (S.row %2);
-  var v = (S.row%2)* (6-r*2)-3;
-  ctx.beginPath();
-  ctx.rect(S.x-d/2 +dx, S.y-v, d, -r*2);
-  ctx.closePath();
-  ctx.fill();
-  if( isHead ){
-    ctx.stroke();
-  }
-
-  d=14;
-  ctx2.beginPath();
-  ctx2.rect(S.x-d/2 +dx, S.y-v, d, -r*2);
-  ctx2.fill();
+  var T = {};
+  T.x = S.x + dx;
+  T.y = S.y -v -S.r;
+  T.w = d;
+  T.h = 2*S.r;
+  T.doStroke = S.doStroke;
+  drawCentredRect(ctx, T);
 }
 
 // Used for irregularly spaced items.
@@ -1126,7 +1129,9 @@ function drawEvent(A,T, values, i, ix){
     ctx.fillStyle = "rgb(205,192,67)";
   }
 
-  drawStar(ctx, A, x, y);
+  var S = { x:x,y:y,theta:Math.PI * 2 * (Math.min(20, A.Status.time) / 40)};
+
+  drawStar(ctx, S);
   if( T.stage === kStageFillAndText ){
     ctx.strokeStyle = "rgb(120,97,46)";
     ctx.stroke();
@@ -1303,6 +1308,9 @@ function drawSnakeyPath(A, values, T){
 
   var greenBlob = "rgba(105,205,105,1.0)";
   var blobColour = greenBlob;
+
+
+
   // draw blobs.
   T.isPath = false;
 
@@ -1338,10 +1346,19 @@ function drawSnakeyPath(A, values, T){
         r += 3;
       }
       ctx2.fillStyle = c;
-      isHead = X.isHead;
-      drawFns[ shape ](A, ctx, ctx2, S, isHead, r);
+      S.isHead = X.isHead;
+      S.r = r;
 
-      if( isHead ){
+      S.doStroke = S.isHead || false;
+      S.isHotspot = false;
+      drawFns[ shape ](ctx, S);
+
+      // no stroke for hotspot.
+      S.doStroke = false;
+      S.isHotspot = true;
+      drawFns[ shape ](ctx2, S);
+
+      if( S.isHead ){
         drawAnEnd( ctx, S, "pointed",r-2);
       }
 
@@ -1617,6 +1634,39 @@ function drawArrows(A,obj,d){
       drawArrowBody(A,obj1,obj2);
     if( d.stage === kStageArrowHead )
       drawArrowHeadAndTail(A,obj1,obj2);
+  }
+}
+
+
+function drawDraggable(A, obj, d ){
+
+  var l = obj.layout;
+  var x = l.x0;
+  var y = l.y0;
+  var xw = l.xw;
+  var yh = l.yh;
+  var stage = d.stage;
+
+  var S = {};
+  S.x = x + xw/2;
+  S.y = y + yh/2;
+  S.r = Math.min( xw*0.02, yh*0.02 );
+  S.theta = 0.3;//Math.PI * 2 * (Math.min(20, A.Status.time) / 40);
+
+  var ctx = A.BackingCanvas.ctx;
+  var ctx2 = A.Hotspots.ctx;
+
+  if( d.stage === kStageFillAndText ){
+    ctx.fillStyle = "rgb(205,192,67)";
+    ctx.strokeStyle = "rgb(120,97,46)";
+    S.doStroke = true;
+    drawStar(ctx, S);
+  }
+  if( d.stage === kStageFillAndText ){
+    var c = NextAutoColour(A, "");
+    ctx2.fillStyle = c;
+    S.doStroke = false;
+    drawStar(ctx2, S);
   }
 }
 
@@ -3131,6 +3181,10 @@ function createImage( A, obj, d ){
 
 }
 
+function createTile( A, obj, d ){
+  createImage(A, obj, d);
+}
+
 
 function createContainer( A, obj, d){
 //console.log( "create container - "+obj.type);
@@ -3848,7 +3902,7 @@ function registerMethods()
   registerMethod( "Geshi",     0,0, layoutMargined, drawGeshi);
   registerMethod( "Circle",   0,0, layoutMargined, drawCircle);
   registerMethod( "Rectangle",0,0, layoutMargined, drawRectangle);
-  registerMethod( "Tile",     createImage,0, layoutMargined, drawTile);
+  registerMethod( "Tile",     createTile,0, layoutMargined, drawTile);
   registerMethod( "Spacer",   0,0, layoutMargined, drawNowt2);
 
   registerMethod( "Chart",    0,0, layoutMargined, drawChart);
@@ -3857,6 +3911,7 @@ function registerMethods()
   registerMethod( "Arrows",   0, sizeNowt,layoutNowt, drawArrows);
   registerMethod( "Prog",     createProg,sizeNowt,layoutNowt, 0);
   registerMethod( "KWIC",     createKwic, 0,0, drawKwic);
+  registerMethod( "Draggable", 0, 0,0, drawDraggable);
 
 }
 
