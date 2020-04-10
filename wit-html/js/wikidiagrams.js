@@ -3066,6 +3066,7 @@ function mayRequestImage(A, parent, obj){
       alert("Failed to load image " + obj1.file);
     }
   })();
+  console.log("Requesting... " + obj.file );
   obj.img.crossOrigin = "anonymous";
   obj.previous_image = obj.file;
   obj.img.src = obj.file;
@@ -3097,12 +3098,18 @@ function createCell(A, obj, d){
   }
 
   mayRegisterClickAction( A, obj);
-  mayRequestDisplayableImage( A, obj );
-  mayRequestHotImage( A, obj );
 
   if( obj.hasOwnProperty( 'choice')){
     doChoose(A, obj, obj.choice);
   }
+
+
+}
+
+function createImage( A, obj, d ){
+  createCell( A, obj );
+  mayRequestDisplayableImage(A, obj);
+  mayRequestHotImage(A, obj);
 
   // Image zone colours only used for tips.
   if( obj.hasOwnProperty('byHandColours') ){
@@ -3121,7 +3128,9 @@ function createCell(A, obj, d){
       mayRegisterClickAction( A, zone );
     }
   }
+
 }
+
 
 function createContainer( A, obj, d){
 //console.log( "create container - "+obj.type);
@@ -3834,12 +3843,12 @@ function populateEditorElement(A, contentHere){
 
 function registerMethods()
 {
-  registerMethod( "Image",    0,0, layoutMargined, drawImage);
+  registerMethod( "Image",    createImage,0, layoutMargined, drawImage);
   registerMethod( "Text",     0,0, layoutMargined, drawText);
   registerMethod( "Geshi",     0,0, layoutMargined, drawGeshi);
   registerMethod( "Circle",   0,0, layoutMargined, drawCircle);
   registerMethod( "Rectangle",0,0, layoutMargined, drawRectangle);
-  registerMethod( "Tile",     0,0, layoutMargined, drawTile);
+  registerMethod( "Tile",     createImage,0, layoutMargined, drawTile);
   registerMethod( "Spacer",   0,0, layoutMargined, drawNowt2);
 
   registerMethod( "Chart",    0,0, layoutMargined, drawChart);
