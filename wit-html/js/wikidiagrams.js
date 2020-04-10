@@ -2450,14 +2450,14 @@ function onMouseDown( e ){
   var y = e.clientY - rect.top;
 
   A.Status.move = {x:x,y:y};
-/*  if( A.Status.displace )
+  if( A.Status.displace )
   {
     A.Status.click = { x: x-A.Status.displace.x, y: y-A.Status.displace.y };
     console.log( "Down at "+stringOfCoord(A.Status.displace, -1 ) + " + click:" +
       stringOfCoord({x:x,y:y} ) +" = "+
       stringOfCoord(A.Status.click ) );
   }
-  else*/
+  else
   {
     A.Status.click = { x: x, y: y };
     console.log( "Down at "+ stringOfCoord(A.Status.click ) );
