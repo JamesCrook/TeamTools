@@ -926,6 +926,12 @@ function drawDiagramAgain(){
     drawDiagram(A, A.RootObject, {});
 }
 
+
+function setGhostedStyle(ctx,S){
+  ctx.fillStyle = "rgba(0,0,0,0.4)";
+  S.doStroke = false;
+}
+
 // Functions for drawing small centred objects.
 function drawStar(ctx, S){
   var n = 10;
@@ -964,6 +970,53 @@ function drawCentredRect(ctx, S){
   if( !isDefined( S.doStroke ) || S.doStroke )
     ctx.stroke();
 }
+
+
+function drawUpTriangle(ctx, S){
+  var k = 3;
+  ctx.beginPath();
+  ctx.moveTo( S.x, S.y);
+  ctx.lineTo(S.x - S.w/2, S.y + S.h);
+  ctx.lineTo(S.x - S.w/2, S.y + S.h+k);
+  ctx.lineTo(S.x + S.w/2, S.y + S.h+k);
+  ctx.lineTo(S.x + S.w/2, S.y + S.h);
+  ctx.closePath();
+  ctx.fill();
+  if( !isDefined( S.doStroke ) || S.doStroke )
+    ctx.stroke();
+}
+
+function drawLeftL(ctx, S){
+  var k = 5;
+  ctx.beginPath();
+  ctx.moveTo( S.x, S.y);
+  ctx.lineTo(S.x , S.y + S.h+k);
+  ctx.lineTo(S.x + S.w, S.y + S.h+k);
+  ctx.lineTo(S.x + S.w, S.y + S.h);
+  ctx.lineTo(S.x + k, S.y + S.h);
+  ctx.lineTo(S.x + k, S.y );
+  ctx.closePath();
+  ctx.fill();
+  if( !isDefined( S.doStroke ) || S.doStroke )
+    ctx.stroke();
+}
+
+function drawRightL(ctx, S){
+  var k = 5;
+  ctx.beginPath();
+  ctx.moveTo( S.x, S.y);
+  ctx.lineTo(S.x , S.y + S.h+k);
+  ctx.lineTo(S.x - S.w, S.y + S.h+k);
+  ctx.lineTo(S.x - S.w, S.y + S.h);
+  ctx.lineTo(S.x - k, S.y + S.h);
+  ctx.lineTo(S.x - k, S.y );
+  ctx.closePath();
+  ctx.fill();
+  if( !isDefined( S.doStroke ) || S.doStroke )
+    ctx.stroke();
+}
+
+
 
 // Used for horizontal lines of the scale.
 function drawLines(A,T, values, i, ix){
@@ -1638,7 +1691,19 @@ function drawArrows(A,obj,d){
 }
 
 
+function drawGlyph( ctx, obj, S ){
+  if( obj.glyph==="L" )
+    return drawLeftL( ctx, S );
+  if( obj.glyph==="Mid" )
+    return drawUpTriangle( ctx, S );
+  if( obj.glyph==="R" )
+    return drawRightL( ctx, S );
+  return drawStar( ctx, S );
+}
+
 function drawDraggable(A, obj, d ){
+  if( d.stage !== kStageFillAndText )
+    return;
 
   var l = obj.layout;
   var x = l.x0;
@@ -1647,17 +1712,24 @@ function drawDraggable(A, obj, d ){
   var yh = l.yh;
   var stage = d.stage;
 
-  if( A.Status.click && (A.dragObj === obj)){
-    x += A.Status.move.x-A.Status.click.x;
-    y += A.Status.move.y-A.Status.click.y;
+  if( !isDefined( obj.offset )){
+    obj.offset = {x:xw/2, y:yh/2 };
+  };
 
-  }
+  // Calculate new offset
+  var dd = newPos( A, obj );
+  // And always accept it.
+  onLockInMove(A,obj,dd);
 
+  x += obj.offset.x;
+  y += obj.offset.y;
 
   var S = {};
-  S.x = x + xw/2;
-  S.y = y + yh/2;
+  S.x = x ;
+  S.y = y ;
   S.r = Math.min( xw*0.02, yh*0.02 );
+  S.w = 12;
+  S.h = 12;
   S.theta = 0.3;//Math.PI * 2 * (Math.min(20, A.Status.time) / 40);
 
   var ctx = A.BackingCanvas.ctx;
@@ -1667,16 +1739,68 @@ function drawDraggable(A, obj, d ){
     ctx.fillStyle = "rgb(205,192,67)";
     ctx.strokeStyle = "rgb(120,97,46)";
     S.doStroke = true;
-    drawStar(ctx, S);
+    drawGlyph(ctx, obj, S);
   }
   if( d.stage === kStageFillAndText ){
     var c = NextAutoColour(A, "");
     AddDown(A,["clickObject",obj.id]);
     ctx2.fillStyle = c;
     S.doStroke = false;
-    drawStar(ctx2, S);
+    drawGlyph(ctx2, obj, S);
   }
 }
+
+function drawDraggable2(A, obj, d ){
+  if( d.stage !== kStageFillAndText )
+    return;
+
+  var l = obj.layout;
+  var x = l.x0;
+  var y = l.y0;
+  var xw = l.xw;
+  var yh = l.yh;
+  var stage = d.stage;
+
+  if( !isDefined( obj.offset )){
+    obj.offset = {x:xw/2, y:yh/2 };
+  };
+
+  // Calculate new offset
+  var dd = newPos( A, obj );
+  // And always accept it.
+  onLockInMove(A,obj,dd);
+
+  x += obj.offset.x;
+  y += obj.offset.y;
+
+  var S = {};
+  S.x = x ;
+  S.y = y ;
+  S.r = Math.min( xw*0.02, yh*0.02 );
+  S.w = xw;
+  S.h = yh;
+  S.theta = 0.3;//Math.PI * 2 * (Math.min(20, A.Status.time) / 40);
+
+  var ctx = A.BackingCanvas.ctx;
+  var ctx2 = A.Hotspots.ctx;
+
+  if( d.stage === kStageFillAndText ){
+    setGhostedStyle(ctx,S);
+    drawGlyph(ctx, obj, S);
+  }
+  if( d.stage === kStageFillAndText ){
+    var c = NextAutoColour(A, "");
+    AddDown(A,["clickObject",obj.id]);
+    ctx2.fillStyle = c;
+    S.doStroke = false;
+    drawGlyph(ctx2, obj, S);
+  }
+}
+
+
+
+
+
 
 function drawImage(A, obj, d){
   //console.log( "draw - "+obj.type);
@@ -2857,6 +2981,7 @@ function onKwicClicked(A, obj){
     return;
   if( !A.Status.click )
     return;
+  onDraggableClicked( A, obj );
 
 /*
   // Calculate new offset
@@ -3722,9 +3847,31 @@ function requestFile(A,source, fromwiki,section,fn){
 
 
 
-// converts user friendly format into more
-// verbose but more uniform format,
-// with content and type fields.
+function addObjectToDictionary(A, layout){
+  A.RootObject.objectDict[layout.id] = layout;
+}
+
+
+/**
+ *
+ * converts user friendly format into more
+ * verbose but more uniform format,
+ * with content and type fields.
+ *
+ * Only one field should have a capital letter
+ * It causes the type, value, id and content fields.
+ * So {"Geshi":"dominos"}
+ * is converted to:
+ * { "type":"Geshi",
+ *   "value":"dominos",
+ *   "content": [],
+ *   "id":"dominos",
+ * };
+ * @param A
+ * @param indent
+ * @param layout
+ */
+
 function convertJsonStructure(A, indent, layout){
   var key;
   for( key in layout ){
@@ -3752,7 +3899,7 @@ function convertJsonStructure(A, indent, layout){
   }
   if( layout.id ){
     layout.id = layout.id.substr(0, 10);
-    A.RootObject.objectDict[layout.id] = layout;
+    addObjectToDictionary(A, layout);
     A.RootObject.objectList.push(layout);
   }
   if( layout.content && Array.isArray(layout.content) ){
@@ -3947,6 +4094,8 @@ function newPos( A, obj ){
   var d={};
   if( !A.Status.click )
     return d;
+  if( A.dragObj !== obj)
+    return d;
   if( !obj.offset )
     obj.offset = {x:0,y:0};
   if( !A.Status.move ){
@@ -3961,6 +4110,8 @@ function newPos( A, obj ){
 function onLockInMove( A, obj, d){
   if( !A.Status.click )
     return;
+  if( A.dragObj !== obj)
+    return d;
   A.Status.click.x += d.x - obj.offset.x - obj.layout.x0;
   A.Status.click.y += d.y - obj.offset.y - obj.layout.y0;
   obj.offset.x = d.x - obj.layout.x0;
@@ -3978,7 +4129,7 @@ function onDraggableMouseUp(A, obj, d){
 
 function createDraggable(A, obj, d){
   obj.onClick = onDraggableClicked;
-  obj.onMouseUp = onDraggableMouseUp;
+  //obj.onMouseUp = onDraggableMouseUp;
 }
 
 
@@ -3999,6 +4150,7 @@ function registerMethods()
   registerMethod( "Prog",     createProg,sizeNowt,layoutNowt, 0);
   registerMethod( "KWIC",     createKwic, 0,0, drawKwic);
   registerMethod( "Draggable", createDraggable, 0,0, drawDraggable);
+  registerMethod( "Drag2", createDraggable, 0,0, drawDraggable2);
 
 }
 

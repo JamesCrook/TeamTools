@@ -74,12 +74,14 @@ The detailed data for the regions, buttons and tooltips follows.
 <ul>
 <li>Cell Cycle
 <li>Circadian Clock
+<li>Fertility / Reproduction
 </ul>
 
 <pre>NEXTOBJECT:TIP=</pre>
 <h1><a href='https://wiki.audacityteam.org/wiki/Toolbox/Construction'>Construction</a></h1>
 <ul>
 <li>Metabolism
+<li>Photosynthesis
 <li>Amino Acid and Nucleotide synthesis
 <li>rRNA and tRNA
 <li>Heme Biosynthesis
@@ -109,6 +111,7 @@ The detailed data for the regions, buttons and tooltips follows.
 <li>Viral Diseases
 <li>Bacterial Diseases
 <li>Parasitic Diseases
+<li>Poisons and Venoms
 </ul>
 
 <pre>NEXTOBJECT:TIP=</pre>
@@ -132,7 +135,7 @@ The detailed data for the regions, buttons and tooltips follows.
 <ul>
 <li>Platelets
 <li>Fibrin
-<li>Folding and chaperonins
+<li>Folding and Chaperonins
 </ul>
 
 <pre>NEXTOBJECT:TIP=</pre>

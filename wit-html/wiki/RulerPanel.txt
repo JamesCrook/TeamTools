@@ -25,9 +25,9 @@ The detailed data for the chart follows.
     "end":2000
     },
     {"HStack":[
-        {"Draggable":"Star1" },
-        {"Draggable":"Star2" },
-        {"Draggable":"Star3" },
+        {"Draggable":"Star1","glyph":"L" },
+        {"Draggable":"Star2","glyph":"Mid" },
+        {"Draggable":"Star3","glyph":"R" },
         {"Draggable":"Star4" }
         ]
     }

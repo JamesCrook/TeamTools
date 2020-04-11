@@ -580,10 +580,45 @@ function displacement( A ){
   return {"x":0, "y":0 };
 }
 
-function drawDragger(A, obj, d){
+
+var dragNamer = 1234;
+
+function makeDraggerObject(obj, A, pos){
+  var mid = {};
+  var l1 = {};
+  mid.layout = l1;
+  var l2 = obj.layout;
+  l1.x0 = l2.x0 + pos * (l2.xw / 2);
+  l1.y0 = l2.y0 + l2.yh-15;
+  l1.xw = 15*(1+(pos%2));
+  l1.yh = 15;
+  mid.type = "Drag2";
+  var types = "L Mid R".split(" ");
+  mid.glyph = types[pos];
+  mid.onClick = onDraggableClicked;
+  mid.offset = { x: 0, y: 0 };
+  mid.id = "Drag"+(dragNamer++);
+  addObjectToDictionary(A, mid);
+  obj.content.push(mid);
+}
+
+function drawDraggers(A, obj, d){
   //console.log( "draw - "+obj.type);
   var stage = d.stage;
   if( stage !== kStageFillAndText ) return;
+
+
+  if( obj.content.length === 0 ){
+    makeDraggerObject(obj, A, 0);
+    makeDraggerObject(obj, A, 1);
+    makeDraggerObject(obj, A, 2);
+  }
+  var ctx = A.BackingCanvas.ctx;
+  var S = {};
+  setGhostedStyle(ctx,S);
+  drawContainer(A, obj, d);
+  return;
+
 
   var l = obj.layout;
   var x = l.x0;
@@ -596,18 +631,19 @@ function drawDragger(A, obj, d){
   x += obj.draggerX + disp.x;
   y += l.yh-yh+3;
 
-  var ctx = A.BackingCanvas.ctx;
+  S.x = x;
+  S.y = y;
+  S.w = xw*2;
+  S.h = yh;
+  setGhostedStyle(ctx,S);
+  drawUpTriangle(ctx,S);
 
-  ctx.save();
-  ctx.beginPath();
-  ctx.fillStyle = "rgba(0,0,0,0.4)";
-  ctx.moveTo(x,y);
-  ctx.lineTo(x+xw, y+yh );
-  ctx.lineTo( x-xw, y+yh);
-  ctx.closePath();
-  ctx.fill();
-  ctx.restore();
+  S.x = 3;
+  S.w = xw;
+  drawLeftL( ctx,S);
 
+  S.x = 700;
+  drawRightL( ctx,S );
 }
 
 
@@ -765,9 +801,6 @@ function drawRuler(A, obj, d){
     drawRulerMark( A, obj, i );
   }
 
-  drawDragger(A, obj, d );
-
-  ctx.restore();
 
   var ctx2 = A.Hotspots.ctx;
 
@@ -778,6 +811,10 @@ function drawRuler(A, obj, d){
   ctx2.rect(x, y, xw, yh);
   ctx2.fillStyle = c;
   ctx2.fill();
+
+  drawDraggers(A, obj, d );
+
+  ctx.restore();
 }
 
 
