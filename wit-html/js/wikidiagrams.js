@@ -1750,6 +1750,26 @@ function drawDraggable(A, obj, d ){
   }
 }
 
+function constrain( low, value, high ){
+  return Math.max( low, Math.min( value, high));
+}
+
+function draggingMid( A, obj, dd ){
+  dd.y = constrain( 20, dd.y, 25 );
+
+  var dx = obj.offset.x - dd.x + obj.layout.x0;
+  if( dd.y < 24 )
+    obj.parent.atLeft += dx*3;
+  obj.parent.atLeft = constrain( -70, obj.parent.atLeft, 2000 );
+
+
+}
+function draggingMarker( A, obj, dd ){
+  dd.y = constrain( 20, dd.y, 20 );
+  dd.x = constrain( 40, dd.x, 660 );
+}
+
+
 function drawDraggable2(A, obj, d ){
   if( d.stage !== kStageFillAndText )
     return;
@@ -1759,7 +1779,6 @@ function drawDraggable2(A, obj, d ){
   var y = l.y0;
   var xw = l.xw;
   var yh = l.yh;
-  var stage = d.stage;
 
   if( !isDefined( obj.offset )){
     obj.offset = {x:xw/2, y:yh/2 };
@@ -1767,6 +1786,8 @@ function drawDraggable2(A, obj, d ){
 
   // Calculate new offset
   var dd = newPos( A, obj );
+  if( obj.dragFn )
+    obj.dragFn( A, obj, dd )
   // And always accept it.
   onLockInMove(A,obj,dd);
 

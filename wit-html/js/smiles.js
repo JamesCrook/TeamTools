@@ -584,66 +584,59 @@ function displacement( A ){
 var dragNamer = 1234;
 
 function makeDraggerObject(obj, A, pos){
-  var mid = {};
+  var dragger = {};
   var l1 = {};
-  mid.layout = l1;
+  dragger.layout = l1;
   var l2 = obj.layout;
-  l1.x0 = l2.x0 + pos * (l2.xw / 2);
+  var inset = 45;
+  l1.x0 = l2.x0 + pos * (l2.xw / 2 -inset ) +inset;
   l1.y0 = l2.y0 + l2.yh-15;
   l1.xw = 15*(1+(pos%2));
   l1.yh = 15;
-  mid.type = "Drag2";
+  dragger.type = "Drag2";
   var types = "L Mid R".split(" ");
-  mid.glyph = types[pos];
-  mid.onClick = onDraggableClicked;
-  mid.offset = { x: 0, y: 0 };
-  mid.id = "Drag"+(dragNamer++);
-  addObjectToDictionary(A, mid);
-  obj.content.push(mid);
+  dragger.glyph = types[pos];
+  dragger.onClick = onDraggableClicked;
+  dragger.offset = { x: 0, y: 0 };
+  dragger.id = "Drag"+(dragNamer++);
+  addObjectToDictionary(A, dragger);
+  dragger.parent = obj;
+  obj.content.push(dragger);
+  return dragger;
+}
+
+/**
+ * Updates the position of the draggers AND
+ * updates the parent object too, if required.
+ * @param A
+ * @param obj
+ * @param d
+ */
+
+function updateDraggers(A, obj, d){
+  //console.log( "draw - "+obj.type);
+  var stage = d.stage;
+  if( stage !== kStageFillAndText ) return;
+
+  if( obj.content.length === 0 ){
+    var dragger;
+    dragger = makeDraggerObject(obj, A, 0);
+    dragger.dragFn = draggingMarker;
+    dragger = makeDraggerObject(obj, A, 1);
+    dragger.dragFn = draggingMid;
+    dragger = makeDraggerObject(obj, A, 2);
+    dragger.dragFn = draggingMarker;
+  }
 }
 
 function drawDraggers(A, obj, d){
   //console.log( "draw - "+obj.type);
   var stage = d.stage;
   if( stage !== kStageFillAndText ) return;
-
-
-  if( obj.content.length === 0 ){
-    makeDraggerObject(obj, A, 0);
-    makeDraggerObject(obj, A, 1);
-    makeDraggerObject(obj, A, 2);
-  }
   var ctx = A.BackingCanvas.ctx;
   var S = {};
   setGhostedStyle(ctx,S);
   drawContainer(A, obj, d);
-  return;
-
-
-  var l = obj.layout;
-  var x = l.x0;
-  var y = l.y0;
-  var xw = 15;
-  var yh = 15;
-  obj.draggerX = obj.draggerX || 100;
-  var disp = displacement( A );
-  disp.x = 0;
-  x += obj.draggerX + disp.x;
-  y += l.yh-yh+3;
-
-  S.x = x;
-  S.y = y;
-  S.w = xw*2;
-  S.h = yh;
-  setGhostedStyle(ctx,S);
-  drawUpTriangle(ctx,S);
-
-  S.x = 3;
-  S.w = xw;
-  drawLeftL( ctx,S);
-
-  S.x = 700;
-  drawRightL( ctx,S );
 }
 
 
@@ -670,6 +663,8 @@ function drawRulerMark( A, obj, i ){
   var yh = l.yh;
 
 
+  i += Math.floor( obj.scaledAtLeft );
+  x -= (obj.scaledAtLeft - Math.floor( obj.scaledAtLeft ))*obj.spacing;
   var ctx = A.BackingCanvas.ctx;
   var v = rulerSpec[1].mod;
 
@@ -740,6 +735,7 @@ function drawRuler(A, obj, d){
   var yh = l.yh;
 
   mayUpdateObjectStyle(A, obj);
+  updateDraggers( A, obj, d );
 
   var ctx = A.BackingCanvas.ctx;
 
@@ -759,7 +755,11 @@ function drawRuler(A, obj, d){
   var disp = displacement( A );
   disp.x = 0;
 
-  var spacing = (obj.draggerX + disp.x)/10;
+  //obj.spacing = obj.spacing || 800;
+  //var spacing = obj.spacing;
+
+  obj.scale = obj.scale ||10;
+  var spacing = obj.scale;
   spacing = Math.max( 3, spacing );
   var origSpacing = spacing;
   var medium =5;
@@ -797,6 +797,8 @@ function drawRuler(A, obj, d){
   obj.spacing= spacing;
   obj.mul = origSpacing/spacing;
   var nBars = Math.floor( xw / spacing)+1;
+  obj.atLeft = obj.atLeft || 0;
+  obj.scaledAtLeft = obj.atLeft / spacing;
   for(i=0;i<nBars;i++){
     drawRulerMark( A, obj, i );
   }
