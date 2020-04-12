@@ -2574,6 +2574,12 @@ function onMouseUp( e ){
   }
   A.dragObj = undefined;
   A.Status.click = undefined;
+
+  var rect = e.target.getBoundingClientRect();
+  var x = e.clientX - rect.left;
+  var y = e.clientY - rect.top;
+  drawFocusSpot(A,x, y);
+
 }
 
 function onMouseDown( e ){
