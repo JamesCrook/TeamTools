@@ -2553,8 +2553,8 @@ function onMouseOut(e){
   ctx.clearRect(0, 0, A.Porthole.width, A.Porthole.height);
   if( !A.DetailDivFrozen ){
     A.DetailDiv.style.display = "none";
-    A.Status.OldHit = -1;
   }
+  A.Status.OldHit = -1;
   A.DetailDivFrozen = false;
   A.Cursor = "spot";
   A.dragObj = undefined;
@@ -2605,6 +2605,9 @@ function onMouseDown( e ){
     //e.target.style.cursor = 'all-scroll';
     A.Cursor="dragger";
     drawFocusDragger(A,x, y);
+  } else {
+    A.DetailDivFrozen = true;
+    showOrHideTip( A, actions );
   }
 
   drawDiagramAgain(A);
@@ -2635,16 +2638,13 @@ function mousemoveOnMap(e){
   drawInfoButton(A);
   var actions = actionsFromCursorPos(A, x, y);
   if( Message ) Message.innerHTML = coordinates;
-  if( !A.DetailDivFrozen ){
-    A.DetailDiv.style.left = pt.x + "px";
-    A.DetailDiv.style.top = pt.y + "px";
-  }
+
   if( (A.Status.OldHit !== actions.Zone) && !e.buttons  ){
-    A.Status.OldHit = actions.Zone;
 
     // Update the detail div
     if( !A.DetailDivFrozen )
       showOrHideTip(A, actions);
+    A.Status.OldHit = actions.Zone;
     // Do any additional hover action
     if( actions.Hover ){
       doAction(A, actions.Hover);
@@ -2652,6 +2652,12 @@ function mousemoveOnMap(e){
     if( !actions.Down )
       e.target.style.cursor = actions.Click ? 'pointer' : 'auto';
   }
+
+  if( !A.DetailDivFrozen ){
+    A.DetailDiv.style.left = pt.x + "px";
+    A.DetailDiv.style.top = pt.y + "px";
+  }
+
   if( e.buttons ){
     A.Status.move = { x: x, y: y };
     drawDiagramAgain(A);
@@ -2673,10 +2679,7 @@ function onFocusClicked(e){
   if( actions.Click ){
     doAction(A, actions.Click);
   }
-  else {
-    A.DetailDivFrozen = true;
-    showOrHideTip( A, actions );
-  }
+
 }
 
 
@@ -2719,6 +2722,9 @@ function showOrHideTip(A, actions){
     A.DetailDiv.style.display = "block";
     A.DetailHideTime = -1;
     A.DetailDiv.innerHTML = actions.Tip;
+  } else if( A.Status.OldHit <0){
+    A.DetailDiv.style.display = "none";
+    A.DetailHideTime = -1;
   } else {
     // Keep div that should disappear around for 30 ticks...
     // so it does not flicker.
