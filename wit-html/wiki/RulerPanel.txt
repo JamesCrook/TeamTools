@@ -18,7 +18,7 @@ The detailed data for the chart follows.
 <pre>ADD:DATA=
 [
     {
-    "Ruler":"BugChart",
+    "Ruler":"ZoomableRuler",
     "margins":3,
     "sizeAs":0.1,
     "start":0,

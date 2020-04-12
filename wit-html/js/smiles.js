@@ -559,6 +559,10 @@ function minEnergy( A, obj, d ){
   }
 }
 
+function rulerIxOfx( A, obj, x ){
+  return ( obj.atLeft + x) / obj.scale;
+}
+
 
 function onRulerClicked(A, obj){
   var l = obj.layout;
@@ -569,15 +573,46 @@ function onRulerClicked(A, obj){
 
   if( !A.Status.click )
     return;
+
+  console.log( "Clicked on Object " + obj.id );
+  A.dragObj = obj;
+  obj.offset = {x:A.Status.click.x ,y:A.Status.click.y };
+  obj.dragIx = rulerIxOfx( A, obj, A.Status.click.x );
+  var mid = obj.content[1];
+  var midx = mid.offset.x + mid.layout.x0;
+  //midx=0;
+  obj.centerIx = rulerIxOfx( A, obj, midx );
+  console.log( "Click Index: "+obj.dragIx );
+  console.log( "Center Index: "+obj.centerIx );
 }
 
-function displacement( A ){
-  if( A.Status.click && A.Status.move ){
-    return {
-      "x": A.Status.move.x - A.Status.click.x ,
-      "y": A.Status.move.y - A.Status.click.y };
+function draggingRuler( A, obj, dd ){
+  dd.y = constrain( 20, dd.y, 20 );
+  dd.x = constrain( 40, dd.x, 660 );
+
+  var mid = obj.content[1];
+  var midx = mid.offset.x + mid.layout.x0;
+  //midx=0;
+  console.log("dd.x: "+dd.x);
+  var dx = dd.x - midx - obj.layout.x0;
+  var scale = dx/(obj.dragIx - obj.centerIx);
+  console.log("New scale: "+scale);
+  var atLeft = (obj.centerIx * scale ) -midx;
+  console.log("New left: "+atLeft+" was "+obj.atLeft);
+  if( (300>scale) && (scale > 0.3 ) && (atLeft > -70))
+  {
+    obj.atLeft = atLeft;
+    obj.scale = scale;
   }
-  return {"x":0, "y":0 };
+  else {
+    dd.x = obj.offset.x + obj.layout.x0;
+  }
+  //obj.atLeft = (obj.centerIx*scale)/10  - midx;
+  //obj.scale = scale;
+  //var dx = obj.offset.x - dd.x + obj.layout.x0;
+//  if( dd.y < 24 )
+//    obj.parent.atLeft += dx*3;
+//  obj.parent.atLeft = constrain( -70, obj.parent.atLeft, 2000 );
 }
 
 
@@ -606,6 +641,78 @@ function makeDraggerObject(obj, A, pos){
 }
 
 /**
+ * Mid dragger can be on its line or slightly below.
+ * If below, it moves without dragging.
+ * When dragging, gearing is 3x for ruler motion.
+ * @param A
+ * @param obj
+ * @param dd
+ */
+function draggingMid( A, obj, dd ){
+  dd.y = constrain( 20, dd.y, 25 );
+  dd.x = constrain( 40, dd.x, 660 );
+
+  var dx = obj.offset.x - dd.x + obj.layout.x0;
+  if( dd.y < 24 )
+    obj.parent.atLeft += dx*3;
+  obj.parent.atLeft = constrain( -70, obj.parent.atLeft, 2000 );
+}
+
+/**
+ * Marker dragging keeps them on their line.
+ * Ruler motion is x1 i.e. moves with.
+ * @param A
+ * @param obj
+ * @param dd
+ */
+function draggingMarker( A, obj, dd ){
+  dd.y = constrain( 20, dd.y, 20 );
+  dd.x = constrain( 40, dd.x, 660 );
+  var dx = obj.offset.x - dd.x + obj.layout.x0;
+  if( dd.y < 24 )
+    obj.parent.atLeft += dx*1;
+  obj.parent.atLeft = constrain( -70, obj.parent.atLeft, 2000 );
+}
+
+/**
+ * On finishing mid dragger dragging, it pops back onto its line.
+ * (it could have been dragged down slightly)
+ * @param A
+ * @param obj
+ */
+function finishMid( A, obj ){
+  obj.offset.y = 20 - obj.layout.y0;
+  A.dragObj = undefined;
+  finalDraw( A, obj );
+}
+
+/**
+ * On finishing left dragger dragging, it goes back to the left end.
+ * @param A
+ * @param obj
+ */
+function finishLDragger( A, obj ){
+  obj.offset.x = 40 - obj.layout.x0;
+  A.dragObj = undefined;
+  finalDraw( A, obj );
+}
+
+/**
+ * On finishing right dragger dragging, it goes back to the right end.
+ * @param A
+ * @param obj
+ */
+function finishRDragger( A, obj ){
+  obj.offset.x = 660 - obj.layout.x0;
+  A.dragObj = undefined;
+  finalDraw( A, obj );
+}
+
+
+
+
+
+/**
  * Updates the position of the draggers AND
  * updates the parent object too, if required.
  * @param A
@@ -615,27 +722,27 @@ function makeDraggerObject(obj, A, pos){
 
 function updateDraggers(A, obj, d){
   //console.log( "draw - "+obj.type);
-  var stage = d.stage;
-  if( stage !== kStageFillAndText ) return;
+  //var stage = d.stage;
+  //if( stage !== kStageFillAndText ) return;
 
   if( obj.content.length === 0 ){
     var dragger;
     dragger = makeDraggerObject(obj, A, 0);
     dragger.dragFn = draggingMarker;
+    dragger.onMouseUp = finishLDragger;
     dragger = makeDraggerObject(obj, A, 1);
     dragger.dragFn = draggingMid;
+    dragger.onMouseUp = finishMid;
     dragger = makeDraggerObject(obj, A, 2);
     dragger.dragFn = draggingMarker;
+    dragger.onMouseUp = finishRDragger;
   }
+  // invokes drawDraggers, but this is actually just doing position updates.
+  drawDraggers(A, obj, d );
 }
 
 function drawDraggers(A, obj, d){
   //console.log( "draw - "+obj.type);
-  var stage = d.stage;
-  if( stage !== kStageFillAndText ) return;
-  var ctx = A.BackingCanvas.ctx;
-  var S = {};
-  setGhostedStyle(ctx,S);
   drawContainer(A, obj, d);
 }
 
@@ -683,10 +790,6 @@ function drawRulerMark( A, obj, i ){
   }
   var spec = rulerSpec[j];
 
-
-
-
-
   var height = spec.height;
   var height2 = spec2.height;
   if( j> 1 )
@@ -716,7 +819,7 @@ function drawRulerMark( A, obj, i ){
 
     ctx.globalAlpha = opacity;
     ctx.textAlign = "center";
-    ctx.fillText( ""+ (Math.floor((100*i/(1*obj.mul))+0.9))/10, x, y+ 8);
+    ctx.fillText( ""+ (Math.floor((10*i/(1*obj.mul))+0.9))/10, x, y+ 8);
     ctx.globalAlpha = 1.0;
   }
 
@@ -725,6 +828,21 @@ function drawRulerMark( A, obj, i ){
 function drawRuler(A, obj, d){
   //console.log( "draw - "+obj.type);
   var stage = d.stage;
+
+  if( stage===kDragging){
+    updateDraggers( A, obj, d );
+
+    if( A.dragObj !== obj )
+      return;
+    // Calculate new offset
+    var dd = newPos( A, obj );
+    if( obj.dragFn )
+      obj.dragFn( A, obj, dd );
+    // And always accept it.
+    onLockInMove(A,obj,dd);
+
+    return;
+  }
   if( stage!==kStageFillAndText)
     return;
 
@@ -735,7 +853,6 @@ function drawRuler(A, obj, d){
   var yh = l.yh;
 
   mayUpdateObjectStyle(A, obj);
-  updateDraggers( A, obj, d );
 
   var ctx = A.BackingCanvas.ctx;
 
@@ -751,15 +868,11 @@ function drawRuler(A, obj, d){
   ctx.strokeStyle = "rgb(0,0,0)";
   ctx.strokeWidth = 0.5;
   var i;
-  obj.draggerX = obj.draggerX || 100;
-  var disp = displacement( A );
-  disp.x = 0;
 
-  //obj.spacing = obj.spacing || 800;
-  //var spacing = obj.spacing;
-
-  obj.scale = obj.scale ||10;
-  var spacing = obj.scale;
+  // scale is how many pixels for 1 item?
+  obj.scale = obj.scale ||0.7;
+  // spacing is spacing for 10 items.
+  var spacing = obj.scale * 10;
   spacing = Math.max( 3, spacing );
   var origSpacing = spacing;
   var medium =5;
@@ -795,7 +908,7 @@ function drawRuler(A, obj, d){
     otherSpec = rulerSpec2;
   }
   obj.spacing= spacing;
-  obj.mul = origSpacing/spacing;
+  obj.mul = 0.1*origSpacing/spacing;
   var nBars = Math.floor( xw / spacing)+1;
   obj.atLeft = obj.atLeft || 0;
   obj.scaledAtLeft = obj.atLeft / spacing;
@@ -822,6 +935,7 @@ function drawRuler(A, obj, d){
 
 function createRuler(A, obj, d){
   obj.onClick = onRulerClicked;//["clickAction",obj.name ];
+  obj.dragFn = draggingRuler;
 }
 
 function registerSmilesMethods()

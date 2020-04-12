@@ -20,6 +20,7 @@ if( !String.prototype.trimEnd ){
 
 // These are constants for drawing stages.
 const kStageArrowShaft=1;
+const kDragging=2;
 const kStageOutlineEarly=3;
 const kStageFillAndTextEarly=4;
 const kStageOutline=5;
@@ -921,7 +922,7 @@ function drawDiagram(A, obj, d){
   A.Status.drawing = false;
 }
 
-function drawDiagramAgain(){
+function drawDiagramAgain(A){
   if( !A.Status.drawing )
     drawDiagram(A, A.RootObject, {});
 }
@@ -993,7 +994,8 @@ function drawLeftL(ctx, S){
   ctx.lineTo(S.x , S.y + S.h+k);
   ctx.lineTo(S.x + S.w, S.y + S.h+k);
   ctx.lineTo(S.x + S.w, S.y + S.h);
-  ctx.lineTo(S.x + k, S.y + S.h);
+  ctx.lineTo(S.x + S.w -k/2, S.y + S.h);
+  ctx.lineTo(S.x + k, S.y + k/2);
   ctx.lineTo(S.x + k, S.y );
   ctx.closePath();
   ctx.fill();
@@ -1008,7 +1010,8 @@ function drawRightL(ctx, S){
   ctx.lineTo(S.x , S.y + S.h+k);
   ctx.lineTo(S.x - S.w, S.y + S.h+k);
   ctx.lineTo(S.x - S.w, S.y + S.h);
-  ctx.lineTo(S.x - k, S.y + S.h);
+  ctx.lineTo(S.x - S.w +k/2, S.y + S.h);
+  ctx.lineTo(S.x - k, S.y + k/2);
   ctx.lineTo(S.x - k, S.y );
   ctx.closePath();
   ctx.fill();
@@ -1754,23 +1757,19 @@ function constrain( low, value, high ){
   return Math.max( low, Math.min( value, high));
 }
 
-function draggingMid( A, obj, dd ){
-  dd.y = constrain( 20, dd.y, 25 );
-
-  var dx = obj.offset.x - dd.x + obj.layout.x0;
-  if( dd.y < 24 )
-    obj.parent.atLeft += dx*3;
-  obj.parent.atLeft = constrain( -70, obj.parent.atLeft, 2000 );
-
-
-}
-function draggingMarker( A, obj, dd ){
-  dd.y = constrain( 20, dd.y, 20 );
-  dd.x = constrain( 40, dd.x, 660 );
-}
 
 
 function drawDraggable2(A, obj, d ){
+  if( d.stage === kDragging ){
+    // Calculate new offset
+    var dd = newPos( A, obj );
+    if( obj.dragFn )
+      obj.dragFn( A, obj, dd );
+    // And always accept it.
+    onLockInMove(A,obj,dd);
+    return;
+  }
+
   if( d.stage !== kStageFillAndText )
     return;
 
@@ -1779,17 +1778,6 @@ function drawDraggable2(A, obj, d ){
   var y = l.y0;
   var xw = l.xw;
   var yh = l.yh;
-
-  if( !isDefined( obj.offset )){
-    obj.offset = {x:xw/2, y:yh/2 };
-  };
-
-  // Calculate new offset
-  var dd = newPos( A, obj );
-  if( obj.dragFn )
-    obj.dragFn( A, obj, dd )
-  // And always accept it.
-  onLockInMove(A,obj,dd);
 
   x += obj.offset.x;
   y += obj.offset.y;
@@ -2577,13 +2565,9 @@ function onMouseUp( e ){
   var index = e.target.toolkitIndex;
   var A = Annotator[index];
 
-  A.Status.displace = {
-    x: A.Status.move.x-A.Status.click.x,
-    y:A.Status.move.y-A.Status.click.y};
-  //A.Status.move = {x:0,y:0};
-  console.log( "Up at "+stringOfCoord(A.Status.displace, -1 ) );
   e.target.style.cursor = 'auto';
   A.Cursor="spot";
+  console.log( "Up at "+ stringOfCoord(A.Status.move ) );
   if( A.dragObj && A.dragObj.onMouseUp )
   {
     A.dragObj.onMouseUp( A, A.dragObj );
@@ -2604,19 +2588,9 @@ function onMouseDown( e ){
   var y = e.clientY - rect.top;
 
   A.Status.move = {x:x,y:y};
-/*
-  if( A.Status.displace )
-  {
-    A.Status.click = { x: x-A.Status.displace.x, y: y-A.Status.displace.y };
-    console.log( "Down at "+stringOfCoord(A.Status.displace, -1 ) + " + click:" +
-      stringOfCoord({x:x,y:y} ) +" = "+
-      stringOfCoord(A.Status.click ) );
-  }
-  else*/
-  {
-    A.Status.click = { x: x, y: y };
-    console.log( "Down at "+ stringOfCoord(A.Status.click ) );
-  }
+
+  A.Status.click = { x: x, y: y };
+  console.log( "Down at "+ stringOfCoord(A.Status.click ) );
 
 
   var actions = actionsFromCursorPos(A,x, y, "log");
@@ -2627,7 +2601,7 @@ function onMouseDown( e ){
     drawFocusDragger(A,x, y);
   }
 
-  drawDiagramAgain();
+  drawDiagramAgain(A);
 
 }
 
@@ -2674,7 +2648,7 @@ function mousemoveOnMap(e){
   }
   if( e.buttons ){
     A.Status.move = { x: x, y: y };
-    drawDiagramAgain();
+    drawDiagramAgain(A);
   }
 }
 
@@ -3054,7 +3028,7 @@ function onKwicClicked(A, obj){
     obj.selected = str;
     reselectInKwic( obj, row );
     obj.offset.x += (col-wrap)*kwicSpace;
-    drawDiagramAgain();
+    drawDiagramAgain(A);
   }
 }
 
@@ -4111,6 +4085,13 @@ function onDraggableClicked(A, obj){
   A.dragObj = obj;
 }
 
+/**
+ * During dragging, this function returns the proposed new position for
+ * an object, including offset and layout x,y.
+ * @param A
+ * @param obj
+ * @returns {{}}
+ */
 function newPos( A, obj ){
   var d={};
   if( !A.Status.click )
@@ -4128,6 +4109,14 @@ function newPos( A, obj ){
   return d;
 }
 
+/**
+ * On locking in a move, it is as if you had clicked at the new position.
+ * Future steps in the drag will act as if so.
+ * @param A
+ * @param obj
+ * @param d
+ * @returns {*}
+ */
 function onLockInMove( A, obj, d){
   if( !A.Status.click )
     return;
@@ -4142,15 +4131,15 @@ function onLockInMove( A, obj, d){
   }
 }
 
-function onDraggableMouseUp(A, obj, d){
-  var l = obj.layout;
-  l.x0 += A.Status.displace.x;
-  l.y0 += A.Status.displace.y;
+function finalDraw(A, obj, d){
+  console.log("final draw");
+  drawDiagramAgain(A);
 }
+
 
 function createDraggable(A, obj, d){
   obj.onClick = onDraggableClicked;
-  //obj.onMouseUp = onDraggableMouseUp;
+  //obj.onMouseUp = finalDraw;
 }
 
 
