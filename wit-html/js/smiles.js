@@ -593,26 +593,18 @@ function draggingRuler( A, obj, dd ){
   var mid = obj.content[1];
   var midx = mid.offset.x + mid.layout.x0;
   //midx=0;
-  console.log("dd.x: "+dd.x);
+  //console.log("dd.x: "+dd.x);
   var dx = dd.x - midx - obj.layout.x0;
   var scale = dx/(obj.dragIx - obj.centerIx);
-  console.log("New scale: "+scale);
+  //console.log("New scale: "+scale);
+
+  var minScale = midx/( obj.centerIx + 70 );//(midx - 70)/(obj.centerIx);
+  minScale = Math.max( minScale, 0.3 );
+  scale = constrain( minScale, scale, 300 );
   var atLeft = (obj.centerIx * scale ) -midx;
-  console.log("New left: "+atLeft+" was "+obj.atLeft);
-  if( (300>scale) && (scale > 0.3 ) && (atLeft > -70))
-  {
-    obj.atLeft = atLeft;
-    obj.scale = scale;
-  }
-  else {
-    dd.x = obj.offset.x + obj.layout.x0;
-  }
-  //obj.atLeft = (obj.centerIx*scale)/10  - midx;
-  //obj.scale = scale;
-  //var dx = obj.offset.x - dd.x + obj.layout.x0;
-//  if( dd.y < 24 )
-//    obj.parent.atLeft += dx*3;
-//  obj.parent.atLeft = constrain( -70, obj.parent.atLeft, 2000 );
+  //console.log("New left: "+atLeft+" was "+obj.atLeft);
+  obj.atLeft = atLeft;
+  obj.scale = scale;
 }
 
 
@@ -655,7 +647,7 @@ function draggingMid( A, obj, dd ){
   var dx = obj.offset.x - dd.x + obj.layout.x0;
   if( dd.y < 24 )
     obj.parent.atLeft += dx*3;
-  obj.parent.atLeft = constrain( -70, obj.parent.atLeft, 2000 );
+  obj.parent.atLeft = constrain( -70*obj.parent.scale, obj.parent.atLeft, 2000 );
 }
 
 /**
@@ -671,7 +663,7 @@ function draggingMarker( A, obj, dd ){
   var dx = obj.offset.x - dd.x + obj.layout.x0;
   if( dd.y < 24 )
     obj.parent.atLeft += dx*1;
-  obj.parent.atLeft = constrain( -70, obj.parent.atLeft, 2000 );
+  obj.parent.atLeft = constrain( -70*obj.parent.scale, obj.parent.atLeft, 2000 );
 }
 
 /**

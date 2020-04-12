@@ -1762,6 +1762,8 @@ function constrain( low, value, high ){
 function drawDraggable2(A, obj, d ){
   if( d.stage === kDragging ){
     // Calculate new offset
+    if( A.dragObj !== obj )
+      return;
     var dd = newPos( A, obj );
     if( obj.dragFn )
       obj.dragFn( A, obj, dd );
@@ -4139,7 +4141,7 @@ function onLockInMove( A, obj, d){
   obj.offset.x = d.x - obj.layout.x0;
   obj.offset.y = d.y - obj.layout.y0;
   if( (Math.abs(d.x -obj.layout.x0 ) >0.1)|| (Math.abs(d.y -obj.layout.y0 )>0.1) ){
-    console.log("New offset: "+ stringOfCoord( obj.offset) );
+    //console.log("New offset: "+ stringOfCoord( obj.offset) );
   }
 }
 
