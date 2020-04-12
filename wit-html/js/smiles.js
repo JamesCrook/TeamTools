@@ -894,6 +894,14 @@ function drawRuler(A, obj, d){
             if( spacing > 15 ){
               medium =5;
               spacing /= 5;
+              if( spacing > 6 ){
+                medium =2;
+                spacing /= 2;
+                if( spacing > 15 ){
+                  medium =5;
+                  spacing /= 5;
+                }
+              }
             }
           }
         }
