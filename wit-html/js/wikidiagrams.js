@@ -4101,7 +4101,7 @@ function onDraggableClicked(A, obj){
 
 /**
  * During dragging, this function returns the proposed new position for
- * an object, including offset and layout x,y.
+ * an object, including previous offset.
  * @param A
  * @param obj
  * @returns {{}}
@@ -4118,8 +4118,8 @@ function newPos( A, obj ){
     A.Status.move = {x:0,y:0};
     A.Status.click = {x:0,y:0};
   }
-  d.x = obj.offset.x+obj.layout.x0+A.Status.move.x -A.Status.click.x;
-  d.y = obj.offset.y+obj.layout.y0+A.Status.move.y -A.Status.click.y;
+  d.x = obj.offset.x+A.Status.move.x -A.Status.click.x;
+  d.y = obj.offset.y+A.Status.move.y -A.Status.click.y;
   return d;
 }
 
@@ -4136,13 +4136,13 @@ function onLockInMove( A, obj, d){
     return;
   if( A.dragObj !== obj)
     return d;
-  A.Status.click.x += d.x - obj.offset.x - obj.layout.x0;
-  A.Status.click.y += d.y - obj.offset.y - obj.layout.y0;
-  obj.offset.x = d.x - obj.layout.x0;
-  obj.offset.y = d.y - obj.layout.y0;
-  if( (Math.abs(d.x -obj.layout.x0 ) >0.1)|| (Math.abs(d.y -obj.layout.y0 )>0.1) ){
-    //console.log("New offset: "+ stringOfCoord( obj.offset) );
-  }
+  A.Status.click.x += d.x - obj.offset.x;
+  A.Status.click.y += d.y - obj.offset.y;
+  obj.offset.x = d.x;
+  obj.offset.y = d.y;
+  //if( (Math.abs(d.x -obj.layout.x0 ) >0.1)|| (Math.abs(d.y -obj.layout.y0 )>0.1) ){
+  //  console.log("New offset: "+ stringOfCoord( obj.offset) );
+  //}
 }
 
 function finalDraw(A, obj, d){

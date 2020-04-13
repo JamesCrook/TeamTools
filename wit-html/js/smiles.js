@@ -560,7 +560,7 @@ function minEnergy( A, obj, d ){
 }
 
 function rulerIxOfx( A, obj, x ){
-  return ( obj.atLeft + x) / obj.scale;
+  return obj.atStart + (x-obj.layout.x0) * obj.itemsPerPixel;
 }
 
 
@@ -592,20 +592,57 @@ function draggingRuler( A, obj, dd ){
 
   var mid = obj.content[1];
   var midx = mid.offset.x + mid.layout.x0;
+
+
   //midx=0;
   //console.log("dd.x: "+dd.x);
   var dx = dd.x - midx - obj.layout.x0;
-  var scale = dx/(obj.dragIx - obj.centerIx);
+  if( Math.abs( dx) < 0 )
+    return;
+  var itemsPerPixel = (obj.dragIx - obj.centerIx)/dx;
+  if( itemsPerPixel <= 0 )
+    return;
+  if( itemsPerPixel < 0.001 )
+    return;
   //console.log("New scale: "+scale);
+  var startIx = obj.centerIx - mid.offset.x * itemsPerPixel;
+  var endIx = obj.centerIx + (obj.layout.xw - mid.offset.x ) * itemsPerPixel;
 
-  var minScale = midx/( obj.centerIx + 70 );//(midx - 70)/(obj.centerIx);
-  minScale = Math.max( minScale, 0.3 );
-  scale = constrain( minScale, scale, 300 );
-  var atLeft = (obj.centerIx * scale ) -midx;
-  //console.log("New left: "+atLeft+" was "+obj.atLeft);
-  obj.atLeft = atLeft;
-  obj.scale = scale;
+  obj.atStart = constrain( -70, startIx, 2000 );
+  obj.atEnd = constrain( -70, endIx, 2000 );
 }
+
+/**
+ * Dragger can be on its line or slightly below.
+ * If below, it moves without dragging.
+ * When dragging, gearing is 3x for ruler motion.
+ * @param A
+ * @param obj
+ * @param dd
+ */
+function draggingMarker( A, obj, dd ){
+  var parent = obj.parent;
+  var inset = obj.inset;
+  dd.y = constrain( 0, dd.y, obj.wobble );
+  dd.x = constrain( parent.layout.x0+inset, dd.x,
+    parent.layout.x0+parent.layout.xw-inset );
+
+  // code for disengaging the dragger.
+  // if we're far enough off the line, disengage.
+  if( dd.y >= Math.max(1,obj.wobble) )
+    return;
+
+  // offset is used in positioning for drawing.
+  var dx = obj.offset.x - dd.x;
+  dx *= parent.itemsPerPixel;
+  dx *= obj.gearing;
+  //dx *=3;
+  dx = constrain( -70-parent.atStart, dx, 2000-parent.atEnd );
+  parent.atStart += dx;
+  parent.atEnd   += dx;
+  console.log( "SE: "+ parent.atStart +" "+ parent.atEnd );
+}
+
 
 
 var dragNamer = 1234;
@@ -616,55 +653,25 @@ function makeDraggerObject(obj, A, pos){
   dragger.layout = l1;
   var l2 = obj.layout;
   var inset = 45;
-  l1.x0 = l2.x0 + pos * (l2.xw / 2 -inset ) +inset;
-  l1.y0 = l2.y0 + l2.yh-15;
+  l1.x0 = l2.x0;
+  l1.y0 = l2.y0+l2.yh-15;
   l1.xw = 15*(1+(pos%2));
   l1.yh = 15;
   dragger.type = "Drag2";
   var types = "L Mid R".split(" ");
   dragger.glyph = types[pos];
   dragger.onClick = onDraggableClicked;
-  dragger.offset = { x: 0, y: 0 };
+  dragger.offset = { x: pos * (l2.xw / 2 -inset ) +inset, y: 0};
   dragger.id = "Drag"+(dragNamer++);
+  dragger.wobble = 0;
+  dragger.gearing = 3;
+  dragger.inset = 0;
   addObjectToDictionary(A, dragger);
   dragger.parent = obj;
   obj.content.push(dragger);
   return dragger;
 }
 
-/**
- * Mid dragger can be on its line or slightly below.
- * If below, it moves without dragging.
- * When dragging, gearing is 3x for ruler motion.
- * @param A
- * @param obj
- * @param dd
- */
-function draggingMid( A, obj, dd ){
-  dd.y = constrain( 20, dd.y, 25 );
-  dd.x = constrain( 40, dd.x, 660 );
-
-  var dx = obj.offset.x - dd.x + obj.layout.x0;
-  if( dd.y < 24 )
-    obj.parent.atLeft += dx*3;
-  obj.parent.atLeft = constrain( -70*obj.parent.scale, obj.parent.atLeft, 2000 );
-}
-
-/**
- * Marker dragging keeps them on their line.
- * Ruler motion is x1 i.e. moves with.
- * @param A
- * @param obj
- * @param dd
- */
-function draggingMarker( A, obj, dd ){
-  dd.y = constrain( 20, dd.y, 20 );
-  dd.x = constrain( 40, dd.x, 660 );
-  var dx = obj.offset.x - dd.x + obj.layout.x0;
-  if( dd.y < 24 )
-    obj.parent.atLeft += dx*1;
-  obj.parent.atLeft = constrain( -70*obj.parent.scale, obj.parent.atLeft, 2000 );
-}
 
 /**
  * On finishing mid dragger dragging, it pops back onto its line.
@@ -673,7 +680,7 @@ function draggingMarker( A, obj, dd ){
  * @param obj
  */
 function finishMid( A, obj ){
-  obj.offset.y = 20 - obj.layout.y0;
+  obj.offset.y = 0;
   A.dragObj = undefined;
   finalDraw( A, obj );
 }
@@ -723,7 +730,11 @@ function updateDraggers(A, obj, d){
     dragger.dragFn = draggingMarker;
     dragger.onMouseUp = finishLDragger;
     dragger = makeDraggerObject(obj, A, 1);
-    dragger.dragFn = draggingMid;
+    dragger.dragFn = draggingMarker;
+    // wobble is how far off the horizontal line the dragger can move
+    // if it moves as far as possible off the line it 'disengages'.
+    dragger.wobble = 5;
+    dragger.gearing= 1;
     dragger.onMouseUp = finishMid;
     dragger = makeDraggerObject(obj, A, 2);
     dragger.dragFn = draggingMarker;
@@ -756,14 +767,15 @@ otherSpec = rulerSpec2;
 
 function drawRulerMark( A, obj, i ){
   var l = obj.layout;
-  var x = l.x0 + i * obj.spacing;
+  var x = l.x0 + i * obj.pixelsPerBar;
   var y = l.y0;
   var xw = l.xw;
   var yh = l.yh;
 
 
-  i += Math.floor( obj.scaledAtLeft );
-  x -= (obj.scaledAtLeft - Math.floor( obj.scaledAtLeft ))*obj.spacing;
+  var barCountAtStart = obj.atStart / obj.itemsPerBar;
+  i += Math.floor( barCountAtStart );
+  x -= (barCountAtStart-Math.floor( barCountAtStart ))*obj.pixelsPerBar;
   var ctx = A.BackingCanvas.ctx;
   var v = rulerSpec[1].mod;
 
@@ -787,8 +799,8 @@ function drawRulerMark( A, obj, i ){
   if( j> 1 )
     height2=0;
 
-  // spacing is between 3 and 6 or 3 and 15.
-  var blend = Math.max( 0, Math.min( (obj.spacing-4.5)/1.1, 1.0 ));
+  // pixelsPerBar is between 3 and 6 or 3 and 15.
+  var blend = Math.max( 0, Math.min( (obj.pixelsPerBar-4.5)/1.1, 1.0 ));
   ctx.lineWidth = spec.width;
 
   height = height2 + blend * (height-height2);
@@ -799,7 +811,7 @@ function drawRulerMark( A, obj, i ){
   ctx.lineTo( x,y+yh*(1-height*0.6));
   ctx.stroke();
 
-  var opacity = Math.max(0,Math.min( (obj.spacing-2.9) /2.1, 1.0));
+  var opacity = Math.max(0,Math.min( (obj.pixelsPerBar-2.9) /2.1, 1.0));
   if( j1 > 1 )
     opacity=0;
   if( j1 === 0 )
@@ -811,7 +823,9 @@ function drawRulerMark( A, obj, i ){
 
     ctx.globalAlpha = opacity;
     ctx.textAlign = "center";
-    ctx.fillText( ""+ (Math.floor((10*i/(1*obj.mul))+0.9))/10, x, y+ 8);
+
+    // number to nearest 0.1
+    ctx.fillText( ""+ (Math.floor(10*i*obj.itemsPerBar+0.9))/10, x, y+ 8);
     ctx.globalAlpha = 1.0;
   }
 
@@ -820,6 +834,11 @@ function drawRulerMark( A, obj, i ){
 function drawRuler(A, obj, d){
   //console.log( "draw - "+obj.type);
   var stage = d.stage;
+
+  if(!isDefined( obj.atEnd ) ){
+    obj.atStart = 0;
+    obj.atEnd = 300;
+  }
 
   if( stage===kDragging){
     updateDraggers( A, obj, d );
@@ -861,37 +880,43 @@ function drawRuler(A, obj, d){
   ctx.strokeWidth = 0.5;
   var i;
 
-  // scale is how many pixels for 1 item?
-  obj.scale = obj.scale ||0.7;
-  // spacing is spacing for 10 items.
-  var spacing = obj.scale * 10;
-  spacing = Math.max( 3, spacing );
-  var origSpacing = spacing;
+  // The lazy way is to draw every single item in the ruler
+  // That is just crazy, because the density would be too high.
+
+  // So instead we draw 'bars' which might be every 5th item,
+  // every 10, every 20, every 50, every 100...
+
+  // How many to a bar?  Well, we work out a pixel density.
+  // A minimum of 3 pixels between bars seems about right.
+
+
+  obj.itemsPerPixel = (obj.atEnd - obj.atStart)/xw;
+  var pixelsPerBar = 100/obj.itemsPerPixel;
   var medium =5;
-  if( spacing > 6 ){
+  if( pixelsPerBar > 6 ){
     medium =2;
-    spacing /= 2;
-    if( spacing > 15 ){
+    pixelsPerBar /= 2;
+    if( pixelsPerBar > 15 ){
       medium =5;
-      spacing /= 5;
-      if( spacing > 6 ){
+      pixelsPerBar /= 5;
+      if( pixelsPerBar > 6 ){
         medium =2;
-        spacing /= 2;
-        if( spacing > 15 ){
+        pixelsPerBar /= 2;
+        if( pixelsPerBar > 15 ){
           medium =5;
-          spacing /= 5;
-          if( spacing > 6 ){
+          pixelsPerBar /= 5;
+          if( pixelsPerBar > 6 ){
             medium =2;
-            spacing /= 2;
-            if( spacing > 15 ){
+            pixelsPerBar /= 2;
+            if( pixelsPerBar > 15 ){
               medium =5;
-              spacing /= 5;
-              if( spacing > 6 ){
+              pixelsPerBar /= 5;
+              if( pixelsPerBar > 6 ){
                 medium =2;
-                spacing /= 2;
-                if( spacing > 15 ){
+                pixelsPerBar /= 2;
+                if( pixelsPerBar > 15 ){
                   medium =5;
-                  spacing /= 5;
+                  pixelsPerBar /= 5;
                 }
               }
             }
@@ -900,6 +925,12 @@ function drawRuler(A, obj, d){
       }
     }
   }
+
+  // The number of pixels per bar in turn lets us compute
+  // how many items for each bar.
+  obj.pixelsPerBar= pixelsPerBar;
+  obj.itemsPerBar = obj.itemsPerPixel * pixelsPerBar;
+
   if( medium === 2 ){
     rulerSpec = rulerSpec2;
     otherSpec = rulerSpec1;
@@ -907,15 +938,12 @@ function drawRuler(A, obj, d){
     rulerSpec = rulerSpec1;
     otherSpec = rulerSpec2;
   }
-  obj.spacing= spacing;
-  obj.mul = 0.1*origSpacing/spacing;
-  var nBars = Math.floor( xw / spacing)+1;
-  obj.atLeft = obj.atLeft || 0;
-  obj.scaledAtLeft = obj.atLeft / spacing;
+
+  // Actually draw the 'bars'.
+  var nBars = Math.floor( xw / pixelsPerBar)+1;
   for(i=0;i<nBars;i++){
     drawRulerMark( A, obj, i );
   }
-
 
   var ctx2 = A.Hotspots.ctx;
 
