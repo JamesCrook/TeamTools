@@ -892,38 +892,16 @@ function drawRuler(A, obj, d){
 
   obj.itemsPerPixel = (obj.atEnd - obj.atStart)/xw;
   var pixelsPerBar = 100/obj.itemsPerPixel;
-  var medium =5;
-  if( pixelsPerBar > 6 ){
-    medium =2;
+  var spec = 0;
+
+  // Each time round this loop is a 10x zoom out
+  while( pixelsPerBar > 6){
+    spec++;
     pixelsPerBar /= 2;
-    if( pixelsPerBar > 15 ){
-      medium =5;
-      pixelsPerBar /= 5;
-      if( pixelsPerBar > 6 ){
-        medium =2;
-        pixelsPerBar /= 2;
-        if( pixelsPerBar > 15 ){
-          medium =5;
-          pixelsPerBar /= 5;
-          if( pixelsPerBar > 6 ){
-            medium =2;
-            pixelsPerBar /= 2;
-            if( pixelsPerBar > 15 ){
-              medium =5;
-              pixelsPerBar /= 5;
-              if( pixelsPerBar > 6 ){
-                medium =2;
-                pixelsPerBar /= 2;
-                if( pixelsPerBar > 15 ){
-                  medium =5;
-                  pixelsPerBar /= 5;
-                }
-              }
-            }
-          }
-        }
-      }
-    }
+    if( pixelsPerBar <= 15 )
+      break;
+    spec++;
+    pixelsPerBar /= 5;
   }
 
   // The number of pixels per bar in turn lets us compute
@@ -931,7 +909,7 @@ function drawRuler(A, obj, d){
   obj.pixelsPerBar= pixelsPerBar;
   obj.itemsPerBar = obj.itemsPerPixel * pixelsPerBar;
 
-  if( medium === 2 ){
+  if( (spec%2) === 1 ){
     rulerSpec = rulerSpec2;
     otherSpec = rulerSpec1;
   } else {
