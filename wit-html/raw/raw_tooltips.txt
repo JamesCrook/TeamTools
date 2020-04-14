@@ -1633,6 +1633,42 @@ Audacity.Tips =
   long:  "+."},
 
 
+// 2.4.0 Additions.
+{ key: "Time Toolbar",
+  id: "TimeToolbar",
+  short: "Indicates the current time position, read-only",
+  long: "+."},
+{ key: "Mute Tracks",
+  id: "MuteTracks",
+  short: "Mutes the selected tracks",
+  long: "+."},
+{ key: "Unmute Tracks",
+  id: "UnmuteTracks",
+  short: "Unmutes the selected tracks",
+  long: "+."},
+{ key: "Loudness Normalization...",
+  id: "LoudnessNormalization",
+  short: "Changes the perceived loudness of the audio",
+  long: "+."},
+{ key: "Noise Gate...",
+  id: "NoiseGate",
+  short: "Reduces the level of sound below a specified threshold level",
+  long: "+."},
+{ key: "Spectral Delete",
+  id: "SpectralDelete",
+  short: "Deletes a spectral selection from the audio",
+  long: "+."},
+
+
+{ key:"Advanced Vertical Zooming",
+  id:"AdvancedVZoom",
+  short: "Enable for left-click gestures in the vertical scale to control zooming",
+  long: "+."},
+{ key:"Nyquist Plug-in Installer...",
+  id:"Nyquist Plug-in Installer...",
+  short: "Installs Nyquist plug-ins into the plug-in directory",
+  long: "+."},
+
 
 ];
 </nowiki>

@@ -242,20 +242,22 @@ Audacity.Boxes = [
 
   { "depth": 2,"box":[ 138, 488, 848, 504], "label":"Horizontal Scrollbar" },
   { "depth": 2,"box":[ 849, 208, 865, 487], "label":"Vertical Scrollbar" },
-//  { "depth": 1,"box":[   2, 505, 865, 561], "label":"ToolDock" },
-  { "depth": 1,"box":[   3, 506, 510, 560], "label":"Selection Toolbar" },
-  { "depth": 2,"box":[   3, 506,  12, 560], "label":"Grabber" },
-  { "depth": 2,"box":[  13, 508, 113, 557], "label":"Project Rate" },
-  { "depth": 2,"box":[ 121, 508, 199, 557], "label":"Snap-To" },
-//  { "depth": 2,"box":[ 207, 508, 362, 558], "label":"Audio Position" },
-  { "depth": 2,"box":[ 207, 537, 360, 558], "label":"Start" },
-  { "depth": 2,"box":[ 360, 537, 510, 558], "label":"End" },
-  { "depth": 2,"box":[ 207, 511, 510, 533], "label":"Selection Type Chooser" },
 
-  { "depth": 1,"box":[ 513, 506, 766, 560], "label":"Time Toolbar" },
-  { "depth": 2,"box":[ 513, 506, 522, 560], "label":"Grabber" },
-  { "depth": 2,"box":[ 523, 508, 756, 558], "label":"Audio Position" },
-  { "depth": 2,"box":[ 757, 506, 766, 560], "label":"Resizer" },
+
+  { "depth": 1,"box":[   2, 505, 865, 561], "label":"Lower Dock" },
+  { "depth": 2,"box":[   3, 506, 510, 560], "label":"Selection Toolbar" },
+  { "depth": 3,"box":[   3, 506,  12, 560], "label":"Grabber" },
+  { "depth": 3,"box":[  13, 508, 113, 557], "label":"Project Rate" },
+  { "depth": 3,"box":[ 121, 508, 199, 557], "label":"Snap-To" },
+//  { "depth": 2,"box":[ 207, 508, 362, 558], "label":"Audio Position" },
+  { "depth": 3,"box":[ 207, 537, 360, 558], "label":"Start" },
+  { "depth": 3,"box":[ 360, 537, 510, 558], "label":"End" },
+  { "depth": 3,"box":[ 207, 511, 510, 533], "label":"Selection Type Chooser" },
+
+  { "depth": 2,"box":[ 513, 506, 766, 560], "label":"Time Toolbar" },
+  { "depth": 3,"box":[ 513, 506, 522, 560], "label":"Grabber" },
+  { "depth": 3,"box":[ 523, 508, 756, 558], "label":"Audio Position" },
+  { "depth": 3,"box":[ 757, 506, 766, 560], "label":"Resizer" },
 
 
 
