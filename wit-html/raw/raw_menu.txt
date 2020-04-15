@@ -868,19 +868,48 @@ Audacity.Commands =
         { "key":"Delay", "type":"float", "default":1 },
         { "key":"Decay", "type":"float", "default":0.5 } ], "url":"Echo",
     "tip":"Repeats the selected audio again and again" },
-  { "id":"Equalization", "name":"Equalization", "params":
+  { "id":"FadeIn", "name":"Fade In", "url":"",
+    "tip":"Applies a linear fade-in to the selected audio" },
+  { "id":"FadeOut", "name":"Fade Out", "url":"",
+    "tip":"Applies a linear fade-out to the selected audio" },
+  { "id":"FilterCurve", "name":"Filter Curve", "params":
       [
-        { "key":"FilterLength", "type":"size_t", "default":4001 },
-        { "key":"CurveName", "type":"string", "default":"unnamed" },
+        { "key":"FilterLength", "type":"size_t", "default":8191 },
         { "key":"InterpolateLin", "type":"bool", "default":"False" },
         { "key":"InterpolationMethod", "type":"enum", "default":"B-spline", "enum":
-            [ "B-spline", "Cosine", "Cubic" ] } ], "url":"Equalization",
+            [ "B-spline", "Cosine", "Cubic" ] },
+        { "key":"f0", "type":"double", "default":0 },
+        { "key":"v0", "type":"double", "default":0 } ],
+    "url":"Filter Curve EQ",
     "tip":"Adjusts the volume levels of particular frequencies" },
   { "id":"FindClipping", "name":"Find Clipping", "params":
       [
         { "key":"Duty Cycle Start", "type":"int", "default":3 },
         { "key":"Duty Cycle End", "type":"int", "default":3 } ], "url":"Find_Clipping",
     "tip":"Creates labels where clipping is detected" },
+  { "id":"GraphicEq", "name":"Graphic EQ", "params":
+      [
+        { "key":"FilterLength", "type":"size_t", "default":8191 },
+        { "key":"InterpolateLin", "type":"bool", "default":"False" },
+        { "key":"InterpolationMethod", "type":"enum", "default":"B-spline", "enum":
+            [ "B-spline", "Cosine", "Cubic" ] },
+        { "key":"f0", "type":"double", "default":0 },
+        { "key":"v0", "type":"double", "default":0 } ], "url":"Graphic EQ",
+    "tip":"Adjusts the volume levels of particular frequencies" },
+  { "id":"Invert", "name":"Invert", "url":"",
+    "tip":"Flips the audio samples upside-down, reversing their polarity" },
+  { "id":"LoudnessNormalization",
+    "name":"Loudness Normalization", "params":
+      [
+        { "key":"StereoIndependent", "type":"bool", "default":"False" },
+        { "key":"LUFSLevel", "type":"double", "default":-23 },
+        { "key":"RMSLevel", "type":"double", "default":-20 },
+        { "key":"DualMono", "type":"bool", "default":"True" },
+        { "key":"NormalizeTo", "type":"int", "default":0 } ], "url":"Loudness",
+    "tip":"Sets the loudness of one or more tracks" },
+  { "id":"NoiseReduction",
+    "name":"Noise Reduction", "url":"",
+    "tip":"Removes background noise such as fans, tape noise, or hums" },
   { "id":"Noise", "name":"Noise", "params":
       [
         { "key":"Type", "type":"enum", "default":"White", "enum":
@@ -909,6 +938,8 @@ Audacity.Commands =
         { "key":"Feedback", "type":"int", "default":0 },
         { "key":"Gain", "type":"double", "default":-6 } ], "url":"Phaser",
     "tip":"Combines phase-shifted signals with the original signal" },
+  { "id":"Repair", "name":"Repair", "url":"",
+    "tip":"Sets the peak amplitude of a one or more tracks" },
   { "id":"Repeat", "name":"Repeat", "params":
       [
         { "key":"Count", "type":"int", "default":1 } ], "url":"Repeat",
@@ -926,6 +957,10 @@ Audacity.Commands =
         { "key":"StereoWidth", "type":"double", "default":100 },
         { "key":"WetOnly", "type":"bool", "default":"False" } ], "url":"Reverb",
     "tip":"Adds ambience or a \"hall effect\"" },
+  { "id":"Reverse", "name":"Reverse", "url":"",
+    "tip":"Reverses the selected audio" },
+  { "id":"Silence", "name":"Silence", "url":"Silence",
+    "tip":"Creates audio of zero amplitude" },
   { "id":"SlidingStretch",
     "name":"Sliding Stretch", "params":
       [
@@ -937,6 +972,8 @@ Audacity.Commands =
         { "key":"PitchPercentChangeEnd", "type":"double", "default":0 } ],
     "url":"Sliding_Stretch",
     "tip":"Allows continuous changes to the tempo and/or pitch" },
+  { "id":"StereoToMono", "name":"Stereo To Mono", "url":"",
+    "tip":"Converts stereo tracks to mono" },
   { "id":"Tone", "name":"Tone", "params":
       [
         { "key":"Frequency", "type":"double", "default":440 },
@@ -970,42 +1007,6 @@ Audacity.Commands =
         { "key":"Offset", "type":"int", "default":30 },
         { "key":"Gain", "type":"double", "default":-6 } ], "url":"Wahwah",
     "tip":"Rapid tone quality variations, like that guitar sound so popular in the 1970's" },
-  { "id":"SilenceFinder", "name":"Silence Finder", "params":
-      [
-        { "key":"sil-lev", "type":"double", "default":0 },
-        { "key":"sil-dur", "type":"double", "default":0 },
-        { "key":"labelbeforedur", "type":"double", "default":0 } ], "url":"Silence_Finder",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"SilenceFinder", "name":"Silence Finder", "params":
-      [
-        { "key":"sil-lev", "type":"double", "default":0 },
-        { "key":"sil-dur", "type":"double", "default":0 },
-        { "key":"labelbeforedur", "type":"double", "default":0 } ], "url":"Silence_Finder",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"SilenceFinder", "name":"Silence Finder", "params":
-      [
-        { "key":"sil-lev", "type":"double", "default":0 },
-        { "key":"sil-dur", "type":"double", "default":0 },
-        { "key":"labelbeforedur", "type":"double", "default":0 } ], "url":"Silence_Finder",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"SilenceFinder", "name":"Silence Finder", "params":
-      [
-        { "key":"sil-lev", "type":"double", "default":0 },
-        { "key":"sil-dur", "type":"double", "default":0 },
-        { "key":"labelbeforedur", "type":"double", "default":0 } ], "url":"Silence_Finder",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"BeatFinder", "name":"Beat Finder", "params":
-      [
-        { "key":"thresval", "type":"int", "default":0 } ], "url":"Beat_Finder",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"BeatFinder", "name":"Beat Finder", "params":
-      [
-        { "key":"thresval", "type":"int", "default":0 } ], "url":"Beat_Finder",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"BeatFinder", "name":"Beat Finder", "params":
-      [
-        { "key":"thresval", "type":"int", "default":0 } ], "url":"Beat_Finder",
-    "tip":"Released under terms of the GNU General Public License version 2" },
   { "id":"BeatFinder", "name":"Beat Finder", "params":
       [
         { "key":"thresval", "type":"int", "default":0 } ], "url":"Beat_Finder",
@@ -1019,807 +1020,224 @@ Audacity.Commands =
         { "key":"threshold", "type":"double", "default":0 },
         { "key":"gain", "type":"double", "default":0 } ], "url":"Clip_Fix",
     "tip":"Licensing confirmed under terms of the GNU General Public License version 2" },
-  { "id":"ClipFix", "name":"Clip Fix", "params":
+  { "id":"Pluck", "name":"Pluck", "params":
+      [
+        { "key":"pitch", "type":"int", "default":0 },
+        { "key":"fade", "type":"enum", "default":"Abrupt", "enum":
+            [ "Abrupt", "Gradual" ] },
+        { "key":"dur", "type":"double", "default":0 } ], "url":"Pluck",
+    "tip":"Released under terms of the GNU General Public License version 2" },
+  { "id":"High-passFilter",
+    "name":"High-Pass Filter", "params":
+      [
+        { "key":"frequency", "type":"double", "default":0 },
+        { "key":"rolloff", "type":"enum", "default":"dB6", "enum":
+            [ "dB6", "dB12", "dB24", "dB36", "dB48" ] } ],
+    "url":"High-Pass_Filter",
+    "tip":"Released under terms of the GNU General Public License version 2" },
+  { "id":"Low-passFilter",
+    "name":"Low-Pass Filter", "params":
+      [
+        { "key":"frequency", "type":"double", "default":0 },
+        { "key":"rolloff", "type":"enum", "default":"dB6", "enum":
+            [ "dB6", "dB12", "dB24", "dB36", "dB48" ] } ],
+    "url":"Low-Pass_Filter",
+    "tip":"Released under terms of the GNU General Public License version 2" },
+  { "id":"RhythmTrack", "name":"Rhythm Track", "params":
+      [
+        { "key":"tempo", "type":"double", "default":0 },
+        { "key":"timesig", "type":"int", "default":0 },
+        { "key":"swing", "type":"double", "default":0 },
+        { "key":"bars", "type":"int", "default":0 },
+        { "key":"click-track-dur", "type":"double", "default":0 },
+        { "key":"offset", "type":"double", "default":0 },
+        { "key":"click-type", "type":"enum", "default":"Metronome", "enum":
+            [ "Metronome", "Ping (short)", "Ping (long)", "Cowbell", "ResonantNoise", "NoiseClick", "Drip (short)", "Drip (long)" ] },
+        { "key":"high", "type":"int", "default":0 },
+        { "key":"low", "type":"int", "default":0 } ], "url":"Rhythm_Track",
+    "tip":"Released under terms of the GNU General Public License version 2" },
+  { "id":"Vocoder", "name":"Vocoder", "params":
+      [
+        { "key":"dst", "type":"double", "default":0 },
+        { "key":"mst", "type":"enum", "default":"BothChannels", "enum":
+            [ "BothChannels", "RightOnly" ] },
+        { "key":"bands", "type":"int", "default":0 },
+        { "key":"track-vl", "type":"double", "default":0 },
+        { "key":"noise-vl", "type":"double", "default":0 },
+        { "key":"radar-vl", "type":"double", "default":0 },
+        { "key":"radar-f", "type":"double", "default":0 } ], "url":"Vocoder",
+    "tip":"Released under terms of the GNU General Public License version 2" },
+  { "id":"SoundFinder", "name":"Sound Finder", "params":
+      [
+        { "key":"sil-lev", "type":"double", "default":0 },
+        { "key":"sil-dur", "type":"double", "default":0 },
+        { "key":"labelbeforedur", "type":"double", "default":0 },
+        { "key":"labelafterdur", "type":"double", "default":0 },
+        { "key":"finallabel", "type":"int", "default":0 } ], "url":"Sound_Finder",
+    "tip":"Released under terms of the GNU General Public License version 2" },
+  { "id":"SpectralEditMultiTool",
+    "name":"Spectral edit multi tool", "params":
+      [  ],
+    "url":"Spectral_edit_multi_tool",
+    "tip":"Released under terms of the GNU General Public License version 2" },
+  { "id":"SpectralEditParametricEq",
+    "name":"Spectral edit parametric EQ", "params":
+      [
+        { "key":"control-gain", "type":"double", "default":0 } ],
+    "url":"Spectral_edit_parametric_EQ",
+    "tip":"Released under terms of the GNU General Public License version 2" },
+  { "id":"SpectralEditShelves",
+    "name":"Spectral edit shelves", "params":
+      [
+        { "key":"control-gain", "type":"double", "default":0 } ],
+    "url":"Spectral_edit_shelves",
+    "tip":"Released under terms of the GNU General Public License version 2" },
+  { "id":"VocalReductionAndIsolation",
+    "name":"Vocal Reduction and Isolation", "params":
+      [
+        { "key":"action", "type":"enum", "default":"RemoveToMono", "enum":
+            [ "RemoveToMono", "Remove", "Isolate", "IsolateInvert",
+              "RemoveCenterToMono", "RemoveCenter", "IsolateCenter",
+              "IsolateCenterInvert", "Analyze" ] },
+        { "key":"strength", "type":"double", "default":0 },
+        { "key":"low-transition", "type":"double", "default":0 },
+        { "key":"high-transition", "type":"double", "default":0 } ],
+    "url":"Vocal_Reduction_and_Isolation",
+    "tip":"Released under terms of the GNU General Public License version 2" },
+  { "id":"NotchFilter", "name":"Notch Filter", "params":
+      [
+        { "key":"frequency", "type":"double", "default":0 },
+        { "key":"q", "type":"double", "default":0 } ], "url":"Notch_Filter",
+    "tip":"Released under terms of the GNU General Public License version 2" },
+  { "id":"AdjustableFade",
+    "name":"Adjustable Fade", "params":
+      [
+        { "key":"type", "type":"enum", "default":"Up", "enum":
+            [ "Up", "Down", "SCurveUp", "SCurveDown" ] },
+        { "key":"curve", "type":"double", "default":0 },
+        { "key":"units", "type":"enum", "default":"Percent", "enum":
+            [ "Percent", "dB" ] },
+        { "key":"gain0", "type":"double", "default":0 },
+        { "key":"gain1", "type":"double", "default":0 },
+        { "key":"preset", "type":"enum", "default":"None", "enum":
+            [ "None", "LinearIn", "LinearOut", "ExponentialIn", "ExponentialOut", "LogarithmicIn", "LogarithmicOut", "RoundedIn", "RoundedOut", "CosineIn", "CosineOut", "SCurveIn", "SCurveOut" ] } ],
+    "url":"Adjustable_Fade",
+    "tip":"Released under terms of the GNU General Public License version 2" },
+  { "id":"CrossfadeClips",
+    "name":"Crossfade Clips", "params":
+      [  ],
+    "url":"Crossfade_Clips",
+    "tip":"Released under terms of the GNU General Public License version 2" },
+  { "id":"CrossfadeTracks",
+    "name":"Crossfade Tracks", "params":
+      [
+        { "key":"type", "type":"enum", "default":"ConstantGain", "enum":
+            [ "ConstantGain", "ConstantPower1", "ConstantPower2", "CustomCurve" ] },
+        { "key":"curve", "type":"double", "default":0 },
+        { "key":"direction", "type":"enum", "default":"Automatic", "enum":
+            [ "Automatic", "OutIn", "InOut" ] } ],
+    "url":"Crossfade_Tracks",
+    "tip":"Released under terms of the GNU General Public License version 2" },
+  { "id":"Delay", "name":"Delay", "params":
+      [
+        { "key":"delay-type", "type":"enum", "default":"Regular", "enum":
+            [ "Regular", "BouncingBall",
+              "ReverseBouncingBall" ] },
+        { "key":"dgain", "type":"double", "default":0 },
+        { "key":"delay", "type":"double", "default":0 },
+        { "key":"pitch-type", "type":"enum", "default":"PitchTempo", "enum":
+            [ "PitchTempo", "LQPitchShift" ] },
+        { "key":"shift", "type":"double", "default":0 },
+        { "key":"number", "type":"int", "default":0 },
+        { "key":"constrain", "type":"enum", "default":"Yes", "enum":
+            [ "Yes", "No" ] } ], "url":"Delay",
+    "tip":"Released under terms of the GNU General Public License version 2" },
+  { "id":"Limiter", "name":"Limiter", "params":
+      [
+        { "key":"type", "type":"enum", "default":"SoftLimit", "enum":
+            [ "SoftLimit", "HardLimit", "SoftClip", "HardClip" ] },
+        { "key":"gain-L", "type":"double", "default":0 },
+        { "key":"gain-R", "type":"double", "default":0 },
+        { "key":"thresh", "type":"double", "default":0 },
+        { "key":"hold", "type":"double", "default":0 },
+        { "key":"makeup", "type":"enum", "default":"No", "enum":
+            [ "No", "Yes" ] } ], "url":"Limiter",
+    "tip":"Released under terms of the GNU General Public License version 2" },
+  { "id":"NoiseGate", "name":"Noise Gate", "params":
+      [
+        { "key":"mode", "type":"enum", "default":"Gate", "enum":
+            [ "Gate", "Analyze" ] },
+        { "key":"stereo-link", "type":"enum", "default":"LinkStereo", "enum":
+            [ "LinkStereo", "DoNotLink" ] },
+        { "key":"low-cut", "type":"enum", "default":"No", "enum":
+            [ "No", "10Hz", "20Hz" ] },
+        { "key":"gate-freq", "type":"double", "default":0 },
+        { "key":"level-reduction", "type":"double", "default":0 },
+        { "key":"threshold", "type":"double", "default":0 },
+        { "key":"attack", "type":"double", "default":0 } ], "url":"Noise_Gate",
+    "tip":"Released under terms of the GNU General Public License version 2" },
+  { "id":"NyquistPlug-inInstaller",
+    "name":"Nyquist Plug-in Installer", "params":
+      [
+        { "key":"files", "type":"string", "default":"" },
+        { "key":"overwrite", "type":"enum", "default":"Disallow", "enum":
+            [ "Disallow", "Allow" ] } ],
+    "url":"Nyquist_Plug-in_Installer",
+    "tip":"Released under terms of the GNU General Public License version 2" },
+  { "id":"RegularIntervalLabels",
+    "name":"Regular Interval Labels", "params":
+      [
+        { "key":"mode", "type":"enum", "default":"Both", "enum":
+            [ "Both", "Number", "Interval" ] },
+        { "key":"totalnum", "type":"int", "default":0 },
+        { "key":"interval", "type":"double", "default":0 },
+        { "key":"region", "type":"double", "default":0 },
+        { "key":"adjust", "type":"enum", "default":"No", "enum":
+            [ "No", "Yes" ] },
+        { "key":"labeltext", "type":"string", "default":"" },
+        { "key":"zeros", "type":"enum", "default":"TextOnly", "enum":
+            [ "TextOnly", "OneBefore", "TwoBefore", "ThreeBefore", "OneAfter", "TwoAfter", "ThreeAfter" ] },
+        { "key":"firstnum", "type":"int", "default":0 },
+        { "key":"verbose", "type":"enum", "default":"Details", "enum":
+            [ "Details", "Warnings", "None" ] } ],
+    "url":"Regular_Interval_Labels",
+    "tip":"Released under terms of the GNU General Public License version 2" },
+  { "id":"SampleDataExport",
+    "name":"Sample Data Export", "params":
+      [
+        { "key":"number", "type":"int", "default":0 },
+        { "key":"units", "type":"enum", "default":"dB", "enum":
+            [ "dB", "Linear" ] },
+        { "key":"filename", "type":"string", "default":"" },
+        { "key":"fileformat", "type":"enum", "default":"None", "enum":
+            [ "None", "Count", "Time" ] },
+        { "key":"header", "type":"enum", "default":"None", "enum":
+            [ "None", "Minimal", "Standard", "All" ] },
+        { "key":"optext", "type":"string", "default":"" },
+        { "key":"channel-layout", "type":"enum", "default":"SameLine", "enum":
+            [ "SameLine", "Alternate", "LFirst" ] },
+        { "key":"messages", "type":"enum", "default":"Yes", "enum":
+            [ "Yes", "Errors", "None" ] } ],
+    "url":"Sample_Data_Export",
+    "tip":"Released under terms of the GNU General Public License version 2" },
+  { "id":"SampleDataImport",
+    "name":"Sample Data Import", "params":
+      [
+        { "key":"filename", "type":"string", "default":"" },
+        { "key":"bad-data", "type":"enum", "default":"ThrowError", "enum":
+            [ "ThrowError", "ReadAsZero" ] } ],
+    "url":"Sample_Data_Import",
+    "tip":"Released under terms of the GNU General Public License version 2" },
+  { "id":"SilenceFinder", "name":"Silence Finder", "params":
       [
         { "key":"threshold", "type":"double", "default":0 },
-        { "key":"gain", "type":"double", "default":0 } ], "url":"Clip_Fix",
-    "tip":"Licensing confirmed under terms of the GNU General Public License version 2" },
-  { "id":"ClipFix", "name":"Clip Fix", "params":
-      [
-        { "key":"threshold", "type":"double", "default":0 },
-        { "key":"gain", "type":"double", "default":0 } ], "url":"Clip_Fix",
-    "tip":"Licensing confirmed under terms of the GNU General Public License version 2" },
-  { "id":"ClipFix", "name":"Clip Fix", "params":
-      [
-        { "key":"threshold", "type":"double", "default":0 },
-        { "key":"gain", "type":"double", "default":0 } ], "url":"Clip_Fix",
-    "tip":"Licensing confirmed under terms of the GNU General Public License version 2" },
-  { "id":"Pluck", "name":"Pluck", "params":
-      [
-        { "key":"pitch", "type":"int", "default":0 },
-        { "key":"fade", "type":"enum", "default":"Abrupt", "enum":
-            [ "Abrupt", "Gradual" ] },
-        { "key":"dur", "type":"double", "default":0 } ], "url":"Pluck",
+        { "key":"min-silence", "type":"double", "default":0 },
+        { "key":"label-position", "type":"double", "default":0 } ], "url":"Silence_Finder",
     "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"Pluck", "name":"Pluck", "params":
-      [
-        { "key":"pitch", "type":"int", "default":0 },
-        { "key":"fade", "type":"enum", "default":"Abrupt", "enum":
-            [ "Abrupt", "Gradual" ] },
-        { "key":"dur", "type":"double", "default":0 } ], "url":"Pluck",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"Pluck", "name":"Pluck", "params":
-      [
-        { "key":"pitch", "type":"int", "default":0 },
-        { "key":"fade", "type":"enum", "default":"Abrupt", "enum":
-            [ "Abrupt", "Gradual" ] },
-        { "key":"dur", "type":"double", "default":0 } ], "url":"Pluck",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"Pluck", "name":"Pluck", "params":
-      [
-        { "key":"pitch", "type":"int", "default":0 },
-        { "key":"fade", "type":"enum", "default":"Abrupt", "enum":
-            [ "Abrupt", "Gradual" ] },
-        { "key":"dur", "type":"double", "default":0 } ], "url":"Pluck",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"High-passFilter",
-    "name":"High-Pass Filter", "params":
-      [
-        { "key":"frequency", "type":"double", "default":0 },
-        { "key":"rolloff", "type":"enum", "default":"dB6", "enum":
-            [ "dB6", "dB12", "dB24", "dB36", "dB48" ] } ],
-    "url":"High-Pass_Filter",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"High-passFilter",
-    "name":"High-Pass Filter", "params":
-      [
-        { "key":"frequency", "type":"double", "default":0 },
-        { "key":"rolloff", "type":"enum", "default":"dB6", "enum":
-            [ "dB6", "dB12", "dB24", "dB36", "dB48" ] } ],
-    "url":"High-Pass_Filter",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"High-passFilter",
-    "name":"High-Pass Filter", "params":
-      [
-        { "key":"frequency", "type":"double", "default":0 },
-        { "key":"rolloff", "type":"enum", "default":"dB6", "enum":
-            [ "dB6", "dB12", "dB24", "dB36", "dB48" ] } ],
-    "url":"High-Pass_Filter",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"High-passFilter",
-    "name":"High-Pass Filter", "params":
-      [
-        { "key":"frequency", "type":"double", "default":0 },
-        { "key":"rolloff", "type":"enum", "default":"dB6", "enum":
-            [ "dB6", "dB12", "dB24", "dB36", "dB48" ] } ],
-    "url":"High-Pass_Filter",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"Low-passFilter",
-    "name":"Low-Pass Filter", "params":
-      [
-        { "key":"frequency", "type":"double", "default":0 },
-        { "key":"rolloff", "type":"enum", "default":"dB6", "enum":
-            [ "dB6", "dB12", "dB24", "dB36", "dB48" ] } ],
-    "url":"Low-Pass_Filter",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"Low-passFilter",
-    "name":"Low-Pass Filter", "params":
-      [
-        { "key":"frequency", "type":"double", "default":0 },
-        { "key":"rolloff", "type":"enum", "default":"dB6", "enum":
-            [ "dB6", "dB12", "dB24", "dB36", "dB48" ] } ],
-    "url":"Low-Pass_Filter",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"Low-passFilter",
-    "name":"Low-Pass Filter", "params":
-      [
-        { "key":"frequency", "type":"double", "default":0 },
-        { "key":"rolloff", "type":"enum", "default":"dB6", "enum":
-            [ "dB6", "dB12", "dB24", "dB36", "dB48" ] } ],
-    "url":"Low-Pass_Filter",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"Low-passFilter",
-    "name":"Low-Pass Filter", "params":
-      [
-        { "key":"frequency", "type":"double", "default":0 },
-        { "key":"rolloff", "type":"enum", "default":"dB6", "enum":
-            [ "dB6", "dB12", "dB24", "dB36", "dB48" ] } ],
-    "url":"Low-Pass_Filter",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"RhythmTrack", "name":"Rhythm Track", "params":
-      [
-        { "key":"tempo", "type":"double", "default":0 },
-        { "key":"timesig", "type":"int", "default":0 },
-        { "key":"swing", "type":"double", "default":0 },
-        { "key":"bars", "type":"int", "default":0 },
-        { "key":"click-track-dur", "type":"double", "default":0 },
-        { "key":"offset", "type":"double", "default":0 },
-        { "key":"click-type", "type":"enum", "default":"Metronome", "enum":
-            [ "Metronome", "Ping (short)", "Ping (long)", "Cowbell", "ResonantNoise", "NoiseClick", "Drip (short)", "Drip (long)" ] },
-        { "key":"high", "type":"int", "default":0 },
-        { "key":"low", "type":"int", "default":0 } ], "url":"Rhythm_Track",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"RhythmTrack", "name":"Rhythm Track", "params":
-      [
-        { "key":"tempo", "type":"double", "default":0 },
-        { "key":"timesig", "type":"int", "default":0 },
-        { "key":"swing", "type":"double", "default":0 },
-        { "key":"bars", "type":"int", "default":0 },
-        { "key":"click-track-dur", "type":"double", "default":0 },
-        { "key":"offset", "type":"double", "default":0 },
-        { "key":"click-type", "type":"enum", "default":"Metronome", "enum":
-            [ "Metronome", "Ping (short)", "Ping (long)", "Cowbell", "ResonantNoise", "NoiseClick", "Drip (short)", "Drip (long)" ] },
-        { "key":"high", "type":"int", "default":0 },
-        { "key":"low", "type":"int", "default":0 } ], "url":"Rhythm_Track",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"RhythmTrack", "name":"Rhythm Track", "params":
-      [
-        { "key":"tempo", "type":"double", "default":0 },
-        { "key":"timesig", "type":"int", "default":0 },
-        { "key":"swing", "type":"double", "default":0 },
-        { "key":"bars", "type":"int", "default":0 },
-        { "key":"click-track-dur", "type":"double", "default":0 },
-        { "key":"offset", "type":"double", "default":0 },
-        { "key":"click-type", "type":"enum", "default":"Metronome", "enum":
-            [ "Metronome", "Ping (short)", "Ping (long)", "Cowbell", "ResonantNoise", "NoiseClick", "Drip (short)", "Drip (long)" ] },
-        { "key":"high", "type":"int", "default":0 },
-        { "key":"low", "type":"int", "default":0 } ], "url":"Rhythm_Track",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"RhythmTrack", "name":"Rhythm Track", "params":
-      [
-        { "key":"tempo", "type":"double", "default":0 },
-        { "key":"timesig", "type":"int", "default":0 },
-        { "key":"swing", "type":"double", "default":0 },
-        { "key":"bars", "type":"int", "default":0 },
-        { "key":"click-track-dur", "type":"double", "default":0 },
-        { "key":"offset", "type":"double", "default":0 },
-        { "key":"click-type", "type":"enum", "default":"Metronome", "enum":
-            [ "Metronome", "Ping (short)", "Ping (long)", "Cowbell", "ResonantNoise", "NoiseClick", "Drip (short)", "Drip (long)" ] },
-        { "key":"high", "type":"int", "default":0 },
-        { "key":"low", "type":"int", "default":0 } ], "url":"Rhythm_Track",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"Vocoder", "name":"Vocoder", "params":
-      [
-        { "key":"dst", "type":"double", "default":0 },
-        { "key":"mst", "type":"enum", "default":"BothChannels", "enum":
-            [ "BothChannels", "RightOnly" ] },
-        { "key":"bands", "type":"int", "default":0 },
-        { "key":"track-vl", "type":"double", "default":0 },
-        { "key":"noise-vl", "type":"double", "default":0 },
-        { "key":"radar-vl", "type":"double", "default":0 },
-        { "key":"radar-f", "type":"double", "default":0 } ], "url":"Vocoder",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"Vocoder", "name":"Vocoder", "params":
-      [
-        { "key":"dst", "type":"double", "default":0 },
-        { "key":"mst", "type":"enum", "default":"BothChannels", "enum":
-            [ "BothChannels", "RightOnly" ] },
-        { "key":"bands", "type":"int", "default":0 },
-        { "key":"track-vl", "type":"double", "default":0 },
-        { "key":"noise-vl", "type":"double", "default":0 },
-        { "key":"radar-vl", "type":"double", "default":0 },
-        { "key":"radar-f", "type":"double", "default":0 } ], "url":"Vocoder",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"Vocoder", "name":"Vocoder", "params":
-      [
-        { "key":"dst", "type":"double", "default":0 },
-        { "key":"mst", "type":"enum", "default":"BothChannels", "enum":
-            [ "BothChannels", "RightOnly" ] },
-        { "key":"bands", "type":"int", "default":0 },
-        { "key":"track-vl", "type":"double", "default":0 },
-        { "key":"noise-vl", "type":"double", "default":0 },
-        { "key":"radar-vl", "type":"double", "default":0 },
-        { "key":"radar-f", "type":"double", "default":0 } ], "url":"Vocoder",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"Vocoder", "name":"Vocoder", "params":
-      [
-        { "key":"dst", "type":"double", "default":0 },
-        { "key":"mst", "type":"enum", "default":"BothChannels", "enum":
-            [ "BothChannels", "RightOnly" ] },
-        { "key":"bands", "type":"int", "default":0 },
-        { "key":"track-vl", "type":"double", "default":0 },
-        { "key":"noise-vl", "type":"double", "default":0 },
-        { "key":"radar-vl", "type":"double", "default":0 },
-        { "key":"radar-f", "type":"double", "default":0 } ], "url":"Vocoder",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"SoundFinder", "name":"Sound Finder", "params":
-      [
-        { "key":"sil-lev", "type":"double", "default":0 },
-        { "key":"sil-dur", "type":"double", "default":0 },
-        { "key":"labelbeforedur", "type":"double", "default":0 },
-        { "key":"labelafterdur", "type":"double", "default":0 },
-        { "key":"finallabel", "type":"int", "default":0 } ], "url":"Sound_Finder",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"SoundFinder", "name":"Sound Finder", "params":
-      [
-        { "key":"sil-lev", "type":"double", "default":0 },
-        { "key":"sil-dur", "type":"double", "default":0 },
-        { "key":"labelbeforedur", "type":"double", "default":0 },
-        { "key":"labelafterdur", "type":"double", "default":0 },
-        { "key":"finallabel", "type":"int", "default":0 } ], "url":"Sound_Finder",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"SoundFinder", "name":"Sound Finder", "params":
-      [
-        { "key":"sil-lev", "type":"double", "default":0 },
-        { "key":"sil-dur", "type":"double", "default":0 },
-        { "key":"labelbeforedur", "type":"double", "default":0 },
-        { "key":"labelafterdur", "type":"double", "default":0 },
-        { "key":"finallabel", "type":"int", "default":0 } ], "url":"Sound_Finder",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"SoundFinder", "name":"Sound Finder", "params":
-      [
-        { "key":"sil-lev", "type":"double", "default":0 },
-        { "key":"sil-dur", "type":"double", "default":0 },
-        { "key":"labelbeforedur", "type":"double", "default":0 },
-        { "key":"labelafterdur", "type":"double", "default":0 },
-        { "key":"finallabel", "type":"int", "default":0 } ], "url":"Sound_Finder",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-
-  { "depth":2, "flags":0,
-    "label":"Spectral Delete", "accel":"",
-    "id":"Spectral Delete" },
-  { "id":"SpectralEditMultiTool",
-    "name":"Spectral edit multi tool", "params":
+  { "id":"SpectralDelete",
+    "name":"Spectral Delete", "params":
       [  ],
-    "url":"Spectral_edit_multi_tool",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"SpectralEditMultiTool",
-    "name":"Spectral edit multi tool", "params":
-      [  ],
-    "url":"Spectral_edit_multi_tool",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"SpectralEditMultiTool",
-    "name":"Spectral edit multi tool", "params":
-      [  ],
-    "url":"Spectral_edit_multi_tool",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"SpectralEditMultiTool",
-    "name":"Spectral edit multi tool", "params":
-      [  ],
-    "url":"Spectral_edit_multi_tool",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"SpectralEditParametricEq",
-    "name":"Spectral edit parametric EQ", "params":
-      [
-        { "key":"control-gain", "type":"double", "default":0 } ],
-    "url":"Spectral_edit_parametric_EQ",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"SpectralEditParametricEq",
-    "name":"Spectral edit parametric EQ", "params":
-      [
-        { "key":"control-gain", "type":"double", "default":0 } ],
-    "url":"Spectral_edit_parametric_EQ",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"SpectralEditParametricEq",
-    "name":"Spectral edit parametric EQ", "params":
-      [
-        { "key":"control-gain", "type":"double", "default":0 } ],
-    "url":"Spectral_edit_parametric_EQ",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"SpectralEditParametricEq",
-    "name":"Spectral edit parametric EQ", "params":
-      [
-        { "key":"control-gain", "type":"double", "default":0 } ],
-    "url":"Spectral_edit_parametric_EQ",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"SpectralEditShelves",
-    "name":"Spectral edit shelves", "params":
-      [
-        { "key":"control-gain", "type":"double", "default":0 } ],
-    "url":"Spectral_edit_shelves",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"SpectralEditShelves",
-    "name":"Spectral edit shelves", "params":
-      [
-        { "key":"control-gain", "type":"double", "default":0 } ],
-    "url":"Spectral_edit_shelves",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"SpectralEditShelves",
-    "name":"Spectral edit shelves", "params":
-      [
-        { "key":"control-gain", "type":"double", "default":0 } ],
-    "url":"Spectral_edit_shelves",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"SpectralEditShelves",
-    "name":"Spectral edit shelves", "params":
-      [
-        { "key":"control-gain", "type":"double", "default":0 } ],
-    "url":"Spectral_edit_shelves",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"VocalReductionAndIsolation",
-    "name":"Vocal Reduction and Isolation", "params":
-      [
-        { "key":"action", "type":"enum", "default":"Remove", "enum":
-            [ "Remove", "Isolate", "IsolateInvert", "RemoveCenter", "IsolateCenter",
-              "IsolateCenterInvert", "RemoveCenter", "Analyze" ] },
-        { "key":"strength", "type":"double", "default":0 },
-        { "key":"low-transition", "type":"double", "default":0 },
-        { "key":"high-transition", "type":"double", "default":0 } ],
-    "url":"Vocal_Reduction_and_Isolation",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"VocalReductionAndIsolation",
-    "name":"Vocal Reduction and Isolation", "params":
-      [
-        { "key":"action", "type":"enum", "default":"Remove", "enum":
-            [ "Remove", "Isolate", "IsolateInvert", "RemoveCenter", "IsolateCenter",
-              "IsolateCenterInvert", "RemoveCenter", "Analyze" ] },
-        { "key":"strength", "type":"double", "default":0 },
-        { "key":"low-transition", "type":"double", "default":0 },
-        { "key":"high-transition", "type":"double", "default":0 } ],
-    "url":"Vocal_Reduction_and_Isolation",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"VocalReductionAndIsolation",
-    "name":"Vocal Reduction and Isolation", "params":
-      [
-        { "key":"action", "type":"enum", "default":"Remove", "enum":
-            [ "Remove", "Isolate", "IsolateInvert", "RemoveCenter", "IsolateCenter",
-              "IsolateCenterInvert", "RemoveCenter", "Analyze" ] },
-        { "key":"strength", "type":"double", "default":0 },
-        { "key":"low-transition", "type":"double", "default":0 },
-        { "key":"high-transition", "type":"double", "default":0 } ],
-    "url":"Vocal_Reduction_and_Isolation",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"VocalReductionAndIsolation",
-    "name":"Vocal Reduction and Isolation", "params":
-      [
-        { "key":"action", "type":"enum", "default":"Remove", "enum":
-            [ "Remove", "Isolate", "IsolateInvert", "RemoveCenter", "IsolateCenter",
-              "IsolateCenterInvert", "RemoveCenter", "Analyze" ] },
-        { "key":"strength", "type":"double", "default":0 },
-        { "key":"low-transition", "type":"double", "default":0 },
-        { "key":"high-transition", "type":"double", "default":0 } ],
-    "url":"Vocal_Reduction_and_Isolation",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"NotchFilter", "name":"Notch Filter", "params":
-      [
-        { "key":"frequency", "type":"double", "default":0 },
-        { "key":"q", "type":"double", "default":0 } ], "url":"Notch_Filter",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"NotchFilter", "name":"Notch Filter", "params":
-      [
-        { "key":"frequency", "type":"double", "default":0 },
-        { "key":"q", "type":"double", "default":0 } ], "url":"Notch_Filter",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"NotchFilter", "name":"Notch Filter", "params":
-      [
-        { "key":"frequency", "type":"double", "default":0 },
-        { "key":"q", "type":"double", "default":0 } ], "url":"Notch_Filter",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"NotchFilter", "name":"Notch Filter", "params":
-      [
-        { "key":"frequency", "type":"double", "default":0 },
-        { "key":"q", "type":"double", "default":0 } ], "url":"Notch_Filter",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"AdjustableFade",
-    "name":"Adjustable Fade", "params":
-      [
-        { "key":"type", "type":"enum", "default":"Up", "enum":
-            [ "Up", "Down", "SCurveUp", "SCurveDown" ] },
-        { "key":"curve", "type":"double", "default":0 },
-        { "key":"units", "type":"enum", "default":"Percent", "enum":
-            [ "Percent", "dB" ] },
-        { "key":"gain0", "type":"double", "default":0 },
-        { "key":"gain1", "type":"double", "default":0 },
-        { "key":"preset", "type":"enum", "default":"None", "enum":
-            [ "None", "LinearIn", "LinearOut", "ExponentialIn", "ExponentialOut", "LogarithmicIn", "LogarithmicOut", "RoundedIn", "RoundedOut", "CosineIn", "CosineOut", "SCurveIn", "SCurveOut" ] } ],
-    "url":"Adjustable_Fade",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"AdjustableFade",
-    "name":"Adjustable Fade", "params":
-      [
-        { "key":"type", "type":"enum", "default":"Up", "enum":
-            [ "Up", "Down", "SCurveUp", "SCurveDown" ] },
-        { "key":"curve", "type":"double", "default":0 },
-        { "key":"units", "type":"enum", "default":"Percent", "enum":
-            [ "Percent", "dB" ] },
-        { "key":"gain0", "type":"double", "default":0 },
-        { "key":"gain1", "type":"double", "default":0 },
-        { "key":"preset", "type":"enum", "default":"None", "enum":
-            [ "None", "LinearIn", "LinearOut", "ExponentialIn", "ExponentialOut", "LogarithmicIn", "LogarithmicOut", "RoundedIn", "RoundedOut", "CosineIn", "CosineOut", "SCurveIn", "SCurveOut" ] } ],
-    "url":"Adjustable_Fade",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"AdjustableFade",
-    "name":"Adjustable Fade", "params":
-      [
-        { "key":"type", "type":"enum", "default":"Up", "enum":
-            [ "Up", "Down", "SCurveUp", "SCurveDown" ] },
-        { "key":"curve", "type":"double", "default":0 },
-        { "key":"units", "type":"enum", "default":"Percent", "enum":
-            [ "Percent", "dB" ] },
-        { "key":"gain0", "type":"double", "default":0 },
-        { "key":"gain1", "type":"double", "default":0 },
-        { "key":"preset", "type":"enum", "default":"None", "enum":
-            [ "None", "LinearIn", "LinearOut", "ExponentialIn", "ExponentialOut", "LogarithmicIn", "LogarithmicOut", "RoundedIn", "RoundedOut", "CosineIn", "CosineOut", "SCurveIn", "SCurveOut" ] } ],
-    "url":"Adjustable_Fade",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"AdjustableFade",
-    "name":"Adjustable Fade", "params":
-      [
-        { "key":"type", "type":"enum", "default":"Up", "enum":
-            [ "Up", "Down", "SCurveUp", "SCurveDown" ] },
-        { "key":"curve", "type":"double", "default":0 },
-        { "key":"units", "type":"enum", "default":"Percent", "enum":
-            [ "Percent", "dB" ] },
-        { "key":"gain0", "type":"double", "default":0 },
-        { "key":"gain1", "type":"double", "default":0 },
-        { "key":"preset", "type":"enum", "default":"None", "enum":
-            [ "None", "LinearIn", "LinearOut", "ExponentialIn", "ExponentialOut", "LogarithmicIn", "LogarithmicOut", "RoundedIn", "RoundedOut", "CosineIn", "CosineOut", "SCurveIn", "SCurveOut" ] } ],
-    "url":"Adjustable_Fade",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"CrossfadeClips",
-    "name":"Crossfade Clips", "params":
-      [  ],
-    "url":"Crossfade_Clips",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"CrossfadeClips",
-    "name":"Crossfade Clips", "params":
-      [  ],
-    "url":"Crossfade_Clips",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"CrossfadeClips",
-    "name":"Crossfade Clips", "params":
-      [  ],
-    "url":"Crossfade_Clips",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"CrossfadeClips",
-    "name":"Crossfade Clips", "params":
-      [  ],
-    "url":"Crossfade_Clips",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"CrossfadeTracks",
-    "name":"Crossfade Tracks", "params":
-      [
-        { "key":"type", "type":"enum", "default":"ConstantGain", "enum":
-            [ "ConstantGain", "ConstantPower1", "ConstantPower2", "CustomCurve" ] },
-        { "key":"curve", "type":"double", "default":0 },
-        { "key":"direction", "type":"enum", "default":"Automatic", "enum":
-            [ "Automatic", "OutIn", "InOut" ] } ],
-    "url":"Crossfade_Tracks",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"CrossfadeTracks",
-    "name":"Crossfade Tracks", "params":
-      [
-        { "key":"type", "type":"enum", "default":"ConstantGain", "enum":
-            [ "ConstantGain", "ConstantPower1", "ConstantPower2", "CustomCurve" ] },
-        { "key":"curve", "type":"double", "default":0 },
-        { "key":"direction", "type":"enum", "default":"Automatic", "enum":
-            [ "Automatic", "OutIn", "InOut" ] } ],
-    "url":"Crossfade_Tracks",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"CrossfadeTracks",
-    "name":"Crossfade Tracks", "params":
-      [
-        { "key":"type", "type":"enum", "default":"ConstantGain", "enum":
-            [ "ConstantGain", "ConstantPower1", "ConstantPower2", "CustomCurve" ] },
-        { "key":"curve", "type":"double", "default":0 },
-        { "key":"direction", "type":"enum", "default":"Automatic", "enum":
-            [ "Automatic", "OutIn", "InOut" ] } ],
-    "url":"Crossfade_Tracks",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"CrossfadeTracks",
-    "name":"Crossfade Tracks", "params":
-      [
-        { "key":"type", "type":"enum", "default":"ConstantGain", "enum":
-            [ "ConstantGain", "ConstantPower1", "ConstantPower2", "CustomCurve" ] },
-        { "key":"curve", "type":"double", "default":0 },
-        { "key":"direction", "type":"enum", "default":"Automatic", "enum":
-            [ "Automatic", "OutIn", "InOut" ] } ],
-    "url":"Crossfade_Tracks",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"Delay", "name":"Delay", "params":
-      [
-        { "key":"delay-type", "type":"enum", "default":"Regular", "enum":
-            [ "Regular", "BouncingBall",
-              "ReverseBouncingBall" ] },
-        { "key":"dgain", "type":"double", "default":0 },
-        { "key":"delay", "type":"double", "default":0 },
-        { "key":"pitch-type", "type":"enum", "default":"PitchTempo", "enum":
-            [ "PitchTempo", "LQPitchShift" ] },
-        { "key":"shift", "type":"double", "default":0 },
-        { "key":"number", "type":"int", "default":0 },
-        { "key":"constrain", "type":"enum", "default":"Yes", "enum":
-            [ "Yes", "No" ] } ], "url":"Delay",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"Delay", "name":"Delay", "params":
-      [
-        { "key":"delay-type", "type":"enum", "default":"Regular", "enum":
-            [ "Regular", "BouncingBall",
-              "ReverseBouncingBall" ] },
-        { "key":"dgain", "type":"double", "default":0 },
-        { "key":"delay", "type":"double", "default":0 },
-        { "key":"pitch-type", "type":"enum", "default":"PitchTempo", "enum":
-            [ "PitchTempo", "LQPitchShift" ] },
-        { "key":"shift", "type":"double", "default":0 },
-        { "key":"number", "type":"int", "default":0 },
-        { "key":"constrain", "type":"enum", "default":"Yes", "enum":
-            [ "Yes", "No" ] } ], "url":"Delay",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"Delay", "name":"Delay", "params":
-      [
-        { "key":"delay-type", "type":"enum", "default":"Regular", "enum":
-            [ "Regular", "BouncingBall",
-              "ReverseBouncingBall" ] },
-        { "key":"dgain", "type":"double", "default":0 },
-        { "key":"delay", "type":"double", "default":0 },
-        { "key":"pitch-type", "type":"enum", "default":"PitchTempo", "enum":
-            [ "PitchTempo", "LQPitchShift" ] },
-        { "key":"shift", "type":"double", "default":0 },
-        { "key":"number", "type":"int", "default":0 },
-        { "key":"constrain", "type":"enum", "default":"Yes", "enum":
-            [ "Yes", "No" ] } ], "url":"Delay",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"Delay", "name":"Delay", "params":
-      [
-        { "key":"delay-type", "type":"enum", "default":"Regular", "enum":
-            [ "Regular", "BouncingBall",
-              "ReverseBouncingBall" ] },
-        { "key":"dgain", "type":"double", "default":0 },
-        { "key":"delay", "type":"double", "default":0 },
-        { "key":"pitch-type", "type":"enum", "default":"PitchTempo", "enum":
-            [ "PitchTempo", "LQPitchShift" ] },
-        { "key":"shift", "type":"double", "default":0 },
-        { "key":"number", "type":"int", "default":0 },
-        { "key":"constrain", "type":"enum", "default":"Yes", "enum":
-            [ "Yes", "No" ] } ], "url":"Delay",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"Limiter", "name":"Limiter", "params":
-      [
-        { "key":"type", "type":"enum", "default":"SoftLimit", "enum":
-            [ "SoftLimit", "HardLimit", "SoftClip", "HardClip" ] },
-        { "key":"gain-L", "type":"double", "default":0 },
-        { "key":"gain-R", "type":"double", "default":0 },
-        { "key":"thresh", "type":"double", "default":0 },
-        { "key":"hold", "type":"double", "default":0 },
-        { "key":"makeup", "type":"enum", "default":"No", "enum":
-            [ "No", "Yes" ] } ], "url":"Limiter",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"Limiter", "name":"Limiter", "params":
-      [
-        { "key":"type", "type":"enum", "default":"SoftLimit", "enum":
-            [ "SoftLimit", "HardLimit", "SoftClip", "HardClip" ] },
-        { "key":"gain-L", "type":"double", "default":0 },
-        { "key":"gain-R", "type":"double", "default":0 },
-        { "key":"thresh", "type":"double", "default":0 },
-        { "key":"hold", "type":"double", "default":0 },
-        { "key":"makeup", "type":"enum", "default":"No", "enum":
-            [ "No", "Yes" ] } ], "url":"Limiter",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"Limiter", "name":"Limiter", "params":
-      [
-        { "key":"type", "type":"enum", "default":"SoftLimit", "enum":
-            [ "SoftLimit", "HardLimit", "SoftClip", "HardClip" ] },
-        { "key":"gain-L", "type":"double", "default":0 },
-        { "key":"gain-R", "type":"double", "default":0 },
-        { "key":"thresh", "type":"double", "default":0 },
-        { "key":"hold", "type":"double", "default":0 },
-        { "key":"makeup", "type":"enum", "default":"No", "enum":
-            [ "No", "Yes" ] } ], "url":"Limiter",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"Limiter", "name":"Limiter", "params":
-      [
-        { "key":"type", "type":"enum", "default":"SoftLimit", "enum":
-            [ "SoftLimit", "HardLimit", "SoftClip", "HardClip" ] },
-        { "key":"gain-L", "type":"double", "default":0 },
-        { "key":"gain-R", "type":"double", "default":0 },
-        { "key":"thresh", "type":"double", "default":0 },
-        { "key":"hold", "type":"double", "default":0 },
-        { "key":"makeup", "type":"enum", "default":"No", "enum":
-            [ "No", "Yes" ] } ], "url":"Limiter",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"NyquistPlug-inInstaller",
-    "name":"Nyquist Plug-in Installer", "params":
-      [
-        { "key":"plug-in", "type":"string", "default":"" } ],
-    "url":"Nyquist_Plug-in_Installer",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"NyquistPlug-inInstaller",
-    "name":"Nyquist Plug-in Installer", "params":
-      [
-        { "key":"plug-in", "type":"string", "default":"" } ],
-    "url":"Nyquist_Plug-in_Installer",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"NyquistPlug-inInstaller",
-    "name":"Nyquist Plug-in Installer", "params":
-      [
-        { "key":"plug-in", "type":"string", "default":"" } ],
-    "url":"Nyquist_Plug-in_Installer",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"NyquistPlug-inInstaller",
-    "name":"Nyquist Plug-in Installer", "params":
-      [
-        { "key":"plug-in", "type":"string", "default":"" } ],
-    "url":"Nyquist_Plug-in_Installer",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"RegularIntervalLabels",
-    "name":"Regular Interval Labels", "params":
-      [
-        { "key":"mode", "type":"enum", "default":"Both", "enum":
-            [ "Both", "Number", "Interval" ] },
-        { "key":"totalnum", "type":"int", "default":0 },
-        { "key":"interval", "type":"double", "default":0 },
-        { "key":"region", "type":"double", "default":0 },
-        { "key":"adjust", "type":"enum", "default":"No", "enum":
-            [ "No", "Yes" ] },
-        { "key":"labeltext", "type":"string", "default":"" },
-        { "key":"zeros", "type":"enum", "default":"TextOnly", "enum":
-            [ "TextOnly", "OneBefore", "TwoBefore", "ThreeBefore", "OneAfter", "TwoAfter", "ThreeAfter" ] },
-        { "key":"firstnum", "type":"int", "default":0 },
-        { "key":"verbose", "type":"enum", "default":"Details", "enum":
-            [ "Details", "Warnings", "None" ] } ],
-    "url":"Regular_Interval_Labels",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"RegularIntervalLabels",
-    "name":"Regular Interval Labels", "params":
-      [
-        { "key":"mode", "type":"enum", "default":"Both", "enum":
-            [ "Both", "Number", "Interval" ] },
-        { "key":"totalnum", "type":"int", "default":0 },
-        { "key":"interval", "type":"double", "default":0 },
-        { "key":"region", "type":"double", "default":0 },
-        { "key":"adjust", "type":"enum", "default":"No", "enum":
-            [ "No", "Yes" ] },
-        { "key":"labeltext", "type":"string", "default":"" },
-        { "key":"zeros", "type":"enum", "default":"TextOnly", "enum":
-            [ "TextOnly", "OneBefore", "TwoBefore", "ThreeBefore", "OneAfter", "TwoAfter", "ThreeAfter" ] },
-        { "key":"firstnum", "type":"int", "default":0 },
-        { "key":"verbose", "type":"enum", "default":"Details", "enum":
-            [ "Details", "Warnings", "None" ] } ],
-    "url":"Regular_Interval_Labels",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"RegularIntervalLabels",
-    "name":"Regular Interval Labels", "params":
-      [
-        { "key":"mode", "type":"enum", "default":"Both", "enum":
-            [ "Both", "Number", "Interval" ] },
-        { "key":"totalnum", "type":"int", "default":0 },
-        { "key":"interval", "type":"double", "default":0 },
-        { "key":"region", "type":"double", "default":0 },
-        { "key":"adjust", "type":"enum", "default":"No", "enum":
-            [ "No", "Yes" ] },
-        { "key":"labeltext", "type":"string", "default":"" },
-        { "key":"zeros", "type":"enum", "default":"TextOnly", "enum":
-            [ "TextOnly", "OneBefore", "TwoBefore", "ThreeBefore", "OneAfter", "TwoAfter", "ThreeAfter" ] },
-        { "key":"firstnum", "type":"int", "default":0 },
-        { "key":"verbose", "type":"enum", "default":"Details", "enum":
-            [ "Details", "Warnings", "None" ] } ],
-    "url":"Regular_Interval_Labels",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"RegularIntervalLabels",
-    "name":"Regular Interval Labels", "params":
-      [
-        { "key":"mode", "type":"enum", "default":"Both", "enum":
-            [ "Both", "Number", "Interval" ] },
-        { "key":"totalnum", "type":"int", "default":0 },
-        { "key":"interval", "type":"double", "default":0 },
-        { "key":"region", "type":"double", "default":0 },
-        { "key":"adjust", "type":"enum", "default":"No", "enum":
-            [ "No", "Yes" ] },
-        { "key":"labeltext", "type":"string", "default":"" },
-        { "key":"zeros", "type":"enum", "default":"TextOnly", "enum":
-            [ "TextOnly", "OneBefore", "TwoBefore", "ThreeBefore", "OneAfter", "TwoAfter", "ThreeAfter" ] },
-        { "key":"firstnum", "type":"int", "default":0 },
-        { "key":"verbose", "type":"enum", "default":"Details", "enum":
-            [ "Details", "Warnings", "None" ] } ],
-    "url":"Regular_Interval_Labels",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"SampleDataExport",
-    "name":"Sample Data Export", "params":
-      [
-        { "key":"number", "type":"int", "default":0 },
-        { "key":"units", "type":"enum", "default":"dB", "enum":
-            [ "dB", "Linear" ] },
-        { "key":"filename", "type":"string", "default":"" },
-        { "key":"fileformat", "type":"enum", "default":"None", "enum":
-            [ "None", "Count", "Time" ] },
-        { "key":"header", "type":"enum", "default":"None", "enum":
-            [ "None", "Minimal", "Standard", "All" ] },
-        { "key":"optext", "type":"string", "default":"" },
-        { "key":"channel-layout", "type":"enum", "default":"SameLine", "enum":
-            [ "SameLine", "Alternate", "LFirst" ] },
-        { "key":"messages", "type":"enum", "default":"Yes", "enum":
-            [ "Yes", "Errors", "None" ] } ],
-    "url":"Sample_Data_Export",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"SampleDataExport",
-    "name":"Sample Data Export", "params":
-      [
-        { "key":"number", "type":"int", "default":0 },
-        { "key":"units", "type":"enum", "default":"dB", "enum":
-            [ "dB", "Linear" ] },
-        { "key":"filename", "type":"string", "default":"" },
-        { "key":"fileformat", "type":"enum", "default":"None", "enum":
-            [ "None", "Count", "Time" ] },
-        { "key":"header", "type":"enum", "default":"None", "enum":
-            [ "None", "Minimal", "Standard", "All" ] },
-        { "key":"optext", "type":"string", "default":"" },
-        { "key":"channel-layout", "type":"enum", "default":"SameLine", "enum":
-            [ "SameLine", "Alternate", "LFirst" ] },
-        { "key":"messages", "type":"enum", "default":"Yes", "enum":
-            [ "Yes", "Errors", "None" ] } ],
-    "url":"Sample_Data_Export",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"SampleDataExport",
-    "name":"Sample Data Export", "params":
-      [
-        { "key":"number", "type":"int", "default":0 },
-        { "key":"units", "type":"enum", "default":"dB", "enum":
-            [ "dB", "Linear" ] },
-        { "key":"filename", "type":"string", "default":"" },
-        { "key":"fileformat", "type":"enum", "default":"None", "enum":
-            [ "None", "Count", "Time" ] },
-        { "key":"header", "type":"enum", "default":"None", "enum":
-            [ "None", "Minimal", "Standard", "All" ] },
-        { "key":"optext", "type":"string", "default":"" },
-        { "key":"channel-layout", "type":"enum", "default":"SameLine", "enum":
-            [ "SameLine", "Alternate", "LFirst" ] },
-        { "key":"messages", "type":"enum", "default":"Yes", "enum":
-            [ "Yes", "Errors", "None" ] } ],
-    "url":"Sample_Data_Export",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"SampleDataExport",
-    "name":"Sample Data Export", "params":
-      [
-        { "key":"number", "type":"int", "default":0 },
-        { "key":"units", "type":"enum", "default":"dB", "enum":
-            [ "dB", "Linear" ] },
-        { "key":"filename", "type":"string", "default":"" },
-        { "key":"fileformat", "type":"enum", "default":"None", "enum":
-            [ "None", "Count", "Time" ] },
-        { "key":"header", "type":"enum", "default":"None", "enum":
-            [ "None", "Minimal", "Standard", "All" ] },
-        { "key":"optext", "type":"string", "default":"" },
-        { "key":"channel-layout", "type":"enum", "default":"SameLine", "enum":
-            [ "SameLine", "Alternate", "LFirst" ] },
-        { "key":"messages", "type":"enum", "default":"Yes", "enum":
-            [ "Yes", "Errors", "None" ] } ],
-    "url":"Sample_Data_Export",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"SampleDataImport",
-    "name":"Sample Data Import", "params":
-      [
-        { "key":"filename", "type":"string", "default":"" },
-        { "key":"bad-data", "type":"enum", "default":"ThrowError", "enum":
-            [ "ThrowError", "ReadAsZero" ] } ],
-    "url":"Sample_Data_Import",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"SampleDataImport",
-    "name":"Sample Data Import", "params":
-      [
-        { "key":"filename", "type":"string", "default":"" },
-        { "key":"bad-data", "type":"enum", "default":"ThrowError", "enum":
-            [ "ThrowError", "ReadAsZero" ] } ],
-    "url":"Sample_Data_Import",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"SampleDataImport",
-    "name":"Sample Data Import", "params":
-      [
-        { "key":"filename", "type":"string", "default":"" },
-        { "key":"bad-data", "type":"enum", "default":"ThrowError", "enum":
-            [ "ThrowError", "ReadAsZero" ] } ],
-    "url":"Sample_Data_Import",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"SampleDataImport",
-    "name":"Sample Data Import", "params":
-      [
-        { "key":"filename", "type":"string", "default":"" },
-        { "key":"bad-data", "type":"enum", "default":"ThrowError", "enum":
-            [ "ThrowError", "ReadAsZero" ] } ],
-    "url":"Sample_Data_Import",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"StudioFadeOut",
-    "name":"Studio Fade Out", "params":
-      [  ],
-    "url":"Fades#studio_fadeout",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"StudioFadeOut",
-    "name":"Studio Fade Out", "params":
-      [  ],
-    "url":"Fades#studio_fadeout",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"StudioFadeOut",
-    "name":"Studio Fade Out", "params":
-      [  ],
-    "url":"Fades#studio_fadeout",
+    "url":"Spectral_Delete",
     "tip":"Released under terms of the GNU General Public License version 2" },
   { "id":"StudioFadeOut",
     "name":"Studio Fade Out", "params":
@@ -1834,96 +1252,6 @@ Audacity.Commands =
         { "key":"phase", "type":"int", "default":0 },
         { "key":"wet", "type":"int", "default":0 },
         { "key":"lfo", "type":"double", "default":0 } ], "url":"Tremolo",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"Tremolo", "name":"Tremolo", "params":
-      [
-        { "key":"wave", "type":"enum", "default":"Sine", "enum":
-            [ "Sine", "Triangle", "Sawtooth",
-              "InverseSawtooth", "Square" ] },
-        { "key":"phase", "type":"int", "default":0 },
-        { "key":"wet", "type":"int", "default":0 },
-        { "key":"lfo", "type":"double", "default":0 } ], "url":"Tremolo",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"Tremolo", "name":"Tremolo", "params":
-      [
-        { "key":"wave", "type":"enum", "default":"Sine", "enum":
-            [ "Sine", "Triangle", "Sawtooth",
-              "InverseSawtooth", "Square" ] },
-        { "key":"phase", "type":"int", "default":0 },
-        { "key":"wet", "type":"int", "default":0 },
-        { "key":"lfo", "type":"double", "default":0 } ], "url":"Tremolo",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"Tremolo", "name":"Tremolo", "params":
-      [
-        { "key":"wave", "type":"enum", "default":"Sine", "enum":
-            [ "Sine", "Triangle", "Sawtooth",
-              "InverseSawtooth", "Square" ] },
-        { "key":"phase", "type":"int", "default":0 },
-        { "key":"wet", "type":"int", "default":0 },
-        { "key":"lfo", "type":"double", "default":0 } ], "url":"Tremolo",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"VocalRemover", "name":"Vocal Remover", "params":
-      [
-        { "key":"action", "type":"enum", "default":"Remove Vocals", "enum":
-            [ "Remove Vocals", "View Help" ] },
-        { "key":"band-choice", "type":"enum", "default":"Simple", "enum":
-            [ "Simple", "Remove", "Retain" ] },
-        { "key":"low-range", "type":"double", "default":0 },
-        { "key":"high-range", "type":"double", "default":0 } ], "url":"Vocal_Remover",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"VocalRemover", "name":"Vocal Remover", "params":
-      [
-        { "key":"action", "type":"enum", "default":"Remove Vocals", "enum":
-            [ "Remove Vocals", "View Help" ] },
-        { "key":"band-choice", "type":"enum", "default":"Simple", "enum":
-            [ "Simple", "Remove", "Retain" ] },
-        { "key":"low-range", "type":"double", "default":0 },
-        { "key":"high-range", "type":"double", "default":0 } ], "url":"Vocal_Remover",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"VocalRemover", "name":"Vocal Remover", "params":
-      [
-        { "key":"action", "type":"enum", "default":"Remove Vocals", "enum":
-            [ "Remove Vocals", "View Help" ] },
-        { "key":"band-choice", "type":"enum", "default":"Simple", "enum":
-            [ "Simple", "Remove", "Retain" ] },
-        { "key":"low-range", "type":"double", "default":0 },
-        { "key":"high-range", "type":"double", "default":0 } ], "url":"Vocal_Remover",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"VocalRemover", "name":"Vocal Remover", "params":
-      [
-        { "key":"action", "type":"enum", "default":"Remove Vocals", "enum":
-            [ "Remove Vocals", "View Help" ] },
-        { "key":"band-choice", "type":"enum", "default":"Simple", "enum":
-            [ "Simple", "Remove", "Retain" ] },
-        { "key":"low-range", "type":"double", "default":0 },
-        { "key":"high-range", "type":"double", "default":0 } ], "url":"Vocal_Remover",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"RissetDrum", "name":"Risset Drum", "params":
-      [
-        { "key":"freq", "type":"double", "default":0 },
-        { "key":"decay", "type":"double", "default":0 },
-        { "key":"cf", "type":"double", "default":0 },
-        { "key":"bw", "type":"double", "default":0 },
-        { "key":"noise", "type":"double", "default":0 },
-        { "key":"gain", "type":"double", "default":0 } ], "url":"Risset_Drum",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"RissetDrum", "name":"Risset Drum", "params":
-      [
-        { "key":"freq", "type":"double", "default":0 },
-        { "key":"decay", "type":"double", "default":0 },
-        { "key":"cf", "type":"double", "default":0 },
-        { "key":"bw", "type":"double", "default":0 },
-        { "key":"noise", "type":"double", "default":0 },
-        { "key":"gain", "type":"double", "default":0 } ], "url":"Risset_Drum",
-    "tip":"Released under terms of the GNU General Public License version 2" },
-  { "id":"RissetDrum", "name":"Risset Drum", "params":
-      [
-        { "key":"freq", "type":"double", "default":0 },
-        { "key":"decay", "type":"double", "default":0 },
-        { "key":"cf", "type":"double", "default":0 },
-        { "key":"bw", "type":"double", "default":0 },
-        { "key":"noise", "type":"double", "default":0 },
-        { "key":"gain", "type":"double", "default":0 } ], "url":"Risset_Drum",
     "tip":"Released under terms of the GNU General Public License version 2" },
   { "id":"RissetDrum", "name":"Risset Drum", "params":
       [
@@ -1939,12 +1267,6 @@ Audacity.Commands =
         { "key":"Threshold", "type":"float", "default":0 } ],
     "url":"Extra_Menu:_Scriptables_II#compare_Audio",
     "tip":"Compares a range on two tracks." },
-  { "id":"Demo", "name":"Demo", "params":
-      [
-        { "key":"Delay", "type":"float", "default":1 },
-        { "key":"Decay", "type":"float", "default":0.5 } ],
-    "url":"Extra_Menu:_Scriptables_I",
-    "tip":"Does the demo action." },
   { "id":"Drag", "name":"Drag", "params":
       [
         { "key":"Id", "type":"int", "default":"unchanged" },
@@ -1959,7 +1281,8 @@ Audacity.Commands =
     "tip":"Drags mouse from one place to another." },
   { "id":"Export2", "name":"Export2", "params":
       [
-        { "key":"Filename", "type":"string", "default":"exported.wav" },
+        { "key":"Filename", "type":"string",
+          "default":"exported.wav" },
         { "key":"NumChannels", "type":"int", "default":1 } ],
     "url":"Extra_Menu:_Scriptables_II#export",
     "tip":"Exports to a file." },
@@ -1978,7 +1301,9 @@ Audacity.Commands =
     "tip":"Gets the value of a single preference." },
   { "id":"Help", "name":"Help", "params":
       [
-        { "key":"Command", "type":"string", "default":"Help" } ],
+        { "key":"Command", "type":"string", "default":"Help" },
+        { "key":"Format", "type":"enum", "default":"JSON", "enum":
+            [ "JSON", "LISP", "Brief" ] } ],
     "url":"Extra_Menu:_Scriptables_II#help",
     "tip":"Gives help on a command." },
   { "id":"Import2", "name":"Import2", "params":
@@ -1994,7 +1319,7 @@ Audacity.Commands =
   { "id":"OpenProject2", "name":"Open Project2", "params":
       [
         { "key":"Filename", "type":"string", "default":"test.aup" },
-        { "key":"AddToHistory", "type":"bool", "default":"unchanged" } ],
+        { "key":"AddToHistory", "type":"bool", "default":"false" } ],
     "url":"Extra_Menu:_Scriptables_II#open_project",
     "tip":"Opens a project." },
   { "id":"SaveProject2", "name":"Save Project2", "params":
@@ -2009,7 +1334,7 @@ Audacity.Commands =
         { "key":"Path", "type":"string", "default":"" },
         { "key":"CaptureWhat", "type":"enum", "default":"Window", "enum":
             [ "Window", "FullWindow", "WindowPlus", "Fullscreen", "Toolbars", "Effects", "Scriptables", "Preferences", "Selectionbar",
-              "SpectralSelection", "Tools", "Transport", "Mixer", "Meter", "PlayMeter", "RecordMeter", "Edit", "Device", "Scrub", "Play-at-Speed", "Trackpanel", "Ruler", "Tracks", "FirstTrack", "FirstTwoTracks",
+              "SpectralSelection", "Timer", "Tools", "Transport", "Mixer", "Meter", "PlayMeter", "RecordMeter", "Edit", "Device", "Scrub", "Play-at-Speed", "Trackpanel", "Ruler", "Tracks", "FirstTrack", "FirstTwoTracks",
               "FirstThreeTracks",
               "FirstFourTracks", "SecondTrack", "TracksPlus", "FirstTrackPlus", "AllTracks", "AllTracksPlus" ] },
         { "key":"Background", "type":"enum", "default":"None", "enum":
