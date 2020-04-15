@@ -693,6 +693,21 @@ function GetReplacementUrl( inp ){
   }
   return inp;
 }
+
+
+function GetReplacementUrl2( inp ){
+  var i;
+  var SearchString = inp.toLowerCase();
+  SearchString = SearchString.replace( /:/g, "");
+  SearchString = SearchString.replace( / /g, "_");
+  for(i=0;i<App.MenuUrls2.length;i++){
+    if(App.MenuUrls2[i][0] == SearchString ){
+      return App.MenuUrls2[i][1];
+    }
+  }
+  return inp;
+}
+
 /**
  *
  * @param Url

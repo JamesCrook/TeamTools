@@ -1027,7 +1027,7 @@ Audacity.Tips =
   long:  "Selecting this option from the Effect Menu (or the [[Generate Menu]] or [[Analyze Menu]]) takes you to a dialog where you can enable or disable particular Effects, Generators and Analyzers in Audacity. Even if you do not add any third-party plug-ins, you can use this to make the Effect menu shorter or longer as required.  For details see [[Manage Effects, Generators and Analyzers|Add / Remove Effects, Generators and Analyzers]]."},
 { key:   "Fade Ends",
   id: "FadeEnds",
-  short: "Fadees in the first second and fades out the last second of a track",
+  short: "Fades in the first second and fades out the last second of a track",
   long:  "+."},
 { key:   "MP3 Conversion",
   id: "MP3Conversion",
@@ -1666,7 +1666,7 @@ Audacity.Tips =
   long: "+."},
 { key:"Nyquist Plug-in Installer...",
   id:"Nyquist Plug-in Installer...",
-  short: "Installs Nyquist plug-ins into the plug-in directory",
+  short: "A  Nyquist plug-in that simplifies the installation of other Nyquist plug-ins",
   long: "+."},
 
 

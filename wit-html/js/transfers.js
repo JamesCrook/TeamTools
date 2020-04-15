@@ -503,13 +503,19 @@ function MakeMenuMap(from, prefix, priorRects, xIn, yIn){
         if( indent == 0 )
           innerRects += rectString(x, y, x + width, y + 22,
             Box.label + " Menu", CleanTip(Tip));
-        else if( Box.flags == 1 )
-          innerRects +=
-            rectString(x, y, x + width, y + 22, MenuName + ': ' +
-              CleanPageName(Box.label), CleanTip(Tip));
-        else
+        else if( Box.flags == 1 ){
+          // a Sub Menu
           innerRects += rectString(x, y, x + width, y + 22,
-            MenuName + '#' + CleanAnchor(Box.label), CleanTip(Tip));
+            MenuName + ': ' + CleanPageName(Box.label), CleanTip(Tip));
+        }
+        else {
+          // Terminal menu item.
+          var str2 = GetReplacementUrl2( MenuName + "#" + CleanAnchor(Box.label));
+          console.log( "-> "+str2 );
+          innerRects += rectString(x, y, x + width, y + 22,
+            str2, CleanTip(Tip));
+
+        }
       }
 
       if( nextIndent == (indent + 1) ){

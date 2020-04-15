@@ -1280,6 +1280,23 @@ Audacity.BoxUrls = [
   
   ];
 
+
+Audacity.MenuUrls2 =
+[
+  ["view_menu_toolbars#transport_toolbar","Transport_Toolbar"],
+  ["view_menu_toolbars#tools_toolbar","Tools_Toolbar"],
+  ["view_menu_toolbars#recording_meter_toolbar","Meter_Toolbar#meters"],
+  ["view_menu_toolbars#playback_meter_toolbar","Meter_Toolbar#meters"],
+  ["view_menu_toolbars#mixer_toolbar","Mixer_Toolbar"],
+  ["view_menu_toolbars#edit_toolbar","Edit_Toolbar"],
+  ["view_menu_toolbars#playatspeed_toolbar","Play-at-Speed_Toolbar"],
+  ["view_menu_toolbars#time_toolbar","Time_Toolbar"],
+  ["view_menu_toolbars#scrub_toolbar","Scrub_Toolbar"],
+  ["view_menu_toolbars#device_toolbar","Device_Toolbar"],
+  ["view_menu_toolbars#selection_toolbar","Selection_Toolbar"],
+  ["view_menu_toolbars#spectral_selection_toolbar","Spectral_Selection_Toolbar"],
+];
+
 // These are URL translations for menu items.
 // Fields:
 //    Full menu item name, e.g. edit_menu#undo
@@ -1384,8 +1401,6 @@ Audacity.MenuUrls =
     ["analyze_menu#sample_data_export","Sample_Data_Export"],
     ["analyze_menu#silence_finder","Silence_Finder"],
     ["analyze_menu#sound_finder","Sound_Finder"],
-
-
 ];
 
 bitmap_boxes = [
@@ -2719,7 +2734,7 @@ Audacity.Tips =
     long:  "Selecting this option from the Effect Menu (or the [[Generate Menu]] or [[Analyze Menu]]) takes you to a dialog where you can enable or disable particular Effects, Generators and Analyzers in Audacity. Even if you do not add any third-party plug-ins, you can use this to make the Effect menu shorter or longer as required.  For details see [[Manage Effects, Generators and Analyzers|Add / Remove Effects, Generators and Analyzers]]."},
   { key:   "Fade Ends",
     id: "FadeEnds",
-    short: "Fadees in the first second and fades out the last second of a track",
+    short: "Fades in the first second and fades out the last second of a track",
     long:  "+."},
   { key:   "MP3 Conversion",
     id: "MP3Conversion",
