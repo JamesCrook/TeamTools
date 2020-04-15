@@ -602,7 +602,10 @@ function draggingRuler( A, obj, dd ){
   var itemsPerPixel = (obj.dragIx - obj.centerIx)/dx;
   if( itemsPerPixel <= 0 )
     return;
-  if( itemsPerPixel < 0.001 )
+
+  // this size gives us numbers at 0.1, 0.2, and prevents
+  // zooming in further than that.
+  if( itemsPerPixel < 0.002 )
     return;
   //console.log("New scale: "+scale);
   var startIx = obj.centerIx - mid.offset.x * itemsPerPixel;
