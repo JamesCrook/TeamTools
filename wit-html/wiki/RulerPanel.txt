@@ -18,24 +18,20 @@ The detailed data for the chart follows.
 <pre>ADD:DATA=
 [
     {
-    "Ruler":"ZoomableRuler",
+    "Ruler":"ZRuler",
     "margins":3,
     "sizeAs":0.1,
-    "start":0,
-    "end":2000
+    "atStart":500,
+    "atEnd":1500
     },
-    {"HStack":[
-        {"Draggable":"Star1","glyph":"L" },
-        {"Draggable":"Star2","glyph":"Mid" },
-        {"Draggable":"Star3","glyph":"R" },
-        {"Draggable":"Star4" }
-        ]
+    {"Graph":"Audio",
+     "scaling":"ZRuler"
     }
 ]
 </pre>
 
 
-<pre>CREDITS:CAPTION=Draggable Ruler;TIP=</pre>
+<pre>CREDITS:CAPTION=Zoomable Waveform;TIP=</pre>
 <h3>Instructions</h3>
 <ul>
 <li>Drag Ruler to resize.

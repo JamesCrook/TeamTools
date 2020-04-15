@@ -2335,6 +2335,58 @@ function drawChart(A, obj, d){
   drawSpacedItems(A,x0, y0, xw, yh, obj.values, T);
 }
 
+function graphFn( x ){
+  return 0.7*Math.sin( Math.PI * (x/100.1257680) )*Math.sin( Math.PI * (x*1.3276409) )
+   + 0.05*Math.sin( Math.PI * (x/3.31572981) );
+}
+
+function scaledY( x, obj, ruler ){
+  var l = obj.layout;
+  var x0 = l.x0;
+  var y0 = l.y0;
+  var xw = l.xw;
+  var yh = l.yh;
+
+
+  var x1 = ruler.atStart + (ruler.atEnd-ruler.atStart) * (x/xw);
+  var y1 = y0 + (graphFn( x1 )*yh/2)+yh/2;
+  return y1;
+}
+
+function drawGraph( A, obj, d ){
+  if( d.stage !== kStageFillAndText  )
+    return;
+
+  //console.log( "draw - "+obj.type);
+  var l = obj.layout;
+  var x0 = l.x0;
+  var y0 = l.y0;
+  var xw = l.xw;
+  var yh = l.yh;
+
+
+  var i;
+
+  var ruler = objectFromId(A, obj.scaling);
+
+
+
+  var ctx = A.BackingCanvas.ctx;
+  ctx.strokeStyle = "rgb(20,20,200)";
+  ctx.lineWidth = 1;
+
+  var y1 = scaledY( 0, obj, ruler );
+  for(i=1;i<xw;i++){
+    var y2 = scaledY( i, obj, ruler );
+    ctx.beginPath();
+    ctx.moveTo(x0+i, Math.min( y1, y2)-0.5 );
+    ctx.lineTo( x0+i, Math.max( y1,y2)+0.5 );
+    ctx.stroke();
+    y1 = y2;
+  }
+
+}
+
 
 // >>>>>>>>>>>>>>>>>>>> Draw on focus layer
 
@@ -3852,10 +3904,6 @@ function requestFile(A,source, fromwiki,section,fn){
 
 }
 
-
-
-
-
 function addObjectToDictionary(A, layout){
   A.RootObject.objectDict[layout.id] = layout;
 }
@@ -4168,6 +4216,7 @@ function registerMethods()
   registerMethod( "Spacer",   0,0, layoutMargined, drawNowt2);
 
   registerMethod( "Chart",    0,0, layoutMargined, drawChart);
+  registerMethod( "Graph",    0,0, layoutMargined, drawGraph);
   registerMethod( "Path",     0,0,0, drawPath);
   registerMethod( "Tree",     0,0,0, drawTree);
   registerMethod( "Arrows",   0, sizeNowt,layoutNowt, drawArrows);
