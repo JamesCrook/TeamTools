@@ -3199,15 +3199,15 @@ Audacity.Tips =
   { key:   "Set Track Status...",
     id: "SetTrack",
     short: "Sets properties for a track or channel (or both).",
-    long:  "+  Setting one channel of a stereo track can lead to interesting results.  That's most used when setting relative sizing of the two channels.  SpectralPrefs=1 sets the track to use general preferences, SpectralPrefs=1 per track prefs. When using general preferences, SetPreferences can be used ot change a preference and so affect display of the track.  Name is used to set the name.  It is not used in choosing the track."},
+    long:  "+  Setting one channel of a stereo track can lead to interesting results.  That's most used when setting relative sizing of the two channels.  SpectralPrefs=1 sets the track to use general preferences, SpectralPrefs=1 per track prefs. When using general preferences, SetPreferences can be used to change a preference and so affect display of the track.  Name is used to set the name.  It is not used in choosing the track."},
   { key:   "Set Track Audio...",
     id: "SetTrack",
     short: "Sets properties for a track or channel (or both)",
-    long:  "+.  Setting one channel of a stereo track can lead to interesting results.  That's most used when setting relative sizing of the two channels.  SpectralPrefs=1 sets the track to use general preferences, SpectralPrefs=1 per track prefs. When using general preferences, SetPreferences can be used ot change a preference and so affect display of the track.  Name is used to set the name.  It is not used in choosing the track."},
+    long:  "+.  Setting one channel of a stereo track can lead to interesting results.  That's most used when setting relative sizing of the two channels.  SpectralPrefs=1 sets the track to use general preferences, SpectralPrefs=1 per track prefs. When using general preferences, SetPreferences can be used to change a preference and so affect display of the track.  Name is used to set the name.  It is not used in choosing the track."},
   { key:   "Set Track Visuals...",
     id: "SetTrack",
     short: "Sets properties for a track or channel (or both)",
-    long:  "+.  Setting one channel of a stereo track can lead to interesting results.  That's most used when setting relative sizing of the two channels.  SpectralPrefs=1 sets the track to use general preferences, SpectralPrefs=1 per track prefs. When using general preferences, SetPreferences can be used ot change a preference and so affect display of the track.  Name is used to set the name.  It is not used in choosing the track."},
+    long:  "+.  Setting one channel of a stereo track can lead to interesting results.  That's most used when setting relative sizing of the two channels.  SpectralPrefs=1 sets the track to use general preferences, SpectralPrefs=1 per track prefs. When using general preferences, SetPreferences can be used to change a preference and so affect display of the track.  Name is used to set the name.  It is not used in choosing the track."},
 
 
   { key:   "Get Preference...",
