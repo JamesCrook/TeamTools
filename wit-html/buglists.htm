@@ -186,8 +186,24 @@ function fixupClosed(){
     }
 }
 
+function startUpDump(){
+  var i;
+  var n = Issues.length;
+  var result = "";
+  for( i=Issues.length-1;i>=0;i--){
+    var iss = Issues[i];
+    result += ""+(n-i)+": " + iss['Summary'] +"\n";
+    result += "" + iss['Bug ID'] + " ~ " + iss['Resolution'] + "\n";
+    result += "" + iss['Priority'] + " " + iss['Severity'] +"\n";
+    result += "" + (iss['Closed']  || "---") +"\n";
+    result += "\n" ;
+  }
+  console.log( result );
+}
+
 fixupClosed();
 showClosed();
+//startUpDump();
 
         function inDateRange( value ){
             var when = value['Closed'];
