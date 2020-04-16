@@ -21,13 +21,17 @@ The detailed data for the chart follows.
     "Ruler":"ZRuler",
     "margins":3,
     "sizeAs":0.1,
-    "atStart":500,
-    "atEnd":1500
+    "atStart":300,
+    "atEnd":1700
     },
     {"Graph":"Audio",
-     "scaling":"ZRuler"
-    }
-]
+     "scaling":"ZRuler",
+     "perturb":-0.03
+    },
+    {"Graph":"Audio2",
+     "scaling":"ZRuler",
+     "perturb":0.03
+    }]
 </pre>
 
 

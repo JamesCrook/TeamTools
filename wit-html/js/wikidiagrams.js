@@ -2338,36 +2338,36 @@ function drawChart(A, obj, d){
 }
 
 // x is between 0 and 2000.
-function graph1( x ){
-  return 0.7*Math.sin( Math.PI * (x/200.1257680) )*Math.sin( Math.PI * (x*1.3276409) )
+function graph1( x, perturb ){
+  return 0.7*Math.sin( Math.PI * (x/200.1257680 + perturb) )*Math.sin( Math.PI * (x*1.3276409) )
    + 0.05*Math.sin( Math.PI * (x/3.31572981) );
 }
-function graph2( x ){
-  return 0.6*Math.sin( Math.PI * (x/50.1257680) )*Math.sin( Math.PI * (x*1.3276409) )
+function graph2( x, perturb ){
+  return 0.6*Math.sin( Math.PI * (x/50.1257680 + perturb) )*Math.sin( Math.PI * (x*1.3276409) )
     + 0.05*Math.sin( Math.PI * (x/3.31572981) );
 }
-function graph3( x ){
-  return 0.5*Math.sin( Math.PI * (x/10.1257680) )*Math.sin( Math.PI * (x*1.3276409) )
+function graph3( x, perturb ){
+  return 0.5*Math.sin( Math.PI * (x/10.1257680 + perturb) )*Math.sin( Math.PI * (x*1.3276409) )
     + 0.05*Math.sin( Math.PI * (x/3.31572981) );
 }
-function graph4( x ){
-  return 0.4*Math.sin( Math.PI * (x/20.1257680) )*Math.sin( Math.PI * (x*1.3276409) )
+function graph4( x, perturb ){
+  return 0.4*Math.sin( Math.PI * (x/20.1257680 + perturb) )*Math.sin( Math.PI * (x*1.3276409) )
     + 0.05*Math.sin( Math.PI * (x/3.31572981) );
 }
-function graph5( x ){
-  return (0.1*Math.sin( Math.PI * (x/100.1257680) )+0.3)*Math.sin( Math.PI * (x*1.3276409) )
+function graph5( x, perturb ){
+  return (0.1*Math.sin( Math.PI * (x/100.1257680 + perturb) )+0.3)*Math.sin( Math.PI * (x*1.3276409) )
     + 0.05*Math.sin( Math.PI * (x/3.31572981) );
 }
-function graph6( x ){
-  return (0.01*Math.cos( Math.PI * (x/100.1257680) )+0.15)*Math.sin( Math.PI * (x*1.3276409) )
+function graph6( x, perturb ){
+  return (0.01*Math.cos( Math.PI * (x/100.1257680 + perturb) )+0.15)*Math.sin( Math.PI * (x*1.3276409) )
     + 0.05*Math.sin( Math.PI * (x/3.31572981) );
 }
 
-function graph7( x ){
-  return 0.7*Math.sin( x );
+function graph7( x, perturb ){
+  return 0.0001*Math.sin( x + perturb ) +0.3;
 }
 
-function graph8( x ){
+function graph8( x, perturb ){
   return 0.001*Math.sin(x)+0.001*Math.sin(x*2.1);
 }
 
@@ -2375,37 +2375,37 @@ function graph8( x ){
 
 var gChooser = "HABCDEFFHABBCCDDFFHADC";
 //var gChooser = "AGH";
-function graphCh( x,t ){
+function graphCh( x,t, perturb ){
   var i = Math.floor( (x+t)/100) % gChooser.length ;
   var ch = gChooser[ i ];
   switch( ch ){
     case 'A':
-      return graph1( x);
+      return graph1( x,perturb);
     case 'B':
-      return graph2( x);
+      return graph2( x,perturb);
     case 'C':
-      return graph3( x);
+      return graph3( x,perturb);
     case 'D':
-      return graph4( x);
+      return graph4( x,perturb);
     case 'E':
-      return graph5( x);
+      return graph5( x,perturb);
     case 'F':
-      return graph6( x);
+      return graph6( x,perturb);
     case 'G':
-      return graph7( x);
+      return graph7( x,perturb);
     default:
-      return graph8(x);
+      return graph8( x,perturb);
   }
 }
 
-function graphFn( x ){
-  var y0 = graphCh( x, 0 );
+function graphFn( x, perturb ){
+  var y0 = graphCh( x, 0, perturb );
 
-  var y1 = graphCh( x, -100 );
-  var t = (x - Math.floor( x/100)*100)*0.1;
+  var y1 = graphCh( x, 100, perturb );
+  var t = (x - Math.floor( x/100)*100)*0.08;
   t = constrain( 0,t,1);
   // t is between 0 and 1.
-  return y1 + t*t*(3-2*t)*( y0-y1);
+  return y0 + t*t*(3-2*t)*( y1-y0);
   //return -(t*t* (1-(1-t)*(1-t)));
   //return y1 + t*t* (1-(1-t)*(1-t))* (y0-y1);
 }
@@ -2431,7 +2431,7 @@ function scaledYofItem(i, obj, ruler ){
   var xw = l.xw;
   var yh = l.yh;
 
-  var y1 = y0 + (graphFn( i )*yh/2)+yh/2;
+  var y1 = y0 + (graphFn( i, obj.perturb )*yh/2)+yh/2;
   return y1;
 }
 
