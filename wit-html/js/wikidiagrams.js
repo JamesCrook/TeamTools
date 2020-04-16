@@ -2340,7 +2340,7 @@ function graphFn( x ){
    + 0.05*Math.sin( Math.PI * (x/3.31572981) );
 }
 
-function scaledY( x, obj, ruler ){
+function scaledYofPixelOffset(x, obj, ruler ){
   var l = obj.layout;
   var x0 = l.x0;
   var y0 = l.y0;
@@ -2351,6 +2351,112 @@ function scaledY( x, obj, ruler ){
   var x1 = ruler.atStart + (ruler.atEnd-ruler.atStart) * (x/xw);
   var y1 = y0 + (graphFn( x1 )*yh/2)+yh/2;
   return y1;
+}
+
+
+function scaledYofItem(i, obj, ruler ){
+  var l = obj.layout;
+  var x0 = l.x0;
+  var y0 = l.y0;
+  var xw = l.xw;
+  var yh = l.yh;
+
+  var y1 = y0 + (graphFn( i )*yh/2)+yh/2;
+  return y1;
+}
+
+/**
+ * Computes min and max in each column, and then infills the area.
+ * @param ctx
+ * @param obj
+ * @param ruler
+ */
+function fillMinMaxPlot(ctx, obj, ruler){
+  var l = obj.layout;
+  var x0 = l.x0;
+  var xw = l.xw;
+  var pixelsPerItem = xw/(ruler.atEnd-ruler.atStart);
+
+
+  var maxy = [];
+  var miny = [];
+  var xStart = ruler.atStart * pixelsPerItem;
+  var bucket;
+  var i;
+  for( i = ruler.atStart; i < ruler.atEnd; i++ ){
+    var y1 = scaledYofItem(i, obj, ruler);
+    bucket = Math.floor(i * pixelsPerItem - xStart);
+    if( isDefined(maxy[bucket]) ){
+      maxy[bucket] = Math.max(y1, maxy[bucket]);
+      miny[bucket] = Math.min(y1, miny[bucket]);
+    } else {
+      maxy[bucket] = y1;
+      miny[bucket] = y1;
+    }
+  }
+//  for( i = 0; i < bucket; i++ ){
+//    maxy[i] = Math.max(miny[i + 1], maxy[i]);
+//    miny[i] = Math.min(maxy[i + 1], miny[i]);
+//  }
+  ctx.fillStyle = "rgb(20,20,200)";
+  ctx.beginPath();
+  ctx.moveTo(x0, maxy[0]);
+  for( i = 1; i <= bucket; i++ ){
+    if( isDefined( maxy[i] ) )
+      ctx.lineTo(x0 + i, maxy[i] + 1.5);
+  }
+  for( i = bucket; i >= 0; i-- ){
+    if( isDefined( miny[i] ) )
+      ctx.lineTo(x0 + i, miny[i] - 1.5);
+  }
+  ctx.closePath();
+  ctx.fill();
+}
+
+function lineMinMaxPlot(ctx, obj, ruler){
+  var l = obj.layout;
+  var x0 = l.x0;
+  var y0 = l.y0;
+  var xw = l.xw;
+  var yh = l.yh;
+
+  ctx.strokeStyle = "rgb(20,20,200)";
+  ctx.lineWidth = 1;
+  var i;
+  var y1 = scaledYofPixelOffset(0, obj, ruler);
+  for( i = 1; i < xw; i++ ){
+    var y2 = scaledYofPixelOffset(i, obj, ruler);
+    ctx.beginPath();
+    ctx.moveTo(x0 + i, Math.min(y1, y2) - 0.5);
+    ctx.lineTo(x0 + i, Math.max(y1, y2) + 0.5);
+    ctx.stroke();
+    y1 = y2;
+  }
+}
+
+function linePlot(ctx, obj, ruler){
+  var l = obj.layout;
+  var x0 = l.x0;
+  var xw = l.xw;
+  var pixelsPerItem = xw / (ruler.atEnd - ruler.atStart);
+
+  ctx.strokeStyle = "rgb(20,20,200)";
+  ctx.lineWidth = 1;
+
+//  var xStart = Math.floor(ruler.atStart) * pixelsPerItem;
+  var xStart = ruler.atStart * pixelsPerItem;
+  var bucket;
+  var i;
+  var y1 = scaledYofItem(Math.floor(ruler.atStart), obj, ruler);
+  //var dx = (ruler.atStart -Math.floor(ruler.atStart))
+  ctx.beginPath();
+  ctx.moveTo(x0-10, y1);
+  for( i = Math.floor(ruler.atStart); i < Math.floor(ruler.atEnd)+2; i+=0.1 ){
+    var xx = (i * pixelsPerItem - xStart);
+    var y1 = scaledYofItem(i, obj, ruler);
+    ctx.lineTo(xx, y1);
+  }
+  ctx.stroke();
 }
 
 function drawGraph( A, obj, d ){
@@ -2369,22 +2475,22 @@ function drawGraph( A, obj, d ){
 
   var ruler = objectFromId(A, obj.scaling);
 
+  var pixelsPerItem = xw/(ruler.atEnd-ruler.atStart);
 
 
   var ctx = A.BackingCanvas.ctx;
-  ctx.strokeStyle = "rgb(20,20,200)";
-  ctx.lineWidth = 1;
 
-  var y1 = scaledY( 0, obj, ruler );
-  for(i=1;i<xw;i++){
-    var y2 = scaledY( i, obj, ruler );
-    ctx.beginPath();
-    ctx.moveTo(x0+i, Math.min( y1, y2)-0.5 );
-    ctx.lineTo( x0+i, Math.max( y1,y2)+0.5 );
-    ctx.stroke();
-    y1 = y2;
+  linePlot( ctx, obj, ruler );
+
+/*
+  if( pixelsPerItem > 5.5 ){
+    lineMinMaxPlot(ctx, obj, ruler);
   }
-
+  else {
+    linePlot( ctx, obj, ruler );
+    //fillMinMaxPlot(ctx, obj, ruler);
+  }
+*/
 }
 
 
