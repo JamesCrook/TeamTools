@@ -4383,7 +4383,10 @@ function createDraggable(A, obj, d){
   obj.onClick = onDraggableClicked;
   //obj.onMouseUp = finalDraw;
 }
-
+function createDraggable2(A, obj, d){
+  obj.onClick = onDraggableClicked2;
+  //obj.onMouseUp = finalDraw;
+}
 
 function registerMethods()
 {
@@ -4403,7 +4406,7 @@ function registerMethods()
   registerMethod( "Prog",     createProg,sizeNowt,layoutNowt, 0);
   registerMethod( "KWIC",     createKwic, 0,0, drawKwic);
   registerMethod( "Draggable", createDraggable, 0,0, drawDraggable);
-  registerMethod( "Drag2", createDraggable, 0,0, drawDraggable2);
+  registerMethod( "Drag2", createDraggable2, 0,0, drawDraggable2);
 
 }
 

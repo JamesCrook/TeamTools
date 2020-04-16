@@ -1,6 +1,4 @@
 
-
-
 function getSmileToken( toParse ){
   result = { tok:"", type:'none'};
   n= toParse.str.length;
@@ -94,7 +92,6 @@ function getSmileToken( toParse ){
 }
 
 var Smiles = {};
-
 
 // A look up table of colours;
 function initSmiles(){
@@ -563,6 +560,41 @@ function rulerIxOfx( A, obj, x ){
   return obj.atStart + (x-obj.layout.x0) * obj.itemsPerPixel;
 }
 
+function xOfRulerIx( A, obj, ix ){
+  return (ix - obj.atStart) / obj.itemsPerPixel + obj.layout.x0;
+}
+
+/**
+ * Converts mid dragger x position to an Ix and remembers it.
+ * @param A
+ * @param obj
+ */
+function computeMidDraggerIx(A, obj){
+  var mid = obj.content[1];
+  var midx = mid.offset.x + mid.layout.x0;
+  //midx=0;
+  obj.centerIx = rulerIxOfx(A, obj, midx);
+}
+
+/**
+ * Converts mid dragger Ix back to an x position, ready for drawing.
+ * In conjunction with computeMidDraggerIx this allows the mid dragger
+ * to be repositioned for ruler changes.
+ * @param A
+ * @param obj
+ */
+function repositionMidDragger(A, obj){
+  var mid = obj.content[1];
+  var inset = mid.inset;
+  obj.itemsPerPixel = (obj.atEnd - obj.atStart) / obj.layout.xw;
+  var newpos = xOfRulerIx(A, obj, obj.centerIx);
+  //var bak = rulerIxOfx( A, obj, newpos );
+  //console.log( "Midx: "+midx + " Ix: "+obj.centerIx + " newx "+newpos+ " atIx
+  // "+ bak ); reposition mid-dragger.
+  mid.offset.x = constrain( inset, newpos - mid.layout.x0, obj.layout.xw - inset);
+  computeMidDraggerIx(A, obj );
+}
+
 
 function onRulerClicked(A, obj){
   var l = obj.layout;
@@ -576,15 +608,15 @@ function onRulerClicked(A, obj){
 
   console.log( "Clicked on Object " + obj.id );
   A.dragObj = obj;
+  //obj.draggerIx = rulerIxOfx( A, obj, obj.content[1].offset.x);
   obj.offset = {x:A.Status.click.x ,y:A.Status.click.y };
   obj.dragIx = rulerIxOfx( A, obj, A.Status.click.x );
-  var mid = obj.content[1];
-  var midx = mid.offset.x + mid.layout.x0;
-  //midx=0;
-  obj.centerIx = rulerIxOfx( A, obj, midx );
+  computeMidDraggerIx(A, obj);
   console.log( "Click Index: "+obj.dragIx );
   console.log( "Center Index: "+obj.centerIx );
 }
+
+
 
 function draggingRuler( A, obj, dd ){
   dd.y = constrain( 20, dd.y, 20 );
@@ -613,7 +645,23 @@ function draggingRuler( A, obj, dd ){
 
   obj.atStart = constrain( -70, startIx, 2000 );
   obj.atEnd = constrain( -70, endIx, 2000 );
+  repositionMidDragger(A, obj );
 }
+
+function onDraggableClicked2(A, obj){
+  var l = obj.layout;
+  var x = l.x0;
+  var y = l.y0;
+  var xw = l.xw;
+  var yh = l.yh;
+
+  if( !A.Status.click )
+    return;
+  console.log( "Clicked on Ruler Object ", obj.id );
+  A.dragObj = obj;
+  computeMidDraggerIx(A, obj.parent);
+}
+
 
 /**
  * Dragger can be on its line or slightly below.
@@ -644,9 +692,10 @@ function draggingMarker( A, obj, dd ){
   parent.atStart += dx;
   parent.atEnd   += dx;
   console.log( "SE: "+ parent.atStart +" "+ parent.atEnd );
+  if( obj.glyph === "Mid" )
+    return;
+  repositionMidDragger(A, obj.parent );
 }
-
-
 
 var dragNamer = 1234;
 
@@ -663,18 +712,17 @@ function makeDraggerObject(obj, A, pos){
   dragger.type = "Drag2";
   var types = "L Mid R".split(" ");
   dragger.glyph = types[pos];
-  dragger.onClick = onDraggableClicked;
+  dragger.onClick = onDraggableClicked2;
   dragger.offset = { x: pos * (l2.xw / 2 -inset ) +inset, y: 0};
   dragger.id = "Drag"+(dragNamer++);
   dragger.wobble = 0;
-  dragger.gearing = 3;
-  dragger.inset = 0;
+  dragger.gearing = 1;
+  dragger.inset = 45;
   addObjectToDictionary(A, dragger);
   dragger.parent = obj;
   obj.content.push(dragger);
   return dragger;
 }
-
 
 /**
  * On finishing mid dragger dragging, it pops back onto its line.
@@ -710,10 +758,6 @@ function finishRDragger( A, obj ){
   finalDraw( A, obj );
 }
 
-
-
-
-
 /**
  * Updates the position of the draggers AND
  * updates the parent object too, if required.
@@ -738,6 +782,7 @@ function updateDraggers(A, obj, d){
     // if it moves as far as possible off the line it 'disengages'.
     dragger.wobble = 5;
     dragger.gearing= 1;
+    dragger.inset = 80;
     dragger.onMouseUp = finishMid;
     dragger = makeDraggerObject(obj, A, 2);
     dragger.dragFn = draggingMarker;
