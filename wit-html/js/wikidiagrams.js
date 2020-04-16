@@ -2364,7 +2364,7 @@ function graph6( x, perturb ){
 }
 
 function graph7( x, perturb ){
-  return 0.0001*Math.sin( x + perturb ) +0.3;
+  return 0.07*(0.1*Math.sin( Math.PI * (x/90.1257680 + 0.33+perturb) )+0.3)*Math.sin( x + perturb*2 );
 }
 
 function graph8( x, perturb ){
@@ -2373,7 +2373,7 @@ function graph8( x, perturb ){
 
 
 
-var gChooser = "HABCDEFFHABBCCDDFFHADC";
+var gChooser = "HGABCDEFFHABBCCDDFFHADC";
 //var gChooser = "AGH";
 function graphCh( x,t, perturb ){
   var i = Math.floor( (x+t)/100) % gChooser.length ;

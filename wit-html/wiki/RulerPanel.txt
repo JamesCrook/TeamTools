@@ -26,11 +26,11 @@ The detailed data for the chart follows.
     },
     {"Graph":"Audio",
      "scaling":"ZRuler",
-     "perturb":-0.03
+     "perturb":-0.06
     },
     {"Graph":"Audio2",
      "scaling":"ZRuler",
-     "perturb":0.03
+     "perturb":0.06
     }]
 </pre>
 
