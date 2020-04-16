@@ -34,6 +34,7 @@ The detailed data for the chart follows.
 <pre>CREDITS:CAPTION=Zoomable Waveform;TIP=</pre>
 <h3>Instructions</h3>
 <ul>
-<li>Drag Ruler to resize.
+<li>Drag on ruler to zoom in/out.
+<li>Drag on widgets to scroll left/right
 </ul><br><br>
 <b>Credits:</b> <em>James Crook ©2020; Image CC0</em>
