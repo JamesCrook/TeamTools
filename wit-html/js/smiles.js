@@ -808,7 +808,7 @@ function updateDraggers(A, obj, d){
     dragger.dragFn = draggingMarker;
     // wobble is how far off the horizontal line the dragger can move
     // if it moves as far as possible off the line it 'disengages'.
-    dragger.wobble = 5;
+    //dragger.wobble = 5;
     dragger.gearing= 1;
     dragger.inset = 80;
     dragger.onMouseUp = finishMid;
