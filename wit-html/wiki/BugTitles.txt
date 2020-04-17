@@ -224,17 +224,17 @@ P3 Repeatable
 2012-03-25 17:31:28
 
 46: GSM 6.10 files cannot be exported, and U-Law/A-Law files may not be playable.
-46 ~ ---
+46 Still open
 P3 RepeatableAll
 ---
 
 47: Windows: LADSPA Multiband EQ may not be visible in Effect menu and crashes soon after opening
-47 ~ ---
+47 Still open
 P5 Repeatable
 ---
 
 48: FFmpeg: Poor reporting of 'Library not found'.
-48 ~ ---
+48 Still open
 P4 RepeatableAll
 ---
 
@@ -289,7 +289,7 @@ P3 MoonPhase
 2018-02-22 10:05:22
 
 59: No error reported to user and crash when FFmpeg attempts invalid custom export of WAV with mp2 codec
-59 ~ ---
+59 Still open
 P3 RepeatableAll
 ---
 
@@ -389,7 +389,7 @@ P5 Enhancement
 2017-08-07 09:37:02
 
 79: Enh: "Automatically fit" preference applied inconsistently.
-79 ~ ---
+79 Still open
 P5 Enhancement
 ---
 
@@ -424,7 +424,7 @@ P4 Repeatable
 2013-11-01 23:50:23
 
 86: Memory leaks (also including Nyquist)
-86 ~ ---
+86 Still open
 P4 RepeatableAll
 ---
 
@@ -449,12 +449,12 @@ P4 Repeatable
 2017-08-07 09:52:51
 
 91: Enh: Mac/Linux: Random bits of silence recording (with Jack) and differing sample rates.
-91 ~ ---
+91 Still open
 P4 Enhancement
 ---
 
 92: Linux: Defining EXPERIMENTAL_SCOREALIGN prevents building
-92 ~ ---
+92 Still open
 P5 Repeatable
 ---
 
@@ -479,12 +479,12 @@ P5 RepeatableAll
 2017-08-31 14:02:44
 
 97: Windows: Executable will not launch in Safe Mode but runs an unkillable process
-97 ~ ---
+97 Still open
 P5 Repeatable
 ---
 
 98: Debug Log window and Screenshot tools don't close on ESC
-98 ~ ---
+98 Still open
 P5 Accessibility
 ---
 
@@ -494,12 +494,12 @@ P5 Enhancement
 2017-08-10 11:35:30
 
 100: Enh: Dependencies Dialog: If click on "Copy Selected Audio Into Project" in error, the copying cannot be cancelled from the progress dialog
-100 ~ ---
+100 Still open
 P5 Enhancement
 ---
 
 101: Nyquist implementation: (dribble [fname]) function
-101 ~ ---
+101 Still open
 P5 RepeatableAll
 ---
 
@@ -509,17 +509,17 @@ P5 Enhancement
 2018-04-11 12:11:39
 
 103: s-add-to does not work with stereo sounds (arrays)
-103 ~ ---
+103 Still open
 P5 RepeatableAll
 ---
 
 104: Win/Mac: Timer Record prevents Audacity being minimised
-104 ~ ---
+104 Still open
 P4 Repeatable
 ---
 
 105: Horizontal scrolling when Prefs set to "Update display" causes playback desynchronisation or interface corruption
-105 ~ ---
+105 Still open
 P5 RepeatableAll
 ---
 
@@ -584,17 +584,17 @@ P4 Review
 2014-10-04 10:05:47
 
 118: Linux: Audacity doesn't recognise locally installed FFmpeg library
-118 ~ ---
+118 Still open
 P4 Repeatable
 ---
 
 119: Linux: Export Multiple: "*" and "?" in label or track name wrongly rejected
-119 ~ ---
+119 Still open
 P3 Repeatable
 ---
 
 120: Mac/Linux: Entering "\" in file name when saving projects disallows the save.
-120 ~ ---
+120 Still open
 P3 Repeatable
 ---
 
@@ -669,7 +669,7 @@ P3 Repeatable
 2011-04-05 20:36:20
 
 135: Linux: Custom FFmpeg Export dialogue does not respond to ENTER after clicking in the Formats or Codec selector
-135 ~ ---
+135 Still open
 P4 Repeatable
 ---
 
@@ -759,7 +759,7 @@ P4 Repeatable
 2012-06-22 23:39:44
 
 153: Enh: Compressor usability enhancements
-153 ~ ---
+153 Still open
 P4 Enhancement
 ---
 
@@ -789,7 +789,7 @@ P1 Repeatable
 2010-05-12 11:38:15
 
 159: Linux: Support X11 second clipboard in Label Tracks.
-159 ~ ---
+159 Still open
 P5 Enhancement
 ---
 
@@ -829,17 +829,17 @@ P2 Repeatable
 2010-06-19 12:56:05
 
 167: Mac: Output error to Bluetooth playback devices
-167 ~ ---
+167 Still open
 P3 Repeatable
 ---
 
 168: Enh: Linux: Invoke update-mime-database in install: and uninstall:
-168 ~ ---
+168 Still open
 P4 Enhancement
 ---
 
 169: Linux: Welcome Message: Local links to "Quick Help" and "Manual" do nothing if help is not installed.
-169 ~ ---
+169 Still open
 P4 Repeatable
 ---
 
@@ -959,12 +959,12 @@ P4 Review
 2018-04-13 07:52:30
 
 193: Audacity can't record at > 16-bit under MME (and possibly WASAPI)
-193 ~ ---
+193 Still open
 P5 Repeatable
 ---
 
 194: Enh: Provide sample format info, (PortAudio doesn't provide this)
-194 ~ ---
+194 Still open
 P5 Enhancement
 ---
 
@@ -994,7 +994,7 @@ P2 Repeatable
 2010-09-02 06:34:29
 
 200: Enh: Progress dialogs inconsistent across multiple tracks, clips. files
-200 ~ ---
+200 Still open
 P4 Enhancement
 ---
 
@@ -1014,7 +1014,7 @@ P4 Enhancement
 2017-11-26 10:09:52
 
 204: Some VST dll's cause Audacity to scan all dll's in Program Files (x86)
-204 ~ ---
+204 Still open
 P4 MoonPhase
 ---
 
@@ -1034,7 +1034,7 @@ PX Review
 2010-08-19 18:39:37
 
 208: Some effects delete Envelope Control Points, or do not move them when timeline changes
-208 ~ ---
+208 Still open
 P3 RepeatableAll
 ---
 
@@ -1079,7 +1079,7 @@ P2 Repeatable
 2011-01-27 06:45:05
 
 217: Progress dialog/better handling needed for waveform drawing
-217 ~ ---
+217 Still open
 P4 Enhancement
 ---
 
@@ -1129,7 +1129,7 @@ P4 Review
 2010-09-19 15:59:18
 
 227: Mac: Built-in effect sliders don't respond correctly to arrow keys
-227 ~ ---
+227 Still open
 P4 Accessibility
 ---
 
@@ -1164,7 +1164,7 @@ P4 Enhancement
 2013-01-13 15:12:21
 
 234: Transport button behaviour in multiple projects
-234 ~ ---
+234 Still open
 P4 RepeatableAll
 ---
 
@@ -1194,7 +1194,7 @@ P4 Review
 2017-08-10 13:10:06
 
 240: Time Track selection, movement, location bugs
-240 ~ ---
+240 Still open
 P4 RepeatableAll
 ---
 
@@ -1219,7 +1219,7 @@ P1 Repeatable
 2010-10-21 11:45:57
 
 245: Enh: Beep playback delays following tasks until playback complete
-245 ~ ---
+245 Still open
 P5 Enhancement
 ---
 
@@ -1229,7 +1229,7 @@ P4 Review
 2018-08-09 09:36:45
 
 247: Enh: Can't reliably find standard file locations in Nyquist plug-ins
-247 ~ ---
+247 Still open
 P4 Repeatable
 2010-10-28 14:47:44
 
@@ -1314,7 +1314,7 @@ P2 Repeatable
 2011-01-25 09:26:58
 
 264: Linux: Some apps do not see exported MP3 metadata
-264 ~ ---
+264 Still open
 P4 Repeatable
 ---
 
@@ -1324,12 +1324,12 @@ P3 Repeatable
 2012-07-24 05:21:43
 
 266: Set Sample Format lacks progress dialogue
-266 ~ ---
+266 Still open
 P5 RepeatableAll
 ---
 
 267: Linux: PortAudio warnings on startup
-267 ~ ---
+267 Still open
 P5 Repeatable
 ---
 
@@ -1344,7 +1344,7 @@ PX Review
 2011-04-20 04:59:12
 
 270: Linux: Audacity breaks system bluetooth support
-270 ~ ---
+270 Still open
 P3 Repeatable
 ---
 
@@ -1374,7 +1374,7 @@ P3 Repeatable
 2014-08-21 01:35:34
 
 276: Linux: PULSE-AUDIO issues.  Freeze repeatedly starting/stopping streams.
-276 ~ ---
+276 Still open
 P2 Repeatable
 ---
 
@@ -1439,7 +1439,7 @@ P4 Repeatable
 2012-06-09 14:05:45
 
 289: Linux: Mixer Board: Slow meter response at start of playback
-289 ~ ---
+289 Still open
 P4 Repeatable
 ---
 
@@ -1449,7 +1449,7 @@ P2 Repeatable
 2017-10-30 07:15:32
 
 291: Certain USB/FW devices have reduced recording channels compared to past.
-291 ~ ---
+291 Still open
 P5 Repeatable
 ---
 
@@ -1509,7 +1509,7 @@ P4 Review
 2018-08-10 06:13:49
 
 303: Repeatedly generating inside clips eventually changes the clip length
-303 ~ ---
+303 Still open
 P4 RepeatableAll
 ---
 
@@ -1524,7 +1524,7 @@ P4 RepeatableAll
 2017-12-19 07:27:49
 
 306: Linux: xrun glitches when recording with software playthrough, caused by too demanding PortAudio latencies
-306 ~ ---
+306 Still open
 P3 Repeatable
 ---
 
@@ -1579,7 +1579,7 @@ P4 Repeatable
 2011-03-14 09:23:09
 
 317: Linux: FFmpeg: "M4A Files" exports take unreasonably long compared to (external program)
-317 ~ ---
+317 Still open
 P3 Repeatable
 ---
 
@@ -1599,7 +1599,7 @@ P4 Repeatable
 2016-08-17 22:42:56
 
 321: Linux: Long unresponsive delay after recording
-321 ~ ---
+321 Still open
 P4 Repeatable
 ---
 
@@ -1609,7 +1609,7 @@ P4 RepeatableAll
 2017-10-11 10:38:04
 
 323: Linux: Audacity does not report aborted recording
-323 ~ ---
+323 Still open
 P4 Repeatable
 ---
 
@@ -1619,12 +1619,12 @@ P2 Repeatable
 2011-04-04 21:13:44
 
 325: Flac export lacks seekpoints and metadata padding.
-325 ~ ---
+325 Still open
 P4 RepeatableAll
 ---
 
 326: Recovery does not retain project name from import
-326 ~ ---
+326 Still open
 P5 RepeatableAll
 ---
 
@@ -1654,7 +1654,7 @@ P3 Repeatable
 2012-08-05 01:16:52
 
 332: Redundant window opened when executing an already open project from outside Audacity
-332 ~ ---
+332 Still open
 P5 RepeatableAll
 ---
 
@@ -1669,12 +1669,12 @@ P3 Repeatable
 2015-10-15 03:19:06
 
 335: Linux: wxWidgets locale translations not being used
-335 ~ ---
+335 Still open
 P4 Locale
 ---
 
 336: Enh: Support (and test) 64 bit Nyquist in Audacity.
-336 ~ ---
+336 Still open
 P5 Enhancement
 ---
 
@@ -1714,7 +1714,7 @@ P4 Enhancement
 2018-08-11 10:16:09
 
 344: FFmpeg: M4A Quality slider prevents precise bitrate setting.
-344 ~ ---
+344 Still open
 P3 Enhancement
 ---
 
@@ -1759,7 +1759,7 @@ P5 Enhancement
 2017-08-10 11:27:09
 
 353: FFmpeg: Artist tag not imported in WMA and APE files
-353 ~ ---
+353 Still open
 P3 RepeatableAll
 ---
 
@@ -1789,7 +1789,7 @@ P4 MoonPhase
 2015-05-15 08:23:20
 
 359: Linux: Crash after pulse failed during recording: double free or corruption
-359 ~ ---
+359 Still open
 P5 MoonPhase
 ---
 
@@ -1874,7 +1874,7 @@ P3 Repeatable
 2012-05-09 17:03:42
 
 376: ;debugflags trace" has no effect when the plug-in has a dialogue
-376 ~ ---
+376 Still open
 P4 RepeatableAll
 ---
 
@@ -1924,12 +1924,12 @@ P4 Summary
 2015-04-18 09:52:51
 
 386: Enh: Monitoring to be preserved when Resetting toolbars during playback or recording
-386 ~ ---
+386 Still open
 P5 Enhancement
 ---
 
 387: Win/Linux: Text export for Contrast and Plot Spectrum does not supply extension if omitted
-387 ~ ---
+387 Still open
 P4 Repeatable
 ---
 
@@ -1959,7 +1959,7 @@ P4 Repeatable
 2018-08-13 11:44:04
 
 393: Enh: Vertical drag does not scroll the project
-393 ~ ---
+393 Still open
 P4 Enhancement
 ---
 
@@ -1989,7 +1989,7 @@ P4 CometReturns
 2018-08-11 10:31:27
 
 399: Mac: System audio playback lost after using Audacity
-399 ~ ---
+399 Still open
 P3 CometReturns
 ---
 
@@ -2084,7 +2084,7 @@ P3 MoonPhase
 2017-11-26 08:28:45
 
 418: Win/Linux: Device Toolbar can be dragged outside its max height/width
-418 ~ ---
+418 Still open
 P5 Repeatable
 ---
 
@@ -2099,7 +2099,7 @@ P3 Enhancement
 2017-11-26 10:07:06
 
 421: Crash importing malformed MP3 file using libmad
-421 ~ ---
+421 Still open
 P3 RepeatableAll
 ---
 
@@ -2119,7 +2119,7 @@ P3 Repeatable
 2017-11-26 10:07:38
 
 425: Win/Linux: Nyquist: (vector (aref s 0)(aref s 0)) not returned correctly to track
-425 ~ ---
+425 Still open
 P5 Repeatable
 ---
 
@@ -2189,12 +2189,12 @@ P4 Repeatable
 2018-08-11 11:30:13
 
 439: Nyquist effects overflow at > 2^31 samples
-439 ~ ---
+439 Still open
 P3 RepeatableAll
 ---
 
 440: Metadata Editor: Tags without values can't be added
-440 ~ ---
+440 Still open
 P4 RepeatableAll
 ---
 
@@ -2259,7 +2259,7 @@ P4 Repeatable
 2018-08-13 11:48:56
 
 453: Nyquist receives Unicode characters from Audacity producing platform-inconsistent behaviour
-453 ~ ---
+453 Still open
 P5 RepeatableAll
 ---
 
@@ -2299,7 +2299,7 @@ P4 Repeatable
 2018-08-11 12:34:08
 
 461: MIDI or Allegro export filter does not enforce output format cross-platform
-461 ~ ---
+461 Still open
 P3 RepeatableAll
 ---
 
@@ -2369,7 +2369,7 @@ P3 Repeatable
 2012-03-06 11:41:11
 
 475: Linux: Selection shading inconsistent on MIDI tracks
-475 ~ ---
+475 Still open
 P4 Repeatable
 ---
 
@@ -2424,12 +2424,12 @@ P4 Enhancement
 2014-09-12 13:39:41
 
 486: Linux: portmixer ignores compiler flags from the environment
-486 ~ ---
+486 Still open
 P4 Repeatable
 ---
 
 487: Scrollbars behaviour is inconsistent when project fits in window
-487 ~ ---
+487 Still open
 P5 RepeatableAll
 ---
 
@@ -2454,12 +2454,12 @@ P4 Enhancement
 2018-04-12 12:34:50
 
 492: Add mixed-radix-fft implementation with menu item to adjust spectrogram window
-492 ~ ---
+492 Still open
 P4 Enhancement
 ---
 
 493: Linux: garbage pixels in right edge of waveform background
-493 ~ ---
+493 Still open
 P5 Repeatable
 ---
 
@@ -2474,7 +2474,7 @@ P3 Repeatable
 2012-05-17 18:02:01
 
 496: Modifier keys ignored when focus is on time box in the Selection Toolbar
-496 ~ ---
+496 Still open
 P4 Accessibility
 ---
 
@@ -2484,7 +2484,7 @@ P4 Repeatable
 2012-06-17 05:18:10
 
 498: Enh: Yellow snap guidelines lost after saving in high resolution selection format
-498 ~ ---
+498 Still open
 P4 Enhancement
 ---
 
@@ -2524,7 +2524,7 @@ P3 MoonPhase
 2017-05-14 22:23:04
 
 506: Windows: Exported WAV's containing a 61-character Comments tag and three other supported tags are unplayable
-506 ~ ---
+506 Still open
 P4 Repeatable
 ---
 
@@ -2574,7 +2574,7 @@ P4 RepeatableAll
 2018-03-26 07:27:19
 
 516: Keyboard shortcuts may fail after running Nyquist Workbench
-516 ~ ---
+516 Still open
 P4 RepeatableAll
 ---
 
@@ -2649,12 +2649,12 @@ P3 Repeatable
 2013-08-21 13:00:07
 
 531: Effects shortcut fails if a now removed plug-in had that shortcut
-531 ~ ---
+531 Still open
 P4 RepeatableAll
 ---
 
 532: Windows: Handling of forward slash in plug-in name in audacity.cfg New Keys
-532 ~ ---
+532 Still open
 P5 Repeatable
 ---
 
@@ -2664,27 +2664,27 @@ P4 Repeatable
 2012-08-01 17:19:04
 
 534: Mac: Page Up/Page Down when slider focused also scrolls the project.
-534 ~ ---
+534 Still open
 P4 Accessibility
 ---
 
 535: Native Audacity formats won't import via FFmpeg/QuickTime (Mac) filter ignored until click OK on Preferences
-535 ~ ---
+535 Still open
 P3 RepeatableAll
 ---
 
 536: FFmpeg OD computation stalls if undoing an effect before waveform computation completes
-536 ~ ---
+536 Still open
 P4 RepeatableAll
 ---
 
 537: Windows: FFmpeg OD doesn't import all the streams
-537 ~ ---
+537 Still open
 P4 Repeatable
 ---
 
 538: Windows: FFmpeg OD without seeking: an effect can be applied to a selection before the computation is made, silencing the audio.
-538 ~ ---
+538 Still open
 P3 Repeatable
 ---
 
@@ -2694,12 +2694,12 @@ P2 Repeatable
 2012-07-27 04:00:14
 
 540: Linux: Audacity does not build against FFmpeg SVN
-540 ~ ---
+540 Still open
 P3 Repeatable
 ---
 
 541: Audacity non-default ID3 frames rewritten as TXXX, rendering them invisible in WMP and iTunes
-541 ~ ---
+541 Still open
 P4 RepeatableAll
 ---
 
@@ -2734,12 +2734,12 @@ P4 Enhancement
 2018-08-13 12:20:40
 
 548: Enh: Add export format options and export sample rate to Chain parameters
-548 ~ ---
+548 Still open
 P3 Enhancement
 ---
 
 549: Enh: Add missing export formats to Chains
-549 ~ ---
+549 Still open
 P3 Enhancement
 ---
 
@@ -2749,7 +2749,7 @@ P4 Enhancement
 2017-11-26 10:12:02
 
 551: Export Multiple: Pass through common metadata to next window
-551 ~ ---
+551 Still open
 P3 Enhancement
 ---
 
@@ -2769,7 +2769,7 @@ P4 Enhancement
 2012-07-19 02:17:10
 
 555: Export fails without warning if missing alias file but current project state does not depend on it
-555 ~ ---
+555 Still open
 P3 RepeatableAll
 ---
 
@@ -2809,7 +2809,7 @@ P4 Repeatable
 2017-10-25 14:08:56
 
 563: ID3 v2.4 tags in imported MP3 files are not seen so are removed on export
-563 ~ ---
+563 Still open
 P3 RepeatableAll
 ---
 
@@ -2819,7 +2819,7 @@ P4 Repeatable
 2012-07-28 15:55:58
 
 565: Enh: Easier way to avoid clipping on multiple tracks
-565 ~ ---
+565 Still open
 P4 Enhancement
 ---
 
@@ -2889,27 +2889,27 @@ P3 Repeatable
 2013-02-02 07:37:05
 
 579: Linux: Nyquist Workbench mishandles new line characters
-579 ~ ---
+579 Still open
 P5 Repeatable
 ---
 
 580: Nyquist Workbench does not remember Font selection
-580 ~ ---
+580 Still open
 P5 RepeatableAll
 ---
 
 581: Nyquist Workbench: Code pasted in sometimes displayed in red
-581 ~ ---
+581 Still open
 P5 RepeatableAll
 ---
 
 582: Nyquist Workbench types tabs rather than spaces for indentation
-582 ~ ---
+582 Still open
 P5 RepeatableAll
 ---
 
 583: Syntax Highlighting for Nyquist Workbench
-583 ~ ---
+583 Still open
 P4 Enhancement
 ---
 
@@ -2919,7 +2919,7 @@ P2 Repeatable
 2013-05-26 07:32:23
 
 585: Linux: Requested 44100Hz sample rate not honored on recording.
-585 ~ ---
+585 Still open
 P4 Repeatable
 ---
 
@@ -2944,7 +2944,7 @@ P4 RepeatableAll
 2018-01-26 05:44:50
 
 590: Win/Linux: Audacity crashes with LADSPA blop plug-ins
-590 ~ ---
+590 Still open
 P3 Repeatable
 ---
 
@@ -2954,7 +2954,7 @@ P3 Repeatable
 2012-10-15 02:57:17
 
 592: Win/Linux: Corrupt OGG starts to import then quits instead of reporting sequence number gap
-592 ~ ---
+592 Still open
 P5 Repeatable
 ---
 
@@ -3049,7 +3049,7 @@ P3 Repeatable
 2013-01-21 12:59:40
 
 611: Linux: Muted track at different rate to project rate un-necessarily resampled
-611 ~ ---
+611 Still open
 P4 Repeatable
 ---
 
@@ -3069,7 +3069,7 @@ P3 Repeatable
 2014-09-26 20:08:24
 
 615: Time Track playback silenced in libresample
-615 ~ ---
+615 Still open
 P4 RepeatableAll
 ---
 
@@ -3089,7 +3089,7 @@ P4 Repeatable
 2013-03-15 16:44:57
 
 619: TwoPassSimpleMono converts to track bit format between passes, losing quality.
-619 ~ ---
+619 Still open
 P5 Enhancement
 ---
 
@@ -3099,7 +3099,7 @@ P4 Repeatable
 2013-03-10 06:58:19
 
 621: Metadata Editor: saved tags not displayed when importing MP2/MP3/FLAC/FFmpeg formats without metadata
-621 ~ ---
+621 Still open
 P4 RepeatableAll
 ---
 
@@ -3114,7 +3114,7 @@ P4 Enhancement
 2018-08-13 14:25:20
 
 624: Keyboard Preferences: No check on importing XML file for duplicated bindings
-624 ~ ---
+624 Still open
 P4 RepeatableAll
 ---
 
@@ -3134,7 +3134,7 @@ P2 Repeatable
 2013-04-24 14:51:17
 
 628: Chains: Apply Chain/progress bars dialogs are modal, so cannot minimise Audacity
-628 ~ ---
+628 Still open
 P5 RepeatableAll
 ---
 
@@ -3189,7 +3189,7 @@ P4 Repeatable
 2013-07-11 05:18:56
 
 639: Equalization: Slight changes to Graphic Sliders after running the effect
-639 ~ ---
+639 Still open
 P5 RepeatableAll
 ---
 
@@ -3214,7 +3214,7 @@ P4 Enhancement
 2016-03-29 07:15:35
 
 644: Assert in libnyquist sndseq.c causes Audacity to crash.
-644 ~ ---
+644 Still open
 P4 RepeatableAll
 ---
 
@@ -3259,7 +3259,7 @@ P5 Summary
 2018-09-09 11:20:29
 
 653: Metadata: UTF-16 ID3 tags read incorrectly.
-653 ~ ---
+653 Still open
 P3 RepeatableAll
 ---
 
@@ -3274,7 +3274,7 @@ P1 Repeatable
 2015-02-06 20:16:25
 
 656: Simplified View - Residual Issues
-656 ~ ---
+656 Still open
 P4 Locale
 ---
 
@@ -3294,7 +3294,7 @@ P4 Repeatable
 2013-12-03 20:12:05
 
 660: Incorrect frequency in Equalization and Classic Filters when tracks have different sample rates
-660 ~ ---
+660 Still open
 P4 Enhancement
 ---
 
@@ -3319,12 +3319,12 @@ P3 Repeatable
 2016-06-22 14:04:12
 
 665: Issues with 3rd party AUs and VSTs - Crash and hang bugs
-665 ~ ---
+665 Still open
 P5 Repeatable
 ---
 
 666: Mac: Cannot "import" audio files named with "\" using File>Open or File>Open Recent
-666 ~ ---
+666 Still open
 P3 Repeatable
 ---
 
@@ -3379,12 +3379,12 @@ P4 Repeatable
 2014-08-23 23:55:35
 
 677: Win/Linux: Cannot interact with log if already open when called from Sequence Tags warning.
-677 ~ ---
+677 Still open
 P4 Repeatable
 ---
 
 678: Linux: Incorrect time display for times > 2^31 samples.
-678 ~ ---
+678 Still open
 P4 Repeatable
 ---
 
@@ -3394,7 +3394,7 @@ P2 Repeatable
 2013-11-10 19:03:10
 
 680: Undo Recover" does not undo.
-680 ~ ---
+680 Still open
 P5 RepeatableAll
 ---
 
@@ -3404,7 +3404,7 @@ P1 Repeatable
 2014-08-08 18:20:17
 
 682: Linux: Keyboard Preferences: focus trapped in Search box
-682 ~ ---
+682 Still open
 P3 Accessibility
 ---
 
@@ -3499,7 +3499,7 @@ P4 Repeatable
 2014-08-25 01:37:40
 
 701: Embedded album art and lyrics discarded
-701 ~ ---
+701 Still open
 P3 RepeatableAll
 ---
 
@@ -3509,7 +3509,7 @@ P4 Repeatable
 2017-08-11 11:24:57
 
 703: Linux: Metadata Editor fields except Genre lose selection on right-click.
-703 ~ ---
+703 Still open
 P4 Repeatable
 ---
 
@@ -3534,7 +3534,7 @@ P4 Repeatable
 2014-08-25 20:47:54
 
 708: Linux: Selection un-frozen after effect preview
-708 ~ ---
+708 Still open
 P4 Repeatable
 ---
 
@@ -3549,7 +3549,7 @@ P4 Enhancement
 2014-08-03 19:57:44
 
 711: Enh: Play-at-Speed speed setting should be saved in audacity.cfg and project.
-711 ~ ---
+711 Still open
 P4 Enhancement
 ---
 
@@ -3589,7 +3589,7 @@ P5 Repeatable
 2017-10-12 09:11:20
 
 719: Linux: Load Modules dialog does not have focus
-719 ~ ---
+719 Still open
 P4 Accessibility
 ---
 
@@ -3624,12 +3624,12 @@ P3 Repeatable
 2014-09-22 04:46:50
 
 726: Mac: VoiceOver: Tracks not read after exporting
-726 ~ ---
+726 Still open
 P3 Accessibility
 ---
 
 727: Linux: Orca: Tracks not read.
-727 ~ ---
+727 Still open
 P3 Accessibility
 ---
 
@@ -3644,12 +3644,12 @@ P3 Repeatable
 2017-05-14 22:53:18
 
 730: Linux: Pasting text into labels failure
-730 ~ ---
+730 Still open
 P4 Repeatable
 ---
 
 731: Linux: Built-in browser opens behind Screenshot Tools GUI
-731 ~ ---
+731 Still open
 P5 Repeatable
 ---
 
@@ -3684,7 +3684,7 @@ P1 Repeatable
 2014-08-04 23:00:32
 
 738: Mac: File formats not in info.plist cannot be dragged to Audacity's Dock icon.
-738 ~ ---
+738 Still open
 P3 Repeatable
 ---
 
@@ -3699,7 +3699,7 @@ P1 Repeatable
 2015-02-06 21:46:28
 
 741: Windows: DISTRHO VST's crash in Graphic Mode
-741 ~ ---
+741 Still open
 P3 Repeatable
 ---
 
@@ -3709,17 +3709,17 @@ P4 Repeatable
 2014-08-16 23:38:25
 
 743: Win/Mac: VST: Controls in graphical mode do not respond to loaded preset file.
-743 ~ ---
+743 Still open
 P3 Repeatable
 ---
 
 744: Enh: Keyboard preferences hotkey search - unwanted results
-744 ~ ---
+744 Still open
 P5 Enhancement
 ---
 
 745: Linux: MIDI: No overwrite warning on export
-745 ~ ---
+745 Still open
 P3 Repeatable
 ---
 
@@ -3739,7 +3739,7 @@ P5 Enhancement
 2018-08-14 11:00:20
 
 749: Enh: Open new window should respect both Snap To state and quantization settings in the window where those changed.
-749 ~ ---
+749 Still open
 P5 Enhancement
 ---
 
@@ -3799,12 +3799,12 @@ P3 Repeatable
 2015-05-27 17:33:53
 
 761: VST presets (OS X/Linux): correct extension no longer offered in file name/no longer added if omitted
-761 ~ ---
+761 Still open
 P3 Repeatable
 ---
 
 762: FFmpeg: AAC Quality slider has no effect with libvo-aac encoder.
-762 ~ ---
+762 Still open
 P3 RepeatableAll
 ---
 
@@ -4009,7 +4009,7 @@ P4 Review
 2015-04-18 09:52:51
 
 803: Linux: Incorrect pointer (cursor) when rearranging tracks
-803 ~ ---
+803 Still open
 P5 Repeatable
 ---
 
@@ -4049,7 +4049,7 @@ P5 RepeatableAll
 2017-11-26 15:58:21
 
 811: Replying Yes to "Save Changes?" dialog in multiple projects switches window to earliest project
-811 ~ ---
+811 Still open
 P4 RepeatableAll
 ---
 
@@ -4069,7 +4069,7 @@ P4 Repeatable
 2016-12-21 19:54:30
 
 815: Enh: Clicking Play-at-Speed Toolbar Play button pushes down Transport Play button
-815 ~ ---
+815 Still open
 P4 Enhancement
 ---
 
@@ -4094,7 +4094,7 @@ P4 Repeatable
 2017-10-11 11:40:08
 
 820: Varying sample formats possible in one wave track
-820 ~ ---
+820 Still open
 P4 RepeatableAll
 ---
 
@@ -4114,7 +4114,7 @@ P2 Repeatable
 2015-01-15 13:00:33
 
 824: Cut/Copy/Paste code needs better error handling
-824 ~ ---
+824 Still open
 P4 RepeatableAll
 ---
 
@@ -4124,7 +4124,7 @@ P3 RepeatableAll
 2018-04-13 06:44:23
 
 826: Mis-handling of envelopes when split-deleting, or when cutting with cut lines enabled
-826 ~ ---
+826 Still open
 P4 RepeatableAll
 ---
 
@@ -4149,7 +4149,7 @@ P5 Repeatable
 2017-09-28 10:33:47
 
 831: Pasting a clip with nonempty envelope into one with no envelope is incorrect
-831 ~ ---
+831 Still open
 P4 RepeatableAll
 ---
 
@@ -4179,17 +4179,17 @@ P4 Repeatable
 2015-10-28 02:03:34
 
 837: Slight mismatch of vertical scale with linear spectrogram view
-837 ~ ---
+837 Still open
 P5 RepeatableAll
 ---
 
 838: Paulstretch and Set Rate do not affect Sync-Locked tracks
-838 ~ ---
+838 Still open
 P4 RepeatableAll
 ---
 
 839: Project files open to updates by multiple users
-839 ~ ---
+839 Still open
 P5 RepeatableAll
 ---
 
@@ -4234,7 +4234,7 @@ P4 Repeatable
 2018-04-23 08:24:00
 
 848: Mac/Linux: Shortcuts don't display in menus for effects that have the same name
-848 ~ ---
+848 Still open
 P4 Repeatable
 ---
 
@@ -4254,12 +4254,12 @@ P2 Repeatable
 2015-06-21 20:12:01
 
 852: Noise Reduction preview failure when track rate is different from project rate
-852 ~ ---
+852 Still open
 P3 RepeatableAll
 ---
 
 853: Linux: Orca: Many plugin labels not read
-853 ~ ---
+853 Still open
 P3 Accessibility
 ---
 
@@ -4319,22 +4319,22 @@ P4 Enhancement
 2017-08-10 12:19:04
 
 865: Nyquist effects render white-space as silence
-865 ~ ---
+865 Still open
 P3 Enhancement
 ---
 
 866: FFmpeg: Audacity rejects FFmpeg in PATH/doesn't search PATH if invalid libs are in FFmpeg path
-866 ~ ---
+866 Still open
 P4 RepeatableAll
 ---
 
 867: Mac: VST and some AU do not allow "moving through active windows" with shortcuts when in graphic mode
-867 ~ ---
+867 Still open
 P3 Repeatable
 ---
 
 868: Linux Xfce: Can't move forward through modeless windows. GNOME and Xfce: navigation trapped in undocked toolbars
-868 ~ ---
+868 Still open
 P3 Accessibility
 ---
 
@@ -4349,7 +4349,7 @@ P3 Repeatable
 2015-05-27 17:43:43
 
 871: Linux: Built-in effects not modal when an RTP effect is open.
-871 ~ ---
+871 Still open
 P4 Repeatable
 ---
 
@@ -4374,12 +4374,12 @@ P3 RepeatableAll
 2018-04-12 06:56:09
 
 876: Windows: Chains: LV2 effects only save default parameters.
-876 ~ ---
+876 Still open
 P3 Repeatable
 ---
 
 877: Windows: LV2 support not complete for all plugins
-877 ~ ---
+877 Still open
 P4 Repeatable
 ---
 
@@ -4394,7 +4394,7 @@ P3 Repeatable
 2015-07-16 01:31:32
 
 880: RTP preview does not supply latency compensation.
-880 ~ ---
+880 Still open
 P4 RepeatableAll
 ---
 
@@ -4419,7 +4419,7 @@ P3 Repeatable
 2015-06-04 23:17:47
 
 885: Linux: WX3: Renaming track in Track dropdown menu operates Transport shortcuts
-885 ~ ---
+885 Still open
 P4 Repeatable
 ---
 
@@ -4434,7 +4434,7 @@ P2 Repeatable
 2015-05-22 15:51:52
 
 888: On Demand import fails when "Normalize all tracks" is enabled.
-888 ~ ---
+888 Still open
 P3 RepeatableAll
 ---
 
@@ -4499,7 +4499,7 @@ P4 Enhancement
 2016-06-29 14:20:16
 
 901: Enh: Chains: Noise Reduction and Noise Removal do not store parameters in a Chain.
-901 ~ ---
+901 Still open
 P3 Enhancement
 ---
 
@@ -4529,12 +4529,12 @@ P2 Repeatable
 2015-06-22 01:19:10
 
 907: Linux: WX3: Automatic Crash Recovery interface issues
-907 ~ ---
+907 Still open
 P4 Repeatable
 ---
 
 908: Linux: ASSERT playing audio after adding a label
-908 ~ ---
+908 Still open
 P4 Repeatable
 ---
 
@@ -4544,12 +4544,12 @@ P4 Repeatable
 2015-04-07 15:33:00
 
 910: Linux: WX3: Segfault manually locating FFmpeg
-910 ~ ---
+910 Still open
 P4 Repeatable
 ---
 
 911: Text boxes when system language is Japanese have a partially obscuring bar.
-911 ~ ---
+911 Still open
 P5 Locale
 ---
 
@@ -4579,7 +4579,7 @@ P3 RepeatableAll
 2018-04-10 08:06:57
 
 917: Enh: Spectral Selection only enabled for spectral edit effects.
-917 ~ ---
+917 Still open
 P3 Enhancement
 ---
 
@@ -4589,7 +4589,7 @@ P1 Repeatable
 2015-06-20 17:20:31
 
 919: Mac: QuickTime Files import progress dialog does not indicate time remaining
-919 ~ ---
+919 Still open
 P5 Repeatable
 ---
 
@@ -4689,7 +4689,7 @@ P2 Repeatable
 2015-05-11 11:19:38
 
 939: Mac: Clicky playback and recording (both with Soundflower and external devices)
-939 ~ ---
+939 Still open
 P3 Repeatable
 ---
 
@@ -4724,7 +4724,7 @@ P2 Repeatable
 2015-06-11 21:26:51
 
 946: Linux: Segfault-fixed stereo to mono downmix LADSPA plugin does not convert to mono
-946 ~ ---
+946 Still open
 P4 Repeatable
 ---
 
@@ -4749,7 +4749,7 @@ P2 Enhancement
 2015-06-11 13:41:13
 
 951: Option for Find Clipping to operate on mix of all selected tracks
-951 ~ ---
+951 Still open
 P4 Enhancement
 ---
 
@@ -4789,7 +4789,7 @@ P4 Enhancement
 2017-08-04 12:46:10
 
 959: VST, LADSPA and AU effects incorrectly handled by More...
-959 ~ ---
+959 Still open
 P5 RepeatableAll
 ---
 
@@ -4814,7 +4814,7 @@ P4 RepeatableAll
 2017-12-19 07:57:23
 
 964: Windows 7: Support data generated if quitting using task manager when "About Audacity" is open.
-964 ~ ---
+964 Still open
 P5 Repeatable
 ---
 
@@ -4849,7 +4849,7 @@ P4 Repeatable
 2016-03-11 19:49:23
 
 971: Plot Spectrum misbehaves for square wave
-971 ~ ---
+971 Still open
 P4 RepeatableAll
 ---
 
@@ -4884,7 +4884,7 @@ P1 Repeatable
 2015-05-28 16:15:25
 
 978: Linux: There is no functional Nyquist Workbench install command.
-978 ~ ---
+978 Still open
 P4 Enhancement
 ---
 
@@ -4914,7 +4914,7 @@ P2 Repeatable
 2015-06-04 13:39:56
 
 984: Export filetype dropdown:  "Other uncompressed..." has a  "lot" of compressed encoding
-984 ~ ---
+984 Still open
 P4 Enhancement
 ---
 
@@ -4939,7 +4939,7 @@ P4 Enhancement
 2018-08-13 18:58:28
 
 989: Stop-and-set-cursor is imprecise
-989 ~ ---
+989 Still open
 P4 RepeatableAll
 ---
 
@@ -4984,12 +4984,12 @@ P3 Enhancement
 2017-11-26 10:06:11
 
 998: DFX Geometer likely to crash Audacity on first use in kernel session, especially if other VST's enabled.
-998 ~ ---
+998 Still open
 P3 MoonPhase
 ---
 
 999: Topmost bin of spectrograms displays wrong
-999 ~ ---
+999 Still open
 P4 RepeatableAll
 ---
 
@@ -4999,7 +4999,7 @@ P1 Repeatable
 2015-06-02 17:39:48
 
 1001: Windows: Misleading error message exporting GSM 6.10 in stereo.
-1001 ~ ---
+1001 Still open
 P3 Repeatable
 ---
 
@@ -5089,12 +5089,12 @@ P4 Enhancement
 2018-08-11 09:22:50
 
 1019: Contrast and Plot Spectrum cannot be disabled in Plug-In Manager.
-1019 ~ ---
+1019 Still open
 P3 RepeatableAll
 ---
 
 1020: Decimal separator forced to period in locales that specify comma separator.
-1020 ~ ---
+1020 Still open
 P3 Locale
 ---
 
@@ -5204,7 +5204,7 @@ P4 Repeatable
 2017-08-04 13:27:41
 
 1042: Enh: Language choice dialog in Win installation could be improved
-1042 ~ ---
+1042 Still open
 P3 Locale
 ---
 
@@ -5264,17 +5264,17 @@ P3 RepeatableAll
 2017-10-28 08:40:13
 
 1054: Linux/Mac: LV2 instruments are listed in Plug-in Manager on Ubuntu 14.04 32-bit.
-1054 ~ ---
+1054 Still open
 P3 Repeatable
 ---
 
 1055: Mac/Linux: Too generic error if an incompatible LV2 is enabled.
-1055 ~ ---
+1055 Still open
 P4 Repeatable
 ---
 
 1056: Linux: Fomp *VCO LV2 oscillator plugins incompatible when they shouldn't be.
-1056 ~ ---
+1056 Still open
 P4 Repeatable
 ---
 
@@ -5284,7 +5284,7 @@ P3 Repeatable
 2015-10-20 05:20:25
 
 1058: Windows: Strange cursor changes
-1058 ~ ---
+1058 Still open
 P4 Repeatable
 ---
 
@@ -5304,12 +5304,12 @@ P2 Repeatable
 2015-07-11 17:13:40
 
 1062: Windows: Inconsistent drag behavior in vertical ruler and rearranging of tracks
-1062 ~ ---
+1062 Still open
 P4 Repeatable
 ---
 
 1063: Win/Linux: Effects are not modal in other projects.
-1063 ~ ---
+1063 Still open
 P4 Repeatable
 ---
 
@@ -5334,7 +5334,7 @@ P4 Repeatable
 2017-06-10 20:08:00
 
 1068: Enh: 24-bit WAV files import as 32-bit float when preferences set to 24-bit
-1068 ~ ---
+1068 Still open
 P4 Enhancement
 ---
 
@@ -5344,12 +5344,12 @@ P4 Repeatable
 2017-06-10 18:29:18
 
 1070: Time-shift tool not implemented for time tracks
-1070 ~ ---
+1070 Still open
 P4 Enhancement
 ---
 
 1071: Ubuntu Unity: Crash accessing non-RTP effect in another project when a non-RTP effect  is already previewing.
-1071 ~ ---
+1071 Still open
 P3 Repeatable
 ---
 
@@ -5404,7 +5404,7 @@ P1 Repeatable
 2015-08-31 15:04:12
 
 1082: Windows: VST: MDA Tracker crashes
-1082 ~ ---
+1082 Still open
 P3 Repeatable
 ---
 
@@ -5449,7 +5449,7 @@ P2 Repeatable
 2016-08-30 10:58:51
 
 1091: Spectral Edit effects may have unpredictable results
-1091 ~ ---
+1091 Still open
 P4 Repeatable
 ---
 
@@ -5469,7 +5469,7 @@ P2 Repeatable
 2015-08-29 11:24:22
 
 1095: Enh: Waveform views to show temporal selection as in time ruler.
-1095 ~ ---
+1095 Still open
 P4 Enhancement
 ---
 
@@ -5484,7 +5484,7 @@ P2 Repeatable
 2015-10-07 04:42:32
 
 1098: Enh: Frequency selection is not visible in white space
-1098 ~ ---
+1098 Still open
 P4 Enhancement
 ---
 
@@ -5524,7 +5524,7 @@ P1 Repeatable
 2015-09-10 21:53:40
 
 1106: Enh: Font selection in label track dropdown menu acts globally
-1106 ~ ---
+1106 Still open
 P5 Enhancement
 ---
 
@@ -5589,7 +5589,7 @@ P1 Repeatable
 2015-08-19 14:27:07
 
 1119: Mac: Window menu's list of open windows not available
-1119 ~ ---
+1119 Still open
 P3 Repeatable
 ---
 
@@ -5639,7 +5639,7 @@ P2 Repeatable
 2015-09-22 23:03:30
 
 1129: Windows: Odd behavior of Cut preview when selection is close to T=0
-1129 ~ ---
+1129 Still open
 P4 Repeatable
 ---
 
@@ -5719,7 +5719,7 @@ P4 Repeatable
 2015-08-27 10:20:25
 
 1145: Enh: Can't set default Waveform dB range unless first setting the default view to Logarithmic
-1145 ~ ---
+1145 Still open
 P4 Enhancement
 ---
 
@@ -5814,7 +5814,7 @@ P2 Repeatable
 2015-10-18 02:26:31
 
 1164: Windows Mouse Snap no longer works for effects.
-1164 ~ ---
+1164 Still open
 P4 Repeatable
 ---
 
@@ -5829,7 +5829,7 @@ P3 Repeatable
 2017-01-06 22:19:21
 
 1167: Mac: Yosemite - iTunes files cannot be opened from "Media > Music" section of file open dialogs.
-1167 ~ ---
+1167 Still open
 P3 Repeatable
 ---
 
@@ -5864,7 +5864,7 @@ P3 Repeatable
 2015-10-21 05:07:31
 
 1174: Linux: ASSERT error after quit by any method
-1174 ~ ---
+1174 Still open
 P4 Repeatable
 ---
 
@@ -5889,17 +5889,17 @@ P4 RepeatableAll
 2018-03-24 12:53:57
 
 1179: Highest resolution selection formats don't show split line snap guides when they should when Snap-To is on.
-1179 ~ ---
+1179 Still open
 P3 RepeatableAll
 ---
 
 1180: Custom FFmpeg Export: Insufficient advice about saving presets before export/no prevention of empty presets export
-1180 ~ ---
+1180 Still open
 P3 RepeatableAll
 ---
 
 1181: Enh: FFmpeg Custom Export: Show what export format/codec is in force.
-1181 ~ ---
+1181 Still open
 P4 Enhancement
 ---
 
@@ -5914,7 +5914,7 @@ P2 Repeatable
 2018-02-18 12:55:21
 
 1184: Mac: Custom FFmpeg Export and (external program): unwanted "NoOverwritePrompt" dialogue and file
-1184 ~ ---
+1184 Still open
 P3 Repeatable
 ---
 
@@ -5924,7 +5924,7 @@ P4 Repeatable
 2015-09-07 21:36:13
 
 1186: Mac/Linux: Spectrogram frequency range in preferences not persistent
-1186 ~ ---
+1186 Still open
 P4 Repeatable
 ---
 
@@ -5994,7 +5994,7 @@ P2 Repeatable
 2016-02-09 18:09:30
 
 1200: Unwanted duplicate .mo files on Mac.
-1200 ~ ---
+1200 Still open
 P5 Locale
 ---
 
@@ -6039,7 +6039,7 @@ P4 Repeatable
 2017-07-15 05:26:20
 
 1209: Vertical ruler shows no numbers at extreme zoom level with non-linear Track spectrogram frequency
-1209 ~ ---
+1209 Still open
 P4 RepeatableAll
 ---
 
@@ -6054,7 +6054,7 @@ P5 Repeatable
 2015-09-22 22:48:52
 
 1212: Automatically fit" preference not honored during recording
-1212 ~ ---
+1212 Still open
 P4 Enhancement
 ---
 
@@ -6069,7 +6069,7 @@ P2 Repeatable
 2015-09-29 13:20:56
 
 1215: Incorrect splits produced by Change Tempo with leading whitespace
-1215 ~ ---
+1215 Still open
 P4 RepeatableAll
 ---
 
@@ -6139,12 +6139,12 @@ P5 Repeatable
 2016-01-01 08:40:03
 
 1229: Audacity not in Galician or Valencian when Windows language is so set.
-1229 ~ ---
+1229 Still open
 P3 Locale
 ---
 
 1230: Audacity not in Valencian when system locale so set.
-1230 ~ ---
+1230 Still open
 P3 Locale
 ---
 
@@ -6154,12 +6154,12 @@ P4 Enhancement
 2017-09-04 13:10:47
 
 1232: Linux: ASSERT resizing window when zoomed in on label
-1232 ~ ---
+1232 Still open
 P4 Repeatable
 ---
 
 1233: Linux: Mixer Board meters become to wide when Meter options are changed
-1233 ~ ---
+1233 Still open
 P4 Repeatable
 ---
 
@@ -6169,7 +6169,7 @@ P4 Enhancement
 2016-07-16 09:14:38
 
 1235: Linux: Mixer Board meters do not update when Meter Preferences are updated
-1235 ~ ---
+1235 Still open
 P4 Repeatable
 ---
 
@@ -6179,7 +6179,7 @@ P1 Repeatable
 2016-05-18 18:41:33
 
 1237: Chains: Inconsistent per-platform behaviour cancelling in-progress Chain applied to project.
-1237 ~ ---
+1237 Still open
 P4 RepeatableAll
 ---
 
@@ -6219,7 +6219,7 @@ P2 Repeatable
 2018-06-13 06:17:06
 
 1245: Windows: NVDA screen reader not speaking typed characters
-1245 ~ ---
+1245 Still open
 P3 Accessibility
 ---
 
@@ -6229,12 +6229,12 @@ P4 Review
 2015-10-17 08:17:18
 
 1247: Linux: TAB does not stay in its own tooldock/moving to and from tracks does not access upper tooldock.
-1247 ~ ---
+1247 Still open
 P3 Accessibility
 ---
 
 1248: Windows: TAB does not navigate out of mouse-created focus in sliders.
-1248 ~ ---
+1248 Still open
 P4 Accessibility
 ---
 
@@ -6274,7 +6274,7 @@ P4 Enhancement
 2016-07-06 05:11:55
 
 1256: OSX/Linux: VoiceOver and Orca: Keyboard Preferences bindings list not read.
-1256 ~ ---
+1256 Still open
 P3 Accessibility
 ---
 
@@ -6309,17 +6309,17 @@ P4 RepeatableAll
 2017-08-16 06:45:49
 
 1263: Windows: Build up of aud***.tmp files in Roaming->Audacity
-1263 ~ ---
+1263 Still open
 P4 Repeatable
 ---
 
 1264: Windows: Settings file errors not reported to user.
-1264 ~ ---
+1264 Still open
 P3 Repeatable
 ---
 
 1265: Select All in Plug-in Manager should display selected unfocused rows in more prominent colour, or same as fully selected.
-1265 ~ ---
+1265 Still open
 P4 Enhancement
 ---
 
@@ -6339,12 +6339,12 @@ P4 Repeatable
 2017-02-18 22:16:35
 
 1269: backslash percent" not saved in effect presets
-1269 ~ ---
+1269 Still open
 P4 RepeatableAll
 ---
 
 1270: Windows: VST: Simulanaog Guitar Suite plugins crash Audacity.
-1270 ~ ---
+1270 Still open
 P3 Repeatable
 ---
 
@@ -6389,7 +6389,7 @@ P4 Repeatable
 2017-11-08 16:05:36
 
 1279: Windows: VST: ReaPlugs do not see user presets saved in 2.1.0/2.1.1
-1279 ~ ---
+1279 Still open
 P3 Repeatable
 ---
 
@@ -6399,7 +6399,7 @@ P4 Enhancement
 2015-12-16 09:02:37
 
 1281: Windows: Plug-in manager does not properly disable SC4 and Stereo To Mono
-1281 ~ ---
+1281 Still open
 P3 Repeatable
 ---
 
@@ -6409,37 +6409,37 @@ P2 Repeatable
 2016-04-15 19:14:31
 
 1283: Linux: Track dropdown menu enabled after previewing an effect
-1283 ~ ---
+1283 Still open
 P4 Repeatable
 ---
 
 1284: Incorrect Equalization preview when track rate is different from project rate.
-1284 ~ ---
+1284 Still open
 P3 RepeatableAll
 ---
 
 1285: Enh: Make Nyquist effects more memory efficient.
-1285 ~ ---
+1285 Still open
 P3 Enhancement
 ---
 
 1286: Mac: Fuzzy images on retina displays.
-1286 ~ ---
+1286 Still open
 P4 Repeatable
 ---
 
 1287: Windows: Moonphase loss of built-in effects after running earlier Audacity 2.1.x
-1287 ~ ---
+1287 Still open
 P3 MoonPhase
 ---
 
 1288: Simplified" language not currently supported.
-1288 ~ ---
+1288 Still open
 P3 Locale
 ---
 
 1289: Windows: Move the Audacity debug report location to that not scanned by cleanup apps.
-1289 ~ ---
+1289 Still open
 P4 Repeatable
 ---
 
@@ -6464,12 +6464,12 @@ P4 Enhancement
 2017-09-07 13:01:22
 
 1294: Sample format preference ignored on import for some file formats
-1294 ~ ---
+1294 Still open
 P4 Enhancement
 ---
 
 1295: Enh: Export Multiple "Track Number" metadata should increment if changed, and file numbering should respect modified Track Number.
-1295 ~ ---
+1295 Still open
 P4 Enhancement
 ---
 
@@ -6479,7 +6479,7 @@ P2 Repeatable
 2016-01-12 15:55:08
 
 1297: Linux Debian/Ubuntu: Much of Audacity interface missing if RTL language set in system.
-1297 ~ ---
+1297 Still open
 P3 Locale
 ---
 
@@ -6494,17 +6494,17 @@ P2 Repeatable
 2016-03-09 18:16:01
 
 1300: Mac: COMMAND + V paste limitations in standard file save dialogs
-1300 ~ ---
+1300 Still open
 P3 Repeatable
 ---
 
 1301: Windows: Truncated and confusing options text when choosing (external program) in Export Multiple
-1301 ~ ---
+1301 Still open
 P4 Repeatable
 ---
 
 1302: Metadata Editor should be disabled for (external program) in Export Multiple, as in straight export
-1302 ~ ---
+1302 Still open
 P4 RepeatableAll
 ---
 
@@ -6534,12 +6534,12 @@ P4 Repeatable
 2016-11-30 20:11:08
 
 1308: Paste is inconsistent when clipboard has more tracks than selection
-1308 ~ ---
+1308 Still open
 P4 RepeatableAll
 ---
 
 1309: Paste with sync-lock can give error message but still do something
-1309 ~ ---
+1309 Still open
 P4 RepeatableAll
 ---
 
@@ -6564,7 +6564,7 @@ P4 Repeatable
 2016-02-01 13:33:54
 
 1314: Linux: Audacity doesn't remember being extended across multiple displays
-1314 ~ ---
+1314 Still open
 P3 Repeatable
 ---
 
@@ -6599,12 +6599,12 @@ P4 Repeatable
 2017-11-08 08:09:11
 
 1321: Win/Mac: System output balance reset by launching Audacity
-1321 ~ ---
+1321 Still open
 P3 Repeatable
 ---
 
 1322: Extremely long files truncated after export and import
-1322 ~ ---
+1322 Still open
 P4 RepeatableAll
 ---
 
@@ -6634,12 +6634,12 @@ P3 Repeatable
 2016-03-12 23:53:23
 
 1328: Linux: Spectrum Export location not remembered
-1328 ~ ---
+1328 Still open
 P4 Repeatable
 ---
 
 1329: Mac: ENTER does not close/apply effects unless user has turned on Full Keyboard Access
-1329 ~ ---
+1329 Still open
 P3 Accessibility
 ---
 
@@ -6659,22 +6659,22 @@ P3 Repeatable
 2016-10-19 20:58:38
 
 1333: AIF and AIFC should be accepted extensions for AIFF files and not questioned.
-1333 ~ ---
+1333 Still open
 P4 RepeatableAll
 ---
 
 1334: Enh: No warning is provided that if some tracks are muted they are not exported.
-1334 ~ ---
+1334 Still open
 P4 Enhancement
 ---
 
 1335: Moving tracks or swapping stereo channels during playback does not work correctly.
-1335 ~ ---
+1335 Still open
 P3 RepeatableAll
 ---
 
 1336: Tracks -> Mix Stereo to Mono ignores envelope
-1336 ~ ---
+1336 Still open
 P4 RepeatableAll
 ---
 
@@ -6699,7 +6699,7 @@ P2 Repeatable
 2017-02-01 13:56:40
 
 1341: Vocal Remover effect should be removed - misleading and duplicated effectively
-1341 ~ ---
+1341 Still open
 P3 Enhancement
 ---
 
@@ -6719,7 +6719,7 @@ P1 Repeatable
 2016-03-09 17:33:16
 
 1345: Export multiple does not make multiple files when "overwrite" is checked, other choices defaulted
-1345 ~ ---
+1345 Still open
 P4 RepeatableAll
 ---
 
@@ -6744,7 +6744,7 @@ P4 Repeatable
 2016-07-25 22:37:06
 
 1350: Enh: Show frequency range for labels, on tabbing, and allow graphical modification.
-1350 ~ ---
+1350 Still open
 P3 Enhancement
 ---
 
@@ -6754,7 +6754,7 @@ P2 Repeatable
 2017-02-01 13:57:49
 
 1352: Plot Spectrum: Possibly inconsistent placement/labelling of rightmost vertical gridlines and labels in log view
-1352 ~ ---
+1352 Still open
 P5 RepeatableAll
 ---
 
@@ -6774,7 +6774,7 @@ P2 RepeatableAll
 2018-08-06 11:08:34
 
 1356: Other uncompressed files" forces the default extension for the format in the exported file
-1356 ~ ---
+1356 Still open
 P3 RepeatableAll
 ---
 
@@ -6809,7 +6809,7 @@ P4 Repeatable
 2017-01-13 21:24:46
 
 1363: Enh: Tatsuki Makino proposed configure and makefile patches for autoreconf, system library and header files issues.
-1363 ~ ---
+1363 Still open
 P4 Enhancement
 ---
 
@@ -6824,7 +6824,7 @@ P4 Repeatable
 2016-05-29 18:49:21
 
 1366: Using the sliders in Mixer Toolbar in a Project-2 alters levels in on-going recording (or playback) in Project-1
-1366 ~ ---
+1366 Still open
 P2 RepeatableAll
 ---
 
@@ -6839,7 +6839,7 @@ P4 Enhancement
 2018-08-11 09:18:59
 
 1369: Sound activated recording erratic during Timer Record
-1369 ~ ---
+1369 Still open
 P4 RepeatableAll
 ---
 
@@ -6849,7 +6849,7 @@ P2 Repeatable
 2016-07-29 13:06:59
 
 1371: Device Toolbar does not restore large widths when docked.
-1371 ~ ---
+1371 Still open
 P4 RepeatableAll
 ---
 
@@ -6899,7 +6899,7 @@ P4 Repeatable
 2016-04-18 06:40:29
 
 1381: Export other uncompressed formats incorrectly assumes max 255 channels
-1381 ~ ---
+1381 Still open
 P4 RepeatableAll
 ---
 
@@ -6914,7 +6914,7 @@ P4 RepeatableAll
 2017-08-30 12:42:36
 
 1384: Enh: Truncate Silence: Modify labels when independent truncation and one selected audio track.
-1384 ~ ---
+1384 Still open
 P4 Enhancement
 ---
 
@@ -6934,7 +6934,7 @@ P4 Repeatable
 2016-05-05 11:53:33
 
 1388: Mac: Manage > About > Description text truncated in some real-time preview effects.
-1388 ~ ---
+1388 Still open
 P4 Repeatable
 ---
 
@@ -6959,7 +6959,7 @@ P4 RepeatableAll
 2018-01-25 13:15:22
 
 1393: Audacity does not build against wxWidgets compiled with STL
-1393 ~ ---
+1393 Still open
 P3 RepeatableAll
 ---
 
@@ -6984,12 +6984,12 @@ P1 Repeatable
 2016-09-01 23:56:29
 
 1398: Metadata Editor tag fields emptied when field length stored in project exceeds a given length
-1398 ~ ---
+1398 Still open
 P4 RepeatableAll
 ---
 
 1399: Windows: VST: ReaEQ tabs cannot be enabled/disabled without restarting playback
-1399 ~ ---
+1399 Still open
 P3 Repeatable
 ---
 
@@ -7024,7 +7024,7 @@ P3 Summary
 2018-08-24 15:31:43
 
 1406: Undoing envelope points by shortcut with mouse down creates spurious undo entries
-1406 ~ ---
+1406 Still open
 P4 RepeatableAll
 ---
 
@@ -7044,22 +7044,22 @@ P4 Repeatable
 2016-07-07 14:04:51
 
 1410: Mac: Can't open a modeless dialogue from a modal one.
-1410 ~ ---
+1410 Still open
 P4 Repeatable
 ---
 
 1411: Multiple non-modal "Help from the Internet" windows
-1411 ~ ---
+1411 Still open
 P4 RepeatableAll
 ---
 
 1412: Linux: ASSERT failure in EndModal(): when closing modeless real/empty "Help on the Internet" pair.
-1412 ~ ---
+1412 Still open
 P4 Repeatable
 ---
 
 1413: Linux: ASSERT (Intermittent) when time shifting audio clips
-1413 ~ ---
+1413 Still open
 P4 Repeatable
 ---
 
@@ -7074,12 +7074,12 @@ P2 Repeatable
 2016-07-16 23:58:58
 
 1416: Linux: Clicking in Timeline or Scrub bar removes focus
-1416 ~ ---
+1416 Still open
 P3 Accessibility
 ---
 
 1417: Linux: Shortcut to move backward and forward from toolbars to tracks does not cycle correctly.
-1417 ~ ---
+1417 Still open
 P3 Accessibility
 ---
 
@@ -7164,12 +7164,12 @@ P4 Repeatable
 2018-08-13 06:06:07
 
 1434: Pasting into a clip in specific multi-clip project removes envelope points on Mix and Render
-1434 ~ ---
+1434 Still open
 P3 RepeatableAll
 ---
 
 1435: Focus rings do not appear around some types of controls on Mac
-1435 ~ ---
+1435 Still open
 P4 Accessibility
 ---
 
@@ -7189,7 +7189,7 @@ P2 Repeatable
 2016-07-09 07:24:59
 
 1439: Mac: Can't export complete file name including /
-1439 ~ ---
+1439 Still open
 P3 Repeatable
 ---
 
@@ -7199,7 +7199,7 @@ P3 Repeatable
 2016-09-11 15:18:34
 
 1441: Mac: Imported file names containing / translate the / to colon
-1441 ~ ---
+1441 Still open
 P4 Repeatable
 ---
 
@@ -7224,7 +7224,7 @@ P3 Enhancement
 2017-11-26 10:09:25
 
 1446: Mac and Linux: Audacity does not launch if TempDir is on a FAT/exFAT file system
-1446 ~ ---
+1446 Still open
 P3 Repeatable
 ---
 
@@ -7234,7 +7234,7 @@ P4 Repeatable
 2016-07-18 09:28:05
 
 1448: Linux: ESC does not cancel toolbar move/resize except for resizing docked toolbars
-1448 ~ ---
+1448 Still open
 P4 Repeatable
 ---
 
@@ -7259,12 +7259,12 @@ P4 Repeatable
 2016-08-13 20:07:05
 
 1453: Effects that are no longer available still in the Effect menu, which is a problem for previously shipped effects
-1453 ~ ---
+1453 Still open
 P3 RepeatableAll
 ---
 
 1454: Mac: Shortcuts allowed with mouse down, unlike on Windows/Linux, giving crash potential
-1454 ~ ---
+1454 Still open
 P4 Repeatable
 ---
 
@@ -7289,7 +7289,7 @@ P2 Repeatable
 2016-08-19 15:23:51
 
 1459: RTP effects can appear to play out of range values.
-1459 ~ ---
+1459 Still open
 P4 RepeatableAll
 ---
 
@@ -7304,12 +7304,12 @@ P4 Repeatable
 2016-08-01 08:41:08
 
 1462: Timer Record does not check that there is sufficient space for Export
-1462 ~ ---
+1462 Still open
 P3 Enhancement
 ---
 
 1463: Visual corruption after running 2.1.2, 2.0.0 or 2.0.3 then HEAD
-1463 ~ ---
+1463 Still open
 P4 RepeatableAll
 ---
 
@@ -7349,7 +7349,7 @@ P1 Repeatable
 2016-10-01 11:30:37
 
 1471: Mac: RTP effects lose focus and/or go behind project window after being applied
-1471 ~ ---
+1471 Still open
 P3 Repeatable
 ---
 
@@ -7374,12 +7374,12 @@ P5 Enhancement
 2017-08-10 11:41:25
 
 1476: Horizontal Scroll serves no useful purpose when Scrubbing or Seeking
-1476 ~ ---
+1476 Still open
 P3 RepeatableAll
 ---
 
 1477: Mac: Sticky Tooltips
-1477 ~ ---
+1477 Still open
 P3 Repeatable
 ---
 
@@ -7409,7 +7409,7 @@ P1 Repeatable
 2016-08-19 14:09:08
 
 1483: Mac/Linux: Shortcuts using NumPad keys not shown in menus
-1483 ~ ---
+1483 Still open
 P4 Repeatable
 ---
 
@@ -7439,12 +7439,12 @@ P3 Repeatable
 2016-12-26 13:10:15
 
 1489: Stray ticks in Timeline after stopping Scrub Mode with Scrub Bar open
-1489 ~ ---
+1489 Still open
 P5 RepeatableAll
 ---
 
 1490: Linux: The Scrub pointer is not consistent on Ubuntu
-1490 ~ ---
+1490 Still open
 P4 Repeatable
 ---
 
@@ -7459,7 +7459,7 @@ P2 Repeatable
 2017-06-05 21:45:14
 
 1493: Click or drag in Timeline of project without audio shows drag icon or region in Timeline
-1493 ~ ---
+1493 Still open
 P5 RepeatableAll
 ---
 
@@ -7484,17 +7484,17 @@ P1 Repeatable
 2016-08-26 06:06:06
 
 1498: Mac/Linux: Automatic exit after Timer Record gives segfault
-1498 ~ ---
+1498 Still open
 P3 Repeatable
 ---
 
 1499: Linux: ASSERT on check dependencies
-1499 ~ ---
+1499 Still open
 P5 Repeatable
 ---
 
 1500: Scrub Toolbar is mis-sized on first placement.
-1500 ~ ---
+1500 Still open
 P4 RepeatableAll
 ---
 
@@ -7509,12 +7509,12 @@ P2 Repeatable
 2017-08-29 14:26:28
 
 1503: Mac: Modal dialogues cause 100% Audacity CPU when open with any AU or graphical VST/LV2 effect
-1503 ~ ---
+1503 Still open
 P3 Repeatable
 ---
 
 1504: Linux: ASSERT (frequent) when pasting audio within a clip
-1504 ~ ---
+1504 Still open
 P4 Repeatable
 ---
 
@@ -7564,12 +7564,12 @@ P4 Repeatable
 2016-09-18 13:59:03
 
 1514: Extended Import: Pointer indicates you can drag an importer into the rules
-1514 ~ ---
+1514 Still open
 P5 RepeatableAll
 ---
 
 1515: Linux: Extended Import: Cannot mouse drag importers up or down the list
-1515 ~ ---
+1515 Still open
 P4 Repeatable
 ---
 
@@ -7584,12 +7584,12 @@ P2 Repeatable
 2016-10-13 20:38:30
 
 1518: Mac: Selection invisible or in wrong control in generators, effects and analyzers
-1518 ~ ---
+1518 Still open
 P3 Repeatable
 ---
 
 1519: Mac/Linux: Grids: extra Tab presses needed to reach buttons using (SHIFT +) CTRL; grid still selected after CTRL + SHIFT + Tab on Mac
-1519 ~ ---
+1519 Still open
 P4 Repeatable
 ---
 
@@ -7614,7 +7614,7 @@ P4 Locale
 2017-09-07 12:58:47
 
 1524: Mac: "Save Changes?" button order violates Apple Guidelines
-1524 ~ ---
+1524 Still open
 P3 Repeatable
 ---
 
@@ -7634,17 +7634,17 @@ P4 Repeatable
 2018-08-13 06:01:15
 
 1528: Linux: Mod-script-pipe can't be built in a separate build folder
-1528 ~ ---
+1528 Still open
 P4 Repeatable
 ---
 
 1529: Linux: Access keys do not work except for most checkboxes/radio buttons
-1529 ~ ---
+1529 Still open
 P3 Accessibility
 ---
 
 1530: Mac: Title Bar/window buttons hidden under Menu Bar if upgrading from 2.1.1.
-1530 ~ ---
+1530 Still open
 P3 Repeatable
 ---
 
@@ -7664,7 +7664,7 @@ P4 RepeatableAll
 2018-03-19 09:06:06
 
 1534: Linux: Malformed tooltips/"Untitled window" in taskbar when clicking or hovering over toolbar sliders
-1534 ~ ---
+1534 Still open
 P2 Repeatable
 ---
 
@@ -7689,12 +7689,12 @@ P4 Repeatable
 2017-01-04 13:24:33
 
 1539: Mac: Timer record on Mac does not properly support the US locale
-1539 ~ ---
+1539 Still open
 P3 Locale
 ---
 
 1540: Linux: Nyquist: snd-ifft cause Audacity to crash if 'skip' > fft size
-1540 ~ ---
+1540 Still open
 P4 Repeatable
 ---
 
@@ -7719,12 +7719,12 @@ P4 RepeatableAll
 2018-01-25 12:52:11
 
 1545: Linux: intermittent crash on exit
-1545 ~ ---
+1545 Still open
 P4 Repeatable
 ---
 
 1546: Linux: Error on close if imported file not fully loaded
-1546 ~ ---
+1546 Still open
 P4 Repeatable
 ---
 
@@ -7739,7 +7739,7 @@ P4 RepeatableAll
 2018-03-26 06:49:31
 
 1549: Enh: Retrieve Region does not return screen focus to the retrieved position
-1549 ~ ---
+1549 Still open
 P4 Accessibility
 ---
 
@@ -7774,7 +7774,7 @@ P4 RepeatableAll
 2018-03-24 11:24:00
 
 1556: Mac: Focus moves in modeless dialogues when navigating them with ALT + (SHIFT +) F6
-1556 ~ ---
+1556 Still open
 P4 Accessibility
 ---
 
@@ -7784,12 +7784,12 @@ P3 Repeatable
 2018-04-20 04:37:52
 
 1558: Linux: ASSERT: CTRL (+ SHIFT +) TAB when focus is in Save/Manage Curves list
-1558 ~ ---
+1558 Still open
 P5 Repeatable
 ---
 
 1559: Mac/Linux: List Controls: items in the list can be fully deselected, then there is no indication when focus is in list
-1559 ~ ---
+1559 Still open
 P4 Accessibility
 ---
 
@@ -7804,12 +7804,12 @@ P2 Repeatable
 2016-12-26 19:48:27
 
 1562: Append Record "disk space remains for recording" wrong if track format changed
-1562 ~ ---
+1562 Still open
 P4 RepeatableAll
 ---
 
 1563: Append Record: wrong speed/pitch if track and project rate differ and "remains" time wrong if track rate changed
-1563 ~ ---
+1563 Still open
 P4 RepeatableAll
 ---
 
@@ -7834,12 +7834,12 @@ P2 Repeatable
 2017-10-30 07:15:06
 
 1568: VST (Windows): PhaseBug Mono and Stereo hang Plug-in Manager and can't be enabled
-1568 ~ ---
+1568 Still open
 P3 Repeatable
 ---
 
 1569: Mac: LAME Default file filter does not make libmp3lame.dylib selectable
-1569 ~ ---
+1569 Still open
 P3 Repeatable
 ---
 
@@ -7854,7 +7854,7 @@ P4 Repeatable
 2017-01-08 20:13:08
 
 1572: Dither not applied when exporting 24-bit WAV from 32-bit float
-1572 ~ ---
+1572 Still open
 P4 RepeatableAll
 ---
 
@@ -7884,12 +7884,12 @@ P1 Repeatable
 2017-02-04 22:12:55
 
 1578: TXT and  XML exports are not to Documents and may require elevation to save
-1578 ~ ---
+1578 Still open
 P3 Repeatable
 ---
 
 1579: Mac: Cut/Copy from file save dialogues using shortcuts does not work
-1579 ~ ---
+1579 Still open
 P3 Repeatable
 ---
 
@@ -7899,12 +7899,12 @@ P2 Enhancement
 2017-02-08 11:10:56
 
 1581: Enh: Clip indicators in Mixer Board cannot be cleared without restarting playback
-1581 ~ ---
+1581 Still open
 P4 Enhancement
 ---
 
 1582: Incorrect level shown in Mixer Board meter when track has positive gain
-1582 ~ ---
+1582 Still open
 P4 RepeatableAll
 ---
 
@@ -7919,7 +7919,7 @@ P5 Repeatable
 2017-05-15 23:42:34
 
 1585: Mac: Audacity does not launch on a few El Capitan systems
-1585 ~ ---
+1585 Still open
 P3 MoonPhase
 ---
 
@@ -7934,12 +7934,12 @@ P3 Enhancement
 2017-02-16 23:45:46
 
 1588: Mac: Reverb: Typed parameter values treated as zero or ignored
-1588 ~ ---
+1588 Still open
 P3 Repeatable
 ---
 
 1589: Review: Export of channel position count from imported multi-channel files
-1589 ~ ---
+1589 Still open
 P5 RepeatableAll
 ---
 
@@ -7954,12 +7954,12 @@ P3 Repeatable
 2017-03-06 22:09:53
 
 1592: Sound Activated Recording fails when recording meter disabled
-1592 ~ ---
+1592 Still open
 P3 RepeatableAll
 ---
 
 1593: Mac: False "can't be opened" error message when launching Audacity from Spotlight Search
-1593 ~ ---
+1593 Still open
 P3 Repeatable
 ---
 
@@ -7984,7 +7984,7 @@ P4 Enhancement
 2017-03-10 20:41:05
 
 1598: Enh: Improve GUI for Screenshot Tools
-1598 ~ ---
+1598 Still open
 P4 Enhancement
 ---
 
@@ -8004,7 +8004,7 @@ P4 Repeatable
 2017-03-28 23:38:55
 
 1602: Mac: AUPeakLimiter visual corruption makes it hard to use the effect
-1602 ~ ---
+1602 Still open
 P3 Repeatable
 ---
 
@@ -8014,17 +8014,17 @@ P2 Repeatable
 2017-07-24 17:54:32
 
 1604: LV2: Recalling User Presets and setting defaults does not work correctly
-1604 ~ ---
+1604 Still open
 P4 RepeatableAll
 ---
 
 1605: Mac: AU effects don't show graphical interface if locale using comma decimal separator set in Preferences
-1605 ~ ---
+1605 Still open
 P3 Locale
 ---
 
 1606: Linux: High Res: Plot Spectrum too tall and mostly off the bottom of the monitor
-1606 ~ ---
+1606 Still open
 P3 Repeatable
 ---
 
@@ -8039,7 +8039,7 @@ P2 Repeatable
 2017-08-30 12:59:34
 
 1609: Mac: Crashes quitting with mod-nyq-bench enabled
-1609 ~ ---
+1609 Still open
 P4 Repeatable
 ---
 
@@ -8084,7 +8084,7 @@ P4 Repeatable
 2017-04-13 21:06:22
 
 1618: Linux: Clipfix fails to correct clipped audio that lies on a buffer boundary
-1618 ~ ---
+1618 Still open
 P5 Repeatable
 ---
 
@@ -8104,7 +8104,7 @@ P4 Repeatable
 2017-04-12 22:29:44
 
 1622: Cryptic error message when existing project cannot be saved
-1622 ~ ---
+1622 Still open
 P3 RepeatableAll
 ---
 
@@ -8149,7 +8149,7 @@ P2 Repeatable
 2017-07-31 12:51:21
 
 1631: Audacity silently fails to launch if it cannot read or write "Portable Settings
-1631 ~ ---
+1631 Still open
 P4 RepeatableAll
 ---
 
@@ -8164,7 +8164,7 @@ P4 Repeatable
 2017-04-17 23:06:08
 
 1634: Spectral Selection Toolbar issues in German
-1634 ~ ---
+1634 Still open
 P4 Locale
 ---
 
@@ -8179,12 +8179,12 @@ P1 Repeatable
 2017-07-31 13:09:44
 
 1637: Mac: Selection Toolbar radio buttons and Project Rate cannot be selected by keyboard.
-1637 ~ ---
+1637 Still open
 P4 Accessibility
 ---
 
 1638: Enh: Some Ext- menu items depend on mouse position
-1638 ~ ---
+1638 Still open
 P4 Enhancement
 ---
 
@@ -8209,22 +8209,22 @@ P4 Repeatable
 2017-09-04 12:30:07
 
 1643: Bad results in Envelope, joining clips with gap between
-1643 ~ ---
+1643 Still open
 P4 RepeatableAll
 ---
 
 1644: Various incorrect Envelope edits in Wave and Time tracks
-1644 ~ ---
+1644 Still open
 P4 RepeatableAll
 ---
 
 1645: Time Track editing misbehaves
-1645 ~ ---
+1645 Still open
 P4 RepeatableAll
 ---
 
 1646: Linux: Stretch operation in Note tracks needs many improvements
-1646 ~ ---
+1646 Still open
 P4 Repeatable
 ---
 
@@ -8279,12 +8279,12 @@ P2 Repeatable
 2017-07-21 10:25:28
 
 1657: Windows: DirectSound Sound Activated Recording does not record correctly or pauses permanently after 12 seconds
-1657 ~ ---
+1657 Still open
 P3 Repeatable
 ---
 
 1658: Linux: Focused Karaoke window does not accept shortcuts
-1658 ~ ---
+1658 Still open
 P3 Accessibility
 ---
 
@@ -8349,7 +8349,7 @@ P2 MoonPhase
 2017-08-07 17:43:43
 
 1671: Clock icons indistinct on Sync-locked MIDI Note and Spectrogram view tracks
-1671 ~ ---
+1671 Still open
 P4 RepeatableAll
 ---
 
@@ -8424,7 +8424,7 @@ P4 Repeatable
 2017-07-31 12:42:24
 
 1686: Enh: Use Envelope in Equalization
-1686 ~ ---
+1686 Still open
 P4 Enhancement
 ---
 
@@ -8459,12 +8459,12 @@ P1 Repeatable
 2017-08-14 17:31:49
 
 1693: Time selection issues in Selection Toolbar
-1693 ~ ---
+1693 Still open
 P4 RepeatableAll
 ---
 
 1694: MIDI note tracks can be stretched before the start
-1694 ~ ---
+1694 Still open
 P4 RepeatableAll
 ---
 
@@ -8494,7 +8494,7 @@ P2 Repeatable
 2017-07-23 11:28:31
 
 1700: Linux: Record volume stuck at max on some systems.
-1700 ~ ---
+1700 Still open
 P4 Repeatable
 ---
 
@@ -8539,7 +8539,7 @@ P2 Repeatable
 2017-09-02 19:35:32
 
 1709: Identically-named effects cannot be differentiated in the Select Command dialog in chain editing
-1709 ~ ---
+1709 Still open
 P3 RepeatableAll
 ---
 
@@ -8559,7 +8559,7 @@ P3 Summary
 2018-08-11 13:47:01
 
 1713: Linux: MIDI: Note track playback requires additional set up.
-1713 ~ ---
+1713 Still open
 P3 Repeatable
 ---
 
@@ -8579,7 +8579,7 @@ P1 RepeatableAll
 2017-09-04 08:43:57
 
 1717: On opening new project in Dark or High Contrast theme, area to left of horizontal scroll bar is filled with Light theme color
-1717 ~ ---
+1717 Still open
 P4 RepeatableAll
 ---
 
@@ -8599,22 +8599,22 @@ P4 Repeatable
 2017-09-04 12:19:54
 
 1721: EQ effect in Graphic mode does not display the chosen preset curve name
-1721 ~ ---
+1721 Still open
 P4 Enhancement
 ---
 
 1722: Equalization effect: possible crash when using Manage > User Presets
-1722 ~ ---
+1722 Still open
 P3 RepeatableAll
 ---
 
 1723: Keyboard Preferences: Closing subtrees can leave highlight on wrong item.
-1723 ~ ---
+1723 Still open
 P4 RepeatableAll
 ---
 
 1724: Enh: Nyquist sliders widgets may increase/decrease by unexpected amount on arrow key press
-1724 ~ ---
+1724 Still open
 P4 Enhancement
 ---
 
@@ -8634,12 +8634,12 @@ P2 Repeatable
 2017-08-30 12:59:43
 
 1728: Horizontal scrolling is laggy for waves compared to the ruler.
-1728 ~ ---
+1728 Still open
 P4 RepeatableAll
 ---
 
 1729: Standard Keyboard shorcuts do not match on Windows and Mac
-1729 ~ ---
+1729 Still open
 P4 Repeatable
 ---
 
@@ -8664,7 +8664,7 @@ P4 Enhancement
 2017-09-07 11:58:00
 
 1734: Scale in Waveform dB view does not change when changing meter dB range in prefs until after restart
-1734 ~ ---
+1734 Still open
 P4 RepeatableAll
 ---
 
@@ -8674,22 +8674,22 @@ P1 Repeatable
 2017-09-27 12:35:21
 
 1736: Incorrect encoding in Installer text for some locale
-1736 ~ ---
+1736 Still open
 P4 Locale
 ---
 
 1737: Windows: You cannot Close Audacity when all the toolbars are floating undocked
-1737 ~ ---
+1737 Still open
 P4 Repeatable
 ---
 
 1738: Numeric control units are not translated
-1738 ~ ---
+1738 Still open
 P4 Locale
 ---
 
 1739: Incorrect character encoding of WASAPI device name
-1739 ~ ---
+1739 Still open
 P4 Locale
 ---
 
@@ -8704,12 +8704,12 @@ P3 RepeatableAll
 2018-02-28 09:45:48
 
 1742: Built-in chain name "MP3 Conversion" does not translate
-1742 ~ ---
+1742 Still open
 P4 Locale
 ---
 
 1743: Built-in effect... " does not translate
-1743 ~ ---
+1743 Still open
 P4 Locale
 ---
 
@@ -8729,12 +8729,12 @@ P3 Repeatable
 2017-10-07 10:38:54
 
 1747: Inconsistent quoting of names with '...' or "..." or not at all in user visible messages
-1747 ~ ---
+1747 Still open
 P4 Locale
 ---
 
 1748: Inconsistent translating of names in log files
-1748 ~ ---
+1748 Still open
 P4 Locale
 ---
 
@@ -8744,7 +8744,7 @@ P2 Repeatable
 2018-09-17 00:00:00
 
 1750: Equalization: control points can disappear if the points are at the same frequency
-1750 ~ ---
+1750 Still open
 P3 RepeatableAll
 ---
 
@@ -8804,12 +8804,12 @@ P3 Repeatable
 2017-10-28 05:37:02
 
 1762: Importing keystrokes can fail to import keystrokes that are not in standard set
-1762 ~ ---
+1762 Still open
 P3 Accessibility
 ---
 
 1763: Clicks on starting/stopping playback.
-1763 ~ ---
+1763 Still open
 P2 RepeatableAll
 2018-08-29 00:00:00
 
@@ -8839,7 +8839,7 @@ P2 RepeatableAll
 2018-09-15 00:00:00
 
 1769: Pinned play-head button not updated across projects
-1769 ~ ---
+1769 Still open
 P4 RepeatableAll
 ---
 
@@ -8854,7 +8854,7 @@ P4 MoonPhase
 2018-04-22 12:44:56
 
 1772: Windows installer creates duplicate software entry when upgrading
-1772 ~ ---
+1772 Still open
 P4 RepeatableAll
 ---
 
@@ -8879,22 +8879,22 @@ P4 RepeatableAll
 2018-04-26 03:44:36
 
 1777: Using 2 monitors with Audacity on #2 New reduced size window  opens on #1.
-1777 ~ ---
+1777 Still open
 P4 RepeatableAll
 ---
 
 1778: Cannot type diacritics into label text
-1778 ~ ---
+1778 Still open
 P4 RepeatableAll
 ---
 
 1779: Sound Activation Level window unusable / malformed. High DPI
-1779 ~ ---
+1779 Still open
 P4 RepeatableAll
 ---
 
 1780: Sample Rate dialog does not appear when track has custom sample rate
-1780 ~ ---
+1780 Still open
 P4 RepeatableAll
 ---
 
@@ -8904,7 +8904,7 @@ P2 RepeatableAll
 2017-11-12 12:35:41
 
 1782: Incorrect time in Selection Toolbar with high Project Rate
-1782 ~ ---
+1782 Still open
 P4 RepeatableAll
 ---
 
@@ -8919,7 +8919,7 @@ P4 MoonPhase
 2017-11-24 11:36:10
 
 1785: Enh: Ability for File>Open to "open" a Label file
-1785 ~ ---
+1785 Still open
 P4 Enhancement
 ---
 
@@ -8979,7 +8979,7 @@ P4 RepeatableAll
 2017-12-03 08:28:42
 
 1797: Srcub/seek fails to produce sound output on very long projects
-1797 ~ ---
+1797 Still open
 P4 RepeatableAll
 ---
 
@@ -8989,17 +8989,17 @@ P3 RepeatableAll
 2018-09-10 00:00:00
 
 1799: Un-muting with a single track unnecessarily activates the Solo button
-1799 ~ ---
+1799 Still open
 P5 RepeatableAll
 ---
 
 1800: Custom shortcuts can be overwritten without warning using Full set or importing shortcuts
-1800 ~ ---
+1800 Still open
 P3 RepeatableAll
 ---
 
 1801: Mixer Board, Lyrics Window and Effect Rack do not close on ESC.
-1801 ~ ---
+1801 Still open
 P5 Accessibility
 ---
 
@@ -9014,7 +9014,7 @@ P4 RepeatableAll
 2018-03-26 06:23:07
 
 1804: Windows: Labels do not accept IME (Chinese/Japanese) input.
-1804 ~ ---
+1804 Still open
 P4 Locale
 ---
 
@@ -9024,12 +9024,12 @@ P4 RepeatableAll
 2017-12-19 06:54:23
 
 1806: Extreme negative settings in Change Tempo cause an "apparent" hang/freeze
-1806 ~ ---
+1806 Still open
 P4 RepeatableAll
 ---
 
 1807: Nyquist Prompt listed, but not fully supported by Chains
-1807 ~ ---
+1807 Still open
 P4 RepeatableAll
 ---
 
@@ -9069,7 +9069,7 @@ P2 RepeatableAll
 2018-01-08 06:55:11
 
 1815: NoteTrack: Hidden notes on importing MIDI
-1815 ~ ---
+1815 Still open
 P3 RepeatableAll
 ---
 
@@ -9094,7 +9094,7 @@ P4 RepeatableAll
 2018-01-24 13:55:14
 
 1820: Note tracks don't save the pitch height, which may lead to hidden notes
-1820 ~ ---
+1820 Still open
 P4 RepeatableAll
 ---
 
@@ -9114,7 +9114,7 @@ P4 RepeatableAll
 2018-03-02 20:34:50
 
 1824: Preview fails for built-in Generate effects when no selection
-1824 ~ ---
+1824 Still open
 P4 RepeatableAll
 ---
 
@@ -9124,12 +9124,12 @@ P4 RepeatableAll
 2018-01-18 13:39:02
 
 1826: Linux: Dropout detection fails to detect dropouts on Linux
-1826 ~ ---
+1826 Still open
 P2 Repeatable
 ---
 
 1827: Nyquist Analyzers can clutter an existing label track when selected
-1827 ~ ---
+1827 Still open
 P4 RepeatableAll
 ---
 
@@ -9159,12 +9159,12 @@ P3 RepeatableAll
 2018-10-08 00:00:00
 
 1833: Stop in Export Multiple does not actually stop the exports
-1833 ~ ---
+1833 Still open
 P4 Enhancement
 ---
 
 1834: Linux: Help -> Quick Help dialog produces an empty second dialog.
-1834 ~ ---
+1834 Still open
 P3 Repeatable
 ---
 
@@ -9174,7 +9174,7 @@ P5 RepeatableAll
 2018-04-23 06:39:23
 
 1836: Mac: With Full shortcuts Cmd+Shift+A fails to Select>None if focus is on Project Rate
-1836 ~ ---
+1836 Still open
 P5 Accessibility
 ---
 
@@ -9194,7 +9194,7 @@ P2 RepeatableAll
 2018-06-05 09:41:51
 
 1840: Most effects fail silently when no audio selection
-1840 ~ ---
+1840 Still open
 P5 RepeatableAll
 ---
 
@@ -9209,7 +9209,7 @@ P4 RepeatableAll
 2018-04-23 15:07:36
 
 1843: Tracks menu error messages do not have "?" help butttons to link to the Manual
-1843 ~ ---
+1843 Still open
 P4 RepeatableAll
 ---
 
@@ -9224,22 +9224,22 @@ P2 RepeatableAll
 2018-02-28 09:22:30
 
 1846: Mac accessibility: VoiceOver does not read the names of tracks
-1846 ~ ---
+1846 Still open
 P3 Accessibility
 ---
 
 1847: Mac accessibility: VoiceOver does not read the names of text boxes
-1847 ~ ---
+1847 Still open
 P3 Accessibility
 ---
 
 1848: Mac accessibility: VoiceOver does not read the name of choice controls
-1848 ~ ---
+1848 Still open
 P3 Accessibility
 ---
 
 1849: Adjusting Pan and Gain during recording gives weird Undo History
-1849 ~ ---
+1849 Still open
 P5 RepeatableAll
 ---
 
@@ -9279,7 +9279,7 @@ P1 RepeatableAll
 2018-08-06 05:21:15
 
 1857: Spurious dropout detection when recording second track.
-1857 ~ ---
+1857 Still open
 P4 RepeatableAll
 ---
 
@@ -9304,7 +9304,7 @@ P2 RepeatableAll
 2018-03-30 05:23:08
 
 1862: Incorrect frequency displayed in spectrogram view (infrasound)
-1862 ~ ---
+1862 Still open
 P4 RepeatableAll
 ---
 
@@ -9339,7 +9339,7 @@ P4 RepeatableAll
 2018-08-12 05:48:06
 
 1869: Crash on close when uncompressed file imported "faster
-1869 ~ ---
+1869 Still open
 P3 RepeatableAll
 ---
 
@@ -9354,7 +9354,7 @@ P3 RepeatableAll
 2018-08-12 05:48:08
 
 1872: Most Non-Modal dialogs do not update buttons when language changed
-1872 ~ ---
+1872 Still open
 P4 Locale
 ---
 
@@ -9454,7 +9454,7 @@ P1 RepeatableAll
 2018-06-25 13:29:41
 
 1892: Mac accessibility: VoiceOver does not read the categories in Preferences
-1892 ~ ---
+1892 Still open
 P3 Accessibility
 ---
 
@@ -9489,7 +9489,7 @@ P1 Repeatable
 2018-08-12 05:48:10
 
 1899: Windows: previously deleted folders are unnecessarily re-created on next Save
-1899 ~ ---
+1899 Still open
 P3 Enhancement
 ---
 
@@ -9499,7 +9499,7 @@ P1 RepeatableAll
 2018-08-04 12:24:28
 
 1901: Status bar message does not update when Recording or Playback sliders are moved
-1901 ~ ---
+1901 Still open
 P4 RepeatableAll
 ---
 
@@ -9514,7 +9514,7 @@ P1 RepeatableAll
 2018-08-04 12:25:05
 
 1904: Audio offset not honored in Export/Export Multiple/Export Selection
-1904 ~ ---
+1904 Still open
 P3 RepeatableAll
 ---
 
@@ -9539,7 +9539,7 @@ P1 RepeatableAll
 2018-08-03 11:24:54
 
 1909: Our custom slider has themed background, even used in a dialog.
-1909 ~ ---
+1909 Still open
 P5 RepeatableAll
 ---
 
@@ -9549,7 +9549,7 @@ P4 Enhancement
 2018-08-04 18:38:22
 
 1911: Windows: no input stream for WASAPI loopback freezes recording without warning
-1911 ~ ---
+1911 Still open
 P4 Enhancement
 ---
 
@@ -9589,22 +9589,22 @@ P2 Locale
 2018-09-02 05:37:47
 
 1919: Mac: Export with "external program" gives spurious warning and does not output file
-1919 ~ ---
+1919 Still open
 P3 Repeatable
 ---
 
 1920: Mac: undocking any tool removes track focus
-1920 ~ ---
+1920 Still open
 P3 Accessibility
 ---
 
 1921: With focus on a track, changing settings in a floated toolbar causes the track to lose focus
-1921 ~ ---
+1921 Still open
 P3 Accessibility
 ---
 
 1922: Time track points outside loop play interval wrongly influence the play indicator
-1922 ~ ---
+1922 Still open
 P4 RepeatableAll
 ---
 
@@ -9614,7 +9614,7 @@ P4 Enhancement
 2018-08-10 05:38:13
 
 1924: Buttons and Combo Boxes missing in RTL layout
-1924 ~ ---
+1924 Still open
 P4 Locale
 ---
 
@@ -9629,7 +9629,7 @@ P1 RepeatableAll
 2018-08-11 13:41:31
 
 1927: Help > Generate Support Data Takes more than 30s (crashes in debug)
-1927 ~ ---
+1927 Still open
 P4 Repeatable
 ---
 
@@ -9639,7 +9639,7 @@ P1 RepeatableAll
 2018-08-11 08:03:50
 
 1929: VST Instruments and VST3 Effects listed in plug in manager
-1929 ~ ---
+1929 Still open
 P3 RepeatableAll
 ---
 
@@ -9674,7 +9674,7 @@ P1 RepeatableAll
 2018-08-13 05:32:04
 
 1936: Enh: Nyquist Generators ignore selection
-1936 ~ ---
+1936 Still open
 P4 Enhancement
 ---
 
@@ -9689,7 +9689,7 @@ P4 RepeatableAll
 2018-11-07 00:00:00
 
 1939: Scrubbing jitters when moving window.
-1939 ~ ---
+1939 Still open
 P5 RepeatableAll
 ---
 
@@ -9699,12 +9699,12 @@ P3 RepeatableAll
 2018-08-29 00:00:00
 
 1941: Seek commands do not work during variable Play at Speed
-1941 ~ ---
+1941 Still open
 P4 Accessibility
 ---
 
 1942: Effects in wrong menu if type is changed
-1942 ~ ---
+1942 Still open
 P4 RepeatableAll
 ---
 
@@ -9719,7 +9719,7 @@ P1 RepeatableAll
 2018-08-26 05:18:49
 
 1945: ASSERT (in debug builds only) importing opus format
-1945 ~ ---
+1945 Still open
 P4 RepeatableAll
 ---
 
@@ -9734,7 +9734,7 @@ P3 RepeatableAll
 2018-08-29 10:53:19
 
 1948: Buffer sizes below 20 ms (30 ms with MME) can cause clicky playback
-1948 ~ ---
+1948 Still open
 P3 RepeatableAll
 ---
 
@@ -9759,22 +9759,22 @@ P4 RepeatableAll
 2018-08-30 05:03:23
 
 1953: Timer Record: using Custom Mix causes automatic export to be interrupted
-1953 ~ ---
+1953 Still open
 P3 RepeatableAll
 ---
 
 1954: Clicks starting/pausing play-at-speed or Scrub
-1954 ~ ---
+1954 Still open
 P2 RepeatableAll
 ---
 
 1955: Enh: Clicks loop-playing audio.
-1955 ~ ---
+1955 Still open
 P4 Enhancement
 ---
 
 1956: Windows: MME and WDS playback cursor is buffer length ahead of actual audio playing
-1956 ~ ---
+1956 Still open
 P5 RepeatableAll
 ---
 
@@ -9789,17 +9789,17 @@ P1 RepeatableAll
 2018-09-04 16:57:16
 
 1959: Playback does not start for buffer length time.
-1959 ~ ---
+1959 Still open
 P5 RepeatableAll
 ---
 
 1960: Scrubbing head moves left to right in right to left scrubbing.
-1960 ~ ---
+1960 Still open
 P2 RepeatableAll
 2018-09-01 00:00:00
 
 1961: Linux: No icon for Audacity in dock.
-1961 ~ ---
+1961 Still open
 P4 Repeatable
 ---
 
@@ -9809,17 +9809,17 @@ P2 RepeatableAll
 2018-08-31 10:26:30
 
 1963: Many Effect dialogs do not update buttons when language changed
-1963 ~ ---
+1963 Still open
 P4 Locale
 ---
 
 1964: Untranslated menu items for Nyquist (using old config)
-1964 ~ ---
+1964 Still open
 P2 Locale
 ---
 
 1965: Enh: Track name overlay display for all track types
-1965 ~ ---
+1965 Still open
 P4 Enhancement
 ---
 
@@ -9834,7 +9834,7 @@ P1 RepeatableAll
 2018-09-13 12:57:21
 
 1968: Windows: Recording or monitoring from a USB sound device using WASAPI host yields "Error opening recording device
-1968 ~ ---
+1968 Still open
 P3 RepeatableAll
 ---
 
@@ -9849,32 +9849,32 @@ P2 RepeatableAll
 2018-09-09 08:10:29
 
 1971: Linux: Scriptables screenshot command only grab a small rectangle of window
-1971 ~ ---
+1971 Still open
 P4 RepeatableAll
 ---
 
 1972: Linux: Audacity crashes after running Noise Reduction from AUD-DO command
-1972 ~ ---
+1972 Still open
 P4 RepeatableAll
 ---
 
 1973: Enh: Support WDM/KS
-1973 ~ ---
+1973 Still open
 P4 Enhancement
 ---
 
 1974: Mac/Linux: Crash if monitoring too early using JACK
-1974 ~ ---
+1974 Still open
 P3 Repeatable
 ---
 
 1975: Mac: Freeze using JACK with QjackCtl
-1975 ~ ---
+1975 Still open
 P3 Repeatable
 ---
 
 1976: Scrubbing & Seeking breaks down at  5 x zoom-in levels and greater
-1976 ~ ---
+1976 Still open
 P3 RepeatableAll
 ---
 
@@ -9904,7 +9904,7 @@ P2 Repeatable
 2018-09-20 04:50:15
 
 1982: Numeric entry in Play-at-Speed dialog allows entries not supported by the slider or the PAS functionality
-1982 ~ ---
+1982 Still open
 P4 RepeatableAll
 ---
 
@@ -9914,22 +9914,22 @@ P2 RepeatableAll
 2018-09-20 14:39:36
 
 1984: Enh: Themed sliders look odd on unthemed dialogs
-1984 ~ ---
+1984 Still open
 P4 Enhancement
 ---
 
 1985: Enh: in dark themes EGA dialogs and error messages remain light-themed
-1985 ~ ---
+1985 Still open
 P4 Enhancement
 ---
 
 1986: Linux: Unwanted messages in console.
-1986 ~ ---
+1986 Still open
 P2 Repeatable
 ---
 
 1987: Enh: Export button on History Dialog
-1987 ~ ---
+1987 Still open
 P4 Enhancement
 ---
 
@@ -9939,7 +9939,7 @@ P2 RepeatableAll
 2018-10-06 00:00:00
 
 1989: Windows Vista: 2.3.0 will not run on Vista due to missing DLL
-1989 ~ ---
+1989 Still open
 P2 Repeatable
 ---
 
@@ -9959,7 +9959,7 @@ P1 RepeatableAll
 2018-11-16 00:00:00
 
 1993: Logarithmic time track vruler numbers break when another track is added
-1993 ~ ---
+1993 Still open
 P5 RepeatableAll
 ---
 
@@ -10024,12 +10024,12 @@ P1 RepeatableAll
 2018-10-06 00:00:00
 
 2006: Random failed assert during playback with time tracks
-2006 ~ ---
+2006 Still open
 P3 RepeatableAll
 ---
 
 2007: Windows: Empty folder created on Import if last used import folder does not exist
-2007 ~ ---
+2007 Still open
 P3 RepeatableAll
 ---
 
@@ -10054,7 +10054,7 @@ P1 RepeatableAll
 2018-11-27 00:00:00
 
 2012: Nyquist plug-in translations broken when string includes format specifiers
-2012 ~ ---
+2012 Still open
 P3 RepeatableAll
 ---
 
@@ -10099,7 +10099,7 @@ P2 RepeatableAll
 2018-10-30 00:00:00
 
 2021: mod-script-pipe: Thread not terminated on quit
-2021 ~ ---
+2021 Still open
 P4 RepeatableAll
 ---
 
@@ -10109,7 +10109,7 @@ P4 Repeatable
 2018-11-21 13:32:42
 
 2023: Windows: Screenshot tools dialog is not hidden from screenshots
-2023 ~ ---
+2023 Still open
 P4 RepeatableAll
 ---
 
@@ -10129,7 +10129,7 @@ P1 RepeatableAll
 2018-11-07 00:00:00
 
 2027: Mac: cannot use keyboard "Return" to accept a corrected legalized filename in Export Multiple
-2027 ~ ---
+2027 Still open
 P2 Repeatable
 ---
 
@@ -10139,7 +10139,7 @@ P1 Repeatable
 2018-12-03 00:00:00
 
 2029: Envelopes can no longer achieve silence
-2029 ~ ---
+2029 Still open
 P4 RepeatableAll
 ---
 
@@ -10149,7 +10149,7 @@ P1 Repeatable
 2018-11-19 06:42:03
 
 2031: Equalization: presets under the Manage button do not save custom EQ curves
-2031 ~ ---
+2031 Still open
 P2 RepeatableAll
 ---
 
@@ -10174,7 +10174,7 @@ P1 RepeatableAll
 2018-12-03 10:41:58
 
 2036: Some AU effects can be enabled but fail to register
-2036 ~ ---
+2036 Still open
 P3 Repeatable
 ---
 
@@ -10184,7 +10184,7 @@ P1 RepeatableAll
 2018-11-26 11:32:39
 
 2038: Metadata editor opens without grid focus
-2038 ~ ---
+2038 Still open
 P4 RepeatableAll
 ---
 
@@ -10204,12 +10204,12 @@ P1 RepeatableAll
 2018-12-02 00:00:00
 
 2042: Some plug-ins show "Debug" buttons
-2042 ~ ---
+2042 Still open
 P4 RepeatableAll
 ---
 
 2043: Access keys not shown (Japanese)
-2043 ~ ---
+2043 Still open
 P4 Locale
 ---
 
@@ -10229,37 +10229,37 @@ P1 Repeatable
 2019-02-11 00:00:00
 
 2047: Play at Speed does not respond to slider when looping
-2047 ~ ---
+2047 Still open
 P4 Enhancement
 ---
 
 2048: Slicker Noise Reduction GUI
-2048 ~ ---
+2048 Still open
 P4 Enhancement
 ---
 
 2049: Noise Reduction error message for no selection is unhelpful
-2049 ~ ---
+2049 Still open
 P4 Enhancement
 ---
 
 2050: Misleading Lame version error message
-2050 ~ ---
+2050 Still open
 P5 Enhancement
 ---
 
 2051: Shortcut for Edit>Clip>Boundaries>Split (Ctrl+i) should be in the Standard shortcut set
-2051 ~ ---
+2051 Still open
 P4 Enhancement
 ---
 
 2052: Mac & Linux: Lock file location
-2052 ~ ---
+2052 Still open
 P4 Enhancement
 ---
 
 2053: Splitting or joining collapsed stereo tracks causes broken scroll bar behavior
-2053 ~ ---
+2053 Still open
 P5 RepeatableAll
 ---
 
@@ -10269,7 +10269,7 @@ P2 RepeatableAll
 2019-01-21 07:37:15
 
 2055: Export2 does not export by default
-2055 ~ ---
+2055 Still open
 P4 Enhancement
 ---
 
@@ -10279,7 +10279,7 @@ P1 Repeatable
 2019-02-10 11:26:06
 
 2057: Exporting WAV files > 4GB silently creates invalid WAV file
-2057 ~ ---
+2057 Still open
 P3 RepeatableAll
 ---
 
@@ -10304,17 +10304,17 @@ P1 Repeatable
 2019-02-12 00:00:00
 
 2062: Export as WAV does not remember the previously used setting
-2062 ~ ---
+2062 Still open
 P3 RepeatableAll
 ---
 
 2063: Enh: Impossible to use Macros to Export 24-bit or 32-bit WAV files
-2063 ~ ---
+2063 Still open
 P3 Enhancement
 ---
 
 2064: Linux: ESC key does not work to abort drags in the Timeline Ruler
-2064 ~ ---
+2064 Still open
 P4 RepeatableAll
 ---
 
@@ -10334,7 +10334,7 @@ P1 Repeatable
 2019-02-20 00:00:00
 
 2068: Mac: misleading error message when importing M4A without FFmpeg installed
-2068 ~ ---
+2068 Still open
 P2 RepeatableAll
 ---
 
@@ -10344,7 +10344,7 @@ P1 RepeatableAll
 2019-02-19 08:42:15
 
 2070: Linux: Crash on Rescan Audio Devices if Jack already stopped
-2070 ~ ---
+2070 Still open
 P2 Repeatable
 ---
 
@@ -10354,22 +10354,22 @@ P3 RepeatableAll
 2019-02-25 00:00:00
 
 2072: Linux: Min-source build failure if libid3tag not installed on system
-2072 ~ ---
+2072 Still open
 P2 RepeatableAll
 ---
 
 2073: Mac: installation of LAME or FFmpeg libraries using DMG installer fail for virgin 2.3.1 installation
-2073 ~ ---
+2073 Still open
 P1 RepeatableAll
 ---
 
 2074: Windows: wxwidgets 3.1.1 debug failure message - "Can't load symbol..." on Audacity startup
-2074 ~ ---
+2074 Still open
 P3 MoonPhase
 ---
 
 2075: Windows: wxwidgets 3.1.1 debug failure message appears after Recovery
-2075 ~ ---
+2075 Still open
 P4 MoonPhase
 ---
 

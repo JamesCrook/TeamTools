@@ -2090,7 +2090,16 @@ function drawKwic(A, obj, d){
         var index = parseInt( parts[1] ) || 0;
         str2 = obj.longlist[index];
         var split = str2.split("\n" );
-        if( split.length > 3 ){
+        if( (obj.source === "BugTitles") &&  (split.length > 2 ) ){
+          split[0] = split[0].replace(/^(.*?):/, "<b>Bug <a href='https://bugzilla.audacityteam.org/show_bug.cgi?id=$1'>$1</a>:</b> " );
+          str2 = split[0]+
+            "<br><br><b>"+
+            anchorTagFromWikipathwyaName(split[1])+
+            "</b><br><br>"+
+            split[2]+
+            "";
+        }
+        else if( split.length > 3 ){
           str2 = split[0]+
             "<br><b>"+
             anchorTagFromPmcid(split[3])+
@@ -2348,14 +2357,13 @@ function graph5( x, perturb ){
     + 0.05*Math.sin( Math.PI * (x/3.31572981) );
 }
 function graph6( x, perturb ){
-  return (0.01*Math.cos( Math.PI * (x/100.1257680 + perturb) )+0.15)*Math.sin( Math.PI * (x*1.3276409) )
-    + 0.05*Math.sin( Math.PI * (x/3.31572981) );
+  return (0.01*Math.cos( Math.PI * (x/100.1257680 + perturb) )+0.15)*Math.sin( Math.PI * (x*1.3276409 + perturb) )
+    + (0.05)*Math.sin( Math.PI * (x/(3.31572981+ perturb*8)) );
 }
-
 function graph7( x, perturb ){
   return 0.07*(0.1*Math.sin( Math.PI * (x/90.1257680 + 0.33+perturb) )+0.3)*Math.sin( x + perturb*2 );
 }
-
+// H: almost silence...
 function graph8( x, perturb ){
   return 0.001*Math.sin(x)+0.001*Math.sin(x*2.1);
 }
