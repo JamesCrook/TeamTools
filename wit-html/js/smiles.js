@@ -583,18 +583,46 @@ function computeMidDraggerIx(A, obj){
  * @param A
  * @param obj
  */
-function repositionMidDragger(A, obj){
+function replaceMidDragger(A, obj){
   var mid = obj.content[1];
+  var left = obj.content[0];
+  var right = obj.content[2];
   var inset = mid.inset;
+
+
   obj.itemsPerPixel = (obj.atEnd - obj.atStart) / obj.layout.xw;
   var newpos = xOfRulerIx(A, obj, obj.centerIx);
   //var bak = rulerIxOfx( A, obj, newpos );
   //console.log( "Midx: "+midx + " Ix: "+obj.centerIx + " newx "+newpos+ " atIx
   // "+ bak ); reposition mid-dragger.
   mid.offset.x = constrain( inset, newpos - mid.layout.x0, obj.layout.xw - inset);
+
+  mid.offset.x = constrain( left.offset.x+40, mid.offset.x, right.offset.x-40 );
   computeMidDraggerIx(A, obj );
 }
 
+/**
+ * Ensures the mid dragger ends up between the left and right dragger.
+ * @param A
+ * @param obj
+ */
+function repositionMidDragger(A, obj){
+  var mid = obj.content[1];
+  var left = obj.content[0];
+  var right = obj.content[2];
+  var inset = mid.inset;
+
+/*
+    obj.itemsPerPixel = (obj.atEnd - obj.atStart) / obj.layout.xw;
+    var newpos = xOfRulerIx(A, obj, obj.centerIx);
+    //var bak = rulerIxOfx( A, obj, newpos );
+    //console.log( "Midx: "+midx + " Ix: "+obj.centerIx + " newx "+newpos+ " atIx
+    // "+ bak ); reposition mid-dragger.
+    mid.offset.x = constrain( inset, newpos - mid.layout.x0, obj.layout.xw - inset);
+*/
+  mid.offset.x = constrain( left.offset.x+40, mid.offset.x, right.offset.x-40 );
+  computeMidDraggerIx(A, obj );
+}
 
 function onRulerClicked(A, obj){
   var l = obj.layout;
@@ -645,7 +673,7 @@ function draggingRuler( A, obj, dd ){
 
   obj.atStart = constrain( -70, startIx, 2000 );
   obj.atEnd = constrain( -70, endIx, 2000 );
-  repositionMidDragger(A, obj );
+  replaceMidDragger(A, obj );
 }
 
 function onDraggableClicked2(A, obj){
