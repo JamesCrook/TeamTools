@@ -974,7 +974,6 @@ function drawCentredRect(ctx, S){
     ctx.stroke();
 }
 
-
 function drawUpTriangle(ctx, S){
   var k = 3;
   ctx.beginPath();
@@ -1020,8 +1019,6 @@ function drawRightL(ctx, S){
   if( !isDefined( S.doStroke ) || S.doStroke )
     ctx.stroke();
 }
-
-
 
 // Used for horizontal lines of the scale.
 function drawLines(A,T, values, i, ix){
@@ -1695,7 +1692,6 @@ function drawArrows(A,obj,d){
   }
 }
 
-
 function drawGlyph( ctx, obj, S ){
   if( obj.glyph==="L" )
     return drawLeftL( ctx, S );
@@ -1759,8 +1755,6 @@ function constrain( low, value, high ){
   return Math.max( low, Math.min( value, high));
 }
 
-
-
 function drawDraggable2(A, obj, d ){
   if( d.stage === kDragging ){
     // Calculate new offset
@@ -1809,11 +1803,6 @@ function drawDraggable2(A, obj, d ){
     drawGlyph(ctx2, obj, S);
   }
 }
-
-
-
-
-
 
 function drawImage(A, obj, d){
   //console.log( "draw - "+obj.type);
@@ -2817,6 +2806,10 @@ function onMouseUp( e ){
 }
 
 function onMouseDown( e ){
+
+  // an existing selection messes up dragging.
+  window.getSelection().empty();
+
   var index = e.target.toolkitIndex;
   var A = Annotator[index];
 
