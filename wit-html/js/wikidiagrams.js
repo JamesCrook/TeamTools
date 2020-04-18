@@ -3444,6 +3444,7 @@ function newKwicData(A, obj, text ){
     console.log( Y[i] );
   }
   obj.permutedIndex = Y;
+  reselectInKwic( obj, 5 );
 
 }
 

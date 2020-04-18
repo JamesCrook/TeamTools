@@ -1373,7 +1373,7 @@ P2 Repeatable
 P3 Repeatable
 2014-08-21 01:35:34
 
-276: Linux: PULSE-AUDIO issues.  Freeze repeatedly starting/stopping streams.
+276: Linux: PULSE-AUDIO issues. Freeze repeatedly starting/stopping streams.
 276 Still open
 P2 Repeatable
 ---
@@ -2238,7 +2238,7 @@ P4 Repeatable
 P2 Repeatable
 2012-06-17 02:16:51
 
-449: Click Track tempo  is (slightly) inaccurate
+449: Click Track tempo is (slightly) inaccurate
 449 ~ FIXED
 P4 Repeatable
 2011-12-24 14:09:28
@@ -2478,7 +2478,7 @@ P3 Repeatable
 P4 Accessibility
 ---
 
-497: Audacity crashes if Nyquist  returns an array of one sound
+497: Audacity crashes if Nyquist returns an array of one sound
 497 ~ FIXED
 P4 Repeatable
 2012-06-17 05:18:10
@@ -3343,7 +3343,7 @@ P3 Repeatable
 P4 Repeatable
 2013-10-25 00:26:17
 
-670: Assert when joining split in stereo track with  whitespace in one channel
+670: Assert when joining split in stereo track with whitespace in one channel
 670 ~ FIXED
 P4 Repeatable
 2013-10-18 15:56:09
@@ -3523,12 +3523,12 @@ P4 Repeatable
 P4 Repeatable
 2014-08-25 22:00:19
 
-706: Metadata Editor:  Value column too small
+706: Metadata Editor: Value column too small
 706 ~ FIXED
 P4 Repeatable
 2016-05-11 17:23:21
 
-707: Metadata Editor:  Width and height values in .cfg not respected.
+707: Metadata Editor: Width and height values in .cfg not respected.
 707 ~ FIXED
 P4 Repeatable
 2014-08-25 20:47:54
@@ -3958,7 +3958,7 @@ P3 Repeatable
 P2 Repeatable
 2015-02-06 19:19:04
 
-793: Split Stereo to Mono causes name display in each resulting track.  Split Stereo Track does not.
+793: Split Stereo to Mono causes name display in each resulting track. Split Stereo Track does not.
 793 ~ FIXED
 P5 Repeatable
 2015-03-19 11:34:11
@@ -4473,7 +4473,7 @@ P4 Enhancement
 P3 Repeatable
 2015-12-06 16:45:47
 
-896: Custom FFmpeg Export:  Imported presets do not load.
+896: Custom FFmpeg Export: Imported presets do not load.
 896 ~ FIXED
 P3 Repeatable
 2015-09-06 02:06:39
@@ -4808,7 +4808,7 @@ P1 Repeatable
 P3 Repeatable
 2015-10-18 05:35:28
 
-963: Control  value may be out of range when using FloatingPointValidator
+963: Control value may be out of range when using FloatingPointValidator
 963 ~ FIXED
 P4 RepeatableAll
 2017-12-19 07:57:23
@@ -4913,7 +4913,7 @@ P5 Enhancement
 P2 Repeatable
 2015-06-04 13:39:56
 
-984: Export filetype dropdown:  "Other uncompressed..." has a  "lot" of compressed encoding
+984: Export filetype dropdown: "Other uncompressed..." has a "lot" of compressed encoding
 984 Still open
 P4 Enhancement
 ---
@@ -5348,7 +5348,7 @@ P4 Repeatable
 P4 Enhancement
 ---
 
-1071: Ubuntu Unity: Crash accessing non-RTP effect in another project when a non-RTP effect  is already previewing.
+1071: Ubuntu Unity: Crash accessing non-RTP effect in another project when a non-RTP effect is already previewing.
 1071 Still open
 P3 Repeatable
 ---
@@ -5538,7 +5538,7 @@ P4 MoonPhase
 P4 Repeatable
 2015-12-28 04:58:27
 
-1109: Track control panel menu:  Shift-M acts like Shift-M, M
+1109: Track control panel menu: Shift-M acts like Shift-M, M
 1109 ~ QUICKFIXED
 P4 Repeatable
 2015-10-26 06:14:59
@@ -5713,7 +5713,7 @@ P3 Repeatable
 P1 Repeatable
 2015-08-17 22:11:04
 
-1144: Typing track name while label is selected enters text  into label
+1144: Typing track name while label is selected enters text into label
 1144 ~ WORKSFORME
 P4 Repeatable
 2015-08-27 10:20:25
@@ -6593,7 +6593,7 @@ P1 Repeatable
 P2 Repeatable
 2018-02-21 10:31:12
 
-1320: Contrast window miscalculation:  Tracks with identical contents give different RMS values
+1320: Contrast window miscalculation: Tracks with identical contents give different RMS values
 1320 ~ FIXED
 P4 Repeatable
 2017-11-08 08:09:11
@@ -7108,7 +7108,7 @@ P3 Repeatable
 P4 Repeatable
 2016-08-21 12:12:20
 
-1423: Enh: Click & drag in the Scrub Bar should invoke scrubbing  not seeking
+1423: Enh: Click & drag in the Scrub Bar should invoke scrubbing not seeking
 1423 ~ WONTFIX
 P4 Enhancement
 2017-10-29 13:20:15
@@ -7533,7 +7533,7 @@ P2 Repeatable
 P1 Repeatable
 2016-09-09 14:12:10
 
-1508: Scrubbing:  Release mouse to exit Scrub Mode started by click & drag in Scrub Ruler no longer working
+1508: Scrubbing: Release mouse to exit Scrub Mode started by click & drag in Scrub Ruler no longer working
 1508 ~ QUICKFIXED
 P2 Enhancement
 2016-09-09 12:40:05
@@ -7763,7 +7763,7 @@ P4 Repeatable
 P4 RepeatableAll
 2018-03-24 11:27:52
 
-1554: Toolbars:  open undocked if previously not shown, unless Reset Toolbars first
+1554: Toolbars: open undocked if previously not shown, unless Reset Toolbars first
 1554 ~ FIXED
 P3 RepeatableAll
 2018-01-23 09:22:02
@@ -7828,7 +7828,7 @@ P3 Repeatable
 P4 Repeatable
 2017-08-10 07:00:17
 
-1567: Mac Sierra: LAME, FFmpeg and some plugins disappear.  (intermittent)
+1567: Mac Sierra: LAME, FFmpeg and some plugins disappear. (intermittent)
 1567 ~ FIXED
 P2 Repeatable
 2017-10-30 07:15:06
@@ -7883,7 +7883,7 @@ P4 Repeatable
 P1 Repeatable
 2017-02-04 22:12:55
 
-1578: TXT and  XML exports are not to Documents and may require elevation to save
+1578: TXT and XML exports are not to Documents and may require elevation to save
 1578 Still open
 P3 Repeatable
 ---
@@ -8878,7 +8878,7 @@ P4 RepeatableAll
 P4 RepeatableAll
 2018-04-26 03:44:36
 
-1777: Using 2 monitors with Audacity on #2 New reduced size window  opens on #1.
+1777: Using 2 monitors with Audacity on #2 New reduced size window opens on #1.
 1777 Still open
 P4 RepeatableAll
 ---
@@ -9378,7 +9378,7 @@ P1 RepeatableAll
 P2 RepeatableAll
 2018-05-27 06:54:38
 
-1877: ASSERT on recording due to iterators.  (MSVC2013).
+1877: ASSERT on recording due to iterators. (MSVC2013).
 1877 ~ NOT-A-BUG
 P1 RepeatableAll
 2018-05-23 04:34:06
@@ -9508,7 +9508,7 @@ P4 RepeatableAll
 P2 RepeatableAll
 2018-07-16 07:00:28
 
-1903: Sample Data Export has duplicate menu entries:  Tools & Analyze
+1903: Sample Data Export has duplicate menu entries: Tools & Analyze
 1903 ~ QUICKFIXED
 P1 RepeatableAll
 2018-08-04 12:25:05
@@ -9578,7 +9578,7 @@ P1 Repeatable
 P2 RepeatableAll
 2018-08-09 04:10:20
 
-1917: once the focus is in a toolbar you cannot return the focus to a  track using the mouse
+1917: once the focus is in a toolbar you cannot return the focus to a track using the mouse
 1917 ~ QUICKFIXED
 P2 RepeatableAll
 2018-08-07 12:06:43
@@ -9838,7 +9838,7 @@ P1 RepeatableAll
 P3 RepeatableAll
 ---
 
-1969: Windows: no monitored sound  for 15 secs with software playthrough with default MME host
+1969: Windows: no monitored sound for 15 secs with software playthrough with default MME host
 1969 ~ QUICKFIXED
 P1 HeisenBug
 2018-09-10 06:54:53
@@ -9873,12 +9873,12 @@ P3 Repeatable
 P3 Repeatable
 ---
 
-1976: Scrubbing & Seeking breaks down at  5 x zoom-in levels and greater
+1976: Scrubbing & Seeking breaks down at 5 x zoom-in levels and greater
 1976 Still open
 P3 RepeatableAll
 ---
 
-1977: Using Spectrogram Settings in TCP  or using Preferences causes Audacity to reset Project Rate to default rate in Quality Preferences
+1977: Using Spectrogram Settings in TCP or using Preferences causes Audacity to reset Project Rate to default rate in Quality Preferences
 1977 ~ FIXED
 P2 RepeatableAll
 2018-09-11 09:58:55
@@ -10018,7 +10018,7 @@ P1 RepeatableAll
 P1 RepeatableAll
 2018-10-08 00:00:00
 
-2005: Efects  with Preview button. using that button causes crash
+2005: Efects with Preview button. using that button causes crash
 2005 ~ QUICKFIXED
 P1 RepeatableAll
 2018-10-06 00:00:00
@@ -10078,7 +10078,7 @@ P1 Repeatable
 P1 Repeatable
 2018-11-10 07:54:02
 
-2017: Normalize may destroy audio when  "Normalize stereo channels independently" is selected.
+2017: Normalize may destroy audio when "Normalize stereo channels independently" is selected.
 2017 ~ FIXED
 P2 RepeatableAll
 2018-10-30 00:00:00
@@ -10133,7 +10133,7 @@ P1 RepeatableAll
 P2 Repeatable
 ---
 
-2028: Mac:  Audacity crashes when right clicking in label after copying label text to ano app
+2028: Mac: Audacity crashes when right clicking in label after copying label text to ano app
 2028 ~ FIXED
 P1 Repeatable
 2018-12-03 00:00:00
@@ -10153,7 +10153,7 @@ P1 Repeatable
 P2 RepeatableAll
 ---
 
-2032: Equalization: Factory presets for  unavailable with cleaned settings (and probably fresh install)
+2032: Equalization: Factory presets for unavailable with cleaned settings (and probably fresh install)
 2032 ~ NOT-A-BUG
 P1 Repeatable
 2018-11-17 07:52:06
@@ -10263,7 +10263,7 @@ P4 Enhancement
 P5 RepeatableAll
 ---
 
-2054: Windows:  Macros - "ExportMP3 before" and "ExportMP3 after" overwrite causing non-critical data loss
+2054: Windows: Macros - "ExportMP3 before" and "ExportMP3 after" overwrite causing non-critical data loss
 2054 ~ FIXED
 P2 RepeatableAll
 2019-01-21 07:37:15
