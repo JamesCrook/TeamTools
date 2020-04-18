@@ -2507,8 +2507,9 @@ function linePlot(ctx, obj, ruler){
   var xw = l.xw;
   var pixelsPerItem = xw / (ruler.atEnd - ruler.atStart);
 
-  ctx.strokeStyle = "rgb(20,20,200)";
-  ctx.lineWidth = 1;
+  ctx.strokeStyle = obj.colour || "rgb(20,20,200)";
+  // Line gets thicker as we zoom in.
+  ctx.lineWidth = constrain( 1, pixelsPerItem*0.2, 4 );
 
 //  var xStart = Math.floor(ruler.atStart) * pixelsPerItem;
   var xStart = ruler.atStart * pixelsPerItem;
@@ -2522,12 +2523,34 @@ function linePlot(ctx, obj, ruler){
   if( pixelsPerItem <1 )
     delta = 0.2;
 
+  var xx;
+  var y1;
   for( i = Math.floor(ruler.atStart); i < Math.floor(ruler.atEnd)+(20*delta); i+=delta ){
-    var xx = (i * pixelsPerItem - xStart);
-    var y1 = scaledYofItem(i, obj, ruler);
+    xx = (i * pixelsPerItem - xStart);
+    y1 = scaledYofItem(i, obj, ruler);
     ctx.lineTo(xx, y1);
   }
   ctx.stroke();
+
+// Commented out code draws spots on the waveform.
+
+/*
+  var S = {};
+  S.doStroke = false;
+  S.r = 2;
+  if( pixelsPerItem > 3 ){
+    delta = 1.0;
+    ctx.fillStyle="rgba(0,0,0,"+constrain( 0, (pixelsPerItem-3) / 30, 1 )+")";
+    for( i = Math.floor(ruler.atStart); i < Math.floor(ruler.atEnd)+(20*delta); i+=delta ){
+      xx = (i * pixelsPerItem - xStart);
+      y1 = scaledYofItem(i, obj, ruler);
+      S.x = xx;
+      S.y = y1;
+      drawSpot( ctx, S );
+    }
+  }
+
+ */
 }
 
 function drawGraph( A, obj, d ){

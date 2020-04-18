@@ -26,9 +26,11 @@ The detailed data for the chart follows.
     },
     {"Graph":"Audio",
      "scaling":"ZRuler",
+     "colour":"rgb(127,229,127)",
      "perturb":-0.06
     },
     {"Graph":"Audio2",
+     "colour":"rgb(127,229,127)",
      "scaling":"ZRuler",
      "perturb":0.06
     }]
