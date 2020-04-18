@@ -660,9 +660,13 @@ function fractionalLatitudeFromX(x){
  * @param obj
  */
 function applyObjectSettingsToContext(ctx, obj){
-  ctx.lineWidth = 3;
   ctx.font = "16px Arial";
   ctx.globalCompositeOperation = 'source-over';
+
+  if( obj.lineWidth )
+    ctx.lineWidth = obj.lineWidth;
+  else
+    ctx.lineWidth = 3;
 
   if( obj.colour )
     ctx.fillStyle = obj.colour;
@@ -894,8 +898,20 @@ function sanitiseHtml(html){
 }
 
 
-// >>>>>>>>>>>>>>>>>>>>> Draw
+// >>>>>>>>>>>>>>>>>>>>> Draw Helpers
 
+
+function setGhostedStyle(ctx,S){
+  ctx.fillStyle = "rgba(0,0,0,0.4)";
+  S.doStroke = false;
+}
+
+function constrain( low, value, high ){
+  return Math.max( low, Math.min( value, high));
+}
+
+
+// >>>>>>>>>>>>>>>>>>>>> Draw
 
 function drawDiagram(A, obj, d){
   if( !obj )
@@ -927,12 +943,6 @@ function drawDiagram(A, obj, d){
 function drawDiagramAgain(A){
   if( !A.Status.drawing )
     drawDiagram(A, A.RootObject, {});
-}
-
-
-function setGhostedStyle(ctx,S){
-  ctx.fillStyle = "rgba(0,0,0,0.4)";
-  S.doStroke = false;
 }
 
 // Functions for drawing small centred objects.
@@ -1751,10 +1761,6 @@ function drawDraggable(A, obj, d ){
   }
 }
 
-function constrain( low, value, high ){
-  return Math.max( low, Math.min( value, high));
-}
-
 function drawDraggable2(A, obj, d ){
   if( d.stage === kDragging ){
     // Calculate new offset
@@ -1870,6 +1876,47 @@ function drawImage(A, obj, d){
       ctx2.drawImage(obj.hot.img, x, y, xw, yh);
 }
 
+
+function drawPlotLegends( A, obj, d ){
+  if(d.stage!==kStageFillAndText)
+    return;
+
+  var indent = 40;
+  var l = obj.layout;
+  var x = l.x0;
+  var y = l.y0;
+  var xw = l.xw;
+  var yh = l.yh;
+  var ctx = A.BackingCanvas.ctx;
+
+  ctx.beginPath();
+  ctx.moveTo( x+indent, y + yh/2 );
+  ctx.lineTo( x+ xw, y+yh/2 );
+  ctx.moveTo( x+indent, y+yh );
+  ctx.lineTo( x+indent, y);
+  ctx.stroke();
+
+  var i;
+
+  ctx.font = "11px Arial";
+  ctx.textAlign = "right";
+  ctx.lineWidth=1.7;
+  ctx.beginPath();
+  for( i=-1; i<= 1; i+=0.5){
+    var dy = (Math.abs(i)>0.6) ? -i* 8 : 0;
+    var ady = Math.abs(dy)*0.4;
+    var yy = y + yh/2+yh*0.5*i;
+    ctx.fillText(i, x + 30-ady, 5+yy + dy);
+    ctx.moveTo( x+indent-8-ady, yy+dy );
+    ctx.lineTo( x+indent-4, yy+dy );
+    ctx.lineTo( x+indent, yy );
+    ctx.lineTo( x+indent+6, yy );
+  }
+  ctx.stroke();
+
+
+}
+
 function drawRectangle(A, obj, d){
   //console.log( "draw - "+obj.type);
   var l = obj.layout;
@@ -1927,11 +1974,19 @@ function drawRectangle(A, obj, d){
     }
 
     if( stage===kStageFillAndText){
-      ctx.fill();
+      var frac = 0.14;
+      if( !obj.chartBox ){
+        ctx.fill();
+        frac = 0.5;
+
+      }
       ctx.textAlign = "center";
       ctx.fillStyle = "rgba(0,0,0,1.0)";
-      ctx.fillText(obj.value, x + xwText / 2, y + yhText / 2 + 6);
+      ctx.fillText(obj.value, x + xwText *frac, y + yhText * frac+ 6);
     }
+
+    if( obj.chartBox )
+      drawPlotLegends(A,obj,d);
     ctx.restore();
   }
 

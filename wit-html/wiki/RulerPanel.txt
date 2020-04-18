@@ -20,20 +20,33 @@ The detailed data for the chart follows.
     {
     "Ruler":"ZRuler",
     "margins":3,
-    "sizeAs":0.1,
+    "sizeAs":0.2,
     "atStart":300,
     "atEnd":1700
     },
-    {"Graph":"Audio",
-     "scaling":"ZRuler",
-     "colour":"rgb(127,229,127)",
-     "perturb":-0.06
+    {"Overlay":[
+        {"Graph":"Audio",
+         "scaling":"ZRuler",
+         "colour":"rgb(127,229,127)",
+         "perturb":-0.06
+        },
+        {"Rectangle":"Left Channel",
+         "chartBox":true,
+         "lineWidth":1
+        }]
     },
-    {"Graph":"Audio2",
-     "colour":"rgb(127,229,127)",
-     "scaling":"ZRuler",
-     "perturb":0.06
-    }]
+    {"Overlay":[
+        {"Graph":"Audio2",
+         "colour":"rgb(127,229,127)",
+         "scaling":"ZRuler",
+         "perturb":0.06
+        },
+        {"Rectangle":"Right Channel",
+         "chartBox":true,
+         "lineWidth":1
+        }]
+    }
+    ]
 </pre>
 
 
