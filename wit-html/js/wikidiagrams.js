@@ -1903,10 +1903,10 @@ function drawPlotLegends( A, obj, d ){
   ctx.lineWidth=1.7;
   ctx.beginPath();
   for( i=-1; i<= 1; i+=0.5){
-    var dy = (Math.abs(i)>0.6) ? -i* 8 : 0;
+    var dy = (Math.abs(i)>0.6) ? i* 8 : 0;
     var ady = Math.abs(dy)*0.4;
-    var yy = y + yh/2+yh*0.5*i;
-    ctx.fillText(i, x + 30-ady, 5+yy + dy);
+    var yy = y + yh/2-yh*0.5*i;
+    ctx.fillText(i.toFixed(1), x + 30-ady, 5+yy + dy);
     ctx.moveTo( x+indent-8-ady, yy+dy );
     ctx.lineTo( x+indent-4, yy+dy );
     ctx.lineTo( x+indent, yy );
