@@ -2589,13 +2589,13 @@ function linePlot(ctx, obj, ruler){
 
 // Commented out code draws spots on the waveform.
 
-/*
+
   var S = {};
   S.doStroke = false;
   S.r = 2;
-  if( pixelsPerItem > 3 ){
-    delta = 1.0;
-    ctx.fillStyle="rgba(0,0,0,"+constrain( 0, (pixelsPerItem-3) / 30, 1 )+")";
+  if( pixelsPerItem > 30 ){
+    delta = 0.1;
+    ctx.fillStyle="rgba(0,0,0,"+constrain( 0, (pixelsPerItem-30) / 150, 1 )+")";
     for( i = Math.floor(ruler.atStart); i < Math.floor(ruler.atEnd)+(20*delta); i+=delta ){
       xx = (i * pixelsPerItem - xStart);
       y1 = scaledYofItem(i, obj, ruler);
@@ -2605,7 +2605,6 @@ function linePlot(ctx, obj, ruler){
     }
   }
 
- */
 }
 
 function drawGraph( A, obj, d ){
