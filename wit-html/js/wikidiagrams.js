@@ -1969,7 +1969,7 @@ function drawRectangle(A, obj, d){
 
     applyObjectSettingsToContext(ctx, obj);
 
-    if( obj.id == A.Highlight )
+    if( obj.id &&  obj.id === A.Highlight )
       ctx.fillStyle = "rgb(167,203,250)";
     if( obj.cornerRadius )
       drawRoundRect(ctx, x, y, xw, yh, obj.cornerRadius);
@@ -3679,7 +3679,7 @@ function createImage( A, obj, d ){
 
 function createTile( A, obj, d ){
   createImage(A, obj, d);
-  AddHover( A, ["setCaption", obj.id, "highlight", obj.id] );
+  AddHover( A, ["highlight", obj.id] );
 }
 
 function createContainer( A, obj, d){
