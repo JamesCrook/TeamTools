@@ -23,6 +23,7 @@ The detailed data for the regions, buttons and tooltips follows.
             },
             {"Tile":"Toolbars",
              "src":"IconToolbar.svg",
+             "clickDo":["Goto","https://www.audacityteam.org"],
              "opacity":0.3
             },
             {"Tile":"Scaffolding",

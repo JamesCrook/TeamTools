@@ -252,6 +252,10 @@ AddDetail = function( A, text){
 };
 
 AddHover = function( A, text){
+  if( !A.Hotspots )
+    return;
+  if( !A.Hotspots.Current )
+    return;
   A.Hotspots.Current.Hover = text;
 };
 
@@ -1964,6 +1968,9 @@ function drawRectangle(A, obj, d){
     ctx.beginPath();
 
     applyObjectSettingsToContext(ctx, obj);
+
+    if( obj.id == A.Highlight )
+      ctx.fillStyle = "rgb(167,203,250)";
     if( obj.cornerRadius )
       drawRoundRect(ctx, x, y, xw, yh, obj.cornerRadius);
     else
@@ -2854,6 +2861,8 @@ function onMouseOut(e){
   var index = e.target.toolkitIndex;
   var A = Annotator[index];
   A.Status.isFocus = false;
+  A.Highlight = "%none";
+
   if( !A.Status.isAppReady ) return;
   if( e.shiftKey ) return;
   var ctx = A.FocusCanvas.ctx;
@@ -2953,6 +2962,7 @@ function mousemoveOnMap(e){
 
   if( (A.Status.OldHit !== actions.Zone) && !e.buttons  ){
 
+    A.Highlight = "%none";
     // Update the detail div
     if( !A.DetailDivFrozen )
       showOrHideTip(A, actions);
@@ -2963,6 +2973,7 @@ function mousemoveOnMap(e){
     }
     if( !actions.Down )
       e.target.style.cursor = actions.Click ? 'pointer' : 'auto';
+    drawDiagramAgain(A);
   }
 
   if( !A.DetailDivFrozen ){
@@ -3221,6 +3232,10 @@ function doAction(A,code){
     }
     else if( command === "setBright" ){
       A.BrightObjects = code[i++];
+    }
+    else if( command === "highlight" ){
+      A.Highlight = code[i++];
+      //drawDiagramAgain( A );
     }
     else if( command === "loadSpec" ){
       var spec = code[i++];
@@ -3664,8 +3679,8 @@ function createImage( A, obj, d ){
 
 function createTile( A, obj, d ){
   createImage(A, obj, d);
+  AddHover( A, ["setCaption", obj.id, "highlight", obj.id] );
 }
-
 
 function createContainer( A, obj, d){
 //console.log( "create container - "+obj.type);
@@ -3677,7 +3692,6 @@ function createContainer( A, obj, d){
     createCells(A, o2, d);
   }
 }
-
 
 function createCells(A, obj, data){
   visit(createThing, A, obj, data);
