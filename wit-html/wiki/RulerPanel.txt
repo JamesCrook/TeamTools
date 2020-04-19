@@ -20,7 +20,7 @@ The detailed data for the chart follows.
     {
     "Ruler":"ZRuler",
     "margins":3,
-    "sizeAs":0.2,
+    "sizeAs":0.1,
     "atStart":300,
     "atEnd":1700
     },
