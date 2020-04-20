@@ -2047,6 +2047,16 @@ function drawGeshi(A, obj, d){
   }
 }
 
+function mayPadKwicString(str, nChars){
+  var ll = str.length;
+  if( ll < nChars ){
+    var pad = ("                                                                                                                 :<").slice(
+      ll - nChars);
+    str = str.split(":<").join(pad);
+  }
+  return str;
+}
+
 function drawKwic(A, obj, d){
   if( d.stage !== kStageFillAndText && ( d.stage !== kStageHots ) )
     return;
@@ -2112,12 +2122,7 @@ function drawKwic(A, obj, d){
       if( i < 0 ) continue;
       str = D[i];
       str = str.split(" ~")[0];
-      var ll = str.length;
-      if( ll < nChars ){
-        var pad = ("                                                                                                                 :<").slice(ll -
-        nChars);
-        str = str.split(":<").join(pad);
-      }
+      str = mayPadKwicString(str, nChars);
 
       ctx.fillStyle = "rgb(0,0,0)";
       ctx.textAlign = "right";
@@ -3360,7 +3365,7 @@ function onKwicClicked(A, obj){
   var kwicSpace = obj.oneSpace;
 
   var row = Math.floor(offsetY / textLineSpacing -0.5);
-  var col = Math.floor( offsetX / kwicSpace );
+  var col = Math.floor(offsetX / kwicSpace );
 
   console.log("click at row:"+row+" col:"+col );
   var D = obj.permutedIndex;
@@ -3369,6 +3374,9 @@ function onKwicClicked(A, obj){
 
     var str = D[row];
     str = str.split(" ~")[0];
+    var nChars = Math.floor( xw / kwicSpace );
+    str = mayPadKwicString(str,nChars);
+
     // wrap around if after end of string.
     var wrap = col;
     if( col === -1 )
@@ -3385,6 +3393,7 @@ function onKwicClicked(A, obj){
         col++;
       str = str.slice(col) +  " " + str.slice( 0, col);
       str = str.trimEnd();
+      str = str.replace( / +/g , " " );
     }
     console.log( "Jump to: " +str );
     obj.selected = str;
