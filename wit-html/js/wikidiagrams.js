@@ -2105,28 +2105,37 @@ function drawKwic(A, obj, d){
   var r2=2;
 
   if( d.stage === kStageFillAndText )
-    for( i = iStart;i< Math.min( iStart+lines, D.length); i++)
-    {
-      if( i<0 )
-        continue;
-    str = D[i];
-    str = str.split(" ~")[0];
+  {
+    var nChars = Math.floor( xw / kwicSpace );
+    for( i = iStart;i< Math.min( iStart+lines, D.length); i++){
+      if( i < 0 ) continue;
+      str = D[i];
+      str = str.split(" ~")[0];
+      var ll = str.length;
+      if( ll < nChars ){
+        var pad = ("                                                                                                                 :<").slice(ll -
+        nChars);
+        str = str.split(":<").join(pad);
+      }
 
-    ctx.fillStyle = "rgb(0,0,0)";
-    ctx.textAlign = "right";
-    ctx.fillText(str, x+dx-kwicSpace,y + dy + textLineSpacing*(i-iStart));
-    ctx.textAlign = "left";
-    ctx.fillText(str, x+dx,y + dy + textLineSpacing*(i-iStart));
+      ctx.fillStyle = "rgb(0,0,0)";
+      ctx.textAlign = "right";
+      ctx.fillText(str, x + dx - kwicSpace,
+        y + dy + textLineSpacing * (i - iStart));
+      ctx.textAlign = "left";
+      ctx.fillText(str, x + dx, y + dy + textLineSpacing * (i - iStart));
 
-    S= {x: x+dx-kwicSpace/2+1, y: y+ dy + textLineSpacing*(i-iStart)-kwicSpace/2};
-    ctx.fillStyle = "rgb(100,100,250)";
-    ctx.beginPath();
-    ctx.rect( S.x-r2, S.y-r, r2*2, r*2 );
-    //ctx.arc(S.x, S.y, r, 0, 2 * Math.PI, false);
-    ctx.closePath();
-    ctx.fill();
-
-
+      S = {
+        x: x + dx - kwicSpace / 2 + 1,
+        y: y + dy + textLineSpacing * (i - iStart) - kwicSpace / 2
+      };
+      ctx.fillStyle = "rgb(100,100,250)";
+      ctx.beginPath();
+      ctx.rect(S.x - r2, S.y - r, r2 * 2, r * 2);
+      //ctx.arc(S.x, S.y, r, 0, 2 * Math.PI, false);
+      ctx.closePath();
+      ctx.fill();
+    }
   }
 
   r2=4; // increase width for hotspot use.
