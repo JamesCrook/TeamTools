@@ -268,16 +268,30 @@
         str += formatExample("AudacityPeople", "Audacity People",
           "A who-is-who image that also shows how the hotspots work.", "");
 
-        str += formatExample("Bug_Counts", "Bug Chart",
+        str += formatExample("Bug_Counts", "Bugs Chart",
           "Graph of Audacity bugs over time.  Legends, labels and scales are added as layers.",
           "");
+
+        str += formatExample("BugsKwic", "Bugs Kwic", "Keyword in context index for our bugs.", "");
 
         str += formatExample("Flow_Chart", "Flow Chart",
           "Flowchart of making the Audacity manual.",
           "");
+        str += '</ul><div>';
+        str += '<h3>Educational Diagrams about Sound:</h3>';
+        str += '</div>';
+
+
+
+        str +=
+          "Diagrams used on wiki pages that explain aspects of sound and digital audio processing:<ul>";
         str += formatExample("Spectrograms", "Spectrograms",
           "Six related spectrograms for the word 'Audacity', explaining what the spectrogram shows.",
           "");
+        str += formatExample("The_Ear", "The Ear",
+          "Three schematics of the ear, based on Blausen Medical's images", "");
+        str += formatExample("RulerPanel", "Stereo Waveforms",
+          "A zoomable image showing the subtle differences between the two channels in an stereo waveform", "");
 
         str += '</ul><div>';
         str += '<h3>Other Examples:</h3>';
@@ -287,8 +301,6 @@
         str += formatExample("Globes", "Globes",
           "Six different 'World Maps': Moisture, Climate, Vegetation, Ocean Currents, Plate Techtonics and The Moon",
           "");
-        str += formatExample("The_Ear", "The Ear",
-          "Three schematics of the ear, based on Blausen Medical's images", "");
 
         if( bonusContent ){
           str += '</ul><div>';
@@ -297,10 +309,6 @@
 
           str +=
             "These are further experiments and examples showing other features:<ul>";
-
-          str +=
-            formatExample("RulerPanel", "Waveform", "A Zoomable Waveform.",
-              "");
 
           str +=
             formatExample("Aldosterone", "Aldosterone", "Aldosterone molecule in SMILES format.",
@@ -331,7 +339,6 @@
             formatExample("Geshi", "Geshi", "Syntax Highlighted Source Code",
               "");
           str += formatExample("Kwic", "Kwic", "Keyword in context index.", "");
-          str += formatExample("BugsKwic", "Bugs Kwic", "Keyword in context index for our bugs.", "");
 
           str += formatExample("KwicPathways", "Pathway Index",
             "A KeyWord In Context index of biochemical pathways.", "");
@@ -464,7 +471,7 @@
     <div class='pos-resetter'>
         <h2 id="click-tip"
             style="color:#bfbfbf;display:block;position:relative;top:-0.55em;transition:opacity 4s;opacity:1;">
-            <em>Version from 16-Apr-2020</em></h2>
+            <em>Version from 20-Apr-2020</em></h2>
     </div>
     <div class='pos-resetter'>
         <div style="display:inline-block;">
