@@ -182,6 +182,7 @@ function populateDomElement(A, contentHere){
   A.FocusCanvas.onclick = onFocusClicked;
   A.FocusCanvas.onmouseup = onMouseUp;
   A.FocusCanvas.onmousedown = onMouseDown;
+  A.FocusCanvas.ondblclick = onFocusDoubleClick;
 
   A.FocusCanvas.style.position = "absolute";
   A.FocusCanvas.style.left = "0px";
@@ -2871,6 +2872,7 @@ function onMouseOut(e){
   var A = Annotator[index];
   A.Status.isFocus = false;
   A.Highlight = "%none";
+  window.getSelection().empty();
 
   if( !A.Status.isAppReady ) return;
   if( e.shiftKey ) return;
@@ -2890,6 +2892,7 @@ function onMouseOut(e){
 function onMouseUp( e ){
   var index = e.target.toolkitIndex;
   var A = Annotator[index];
+  window.getSelection().empty();
 
   e.target.style.cursor = 'auto';
   A.Cursor="spot";
@@ -2951,7 +2954,7 @@ function mousemoveOnMap(e){
 
   if( !A.Status.isAppReady ) return;
   A.Status.isFocus = true;
-
+  window.getSelection().empty();
 
   var rect = e.target.getBoundingClientRect();
   var x = Math.ceil(e.clientX - rect.left);
@@ -2996,12 +2999,23 @@ function mousemoveOnMap(e){
   }
 }
 
+/**
+ * This is intended to stop double-click selecting text outside the focus
+ * window.  It does not seem to make a difference.  The text is selected for
+ * a moment and then unselected.
+ * @param e
+ */
+function onFocusDoubleClick(e){
+  window.getSelection().empty();
+}
+
 function onFocusClicked(e){
   if( e.shiftKey ) return;
   var index = e.target.toolkitIndex;
   var A = Annotator[index];
 
   if( !A.Status.isAppReady ) return;
+  window.getSelection().empty();
 
   var rect = e.target.getBoundingClientRect();
   var x = e.clientX - rect.left;
