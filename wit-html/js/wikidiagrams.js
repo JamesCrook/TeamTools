@@ -2931,7 +2931,7 @@ function onMouseUp( e ){
   var rect = e.target.getBoundingClientRect();
   var x = e.clientX - rect.left;
   var y = e.clientY - rect.top;
-  drawFocusSpot(A,x, y);
+  drawFocusLayer(A,x, y);
 
 }
 
@@ -2961,7 +2961,7 @@ function onMouseDown( e ){
     doAction(A, actions.Down);
     //e.target.style.cursor = 'all-scroll';
     A.Cursor="dragger";
-    drawFocusDragger(A,x, y);
+    drawFocusLayer(A,x, y);
   } else {
     A.DetailDivFrozen = true;
     showOrHideTip( A, actions );
@@ -2969,6 +2969,15 @@ function onMouseDown( e ){
 
   drawDiagramAgain(A);
 
+}
+
+function drawFocusLayer(A, x, y){
+  if( A.Cursor === "dragger" ){
+    drawFocusDragger(A, x, y);
+  } else {
+    drawFocusSpot(A, x, y);
+  }
+  drawInfoButton(A);
 }
 
 function mousemoveOnMap(e){
@@ -2987,12 +2996,8 @@ function mousemoveOnMap(e){
 
 
   var pt = detailPosFromCursorPos(A, x, y);
+  drawFocusLayer(A, x, y);
 
-  if( A.Cursor === "dragger" )
-    drawFocusDragger(A,x, y);
-  else
-    drawFocusSpot(A,x, y);
-  drawInfoButton(A);
   var actions = actionsFromCursorPos(A, x, y);
   if( Message ) Message.innerHTML = coordinates;
 
