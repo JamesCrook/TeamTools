@@ -769,7 +769,10 @@ Audacity.Menus =
   { "depth":1, "flags":0,
     "label":"Check for Updates...", "accel":"", "id":"Updates" },
   { "depth":1, "flags":0,
-    "label":"About Audacity...", "accel":"", "id":"About" }
+    "label":"About Audacity...", "accel":"", "id":"About" },
+  { "depth":0, "flags":0, "label":"No", "accel":"" },
+  { "depth":1, "flags":0, "label":"Previous Window", "accel":"Alt+Shift+F6", "id":"PrevWindow" },
+  { "depth":1, "flags":0, "label":"Next Window", "accel":"Alt+F6", "id":"NextWindow" }
 ]
   ;
 
