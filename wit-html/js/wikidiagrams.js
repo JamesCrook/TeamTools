@@ -2115,6 +2115,8 @@ function drawKwic(A, obj, d){
   var r=6;
   var r2=2;
 
+  obj.ruledBackgroundPhase = obj.ruledBackgroundPhase || 0;
+
   if( d.stage === kStageFillAndText )
   {
     var nChars = Math.floor( xw / kwicSpace );
@@ -2124,6 +2126,21 @@ function drawKwic(A, obj, d){
       str = str.split(" ~")[0];
       str = mayPadKwicString(str, nChars);
 
+      S = {
+        x: x,
+        y: y + dy + textLineSpacing * (i - iStart-1) +3
+      };
+
+      //The background rectangles that help the eye follow text.
+      var c = (((i+obj.ruledBackgroundPhase)%5)<3);
+      //
+      ctx.fillStyle = c ? "rgba(50,80,200,0.2)" : "rgba(100,160,220,0.2)";
+      ctx.beginPath();
+      ctx.rect(S.x , S.y , xw, textLineSpacing -1);
+      ctx.closePath();
+      ctx.fill();
+
+
       ctx.fillStyle = "rgb(0,0,0)";
       ctx.textAlign = "right";
       ctx.fillText(str, x + dx - kwicSpace,
@@ -2131,6 +2148,8 @@ function drawKwic(A, obj, d){
       ctx.textAlign = "left";
       ctx.fillText(str, x + dx, y + dy + textLineSpacing * (i - iStart));
 
+
+      //The blue info blobs (that on hover give the details panel for that row)
       S = {
         x: x + dx - kwicSpace / 2 + 1,
         y: y + dy + textLineSpacing * (i - iStart) - kwicSpace / 2
@@ -3328,7 +3347,10 @@ function reselectInKwic( obj,row ){
       var textHeight = obj.oneSpace *1.8;
       //var row = Math.floor(A.Status.click.y / textHeight -0.5);
       index = index-row;
+      obj.ruledBackgroundPhase -= (obj.offset.y)/textHeight;
       obj.offset.y -= index*textHeight;
+      obj.ruledBackgroundPhase += (obj.offset.y)/textHeight;
+      obj.ruledBackgroundPhase = obj.ruledBackgroundPhase % 10;
     }
   }
 }
