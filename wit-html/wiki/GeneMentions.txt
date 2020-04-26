@@ -22,7 +22,7 @@ The detailed data for the chart follows.
 {
    "Chart":"Lines",
    "subtype":["lines","*","*"],
-   "maxY":70,
+   "maxY":80,
    "linesAt":10,
    "values":"Lines"
 },
@@ -31,7 +31,7 @@ The detailed data for the chart follows.
    "titles":["Gene","Mentions","longname","hgncId","location"],
    "display":["Label","#CC6699"],
    "subtype":["*","bar","*","*","*"],
-   "maxY":70,
+   "maxY":80,
    "autoTip":"Gene <b>%gene</b> shown in pathways in %mentions of these 189 papers.<br><br>%longname<ul><li><a href='https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/%hgncid'>at HGNC</a><li><a href='https://www.alliancegenome.org/gene/%hgncid'>at alliance of genome reosurces</a><ul>",
    "spacer":3,
    "values":[
