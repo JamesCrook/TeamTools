@@ -32,6 +32,7 @@ The detailed data for the chart follows.
         },
         {"Rectangle":"Left Channel",
          "chartBox":true,
+         "clickDo":["setClickAsCentre","ZRuler"],
          "lineWidth":1
         }]
     },
@@ -43,6 +44,7 @@ The detailed data for the chart follows.
         },
         {"Rectangle":"Right Channel",
          "chartBox":true,
+         "clickDo":["setClickAsCentre","ZRuler"],
          "lineWidth":1
         }]
     }

@@ -3239,21 +3239,37 @@ function fieldValue(field, line){
   return value;
 }
 
-function setClick(A,type, location){
+function setClick(A, value){
   var h = A.Hotspots.Current.Click || [];
-  h.push( type );
+  var i;
+  for( i = 0; i < value.length; i++ ){
+    h.push(value[i]);
+  }
+  A.Hotspots.Current.Click = h;
+}
+
+
+function setClickGoto(A, location){
   // ignore after '#'
-  h.push(  (location + "#").split("#")[0]);
+  var where = (location + "#").split("#")[0];
   var num = location.split("#")[1]||"0";
   num = Number( num );
-  h.push( num+1 );
-  A.Hotspots.Current.Click = h;
+  setClick( A,[ "Goto", where, num+1 ] );
+}
+
+
+function parseFilename( location ){
+  var where = (location + "#").split("#")[0];
+  var num = location.split("#")[1] || "0";
+  num = Number(num)+1;
+  return { 'name':where, 'num':num};
 }
 
 function doAction(A,code){
   var activeObject = {};
   var name;
   var section;
+  var S;
 
   for(i=0;i<code.length;){
     var command = code[i++];
@@ -3285,6 +3301,12 @@ function doAction(A,code){
     else if( command === "setBright" ){
       A.BrightObjects = code[i++];
     }
+    else if( command === "setClickAsCentre" ){
+      activeObject = getObjectByName(A, code[i++]);
+      var mid = activeObject.content[1];
+      mid.offset.x = A.Status.move.x;
+      drawDiagramAgain(A);
+    }
     else if( command === "highlight" ){
       A.Highlight = code[i++];
       //drawDiagramAgain( A );
@@ -3308,22 +3330,20 @@ function doAction(A,code){
       mayRequestDisplayableImage(A, activeObject);
     }
     else if( command === "Spec" ){
-      name = code[i++];
-      section = code[i++];
-      requestSpec( A, name, A.fromWiki, section);
+      S = parseFilename( code[i++]);
+      requestSpec( A, S.name, A.fromWiki, S.num);
     }
     else if( command === "DoSpec" ){
-      name = code[i++];
-      section = code[i++];
-      requestSpec( A, name, A.fromWiki, section, addNewDetails);
+      S = parseFilename( code[i++]);
+      requestSpec( A, S.name, A.fromWiki, S.num, addNewDetails);
     }
     else if( command === "Image" ) {
       name = code[i++];
       setNewImage( A, name);
     }
     else if( command === "Goto" ){
-      name = code[i++];
-      window.location.href = name;
+      S = parseFilename( code[i++]);
+      window.location.href = S.name;
       return;
     }
 
@@ -3628,7 +3648,11 @@ function sizeNowt( A, obj, data ){
 function mayRegisterClickAction( A, obj ){
   // setClick uses the 'Hotspots.Current.Click' object.
   if( obj.hasOwnProperty( "clickDo" )){
-    setClick( A, obj.clickDo[0], obj.clickDo[1] );
+    if( !obj.hotspotColour ){
+      var c = NextAutoColour(A, "");
+      obj.hotspotColour = c;
+    }
+    setClick( A, obj.clickDo );
   }
 }
 
@@ -4325,7 +4349,7 @@ function doChoose( A, parentObj, item )
         // This makes a temporary click action, so that we can
         // do it immediately.
         A.Hotspots.Current.Click = [];
-        setClick( A, obj.clickDo[0], obj.clickDo[1] );
+        setClick( A, obj.clickDo );
         doAction(A,A.Hotspots.Current.Click);
       }
     }
