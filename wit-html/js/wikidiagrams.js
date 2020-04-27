@@ -1825,6 +1825,9 @@ function drawImage(A, obj, d){
 
   var ctx = A.BackingCanvas.ctx;
   var ctx2 = A.Hotspots.ctx;
+
+  // if image or hotspot asked for and have not arrived
+  // then just draw the background.
   if( obj.status !== "arrived" ){
     if( obj.src )
        drawRectangle(A, obj, d);
@@ -1845,11 +1848,33 @@ function drawImage(A, obj, d){
   }
 
 
+  var from = {
+    x: 0, y:0, xw: obj.img.width, yh: obj.img.height};
+
   if( obj.stretch === "yes" ){
     // rescaled to fit, aspect ratio ignored.
   } else if( obj.stretch === "no" ){
     // ToDo: crop or center.
-  } else {
+  } else if( obj.hScaling ){
+    hruler = getObjectByName(A, obj.hScaling);
+
+    //var mid = activeObject.content[1];
+    //mid.offset.x = A.Status.move.x;
+    var xStart = hruler.atStart;
+    var xEnd   =  hruler.atEnd;
+    var ddx = xEnd-xStart;
+    var mScale = ddx/xw;
+
+    from.x = xStart;
+    from.y = 0;
+    from.xw = ddx;
+    from.yh = mScale * yh;
+
+//    ctx.drawImage(obj.img, xStart, 0, ddx, mScale * yh, x, y, xw, yh);
+ //   return;
+
+  }
+  else {
     // obj.stretch undefined or "preserve-aspect"
     // Logic to rescale image to fit, preserving
     // aspect ratio and placing centrally.
@@ -1872,13 +1897,20 @@ function drawImage(A, obj, d){
   if( isDefined( obj.opacity) )
     ctx.globalAlpha = obj.opacity;
   if( d.stage === kStageFillAndText )
-    ctx.drawImage(obj.img, x, y, xw, yh);
+    ctx.drawImage(obj.img, from.x, from.y, from.xw, from.yh,
+      x, y, xw, yh);
   ctx.globalAlpha = 1.0;
 
 
   if( d.stage === kStageHots )
     if( obj.hot && obj.hot.status === "arrived" )
       ctx2.drawImage(obj.hot.img, x, y, xw, yh);
+    else if( obj.hotspotColour ){
+      ctx2.beginPath();
+      ctx2.rect(x, y, xw, yh);
+      ctx2.fillStyle = obj.hotspotColour;
+      ctx2.fill();
+    }
 }
 
 
