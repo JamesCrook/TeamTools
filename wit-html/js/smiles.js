@@ -924,6 +924,28 @@ function drawRuler(A, obj, d){
     obj.atEnd = 300;
   }
 
+  var l = obj.layout;
+  var x = l.x0;
+  var y = l.y0;
+  var xw = l.xw;
+  var yh = l.yh;
+
+  if( Math.abs(yh) > Math.abs(xw) ){
+    l.flipped = true;
+    x = l.y0;
+    y = -l.x0;
+    xw = l.yh;
+    yh = l.xw;
+
+    //y -= 100;
+    l.x0=x;
+    l.y0=y;
+    l.xw = xw;
+    l.yh=yh;
+  }
+
+
+
   if( stage===kDragging){
     updateDraggers( A, obj, d );
 
@@ -941,11 +963,6 @@ function drawRuler(A, obj, d){
   if( stage!==kStageFillAndText)
     return;
 
-  var l = obj.layout;
-  var x = l.x0;
-  var y = l.y0;
-  var xw = l.xw;
-  var yh = l.yh;
 
   mayUpdateObjectStyle(A, obj);
 
@@ -953,19 +970,6 @@ function drawRuler(A, obj, d){
 
 
   ctx.save();
-  if( Math.abs(yh) > Math.abs(xw) ){
-    l.flipped = true;
-    x = l.y0;
-    y = -l.x0;
-    xw = l.yh;
-    yh = l.xw;
-
-    //y -= 100;
-    l.x0=x;
-    l.y0=y;
-    l.xw = xw;
-    l.yh=yh;
-  }
   if( l.flipped ){
     ctx.transform(0, 1, -1, 0, yh, 0);
   }
@@ -1026,6 +1030,12 @@ function drawRuler(A, obj, d){
 
   var ctx2 = A.Hotspots.ctx;
 
+  ctx2.save();
+  if( l.flipped ){
+    ctx2.transform(0, 1, -1, 0, yh, 0);
+  }
+
+
   var c = NextAutoColour(A, "");
   AddDown(A,["clickObject",obj.id]);
 
@@ -1035,6 +1045,7 @@ function drawRuler(A, obj, d){
   ctx2.fill();
 
   drawDraggers(A, obj, d );
+  ctx2.restore();
 
   ctx.restore();
 }
