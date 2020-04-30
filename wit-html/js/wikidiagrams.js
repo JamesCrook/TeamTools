@@ -1573,10 +1573,7 @@ function drawSphere(A,xx, yy, xw, yh, ctx, obj){
     var offset;
     var src = srcData.data;
     var dst = dstData.data;
-    // Safari dstData is 2h-1 not 2h in width, despite us asking for 2h.
-    //if( isSafari )
-    //  index -= Math.floor(h-y)*4;
-    //console.log( 'row:'+y+' ('+(h-dx)+'..'+(h+dx)+')');
+
     for( var x = -dx; x < dx; x++ ){
       // This inner loop has had a little TLC for speed.
       // Taking 25% of CPU to 15% by taking calculations
@@ -1726,6 +1723,8 @@ function drawDraggable(A, obj, d ){
   var y = l.y0;
   var xw = l.xw;
   var yh = l.yh;
+
+
   var stage = d.stage;
 
   if( !isDefined( obj.offset )){
@@ -3600,9 +3599,6 @@ function createKwic( A, obj, data ){
 function layoutMargined(A, obj, d){
   //console.log( "layout - "+obj.type);
   increaseMargin( A, obj, d.margins );
-//  var m = d.margins;
-//  var l = obj.layout;
-//  setCellLayout(A, l.x0 + m, l.y0 + m, l.xw - 2 * m, l.yh - 2 * m, obj, d);
 }
 
 function layoutUnmargined(A, obj, d){
@@ -3630,10 +3626,10 @@ function layoutContainer( A, obj, d){
         setCellLayout(A, l.x0, l.y0 + (wantsSoFar / k) * l.yh,
           l.xw,l.yh * (want / k), obj.content[i]);
         break;
+      default:
       case "Overlay":
         setCellLayout(A, l.x0, l.y0, l.xw, l.yh, obj.content[i]);
         break;
-      default:
     }
     layoutCells( A, obj.content[i], d );
     wantsSoFar += want;
@@ -3737,9 +3733,6 @@ function mayRequestImage(A, parent, obj){
 }
 
 function mayRequestHotImage(A, obj){
-  //if( !obj.hot )
-  //  return;
-
   mayRequestImage(A, obj, obj.hot);
 }
 
@@ -3766,8 +3759,6 @@ function createCell(A, obj, d){
   if( obj.hasOwnProperty( 'choice')){
     doChoose(A, obj, obj.choice);
   }
-
-
 }
 
 function createImage( A, obj, d ){
@@ -3792,7 +3783,6 @@ function createImage( A, obj, d ){
       mayRegisterClickAction( A, zone );
     }
   }
-
 }
 
 function createTile( A, obj, d ){
@@ -3830,27 +3820,10 @@ function drawCells(A, obj, data){
   visit(drawThing, A, obj, data);
 }
 
-createThing = {
-  "default": createContainer,
-};
-
-sizeThing = {
-  "default": sizeContainer,
-};
-
-layoutThing = {
-  "default": layoutUnmargined,
-  "VStack": layoutContainer,
-  "HStack": layoutContainer,
-  "Overlay": layoutContainer,
-};
-
-drawThing = {
-  "default": drawNowt,
-  "VStack": drawContainer,
-  "HStack": drawContainer,
-  "Overlay": drawContainer,
-};
+createThing = {};
+sizeThing = {};
+layoutThing = {};
+drawThing = {};
 
 // @how has a function for each type of object
 // @what is an object to visit
@@ -4601,6 +4574,16 @@ function createDraggable2(A, obj, d){
 
 function registerMethods()
 {
+  // default is handled specially.  Anything with unspecified
+  // option uses default.
+  registerMethod( "default",    createContainer,sizeContainer, layoutUnmargined, drawNowt);
+
+  // Containers
+  registerMethod( "HStack",    0,0, layoutContainer, drawContainer);
+  registerMethod( "VStack",    0,0, layoutContainer, drawContainer);
+  registerMethod( "Overlay",    0,0, layoutContainer, drawContainer);
+
+  // Actual objects
   registerMethod( "Image",    createImage,0, layoutMargined, drawImage);
   registerMethod( "Text",     0,0, layoutMargined, drawText);
   registerMethod( "Geshi",     0,0, layoutMargined, drawGeshi);
