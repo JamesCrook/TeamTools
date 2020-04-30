@@ -18,16 +18,27 @@ The detailed data for the regions, buttons and tooltips follows.
     {
     "Ruler":"XRuler",
     "margins":3,
-    "sizeAs":0.1,
+    "sizeAs":0.05,
     "atStart":0,
     "atEnd":1200
     },
+
+    {"HStack":[
 
         {
         "Image":"Image",
         "src":"Cambridge.png",
         "hScaling":"XRuler",
          "clickDo":["setClickAsCentre","XRuler"]
+        },
+    {
+    "Ruler":"YRuler",
+    "margins":3,
+    "sizeAs":0.035,
+    "atStart":0,
+    "atEnd":655
+    }
+        ]
         }
 ]
 </pre>

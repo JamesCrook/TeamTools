@@ -644,7 +644,15 @@ function onRulerClicked(A, obj){
   console.log( "Center Index: "+obj.centerIx );
 }
 
+function setCentreDraggerX(ruler, x){
+  var mid = ruler.content[1];
+  mid.offset.x = x;
+}
 
+function setCentreDraggerY(ruler, y){
+  var mid = ruler.content[1];
+  mid.yCentre = y;
+}
 
 function draggingRuler( A, obj, dd ){
   dd.y = constrain( 20, dd.y, 20 );
@@ -943,7 +951,24 @@ function drawRuler(A, obj, d){
 
   var ctx = A.BackingCanvas.ctx;
 
+
   ctx.save();
+  if( Math.abs(yh) > Math.abs(xw) ){
+    l.flipped = true;
+    x = l.y0;
+    y = -l.x0;
+    xw = l.yh;
+    yh = l.xw;
+
+    //y -= 100;
+    l.x0=x;
+    l.y0=y;
+    l.xw = xw;
+    l.yh=yh;
+  }
+  if( l.flipped ){
+    ctx.transform(0, 1, -1, 0, yh, 0);
+  }
   ctx.beginPath();
 
   applyObjectSettingsToContext(ctx, obj);

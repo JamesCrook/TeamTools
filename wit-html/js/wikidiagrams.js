@@ -3297,6 +3297,8 @@ function parseFilename( location ){
   return { 'name':where, 'num':num};
 }
 
+
+
 function doAction(A,code){
   var activeObject = {};
   var name;
@@ -3335,8 +3337,9 @@ function doAction(A,code){
     }
     else if( command === "setClickAsCentre" ){
       activeObject = getObjectByName(A, code[i++]);
-      var mid = activeObject.content[1];
-      mid.offset.x = A.Status.move.x;
+      setCentreDraggerX(activeObject, A.Status.move.x);
+      setCentreDraggerY(activeObject, A.Status.move.y);
+
       drawDiagramAgain(A);
     }
     else if( command === "highlight" ){
