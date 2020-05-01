@@ -2393,6 +2393,68 @@ function drawFilledArrow(ctx, S, style, d){
   ctx.restore();
 }
 
+function innerTransform( A, obj, d, ctx )
+{
+  var l = obj.layout;
+  ctx.save();
+
+  var op = obj.transOp || 0;
+
+  switch( op ){
+
+    // cases 0 to 4 all have the same aspect ratio as no transform.
+    case 0:
+    default:
+      // Identity transform.
+      break;
+    case 1:
+      // Rotate 180
+      ctx.transform( -1, 0, 0, -1, 2*l.x0+l.xw, 2*l.y0+l.yh );
+      break;
+    case 2:
+      // Swap left-right
+      ctx.transform( -1, 0, 0,  1, 2*l.x0+l.xw, 0 );
+      break;
+    case 3:
+      // Swap up and down
+      ctx.transform( 1, 0, 0, -1, 0, 2*l.y0+l.yh );
+      break;
+
+    // cases 4 to 7 all have the width-height swapped aspect ratio.
+    case 4:
+      // reflect in major diagonal
+      ctx.transform( 0, 1, 1, 0, 0, 0 );
+      break;
+    case 5:
+      // reflect in minor diagonal
+      ctx.transform( 0, -1,-1, 0, 2*l.x0+l.xw, 2*l.y0+l.yh );
+      break;
+    case 6:
+      //rotate 90 cw
+      ctx.transform( 0, 1, -1, 0,2*l.x0+l.xw, 0 );
+      break;
+    case 7:
+      // rotate 90 cc
+      ctx.transform( 0, -1, 1, 0, 0, 2*l.y0+l.yh );
+      break;
+  }
+}
+
+
+function drawTransform( A, obj, d ){
+  var ctx = A.BackingCanvas.ctx;
+  var ctx2 = A.Hotspots.ctx;
+
+
+  innerTransform( A, obj, d, ctx );
+  innerTransform( A, obj, d, ctx2 );
+  drawContainer( A, obj, d );
+  ctx.restore();
+  ctx2.restore();
+}
+
+
+
 
 // >>>>>>>>>>>>>>>>>>> Draw iterators
 
@@ -3608,6 +3670,18 @@ function layoutUnmargined(A, obj, d){
   setCellLayout(A, l.x0 + m, l.y0 + m, l.xw - 2 * m, l.yh - 2 * m, obj, d);
 }
 
+function layoutTransform( A, obj, d ){
+  var op = obj.transOp || 0;
+  if( op <4 )
+    return layoutContainer( A, obj, d );
+
+  var l = obj.layout;
+  obj.layout = {x0:l.y0,y0:l.x0,xw:l.yh,yh:l.xw};
+  layoutContainer( A, obj, d );
+  obj.layout = l;
+
+}
+
 function layoutContainer( A, obj, d){
   //console.log( "layout - "+obj.type);
   var n = obj.content.length;
@@ -4582,6 +4656,7 @@ function registerMethods()
   registerMethod( "HStack",    0,0, layoutContainer, drawContainer);
   registerMethod( "VStack",    0,0, layoutContainer, drawContainer);
   registerMethod( "Overlay",    0,0, layoutContainer, drawContainer);
+  registerMethod( "Transform",    0, 0, layoutTransform, drawTransform);
 
   // Actual objects
   registerMethod( "Image",    createImage,0, layoutMargined, drawImage);

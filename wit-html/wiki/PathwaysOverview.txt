@@ -41,16 +41,19 @@ The detailed data for the regions, buttons and tooltips follows.
              "sizeAs":2
             }
             ]},
-        {"VStack":[
-            {"Tile":"Immunity",
-             "src":"IconAntibody.svg",
-             "opacity":0.3},
-            {"Tile":"Signaling",
-             "src":"IconSignalling.svg",
-             "opacity":0.3,
-             "sizeAs":2
-             }
-            ]},
+        {"Transform":[
+            {"VStack":[
+                {"Tile":"Immunity",
+                 "src":"IconAntibody.svg",
+                 "opacity":0.3},
+                {"Tile":"Signaling",
+                 "src":"IconSignalling.svg",
+                 "opacity":0.3,
+                 "sizeAs":2
+                 }
+                ]}
+            ],
+          "transOp":0},
         {"VStack":[
             {"Tile":"Reconstruction",
              "src":"IconClot.svg",
