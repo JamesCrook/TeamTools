@@ -2430,14 +2430,15 @@ function innerTransform( A, obj, d, ctx )
       ctx.transform( 0, -1,-1, 0, 2*l.x0+l.xw, 2*l.y0+l.yh );
       break;
     case 6:
-      //rotate 90 cw
+      //rotate 90 degrees clockwise
       ctx.transform( 0, 1, -1, 0,2*l.x0+l.xw, 0 );
       break;
     case 7:
-      // rotate 90 cc
+      // rotate 90 degrees counter-clockwise
       ctx.transform( 0, -1, 1, 0, 0, 2*l.y0+l.yh );
       break;
   }
+  A.transOp = op;
 }
 
 
@@ -3501,8 +3502,8 @@ function onKwicClicked(A, obj){
 
   var offsetX = -obj.offset.x;
   var offsetY = -obj.offset.y;
-  offsetX += A.Status.click.x;
-  offsetY += A.Status.click.y;
+  offsetX += A.Status.click.x-x;
+  offsetY += A.Status.click.y-y;
   var textHeight = obj.oneSpace *1.8;
   var textLineSpacing = textHeight;
   var kwicSpace = obj.oneSpace;

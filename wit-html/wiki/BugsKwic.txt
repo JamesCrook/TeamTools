@@ -17,6 +17,10 @@ The detailed data for the chart follows.
 <pre>START</pre>
 
 <pre>ADD:DATA=
+{"Transform":
+[
+{"VStack":[
+{"Rectangle":"Descriptive Titles of Audacity Bugs", "sizeAs":0.15},
 {
 "KWIC":"index",
 "selected":"PORTAUDIO WARNINGS",
@@ -27,6 +31,10 @@ The detailed data for the chart follows.
         "4: EMERGING NOVEL CORONAVIRUS (2019-NCOV)—CURRENT SCENARIO, EVOLUTIONARY PERSPECTIVE BASED ON GENOME ANALYSIS AND RECENT DEVELOPMENTS"
         ]
 }
+]}
+
+],
+"transOp":0}
 </pre>
 
 With the layout established, the details that follow customise the objects.
