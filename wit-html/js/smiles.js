@@ -930,22 +930,6 @@ function drawRuler(A, obj, d){
   var xw = l.xw;
   var yh = l.yh;
 
-  if( Math.abs(yh) > Math.abs(xw) ){
-    l.flipped = true;
-    x = l.y0;
-    y = -l.x0;
-    xw = l.yh;
-    yh = l.xw;
-
-    //y -= 100;
-    l.x0=x;
-    l.y0=y;
-    l.xw = xw;
-    l.yh=yh;
-  }
-
-
-
   if( stage===kDragging){
     updateDraggers( A, obj, d );
 
@@ -970,9 +954,6 @@ function drawRuler(A, obj, d){
 
 
   ctx.save();
-  if( l.flipped ){
-    ctx.transform(0, 1, -1, 0, yh, 0);
-  }
   ctx.beginPath();
 
   applyObjectSettingsToContext(ctx, obj);
@@ -1031,11 +1012,6 @@ function drawRuler(A, obj, d){
   var ctx2 = A.Hotspots.ctx;
 
   ctx2.save();
-  if( l.flipped ){
-    ctx2.transform(0, 1, -1, 0, yh, 0);
-  }
-
-
   var c = NextAutoColour(A, "");
   AddDown(A,["clickObject",obj.id]);
 

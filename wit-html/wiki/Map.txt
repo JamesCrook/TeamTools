@@ -31,13 +31,16 @@ The detailed data for the regions, buttons and tooltips follows.
         "hScaling":"XRuler",
          "clickDo":["setClickAsCentre","XRuler"]
         },
-    {
-    "Ruler":"YRuler",
-    "margins":3,
-    "sizeAs":0.035,
-    "atStart":0,
-    "atEnd":655
-    }
+        {"Transform":[
+            {
+            "Ruler":"YRuler",
+            "margins":3,
+            "atStart":0,
+            "atEnd":655
+            }],
+          "transOp":6,
+          "sizeAs":0.035
+        }
         ]
         }
 ]
