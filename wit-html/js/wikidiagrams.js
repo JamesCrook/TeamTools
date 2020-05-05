@@ -1448,7 +1448,7 @@ function drawSnakeyPath(A, values, T){
 
 // draws a path inside a box.
 function drawPath(A, obj, d, stride){
-  if( d.stage != kStageFillAndText )
+  if( d.stage !== kStageFillAndText )
     return;
 
   //console.log( "draw - "+obj.type);
@@ -1505,6 +1505,64 @@ function drawTree(A, obj, d){
   //console.log( "draw - "+obj.type);
   drawPath(A, obj, d, 1);
 }
+
+
+//{"Bugle":"R1",
+//  "widths":[5,30],
+//  "alignments":[0.5,0.7]
+
+/**
+ * Draw 'bugle' shape as used on spindle diagrams.
+ * widths are in pixels
+ * alignments are fractions.
+ * @param A
+ * @param obj
+ * @param d
+ */
+function drawBugle(A, obj, d){
+  if( d.stage !== kStageFillAndText )
+    return;
+
+  //console.log( "draw - "+obj.type);
+  var l = obj.layout;
+  var x = l.x0;
+  var y = l.y0;
+  var xw = l.xw;
+  var yh = l.yh;
+
+  var ctx = A.BackingCanvas.ctx;
+  //var ctx2 = A.Hotspots.ctx;
+  drawRectangle(A,obj,d);
+
+  var dy0 = (yh-obj.widths[0]) * obj.alignments[0];
+  var dy1 = (yh-obj.widths[1]) * obj.alignments[1];
+  ctx.beginPath();
+  ctx.moveTo( x,y+dy0 );
+
+  var k=20;
+  var i;
+  var t;
+  var s;
+
+  for(i=0;i<=k;i++){
+    t = i/k;
+    s = t*t*(3-2*t);
+    //s=t;
+    ctx.lineTo(x + xw*t, y + dy0 + (dy1-dy0)*s);
+  }
+  for(i=k;i>=0;i--){
+    t = i/k;
+    s = t*t*(3-2*t);
+    //s=t;
+    ctx.lineTo(x + xw*t, y + dy0 + obj.widths[0] + (dy1-dy0+ obj.widths[1]-obj.widths[0])*s);
+  }
+  ctx.closePath();
+  ctx.fillStyle = "rgba(0,0,0,1.0)";
+  ctx.fill();
+
+
+}
+
 
 function drawSphere(A,xx, yy, xw, yh, ctx, obj){
   xw = Math.floor(xw);
@@ -4677,6 +4735,7 @@ function registerMethods()
   registerMethod( "KWIC",     createKwic, 0,0, drawKwic);
   registerMethod( "Draggable", createDraggable, 0,0, drawDraggable);
   registerMethod( "Drag2", createDraggable2, 0,0, drawDraggable2);
+  registerMethod( "Bugle",   0, 0, layoutMargined, drawBugle);
 
 }
 

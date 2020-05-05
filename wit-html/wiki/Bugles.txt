@@ -1,0 +1,77 @@
+__NOTOC__
+
+{{ATK_Header}}
+
+This is the spec for the interactive diagram which shows a map of
+Cambridge.  Here is the result in wiki:
+
+-----
+{{#widget:WikiDiagram|page=Map|init=yes}}
+-----
+
+The detailed data for the regions, buttons and tooltips follows.
+
+<pre>START</pre>
+
+<pre>ADD:DATA=
+[
+    {
+    "Ruler":"XRuler",
+    "margins":3,
+    "sizeAs":0.1,
+    "atStart":0,
+    "atEnd":1200
+    },
+
+    {"HStack":[
+
+    {"Bugle":"R1",
+    "widths":[2,145],
+    "alignments":[0.9,0.1]
+    },
+    {"Bugle":"R2",
+    "widths":[2,145],
+    "alignments":[0.1,0.9]
+    },
+    {"Bugle":"R3",
+    "widths":[2,105],
+    "alignments":[0.8,0.9]
+    },
+    {"Bugle":"R4",
+    "widths":[2,145],
+    "alignments":[0.9,0.5]
+    }
+             ]
+        },
+    {"HStack":[
+
+    {"Bugle":"R5",
+    "widths":[10,24],
+    "alignments":[0.5,0.1]
+    },
+    {"Bugle":"R6",
+    "widths":[24,30],
+    "alignments":[0.1,0.5]
+    },
+    {"Bugle":"R7",
+    "widths":[30,15],
+    "alignments":[0.5,0.9]
+    },
+    {"Bugle":"R8",
+    "widths":[15,10],
+    "alignments":[0.9,0.5]
+    }
+             ]
+        }
+]
+</pre>
+
+
+<pre>CREDITS:CAPTION=Spindle Diagram;TIP=</pre>
+<h3>Instructions</h3>
+<ul>
+<li>Click and drag to move around.
+<li>Use mouse wheel to zoom
+</ul><br><br>
+<b>Credits:</b> <em>Image Credit - (c) James Crook 2020</em>
+
