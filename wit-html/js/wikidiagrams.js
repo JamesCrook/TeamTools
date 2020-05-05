@@ -1511,6 +1511,23 @@ function drawTree(A, obj, d){
 //  "widths":[5,30],
 //  "alignments":[0.5,0.7]
 
+
+function bulge(A, obj, t ){
+  if( !obj.bulge)
+    return 0;
+  var s;
+  if( t< obj.bulgeX )
+    s = t/obj.bulgeX;
+  else
+    s = (1-t)/(1-obj.bulgeX);
+  s = s*s*(3-2*s);
+  return obj.bulge * s;
+}
+
+function align(A, obj, t ){
+  return obj.alignments[0] + t*(obj.alignments[1]-obj.alignments[0]);
+}
+
 /**
  * Draw 'bugle' shape as used on spindle diagrams.
  * widths are in pixels
@@ -1539,22 +1556,28 @@ function drawBugle(A, obj, d){
   ctx.beginPath();
   ctx.moveTo( x,y+dy0 );
 
-  var k=20;
+  var k=60;
   var i;
   var t;
   var s;
+  var b;
+  var a;
 
   for(i=0;i<=k;i++){
     t = i/k;
     s = t*t*(3-2*t);
     //s=t;
-    ctx.lineTo(x + xw*t, y + dy0 + (dy1-dy0)*s);
+    b=bulge(A,obj,t);
+    a = align(A,obj,t);
+    ctx.lineTo(x + xw*t, y + dy0 + (dy1-dy0)*s-b*a);
   }
   for(i=k;i>=0;i--){
     t = i/k;
     s = t*t*(3-2*t);
     //s=t;
-    ctx.lineTo(x + xw*t, y + dy0 + obj.widths[0] + (dy1-dy0+ obj.widths[1]-obj.widths[0])*s);
+    b=bulge(A,obj,t);
+    a = align(A,obj,t);
+    ctx.lineTo(x + xw*t, y + dy0 + obj.widths[0] + (dy1-dy0+ obj.widths[1]-obj.widths[0])*s+b*(1-a));
   }
   ctx.closePath();
   ctx.fillStyle = "rgba(0,0,0,1.0)";
