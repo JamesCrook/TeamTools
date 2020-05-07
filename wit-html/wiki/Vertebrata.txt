@@ -35,13 +35,13 @@ The detailed data for the chart follows.
        "spacer":5,
        "stemCol":3,
        "values":[
-           ["Agnatha",        -460,   0, 10, 0],
-           ["Chondrichthyes", -430,   0, 10,-1],
-           ["Placodermi",     -400,-340, 10,-1],
-           ["Acanthodii",     -360,-260, 10,-1],
-           ["Osteichthyes",   -360,   0, 10,-1],
+           ["Agnatha",        -460,   0, 20, 0],
+           ["Chondrichthyes", -430,   0, 40,-1],
+           ["Placodermi",     -400,-340, 40,-1],
+           ["Acanthodii",     -360,-260, 50,-1],
+           ["Osteichthyes",   -360,   0, 50,-1],
            ["Amphibia",       -340,   0, 10,-1],
-           ["Reptilia",       -300,   0, 10,-1],
+           ["Reptilia",       -320,   0, 10,-1],
            ["Aves",           -180,   0, 10,-1],
            ["Mammalia",       -250,   0, 10,-2]
          ]

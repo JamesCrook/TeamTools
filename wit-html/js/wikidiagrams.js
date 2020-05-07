@@ -1094,6 +1094,10 @@ function drawSpan(A,T, values, i, ix){
   var vStart = values[i][ix] -T.minY;
   var vEnd   = values[i][ix+1] -T.minY;
   drawSpanInner( A, T, vStart,vEnd, i, ix );
+  if( T.stemCol && (ix ===1)){
+
+    drawStem(A, T, values, i, ix);
+  }
 }
 
 
@@ -1139,6 +1143,35 @@ function drawSpanInner(A,T, vStart, vEnd, i, ix){
 
   //drawSpotification( A, S, 20 );
 }
+
+
+
+function drawStem(A,T, values, i, ix){
+
+  var x = T.margin + T.x0 + i * T.xScaler;
+
+  var vEnd = values[i][ix] -T.minY;
+  var vStart = vEnd - values[i][ T.stemCol ];
+
+
+  var yEnd = vEnd * T.yScaler;
+  var yStart = vStart * T.yScaler;
+  var ctx = A.BackingCanvas.ctx;
+
+  ctx.fillStyle = T.colours[ ix % 2];
+
+  var x0 =  x + (ix - 1) * T.width;
+  var y0 = T.yh - (T.margin ) + T.y0+fudgeBarDrop;
+
+  ctx.beginPath();
+  ctx.rect(x0+T.width/2-1, y0-yEnd, 2, -yStart+yEnd);
+  var k = values[i][T.stemCol+1];
+  if( k!==0 )
+     ctx.rect(x0+T.width/2+1, y0-yStart, k*T.xScaler, 2);
+  ctx.fill();
+}
+
+
 
 
 // Used for values that follow (are on) a curve.
@@ -2609,6 +2642,10 @@ function drawChart(A, obj, d){
     return;
   //if( T.stage === kStageFillAndText )
   //  clearBacking(A,x0, y0, xw, yh);
+
+  if( obj.stemCol ){
+    T.stemCol = obj.stemCol;
+  }
 
   T.colours = [];
   T.colours[0] = "rgba(105,205,105,1.0)";
