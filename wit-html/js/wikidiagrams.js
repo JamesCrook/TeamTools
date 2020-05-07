@@ -544,7 +544,7 @@ function computeSpacing(A, T, x0, y0, xw, yh, values){
 
   // yScale so that items grow.
   T.yScalerMax = yh/T.maxY;
-  T.yScaler = (Math.min(20, A.Status.time) / 20) * (yh) / T.maxY;
+  T.yScaler = (Math.min(20, A.Status.time) / 20) * (yh) / (T.maxY-T.minY);
 }
 
 function makeFunctionTable(T, obj){
@@ -564,6 +564,8 @@ function makeFunctionTable(T, obj){
       T.fns.push(drawEvent);
     else if( type === "lines" )
       T.fns.push(drawLines);
+    else if( type === "spans" )
+      T.fns.push(drawSpan);
     else
       T.fns.push(drawNowt);
   }
@@ -1081,9 +1083,26 @@ function drawLines(A,T, values, i, ix){
 function drawBar(A,T, values, i, ix){
   if( T.stage !== kStageFillAndText && T.stage !== kStageHots )
     return;
-  var vx = values[i][ix];
+  var vStart = 0;
+  var vEnd   = values[i][ix] -T.minY;
+  drawSpanInner( A, T, vStart,vEnd, i, ix );
+}
+
+function drawSpan(A,T, values, i, ix){
+  if( T.stage !== kStageFillAndText && T.stage !== kStageHots )
+    return;
+  var vStart = values[i][ix] -T.minY;
+  var vEnd   = values[i][ix+1] -T.minY;
+  drawSpanInner( A, T, vStart,vEnd, i, ix );
+}
+
+
+
+function drawSpanInner(A,T, vStart, vEnd, i, ix){
+
   var x = T.margin + T.x0 + i * T.xScaler;
-  var y = vx * T.yScaler;
+  var yEnd = vEnd * T.yScaler;
+  var yStart = vStart * T.yScaler;
   var ctx = A.BackingCanvas.ctx;
 
   if( T.stage === kStageHots ){
@@ -1099,10 +1118,10 @@ function drawBar(A,T, values, i, ix){
   }
 
   var x0 =  x + (ix - 1) * T.width;
-  var y0 = T.yh - (T.margin + y) + T.y0+fudgeBarDrop;
+  var y0 = T.yh - (T.margin ) + T.y0+fudgeBarDrop;
 
   ctx.beginPath();
-  ctx.rect(x0, y0, T.width, y);
+  ctx.rect(x0, y0-yEnd, T.width, -yStart+yEnd);
   ctx.fill();
 
   if( T.stage !== kStageFillAndText )
@@ -1114,12 +1133,13 @@ function drawBar(A,T, values, i, ix){
 
   x0 += T.width/2;
 
-  var S = getLineBetweenPoints({ x: x0, y: y0 + y }, { x: x0, y: y0 });
+  var S = getLineBetweenPoints({ x: x0, y: y0 + yEnd }, { x: x0, y: y0 +yStart });
   var obj = {S:S};
   //drawEnds( ctx, obj, 8);
 
   //drawSpotification( A, S, 20 );
 }
+
 
 // Used for values that follow (are on) a curve.
 function drawPlottedRect(A, T, values, i, ix){
@@ -1221,7 +1241,7 @@ function drawDonut(A,T, values, i, ix){
   var yh = l.yh;
   var x =  l.x0 + xw / 2;
   var y =  l.y0 + yh / 2;
-  var r = xw / 2;
+  var r = Math.min( xw, yh) / 2;
   var r2 = r * 0.70;
   var t0 = 2.0 * Math.PI * 0.75;
   var t1 = 2.0 * Math.PI * 0.75;
@@ -2594,7 +2614,9 @@ function drawChart(A, obj, d){
   T.colours[0] = "rgba(105,205,105,1.0)";
   T.colours[1] = "rgba(105,105,205,1.0)";
   T.linesAt = obj.linesAt || 200;
-  T.maxY = obj.maxY || 2600;
+
+  T.minY = isDefined( obj.minY ) ? obj.minY : 0;
+  T.maxY = isDefined( obj.maxY ) ? obj.maxY : 2600;
 
   if( obj.display && obj.display[1].startsWith("#") )
     T.colours[1] = obj.display[1];

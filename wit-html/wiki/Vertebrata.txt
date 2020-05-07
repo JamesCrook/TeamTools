@@ -1,0 +1,62 @@
+__NOTOC__
+
+
+{{ATK_Header}}
+
+This is the spec for the spindle diagram of vertebrate diversity.
+
+Here's the result:
+
+-----
+{{#widget:WikiDiagram|page=Vertebrata|init=yes}}
+-----
+
+The detailed data for the chart follows.
+
+<pre>START</pre>
+
+<pre>ADD:DATA=
+{"Transform":[
+    {"Overlay":
+    [
+      {"Rectangle":"Vertebrata",
+       "id":"panel",
+       "colour":"rgb(215,230,210)",
+       "borderColour":"rgb(115,180,110)",
+       "cornerRadius":25},
+      {"Chart":"Languages Doughnut",
+       "titles":["Class","start","end","stem","parent"],
+       "display":["Label","Green"],
+       "subtype":["*","spans"],
+       "autoTip":"Class:<b> %class</b><br>Span: <b>%start to %end</b>",
+       "margins":5,
+       "minY":-500,
+       "maxY":0,
+       "spacer":5,
+       "stemCol":3,
+       "values":[
+           ["Agnatha",        -460,   0, 10, 0],
+           ["Chondrichthyes", -430,   0, 10,-1],
+           ["Placodermi",     -400,-340, 10,-1],
+           ["Acanthodii",     -360,-260, 10,-1],
+           ["Osteichthyes",   -360,   0, 10,-1],
+           ["Amphibia",       -340,   0, 10,-1],
+           ["Reptilia",       -300,   0, 10,-1],
+           ["Aves",           -180,   0, 10,-1],
+           ["Mammalia",       -250,   0, 10,-2]
+         ]
+      }
+    ],"margins":5}],
+    "transOp":6
+}
+
+</pre>
+
+
+
+<pre>CREDITS:CAPTION=Vertebrata Spindle Diagram;TIP=</pre>
+<h3>Instructions</h3>
+<ul>
+<li>Hover over bars for more details.
+</ul><br><br>
+<b>Credits:</b> <em>James Crook ©2020; Based on Vertebrata in WikiCommons</em>
