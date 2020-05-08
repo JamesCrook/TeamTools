@@ -236,11 +236,10 @@
         str += '</ul>';
         str += '</div>';
         str += '<div>';
-        str += '<h3>Audacity Code:</h3>';
+        str += '<h3>Audacity Examples:</h3>';
         str += '</div>';
 
-        str +=
-          "Example Audacity Diagrams:<ul>";
+        str +="<ul>";
 
         str += formatExample("AudacityOverview", "Overview of Audacity Classes",
           "A tile based overview of Audacity classes.",
@@ -260,15 +259,7 @@
         str += '<h3>More Audacity Diagrams:</h3>';
         str += '</div>';
 
-        str +=
-          "People and processes in Audacity, and some background on audio:<ul>";
-
-
-        str += formatExample("CellWall", "CellWall",
-          "A diagram of a cell wall",
-          "");
-
-
+        str +="<ul>";
 
         str += formatExample("Audacity", "Snake Diagram",
           "A metro-line snake zig-zag display of groups of related classes in Audacity",
@@ -317,8 +308,7 @@
 
           str += formatExample("Bugles", "Bugles",
             "Bugles.", "");
-          str += formatExample("Vertebrata", "Vertebrata",
-            "Vertebrata.", "");
+
           str +=
             formatExample("Aldosterone", "Aldosterone", "Aldosterone molecule in SMILES format.",
               "");
@@ -326,15 +316,8 @@
           str += formatExample("Köppen_Globe", "Köppen Globe",
             "Climate zones on a globe", "");
 
-          str += formatExample("Ace2DownRegulation", "Ace2 Down Regulation",
-            "ACE2 down regulation in SARS-CoV infection.", "");
-
           str += formatExample("Cell", "Cell",
             "Painting by numbers, for the cell", "");
-
-          str += formatExample("GeneMentions", "Gene Mentions",
-            "An annotated graph of mentions of genes relevant to Covid-19.",
-            "");
 
           str += formatExample("ClimateChart", "Climate Chart",
             "Graphing a Climate Chart.  In time these will appear on the globes",
@@ -347,8 +330,6 @@
           str +=
             formatExample("Geshi", "Geshi", "Syntax Highlighted Source Code",
               "");
-          str += formatExample("Kwic", "Kwic", "Keyword in context index.", "");
-
           str += formatExample("KwicPathways", "Pathway Index",
             "A KeyWord In Context index of biochemical pathways.", "");
           str += formatExample("Map", "Map",
@@ -422,6 +403,14 @@
             "A KeyWord In Context index of research papers about Covid.", "");
         str += formatExample("Molecule", "Molecule", "Melatonin molecule in SMILES format.",
             "");
+
+        str += formatExample("CellWall", "CellWall",
+          "A diagram of a cell wall lipid bilayer",
+          "");
+
+        str += formatExample("Vertebrata", "Vertebrata",
+          "Chronogram of fossil record of Vertebrata.", "");
+
         str += "</ul>";
         return str;
       }

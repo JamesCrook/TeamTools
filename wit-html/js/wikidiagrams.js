@@ -722,6 +722,10 @@ function getLineBetweenPoints(pt1, pt2){
 function getTrimmedLineExtent(obj, vx, vy){
   var m = 0;
   var k = 1;
+
+  if( obj.type === "Draggable" )
+    return 1;
+
   if( obj.type === "Circle" ){
     var r = Math.min(obj.layout.yh, obj.layout.xw) / 2;
     m = k * r / Math.sqrt(vx * vx + vy * vy);
@@ -751,6 +755,14 @@ function getTrimmedLineBetweenObjects(obj1, obj2){
   var x2 = obj2.layout.x0 + obj2.layout.xw / 2;
   var y1 = obj1.layout.y0 + obj1.layout.yh / 2;
   var y2 = obj2.layout.y0 + obj2.layout.yh / 2;
+  if( isDefined( obj1.offset ) ){
+    x1=obj1.offset.x+obj1.layout.x0;
+    y1=obj1.offset.y+obj1.layout.y0;
+  }
+  if( isDefined( obj2.offset ) ){
+    x2=obj2.offset.x+obj2.layout.x0;
+    y2=obj2.offset.y+obj2.layout.y0;
+  }
   var vx = x2 - x1;
   var vy = y2 - y1;
 
@@ -1838,6 +1850,126 @@ function drawArrows(A,obj,d){
   }
 }
 
+function getCoordinate( A, id ){
+  var P = {};
+  var obj = objectFromId(A, id);
+  if( !isDefined( obj ) )
+    return P;
+  if( !isDefined( obj.layout ) )
+    return P;
+  if( !isDefined( obj.offset ) )
+    return P;
+  P.x = obj.offset.x + obj.layout.x0;
+  P.y = obj.offset.y + obj.layout.y0;
+  return P;
+
+}
+
+function catmulLength( P0, P1 ){
+  var x = (P1.x-P0.x);
+  var y = (P1.y-P0.y);
+  return Math.pow(((x*x)+(y*y)),0.25 );
+
+}
+
+function tBlend( t, t0, t1, P0, P1 ){
+  var b0 = (t1-t)/(t1-t0);
+  var b1 = (t0-t)/(t0-t1);
+  return {x:b0*P0.x+b1*P1.x,y:b0*P0.y+b1*P1.y};
+}
+
+function catEval( t, t0,t1,t2,t3,P0,P1,P2,P3 ){
+  var A1 = tBlend( t, t0,t1,P0,P1);
+  var A2 = tBlend( t, t1,t2,P1,P2);
+  var A3 = tBlend( t, t2,t3,P2,P3);
+  var B1 = tBlend( t, t0,t2,A1,A2);
+  var B2 = tBlend( t, t1,t3,A2,A3);
+  var C  = tBlend( t, t1,t2,B1,B2);
+  return C;
+}
+
+function drawBiLipid( A, P, scale ){
+  var ctx = A.BackingCanvas.ctx;
+
+
+  var k=scale*12;
+  var d=scale*2.1;
+  ctx.beginPath();
+  ctx.lineWidth = 4;
+  ctx.strokeStyle = "rgb(38,74,140)";
+  ctx.moveTo(P.x,P.y);
+  ctx.lineTo(P.x+d,P.y+k);
+  ctx.lineTo(P.x-d,P.y+k+d);
+  ctx.lineTo(P.x,P.y+k+k+d);
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.arc(P.x, P.y, 6, 0, Math.PI * 2.0, true);
+  var rgb = "rgba(150,40,40,1.0)";
+  ctx.fillStyle = rgb;
+  ctx.fill();
+
+/*
+  ctx.beginPath();
+  ctx.strokeStyle = "rgba(0,0,100,1.0)";
+  ctx.lineWidth = 5;
+  ctx.moveTo(P.x, P.y);
+  ctx.lineTo(P.x+10, P.y+10);
+  ctx.stroke();
+*/
+}
+
+function drawSplineSegment( A, id1, id2, id3, id4, scale ){
+  var P0 = getCoordinate( A, id1 );
+  var P1 = getCoordinate( A, id2 );
+  var P2 = getCoordinate( A, id3 );
+  var P3 = getCoordinate( A, id4 );
+  if( !(P0 && P1 && P2 && P3) )
+    return;
+
+  var d = catmulLength( P1, P2 );
+  var t0=0;
+  var t1=catmulLength( P0, P1 );
+  var t2=t1+d;
+  var t3=t2+catmulLength( P2, P3 );
+
+/*
+  var ctx = A.BackingCanvas.ctx;
+  ctx.beginPath();
+  ctx.strokeStyle = "rgba(0,100,0,1.0)";
+  ctx.lineWidth = 3;
+  ctx.moveTo(P1.x, P1.y);
+  ctx.lineTo(P2.x, P2.y);
+  ctx.stroke();
+*/
+  var i;
+  var k = Math.ceil((d*d)/18); // every 18 px.
+  for( i=0;i<k;i++){
+    var t = t1 + d * ( 2*i+1)/(2*k);
+    var C = catEval( t, t0,t1,t2,t3,P0,P1,P2,P3 );
+    drawBiLipid( A, C, scale );
+  }
+}
+
+
+function drawSpline(A,obj,d){
+  var arrows = obj.content;
+  if( !isDefined(arrows) ) return;
+  if( !Array.isArray( arrows) ) return;
+  if( (d.stage !== kStageFillAndText) )
+    return;
+
+  A.Styles.head         = obj.head;
+
+  var scale = obj.scale || 1;
+  var i;
+  for( i = 0; i < arrows.length-3; i ++ ){
+    if( d.stage === kStageFillAndText )
+      drawSplineSegment(A,arrows[i],arrows[i+1],arrows[i+2],arrows[i+3],scale);
+  }
+}
+
+
 function drawGlyph( ctx, obj, S ){
   if( obj.glyph==="L" )
     return drawLeftL( ctx, S );
@@ -1845,6 +1977,8 @@ function drawGlyph( ctx, obj, S ){
     return drawUpTriangle( ctx, S );
   if( obj.glyph==="R" )
     return drawRightL( ctx, S );
+  if( obj.glyph==="Spot" )
+    return drawSpot( ctx, S );
   return drawStar( ctx, S );
 }
 
@@ -1886,8 +2020,8 @@ function drawDraggable(A, obj, d ){
 
 
   if( d.stage === kStageFillAndText ){
-    ctx.fillStyle = "rgb(205,192,67)";
-    ctx.strokeStyle = "rgb(120,97,46)";
+    ctx.fillStyle = obj.colour || "rgb(205,192,67)";
+    ctx.strokeStyle = obj.borderColour || "rgb(120,97,46)";
     S.doStroke = true;
     drawGlyph(ctx, obj, S);
   }
@@ -4780,7 +4914,10 @@ function finalDraw(A, obj, d){
 
 
 function createDraggable(A, obj, d){
+  obj.colour = "rgb(205,192,67,0.0)";
+  obj.borderColour = "rgb(120,97,46,0.3)";
   obj.onClick = onDraggableClicked;
+  obj.glyph="Star";
   //obj.onMouseUp = finalDraw;
 }
 function createDraggable2(A, obj, d){
@@ -4814,6 +4951,7 @@ function registerMethods()
   registerMethod( "Path",     0,0,0, drawPath);
   registerMethod( "Tree",     0,0,0, drawTree);
   registerMethod( "Arrows",   0, sizeNowt,layoutNowt, drawArrows);
+  registerMethod( "Spline",   0, sizeNowt,layoutNowt, drawSpline);
   registerMethod( "Prog",     createProg,sizeNowt,layoutNowt, 0);
   registerMethod( "KWIC",     createKwic, 0,0, drawKwic);
   registerMethod( "Draggable", createDraggable, 0,0, drawDraggable);

@@ -32,10 +32,30 @@ The detailed data for the regions, buttons and tooltips follows.
         {"Draggable":"Pt0", "offset":{"x": 50,"y":100}},
         {"Draggable":"Pt1", "offset":{"x":100,"y":120}},
         {"Draggable":"Pt2", "offset":{"x":200,"y":140}},
-        {"Draggable":"Pt3", "offset":{"x":350,"y":100}},
+        {"Draggable":"Pt3", "offset":{"x":330,"y": 80}},
         {"Draggable":"Pt4", "offset":{"x":500,"y":140}},
         {"Draggable":"Pt5", "offset":{"x":600,"y":120}},
-        {"Draggable":"Pt6", "offset":{"x":650,"y":100}}
+        {"Draggable":"Pt6", "offset":{"x":650,"y":100}},
+
+
+        {"Draggable":"Pta0", "offset":{"x": 50,"y":160}},
+        {"Draggable":"Pta1", "offset":{"x":103,"y":180}},
+        {"Draggable":"Pta2", "offset":{"x":200,"y":200}},
+        {"Draggable":"Pta3", "offset":{"x":333,"y":137}},
+        {"Draggable":"Pta4", "offset":{"x":500,"y":200}},
+        {"Draggable":"Pta5", "offset":{"x":600,"y":180}},
+        {"Draggable":"Pta6", "offset":{"x":650,"y":160}},
+
+    {"Spline":[
+        "Pt0","Pt1","Pt2","Pt3","Pt4","Pt5","Pt6"
+        ],"scale":1.07},
+
+
+    {"Spline":[
+        "Pta0","Pta1","Pta2","Pta3","Pta4","Pta5","Pta6"
+        ],"scale":-1.07}
+
+
         ]
     }
 ]
