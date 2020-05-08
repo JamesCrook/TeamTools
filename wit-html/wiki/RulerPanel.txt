@@ -25,6 +25,9 @@ The detailed data for the chart follows.
     "atEnd":1700
     },
     {"Overlay":[
+        {"Rectangle":"",
+         "lineWidth":0
+        },
         {"Graph":"Audio",
          "scaling":"ZRuler",
          "colour":"rgb(127,229,127)",
@@ -37,6 +40,9 @@ The detailed data for the chart follows.
         }]
     },
     {"Overlay":[
+        {"Rectangle":"",
+         "lineWidth":0
+        },
         {"Graph":"Audio2",
          "colour":"rgb(127,229,127)",
          "scaling":"ZRuler",
