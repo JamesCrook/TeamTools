@@ -944,6 +944,22 @@ function drawRuler(A, obj, d){
 
     return;
   }
+  if( stage===kStageHots ){
+    var ctx2 = A.Hotspots.ctx;
+
+    ctx2.save();
+    var c = NextAutoColour(A, "");
+    AddDown(A,["clickObject",obj.id]);
+
+    ctx2.beginPath();
+    ctx2.rect(x, y, xw, yh);
+    ctx2.fillStyle = c;
+    ctx2.fill();
+
+    drawDraggers(A, obj, d );
+    ctx2.restore();
+    return;
+  }
   if( stage!==kStageFillAndText)
     return;
 
@@ -1009,19 +1025,7 @@ function drawRuler(A, obj, d){
     drawRulerMark( A, obj, i );
   }
 
-  var ctx2 = A.Hotspots.ctx;
-
-  ctx2.save();
-  var c = NextAutoColour(A, "");
-  AddDown(A,["clickObject",obj.id]);
-
-  ctx2.beginPath();
-  ctx2.rect(x, y, xw, yh);
-  ctx2.fillStyle = c;
-  ctx2.fill();
-
   drawDraggers(A, obj, d );
-  ctx2.restore();
 
   ctx.restore();
 }

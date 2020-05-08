@@ -1,0 +1,52 @@
+__NOTOC__
+
+{{ATK_Header}}
+
+This is the spec for the interactive diagram which shows a cell wall.
+Here is the result in wiki:
+
+-----
+{{#widget:WikiDiagram|page=CellWall|init=yes}}
+-----
+
+The detailed data for the regions, buttons and tooltips follows.
+
+<pre>START</pre>
+
+<pre>ADD:DATA=
+[
+    {
+    "Ruler":"XRuler",
+    "margins":3,
+    "sizeAs":0.05,
+    "atStart":0,
+    "atEnd":1200
+    },
+
+    {"Overlay":[
+
+        {
+        "Rectangle":"The Cell Wall",
+         "clickDo":["setClickAsCentre","XRuler"]
+        },
+        {"Draggable":"Pt0", "offset":{"x": 50,"y":100}},
+        {"Draggable":"Pt1", "offset":{"x":100,"y":120}},
+        {"Draggable":"Pt2", "offset":{"x":200,"y":140}},
+        {"Draggable":"Pt3", "offset":{"x":350,"y":100}},
+        {"Draggable":"Pt4", "offset":{"x":500,"y":140}},
+        {"Draggable":"Pt5", "offset":{"x":600,"y":120}},
+        {"Draggable":"Pt6", "offset":{"x":650,"y":100}}
+        ]
+    }
+]
+</pre>
+
+
+<pre>CREDITS:CAPTION=Cell Wall;TIP=</pre>
+<h3>Instructions</h3>
+<ul>
+<li>Click and drag the control points.
+<li><s>Use mouse wheel to zoom</s> (does not work yet!)
+</ul><br><br>
+<b>Credits:</b> <em>James Crook ©2020;</em>
+

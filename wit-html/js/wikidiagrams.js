@@ -1849,7 +1849,7 @@ function drawGlyph( ctx, obj, S ){
 }
 
 function drawDraggable(A, obj, d ){
-  if( d.stage !== kStageFillAndText )
+  if(( d.stage !== kStageFillAndText ) && ( d.stage !== kStageHots ))
     return;
 
   var l = obj.layout;
@@ -1884,13 +1884,14 @@ function drawDraggable(A, obj, d ){
   var ctx = A.BackingCanvas.ctx;
   var ctx2 = A.Hotspots.ctx;
 
+
   if( d.stage === kStageFillAndText ){
     ctx.fillStyle = "rgb(205,192,67)";
     ctx.strokeStyle = "rgb(120,97,46)";
     S.doStroke = true;
     drawGlyph(ctx, obj, S);
   }
-  if( d.stage === kStageFillAndText ){
+  if( d.stage === kStageHots ){
     var c = NextAutoColour(A, "");
     AddDown(A,["clickObject",obj.id]);
     ctx2.fillStyle = c;
@@ -1912,8 +1913,8 @@ function drawDraggable2(A, obj, d ){
     return;
   }
 
-  if( d.stage !== kStageFillAndText )
-    return;
+  //if( d.stage !== kStageFillAndText )
+  //  return;
 
   var l = obj.layout;
   var x = l.x0;
@@ -1939,7 +1940,7 @@ function drawDraggable2(A, obj, d ){
     setGhostedStyle(ctx,S);
     drawGlyph(ctx, obj, S);
   }
-  if( d.stage === kStageFillAndText ){
+  if( d.stage === kStageHots ){
     var c = NextAutoColour(A, "");
     AddDown(A,["clickObject",obj.id]);
     ctx2.fillStyle = c;

@@ -240,39 +240,46 @@
         str += '</div>';
 
         str +=
-          "Interactive diagrams for exploring our Audacity source code:<ul>";
+          "Example Audacity Diagrams:<ul>";
 
         str += formatExample("AudacityOverview", "Overview of Audacity Classes",
           "A tile based overview of Audacity classes.",
           "");
-        str += formatExample("Audacity", "Snake Diagram",
-          "A metro-line snake zig-zag display of groups of related classes in Audacity",
-          "");
-
         str += formatExample("EffectHierarchy", "Effect Hierarchy",
           "Hierarchy tree for effects.  This is 'just' a flow-chart variant",
           "");
+        str += formatExample("Bug_Counts", "Bugs Chart",
+          "Graph of Audacity bugs over time.  Legends, labels and scales are added as layers.",
+          "");
+        str += formatExample("BugsKwic", "Bugs Kwic", "Keyword in context index for our bugs.", "");
+        str += formatExample("RulerPanel", "Stereo Waveforms",
+          "A zoomable image showing the subtle differences between the two channels in a stereo waveform", "");
 
+
+        str += '</ul><div>';
+        str += '<h3>More Audacity Diagrams:</h3>';
+        str += '</div>';
+
+        str +=
+          "People and processes in Audacity, and some background on audio:<ul>";
+
+
+        str += formatExample("CellWall", "CellWall",
+          "A diagram of a cell wall",
+          "");
+
+
+
+        str += formatExample("Audacity", "Snake Diagram",
+          "A metro-line snake zig-zag display of groups of related classes in Audacity",
+          "");
         str += formatExample("Languages", "Languages",
           "Doughnut chart showing the different languages in Audacity source code.",
           "");
 
-        str += '</ul><div>';
-        str += '<h3>Other Audacity Diagrams:</h3>';
-        str += '</div>';
 
-
-
-        str +=
-          "People and processes in Audacity, and some background on audio:<ul>";
         str += formatExample("AudacityPeople", "Audacity People",
           "A who-is-who image that also shows how the hotspots work.", "");
-
-        str += formatExample("Bug_Counts", "Bugs Chart",
-          "Graph of Audacity bugs over time.  Legends, labels and scales are added as layers.",
-          "");
-
-        str += formatExample("BugsKwic", "Bugs Kwic", "Keyword in context index for our bugs.", "");
 
         str += formatExample("Flow_Chart", "Flow Chart",
           "Flowchart of making the Audacity manual.",
@@ -290,8 +297,6 @@
           "");
         str += formatExample("The_Ear", "The Ear",
           "Three schematics of the ear, based on Blausen Medical's images", "");
-        str += formatExample("RulerPanel", "Stereo Waveforms",
-          "A zoomable image showing the subtle differences between the two channels in a stereo waveform", "");
 
         str += '</ul><div>';
         str += '<h3>Other Examples:</h3>';
@@ -403,6 +408,12 @@
         str += '</div>';
 
         str +=  "<ul>";
+        // Order 'matches' order in Audacity examples,
+        // A block diagram, a flowchart, a graph
+        str += formatExample("PathwaysOverview", "Pathways Overview",
+          "Overview of biochemical pathways", "");
+        str += formatExample("Ace2DownRegulation", "Ace2 Down Regulation",
+          "ACE2 down regulation in SARS-CoV infection.", "");
         str += formatExample("GeneMentions", "Gene Mentions",
           "An annotated graph from the literature of genes relevant to Covid-19.",
           "");
@@ -411,10 +422,6 @@
             "A KeyWord In Context index of research papers about Covid.", "");
         str += formatExample("Molecule", "Molecule", "Melatonin molecule in SMILES format.",
             "");
-        str += formatExample("PathwaysOverview", "Pathways Overview",
-          "Overview of biochemical pathways", "");
-        str += formatExample("Ace2DownRegulation", "Ace2 Down Regulation",
-          "ACE2 down regulation in SARS-CoV infection.", "");
         str += "</ul>";
         return str;
       }
