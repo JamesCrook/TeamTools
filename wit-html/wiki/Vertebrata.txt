@@ -17,6 +17,22 @@ The detailed data for the chart follows.
 
 <pre>ADD:DATA=
 {"Transform":[
+
+    {"VStack":[
+
+    {
+           "Chart":"Scale",
+           "titles":["Class","start"],
+           "display":["Label","#990000"],
+           "subtype":["label","*"],
+           "valuesFrom":"Verts",
+       "margins":5,
+       "textAlign":"left",
+       "spacer":5,
+       "rotate":-1.57,
+           "sizeAs":0.18
+        },
+
     {"Overlay":
     [
       {"Rectangle":"Vertebrata",
@@ -24,9 +40,9 @@ The detailed data for the chart follows.
        "colour":"rgb(215,230,210)",
        "borderColour":"rgb(115,180,110)",
        "cornerRadius":25},
-      {"Chart":"Languages Doughnut",
+      {"Chart":"Verts",
        "titles":["Class","start","end","stem","parent"],
-       "display":["Label","Green"],
+       "display":["Label","#9999ee"],
        "subtype":["*","spans"],
        "autoTip":"Class:<b> %class</b><br>Span: <b>%start to %end</b>",
        "margins":5,
@@ -46,8 +62,14 @@ The detailed data for the chart follows.
            ["Mammalia",       -250,   0, 10,-2]
          ]
       }
-    ],"margins":5}],
+    ]}
+
+    ]}
+
+
+    ],
     "transOp":6
+
 }
 
 </pre>

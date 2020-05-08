@@ -1338,11 +1338,18 @@ function drawLabel(A,T, values, i,ix){
   // The +8 is 0.707 * font height of 11.
   var x = T.margin + T.x0 + i * T.xScaler+(T.width*T.items)*0.5+8;
   var y = T.margin;
+
+  var shiftTextY = T.margin;
+  var shiftTextX = 0;
+  if( T.textAlign === "left" ){
+    shiftTextY *= -0.35;
+    shiftTextX = 12;
+  }
   ctx.save();
   ctx.beginPath();
-  ctx.translate(x+ (ix - 1) * T.width, T.yh - (T.margin + y) + T.y0);
-  ctx.rotate(-Math.PI / 4);
-  ctx.textAlign = "right";
+  ctx.translate(x+ (ix - 1) * T.width + shiftTextX, T.yh - (shiftTextY + y) + T.y0);
+  ctx.rotate(T.rotate||-Math.PI / 4);
+  ctx.textAlign = T.textAlign || "right";
   ctx.font = "12px Arial";
   ctx.fillStyle = "rgba(15,35,165,1.0)";
   ctx.fillText(values[i][0], 0, 0);
@@ -1355,8 +1362,8 @@ function drawLabel(A,T, values, i,ix){
   ctx2.save();
   ctx2.beginPath();
   ctx2.translate(x+ (ix - 1) * T.width, T.yh - (T.margin + y) + T.y0);
-  ctx2.rotate(-Math.PI / 4);
-  ctx2.textAlign = "right";
+  ctx2.rotate(T.rotate||-Math.PI / 4);
+  ctx2.textAlign = T.textAlign ||"right";
   ctx2.font = "12px Arial";
   var size = ctx2.measureText( values[i][0] );
   ctx2.fillStyle = AutoColourFromOffset( A, T.count-i);
@@ -2778,9 +2785,9 @@ function drawChart(A, obj, d){
   //if( T.stage === kStageFillAndText )
   //  clearBacking(A,x0, y0, xw, yh);
 
-  if( obj.stemCol ){
-    T.stemCol = obj.stemCol;
-  }
+  if( obj.stemCol ){   T.stemCol = obj.stemCol; }
+  if( obj.rotate ){T.rotate = obj.rotate;}
+  if( obj.textAlign ) {T.textAlign = obj.textAlign;}
 
   T.colours = [];
   T.colours[0] = "rgba(105,205,105,1.0)";
