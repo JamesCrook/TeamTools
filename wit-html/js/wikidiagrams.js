@@ -727,15 +727,15 @@ function getTrimmedLineExtent(obj, vx, vy){
     return 1;
 
   if( obj.type === "Circle" ){
-    var r = Math.min(obj.layout.yh, obj.layout.xw) / 2;
+    var r = Math.min(obj.rect.y, obj.rect.x) / 2;
     m = k * r / Math.sqrt(vx * vx + vy * vy);
   } else {
     m = 1;//0.5;
 
-    if( Math.abs(vx) * obj.layout.yh > Math.abs(vy) * obj.layout.xw ){
-      m = obj.layout.xw / (2 * Math.abs(vx));
+    if( Math.abs(vx) * obj.rect.y > Math.abs(vy) * obj.rect.x ){
+      m = obj.rect.x / (2 * Math.abs(vx));
     } else {
-      m = obj.layout.yh / (2 * Math.abs(vy));
+      m = obj.rect.y / (2 * Math.abs(vy));
     }
     m = m * k;
   }
@@ -751,17 +751,17 @@ function getTrimmedLineExtent(obj, vx, vy){
  * @returns {[]} - two endpoints, with x,y,l and theta
  */
 function getTrimmedLineBetweenObjects(obj1, obj2){
-  var x1 = obj1.layout.x0 + obj1.layout.xw / 2;
-  var x2 = obj2.layout.x0 + obj2.layout.xw / 2;
-  var y1 = obj1.layout.y0 + obj1.layout.yh / 2;
-  var y2 = obj2.layout.y0 + obj2.layout.yh / 2;
+  var x1 = obj1.pos.x + obj1.rect.x / 2;
+  var x2 = obj2.pos.x + obj2.rect.x / 2;
+  var y1 = obj1.pos.y + obj1.rect.y / 2;
+  var y2 = obj2.pos.y + obj2.rect.y / 2;
   if( isDefined( obj1.offset ) ){
-    x1=obj1.offset.x+obj1.layout.x0;
-    y1=obj1.offset.y+obj1.layout.y0;
+    x1=obj1.offset.x+obj1.pos.x;
+    y1=obj1.offset.y+obj1.pos.y;
   }
   if( isDefined( obj2.offset ) ){
-    x2=obj2.offset.x+obj2.layout.x0;
-    y2=obj2.offset.y+obj2.layout.y0;
+    x2=obj2.offset.x+obj2.pos.x;
+    y2=obj2.offset.y+obj2.pos.y;
   }
   var vx = x2 - x1;
   var vy = y2 - y1;
@@ -935,16 +935,17 @@ function constrain( low, value, high ){
 function drawDiagram(A, obj, d){
   if( !obj )
     return;
-  var l = obj.layout;
-  if( !l )
+  var pos = obj.pos;
+  if( !pos )
     return;
+  var rect = obj.rect;
 
   A.Status.drawing = true;
   var ctx = A.BackingCanvas.ctx;
   var ctx2 = A.Hotspots.ctx;
 
-  ctx.clearRect(l.x0,l.y0,l.xw,l.yh);
-  ctx2.clearRect(l.x0,l.y0,l.xw,l.yh);
+  ctx.clearRect(pos.x,pos.y,rect.x,rect.y);
+  ctx2.clearRect(pos.x,pos.y,rect.x,rect.y);
 
   // Some hotpspot colours are created as needed.
 
@@ -1056,10 +1057,10 @@ function drawLines(A,T, values, i, ix){
   if( i!== 0)
     return;
 
-  var l = T.obj.layout;
+  var rect = T.obj.rect;
   var x = T.margin + T.x0 - fudgeLineMargin;
   var y = T.yh + T.y0 + fudgeLineDrop;
-  var xw = l.xw - 2*T.margin+2*fudgeLineMargin;
+  var xw = rect.x - 2*T.margin+2*fudgeLineMargin;
   var yh = T.yh;
 
   var ctx = A.BackingCanvas.ctx;
@@ -1281,11 +1282,12 @@ function drawDonut(A,T, values, i, ix){
 
   if( i!= 0 )
     return;
-  var l = T.obj.layout;
-  var xw = l.xw;//T.width;
-  var yh = l.yh;
-  var x =  l.x0 + xw / 2;
-  var y =  l.y0 + yh / 2;
+  var pos = T.obj.pos;
+  var rect = T.obj.rect;
+  var xw = rect.x;//T.width;
+  var yh = rect.y;
+  var x =  pos.x + xw / 2;
+  var y =  pos.y + yh / 2;
   var r = Math.min( xw, yh) / 2;
   var r2 = r * 0.70;
   var t0 = 2.0 * Math.PI * 0.75;
@@ -1524,11 +1526,10 @@ function drawPath(A, obj, d, stride){
     return;
 
   //console.log( "draw - "+obj.type);
-  var l = obj.layout;
-  var x0 = l.x0;
-  var y0 = l.y0;
-  var xw = l.xw;
-  var yh = l.yh;
+  var x0 = obj.pos.x;
+  var y0 = obj.pos.y;
+  var xw = obj.rect.x;
+  var yh = obj.rect.y;
 
   if( isDefined( obj.autolink ) )
     A.Styles.autolink = obj.autolink;
@@ -1613,11 +1614,10 @@ function drawBugle(A, obj, d){
     return;
 
   //console.log( "draw - "+obj.type);
-  var l = obj.layout;
-  var x = l.x0;
-  var y = l.y0;
-  var xw = l.xw;
-  var yh = l.yh;
+  var x = obj.pos.x;
+  var y = obj.pos.y;
+  var xw = obj.rect.x;
+  var yh = obj.rect.y;
 
   var ctx = A.BackingCanvas.ctx;
   //var ctx2 = A.Hotspots.ctx;
@@ -1849,7 +1849,7 @@ function drawArrows(A,obj,d){
     var obj1 = objectFromId(A, arrows[i]);
     var obj2 = objectFromId(A, arrows[i + 1]);
     if( !isDefined(obj1) || !isDefined(obj2) ) continue;
-    if( !isDefined(obj1.layout) || !isDefined(obj2.layout) ) continue;
+    if( !isDefined(obj1.pos) || !isDefined(obj2.pos) ) continue;
     if( d.stage === kStageArrowShaft )
       drawArrowBody(A,obj1,obj2);
     if( d.stage === kStageArrowHead )
@@ -1857,17 +1857,17 @@ function drawArrows(A,obj,d){
   }
 }
 
-function getCoordinate( A, id ){
+function getCoordinateOffsetPlusLayout( A, id ){
   var P = {};
   var obj = objectFromId(A, id);
   if( !isDefined( obj ) )
     return P;
-  if( !isDefined( obj.layout ) )
+  if( !isDefined( obj.pos ) )
     return P;
   if( !isDefined( obj.offset ) )
     return P;
-  P.x = obj.offset.x + obj.layout.x0;
-  P.y = obj.offset.y + obj.layout.y0;
+  P.x = obj.offset.x + obj.pos.x;
+  P.y = obj.offset.y + obj.pos.y;
   return P;
 
 }
@@ -1886,18 +1886,19 @@ function tBlend( t, t0, t1, P0, P1 ){
 }
 
 function catEval( t, t0,t1,t2,t3,P0,P1,P2,P3 ){
-  var A1 = tBlend( t, t0,t1,P0,P1);
-  var A2 = tBlend( t, t1,t2,P1,P2);
-  var A3 = tBlend( t, t2,t3,P2,P3);
-  var B1 = tBlend( t, t0,t2,A1,A2);
-  var B2 = tBlend( t, t1,t3,A2,A3);
-  var C  = tBlend( t, t1,t2,B1,B2);
+  var A1 = tBlend( t, t0,t1,P0,P1 );
+  var A2 = tBlend( t, t1,t2,P1,P2 );
+  var A3 = tBlend( t, t2,t3,P2,P3 );
+  var B1 = tBlend( t, t0,t2,A1,A2 );
+  var B2 = tBlend( t, t1,t3,A2,A3 );
+  var C  = tBlend( t, t1,t2,B1,B2 );
   return C;
 }
 
-function drawBiLipid( A, P, scale ){
+function drawLipid( A, obj, d ){
   var ctx = A.BackingCanvas.ctx;
-
+  var P = d.getCoordinate( A, obj, d);
+  var scale = obj.scale;
 
   var k=scale*12;
   var d=scale*2.1;
@@ -1915,49 +1916,42 @@ function drawBiLipid( A, P, scale ){
   var rgb = "rgba(150,40,40,1.0)";
   ctx.fillStyle = rgb;
   ctx.fill();
-
-/*
-  ctx.beginPath();
-  ctx.strokeStyle = "rgba(0,0,100,1.0)";
-  ctx.lineWidth = 5;
-  ctx.moveTo(P.x, P.y);
-  ctx.lineTo(P.x+10, P.y+10);
-  ctx.stroke();
-*/
 }
 
-function drawSplineSegment( A, id1, id2, id3, id4, scale ){
-  var P0 = getCoordinate( A, id1 );
-  var P1 = getCoordinate( A, id2 );
-  var P2 = getCoordinate( A, id3 );
-  var P3 = getCoordinate( A, id4 );
+function drawSplineSegment( A, obj, d ){
+  var P0 = d.getCoordinate( A, obj, d );
+  var P1 = d.getCoordinate( A, obj, d );
+  var P2 = d.getCoordinate( A, obj, d );
+  var P3 = d.getCoordinate( A, obj, d );
   if( !(P0 && P1 && P2 && P3) )
     return;
 
-  var d = catmulLength( P1, P2 );
-  var t0=0;
-  var t1=catmulLength( P0, P1 );
-  var t2=t1+d;
-  var t3=t2+catmulLength( P2, P3 );
+  var t0 = 0;
+  var t1 = catmulLength( P0, P1 );
+  var d  = catmulLength( P1, P2 );
+  var t2 = t1+d;
+  var t3 = t2+catmulLength( P2, P3 );
 
-/*
-  var ctx = A.BackingCanvas.ctx;
-  ctx.beginPath();
-  ctx.strokeStyle = "rgba(0,100,0,1.0)";
-  ctx.lineWidth = 3;
-  ctx.moveTo(P1.x, P1.y);
-  ctx.lineTo(P2.x, P2.y);
-  ctx.stroke();
-*/
   var i;
   var k = Math.ceil((d*d)/18); // every 18 px.
+  var lipid = {};
+  var d2 = {}
+  d2.getCoordinate = getPCoord;
+  lipid.scale = obj.scale;
   for( i=0;i<k;i++){
     var t = t1 + d * ( 2*i+1)/(2*k);
-    var C = catEval( t, t0,t1,t2,t3,P0,P1,P2,P3 );
-    drawBiLipid( A, C, scale );
+    lipid.P = catEval( t, t0,t1,t2,t3,P0,P1,P2,P3 );
+    drawLipid( A, lipid, d2 );
   }
 }
 
+function getNextSequenceCoord( A, obj, d){
+  return getCoordinateOffsetPlusLayout( A, d.sequence[ d.index++]);
+}
+
+function getPCoord( A, obj, d ){
+  return obj.P;
+}
 
 function drawSpline(A,obj,d){
   var arrows = obj.content;
@@ -1968,11 +1962,16 @@ function drawSpline(A,obj,d){
 
   A.Styles.head         = obj.head;
 
-  var scale = obj.scale || 1;
+  d.sequence = arrows;
+  d.getCoordinate = getNextSequenceCoord;
+
+  var segment = {};
+  segment.scale = obj.scale ||1;
+
   var i;
   for( i = 0; i < arrows.length-3; i ++ ){
-    if( d.stage === kStageFillAndText )
-      drawSplineSegment(A,arrows[i],arrows[i+1],arrows[i+2],arrows[i+3],scale);
+    d.index = i;
+    drawSplineSegment( A, segment, d);
   }
 }
 
@@ -1993,11 +1992,10 @@ function drawDraggable(A, obj, d ){
   if(( d.stage !== kStageFillAndText ) && ( d.stage !== kStageHots ))
     return;
 
-  var l = obj.layout;
-  var x = l.x0;
-  var y = l.y0;
-  var xw = l.xw;
-  var yh = l.yh;
+  var x = obj.pos.x;
+  var y = obj.pos.y;
+  var xw = obj.rect.x;
+  var yh = obj.rect.y;
 
 
   var stage = d.stage;
@@ -2057,11 +2055,10 @@ function drawDraggable2(A, obj, d ){
   //if( d.stage !== kStageFillAndText )
   //  return;
 
-  var l = obj.layout;
-  var x = l.x0;
-  var y = l.y0;
-  var xw = l.xw;
-  var yh = l.yh;
+  var x = obj.pos.x;
+  var y = obj.pos.y;
+  var xw = obj.rect.x;
+  var yh = obj.rect.y;
 
   x += obj.offset.x;
   y += obj.offset.y;
@@ -2092,11 +2089,10 @@ function drawDraggable2(A, obj, d ){
 
 function drawImage(A, obj, d){
   //console.log( "draw - "+obj.type);
-  var l = obj.layout;
-  var x = l.x0;
-  var y = l.y0;
-  var xw = l.xw;
-  var yh = l.yh;
+  var x = obj.pos.x;
+  var y = obj.pos.y;
+  var xw = obj.rect.x;
+  var yh = obj.rect.y;
 
   var ctx = A.BackingCanvas.ctx;
   var ctx2 = A.Hotspots.ctx;
@@ -2194,11 +2190,10 @@ function drawPlotLegends( A, obj, d ){
     return;
 
   var indent = 40;
-  var l = obj.layout;
-  var x = l.x0;
-  var y = l.y0;
-  var xw = l.xw;
-  var yh = l.yh;
+  var x = obj.pos.x;
+  var y = obj.pos.y;
+  var xw = obj.rect.x;
+  var yh = obj.rect.y;
   var ctx = A.BackingCanvas.ctx;
 
   ctx.beginPath();
@@ -2231,11 +2226,10 @@ function drawPlotLegends( A, obj, d ){
 
 function drawRectangle(A, obj, d){
   //console.log( "draw - "+obj.type);
-  var l = obj.layout;
-  var x = l.x0;
-  var y = l.y0;
-  var xw = l.xw;
-  var yh = l.yh;
+  var x = obj.pos.x;
+  var y = obj.pos.y;
+  var xw = obj.rect.x;
+  var yh = obj.rect.y;
   var stage = d.stage;
 
   // -- Extra twiddles for chooser
@@ -2319,11 +2313,10 @@ function drawGeshi(A, obj, d){
     return;
 
   //console.log( "draw - "+obj.type);
-  var l = obj.layout;
-  var x = l.x0;
-  var y = l.y0;
-  var xw = l.xw;
-  var yh = l.yh;
+  var x = obj.pos.x;
+  var y = obj.pos.y;
+  var xw = obj.rect.x;
+  var yh = obj.rect.y;
 
 
   // This sizing/font matches typical appearance of <pre> element.
@@ -2369,11 +2362,11 @@ function drawKwic(A, obj, d){
     return;
 
   //console.log( "draw - "+obj.type);
-  var l = obj.layout;
-  var x = l.x0;
-  var y = l.y0;
-  var xw = l.xw;
-  var yh = l.yh;
+  var x = obj.pos.x;
+  var y = obj.pos.y;
+  var xw = obj.rect.x;
+  var yh = obj.rect.y;
+
 
   if( !isDefined( obj.offset )){
     obj.offset = {x:xw/3, y:0};//y:yh*20};
@@ -2549,11 +2542,10 @@ function drawText(A, obj, d){
     return;
 
   //console.log( "draw - "+obj.type);
-  var l = obj.layout;
-  var x = l.x0;
-  var y = l.y0;
-  var xw = l.xw;
-  var yh = l.yh;
+  var x = obj.pos.x;
+  var y = obj.pos.y;
+  var xw = obj.rect.x;
+  var yh = obj.rect.y;
 
   var ctx = A.BackingCanvas.ctx;
 
@@ -2601,10 +2593,10 @@ function drawTile(A,obj,d){
 function drawCircle(A, obj, d){
   //console.log( "draw - "+obj.type);
   var l = obj.layout;
-  var x = l.x0;
-  var y = l.y0;
-  var xw = l.xw;
-  var yh = l.yh;
+  var x = obj.pos.x;
+  var y = obj.pos.y;
+  var xw = obj.rect.x;
+  var yh = obj.rect.y;
 
   var r = Math.min(xw, yh) / 2;
   if( r < 0 )
@@ -2671,7 +2663,11 @@ function drawFilledArrow(ctx, S, style, d){
 
 function innerTransform( A, obj, d, ctx )
 {
-  var l = obj.layout;
+  var x = obj.pos.x;
+  var y = obj.pos.y;
+  var xw = obj.rect.x;
+  var yh = obj.rect.y;
+
   ctx.save();
 
   var op = obj.transOp || 0;
@@ -2685,15 +2681,15 @@ function innerTransform( A, obj, d, ctx )
       break;
     case 1:
       // Rotate 180
-      ctx.transform( -1, 0, 0, -1, 2*l.x0+l.xw, 2*l.y0+l.yh );
+      ctx.transform( -1, 0, 0, -1, 2*x+xw, 2*y+yh );
       break;
     case 2:
       // Swap left-right
-      ctx.transform( -1, 0, 0,  1, 2*l.x0+l.xw, 0 );
+      ctx.transform( -1, 0, 0,  1, 2*x+xw, 0 );
       break;
     case 3:
       // Swap up and down
-      ctx.transform( 1, 0, 0, -1, 0, 2*l.y0+l.yh );
+      ctx.transform( 1, 0, 0, -1, 0, 2*y+yh );
       break;
 
     // cases 4 to 7 all have the width-height swapped aspect ratio.
@@ -2703,15 +2699,15 @@ function innerTransform( A, obj, d, ctx )
       break;
     case 5:
       // reflect in minor diagonal
-      ctx.transform( 0, -1,-1, 0, 2*l.x0+l.xw, 2*l.y0+l.yh );
+      ctx.transform( 0, -1,-1, 0, 2*x+xw, 2*y+yh );
       break;
     case 6:
       //rotate 90 degrees clockwise
-      ctx.transform( 0, 1, -1, 0,2*l.x0+l.xw, 0 );
+      ctx.transform( 0, 1, -1, 0,2*x+xw, 0 );
       break;
     case 7:
       // rotate 90 degrees counter-clockwise
-      ctx.transform( 0, -1, 1, 0, 0, 2*l.y0+l.yh );
+      ctx.transform( 0, -1, 1, 0, 0, 2*y+yh );
       break;
   }
   A.transOp = op;
@@ -2756,11 +2752,10 @@ function drawChart(A, obj, d){
     return;
 
   //console.log( "draw - "+obj.type);
-  var l = obj.layout;
-  var x0 = l.x0;
-  var y0 = l.y0;
-  var xw = l.xw;
-  var yh = l.yh;
+  var x = obj.pos.x;
+  var y = obj.pos.y;
+  var xw = obj.rect.x;
+  var yh = obj.rect.y;
 
   var T = {};
   // We can either specify width of the bars, or the spacing between bar groups.
@@ -2802,9 +2797,9 @@ function drawChart(A, obj, d){
 
   T.subber = makeLabelReplacerFn(obj);
 
-  computeSpacing(A, T, x0, y0, xw, yh, obj.values);
+  computeSpacing(A, T, x, y, xw, yh, obj.values);
   makeFunctionTable(T, obj);
-  drawSpacedItems(A,x0, y0, xw, yh, obj.values, T);
+  drawSpacedItems(A,x, y, xw, yh, obj.values, T);
 }
 
 // x is between 0 and 2000.
@@ -2880,11 +2875,10 @@ function graphFn( x, perturb ){
 }
 
 function scaledYofPixelOffset(x, obj, ruler ){
-  var l = obj.layout;
-  var x0 = l.x0;
-  var y0 = l.y0;
-  var xw = l.xw;
-  var yh = l.yh;
+  var x0 = obj.pos.x;
+  var y0 = obj.pos.y;
+  var xw = obj.rect.x;
+  var yh = obj.rect.y;
 
 
   var x1 = ruler.atStart + (ruler.atEnd-ruler.atStart) * (x/xw);
@@ -2894,11 +2888,10 @@ function scaledYofPixelOffset(x, obj, ruler ){
 
 
 function scaledYofItem(i, obj, ruler ){
-  var l = obj.layout;
-  var x0 = l.x0;
-  var y0 = l.y0;
-  var xw = l.xw;
-  var yh = l.yh;
+  var x0 = obj.pos.x;
+  var y0 = obj.pos.y;
+  var xw = obj.rect.x;
+  var yh = obj.rect.y;
 
   var y1 = y0 + (graphFn( i, obj.perturb )*yh/2)+yh/2;
   return y1;
@@ -2911,9 +2904,11 @@ function scaledYofItem(i, obj, ruler ){
  * @param ruler
  */
 function fillMinMaxPlot(ctx, obj, ruler){
-  var l = obj.layout;
-  var x0 = l.x0;
-  var xw = l.xw;
+  var x0 = obj.pos.x;
+  var y0 = obj.pos.y;
+  var xw = obj.rect.x;
+  var yh = obj.rect.y;
+
   var pixelsPerItem = xw/(ruler.atEnd-ruler.atStart);
 
 
@@ -2953,11 +2948,10 @@ function fillMinMaxPlot(ctx, obj, ruler){
 }
 
 function lineMinMaxPlot(ctx, obj, ruler){
-  var l = obj.layout;
-  var x0 = l.x0;
-  var y0 = l.y0;
-  var xw = l.xw;
-  var yh = l.yh;
+  var x = obj.pos.x;
+  var y = obj.pos.y;
+  var xw = obj.rect.x;
+  var yh = obj.rect.y;
 
   ctx.strokeStyle = "rgb(20,20,200)";
   ctx.lineWidth = 1;
@@ -2966,17 +2960,19 @@ function lineMinMaxPlot(ctx, obj, ruler){
   for( i = 1; i < xw; i++ ){
     var y2 = scaledYofPixelOffset(i, obj, ruler);
     ctx.beginPath();
-    ctx.moveTo(x0 + i, Math.min(y1, y2) - 0.5);
-    ctx.lineTo(x0 + i, Math.max(y1, y2) + 0.5);
+    ctx.moveTo(x + i, Math.min(y1, y2) - 0.5);
+    ctx.lineTo(x + i, Math.max(y1, y2) + 0.5);
     ctx.stroke();
     y1 = y2;
   }
 }
 
 function linePlot(ctx, obj, ruler){
-  var l = obj.layout;
-  var x0 = l.x0;
-  var xw = l.xw;
+  var x0 = obj.pos.x;
+  var y0 = obj.pos.y;
+  var xw = obj.rect.x;
+  var yh = obj.rect.y;
+
   var pixelsPerItem = xw / (ruler.atEnd - ruler.atStart);
 
   ctx.strokeStyle = obj.colour || "rgb(20,20,200)";
@@ -3029,11 +3025,11 @@ function drawGraph( A, obj, d ){
     return;
 
   //console.log( "draw - "+obj.type);
-  var l = obj.layout;
-  var x0 = l.x0;
-  var y0 = l.y0;
-  var xw = l.xw;
-  var yh = l.yh;
+  var x = obj.pos.x;
+  var y = obj.pos.y;
+  var xw = obj.rect.x;
+  var yh = obj.rect.y;
+
 
 
   var i;
@@ -3760,11 +3756,10 @@ function reselectInKwic( obj,row ){
 }
 
 function onKwicClicked(A, obj){
-  var l = obj.layout;
-  var x = l.x0;
-  var y = l.y0;
-  var xw = l.xw;
-  var yh = l.yh;
+  var x = obj.pos.x;
+  var y = obj.pos.y;
+  var xw = obj.rect.x;
+  var yh = obj.rect.y;
   if( !obj.oneSpace )
     return;
   if( !A.Status.click )
@@ -3949,8 +3944,11 @@ function layoutMargined(A, obj, d){
 function layoutUnmargined(A, obj, d){
   //console.log( "layout - "+obj.type);
   var m = 0;
-  var l = obj.layout;
-  setCellLayout(A, l.x0 + m, l.y0 + m, l.xw - 2 * m, l.yh - 2 * m, obj, d);
+  var x = obj.pos.x;
+  var y = obj.pos.y;
+  var xw = obj.rect.x;
+  var yh = obj.rect.y;
+  setCellLayout(A, x + m, y + m, xw - 2 * m, yh - 2 * m, obj, d);
 }
 
 function layoutTransform( A, obj, d ){
@@ -3958,17 +3956,29 @@ function layoutTransform( A, obj, d ){
   if( op <4 )
     return layoutContainer( A, obj, d );
 
-  var l = obj.layout;
-  obj.layout = {x0:l.y0,y0:l.x0,xw:l.yh,yh:l.xw};
+  var x = obj.pos.x;
+  var y = obj.pos.y;
+  var xw = obj.rect.x;
+  var yh = obj.rect.y;
+
+  obj.pos = {x:y,y:x};
+  obj.rect = {x:yh,y:xw};
   layoutContainer( A, obj, d );
-  obj.layout = l;
+  obj.pos = {x:x,y:y};
+  obj.rect = {x:xw,y:yh};
 
 }
 
 function layoutContainer( A, obj, d){
   //console.log( "layout - "+obj.type);
   var n = obj.content.length;
-  var l = obj.layout;
+
+  var x = obj.pos.x;
+  var y = obj.pos.y;
+  var xw = obj.rect.x;
+  var yh = obj.rect.y;
+
+
   var k = obj.sizing.cumulativeWants;
   //console.log( "n: "+n+", k:"+k);
   var wantsSoFar = 0.0;
@@ -3976,16 +3986,16 @@ function layoutContainer( A, obj, d){
     var want = obj.content[i].sizing.wants;
     switch( obj.type ){
       case "HStack":
-        setCellLayout(A, l.x0 + (wantsSoFar / k) * l.xw, l.y0,
-          l.xw * (want / k), l.yh, obj.content[i]);
+        setCellLayout(A, x + (wantsSoFar / k) * xw, y,
+          xw * (want / k), yh, obj.content[i]);
         break;
       case "VStack":
-        setCellLayout(A, l.x0, l.y0 + (wantsSoFar / k) * l.yh,
-          l.xw,l.yh * (want / k), obj.content[i]);
+        setCellLayout(A, x, y + (wantsSoFar / k) * yh,
+          xw,yh * (want / k), obj.content[i]);
         break;
       default:
       case "Overlay":
-        setCellLayout(A, l.x0, l.y0, l.xw, l.yh, obj.content[i]);
+        setCellLayout(A, x, y, xw, yh, obj.content[i]);
         break;
     }
     layoutCells( A, obj.content[i], d );
@@ -4017,15 +4027,19 @@ function sizeContainer(A, obj, d){
   }
 }
 
-function setCellLayout(A, x0, y0, xw, yh, obj){
-  obj.layout = { "x0": x0, "y0": y0, "xw": xw, "yh": yh };
+function setCellLayout(A, x, y, xw, yh, obj){
+  obj.pos = {x:x,y:y};
+  obj.rect = {x:xw,y:yh};
   //console.log( obj.layout );
 }
 
 function increaseMargin(A, obj, m){
   //console.log( "layout - "+obj.type);
-  var l = obj.layout;
-  setCellLayout(A, l.x0 + m, l.y0 + m, l.xw - 2 * m, l.yh - 2 * m, obj);
+  var x = obj.pos.x;
+  var y = obj.pos.y;
+  var xw = obj.rect.x;
+  var yh = obj.rect.y;
+  setCellLayout(A, x + m, y + m, xw - 2 * m, yh - 2 * m, obj);
 }
 
 function sizeNowt( A, obj, data ){
@@ -4856,12 +4870,6 @@ function populateEditorElement(A, contentHere){
 
 
 function onDraggableClicked(A, obj){
-  var l = obj.layout;
-  var x = l.x0;
-  var y = l.y0;
-  var xw = l.xw;
-  var yh = l.yh;
-
   if( !A.Status.click )
     return;
   console.log( "Clicked on Object ", obj.id );
@@ -4909,7 +4917,7 @@ function onLockInMove( A, obj, d){
   A.Status.click.y += d.y - obj.offset.y;
   obj.offset.x = d.x;
   obj.offset.y = d.y;
-  //if( (Math.abs(d.x -obj.layout.x0 ) >0.1)|| (Math.abs(d.y -obj.layout.y0 )>0.1) ){
+  //if( (Math.abs(d.x -obj.pos.x ) >0.1)|| (Math.abs(d.y -obj.pos.y )>0.1) ){
   //  console.log("New offset: "+ stringOfCoord( obj.offset) );
   //}
 }

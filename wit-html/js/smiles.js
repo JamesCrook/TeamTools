@@ -138,10 +138,10 @@ function rgbOfAtom( at ){
 
 function layoutMolecule( A, obj, d ){
   var l = obj.layout;
-  var x = l.x0;
-  var y = l.y0;
-  var xw = l.xw;
-  var yh = l.yh;
+  var x = obj.pos.x;
+  var y = obj.pos.y;
+  var xw = obj.rect.x;
+  var yh = obj.rect.y;
 
   var smilesString = "O=Cc1ccc(O)c(OC)c1";//Vanillin
 
@@ -209,10 +209,10 @@ function layoutMolecule( A, obj, d ){
 
 function layoutAtom( A, obj, d ){
   var l = obj.layout;
-  var x = l.x0;
-  var y = l.y0;
-  var xw = l.xw;
-  var yh = l.yh;
+  var x = obj.pos.x;
+  var y = obj.pos.y;
+  var xw = obj.rect.x;
+  var yh = obj.rect.y;
 
   obj.r = 10;
   obj.cx = x + xw/2;
@@ -222,10 +222,10 @@ function layoutAtom( A, obj, d ){
 
 function layoutBond( A, obj, d ){
   var l = obj.layout;
-  var x = l.x0;
-  var y = l.y0;
-  var xw = l.xw;
-  var yh = l.yh;
+  var x = obj.pos.x;
+  var y = obj.pos.y;
+  var xw = obj.rect.x;
+  var yh = obj.rect.y;
 
   obj.S0 = {};
   obj.S0.x = x + xw/2 - 50;
@@ -307,10 +307,10 @@ function drawBenzene( A, obj, d ){
 
 
   var l = obj.layout;
-  var x = l.x0;
-  var y = l.y0;
-  var xw = l.xw;
-  var yh = l.yh;
+  var x = obj.pos.x;
+  var y = obj.pos.y;
+  var xw = obj.rect.x;
+  var yh = obj.rect.y;
 
   var atom = {};
   atom.r = 10;
@@ -557,11 +557,11 @@ function minEnergy( A, obj, d ){
 }
 
 function rulerIxOfx( A, obj, x ){
-  return obj.atStart + (x-obj.layout.x0) * obj.itemsPerPixel;
+  return obj.atStart + (x-obj.pos.x) * obj.itemsPerPixel;
 }
 
 function xOfRulerIx( A, obj, ix ){
-  return (ix - obj.atStart) / obj.itemsPerPixel + obj.layout.x0;
+  return (ix - obj.atStart) / obj.itemsPerPixel + obj.pos.x;
 }
 
 /**
@@ -571,7 +571,7 @@ function xOfRulerIx( A, obj, ix ){
  */
 function computeMidDraggerIx(A, obj){
   var mid = obj.content[1];
-  var midx = mid.offset.x + mid.layout.x0;
+  var midx = mid.offset.x + mid.pos.x;
   //midx=0;
   obj.centerIx = rulerIxOfx(A, obj, midx);
 }
@@ -590,12 +590,12 @@ function replaceMidDragger(A, obj){
   var inset = mid.inset;
 
 
-  obj.itemsPerPixel = (obj.atEnd - obj.atStart) / obj.layout.xw;
+  obj.itemsPerPixel = (obj.atEnd - obj.atStart) / obj.rect.x;
   var newpos = xOfRulerIx(A, obj, obj.centerIx);
   //var bak = rulerIxOfx( A, obj, newpos );
   //console.log( "Midx: "+midx + " Ix: "+obj.centerIx + " newx "+newpos+ " atIx
   // "+ bak ); reposition mid-dragger.
-  mid.offset.x = constrain( inset, newpos - mid.layout.x0, obj.layout.xw - inset);
+  mid.offset.x = constrain( inset, newpos - mid.pos.x, obj.rect.x - inset);
 
   mid.offset.x = constrain( left.offset.x+40, mid.offset.x, right.offset.x-40 );
   computeMidDraggerIx(A, obj );
@@ -626,10 +626,11 @@ function repositionMidDragger(A, obj){
 
 function onRulerClicked(A, obj){
   var l = obj.layout;
-  var x = l.x0;
-  var y = l.y0;
-  var xw = l.xw;
-  var yh = l.yh;
+  var x = obj.pos.x;
+  var y = obj.pos.y;
+  var xw = obj.rect.x;
+  var yh = obj.rect.y;
+
 
   if( !A.Status.click )
     return;
@@ -659,12 +660,12 @@ function draggingRuler( A, obj, dd ){
   dd.x = constrain( 40, dd.x, 660 );
 
   var mid = obj.content[1];
-  var midx = mid.offset.x + mid.layout.x0;
+  var midx = mid.offset.x + mid.pos.x;
 
 
   //midx=0;
   //console.log("dd.x: "+dd.x);
-  var dx = dd.x - midx - obj.layout.x0;
+  var dx = dd.x - midx - obj.pos.x;
   if( Math.abs( dx) < 0 )
     return;
   var itemsPerPixel = (obj.dragIx - obj.centerIx)/dx;
@@ -677,7 +678,7 @@ function draggingRuler( A, obj, dd ){
     return;
   //console.log("New scale: "+scale);
   var startIx = obj.centerIx - mid.offset.x * itemsPerPixel;
-  var endIx = obj.centerIx + (obj.layout.xw - mid.offset.x ) * itemsPerPixel;
+  var endIx = obj.centerIx + (obj.rect.x - mid.offset.x ) * itemsPerPixel;
 
   obj.atStart = constrain( -70, startIx, 2000 );
   obj.atEnd = constrain( -70, endIx, 2000 );
@@ -686,10 +687,10 @@ function draggingRuler( A, obj, dd ){
 
 function onDraggableClicked2(A, obj){
   var l = obj.layout;
-  var x = l.x0;
-  var y = l.y0;
-  var xw = l.xw;
-  var yh = l.yh;
+  var x = obj.pos.x;
+  var y = obj.pos.y;
+  var xw = obj.rect.x;
+  var yh = obj.rect.y;
 
   if( !A.Status.click )
     return;
@@ -711,8 +712,8 @@ function draggingMarker( A, obj, dd ){
   var parent = obj.parent;
   var inset = obj.inset;
   dd.y = constrain( 0, dd.y, obj.wobble );
-  dd.x = constrain( parent.layout.x0+inset, dd.x,
-    parent.layout.x0+parent.layout.xw-inset );
+  dd.x = constrain( parent.pos.x+inset, dd.x,
+    parent.pos.x+parent.rect.x-inset );
 
   // code for disengaging the dragger.
   // if we're far enough off the line, disengage.
@@ -737,19 +738,18 @@ var dragNamer = 1234;
 
 function makeDraggerObject(obj, A, pos){
   var dragger = {};
-  var l1 = {};
-  dragger.layout = l1;
-  var l2 = obj.layout;
+  dragger.pos = {};
+  dragger.rect = {}
   var inset = 45;
-  l1.x0 = l2.x0;
-  l1.y0 = l2.y0+l2.yh-15;
-  l1.xw = 15*(1+(pos%2));
-  l1.yh = 15;
+  dragger.pos.x = obj.pos.x;
+  dragger.pos.y = obj.pos.y+obj.rect.y-15;
+  dragger.rect.x = 15*(1+(pos%2));
+  dragger.rect.y = 15;
   dragger.type = "Drag2";
   var types = "L Mid R".split(" ");
   dragger.glyph = types[pos];
   dragger.onClick = onDraggableClicked2;
-  dragger.offset = { x: pos * (l2.xw / 2 -inset ) +inset, y: 0};
+  dragger.offset = { x: pos * (obj.rect.x / 2 -inset ) +inset, y: 0};
   dragger.id = "Drag"+(dragNamer++);
   dragger.wobble = 0;
   dragger.gearing = 1;
@@ -778,7 +778,7 @@ function finishMid( A, obj ){
  * @param obj
  */
 function finishLDragger( A, obj ){
-  obj.offset.x = 40 - obj.layout.x0;
+  obj.offset.x = 40 - obj.pos.x;
   A.dragObj = undefined;
   finalDraw( A, obj );
 }
@@ -789,7 +789,7 @@ function finishLDragger( A, obj ){
  * @param obj
  */
 function finishRDragger( A, obj ){
-  obj.offset.x = 660 - obj.layout.x0;
+  obj.offset.x = 660 - obj.pos.x;
   A.dragObj = undefined;
   finalDraw( A, obj );
 }
@@ -850,11 +850,11 @@ rulerSpec = rulerSpec1;
 otherSpec = rulerSpec2;
 
 function drawRulerMark( A, obj, i ){
-  var l = obj.layout;
-  var x = l.x0 + i * obj.pixelsPerBar;
-  var y = l.y0;
-  var xw = l.xw;
-  var yh = l.yh;
+
+  var x  = obj.pos.x + i * obj.pixelsPerBar;
+  var y  = obj.pos.y;
+  var xw = obj.rect.x;
+  var yh = obj.rect.y;
 
 
   var barCountAtStart = obj.atStart / obj.itemsPerBar;
@@ -924,11 +924,10 @@ function drawRuler(A, obj, d){
     obj.atEnd = 300;
   }
 
-  var l = obj.layout;
-  var x = l.x0;
-  var y = l.y0;
-  var xw = l.xw;
-  var yh = l.yh;
+  var x = obj.pos.x;
+  var y = obj.pos.y;
+  var xw = obj.rect.x;
+  var yh = obj.rect.y;
 
   if( stage===kDragging){
     updateDraggers( A, obj, d );
