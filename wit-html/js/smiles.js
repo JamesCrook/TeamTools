@@ -361,7 +361,7 @@ function drawChem(A, obj, d){
 
   applyObjectSettingsToContext(ctx, obj);
   if( obj.cornerRadius )
-    drawRoundRect(ctx, x, y, xw, yh, obj.cornerRadius);
+    drawRoundRect(A, obj, obj);
   else
     ctx.rect(x, y, xw, yh);
   ctx.fill();
@@ -973,7 +973,7 @@ function drawRuler(A, obj, d){
 
   applyObjectSettingsToContext(ctx, obj);
   if( obj.cornerRadius )
-    drawRoundRect(ctx, x, y, xw, yh, obj.cornerRadius);
+    drawRoundRect(A,obj,obj);
   else
     ctx.rect(x, y, xw, yh);
 

@@ -1517,6 +1517,7 @@ function drawSnakeyPath(A, values, T){
         ctx.fillStyle = heads[style];
         ctx.lineWidth = 1;
         r += 3;
+        r=11;
       }
       ctx2.fillStyle = c;
       S.isHead = X.isHead;
@@ -1534,7 +1535,8 @@ function drawSnakeyPath(A, values, T){
       drawFns[ shape ](A, obj, S);
 
       if( S.isHead ){
-        drawAnEnd( ctx, S, "pointed",r-2);
+        S.r = r-2;
+        drawAnEnd( A, S, S);
       }
 
 /*
@@ -1788,7 +1790,15 @@ function drawSphere(A,obj,S){
   ctx.putImageData(dstData, xx + (w - h), yy + (h1 - h));
 }
 
-function drawRoundRect(ctx, x, y, w, h, r){
+function drawRoundRect(A, obj, d){
+  var x = obj.pos.x;
+  var y = obj.pos.y;
+  var w = obj.rect.x;
+  var h = obj.rect.y;
+  var r = obj.cornerRadius || 1;
+
+  var ctx = A.BackingCanvas.ctx;
+
   if( w < 0 ) return;
   if( h < 0 ) return;
   if( w < 2 * r ) r = w / 2;
@@ -1802,9 +1812,12 @@ function drawRoundRect(ctx, x, y, w, h, r){
   ctx.closePath();
 }
 
-function drawAnEnd(ctx, S, style, d){
-  if( !isDefined( d ) )
-    d=4;
+function drawAnEnd(A, obj, S){
+  var ctx = A.BackingCanvas.ctx;
+
+
+  var d=S.d||4;
+  var style = S.style || "pointed";
   ctx.save();
   ctx.beginPath();
   ctx.fillStyle = "rgba(0,0,0,1.0)";
@@ -1813,26 +1826,28 @@ function drawAnEnd(ctx, S, style, d){
   ctx.rotate(S.theta);
   ctx.translate( d, 0 );
   if( style === "flat" ){
-    drawFlatArrowHead(ctx);
+    drawFlatArrowHead(A,obj, S);
   } else {
-    drawPointedArrowHead(ctx);
+    drawPointedArrowHead(A,obj,S);
   }
   ctx.restore();
 }
 
-function drawArrowHeadAndTail(A, obj1, obj2){
-  var S = getTrimmedLineBetweenObjects(obj1, obj2);
-  var ctx = A.BackingCanvas.ctx;
+function drawArrowHeadAndTail(A, obj, S){
 
   // The head at obj2
-  drawAnEnd(ctx, S[1], A.Styles.head);
+  var T= {};
+  T.x = S[1].x;
+  T.y = S[1].y;
+  T.style = A.Styles.head;
+  T.theta = S[1].theta;
+
+  drawAnEnd(A, T, T );
   // The tail at obj1
   //drawAnEnd(ctx, S[0], "flat");//,A.Styles.head);
 }
 
-function drawArrowBody(A, obj1, obj2){
-
-  var S = getTrimmedLineBetweenObjects(obj1, obj2);
+function drawArrowBody(A, obj, S){
 
   var ctx = A.BackingCanvas.ctx;
   ctx.beginPath();
@@ -1845,7 +1860,9 @@ function drawArrowBody(A, obj1, obj2){
   //drawSpotification( A, S, 20 );
 }
 
-function drawPointedArrowHead(ctx){
+function drawPointedArrowHead(A, obj, S){
+  var ctx = A.BackingCanvas.ctx;
+
   ctx.moveTo(-11, -5);
   ctx.lineTo(0, 0);
   ctx.lineTo(-11, 5);
@@ -1854,7 +1871,9 @@ function drawPointedArrowHead(ctx){
   ctx.fill();
 }
 
-function drawFlatArrowHead(ctx){
+function drawFlatArrowHead(A, obj, S){
+  var ctx = A.BackingCanvas.ctx;
+
   var k =7;
   var p = 3;
   var u = 1.5;
@@ -1885,10 +1904,11 @@ function drawArrows(A,obj,d){
     var obj2 = objectFromId(A, arrows[i + 1]);
     if( !isDefined(obj1) || !isDefined(obj2) ) continue;
     if( !isDefined(obj1.pos) || !isDefined(obj2.pos) ) continue;
+    var S = getTrimmedLineBetweenObjects(obj1, obj2);
     if( d.stage === kStageArrowShaft )
-      drawArrowBody(A,obj1,obj2);
+      drawArrowBody(A,S,S);
     if( d.stage === kStageArrowHead )
-      drawArrowHeadAndTail(A,obj1,obj2);
+      drawArrowHeadAndTail(A,S,S);
   }
 }
 
@@ -2272,7 +2292,7 @@ function drawRectangle(A, obj, d){
     if( obj.id &&  obj.id === A.Highlight )
       ctx.fillStyle = "rgb(167,203,250)";
     if( obj.cornerRadius )
-      drawRoundRect(ctx, x, y, xw, yh, obj.cornerRadius);
+      drawRoundRect(A, obj ,obj);
     else
       ctx.rect(x, y, xw, yh);
 
@@ -2552,7 +2572,7 @@ function drawText(A, obj, d){
 
   applyObjectSettingsToContext(ctx, obj);
   if( obj.cornerRadius )
-    drawRoundRect(ctx, x, y, xw, yh, obj.cornerRadius);
+    drawRoundRect(A, obj, obj);
   else
     ctx.rect(x, y, xw, yh);
   ctx.fill();
@@ -3018,7 +3038,7 @@ function linePlot(ctx, obj, ruler){
       y1 = scaledYofItem(i, obj, ruler);
       S.x = xx;
       S.y = y1;
-      drawSpot( ctx, S );
+      drawSpot( A, S, S);
     }
   }
 
