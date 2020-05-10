@@ -2590,7 +2590,6 @@ function drawTile(A,obj,d){
 
 function drawCircle(A, obj, d){
   //console.log( "draw - "+obj.type);
-  var l = obj.layout;
   var x = obj.pos.x;
   var y = obj.pos.y;
   var xw = obj.rect.x;
@@ -2633,15 +2632,15 @@ function drawCircle(A, obj, d){
   }
 }
 
-function drawFilledArrow(ctx, S, style, d){
-  if( !isDefined( d ) )
-    d=0;
+function drawFilledArrow(A, obj, S){
+  var ctx = A.FocusCanvas.ctx;
+
   ctx.save();
   ctx.beginPath();
 
   ctx.translate(S.x, S.y);
   ctx.rotate(S.theta);
-  ctx.translate( d, 0 );
+  ctx.translate( S.shaftWidth/2, 0 );
 
   ctx.moveTo(0,S.shaftWidth/2 );
   ctx.lineTo( S.shaftLength, S.shaftWidth/2 );
@@ -3116,14 +3115,15 @@ function drawFocusDragger(A,x, y){
   S.theta = 0;
   S.x = x;
   S.y = y;
+  S.style = "pointed";
 
-  drawFilledArrow(ctx, S, "pointed", S.shaftWidth /2);
+  drawFilledArrow(A, S, S);
   S.theta = Math.PI/2;
-  drawFilledArrow(ctx, S, "pointed", S.shaftWidth /2);
+  drawFilledArrow(A, S, S);
   S.theta = Math.PI;
-  drawFilledArrow(ctx, S, "pointed", S.shaftWidth /2);
+  drawFilledArrow(A, S, S);
   S.theta = Math.PI*1.5;
-  drawFilledArrow(ctx, S, "pointed", S.shaftWidth /2);
+  drawFilledArrow(A, S, S);
 
   ctx.beginPath();
   var w = S.shaftWidth;
