@@ -459,27 +459,6 @@ var fudgeLabelMargin = 2; // labels to left
 
 // -Start------------------ Unused
 
-function drawSpotification( A, S, d ){
-  d = d || 20;
-  var ctx = A.BackingCanvas.ctx;
-  var n = S[0].l / d;
-  var x = S[0].x;
-  var y = S[0].y;
-  var dx = (S[1].x-x)/n;
-  var dy = (S[1].y-y)/n;
-  var i;
-  for(i = 0;i<n;i++){
-    ctx.beginPath();
-    ctx.save();
-    ctx.fillStyle = "rgb(205,192,67)";
-    drawStar( ctx, A, x +dx*i, y+dy*i, 3 );
-    ctx.strokeStyle = "rgb(120,97,46)";
-    ctx.stroke();
-    ctx.restore();
-
-  }
-}
-
 function roundColour(tuple){
   var values = JSON.parse(tuple);
   var result = values.map(function(v){
@@ -935,6 +914,8 @@ function constrain( low, value, high ){
 function getCtx( A, obj, d ){
   if( d.ctx )
     return d.ctx;
+  if( d.isHotspot === true )
+    return A.Hotspots.ctx;
   return A.BackingCanvas.ctx;
 }
 
@@ -1265,17 +1246,9 @@ function drawPlottedRect(A, T, values, i, ix){
   ctx.stroke();
 }
 
-function drawSnakeStar(ctx, S){
-  drawStar(ctx, S);
-}
-
-function drawSnakeSpot(ctx, S){
-  drawSpot(ctx, S);
-}
-
-function drawSnakeRect(ctx, S){
+function drawSnakeRect(A, obj, S){
   if( S.isHead ){
-    drawSnakeSpot( ctx, S);
+    drawSpot( A, obj, S);
     return;
   }
 
@@ -1289,7 +1262,8 @@ function drawSnakeRect(ctx, S){
   T.w = d;
   T.h = 2*S.r;
   T.doStroke = S.doStroke;
-  drawCentredRect(ctx, T);
+  T.ctx = S.ctx;
+  drawCentredRect(A, T, T);
 }
 
 // Used for irregularly spaced items.
@@ -1330,11 +1304,10 @@ function drawEvent(A,T, values, i, ix){
 
   var S = { x:x,y:y,theta:Math.PI * 2 * (Math.min(20, A.Status.time) / 40)};
 
-  drawStar(ctx, S);
-  if( T.stage === kStageFillAndText ){
-    ctx.strokeStyle = "rgb(120,97,46)";
-    ctx.stroke();
-  }
+  var Star = {};
+  ctx.strokeStyle = "rgb(120,97,46)";
+  S.doStroke = T.stage === kStageFillAndText;
+  drawStar(A, Star, S);
 }
 
 function drawDonut(A,T, values, i, ix){
@@ -1468,7 +1441,7 @@ function drawSnakeyPath(A, values, T){
   T.isPath = true;
   T.maxv = maxv;
 
-  var drawFns = [drawSnakeSpot, drawSnakeRect, drawSnakeStar ];
+  var drawFns = [drawSpot, drawSnakeRect, drawStar ];
 
   var widths = [5,6,9];
   var lines = ["rgb(150,150,150)", "rgb(156,3,0)", "rgb(15,0,181)"];
@@ -1479,11 +1452,10 @@ function drawSnakeyPath(A, values, T){
 
 
   // draw snakey body
-  var isHead = false;
   var X;
   var style = 1;
   var shape = 0;
-  for( j = 0; i < maxv; j += T.stride ){
+  for( j = 0; i < maxv; j++ ){
 
     X = values[j];
     style = mayUpdateSpotStyle(X, style, A);
@@ -1512,19 +1484,13 @@ function drawSnakeyPath(A, values, T){
 
   }
   i = 0;
-
-  var greenBlob = "rgba(105,205,105,1.0)";
-  var blobColour = greenBlob;
-
-
-
   // draw blobs.
   T.isPath = false;
 
-
   style = 1;
   shape = 0;
-  for( j = 0; i < T.count; j += T.stride ){
+  var obj = {};
+  for( j = 0; i < T.count; j++ ){
     var r=T.r0+7;
 
     X = values[j];
@@ -1558,12 +1524,14 @@ function drawSnakeyPath(A, values, T){
 
       S.doStroke = S.isHead || false;
       S.isHotspot = false;
-      drawFns[ shape ](ctx, S);
+      S.ctx = ctx;
+      drawFns[ shape ](A, obj, S);
 
       // no stroke for hotspot.
       S.doStroke = false;
       S.isHotspot = true;
-      drawFns[ shape ](ctx2, S);
+      S.ctx = ctx2;
+      drawFns[ shape ](A, obj, S);
 
       if( S.isHead ){
         drawAnEnd( ctx, S, "pointed",r-2);
@@ -1584,7 +1552,7 @@ function drawSnakeyPath(A, values, T){
 }
 
 // draws a path inside a box.
-function drawPath(A, obj, d, stride){
+function drawPath(A, obj, d ){
   if( d.stage !== kStageFillAndText )
     return;
 
@@ -1597,19 +1565,14 @@ function drawPath(A, obj, d, stride){
   if( isDefined( obj.autolink ) )
     A.Styles.autolink = obj.autolink;
 
-  stride = stride || 1;
   var T = {};
   //T.width = 100;
   //T.spacer = 30;
   T.items = 1;
   T.count = 0;
   T.width = 15;
-  T.stride = stride;
-  if( T.stride == 1){
-    T.count = obj.values.length;
-  } else for( let i = 0; i < obj.values.length; i += T.stride ){
-    if( obj.values[i + 1] !== "No Description" ) T.count++;
-  }
+
+  T.count = obj.values.length;
   T.margin = 9;
   T.factor = 1.1;// increase density along snake.
   xw -= 2*T.margin+T.width;
@@ -1639,7 +1602,7 @@ function drawPath(A, obj, d, stride){
 
 function drawTree(A, obj, d){
   //console.log( "draw - "+obj.type);
-  drawPath(A, obj, d, 1);
+  drawPath(A, obj, d );
 }
 
 
@@ -1722,26 +1685,35 @@ function drawBugle(A, obj, d){
 }
 
 
-function drawSphere(A,xx, yy, xw, yh, ctx, obj){
+function drawSphere(A,obj,S){
+  var xx = obj.pos.x;
+  var yy = obj.pos.y;
+  var xw = obj.rect.x;
+  var yh = obj.rect.y;
+
+  var imageSource = ( S.isHotspot ) ? obj.hot : obj;
+  var ctx = getCtx( A, obj, S );
+
+
   xw = Math.floor(xw);
   yh = Math.floor(yh);
   //console.log( "Draw at "+xx+","+yy+" ["+xw+" by "+yh+"]");
-  var ctx2 = obj.ctx;
-  var img = obj.img;
+  var ctx2 = imageSource.ctx;
+  var img = imageSource.img;
   //console.log( "From image "+img.width+" by "+img.height);
   if( !ctx2 || (obj.canvas.width !== img.width) || (obj.canvas.height !== img.height)){
-    obj.canvas = document.createElement("canvas");
-    obj.canvas.width = img.width;
-    obj.canvas.height = img.height;
-    obj.ctx = obj.canvas.getContext('2d');
-    ctx2 = obj.ctx;
+    imageSource.canvas = document.createElement("canvas");
+    imageSource.canvas.width = img.width;
+    imageSource.canvas.height = img.height;
+    imageSource.ctx = imageSource.canvas.getContext('2d');
+    ctx2 = imageSource.ctx;
   }
   ctx2.clearRect( 0, 0, img.width, img.height);
   ctx2.drawImage(img, 0, 0, img.width, img.height);
   var x0 = xw / 2;
   var rotate = img.width - ((A.Status.time * 3) % img.width);
 
-  var offsets = obj.offsets || [];
+  var offsets = imageSource.offsets || [];
   if( offsets.length !== img.width ){
     offsets = [];
     for( i = 0; i < img.width; i++ ){
@@ -1749,7 +1721,7 @@ function drawSphere(A,xx, yy, xw, yh, ctx, obj){
         Math.floor(Math.asin(i / img.width) * (img.width) / (2 * Math.PI)) * 4;
       offsets.push(d);
     }
-    obj.offsets = offsets;
+    imageSource.offsets = offsets;
   }
 
   var w = Math.floor(xw / 2);
@@ -2132,10 +2104,15 @@ function drawImage(A, obj, d){
   }
 
   if( obj.spherical ){
-    if( d.stage === kStageFillAndText )
-      drawSphere(A, x, y, xw, yh, ctx, obj);
-    if( d.stage === kStageHots )
-      drawSphere(A, x, y, xw, yh, ctx2, obj.hot);
+    var S={};
+    if( d.stage === kStageFillAndText ){
+      S.isHotspot = false;
+      drawSphere(A, obj, S);
+    }
+    if( d.stage === kStageHots ){
+      S.isHotspot = true;
+      drawSphere(A, obj, S);
+    }
     return;
   }
 
