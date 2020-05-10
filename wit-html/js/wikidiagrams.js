@@ -2659,14 +2659,15 @@ function drawFilledArrow(ctx, S, style, d){
   ctx.restore();
 }
 
-function innerTransform( A, obj, d, ctx )
+function innerTransform( A, obj, S )
 {
   var x = obj.pos.x;
   var y = obj.pos.y;
   var xw = obj.rect.x;
   var yh = obj.rect.y;
 
-  ctx.save();
+  var ctx = getCtx(A,obj,S);
+
 
   var op = obj.transOp || 0;
 
@@ -2715,11 +2716,17 @@ function innerTransform( A, obj, d, ctx )
 function drawTransform( A, obj, d ){
   var ctx = A.BackingCanvas.ctx;
   var ctx2 = A.Hotspots.ctx;
+  ctx.save();
+  ctx2.save();
 
 
-  innerTransform( A, obj, d, ctx );
-  innerTransform( A, obj, d, ctx2 );
+  var S = {};
+  S.isHotspot = false;
+  innerTransform( A, obj, S );
+  S.isHotspot = true;
+  innerTransform( A, obj, S );
   drawContainer( A, obj, d );
+
   ctx.restore();
   ctx2.restore();
 }
