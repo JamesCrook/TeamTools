@@ -930,6 +930,62 @@ function constrain( low, value, high ){
 }
 
 
+
+
+function getCtx( A, obj, d ){
+  if( d.ctx )
+    return d.ctx;
+  return A.BackingCanvas.ctx;
+}
+
+function getNextSequenceCoord( A, obj, d){
+  return getCoordinateOffsetPlusLayout( A, d.sequence[ d.index++]);
+}
+
+function getPCoord( A, obj, d ){
+  return obj.P;
+}
+
+function getCoordinateOffsetPlusLayout( A, id ){
+  var P = {};
+  var obj = objectFromId(A, id);
+  if( !isDefined( obj ) )
+    return P;
+  if( !isDefined( obj.pos ) )
+    return P;
+  if( !isDefined( obj.offset ) )
+    return P;
+  P.x = obj.offset.x + obj.pos.x;
+  P.y = obj.offset.y + obj.pos.y;
+  return P;
+
+}
+
+function tBlend( t, t0, t1, P0, P1 ){
+  var b0 = (t1-t)/(t1-t0);
+  var b1 = (t0-t)/(t0-t1);
+  return {x:b0*P0.x+b1*P1.x,y:b0*P0.y+b1*P1.y};
+}
+
+function catmulLength( P0, P1 ){
+  var x = (P1.x-P0.x);
+  var y = (P1.y-P0.y);
+  return Math.pow(((x*x)+(y*y)),0.25 );
+
+}
+
+function catEval( t, t0,t1,t2,t3,P0,P1,P2,P3 ){
+  var A1 = tBlend( t, t0,t1,P0,P1 );
+  var A2 = tBlend( t, t1,t2,P1,P2 );
+  var A3 = tBlend( t, t2,t3,P2,P3 );
+  var B1 = tBlend( t, t0,t2,A1,A2 );
+  var B2 = tBlend( t, t1,t3,A2,A3 );
+  var C  = tBlend( t, t1,t2,B1,B2 );
+  return C;
+}
+
+
+
 // >>>>>>>>>>>>>>>>>>>>> Draw
 
 function drawDiagram(A, obj, d){
@@ -965,10 +1021,12 @@ function drawDiagramAgain(A){
     drawDiagram(A, A.RootObject, {});
 }
 
+
 // Functions for drawing small centred objects.
-function drawStar(ctx, S){
+function drawStar(A, obj, S){
   var n = 10;
   var r = S.r || 3.5;
+  var ctx = getCtx( A, obj, S );
 
   ctx.beginPath();
   var i;
@@ -985,7 +1043,8 @@ function drawStar(ctx, S){
     ctx.stroke();
 }
 
-function drawSpot(ctx, S){
+function drawSpot(A, obj, S){
+  var ctx = getCtx( A, obj, S );
   ctx.beginPath();
   ctx.arc(S.x, S.y, S.r, 0, 2 * Math.PI, false);
   ctx.closePath();
@@ -994,7 +1053,8 @@ function drawSpot(ctx, S){
     ctx.stroke();
 }
 
-function drawCentredRect(ctx, S){
+function drawCentredRect(A, obj, S){
+  var ctx = getCtx( A, obj, S );
 
   ctx.beginPath();
   ctx.rect(S.x -S.w/2, S.y - S.h/2, S.w, S.h);
@@ -1004,7 +1064,8 @@ function drawCentredRect(ctx, S){
     ctx.stroke();
 }
 
-function drawUpTriangle(ctx, S){
+function drawUpTriangle(A, obj, S){
+  var ctx = getCtx( A, obj, S );
   var k = 3;
   ctx.beginPath();
   ctx.moveTo( S.x, S.y);
@@ -1018,7 +1079,8 @@ function drawUpTriangle(ctx, S){
     ctx.stroke();
 }
 
-function drawLeftL(ctx, S){
+function drawLeftL(A, obj, S){
+  var ctx = getCtx( A, obj, S );
   var k = 5;
   ctx.beginPath();
   ctx.moveTo( S.x, S.y);
@@ -1034,7 +1096,8 @@ function drawLeftL(ctx, S){
     ctx.stroke();
 }
 
-function drawRightL(ctx, S){
+function drawRightL(A, obj, S){
+  var ctx = getCtx( A, obj, S );
   var k = 5;
   ctx.beginPath();
   ctx.moveTo( S.x, S.y);
@@ -1049,6 +1112,10 @@ function drawRightL(ctx, S){
   if( !isDefined( S.doStroke ) || S.doStroke )
     ctx.stroke();
 }
+
+
+
+
 
 // Used for horizontal lines of the scale.
 function drawLines(A,T, values, i, ix){
@@ -1113,8 +1180,6 @@ function drawSpan(A,T, values, i, ix){
   }
 }
 
-
-
 function drawSpanInner(A,T, vStart, vEnd, i, ix){
 
   var x = T.margin + T.x0 + i * T.xScaler;
@@ -1156,8 +1221,6 @@ function drawSpanInner(A,T, vStart, vEnd, i, ix){
 
   //drawSpotification( A, S, 20 );
 }
-
-
 
 function drawStem(A,T, values, i, ix){
 
@@ -1857,44 +1920,6 @@ function drawArrows(A,obj,d){
   }
 }
 
-function getCoordinateOffsetPlusLayout( A, id ){
-  var P = {};
-  var obj = objectFromId(A, id);
-  if( !isDefined( obj ) )
-    return P;
-  if( !isDefined( obj.pos ) )
-    return P;
-  if( !isDefined( obj.offset ) )
-    return P;
-  P.x = obj.offset.x + obj.pos.x;
-  P.y = obj.offset.y + obj.pos.y;
-  return P;
-
-}
-
-function catmulLength( P0, P1 ){
-  var x = (P1.x-P0.x);
-  var y = (P1.y-P0.y);
-  return Math.pow(((x*x)+(y*y)),0.25 );
-
-}
-
-function tBlend( t, t0, t1, P0, P1 ){
-  var b0 = (t1-t)/(t1-t0);
-  var b1 = (t0-t)/(t0-t1);
-  return {x:b0*P0.x+b1*P1.x,y:b0*P0.y+b1*P1.y};
-}
-
-function catEval( t, t0,t1,t2,t3,P0,P1,P2,P3 ){
-  var A1 = tBlend( t, t0,t1,P0,P1 );
-  var A2 = tBlend( t, t1,t2,P1,P2 );
-  var A3 = tBlend( t, t2,t3,P2,P3 );
-  var B1 = tBlend( t, t0,t2,A1,A2 );
-  var B2 = tBlend( t, t1,t3,A2,A3 );
-  var C  = tBlend( t, t1,t2,B1,B2 );
-  return C;
-}
-
 function drawLipid( A, obj, d ){
   var ctx = A.BackingCanvas.ctx;
   var P = d.getCoordinate( A, obj, d);
@@ -1945,14 +1970,6 @@ function drawSplineSegment( A, obj, d ){
   }
 }
 
-function getNextSequenceCoord( A, obj, d){
-  return getCoordinateOffsetPlusLayout( A, d.sequence[ d.index++]);
-}
-
-function getPCoord( A, obj, d ){
-  return obj.P;
-}
-
 function drawSpline(A,obj,d){
   var arrows = obj.content;
   if( !isDefined(arrows) ) return;
@@ -1976,16 +1993,16 @@ function drawSpline(A,obj,d){
 }
 
 
-function drawGlyph( ctx, obj, S ){
+function drawGlyph( A, obj, S){
   if( obj.glyph==="L" )
-    return drawLeftL( ctx, S );
+    return drawLeftL(A, obj, S);
   if( obj.glyph==="Mid" )
-    return drawUpTriangle( ctx, S );
+    return drawUpTriangle(A, obj, S);
   if( obj.glyph==="R" )
-    return drawRightL( ctx, S );
+    return drawRightL(A, obj, S);
   if( obj.glyph==="Spot" )
-    return drawSpot( ctx, S );
-  return drawStar( ctx, S );
+    return drawSpot(A, obj, S);
+  return drawStar(A, obj, S);
 }
 
 function drawDraggable(A, obj, d ){
@@ -2028,14 +2045,16 @@ function drawDraggable(A, obj, d ){
     ctx.fillStyle = obj.colour || "rgb(205,192,67)";
     ctx.strokeStyle = obj.borderColour || "rgb(120,97,46)";
     S.doStroke = true;
-    drawGlyph(ctx, obj, S);
+    S.ctx = ctx;
+    drawGlyph(A, obj, S);
   }
   if( d.stage === kStageHots ){
     var c = NextAutoColour(A, "");
     AddDown(A,["clickObject",obj.id]);
     ctx2.fillStyle = c;
     S.doStroke = false;
-    drawGlyph(ctx2, obj, S);
+    S.ctx = ctx2;
+    drawGlyph(A, obj, S);
   }
 }
 
@@ -2076,14 +2095,16 @@ function drawDraggable2(A, obj, d ){
 
   if( d.stage === kStageFillAndText ){
     setGhostedStyle(ctx,S);
-    drawGlyph(ctx, obj, S);
+    S.ctx = ctx;
+    drawGlyph(A, obj, S);
   }
   if( d.stage === kStageHots ){
     var c = NextAutoColour(A, "");
     AddDown(A,["clickObject",obj.id]);
     ctx2.fillStyle = c;
     S.doStroke = false;
-    drawGlyph(ctx2, obj, S);
+    S.ctx = ctx2;
+    drawGlyph(A, obj, S);
   }
 }
 
