@@ -1418,11 +1418,107 @@ function drawNowt2( A, obj, d ){
 
 }
 
-// For drawing a snakey plot
-function drawSnakeyPath(A, values, T){
-  var i = 0;
+function drawSnakeSpotShape(A, obj, T){
+  var drawFns = [drawSpot, drawSnakeRect, drawStar];
+
+  var lines = ["rgb(150,150,150)", "rgb(156,3,0)", "rgb(15,0,181)"];
+  var blobs = ["rgb(150,150,150)", "rgb(196,123,120)", "rgb(125,120,191)"];
+  var xblobs = ["rgb(120,120,120)", "rgb(105,205,105)", "rgb(105,205,105)"];
+  var xheads = ["rgb(180,180,180)", "rgb(182,222,157)", "rgb(182,222,157)"];
+  var heads = ["rgb(150,150,150)", "rgb(236,203,200)", "rgb(205,200,240)"];
+
+
+  var r = T.r0 + 7;
+  var S;
+  var X = T.item;
   var ctx = A.BackingCanvas.ctx;
   var ctx2 = A.Hotspots.ctx;
+
+
+  var tipText = formatClassNames(A, X.docString);
+
+  var c = NextAutoColour(A, tipText);
+  r = 1.6 * Math.log((X.docString.length) + 0.1) + T.r0;
+
+  if( X.docString.indexOf("No Description") >= 0 ){
+    r = 3;
+  }
+
+  if( T.i < T.maxv ){
+    S = T.fn(T.i, T);
+
+    ctx.fillStyle = blobs[T.style];
+    ctx.strokeStyle = lines[T.style];
+
+    if( X.isHead ){
+      // lighter green for head.
+      ctx.fillStyle = heads[T.style];
+      ctx.lineWidth = 1;
+      r += 3;
+      r = 11;
+    }
+    ctx2.fillStyle = c;
+    S.isHead = X.isHead;
+    S.r = r;
+
+    S.doStroke = S.isHead || false;
+    S.isHotspot = false;
+    S.ctx = ctx;
+    drawFns[T.shape](A, obj, S);
+
+    // no stroke for hotspot.
+    S.doStroke = false;
+    S.isHotspot = true;
+    S.ctx = ctx2;
+    drawFns[T.shape](A, obj, S);
+
+    if( S.isHead ){
+      S.r = r - 2;
+      // Pointed Arrow head inside snake head.
+      drawAnEnd(A, S, S);
+    }
+
+    /*
+          var isTail = isDefined( X.snakeStyle );
+          if( isTail ){
+            S.theta = S.theta + Math.PI;
+            drawAnEnd( ctx, S, "flat",4);
+          }
+    */
+  }
+}
+
+function drawSnakeSegment(A, obj, T){
+  var widths = [5, 6, 9];
+  var lines = ["rgb(150,150,150)", "rgb(156,3,0)", "rgb(15,0,181)"];
+  var ctx = A.BackingCanvas.ctx;
+  ctx.beginPath();
+  ctx.lineWidth = widths[T.style];
+  ctx.strokeStyle = lines[T.style];
+
+  ctx.moveTo(T.x, T.y);
+  var S = T.fn(T.i, T);
+  if( i === 0 ){
+    ctx.moveTo(S.x, S.y);
+  } else if( T.theta !== undefined ){
+    ctx.arc(S.x, S.y, T.ySpacing / 2, T.theta, T.theta + Math.PI,
+      T.thetaDirection);
+    S.y += T.ySpacing / 2;
+  } else {
+    ctx.lineTo(S.x, S.y);
+  }
+  if( !isDefined(T.item.snakeStyle) ){
+    ctx.stroke();
+  }
+  T.x = S.x;
+  T.y = S.y;
+  return { widths, lines, ctx, S };
+}
+
+// For drawing a snakey plot
+function drawSnakeyPath(A, obj, T){
+  var i ;
+  var values = obj.values;
 
   // These are concerned with animation - a gradual reveal of the
   // 'stations'.
@@ -1432,125 +1528,37 @@ function drawSnakeyPath(A, values, T){
   var frac = Math.min(animateTime, A.Status.time) / animateTime;
   var maxv = Math.floor(frac * T.count);
 
-  var reserveColoursTo = A.Hotspots.autoColourIx + T.count;
-
-
-  var S={};
-  var j;
-  S.x=0;S.y=0;
-  T.isPath = true;
   T.maxv = maxv;
 
-  var drawFns = [drawSpot, drawSnakeRect, drawStar ];
-
-  var widths = [5,6,9];
-  var lines = ["rgb(150,150,150)", "rgb(156,3,0)", "rgb(15,0,181)"];
-  var blobs = ["rgb(150,150,150)", "rgb(196,123,120)", "rgb(125,120,191)"];
-  var xblobs = ["rgb(120,120,120)", "rgb(105,205,105)", "rgb(105,205,105)"];
-  var xheads = ["rgb(180,180,180)", "rgb(182,222,157)", "rgb(182,222,157)"];
-  var heads = ["rgb(150,150,150)", "rgb(236,203,200)", "rgb(205,200,240)"];
-
-
   // draw snakey body
-  var X;
-  var style = 1;
-  var shape = 0;
-  for( j = 0; i < maxv; j++ ){
+  T.isPath = true;
+  T.style = 1;
+  T.shape = 0;
+  T.x = 0;
+  T.y=0;
 
-    X = values[j];
-    style = mayUpdateSpotStyle(X, style, A);
-    shape = mayUpdateSpotShape(X, shape);
+  for( i = 0; i < maxv; i++ ){
+    T.item =   values[i];
+    T.i = i;
+    T.style = mayUpdateSpotStyle(T.item, T.style, A);
+    T.shape = mayUpdateSpotShape(T.item, T.shape);
 
-    ctx.beginPath();
-    ctx.moveTo(S.x, S.y);
-    ctx.lineWidth = widths[style];
-    ctx.strokeStyle = lines[style];
-
-
-    S = T.fn(i, T);
-    if( i === 0 )
-      ctx.moveTo(S.x, S.y);
-    else if( T.theta !== undefined ){
-      ctx.arc(S.x, S.y, T.ySpacing / 2, T.theta, T.theta + Math.PI,
-        T.thetaDirection);
-      S.y += T.ySpacing / 2;
-    }
-    else {
-      ctx.lineTo(S.x, S.y);
-    }
-    i++;
-    if( !isDefined(X.snakeStyle) )
-      ctx.stroke();
-
+    drawSnakeSegment(A, obj, T);
   }
-  i = 0;
+
   // draw blobs.
   T.isPath = false;
+  T.style = 1;
+  T.shape = 0;
 
-  style = 1;
-  shape = 0;
-  var obj = {};
-  for( j = 0; i < T.count; j++ ){
-    var r=T.r0+7;
+  for( i = 0; i < T.count; i++ ){
+    T.item =   values[i];
+    T.i = i;
+    T.style = mayUpdateSpotStyle(T.item, T.style, A);
+    T.shape = mayUpdateSpotShape(T.item, T.shape);
 
-    X = values[j];
-
-    var tipText=formatClassNames(A, X.docString);
-
-    var c =  NextAutoColour( A, tipText);
-    r = 1.6 * Math.log((X.docString.length) + 0.1) + T.r0;
-
-    if( X.docString.indexOf("No Description") >= 0 )
-      r = 3;
-
-    if( i < maxv ){
-      S = T.fn(i, T);
-
-      style = mayUpdateSpotStyle(X, style, A);
-      shape = mayUpdateSpotShape(X, shape);
-
-      ctx.fillStyle = blobs[style];
-      ctx.strokeStyle = lines[style];
-
-      if( X.isHead ){
-        // lighter green for head.
-        ctx.fillStyle = heads[style];
-        ctx.lineWidth = 1;
-        r += 3;
-        r=11;
-      }
-      ctx2.fillStyle = c;
-      S.isHead = X.isHead;
-      S.r = r;
-
-      S.doStroke = S.isHead || false;
-      S.isHotspot = false;
-      S.ctx = ctx;
-      drawFns[ shape ](A, obj, S);
-
-      // no stroke for hotspot.
-      S.doStroke = false;
-      S.isHotspot = true;
-      S.ctx = ctx2;
-      drawFns[ shape ](A, obj, S);
-
-      if( S.isHead ){
-        S.r = r-2;
-        drawAnEnd( A, S, S);
-      }
-
-/*
-      var isTail = isDefined( X.snakeStyle );
-      if( isTail ){
-        S.theta = S.theta + Math.PI;
-        drawAnEnd( ctx, S, "flat",4);
-      }
-*/
-    }
-    i++;
-
+    drawSnakeSpotShape(A, obj, T);
   }
-  //A.Hotspots.autoColourIx = reserveColoursTo;
 }
 
 // draws a path inside a box.
@@ -1599,7 +1607,7 @@ function drawPath(A, obj, d ){
 
   T.fn = xyOfIndexSnakey;
   T.style = obj.style || 0;
-  drawSnakeyPath(A,obj.values, T);
+  drawSnakeyPath(A,obj, T);
 }
 
 function drawTree(A, obj, d){
