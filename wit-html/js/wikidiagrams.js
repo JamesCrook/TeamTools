@@ -942,7 +942,9 @@ function getCoordinateOffsetPlusLayout( A, id ){
 
 }
 
-function tBlend( t, t0, t1, P0, P1 ){
+
+
+function catmulBlend(t, t0, t1, P0, P1 ){
   var b0 = (t1-t)/(t1-t0);
   var b1 = (t0-t)/(t0-t1);
   return {x:b0*P0.x+b1*P1.x,y:b0*P0.y+b1*P1.y};
@@ -956,15 +958,143 @@ function catmulLength( P0, P1 ){
 }
 
 function catEval( t, t0,t1,t2,t3,P0,P1,P2,P3 ){
-  var A1 = tBlend( t, t0,t1,P0,P1 );
-  var A2 = tBlend( t, t1,t2,P1,P2 );
-  var A3 = tBlend( t, t2,t3,P2,P3 );
-  var B1 = tBlend( t, t0,t2,A1,A2 );
-  var B2 = tBlend( t, t1,t3,A2,A3 );
-  var C  = tBlend( t, t1,t2,B1,B2 );
+  var A1 = catmulBlend( t, t0,t1,P0,P1 );
+  var A2 = catmulBlend( t, t1,t2,P1,P2 );
+  var A3 = catmulBlend( t, t2,t3,P2,P3 );
+  var B1 = catmulBlend( t, t0,t2,A1,A2 );
+  var B2 = catmulBlend( t, t1,t3,A2,A3 );
+  var C  = catmulBlend( t, t1,t2,B1,B2 );
   return C;
 }
 
+function bulge(b, x, t ){
+  if( !b)
+    return 0;
+  var s;
+  if( t< x )
+    s = t/x;
+  else
+    s = (1-t)/(1-x);
+  s = s*s*(3-2*s);
+  return b * s;
+}
+
+// Simple linear blend, a at 0, b at 1.
+// Constant gradient.
+function tBlend(a, b, t ){
+  return a + t * (b-a);
+}
+
+// Hermite blend, a at 0, b at 1.
+// Zero gradient at 0 and 1.
+function hermiteBlend(a, b, t ){
+  return a + t*t*(3-2*t) * (b-a);
+}
+
+/**
+ * The 'graph' functions return a vaguely audio looking stereo waveform.
+ * 8 'graphN()' functions produce some mix of sinusoids.
+ * These are then labelled alphabetically and cobbled together with
+ * a hermite blend over a 100 item span.
+ * @param x
+ * @param perturb
+ * @returns {number}
+ */
+
+function graph1( x, perturb ){
+  return 0.7*Math.sin( Math.PI * (x/200.1257680 + perturb) )*Math.sin( Math.PI * (x*1.3276409) )
+    + 0.05*Math.sin( Math.PI * (x/3.31572981) );
+}
+function graph2( x, perturb ){
+  return 0.6*Math.sin( Math.PI * (x/50.1257680 + perturb) )*Math.sin( Math.PI * (x*1.3276409) )
+    + 0.05*Math.sin( Math.PI * (x/3.31572981) );
+}
+function graph3( x, perturb ){
+  return 0.5*Math.sin( Math.PI * (x/10.1257680 + perturb) )*Math.sin( Math.PI * (x*1.3276409) )
+    + 0.05*Math.sin( Math.PI * (x/3.31572981) );
+}
+function graph4( x, perturb ){
+  return 0.4*Math.sin( Math.PI * (x/20.1257680 + perturb) )*Math.sin( Math.PI * (x*1.3276409) )
+    // x is between 0 and 2000.
+    + 0.05*Math.sin( Math.PI * (x/3.31572981) );
+}
+function graph5( x, perturb ){
+  return (0.1*Math.sin( Math.PI * (x/100.1257680 + perturb) )+0.3)*Math.sin( Math.PI * (x*1.3276409) )
+    + 0.05*Math.sin( Math.PI * (x/3.31572981) );
+}
+function graph6( x, perturb ){
+  return (0.01*Math.cos( Math.PI * (x/100.1257680 + perturb) )+0.15)*Math.sin( Math.PI * (x*1.3276409 + perturb) )
+    + (0.05)*Math.sin( Math.PI * (x/(3.31572981+ perturb*8)) );
+}
+function graph7( x, perturb ){
+  return 0.07*(0.1*Math.sin( Math.PI * (x/90.1257680 + 0.33+perturb) )+0.3)*Math.sin( x + perturb*2 );
+}
+// H: almost silence...
+function graph8( x, perturb ){
+  return 0.001*Math.sin(x)+0.001*Math.sin(x*2.1);
+}
+
+
+var gChooser = "HGABCDEFFHABBCCDDFFHADC";
+//var gChooser = "AGH";
+function graphCh( x,t, perturb ){
+  var i = Math.floor( (x+t)/100) % gChooser.length ;
+  var ch = gChooser[ i ];
+  switch( ch ){
+    case 'A':
+      return graph1( x,perturb);
+    case 'B':
+      return graph2( x,perturb);
+    case 'C':
+      return graph3( x,perturb);
+    case 'D':
+      return graph4( x,perturb);
+    case 'E':
+      return graph5( x,perturb);
+    case 'F':
+      return graph6( x,perturb);
+    case 'G':
+      return graph7( x,perturb);
+    default:
+      return graph8( x,perturb);
+  }
+}
+
+function graphFn( x, perturb ){
+  var y0 = graphCh( x, 0, perturb );
+  var y1 = graphCh( x, 100, perturb );
+
+  var t = (x - Math.floor( x/100)*100)*0.08;
+  t = constrain( 0,t,1);
+  // t is now between 0 and 1.
+  return hermiteBlend( y0, y1, t );
+}
+
+function rulerIndexFromX(x, ruler){
+  var i = tBlend( ruler.atStart, ruler.atEnd, x/ruler.rect.x);
+  return i;
+}
+
+function scaledYofItem(i, obj ){
+  var x0 = obj.pos.x;
+  var y0 = obj.pos.y;
+  var xw = obj.rect.x;
+  var yh = obj.rect.y;
+
+  var y1 = y0 + (graphFn( i, obj.perturb )*yh/2)+yh/2;
+  return y1;
+}
+
+
+function mayPadKwicString(str, nChars){
+  var ll = str.length;
+  if( ll < nChars ){
+    var pad = ("                                                                                                                 :<").slice(
+      ll - nChars);
+    str = str.split(":<").join(pad);
+  }
+  return str;
+}
 
 
 // >>>>>>>>>>>>>>>>>>>>> Draw
@@ -1620,23 +1750,6 @@ function drawTree(A, obj, d){
 //  "widths":[5,30],
 //  "alignments":[0.5,0.7]
 
-
-function bulge(A, obj, t ){
-  if( !obj.bulge)
-    return 0;
-  var s;
-  if( t< obj.bulgeX )
-    s = t/obj.bulgeX;
-  else
-    s = (1-t)/(1-obj.bulgeX);
-  s = s*s*(3-2*s);
-  return obj.bulge * s;
-}
-
-function align(A, obj, t ){
-  return obj.alignments[0] + t*(obj.alignments[1]-obj.alignments[0]);
-}
-
 /**
  * Draw 'bugle' shape as used on spindle diagrams.
  * widths are in pixels
@@ -1671,20 +1784,22 @@ function drawBugle(A, obj, d){
   var b;
   var a;
 
+  var ala = obj.alignments;
+
   for(i=0;i<=k;i++){
     t = i/k;
     s = t*t*(3-2*t);
     //s=t;
-    b=bulge(A,obj,t);
-    a = align(A,obj,t);
+    b = bulge(obj.bulge,obj.bulgeX,t);
+    a = tBlend(ala[0],ala[1],t);
     ctx.lineTo(x + xw*t, y + dy0 + (dy1-dy0)*s-b*a);
   }
   for(i=k;i>=0;i--){
     t = i/k;
     s = t*t*(3-2*t);
     //s=t;
-    b=bulge(A,obj,t);
-    a = align(A,obj,t);
+    b = bulge(obj.bulge,obj.bulgeX,t);
+    a = tBlend(ala[0],ala[1],t);
     ctx.lineTo(x + xw*t, y + dy0 + obj.widths[0] + (dy1-dy0+ obj.widths[1]-obj.widths[0])*s+b*(1-a));
   }
   ctx.closePath();
@@ -2373,16 +2488,6 @@ function drawGeshi(A, obj, d){
   }
 }
 
-function mayPadKwicString(str, nChars){
-  var ll = str.length;
-  if( ll < nChars ){
-    var pad = ("                                                                                                                 :<").slice(
-      ll - nChars);
-    str = str.split(":<").join(pad);
-  }
-  return str;
-}
-
 function drawKwic(A, obj, d){
   if( d.stage !== kStageFillAndText && ( d.stage !== kStageHots ) )
     return;
@@ -2834,100 +2939,6 @@ function drawChart(A, obj, d){
   drawSpacedItems(A,x, y, xw, yh, obj.values, T);
 }
 
-// x is between 0 and 2000.
-function graph1( x, perturb ){
-  return 0.7*Math.sin( Math.PI * (x/200.1257680 + perturb) )*Math.sin( Math.PI * (x*1.3276409) )
-   + 0.05*Math.sin( Math.PI * (x/3.31572981) );
-}
-function graph2( x, perturb ){
-  return 0.6*Math.sin( Math.PI * (x/50.1257680 + perturb) )*Math.sin( Math.PI * (x*1.3276409) )
-    + 0.05*Math.sin( Math.PI * (x/3.31572981) );
-}
-function graph3( x, perturb ){
-  return 0.5*Math.sin( Math.PI * (x/10.1257680 + perturb) )*Math.sin( Math.PI * (x*1.3276409) )
-    + 0.05*Math.sin( Math.PI * (x/3.31572981) );
-}
-function graph4( x, perturb ){
-  return 0.4*Math.sin( Math.PI * (x/20.1257680 + perturb) )*Math.sin( Math.PI * (x*1.3276409) )
-    + 0.05*Math.sin( Math.PI * (x/3.31572981) );
-}
-function graph5( x, perturb ){
-  return (0.1*Math.sin( Math.PI * (x/100.1257680 + perturb) )+0.3)*Math.sin( Math.PI * (x*1.3276409) )
-    + 0.05*Math.sin( Math.PI * (x/3.31572981) );
-}
-function graph6( x, perturb ){
-  return (0.01*Math.cos( Math.PI * (x/100.1257680 + perturb) )+0.15)*Math.sin( Math.PI * (x*1.3276409 + perturb) )
-    + (0.05)*Math.sin( Math.PI * (x/(3.31572981+ perturb*8)) );
-}
-function graph7( x, perturb ){
-  return 0.07*(0.1*Math.sin( Math.PI * (x/90.1257680 + 0.33+perturb) )+0.3)*Math.sin( x + perturb*2 );
-}
-// H: almost silence...
-function graph8( x, perturb ){
-  return 0.001*Math.sin(x)+0.001*Math.sin(x*2.1);
-}
-
-
-
-var gChooser = "HGABCDEFFHABBCCDDFFHADC";
-//var gChooser = "AGH";
-function graphCh( x,t, perturb ){
-  var i = Math.floor( (x+t)/100) % gChooser.length ;
-  var ch = gChooser[ i ];
-  switch( ch ){
-    case 'A':
-      return graph1( x,perturb);
-    case 'B':
-      return graph2( x,perturb);
-    case 'C':
-      return graph3( x,perturb);
-    case 'D':
-      return graph4( x,perturb);
-    case 'E':
-      return graph5( x,perturb);
-    case 'F':
-      return graph6( x,perturb);
-    case 'G':
-      return graph7( x,perturb);
-    default:
-      return graph8( x,perturb);
-  }
-}
-
-function graphFn( x, perturb ){
-  var y0 = graphCh( x, 0, perturb );
-
-  var y1 = graphCh( x, 100, perturb );
-  var t = (x - Math.floor( x/100)*100)*0.08;
-  t = constrain( 0,t,1);
-  // t is between 0 and 1.
-  return y0 + t*t*(3-2*t)*( y1-y0);
-  //return -(t*t* (1-(1-t)*(1-t)));
-  //return y1 + t*t* (1-(1-t)*(1-t))* (y0-y1);
-}
-
-function scaledYofPixelOffset(x, obj, ruler ){
-  var x0 = obj.pos.x;
-  var y0 = obj.pos.y;
-  var xw = obj.rect.x;
-  var yh = obj.rect.y;
-
-
-  var x1 = ruler.atStart + (ruler.atEnd-ruler.atStart) * (x/xw);
-  var y1 = y0 + (graphFn( x1 )*yh/2)+yh/2;
-  return y1;
-}
-
-
-function scaledYofItem(i, obj, ruler ){
-  var x0 = obj.pos.x;
-  var y0 = obj.pos.y;
-  var xw = obj.rect.x;
-  var yh = obj.rect.y;
-
-  var y1 = y0 + (graphFn( i, obj.perturb )*yh/2)+yh/2;
-  return y1;
-}
 
 /**
  * Computes min and max in each column, and then infills the area.
@@ -2979,7 +2990,10 @@ function fillMinMaxPlot(ctx, obj, ruler){
   ctx.fill();
 }
 
-function lineMinMaxPlot(ctx, obj, ruler){
+// Draw in terms of the pixels.  There are 'fewer' of these than items.
+function drawLineMinMaxPlot(A, obj, ruler){
+  var ctx = A.BackingCanvas.ctx;
+
   var x = obj.pos.x;
   var y = obj.pos.y;
   var xw = obj.rect.x;
@@ -2988,9 +3002,9 @@ function lineMinMaxPlot(ctx, obj, ruler){
   ctx.strokeStyle = "rgb(20,20,200)";
   ctx.lineWidth = 1;
   var i;
-  var y1 = scaledYofPixelOffset(0, obj, ruler);
+  var y1 = scaledYofItem(rulerIndexFromX(x, ruler), obj);
   for( i = 1; i < xw; i++ ){
-    var y2 = scaledYofPixelOffset(i, obj, ruler);
+    var y2 = scaledYofItem(rulerIndexFromX(x+i, ruler), obj);
     ctx.beginPath();
     ctx.moveTo(x + i, Math.min(y1, y2) - 0.5);
     ctx.lineTo(x + i, Math.max(y1, y2) + 0.5);
@@ -2999,7 +3013,13 @@ function lineMinMaxPlot(ctx, obj, ruler){
   }
 }
 
-function linePlot(ctx, obj, ruler){
+
+// Draw in terms of the item numbers.  There are 'fewer' of these than pixels.
+function drawLinePlot(A, obj, ruler){
+
+  var ctx = A.BackingCanvas.ctx;
+
+
   var x0 = obj.pos.x;
   var y0 = obj.pos.y;
   var xw = obj.rect.x;
@@ -3015,7 +3035,7 @@ function linePlot(ctx, obj, ruler){
   var xStart = ruler.atStart * pixelsPerItem;
   var bucket;
   var i;
-  var y1 = scaledYofItem(Math.floor(ruler.atStart), obj, ruler);
+  var y1 = scaledYofItem(Math.floor(ruler.atStart), obj);
   //var dx = (ruler.atStart -Math.floor(ruler.atStart))
   ctx.beginPath();
   ctx.moveTo(x0-10, y1);
@@ -3027,7 +3047,7 @@ function linePlot(ctx, obj, ruler){
   var y1;
   for( i = Math.floor(ruler.atStart); i < Math.floor(ruler.atEnd)+(20*delta); i+=delta ){
     xx = (i * pixelsPerItem - xStart);
-    y1 = scaledYofItem(i, obj, ruler);
+    y1 = scaledYofItem(i, obj);
     ctx.lineTo(xx, y1);
   }
   ctx.stroke();
@@ -3043,7 +3063,7 @@ function linePlot(ctx, obj, ruler){
     ctx.fillStyle="rgba(0,0,0,"+constrain( 0, (pixelsPerItem-30) / 150, 1 )+")";
     for( i = Math.floor(ruler.atStart); i < Math.floor(ruler.atEnd)+(20*delta); i+=delta ){
       xx = (i * pixelsPerItem - xStart);
-      y1 = scaledYofItem(i, obj, ruler);
+      y1 = scaledYofItem(i, obj);
       S.x = xx;
       S.y = y1;
       drawSpot( A, S, S);
@@ -3057,30 +3077,17 @@ function drawGraph( A, obj, d ){
     return;
 
   //console.log( "draw - "+obj.type);
-  var x = obj.pos.x;
-  var y = obj.pos.y;
-  var xw = obj.rect.x;
-  var yh = obj.rect.y;
-
-
-
-  var i;
-
   var ruler = objectFromId(A, obj.scaling);
 
-  var pixelsPerItem = xw/(ruler.atEnd-ruler.atStart);
-
-
-  var ctx = A.BackingCanvas.ctx;
-
-  linePlot( ctx, obj, ruler );
+  //var pixelsPerItem = xw/(ruler.atEnd-ruler.atStart);
+  drawLinePlot(A, obj, ruler);
 
 /*
   if( pixelsPerItem > 5.5 ){
-    lineMinMaxPlot(ctx, obj, ruler);
+    drawLineMinMaxPlot(A, obj, ruler);
   }
   else {
-    linePlot( ctx, obj, ruler );
+    drawLinePlot( A, obj, ruler );
     //fillMinMaxPlot(ctx, obj, ruler);
   }
 */
@@ -3183,6 +3190,18 @@ function drawFocusSpot(A,x, y){
   ctx.fill();
 }
 
+/**
+ * Recolours the hotspot image onto the focus layer.
+ * Used from on-mouse events relating to the zones list.
+ *
+ * When we hover over the stripy all box or the individual colour
+ * boxes, the related part of the image lights up.
+ *
+ * @param ix
+ * @param action
+ * @param colourMatch
+ * @returns {number}
+ */
 function drawHotShape(ix, action, colourMatch){
   var A = Annotator[ ix ];
 
