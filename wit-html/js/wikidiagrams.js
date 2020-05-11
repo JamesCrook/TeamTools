@@ -993,7 +993,7 @@ function hermiteBlend(a, b, t ){
 
 /**
  * The 'graph' functions return a vaguely audio looking stereo waveform.
- * 8 'graphN()' functions produce some mix of sinusoids.
+ * Eight 'graphN()' functions produce some mix of sinusoids.
  * These are then labelled alphabetically and cobbled together with
  * a hermite blend over a 100 item span.
  * @param x
@@ -1037,7 +1037,7 @@ function graph8( x, perturb ){
 
 var gChooser = "HGABCDEFFHABBCCDDFFHADC";
 //var gChooser = "AGH";
-function graphCh( x,t, perturb ){
+function graphFnUnblended(x, t, perturb ){
   var i = Math.floor( (x+t)/100) % gChooser.length ;
   var ch = gChooser[ i ];
   switch( ch ){
@@ -1060,21 +1060,49 @@ function graphCh( x,t, perturb ){
   }
 }
 
+/**
+ * Get waveform value.
+ * The waveform is specified in blocks.
+ * We blend two adjacent blocks, so that there are no
+ * discontinuities at block boundaries.
+ * @param x - the position in the waveform
+ * @param perturb - allow left and right audio to differ.
+ * @returns {number} - value of nice smooth function
+ */
 function graphFn( x, perturb ){
-  var y0 = graphCh( x, 0, perturb );
-  var y1 = graphCh( x, 100, perturb );
+  // y computed using correct block
+  var y0 = graphFnUnblended( x, 0, perturb );
+  // y computed using next block.
+  var y1 = graphFnUnblended( x, 100, perturb );
 
+  // If the blocks were the same, then the blend
+  // does nothing.  But if they are different, we
+  // transition smoothly from one to the other as x
+  // increases.
   var t = (x - Math.floor( x/100)*100)*0.08;
   t = constrain( 0,t,1);
   // t is now between 0 and 1.
   return hermiteBlend( y0, y1, t );
 }
 
+/**
+ * Given a screen x position determine the
+ * ruler index
+ * @param x - x position on screen
+ * @param ruler
+ * @returns {number} - the ruler index
+ */
 function rulerIndexFromX(x, ruler){
   var i = tBlend( ruler.atStart, ruler.atEnd, x/ruler.rect.x);
   return i;
 }
 
+/**
+ * Converts item no into y height
+ * @param i - item number
+ * @param obj - object to use for scaling calcs.
+ * @returns {number}
+ */
 function scaledYofItem(i, obj ){
   var x0 = obj.pos.x;
   var y0 = obj.pos.y;
@@ -1085,7 +1113,13 @@ function scaledYofItem(i, obj ){
   return y1;
 }
 
-
+/**
+ * Pads a short kwic string with space,
+ * just before the ':< 'start marker.
+ * @param str - string to pad
+ * @param nChars - Desired final length
+ * @returns {string}
+ */
 function mayPadKwicString(str, nChars){
   var ll = str.length;
   if( ll < nChars ){
@@ -1358,9 +1392,6 @@ function drawStem(A,T, values, i, ix){
   ctx.fill();
 }
 
-
-
-
 // Used for values that follow (are on) a curve.
 function drawPlottedRect(A, T, values, i, ix){
   var vx = values[i][ix];
@@ -1374,26 +1405,6 @@ function drawPlottedRect(A, T, values, i, ix){
     (ix !== 1) ? "rgba(105,205,105,1.0)" : "rgba(105,105,205,1.0)";
   ctx.fill();
   ctx.stroke();
-}
-
-function drawSnakeRect(A, obj, S){
-  if( S.isHead ){
-    drawSpot( A, obj, S);
-    return;
-  }
-
-  var d = S.isHotspot ? 14:8;
-  var dx = 4+ 9 * (S.row % 2);
-  var v = (S.row % 2) * (6 - S.r * 2) - 3;
-
-  var T = {};
-  T.x = S.x + dx;
-  T.y = S.y -v -S.r;
-  T.w = d;
-  T.h = 2*S.r;
-  T.doStroke = S.doStroke;
-  T.ctx = S.ctx;
-  drawCentredRect(A, T, T);
 }
 
 // Used for irregularly spaced items.
@@ -1546,6 +1557,26 @@ function drawNowt(A,T, values, i,ix){
 
 function drawNowt2( A, obj, d ){
 
+}
+
+function drawSnakeRect(A, obj, S){
+  if( S.isHead ){
+    drawSpot( A, obj, S);
+    return;
+  }
+
+  var d = S.isHotspot ? 14:8;
+  var dx = 4+ 9 * (S.row % 2);
+  var v = (S.row % 2) * (6 - S.r * 2) - 3;
+
+  var T = {};
+  T.x = S.x + dx;
+  T.y = S.y -v -S.r;
+  T.w = d;
+  T.h = 2*S.r;
+  T.doStroke = S.doStroke;
+  T.ctx = S.ctx;
+  drawCentredRect(A, T, T);
 }
 
 function drawSnakeSpotShape(A, obj, T){
@@ -2946,7 +2977,8 @@ function drawChart(A, obj, d){
  * @param obj
  * @param ruler
  */
-function fillMinMaxPlot(ctx, obj, ruler){
+function fillMinMaxPlot(A, obj, ruler){
+  var ctx = A.BackingCanvas.ctx;
   var x0 = obj.pos.x;
   var y0 = obj.pos.y;
   var xw = obj.rect.x;
@@ -3088,7 +3120,7 @@ function drawGraph( A, obj, d ){
   }
   else {
     drawLinePlot( A, obj, ruler );
-    //fillMinMaxPlot(ctx, obj, ruler);
+    //fillMinMaxPlot(A, obj, ruler);
   }
 */
 }
