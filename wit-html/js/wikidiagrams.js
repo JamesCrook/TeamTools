@@ -494,36 +494,39 @@ function minutesFromDate(date ){
   return result;
 }
 
-function computeSpacing(A, T, x0, y0, xw, yh, values){
-  T.x0 = x0;
-  T.y0 = y0;
-  T.xw = xw;
-  T.yh = yh;
+function computeTSpacing(A, T){
+
+
+
   // Count is the number of rows in the table.  One per time.
   // Items is the number of cols in the table.  One per data series.
-  T.count = T.count || values.length;
+  T.count = T.count || T.values.length;
   if( T.obj.display )
     T.items = T.items || T.obj.display.length;
-  T.items = T.items || values[0].length;
+  T.items = T.items || T.values[0].length;
   // Cols is the number of columns to draw.
   T.cols = T.cols || T.items-1;
-
   T.margin = 40;
+
+
+
+  // yScale so that items grow.
+  T.yScalerMax = T.yh/T.maxY;
+  T.yScaler = (Math.min(20, A.Status.time) / 20) * (T.yh) / (T.maxY-T.minY);
   T.yh += T.margin - 10;
+
+
   if( T.width )
     // If width of each item is given, then space between is what's left over
     T.spacer =
-      (xw - 2 * T.margin - T.count * T.width * T.cols) / (T.count - 1);
+      (T.xw - 2 * T.margin - T.count * T.width * T.cols) / (T.count - 1);
   else {
     // otherwise width of item is determined by spacing between.
     T.spacer = T.spacer || 4;
-    T.width = ((xw + T.spacer - 2 * T.margin) / T.count - T.spacer) / T.cols;
+    T.width = ((T.xw + T.spacer - 2 * T.margin) / T.count - T.spacer) / T.cols;
   }
   T.xScaler = (T.width * T.cols + T.spacer);
 
-  // yScale so that items grow.
-  T.yScalerMax = yh/T.maxY;
-  T.yScaler = (Math.min(20, A.Status.time) / 20) * (yh) / (T.maxY-T.minY);
 }
 
 function makeFunctionTable(T, obj){
@@ -1258,15 +1261,11 @@ function drawRightL(A, obj, S){
     ctx.stroke();
 }
 
-
-
-
-
 // Used for horizontal lines of the scale.
-function drawLines(A,T, values, i, ix){
+function drawLines(A,obj, T){
   if( T.stage !== kStageFillAndText )
     return;
-  if( i!== 0)
+  if( T.i!== 0)
     return;
 
   var rect = T.obj.rect;
@@ -1285,6 +1284,7 @@ function drawLines(A,T, values, i, ix){
   var y0 = T.yh - T.margin  + T.y0+fudgeLineDrop;
 
 
+  var i;
   for(i=0;i<=T.maxY;i+=T.linesAt){
     var yy = y0 - i* T.yScalerMax;
 
@@ -1295,6 +1295,7 @@ function drawLines(A,T, values, i, ix){
     ctx.lineTo(x + xw, yy );
     ctx.stroke();
 
+    // Draw the numerical label
     ctx.save();
     ctx.textAlign = "right";
     ctx.font = "10px Arial";
@@ -1304,51 +1305,25 @@ function drawLines(A,T, values, i, ix){
   }
 }
 
-// Used for bars from base line to curve.
-function drawBar(A,T, values, i, ix){
-  if( T.stage !== kStageFillAndText && T.stage !== kStageHots )
-    return;
-  var vStart = 0;
-  var vEnd   = values[i][ix] -T.minY;
-  drawSpanInner( A, T, vStart,vEnd, i, ix );
-}
+function drawSpanInner(A, obj, T){
 
-function drawSpan(A,T, values, i, ix){
-  if( T.stage !== kStageFillAndText && T.stage !== kStageHots )
-    return;
-  var vStart = values[i][ix] -T.minY;
-  var vEnd   = values[i][ix+1] -T.minY;
-  drawSpanInner( A, T, vStart,vEnd, i, ix );
-  if( T.stemCol && (ix ===1)){
-
-    drawStem(A, T, values, i, ix);
-  }
-}
-
-function drawSpanInner(A,T, vStart, vEnd, i, ix){
-
-  var x = T.margin + T.x0 + i * T.xScaler;
-  var yEnd = vEnd * T.yScaler;
-  var yStart = vStart * T.yScaler;
   var ctx = A.BackingCanvas.ctx;
 
   if( T.stage === kStageHots ){
 
-    var tip = T.obj.autoTip || "Value: %v1 at: %label";
-    tip = T.subber( i, tip );
+    var tip = obj.tip;
     var colour = NextAutoColour( A, tip );
     ctx = A.Hotspots.ctx;
     ctx.fillStyle = colour;//rgbOfJsonColourTuple(colour);
   }
   else {
-    ctx.fillStyle = T.colours[ ix % 2];
+    ctx.fillStyle = T.colours[ T.ix % 2];
   }
 
-  var x0 =  x + (ix - 1) * T.width;
-  var y0 = T.yh - (T.margin ) + T.y0+fudgeBarDrop;
+
 
   ctx.beginPath();
-  ctx.rect(x0, y0-yEnd, T.width, -yStart+yEnd);
+  ctx.rect(obj.pos.x, obj.pos.y, obj.rect.x, obj.rect.y);
   ctx.fill();
 
   if( T.stage !== kStageFillAndText )
@@ -1358,21 +1333,24 @@ function drawSpanInner(A,T, vStart, vEnd, i, ix){
   ctx.strokeStyle = "black";
   ctx.stroke();
 
-  x0 += T.width/2;
+  //x0 += T.width/2;
 
-  var S = getLineBetweenPoints({ x: x0, y: y0 + yEnd }, { x: x0, y: y0 +yStart });
-  var obj = {S:S};
+  //var S = getLineBetweenPoints({ x: x0, y: y0 + yEnd }, { x: x0, y: y0 +yStart });
+  //var obj = {S:S};
   //drawEnds( ctx, obj, 8);
 
   //drawSpotification( A, S, 20 );
 }
 
-function drawStem(A,T, values, i, ix){
+function drawStem(A,obj, T){
+
+  var i = T.i;
+  var ix = T.ix;
 
   var x = T.margin + T.x0 + i * T.xScaler;
 
-  var vEnd = values[i][ix] -T.minY;
-  var vStart = vEnd - values[i][ T.stemCol ];
+  var vEnd = T.values[i][ix] -T.minY;
+  var vStart = vEnd - T.values[i][ T.stemCol ];
 
 
   var yEnd = vEnd * T.yScaler;
@@ -1386,15 +1364,18 @@ function drawStem(A,T, values, i, ix){
 
   ctx.beginPath();
   ctx.rect(x0+T.width/2-1, y0-yEnd, 2, -yStart+yEnd);
-  var k = values[i][T.stemCol+1];
+  var k = T.values[i][T.stemCol+1];
   if( k!==0 )
      ctx.rect(x0+T.width/2+1, y0-yStart, k*T.xScaler, 2);
   ctx.fill();
 }
 
 // Used for values that follow (are on) a curve.
-function drawPlottedRect(A, T, values, i, ix){
-  var vx = values[i][ix];
+function drawPlottedRect(A, obj, T){
+  var i = T.i;
+  var ix = T.ix;
+
+  var vx = T.values[i][ix];
   var x = T.margin + T.x0 + i * T.xScaler;
   var y = vx * T.yScaler;
   var ctx = A.BackingCanvas.ctx;
@@ -1408,7 +1389,10 @@ function drawPlottedRect(A, T, values, i, ix){
 }
 
 // Used for irregularly spaced items.
-function drawEvent(A,T, values, i, ix){
+function drawEvent(A,obj, T){
+  var i = T.i;
+  var ix = T.ix;
+
   if( ix !== 1)
     return;
 
@@ -1422,7 +1406,7 @@ function drawEvent(A,T, values, i, ix){
     var date2 = T.obj.range[1];
     var high = minutesFromDate( date2 );
     //console.log( "Low for "+ date2 + " was " + high );
-    var date3 = values[i][0];
+    var date3 = T.values[i][0];
     var vv = minutesFromDate( date3 );
     vx =  (vv- low)/(high-low);
     vx = vx * (T.count * T.xScaler - T.spacer) / T.xScaler;
@@ -1435,7 +1419,7 @@ function drawEvent(A,T, values, i, ix){
   var ctx = A.BackingCanvas.ctx;
   if( T.stage === kStageHots ){
     var colour = NextAutoColour( A,
-      "<h2>Audacity " + values[i][1] + "</h2>Released: "+values[i][0]);
+      "<h2>Audacity " + T.values[i][1] + "</h2>Released: "+T.values[i][0]);
     ctx = A.Hotspots.ctx;
     ctx.fillStyle = colour;// rgbOfJsonColourTuple(colour);
   }
@@ -1448,16 +1432,21 @@ function drawEvent(A,T, values, i, ix){
   var Star = {};
   ctx.strokeStyle = "rgb(120,97,46)";
   S.doStroke = T.stage === kStageFillAndText;
+  S.isHotspot = !S.doStroke;
   drawStar(A, Star, S);
 }
 
-function drawDonut(A,T, values, i, ix){
+function drawDonut(A,obj, T){
   //if( ix !== 1)
   //  return;
   if( T.stage !== kStageFillAndText && T.stage !== kStageHots )
     return;
 
-  if( i!= 0 )
+  var i = T.i;
+  var ix = T.ix;
+
+
+  if( i!== 0 )
     return;
   var pos = T.obj.pos;
   var rect = T.obj.rect;
@@ -1473,7 +1462,7 @@ function drawDonut(A,T, values, i, ix){
   // get total
   var total = 0;
   var j;
-  for( j = 0; j < values.length; j++ ) total = total + values[j][1];
+  for( j = 0; j < T.values.length; j++ ) total = total + T.values[j][1];
 
   var ctx = A.BackingCanvas.ctx;
 
@@ -1483,7 +1472,7 @@ function drawDonut(A,T, values, i, ix){
 
   var frac = Math.min(20, A.Status.time) / 20;
 
-  for( j = 0; j < values.length; j++ ){
+  for( j = 0; j < T.values.length; j++ ){
 
     //if( T.stage === kStageHots )
 
@@ -1493,7 +1482,7 @@ function drawDonut(A,T, values, i, ix){
 
     A.Hotspots.autoColourIx+=2;
     t0 = t1;
-    t1 = t1 + frac * Math.PI * 2 * values[j][1] / total;
+    t1 = t1 + frac * Math.PI * 2 * T.values[j][1] / total;
     ctx.beginPath();
     ctx.moveTo(x + r2 * Math.cos(t0), y + r2 * Math.sin(t0));
     ctx.lineTo(x + r * Math.cos(t0), y + r * Math.sin(t0));
@@ -1509,8 +1498,11 @@ function drawDonut(A,T, values, i, ix){
   }
 }
 
-function drawLabel(A,T, values, i,ix){
+function drawLabel(A,obj, T){
   // Only label the x axis items once.
+  var i = T.i;
+  var ix = T.ix;
+
   if( ix > 1 )
     return;
   var ctx = A.BackingCanvas.ctx;
@@ -1531,7 +1523,7 @@ function drawLabel(A,T, values, i,ix){
   ctx.textAlign = T.textAlign || "right";
   ctx.font = "12px Arial";
   ctx.fillStyle = "rgba(15,35,165,1.0)";
-  ctx.fillText(values[i][0], 0, 0);
+  ctx.fillText(T.values[i][0], 0, 0);
   ctx.restore();
 
   if( !isDefined( T.obj.tipsOnLabels ))
@@ -1544,7 +1536,7 @@ function drawLabel(A,T, values, i,ix){
   ctx2.rotate(T.rotate||-Math.PI / 4);
   ctx2.textAlign = T.textAlign ||"right";
   ctx2.font = "12px Arial";
-  var size = ctx2.measureText( values[i][0] );
+  var size = ctx2.measureText( T.values[i][0] );
   ctx2.fillStyle = AutoColourFromOffset( A, T.count-i);
   ctx2.rect( -size.width,-9, size.width, 9 );
   ctx2.fill();
@@ -1552,7 +1544,160 @@ function drawLabel(A,T, values, i,ix){
 
 }
 
-function drawNowt(A,T, values, i,ix){
+function drawNowt(A,obj, T){
+}
+
+function setSpanFromT( span, T ){
+  var yEnd = span.vEnd * T.yScaler;
+  var yStart = span.vStart * T.yScaler;
+
+  var x = T.margin + T.x0 + T.i * T.xScaler;
+  var x0 =  x + (T.ix - 1) * T.width;
+  var y0 = T.yh - (T.margin ) + T.y0+fudgeBarDrop;
+
+
+  span.pos={};
+  span.rect={};
+
+  span.pos.x = x0;
+  span.pos.y = y0-yEnd;
+  span.rect.x = T.width;
+  span.rect.y = yEnd-yStart;
+}
+
+/**
+ * Used for bars from value to value.
+ * Both vStart and vEnd used.
+ * @param A
+ * @param T
+ * @param values
+ * @param i
+ * @param ix
+ */
+function drawSpan(A,obj,T, i, ix){
+  if( T.stage !== kStageFillAndText && T.stage !== kStageHots )
+    return;
+  var span = {};
+  span.vStart = T.values[T.i][T.ix] -T.minY;
+  span.vEnd   = T.values[T.i][T.ix+1] -T.minY;
+
+  setSpanFromT( span, T );
+  drawSpanInner( A, span, T);
+  if( T.stemCol && (ix ===1)){
+
+    drawStem(A, obj, T, i, ix);
+  }
+}
+
+/** Used for bars from base line to curve.
+ * vStart is zero
+ * @param A
+ * @param T
+ * @param i
+ * @param ix
+ */
+function drawBar(A,obj, T){
+  if( T.stage !== kStageFillAndText && T.stage !== kStageHots )
+    return;
+  var span = {};
+  span.vStart = 0;
+  span.vEnd = T.values[T.i][T.j] -T.minY;
+  span.tip =  T.obj.autoTip || "Value: %v1 at: %label";
+  span.tip = T.subber( T.i, span.tip );
+
+  setSpanFromT( span, T );
+  drawSpanInner( A, span, T );
+}
+
+
+// >>>>>>>>>>>>>>>>>>> Draw iterators
+
+function configureObject( object, T ){
+}
+
+function drawSpacedItems(A,dummy, T){
+  var j;
+  var i;
+  var obj = {};
+
+  for( j = 0; j < T.items; j++ ){
+    T.j = j;
+    T.ix = j;
+    var fn = T.fns[j];
+    for( i = 0; i < T.count; i++ ){
+      T.i = i;
+      configureObject( obj, T );
+      fn(A, obj, T);
+    }
+  }
+}
+
+function drawContainer(A, obj, d){
+  //console.log( "draw container - "+obj.type);
+  var n = obj.content.length;
+  for( var i = 0; i < n; i++ ) drawCells(A,obj.content[i], d);
+}
+
+function drawChart(A, obj, d){
+  if( d.stage !== kStageFillAndText && ( d.stage !== kStageHots ) )
+    return;
+
+  //console.log( "draw - "+obj.type);
+  var x = obj.pos.x;
+  var y = obj.pos.y;
+  var xw = obj.rect.x;
+  var yh = obj.rect.y;
+
+  var T = {};
+  // We can either specify width of the bars, or the spacing between bar groups.
+  if( obj.pie ){
+    T.spacer = 30;
+    T.cols = 1;
+  }
+  else if( obj.spacer ){
+    T.spacer = obj.spacer;
+  }
+  else
+    T.width = 8;
+  T.stage = d.stage;
+  T.obj = obj;// Heck, pass the whole object too...
+  if( obj.valuesFrom ){
+    var obj2 = getObjectByName(A,obj.valuesFrom );
+    obj.values = obj2.values;
+    obj.maxY = obj.maxY || obj2.maxY;
+  }
+  if( !obj.values )
+    return;
+  //if( T.stage === kStageFillAndText )
+  //  clearBacking(A,x0, y0, xw, yh);
+
+  if( obj.stemCol ){   T.stemCol = obj.stemCol; }
+  if( obj.rotate ){T.rotate = obj.rotate;}
+  if( obj.textAlign ) {T.textAlign = obj.textAlign;}
+
+  T.colours = [];
+  T.colours[0] = "rgba(105,205,105,1.0)";
+  T.colours[1] = "rgba(105,105,205,1.0)";
+  T.linesAt = obj.linesAt || 200;
+
+  T.minY = isDefined( obj.minY ) ? obj.minY : 0;
+  T.maxY = isDefined( obj.maxY ) ? obj.maxY : 2600;
+
+  if( obj.display && obj.display[1].startsWith("#") )
+    T.colours[1] = obj.display[1];
+
+  T.subber = makeLabelReplacerFn(obj);
+  T.values = obj.values;
+
+  T.x0 = x;
+  T.y0 = y;
+  T.xw = xw;
+  T.yh = yh;
+
+  var dummy;
+  computeTSpacing(A,T);
+  makeFunctionTable(T, obj);
+  drawSpacedItems(A,dummy, T);
 }
 
 function drawNowt2( A, obj, d ){
@@ -2356,7 +2501,13 @@ function drawImage(A, obj, d){
     }
 }
 
-
+/**
+ * Used in chart boxes.
+ * Draws markings on top of a waveform.
+ * @param A
+ * @param obj
+ * @param d
+ */
 function drawPlotLegends( A, obj, d ){
   if(d.stage!==kStageFillAndText)
     return;
@@ -2369,8 +2520,10 @@ function drawPlotLegends( A, obj, d ){
   var ctx = A.BackingCanvas.ctx;
 
   ctx.beginPath();
+  // Draw baseline for audio
   ctx.moveTo( x+indent, y + yh/2 );
   ctx.lineTo( x+ xw, y+yh/2 );
+  // Draw vertical line for scale
   ctx.moveTo( x+indent, y+yh );
   ctx.lineTo( x+indent, y);
   ctx.stroke();
@@ -2381,6 +2534,10 @@ function drawPlotLegends( A, obj, d ){
   ctx.textAlign = "right";
   ctx.lineWidth=1.7;
   ctx.beginPath();
+  // There are 5 ruler markings.
+  // Each has a number and a 3-segment line.
+  // The staggered line allows the +1 and -1 to be inside the scale
+  // box.
   for( i=-1; i<= 1; i+=0.5){
     var dy = (Math.abs(i)>0.6) ? i* 8 : 0;
     var ady = Math.abs(dy)*0.4;
@@ -2897,78 +3054,6 @@ function drawTransform( A, obj, d ){
 
 
 
-// >>>>>>>>>>>>>>>>>>> Draw iterators
-
-function drawSpacedItems(A,x0, y0, xw, yh, values, T){
-  var j;
-  var i;
-  for( j = 0; j < T.items; j++ ){
-    for( i = 0; i < T.count; i++ ){
-      T.fns[j](A, T, values, i, j);
-    }
-  }
-}
-
-function drawContainer(A, obj, d){
-  //console.log( "draw container - "+obj.type);
-  var n = obj.content.length;
-  for( var i = 0; i < n; i++ ) drawCells(A,obj.content[i], d);
-}
-
-function drawChart(A, obj, d){
-  if( d.stage !== kStageFillAndText && ( d.stage !== kStageHots ) )
-    return;
-
-  //console.log( "draw - "+obj.type);
-  var x = obj.pos.x;
-  var y = obj.pos.y;
-  var xw = obj.rect.x;
-  var yh = obj.rect.y;
-
-  var T = {};
-  // We can either specify width of the bars, or the spacing between bar groups.
-  if( obj.pie ){
-    T.spacer = 30;
-    T.cols = 1;
-  }
-  else if( obj.spacer ){
-    T.spacer = obj.spacer;
-  }
-  else
-    T.width = 8;
-  T.stage = d.stage;
-  T.obj = obj;// Heck, pass the whole object too...
-  if( obj.valuesFrom ){
-    var obj2 = getObjectByName(A,obj.valuesFrom );
-    obj.values = obj2.values;
-    obj.maxY = obj.maxY || obj2.maxY;
-  }
-  if( !obj.values )
-    return;
-  //if( T.stage === kStageFillAndText )
-  //  clearBacking(A,x0, y0, xw, yh);
-
-  if( obj.stemCol ){   T.stemCol = obj.stemCol; }
-  if( obj.rotate ){T.rotate = obj.rotate;}
-  if( obj.textAlign ) {T.textAlign = obj.textAlign;}
-
-  T.colours = [];
-  T.colours[0] = "rgba(105,205,105,1.0)";
-  T.colours[1] = "rgba(105,105,205,1.0)";
-  T.linesAt = obj.linesAt || 200;
-
-  T.minY = isDefined( obj.minY ) ? obj.minY : 0;
-  T.maxY = isDefined( obj.maxY ) ? obj.maxY : 2600;
-
-  if( obj.display && obj.display[1].startsWith("#") )
-    T.colours[1] = obj.display[1];
-
-  T.subber = makeLabelReplacerFn(obj);
-
-  computeSpacing(A, T, x, y, xw, yh, obj.values);
-  makeFunctionTable(T, obj);
-  drawSpacedItems(A,x, y, xw, yh, obj.values, T);
-}
 
 
 /**
