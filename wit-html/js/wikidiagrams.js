@@ -1436,65 +1436,87 @@ function drawEvent(A,obj, T){
   drawStar(A, Star, S);
 }
 
-function drawDonut(A,obj, T){
-  //if( ix !== 1)
-  //  return;
-  if( T.stage !== kStageFillAndText && T.stage !== kStageHots )
-    return;
-
-  var i = T.i;
-  var ix = T.ix;
 
 
-  if( i!== 0 )
-    return;
-  var pos = T.obj.pos;
-  var rect = T.obj.rect;
-  var xw = rect.x;//T.width;
-  var yh = rect.y;
-  var x =  pos.x + xw / 2;
-  var y =  pos.y + yh / 2;
-  var r = Math.min( xw, yh) / 2;
-  var r2 = r * 0.70;
-  var t0 = 2.0 * Math.PI * 0.75;
-  var t1 = 2.0 * Math.PI * 0.75;
+function makeArcTip(A, T){
+  var tip = T.obj.autoTip || "Value: %v1 at: %label";
+  tip = T.subber(T.j, tip);
+  return NextAutoColour(A, tip);
+}
 
-  // get total
-  var total = 0;
-  var j;
-  for( j = 0; j < T.values.length; j++ ) total = total + T.values[j][1];
-
+/**
+ * Draw one piece of arc in the donut plot.
+ * @param A
+ * @param arc
+ * @param d
+ */
+function drawArcObject(A, arc, d)
+{
   var ctx = A.BackingCanvas.ctx;
-
-  if( T.stage === kStageHots ){
+  if( d.stage === kStageHots ){
     ctx = A.Hotspots.ctx;
   }
 
+  var x = arc.x;
+  var y = arc.y;
+  var r2 = arc.r2;
+  var r = arc.r;
+  var t0 = arc.t0;
+  var t1 = arc.t1;
+
+
+  ctx.beginPath();
+  ctx.moveTo(x + r2 * Math.cos(t0), y + r2 * Math.sin(t0));
+  ctx.lineTo(x + r * Math.cos(t0), y + r * Math.sin(t0));
+  ctx.arc(x, y, r, t0, t1, false);
+  ctx.lineTo(x + r2 * Math.cos(t1), y + r2 * Math.sin(t1));
+  ctx.arc(x, y, r2, t1, t0, true);
+  ctx.closePath();
+  //ctx.rect(x, y, T.width, T.width);
+  ctx.fillStyle = arc.colour;
+  ctx.fill();
+  if( d.stage === kStageFillAndText ){
+    ctx.stroke();
+  }
+}
+
+function drawDonut(A,obj, T){
+  if( T.stage !== kStageFillAndText && T.stage !== kStageHots )
+    return;
+  if( T.i!== 0 )
+    return;
+
+  var arc = {};
+
+  var pos = T.obj.pos;
+  var rect = T.obj.rect;
+  var xw = rect.x;
+  var yh = rect.y;
+
+  arc.x =  pos.x + xw / 2;
+  arc.y =  pos.y + yh / 2;
+  arc.r = Math.min( xw, yh) / 2;
+  arc.r2 = arc.r * 0.70;
+  arc.t0 = 2.0 * Math.PI * 0.75;
+  arc.t1 = 2.0 * Math.PI * 0.75;
+
+  // get total
+  T.total = 0;
+  var j;
+  for( j = 0; j < T.values.length; j++ )
+    T.total += T.values[j][1];
+
   var frac = Math.min(20, A.Status.time) / 20;
+  frac *= Math.PI * 2/T.total;
 
   for( j = 0; j < T.values.length; j++ ){
+    T.j = j;
+    arc.t0 = arc.t1;
+    arc.t1 = arc.t1 + frac * T.values[j][1];
+    arc.colour = makeArcTip(A, T);
+    A.Hotspots.autoColourIx += 2;
 
-    //if( T.stage === kStageHots )
-
-    var tip = T.obj.autoTip || "Value: %v1 at: %label";
-    tip = T.subber( j, tip );
-    var c = NextAutoColour( A, tip );
-
-    A.Hotspots.autoColourIx+=2;
-    t0 = t1;
-    t1 = t1 + frac * Math.PI * 2 * T.values[j][1] / total;
-    ctx.beginPath();
-    ctx.moveTo(x + r2 * Math.cos(t0), y + r2 * Math.sin(t0));
-    ctx.lineTo(x + r * Math.cos(t0), y + r * Math.sin(t0));
-    ctx.arc(x, y, r, t0, t1, false);
-    ctx.lineTo(x + r2 * Math.cos(t1), y + r2 * Math.sin(t1));
-    ctx.arc(x, y, r2, t1, t0, true);
-    ctx.closePath();
-    //ctx.rect(x, y, T.width, T.width);
-    ctx.fillStyle = c;//boxColourOfIndex( j*3 );
-    ctx.fill();
-    if( T.stage === kStageFillAndText )
-      ctx.stroke();
+    drawArcObject(A, arc, T);
   }
 }
 
