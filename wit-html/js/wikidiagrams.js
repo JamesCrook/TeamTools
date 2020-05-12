@@ -922,6 +922,24 @@ function getCtx( A, obj, d ){
   return A.BackingCanvas.ctx;
 }
 
+function makeObjectTip(A, T){
+  var tip = T.obj.autoTip || "Value: %v1 at: %label";
+  tip = T.subber(T.i, tip);
+  return NextAutoColour(A, tip);
+}
+
+function applyObjectColourAndTip(A, obj, T){
+  var ctx = A.BackingCanvas.ctx;
+  if( T.stage === kStageHots ){
+    var colour = makeObjectTip(A, T);
+    ctx = A.Hotspots.ctx;
+    ctx.fillStyle = colour;// rgbOfJsonColourTuple(colour);
+  } else {
+    ctx.fillStyle = obj.colour;
+  }
+  return ctx;
+}
+
 function getNextSequenceCoord( A, obj, d){
   return getCoordinateOffsetPlusLayout( A, d.sequence[ d.index++]);
 }
@@ -1134,6 +1152,7 @@ function mayPadKwicString(str, nChars){
 }
 
 
+
 // >>>>>>>>>>>>>>>>>>>>> Draw
 
 function drawDiagram(A, obj, d){
@@ -1307,23 +1326,7 @@ function drawLines(A,obj, T){
 
 function drawSpanObject(A, obj, T){
 
-
-/*
-  var ctx = A.BackingCanvas.ctx;
-  if( T.stage === kStageHots ){
-
-    var tip = obj.tip;
-    var colour = NextAutoColour( A, tip );
-    ctx = A.Hotspots.ctx;
-    ctx.fillStyle = colour;//rgbOfJsonColourTuple(colour);
-  }
-  else {
-    ctx.fillStyle = obj.colour;
-  }
-*/
-
   var ctx = applyObjectColourAndTip(A, obj, T);
-
 
   ctx.beginPath();
   ctx.rect(obj.pos.x, obj.pos.y, obj.rect.x, obj.rect.y);
@@ -1391,25 +1394,6 @@ function drawPlottedRect(A, obj, T){
   ctx.stroke();
 }
 
-
-function makeObjectTip(A, T){
-  var tip = T.obj.autoTip || "Value: %v1 at: %label";
-  tip = T.subber(T.i, tip);
-  return NextAutoColour(A, tip);
-}
-
-function applyObjectColourAndTip(A, obj, T){
-  var ctx = A.BackingCanvas.ctx;
-  if( T.stage === kStageHots ){
-    var colour = makeObjectTip(A, T);
-    ctx = A.Hotspots.ctx;
-    ctx.fillStyle = colour;// rgbOfJsonColourTuple(colour);
-  } else {
-    ctx.fillStyle = obj.colour;
-  }
-  return ctx;
-}
-
 // Used for irregularly spaced items.
 function drawEvent(A,obj, T){
   var i = T.i;
@@ -1451,15 +1435,13 @@ function drawEvent(A,obj, T){
 }
 
 
-
 /**
  * Draw one piece of arc in the donut plot.
  * @param A
  * @param arc
  * @param d
  */
-function drawArcObject(A, arc, d)
-{
+function drawArcObject(A, arc, d){
   var ctx = A.BackingCanvas.ctx;
   if( d.stage === kStageHots ){
     ctx = A.Hotspots.ctx;
@@ -1618,11 +1600,9 @@ function setSpanFromT( span, T ){
  * Both vStart and vEnd used.
  * @param A
  * @param T
- * @param values
- * @param i
- * @param ix
+ * @param obj
  */
-function drawSpan(A,obj,T, i, ix){
+function drawSpan(A,obj,T){
   if( T.stage !== kStageFillAndText && T.stage !== kStageHots )
     return;
   var span = {};
@@ -1639,12 +1619,12 @@ function drawSpan(A,obj,T, i, ix){
   }
 }
 
-/** Used for bars from base line to curve.
+/**
+ * Used for bars from base line to curve.
  * vStart is zero
  * @param A
  * @param T
- * @param i
- * @param ix
+ * @param obj
  */
 function drawBar(A,obj, T){
   if( T.stage !== kStageFillAndText && T.stage !== kStageHots )
@@ -1845,6 +1825,12 @@ function drawSnakeSpotShape(A, obj, T){
   }
 }
 
+/**
+ *
+ * @param A
+ * @param obj
+ * @param T
+ */
 function drawSnakeSegment(A, obj, T){
   var widths = [5, 6, 9];
   var lines = ["rgb(150,150,150)", "rgb(156,3,0)", "rgb(15,0,181)"];
@@ -1869,10 +1855,14 @@ function drawSnakeSegment(A, obj, T){
   }
   T.x = S.x;
   T.y = S.y;
-  return { widths, lines, ctx, S };
 }
 
-// For drawing a snakey plot
+/**
+ *For drawing a snakey plot
+ * @param A
+ * @param obj
+ * @param T
+ */
 function drawSnakeyPath(A, obj, T){
   var i ;
   var values = obj.values;
@@ -1918,7 +1908,12 @@ function drawSnakeyPath(A, obj, T){
   }
 }
 
-// draws a path inside a box.
+/**
+ * draws a path inside a box.
+ * @param A
+ * @param obj
+ * @param d
+ */
 function drawPath(A, obj, d ){
   if( d.stage !== kStageFillAndText )
     return;
@@ -2035,7 +2030,6 @@ function drawBugle(A, obj, d){
 
 
 }
-
 
 function drawSphere(A,obj,S){
   var xx = obj.pos.x;
@@ -2333,7 +2327,6 @@ function drawSpline(A,obj,d){
     drawSplineSegment( A, segment, d);
   }
 }
-
 
 function drawGlyph( A, obj, S){
   if( obj.glyph==="L" )
@@ -3030,8 +3023,7 @@ function drawFilledArrow(A, obj, S){
   ctx.restore();
 }
 
-function innerTransform( A, obj, S )
-{
+function innerTransform( A, obj, S ){
   var x = obj.pos.x;
   var y = obj.pos.y;
   var xw = obj.rect.x;
@@ -3083,7 +3075,6 @@ function innerTransform( A, obj, S )
   A.transOp = op;
 }
 
-
 function drawTransform( A, obj, d ){
   var ctx = A.BackingCanvas.ctx;
   var ctx2 = A.Hotspots.ctx;
@@ -3101,10 +3092,6 @@ function drawTransform( A, obj, d ){
   ctx.restore();
   ctx2.restore();
 }
-
-
-
-
 
 
 /**
@@ -4416,9 +4403,13 @@ sizeThing = {};
 layoutThing = {};
 drawThing = {};
 
-// @how has a function for each type of object
-// @what is an object to visit
-// @data carries extra information into the function
+/**
+ *
+ * @param how - has a function for each type of object
+ * @param A
+ * @param what - is an object to visit
+ * @param data -  carries extra information into the function
+ */
 function visit(how, A, what, data){
   if( how[what.type] ){
     how[what.type].call(how, A, what, data);
