@@ -74,6 +74,7 @@ The detailed data for the chart follows.
    "display":["Label","Blue","Green"],
    "subtype":["*","event"],
    "range":["01-Aug-2017","29-May-2020"],
+   "autoTip":"<h2>Audacity %release</h2>Released: %when",
    "events":true,
    "values":[
         ["02-Nov-2017","2.2.0"],

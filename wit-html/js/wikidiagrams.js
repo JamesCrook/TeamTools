@@ -1305,10 +1305,11 @@ function drawLines(A,obj, T){
   }
 }
 
-function drawSpanInner(A, obj, T){
+function drawSpanObject(A, obj, T){
 
+
+/*
   var ctx = A.BackingCanvas.ctx;
-
   if( T.stage === kStageHots ){
 
     var tip = obj.tip;
@@ -1317,9 +1318,11 @@ function drawSpanInner(A, obj, T){
     ctx.fillStyle = colour;//rgbOfJsonColourTuple(colour);
   }
   else {
-    ctx.fillStyle = T.colours[ T.ix % 2];
+    ctx.fillStyle = obj.colour;
   }
+*/
 
+  var ctx = applyObjectColourAndTip(A, obj, T);
 
 
   ctx.beginPath();
@@ -1370,7 +1373,7 @@ function drawStem(A,obj, T){
   ctx.fill();
 }
 
-// Used for values that follow (are on) a curve.
+// Used for values that follow (are on) a curve as in rainfall graph.
 function drawPlottedRect(A, obj, T){
   var i = T.i;
   var ix = T.ix;
@@ -1386,6 +1389,25 @@ function drawPlottedRect(A, obj, T){
     (ix !== 1) ? "rgba(105,205,105,1.0)" : "rgba(105,105,205,1.0)";
   ctx.fill();
   ctx.stroke();
+}
+
+
+function makeObjectTip(A, T){
+  var tip = T.obj.autoTip || "Value: %v1 at: %label";
+  tip = T.subber(T.i, tip);
+  return NextAutoColour(A, tip);
+}
+
+function applyObjectColourAndTip(A, obj, T){
+  var ctx = A.BackingCanvas.ctx;
+  if( T.stage === kStageHots ){
+    var colour = makeObjectTip(A, T);
+    ctx = A.Hotspots.ctx;
+    ctx.fillStyle = colour;// rgbOfJsonColourTuple(colour);
+  } else {
+    ctx.fillStyle = obj.colour;
+  }
+  return ctx;
 }
 
 // Used for irregularly spaced items.
@@ -1416,33 +1438,19 @@ function drawEvent(A,obj, T){
   var x = 7+T.margin + T.x0 + vx * T.xScaler;
   var y = T.yh + T.y0 - T.margin - 0.0 * 2000 * T.yScaler+fudgeStarDrop;
 
-  var ctx = A.BackingCanvas.ctx;
-  if( T.stage === kStageHots ){
-    var colour = NextAutoColour( A,
-      "<h2>Audacity " + T.values[i][1] + "</h2>Released: "+T.values[i][0]);
-    ctx = A.Hotspots.ctx;
-    ctx.fillStyle = colour;// rgbOfJsonColourTuple(colour);
-  }
-  else {
-    ctx.fillStyle = "rgb(205,192,67)";
-  }
+  var star = {};
+  star.colour = "rgb(205,192,67)";
+  var ctx = applyObjectColourAndTip(A, star, T);
 
   var S = { x:x,y:y,theta:Math.PI * 2 * (Math.min(20, A.Status.time) / 40)};
 
-  var Star = {};
   ctx.strokeStyle = "rgb(120,97,46)";
   S.doStroke = T.stage === kStageFillAndText;
   S.isHotspot = !S.doStroke;
-  drawStar(A, Star, S);
+  drawStar(A, star, S);
 }
 
 
-
-function makeArcTip(A, T){
-  var tip = T.obj.autoTip || "Value: %v1 at: %label";
-  tip = T.subber(T.j, tip);
-  return NextAutoColour(A, tip);
-}
 
 /**
  * Draw one piece of arc in the donut plot.
@@ -1510,14 +1518,50 @@ function drawDonut(A,obj, T){
   frac *= Math.PI * 2/T.total;
 
   for( j = 0; j < T.values.length; j++ ){
-    T.j = j;
+    T.i = j;
     arc.t0 = arc.t1;
     arc.t1 = arc.t1 + frac * T.values[j][1];
-    arc.colour = makeArcTip(A, T);
+    arc.colour = makeObjectTip(A, T);
     A.Hotspots.autoColourIx += 2;
 
     drawArcObject(A, arc, T);
   }
+}
+
+function drawLabelObject(A, label, T){
+
+  var shiftTextY = -T.margin;
+  var shiftTextX = 0;
+  if( T.textAlign === "left" ){
+    shiftTextY *= -0.35;
+    shiftTextX = 12;
+  }
+
+  var ctx = A.BackingCanvas.ctx;
+  ctx.save();
+  ctx.beginPath();
+  ctx.translate(label.pos.x + shiftTextX, label.pos.y + shiftTextY);
+  ctx.rotate(label.rotate || -Math.PI / 4);
+  ctx.textAlign = label.textAlign || "right";
+  ctx.font = "12px Arial";
+  ctx.fillStyle = "rgba(15,35,165,1.0)";
+  ctx.fillText(label.text, 0, 0);
+  ctx.restore();
+}
+
+function drawLabelHotspot(A, label, T){
+  var ctx2 = A.Hotspots.ctx;
+  ctx2.save();
+  ctx2.beginPath();
+  ctx2.translate(label.pos.x, label.pos.y);
+  ctx2.rotate(T.rotate || -Math.PI / 4);
+  ctx2.textAlign = T.textAlign || "right";
+  ctx2.font = "12px Arial";
+  var size = ctx2.measureText(label.text);
+  ctx2.fillStyle = label.hotspotColour;
+  ctx2.rect(-size.width, -9, size.width, 9);
+  ctx2.fill();
+  ctx2.restore();
 }
 
 function drawLabel(A,obj, T){
@@ -1527,43 +1571,25 @@ function drawLabel(A,obj, T){
 
   if( ix > 1 )
     return;
-  var ctx = A.BackingCanvas.ctx;
   // The +8 is 0.707 * font height of 11.
   var x = T.margin + T.x0 + i * T.xScaler+(T.width*T.items)*0.5+8;
   var y = T.margin;
 
-  var shiftTextY = T.margin;
-  var shiftTextX = 0;
-  if( T.textAlign === "left" ){
-    shiftTextY *= -0.35;
-    shiftTextX = 12;
-  }
-  ctx.save();
-  ctx.beginPath();
-  ctx.translate(x+ (ix - 1) * T.width + shiftTextX, T.yh - (shiftTextY + y) + T.y0);
-  ctx.rotate(T.rotate||-Math.PI / 4);
-  ctx.textAlign = T.textAlign || "right";
-  ctx.font = "12px Arial";
-  ctx.fillStyle = "rgba(15,35,165,1.0)";
-  ctx.fillText(T.values[i][0], 0, 0);
-  ctx.restore();
+  var label = {};
+  label.pos = {};
+  label.pos.x = x+ (ix - 1) * T.width;
+  label.pos.y = T.yh - y + T.y0;
+  label.rotate = T.rotate;
+  label.textAlign = T.textAlign;
+  label.text = T.values[i][0];
+
+  drawLabelObject(A, label, T);
 
   if( !isDefined( T.obj.tipsOnLabels ))
     return;
 
-  var ctx2 = A.Hotspots.ctx;
-  ctx2.save();
-  ctx2.beginPath();
-  ctx2.translate(x+ (ix - 1) * T.width, T.yh - (T.margin + y) + T.y0);
-  ctx2.rotate(T.rotate||-Math.PI / 4);
-  ctx2.textAlign = T.textAlign ||"right";
-  ctx2.font = "12px Arial";
-  var size = ctx2.measureText( T.values[i][0] );
-  ctx2.fillStyle = AutoColourFromOffset( A, T.count-i);
-  ctx2.rect( -size.width,-9, size.width, 9 );
-  ctx2.fill();
-  ctx2.restore();
-
+  label.hotspotColour = AutoColourFromOffset(A, T.count - i);
+  drawLabelHotspot(A, label, T);
 }
 
 function drawNowt(A,obj, T){
@@ -1602,12 +1628,14 @@ function drawSpan(A,obj,T, i, ix){
   var span = {};
   span.vStart = T.values[T.i][T.ix] -T.minY;
   span.vEnd   = T.values[T.i][T.ix+1] -T.minY;
+  span.tip =  T.obj.autoTip || "Value: %v1 at: %label";
+  span.tip = T.subber( T.i, span.tip );
+  span.colour = T.colours[ T.ix % 2];
 
   setSpanFromT( span, T );
-  drawSpanInner( A, span, T);
-  if( T.stemCol && (ix ===1)){
-
-    drawStem(A, obj, T, i, ix);
+  drawSpanObject( A, span, T);
+  if( T.stemCol && (T.ix ===1)){
+    drawStem(A, obj, T);
   }
 }
 
@@ -1626,9 +1654,10 @@ function drawBar(A,obj, T){
   span.vEnd = T.values[T.i][T.j] -T.minY;
   span.tip =  T.obj.autoTip || "Value: %v1 at: %label";
   span.tip = T.subber( T.i, span.tip );
+  span.colour = T.colours[ T.ix % 2];
 
   setSpanFromT( span, T );
-  drawSpanInner( A, span, T );
+  drawSpanObject( A, span, T );
 }
 
 
