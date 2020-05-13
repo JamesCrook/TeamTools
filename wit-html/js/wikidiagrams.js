@@ -500,51 +500,53 @@ function minutesFromDate(date ){
   return result;
 }
 
+function apportionHorizontalSpaceInT(T){
+  var spaceAvailable = T.xw - 2 * T.margin;
+  if( T.width ){
+    // If width of each item is given, then space between is what's left over
+    // Reduce by space for the drawn columns.
+    spaceAvailable -= T.width * T.rows * T.drawnCols;
+    T.spacer = spaceAvailable / (T.rows - 1);
+  } else {
+    // otherwise width of each item is determined by the spacing between.
+    T.spacer = T.spacer || 4;
+    // Reduce by the space used for the spacers.
+    // n groups with n-1 spacers between the groups.
+    spaceAvailable -= (T.rows - 1) * T.spacer;
+    T.width = spaceAvailable / (T.rows * T.drawnCols);
+  }
+  T.xScaler = (T.width * T.drawnCols + T.spacer);
+}
+
+function apportionVerticalSpaceInT(A, T){
+  // yScale when fully grown (also used for lines behind the graph)
+  T.yScalerMax = T.yh / (T.maxY - T.minY);
+  // yScale reduced, so that items grow.
+  T.yScaler = (Math.min(20, A.Status.time) / 20) * T.yScalerMax;
+  T.yh += T.margin - 10;
+}
+
 /**
  * The spacing is computed for barchart bars.
  *
  * @param A
  * @param T
  */
-function computeTSpacing(A, T){
+function apportionSpaceInT(A, T){
 
   T.rows = T.rows || T.values.length;
 
   if( T.obj.display )
     T.cols = T.cols || T.obj.display.length;
   T.cols = T.cols || T.values[0].length;
-
-  // Cols is the number of columns to draw.
-  var drawnCols = ( T.obj.display )? T.obj.display.length -1 : 1;
-
+  T.drawnCols = (T.obj.display) ? T.obj.display.length - 1 : 1;
 
   T.margin = 30;
 
-  // yScale when fully grown (also used for lines behind the graph)
-  T.yScalerMax = T.yh/(T.maxY-T.minY);
-  // yScale reduced, so that items grow.
-  T.yScaler = (Math.min(20, A.Status.time) / 20) * T.yScalerMax;
-  T.yh += T.margin - 10;
-
-
-  var spaceAvailable = T.xw - 2 * T.margin;
-  if( T.width ){
-    // If width of each item is given, then space between is what's left over
-    // Reduce by space for the drawn columns.
-    spaceAvailable -= T.width * T.rows * drawnCols;
-    T.spacer = spaceAvailable / (T.rows - 1);
-  }
-  else {
-    // otherwise width of each item is determined by the spacing between.
-    T.spacer = T.spacer || 4;
-    // Reduce by the space used for the spacers.
-    // n groups with n-1 spacers between the groups.
-    spaceAvailable -= (T.rows-1)*T.spacer;
-    T.width = spaceAvailable / (T.rows * drawnCols);
-  }
-  T.xScaler = (T.width * drawnCols + T.spacer);
-
+  apportionVerticalSpaceInT(A, T);
+  apportionHorizontalSpaceInT(T);
 }
+
 
 function makeFunctionTable(T, obj){
   // prepare which functions to call
@@ -813,7 +815,7 @@ function objectFromId(A, id){
  * @returns {string|*}
  */
 function anchorTagFromWikipathwyaName(str){
-  if( str.indexOf( "Pathway:" ) == 0 ){
+  if( str.indexOf( "Pathway:" ) === 0 ){
     return "<a href='https://www.wikipathways.org/index.php/" +
       str+ "' target='_blank'>" + str.substr(8) + "</a>";
   }
@@ -826,7 +828,7 @@ function anchorTagFromWikipathwyaName(str){
  * @returns {string|*}
  */
 function anchorTagFromPmcid(str){
-  if( str.indexOf( "PMCID: " ) == 0 ){
+  if( str.indexOf( "PMCID: " ) === 0 ){
     return "<a href='https://www.ncbi.nlm.nih.gov/pmc/articles/" +
       str.substr(7) + "/' target='_blank'>" + str.substr(7) + "</a>";
   }
@@ -1687,6 +1689,24 @@ function drawBar(A,obj, T){
 function configureObject( object, T ){
 }
 
+
+var spacedDrawFunctions = {
+  "bar" : drawBar,
+  "label" : drawLabel,
+  "pie" : drawDonut,
+  "spot" : drawPlottedRect,
+  "event" : drawEvent,
+  "lines" : drawLines,
+  "spans" : drawSpan
+};
+
+function drawThingy( A, obj, T ){
+  var fn = spacedDrawFunctions[ obj.type ];
+  if( fn )
+    fn( A, obj, T );
+}
+
+
 function drawSpacedItems(A,dummy, T){
   var j;
   var i;
@@ -1696,11 +1716,10 @@ function drawSpacedItems(A,dummy, T){
   for( j = 0; j < T.cols; j++ ){
     T.j = j;
     T.ix = j;
-    var fn = T.fns[j];
     for( i = 0; i < T.rows; i++ ){
       T.i = i;
-      configureObject( obj, T );
-      fn(A, obj, T);
+      obj.type = T.obj.subtype[j];
+      drawThingy( A, obj, T );
     }
   }
 }
@@ -1716,22 +1735,9 @@ function drawChart(A, obj, d){
     return;
 
   //console.log( "draw - "+obj.type);
-  var x = obj.pos.x;
-  var y = obj.pos.y;
-  var xw = obj.rect.x;
-  var yh = obj.rect.y;
 
   var T = {};
-  // We can either specify width of the bars, or the spacing between bar groups.
-  if( obj.pie ){
-    T.spacer = 30;
-    T.cols = 1;
-  }
-  else if( obj.spacer ){
-    T.spacer = obj.spacer;
-  }
-  else
-    T.width = 8;
+
   T.stage = d.stage;
   T.obj = obj;// Heck, pass the whole object too...
   if( obj.valuesFrom ){
@@ -1746,8 +1752,6 @@ function drawChart(A, obj, d){
   }
   if( !obj.values )
     return;
-  //if( T.stage === kStageFillAndText )
-  //  clearBacking(A,x0, y0, xw, yh);
 
   if( obj.stemCol ){   T.stemCol = obj.stemCol; }
   if( obj.rotate ){T.rotate = obj.rotate;}
@@ -1766,16 +1770,23 @@ function drawChart(A, obj, d){
 
   T.subber = makeLabelReplacerFn(obj);
   T.values = obj.values;
-
-  T.x0 = x;
-  T.y0 = y;
-  T.xw = xw;
-  T.yh = yh;
-
   T.startColourIx = obj.startColourIx;
+
+  // We can either specify width of the bars, or the spacing between bar groups.
+  if( obj.spacer ){
+    T.spacer = obj.spacer;
+  }
+  else
+    T.width = 8;
+
+  T.x0 = obj.pos.x;
+  T.y0 = obj.pos.y;
+  T.xw = obj.rect.x;
+  T.yh = obj.rect.y;
+
+
   var dummy;
-  computeTSpacing(A,T);
-  makeFunctionTable(T, obj);
+  apportionSpaceInT(A,T);
   drawSpacedItems(A,dummy, T);
 }
 
