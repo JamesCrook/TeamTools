@@ -93,6 +93,7 @@ The detailed data for the chart follows.
    "display":["Label","Blue","Green"],
    "subtype":["label","*","*"],
    "valuesFrom":"BugChart",
+   "tipsOnLabels":true,
    "sizeAs":0.18
 }]
 </pre>

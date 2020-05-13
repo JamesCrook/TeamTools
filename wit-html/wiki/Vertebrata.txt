@@ -28,6 +28,7 @@ The detailed data for the chart follows.
            "valuesFrom":"Verts",
        "margins":5,
        "textAlign":"left",
+          "tipsOnLabels":true,
        "spacer":5,
        "rotate":-1.57,
            "sizeAs":0.18

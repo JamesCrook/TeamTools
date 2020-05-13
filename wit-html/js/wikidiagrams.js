@@ -334,6 +334,12 @@ function autoColourOfIndex(a){
   return index;
 }
 
+AutoColourFromIx = function( A, ix ){
+  var index = autoColourOfIndex(ix);
+  var rgb = rgbOfJsonString(index);
+  return rgb;
+}
+
 AutoColourFromOffset = function( A, offset ){
   var a = (A.Hotspots.autoColourIx-offset);
   var index = autoColourOfIndex(a);
@@ -1532,16 +1538,26 @@ function drawLabelObject(A, label, T){
 }
 
 function drawLabelHotspot(A, label, T){
+
+
+  var bLeftAlign= ( T.textAlign === "left" );
+  var shiftTextY = -T.margin;
+  var shiftTextX = 0;
+  if( bLeftAlign  ){
+    shiftTextY *= -0.35;
+    shiftTextX = 12;
+  }
+
   var ctx2 = A.Hotspots.ctx;
   ctx2.save();
   ctx2.beginPath();
-  ctx2.translate(label.pos.x, label.pos.y);
+  ctx2.translate(label.pos.x + shiftTextX, label.pos.y+shiftTextY);
   ctx2.rotate(T.rotate || -Math.PI / 4);
   ctx2.textAlign = T.textAlign || "right";
   ctx2.font = "12px Arial";
   var size = ctx2.measureText(label.text);
   ctx2.fillStyle = label.hotspotColour;
-  ctx2.rect(-size.width, -9, size.width, 9);
+  ctx2.rect(bLeftAlign ? 0:-size.width, -9, size.width, 9);
   ctx2.fill();
   ctx2.restore();
 }
@@ -1570,7 +1586,11 @@ function drawLabel(A,obj, T){
   if( !isDefined( T.obj.tipsOnLabels ))
     return;
 
-  label.hotspotColour = AutoColourFromOffset(A, T.count - i);
+  if(T.stage !== kStageHots )
+    return;
+  if( !isDefined( T.startColourIx ))
+    return;
+  label.hotspotColour = AutoColourFromIx(A, T.startColourIx + i);
   drawLabelHotspot(A, label, T);
 }
 
@@ -1696,6 +1716,11 @@ function drawChart(A, obj, d){
     var obj2 = getObjectByName(A,obj.valuesFrom );
     obj.values = obj2.values;
     obj.maxY = obj.maxY || obj2.maxY;
+    obj.startColourIx = obj2.startColourIx;
+  }
+  else if( d.stage === kStageHots )
+  {
+    obj.startColourIx = A.Hotspots.autoColourIx ||0;
   }
   if( !obj.values )
     return;
@@ -1725,6 +1750,7 @@ function drawChart(A, obj, d){
   T.xw = xw;
   T.yh = yh;
 
+  T.startColourIx = obj.startColourIx;
   var dummy;
   computeTSpacing(A,T);
   makeFunctionTable(T, obj);
