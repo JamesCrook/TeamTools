@@ -500,45 +500,56 @@ function minutesFromDate(date ){
   return result;
 }
 
+/**
+ * The spacing is computed for barchart bars.
+ *
+ * @param A
+ * @param T
+ */
 function computeTSpacing(A, T){
 
+  T.rows = T.rows || T.values.length;
 
-
-  // Count is the number of rows in the table.  One per time.
-  // Items is the number of cols in the table.  One per data series.
-  T.count = T.count || T.values.length;
   if( T.obj.display )
-    T.items = T.items || T.obj.display.length;
-  T.items = T.items || T.values[0].length;
+    T.cols = T.cols || T.obj.display.length;
+  T.cols = T.cols || T.values[0].length;
+
   // Cols is the number of columns to draw.
-  T.cols = T.cols || T.items-1;
-  T.margin = 40;
+  var drawnCols = ( T.obj.display )? T.obj.display.length -1 : 1;
 
 
+  T.margin = 30;
 
-  // yScale so that items grow.
-  T.yScalerMax = T.yh/T.maxY;
-  T.yScaler = (Math.min(20, A.Status.time) / 20) * (T.yh) / (T.maxY-T.minY);
+  // yScale when fully grown (also used for lines behind the graph)
+  T.yScalerMax = T.yh/(T.maxY-T.minY);
+  // yScale reduced, so that items grow.
+  T.yScaler = (Math.min(20, A.Status.time) / 20) * T.yScalerMax;
   T.yh += T.margin - 10;
 
 
-  if( T.width )
+  var spaceAvailable = T.xw - 2 * T.margin;
+  if( T.width ){
     // If width of each item is given, then space between is what's left over
-    T.spacer =
-      (T.xw - 2 * T.margin - T.count * T.width * T.cols) / (T.count - 1);
-  else {
-    // otherwise width of item is determined by spacing between.
-    T.spacer = T.spacer || 4;
-    T.width = ((T.xw + T.spacer - 2 * T.margin) / T.count - T.spacer) / T.cols;
+    // Reduce by space for the drawn columns.
+    spaceAvailable -= T.width * T.rows * drawnCols;
+    T.spacer = spaceAvailable / (T.rows - 1);
   }
-  T.xScaler = (T.width * T.cols + T.spacer);
+  else {
+    // otherwise width of each item is determined by the spacing between.
+    T.spacer = T.spacer || 4;
+    // Reduce by the space used for the spacers.
+    // n groups with n-1 spacers between the groups.
+    spaceAvailable -= (T.rows-1)*T.spacer;
+    T.width = spaceAvailable / (T.rows * drawnCols);
+  }
+  T.xScaler = (T.width * drawnCols + T.spacer);
 
 }
 
 function makeFunctionTable(T, obj){
   // prepare which functions to call
   T.fns = [];
-  for( var j = 0; j < T.items; j++ ){
+  for( var j = 0; j < T.cols; j++ ){
     var type = obj.subtype[j];
     if( type === "bar" )
       T.fns.push(drawBar);
@@ -1421,7 +1432,7 @@ function drawEvent(A,obj, T){
     var date3 = T.values[i][0];
     var vv = minutesFromDate( date3 );
     vx =  (vv- low)/(high-low);
-    vx = vx * (T.count * T.xScaler - T.spacer) / T.xScaler;
+    vx = vx * (T.rows * T.xScaler - T.spacer) / T.xScaler;
   }
 
 
@@ -1557,7 +1568,7 @@ function drawLabel(A,obj, T){
   if( ix > 1 )
     return;
   // The +8 is 0.707 * font height of 11.
-  var x = T.margin + T.x0 + i * T.xScaler+(T.width*T.items)*0.5+8;
+  var x = T.margin + T.x0 + i * T.xScaler+(T.width*T.cols)*0.5+8;
   var y = T.margin;
 
 
@@ -1598,6 +1609,14 @@ function drawNowt(A,obj, T){
 }
 
 function setSpanFromT( span, T ){
+  if( span.vStart === undefined ){
+    span.vStart = T.values[T.i][T.ix] - T.minY;
+    span.vEnd = T.values[T.i][T.ix + 1] - T.minY;
+  } else {
+    span.vEnd = T.values[T.i][T.ix ] - T.minY;
+  }
+
+
   var yEnd = span.vEnd * T.yScaler;
   var yStart = span.vStart * T.yScaler;
 
@@ -1605,6 +1624,8 @@ function setSpanFromT( span, T ){
   var x0 =  x + (T.ix - 1) * T.width;
   var y0 = T.yh - (T.margin ) + T.y0+fudgeBarDrop;
 
+  span.tip = T.getTip();
+  span.colour = T.colours[ T.ix % 2];
 
   span.pos={};
   span.rect={};
@@ -1626,10 +1647,7 @@ function drawSpan(A,obj,T){
   if( T.stage !== kStageFillAndText && T.stage !== kStageHots )
     return;
   var span = {};
-  span.vStart = T.values[T.i][T.ix] -T.minY;
-  span.vEnd   = T.values[T.i][T.ix+1] -T.minY;
-  span.tip = T.getTip();
-  span.colour = T.colours[ T.ix % 2];
+  span.vStart = undefined;
 
   setSpanFromT( span, T );
   drawSpanObject( A, span, T);
@@ -1658,9 +1676,6 @@ function drawBar(A,obj, T){
     return;
   var span = {};
   span.vStart = 0;
-  span.vEnd = T.values[T.i][T.j] -T.minY;
-  span.tip = T.getTip();
-  span.colour = T.colours[ T.ix % 2];
 
   setSpanFromT( span, T );
   drawSpanObject( A, span, T );
@@ -1678,11 +1693,11 @@ function drawSpacedItems(A,dummy, T){
   var obj = {};
 
   T.getTip = getTip;
-  for( j = 0; j < T.items; j++ ){
+  for( j = 0; j < T.cols; j++ ){
     T.j = j;
     T.ix = j;
     var fn = T.fns[j];
-    for( i = 0; i < T.count; i++ ){
+    for( i = 0; i < T.rows; i++ ){
       T.i = i;
       configureObject( obj, T );
       fn(A, obj, T);
@@ -1906,7 +1921,7 @@ function drawSnakeyPath(A, obj, T){
   // longer on very long paths
   var animateTime = 11 * Math.log(values.length + 5);
   var frac = Math.min(animateTime, A.Status.time) / animateTime;
-  var maxv = Math.floor(frac * T.count);
+  var maxv = Math.floor(frac * T.rows);
 
   T.maxv = maxv;
 
@@ -1931,7 +1946,7 @@ function drawSnakeyPath(A, obj, T){
   T.style = 1;
   T.shape = 0;
 
-  for( i = 0; i < T.count; i++ ){
+  for( i = 0; i < T.rows; i++ ){
     T.item =   values[i];
     T.i = i;
     T.style = mayUpdateSpotStyle(T.item, T.style, A);
@@ -1963,20 +1978,20 @@ function drawPath(A, obj, d ){
   var T = {};
   //T.width = 100;
   //T.spacer = 30;
-  T.items = 1;
-  T.count = 0;
+  T.cols = 1;
+  T.rows = obj.values.length;
+
   T.width = 15;
 
-  T.count = obj.values.length;
   T.margin = 9;
   T.factor = 1.1;// increase density along snake.
   xw -= 2*T.margin+T.width;
   yh -= 2*T.margin+T.width;
   // The sqrt is so that we get the same density in x and y.
-  T.n = Math.ceil(Math.sqrt(T.count * T.factor * xw / yh))+1;
-  T.m = Math.ceil(T.count / T.n);
+  T.n = Math.ceil(Math.sqrt(T.rows * T.factor * xw / yh))+1;
+  T.m = Math.ceil(T.rows / T.n);
 
-  var unused = T.n * T.m - T.count;
+  var unused = T.n * T.m - T.rows;
   // Make more square, if there is room.
   if( T.n < T.m )
     T.m -= Math.floor(unused / T.n);
