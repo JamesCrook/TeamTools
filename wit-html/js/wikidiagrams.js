@@ -1516,19 +1516,12 @@ function drawDonut(A,obj, T){
   }
 }
 
-function drawLabelObject(A, label, T){
-
-  var shiftTextY = -T.margin;
-  var shiftTextX = 0;
-  if( T.textAlign === "left" ){
-    shiftTextY *= -0.35;
-    shiftTextX = 12;
-  }
+function drawLabelObject(A, label, u){
 
   var ctx = A.BackingCanvas.ctx;
   ctx.save();
   ctx.beginPath();
-  ctx.translate(label.pos.x + shiftTextX, label.pos.y + shiftTextY);
+  ctx.translate(label.pos.x , label.pos.y );
   ctx.rotate(label.rotate || -Math.PI / 4);
   ctx.textAlign = label.textAlign || "right";
   ctx.font = "12px Arial";
@@ -1537,23 +1530,17 @@ function drawLabelObject(A, label, T){
   ctx.restore();
 }
 
-function drawLabelHotspot(A, label, T){
+function drawLabelHotspot(A, label, u){
 
 
-  var bLeftAlign= ( T.textAlign === "left" );
-  var shiftTextY = -T.margin;
-  var shiftTextX = 0;
-  if( bLeftAlign  ){
-    shiftTextY *= -0.35;
-    shiftTextX = 12;
-  }
+  var bLeftAlign= ( label.textAlign === "left" );
 
   var ctx2 = A.Hotspots.ctx;
   ctx2.save();
   ctx2.beginPath();
-  ctx2.translate(label.pos.x + shiftTextX, label.pos.y+shiftTextY);
-  ctx2.rotate(T.rotate || -Math.PI / 4);
-  ctx2.textAlign = T.textAlign || "right";
+  ctx2.translate(label.pos.x, label.pos.y);
+  ctx2.rotate(label.rotate || -Math.PI / 4);
+  ctx2.textAlign = label.textAlign || "right";
   ctx2.font = "12px Arial";
   var size = ctx2.measureText(label.text);
   ctx2.fillStyle = label.hotspotColour;
@@ -1563,35 +1550,48 @@ function drawLabelHotspot(A, label, T){
 }
 
 function drawLabel(A,obj, T){
-  // Only label the x axis items once.
   var i = T.i;
   var ix = T.ix;
 
+  // Only label the x axis items once.
   if( ix > 1 )
     return;
   // The +8 is 0.707 * font height of 11.
   var x = T.margin + T.x0 + i * T.xScaler+(T.width*T.items)*0.5+8;
   var y = T.margin;
 
+
+  var shiftTextY = -T.margin;
+  var shiftTextX = 0;
+  if( T.textAlign === "left" ){
+    shiftTextY *= -0.35;
+    shiftTextX = 12;
+  }
+
   var label = {};
   label.pos = {};
-  label.pos.x = x+ (ix - 1) * T.width;
-  label.pos.y = T.yh - y + T.y0;
+  label.pos.x = x+ (ix - 1) * T.width + shiftTextX;
+  label.pos.y = T.yh - y + T.y0 + shiftTextY;
   label.rotate = T.rotate;
   label.textAlign = T.textAlign;
   label.text = T.values[i][0];
 
-  drawLabelObject(A, label, T);
+  drawLabelObject(A, label, label);
 
   if( !isDefined( T.obj.tipsOnLabels ))
     return;
 
   if(T.stage !== kStageHots )
     return;
+
+  // HACK: We may be attempting to draw hotspots with hot colours assigned
+  // 'by forward reference'.
+  // On first drawing the are not defined, so just bail on drawing.
+  // So we are relying on the chart being drawn multiple times.
   if( !isDefined( T.startColourIx ))
     return;
   label.hotspotColour = AutoColourFromIx(A, T.startColourIx + i);
-  drawLabelHotspot(A, label, T);
+  drawLabelHotspot(A, label, label);
 }
 
 function drawNowt(A,obj, T){
@@ -1628,8 +1628,7 @@ function drawSpan(A,obj,T){
   var span = {};
   span.vStart = T.values[T.i][T.ix] -T.minY;
   span.vEnd   = T.values[T.i][T.ix+1] -T.minY;
-  span.tip =  T.obj.autoTip || "Value: %v1 at: %label";
-  span.tip = T.subber( T.i, span.tip );
+  span.tip = T.getTip();
   span.colour = T.colours[ T.ix % 2];
 
   setSpanFromT( span, T );
@@ -1638,6 +1637,14 @@ function drawSpan(A,obj,T){
     drawStem(A, obj, T);
   }
 }
+
+function getTip(){
+  var T = this;
+  var tip = T.obj.autoTip || "Value: %v1 at: %label";
+  tip = T.subber( T.i, tip );
+  return tip;
+}
+
 
 /**
  * Used for bars from base line to curve.
@@ -1652,8 +1659,7 @@ function drawBar(A,obj, T){
   var span = {};
   span.vStart = 0;
   span.vEnd = T.values[T.i][T.j] -T.minY;
-  span.tip =  T.obj.autoTip || "Value: %v1 at: %label";
-  span.tip = T.subber( T.i, span.tip );
+  span.tip = T.getTip();
   span.colour = T.colours[ T.ix % 2];
 
   setSpanFromT( span, T );
@@ -1671,6 +1677,7 @@ function drawSpacedItems(A,dummy, T){
   var i;
   var obj = {};
 
+  T.getTip = getTip;
   for( j = 0; j < T.items; j++ ){
     T.j = j;
     T.ix = j;
