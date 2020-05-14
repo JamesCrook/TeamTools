@@ -638,8 +638,11 @@ function onRulerClicked(A, obj){
   console.log( "Clicked on Object " + obj.id );
   A.dragObj = obj;
   //obj.draggerIx = rulerIxOfx( A, obj, obj.content[1].offset.x);
-  obj.offset = {x:A.Status.click.x ,y:A.Status.click.y };
-  obj.dragIx = rulerIxOfx( A, obj, A.Status.click.x );
+  if( obj.flip === 6 )
+    obj.offset = {x:A.Status.click.y ,y:A.Status.click.x };
+  else
+    obj.offset = {x:A.Status.click.x ,y:A.Status.click.y };
+  obj.dragIx = rulerIxOfx( A, obj, obj.offset.x);
   computeMidDraggerIx(A, obj);
   console.log( "Click Index: "+obj.dragIx );
   console.log( "Center Index: "+obj.centerIx );
@@ -647,7 +650,7 @@ function onRulerClicked(A, obj){
 
 function setCentreDraggerX(ruler, x){
   var mid = ruler.content[1];
-  mid.offset.x = x;
+  mid.offset.x = x-mid.pos.x;
 }
 
 function setCentreDraggerY(ruler, y){
@@ -657,7 +660,7 @@ function setCentreDraggerY(ruler, y){
 
 function draggingRuler( A, obj, dd ){
   dd.y = constrain( 20, dd.y, 20 );
-  dd.x = constrain( 40, dd.x, 660 );
+  dd.x = constrain( 20+obj.pos.x, dd.x, obj.pos.x+obj.rect.x-20 );
 
   var mid = obj.content[1];
   var midx = mid.offset.x + mid.pos.x;
@@ -665,7 +668,7 @@ function draggingRuler( A, obj, dd ){
 
   //midx=0;
   //console.log("dd.x: "+dd.x);
-  var dx = dd.x - midx - obj.pos.x;
+  var dx = dd.x - midx;// - obj.pos.x;
   if( Math.abs( dx) < 0 )
     return;
   var itemsPerPixel = (obj.dragIx - obj.centerIx)/dx;
