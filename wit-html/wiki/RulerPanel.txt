@@ -17,49 +17,40 @@ The detailed data for the chart follows.
 <pre>START</pre>
 
 <pre>ADD:DATA=
-{"HStack":[
-    {"Rectangle":"Foo", "sizeAs":0.3},
-{"VStack":[
-    {
-    "Ruler":"ZRuler",
-    "margins":3,
-    "sizeAs":0.1,
-    "atStart":300,
-    "atEnd":1700
+
+
+[{"Ruler":"ZRuler",
+  "margins":3,
+  "sizeAs":0.1,
+  "atStart":300,
+  "atEnd":1700},
+ {"Overlay":[
+    {"Rectangle":"",
+     "lineWidth":0
     },
-    {"Overlay":[
-        {"Rectangle":"",
-         "lineWidth":0
-        },
-        {"Graph":"Audio",
-         "scaling":"ZRuler",
-         "colour":"rgb(127,229,127)",
-         "perturb":-0.06
-        },
-        {"Rectangle":"Left Channel",
-         "chartBox":true,
-         "clickDo":["setClickAsCentre","ZRuler"],
-         "lineWidth":1
-        }]
+    {"Graph":"Audio",
+     "scaling":"ZRuler",
+     "colour":"rgb(127,229,127)",
+     "perturb":-0.06
     },
-    {"Overlay":[
-        {"Rectangle":"",
-         "lineWidth":0
-        },
-        {"Graph":"Audio2",
-         "colour":"rgb(127,229,127)",
-         "scaling":"ZRuler",
-         "perturb":0.06
-        },
-        {"Rectangle":"Right Channel",
-         "chartBox":true,
-         "clickDo":["setClickAsCentre","ZRuler"],
-         "lineWidth":1
-        }]
-    }
-    ]},
-    {"Rectangle":"Bar", "sizeAs":0.1}
-    ]}
+    {"Rectangle":"Left Channel",
+     "chartBox":true,
+     "clickDo":["setClickAsCentre","ZRuler"],
+     "lineWidth":1
+    }]},
+ {"Overlay":[
+    {"Rectangle":"",
+     "lineWidth":0},
+    {"Graph":"Audio2",
+     "colour":"rgb(127,229,127)",
+     "scaling":"ZRuler",
+     "perturb":0.06 },
+    {"Rectangle":"Right Channel",
+     "chartBox":true,
+     "clickDo":["setClickAsCentre","ZRuler"],
+     "lineWidth":1
+    }]}
+]
 </pre>
 
 

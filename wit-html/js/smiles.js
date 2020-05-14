@@ -650,13 +650,32 @@ function onRulerClicked(A, obj){
 
 function setCentreDraggerX(ruler, x){
   var mid = ruler.content[1];
-  mid.offset.x = x-mid.pos.x;
+
+  if( ruler.flip === 6 )
+    mid.yCenter = x;
+  else
+    mid.offset.x = x-mid.pos.x;
 }
 
 function setCentreDraggerY(ruler, y){
   var mid = ruler.content[1];
-  mid.yCentre = y;
+  if( ruler.flip === 6 )
+    mid.offset.x = y-mid.pos.x;
+  else
+    mid.yCentre = y;
 }
+
+function setItemsPerPixel( A, obj, itemsPerPixel ){
+  var mid = obj.content[1];
+
+  //console.log("New scale: "+scale);
+  var startIx = obj.centerIx - mid.offset.x * itemsPerPixel;
+  var endIx = obj.centerIx + (obj.rect.x - mid.offset.x ) * itemsPerPixel;
+
+  obj.atStart = constrain( -70, startIx, 2000 );
+  obj.atEnd = constrain( -70, endIx, 2000 );
+}
+
 
 function draggingRuler( A, obj, dd ){
   dd.y = constrain( 20, dd.y, 20 );
@@ -679,13 +698,22 @@ function draggingRuler( A, obj, dd ){
   // zooming in further than that.
   if( itemsPerPixel < 0.002 )
     return;
-  //console.log("New scale: "+scale);
-  var startIx = obj.centerIx - mid.offset.x * itemsPerPixel;
-  var endIx = obj.centerIx + (obj.rect.x - mid.offset.x ) * itemsPerPixel;
-
-  obj.atStart = constrain( -70, startIx, 2000 );
-  obj.atEnd = constrain( -70, endIx, 2000 );
+  setItemsPerPixel( A, obj, itemsPerPixel );
   replaceMidDragger(A, obj );
+
+  if( obj.zoomSets ){
+    //var xStart = obj.atStart;
+    //var xEnd = obj.atEnd;
+    //var ddx = xEnd - xStart;
+    //var xScale = ddx / obj.rect.x;
+
+    ruler2 = getObjectByName(A, obj.zoomSets);
+    computeMidDraggerIx(A, ruler2);
+    setItemsPerPixel( A, ruler2, itemsPerPixel );
+
+  }
+
+
 }
 
 function onDraggableClicked2(A, obj){

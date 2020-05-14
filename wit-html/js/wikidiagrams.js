@@ -2521,20 +2521,32 @@ function drawImage(A, obj, d){
     // rescaled to fit, aspect ratio ignored.
   } else if( obj.stretch === "no" ){
     // ToDo: crop or center.
-  } else if( obj.hScaling ){
-    hruler = getObjectByName(A, obj.hScaling);
-
-    //var mid = activeObject.content[1];
-    //mid.offset.x = A.Status.move.x;
-    var xStart = hruler.atStart;
-    var xEnd   =  hruler.atEnd;
-    var ddx = xEnd-xStart;
-    var mScale = ddx/xw;
-
-    from.x = xStart;
-    from.y = 0;
-    from.xw = ddx;
-    from.yh = mScale * yh;
+  } else if( obj.hScaling || obj.vscaling ){
+    hRuler = getObjectByName(A, obj.hScaling);
+    if( hRuler ){
+      //var mid = activeObject.content[1];
+      //mid.offset.x = A.Status.move.x;
+      var xStart = hRuler.atStart;
+      var xEnd = hRuler.atEnd;
+      var ddx = xEnd - xStart;
+      var xScale = ddx / xw;
+      from.x = xStart;
+      from.xw = ddx;
+      from.yh = xScale * yh;
+    }
+    vRuler = getObjectByName(A, obj.vScaling);
+    if( vRuler ){
+      //var mid = activeObject.content[1];
+      //mid.offset.x = A.Status.move.x;
+      var yStart = vRuler.atStart;
+      var yEnd = vRuler.atEnd;
+      var ddy = yEnd - yStart;
+      var yScale = ddy / yh;
+      from.y = yStart;
+      from.yh = ddy;
+      if( !hRuler)
+        from.xw = yScale * xw;
+    }
 
 //    ctx.drawImage(obj.img, xStart, 0, ddx, mScale * yh, x, y, xw, yh);
  //   return;

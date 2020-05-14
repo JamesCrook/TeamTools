@@ -19,8 +19,9 @@ The detailed data for the regions, buttons and tooltips follows.
     "Ruler":"XRuler",
     "margins":3,
     "sizeAs":0.05,
-    "atStart":0,
-    "atEnd":655
+    "zoomSets":"YRuler",
+    "atStart":710,
+    "atEnd":1550
     },
 
     {"HStack":[
@@ -29,15 +30,17 @@ The detailed data for the regions, buttons and tooltips follows.
         "Image":"Image",
         "src":"Cambridge.png",
         "hScaling":"XRuler",
-         "clickDo":["setClickAsCentre","XRuler"]
+        "vScaling":"YRuler",
+         "clickDo":["setClickAsCentre","XRuler","setClickAsCentre","YRuler"]
         },
         {"Transform":[
             {
             "Ruler":"YRuler",
             "margins":3,
             "flip":6,
-            "atStart":0,
-            "atEnd":655
+            "zoomSets":"XRuler",
+            "atStart":180,
+            "atEnd":650
             }],
           "transOp":6,
           "sizeAs":0.035
