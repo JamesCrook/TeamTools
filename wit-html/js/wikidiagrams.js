@@ -547,31 +547,6 @@ function apportionSpaceInT(A, T){
   apportionHorizontalSpaceInT(T);
 }
 
-
-function makeFunctionTable(T, obj){
-  // prepare which functions to call
-  T.fns = [];
-  for( var j = 0; j < T.cols; j++ ){
-    var type = obj.subtype[j];
-    if( type === "bar" )
-      T.fns.push(drawBar);
-    else if( type === "label" )
-      T.fns.push(drawLabel);
-    else if( type === "pie" )
-      T.fns.push(drawDonut);
-    else if( type === "spot" )
-      T.fns.push(drawPlottedRect);
-    else if( type === "event" )
-      T.fns.push(drawEvent);
-    else if( type === "lines" )
-      T.fns.push(drawLines);
-    else if( type === "spans" )
-      T.fns.push(drawSpan);
-    else
-      T.fns.push(drawNowt);
-  }
-}
-
 function xyOfIndexSnakey(i, T){
   var row = Math.floor(i / T.n);
   var col = i - row * T.n;
@@ -3252,15 +3227,16 @@ function drawLinePlot(A, obj, ruler){
   var y1 = scaledYofItem(Math.floor(ruler.atStart), obj);
   //var dx = (ruler.atStart -Math.floor(ruler.atStart))
   ctx.beginPath();
-  ctx.moveTo(x0-10, y1);
+  ctx.moveTo(x0, y1);
   var delta = 0.1;
   if( pixelsPerItem <1 )
     delta = 0.2;
 
   var xx;
   var y1;
-  for( i = Math.floor(ruler.atStart); i < Math.floor(ruler.atEnd)+(20*delta); i+=delta ){
-    xx = (i * pixelsPerItem - xStart);
+  var extra = 10;
+  for( i = Math.floor(ruler.atStart/delta)*delta; i < Math.floor(2+ruler.atEnd/delta)*delta; i+=delta ){
+    xx = (i * pixelsPerItem - xStart)+x0;
     y1 = scaledYofItem(i, obj);
     ctx.lineTo(xx, y1);
   }
@@ -3275,8 +3251,8 @@ function drawLinePlot(A, obj, ruler){
   if( pixelsPerItem > 30 ){
     delta = 0.1;
     ctx.fillStyle="rgba(0,0,0,"+constrain( 0, (pixelsPerItem-30) / 150, 1 )+")";
-    for( i = Math.floor(ruler.atStart); i < Math.floor(ruler.atEnd)+(20*delta); i+=delta ){
-      xx = (i * pixelsPerItem - xStart);
+    for( i = Math.floor(ruler.atStart/delta)*delta; i < Math.floor(2+ ruler.atEnd/delta)*delta; i+=delta ){
+      xx = (i * pixelsPerItem - xStart)+x0;
       y1 = scaledYofItem(i, obj);
       S.x = xx;
       S.y = y1;
@@ -5165,8 +5141,14 @@ function newPos( A, obj ){
     A.Status.move = {x:0,y:0};
     A.Status.click = {x:0,y:0};
   }
+  if( obj.flip === 6 ){
+    d.y = obj.offset.y + A.Status.move.x - A.Status.click.x;
+    d.x = obj.offset.x + A.Status.move.y - A.Status.click.y;
+    return d;
+  }
   d.x = obj.offset.x+A.Status.move.x -A.Status.click.x;
   d.y = obj.offset.y+A.Status.move.y -A.Status.click.y;
+
   return d;
 }
 
@@ -5183,6 +5165,13 @@ function onLockInMove( A, obj, d){
     return;
   if( A.dragObj !== obj)
     return d;
+  if( obj.flip === 6 ){
+    A.Status.click.x += d.y - obj.offset.y;
+    A.Status.click.y += d.x - obj.offset.x;
+    obj.offset.x = d.x;
+    obj.offset.y = d.y;
+    return;
+  }
   A.Status.click.x += d.x - obj.offset.x;
   A.Status.click.y += d.y - obj.offset.y;
   obj.offset.x = d.x;

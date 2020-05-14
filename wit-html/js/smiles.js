@@ -620,7 +620,7 @@ function repositionMidDragger(A, obj){
     // "+ bak ); reposition mid-dragger.
     mid.offset.x = constrain( inset, newpos - mid.layout.x0, obj.layout.xw - inset);
 */
-  mid.offset.x = constrain( left.offset.x+40, mid.offset.x, right.offset.x-40 );
+  mid.offset.x = constrain( left.offset.x+33, mid.offset.x, right.offset.x-33 );
   computeMidDraggerIx(A, obj );
 }
 
@@ -711,9 +711,10 @@ function onDraggableClicked2(A, obj){
 function draggingMarker( A, obj, dd ){
   var parent = obj.parent;
   var inset = obj.inset;
+  inset = 0;
   dd.y = constrain( 0, dd.y, obj.wobble );
-  dd.x = constrain( parent.pos.x+inset, dd.x,
-    parent.pos.x+parent.rect.x-inset );
+  dd.x = constrain( inset, dd.x,
+    parent.rect.x-inset );
 
   // code for disengaging the dragger.
   // if we're far enough off the line, disengage.
@@ -729,6 +730,8 @@ function draggingMarker( A, obj, dd ){
   parent.atStart += dx;
   parent.atEnd   += dx;
   console.log( "SE: "+ parent.atStart +" "+ parent.atEnd );
+
+  // dragging the end draggers can position the mid dragger...
   if( obj.glyph === "Mid" )
     return;
   repositionMidDragger(A, obj.parent );
@@ -740,12 +743,14 @@ function makeDraggerObject(obj, A, pos){
   var dragger = {};
   dragger.pos = {};
   dragger.rect = {}
-  var inset = 45;
+  var inset = 30;
+  var objectWidth = 15;
   dragger.pos.x = obj.pos.x;
-  dragger.pos.y = obj.pos.y+obj.rect.y-15;
-  dragger.rect.x = 15*(1+(pos%2));
-  dragger.rect.y = 15;
+  dragger.pos.y = obj.pos.y+obj.rect.y-objectWidth;
+  dragger.rect.x = objectWidth*(1+(pos%2));
+  dragger.rect.y = objectWidth;
   dragger.type = "Drag2";
+  dragger.flip = obj.flip;
   var types = "L Mid R".split(" ");
   dragger.glyph = types[pos];
   dragger.onClick = onDraggableClicked2;
@@ -753,7 +758,7 @@ function makeDraggerObject(obj, A, pos){
   dragger.id = "Drag"+(dragNamer++);
   dragger.wobble = 0;
   dragger.gearing = 1;
-  dragger.inset = 45;
+  dragger.inset = inset;
   addObjectToDictionary(A, dragger);
   dragger.parent = obj;
   obj.content.push(dragger);
@@ -778,7 +783,7 @@ function finishMid( A, obj ){
  * @param obj
  */
 function finishLDragger( A, obj ){
-  obj.offset.x = 40 - obj.pos.x;
+  obj.offset.x = obj.inset;//45;// - obj.pos.x;
   A.dragObj = undefined;
   finalDraw( A, obj );
 }
@@ -789,7 +794,7 @@ function finishLDragger( A, obj ){
  * @param obj
  */
 function finishRDragger( A, obj ){
-  obj.offset.x = 660 - obj.pos.x;
+  obj.offset.x = obj.parent.rect.x  - obj.inset;
   A.dragObj = undefined;
   finalDraw( A, obj );
 }
@@ -818,7 +823,7 @@ function updateDraggers(A, obj, d){
     // if it moves as far as possible off the line it 'disengages'.
     //dragger.wobble = 5;
     dragger.gearing= 1;
-    dragger.inset = 80;
+    dragger.inset += 20;
     dragger.onMouseUp = finishMid;
     dragger = makeDraggerObject(obj, A, 2);
     dragger.dragFn = draggingMarker;

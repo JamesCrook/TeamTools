@@ -3,7 +3,8 @@ __NOTOC__
 
 {{ATK_Header}}
 
-This is the spec for the interactive diagram which shows a chart of Audacity bug counts:
+This is the spec for the interactive diagram which shows a zoomable
+stereo waveform:
 
 Here's the result:
 
@@ -16,7 +17,9 @@ The detailed data for the chart follows.
 <pre>START</pre>
 
 <pre>ADD:DATA=
-[
+{"HStack":[
+    {"Rectangle":"Foo", "sizeAs":0.3},
+{"VStack":[
     {
     "Ruler":"ZRuler",
     "margins":3,
@@ -54,7 +57,9 @@ The detailed data for the chart follows.
          "lineWidth":1
         }]
     }
-    ]
+    ]},
+    {"Rectangle":"Bar", "sizeAs":0.1}
+    ]}
 </pre>
 
 
