@@ -36,7 +36,7 @@ The detailed data for the chart follows.
 
     {"Overlay":
     [
-      {"Rectangle":"Vertebrata",
+      {"Rectangle":"",
        "id":"panel",
        "colour":"rgb(215,230,210)",
        "borderColour":"rgb(115,180,110)",
@@ -77,7 +77,7 @@ The detailed data for the chart follows.
 
 
 
-<pre>CREDITS:CAPTION=Vertebrata Spindle Diagram;TIP=</pre>
+<pre>CREDITS:CAPTION=Vertebrata Chronogram;TIP=</pre>
 <h3>Instructions</h3>
 <ul>
 <li>Hover over bars for more details.
