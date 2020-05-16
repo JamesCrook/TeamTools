@@ -667,7 +667,7 @@ function setCentreDraggerY(ruler, y){
 
 function zoom( ruler, delta ){
   var itemsPerPixel = (ruler.atEnd-ruler.atStart)/ruler.rect.x;
-  var k = 1.2;
+  var k = 1.07;
   if( delta > 0 )
     itemsPerPixel *= k;
   else
@@ -677,6 +677,13 @@ function zoom( ruler, delta ){
 }
 
 function setItemsPerPixel( A, obj, itemsPerPixel ){
+  if( obj.minScale )
+    if( itemsPerPixel < obj.minScale )
+      return;
+  if( obj.maxScale )
+    if( itemsPerPixel > obj.maxScale )
+      return;
+
   var mid = obj.content[1];
 
   //console.log("New scale: "+scale);
@@ -706,9 +713,10 @@ function draggingRuler( A, obj, dd ){
     return;
 
   // this size gives us numbers at 0.1, 0.2, and prevents
-  // zooming in further than that.
-  if( itemsPerPixel < 0.002 )
+  // zooming in further than that.  For waveforms display.
+  if( itemsPerPixel < 0.002)
     return;
+
   setItemsPerPixel( A, obj, itemsPerPixel );
   replaceMidDragger(A, obj );
 

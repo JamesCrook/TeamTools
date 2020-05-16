@@ -3963,8 +3963,6 @@ function doAction(A,code){
     else if( command === "zoom" ){
       activeObject = getObjectByName(A, code[i++]);
       zoom(activeObject, A.zoom);
-      setCentreDraggerY(activeObject, A.Status.move.y);
-
       drawDiagramAgain(A);
     }
     else if( command === "highlight" ){
