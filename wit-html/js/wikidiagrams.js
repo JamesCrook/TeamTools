@@ -183,6 +183,7 @@ function populateDomElement(A, contentHere){
   A.FocusCanvas.onmouseup = onMouseUp;
   A.FocusCanvas.onmousedown = onMouseDown;
   A.FocusCanvas.ondblclick = onFocusDoubleClick;
+  A.FocusCanvas.onwheel = onMouseWheel ;
 
   A.FocusCanvas.style.position = "absolute";
   A.FocusCanvas.style.left = "0px";
@@ -3625,6 +3626,7 @@ function mousemoveOnMap(e){
   drawFocusLayer(A, x, y);
 
   var actions = actionsFromCursorPos(A, x, y);
+  A.latestActions = actions;
   if( Message ) Message.innerHTML = coordinates;
 
   if( (A.Status.OldHit !== actions.Zone) && !e.buttons  ){
@@ -3648,8 +3650,8 @@ function mousemoveOnMap(e){
     A.DetailDiv.style.top = pt.y + "px";
   }
 
+  A.Status.move = { x: x, y: y };
   if( e.buttons ){
-    A.Status.move = { x: x, y: y };
     drawDiagramAgain(A);
   }
 }
@@ -3683,7 +3685,21 @@ function onFocusClicked(e){
 
 }
 
+function onMouseWheel(e) {
+  e.preventDefault();
+  A.zoom = Math.sign(e.deltaY);
 
+  if( !A.latestActions )
+    return;
+
+  var actions = A.latestActions;
+
+  if( actions.Zoom ){
+    doAction(A, actions.Zoom);
+  }
+
+  console.log(A.zoom);
+};
 
 
 
@@ -3865,7 +3881,7 @@ function fieldValue(field, line){
   return value;
 }
 
-function setClick(A, value){
+function setClickAction(A, value){
   var h = A.Hotspots.Current.Click || [];
   var i;
   for( i = 0; i < value.length; i++ ){
@@ -3874,13 +3890,21 @@ function setClick(A, value){
   A.Hotspots.Current.Click = h;
 }
 
+function setZoomAction(A, value){
+  var h = A.Hotspots.Current.Zoom || [];
+  var i;
+  for( i = 0; i < value.length; i++ ){
+    h.push(value[i]);
+  }
+  A.Hotspots.Current.Zoom = h;
+}
 
 function setClickGoto(A, location){
   // ignore after '#'
   var where = (location + "#").split("#")[0];
   var num = location.split("#")[1]||"0";
   num = Number( num );
-  setClick( A,[ "Goto", where, num+1 ] );
+  setClickAction( A,[ "Goto", where, num+1 ] );
 }
 
 
@@ -3932,6 +3956,13 @@ function doAction(A,code){
     else if( command === "setClickAsCentre" ){
       activeObject = getObjectByName(A, code[i++]);
       setCentreDraggerX(activeObject, A.Status.move.x);
+      setCentreDraggerY(activeObject, A.Status.move.y);
+
+      drawDiagramAgain(A);
+    }
+    else if( command === "zoom" ){
+      activeObject = getObjectByName(A, code[i++]);
+      zoom(activeObject, A.zoom);
       setCentreDraggerY(activeObject, A.Status.move.y);
 
       drawDiagramAgain(A);
@@ -4302,13 +4333,20 @@ function sizeNowt( A, obj, data ){
 }
 
 function mayRegisterClickAction( A, obj ){
-  // setClick uses the 'Hotspots.Current.Click' object.
+  // setClickAction uses the 'Hotspots.Current.Click' object.
   if( obj.hasOwnProperty( "clickDo" )){
     if( !obj.hotspotColour ){
       var c = NextAutoColour(A, "");
       obj.hotspotColour = c;
     }
-    setClick( A, obj.clickDo );
+    setClickAction( A, obj.clickDo );
+  }
+  if( obj.hasOwnProperty( "zoomDo" )){
+    if( !obj.hotspotColour ){
+      var c = NextAutoColour(A, "");
+      obj.hotspotColour = c;
+    }
+    setZoomAction( A, obj.zoomDo );
   }
 }
 
@@ -4986,7 +5024,7 @@ function doChoose( A, parentObj, item )
         // This makes a temporary click action, so that we can
         // do it immediately.
         A.Hotspots.Current.Click = [];
-        setClick( A, obj.clickDo );
+        setClickAction( A, obj.clickDo );
         doAction(A,A.Hotspots.Current.Click);
       }
     }

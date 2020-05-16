@@ -36,6 +36,7 @@ The detailed data for the chart follows.
     {"Rectangle":"Left Channel",
      "chartBox":true,
      "clickDo":["setClickAsCentre","ZRuler"],
+     "zoomDo":["zoom","ZRuler"],
      "lineWidth":1
     }]},
  {"Overlay":[

@@ -31,7 +31,8 @@ The detailed data for the regions, buttons and tooltips follows.
         "src":"Cambridge.png",
         "hScaling":"XRuler",
         "vScaling":"YRuler",
-         "clickDo":["setClickAsCentre","XRuler","setClickAsCentre","YRuler"]
+         "clickDo":["setClickAsCentre","XRuler","setClickAsCentre","YRuler"],
+         "zoomDo":["zoom","XRuler","zoom","YRuler"]
         },
         {"Transform":[
             {

@@ -665,6 +665,17 @@ function setCentreDraggerY(ruler, y){
     mid.yCentre = y;
 }
 
+function zoom( ruler, delta ){
+  var itemsPerPixel = (ruler.atEnd-ruler.atStart)/ruler.rect.x;
+  var k = 1.2;
+  if( delta > 0 )
+    itemsPerPixel *= k;
+  else
+    itemsPerPixel /= k;
+  computeMidDraggerIx(A, ruler);
+  setItemsPerPixel( A, ruler, itemsPerPixel );
+}
+
 function setItemsPerPixel( A, obj, itemsPerPixel ){
   var mid = obj.content[1];
 
