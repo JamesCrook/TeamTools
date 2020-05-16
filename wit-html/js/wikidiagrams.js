@@ -2660,6 +2660,7 @@ function drawRectangle(A, obj, d){
   // Text position unchanged even if we expand the rectangle.
   xwText = xw;
   yhText = yh;
+
   // All the chooser rectangles are expanded, so that they will overlap.
   if( obj.drawExtra ){
     // The direction to expand in is currently a hack, based on size.
@@ -2671,6 +2672,12 @@ function drawRectangle(A, obj, d){
       xw+=10;
     }
   }
+
+  var objAdjusted = {};
+  objAdjusted.pos = {x:x,y:y};
+  objAdjusted.rect = {x:xw,y:yh};
+  objAdjusted.cornerRadius = obj.cornerRadius;
+
   // A chosen main rectangle has this style, to meld with the chooser rectangle.
   if( obj.style === "chosen" ){
     obj.colour       = "rgb(255,250,235)";
@@ -2694,7 +2701,7 @@ function drawRectangle(A, obj, d){
     if( obj.id &&  obj.id === A.Highlight )
       ctx.fillStyle = "rgb(167,203,250)";
     if( obj.cornerRadius )
-      drawRoundRect(A, obj ,obj);
+      drawRoundRect(A, objAdjusted, objAdjusted);
     else
       ctx.rect(x, y, xw, yh);
 
