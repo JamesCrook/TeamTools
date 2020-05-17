@@ -38,8 +38,8 @@ function InitAnnotator(A){
   A.Status.imagesToCome = 2;
   A.Status.time = 0;
   A.Porthole = {};
-  A.Porthole.width = 1024;
-  A.Porthole.height = 567;
+  A.Porthole.width = 700;
+  A.Porthole.height = 400;
   A.Porthole.margin = 5;
   A.Image = {};
   A.Image.imageSrc = './images/AudacityAu19.jpg';
