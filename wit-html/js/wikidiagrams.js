@@ -1147,6 +1147,55 @@ function mayPadKwicString(str, nChars){
 }
 
 
+function setSpanFromT( span, T ){
+  if( span.vStart === undefined ){
+    span.vStart = T.values[T.i][T.ix] - T.minY;
+    span.vEnd = T.values[T.i][T.ix + 1] - T.minY;
+  } else {
+    span.vEnd = T.values[T.i][T.ix ] - T.minY;
+  }
+
+
+  var yEnd = span.vEnd * T.yScaler;
+  var yStart = span.vStart * T.yScaler;
+
+  var x = T.margin + T.x0 + T.i * T.xScaler;
+  var x0 =  x + (T.ix - 1) * T.width;
+  var y0 = T.yh - (T.margin ) + T.y0+fudgeBarDrop;
+
+  span.tip = T.getTip();
+  span.colour = T.colours[ T.ix % 2];
+
+  span.pos={};
+  span.rect={};
+
+  span.pos.x = x0;
+  span.pos.y = y0-yEnd;
+  span.rect.x = T.width;
+  span.rect.y = yEnd-yStart;
+}
+
+function getTip(){
+  var T = this;
+  var tip = T.obj.autoTip || "Value: %v1 at: %label";
+  tip = T.subber( T.i, tip );
+  return tip;
+}
+
+function configureObject( object, T ){
+}
+
+
+var spacedDrawFunctions = {
+  "bar" : drawBar,
+  "label" : drawLabel,
+  "pie" : drawDonut,
+  "spot" : drawPlottedRect,
+  "event" : drawEvent,
+  "lines" : drawLines,
+  "spans" : drawSpan
+};
+
 
 // >>>>>>>>>>>>>>>>>>>>> Draw
 
@@ -1586,34 +1635,6 @@ function drawLabel(A,obj, T){
 function drawNowt(A,obj, T){
 }
 
-function setSpanFromT( span, T ){
-  if( span.vStart === undefined ){
-    span.vStart = T.values[T.i][T.ix] - T.minY;
-    span.vEnd = T.values[T.i][T.ix + 1] - T.minY;
-  } else {
-    span.vEnd = T.values[T.i][T.ix ] - T.minY;
-  }
-
-
-  var yEnd = span.vEnd * T.yScaler;
-  var yStart = span.vStart * T.yScaler;
-
-  var x = T.margin + T.x0 + T.i * T.xScaler;
-  var x0 =  x + (T.ix - 1) * T.width;
-  var y0 = T.yh - (T.margin ) + T.y0+fudgeBarDrop;
-
-  span.tip = T.getTip();
-  span.colour = T.colours[ T.ix % 2];
-
-  span.pos={};
-  span.rect={};
-
-  span.pos.x = x0;
-  span.pos.y = y0-yEnd;
-  span.rect.x = T.width;
-  span.rect.y = yEnd-yStart;
-}
-
 /**
  * Used for bars from value to value.
  * Both vStart and vEnd used.
@@ -1634,14 +1655,6 @@ function drawSpan(A,obj,T){
   }
 }
 
-function getTip(){
-  var T = this;
-  var tip = T.obj.autoTip || "Value: %v1 at: %label";
-  tip = T.subber( T.i, tip );
-  return tip;
-}
-
-
 /**
  * Used for bars from base line to curve.
  * vStart is zero
@@ -1659,29 +1672,13 @@ function drawBar(A,obj, T){
   drawSpanObject( A, span, T );
 }
 
-
 // >>>>>>>>>>>>>>>>>>> Draw iterators
-
-function configureObject( object, T ){
-}
-
-
-var spacedDrawFunctions = {
-  "bar" : drawBar,
-  "label" : drawLabel,
-  "pie" : drawDonut,
-  "spot" : drawPlottedRect,
-  "event" : drawEvent,
-  "lines" : drawLines,
-  "spans" : drawSpan
-};
 
 function drawThingy( A, obj, T ){
   var fn = spacedDrawFunctions[ obj.type ];
   if( fn )
     fn( A, obj, T );
 }
-
 
 function drawSpacedItems(A,dummy, T){
   var j;

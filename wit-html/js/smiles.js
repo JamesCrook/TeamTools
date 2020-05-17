@@ -692,6 +692,11 @@ function setItemsPerPixel( A, obj, itemsPerPixel ){
 
   obj.atStart = constrain( -70, startIx, 2000 );
   obj.atEnd = constrain( -70, endIx, 2000 );
+  var shift = Math.max( startIx - obj.atStart, endIx - obj.atEnd );
+
+  obj.atStart = startIx - shift;
+  obj.atEnd = endIx - shift;
+
 }
 
 
