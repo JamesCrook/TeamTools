@@ -1,0 +1,78 @@
+__NOTOC__
+
+{{ATK_Header}}
+
+This is the spec for the interactive diagram which shows a cell.
+Here is the result in wiki:
+
+-----
+{{#widget:WikiDiagram|page=Cell2|init=yes}}
+-----
+
+The detailed data for the regions, buttons and tooltips follows.
+
+<pre>START</pre>
+
+<pre>ADD:DATA=
+[
+    {
+    "Ruler":"XRuler",
+    "margins":3,
+    "sizeAs":0.05,
+    "atStart":0,
+    "atEnd":1200
+    },
+
+    {"Overlay":[
+
+        {
+        "Rectangle":"A Cell",
+         "clickDo":["setClickAsCentre","XRuler"]
+        },
+           {"Draggable":"Pt1", "offset":{ "x": 194,"y": 46 }},
+           {"Draggable":"Pt2", "offset":{ "x": 350,"y": 50 }},
+           {"Draggable":"Pt3", "offset":{ "x": 524,"y": 64 }},
+           {"Draggable":"Pt4", "offset":{ "x": 659,"y": 124 }},
+           {"Draggable":"Pt5", "offset":{ "x": 647,"y": 292 }},
+           {"Draggable":"Pt6", "offset":{ "x": 500,"y": 340 }},
+           {"Draggable":"Pt7", "offset":{ "x": 317,"y": 303 }},
+           {"Draggable":"Pt8", "offset":{ "x": 179,"y": 326 }},
+           {"Draggable":"Pt9", "offset":{ "x": 86.5,"y": 276 }},
+           {"Draggable":"Pt10", "offset":{ "x": 122,"y": 129 }},
+           {"Draggable":"Pt1a", "offset":{ "x": 202,"y": 66 }},
+           {"Draggable":"Pt2a", "offset":{ "x": 344,"y": 73 }},
+           {"Draggable":"Pt3a", "offset":{ "x": 522,"y": 87 }},
+           {"Draggable":"Pt4a", "offset":{ "x": 641,"y": 139 }},
+           {"Draggable":"Pt5a", "offset":{ "x": 627,"y": 279 }},
+           {"Draggable":"Pt6a", "offset":{ "x": 492,"y": 317 }},
+           {"Draggable":"Pt7a", "offset":{ "x": 321,"y": 281 }},
+           {"Draggable":"Pt8a", "offset":{ "x": 181,"y": 304 }},
+           {"Draggable":"Pt9a", "offset":{ "x": 107,"y": 263 }},
+           {"Draggable":"Pt10a", "offset":{ "x": 143,"y": 139 }},
+
+
+
+    {"Spline":[
+        "Pt10","Pt1","Pt2","Pt3","Pt4","Pt5","Pt6","Pt7","Pt8","Pt9","Pt10","Pt1","Pt2"
+        ],"scale":0.4},
+
+    {"Spline":[
+        "Pt10a","Pt1a","Pt2a","Pt3a","Pt4a","Pt5a","Pt6a","Pt7a","Pt8a","Pt9a","Pt10a","Pt1a","Pt2a"
+        ],"scale":-0.4}
+
+
+
+        ]
+    }
+]
+</pre>
+
+
+<pre>CREDITS:CAPTION=A Cell;TIP=</pre>
+<h3>Instructions</h3>
+<ul>
+<li>Click and drag the control points.
+<li><s>Use mouse wheel to zoom</s> (does not work yet!)
+</ul><br><br>
+<b>Credits:</b> <em>James Crook ©2020;</em>
+

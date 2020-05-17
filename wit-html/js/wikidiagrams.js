@@ -966,6 +966,21 @@ function catmulBlend(t, t0, t1, P0, P1 ){
   return {x:b0*P0.x+b1*P1.x,y:b0*P0.y+b1*P1.y};
 }
 
+function catmulBlendd(t, t0, t1, P0, P1 ){
+  var b0 = -1/(t1-t0);
+  var b1 = -b0;
+  return {x:b0*P0.x+b1*P1.x,y:b0*P0.y+b1*P1.y};
+}
+
+function catmulBlendd2(t, t0, t1, P0, P1, P0d, P1d ){
+  var b0 = (t1-t)/(t1-t0);
+  var b1 = (t0-t)/(t0-t1);
+  var b0d = -1/(t1-t0);
+  var b1d = -b0;
+  return {x:b0d*P0.x+b1d*P1.x+b0*P0d.x+b1*P1d.x,y:b0d*P0.y+b1d*P1.y+b0*P0d.y+b1*P1d.y};
+}
+
+
 function catmulLength( P0, P1 ){
   var x = (P1.x-P0.x);
   var y = (P1.y-P0.y);
@@ -981,6 +996,29 @@ function catEval( t, t0,t1,t2,t3,P0,P1,P2,P3 ){
   var B2 = catmulBlend( t, t1,t3,A2,A3 );
   var C  = catmulBlend( t, t1,t2,B1,B2 );
   return C;
+}
+
+function catRotationEval( t, t0,t1,t2,t3,P0,P1,P2,P3 ){
+  var A1 = catmulBlend( t, t0,t1,P0,P1 );
+  var A2 = catmulBlend( t, t1,t2,P1,P2 );
+  var A3 = catmulBlend( t, t2,t3,P2,P3 );
+
+  var A1d = catmulBlendd( t, t0,t1,P0,P1 );
+  var A2d = catmulBlendd( t, t1,t2,P1,P2 );
+  var A3d = catmulBlendd( t, t2,t3,P2,P3 );
+
+  var B1 = catmulBlend( t, t0,t2,A1,A2 );
+  var B2 = catmulBlend( t, t1,t3,A2,A3 );
+
+  var B1d = catmulBlendd2( t, t0,t2,A1,A2, A1d, A2d );
+  var B2d = catmulBlendd2( t, t1,t3,A2,A3, A2d, A3d );
+
+  //var C  = catmulBlend( t, t1,t2,B1,B2 );
+  var Cd  = catmulBlendd2( t, t1,t2,B1,B2,B1d,B2d  );
+
+  var theta = Math.atan2( Cd.x, Cd.y )+Math.PI;
+
+  return theta;
 }
 
 function bulge(b, x, t ){
@@ -2295,20 +2333,28 @@ function drawLipid( A, obj, d ){
 
   var k=scale*12;
   var d=scale*2.1;
+
+
+  ctx.save();
+  ctx.translate(P.x, P.y);
+  ctx.rotate(obj.theta);
+  //ctx.translate( d, 0 );
+
   ctx.beginPath();
-  ctx.lineWidth = 4;
+  ctx.lineWidth = 4*Math.abs(scale);
   ctx.strokeStyle = "rgb(38,74,140)";
-  ctx.moveTo(P.x,P.y);
-  ctx.lineTo(P.x+d,P.y+k);
-  ctx.lineTo(P.x-d,P.y+k+d);
-  ctx.lineTo(P.x,P.y+k+k+d);
+  ctx.moveTo(0,0);
+  ctx.lineTo(d,k);
+  ctx.lineTo(-d,k+d);
+  ctx.lineTo(0,k+k+d);
   ctx.stroke();
 
   ctx.beginPath();
-  ctx.arc(P.x, P.y, 6, 0, Math.PI * 2.0, true);
+  ctx.arc(0, 0, 6*Math.abs(scale), 0, Math.PI * 2.0, true);
   var rgb = "rgba(150,40,40,1.0)";
   ctx.fillStyle = rgb;
   ctx.fill();
+  ctx.restore();
 }
 
 function drawSplineSegment( A, obj, d ){
@@ -2326,14 +2372,17 @@ function drawSplineSegment( A, obj, d ){
   var t3 = t2+catmulLength( P2, P3 );
 
   var i;
-  var k = Math.ceil((d*d)/18); // every 18 px.
   var lipid = {};
   var d2 = {}
   d2.getCoordinate = getPCoord;
   lipid.scale = obj.scale;
+  var k = Math.ceil((d*d)/(18*Math.abs(lipid.scale))); // every 18 px.
   for( i=0;i<k;i++){
     var t = t1 + d * ( 2*i+1)/(2*k);
     lipid.P = catEval( t, t0,t1,t2,t3,P0,P1,P2,P3 );
+    var Pd = catEval( t+0.0001, t0,t1,t2,t3,P0,P1,P2,P3 );
+
+    lipid.theta = Math.atan2( Pd.y-lipid.P.y, Pd.x-lipid.P.x);
     drawLipid( A, lipid, d2 );
   }
 }
@@ -3963,6 +4012,10 @@ function doAction(A,code){
       setCentreDraggerY(activeObject, A.Status.move.y);
 
       drawDiagramAgain(A);
+    }
+    else if( command === "dump" ){
+      console.log("flow-data:" + JSON.stringify(A.RootObject.content[2].content, null, 2));
+      //console.log( A.RootObject.content[2].content );
     }
     else if( command === "zoom" ){
       activeObject = getObjectByName(A, code[i++]);
