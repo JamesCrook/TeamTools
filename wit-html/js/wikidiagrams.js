@@ -2883,7 +2883,7 @@ function drawKwic(A, obj, d){
   if( d.stage === kStageFillAndText )
   {
     var nChars = Math.floor( xw / kwicSpace );
-    for( i = iStart;i< Math.min( iStart+lines, D.length); i++){
+    for( i = iStart-1;i< Math.min( iStart+lines, D.length); i++){
       if( i < 0 ) continue;
       str = D[i];
       str = str.split(" ~")[0];
@@ -2941,7 +2941,7 @@ function drawKwic(A, obj, d){
       A.Hotspots.autoColourIx += lines;
 
     var str2;
-    for( i = iStart;i< Math.min( iStart+lines, D.length); i++){
+    for( i = iStart-1;i< Math.min( iStart+lines, D.length); i++){
       if( i < 0 ) continue;
       var parts = D[i].split(" ~");
 
