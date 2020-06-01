@@ -66,14 +66,15 @@ The detailed data for the chart follows.
    ["Feb 2020",398,1902],
    ["Mar 2020",380,1965],
    ["Apr 2020",368,2017],
-   ["May 2020",354,2059]
+   ["May 2020",354,2059],
+   ["Jun 2020",351,2110]
    ]
 },
   {"Chart":"Releases",
    "titles":["When","Release"],
    "display":["Label","Blue","Green"],
    "subtype":["*","event"],
-   "range":["01-Aug-2017","29-May-2020"],
+   "range":["01-Aug-2017","29-Jun-2020"],
    "autoTip":"<h2>Audacity %release</h2>Released: %when",
    "events":true,
    "values":[
