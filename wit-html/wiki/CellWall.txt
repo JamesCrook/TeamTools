@@ -65,7 +65,7 @@ The detailed data for the regions, buttons and tooltips follows.
 <pre>CREDITS:CAPTION=Cell Wall;TIP=</pre>
 <h3>Instructions</h3>
 <ul>
-<li>Click and drag the control points.
+<li>Click and drag the control points (feint star shapes).
 <li><s>Use mouse wheel to zoom</s> (does not work yet!)
 </ul><br><br>
 <b>Credits:</b> <em>James Crook ©2020;</em>
