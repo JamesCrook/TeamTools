@@ -24,7 +24,8 @@ The detailed data for the regions, buttons and tooltips follows.
         {"Rectangle":"Vegetation"},
         {"Rectangle":"Ocean Currents"},
         {"Rectangle":"Plate Techtonics"},
-        {"Rectangle":"Moon"}
+        {"Rectangle":"Moon"},
+        {"Rectangle":"Mars"}
         ],
         "id":"MapChooser",
         "choice":1,
@@ -93,6 +94,11 @@ from us.
 [[Toolbox/Globes#6]]
 
 
+<pre>NEXTOBJECT:TIP=</pre>
+<h1>Mars</h1>
+A recoloured image of the Martian surface.
+<pre>CLICK DO:SPEC=</pre>
+[[Toolbox/Globes#7]]
 
 
 <pre>START:Section 1</pre>
@@ -376,10 +382,21 @@ TIP=</pre>
 <pre>HOTSPOTS</pre>
 [[File:Moonmap_from_clementine_data.png]]
 
-
-
 <pre>CREDITS:CAPTION=Infra-red image of moon;TIP=</pre>
 <b>Credits:</b> See Wikipedia for credits</em>
+
+
+<pre>START:Section 7</pre>
+<pre>DO:CHOOSER_NAME=MapChooser;VALUE=7</pre>
+
+<pre>IMAGE:NAME=Image Goes Here</pre>
+[[File:marstex.jpg]]
+
+<pre>HOTSPOTS</pre>
+[[File:marstex.jpg]]
+
+<pre>CREDITS:CAPTION=Image texture for Mars;TIP=</pre>
+<b>Credits:</b>NASA (colour retouched)</em>
 
 
 
