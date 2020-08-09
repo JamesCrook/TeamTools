@@ -220,6 +220,8 @@ var A={};
             this.genes =
               "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM";
             this.Score = 0;
+            this.x = 0;
+            this.y = 0;
             return this;
           }
 
@@ -236,6 +238,10 @@ var A={};
               if( L > 128 )
                 L = 256-L;
               this.Score += L*L;
+              if( L > 5 ){
+                this.x = this.X;
+                this.y = this.Y;
+              }
             }
             this.reset();
           }
@@ -344,8 +350,8 @@ var A={};
 //              " PC:"+fmt(G.P, 4) +
 //              " A:"+fmt(G.A, 4) +
 //              " N:"+fmt(G.Num, 4) +
-              " X:"+fmt(G.X, 4) +
-              " Y:"+fmt(G.Y, 4) +
+              " X:"+fmt(G.x, 4) +
+              " Y:"+fmt(G.y, 4) +
 //              " Z:"+fmt(G.Z, 4) +
               " S:"+fmt(G.Score, 7) +
               "\n";
@@ -420,7 +426,7 @@ var A={};
     <div class='pos-resetter'>
         <h2 id="click-tip"
             style="color:#bfbfbf;display:block;position:relative;top:-0.55em;transition:opacity 4s;opacity:1;">
-            <em>Version from 09-Aug-2020</em></h2>
+            <em>Version E from 09-Aug-2020</em></h2>
     </div>
 </div>
 <a href="https://www.audacityteam.org">
