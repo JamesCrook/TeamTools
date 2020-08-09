@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo Page</title>
+    <style type="text/css">
+        h1 {
+            font-size: 2em;
+        }
+
+        h2 {
+            font-size: 1.5em;
+        }
+
+        h3 {
+            font-size: 1.17em;
+        }
+
+        td > h3 {
+            margin-block-start: 0px;
+            margin-block-end: 0px;
+        }
+
+        td > h2 {
+            margin-block-start: 0px;
+            margin-block-end: 0px;
+        }
+
+        td > h1 {
+            margin-block-start: 0px;
+            margin-block-end: 0px;
+        }
+
+        h4 {
+            font-size: 1.12em;
+        }
+
+        h5 {
+            font-size: .83em;
+        }
+
+        h6 {
+            font-size: .67em;
+        }
+
+        html * {
+            font-family: Arial;
+        }
+
+        textarea {
+            font-family:Lucida Console,monospace;
+        }
+
+        #logoback {
+            transition: all 0.15s;
+            background-color: #edebfc;
+            border: 2px solid;
+            border-color: #edebfc;
+            position: absolute;
+            top: 1.25em;
+            left: 0.9375em;
+            width: 5.75em;
+            height: 5.75em;
+            color: black;
+            box-sizing: border-box;
+            line-height: 5.75em;
+            border-radius: 2.875em;
+            box-shadow: 0px 0px 1.25em 1px #000080;
+        }
+
+        #logoback:hover {
+            /*background-color: #c7cfff;*/
+            border-color: #848ff8;
+        }
+
+        #logo {
+            position: relative;
+            top: 0.5em;
+            left: 0.5625em;
+            transition: all 0.1s;
+            width: 4.375em;
+            height: 4.375em;
+
+        }
+
+        #logo:hover {
+            /*top:6px;*/
+            /*transform: rotate(10deg);*/
+        }
+
+        #logo:hover:active {
+            width: 5em;
+            height: 5em;
+            left: 0.25em;
+            top: 0.0625em;
+        }
+
+        pre {
+            background-color: #1d2134;
+            color: yellow;
+        }
+
+        div.bt {
+
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+
+            display: inline-block;
+            color: black;
+            font-size: 13px;
+            border: 1px solid;
+            padding: 2px 15px 2px 15px;
+            border-color: #8696b2;
+            background-color: #c5d4fc;
+            box-shadow: inset 0 -5px 5px 0 #a6c1e7;
+        }
+
+        div.bt:hover {
+            cursor: pointer;
+            /*box-shadow: inset 0 -5px 15px 0 #7c94b7;*/
+            background-color: #a9bdff;
+            border-color: #2130ba;
+        }
+
+        div.bt:hover:active {
+            background-color: #a5c3ee;
+            box-shadow: inset 0 2px 5px 0 #7c94b7;
+        }
+
+
+        img.centred {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+            bottom: -9999px;
+            right: -9999px;
+            margin: auto;
+        }
+
+
+        div.linky:hover {
+            /* background-color: #a5c3ee;*/
+            border-color: #848ff8;
+
+        }
+
+        div.pos-resetter {
+            width: 100%;
+            display: inline-block;
+            text-align: center;
+            position: absolute;
+            margin: 0 auto;
+        }
+
+        div.linky {
+            transition: all 0.15s;
+            display: none;
+            background-color: #c5d4fc;
+            border: 2px solid;
+            border-color: #c5d4fc;
+            /*border-color: #8696b2;*/
+            padding: 0px 1.25em 0px 1.25em;
+            color: black;
+            height: 2.25em;
+            line-height: 2.25em;
+            box-sizing: border-box;
+            border-radius: 1.25em;
+            margin: 0 auto;
+            box-shadow: 0 0 20px 1px #000080;
+            cursor: pointer;
+
+        }
+    </style>
+    <script>
+      console.log("Protocol is " + window.location.protocol);
+      if( window.location.protocol === "http:" ){
+        console.log("Http: detected");
+        if( window.location.href.indexOf("localhost") <
+          0 ) window.location.href = "https:" + window.location.href.slice(5);
+      }
+</script>
+    <script>
+
+var A={};
+        function rand(n){
+          return Math.floor(Math.random() * n);
+        }
+
+        // https://stackoverflow.com/questions/1431094/
+        String.prototype.replaceAt = function(index, replacement) {
+          return this.substr(0, index) + replacement + this.substr(index + replacement.length);
+        }
+
+        function fmt( num, n ){
+          return ("           "+num).slice( - n );
+        }
+
+        ops = "AWXYZ0123456789E+-LSHRDM.";
+
+        class Genome {
+
+          reset(){
+            this.P = 0;
+            this.A = 0;
+            this.W = 0;
+            this.X = 0;
+            this.Y = 0;
+            this.Z = 0;
+            this.Num = 0;
+            this.op = "load";
+            this.p = 128; // probability operation succeeds.
+            return this;
+          }
+
+          constructor(){
+            this.genes =
+              "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM";
+            this.Score = 0;
+            return this;
+          }
+
+          mutate(){
+            var ix = rand(64);
+            var op = rand( ops.length );
+            this.genes = this.genes.replaceAt( ix, ops[op]);
+          }
+
+          // This contains our fitness function
+          evaluate(){
+            if( Math.abs( this.X - this.Y ) < 3 ){
+              var L = (this.X + this.Y) >> 1;
+              if( L > 128 )
+                L = 256-L;
+              this.Score += L*L;
+            }
+            this.reset();
+          }
+
+          // next instruction will always succeed.
+          reliable(){
+            this.p = 255;
+          }
+          duplicate(){
+          }
+
+          nop(){
+          }
+          load( ch ){
+            this.A = this[ch];
+          }
+          store( ch ){
+            this[ch] = this.A;
+          }
+          add( ch ){
+            this.A = (this.A + this[ch]) & 0xFF;
+          }
+          sub( ch ){
+            this.A = (this.A - this[ch]) & 0xFF;
+          }
+          halve( ch ){
+            this.A = (this.A>>1);
+          }
+
+          doOpTo( target ){
+            this[this.op]( target );
+          }
+
+          setOpTo( op ){
+            this.op = op;
+          }
+
+          dispatch( ch ){
+            switch( ch ){
+
+              case "A":
+              case "W":
+              case "X":
+              case "Y":
+              case "Z":
+                this.doOpTo( ch );break;
+
+              case "0":this.Num = 0;this.doOpTo( "Num" );break;
+              case "1":this.Num = 1;this.doOpTo( "Num" );break;
+              case "2":this.Num = 2;this.doOpTo( "Num" );break;
+              case "3":this.Num = 3;this.doOpTo( "Num" );break;
+              case "4":this.Num = 4;this.doOpTo( "Num" );break;
+              case "5":this.Num = 5;this.doOpTo( "Num" );break;
+              case "6":this.Num = 6;this.doOpTo( "Num" );break;
+              case "7":this.Num = 7;this.doOpTo( "Num" );break;
+              case "8":this.Num = 8;this.doOpTo( "Num" );break;
+              case "9":this.Num = 9;this.doOpTo( "Num" );break;
+
+              case "E":this.evaluate( );break;
+
+
+              case "+":this.setOpTo( "add" );break;
+              case "-":this.setOpTo( "sub" );break;
+              case "L":this.setOpTo( "load" );break;
+              case "S":this.setOpTo( "store" );break;
+              case "H":this.setOpTo( "halve" );break;
+
+              case "R":this.reliable( );break;
+              case "D":this.duplicate( );break;
+              case "M":this.mutate( );break;
+              case ".":this.nop();break;
+
+              default:
+            }
+
+          };
+
+          step(){
+            var ch = this.genes[ this.P ];
+            // update program counter.
+            this.P = (this.P+1) % this.genes.length;
+            // 50 % chance of a NOP.
+            if( rand( 256 )>this.p )
+              ch = ".";// Nop.
+            // reset probability.
+            this.p = 128;
+            this.dispatch(ch);
+
+          }
+        }
+
+        function makeGenomes(A){
+          A.genomes=[];
+          const n = 50;
+          for(i=0;i<n;i++){
+            G = new Genome;
+            G.reset();
+            A.genomes.push( G );
+          }
+        }
+
+        function showGenes(A){
+          str = "";
+          A.genomes.forEach( function(G,index){
+            str += G.genes + fmt(index,3)+
+//              " PC:"+fmt(G.P, 4) +
+//              " A:"+fmt(G.A, 4) +
+//              " N:"+fmt(G.Num, 4) +
+              " X:"+fmt(G.X, 4) +
+              " Y:"+fmt(G.Y, 4) +
+//              " Z:"+fmt(G.Z, 4) +
+              " S:"+fmt(G.Score, 7) +
+              "\n";
+          });
+          A.list.innerHTML = str;
+        }
+
+
+        function mutateGenes(A){
+          A.genomes.forEach( function(G,index){
+            G.mutate();
+          });
+        }
+
+        function stepGenes(A){
+          A.genomes.forEach( function(G,index){
+            G.step();
+          });
+        }
+
+        function timerCallback(){
+          for( var i=0;i<100;i++)
+            stepGenes( A );
+          showGenes(A);
+        }
+
+      window.onload = function(){
+        var query = window.location.href;
+        A.list = document.getElementById("gene_list");
+
+        makeGenomes(A);
+        A.genomes[0]["mutate"]();
+        A.genomes[1]["dispatch"]("7");
+        //mutateGenes(A);
+        //mutateGenes(A);
+        //mutateGenes(A);
+        //mutateGenes(A);
+        for( var i=0;i<100;i++)
+            stepGenes( A );
+        showGenes(A);
+        setInterval(timerCallback, 30);
+
+//        var frame = getArg('frame') || "yes";
+//        addExamples( bonusContent );
+//        initContent();
+
+        /*
+        var A = Annotator[0];
+        createDomElements(A);
+        loadDiagram(A,page, fromWiki);
+
+        // For additional images/islands.
+        //A= makeAnnotator();
+        //createDomElements(A);
+        //loadDiagram(A,"Flow_Chart", fromWiki);
+
+        // Timer is for animation such as rotating earth.
+        setInterval(timerCallback, 30);
+        //requestSpec();
+        */
+      }
+
+    </script>
+</head>
+<body id="body"
+      style="background-image:url(./images/header-light-bg.jpg);margin:0px;background-attachment:fixed;">
+<div style="width:100%; text-align:center;background:#1d2134;height:5em;margin: 0px;">
+    <h1 style="color:white;margin:0px;padding-top:0.65em;padding-bottom:0.9em;"><em>Genes</em>: Demo Page</h1>
+    <div style="width:100%; text-align:center;background:#303b70;position:relative;height:1.8em;top:-0.6em;box-shadow: inset 0 0px 4px 0px #000080, 0 -2px 7px -2px #618ef4;"></div>
+</div>
+<div style="width:100%;position:relative;top:-0.50em;left:0;display:inline-block;margin:0 auto;height:3em;">
+    <div class='pos-resetter'>
+        <h2 id="click-tip"
+            style="color:#bfbfbf;display:block;position:relative;top:-0.55em;transition:opacity 4s;opacity:1;">
+            <em>Version from 09-Aug-2020</em></h2>
+    </div>
+</div>
+<a href="https://www.audacityteam.org">
+    <div id="logoback">
+        <img id='logo' src="./images/audacity-logo.png">
+    </div>
+</a>
+<div style="height:1.9em;"></div>
+
+<div id="content_here0" class="atkContentDiv" data-page="Audacity" style="text-align:center;">
+    <div style="display:none">
+    <pre>IMAGE:NAME=svg</pre>
+    [[File:AudacityAu19HS.png]]
+    </div>
+</div>
+
+<textarea id="gene_list" style="margin-left:10px;width:1060px;height:800px;">
+    aaaaaaa
+    bbbbb
+    ccccc
+</textarea>
+<div style="margin-left:10px;color:#818181">
+    <div id="message"></div>
+    <div id="message2"></div>
+</div>
+
+
+<div id="examples" style="margin-left:20px">
+</div>
+
+</body>
+</html>
