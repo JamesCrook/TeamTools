@@ -199,7 +199,7 @@ var A={};
           return ("                          "+num).slice( - n );
         }
 
-        ops = "AWXYZ0123456789E+-LSHRDM.";
+        ops = "AXY0123456789E+-LSHRDM.";
 
         class Genome {
 
@@ -239,7 +239,7 @@ var A={};
               if( L > 128 )
                 L = 256-L;
               this.Score += L*L;
-              if( L > 5 ){
+              if( L > 25 ){
                 this.x = this.X;
                 this.y = this.Y;
               }
@@ -265,6 +265,16 @@ var A={};
             G2.genes = this.genes;
             G2.Score = this.Score;
             G2.s = this.s;
+          }
+
+          quit(){
+            if( rand( 640 ) !== 0 )
+              return;
+            this.Score=0;
+            this.s=0;
+            this.P=0;
+            this.genes =
+                "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ";
           }
 
           nop(){
@@ -315,6 +325,7 @@ var A={};
               case "9":this.Num = 9;this.doOpTo( "Num" );break;
 
               case "E":this.evaluate( );break;
+              case "Q":this.quit( );break;
 
 
               case "+":this.setOpTo( "add" );break;
@@ -387,7 +398,7 @@ var A={};
         }
 
         function timerCallback(){
-          for( var i=0;i<100;i++)
+          for( var i=0;i<1000;i++)
             stepGenes( A );
           showGenes(A);
         }
@@ -440,7 +451,7 @@ var A={};
     <div class='pos-resetter'>
         <h2 id="click-tip"
             style="color:#bfbfbf;display:block;position:relative;top:-0.55em;transition:opacity 4s;opacity:1;">
-            <em>Version F from 09-Aug-2020</em></h2>
+            <em>Version G from 09-Aug-2020</em></h2>
     </div>
 </div>
 <a href="https://www.audacityteam.org">
