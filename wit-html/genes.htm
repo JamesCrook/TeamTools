@@ -234,10 +234,11 @@ var A={};
 
           // This contains our fitness function
           evaluate(){
-            if( Math.abs( this.X - this.Y ) < 3 ){
-              var L = (this.X + this.Y) >> 1;
+            var d = Math.abs( this.X - this.Y);
+            if( (d < 15) && (d!==1 )){
+              var L = Math.abs(this.X + this.Y) >> 1;
               if( L > 128 )
-                L = 256-L;
+                L = 255-L;
               this.Score += L*L;
               if( L > 25 ){
                 this.x = this.X;
@@ -259,11 +260,16 @@ var A={};
             // Update my cumulative score (s)
             this.s += this.Score;
             // Reduce current Score by cost of killing G2.
-            this.Score -= (G2.Score + 10000);
+            var penalty= (G2.Score + 10000);
+            this.Score -= penalty;
+            this.x=0;
+            this.y=0;
             // G2 now becomes a copy of this genome,
             // complete with scores.
             G2.genes = this.genes;
             G2.Score = this.Score;
+            G2.x = 0;
+            G2.y = 0;
             G2.s = this.s;
           }
 
