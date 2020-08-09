@@ -196,7 +196,7 @@ var A={};
         }
 
         function fmt( num, n ){
-          return ("           "+num).slice( - n );
+          return ("                          "+num).slice( - n );
         }
 
         ops = "AWXYZ0123456789E+-LSHRDM.";
@@ -218,8 +218,9 @@ var A={};
 
           constructor(){
             this.genes =
-              "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM";
+              "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM";
             this.Score = 0;
+            this.s = 0;
             this.x = 0;
             this.y = 0;
             return this;
@@ -251,6 +252,19 @@ var A={};
             this.p = 255;
           }
           duplicate(){
+            var G2 = A.genomes[ rand( A.genomes.length )];
+            if( (this.Score - G2.Score ) < 10000 )
+              return;
+            // We're about to take over G2.
+            // Update my cumulative score (s)
+            this.s += this.Score;
+            // Reduce current Score by cost of killing G2.
+            this.Score -= (G2.Score + 10000);
+            // G2 now becomes a copy of this genome,
+            // complete with scores.
+            G2.genes = this.genes;
+            G2.Score = this.Score;
+            G2.s = this.s;
           }
 
           nop(){
@@ -353,7 +367,7 @@ var A={};
               " X:"+fmt(G.x, 4) +
               " Y:"+fmt(G.y, 4) +
 //              " Z:"+fmt(G.Z, 4) +
-              " S:"+fmt(G.Score, 7) +
+              " S:"+fmt(G.s, 15) +
               "\n";
           });
           A.list.innerHTML = str;
@@ -426,7 +440,7 @@ var A={};
     <div class='pos-resetter'>
         <h2 id="click-tip"
             style="color:#bfbfbf;display:block;position:relative;top:-0.55em;transition:opacity 4s;opacity:1;">
-            <em>Version E from 09-Aug-2020</em></h2>
+            <em>Version F from 09-Aug-2020</em></h2>
     </div>
 </div>
 <a href="https://www.audacityteam.org">
