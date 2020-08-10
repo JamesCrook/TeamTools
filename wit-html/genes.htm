@@ -229,11 +229,27 @@ var A={};
           mutate(){
             var ix = rand(64);
             var op = rand( ops.length );
-            this.genes = this.genes.replaceAt( ix, ops[op]);
+
+            switch( rand( 50) )
+            {
+              // delete at
+              case 0:
+              case 1:
+                this.genes = this.genes.substr( 0, ix ) + this.genes.substr( ix+1, 64-ix )+".";
+                break;
+              // duplicate at
+              case 2:
+              //case 3:
+                this.genes = this.genes.substr( 0, ix+1 ) + this.genes.substr( ix, 64-ix );
+                break;
+              default:
+                 this.genes = this.genes.replaceAt(ix, ops[op]);
+            }
           }
 
           // This contains our fitness function
           evaluate(){
+            this.Score = Math.floor( this.Score * 0.95 );
             var d = Math.abs( this.X - this.Y);
             if( (d < 15) && (d!==1 )){
               var L = Math.abs(this.X + this.Y) >> 1;
@@ -254,14 +270,14 @@ var A={};
           }
           duplicate(){
             var G2 = A.genomes[ rand( A.genomes.length )];
-            if( (this.Score - G2.Score ) < 10000 )
+            var newscore = Math.floor((this.Score-G2.Score) *0.5 - 8000);
+            if( newscore <0 )
               return;
             // We're about to take over G2.
             // Update my cumulative score (s)
             this.s += this.Score;
             // Reduce current Score by cost of killing G2.
-            var penalty= (G2.Score + 10000);
-            this.Score -= penalty;
+            this.Score = newscore;
             this.x=0;
             this.y=0;
             // G2 now becomes a copy of this genome,
@@ -353,14 +369,19 @@ var A={};
           step(){
             var ch = this.genes[ this.P ];
             // update program counter.
-            this.P = (this.P+1) % this.genes.length;
+            if( this.P >= this.genes.length -1 )
+              this.reset();
+            else
+              this.P = (this.P+1) % this.genes.length;
             // 50 % chance of a NOP.
             if( rand( 256 )>this.p )
               ch = ".";// Nop.
             // reset probability.
             this.p = 128;
             this.dispatch(ch);
-
+            if( rand( 10000) ===0 )
+              if( this.P > 41 )
+                this.mutate();
           }
         }
 
@@ -385,6 +406,7 @@ var A={};
               " Y:"+fmt(G.y, 4) +
 //              " Z:"+fmt(G.Z, 4) +
               " S:"+fmt(G.s, 15) +
+              " S1:"+fmt(G.Score, 15) +
               "\n";
           });
           A.list.innerHTML = str;
@@ -402,7 +424,11 @@ var A={};
             G.step();
           });
         }
-
+        function scoredownGenes(A){
+          A.genomes.forEach( function(G,index){
+            G.Score = Math.floor( G.Score * 0.99 );
+          });
+        }
         function timerCallback(){
           for( var i=0;i<1000;i++)
             stepGenes( A );
@@ -422,6 +448,7 @@ var A={};
         //mutateGenes(A);
         for( var i=0;i<100;i++)
             stepGenes( A );
+        scoredownGenes(A);
         showGenes(A);
         setInterval(timerCallback, 30);
 
@@ -457,7 +484,7 @@ var A={};
     <div class='pos-resetter'>
         <h2 id="click-tip"
             style="color:#bfbfbf;display:block;position:relative;top:-0.55em;transition:opacity 4s;opacity:1;">
-            <em>Version G from 09-Aug-2020</em></h2>
+            <em>Version A from 10-Aug-2020</em></h2>
     </div>
 </div>
 <a href="https://www.audacityteam.org">
