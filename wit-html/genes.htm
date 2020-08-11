@@ -195,17 +195,19 @@ var A={};
           return this.substr(0, index) + replacement + this.substr(index + replacement.length);
         }
 
-        function fmt( num, n ){
-          return ("                          "+num).slice( - n );
+        function fmt( num, n, d ){
+          d = d ||1;
+          return ("                          "+Math.floor( num/d)).slice( - n );
         }
 
-        ops = "AXY0123456789E+-LSHRDM.";
+        ops = "AVWXY0123456789E+-LSHRDM.";
 
         class Genome {
 
           reset(){
             this.P = 0;
             this.A = 0;
+            this.V = 0;
             this.W = 0;
             this.X = 0;
             this.Y = 0;
@@ -221,6 +223,8 @@ var A={};
               "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM";
             this.Score = 0;
             this.s = 0;
+            this.v = 0;
+            this.w = 0;
             this.x = 0;
             this.y = 0;
             return this;
@@ -249,18 +253,31 @@ var A={};
 
           // This contains our fitness function
           evaluate(){
-            this.Score = Math.floor( this.Score * 0.95 );
-            var d = Math.abs( this.X - this.Y);
-            if( (d < 15) && (d!==1 )){
-              var L = Math.abs(this.X + this.Y) >> 1;
-              if( L > 128 )
-                L = 255-L;
-              this.Score += L*L;
-              if( L > 25 ){
-                this.x = this.X;
-                this.y = this.Y;
-              }
+            //this.Score = Math.floor( this.Score * 0.9999 );
+            var d1 = Math.abs( this.V - this.W);
+            var d2 = Math.abs( this.X - this.Y);
+
+            var L1 = Math.abs(this.V + this.W) >> 1;
+            var L2 = Math.abs(this.X + this.Y) >> 1;
+            var S = 0;
+            if( d1 < 15){
+              if( L1 > 128 ) L1 = Math.max( 0, 255 - L1);
+              S = L1 * L1;
             }
+            if( d2 < 15){
+              if( L2 > 128 ) L2 = 255 - L2;
+              S += L2 * L2;
+            }
+            //if( L1 >= L2 )
+            //  S=0;
+
+            if( S > 25*25 ){
+                this.v +=Math.floor( (this.V - this.v) * 0.1);
+                this.w +=Math.floor( (this.W - this.w) * 0.1);
+                this.x +=Math.floor( (this.X - this.x) * 0.1);
+                this.y +=Math.floor( (this.Y - this.y) * 0.1);
+            }
+            this.Score += S;
             this.reset();
           }
 
@@ -270,33 +287,39 @@ var A={};
           }
           duplicate(){
             var G2 = A.genomes[ rand( A.genomes.length )];
-            var newscore = Math.floor((this.Score-G2.Score) *0.5 - 8000);
+            var penalty=0;
+            var newscore = Math.floor((this.Score-G2.Score *1.1 ) - rand(penalty));
             if( newscore <0 )
               return;
             // We're about to take over G2.
             // Update my cumulative score (s)
             this.s += this.Score;
             // Reduce current Score by cost of killing G2.
-            this.Score = newscore;
-            this.x=0;
-            this.y=0;
+            //this.Score = newscore;
+            //this.Score = newscore + rand( this.Score-newscore);
+//            this.v=0;
+//            this.w=0;
+//            this.x=0;
+//            this.y=0;
             // G2 now becomes a copy of this genome,
             // complete with scores.
             G2.genes = this.genes;
             G2.Score = this.Score;
-            G2.x = 0;
-            G2.y = 0;
+            G2.v = this.v;
+            G2.w = this.w;
+            G2.x = this.x;
+            G2.y = this.y;
             G2.s = this.s;
           }
 
           quit(){
-            if( rand( 640 ) !== 0 )
+            if( rand( 10 ) !== 0 )
               return;
             this.Score=0;
             this.s=0;
             this.P=0;
             this.genes =
-                "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ";
+              "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM";
           }
 
           nop(){
@@ -329,6 +352,7 @@ var A={};
             switch( ch ){
 
               case "A":
+              case "V":
               case "W":
               case "X":
               case "Y":
@@ -402,11 +426,13 @@ var A={};
 //              " PC:"+fmt(G.P, 4) +
 //              " A:"+fmt(G.A, 4) +
 //              " N:"+fmt(G.Num, 4) +
-              " X:"+fmt(G.x, 4) +
-              " Y:"+fmt(G.y, 4) +
+              " V:"+fmt(G.v, 4,1) +
+              " W:"+fmt(G.w, 4,1) +
+              " X:"+fmt(G.x, 4,1) +
+              " Y:"+fmt(G.y, 4,1) +
 //              " Z:"+fmt(G.Z, 4) +
-              " S:"+fmt(G.s, 15) +
-              " S1:"+fmt(G.Score, 15) +
+              " S:"+fmt(G.s, 14) +
+              " S1:"+fmt(G.Score, 14) +
               "\n";
           });
           A.list.innerHTML = str;
@@ -432,6 +458,7 @@ var A={};
         function timerCallback(){
           for( var i=0;i<1000;i++)
             stepGenes( A );
+          scoredownGenes(A);
           showGenes(A);
         }
 
@@ -448,7 +475,6 @@ var A={};
         //mutateGenes(A);
         for( var i=0;i<100;i++)
             stepGenes( A );
-        scoredownGenes(A);
         showGenes(A);
         setInterval(timerCallback, 30);
 
