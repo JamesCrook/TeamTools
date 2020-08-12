@@ -185,7 +185,9 @@
 </script>
     <script>
 
-var A={};
+        // Put everything into the object A.  Later that means we can
+        // have more than one collection.
+        var A={};
         function rand(n){
           return Math.floor(Math.random() * n);
         }
@@ -195,34 +197,48 @@ var A={};
           return this.substr(0, index) + replacement + this.substr(index + replacement.length);
         }
 
+        // format num to fit in n spaces.  We divide by d since some numbers are
+        // scaled in various ways.  d is usually 1 though.
         function fmt( num, n, d ){
           d = d ||1;
           return ("                          "+Math.floor( num/d)).slice( - n );
         }
 
+        // These are the single letter codes for the ops.
+        // By repeating a letter we can make it more likely to be used.
+        // Q for quit reliably kills an organism, so we left it out.
+        // Adding it lets you see how quickly a dead organism gets replaced.
         ops = "AVWXY0123456789E+-LSHRDM.";
 
         class Genome {
 
+          // reset to start and all registers to zero.
           reset(){
-            this.P = 0;
+            this.P = 0; // program counter
             this.A = 0;
             this.V = 0;
             this.W = 0;
             this.X = 0;
             this.Y = 0;
             this.Z = 0;
-            this.Num = 0;
-            this.op = "load";
-            this.p = 128; // probability operation succeeds.
+            this.Num = 0; // a temporary used to help with constants.
+            this.op = "load"; // the initial operational mode.
+            this.p = 128; // probability next operation succeeds (out of 256)
             return this;
           }
 
+          // make one genome.
           constructor(){
+            // this says 'mutate me like crazy'.
             this.genes =
               "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM";
+            // Score is current average score.
+            // Can climb to about 50,000,000.
             this.Score = 0;
+            // s is a cumulative score.  Always increases.
             this.s = 0;
+            // v,w,x,y are averaged V,W,X,Y values at recent evaluation times.
+            // if we are doing perfectly they will all be 128.
             this.v = 0;
             this.w = 0;
             this.x = 0;
@@ -230,22 +246,34 @@ var A={};
             return this;
           }
 
+          // mutate can
+          //   delete a gene.  We add a NOP on the end.
+          //   duplicate a gene
+          //   mutate a gene.
+          //
           mutate(){
             var ix = rand(64);
             var op = rand( ops.length );
+            var ch = this.genes.substr( ix, 1 );
+            var mut = rand( 40);
 
-            switch( rand( 50) )
+            //Experiment with NOPs only being deletable.
+            //if( ch === "." )
+            //  mut = 0;
+
+            switch( mut )
             {
               // delete at
-              case 0:
+              //case 0:
               case 1:
-                this.genes = this.genes.substr( 0, ix ) + this.genes.substr( ix+1, 64-ix )+".";
+                this.genes = this.genes.substr( 0, ix ) + this.genes.substr( ix+1, 64-ix )+".";//ops[op];
                 break;
               // duplicate at
               case 2:
               //case 3:
                 this.genes = this.genes.substr( 0, ix+1 ) + this.genes.substr( ix, 64-ix );
                 break;
+              // mutate at
               default:
                  this.genes = this.genes.replaceAt(ix, ops[op]);
             }
@@ -253,7 +281,10 @@ var A={};
 
           // This contains our fitness function
           evaluate(){
-            //this.Score = Math.floor( this.Score * 0.9999 );
+
+            // The fitness function rewards V and W being close
+            // (and close to 128)
+            // And rewards X and Y being close and close to 128.
             var d1 = Math.abs( this.V - this.W);
             var d2 = Math.abs( this.X - this.Y);
 
@@ -261,6 +292,8 @@ var A={};
             var L2 = Math.abs(this.X + this.Y) >> 1;
             var S = 0;
             if( d1 < 15){
+              // We're squaring to heavily reward close to 128.
+              // there is a sharp peak there.
               if( L1 > 128 ) L1 = Math.max( 0, 255 - L1);
               S = L1 * L1;
             }
@@ -268,15 +301,18 @@ var A={};
               if( L2 > 128 ) L2 = 255 - L2;
               S += L2 * L2;
             }
+            //Experiment with no score unless front legs shorter than rear legs.
             //if( L1 >= L2 )
             //  S=0;
 
+            // Track the good v,w,x and y values.
             if( S > 25*25 ){
                 this.v +=Math.floor( (this.V - this.v) * 0.1);
                 this.w +=Math.floor( (this.W - this.w) * 0.1);
                 this.x +=Math.floor( (this.X - this.x) * 0.1);
                 this.y +=Math.floor( (this.Y - this.y) * 0.1);
             }
+            // Update our score.
             this.Score += S;
             this.reset();
           }
@@ -285,22 +321,28 @@ var A={};
           reliable(){
             this.p = 255;
           }
+
+          // possibly duplicates this genome into a lower scoring competitor.
           duplicate(){
+            // This next code discourages D from being too near the start.
+            // This was necessary to prevent a genome spending all its time
+            // duplicating and not getting on with scoring.
+            // It's a gradual discouragement to help the genome learn how
+            // much to delay duplicating by.
+            if( rand(this.P) < 10 )
+               return;
+
+            // G2 is a competitor.
             var G2 = A.genomes[ rand( A.genomes.length )];
+            // No penalty for duplicating, currently.
             var penalty=0;
+            // Must be at least 1.1. times the competitor's score.
             var newscore = Math.floor((this.Score-G2.Score *1.1 ) - rand(penalty));
             if( newscore <0 )
               return;
             // We're about to take over G2.
             // Update my cumulative score (s)
             this.s += this.Score;
-            // Reduce current Score by cost of killing G2.
-            //this.Score = newscore;
-            //this.Score = newscore + rand( this.Score-newscore);
-//            this.v=0;
-//            this.w=0;
-//            this.x=0;
-//            this.y=0;
             // G2 now becomes a copy of this genome,
             // complete with scores.
             G2.genes = this.genes;
@@ -310,18 +352,26 @@ var A={};
             G2.x = this.x;
             G2.y = this.y;
             G2.s = this.s;
+            //this.reset();
+            // And we restart G2 from all zeroes too.
+            G2.reset();
           }
 
+          // quit forgets my genes, which is usually lethal.
           quit(){
+            // Q is lethal, so don't do it too often!
             if( rand( 10 ) !== 0 )
               return;
             this.Score=0;
             this.s=0;
             this.P=0;
+            // all genes gone.  They are now to mutate.
             this.genes =
               "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM";
           }
 
+
+          // In the following, A is the accumulator.
           nop(){
           }
           load( ch ){
@@ -336,18 +386,25 @@ var A={};
           sub( ch ){
             this.A = (this.A - this[ch]) & 0xFF;
           }
+
+          // We've chosen that 'halve' always halves the accumulator,
+          // no matter what argument was specified.
           halve( ch ){
             this.A = (this.A>>1);
           }
 
-          doOpTo( target ){
-            this[this.op]( target );
+          // call the currently selected operator function on the desired
+          // target register.
+          doOpTo( targetRegister ){
+            this[this.op]( targetRegister );
           }
 
+          // set the currently selected operator function.
           setOpTo( op ){
             this.op = op;
           }
 
+          // obey one opcode.
           dispatch( ch ){
             switch( ch ){
 
@@ -359,6 +416,9 @@ var A={};
               case "Z":
                 this.doOpTo( ch );break;
 
+              // 0 to 9 are constants, so we use Num as a proxy
+              // and we don't care about the result (we discard it).
+              // So for example S8 is a NOP, wheareas L8 loads 8.
               case "0":this.Num = 0;this.doOpTo( "Num" );break;
               case "1":this.Num = 1;this.doOpTo( "Num" );break;
               case "2":this.Num = 2;this.doOpTo( "Num" );break;
@@ -391,24 +451,33 @@ var A={};
           };
 
           step(){
+            // get the opcode
             var ch = this.genes[ this.P ];
             // update program counter.
             if( this.P >= this.genes.length -1 )
               this.reset();
             else
               this.P = (this.P+1) % this.genes.length;
+
             // 50 % chance of a NOP.
             if( rand( 256 )>this.p )
               ch = ".";// Nop.
-            // reset probability.
+            // reset probability to 0.5
             this.p = 128;
+
+            // and actually go and od the opcode.
             this.dispatch(ch);
+
+            // Very occasional mutation.
+            // Note that if you stay running in the first 41 characters
+            // you won't mutate.
             if( rand( 10000) ===0 )
               if( this.P > 41 )
                 this.mutate();
           }
         }
 
+        // Make 50 genomes.
         function makeGenomes(A){
           A.genomes=[];
           const n = 50;
@@ -419,6 +488,7 @@ var A={};
           }
         }
 
+        // Show all the genomes.
         function showGenes(A){
           str = "";
           A.genomes.forEach( function(G,index){
@@ -445,16 +515,24 @@ var A={};
           });
         }
 
+        // Run one instruction for each genome.
         function stepGenes(A){
           A.genomes.forEach( function(G,index){
             G.step();
           });
         }
+
+        // This is about averaging the score.
+        // Score will be 100x the score obtained each iteration,
+        // since we score down by 0.99
         function scoredownGenes(A){
           A.genomes.forEach( function(G,index){
             G.Score = Math.floor( G.Score * 0.99 );
           });
         }
+
+        // Every tick, run 1000 ops on each genome, average in the score and
+        // update the screen.
         function timerCallback(){
           for( var i=0;i<1000;i++)
             stepGenes( A );
@@ -462,40 +540,15 @@ var A={};
           showGenes(A);
         }
 
+      // Start the whole thing up
       window.onload = function(){
-        var query = window.location.href;
+        // where to show results.
         A.list = document.getElementById("gene_list");
 
         makeGenomes(A);
-        A.genomes[0]["mutate"]();
-        A.genomes[1]["dispatch"]("7");
-        //mutateGenes(A);
-        //mutateGenes(A);
-        //mutateGenes(A);
-        //mutateGenes(A);
-        for( var i=0;i<100;i++)
-            stepGenes( A );
-        showGenes(A);
+        // all the work happens in the timer ticks.
         setInterval(timerCallback, 30);
 
-//        var frame = getArg('frame') || "yes";
-//        addExamples( bonusContent );
-//        initContent();
-
-        /*
-        var A = Annotator[0];
-        createDomElements(A);
-        loadDiagram(A,page, fromWiki);
-
-        // For additional images/islands.
-        //A= makeAnnotator();
-        //createDomElements(A);
-        //loadDiagram(A,"Flow_Chart", fromWiki);
-
-        // Timer is for animation such as rotating earth.
-        setInterval(timerCallback, 30);
-        //requestSpec();
-        */
       }
 
     </script>
@@ -510,7 +563,7 @@ var A={};
     <div class='pos-resetter'>
         <h2 id="click-tip"
             style="color:#bfbfbf;display:block;position:relative;top:-0.55em;transition:opacity 4s;opacity:1;">
-            <em>Version A from 10-Aug-2020</em></h2>
+            <em>Version A from 12-Aug-2020</em></h2>
     </div>
 </div>
 <a href="https://www.audacityteam.org">
