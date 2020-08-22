@@ -144,73 +144,85 @@ function populateDomElement(A, contentHere){
   A.FocusCanvas = document.createElement("canvas");
   // Detail div floats above the white-out
   A.DetailDiv = document.createElement("div");
-
-  contentHere.appendChild(A.MainDiv);
-  A.MainDiv.appendChild(A.BackingCanvas);
-  A.MainDiv.appendChild(A.FocusCanvas);
-  A.MainDiv.appendChild(A.DetailDiv);
-
-
   A.TitleDiv = document.createElement("div");
-  A.TitleDiv.style.textAlign = "center";
-  A.TitleDiv.innerHTML = "<em>No Hotspot Zones Loaded (Yet)</em>";
   A.TableOfHotsDiv = document.createElement("div");
-  A.TableOfHotsDiv.style.margin = "5px";
-  A.TableOfHotsDiv.style.maxHeight = "400px";
-  A.TableOfHotsDiv.style.padding = "5px";
-  A.TableOfHotsDiv.style.border = "inset 2px #C3C3C3";
-  A.TableOfHotsDiv.style.overflow = "auto";
-  A.TableOfHotsDiv.style.textAlign = "left";
 
-  contentHere.appendChild(A.TitleDiv);
-  contentHere.appendChild(A.TableOfHotsDiv);
+  var p;
 
-  A.MainDiv.style.position = "relative";
-  A.MainDiv.style.display = "inline-block";
-  A.MainDiv.style.marginLeft = "auto";
-  A.MainDiv.style.marginRight = "auto";
-  A.MainDiv.style.overflow = "hidden";
+  p = A.TitleDiv;
+  p.style.textAlign = "center";
+  p.innerHTML = "<em>No Hotspot Zones Loaded (Yet)</em>";
 
-  A.BackingCanvas.style.position = "absolute";
-  A.BackingCanvas.style.left = "0px";
-  A.BackingCanvas.style.top = "0px";
+
+  p = A.TableOfHotsDiv.style;
+  p.margin = "5px";
+  p.maxHeight = "400px";
+  p.padding = "5px";
+  p.border = "inset 2px #C3C3C3";
+  p.overflow = "auto";
+  p.textAlign = "left";
+
+
+  p = A.MainDiv.style;
+  p.position = "relative";
+  p.display = "inline-block";
+  p.marginLeft = "auto";
+  p.marginRight = "auto";
+  p.overflow = "hidden";
+
+  p = A.BackingCanvas.style;
+  p.position = "absolute";
+  p.left = "0px";
+  p.top = "0px";
   A.BackingCanvas.ctx = A.BackingCanvas.getContext('2d');
 
-  A.FocusCanvas.toolkitIndex = A.index;
-  A.FocusCanvas.onmousemove = mousemoveOnMap;
-  A.FocusCanvas.onmouseout = onMouseOut;
-  A.FocusCanvas.onclick = onFocusClicked;
-  A.FocusCanvas.onmouseup = onMouseUp;
-  A.FocusCanvas.onmousedown = onMouseDown;
-  A.FocusCanvas.ondblclick = onFocusDoubleClick;
-  A.FocusCanvas.onwheel = onMouseWheel ;
+  p = A.FocusCanvas.style;
+  p.position = "absolute";
+  p.left = "0px";
+  p.top = "0px";
 
-  A.FocusCanvas.style.position = "absolute";
-  A.FocusCanvas.style.left = "0px";
-  A.FocusCanvas.style.top = "0px";
-  A.FocusCanvas.ctx = A.FocusCanvas.getContext('2d');
+  p = A.FocusCanvas;
+  p.toolkitIndex = A.index;
+  p.onmousemove = mousemoveOnMap;
+  p.onmouseout = onMouseOut;
+  p.onclick = onFocusClicked;
+  p.onmouseup = onMouseUp;
+  p.onmousedown = onMouseDown;
+  p.ondblclick = onFocusDoubleClick;
+  p.onwheel = onMouseWheel;
+  p.ctx = p.getContext('2d');
 
-  A.DetailDiv.innerHTML = "Some Text";
-  A.DetailDiv.style.backgroundColor = "rgba(210,210,230,0.9)";
-  A.DetailDiv.style.position = "absolute";
-  A.DetailDiv.style.left = "0px";
-  A.DetailDiv.style.top = "0px";
+  //A.DetailDiv.innerHTML = "Some Text";
 
-  A.DetailDiv.style.display = "none";
+  p = A.DetailDiv.style;
+  p.backgroundColor = "rgba(210,210,230,0.9)";
+  p.position = "absolute";
+  p.left = "0px";
+  p.top = "0px";
+  p.display = "none";
   //A.DetailDiv.className = "detaildiv";
-
-
-  A.DetailDiv.style.padding = "20px";
+  p.padding = "20px";
   // so the div is exactly therequested size.
-  A.DetailDiv.style.boxSizing =  "border-box";
+  p.boxSizing =  "border-box";
   //A.DetailDiv.style.border = "1px solid rgba(230, 230, 230, 0)";
-  A.DetailDiv.style.border = "3px solid rgba(30, 30, 170, 0.6)";
-  A.DetailDiv.style.borderRadius = "5px";
-  A.DetailDiv.style.MozBorderRadius = "5px";
-  A.DetailDiv.style.textAlign = "left";
-  A.DetailDiv.style.margin = "0px";
+  p.border = "3px solid rgba(30, 30, 170, 0.6)";
+  p.borderRadius = "5px";
+  p.MozBorderRadius = "5px";
+  p.textAlign = "left";
+  p.margin = "0px";
+
   A.DetailHideTime = -1;
   A.DetailDivFrozen = false; // frozen = don't hide.
+
+  p = contentHere;
+  p.appendChild(A.MainDiv);
+  p.appendChild(A.TitleDiv);
+  p.appendChild(A.TableOfHotsDiv);
+
+  p = A.MainDiv;
+  p.appendChild(A.BackingCanvas);
+  p.appendChild(A.FocusCanvas);
+  p.appendChild(A.DetailDiv);
 
 
   // Hotspot canvas and context do not need to be attached.
@@ -604,6 +616,12 @@ function mayUpdateSpotShape(item, shape){
   return shape;
 }
 
+function valueOrDefault( a, b ){
+  if( isDefined( a ) )
+    return a;
+  return b;
+}
+
 /**
  * Where an object contains styling information, update the style from it.
  * Where it doesn't, get its style from the styling object (or from defaults)
@@ -616,14 +634,14 @@ function mayUpdateObjectStyle(A, obj){
   }
   var styleRec = A.Styles.dict[ A.Styles.current ] || {};
   if( styleRec ){
-    obj.colour       = obj.colour || styleRec.colour;
-    obj.borderColour = obj.borderColour || styleRec.borderColour;
-    obj.cornerRadius = obj.cornerRadius || styleRec.cornerRadius;
+    obj.colour       = valueOrDefault(obj.colour, styleRec.colour);
+    obj.borderColour = valueOrDefault(obj.borderColour, styleRec.borderColour);
+    obj.cornerRadius = valueOrDefault(obj.cornerRadius, styleRec.cornerRadius);
   }
-  styleRec.colour       = obj.colour || "rgb(255,255,255)";
-  styleRec.borderColour = obj.borderColour || "rgb(80,80,200)";
-  styleRec.cornerRadius = isDefined(obj.cornerRadius)? obj.cornerRadius : 0;
-  styleRec.head         = obj.head;
+  styleRec.colour       = valueOrDefault( obj.colour, "rgb(255,255,255)" );
+  styleRec.borderColour = valueOrDefault( obj.borderColour, "rgb(80,80,200)");
+  styleRec.cornerRadius = valueOrDefault( obj.cornerRadius, 0 );
+  styleRec.head         = valueOrDefault( obj.head, false );
   A.Styles.dict[ A.Styles.current ] = styleRec;
 }
 
@@ -3183,12 +3201,15 @@ function drawTransform( A, obj, d ){
 
 
   var S = {};
+  // Setting up transform state of two contexts
+  // which store their own transform state.
   S.isHotspot = false;
   innerTransform( A, obj, S );
   S.isHotspot = true;
   innerTransform( A, obj, S );
   drawContainer( A, obj, d );
 
+  // restore transform states.
   ctx.restore();
   ctx2.restore();
 }
