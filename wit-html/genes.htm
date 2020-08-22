@@ -204,6 +204,32 @@
           return ("                          "+Math.floor( num/d)).slice( - n );
         }
 
+        // Save space with larger numbers by using K, M, G and T 'multipliers'
+        function fmt2( num, d ){
+          d = d ||1;
+          var mul = " ";
+          num = num/d;
+          if( num > 100000 ){
+            num = num/1000;
+            mul = 'K';
+          }
+          if( num > 100000 ){
+            num = num/1000;
+            mul = 'M';
+          }
+          if( num > 100000 ){
+            num = num/1000;
+            mul = 'G';
+          }
+          if( num > 100000 ){
+            num = num/1000;
+            mul = 'T';
+          }
+          var n=6;
+
+          return ("                          "+Math.floor( num)).slice( - n )+mul;
+        }
+
         // These are the single letter codes for the ops.
         // By repeating a letter we can make it more likely to be used.
         // Q for quit reliably kills an organism, so we left it out.
@@ -221,7 +247,7 @@
             this.X = 0;
             this.Y = 0;
             this.Z = 0;
-            this.Num = 0; // a temporary used to help with constants.
+            this.Num = 9; // a temporary used to help with constants.
             this.op = "load"; // the initial operational mode.
             this.p = 128; // probability next operation succeeds (out of 256)
             return this;
@@ -462,10 +488,18 @@
             // 50 % chance of a NOP.
             if( rand( 256 )>this.p )
               ch = ".";// Nop.
-            // reset probability to 0.5
-            this.p = 128;
+            // reset probability to some number between 138 and 246
+            this.p = 138 + Math.min( 9, this.Num) *12 ;
 
-            // and actually go and od the opcode.
+            // Alternative opcode probabilities:
+
+            // Highly reliable setting.
+            //this.p = 250;
+
+            // Standard reliability setting (opcodes work 50% of time)
+            //this.p = 128;
+
+            // and actually go and do the opcode.
             this.dispatch(ch);
 
             // Very occasional mutation.
@@ -501,11 +535,11 @@
               " X:"+fmt(G.x, 4,1) +
               " Y:"+fmt(G.y, 4,1) +
 //              " Z:"+fmt(G.Z, 4) +
-              " S:"+fmt(G.s, 14) +
-              " S1:"+fmt(G.Score, 14) +
+              " S:"+fmt2(G.s) +
+              " S1:"+fmt2(G.Score) +
               "\n";
           });
-          A.list.innerHTML = str;
+          A.list.value = str;
         }
 
 
@@ -531,9 +565,30 @@
           });
         }
 
+        function reReadGenomes(){
+          var str = document.getElementById("gene_list").value;
+          str = str.split( "\n" );
+          str.forEach( function( line, i ){
+            if( i< 50 ){
+              var g = line.split(" ")[0];
+              A.genomes[i].genes = g;
+              console.log("" + fmt(i, 2) + " " + g);
+            }
+          });
+        }
+
+        function pauseGo(btn){
+          if( !A.active )
+            reReadGenomes();
+          A.active = !A.active;
+          btn.innerHTML = A.active ? "Pause" : "Go";
+
+        }
         // Every tick, run 1000 ops on each genome, average in the score and
         // update the screen.
         function timerCallback(){
+          if( !A.active )
+            return;
           for( var i=0;i<1000;i++)
             stepGenes( A );
           scoredownGenes(A);
@@ -547,6 +602,7 @@
 
         makeGenomes(A);
         // all the work happens in the timer ticks.
+        A.active = true;
         setInterval(timerCallback, 30);
 
       }
@@ -563,7 +619,7 @@
     <div class='pos-resetter'>
         <h2 id="click-tip"
             style="color:#bfbfbf;display:block;position:relative;top:-0.55em;transition:opacity 4s;opacity:1;">
-            <em>Version A from 12-Aug-2020</em></h2>
+            <em>Version A from 22-Aug-2020</em></h2>
     </div>
 </div>
 <a href="https://www.audacityteam.org">
@@ -580,11 +636,12 @@
     </div>
 </div>
 
-<textarea id="gene_list" style="margin-left:10px;width:1060px;height:800px;">
+<textarea id="gene_list" style="margin-left:10px;width:1060px;height:800px;" spellcheck="false">
     aaaaaaa
     bbbbb
     ccccc
 </textarea>
+<button id="pause_button" onclick="pauseGo(this);">Pause</button>
 <div style="margin-left:10px;color:#818181">
     <div id="message"></div>
     <div id="message2"></div>
