@@ -247,7 +247,7 @@
             this.X = 0;
             this.Y = 0;
             this.Z = 0;
-            this.Num = 9; // a temporary used to help with constants.
+            this.Num = 0; // a temporary used to help with constants.
             this.op = "load"; // the initial operational mode.
             this.p = 128; // probability next operation succeeds (out of 256)
             return this;
@@ -333,10 +333,14 @@
 
             // Track the good v,w,x and y values.
             if( S > 25*25 ){
-                this.v +=Math.floor( (this.V - this.v) * 0.1);
-                this.w +=Math.floor( (this.W - this.w) * 0.1);
-                this.x +=Math.floor( (this.X - this.x) * 0.1);
-                this.y +=Math.floor( (this.Y - this.y) * 0.1);
+                //this.v +=Math.floor( (this.V - this.v) * 0.1);
+                //this.w +=Math.floor( (this.W - this.w) * 0.1);
+                //this.x +=Math.floor( (this.X - this.x) * 0.1);
+                //this.y +=Math.floor( (this.Y - this.y) * 0.1);
+                this.v = this.V;
+                this.w = this.W;
+                this.x = this.X;
+                this.y = this.Y;
             }
             // Update our score.
             this.Score += S;
@@ -364,8 +368,14 @@
             var penalty=0;
             // Must be at least 1.1. times the competitor's score.
             var newscore = Math.floor((this.Score-G2.Score *1.1 ) - rand(penalty));
+            document.getElementById("mut_freq").innerHTML = fmt(A.mutateInterval,7);
+
+            // Stable at 100, if never duplicate.
+            A.mutateInterval = Math.floor(A.mutateInterval*0.99+1);
             if( newscore <0 )
               return;
+            // Stable at 100000 if always duplicate.
+            A.mutateInterval += 99999;
             // We're about to take over G2.
             // Update my cumulative score (s)
             this.s += this.Score;
@@ -505,7 +515,7 @@
             // Very occasional mutation.
             // Note that if you stay running in the first 41 characters
             // you won't mutate.
-            if( rand( 10000) ===0 )
+            if( rand( Math.floor(A.mutateInterval)) ===0 )
               if( this.P > 41 )
                 this.mutate();
           }
@@ -603,6 +613,7 @@
         makeGenomes(A);
         // all the work happens in the timer ticks.
         A.active = true;
+        A.mutateInterval = 10000;
         setInterval(timerCallback, 30);
 
       }
@@ -642,6 +653,7 @@
     ccccc
 </textarea>
 <button id="pause_button" onclick="pauseGo(this);">Pause</button>
+Mutations every: <span id="mut_freq">0000</span> cycles
 <div style="margin-left:10px;color:#818181">
     <div id="message"></div>
     <div id="message2"></div>
