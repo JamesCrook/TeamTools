@@ -17,7 +17,7 @@ The detailed data for the regions, buttons and tooltips follows.
 [
     {"HStack":[
         {"VStack":[
-            {"Tile":"Project",
+            {"Tile":"Projects",
              "src":"IconProject.svg",
              "opacity":0.3
             },
@@ -85,7 +85,7 @@ The detailed data for the regions, buttons and tooltips follows.
 
 
 <pre>NEXTOBJECT:TIP=</pre>
-<h1><a href='https://wiki.audacityteam.org/wiki/Toolbox/Project'>Project</a></h1>
+<h1><a href='https://wiki.audacityteam.org/wiki/Toolbox/Projects'>Projects</a></h1>
 The Audacity project is an XML file containing the layout of audio and other
 tracks that are being worked on.  Audio is stored in blockfiles, chunks of
 audio data.  The project file keeps a record of which chunks make up each track.  It also holds information about the state of each track.
