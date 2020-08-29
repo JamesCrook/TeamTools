@@ -234,7 +234,7 @@
         // By repeating a letter we can make it more likely to be used.
         // Q for quit reliably kills an organism, so we left it out.
         // Adding it lets you see how quickly a dead organism gets replaced.
-        ops = "AVWXY0123456789E+-LSHRDM.";
+        ops = "AVWXYe0123456789E+-LSHRDM.";
 
         class Genome {
 
@@ -269,6 +269,7 @@
             this.w = 0;
             this.x = 0;
             this.y = 0;
+            this.e = 0; // tracked error.
             return this;
           }
 
@@ -327,6 +328,7 @@
               if( L2 > 128 ) L2 = 255 - L2;
               S += L2 * L2;
             }
+            this.e = (this.e + this.Y - 128) & 0xFF;
             //Experiment with no score unless front legs shorter than rear legs.
             //if( L1 >= L2 )
             //  S=0;
@@ -450,6 +452,7 @@
               case "X":
               case "Y":
               case "Z":
+              case "e":
                 this.doOpTo( ch );break;
 
               // 0 to 9 are constants, so we use Num as a proxy
