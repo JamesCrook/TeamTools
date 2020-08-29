@@ -21,7 +21,7 @@ The detailed data for the chart follows.
 {
    "Chart":"Lines",
    "subtype":["lines","*","*"],
-   "maxY":2300,
+   "maxY":2800,
    "linesAt":200,
    "values":"Lines"
 },
@@ -67,14 +67,16 @@ The detailed data for the chart follows.
    ["Mar 2020",380,1965],
    ["Apr 2020",368,2017],
    ["May 2020",354,2059],
-   ["Jun 2020",351,2110]
+   ["Jun 2020",351,2110],
+   ["Jul 2020",360,2138],
+   ["Aug 2020",355,2166]
    ]
 },
   {"Chart":"Releases",
    "titles":["When","Release"],
    "display":["Label","Blue","Green"],
    "subtype":["*","event"],
-   "range":["01-Aug-2017","29-Jun-2020"],
+   "range":["01-Aug-2017","29-Aug-2020"],
    "autoTip":"<h2>Audacity %release</h2>Released: %when",
    "events":true,
    "values":[
@@ -86,7 +88,8 @@ The detailed data for the chart follows.
         ["13-May-2019","2.3.2"],
         ["22-Nov-2019","2.3.3"],
         ["15-May-2020","2.4.0"],
-        ["21-May-2020","2.4.1"]
+        ["21-May-2020","2.4.1"],
+        ["26-Jun-2020","2.4.2"]
      ]
   }
   ]},
