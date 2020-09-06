@@ -29,6 +29,12 @@ const kStageArrowHead=9;
 const kStageHots=10;
 
 
+var Locs = {};
+Locs.imagesPath = "https://wit.audacityteam.org/images/";
+Locs.editPath = "https://wit.audacityteam.org/edit.htm";
+Locs.wikiPath = "https://wit.audacityteam.org/wiki/";
+
+
 var Annotator = [];
 
 function InitAnnotator(A){
@@ -844,6 +850,9 @@ function anchorTagFromDoxygennedClassName(word){
   return "<a href='"+url.toLowerCase() + "'>" + word +"</a>";
 }
 
+
+
+
 /**
  * Take a bare filename, and prefix whatever is needed to make a url
  * @param file
@@ -851,7 +860,9 @@ function anchorTagFromDoxygennedClassName(word){
  */
 function urlOfFilename(file){
   if( isFromServer() === "yes" )
-    file = "https://wit.audacityteam.org/images/" + file;
+    {
+      file = Locs.imagesPath + file;
+    }
   else
     file = "./images/" + file;
   return file;
@@ -3909,7 +3920,7 @@ function setATitle(A,caption, page, fromWiki){
     } else  if( fromWiki !== 'yes' ){
       str +=
         " &nbsp; [ <a" +
-        " href='https://wit.audacityteam.org/edit.htm?page0=" +
+        " href='"+Locs.editPath+"?page0=" +
         page + "&action=edit'>edit</a> ]";
     }
 
@@ -5000,7 +5011,7 @@ function requestFile(A,source, fromwiki,section,fn){
   {
     fileActionLoader( A,"", "", "./wiki/" + source + ".txt",section, fn);
   } else  if( fromwiki !== 'yes' ){
-    fileActionLoader( A,"", "", "https://wit.audacityteam.org/wiki/" + source + ".txt?time="+ nMillis,section,fn);
+    fileActionLoader( A,"", "", Locs.wikiPath + source + ".txt?time="+ nMillis,section,fn);
   } else {
     // action=raw to get unprocessed file from wiki.
     // time=nMillis to avoid issues with cached content.
