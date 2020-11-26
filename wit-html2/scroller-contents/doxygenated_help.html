@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Audacity Architecture</title>
+
+
+    <meta content="" name="ResourceLoaderDynamicStyles"/>
+
+    <meta content="MediaWiki 1.28.2" name="generator"/>
+    <link href="../favicon.ico" rel="shortcut icon"/>
+    <link target="manual" href="http://alphamanual.audacityteam.org/m/opensearch_desc.php"
+          rel="search" title="Audacity Development Manual (en)"
+          type="application/opensearchdescription+xml"/>
+    <link target="manual" href="http://alphamanual.audacityteam.org/m/api.php?action=rsd"
+          rel="EditURI" type="application/rsd+xml"/>
+    <link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+    <link href="303.css" media="screen" rel="stylesheet"/>
+
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Edit_Menu rootpage-Edit_Menu skin-monobook action-view">
+<div id="globalWrapper">
+    <div id="column-content">
+        <div class="mw-body" id="content" role="main">
+            <a id="top"></a>
+            <div class="mw-indicators"></div>
+            <h1 class="firstHeading" id="firstHeading" lang="en">Audacity Architecture</h1>
+                <div class="mw-content-ltr" dir="ltr" id="mw-content-text"
+                     lang="en"><p>
+                </p>
+                    <div class="intro"><br>This page is for developers.
+                        The diagram on the left is the structure of Audacity
+                        <ul>
+                            <li> Click on an item to dive down into more detail.
+                            </li>
+                        </ul>
+                        You will want to enable Doxygen links.<br><br>
+                        The 'Reset' button gets you back
+                        to the Audacity Architecture starting screen.<br><br>
+                    </div>
+
+                    <ul>
+                        <li>The text and image are based on <a target="manual" href="http://www.aosabook.org/en/audacity.html">AOSA: Audacity</a>
+                            </li>
+                        </ul>
+                    <h2><span class="mw-headline" id="AudioIo"><a
+                            href="audio-io.html" title="AudioIO">AudioIO</a></span>
+                    </h2>
+                    <p>This code is closely connected with PortAudio.  It starts and stops playback and recording.  It sorts out the impedence mismatch between PortAudio (which operates at audio capture rates) and disk read/writes using a capture or playback buffer.
+
+                    <p>When recording, AudioIO takes the data from the capture buffer and appends it to Audacity's tracks so that it will eventually get displayed. Additionally, when enough data has been added, AudioIO writes the data to disk. This same thread also does the disk reads for audio playback. The function AudioIO::FillBuffers is the key function here and depending on the settings of some Boolean variables, handles both recording and playback in the one function.
+
+                        <p>It's important that the one function handle both directions. Both the recording and playback parts are used at the same time when doing "software play through," where you overdub what was previously recorded. In the AudioIO thread we are totally at the mercy of the operating system's disk IO. We may stall for an unknown length of time reading or writing to a disk. We could not do those reads or writes in audacityAudioCallback (which is called directly by PortAudio) because of the need to be responsive there.
+                    </p>
+                    <h2><span class="mw-headline" id="Blockfiles"><a
+                            href="blockfiles.html">BlockFiles</a></span>
+                    </h2>
+                    <p>One of the challenges faced by Audacity is supporting insertions and deletions into audio recordings that may be hours long. Recordings can easily be too long to fit in available RAM. If an audio recording is in a single disk file, inserting audio somewhere near the start of that file could mean moving a lot of data to make way. Copying that data on disk would be time consuming and mean that Audacity could then not respond rapidly to simple edits.
+                        <p>Audacity's solution to this is to divide audio files into many BlockFiles, each of which could be around 1 MB. This is the main reason Audacity has its own audio file format, a master file with the extension .aup. It is an XML file which coordinates the various blocks. Changes near the start of a long audio recording might affect just one block and the master .aup file.
+
+                        <p>BlockFiles balance two conflicting forces. We can insert and delete audio without excessive copying, and during playback we are guaranteed to get reasonably large chunks of audio with each request to the disk.
+                        <ul>
+                        <li>The smaller the blocks, the more potential disk requests to fetch the same amount of audio data</li>
+                        <li>the larger the blocks, the more copying on insertions and deletions.</li>
+                    </ul>
+
+                        <p>Audacity's BlockFiles never have internal free space and they never grow beyond the maximum block size. To keep this true when we insert or delete we may end up copying up to one block's worth of data. When we don't need a BlockFile anymore we delete it. The BlockFiles are reference counted so if we delete some audio, the relevant BlockFiles will still hang around to support the undo mechanism until we save. There is never a need to garbage collect free space within Audacity BlockFiles, which we would need to do with an all-in-one-file approach.
+
+                        <p>Merging and splitting larger chunks of data is the bread and butter of data management systems, from B-trees to Google's BigTable tablets to the management of unrolled linked lists.
+
+                        <p>BlockFiles aren't just used for the audio itself. There are also BlockFiles that cache summary information. If Audacity is asked to display a four hour long recording on screen it is not acceptable for it to process the entire audio each time it redraws the screen.
+
+                        <p>Instead Audacity uses summary information which gives the maximum and minimum audio amplitude over ranges of time. When zoomed in, Audacity is drawing using actual samples. When zoomed out, Audacity is drawing using summary information.
+
+                    </p>
+                    <h2><span class="mw-headline" id="ShuttleGui"><a
+                            href="shuttlegui.html">ShuttleGui</a></span>
+                    </h2>
+                    <p>ShuttleGui is an extra layer between the wxWidgets library and Audacity. Its job is to transfer information between the two. Here's an example which specifies the structure of a dialog:
+<pre>
+
+ShuttleGui S;
+// GUI Structure
+S.StartStatic("Some Title",…);
+{
+  S.AddButton("Some Button",…);
+  S.TieCheckbox("Some Checkbox",…);
+}
+S.EndStatic();
+</pre>
+<p>This code defines a static box in a dialog and that box contains a button and a checkbox. The StartStatic and EndStatic are paired calls. Other similar StartSomething/EndSomething pairs, which must match, are used for controlling other aspects of layout of the dialog. The curly brackets and the indenting that goes with them aren't needed for this to be correct code. We adopted the convention of adding them in to make the structure and particularly the matching of the paired calls obvious. It really helps readability in larger examples.
+
+<p>The source code shown does not just create the dialog. The code after the comment "//GUI Structure" can also be used to shuttle data from the dialog out to where the user preferences are stored, and to shuttle data back in. Previously a lot of the repetitive code came from the need to do this. Nowadays that code is only written once and is buried within the ShuttleGui class.
+                    </p>
+                    <h2><span class="mw-headline" id="Commands"><a
+                            href="commands.html">Commands</a></span>
+                    </h2>
+                    <p>Commands are handled through a central registration system called PlugInManager.  The registration system can register commands, dlls, scripts, format converters, and potentially other kinds of thing too.  These have meta data associated with them such as the name and type, and origin.
+                        <p>The CommandManager is a subclass of PlugInManager.  Commands are a special kind of plug-in can be added into a menu, and they can be called from scripting.  Some commands have parameters.  Those that do will typically invoke a dialog to request those parameters, if invoked via a menu item.  Commands declare their parameters in a function.  This example is for the DTMF generator:
+<pre>
+bool EffectDtmf::DefineParams( ShuttleParams & S ){
+    S.Param( dtmfSequence,  Sequence );
+    S.Param( dtmfDutyCycle, DutyCycle );
+    S.Param( dtmfAmplitude, Amplitude );
+    return true;
+}
+</pre>
+                    <p>Our code used to have GetAutomationParameters() and SetAutomationParameters() functions.  Those are no longer needed per command, as DefineParams can do either.  DefineParams can also set defaults, validate inputs and provide help info about the command.  DefineParams cuts out a lot of repetitive code.
+                    </p>
+                    <h2><span class="mw-headline" id="Built-In_Effects"><a
+                            href="builtin-effects.html">Built-in Effects</a></span>
+                    </h2>
+                    <p>Effects are a special case of Commands that operate on audio.  Generators (that generate audio) and Analysers (that analyse audio) are also treated as effects.  Many effects are provided via plug in modules and there are several established formats, such as LV2, LADSPA, Vamp.  We provide a wrapper around the effect that forwards requests to the actual effect.
+                    </p>
+                    <p> Built-in Effects are effects that have their code in Audacity itself.  These auto-register with Audacity EffectManager at start up.
+                    <h2><span class="mw-headline" id="Script_Languages"><a
+                            href="script-languages.html">Script Languages</a></span>
+                    </h2>
+                    <p>Audacity has a built in LISP variant, Nyquist, which is designed for Audio processing.  We wanted to offer Python, Perl or Ruby scripting.  Rather than compile another scripting language into Audacity, Audacity instead can accept textual commands over a pipe.  This saves us from maintaining possibly multiple scripting languages built in.
+
+                    </p>
+                    <h2><span class="mw-headline"
+                              id="Pipe"><a
+                            href="pipe.html">Pipe</a></span></h2>
+                    <p>Audacity provides a scripting interface over a named pipe. The commands exposed via scripting are in a textual format, as are the responses. As long as the user's scripting language can write text to and read text from a named pipe, the scripting language can drive Audacity. Audio and other high-volume data does not need to travel on the pipe.
+                    </p>
+                    <h2><span class="mw-headline" id="Scripting"><a
+                            href="scripting.html">Scripting</a></span>
+                    </h2>
+                    <p>The audacity scripting plugin itself knows nothing about the content of the text traffic that it carries. It is only responsible for conveying it. The plugin interface (or rudimentary extension point) used by the scripting plugin to plug in to Audacity already exposes Audacity commands in textual format. So, the scripting plugin is small, its main content being code for the pipe.
+                    </p>
+                    <p> The extension point for scripting is ultimately the CommandManager.  The CommandManager has an index of commands, and can go from text to invocation of a parameterised command.
+                    <h2><span class="mw-headline" id="PortAudio"><a
+                            href="portaudio.html">PortAudio</a></span>
+                    </h2>
+                    <p>PortAudio is a cross platform Audio Library.  It  provides an API that hides the differences between audio on Mac, Linux and Windows. Within PortAudio there are alternative implementation files to support this API for each platform.
+                        <p>When Audacity is recording or playing, one audio thread is started by PortAudio code and interacts directly with the audio device. This is what drives recording or playback. This thread has to be responsive or packets will get lost. The thread, under the control of PortAudio code, calls audacityAudioCallback which, when recording, adds newly arrived small packets to a larger (five second) capture buffer. When playing back PortAudio takes small chunks off the five second playback buffer. The PortAudio library knows nothing about wxWidgets and so this thread created by PortAudio is a pthread.
+
+                        <p>A second thread is started by code in Audacity's class AudioIO.
+
+
+                        <p>Communication between these two threads happens via shared variables. Because we control which threads are writing to these variables and when, we avoid the need for more expensive mutexes.
+
+                        <p>In both playback and recording, there is an additional requirement: Audacity also needs to update the GUI. This is the least time critical operation. The update happens in the main GUI thread and is due to a periodic timer that ticks twenty times a second. This timer's tick causes TrackPanel::OnTimer to be called, and if updates to the GUI are found to be needed, they are applied.
+
+                        <p>This main GUI thread is created within wxWidgets rather than by our own code. It is special in that other threads cannot directly update the GUI. Using a timer to get the GUI thread to check if it needs to update the screen allows us to reduce the number of repaints to a level that is acceptable for a responsive display, and not make too heavy demands on processor time for displaying.
+
+
+                    </p>
+                    <div id="Rest_of_wxWidgets"></div>
+                    <h2><span class="mw-headline" id="wxWidgets"><a
+                            href="wxwidgets.html">wxWidgets</a></span>
+                    </h2>
+                    <p>The most significant single library for Audacity user interface programmers is the wxWidgets GUI library, which provides such things as buttons, sliders, check boxes, windows and dialogs. It provides the most visible cross-platform behavior. The wxWidgets library has its own string class wxString, it has cross-platform abstractions for threads, filesystems, and fonts, and a mechanism for localization to other languages, all of which we use. We advise people new to Audacity development to first download wxWidgets and compile and experiment with some of the samples that come with that library. wxWidgets is a relatively thin layer on the underlying GUI objects provided by the operating system.
+                        <p>To build up complex dialogs wxWidgets provides not only individual widget elements but also sizers that control the elements' sizes and positions. This is a lot nicer than giving absolute fixed positions to graphical elements. If the widgets are resized either directly by the user or, say, by using a different font size, the positioning of the elements in the dialogs updates in a very natural way. Sizers are important for a cross-platform application. Without them we might have to have custom layouts of dialogs for each platform.></p>
+
+                    <h2><span class="mw-headline" id="wxFile"><a
+                            href="wxfile.html">wxFile</a></span>
+                    </h2>
+                    <p>A wxWidgets class.  In Audacity we use <a href="#Blockfiles">Blockfiles</a> which allow us to insert, delete and move sequences of data around, using references to datablocks rather than by copying large chunks of data to and from disk.   Lorem ipsum delores.
+                    </p>
+
+                    <h2><span class="mw-headline" id="wxWindow"><a
+                            href="wxwindow.html">wxWindow</a></span>
+                    </h2>
+                    <p>A wxWidgets class from which controls such as data entry boxes and sliders are derived.  In Audacity we use <a href="#ShuttleGui">ShuttleGui</a> which provides a less verbose way of creating and exchanging data with controls.   Lorem ipsum delores.Lorem ipsum delores.
+                    </p>
+                    <h2><span class="mw-headline" id="wxMenu"><a
+                            href="wxmenu.html">wxMenu</a></span>
+                    </h2>
+                    <p>A wxWidgets class.  In Audacity we use a <a href="#Commands">CommandManager</a> which packs the creation of commands and menu items into a higher level interface.   Lorem ipsum delores. Lorem ipsum delores.
+                    </p>
+
+                    <h2><span class="mw-headline" id="Platform-specific_Implementation_Layer"><a
+                            href="platform-specific-implementation-layer.html" title="Menu Bar">Platform-Specific Implementation Layer</a></span>
+                    </h2>
+                    <p>PortAudio and wxWidgets, both being cross platform, forward the functions they expose to different variants of those functions for the different operating systems.
+                    </p>
+                    <h2><span class="mw-headline" id="OS"><a
+                            href="os.html">Operating System</a></span>
+                    </h2>
+                    <p>Windows, Mac or Linuc.
+                    </p>
+                    <h2><span class="mw-headline" id="Other_Supporting_Libraries"><a
+                            href="other_supporting_libraries.html#scale">Other Supporting Libraries</a></span>
+                    </h2>
+                    <p>LADSPA, Nyquist, LV2, Vamp, ASIO...  These all provide interfaces that additional modules can plug into.
+                        These 'other supporting libraries' are 'format-specific implementations' that are analogous to the 'platform specific implementation layer.  They adapt the Command and Effect interface, to use with these different formats.
+                    </p>
+
+                    <h2><span class="mw-headline"
+                              id="Plugin_Effects"><a
+                            href="audio_tracks.html">Plugin Effects</a></span></h2>
+                    <p>An effect that is a plug in.
+                    </p>
+                    <h2><span class="mw-headline"
+                              id="Plugin_Converters"><a
+                            href="plugin_converters.html">Plugin Converters</a></span></h2>
+                    <p>Convert to and from different audio formats, such as WAV and mp3.
+                    </p>
+                    <div id="Audacity"></div>
+                    <h2><span class="mw-headline"
+                              id="Rest_of_Audacity"><a
+                            href="audacity.html">Rest of Audacity</a></span></h2>
+                    <p>Lots more to document.  Lorem ipsum delores.
+                    </p>
+                </div>
+
+                <div class="visualClear"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="visualClear"></div>
+
+</div><!--latex \end{multicols}-->
+
+</body>
+</html>

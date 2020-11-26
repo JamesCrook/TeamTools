@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>What is That?</title>
+    <style type="text/css">
+        h1 { font-size: 2em; }
+        h2 { font-size: 1.5em; }
+        h3 { font-size: 1.17em; }
+        h4 { font-size: 1.12em; }
+        h5 { font-size: .83em; }
+        h6 { font-size: .67em; }
+
+        html *
+        {
+            font-family: Arial;
+        }
+
+        #logoback {
+            transition: all 0.15s;
+            background-color: #edebfc;
+            border: 2px solid;
+            border-color: #edebfc;
+            position:absolute;
+            top:1.25em;
+            left:0.9375em;
+            width:5.75em;
+            height:5.75em;
+            color:black;
+            box-sizing:border-box;
+            line-height:5.75em;
+            border-radius:2.875em;
+            box-shadow:0px 0px 1.25em 1px #000080;"
+
+        }
+        #logoback:hover {
+            /*background-color: #c7cfff;*/
+            border-color: #848ff8;
+        }
+        #logo
+        {
+            position:relative;
+            top:0.5em;
+            left:0.5625em;
+            transition: all 0.1s;
+            width:4.375em;
+            height:4.375em;
+
+        }
+        #logo:hover
+        {
+            /*top:6px;*/
+            /*transform: rotate(10deg);*/
+        }
+        #logo:hover:active {
+            width:5em;
+            height:5em;
+            left:0.25em;
+            top:0.0625em;
+        }
+
+        div.bt {
+
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+
+            display:inline-block;
+            color:black;
+            font-size:13px;
+            border: 1px solid;
+            padding:2px 15px 2px 15px;
+            border-color: #8696b2;
+            background-color: #c5d4fc;
+            box-shadow: inset 0 -5px 5px 0 #a6c1e7;
+        }
+        div.bt:hover {
+            cursor: pointer;
+            /*box-shadow: inset 0 -5px 15px 0 #7c94b7;*/
+            background-color: #a9bdff;
+            border-color: #2130ba;
+        }
+        div.bt:hover:active {
+            background-color: #a5c3ee;
+            box-shadow: inset 0 2px 5px 0 #7c94b7;
+        }
+        div.linky {
+            transition: all 0.15s;
+            display:none;
+            background-color: #c5d4fc;
+            border: 2px solid;
+            border-color: #c5d4fc;
+            /*border-color: #8696b2;*/
+            padding:0px 1.25em 0px 1.25em;
+            color:black;
+            height:2.25em;
+            line-height:2.25em;
+            box-sizing:border-box;
+            border-radius:1.25em;
+            margin:0 auto;
+            box-shadow:0 0 20px 1px #000080;
+            cursor: pointer;
+
+        }
+        div.linky:hover {
+           /* background-color: #a5c3ee;*/
+            border-color: #848ff8;
+
+        }
+
+        div.pos-resetter {
+            width:100%;
+            display:inline-block;
+            text-align:center;
+            position:absolute;
+            margin:0 auto;
+        }
+
+        table.tabby tr:hover {
+            background-color: #e6e6e6;
+        }
+
+        table.tabby th {
+            background-color: #31a8f4;
+            color: #1e1a56;
+        }
+
+    </style>
+    <script>
+        console.log( "Protocol is "+window.location.protocol);
+        if (window.location.protocol == "http:"){
+            console.log("Http: detected");
+            if( window.location.href.indexOf("localhost") < 0 )
+                window.location.href = "https:" + window.location.href.slice(5);
+        }
+    </script>
+    <script data-cfasync="false" src="./js/issues.js"></script>
+</head>
+<body>
+<div id="WindowsDiv">This is some extra text that appears if Windows was selected</div>
+<script data-cfasync="false">
+
+var SampleIssues = [
+  {
+    "Bug ID": 1941,
+    "Priority": "P4",
+    "Severity": "Accessibility",
+    "Component": "User Interface",
+    "Group": "Accessibility",
+    "OS": "All",
+    "Status": "NEW",
+    "Resolution": "---",
+    "Summary": "Seek commands do not work during variable Play at Speed",
+    "Keywords": "",
+    "Changed": "2018-08-19 03:05:43",
+    "Number of Comments": 2,
+    "Workaround": "In preferences > Playback, uncheck option 'Vari-Speed Play'.  The shortcuts will then work, but the play-at-speed won't change speed as you play.",
+    "Release Note": ""
+  }
+];
+
+function showClosed(){
+    for( i=0;i<Issues.length;i++){
+        if( (Issues[i]['Resolution'] != "---" ) && (Issues[i]['Closed'] == "" )){
+            console.log( "Closed[ "+Issues[i]['Bug ID']+" ]=\""+Issues[i]['Changed']+"\";");
+        }
+    }
+}
+
+function fixupClosed(){
+    console.log( "Issue count: " + Issues.length );
+    for( i=0;i<Issues.length;i++){
+        var when = Issues[i]['Closed'];
+        if( (when == "2018-08-20 00:00:00" ) || (when =="")){
+            //console.log( Issues[i] );
+            var id = Issues[i]['Bug ID'];
+
+            if( Closed[id] != undefined ){
+                Issues[i]['Closed'] = Closed[id];
+                //console.log( Issues[i] );
+            }
+        }
+    }
+}
+
+function startUpDump(){
+  var i;
+  var n = Issues.length;
+  var result = "";
+  for( i=Issues.length-1;i>=0;i--){
+    var iss = Issues[i];
+    result += ""+(n-i)+": " + iss['Summary'] +"\n";
+    result += "" + iss['Bug ID'] + " ~ " + iss['Resolution'] + "\n";
+    result += "" + iss['Priority'] + " " + iss['Severity'] +"\n";
+    result += "" + (iss['Closed']  || "---") +"\n";
+    result += "\n" ;
+  }
+  console.log( result );
+}
+
+fixupClosed();
+showClosed();
+//startUpDump();
+
+        function inDateRange( value ){
+            var when = value['Closed'];
+            if( when == "" )
+                return true;
+            return when > "2018-10-00"; // 2.3.1 started
+        }
+
+        function closedThisRelease ( value ){
+            if( value["Resolution"] == "---" )
+                return false;
+            if( value["Resolution"] == "QUICKFIXED" )
+                return false;
+            return inDateRange( value );
+        }
+
+        function fixedThisRelease ( value ){
+            if( value["Resolution"] != "FIXED" )
+                return false;
+            return inDateRange( value );
+        }
+        function quickFixedThisRelease ( value ){
+            if( value["Resolution"] != "QUICKFIXED" )
+                return false;
+            return inDateRange( value );
+        }
+        function isAny( value ){
+            return true;
+        }
+
+        function isAll( value ){
+            if( value["Severity"] == "RepeatableAll" )
+                return true;
+            if( value["OS"] == "All" )
+                return true;
+            if( value["OS"] == "All except Vista/7" )
+                return true;
+            if( value["OS"] == "Other" )
+                return true;
+            return false;
+        }
+
+        function isMac(value ){
+            if( isClosed( value ) )
+                return false;
+            if( isAll( value ) )
+                return true;
+            return value["OS"].indexOf( "OS X")!==-1;
+        }
+        function isLinux(value ){
+            if( isClosed( value ) )
+                return false;
+            if( isAll( value ) )
+                return true;
+            return value["OS"].indexOf( "Linux")!==-1;
+        }
+        function isWindows(value ){
+            if( isClosed( value ) )
+                return false;
+            if( isAll( value ) )
+                return true;
+            return value["OS"].indexOf( "Windows")!==-1;
+        }
+
+        function isClosed( value ){
+            return value["Resolution"] != "---";
+        }
+        function isOpen( value ){
+            return value["Resolution"] == "---";
+        }
+        function isAccessibility( value ){
+            return value["Group"] == "Accessibility";
+        }
+        function isEnhancement( value ){
+            return value["Severity"] == "Enhancement";
+        }
+        function isLocale( value ){
+            return value["Severity"] == "Locale";
+        }
+        function isWorkaround( value ){
+            return (value["Workaround"] != "") && (value["Workaround"] != "None");
+        }
+        function isAtLeastP3( value ){
+            return value["Priority"] <= "P3";
+        }
+        function isAtLeastP5( value ){
+            return value["Priority"] <= "P5";
+        }
+
+        function mainIssues( value ){
+            if( isClosed( value ) )
+                return false;
+            var id = value["Bug ID"];
+            return [276,1585,1657].indexOf( id ) !== -1;
+        }
+
+        function newIssues( value ){
+            if( isClosed( value ) )
+                return false;
+            return value["Bug ID"] > 1983; // 2.3.1 started
+        }
+
+        function filterIssues( filterFunction ){
+            var results = [];
+            for(i=0;i<Issues.length;i++){
+                if( filterFunction( Issues[i] ))
+                    results.push( Issues[i] );
+            }
+            return results;
+        }
+
+        function tableFromArray( values, fields ){
+            if( values.length == 0 )
+                return "";
+            var cols = fields.length;
+            var result = '<table class="tabby" style="border:1px solid #090cb9">\n';
+            var row;
+            var col;
+            result += "  <tr>\n";
+            for( col=0;col<cols;col++){
+                result += "    <th>" + fields[col]+ "</th>\n";
+            }
+            result += "  </tr>\n";
+
+
+
+            for( row=0;row<(values.length/ cols);row++){
+                result += "  <tr>\n";
+                for( col=0;col<cols;col++){
+                    result += "    <td>" + values[row*cols+col]+ "</td>\n";
+                }
+                result += "  </tr>\n";
+            }
+            result += "</table>\n";
+            return result;
+        }
+
+        function arrayFromIssues( issues, fields ){
+            var results = [];
+            for( i=0;i<issues.length;i++){
+                // Fixup Other -> All
+                if( issues[i]["OS"] == "Other" )
+                    issues[i]["OS"] = "All";
+                for(j=0;j<fields.length;j++){
+                    var temp = issues[i][fields[j]];
+                    if( fields[j] == "Summary" ){
+                        var id = issues[i]["Bug ID"];
+                        // Include hyperlink to issue.
+                        temp = '<a href="https://bugzilla.audacityteam.org/show_bug.cgi?id=' +
+                                id + '">' + temp + '</a>';
+                    }
+                    results.push(temp);
+                }
+            }
+            return results;
+        }
+
+        function updateTable( filter, fields, tableName, short ){
+            tableName = tableName || "tableDiv";
+            var issues = filterIssues( filter );
+            issues.sort(function(a, b) {
+                v = (b["Group"]).localeCompare( a["Group"]);
+                if( v!= 0 )
+                    return v;
+                v = (a["Summary"]).localeCompare( b["Summary"]);
+                return v;
+                //if( v!= 0 )
+                //    return v;
+                //return b["Bug ID"]-a["Bug ID"];
+            });
+            var array  = arrayFromIssues( issues, fields );
+            var table  = tableFromArray( array, fields );
+            var tableDiv = document.getElementById(tableName);
+            var result = " <em> "+issues.length + " issues</em><br><br>";
+            if( !short )
+                result = result + table;
+            tableDiv.innerHTML = result;
+            return issues.length;
+        }
+
+        function updateCount( filter, countName ){
+            var issues = filterIssues( filter );
+            var count = issues.length;
+            var countDiv = document.getElementById(countName);
+            countDiv.innerHTML = " " + count + " issues";
+        }
+
+        function InnerFor( option ){
+            var div = document.getElementById(option + "Div");
+            if( div )
+                return div.innerHTML;
+            return "";
+        }
+
+        function OnFilter(){
+
+            var bugs     = document.getElementById("bugs").value;
+            var show     = document.getElementById("show").value;
+            var priority = document.getElementById("priority").value;
+
+            var filter1 = {
+                "Open" : isOpen,
+                "Mac" : isMac,
+                "Windows": isWindows,
+                "Linux" : isLinux,
+                "Fixed" : fixedThisRelease,
+                "Closed" : closedThisRelease,
+                "QuickFixed" : quickFixedThisRelease,
+                "Any" : isAny }[ bugs ];
+            var filter2 = {
+                "Main" : mainIssues,
+                "Accessibility" : isAccessibility,
+                "Translation" : isLocale,
+                "Enhancements" : isEnhancement,
+                "Workarounds" : isWorkaround,
+                "New" : newIssues,
+                "Any" : isAny }[show];
+
+            var filter3 = {
+                "P3m" : isAtLeastP3,
+                "P5m" : isAny,
+                "P3" : isAtLeastP3,
+                "P5" : isAny }[priority];
+
+
+            var interestingFields = [];
+            if( show != "Accessibility" && show != "Translation" )
+                interestingFields.push( "Group" );
+            interestingFields.push( "Summary" );
+            if( bugs == "Open" || bugs == "Fixed" || bugs == "Closed")
+                interestingFields.push( "OS" );
+            if( priority != "P3" )
+                interestingFields.push( "Priority" );
+            if( (bugs == "Closed" ) || (bugs == "Any"))
+                interestingFields.push( "Resolution" );
+            if( show != "Any" )
+                interestingFields.push( "Workaround" );
+
+            var otherFields = [];
+            otherFields.push( "Group");
+            otherFields.push( "Summary");
+            otherFields.push( "OS");
+            otherFields.push( "Priority");
+            if( bugs == "Closed" )
+                otherFields.push( "Resolution" );
+            otherFields.push( "Workaround");
+
+            updateCount( filter1, "bugsCount" );
+            updateCount( andFunc( [filter1,filter2]), "showCount" );
+            updateCount( andFunc( [filter1,filter2,filter3]), "priorityCount" );
+
+            var n = updateTable( andFunc( [ filter1, filter2, filter3] ),
+                    interestingFields);
+            var short = ( priority.indexOf( "m" ) == -1 ) && (n>0);
+            updateTable( andFunc( [ filter1, notFunc( andFunc([filter2, filter3]))] ),
+                    otherFields, "tableDiv2", short);
+
+            var message = InnerFor( bugs ) + InnerFor( show ) + InnerFor( priority );
+            document.getElementById("messageDiv").innerHTML = message;
+
+        }
+
+        function notFunc( func ){
+            return function( issue ){
+                return !func( issue );
+            };
+        }
+
+        function orFunc( funcs ){
+            return function( issue ){
+                var i;
+                for(i=0;i<funcs.length;i++){
+                    if( funcs[i]( issue ) )
+                        return true;
+                }
+                return false;
+            };
+        }
+        function andFunc( funcs ){
+            return function( issue ){
+                var i;
+                for(i=0;i<funcs.length;i++){
+                    if( !funcs[i]( issue ) )
+                        return false;
+                }
+                return true;
+            };
+        }
+    </script>
+
+
+    <table style="border:1px solid black;border-spacing:15px;">
+        <tr>
+            <td><label for="bugs">Select bugs that are:</label></td>
+            <td><select id="bugs" onchange="OnFilter();">
+                <option value="Windows">Windows</option>
+                <option value="Mac">Mac</option>
+                <option value="Linux">Linux</option>
+                <option value="Open">Open</option>
+                <option value="Fixed">Fixed</option>
+                <option value="Closed">Closed</option>
+                <option value="QuickFixed">QuickFixed</option>
+                <option value="Any">Any</option>
+            </select>
+            </td>
+            <td><div id="bugsCount">0</div>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="show">I'm interested in:</label></td>
+            <td><select id="show" onchange="OnFilter();">
+                <option value="Main">Main Issues</option>
+                <option value="Workarounds">Workarounds</option>
+                <option value="Accessibility">Accessibility</option>
+                <option value="Translation">Translation</option>
+                <option value="New">New Issues</option>
+                <option value="Enhancements">Enhancements</option>
+                <option value="Any">Any</option>
+            </select>
+            </td>
+            <td><div id="showCount">0</div>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="priority">I'm interested in low priority bugs:</label></td>
+            <td><select id="priority" onchange="OnFilter();">
+                <option value="P3">No</option>
+                <option value="P5">Yes</option>
+                <option value="P5m">Maybe Yes</option>
+                <option value="P3m">Maybe No</option>
+            </select>
+            </td>
+            <td><div id="priorityCount">0</div>
+            </td>
+        </tr>
+    </table>
+    &nbsp;
+    &nbsp;
+
+    <script data-cfasync="false">
+        document.addEventListener('DOMContentLoaded', OnFilter, false);
+    </script>
+
+    <h2>Issues you may be interested in:</h2>
+    <div id="tableDiv"></div>
+
+    &nbsp;
+    <div id="messageDiv"></div>
+
+    <h2>The rest of the selected bugs:</h2>
+    <div id="tableDiv2"></div>
+</body>
+</html>

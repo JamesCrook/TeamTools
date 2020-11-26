@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html class="client-nojs" dir="ltr" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Special Menu</title>
+
+
+    <meta content="" name="ResourceLoaderDynamicStyles"/>
+
+    <meta content="MediaWiki 1.28.2" name="generator"/>
+    <link href="../favicon.ico" rel="shortcut icon"/>
+    <link target="manual" href="http://alphamanual.audacityteam.org/m/opensearch_desc.php"
+          rel="search" title="Audacity Development Manual (en)"
+          type="application/opensearchdescription+xml"/>
+    <link target="manual" href="http://alphamanual.audacityteam.org/m/api.php?action=rsd"
+          rel="EditURI" type="application/rsd+xml"/>
+    <link href="https://creativecommons.org/licenses/by/3.0/" rel="copyright"/>
+
+    <link href="303.css" media="screen" rel="stylesheet"/>
+
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Edit_Menu rootpage-Edit_Menu skin-monobook action-view">
+<div id="globalWrapper">
+    <div id="column-content">
+        <div class="mw-body" id="content" role="main">
+            <a id="top"></a>
+            <div class="mw-indicators"></div>
+            <h1 class="firstHeading" id="firstHeading" lang="en">
+            Options Panel</h1>
+                <div class="mw-content-ltr" dir="ltr" id="mw-content-text"
+                     lang="en"><p>
+                </p>
+                    <div class="intro"><br>This panel provides additional experimental options
+                        that extend the functionality of WIT.<br><br>
+                    </div>
+                    <div style="margin:20px;">
+
+                        <input type="checkbox" id="keep-open" OnClick="parent.OnKeepPanel( this );" checked="checked">
+                            Keep this options panel open.<br>
+                        <input type="checkbox" OnClick="parent.OnAnnotationMode( this );">
+                            Enable annotation-capture mode.<br>
+
+                        <input type="checkbox" OnClick="parent.OnShowManualUrls( this );">
+                            Show Manual URL (when available).<br>
+                        <input type="checkbox" OnClick="parent.OnShowWitUrls( this );">
+                        Show WIT URL (when available).<br>
+                        <input type="checkbox" OnClick="parent.OnShowDoxygenUrls( this );" checked="checked">
+                        Show Doxygen URL (when available).<br><br>
+                        <button onclick="document.getElementById('keep-open').checked=false;parent.OnGetNextApp( this );">Next</button>
+                            annotated image.<br>
+                        </div>
+                    <em>The following buttons work in <b>Chrome browser only</b> and download files for use in our manual wiki</em>
+                    <div style="margin-left:20px;margin-top:10px;line-height:2;">
+                        Menu images: <button onclick="parent.OnGetImage( this );">Current</button> <button onclick="parent.OnGetMenuImages( this );">All</button><br>
+
+                        Image maps: <button onclick="parent.OnGetMenuImageMaps( this );">Menus</button> <button onclick="parent.OnGetToolbarImageMaps( this );">Toolbars</button><br>
+
+                        References: <button onclick="parent.OnGetKeyboardReference( this );">Keyboard</button> <button onclick="parent.OnGetAutomationReference( this );">Automation</button>
+                        <button onclick="parent.OnGetPreferencesReference( this );">Prefs</button><br>
+
+                        Nyquist: <button onclick="parent.OnGetNyquist( this );">Wrappers</button><br>
+
+                    </div>
+
+
+                </div>
+
+                <div class="visualClear"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="visualClear"></div>
+
+</div><!--latex \end{multicols}-->
+
+</body>
+</html>

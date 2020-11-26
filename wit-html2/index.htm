@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>What is That?</title>
+    <style type="text/css">
+        h1 { font-size: 2em; }
+        h2 { font-size: 1.5em; }
+        h3 { font-size: 1.17em; }
+        h4 { font-size: 1.12em; }
+        h5 { font-size: .83em; }
+        h6 { font-size: .67em; }
+
+        html *
+        {
+            font-family: Arial;
+        }
+
+        #logoback {
+            transition: all 0.15s;
+            background-color: #edebfc;
+            border: 2px solid;
+            border-color: #edebfc;
+            position:absolute;
+            top:1.25em;
+            left:0.9375em;
+            width:5.75em;
+            height:5.75em;
+            color:black;
+            box-sizing:border-box;
+            line-height:5.75em;
+            border-radius:2.875em;
+            box-shadow:0px 0px 1.25em 1px #000080;"
+
+        }
+        #logoback:hover {
+            /*background-color: #c7cfff;*/
+            border-color: #848ff8;
+        }
+        #logo
+        {
+            position:relative;
+            top:0.5em;
+            left:0.5625em;
+            transition: all 0.1s;
+            width:4.375em;
+            height:4.375em;
+
+        }
+        #logo:hover
+        {
+            /*top:6px;*/
+            /*transform: rotate(10deg);*/
+        }
+        #logo:hover:active {
+            width:5em;
+            height:5em;
+            left:0.25em;
+            top:0.0625em;
+        }
+
+        div.bt {
+
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+
+            display:inline-block;
+            color:black;
+            font-size:13px;
+            border: 1px solid;
+            padding:2px 15px 2px 15px;
+            border-color: #8696b2;
+            background-color: #c5d4fc;
+            box-shadow: inset 0 -5px 5px 0 #a6c1e7;
+        }
+        div.bt:hover {
+            cursor: pointer;
+            /*box-shadow: inset 0 -5px 15px 0 #7c94b7;*/
+            background-color: #a9bdff;
+            border-color: #2130ba;
+        }
+        div.bt:hover:active {
+            background-color: #a5c3ee;
+            box-shadow: inset 0 2px 5px 0 #7c94b7;
+        }
+        div.linky {
+            transition: all 0.15s;
+            display:none;
+            background-color: #c5d4fc;
+            border: 2px solid;
+            border-color: #c5d4fc;
+            /*border-color: #8696b2;*/
+            padding:0px 1.25em 0px 1.25em;
+            color:black;
+            height:2.25em;
+            line-height:2.25em;
+            box-sizing:border-box;
+            border-radius:1.25em;
+            margin:0 auto;
+            box-shadow:0 0 20px 1px #000080;
+            cursor: pointer;
+
+        }
+        div.linky:hover {
+           /* background-color: #a5c3ee;*/
+            border-color: #848ff8;
+
+        }
+
+        div.pos-resetter {
+            width:100%;
+            display:inline-block;
+            text-align:center;
+            position:absolute;
+            margin:0 auto;
+        }
+    </style>
+    <script data-cfasync="false">
+        console.log( "Protocol is "+window.location.protocol);
+        if (window.location.protocol == "http:"){
+            console.log("Http: detected");
+            if( window.location.href.indexOf("localhost") < 0 )
+                window.location.href = "https:" + window.location.href.slice(5);
+        }
+    </script>
+    <!--<script data-cfasync="false" src="./js/download.js"></script>-->
+    <script data-cfasync="false" src="./js/boxes.js"></script>
+    <script data-cfasync="false" src="./js/doxy.js"></script>
+    <script data-cfasync="false" src="./js/vec2.js"></script>
+    <script data-cfasync="false" src="./js/draw.js"></script>
+    <script data-cfasync="false" src="./js/draw_menu.js"></script>
+    <script data-cfasync="false" src="./js/wit.js"></script>
+    <script data-cfasync="false" src="./js/transfers.js"></script>
+
+</head>
+<body style="color:white;background-image:url(images/header-home-bg.jpg);margin:0px;background-attachment:fixed;">
+<div style="width:100%; text-align:center;background:#1d2134;height:5em;margin: 0px;">
+    <h1 style="margin:0px;padding-top:0.65em;padding-bottom:0.9em;">The Audacity
+        <em>"What is That?"</em> Help Page</h1>
+    <div style="width:100%; text-align:center;background:#303b70;position:relative;height:1.8em;top:-0.6em;box-shadow: inset 0 0px 4px 0px #000080, 0 -2px 7px -2px #618ef4;"></div>
+</div>
+<div style="width:100%;position:relative;top:-0.50em;left:0;display:inline-block;margin:0 auto;height:3em;">
+    <div class='pos-resetter'>
+        <h2 id="click-tip" style="color:#bfbfbf;display:block;position:relative;top:-0.55em;transition:opacity 4s;opacity:1;"><em>Click</em>
+            on the
+            diagram to find out more</h2>
+    </div>
+    <div class='pos-resetter'>
+        <div style="display:inline-block;">
+            <div class='linky' id="manual-url-holder">
+                Manual's URL, here</div> &nbsp;
+            <div class='linky' id="wit-url-holder">
+                WIT's URL, here</div> &nbsp;
+            <div class='linky' id="doxy-url-holder">
+                Doxygen's URL, here</div>
+        </div>
+    </div>
+</div>
+<a  href="https://www.audacityteam.org">
+    <div id="logoback" >
+        <img id='logo' src="images/audacity-logo.png">
+    </div>
+</a>
+<div style="height:1.9em;"></div>
+<div style="text-align:center;">
+    <div style="width:1225px;position:relative;display:inline-block;margin-left:auto;margin-right:auto;">
+        <canvas id="GuiCanvas"
+                style="position:absolute;left:0px;top:0px;box-shadow:0px 0px 20px 1px #000080;"
+                height="665px"
+                width="1220px"
+                OnClick="ImageClick(event,true);"
+                OnMouseMove="ImageClick(event,false)"
+                alt="Clickable Canvas"></canvas>
+        <div id="buttons"
+             style="position:absolute;left:865px;top:0px;width:349px;height:30px;background-color:#9dbaea;opacity:1.0;border-color:#9dbaea;border-style:solid;">
+        </div>
+        <div id="buttons"
+             style="position:absolute;left:920px;top:6px;color:#6d86e4;">
+            <div style="position:relative;font-size:13px;">
+                <div class='bt' OnClick="OnReset();">Reset</div>
+                |
+                <div class='bt' OnClick="OnManual();">Manual</div>
+                |
+                <div class='bt' OnClick="OnSpecial(event);">Special</div>
+            </div>
+        </div>
+
+        <iframe id="scroller"
+                style="position:absolute;left:865px;top:32px;border:0"
+                height="553px"
+                width="355px"
+                src="./scroller-contents/top_menu.html"
+                seamless></iframe>
+    </div>
+</div>
+<div id="message"></div>
+<img id="Gui" src="./images/blank-links.png"
+     style="display:none;"
+     alt="Audacity">
+</body>
+</html>
